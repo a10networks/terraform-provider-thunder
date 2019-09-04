@@ -1,0 +1,4 @@
+*.tfstate
+*.backup
+*.log
+*.json
