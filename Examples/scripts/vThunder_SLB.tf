@@ -1,3 +1,11 @@
+# This configuration is used to configure vThunder device as a simple load balancer.
+# Resources added -
+# Routes
+# Ethernet
+# Virtual server
+# Backend server
+# Service group
+
 provider "vthunder" {
   address = ""
   username = ""
@@ -46,7 +54,7 @@ port_list {
 health_check_disable=1
 port_number=
 protocol=""
-} 
+}
 }
 
 resource "vthunder_service_group" "sg9" {
