@@ -13,6 +13,6 @@ member_list {
 	}
 member_list {
 		name="rs1"
-		port=
-		}
+		port=	
+	}
 }
