@@ -41,9 +41,9 @@ func ProviderTest() terraform.ResourceProvider {
 
 func providerConfigureTest(d *schema.ResourceData) (interface{}, error) {
 	config := Config{
-		Address:  "54.207.18.192",
-		Username: "admin",
-		Password: "a10",
+		Address:  "", //hostname
+		Username: "", //username
+		Password: "", //password
 	}
 
 	return config.Client()
