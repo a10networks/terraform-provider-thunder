@@ -1,30 +1,56 @@
-# terraform-provider-vThunder
-Terraform Provider for A10 vThunder
+Terraform Provider
+=========================
 
-# Description
-This project is a Terraform custom provider for A10's vThunder device. It uses the aXAPIs to create/configure LB configurations.
+- Website: https://www.terraform.io
+- [![Gitter chat](https://badges.gitter.im/hashicorp-terraform/Lobby.png)](https://gitter.im/hashicorp-terraform/Lobby)
+- Mailing list: [Google Groups](http://groups.google.com/group/terraform-tool)
 
-# Requirement
+<img src="https://cdn.rawgit.com/hashicorp/terraform-website/master/content/source/assets/images/logo-hashicorp.svg" width="600px">
 
-- [hashicorp/terraform](https://github.com/hashicorp/terraform/)
+Maintainers
+-----------
+
+This provider plugin is maintained by the Terraform team at [HashiCorp](https://www.hashicorp.com/).
+
+Requirements
+------------
+
+-	[Terraform](https://www.terraform.io/downloads.html) 0.10.x
+-	[Go](https://golang.org/doc/install) 1.12 (to build the provider plugin)
+
+Building The Provider
+---------------------
+
+Clone repository to: `$GOPATH/src/github.com/terraform-providers/terraform-provider-null`
+
+```sh
+$ git clone git@github.com:terraform-providers/terraform-provider-null $GOPATH/src/github.com/terraform-providers/terraform-provider-null
+```
+
+Enter the provider directory and build the provider
+
+```sh
+$ cd $GOPATH/src/github.com/terraform-providers/terraform-provider-null
+$ make build
+```
 
 # Usage
 
 ### Provider Configuration
 
 ```
-provider "vthunder" { 
-address = "129.213.86.193" 
+provider "vthunder" {
+address = "129.213.86.193"
 username = "myUser"  
 password = "myPassword“
 }
 ```
 ##### Argument Reference
 The following arguments are supported.
-•	username - User name to access vThunder. 
-•	password - Password to access vThunder. 
+•	username - User name to access vThunder.
+•	password - Password to access vThunder.
 •	address – IP address of vThunder; to be configured.
- 
+
 
 ### Resource Configuration
 
@@ -72,7 +98,7 @@ distance_nexthop_ip=1
 ```
 
 #### Argument Reference
-See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapiv3/ip_route_rib.html for possible values for these arguments and for an exhaustive list of arguments. 
+See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapiv3/ip_route_rib.html for possible values for these arguments and for an exhaustive list of arguments.
 
 ### vthunder_server
 ```
@@ -84,7 +110,7 @@ port_list {
 health_check_disable=1
 port_number=80
 protocol="tcp"
-} 
+}
 }
 ```
 
@@ -104,7 +130,7 @@ port=80
 ```
 
 #### Argument Reference
-See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapiv3/slb_service_group.html for possible values for these arguments and for an exhaustive list of arguments. Backend server name needs to be specified in the member list. This name can come from vthunder_server resource at runtime as specified in the sample. 
+See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapiv3/slb_service_group.html for possible values for these arguments and for an exhaustive list of arguments. Backend server name needs to be specified in the member list. This name can come from vthunder_server resource at runtime as specified in the sample.
 
 ### vthunder_virtual_server
 ```
@@ -125,24 +151,34 @@ snat_on_vip=1
 #### Argument Reference
 See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapiv3/slb_virtual_server.html for possible values for these arguments and for an exhaustive list of arguments.
 
-## Building
-### Assumption
-•	You have some experience with Terraform, the different provisioners and providers that come out of the box, its configuration files, tfstate files, etc.
-•	You are comfortable with the Go language and its code organization.
-1.	Install terraform from https://www.terraform.io/downloads.html
-2.	Install dep (https://github.com/golang/dep)
-3.	Check out this code: git clone https://<>
-4.	Build this code using
-    ```        
-    go build -o terraform-provider-vthunder
-    ```
-5.  Copy the binary (either from the build or from the releases page) terraform-provider-vthunder to an appropriate location.
-2.	Run Terraform as usual
-    ```
-    terraform init -plugin-dir="<directory path of terraform-provider-vthunder binary>"
-    terraform plan
-    terraform apply
-    ```
+Developing the Provider
+---------------------------
+
+If you wish to work on the provider, you'll first need [Go](http://www.golang.org) installed on your machine (version 1.11+ is *required*). You'll also need to correctly setup a [GOPATH](http://golang.org/doc/code.html#GOPATH), as well as adding `$GOPATH/bin` to your `$PATH`.
+
+To compile the provider, run `make build`. This will build the provider and put the provider binary in the `$GOPATH/bin` directory.
+
+```sh
+$ make bin
+...
+$ $GOPATH/bin/terraform-provider-null
+...
+```
+
+In order to test the provider, you can simply run `make test`.
+
+```sh
+$ make test
+```
+
+In order to run the full suite of Acceptance tests, run `make testacc`.
+
+*Note:* Acceptance tests create real resources, and often cost money to run.
+
+```sh
+$ make testacc
+```
+
 ## Samples
 See the examples directory for various LB topologies that can be driven from this terraform provider.
 
@@ -151,4 +187,3 @@ Please submit bug reports and feature requests via GitHub issues. When reporting
 
 ## Contact
 If you have a question that cannot be submitted via Github Issues, please email support@a10networks.com with "a10-terraform-provider" in the subject line.
-
