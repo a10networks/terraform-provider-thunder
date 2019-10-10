@@ -165,6 +165,8 @@ func resourceRibRouteRead(d *schema.ResourceData, meta interface{}) error {
 
 		if rib == nil {
 			logger.Println("[INFO] No Route found " + name)
+			d.SetId("")
+			return nil
 		}
 
 		return err

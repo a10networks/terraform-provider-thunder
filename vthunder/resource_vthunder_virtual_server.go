@@ -1077,6 +1077,8 @@ func resourceVirtualServerRead(d *schema.ResourceData, meta interface{}) error {
 
 		if vs == nil {
 			logger.Println("[INFO] No virtual server found " + name)
+			d.SetId("")
+			return nil
 		}
 
 		return err

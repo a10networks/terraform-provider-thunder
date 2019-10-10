@@ -369,6 +369,8 @@ func resourceServerRead(d *schema.ResourceData, meta interface{}) error {
 
 		if server == nil {
 			logger.Println("[INFO] No server found " + name)
+			d.SetId("")
+			return nil
 		}
 
 		return err

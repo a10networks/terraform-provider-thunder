@@ -431,6 +431,8 @@ func resourceServiceGroupRead(d *schema.ResourceData, meta interface{}) error {
 		
 		if(sg == nil){
 			logger.Println("[INFO] No service group found "+ name)
+			d.SetId("")
+			return nil
 		}
 
 		return err
