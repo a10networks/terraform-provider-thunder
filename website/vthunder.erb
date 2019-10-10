@@ -1,0 +1,42 @@
+<% wrap_layout :inner do %>
+    <% content_for :sidebar do %>
+        <div class="docs-sidebar hidden-print affix-top" role="complementary">
+            <ul class="nav docs-sidenav">
+                <li<%= sidebar_current("docs-home") %>>
+                    <a href="/docs/providers/index.html">All Providers</a>
+                </li>
+
+                <li<%= sidebar_current("docs-vthunder-index") %>>
+                    <a href="/docs/providers/vthunder/index.html">vThunder Provider</a>
+                </li>
+
+                <li<%= sidebar_current("docs-vthunder-resource") %>>
+                <a href="#">Resources</a>
+                    <ul class="nav nav-visible">
+
+                        <li<%= sidebar_current("docs-vthunder-resource-ethernet") %>>
+                            <a href="/docs/providers/vthunder/r/vthunder_ethernet.html">vthunder_ethernet</a>
+                        </li>
+                        <li<%= sidebar_current("docs-vthunder-resource-rib-route") %>>
+                            <a href="/docs/providers/vthunder/r/vthunder_rib_route.html">vthunder_rib_route</a>
+                        </li>
+                        <li<%= sidebar_current("docs-vthunder-resource-server") %>>
+                            <a href="/docs/providers/vthunder/r/vthunder_server.html">vthunder_server</a>
+                        </li>
+                        <li<%= sidebar_current("docs-vthunder-resource-service-group") %>>
+                            <a href="/docs/providers/vthunder/r/vthunder_service_group.html">vthunder_service_group</a>
+                        </li>
+                        <li<%= sidebar_current("docs-vthunder-resource-virtual-server") %>>
+                            <a href="/docs/providers/vthunder/r/vthunder_virtual_server.html">vthunder_virtual_server</a>
+                        </li>
+
+                    </ul>
+                </li>
+                    </ul>
+                </li>
+
+        </div>
+    <% end %>
+
+    <%= yield %>
+<% end %>
