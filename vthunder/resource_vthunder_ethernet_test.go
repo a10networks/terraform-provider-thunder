@@ -2,7 +2,6 @@ package vthunder
 
 import (
 	"github.com/hashicorp/terraform/helper/resource"
-	//	"github.com/go_vthunder"
 	"testing"
 )
 

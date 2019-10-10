@@ -1,12 +1,5 @@
 package main
 
-/*
-func main() {
-	id := getAuthHeader()
-	post_virtual_server_object(id)
-}
-*/
-
 import (
 	"github.com/hashicorp/terraform/plugin"
 	"github.com/terraform-providers/terraform-provider-vthunder/vthunder"

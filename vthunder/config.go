@@ -3,7 +3,6 @@ package vthunder
 import (
 	"fmt"
 	"util"
-	//"log"
 )
 
 type Config struct {
