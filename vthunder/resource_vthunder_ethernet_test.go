@@ -2,9 +2,8 @@ package vthunder
 
 import (
 	"github.com/hashicorp/terraform/helper/resource"
-//	"github.com/go_vthunder"
+	//	"github.com/go_vthunder"
 	"testing"
-	
 )
 
 var TEST_ETH_RESOURCE = `
@@ -32,6 +31,7 @@ var TEST_ETH_RESOURCE = `
 	
 }
 `
+
 //Acceptance test
 func TestAccVthunderEthernet_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{

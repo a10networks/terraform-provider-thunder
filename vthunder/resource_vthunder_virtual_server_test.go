@@ -2,12 +2,12 @@ package vthunder
 
 import (
 	"fmt"
-	"reflect"
-	"testing"
 	"github.com/go_vthunder/vthunder"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
+	"reflect"
+	"testing"
 )
 
 var NAME_VS = "vs9"

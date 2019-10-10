@@ -2,12 +2,12 @@ package vthunder
 
 import (
 	"fmt"
-	"reflect"
-	"testing"
 	"github.com/go_vthunder/vthunder"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
+	"reflect"
+	"testing"
 )
 
 var NAME = "rs9"
@@ -70,7 +70,6 @@ func TestAccVthunderServer_import(t *testing.T) {
 		},
 	})
 }
-
 
 //Unit test for utility method to create Server structure
 func TestDataToServer(t *testing.T) {
@@ -198,190 +197,190 @@ func TestDataToServer(t *testing.T) {
 			Type: schema.TypeInt,
 		},
 		"port_list": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"health_check": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"extended_stats": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"rport_health_check_shared": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"range": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"uuid": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"stats_data_action": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"protocol": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"shared_rport_health_check": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"user_tag": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"conn_resume": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"health_check_disable": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"support_http2": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"action": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"follow_port_protocol": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"health_check_follow_port": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"no_logging": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"alternate_port": {
-							Type:     schema.TypeList,
-							Optional: true,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"alternate": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"alternate_server_port": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"alternate_name": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem: &schema.Resource{
+				Schema: map[string]*schema.Schema{
+					"health_check": {
+						Type:        schema.TypeString,
+						Optional:    true,
+						Description: "",
+					},
+					"extended_stats": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"rport_health_check_shared": {
+						Type:        schema.TypeString,
+						Optional:    true,
+						Description: "",
+					},
+					"range": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"uuid": {
+						Type:        schema.TypeString,
+						Optional:    true,
+						Description: "",
+					},
+					"stats_data_action": {
+						Type:        schema.TypeString,
+						Optional:    true,
+						Description: "",
+					},
+					"protocol": {
+						Type:        schema.TypeString,
+						Optional:    true,
+						Description: "",
+					},
+					"shared_rport_health_check": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"user_tag": {
+						Type:        schema.TypeString,
+						Optional:    true,
+						Description: "",
+					},
+					"conn_resume": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"health_check_disable": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"support_http2": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"action": {
+						Type:        schema.TypeString,
+						Optional:    true,
+						Description: "",
+					},
+					"follow_port_protocol": {
+						Type:        schema.TypeString,
+						Optional:    true,
+						Description: "",
+					},
+					"health_check_follow_port": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"no_logging": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"alternate_port": {
+						Type:     schema.TypeList,
+						Optional: true,
+						Elem: &schema.Resource{
+							Schema: map[string]*schema.Schema{
+								"alternate": {
+									Type:        schema.TypeInt,
+									Optional:    true,
+									Description: "",
+								},
+								"alternate_server_port": {
+									Type:        schema.TypeInt,
+									Optional:    true,
+									Description: "",
+								},
+								"alternate_name": {
+									Type:        schema.TypeString,
+									Optional:    true,
+									Description: "",
 								},
 							},
 						},
-						"no_ssl": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"weight": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"sampling_enable": {
-							Type:     schema.TypeList,
-							Optional: true,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"counters1": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
+					},
+					"no_ssl": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"weight": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"sampling_enable": {
+						Type:     schema.TypeList,
+						Optional: true,
+						Elem: &schema.Resource{
+							Schema: map[string]*schema.Schema{
+								"counters1": {
+									Type:        schema.TypeString,
+									Optional:    true,
+									Description: "",
 								},
 							},
 						},
-						"port_number": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"conn_limit": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"template_port": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"template_server_ssl": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
+					},
+					"port_number": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"conn_limit": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"template_port": {
+						Type:        schema.TypeString,
+						Optional:    true,
+						Description: "",
+					},
+					"template_server_ssl": {
+						Type:        schema.TypeString,
+						Optional:    true,
+						Description: "",
 					},
 				},
 			},
+		},
 		"alternate_server": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"alternate": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"alternate_name": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem: &schema.Resource{
+				Schema: map[string]*schema.Schema{
+					"alternate": {
+						Type:        schema.TypeInt,
+						Optional:    true,
+						Description: "",
+					},
+					"alternate_name": {
+						Type:        schema.TypeString,
+						Optional:    true,
+						Description: "",
 					},
 				},
 			},
+		},
 		"sampling_enable": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"counters1": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
+			Type:     schema.TypeList,
+			Optional: true,
+			Elem: &schema.Resource{
+				Schema: map[string]*schema.Schema{
+					"counters1": {
+						Type:        schema.TypeString,
+						Optional:    true,
+						Description: "",
 					},
 				},
 			},
+		},
 	}
 
 	resourceLocalData := schema.TestResourceDataRaw(t, resourceSchema, resourceDataMap)
@@ -416,7 +415,7 @@ func TestDataToServer(t *testing.T) {
 	sInstance.Counters1 = make([]go_vthunder.SamplingEnable, 0, 1)
 	sInstance.AlternateName = make([]go_vthunder.AlternateServer, 0, 1)
 	s.Name = sInstance
-	
+
 	cases := []struct {
 		input  *schema.ResourceData
 		output go_vthunder.Server
@@ -428,7 +427,7 @@ func TestDataToServer(t *testing.T) {
 	}
 
 	for _, tc := range cases {
-		output := dataToServer("name",resourceLocalData)
+		output := dataToServer("name", resourceLocalData)
 		if !reflect.DeepEqual(output, tc.output) {
 			t.Fatalf("Got:\n\n%#v\n\nExpected:\n\n%#v", output, tc.output)
 		}

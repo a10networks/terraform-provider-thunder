@@ -4,8 +4,8 @@ package vthunder
 
 import (
 	"fmt"
-	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/go_vthunder/vthunder"
+	"github.com/hashicorp/terraform/helper/schema"
 	"log"
 	"util"
 )
@@ -426,11 +426,11 @@ func resourceServiceGroupRead(d *schema.ResourceData, meta interface{}) error {
 		name := d.Id()
 
 		logger.Println("[INFO] Fetching service group Read" + name)
-		
-		sg,err := go_vthunder.GetSG(client.Token, name, client.Host)
-		
-		if(sg == nil){
-			logger.Println("[INFO] No service group found "+ name)
+
+		sg, err := go_vthunder.GetSG(client.Token, name, client.Host)
+
+		if sg == nil {
+			logger.Println("[INFO] No service group found " + name)
 			d.SetId("")
 			return nil
 		}

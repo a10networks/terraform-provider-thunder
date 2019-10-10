@@ -4,17 +4,17 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 	"strings"
-	"log"
 )
 
 type vThunder struct {
-	Host          string
-	User          string
-	Password      string
-	Token         string 
-	Transport     *http.Transport
+	Host      string
+	User      string
+	Password  string
+	Token     string
+	Transport *http.Transport
 }
 
 type APIRequest struct {
@@ -45,7 +45,7 @@ func NewSession(host, user, passwd string) vThunder {
 	} else {
 		url = host
 	}
-	
+
 	return vThunder{
 		Host:     url,
 		User:     user,
@@ -58,12 +58,9 @@ func NewSession(host, user, passwd string) vThunder {
 	}
 }
 
-
 func NewTokenSession(host string, user string, passwd string) (b vThunder, err error) {
 	log.Println("[INFO] TOKEN")
-	b.Host=host
-	b.Token = getAuthHeader(host,user,passwd,"/axapi/v3/auth")
+	b.Host = host
+	b.Token = getAuthHeader(host, user, passwd, "/axapi/v3/auth")
 	return
 }
-
-
