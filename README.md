@@ -21,16 +21,16 @@ Requirements
 Building The Provider
 ---------------------
 
-Clone repository to: `$GOPATH/src/github.com/terraform-providers/terraform-provider-null`
+Clone repository to: `$GOPATH/src/github.com/terraform-providers/terraform-provider-vthunder`
 
 ```sh
-$ git clone git@github.com:terraform-providers/terraform-provider-null $GOPATH/src/github.com/terraform-providers/terraform-provider-null
+$ git clone git@github.com:terraform-providers/terraform-provider-vthunder $GOPATH/src/github.com/terraform-providers/terraform-provider-vthunder
 ```
 
 Enter the provider directory and build the provider
 
 ```sh
-$ cd $GOPATH/src/github.com/terraform-providers/terraform-provider-null
+$ cd $GOPATH/src/github.com/terraform-providers/terraform-provider-vthunder
 $ make build
 ```
 
@@ -161,7 +161,7 @@ To compile the provider, run `make build`. This will build the provider and put 
 ```sh
 $ make bin
 ...
-$ $GOPATH/bin/terraform-provider-null
+$ $GOPATH/bin/terraform-provider-vthunder
 ...
 ```
 
