@@ -2,3 +2,4 @@
 *.backup
 *.log
 *.json
+*.project
