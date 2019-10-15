@@ -31,3 +31,4 @@ func createLogger(fname string) *logger {
 		Logger:   log.New(file, "My app Name ", log.Lshortfile),
 	}
 }
+

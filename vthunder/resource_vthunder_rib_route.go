@@ -5,7 +5,7 @@ package vthunder
 import (
 	"fmt"
 	"github.com/go_vthunder/vthunder"
-	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
 )
