@@ -10,7 +10,7 @@ var TEST_ETH_RESOURCE = `
 	ethernet_list{	
 	ifnum=1
 		ip{
-			address_list={
+			address_list {
 			ipv4_address="10.0.2.7"
 			ipv4_netmask="255.255.255.0"
 		    }
@@ -20,7 +20,7 @@ var TEST_ETH_RESOURCE = `
 	ethernet_list{	
 	ifnum=2
 		ip{
-			address_list={
+			address_list {
 			ipv4_address="10.0.3.7"
 			ipv4_netmask="255.255.255.0"
 			}
