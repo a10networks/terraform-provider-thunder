@@ -1,9 +1,11 @@
 package vthunder
 
 import (
+	"os"
+	"testing"
+
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/terraform"
-	"testing"
 )
 
 var TEST_PARTITION = "Common"
@@ -41,9 +43,9 @@ func ProviderTest() terraform.ResourceProvider {
 
 func providerConfigureTest(d *schema.ResourceData) (interface{}, error) {
 	config := Config{
-		Address:  "", //hostname
-		Username: "", //username
-		Password: "", //password
+		Address:  os.Getenv("ADDRESS"),  //hostname
+		Username: os.Getenv("USERNAME"), //username
+		Password: os.Getenv("PASSWORD"), //password
 	}
 
 	return config.Client()
@@ -56,5 +58,13 @@ func TestAccProvider(t *testing.T) {
 }
 
 func testAcctPreCheck(t *testing.T) {
-	return
+	if v := os.Getenv("ADDRESS"); v == "" {
+		t.Fatal("ADDRESS must be set for acceptance tests")
+	}
+	if v := os.Getenv("USERNAME"); v == "" {
+		t.Fatal("USERNAME must be set for acceptance tests")
+	}
+	if v := os.Getenv("PASSWORD"); v == "" {
+		t.Fatal("PASSWORD must be set for acceptance tests")
+	}
 }
