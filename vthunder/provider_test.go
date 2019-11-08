@@ -43,9 +43,9 @@ func ProviderTest() terraform.ResourceProvider {
 
 func providerConfigureTest(d *schema.ResourceData) (interface{}, error) {
 	config := Config{
-		Address:  os.Getenv("ADDRESS"),  //hostname
-		Username: os.Getenv("USERNAME"), //username
-		Password: os.Getenv("PASSWORD"), //password
+		Address:  os.Getenv("VTHUNDER_HOST"),     //hostname
+		Username: os.Getenv("VTHUNDER_USER"),     //username
+		Password: os.Getenv("VTHUNDER_PASSWORD"), //password
 	}
 
 	return config.Client()
@@ -58,13 +58,13 @@ func TestAccProvider(t *testing.T) {
 }
 
 func testAcctPreCheck(t *testing.T) {
-	if v := os.Getenv("ADDRESS"); v == "" {
+	if v := os.Getenv("VTHUNDER_HOST"); v == "" {
 		t.Fatal("ADDRESS must be set for acceptance tests")
 	}
-	if v := os.Getenv("USERNAME"); v == "" {
+	if v := os.Getenv("VTHUNDER_USER"); v == "" {
 		t.Fatal("USERNAME must be set for acceptance tests")
 	}
-	if v := os.Getenv("PASSWORD"); v == "" {
+	if v := os.Getenv("VTHUNDER_PASSWORD"); v == "" {
 		t.Fatal("PASSWORD must be set for acceptance tests")
 	}
 }
