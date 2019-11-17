@@ -7,6 +7,7 @@ import (
 	"github.com/go_vthunder/vthunder"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"util"
+	"strconv"
 )
 
 func resourceEthernet() *schema.Resource {
@@ -120,8 +121,10 @@ func resourceEthernetCreate(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(vThunder)
 
 	if client.Host != "" {
-		logger.Println("[INFO] Creating ip (Inside resourceIPCreate    ") // + name)
+		logger.Println("[INFO] Creating ip (Inside resourceEthernetCreate)")
+		name := d.Get("ethernet_list.0.ifnum").(int)
 		ethernet := dataToEthernet(d)
+		d.SetId(strconv.Itoa(name))
 		logger.Println("[INFO] received V from method data to ip --")
 		go_vthunder.PutEthernet(client.Token, ethernet, client.Host)
 
@@ -132,6 +135,27 @@ func resourceEthernetCreate(d *schema.ResourceData, meta interface{}) error {
 
 func resourceEthernetRead(d *schema.ResourceData, meta interface{}) error {
 
+	logger := util.GetLoggerInstance()
+	logger.Println("[INFO] Reading vrrp common (Inside resourceEthernetRead)")
+
+	client := meta.(vThunder)
+
+	if client.Host != "" {
+
+		name := d.Id()
+
+		logger.Println("[INFO] Fetching ethernet" + name)
+
+		vc, err := go_vthunder.GetEthernet(client.Token, name, client.Host)
+
+		if vc == nil {
+			logger.Println("[INFO] No ethernet found")
+			d.SetId("")
+			return nil
+		}
+
+		return err
+	}
 	return nil
 }
 

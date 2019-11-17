@@ -167,3 +167,34 @@ func PutEthernet(id string, ethernet map[int]Ethernet, host string) {
 	}
 
 }
+
+func GetEthernet(id string, name string, host string) (*Ethernet,error){
+
+	logger := util.GetLoggerInstance()
+
+	var headers = make(map[string]string)
+	headers["Accept"] = "application/json"
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = id
+
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/interface/ethernet/"+name+"/ip", nil, headers)
+
+	if err != nil {
+		fmt.Printf("The HTTP request failed with error %s\n", err)
+		logger.Println("The HTTP request failed with error \n", err)
+		return nil, err
+	} else {
+		data, _ := ioutil.ReadAll(resp.Body)
+		var m Ethernet
+		erro := json.Unmarshal(data, &m)
+		if erro != nil {
+			fmt.Printf("Unmarshal error %s\n", err)
+			return nil, err
+		} else {
+			fmt.Print(m)
+			logger.Println("[INFO] GET REQ RES..........................", m)
+			return &m, nil
+		}
+	}
+
+}
