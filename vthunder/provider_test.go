@@ -35,6 +35,11 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_server":         resourceServer(),
 			"vthunder_ethernet":       resourceEthernet(),
 			"vthunder_rib_route":      resourceRibRoute(),
+			"vthunder_vrrp_vrid": resourceVrrpVrid(),
+			"vthunder_glm": resourceGlm(),
+			"vthunder_import": resourceImport(),
+			"vthunder_reboot": resourceReboot(),
+			"vthunder_vrrp_common": resourceVrrpCommon(),
 		},
 
 		ConfigureFunc: providerConfigureTest,
