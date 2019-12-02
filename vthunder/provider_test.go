@@ -38,8 +38,11 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_vrrp_vrid": resourceVrrpVrid(),
 			"vthunder_glm": resourceGlm(),
 			"vthunder_import": resourceImport(),
-			"vthunder_reboot": resourceReboot(),
 			"vthunder_vrrp_common": resourceVrrpCommon(),
+			"vthunder_vrrp_peer_group": resourceVrrpPeerGroup(),
+			"vthunder_vrrp_session_sync": resourceVrrpSessionSync(),
+			"vthunder_dns_primary": resourceDnsPrimary(),
+			
 		},
 
 		ConfigureFunc: providerConfigureTest,
