@@ -48,6 +48,7 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_vrrp_session_sync": resourceVrrpSessionSync(),
 			"vthunder_glm": resourceGlm(),
 			"vthunder_configure_sync": resourceConfigureSync(),
+			"vthunder_harmony_controller_profile": resourceHarmonyControllerProfile(),
 		},
 
 		ConfigureFunc: providerConfigure,
