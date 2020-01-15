@@ -43,6 +43,7 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_vrrp_session_sync": resourceVrrpSessionSync(),
 			"vthunder_dns_primary": resourceDnsPrimary(),
 			"vthunder_harmony_controller_profile":resourceHarmonyControllerProfile(),
+			"vthunder_overlay_tunnel_options": resourceOverlayTunnelOptions(),
 			
 		},
 
