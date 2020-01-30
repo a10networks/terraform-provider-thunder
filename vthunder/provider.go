@@ -49,6 +49,9 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_glm": resourceGlm(),
 			"vthunder_configure_sync": resourceConfigureSync(),
 			"vthunder_harmony_controller_profile": resourceHarmonyControllerProfile(),
+			"vthunder_overlay_tunnel_options": resourceOverlayTunnelOptions(),
+			"vthunder_overlay_tunnel_vtep": resourceOverlayTunnelVtep(),
+			"vthunder_partition":resourceOverlayTunnelPartition(),
 		},
 
 		ConfigureFunc: providerConfigure,
