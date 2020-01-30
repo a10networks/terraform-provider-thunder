@@ -45,6 +45,7 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_harmony_controller_profile":resourceHarmonyControllerProfile(),
 			"vthunder_overlay_tunnel_options": resourceOverlayTunnelOptions(),
 			"vthunder_overlay_tunnel_vtep": resourceOverlayTunnelVtep(),
+			"vthunder_partition":resourceOverlayTunnelPartition(),
 			
 		},
 
