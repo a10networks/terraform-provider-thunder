@@ -1,6 +1,6 @@
 package vthunder
 
-//vThunder resource Partition
+//vThunder resource Tcp
 
 import (
 	"github.com/go_vthunder/vthunder"
@@ -127,7 +127,7 @@ func resourceTcpDelete(d *schema.ResourceData, meta interface{}) error {
 		name := d.Id()
 		logger.Println("[INFO] Deleting tcp (Inside resourceTcpDelete) " + name)
 
-		err := go_vthunder.DeletePartition(client.Token, name, client.Host)
+		err := go_vthunder.DeleteTcp(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete tcp  (%s) (%v)", name, err)
 			return err
