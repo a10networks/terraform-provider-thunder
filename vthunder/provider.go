@@ -53,6 +53,7 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_overlay_tunnel_vtep": resourceOverlayTunnelVtep(),
 			"vthunder_partition":resourceOverlayTunnelPartition(),
 			"vthunder_slb_template_tcp":resourceSlbTemplateTcp(),
+			"vthunder_slb_template_udp":resourceSlbTemplateUdp(),
 		},
 
 		ConfigureFunc: providerConfigure,
