@@ -57,6 +57,7 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_slb_template_smpp":resourceSlbTemplateSmpp(),
 			"vthunder_slb_template_fix":resourceTemplateFix(),
 			"vthunder_slb_template_ftp":resourceTemplateFTP(),
+			"vthunder_slb_template_mqtt":resourceSlbTemplateMqtt(),
 		},
 
 		ConfigureFunc: providerConfigure,
