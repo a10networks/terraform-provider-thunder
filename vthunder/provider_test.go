@@ -48,7 +48,9 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_partition":resourceOverlayTunnelPartition(),
 			"vthunder_slb_template_tcp":resourceSlbTemplateTcp(),	
 			"vthunder_slb_template_udp": resourceSlbTemplateUdp(),
-			"vthunder_slb_template_smpp":resourceSlbTemplateSmpp(),			
+			"vthunder_slb_template_smpp":resourceSlbTemplateSmpp(),
+			"vthunder_slb_template_fix":resourceTemplateFix(),
+			"vthunder_slb_template_ftp":resourceTemplateFTP(),			
 		},
 
 		ConfigureFunc: providerConfigureTest,
