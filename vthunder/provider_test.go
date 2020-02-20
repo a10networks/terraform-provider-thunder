@@ -52,7 +52,10 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_slb_template_fix":resourceTemplateFix(),
 			"vthunder_slb_template_ftp":resourceTemplateFTP(),
 			"vthunder_slb_template_mqtt":resourceSlbTemplateMqtt(),
-			"vthunder_slb_template_http_policy":resourceSlbTemplateHttpPolicy(),			
+			"vthunder_slb_template_http_policy":resourceSlbTemplateHttpPolicy(),
+			"vthunder_slb_template_ssli":resourceTemplateSSLI(),
+			"vthunder_slb_template_cipher":resourceTemplateCipher(),
+			"vthunder_slb_template_imap_pop3":resourceTemplateImap_POP3(),
 		},
 
 		ConfigureFunc: providerConfigureTest,
