@@ -51,7 +51,8 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_slb_template_smpp":resourceSlbTemplateSmpp(),
 			"vthunder_slb_template_fix":resourceTemplateFix(),
 			"vthunder_slb_template_ftp":resourceTemplateFTP(),
-			"vthunder_slb_template_mqtt":resourceSlbTemplateMqtt(),			
+			"vthunder_slb_template_mqtt":resourceSlbTemplateMqtt(),
+			"vthunder_slb_template_http_policy":resourceSlbTemplateHttpPolicy(),			
 		},
 
 		ConfigureFunc: providerConfigureTest,
