@@ -62,6 +62,8 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_slb_template_ssli":resourceTemplateSSLI(),
 			"vthunder_slb_template_cipher":resourceTemplateCipher(),
 			"vthunder_slb_template_imap_pop3":resourceTemplateImap_POP3(),
+			"vthunder_slb_template_dns":resourceTemplateDNS(),
+			"vthunder_slb_template_connection_reuse":resourceTemplateConnectionReuse(),
 		},
 
 		ConfigureFunc: providerConfigure,
