@@ -64,6 +64,13 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_slb_template_imap_pop3":resourceTemplateImap_POP3(),
 			"vthunder_slb_template_dns":resourceTemplateDNS(),
 			"vthunder_slb_template_connection_reuse":resourceTemplateConnectionReuse(),
+			"vthunder_slb_template_client_ssh":resourceTemplateClientSsh(),
+			"vthunder_slb_template_dblb":resourceTemplateDBLB(),
+			"vthunder_slb_template_port":resourceTemplatePort(),
+			"vthunder_slb_template_smtp":resourceSlbTemplateSMTP(),
+			"vthunder_slb_template_tcp_proxy":resourceSlbTemplateTcpProxy(),
+			"vthunder_slb_template_server":resourceSlbTemplateServer(),
+			"vthunder_slb_template_virtual_port":resourceSlbTemplateVirtualPort(),
 		},
 
 		ConfigureFunc: providerConfigure,
