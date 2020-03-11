@@ -6,16 +6,13 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 )
 
-var TEST_TEMPLATE_FIX_RESOURCE = `
-resource "vthunder_TemplateFix" "testname" {
-	name = "testfix"
-	logging = "init"
-	tag_switching {
-		equals = "test"
-		service_group = "testsg"
-		switching_type = "sender-comp-id"
+var TEST_TEMPLATE_CIPHER_RESOURCE = `
+resource "vthunder_slb_template_cipher" "testname" {
+	cipher_cfg {
+		priority = 10
+		cipher_suite = "SSL3_RSA_DES_192_CBC3_SHA"
 	} 
-	insert_client_ip = 1
+	name = "testcipher"
 	user_tag = "test_user"
 }
 `
@@ -26,15 +23,12 @@ func TestTemplateCipher_create(t *testing.T) {
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
 			{
-				Config: TEST_TEMPLATE_FIX_RESOURCE,
+				Config: TEST_TEMPLATE_CIPHER_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "name", "testfix"),
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "tag_switching.0.equals", "test"),
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "tag_switching.0.service_group", "testsg"),
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "tag_switching.0.switching_type", "sender-comp-id"),
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "logging", "init"),
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "insert_client_ip", 1111),
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "user_tag", "test_user"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_cipher.testname", "name", "testcipher"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_cipher.testname", "cipher_cfg.0.priority", "10"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_cipher.testname", "cipher_cfg.0.cipher_suite", "SSL3_RSA_DES_192_CBC3_SHA"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_cipher.testname", "user_tag", "test_user"),
 				),
 			},
 		},
