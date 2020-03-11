@@ -71,6 +71,8 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_slb_template_tcp_proxy":resourceSlbTemplateTcpProxy(),
 			"vthunder_slb_template_server":resourceSlbTemplateServer(),
 			"vthunder_slb_template_virtual_port":resourceSlbTemplateVirtualPort(),
+			"vthunder_slb_template_diameter":         resourceSlbTemplateDiameter(),
+			"vthunder_slb_template_cache":            resourceSlbTemplateCache(),
 		},
 
 		ConfigureFunc: providerConfigure,
