@@ -73,6 +73,10 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_slb_template_virtual_port":resourceSlbTemplateVirtualPort(),
 			"vthunder_slb_template_diameter":         resourceSlbTemplateDiameter(),
 			"vthunder_slb_template_cache":            resourceSlbTemplateCache(),
+			"vthunder_slb_template_csv":              resourceSlbTemplateCSV(),
+			"vthunder_slb_template_reqmod_icap":      resourceSlbTemplateReqmodIcap(),
+			"vthunder_slb_template_respmod_icap":     resourceSlbTemplateRespmodIcap(),
+			"vthunder_slb_template_dynamic_service":  resourceSlbTemplateDynamicService(),
 		},
 
 		ConfigureFunc: providerConfigure,
