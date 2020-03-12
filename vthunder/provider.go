@@ -77,6 +77,10 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_slb_template_reqmod_icap":      resourceSlbTemplateReqmodIcap(),
 			"vthunder_slb_template_respmod_icap":     resourceSlbTemplateRespmodIcap(),
 			"vthunder_slb_template_dynamic_service":  resourceSlbTemplateDynamicService(),
+			"vthunder_slb_template_server_ssh":       resourceSlbTemplateServerSSH(),
+			"vthunder_slb_template_policy":           resourceSlbTemplatePolicy(),
+			"vthunder_slb_template_server_ssl":       resourceSlbTemplateServerSSL(),
+			"vthunder_slb_template_client_ssl":       resourceSlbTemplateClientSSL(),
 		},
 
 		ConfigureFunc: providerConfigure,
