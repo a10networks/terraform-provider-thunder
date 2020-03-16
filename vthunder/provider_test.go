@@ -77,6 +77,7 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_slb_template_client_ssl":       resourceSlbTemplateClientSSL(),
 			"vthunder_slb_template_sip":              resourceSlbTemplateSIP(),
 			"vthunder_slb_template_http":             resourceSlbTemplateHTTP(),
+			"vthunder_slb_template_monitor":          resourceSlbTemplateMonitor(),
 		},
 
 		ConfigureFunc: providerConfigureTest,
