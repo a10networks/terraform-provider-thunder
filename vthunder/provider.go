@@ -81,6 +81,8 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_slb_template_policy":           resourceSlbTemplatePolicy(),
 			"vthunder_slb_template_server_ssl":       resourceSlbTemplateServerSSL(),
 			"vthunder_slb_template_client_ssl":       resourceSlbTemplateClientSSL(),
+			"vthunder_slb_template_sip":              resourceSlbTemplateSIP(),
+			"vthunder_slb_template_http":             resourceSlbTemplateHTTP(),
 		},
 
 		ConfigureFunc: providerConfigure,
