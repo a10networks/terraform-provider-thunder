@@ -84,7 +84,10 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_slb_template_sip":              resourceSlbTemplateSIP(),
 			"vthunder_slb_template_http":             resourceSlbTemplateHTTP(),
 			"vthunder_slb_template_monitor":          resourceSlbTemplateMonitor(),
-			"vthunder_slb_template_logging":resourceSlbTemplateLogging(),
+			"vthunder_slb_template_logging":          resourceSlbTemplateLogging(),
+			"vthunder_slb_template_snmp":             resourceSlbTemplateSNMP(),
+			"vthunder_slb_template_snmp":             resourceSlbTemplateSNMP(),
+			"vthunder_slb_template_external_service": resourceSlbTemplateExternalService(),
 		},
 
 		ConfigureFunc: providerConfigure,
