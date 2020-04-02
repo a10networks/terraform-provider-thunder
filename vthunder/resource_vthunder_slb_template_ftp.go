@@ -1,6 +1,6 @@
 package vthunder
 
-//vThunder resource TemplateFTP
+//vThunder resource SlbTemplateFTP
 
 import (
 	"log"
@@ -10,12 +10,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
-func resourceTemplateFTP() *schema.Resource {
+func resourceSlbTemplateFTP() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceTemplateFTPCreate,
-		Update: resourceTemplateFTPUpdate,
-		Read:   resourceTemplateFTPRead,
-		Delete: resourceTemplateFTPDelete,
+		Create: resourceSlbTemplateFTPCreate,
+		Update: resourceSlbTemplateFTPUpdate,
+		Read:   resourceSlbTemplateFTPRead,
+		Delete: resourceSlbTemplateFTPDelete,
 		Schema: map[string]*schema.Schema{
 			"user_tag": {
 				Type:        schema.TypeString,
@@ -56,33 +56,33 @@ func resourceTemplateFTP() *schema.Resource {
 	}
 }
 
-func resourceTemplateFTPCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateFTPCreate(d *schema.ResourceData, meta interface{}) error {
 	logger := util.GetLoggerInstance()
 	client := meta.(vThunder)
 
 	if client.Host != "" {
-		logger.Println("[INFO] Creating TemplateFTP (Inside resourceTemplateFTPCreate) ")
+		logger.Println("[INFO] Creating SlbTemplateFTP (Inside resourceSlbTemplateFTPCreate) ")
 		name := d.Get("name").(string)
-		data := dataToTemplateFTP(d)
-		logger.Println("[INFO] received V from method data to TemplateFTP --")
+		data := dataToSlbTemplateFTP(d)
+		logger.Println("[INFO] received V from method data to SlbTemplateFTP --")
 		d.SetId(name)
-		go_vthunder.PostTemplateFTP(client.Token, data, client.Host)
+		go_vthunder.PostSlbTemplateFTP(client.Token, data, client.Host)
 
-		return resourceTemplateFTPRead(d, meta)
+		return resourceSlbTemplateFTPRead(d, meta)
 
 	}
 	return nil
 }
 
-func resourceTemplateFTPRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateFTPRead(d *schema.ResourceData, meta interface{}) error {
 	logger := util.GetLoggerInstance()
 	client := meta.(vThunder)
-	logger.Println("[INFO] Reading TemplateFTP (Inside resourceTemplateFTPRead)")
+	logger.Println("[INFO] Reading SlbTemplateFTP (Inside resourceSlbTemplateFTPRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
-		data, err := go_vthunder.GetTemplateFTP(client.Token, name, client.Host)
+		data, err := go_vthunder.GetSlbTemplateFTP(client.Token, name, client.Host)
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
@@ -93,32 +93,32 @@ func resourceTemplateFTPRead(d *schema.ResourceData, meta interface{}) error {
 	return nil
 }
 
-func resourceTemplateFTPUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateFTPUpdate(d *schema.ResourceData, meta interface{}) error {
 	logger := util.GetLoggerInstance()
 	client := meta.(vThunder)
 
 	if client.Host != "" {
-		logger.Println("[INFO] Modifying TemplateFTP   (Inside resourceTemplateFTPUpdate) ")
+		logger.Println("[INFO] Modifying SlbTemplateFTP   (Inside resourceSlbTemplateFTPUpdate) ")
 		name := d.Get("name").(string)
-		data := dataToTemplateFTP(d)
-		logger.Println("[INFO] received V from method data to TemplateFTP ")
+		data := dataToSlbTemplateFTP(d)
+		logger.Println("[INFO] received V from method data to SlbTemplateFTP ")
 		d.SetId(name)
-		go_vthunder.PutTemplateFTP(client.Token, name, data, client.Host)
+		go_vthunder.PutSlbTemplateFTP(client.Token, name, data, client.Host)
 
-		return resourceTemplateFTPRead(d, meta)
+		return resourceSlbTemplateFTPRead(d, meta)
 
 	}
 	return nil
 }
 
-func resourceTemplateFTPDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateFTPDelete(d *schema.ResourceData, meta interface{}) error {
 	logger := util.GetLoggerInstance()
 	client := meta.(vThunder)
 
 	if client.Host != "" {
 		name := d.Id()
-		logger.Println("[INFO] Deleting instance (Inside resourceTemplateFTPDelete) " + name)
-		err := go_vthunder.DeleteTemplateFTP(client.Token, name, client.Host)
+		logger.Println("[INFO] Deleting instance (Inside resourceSlbTemplateFTPDelete) " + name)
+		err := go_vthunder.DeleteSlbTemplateFTP(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
 			return err
@@ -129,16 +129,15 @@ func resourceTemplateFTPDelete(d *schema.ResourceData, meta interface{}) error {
 	return nil
 }
 
-func dataToTemplateFTP(d *schema.ResourceData) go_vthunder.FTP {
+func dataToSlbTemplateFTP(d *schema.ResourceData) go_vthunder.FTP {
 	var vc go_vthunder.FTP
-	var c go_vthunder.FtpInstance
-
-	c.Name = d.Get("name").(string)
+	var c go_vthunder.FTPInstance
 	c.UserTag = d.Get("user_tag").(string)
+	c.To = d.Get("to").(int)
 	c.ActiveModePort = d.Get("active_mode_port").(int)
 	c.ActiveModePortVal = d.Get("active_mode_port_val").(int)
 	c.Any = d.Get("any").(int)
-	c.To = d.Get("to").(int)
+	c.Name = d.Get("name").(string)
 
 	vc.UUID = c
 	return vc

@@ -8,10 +8,10 @@ import (
 )
 
 type FTP struct {
-	UUID FtpInstance `json:"ftp,omitempty"`
+	UUID FTPInstance `json:"ftp,omitempty"`
 }
 
-type FtpInstance struct {
+type FTPInstance struct {
 	UUID              string `json:"uuid,omitempty"`
 	UserTag           string `json:"user-tag,omitempty"`
 	To                int    `json:"to,omitempty"`
@@ -21,7 +21,7 @@ type FtpInstance struct {
 	Name              string `json:"name,omitempty"`
 }
 
-func PostTemplateFTP(id string, inst FTP, host string) {
+func PostSlbTemplateFTP(id string, inst FTP, host string) {
 
 	logger := util.GetLoggerInstance()
 
@@ -29,7 +29,7 @@ func PostTemplateFTP(id string, inst FTP, host string) {
 	headers["Accept"] = "application/json"
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
-	logger.Println("[INFO] Inside PostTemplateFTP")
+	logger.Println("[INFO] Inside PostSlbTemplateFTP")
 	payloadBytes, err := json.Marshal(inst)
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
@@ -56,7 +56,7 @@ func PostTemplateFTP(id string, inst FTP, host string) {
 
 }
 
-func GetTemplateFTP(id string, name string, host string) (*FTP, error) {
+func GetSlbTemplateFTP(id string, name string, host string) (*FTP, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -64,7 +64,7 @@ func GetTemplateFTP(id string, name string, host string) (*FTP, error) {
 	headers["Accept"] = "application/json"
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
-	logger.Println("[INFO] Inside GetTemplateFTP")
+	logger.Println("[INFO] Inside GetSlbTemplateFTP")
 
 	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/template/ftp/"+name, nil, headers)
 
@@ -86,7 +86,7 @@ func GetTemplateFTP(id string, name string, host string) (*FTP, error) {
 
 }
 
-func PutTemplateFTP(id string, name string, inst FTP, host string) {
+func PutSlbTemplateFTP(id string, name string, inst FTP, host string) {
 
 	logger := util.GetLoggerInstance()
 
@@ -94,7 +94,7 @@ func PutTemplateFTP(id string, name string, inst FTP, host string) {
 	headers["Accept"] = "application/json"
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
-	logger.Println("[INFO] Inside PutTemplateFTP")
+	logger.Println("[INFO] Inside PutSlbTemplateFTP")
 	payloadBytes, err := json.Marshal(inst)
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
@@ -121,7 +121,7 @@ func PutTemplateFTP(id string, name string, inst FTP, host string) {
 
 }
 
-func DeleteTemplateFTP(id string, name string, host string) error {
+func DeleteSlbTemplateFTP(id string, name string, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -129,7 +129,7 @@ func DeleteTemplateFTP(id string, name string, host string) error {
 	headers["Accept"] = "application/json"
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
-	logger.Println("[INFO] Inside DeleteTemplateFTP")
+	logger.Println("[INFO] Inside DeleteSlbTemplateFTP")
 
 	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/template/ftp/"+name, nil, headers)
 

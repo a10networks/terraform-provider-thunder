@@ -1,8 +1,9 @@
 package vthunder
 
 import (
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 )
 
 var TEST_HTTP_POLICY_RESOURCE = `
@@ -25,8 +26,8 @@ func TestAccVthuderHttpPolicy_create(t *testing.T) {
 				Config: TEST_HTTP_POLICY_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("vthunder_slb_template_http_policy.http_policy", "name", "httppol1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_http_policy.http_policy", "cookie-name", "cookie-two"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_http_policy.http_policy", "user-tag", "u1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_http_policy.http_policy", "cookie_name", "cookie-two"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_http_policy.http_policy", "user_tag", "u1"),
 				),
 			},
 		},

@@ -20,7 +20,7 @@ func TestTemplateDBLB_create(t *testing.T) {
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
 			{
-				Config: TEST_TEMPLATE_FTP_RESOURCE,
+				Config: TEST_TEMPLATE_DBLB_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("vthunder_slb_template_dblb.testname", "name", "testdblb"),
 					resource.TestCheckResourceAttr("vthunder_slb_template_dblb.testname", "user_tag", "test_tag"),

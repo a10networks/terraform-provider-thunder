@@ -6,29 +6,27 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 )
 
-var TEST_TEMPLATE_FTP_RESOURCE = `
-resource "vthunder_TemplateFTP" "testname" {
+var TEST_SLB_TEMPLATE_FTP_RESOURCE = `
+resource "vthunder_slb_template_ftp" "testname" {
 	name = "testftp"
 	user_tag = "test_tag"
 	active_mode_port = 1
-	active_mode_port_val = 4048
-	to = 4050
+	active_mode_port_val = 1
 }
 `
 
 //Acceptance test
-func TestTemplateFTP_create(t *testing.T) {
+func TestSlbTemplateFTP_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
 			{
-				Config: TEST_TEMPLATE_FTP_RESOURCE,
+				Config: TEST_SLB_TEMPLATE_FTP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_TemplateFTP.testname", "name", "testftp"),
-					resource.TestCheckResourceAttr("vthunder_TemplateFTP.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_TemplateFTP.testname", "active_mode_port", 1),
-					resource.TestCheckResourceAttr("vthunder_TemplateFTP.testname", "active_mode_port_val", 4048),
-					resource.TestCheckResourceAttr("vthunder_TemplateFTP.testname", "to", 4050),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ftp.testname", "name", "testftp"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ftp.testname", "user_tag", "test_tag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ftp.testname", "active_mode_port", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ftp.testname", "active_mode_port_val", "1"),
 				),
 			},
 		},

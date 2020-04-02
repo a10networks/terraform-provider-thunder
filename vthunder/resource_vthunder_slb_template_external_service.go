@@ -222,9 +222,9 @@ func dataToSlbTemplateExternalService(d *schema.ResourceData) go_vthunder.Extern
 		c.RequestHeaderForward = append(c.RequestHeaderForward, rhf)
 	}
 	BypassIPCfgCount := d.Get("bypass_ip_cfg.#").(int)
-	c.BypassIP = make([]go_vthunder.BypassIPCfg, 0, BypassIPCfgCount)
+	c.BypassIP = make([]go_vthunder.BypassIPCfg1, 0, BypassIPCfgCount)
 	for i := 0; i < BypassIPCfgCount; i++ {
-		var bicc go_vthunder.BypassIPCfg
+		var bicc go_vthunder.BypassIPCfg1
 		prefix := fmt.Sprintf("bypass_ip_cfg.%d", i)
 		bicc.BypassIP = d.Get(prefix + ".bypass_ip").(string)
 		bicc.Mask = d.Get(prefix + "mask").(string)

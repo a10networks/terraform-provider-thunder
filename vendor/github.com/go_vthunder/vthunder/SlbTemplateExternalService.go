@@ -15,7 +15,7 @@ type RequestHeaderForwardList struct {
 	RequestHeaderForward string `json:"request-header-forward,omitempty"`
 }
 
-type BypassIPCfg struct {
+type BypassIPCfg1 struct {
 	Mask     string `json:"mask,omitempty"`
 	BypassIP string `json:"bypass-ip,omitempty"`
 }
@@ -34,7 +34,7 @@ type ExternalServiceInstance struct {
 	Timeout                                int                        `json:"timeout,omitempty"`
 	TCPProxy                               string                     `json:"tcp-proxy,omitempty"`
 	TemplatePersistSourceIPShared          string                     `json:"template-persist-source-ip-shared,omitempty"`
-	BypassIP                               []BypassIPCfg              `json:"bypass-ip-cfg,omitempty"`
+	BypassIP                               []BypassIPCfg1             `json:"bypass-ip-cfg,omitempty"`
 	UUID                                   string                     `json:"uuid,omitempty"`
 }
 

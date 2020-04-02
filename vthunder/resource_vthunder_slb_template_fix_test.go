@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_TEMPLATE_FIX_RESOURCE = `
-resource "vthunder_TemplateFix" "testname" {
+resource "vthunder_slb_template_fix" "testname" {
 	name = "testfix"
 	logging = "init"
 	tag_switching {
@@ -15,7 +15,7 @@ resource "vthunder_TemplateFix" "testname" {
 		service_group = "testsg"
 		switching_type = "sender-comp-id"
 	} 
-	insert_client_ip = 1
+	insert_client_ip = 1111
 	user_tag = "test_user"
 }
 `
@@ -28,13 +28,13 @@ func TestTemplateFix_create(t *testing.T) {
 			{
 				Config: TEST_TEMPLATE_FIX_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "name", "testfix"),
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "tag_switching.0.equals", "test"),
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "tag_switching.0.service_group", "testsg"),
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "tag_switching.0.switching_type", "sender-comp-id"),
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "logging", "init"),
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "insert_client_ip", 1111),
-					resource.TestCheckResourceAttr("vthunder_TemplateFix.testname", "user_tag", "test_user"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "name", "testfix"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "tag_switching.0.equals", "test"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "tag_switching.0.service_group", "testsg"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "tag_switching.0.switching_type", "sender-comp-id"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "logging", "init"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "insert_client_ip", "1111"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "user_tag", "test_user"),
 				),
 			},
 		},

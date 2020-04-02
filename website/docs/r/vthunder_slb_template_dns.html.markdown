@@ -19,9 +19,9 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_TemplateDNS" "templatedns" {
+resource "vthunder_slb_template_dns" "templatedns" {
 		name = "testdns"
-        response_rate_limiting{
+        response_rate_limiting {
             enable_log=1
             filter_response_rate=3
             slip_rate=4
