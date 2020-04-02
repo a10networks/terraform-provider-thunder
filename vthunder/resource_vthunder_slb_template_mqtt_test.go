@@ -1,8 +1,9 @@
 package vthunder
 
 import (
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 )
 
 var TEST_MQTT_RESOURCE = `

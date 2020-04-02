@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_TEMPLATE_CLIENT_SSH_RESOURCE = `
-resource "vthunder_TemplateClientSSH" "testname" {
+resource "vthunder_slb_template_client_ssh" "testname" {
 	name = "testssh"
 	user_tag = "test_tag"
 	forward_proxy_enable = 1
@@ -24,11 +24,11 @@ func TestTemplateClientSSH_create(t *testing.T) {
 			{
 				Config: TEST_TEMPLATE_CLIENT_SSH_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_TemplateClientSSH.testname", "name", "testssh"),
-					resource.TestCheckResourceAttr("vthunder_TemplateClientSSH.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_TemplateClientSSH.testname", "forward_proxy_enable", 1),
-					resource.TestCheckResourceAttr("vthunder_TemplateClientSSH.testname", "forward_proxy_hostkey", "test"),
-					resource.TestCheckResourceAttr("vthunder_TemplateClientSSH.testname", "passphrase", "testing123"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_client_ssh.testname", "name", "testssh"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_client_ssh.testname", "user_tag", "test_tag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_client_ssh.testname", "forward_proxy_enable", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_client_ssh.testname", "forward_proxy_hostkey", "test"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_client_ssh.testname", "passphrase", "testing123"),
 				),
 			},
 		},

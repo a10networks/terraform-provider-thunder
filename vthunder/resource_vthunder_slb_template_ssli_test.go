@@ -7,10 +7,10 @@ import (
 )
 
 var TEST_TEMPLATE_SSLI_RESOURCE = `
-resource "vthunder_TemplateSsli" "testname" {
+resource "vthunder_slb_template_ssli" "testname" {
 	name = "testssli"
 	type = "init"
-	user_tag = 1
+	user_tag = "test_user"
 }
 `
 
@@ -22,9 +22,9 @@ func TestTemplateSsli_create(t *testing.T) {
 			{
 				Config: TEST_TEMPLATE_SSLI_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_TemplateSsli.testname", "name", "testssli"),
-					resource.TestCheckResourceAttr("vthunder_TemplateSsli.testname", "type", "http"),
-					resource.TestCheckResourceAttr("vthunder_TemplateSsli.testname", "user_tag", "test_user"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ssli.testname", "name", "testssli"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ssli.testname", "type", "init"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ssli.testname", "user_tag", "test_user"),
 				),
 			},
 		},
