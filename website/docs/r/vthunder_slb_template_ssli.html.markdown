@@ -19,10 +19,10 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_TemplateSsli" "testname" {
+resource "vthunder_slb_template_ssli" "testname" {
 	name = "testssli"
 	type = "init"
-	user_tag = 1
+	user_tag = "test_user"
 }
 ```
 

@@ -19,12 +19,11 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_TemplateFTP" "templateftp" {
+resource "vthunder_slb_template_ftp" "templateftp" {
 	name = "testftp"
 	user_tag = "test_tag"
 	active_mode_port = 1
-	active_mode_port_val = 4048
-	to = 4050
+	active_mode_port_val = 1
 }
 ```
 

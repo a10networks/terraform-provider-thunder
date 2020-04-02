@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_TemplateFix" "templatefix" {
+resource "vthunder_slb_template_fix" "templatefix" {
 	name = "testfix"
 	logging = "init"
 	tag_switching {
@@ -27,7 +27,7 @@ resource "vthunder_TemplateFix" "templatefix" {
 		service_group = "testsg"
 		switching_type = "sender-comp-id"
 	} 
-	insert_client_ip = 1
+	insert_client_ip = 1111
 	user_tag = "test_user"
 }
 ```

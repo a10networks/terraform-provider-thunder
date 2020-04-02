@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_template_connection_reuse" "testname" {
+resource "vthunder_slb_template_connection_reuse" "testname" {
 	name = "testConn"
 	keep_alive_conn = 0
 	limit_per_server = 10
