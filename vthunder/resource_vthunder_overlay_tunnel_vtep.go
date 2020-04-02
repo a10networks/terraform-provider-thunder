@@ -144,7 +144,7 @@ func resourceOverlayTunnelVtep() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"id": {
+			"id2": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -176,7 +176,7 @@ func resourceVtepCreate(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(vThunder)
 
 	if client.Host != "" {
-		name := strconv.Itoa(d.Get("ID").(int))
+		name := strconv.Itoa(d.Get("id2").(int))
 		logger.Println("[INFO] Creating vtep (Inside resourceVtepCreate    " + name)
 		v := dataToVtep(name, d)
 		d.SetId(name)
@@ -217,7 +217,7 @@ func resourceVtepUpdate(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(vThunder)
 
 	if client.Host != "" {
-		name := strconv.Itoa(d.Get("ID").(int))
+		name := strconv.Itoa(d.Get("id2").(int))
 		logger.Println("[INFO] Modifying Vtep (Inside resourceVtepUpdate    " + name)
 		v := dataToVtep(name, d)
 		d.SetId(name)
@@ -257,7 +257,7 @@ func dataToVtep(name string, d *schema.ResourceData) go_vthunder.Vtep {
 	sInstance.UUID = d.Get("uuid").(string)
 	sInstance.UserTag = d.Get("user_tag").(string)
 	sInstance.Encap = d.Get("encap").(string)
-	sInstance.ID = d.Get("id").(int)
+	sInstance.ID = d.Get("id2").(int)
 
 	samplingCount := d.Get("sampling_enable.#").(int)
 	sInstance.Counters1 = make([]go_vthunder.SamplingEnableOT, 0, samplingCount)
