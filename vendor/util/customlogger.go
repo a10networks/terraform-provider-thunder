@@ -18,7 +18,7 @@ var once sync.Once
 // start loggeando
 func GetLoggerInstance() *logger {
 	once.Do(func() {
-		myLogger = createLogger("mylogger.log")
+		myLogger = createLogger("terraform.log")
 	})
 	return myLogger
 }
@@ -31,4 +31,3 @@ func createLogger(fname string) *logger {
 		Logger:   log.New(file, "My app Name ", log.Lshortfile),
 	}
 }
-

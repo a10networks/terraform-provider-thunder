@@ -4,21 +4,35 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/go_vthunder/vthunder"
 	"io/ioutil"
 	"util"
+
+	go_vthunder "github.com/go_vthunder/vthunder"
 )
+
+type Credentials struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+type Token struct {
+	token       string
+	Credentials Credentials
+}
+
+var global_token = make(map[string]Token)
 
 func getAuthHeader(host string, user string, passwd string, uri string) string {
 
 	logger := util.GetLoggerInstance()
 
-	var id string
-
-	type Credentials struct {
-		Username string `json:"username"`
-		Password string `json:"password"`
+	if global_token[host].token != "" &&
+		global_token[host].Credentials.Username == user &&
+		global_token[host].Credentials.Password == passwd {
+		logger.Println("Using existing token.")
+		return "A10 " + global_token[host].token
 	}
+
+	var id string
 
 	type Payload struct {
 		Credentials Credentials `json:"credentials"`
@@ -49,6 +63,7 @@ func getAuthHeader(host string, user string, passwd string, uri string) string {
 	headers["Content-Type"] = "application/json"
 
 	logger.Println("[INFO] host+uri - " + host + uri)
+
 	resp, err := go_vthunder.DoHttp("POST", "https://"+host+uri, body, headers)
 
 	if err != nil {
@@ -63,6 +78,13 @@ func getAuthHeader(host string, user string, passwd string, uri string) string {
 			logger.Println("[INFO] Unmarshal error ")
 		} else {
 			id = m.Auth.Signature
+			global_token[host] = Token{
+				token: id,
+				Credentials: Credentials{
+					Username: user,
+					Password: passwd,
+				},
+			}
 		}
 	}
 	return "A10 " + id
