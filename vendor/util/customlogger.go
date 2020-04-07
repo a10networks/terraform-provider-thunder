@@ -18,7 +18,7 @@ var once sync.Once
 // start loggeando
 func GetLoggerInstance() *logger {
 	once.Do(func() {
-		myLogger = createLogger("terraform.log")
+		myLogger = createLogger("vthunder.log")
 	})
 	return myLogger
 }
