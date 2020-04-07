@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_respmod\_icap
 
-`vthunder_slb_template_respmod_icap provides details about slb template respmod-icap
+`vthunder_slb_template_respmod_icap` provides details about slb template respmod-icap
 ## Example Usage
 
 

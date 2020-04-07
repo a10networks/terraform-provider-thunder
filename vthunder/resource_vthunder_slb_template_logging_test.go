@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_LOGGING_RESOURCE = `
-resource "vthunder_slb_template_logging" "l"{
+resource "vthunder_slb_template_logging" "logging"{
 name = "log1"
 format= "abc"
 local_logging= 1

@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_glm
 
-`vthunder_glm provides details about GLM
+`vthunder_glm provides` details about GLM
 ## Example Usage
 
 

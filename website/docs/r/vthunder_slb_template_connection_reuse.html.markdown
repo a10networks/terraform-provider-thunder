@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_connection\_reuse
 
-`vthunder_slb_template_connection_reuse provides details about slb template connection-reuse
+`vthunder_slb_template_connection_reuse` provides details about slb template connection-reuse
 ## Example Usage
 
 

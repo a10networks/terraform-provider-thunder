@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_snmp
 
-`vthunder_slb_template_snmp provides details about slb template snmp
+`vthunder_slb_template_snmp` provides details about slb template snmp
 ## Example Usage
 
 
