@@ -89,7 +89,7 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_slb_template_snmp":                 resourceSlbTemplateSNMP(),
 			"vthunder_slb_template_external_service":     resourceSlbTemplateExternalService(),
 			"vthunder_slb_template_virtual_server":       resourceSlbTemplateVirtualServer(),
-			"vthunder_slb_template_aflow":                resourceSlbAflow(),
+			"vthunder_slb_aflow":                         resourceSlbAflow(),
 			"vthunder_slb_common":                        resourceSlbCommon(),
 			"vthunder_slb_common_conn_rate_limit_src_ip": resourceSlbCommonConnRateLimitSrcIP(),
 		},
