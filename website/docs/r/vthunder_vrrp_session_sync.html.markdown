@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_vrrp\_session\_sync
 
-`vthunder_vrrp_session_sync provides details about vrrp session sync
+`vthunder_vrrp_session_sync` provides details about vrrp session sync
 ## Example Usage
 
 

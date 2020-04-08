@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_virtual_port
 
-`vthunder_slb_template_virtual_port provides details about slb template virtual-port
+`vthunder_slb_template_virtual_port` provides details about slb template virtual-port
 ## Example Usage
 
 

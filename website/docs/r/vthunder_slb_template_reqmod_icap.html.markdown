@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_reqmod\_icap
 
-`vthunder_slb_template_reqmod_icap provides details about slb template reqmod-icap
+`vthunder_slb_template_reqmod_icap` provides details about slb template reqmod-icap
 ## Example Usage
 
 

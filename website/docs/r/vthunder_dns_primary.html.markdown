@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_dns\_primary
 
-`vthunder_dns_primary provides details about Dns Primary
+`vthunder_dns_primary provides` details about Dns Primary
 ## Example Usage
 
 

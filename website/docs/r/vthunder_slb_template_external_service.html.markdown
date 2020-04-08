@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_external\_service
 
-`vthunder_slb_template_external_service provides details about slb template external-service
+`vthunder_slb_template_external_service` provides details about slb template external-service
 ## Example Usage
 
 

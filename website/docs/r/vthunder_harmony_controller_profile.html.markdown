@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_harmony\_controller\_profile
 
-`vthunder_harmony_controller_profile provides details about harmony-controller profile
+`vthunder_harmony_controller_profile` provides details about harmony-controller profile
 ## Example Usage
 
 

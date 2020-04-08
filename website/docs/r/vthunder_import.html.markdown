@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_import
 
-`vthunder_import provides details about Import
+`vthunder_import` provides details about Import
 ## Example Usage
 
 

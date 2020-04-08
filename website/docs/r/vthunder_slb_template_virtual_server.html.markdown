@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_virtual_server
 
-`vthunder_slb_template_virtual_server provides details about slb template virtual-server
+`vthunder_slb_template_virtual_server` provides details about slb template virtual-server
 ## Example Usage
 
 

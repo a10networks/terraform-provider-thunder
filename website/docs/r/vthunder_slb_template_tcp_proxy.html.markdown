@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_tcp_proxy
 
-`vthunder_slb_template_tcp_proxy provides details about slb template tcp-proxy
+`vthunder_slb_template_tcp_proxy` provides details about slb template tcp-proxy
 ## Example Usage
 
 

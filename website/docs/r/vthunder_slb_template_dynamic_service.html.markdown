@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_dynamic\_service
 
-`vthunder_slb_template_dynamic_service provides details about slb template dynamic-service
+`vthunder_slb_template_dynamic_service` provides details about slb template dynamic-service
 ## Example Usage
 
 

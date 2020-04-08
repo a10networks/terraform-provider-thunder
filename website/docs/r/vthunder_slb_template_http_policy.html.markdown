@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_http_policy
 
-`vthunder_slb_template_http_policy provides details about slb template http-policy
+`vthunder_slb_template_http_policy` provides details about slb template http-policy
 ## Example Usage
 
 

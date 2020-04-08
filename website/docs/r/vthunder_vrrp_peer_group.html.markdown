@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_vrrp\_peer\_group
 
-`vthunder_vrrp_peer_group provides details about vrrp peer group
+`vthunder_vrrp_peer_group` provides details about vrrp peer group
 ## Example Usage
 
 

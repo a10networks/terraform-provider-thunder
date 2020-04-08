@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_vrrp\_vrid
 
-`vthunder_vrrp_vrid provides details about vrrp vrid
+`vthunder_vrrp_vrid` provides details about vrrp vrid
 ## Example Usage
 
 

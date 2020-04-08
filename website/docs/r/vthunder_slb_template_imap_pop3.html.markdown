@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_imap\_pop3
 
-`vthunder_slb_template_imap_pop3 provides details about slb template imap-pop3
+`vthunder_slb_template_imap_pop3` provides details about slb template imap-pop3
 ## Example Usage
 
 

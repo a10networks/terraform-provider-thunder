@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_vrrp\_common
 
-`vthunder_vrrp_common provides details about vrrp common
+`vthunder_vrrp_common` provides details about vrrp common
 ## Example Usage
 
 

@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_diameter
 
-`vthunder_slb_template_diameter provides details about slb template diameter
+`vthunder_slb_template_diameter` provides details about slb template diameter
 ## Example Usage
 
 

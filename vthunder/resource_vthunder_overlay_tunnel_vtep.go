@@ -3,11 +3,13 @@ package vthunder
 //vThunder resource overlay tunnel vtep
 
 import (
-	"github.com/go_vthunder/vthunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"fmt"
 	"log"
 	"strconv"
 	"util"
+
+	go_vthunder "github.com/go_vthunder/vthunder"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceOverlayTunnelVtep() *schema.Resource {
@@ -178,7 +180,7 @@ func resourceVtepCreate(d *schema.ResourceData, meta interface{}) error {
 	if client.Host != "" {
 		name := strconv.Itoa(d.Get("id2").(int))
 		logger.Println("[INFO] Creating vtep (Inside resourceVtepCreate    " + name)
-		v := dataToVtep(name, d)
+		v := dataToVtep(d)
 		d.SetId(name)
 		go_vthunder.PostVtep(client.Token, v, client.Host)
 
@@ -219,7 +221,7 @@ func resourceVtepUpdate(d *schema.ResourceData, meta interface{}) error {
 	if client.Host != "" {
 		name := strconv.Itoa(d.Get("id2").(int))
 		logger.Println("[INFO] Modifying Vtep (Inside resourceVtepUpdate    " + name)
-		v := dataToVtep(name, d)
+		v := dataToVtep(d)
 		d.SetId(name)
 		go_vthunder.PutVtep(client.Token, name, v, client.Host)
 
@@ -249,7 +251,7 @@ func resourceVtepDelete(d *schema.ResourceData, meta interface{}) error {
 }
 
 //utility method to instantiate vtep structure
-func dataToVtep(name string, d *schema.ResourceData) go_vthunder.Vtep {
+func dataToVtep(d *schema.ResourceData) go_vthunder.Vtep {
 	var s go_vthunder.Vtep
 
 	var sInstance go_vthunder.VtepInstance
@@ -263,19 +265,22 @@ func dataToVtep(name string, d *schema.ResourceData) go_vthunder.Vtep {
 	sInstance.Counters1 = make([]go_vthunder.SamplingEnableOT, 0, samplingCount)
 	for i := 0; i < samplingCount; i++ {
 		var samp go_vthunder.SamplingEnableOT
-		samp.Counters1 = d.Get("counters1").(string)
+		prefix := fmt.Sprintf("sampling_enable.%d.", i)
+		samp.Counters1 = d.Get(prefix + "counters1").(string)
 		sInstance.Counters1 = append(sInstance.Counters1, samp)
 	}
 
 	hostListCount := d.Get("host_list.#").(int)
 	sInstance.IPAddr = make([]go_vthunder.HostList, 0, hostListCount)
+
 	for i := 0; i < hostListCount; i++ {
 		var host go_vthunder.HostList
-		host.DestinationVtep = d.Get("destination_vtep").(string)
-		host.IPAddr = d.Get("ip_addr").(string)
-		host.OverlayMacAddr = d.Get("overlay_mac_addr").(string)
-		host.Vni = d.Get("vni").(int)
-		host.UUID = d.Get("uuid").(string)
+		prefix := fmt.Sprintf("host_list.%d.", i)
+		host.DestinationVtep = d.Get(prefix + "destination_vtep").(string)
+		host.IPAddr = d.Get(prefix + "ip_addr").(string)
+		host.OverlayMacAddr = d.Get(prefix + "overlay_mac_addr").(string)
+		host.Vni = d.Get(prefix + "vni").(int)
+		host.UUID = d.Get(prefix + "uuid").(string)
 		sInstance.IPAddr = append(sInstance.IPAddr, host)
 	}
 
@@ -283,10 +288,11 @@ func dataToVtep(name string, d *schema.ResourceData) go_vthunder.Vtep {
 	sInstance.Segment = make([]go_vthunder.DestinationIPAddressList, 0, destAddrCnt)
 	for i := 0; i < destAddrCnt; i++ {
 		var destAddrr go_vthunder.DestinationIPAddressList
-		destAddrr.UUID = d.Get("uuid").(string)
-		destAddrr.IPAddress = d.Get("ip_address").(string)
-		destAddrr.UserTag = d.Get("user_tag").(string)
-		destAddrr.Encap = d.Get("encap").(string)
+		prefix := fmt.Sprintf("destination_ip_address_list.%d.", i)
+		destAddrr.UUID = d.Get(prefix + "uuid").(string)
+		destAddrr.IPAddress = d.Get(prefix + "ip_address").(string)
+		destAddrr.UserTag = d.Get(prefix + "user_tag").(string)
+		destAddrr.Encap = d.Get(prefix + "encap").(string)
 		sInstance.Segment = append(sInstance.Segment, destAddrr)
 	}
 

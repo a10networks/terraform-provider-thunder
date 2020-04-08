@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_logging
 
-`vthunder_slb_template_logging provides details about slb template logging
+`vthunder_slb_template_logging` provides details about slb template logging
 ## Example Usage
 
 

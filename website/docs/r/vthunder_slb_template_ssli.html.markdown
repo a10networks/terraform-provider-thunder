@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_ssli
 
-`vthunder_slb_template_ssli provides details about slb template ssli
+`vthunder_slb_template_ssli` provides details about slb template ssli
 ## Example Usage
 
 

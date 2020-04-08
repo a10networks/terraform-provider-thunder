@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_import
 
-`vthunder_reboot provides details about reboot
+`vthunder_reboot` provides details about reboot
 ## Example Usage
 
 

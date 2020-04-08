@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_template\_csv
 
-`vthunder_slb_template_csv provides details about slb template csv
+`vthunder_slb_template_csv` provides details about slb template csv
 ## Example Usage
 
 
