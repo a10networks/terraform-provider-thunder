@@ -92,6 +92,8 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_slb_aflow":                         resourceSlbAflow(),
 			"vthunder_slb_common":                        resourceSlbCommon(),
 			"vthunder_slb_common_conn_rate_limit_src_ip": resourceSlbCommonConnRateLimitSrcIP(),
+			"vthunder_slb_connection_reuse":              resourceSlbConnectionReuse(),
+			"vthunder_slb_crl_srcip":                     resourceSlbCrlSrcip(),
 		},
 
 		ConfigureFunc: providerConfigure,

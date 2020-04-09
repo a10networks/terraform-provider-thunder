@@ -21,7 +21,7 @@ resource "vthunder_slb_template_external_service" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplateExternalService_create(t *testing.T) {
+func TestAccSlbTemplateExternalService_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

@@ -16,7 +16,7 @@ resource "vthunder_slb_template_http" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplateHTTP_create(t *testing.T) {
+func TestAccSlbTemplateHTTP_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

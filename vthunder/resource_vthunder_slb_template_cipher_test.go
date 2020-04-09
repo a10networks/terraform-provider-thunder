@@ -18,7 +18,7 @@ resource "vthunder_slb_template_cipher" "testname" {
 `
 
 //Acceptance test
-func TestTemplateCipher_create(t *testing.T) {
+func TestAccTemplateCipher_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

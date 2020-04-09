@@ -6,7 +6,7 @@ description: |-
     Provides details about vthunder SLB common conn-rate-limit src-ip resource for A10
 ---
 
-# vthunder\_slb\_common\_conn-rate-limit\_src-ip
+# vthunder\_slb\_common\_conn_rate_limit\_src_ip
 
 `vthunder_slb_aflow` Provides details about vthunder SLB common conn-rate-limit src-ip
 ## Example Usage

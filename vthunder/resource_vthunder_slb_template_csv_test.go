@@ -20,7 +20,7 @@ resource "vthunder_slb_template_csv" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplateCSV_create(t *testing.T) {
+func TestAccSlbTemplateCSV_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
