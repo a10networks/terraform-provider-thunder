@@ -17,7 +17,7 @@ resource "vthunder_slb_template_dynamic_service" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplateDynamicService_create(t *testing.T) {
+func TestAccSlbTemplateDynamicService_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

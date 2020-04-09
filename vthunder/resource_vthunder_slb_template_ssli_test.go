@@ -15,7 +15,7 @@ resource "vthunder_slb_template_ssli" "testname" {
 `
 
 //Acceptance test
-func TestTemplateSsli_create(t *testing.T) {
+func TestAccTemplateSsli_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

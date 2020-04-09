@@ -17,7 +17,7 @@ resource "vthunder_slb_template_client_ssh" "testname" {
 `
 
 //Acceptance test
-func TestTemplateClientSSH_create(t *testing.T) {
+func TestAccTemplateClientSSH_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

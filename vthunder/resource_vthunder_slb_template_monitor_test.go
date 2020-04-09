@@ -19,7 +19,7 @@ resource "vthunder_slb_template_monitor" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplateMonitor_create(t *testing.T) {
+func TestAccSlbTemplateMonitor_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

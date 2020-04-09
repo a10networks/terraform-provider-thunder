@@ -16,7 +16,7 @@ resource "vthunder_slb_template_ftp" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplateFTP_create(t *testing.T) {
+func TestAccSlbTemplateFTP_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

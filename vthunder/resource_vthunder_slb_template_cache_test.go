@@ -28,7 +28,7 @@ resource "vthunder_slb_template_cache" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplateCache_create(t *testing.T) {
+func TestAccSlbTemplateCache_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

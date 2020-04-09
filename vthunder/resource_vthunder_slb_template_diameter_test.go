@@ -38,7 +38,7 @@ resource "vthunder_slb_template_diameter" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplateDiameter_create(t *testing.T) {
+func TestAccSlbTemplateDiameter_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

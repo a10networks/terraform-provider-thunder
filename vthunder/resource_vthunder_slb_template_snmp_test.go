@@ -24,7 +24,7 @@ resource "vthunder_slb_template_snmp" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplateSNMP_create(t *testing.T) {
+func TestAccSlbTemplateSNMP_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

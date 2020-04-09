@@ -15,7 +15,7 @@ resource "vthunder_slb_template_dblb" "testname" {
 `
 
 //Acceptance test
-func TestTemplateDBLB_create(t *testing.T) {
+func TestAccSlbTemplateDBLB_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

@@ -24,7 +24,7 @@ resource "vthunder_slb_template_reqmod_icap" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplateReqmodIcap_create(t *testing.T) {
+func TestAccSlbTemplateReqmodIcap_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

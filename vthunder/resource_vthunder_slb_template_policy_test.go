@@ -20,7 +20,7 @@ resource "vthunder_slb_template_policy" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplatePolicy_create(t *testing.T) {
+func TestAccSlbTemplatePolicy_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

@@ -20,7 +20,7 @@ resource "vthunder_slb_template_server_ssl" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplateServerSSL_create(t *testing.T) {
+func TestAccSlbTemplateServerSSL_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

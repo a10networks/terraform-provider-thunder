@@ -21,7 +21,7 @@ resource "vthunder_slb_template_smtp" "testname" {
 `
 
 //Acceptance test
-func TestSlbTemplateSMTP_create(t *testing.T) {
+func TestAccSlbTemplateSMTP_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

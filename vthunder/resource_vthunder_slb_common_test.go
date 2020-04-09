@@ -29,7 +29,7 @@ resource "vthunder_slb_common" "testname" {
 `
 
 //Acceptance test
-func TestSlbCommon_create(t *testing.T) {
+func TestAccSlbCommon_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

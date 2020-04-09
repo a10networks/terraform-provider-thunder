@@ -17,7 +17,7 @@ resource "vthunder_slb_template_connection_reuse" "testname" {
 `
 
 //Acceptance test
-func TestTemplateConnReuse_create(t *testing.T) {
+func TestAccSlbTemplateConnReuse_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

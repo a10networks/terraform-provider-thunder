@@ -17,7 +17,7 @@ resource "vthunder_slb_common_conn_rate_limit_src_ip" "testname" {
 `
 
 //Acceptance test
-func TestSlbCommonConnRateLimitSrcIP_create(t *testing.T) {
+func TestAccSlbCommonConnRateLimitSrcIP_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

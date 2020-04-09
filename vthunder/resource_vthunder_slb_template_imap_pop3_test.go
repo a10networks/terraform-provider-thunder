@@ -16,7 +16,7 @@ resource "vthunder_slb_template_imap_pop3" "testname" {
 `
 
 //Acceptance test
-func TestTemplateImapPOP_create(t *testing.T) {
+func TestAccSlbTemplateImapPOP_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
