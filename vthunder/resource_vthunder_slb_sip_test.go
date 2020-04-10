@@ -16,7 +16,7 @@ resource "vthunder_slb_sip" "testname" {
 `
 
 //Acceptance test
-func TestSlbSip_create(t *testing.T) {
+func TestAccSlbSip_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

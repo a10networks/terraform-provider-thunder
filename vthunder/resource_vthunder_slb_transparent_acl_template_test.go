@@ -13,7 +13,7 @@ resource "vthunder_slb_transparent_acl_template" "testname" {
 `
 
 //Acceptance test
-func TestSlbTransparentAclTemplate_create(t *testing.T) {
+func TestAccSlbTransparentAclTemplate_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

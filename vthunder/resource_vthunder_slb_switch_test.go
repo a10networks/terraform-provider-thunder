@@ -15,7 +15,7 @@ resource "vthunder_slb_switch" "testname" {
 `
 
 //Acceptance test
-func TestSlbSwitch_create(t *testing.T) {
+func TestAccSlbSwitch_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

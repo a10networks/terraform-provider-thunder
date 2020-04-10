@@ -16,7 +16,7 @@ resource "vthunder_slb_spdy_proxy" "testname" {
 `
 
 //Acceptance test
-func TestSlbSpdyProxy_create(t *testing.T) {
+func TestAccSlbSpdyProxy_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

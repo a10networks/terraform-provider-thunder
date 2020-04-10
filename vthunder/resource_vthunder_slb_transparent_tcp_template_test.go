@@ -13,7 +13,7 @@ resource "vthunder_slb_transparent_tcp_template" "testname" {
 `
 
 //Acceptance test
-func TestSlbTransperentTcpTemplate_create(t *testing.T) {
+func TestAccSlbTransperentTcpTemplate_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

@@ -15,7 +15,7 @@ resource "vthunder_slb_sport_rate_limit" "testname" {
 `
 
 //Acceptance test
-func TestSlbSportRateLimit_create(t *testing.T) {
+func TestAccSlbSportRateLimit_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

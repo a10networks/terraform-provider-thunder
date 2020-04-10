@@ -13,7 +13,7 @@ resource "vthunder_slb_svm_source_nat" "testname" {
 `
 
 //Acceptance test
-func TestSlbSvmSourceNat_create(t *testing.T) {
+func TestAccSlbSvmSourceNat_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
