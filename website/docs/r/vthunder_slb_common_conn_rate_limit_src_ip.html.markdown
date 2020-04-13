@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_common\_conn_rate_limit\_src_ip
 
-`vthunder_slb_aflow` Provides details about vthunder SLB common conn-rate-limit src-ip
+`vthunder_slb_conn_rate_limit_src_ip` Provides details about vthunder SLB common conn-rate-limit src-ip
 ## Example Usage
 
 
