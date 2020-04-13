@@ -131,7 +131,7 @@ func resourceSlbTemplateExternalServiceCreate(d *schema.ResourceData, meta inter
 		logger.Println("[INFO] Creating SlbTemplateExternalService (Inside resourceSlbTemplateExternalServiceCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateExternalService(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateExternalService --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateExternalService --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateExternalService(client.Token, data, client.Host)
 
@@ -168,7 +168,7 @@ func resourceSlbTemplateExternalServiceUpdate(d *schema.ResourceData, meta inter
 		logger.Println("[INFO] Modifying SlbTemplateExternalService   (Inside resourceSlbTemplateExternalServiceUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateExternalService(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateExternalService ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateExternalService ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplateExternalService(client.Token, name, data, client.Host)
 

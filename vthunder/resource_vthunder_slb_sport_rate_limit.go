@@ -42,7 +42,7 @@ func resourceSlbSportRateLimitCreate(d *schema.ResourceData, meta interface{}) e
 		logger.Println("[INFO] Creating SlbSportRateLimit (Inside resourceSlbSportRateLimitCreate) ")
 
 		data := dataToSlbSportRateLimit(d)
-		logger.Println("[INFO] received V from method data to SlbSportRateLimit --")
+		logger.Println("[INFO] received formatted data from method data to SlbSportRateLimit --")
 		d.SetId("1")
 		go_vthunder.PostSlbSportRateLimit(client.Token, data, client.Host)
 

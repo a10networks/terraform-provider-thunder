@@ -69,7 +69,7 @@ func resourceSlbCommonConnRateLimitSrcIPCreate(d *schema.ResourceData, meta inte
 		logger.Println("[INFO] Creating SlbCommonConnRateLimitSrcIP (Inside resourceSlbCommonConnRateLimitSrcIPCreate) ")
 		name := d.Get("protocol").(string)
 		data := dataToSlbCommonConnRateLimitSrcIP(d)
-		logger.Println("[INFO] received V from method data to SlbCommonConnRateLimitSrcIP --")
+		logger.Println("[INFO] received formatted data from method data to SlbCommonConnRateLimitSrcIP --")
 		d.SetId(name)
 		go_vthunder.PostSlbCommonConnRateLimitSrcIP(client.Token, data, client.Host)
 
@@ -106,7 +106,7 @@ func resourceSlbCommonConnRateLimitSrcIPUpdate(d *schema.ResourceData, meta inte
 		logger.Println("[INFO] Modifying SlbCommonConnRateLimitSrcIP   (Inside resourceSlbCommonConnRateLimitSrcIPUpdate) ")
 		name := d.Get("protocol").(string)
 		data := dataToSlbCommonConnRateLimitSrcIP(d)
-		logger.Println("[INFO] received V from method data to SlbCommonConnRateLimitSrcIP ")
+		logger.Println("[INFO] received formatted data from method data to SlbCommonConnRateLimitSrcIP ")
 		d.SetId(name)
 		go_vthunder.PutSlbCommonConnRateLimitSrcIP(client.Token, name, data, client.Host)
 

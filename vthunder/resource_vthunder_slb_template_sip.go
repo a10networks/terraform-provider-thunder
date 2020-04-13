@@ -285,7 +285,7 @@ func resourceSlbTemplateSIPCreate(d *schema.ResourceData, meta interface{}) erro
 		logger.Println("[INFO] Creating SlbTemplateSIP (Inside resourceSlbTemplateSIPCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateSIP(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateSIP --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateSIP --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateSIP(client.Token, data, client.Host)
 
@@ -322,7 +322,7 @@ func resourceSlbTemplateSIPUpdate(d *schema.ResourceData, meta interface{}) erro
 		logger.Println("[INFO] Modifying SlbTemplateSIP   (Inside resourceSlbTemplateSIPUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateSIP(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateSIP ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateSIP ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplateSIP(client.Token, name, data, client.Host)
 

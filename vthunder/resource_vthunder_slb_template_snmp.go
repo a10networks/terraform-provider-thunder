@@ -124,7 +124,7 @@ func resourceSlbTemplateSNMPCreate(d *schema.ResourceData, meta interface{}) err
 		logger.Println("[INFO] Creating SlbTemplateSNMP (Inside resourceSlbTemplateSNMPCreate) ")
 		snmp_name := d.Get("snmp_name").(string)
 		data := dataToSlbTemplateSNMP(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateSNMP --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateSNMP --")
 		d.SetId(snmp_name)
 		go_vthunder.PostSlbTemplateSNMP(client.Token, data, client.Host)
 
@@ -161,7 +161,7 @@ func resourceSlbTemplateSNMPUpdate(d *schema.ResourceData, meta interface{}) err
 		logger.Println("[INFO] Modifying SlbTemplateSNMP   (Inside resourceSlbTemplateSNMPUpdate) ")
 		snmp_name := d.Get("snmp_name").(string)
 		data := dataToSlbTemplateSNMP(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateSNMP ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateSNMP ")
 		d.SetId(snmp_name)
 		go_vthunder.PutSlbTemplateSNMP(client.Token, snmp_name, data, client.Host)
 

@@ -33,7 +33,7 @@ func resourceSlbSvmSourceNatCreate(d *schema.ResourceData, meta interface{}) err
 		logger.Println("[INFO] Creating SlbSvmSourceNat (Inside resourceSlbSvmSourceNatCreate) ")
 
 		data := dataToSlbSvmSourceNat(d)
-		logger.Println("[INFO] received V from method data to SlbSvmSourceNat --")
+		logger.Println("[INFO] received formatted data from method data to SlbSvmSourceNat --")
 		d.SetId("1")
 		go_vthunder.PostSlbSvmSourceNat(client.Token, data, client.Host)
 

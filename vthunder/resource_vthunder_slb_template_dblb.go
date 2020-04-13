@@ -68,7 +68,7 @@ func resourceTemplateDBLBCreate(d *schema.ResourceData, meta interface{}) error 
 		logger.Println("[INFO] Creating TemplateDBLB (Inside resourceTemplateDBLBCreate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateDBLB(d)
-		logger.Println("[INFO] received V from method data to TemplateDBLB --")
+		logger.Println("[INFO] received formatted data from method data to TemplateDBLB --")
 		d.SetId(name)
 		go_vthunder.PostTemplateDBLB(client.Token, data, client.Host)
 
@@ -105,7 +105,7 @@ func resourceTemplateDBLBUpdate(d *schema.ResourceData, meta interface{}) error 
 		logger.Println("[INFO] Modifying TemplateDBLB   (Inside resourceTemplateDBLBUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateDBLB(d)
-		logger.Println("[INFO] received V from method data to TemplateDBLB ")
+		logger.Println("[INFO] received formatted data from method data to TemplateDBLB ")
 		d.SetId(name)
 		go_vthunder.PutTemplateDBLB(client.Token, name, data, client.Host)
 

@@ -42,7 +42,7 @@ func resourceSlbSpdyProxyCreate(d *schema.ResourceData, meta interface{}) error 
 		logger.Println("[INFO] Creating SlbSpdyProxy (Inside resourceSlbSpdyProxyCreate) ")
 
 		data := dataToSlbSpdyProxy(d)
-		logger.Println("[INFO] received V from method data to SlbSpdyProxy --")
+		logger.Println("[INFO] received formatted data from method data to SlbSpdyProxy --")
 		d.SetId("1")
 		go_vthunder.PostSlbSpdyProxy(client.Token, data, client.Host)
 

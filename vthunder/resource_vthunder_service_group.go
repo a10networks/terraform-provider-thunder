@@ -4,10 +4,11 @@ package vthunder
 
 import (
 	"fmt"
-	"github.com/go_vthunder/vthunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"log"
 	"util"
+
+	go_vthunder "github.com/go_vthunder/vthunder"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceServiceGroup() *schema.Resource {
@@ -407,7 +408,7 @@ func resourceServiceGroupCreate(d *schema.ResourceData, meta interface{}) error 
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Creating service group   (Inside resourceServiceGroupCreate    " + name)
 		v := dataToSg(name, d)
-		logger.Println("[INFO] received V from method data to sg --" + v.Name.Name + ",--" + v.Name.UUID)
+		logger.Println("[INFO] received formatted data from method data to sg --" + v.Name.Name + ",--" + v.Name.UUID)
 		d.SetId(name)
 		go_vthunder.PostSG(client.Token, v, client.Host)
 
@@ -448,7 +449,7 @@ func resourceServiceGroupUpdate(d *schema.ResourceData, meta interface{}) error 
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Modifying service group   (Inside resourceServiceGroupUpdate    " + name)
 		v := dataToSg(name, d)
-		logger.Println("[INFO] received V from method data to sg --" + v.Name.Name)
+		logger.Println("[INFO] received formatted data from method data to sg --" + v.Name.Name)
 		d.SetId(name)
 		go_vthunder.PutSG(client.Token, name, v, client.Host)
 

@@ -78,7 +78,7 @@ func resourceTemplateFixCreate(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Creating TemplateFix (Inside resourceTemplateFixCreate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateFix(d)
-		logger.Println("[INFO] received V from method data to TemplateFix --")
+		logger.Println("[INFO] received formatted data from method data to TemplateFix --")
 		d.SetId(name)
 		go_vthunder.PostTemplateFix(client.Token, data, client.Host)
 
@@ -115,7 +115,7 @@ func resourceTemplateFixUpdate(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Modifying TemplateFix   (Inside resourceTemplateFixUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateFix(d)
-		logger.Println("[INFO] received V from method data to TemplateFix ")
+		logger.Println("[INFO] received formatted data from method data to TemplateFix ")
 		d.SetId(name)
 		go_vthunder.PutTemplateFix(client.Token, name, data, client.Host)
 

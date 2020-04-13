@@ -49,7 +49,7 @@ func resourceTemplateSSLICreate(d *schema.ResourceData, meta interface{}) error 
 		logger.Println("[INFO] Creating TemplateSSLI (Inside resourceTemplateSSLICreate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateSSLI(d)
-		logger.Println("[INFO] received V from method data to TemplateSSLI --")
+		logger.Println("[INFO] received formatted data from method data to TemplateSSLI --")
 		d.SetId(name)
 		go_vthunder.PostTemplateSSLI(client.Token, data, client.Host)
 
@@ -86,7 +86,7 @@ func resourceTemplateSSLIUpdate(d *schema.ResourceData, meta interface{}) error 
 		logger.Println("[INFO] Modifying TemplateSSLI   (Inside resourceTemplateSSLIUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateSSLI(d)
-		logger.Println("[INFO] received V from method data to TemplateSSLI ")
+		logger.Println("[INFO] received formatted data from method data to TemplateSSLI ")
 		d.SetId(name)
 		go_vthunder.PutTemplateSSLI(client.Token, name, data, client.Host)
 

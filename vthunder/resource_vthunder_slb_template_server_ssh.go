@@ -63,7 +63,7 @@ func resourceSlbTemplateServerSSHCreate(d *schema.ResourceData, meta interface{}
 		logger.Println("[INFO] Creating SlbTemplateServerSSH (Inside resourceSlbTemplateServerSSHCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateServerSSH(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateServerSSH --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateServerSSH --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateServerSSH(client.Token, data, client.Host)
 
@@ -100,7 +100,7 @@ func resourceSlbTemplateServerSSHUpdate(d *schema.ResourceData, meta interface{}
 		logger.Println("[INFO] Modifying SlbTemplateServerSSH   (Inside resourceSlbTemplateServerSSHUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateServerSSH(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateServerSSH ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateServerSSH ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplateServerSSH(client.Token, name, data, client.Host)
 

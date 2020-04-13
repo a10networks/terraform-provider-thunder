@@ -69,7 +69,7 @@ func resourceTemplateConnectionReuseCreate(d *schema.ResourceData, meta interfac
 		logger.Println("[INFO] Creating TemplateConnectionReuse (Inside resourceTemplateConnectionReuseCreate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateConnectionReuse(d)
-		logger.Println("[INFO] received V from method data to TemplateConnectionReuse --")
+		logger.Println("[INFO] received formatted data from method data to TemplateConnectionReuse --")
 		d.SetId(name)
 		go_vthunder.PostTemplateConnectionReuse(client.Token, data, client.Host)
 
@@ -106,7 +106,7 @@ func resourceTemplateConnectionReuseUpdate(d *schema.ResourceData, meta interfac
 		logger.Println("[INFO] Modifying TemplateConnectionReuse   (Inside resourceTemplateConnectionReuseUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateConnectionReuse(d)
-		logger.Println("[INFO] received V from method data to TemplateConnectionReuse ")
+		logger.Println("[INFO] received formatted data from method data to TemplateConnectionReuse ")
 		d.SetId(name)
 		go_vthunder.PutTemplateConnectionReuse(client.Token, name, data, client.Host)
 

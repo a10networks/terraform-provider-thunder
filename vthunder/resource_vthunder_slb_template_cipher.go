@@ -63,7 +63,7 @@ func resourceTemplateCipherCreate(d *schema.ResourceData, meta interface{}) erro
 		logger.Println("[INFO] Creating TemplateCipher (Inside resourceTemplateCipherCreate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateCipher(d)
-		logger.Println("[INFO] received V from method data to TemplateCipher --")
+		logger.Println("[INFO] received formatted data from method data to TemplateCipher --")
 		d.SetId(name)
 		go_vthunder.PostTemplateCipher(client.Token, data, client.Host)
 

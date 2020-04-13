@@ -466,7 +466,7 @@ func resourceSlbTemplateHTTPCreate(d *schema.ResourceData, meta interface{}) err
 		logger.Println("[INFO] Creating SlbTemplateHTTP (Inside resourceSlbTemplateHTTPCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateHTTP(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateHTTP --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateHTTP --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateHTTP(client.Token, data, client.Host)
 
@@ -503,7 +503,7 @@ func resourceSlbTemplateHTTPUpdate(d *schema.ResourceData, meta interface{}) err
 		logger.Println("[INFO] Modifying SlbTemplateHTTP   (Inside resourceSlbTemplateHTTPUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateHTTP(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateHTTP ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateHTTP ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplateHTTP(client.Token, name, data, client.Host)
 

@@ -184,7 +184,7 @@ func resourceSlbTemplateServerCreate(d *schema.ResourceData, meta interface{}) e
 		logger.Println("[INFO] Creating SlbTemplateServer (Inside resourceSlbTemplateServerCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateServer(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateServer --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateServer --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateServer(client.Token, data, client.Host)
 
@@ -221,7 +221,7 @@ func resourceSlbTemplateServerUpdate(d *schema.ResourceData, meta interface{}) e
 		logger.Println("[INFO] Modifying SlbTemplateServer   (Inside resourceSlbTemplateServerUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateServer(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateServer ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateServer ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplateServer(client.Token, name, data, client.Host)
 

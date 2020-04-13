@@ -715,7 +715,7 @@ func resourceSlbTemplatePolicyCreate(d *schema.ResourceData, meta interface{}) e
 		logger.Println("[INFO] Creating SlbTemplatePolicy (Inside resourceSlbTemplatePolicyCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplatePolicy(d)
-		logger.Println("[INFO] received V from method data to SlbTemplatePolicy --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplatePolicy --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplatePolicy(client.Token, data, client.Host)
 
@@ -752,7 +752,7 @@ func resourceSlbTemplatePolicyUpdate(d *schema.ResourceData, meta interface{}) e
 		logger.Println("[INFO] Modifying SlbTemplatePolicy   (Inside resourceSlbTemplatePolicyUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplatePolicy(d)
-		logger.Println("[INFO] received V from method data to SlbTemplatePolicy ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplatePolicy ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplatePolicy(client.Token, name, data, client.Host)
 

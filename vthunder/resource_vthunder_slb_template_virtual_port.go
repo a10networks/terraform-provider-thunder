@@ -164,7 +164,7 @@ func resourceSlbTemplateVirtualPortCreate(d *schema.ResourceData, meta interface
 		logger.Println("[INFO] Creating SlbTemplateVirtualPort (Inside resourceSlbTemplateVirtualPortCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateVirtualPort(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateVirtualPort --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateVirtualPort --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateVirtualPort(client.Token, data, client.Host)
 
@@ -201,7 +201,7 @@ func resourceSlbTemplateVirtualPortUpdate(d *schema.ResourceData, meta interface
 		logger.Println("[INFO] Modifying SlbTemplateVirtualPort   (Inside resourceSlbTemplateVirtualPortUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateVirtualPort(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateVirtualPort ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateVirtualPort ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplateVirtualPort(client.Token, name, data, client.Host)
 

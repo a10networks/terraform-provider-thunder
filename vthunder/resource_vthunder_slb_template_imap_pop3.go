@@ -54,7 +54,7 @@ func resourceTemplateImap_POP3Create(d *schema.ResourceData, meta interface{}) e
 		logger.Println("[INFO] Creating TemplateImap_POP3 (Inside resourceTemplateImap_POP3Create) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateImapPOP(d)
-		logger.Println("[INFO] received V from method data to TemplateImap_POP3 --")
+		logger.Println("[INFO] received formatted data from method data to TemplateImap_POP3 --")
 		d.SetId(name)
 		go_vthunder.PostTemplateImap_POP3(client.Token, data, client.Host)
 
@@ -91,7 +91,7 @@ func resourceTemplateImap_POP3Update(d *schema.ResourceData, meta interface{}) e
 		logger.Println("[INFO] Modifying TemplateImap_POP3   (Inside resourceTemplateImap_POP3Update) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateImapPOP(d)
-		logger.Println("[INFO] received V from method data to TemplateImap_POP3 ")
+		logger.Println("[INFO] received formatted data from method data to TemplateImap_POP3 ")
 		d.SetId(name)
 		go_vthunder.PutTemplateImap_POP3(client.Token, name, data, client.Host)
 

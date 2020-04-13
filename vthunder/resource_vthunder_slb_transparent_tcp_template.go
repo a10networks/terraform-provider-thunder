@@ -33,7 +33,7 @@ func resourceSlbTransperentTcpTemplateCreate(d *schema.ResourceData, meta interf
 		logger.Println("[INFO] Creating SlbTransperentTcpTemplate (Inside resourceSlbTransperentTcpTemplateCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTransperentTcpTemplate(d)
-		logger.Println("[INFO] received V from method data to SlbTransperentTcpTemplate --")
+		logger.Println("[INFO] received formatted data from method data to SlbTransperentTcpTemplate --")
 		d.SetId(name)
 		go_vthunder.PostSlbTransperentTcpTemplate(client.Token, data, client.Host)
 

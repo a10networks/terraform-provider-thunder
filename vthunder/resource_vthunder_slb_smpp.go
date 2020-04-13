@@ -42,7 +42,7 @@ func resourceSlbSmppCreate(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Creating SlbSmpp (Inside resourceSlbSmppCreate) ")
 
 		data := dataToSlbSmpp(d)
-		logger.Println("[INFO] received V from method data to SlbSmpp --")
+		logger.Println("[INFO] received formatted data from method data to SlbSmpp --")
 		d.SetId("1")
 		go_vthunder.PostSlbSmpp(client.Token, data, client.Host)
 

@@ -33,7 +33,7 @@ func resourceSlbTransparentAclTemplateCreate(d *schema.ResourceData, meta interf
 		logger.Println("[INFO] Creating SlbTransparentAclTemplate (Inside resourceSlbTransparentAclTemplateCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTransparentAclTemplate(d)
-		logger.Println("[INFO] received V from method data to SlbTransparentAclTemplate --")
+		logger.Println("[INFO] received formatted data from method data to SlbTransparentAclTemplate --")
 		d.SetId(name)
 		go_vthunder.PostSlbTransparentAclTemplate(client.Token, data, client.Host)
 

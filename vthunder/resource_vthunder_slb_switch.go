@@ -42,7 +42,7 @@ func resourceSlbSwitchCreate(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Creating SlbSwitch (Inside resourceSlbSwitchCreate) ")
 		d.SetId("1")
 		data := dataToSlbSwitch(d)
-		logger.Println("[INFO] received V from method data to SlbSwitch --")
+		logger.Println("[INFO] received formatted data from method data to SlbSwitch --")
 		go_vthunder.PostSlbSwitch(client.Token, data, client.Host)
 
 		return resourceSlbSwitchRead(d, meta)

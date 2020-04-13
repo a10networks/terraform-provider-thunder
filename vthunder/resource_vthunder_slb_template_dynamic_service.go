@@ -63,7 +63,7 @@ func resourceSlbTemplateDynamicServiceCreate(d *schema.ResourceData, meta interf
 		logger.Println("[INFO] Creating SlbTemplateDynamicService (Inside resourceSlbTemplateDynamicServiceCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateDynamicService(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateDynamicService --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateDynamicService --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateDynamicService(client.Token, data, client.Host)
 
@@ -100,7 +100,7 @@ func resourceSlbTemplateDynamicServiceUpdate(d *schema.ResourceData, meta interf
 		logger.Println("[INFO] Modifying SlbTemplateDynamicService   (Inside resourceSlbTemplateDynamicServiceUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateDynamicService(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateDynamicService ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateDynamicService ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplateDynamicService(client.Token, name, data, client.Host)
 

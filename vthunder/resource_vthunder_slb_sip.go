@@ -42,7 +42,7 @@ func resourceSlbSipCreate(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Creating SlbSip (Inside resourceSlbSipCreate) ")
 
 		data := dataToSlbSip(d)
-		logger.Println("[INFO] received V from method data to SlbSip --")
+		logger.Println("[INFO] received formatted data from method data to SlbSip --")
 		d.SetId("1")
 		go_vthunder.PostSlbSip(client.Token, data, client.Host)
 
@@ -59,9 +59,12 @@ func resourceSlbSipRead(d *schema.ResourceData, meta interface{}) error {
 
 	if client.Host != "" {
 
+		name := d.Id()
+
 		data, err := go_vthunder.GetSlbSip(client.Token, client.Host)
 		if data == nil {
-
+			logger.Println("[INFO] No Slb Sip found" + name)
+			d.SetId("")
 			return nil
 		}
 		return err
