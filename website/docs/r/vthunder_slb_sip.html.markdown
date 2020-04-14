@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_sip" "testname" {
+resource "vthunder_slb_sip" "sip" {
 	sampling_enable {
 	    counters1 = "all"
 	}

@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_client_ssl" "testname" {
+resource "vthunder_slb_template_client_ssl" "client_ssl" {
 	name = "testclientssl"
 	user_tag = "test_tag"
 	forward_proxy_ssl_version = 33

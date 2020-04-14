@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_policy" "testname" {
+resource "vthunder_slb_template_policy" "policy" {
 	name = "testdynamicpolicy"
 	user_tag = "test_tag"
 	use_destination_ip = 1

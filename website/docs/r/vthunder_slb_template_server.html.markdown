@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_server" "testname" {
+resource "vthunder_slb_template_server" "server" {
 	name = "testserver"
 	user_tag = "test_tag"
 	stats_data_action = "stats-data-enable"

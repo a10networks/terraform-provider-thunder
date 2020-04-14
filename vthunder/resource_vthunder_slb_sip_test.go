@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_SIP_RESOURCE = `
-resource "vthunder_slb_sip" "testname" {
+resource "vthunder_slb_sip" "slb_sip1" {
 
 	sampling_enable {
 	    counters1 = "all"
@@ -23,7 +23,7 @@ func TestAccSlbSip_create(t *testing.T) {
 			{
 				Config: TEST_SLB_SIP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_sip.testname", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_sip.slb_sip1", "sampling_enable.0.counters1", "all"),
 				),
 			},
 		},

@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_DNS_CACHE_RESOURCE = `
-resource "vthunder_slb_dns_cache" "testname" {
+resource "vthunder_slb_dns_cache" "dns_cache" {
 	sampling_enable {
 		counters1 = "all"
 	}
@@ -26,7 +26,7 @@ func TestAccVthunderDNSCache_create(t *testing.T) {
 			{
 				Config: TEST_DNS_CACHE_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_dns_cache.testname", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_dns_cache.dns_cache", "sampling_enable.0.counters1", "all"),
 				),
 			},
 		},

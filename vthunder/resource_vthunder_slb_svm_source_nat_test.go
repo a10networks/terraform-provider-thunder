@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_SVM_SOURCE_NAT_RESOURCE = `
-resource "vthunder_slb_svm_source_nat" "testname" {
+resource "vthunder_slb_svm_source_nat" "svm_source" {
 	pool = "test" 
 }
 `
@@ -20,7 +20,7 @@ func TestAccSlbSvmSourceNat_create(t *testing.T) {
 			{
 				Config: TEST_SLB_SVM_SOURCE_NAT_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_svm_source_nat.testname", "pool", "test"),
+					resource.TestCheckResourceAttr("vthunder_slb_svm_source_nat.svm_source", "pool", "test"),
 				),
 			},
 		},

@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_common_conn_rate_limit_src_ip" "testname" {
+resource "vthunder_slb_common_conn_rate_limit_src_ip" "src_ip" {
 	protocol = "tcp"
 	limit_period = 1000
 	limit = 50

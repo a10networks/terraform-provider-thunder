@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_TEMPLATE_SERVER_SSL_RESOURCE = `
-resource "vthunder_slb_template_server_ssl" "testname" {
+resource "vthunder_slb_template_server_ssl" "server_ssl" {
 	name = "testserverssl"
 	user_tag = "test_tag"
 	sslilogging = "disable"
@@ -27,14 +27,14 @@ func TestAccSlbTemplateServerSSL_create(t *testing.T) {
 			{
 				Config: TEST_SLB_TEMPLATE_SERVER_SSL_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.testname", "name", "testserverssl"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.testname", "sslilogging", "disable"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.testname", "ocsp_stapling", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.testname", "ssli_logging", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.testname", "session_cache_size", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.testname", "handshake_logging_enable", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.testname", "close_notify", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.server_ssl", "name", "testserverssl"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.server_ssl", "user_tag", "test_tag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.server_ssl", "sslilogging", "disable"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.server_ssl", "ocsp_stapling", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.server_ssl", "ssli_logging", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.server_ssl", "session_cache_size", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.server_ssl", "handshake_logging_enable", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server_ssl.server_ssl", "close_notify", "1"),
 				),
 			},
 		},

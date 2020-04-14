@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_RC_CACHE_GLOBAL_RESOURCE = `
-resource "vthunder_slb_rc_cache_global" "testname" {
+resource "vthunder_slb_rc_cache_global" "rc_cache1" {
 
 	sampling_enable  {
 	    counters1 = "all"
@@ -23,7 +23,7 @@ func TestAccSlbRcCacheGlobal_create(t *testing.T) {
 			{
 				Config: TEST_SLB_RC_CACHE_GLOBAL_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_rc_cache_global.testname", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_rc_cache_global.rc_cache1", "sampling_enable.0.counters1", "all"),
 				),
 			},
 		},

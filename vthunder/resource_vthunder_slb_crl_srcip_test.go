@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_CRL_SRCIP_RESOURCE = `
-resource "vthunder_slb_crl_srcip" "testname" {
+resource "vthunder_slb_crl_srcip" "crl_srcip" {
 	sampling_enable {
 		counters1 = "all"
 	}
@@ -25,7 +25,7 @@ func TestAccVthunderCrlSrcip_create(t *testing.T) {
 			{
 				Config: TEST_CRL_SRCIP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_crl_srcip.testname", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_crl_srcip.crl_srcip", "sampling_enable.0.counters1", "all"),
 				),
 			},
 		},

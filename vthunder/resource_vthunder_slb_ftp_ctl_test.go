@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_FTP_CTL_RESOURCE = `
-resource "vthunder_slb_ftp_ctl" "testname" {
+resource "vthunder_slb_ftp_ctl" "ftp_ctl1" {
 	sampling_enable {
 		counters1 = "all"
 	}
@@ -26,7 +26,7 @@ func TestAccVthunderFTPCtl_create(t *testing.T) {
 			{
 				Config: TEST_FTP_CTL_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_ftp_ctl.testname", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_ftp_ctl.ftp_ctl1", "sampling_enable.0.counters1", "all"),
 				),
 			},
 		},

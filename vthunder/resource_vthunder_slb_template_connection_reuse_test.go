@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_TEMPLATE_CONNECTION_REUSE_RESOURCE = `
-resource "vthunder_slb_template_connection_reuse" "testname" {
+resource "vthunder_slb_template_connection_reuse" "connection_reuse1" {
 	name = "testConn"
 	keep_alive_conn = 0
 	limit_per_server = 10
@@ -24,11 +24,11 @@ func TestAccSlbTemplateConnReuse_create(t *testing.T) {
 			{
 				Config: TEST_TEMPLATE_CONNECTION_REUSE_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_connection_reuse.testname", "name", "testConn"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_connection_reuse.testname", "keep_alive_conn", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_connection_reuse.testname", "limit_per_server", "10"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_connection_reuse.testname", "user_tag", "testtag"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_connection_reuse.testname", "timeout", "120"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_connection_reuse.connection_reuse1", "name", "testConn"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_connection_reuse.connection_reuse1", "keep_alive_conn", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_connection_reuse.connection_reuse1", "limit_per_server", "10"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_connection_reuse.connection_reuse1", "user_tag", "testtag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_connection_reuse.connection_reuse1", "timeout", "120"),
 				),
 			},
 		},

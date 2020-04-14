@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_TEMPLATE_FIX_RESOURCE = `
-resource "vthunder_slb_template_fix" "testname" {
+resource "vthunder_slb_template_fix" "template_fix" {
 	name = "testfix"
 	logging = "init"
 	tag_switching {
@@ -28,13 +28,13 @@ func TestAccSlbTemplateFix_create(t *testing.T) {
 			{
 				Config: TEST_TEMPLATE_FIX_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "name", "testfix"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "tag_switching.0.equals", "test"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "tag_switching.0.service_group", "testsg"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "tag_switching.0.switching_type", "sender-comp-id"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "logging", "init"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "insert_client_ip", "1111"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_fix.testname", "user_tag", "test_user"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.template_fix", "name", "testfix"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.template_fix", "tag_switching.0.equals", "test"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.template_fix", "tag_switching.0.service_group", "testsg"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.template_fix", "tag_switching.0.switching_type", "sender-comp-id"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.template_fix", "logging", "init"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.template_fix", "insert_client_ip", "1111"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_fix.template_fix", "user_tag", "test_user"),
 				),
 			},
 		},

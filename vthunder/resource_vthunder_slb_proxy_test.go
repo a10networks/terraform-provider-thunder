@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_PROXY_RESOURCE = `
-resource "vthunder_slb_proxy" "testname" {
+resource "vthunder_slb_proxy" "slb_proxy1" {
 
 	sampling_enable  {
 	    counters1 = "all"
@@ -23,7 +23,7 @@ func TestAccSlbProxy_create(t *testing.T) {
 			{
 				Config: TEST_SLB_PROXY_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_proxy.testname", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_proxy.slb_proxy1", "sampling_enable.0.counters1", "all"),
 				),
 			},
 		},

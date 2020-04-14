@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_SPORT_RATE_LIMIT_RESOURCE = `
-resource "vthunder_slb_sport_rate_limit" "testname" {
+resource "vthunder_slb_sport_rate_limit" "sport_rate1" {
 	sampling_enable  {
 	counters1 = "all"
 	}
@@ -22,7 +22,7 @@ func TestAccSlbSportRateLimit_create(t *testing.T) {
 			{
 				Config: TEST_SLB_SPORT_RATE_LIMIT_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_sport_rate_limit.testname", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_sport_rate_limit.sport_rate1", "sampling_enable.0.counters1", "all"),
 				),
 			},
 		},

@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_transparent_tcp_template" "testname" {
+resource "vthunder_slb_transparent_tcp_template" "tcp_template" {
 	name = "testtransperenttcptemplate"
 }
 ```

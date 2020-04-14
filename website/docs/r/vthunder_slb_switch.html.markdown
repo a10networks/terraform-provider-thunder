@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_switch" "testname" {
+resource "vthunder_slb_switch" "switch" {
 	sampling_enable  {
 	   counters1 = all
 	} 

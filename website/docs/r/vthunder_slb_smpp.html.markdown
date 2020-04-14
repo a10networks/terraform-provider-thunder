@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_smpp" "testname" {
+resource "vthunder_slb_smpp" "smpp" {
 	sampling_enable {
 	    counters1 = "all"
 	}

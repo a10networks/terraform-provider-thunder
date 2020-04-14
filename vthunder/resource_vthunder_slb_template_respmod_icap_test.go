@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_TEMPLATE_RESPMOD_ICAP_RESOURCE = `
-resource "vthunder_slb_template_respmod_icap" "testname" {
+resource "vthunder_slb_template_respmod_icap" "respmod_icap" {
 	name = "testrespmodicap"
 	user_tag = "test_tag"
 	min_payload_size = 30
@@ -29,15 +29,15 @@ func TestAccSlbTemplateRespmodIcap_create(t *testing.T) {
 			{
 				Config: TEST_SLB_TEMPLATE_RESPMOD_ICAP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.testname", "name", "testrespmodicap"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.testname", "min_payload_size", "30"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.testname", "preview", "200"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.testname", "disable_http_server_reset", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.testname", "fail_close", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.testname", "include_protocol_in_uri", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.testname", "log_only_allowed_method", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.testname", "cylance", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.respmod_icap", "name", "testrespmodicap"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.respmod_icap", "user_tag", "test_tag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.respmod_icap", "min_payload_size", "30"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.respmod_icap", "preview", "200"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.respmod_icap", "disable_http_server_reset", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.respmod_icap", "fail_close", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.respmod_icap", "include_protocol_in_uri", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.respmod_icap", "log_only_allowed_method", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_respmod_icap.respmod_icap", "cylance", "0"),
 				),
 			},
 		},

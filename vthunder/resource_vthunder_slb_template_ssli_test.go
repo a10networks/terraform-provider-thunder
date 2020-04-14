@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_TEMPLATE_SSLI_RESOURCE = `
-resource "vthunder_slb_template_ssli" "testname" {
+resource "vthunder_slb_template_ssli" "ssli" {
 	name = "testssli"
 	type = "init"
 	user_tag = "test_user"
@@ -22,9 +22,9 @@ func TestAccTemplateSsli_create(t *testing.T) {
 			{
 				Config: TEST_TEMPLATE_SSLI_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_ssli.testname", "name", "testssli"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_ssli.testname", "type", "init"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_ssli.testname", "user_tag", "test_user"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ssli.ssli", "name", "testssli"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ssli.ssli", "type", "init"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ssli.ssli", "user_tag", "test_user"),
 				),
 			},
 		},

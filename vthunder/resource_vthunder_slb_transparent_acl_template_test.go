@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_TRANSPARENT_ACL_TEMPLATE_RESOURCE = `
-resource "vthunder_slb_transparent_acl_template" "testname" {
+resource "vthunder_slb_transparent_acl_template" "acl_template" {
 	name = "testtransparentacltemplate"
 }
 `
@@ -20,7 +20,7 @@ func TestAccSlbTransparentAclTemplate_create(t *testing.T) {
 			{
 				Config: TEST_SLB_TRANSPARENT_ACL_TEMPLATE_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_transparent_acl_template.testname", "name", "testtransparentacltemplate"),
+					resource.TestCheckResourceAttr("vthunder_slb_transparent_acl_template.acl_template", "name", "testtransparentacltemplate"),
 				),
 			},
 		},

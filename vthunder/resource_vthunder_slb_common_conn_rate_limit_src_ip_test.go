@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_COMMON_CONN_RATE_LIMIT_SRC_IP_RESOURCE = `
-resource "vthunder_slb_common_conn_rate_limit_src_ip" "testname" {
+resource "vthunder_slb_common_conn_rate_limit_src_ip" "src_ip" {
 	protocol = "tcp"
 	limit_period = 1000
 	limit = 50
@@ -24,11 +24,11 @@ func TestAccSlbCommonConnRateLimitSrcIP_create(t *testing.T) {
 			{
 				Config: TEST_SLB_COMMON_CONN_RATE_LIMIT_SRC_IP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_common_conn_rate_limit_src_ip.testname", "protocol", "tcp"),
-					resource.TestCheckResourceAttr("vthunder_slb_common_conn_rate_limit_src_ip.testname", "limit_period", "1000"),
-					resource.TestCheckResourceAttr("vthunder_slb_common_conn_rate_limit_src_ip.testname", "limit", "50"),
-					resource.TestCheckResourceAttr("vthunder_slb_common_conn_rate_limit_src_ip.testname", "exceed_action", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_common_conn_rate_limit_src_ip.testname", "shared", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_common_conn_rate_limit_src_ip.src_ip", "protocol", "tcp"),
+					resource.TestCheckResourceAttr("vthunder_slb_common_conn_rate_limit_src_ip.src_ip", "limit_period", "1000"),
+					resource.TestCheckResourceAttr("vthunder_slb_common_conn_rate_limit_src_ip.src_ip", "limit", "50"),
+					resource.TestCheckResourceAttr("vthunder_slb_common_conn_rate_limit_src_ip.src_ip", "exceed_action", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_common_conn_rate_limit_src_ip.src_ip", "shared", "0"),
 				),
 			},
 		},

@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_aflow" "testname" {
+resource "vthunder_slb_aflow" "aflow" {
 	sampling_enable {
 		counters1 = "all"
 	}

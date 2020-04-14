@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_ftp_proxy" "testname" {
+resource "vthunder_slb_ftp_proxy" "ftp_proxy" {
 	sampling_enable {
 		counters1 = "all"
 	}

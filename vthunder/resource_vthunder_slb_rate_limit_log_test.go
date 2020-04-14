@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_RATE_LIMIT_LOG_RESOURCE = `
-resource "vthunder_slb_rate_limit_log" "testname" {
+resource "vthunder_slb_rate_limit_log" "rate_limit_log" {
 
 	sampling_enable {
 		counters1 = "all"
@@ -23,7 +23,7 @@ func TestAccSlbRateLimitLog_create(t *testing.T) {
 			{
 				Config: TEST_SLB_RATE_LIMIT_LOG_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_rate_limit_log.testname", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_rate_limit_log.rate_limit_log", "sampling_enable.0.counters1", "all"),
 				),
 			},
 		},

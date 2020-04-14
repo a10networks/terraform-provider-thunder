@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_DNS_RESPONSE_RATE_LIMITING_RESOURCE = `
-resource "vthunder_slb_dns_response_rate_limiting" "testname" {
+resource "vthunder_slb_dns_response_rate_limiting" "response_rate" {
 	sampling_enable {
 		counters1 = "all"
 	}
@@ -25,7 +25,7 @@ func TestAccVthunderSlbDNSResponseRateLimiting_create(t *testing.T) {
 			{
 				Config: TEST_DNS_RESPONSE_RATE_LIMITING_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_dns_response_rate_limiting.testname", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_dns_response_rate_limiting.response_rate", "sampling_enable.0.counters1", "all"),
 				),
 			},
 		},

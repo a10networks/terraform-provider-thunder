@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_resource_usage" "testname" {
+resource "vthunder_slb_resource_usage" "resource_usage" {
 	real_server_count = 128
 	stream_template_count = 128
 	proxy_template_count = 128

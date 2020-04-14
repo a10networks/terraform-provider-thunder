@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_svm_source_nat" "testname" {
+resource "vthunder_slb_svm_source_nat" "svm_source" {
 	pool = "test" 
 }
 ```

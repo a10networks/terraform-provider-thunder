@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_TEMPLATE_SERVER_RESOURCE = `
-resource "vthunder_slb_template_server" "testname" {
+resource "vthunder_slb_template_server" "server" {
 	name = "testserver"
 	user_tag = "test_tag"
 	stats_data_action = "stats-data-enable"
@@ -42,29 +42,29 @@ func TestAccSlbTemplateServer_create(t *testing.T) {
 			{
 				Config: TEST_SLB_TEMPLATE_SERVER_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "name", "testserver"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "stats_data_action", "stats-data-enable"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "slow_start", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "weight", "3"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "bw_rate_limit", "2"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "spoofing_cache", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "conn_limit", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "resume", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "max_dynamic_server", "3"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "rate_interval", "second"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "min_ttl_ratio", "2"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "bw_rate_limit_no_logging", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "dynamic_server_prefix", "DRS"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "conn_limit_no_logging", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "extended_stats", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "conn_rate_limit_no_logging", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "bw_rate_limit_duration", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "bw_rate_limit_resume", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "bw_rate_limit_acct", "to-server-only"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "log_selection_failure", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "conn_rate_limit", "5"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_server.testname", "dns_query_interval", "2"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "name", "testserver"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "user_tag", "test_tag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "stats_data_action", "stats-data-enable"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "slow_start", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "weight", "3"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "bw_rate_limit", "2"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "spoofing_cache", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "conn_limit", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "resume", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "max_dynamic_server", "3"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "rate_interval", "second"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "min_ttl_ratio", "2"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "bw_rate_limit_no_logging", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "dynamic_server_prefix", "DRS"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "conn_limit_no_logging", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "extended_stats", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "conn_rate_limit_no_logging", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "bw_rate_limit_duration", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "bw_rate_limit_resume", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "bw_rate_limit_acct", "to-server-only"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "log_selection_failure", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "conn_rate_limit", "5"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_server.server", "dns_query_interval", "2"),
 				),
 			},
 		},

@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_SWITCH_RESOURCE = `
-resource "vthunder_slb_switch" "testname" {
+resource "vthunder_slb_switch" "slb_switch1" {
 	sampling_enable  {
 	   counters1 = "all"
 	} 
@@ -22,7 +22,7 @@ func TestAccSlbSwitch_create(t *testing.T) {
 			{
 				Config: TEST_SLB_SWITCH_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_switch.testname", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_switch.slb_switch1", "sampling_enable.0.counters1", "all"),
 				),
 			},
 		},

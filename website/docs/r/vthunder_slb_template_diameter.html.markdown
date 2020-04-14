@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_diameter" "testname" {
+resource "vthunder_slb_template_diameter" "diameter" {
 	name = "testdiameter"
 	user_tag = "test_tag"
 	terminate_on_cca_t = 0

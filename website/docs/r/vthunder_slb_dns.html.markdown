@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_dns" "testname" {
+resource "vthunder_slb_dns" "dns" {
 	sampling_enable {
 		counters1 = "all"
 	}

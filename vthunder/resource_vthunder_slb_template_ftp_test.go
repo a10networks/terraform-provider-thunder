@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_TEMPLATE_FTP_RESOURCE = `
-resource "vthunder_slb_template_ftp" "testname" {
+resource "vthunder_slb_template_ftp" "template_ftp" {
 	name = "testftp"
 	user_tag = "test_tag"
 	active_mode_port = 1
@@ -23,10 +23,10 @@ func TestAccSlbTemplateFTP_create(t *testing.T) {
 			{
 				Config: TEST_SLB_TEMPLATE_FTP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_ftp.testname", "name", "testftp"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_ftp.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_ftp.testname", "active_mode_port", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_ftp.testname", "active_mode_port_val", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ftp.template_ftp", "name", "testftp"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ftp.template_ftp", "user_tag", "test_tag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ftp.template_ftp", "active_mode_port", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_ftp.template_ftp", "active_mode_port_val", "1"),
 				),
 			},
 		},

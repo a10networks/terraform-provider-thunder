@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_TEMPLATE_VIRTUAL_SERVER_RESOURCE = `
-resource "vthunder_slb_template_virtual_server" "testname" {
+resource "vthunder_slb_template_virtual_server" "virtual_server" {
 	name = "testvirtualserver"
 	user_tag = "test_tag"
 	conn_limit = 1
@@ -26,13 +26,13 @@ func TestAccSlbTemplateVirtualServer_create(t *testing.T) {
 			{
 				Config: TEST_SLB_TEMPLATE_VIRTUAL_SERVER_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.testname", "name", "testvirtualserver"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.testname", "conn_limit", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.testname", "conn_limit_reset", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.testname", "icmpv6_rate_limit", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.testname", "subnet_gratuitous_arp", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.testname", "tcp_stack_tfo_backoff_time", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.virtual_server", "name", "testvirtualserver"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.virtual_server", "user_tag", "test_tag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.virtual_server", "conn_limit", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.virtual_server", "conn_limit_reset", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.virtual_server", "icmpv6_rate_limit", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.virtual_server", "subnet_gratuitous_arp", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_virtual_server.virtual_server", "tcp_stack_tfo_backoff_time", "1"),
 				),
 			},
 		},

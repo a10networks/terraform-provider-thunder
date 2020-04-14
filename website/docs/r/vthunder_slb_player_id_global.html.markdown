@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_player_id_global" "testname" {
+resource "vthunder_slb_player_id_global" "player_id" {
 	enforcement_timer = 10
 	abs_max_expiration = 10
 	sampling_enable  {

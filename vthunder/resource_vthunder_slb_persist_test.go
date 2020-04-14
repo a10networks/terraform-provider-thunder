@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_PERSIST_RESOURCE = `
-resource "vthunder_slb_persist" "testname" {
+resource "vthunder_slb_persist" "persist1" {
 
 	sampling_enable  {
 	    counters1 = "all"
@@ -23,7 +23,7 @@ func TestAccSlbpersist_create(t *testing.T) {
 			{
 				Config: TEST_SLB_PERSIST_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_persist.testname", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_persist.persist1", "sampling_enable.0.counters1", "all"),
 				),
 			},
 		},

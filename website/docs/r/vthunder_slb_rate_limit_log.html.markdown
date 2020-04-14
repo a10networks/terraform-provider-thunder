@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_rate_limit_log" "testname" {
+resource "vthunder_slb_rate_limit_log" "rate_limit" {
 
 	sampling_enable {
 		counters1 = "all"

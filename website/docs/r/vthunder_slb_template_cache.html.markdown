@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_cache" "testname" {
+resource "vthunder_slb_template_cache" "cache" {
 	name = "testcache"
 	user_tag = "test_tag"
 	accept_reload_req = 0

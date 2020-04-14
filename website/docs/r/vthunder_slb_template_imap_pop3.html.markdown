@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_imap_pop3" "testname" {
+resource "vthunder_slb_template_imap_pop3" "imap_pop3" {
 	name = "Testimap"
 	logindisabled = 0
 	starttls = "disabled"

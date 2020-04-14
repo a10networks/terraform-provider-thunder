@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_transparent_acl_template" "testname" {
+resource "vthunder_slb_transparent_acl_template" "acl_template" {
 	name = "testtransparentacltemplate"
 }
 ```

@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_crl_srcip" "testname" {
+resource "vthunder_slb_crl_srcip" "crl_srcip" {
 	sampling_enable {
 		counters1 = "all"
 	}

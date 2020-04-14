@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_connection_reuse" "testname" {
+resource "vthunder_slb_connection_reuse" "connection_reuse" {
 	sampling_enable {
 		counters1 = "all"
 	}

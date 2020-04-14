@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_spdy_proxy" "testname" {
+resource "vthunder_slb_spdy_proxy" "spdy_proxy" {
 	sampling_enable  {
 		counters1= "all"
 	}

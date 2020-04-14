@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_sport_rate_limit" "testname" {
+resource "vthunder_slb_sport_rate_limit" "sport_rate" {
 	sampling_enable  {
 	    counters1 = "all"
 	}

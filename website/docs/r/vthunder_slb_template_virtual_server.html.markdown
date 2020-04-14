@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_virtual_server" "testname" {
+resource "vthunder_slb_template_virtual_server" "virtual_server" {
 	name = "testvirtualserver"
 	user_tag = "test_tag"
 	conn_limit = 1

@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_PLAYER_ID_GLOBAL_RESOURCE = `
-resource "vthunder_slb_player_id_global" "testname" {
+resource "vthunder_slb_player_id_global" "player_id" {
 	enforcement_timer = 10
 	abs_max_expiration = 10
 	sampling_enable  {
@@ -28,13 +28,13 @@ func TestAccSlbPlayerIdGlobal_create(t *testing.T) {
 			{
 				Config: TEST_SLB_PLAYER_ID_GLOBAL_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.testname", "enforcement_timer", "10"),
-					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.testname", "abs_max_expiration", "10"),
-					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.testname", "sampling_enable.0.counters1", "all"),
-					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.testname", "force_passive", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.testname", "pkt_activity_expiration", "10"),
-					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.testname", "min_expiration", "10"),
-					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.testname", "enable_64bit_player_id", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.player_id", "enforcement_timer", "10"),
+					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.player_id", "abs_max_expiration", "10"),
+					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.player_id", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.player_id", "force_passive", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.player_id", "pkt_activity_expiration", "10"),
+					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.player_id", "min_expiration", "10"),
+					resource.TestCheckResourceAttr("vthunder_slb_player_id_global.player_id", "enable_64bit_player_id", "0"),
 				),
 			},
 		},

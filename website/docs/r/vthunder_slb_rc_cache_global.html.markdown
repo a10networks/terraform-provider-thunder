@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_rc_cache_global" "testname" {
+resource "vthunder_slb_rc_cache_global" "rc_cache" {
 
 	sampling_enable  {
 	    counters1 = "all"

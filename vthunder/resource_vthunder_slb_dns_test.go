@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_DNS_RESOURCE = `
-resource "vthunder_slb_dns" "testname" {
+resource "vthunder_slb_dns" "dns" {
 	sampling_enable {
 		counters1 = "all"
 	}
@@ -26,7 +26,7 @@ func TestAccVthunderDNS_create(t *testing.T) {
 			{
 				Config: TEST_DNS_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_dns.testname", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_dns.dns", "sampling_enable.0.counters1", "all"),
 				),
 			},
 		},

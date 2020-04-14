@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_fix" "testname" {
+resource "vthunder_slb_fix" "fix" {
 	sampling_enable {
 		counters1 = "all"
 	}

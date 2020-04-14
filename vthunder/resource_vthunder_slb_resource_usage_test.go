@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_RESOURCE_USAGE_RESOURCE = `
-resource "vthunder_slb_resource_usage" "testname" {
+resource "vthunder_slb_resource_usage" "resource_usage1" {
 	real_server_count = 128
 	stream_template_count = 128
 	proxy_template_count = 128
@@ -37,24 +37,24 @@ func TestAccSlbResourceUsage_create(t *testing.T) {
 			{
 				Config: TEST_SLB_RESOURCE_USAGE_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "real_server_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "stream_template_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "proxy_template_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "http_template_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "persist_srcip_template_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "server_ssl_template_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "service_group_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "persist_cookie_template_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "virtual_server_count", "64"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "fast_udp_template_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "fast_tcp_template_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "virtual_port_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "conn_reuse_template_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "real_port_count", "256"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "client_ssl_template_count", "128"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "nat_pool_addr_count", "10"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "health_monitor_count", "1023"),
-					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.testname", "pbslb_subnet_count", "65536"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "real_server_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "stream_template_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "proxy_template_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "http_template_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "persist_srcip_template_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "server_ssl_template_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "service_group_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "persist_cookie_template_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "virtual_server_count", "64"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "fast_udp_template_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "fast_tcp_template_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "virtual_port_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "conn_reuse_template_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "real_port_count", "256"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "client_ssl_template_count", "128"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "nat_pool_addr_count", "10"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "health_monitor_count", "1023"),
+					resource.TestCheckResourceAttr("vthunder_slb_resource_usage.resource_usage1", "pbslb_subnet_count", "65536"),
 				),
 			},
 		},

@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_external_service" "testname" {
+resource "vthunder_slb_template_external_service" "external_service" {
 	name = "testexternalservice"
 	user_tag = "test_tag"
 	type = "skyfire-icap"

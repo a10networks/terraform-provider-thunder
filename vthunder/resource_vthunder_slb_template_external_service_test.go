@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_TEMPLATE_EXTERNAL_SERVICE_RESOURCE = `
-resource "vthunder_slb_template_external_service" "testname" {
+resource "vthunder_slb_template_external_service" "external_service" {
 	name = "testexternalservice"
 	user_tag = "test_tag"
 	type = "skyfire-icap"
@@ -28,13 +28,13 @@ func TestAccSlbTemplateExternalService_create(t *testing.T) {
 			{
 				Config: TEST_SLB_TEMPLATE_EXTERNAL_SERVICE_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.testname", "name", "testexternalservice"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.testname", "type", "skyfire-icap"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.testname", "action", "continue"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.testname", "failure_action", "continue"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.testname", "timeout", "10"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.testname", "request_header_forward_list.0.request_header_forward", "testf"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.external_service", "name", "testexternalservice"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.external_service", "user_tag", "test_tag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.external_service", "type", "skyfire-icap"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.external_service", "action", "continue"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.external_service", "failure_action", "continue"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.external_service", "timeout", "10"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_external_service.external_service", "request_header_forward_list.0.request_header_forward", "testf"),
 				),
 			},
 		},

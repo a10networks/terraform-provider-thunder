@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_ftp_ctl" "testname" {
+resource "vthunder_slb_ftp_ctl" "ftp_ctl" {
 	sampling_enable {
 		counters1 = "all"
 	}

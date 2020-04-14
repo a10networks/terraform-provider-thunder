@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_dns_response_rate_limiting" "testname" {
+resource "vthunder_slb_dns_response_rate_limiting" "response_rate" {
 	sampling_enable {
 		counters1 = "all"
 	}

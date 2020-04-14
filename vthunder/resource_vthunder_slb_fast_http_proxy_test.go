@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_FAST_HTTP_PROXY_RESOURCE = `
-resource "vthunder_slb_fast_http_proxy" "testname" {
+resource "vthunder_slb_fast_http_proxy" "http_proxy" {
 	sampling_enable {
 		counters1 = "all"
 		counters2 = "req_sz_4k"
@@ -26,8 +26,8 @@ func TestAccVthunderSlbFastHttpProxy_create(t *testing.T) {
 			{
 				Config: TEST_FAST_HTTP_PROXY_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_fast_http_proxy.testname", "sampling_enable.0.counters1", "all"),
-					resource.TestCheckResourceAttr("vthunder_slb_fast_http_proxy.testname", "sampling_enable.0.counters2", "req_sz_4k"),
+					resource.TestCheckResourceAttr("vthunder_slb_fast_http_proxy.http_proxy", "sampling_enable.0.counters1", "all"),
+					resource.TestCheckResourceAttr("vthunder_slb_fast_http_proxy.http_proxy", "sampling_enable.0.counters2", "req_sz_4k"),
 				),
 			},
 		},
