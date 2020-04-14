@@ -264,7 +264,7 @@ func resourceTemplatePortCreate(d *schema.ResourceData, meta interface{}) error 
 		logger.Println("[INFO] Creating TemplatePort (Inside resourceTemplatePortCreate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplatePort(d)
-		logger.Println("[INFO] received V from method data to TemplatePort --")
+		logger.Println("[INFO] received formatted data from method data to TemplatePort --")
 		d.SetId(name)
 		go_vthunder.PostTemplatePort(client.Token, data, client.Host)
 
@@ -301,7 +301,7 @@ func resourceTemplatePortUpdate(d *schema.ResourceData, meta interface{}) error 
 		logger.Println("[INFO] Modifying TemplatePort   (Inside resourceTemplatePortUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplatePort(d)
-		logger.Println("[INFO] received V from method data to TemplatePort ")
+		logger.Println("[INFO] received formatted data from method data to TemplatePort ")
 		d.SetId(name)
 		go_vthunder.PutTemplatePort(client.Token, name, data, client.Host)
 

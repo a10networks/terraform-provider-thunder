@@ -129,7 +129,7 @@ func resourceSlbTemplateVirtualServerCreate(d *schema.ResourceData, meta interfa
 		logger.Println("[INFO] Creating SlbTemplateVirtualServer (Inside resourceSlbTemplateVirtualServerCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateVirtualServer(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateVirtualServer --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateVirtualServer --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateVirtualServer(client.Token, data, client.Host)
 
@@ -166,7 +166,7 @@ func resourceSlbTemplateVirtualServerUpdate(d *schema.ResourceData, meta interfa
 		logger.Println("[INFO] Modifying SlbTemplateVirtualServer   (Inside resourceSlbTemplateVirtualServerUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateVirtualServer(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateVirtualServer ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateVirtualServer ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplateVirtualServer(client.Token, name, data, client.Host)
 

@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_cipher" "testname" {
+resource "vthunder_slb_template_cipher" "cipher" {
 	cipher_cfg {
 		priority = 10
 		cipher_suite = "SSL3_RSA_DES_192_CBC3_SHA"

@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_csv" "testname" {
+resource "vthunder_slb_template_csv" "csv" {
 	csv_name = "testcsv"
 	user_tag = "test_tag"
 	ipv6_enable = 0

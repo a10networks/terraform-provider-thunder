@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_common" "testname" {
+resource "vthunder_slb_common" "common" {
 	low_latency = 0
 	use_mss_tab = 0
 	stats_data_disable = 0

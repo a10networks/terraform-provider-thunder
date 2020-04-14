@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_http" "testname" {
+resource "vthunder_slb_template_http" "http" {
 	name = "testhttp"
 	user_tag = "test_tag"
 	keep_client_alive = 1

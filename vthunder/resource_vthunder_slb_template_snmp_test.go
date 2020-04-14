@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_TEMPLATE_SNMP_RESOURCE = `
-resource "vthunder_slb_template_snmp" "testname" {
+resource "vthunder_slb_template_snmp" "snmp" {
 	user_tag = "test_tag"
 	priv_proto = "aes"
 	context_name = "testcont"
@@ -31,17 +31,17 @@ func TestAccSlbTemplateSNMP_create(t *testing.T) {
 			{
 				Config: TEST_SLB_TEMPLATE_SNMP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.testname", "priv_proto", "aes"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.testname", "context_name", "testcont"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.testname", "interval", "10"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.testname", "security_level", "no-auth"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.testname", "community", "tttest"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.testname", "auth_proto", "sha"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.testname", "version", "v1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.testname", "interface", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.testname", "port", "1770"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.testname", "snmp_name", "testsnmp"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.snmp", "user_tag", "test_tag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.snmp", "priv_proto", "aes"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.snmp", "context_name", "testcont"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.snmp", "interval", "10"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.snmp", "security_level", "no-auth"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.snmp", "community", "tttest"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.snmp", "auth_proto", "sha"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.snmp", "version", "v1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.snmp", "interface", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.snmp", "port", "1770"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_snmp.snmp", "snmp_name", "testsnmp"),
 				),
 			},
 		},

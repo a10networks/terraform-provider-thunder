@@ -227,7 +227,7 @@ func resourceTemplateDNSCreate(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Creating TemplateDNS (Inside resourceTemplateDNSCreate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateDNS(d)
-		logger.Println("[INFO] received V from method data to TemplateDNS --")
+		logger.Println("[INFO] received formatted data from method data to TemplateDNS --")
 		d.SetId(name)
 		go_vthunder.PostTemplateDNS(client.Token, data, client.Host)
 
@@ -265,7 +265,7 @@ func resourceTemplateDNSUpdate(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Modifying TemplateDNS   (Inside resourceTemplateDNSUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateDNS(d)
-		logger.Println("[INFO] received V from method data to TemplateDNS ")
+		logger.Println("[INFO] received formatted data from method data to TemplateDNS ")
 		d.SetId(name)
 		go_vthunder.PutTemplateDNS(client.Token, name, data, client.Host)
 

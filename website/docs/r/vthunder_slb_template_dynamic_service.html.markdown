@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_dynamic_service" "testname" {
+resource "vthunder_slb_template_dynamic_service" "dynamic_service" {
 	name = "testdynamicservice"
 	user_tag = "test_tag"
 	dns_server {

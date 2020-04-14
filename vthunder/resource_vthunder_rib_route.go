@@ -4,10 +4,11 @@ package vthunder
 
 import (
 	"fmt"
-	"github.com/go_vthunder/vthunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_vthunder "github.com/go_vthunder/vthunder"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceRibRoute() *schema.Resource {
@@ -141,7 +142,7 @@ func resourceRibRouteCreate(d *schema.ResourceData, meta interface{}) error {
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RibRoute (Inside resourceRibRouteCreate    ") // + name)
 		ribRoute := dataToRibRoute(d)
-		logger.Println("[INFO] received V from method data to RibRoute --")
+		logger.Println("[INFO] received formatted data from method data to RibRoute --")
 		d.SetId(ribRoute.UUID.Instance)
 		go_vthunder.PostRibRoute(client.Token, ribRoute, client.Host, ribRoute.UUID.Instance)
 
@@ -180,7 +181,7 @@ func resourceRibRouteUpdate(d *schema.ResourceData, meta interface{}) error {
 
 	if client.Host != "" {
 		ribRoute := dataToRibRoute(d)
-		logger.Println("[INFO] received V from method data to RibRoute --")
+		logger.Println("[INFO] received formatted data from method data to RibRoute --")
 		d.SetId(ribRoute.UUID.Instance)
 		go_vthunder.PutRibRoute(client.Token, ribRoute.UUID.Instance, ribRoute, client.Host)
 

@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_virtual_port" "testname" {
+resource "vthunder_slb_template_virtual_port" "virtual_port" {
 	name = "testvirtualport"
 	user_tag = "test_tag"
 	reset_unknown_conn = 0

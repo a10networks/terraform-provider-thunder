@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_server_ssh" "testname" {
+resource "vthunder_slb_template_server_ssh" "server_ssh" {
 	name = "testserverssh"
 	user_tag = "test_tag"
 	forward_proxy_enable = 1

@@ -158,7 +158,7 @@ func resourceSlbTemplateReqmodIcapCreate(d *schema.ResourceData, meta interface{
 		logger.Println("[INFO] Creating SlbTemplateReqmodIcap (Inside resourceSlbTemplateReqmodIcapCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateReqmodIcap(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateReqmodIcap --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateReqmodIcap --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateReqmodIcap(client.Token, data, client.Host)
 
@@ -195,7 +195,7 @@ func resourceSlbTemplateReqmodIcapUpdate(d *schema.ResourceData, meta interface{
 		logger.Println("[INFO] Modifying SlbTemplateReqmodIcap   (Inside resourceSlbTemplateReqmodIcapUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateReqmodIcap(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateReqmodIcap ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateReqmodIcap ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplateReqmodIcap(client.Token, name, data, client.Host)
 

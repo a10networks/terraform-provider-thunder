@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_common\_conn_rate_limit\_src_ip
 
-`vthunder_slb_aflow` Provides details about vthunder SLB common conn-rate-limit src-ip
+`vthunder_slb_conn_rate_limit_src_ip` Provides details about vthunder SLB common conn-rate-limit src-ip
 ## Example Usage
 
 
@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_common_conn_rate_limit_src_ip" "testname" {
+resource "vthunder_slb_common_conn_rate_limit_src_ip" "src_ip" {
 	protocol = "tcp"
 	limit_period = 1000
 	limit = 50

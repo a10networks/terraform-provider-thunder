@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_TEMPLATE_DYNAMIC_SERVICE_RESOURCE = `
-resource "vthunder_slb_template_dynamic_service" "testname" {
+resource "vthunder_slb_template_dynamic_service" "dynamic_service" {
 	name = "testdynamicservice"
 	user_tag = "test_tag"
 	dns_server {
@@ -24,9 +24,9 @@ func TestAccSlbTemplateDynamicService_create(t *testing.T) {
 			{
 				Config: TEST_SLB_TEMPLATE_DYNAMIC_SERVICE_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_dynamic_service.testname", "name", "testdynamicservice"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_dynamic_service.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_dynamic_service.testname", "dns_server.0.ipv4_dns_server", "10.0.0.10"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_dynamic_service.dynamic_service", "name", "testdynamicservice"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_dynamic_service.dynamic_service", "user_tag", "test_tag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_dynamic_service.dynamic_service", "dns_server.0.ipv4_dns_server", "10.0.0.10"),
 				),
 			},
 		},

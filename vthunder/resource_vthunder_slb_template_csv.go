@@ -78,7 +78,7 @@ func resourceSlbTemplateCSVCreate(d *schema.ResourceData, meta interface{}) erro
 		logger.Println("[INFO] Creating SlbTemplateCSV (Inside resourceSlbTemplateCSVCreate) ")
 		name := d.Get("csv_name").(string)
 		data := dataToSlbTemplateCSV(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateCSV --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateCSV --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateCSV(client.Token, data, client.Host)
 
@@ -115,7 +115,7 @@ func resourceSlbTemplateCSVUpdate(d *schema.ResourceData, meta interface{}) erro
 		logger.Println("[INFO] Modifying SlbTemplateCSV   (Inside resourceSlbTemplateCSVUpdate) ")
 		name := d.Get("csv_name").(string)
 		data := dataToSlbTemplateCSV(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateCSV ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateCSV ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplateCSV(client.Token, name, data, client.Host)
 

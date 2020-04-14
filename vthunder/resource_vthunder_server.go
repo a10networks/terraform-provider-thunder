@@ -4,10 +4,11 @@ package vthunder
 
 import (
 	"fmt"
-	"github.com/go_vthunder/vthunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"log"
 	"util"
+
+	go_vthunder "github.com/go_vthunder/vthunder"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceServer() *schema.Resource {
@@ -344,7 +345,7 @@ func resourceServerCreate(d *schema.ResourceData, meta interface{}) error {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Creating Server (Inside resourceServerCreate    " + name)
 		v := dataToServer(name, d)
-		logger.Println("[INFO] received V from method data to sg --" + v.Name.Name)
+		logger.Println("[INFO] received formatted data from method data to sg --" + v.Name.Name)
 		d.SetId(name)
 		go_vthunder.PostServer(client.Token, v, client.Host)
 
@@ -386,7 +387,7 @@ func resourceServerUpdate(d *schema.ResourceData, meta interface{}) error {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Modifying server   (Inside resourceServerUpdate    " + name)
 		v := dataToServer(name, d)
-		logger.Println("[INFO] received V from method data to sg --" + v.Name.Name)
+		logger.Println("[INFO] received formatted data from method data to sg --" + v.Name.Name)
 		d.SetId(name)
 		go_vthunder.PutServer(client.Token, name, v, client.Host)
 

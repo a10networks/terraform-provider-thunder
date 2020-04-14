@@ -64,7 +64,7 @@ func resourceTemplateClientSshCreate(d *schema.ResourceData, meta interface{}) e
 		logger.Println("[INFO] Creating TemplateClientSsh (Inside resourceTemplateClientSshCreate) ")
 		name := d.Get("name").(string)
 		data := dataToTemplateClientSsh(d)
-		logger.Println("[INFO] received V from method data to TemplateClientSsh --")
+		logger.Println("[INFO] received formatted data from method data to TemplateClientSsh --")
 		d.SetId(name)
 		go_vthunder.PostTemplateClientSsh(client.Token, data, client.Host)
 

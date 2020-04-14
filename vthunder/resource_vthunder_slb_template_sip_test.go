@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_TEMPLATE_SIP_RESOURCE = `
-resource "vthunder_slb_template_sip" "testname" {
+resource "vthunder_slb_template_sip" "sip2" {
 	name = "testsip"
 	user_tag = "test_tag"
 	smp_call_id_rtp_session = 1
@@ -31,18 +31,18 @@ func TestAccSlbTemplateSIP_create(t *testing.T) {
 			{
 				Config: TEST_SLB_TEMPLATE_SIP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_sip.testname", "name", "testsip"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_sip.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_sip.testname", "smp_call_id_rtp_session", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_sip.testname", "client_keep_alive", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_sip.testname", "alg_source_nat", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_sip.testname", "alg_dest_nat", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_sip.testname", "server_keep_alive", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_sip.testname", "interval", "11"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_sip.testname", "dialog_aware", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_sip.testname", "failed_server_selection", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_sip.testname", "timeout", "1"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_sip.testname", "drop_when_server_fail", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_sip.sip2", "name", "testsip"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_sip.sip2", "user_tag", "test_tag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_sip.sip2", "smp_call_id_rtp_session", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_sip.sip2", "client_keep_alive", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_sip.sip2", "alg_source_nat", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_sip.sip2", "alg_dest_nat", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_sip.sip2", "server_keep_alive", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_sip.sip2", "interval", "11"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_sip.sip2", "dialog_aware", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_sip.sip2", "failed_server_selection", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_sip.sip2", "timeout", "1"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_sip.sip2", "drop_when_server_fail", "1"),
 				),
 			},
 		},

@@ -28,7 +28,7 @@ func (c *Config) Client() (vThunder, error) {
 			return vt, err
 		}
 
-		logger.Println("[INFO] GOT TOKEN FROM API.......................... " + client.Token)
+		logger.Println("[INFO] GOT TOKEN FROM API.......................... ")
 		return client, nil
 	}
 	return vt, fmt.Errorf("VTHUNDER provider requires address, username and password")

@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_TEMPLATE_DBLB_RESOURCE = `
-resource "vthunder_slb_template_dblb" "testname" {
+resource "vthunder_slb_template_dblb" "template_dblb1" {
 	name = "testdblb"
 	user_tag = "test_tag"
 	server_version = "MSSQL2008"
@@ -22,9 +22,9 @@ func TestAccSlbTemplateDBLB_create(t *testing.T) {
 			{
 				Config: TEST_TEMPLATE_DBLB_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_dblb.testname", "name", "testdblb"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_dblb.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_dblb.testname", "server_version", "MSSQL2008"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_dblb.template_dblb1", "name", "testdblb"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_dblb.template_dblb1", "user_tag", "test_tag"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_dblb.template_dblb1", "server_version", "MSSQL2008"),
 				),
 			},
 		},

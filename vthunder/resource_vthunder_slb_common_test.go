@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SLB_COMMON_RESOURCE = `
-resource "vthunder_slb_common" "testname" {
+resource "vthunder_slb_common" "common" {
 	low_latency = 0
 	use_mss_tab = 0
 	stats_data_disable = 0
@@ -36,19 +36,19 @@ func TestAccSlbCommon_create(t *testing.T) {
 			{
 				Config: TEST_SLB_COMMON_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "low_latency", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "use_mss_tab", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "stats_data_disable", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "compress_block_size", "7000"),
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "player_id_check_enable", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "msl_time", "20"),
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "graceful_shutdown_enable", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "hw_syn_rr", "2000"),
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "conn_rate_limit.0.src_ip_list.0.protocol", "tcp"),
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "conn_rate_limit.0.src_ip_list.0.limit_period", "100"),
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "conn_rate_limit.0.src_ip_list.0.limit", "50"),
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "conn_rate_limit.0.src_ip_list.0.exceed_action", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_common.testname", "conn_rate_limit.0.src_ip_list.0.shared", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "low_latency", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "use_mss_tab", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "stats_data_disable", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "compress_block_size", "7000"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "player_id_check_enable", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "msl_time", "20"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "graceful_shutdown_enable", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "hw_syn_rr", "2000"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "conn_rate_limit.0.src_ip_list.0.protocol", "tcp"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "conn_rate_limit.0.src_ip_list.0.limit_period", "100"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "conn_rate_limit.0.src_ip_list.0.limit", "50"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "conn_rate_limit.0.src_ip_list.0.exceed_action", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_common.common", "conn_rate_limit.0.src_ip_list.0.shared", "0"),
 				),
 			},
 		},

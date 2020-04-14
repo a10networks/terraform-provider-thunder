@@ -4,10 +4,11 @@ package vthunder
 
 import (
 	"fmt"
-	"github.com/go_vthunder/vthunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"log"
 	"util"
+
+	go_vthunder "github.com/go_vthunder/vthunder"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceVirtualServer() *schema.Resource {
@@ -1053,7 +1054,7 @@ func resourceVirtualServerCreate(d *schema.ResourceData, meta interface{}) error
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Creating virtual server   (Inside resourceVirtualServerCreate    " + name)
 		v := dataToVs(name, d)
-		logger.Println("[INFO] received V from method data to vs --" + v.Name.Name + ",--" + v.Name.UUID)
+		logger.Println("[INFO] received formatted data from method data to vs --" + v.Name.Name + ",--" + v.Name.UUID)
 		d.SetId(name)
 		go_vthunder.PostVS(client.Token, v, client.Host)
 
@@ -1094,7 +1095,7 @@ func resourceVirtualServerUpdate(d *schema.ResourceData, meta interface{}) error
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Modifying virtual server   (Inside resourceVirtualServerUpdate    " + name)
 		v := dataToVs(name, d)
-		logger.Println("[INFO] received V from method data to vs --" + v.Name.Name + ",--" + v.Name.UUID)
+		logger.Println("[INFO] received formatted data from method data to vs --" + v.Name.Name + ",--" + v.Name.UUID)
 		d.SetId(name)
 		go_vthunder.PutVS(client.Token, name, v, client.Host)
 

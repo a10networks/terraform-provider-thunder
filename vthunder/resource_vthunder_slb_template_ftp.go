@@ -64,7 +64,7 @@ func resourceSlbTemplateFTPCreate(d *schema.ResourceData, meta interface{}) erro
 		logger.Println("[INFO] Creating SlbTemplateFTP (Inside resourceSlbTemplateFTPCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateFTP(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateFTP --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateFTP --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateFTP(client.Token, data, client.Host)
 
@@ -101,7 +101,7 @@ func resourceSlbTemplateFTPUpdate(d *schema.ResourceData, meta interface{}) erro
 		logger.Println("[INFO] Modifying SlbTemplateFTP   (Inside resourceSlbTemplateFTPUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateFTP(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateFTP ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateFTP ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplateFTP(client.Token, name, data, client.Host)
 

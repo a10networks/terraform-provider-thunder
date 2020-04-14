@@ -260,7 +260,7 @@ func resourceSlbTemplateServerSSLCreate(d *schema.ResourceData, meta interface{}
 		logger.Println("[INFO] Creating SlbTemplateServerSSL (Inside resourceSlbTemplateServerSSLCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateServerSSL(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateServerSSL --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateServerSSL --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateServerSSL(client.Token, data, client.Host)
 
@@ -297,7 +297,7 @@ func resourceSlbTemplateServerSSLUpdate(d *schema.ResourceData, meta interface{}
 		logger.Println("[INFO] Modifying SlbTemplateServerSSL   (Inside resourceSlbTemplateServerSSLUpdate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateServerSSL(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateServerSSL ")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateServerSSL ")
 		d.SetId(name)
 		go_vthunder.PutSlbTemplateServerSSL(client.Token, name, data, client.Host)
 

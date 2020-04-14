@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_smtp" "testname" {
+resource "vthunder_slb_template_smtp" "smtp" {
 	name = "testsmtp"
 	user_tag = "test_tag"
 	server_domain= "gmail.com"

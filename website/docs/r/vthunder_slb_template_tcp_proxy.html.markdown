@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_tcp_proxy" "testname" {
+resource "vthunder_slb_template_tcp_proxy" "tcp_proxy" {
 	name = "testtcpproxy"
 	user_tag = "test_tag"
 	qos = 2

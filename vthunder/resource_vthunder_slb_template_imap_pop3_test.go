@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_TEMPLATE_IMAPPOP_RESOURCE = `
-resource "vthunder_slb_template_imap_pop3" "testname" {
+resource "vthunder_slb_template_imap_pop3" "imap_pop3" {
 	name = "Testimap"
 	logindisabled = 0
 	starttls = "disabled"
@@ -23,10 +23,10 @@ func TestAccSlbTemplateImapPOP_create(t *testing.T) {
 			{
 				Config: TEST_TEMPLATE_IMAPPOP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_slb_template_imap_pop3.testname", "name", "Testimap"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_imap_pop3.testname", "logindisabled", "0"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_imap_pop3.testname", "starttls", "disabled"),
-					resource.TestCheckResourceAttr("vthunder_slb_template_imap_pop3.testname", "user_tag", "test_user"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_imap_pop3.imap_pop3", "name", "Testimap"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_imap_pop3.imap_pop3", "logindisabled", "0"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_imap_pop3.imap_pop3", "starttls", "disabled"),
+					resource.TestCheckResourceAttr("vthunder_slb_template_imap_pop3.imap_pop3", "user_tag", "test_user"),
 				),
 			},
 		},

@@ -159,7 +159,7 @@ func resourceSlbTemplateCacheCreate(d *schema.ResourceData, meta interface{}) er
 		logger.Println("[INFO] Creating SlbTemplateCache (Inside resourceSlbTemplateCacheCreate) ")
 		name := d.Get("name").(string)
 		data := dataToSlbTemplateCache(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateCache --")
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateCache --")
 		d.SetId(name)
 		go_vthunder.PostSlbTemplateCache(client.Token, data, client.Host)
 

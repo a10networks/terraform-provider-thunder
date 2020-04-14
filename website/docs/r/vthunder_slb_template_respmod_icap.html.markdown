@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_respmod_icap" "testname" {
+resource "vthunder_slb_template_respmod_icap" "respmod_icap" {
 	name = "testrespmodicap"
 	user_tag = "test_tag"
 	min_payload_size = 30

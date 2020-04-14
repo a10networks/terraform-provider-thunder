@@ -19,7 +19,7 @@ provider "vthunder" {
   password = "admin"
 }
 
-resource "vthunder_slb_template_server_ssl" "testname" {
+resource "vthunder_slb_template_server_ssl" "server_ssl" {
 	name = "testserverssl"
 	user_tag = "test_tag"
 	sslilogging = "disable"
