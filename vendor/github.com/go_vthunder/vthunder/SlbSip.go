@@ -11,10 +11,10 @@ type SlbSip struct {
 	Counters1 SlbSipInstance `json:"sip,omitempty"`
 }
 type SamplingEnable10 struct {
-	Counters1 string `json:"counters1"`
+	Counters1 string `json:"counters1,omitempty"`
 }
 type SlbSipInstance struct {
-	Counters1 []SamplingEnable10 `json:"sampling-enable"`
+	Counters1 []SamplingEnable10 `json:"sampling-enable,omitempty"`
 }
 
 func PostSlbSip(id string, inst SlbSip, host string) {

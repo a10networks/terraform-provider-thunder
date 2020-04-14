@@ -12,10 +12,10 @@ type SlbSmpp struct {
 }
 
 type SamplingEnable11 struct {
-	Counters1 string `json:"counters1"`
+	Counters1 string `json:"counters1,omitempty"`
 }
 type SlbSmppInstance struct {
-	Counters1 []SamplingEnable11 `json:"sampling-enable"`
+	Counters1 []SamplingEnable11 `json:"sampling-enable,omitempty"`
 }
 
 func PostSlbSmpp(id string, inst SlbSmpp, host string) {

@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_switch
 
-`vthunder_slb_switch` Provides details about vthunder SLB transparent acl template
+`vthunder_slb_switch` Provides details about vthunder SLB switch
 ## Example Usage
 
 

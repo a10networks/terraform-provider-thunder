@@ -11,16 +11,16 @@ type PlayerIdGlobal struct {
 	Counters1 PlayerIdGlobalInstance `json:"player-id-global,omitempty"`
 }
 type SamplingEnable27 struct {
-	Counters1 string `json:"counters1"`
+	Counters1 string `json:"counters1,omitempty"`
 }
 type PlayerIdGlobalInstance struct {
-	MinExpiration         int                `json:"min-expiration"`
-	PktActivityExpiration int                `json:"pkt-activity-expiration"`
-	ForcePassive          int                `json:"force-passive"`
-	AbsMaxExpiration      int                `json:"abs-max-expiration"`
-	Counters1             []SamplingEnable27 `json:"sampling-enable"`
-	EnforcementTimer      int                `json:"enforcement-timer"`
-	Enable64BitPlayerID   int                `json:"enable-64bit-player-id"`
+	MinExpiration         int                `json:"min-expiration,omitempty"`
+	PktActivityExpiration int                `json:"pkt-activity-expiration,omitempty"`
+	ForcePassive          int                `json:"force-passive,omitempty"`
+	AbsMaxExpiration      int                `json:"abs-max-expiration,omitempty"`
+	Counters1             []SamplingEnable27 `json:"sampling-enable,omitempty"`
+	EnforcementTimer      int                `json:"enforcement-timer,omitempty"`
+	Enable64BitPlayerID   int                `json:"enable-64bit-player-id,omitempty"`
 }
 
 func PostSlbPlayerIdGlobal(id string, inst PlayerIdGlobal, host string) {
