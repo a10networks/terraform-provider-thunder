@@ -15,7 +15,7 @@ resource "vthunder_slb_ssl_forward_proxy" "SSLForwardProxy" {
 `
 
 //Acceptance test
-func TestSlbSSLForwardProxy_create(t *testing.T) {
+func TestAccSlbSSLForwardProxy_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{

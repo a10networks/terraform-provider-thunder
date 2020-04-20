@@ -8,7 +8,7 @@ description: |-
 
 # vthunder\_slb\_ssl\_cert\_revoke
 
-`vthunder_slb_ssl_forward_proxy` Provides details about vthunder SLB ssl cert revoke
+`vthunder_slb_ssl_cert_revoke` Provides details about vthunder SLB ssl cert revoke
 ## Example Usage
 
 
