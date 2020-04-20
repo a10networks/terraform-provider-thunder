@@ -119,6 +119,8 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_slb_http_proxy":                    resourceSlbHttpProxy(),
 			"vthunder_slb_http2":                         resourceSlbHTTP2(),
 			"vthunder_slb_hw_compress":                   resourceSlbHwCompress(),
+			"vthunder_slb_ssl_cert_revoke":               resourceSlbSSLCertRevoke(),
+			"vthunder_slb_ssl_forward_proxy":             resourceSlbSSLForwardProxy(),
 		},
 
 		ConfigureFunc: providerConfigureTest,
