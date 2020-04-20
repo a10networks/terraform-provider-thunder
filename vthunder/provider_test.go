@@ -114,6 +114,11 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_slb_rate_limit_log":                resourceSlbRateLimitLog(),
 			"vthunder_slb_rc_cache_global":               resourceSlbRcCacheGlobal(),
 			"vthunder_slb_resource_usage":                resourceSlbResourceUsage(),
+			"vthunder_slb_health_gateway":                resourceSlbHealthGateway(),
+			"vthunder_slb_health_stat":                   resourceSlbHealthStat(),
+			"vthunder_slb_http_proxy":                    resourceSlbHttpProxy(),
+			"vthunder_slb_http2":                         resourceSlbHTTP2(),
+			"vthunder_slb_hw_compress":                   resourceSlbHwCompress(),
 		},
 
 		ConfigureFunc: providerConfigureTest,
