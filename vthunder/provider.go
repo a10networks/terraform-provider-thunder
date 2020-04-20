@@ -136,6 +136,7 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_slb_mlb":                           resourceSlbMlb(),
 			"vthunder_slb_mssql":                         resourceSlbMssql(),
 			"vthunder_slb_mysql":                         resourceSlbMysql(),
+			"vthunder_slb_ssl_expire_check":              resourceSlbSSLExpireCheck(),
 		},
 
 		ConfigureFunc: providerConfigure,
