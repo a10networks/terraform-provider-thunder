@@ -11,6 +11,6 @@
   - vrrp_vrid
   - vrrp_session_sync
 
-## 0.1.0
+## 0.1.0 (November 08, 2019)
 
 - Initial release
