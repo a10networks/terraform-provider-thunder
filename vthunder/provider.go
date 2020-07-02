@@ -152,6 +152,7 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_ipv6_icmpv6":                       resourceIpv6Icmpv6(),
 			"vthunder_ipv6_nat_icmpv6":                   resourceIpv6NatIcmpv6(),
 			"vthunder_ip_route_static_bfd":               resourceIPRouteStaticBfd(),
+			"vthunder_ip_address":                        resourceIPAddress(),
 		},
 
 		ConfigureFunc: providerConfigure,

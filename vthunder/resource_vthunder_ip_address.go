@@ -3,11 +3,10 @@ package vthunder
 //vThunder resource IPAddress
 
 import (
-	"github.com/go_vthunder/vthunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"util"
-	"fmt"
-	"strconv"
+
+	go_vthunder "github.com/go_vthunder/vthunder"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceIPAddress() *schema.Resource {
@@ -16,46 +15,62 @@ func resourceIPAddress() *schema.Resource {
 		Update: resourceIPAddressUpdate,
 		Read:   resourceIPAddressRead,
 		Delete: resourceIPAddressDelete,
- 		// Add JAVA code over here. 
-	} }
- 
+		Schema: map[string]*schema.Schema{
+			"ip_addr": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"ip_mask": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"uuid": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+		},
+	}
+}
+
 func resourceIPAddressCreate(d *schema.ResourceData, meta interface{}) error {
- 	logger := util.GetLoggerInstance()
- 	client := meta.(vThunder)
- 	 
+	logger := util.GetLoggerInstance()
+	client := meta.(vThunder)
+
 	if client.Host != "" {
- 		logger.Println("[INFO] Creating IPAddress (Inside resourceIPAddressCreate) ")
- 		name := d.get('name').(string) 
+		logger.Println("[INFO] Creating IPAddress (Inside resourceIPAddressCreate) ")
 		data := dataToIPAddress(d)
- 		logger.Println("[INFO] received V from method data to IPAddress --")
- 		d.SetId(1)
- 		go_vthunder.PostIPAddress(client.Token, data, client.Host)
- 
+		logger.Println("[INFO] received V from method data to IPAddress --")
+		d.SetId("1")
+		go_vthunder.PostIPAddress(client.Token, data, client.Host)
+
 		return resourceIPAddressRead(d, meta)
 
 	}
- 	return nil
- }
-	
+	return nil
+}
+
 func resourceIPAddressRead(d *schema.ResourceData, meta interface{}) error {
- 	logger := util.GetLoggerInstance()
- 	client := meta.(vThunder)
- 	logger.Println("[INFO] Reading IPAddress (Inside resourceIPAddressRead)")
- 
+	logger := util.GetLoggerInstance()
+	client := meta.(vThunder)
+	logger.Println("[INFO] Reading IPAddress (Inside resourceIPAddressRead)")
+
 	if client.Host != "" {
- 		name := d.Id()
+		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
- 		data, err := go_vthunder.GetIPAddress(client.Token, name, client.Host)
- 		if data == nil {
- 			logger.Println("[INFO] No data found " + name)
- 			d.SetId("")
- 			return nil
- 		}
+		data, err := go_vthunder.GetIPAddress(client.Token, client.Host)
+		if data == nil {
+			logger.Println("[INFO] No data found " + name)
+			d.SetId("")
+			return nil
+		}
 		return err
 	}
- 	return nil
- }
-	
+	return nil
+}
+
 func resourceIPAddressUpdate(d *schema.ResourceData, meta interface{}) error {
 
 	return resourceIPAddressRead(d, meta)
@@ -65,12 +80,12 @@ func resourceIPAddressDelete(d *schema.ResourceData, meta interface{}) error {
 
 	return resourceIPAddressRead(d, meta)
 }
-func dataToIPAddress(d *schema.ResourceData) go_vthunder.Address {
-	var vc go_vthunder.Address
-	var c go_vthunder.AddressInstance
-	c.IpAddr = d.Get("ip_addr").(string)
-c.IpMask = d.Get("ip_mask").(string)
+func dataToIPAddress(d *schema.ResourceData) go_vthunder.IPAddress {
+	var vc go_vthunder.IPAddress
+	var c go_vthunder.IPAddressInstance
+	c.IPAddr = d.Get("ip_addr").(string)
+	c.IPMask = d.Get("ip_mask").(string)
 
-	vc.UUID = c 
+	vc.UUID = c
 	return vc
 }

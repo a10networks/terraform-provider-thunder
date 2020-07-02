@@ -3,7 +3,7 @@ layout: "vthunder"
 page_title: "vthunder: vthunder_ip_address"
 sidebar_current: "docs-vthunder-resource-ip-address"
 description: |-
-	Provides details about vthunder ip address resource for A10
+  Provides details about vthunder ip address resource for A10
 ---
 
 # vthunder\_ip\_address
@@ -19,7 +19,10 @@ provider "vthunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "vthunder_ip_address" "testname" {
+  ip_addr = "3.3.3.3"
+  ip_mask = "255.255.0.0"
+}
 ```
 
 ## Argument Reference

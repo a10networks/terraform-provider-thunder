@@ -8,16 +8,16 @@ import (
 )
 
 type IPAddress struct {
-	UUID AddressInstance `json:"address,omitempty"`
+	UUID IPAddressInstance `json:"address,omitempty"`
 }
 
-type AddressInstance struct {
-	IPAddr string `json:"ip-addr"`
-	IPMask string `json:"ip-mask"`
-	UUID   string `json:"uuid"`
+type IPAddressInstance struct {
+	IPAddr string `json:"ip-addr,omitempty"`
+	IPMask string `json:"ip-mask,omitempty"`
+	UUID   string `json:"uuid,omitempty"`
 }
 
-func PostIPAddress(id string, inst Address, host string) {
+func PostIPAddress(id string, inst IPAddress, host string) {
 
 	logger := util.GetLoggerInstance()
 
@@ -39,7 +39,7 @@ func PostIPAddress(id string, inst Address, host string) {
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m Address
+		var m IPAddress
 		erro := json.Unmarshal(data, &m)
 		if erro != nil {
 			logger.Println("Unmarshal error ", err)
@@ -52,7 +52,7 @@ func PostIPAddress(id string, inst Address, host string) {
 
 }
 
-func GetIPAddress(id string, name string, host string) (*Address, error) {
+func GetIPAddress(id string, host string) (*IPAddress, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -69,7 +69,7 @@ func GetIPAddress(id string, name string, host string) (*Address, error) {
 		return nil, err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m Address
+		var m IPAddress
 		erro := json.Unmarshal(data, &m)
 		if erro != nil {
 			logger.Println("Unmarshal error ", err)

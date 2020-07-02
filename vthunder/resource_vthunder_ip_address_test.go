@@ -8,11 +8,8 @@ import (
 
 var TEST_IP_ADDRESS_RESOURCE = `
 resource "vthunder_ip_address" "testname" {
-	name = "testaddress"
-	user_tag = "test_tag"
-	ip_addr = string
-	ip_mask = string
-	uuid = string 
+	ip_addr = "3.3.3.3"
+	ip_mask = "255.255.0.0"
 }
 `
 
@@ -24,11 +21,8 @@ func TestIPAddress_create(t *testing.T) {
 			{
 				Config: TEST_IP_ADDRESS_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_ip_address.testname", "name", "testaddress"),
-					resource.TestCheckResourceAttr("vthunder_ip_address.testname", "user_tag", "test_tag"),
-					resource.TestCheckResourceAttr("vthunder_ip_address.testname", "ip_addr", "string"),
-					resource.TestCheckResourceAttr("vthunder_ip_address.testname", "ip_mask", "string"),
-					resource.TestCheckResourceAttr("vthunder_ip_address.testname", "uuid", "string"),
+					resource.TestCheckResourceAttr("vthunder_ip_address.testname", "ip_addr", "3.3.3.3"),
+					resource.TestCheckResourceAttr("vthunder_ip_address.testname", "ip_mask", "255.255.0.0"),
 				),
 			},
 		},
