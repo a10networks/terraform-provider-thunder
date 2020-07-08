@@ -154,6 +154,8 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_interface_management":              resourceInterfaceManagement(),
 			"vthunder_interface_ethernet_bfd":            resourceInterfaceEthernetBFD(),
 			"vthunder_interface_ethernet_lldp":           resourceInterfaceEthernetLLDP(),
+			"vthunder_interface_ve_bfd":                  resourceInterfaceVeBFD(),
+			"vthunder_interface_ethernet_trunk_group":    resourceInterfaceEthernetTrunkGroup(),
 		},
 
 		ConfigureFunc: providerConfigure,
