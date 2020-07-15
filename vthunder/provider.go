@@ -158,6 +158,7 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_interface_ethernet_trunk_group":    resourceInterfaceEthernetTrunkGroup(),
 			"vthunder_interface_ethernet_ipv6":           resourceInterfaceEthernetIPv6(),
 			"vthunder_interface_ve_ip":                   resourceInterfaceVeIP(),
+			"vthunder_interface_ve_ipv6":                 resourceInterfaceVeIPv6(),
 		},
 
 		ConfigureFunc: providerConfigure,
