@@ -153,6 +153,7 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_interface_ve_ip":                   resourceInterfaceVeIP(),
 			"vthunder_interface_ve_ipv6":                 resourceInterfaceVeIPv6(),
 			"vthunder_interface_ethernet":                resourceInterfaceEthernet(),
+			"vthunder_interface_ve":                      resourceInterfaceVE(),
 		},
 
 		ConfigureFunc: providerConfigureTest,
