@@ -144,6 +144,8 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_ipv6_frag":                         resourceIpv6Frag(),
 			"vthunder_ipv6_icmpv6":                       resourceIpv6Icmpv6(),
 			"vthunder_ipv6_nat_icmpv6":                   resourceIpv6NatIcmpv6(),
+			"vthunder_ip_route_static_bfd":               resourceIPRouteStaticBfd(),
+			"vthunder_ip_address":                        resourceIPAddress(),
 			"vthunder_interface_management":              resourceInterfaceManagement(),
 			"vthunder_interface_ethernet_bfd":            resourceInterfaceEthernetBFD(),
 			"vthunder_interface_ethernet_lldp":           resourceInterfaceEthernetLLDP(),
