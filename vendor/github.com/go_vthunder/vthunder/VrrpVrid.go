@@ -71,13 +71,13 @@ type TrunkCfg struct {
 	PerPortPri   int `json:"per-port-pri,omitempty"`
 }
 type TrackingOptions struct {
-	Vlan           []VlanCfg   `json:"vlan-cfg,omitempty"`
-	UUID           string      `json:"uuid,omitempty"`
+	Vlan []VlanCfg `json:"vlan-cfg,omitempty"`
+	UUID string    `json:"uuid,omitempty"`
 	//IPDestination  Route       `json:"route,omitempty"`
 	//BgpIpv4Address Bgp         `json:"bgp,omitempty"`
-	Ethernet       []Interface `json:"interface,omitempty"`
+	Ethernet []Interface `json:"interface,omitempty"`
 	//IPAddress      Gateway     `json:"gateway,omitempty"`
-	Trunk          []TrunkCfg  `json:"trunk-cfg,omitempty"`
+	Trunk []TrunkCfg `json:"trunk-cfg,omitempty"`
 }
 type BladeParameters struct {
 	Priority               int             `json:"priority,omitempty"`
