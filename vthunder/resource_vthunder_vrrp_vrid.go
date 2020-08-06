@@ -533,8 +533,8 @@ func dataToVrrpVrid(d *schema.ResourceData) go_vthunder.VridInstance {
 	var vc go_vthunder.VridInstance
 
 	var v go_vthunder.Vrid
-
-	v.VridVal = d.Get("vrid_val").(int)
+	vrid_val := d.Get("vrid_val").(int)
+	v.VridVal = &vrid_val
 
 	var floating_ip go_vthunder.FloatingIP
 

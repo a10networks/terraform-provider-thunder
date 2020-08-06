@@ -119,7 +119,7 @@ type Follow struct {
 type Vrid struct {
 	UUID_BladeParams BladeParameters `json:"blade-parameters,omitempty"`
 	UUID             string          `json:"uuid,omitempty"`
-	VridVal          int             `json:"vrid-val,omitempty"`
+	VridVal          *int            `json:"vrid-val,omitempty"`
 	UserTag          string          `json:"user-tag,omitempty"`
 	Threshold        PreemptMode     `json:"preempt-mode,omitempty"`
 	Ipv6Address      FloatingIP      `json:"floating-ip,omitempty"`
