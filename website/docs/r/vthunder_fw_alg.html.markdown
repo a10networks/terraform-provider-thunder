@@ -1,0 +1,31 @@
+---
+layout: "vthunder"
+page_title: "vthunder: vthunder_fw_alg"
+sidebar_current: "docs-vthunder-resource-fw-alg"
+description: |-
+	Provides details about vthunder fw alg resource for A10
+---
+
+# vthunder\_fw\_alg
+
+`vthunder_fw_alg` Provides details about vthunder fw alg
+## Example Usage
+
+
+```hcl
+provider "vthunder" {
+  address  = "129.213.82.65"
+  username = "admin"
+  password = "admin"
+}
+
+// Put working JSON here
+```
+
+## Argument Reference
+
+* `uuid` - uuid of the object
+* `default_port_disable` - ‘default-port-disable’: Disable TFTP ALG default port 69;
+* `counters1` - ‘all’: all; ‘session-created’: TFTP Client Sessions Created; ‘helper-created’: TFTP Helper Sessions created; ‘helper-freed’: TFTP Helper Sessions freed; ‘helper-freed-used’: TFTP Helper Sessions freed used; ‘helper-freed-unused’: TFTP Helper Sessions freed unused; ‘helper-already-used’: TFTP Helper Session already used; ‘helper-in-rml’: TFTP Helper Session in Remove List;
+* `disable` - ‘disable’: Disable ICMP ALG which allows ICMP errors to pass the firewall;
+

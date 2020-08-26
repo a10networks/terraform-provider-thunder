@@ -147,6 +147,12 @@ func ProviderTest() terraform.ResourceProvider {
 			"vthunder_interface_management":              resourceInterfaceManagement(),
 			"vthunder_interface_ethernet_bfd":            resourceInterfaceEthernetBFD(),
 			"vthunder_interface_ethernet_lldp":           resourceInterfaceEthernetLLDP(),
+			"vthunder_fw_active_rule_set": resourceFwActiveRuleSet(),
+			"vthunder_fw_active_rule_set": resourceFwActiveRuleSet(),
+			"vthunder_fw_active_rule_set": resourceFwActiveRuleSet(),
+			"vthunder_fw_alg": resourceFwAlg(),
+			"vthunder_fw_alg_dns": resourceFwAlgDns(),
+			"vthunder_fw_alg_ftp": resourceFwAlgFtp(),
 		},
 
 		ConfigureFunc: providerConfigureTest,
