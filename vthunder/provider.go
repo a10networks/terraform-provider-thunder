@@ -151,15 +151,27 @@ func Provider() terraform.ResourceProvider {
 			"vthunder_ipv6_frag":                         resourceIpv6Frag(),
 			"vthunder_ipv6_icmpv6":                       resourceIpv6Icmpv6(),
 			"vthunder_ipv6_nat_icmpv6":                   resourceIpv6NatIcmpv6(),
+			"vthunder_ip_route_static_bfd":               resourceIPRouteStaticBfd(),
+			"vthunder_ip_address":                        resourceIPAddress(),
 			"vthunder_interface_management":              resourceInterfaceManagement(),
 			"vthunder_interface_ethernet_bfd":            resourceInterfaceEthernetBFD(),
 			"vthunder_interface_ethernet_lldp":           resourceInterfaceEthernetLLDP(),
+<<<<<<< HEAD
 			"vthunder_fw_active_rule_set": resourceFwActiveRuleSet(),
 			"vthunder_fw_active_rule_set": resourceFwActiveRuleSet(),
 			"vthunder_fw_active_rule_set": resourceFwActiveRuleSet(),
 			"vthunder_fw_alg": resourceFwAlg(),
 			"vthunder_fw_alg_dns": resourceFwAlgDns(),
 			"vthunder_fw_alg_ftp": resourceFwAlgFtp(),
+=======
+			"vthunder_interface_ve_bfd":                  resourceInterfaceVeBFD(),
+			"vthunder_interface_ethernet_trunk_group":    resourceInterfaceEthernetTrunkGroup(),
+			"vthunder_interface_ethernet_ipv6":           resourceInterfaceEthernetIPv6(),
+			"vthunder_interface_ve_ip":                   resourceInterfaceVeIP(),
+			"vthunder_interface_ve_ipv6":                 resourceInterfaceVeIPv6(),
+			"vthunder_interface_ethernet":                resourceInterfaceEthernet(),
+			"vthunder_interface_ve":                      resourceInterfaceVE(),
+>>>>>>> ef1b43562156acdd0e37bed891ab98f727562b3d
 		},
 
 		ConfigureFunc: providerConfigure,
