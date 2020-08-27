@@ -78,10 +78,10 @@ func TestDataToRibRoute(t *testing.T) {
 	distance_nexthop_ip := 1
 
 	resourceSchema := map[string]*schema.Schema{
-		"ip_dest_addr": &schema.Schema{
+		"ip_dest_addr": {
 			Type: schema.TypeString,
 		},
-		"ip_mask": &schema.Schema{
+		"ip_mask": {
 			Type: schema.TypeString,
 		},
 		"ip_nexthop_ipv4": {

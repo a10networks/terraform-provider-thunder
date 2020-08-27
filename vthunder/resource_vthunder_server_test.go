@@ -127,73 +127,73 @@ func TestDataToServer(t *testing.T) {
 	}
 
 	resourceSchema := map[string]*schema.Schema{
-		"health_check_disable": &schema.Schema{
+		"health_check_disable": {
 			Type: schema.TypeInt,
 		},
-		"stats_data_action": &schema.Schema{
+		"stats_data_action": {
 			Type: schema.TypeString,
 		},
-		"slow_start": &schema.Schema{
+		"slow_start": {
 			Type: schema.TypeInt,
 		},
-		"weight": &schema.Schema{
+		"weight": {
 			Type: schema.TypeInt,
 		},
-		"spoofing_cache": &schema.Schema{
+		"spoofing_cache": {
 			Type: schema.TypeInt,
 		},
-		"resolve_as": &schema.Schema{
+		"resolve_as": {
 			Type: schema.TypeString,
 		},
-		"conn_limit": &schema.Schema{
+		"conn_limit": {
 			Type: schema.TypeInt,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type: schema.TypeString,
 		},
-		"fqdn_name": &schema.Schema{
+		"fqdn_name": {
 			Type: schema.TypeString,
 		},
-		"external_ip": &schema.Schema{
+		"external_ip": {
 			Type: schema.TypeString,
 		},
-		"health_check_shared": &schema.Schema{
+		"health_check_shared": {
 			Type: schema.TypeString,
 		},
-		"ipv6": &schema.Schema{
+		"ipv6": {
 			Type: schema.TypeString,
 		},
-		"template_server": &schema.Schema{
+		"template_server": {
 			Type: schema.TypeString,
 		},
-		"server_ipv6_addr": &schema.Schema{
+		"server_ipv6_addr": {
 			Type: schema.TypeString,
 		},
-		"shared_partition_health_check": &schema.Schema{
+		"shared_partition_health_check": {
 			Type: schema.TypeInt,
 		},
-		"host": &schema.Schema{
+		"host": {
 			Type: schema.TypeString,
 		},
-		"extended_stats": &schema.Schema{
+		"extended_stats": {
 			Type: schema.TypeInt,
 		},
-		"conn_resume": &schema.Schema{
+		"conn_resume": {
 			Type: schema.TypeInt,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type: schema.TypeString,
 		},
-		"user_tag": &schema.Schema{
+		"user_tag": {
 			Type: schema.TypeString,
 		},
-		"action": &schema.Schema{
+		"action": {
 			Type: schema.TypeString,
 		},
-		"health_check": &schema.Schema{
+		"health_check": {
 			Type: schema.TypeString,
 		},
-		"no_logging": &schema.Schema{
+		"no_logging": {
 			Type: schema.TypeInt,
 		},
 		"port_list": {

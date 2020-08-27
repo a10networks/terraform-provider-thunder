@@ -168,7 +168,7 @@ func PutEthernet(id string, ethernet map[int]Ethernet, host string) {
 
 }
 
-func GetEthernet(id string, name string, host string) (*Ethernet,error){
+func GetEthernet(id string, name string, host string) (*Ethernet, error) {
 
 	logger := util.GetLoggerInstance()
 

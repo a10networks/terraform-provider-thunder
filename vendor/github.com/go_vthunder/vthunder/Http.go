@@ -29,8 +29,8 @@ func DoHttp(method string, host string, body io.Reader, headers map[string]strin
 	resp, err := client.Do(req)
 
 	logger.Println("[INFO] status -" + resp.Status)
-	
-	if (err!=nil){
+
+	if err != nil {
 		logger.Println("[INFO] error ")
 	}
 

@@ -5,8 +5,8 @@ package vthunder
 import (
 	"github.com/go_vthunder/vthunder"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"util"
 	"strconv"
+	"util"
 )
 
 func resourceVrrpCommon() *schema.Resource {
@@ -154,7 +154,7 @@ func resourceVrrpCommonRead(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(vThunder)
 
 	if client.Host != "" {
-		
+
 		name := d.Id()
 
 		vc, err := go_vthunder.GetVrrpCommon(client.Token, client.Host)

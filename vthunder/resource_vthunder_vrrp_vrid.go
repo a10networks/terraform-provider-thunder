@@ -3,11 +3,11 @@ package vthunder
 //vThunder resource vrrp vrid
 
 import (
+	"fmt"
 	"github.com/go_vthunder/vthunder"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"util"
-	"fmt"
 	"strconv"
+	"util"
 )
 
 func resourceVrrpVrid() *schema.Resource {

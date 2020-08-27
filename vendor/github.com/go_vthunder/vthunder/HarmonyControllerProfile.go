@@ -19,8 +19,8 @@ type ProfileInstance struct {
 	Port             int           `json:"port,omitempty"`
 	UserName         string        `json:"user-name,omitempty"`
 	SecretValue      string        `json:"secret-value,omitempty"`
-	Provider2         string        `json:"provider,omitempty"`
-	IPAddress    ThunderMgmtIP `json:"thunder-mgmt-ip,omitempty"`
+	Provider2        string        `json:"provider,omitempty"`
+	IPAddress        ThunderMgmtIP `json:"thunder-mgmt-ip,omitempty"`
 	Action           string        `json:"action,omitempty"`
 	UseMgmtPort      int           `json:"use-mgmt-port,omitempty"`
 	Region           string        `json:"region,omitempty"`

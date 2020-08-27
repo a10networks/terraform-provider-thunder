@@ -84,7 +84,7 @@ type Server struct {
 	Name ServerInstance `json:"server,omitempty"`
 }
 
-func GetServer(id string, name string, host string) (*Server,error) {
+func GetServer(id string, name string, host string) (*Server, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -98,18 +98,18 @@ func GetServer(id string, name string, host string) (*Server,error) {
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 		logger.Println("The HTTP request failed with error \n", err)
-		return nil,err
+		return nil, err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Server
 		erro := json.Unmarshal(data, &m)
 		if erro != nil {
 			fmt.Printf("Unmarshal error %s\n", err)
-			return nil,err
+			return nil, err
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			return &m,nil
+			return &m, nil
 		}
 	}
 }

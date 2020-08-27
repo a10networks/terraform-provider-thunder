@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"github.com/go_vthunder/vthunder"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"util"
 	"strconv"
+	"util"
 )
 
 func resourceEthernet() *schema.Resource {

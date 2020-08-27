@@ -123,154 +123,154 @@ func TestDataToSg(t *testing.T) {
 	HealthCheck := "check"
 
 	resourceSchema := map[string]*schema.Schema{
-		"conn_rate": &schema.Schema{
+		"conn_rate": {
 			Type: schema.TypeInt,
 		},
-		"reset_on_server_selection_fail": &schema.Schema{
+		"reset_on_server_selection_fail": {
 			Type: schema.TypeInt,
 		},
-		"health_check_disable": &schema.Schema{
+		"health_check_disable": {
 			Type: schema.TypeInt,
 		},
-		"protocol": &schema.Schema{
+		"protocol": {
 			Type: schema.TypeString,
 		},
-		"traffic_replication_mirror_ip_repl": &schema.Schema{
+		"traffic_replication_mirror_ip_repl": {
 			Type: schema.TypeInt,
 		},
-		"reset_priority_affinity": &schema.Schema{
+		"reset_priority_affinity": {
 			Type: schema.TypeInt,
 		},
-		"min_active_member": &schema.Schema{
+		"min_active_member": {
 			Type: schema.TypeInt,
 		},
-		"stats_data_action": &schema.Schema{
+		"stats_data_action": {
 			Type: schema.TypeString,
 		},
-		"traffic_replication_mirror_da_repl": &schema.Schema{
+		"traffic_replication_mirror_da_repl": {
 			Type: schema.TypeInt,
 		},
-		"template_policy_shared": &schema.Schema{
+		"template_policy_shared": {
 			Type: schema.TypeString,
 		},
-		"rpt_ext_server": &schema.Schema{
+		"rpt_ext_server": {
 			Type: schema.TypeInt,
 		},
-		"template_port": &schema.Schema{
+		"template_port": {
 			Type: schema.TypeString,
 		},
-		"conn_rate_grace_period": &schema.Schema{
+		"conn_rate_grace_period": {
 			Type: schema.TypeInt,
 		},
-		"L4SessionUsageDuration": &schema.Schema{
+		"L4SessionUsageDuration": {
 			Type: schema.TypeInt,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type: schema.TypeString,
 		},
-		"backup_server_event_log": &schema.Schema{
+		"backup_server_event_log": {
 			Type: schema.TypeInt,
 		},
-		"lc_method": &schema.Schema{
+		"lc_method": {
 			Type: schema.TypeString,
 		},
-		"pseudo_round_robin": &schema.Schema{
+		"pseudo_round_robin": {
 			Type: schema.TypeInt,
 		},
-		"shared_partition_policy_template": &schema.Schema{
+		"shared_partition_policy_template": {
 			Type: schema.TypeInt,
 		},
-		"l4_session_usage_revert_rate": &schema.Schema{
+		"l4_session_usage_revert_rate": {
 			Type: schema.TypeInt,
 		},
-		"shared_partition_svcgrp_health_check": &schema.Schema{
+		"shared_partition_svcgrp_health_check": {
 			Type: schema.TypeInt,
 		},
-		"svcgrp_health_check_shared": &schema.Schema{
+		"svcgrp_health_check_shared": {
 			Type: schema.TypeString,
 		},
-		"template_server": &schema.Schema{
+		"template_server": {
 			Type: schema.TypeString,
 		},
-		"traffic_replication_mirror": &schema.Schema{
+		"traffic_replication_mirror": {
 			Type: schema.TypeInt,
 		},
-		"l4_session_revert_duration": &schema.Schema{
+		"l4_session_revert_duration": {
 			Type: schema.TypeInt,
 		},
-		"traffic_replication_mirror_sa_da_repl": &schema.Schema{
+		"traffic_replication_mirror_sa_da_repl": {
 			Type: schema.TypeInt,
 		},
-		"lb_method": &schema.Schema{
+		"lb_method": {
 			Type: schema.TypeString,
 		},
-		"stateless_auto_switch": &schema.Schema{
+		"stateless_auto_switch": {
 			Type: schema.TypeInt,
 		},
-		"min_active_member_action": &schema.Schema{
+		"min_active_member_action": {
 			Type: schema.TypeString,
 		},
-		"l4_session_usage": &schema.Schema{
+		"l4_session_usage": {
 			Type: schema.TypeInt,
 		},
-		"extended_stats": &schema.Schema{
+		"extended_stats": {
 			Type: schema.TypeInt,
 		},
-		"conn_rate_revert_duration": &schema.Schema{
+		"conn_rate_revert_duration": {
 			Type: schema.TypeInt,
 		},
-		"strict_select": &schema.Schema{
+		"strict_select": {
 			Type: schema.TypeInt,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type: schema.TypeString,
 		},
-		"traffic_replication_mirror_sa_repl": &schema.Schema{
+		"traffic_replication_mirror_sa_repl": {
 			Type: schema.TypeInt,
 		},
-		"report_delay": &schema.Schema{
+		"report_delay": {
 			Type: schema.TypeInt,
 		},
-		"conn_rate_log": &schema.Schema{
+		"conn_rate_log": {
 			Type: schema.TypeInt,
 		},
-		"l4_session_usage_log": &schema.Schema{
+		"l4_session_usage_log": {
 			Type: schema.TypeInt,
 		},
-		"conn_rate_duration": &schema.Schema{
+		"conn_rate_duration": {
 			Type: schema.TypeInt,
 		},
-		"stateless_lb_method": &schema.Schema{
+		"stateless_lb_method": {
 			Type: schema.TypeString,
 		},
-		"template_policy": &schema.Schema{
+		"template_policy": {
 			Type: schema.TypeString,
 		},
-		"stateless_lb_method2": &schema.Schema{
+		"stateless_lb_method2": {
 			Type: schema.TypeString,
 		},
-		"user_tag": &schema.Schema{
+		"user_tag": {
 			Type: schema.TypeString,
 		},
-		"sample_rsp_time": &schema.Schema{
+		"sample_rsp_time": {
 			Type: schema.TypeInt,
 		},
-		"top_fastest": &schema.Schema{
+		"top_fastest": {
 			Type: schema.TypeInt,
 		},
-		"conn_revert_rate": &schema.Schema{
+		"conn_revert_rate": {
 			Type: schema.TypeInt,
 		},
-		"l4_session_usage_grace_period": &schema.Schema{
+		"l4_session_usage_grace_period": {
 			Type: schema.TypeInt,
 		},
-		"priority_affinity": &schema.Schema{
+		"priority_affinity": {
 			Type: schema.TypeInt,
 		},
-		"top_slowest": &schema.Schema{
+		"top_slowest": {
 			Type: schema.TypeInt,
 		},
-		"health_check": &schema.Schema{
+		"health_check": {
 			Type: schema.TypeString,
 		},
 		"member_list": {

@@ -136,7 +136,7 @@ func dataToProfile(d *schema.ResourceData) go_vthunder.Profile {
 	var vc go_vthunder.ProfileInstance
 
 	var c go_vthunder.Profile
-	
+
 	vc.Host = d.Get("host").(string)
 	vc.Port = d.Get("port").(int)
 	vc.UserName = d.Get("user_name").(string)
@@ -146,13 +146,13 @@ func dataToProfile(d *schema.ResourceData) go_vthunder.Profile {
 	vc.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	vc.Region = d.Get("region").(string)
 	vc.AvailabilityZone = d.Get("availability_zone").(string)
-	
+
 	var mgmtIp go_vthunder.ThunderMgmtIP
-	
+
 	mgmtIp.IPAddress = d.Get("thunder_mgmt_ip.0.ip_address").(string)
-	
+
 	vc.IPAddress = mgmtIp
-	
+
 	c.Host = vc
 
 	return c

@@ -12,25 +12,25 @@ type Partition struct {
 	ID PartitionInstance `json:"partition,omitempty"`
 }
 type SharedVlan struct {
-	MgmtFloatingIPAddress string        `json:"mgmt-floating-ip-address,omitempty"`
+	MgmtFloatingIPAddress string `json:"mgmt-floating-ip-address,omitempty"`
 	//AllowableIPRange      []interface{} `json:"allowable-ip-range,omitempty"`
-	Vrid                  int           `json:"vrid,omitempty"`
+	Vrid int `json:"vrid,omitempty"`
 	//AllowableIpv6Range    []interface{} `json:"allowable-ipv6-range,omitempty"`
-	Vlan                  int           `json:"vlan,omitempty"`
-	UUID                  string        `json:"uuid,omitempty"`
+	Vlan int    `json:"vlan,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type Template struct {
 	ResourceAccounting string `json:"resource-accounting,omitempty"`
 	UUID               string `json:"uuid,omitempty"`
 }
 type PartitionInstance struct {
-	UUID            string     `json:"uuid,omitempty"`
-	UserTag         string     `json:"user-tag,omitempty"`
-	PartitionName   string     `json:"partition-name,omitempty"`
-	Vrid      SharedVlan `json:"shared-vlan,omitempty"`
-	ResourceAccounting        Template   `json:"template,omitempty"`
-	ApplicationType string     `json:"application-type,omitempty"`
-	ID              int        `json:"id,omitempty"`
+	UUID               string     `json:"uuid,omitempty"`
+	UserTag            string     `json:"user-tag,omitempty"`
+	PartitionName      string     `json:"partition-name,omitempty"`
+	Vrid               SharedVlan `json:"shared-vlan,omitempty"`
+	ResourceAccounting Template   `json:"template,omitempty"`
+	ApplicationType    string     `json:"application-type,omitempty"`
+	ID                 int        `json:"id,omitempty"`
 }
 
 func GetPartition(id string, name string, host string) (*Partition, error) {

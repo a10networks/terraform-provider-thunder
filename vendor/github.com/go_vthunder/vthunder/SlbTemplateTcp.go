@@ -3,8 +3,8 @@ package go_vthunder
 import (
 	"bytes"
 	"encoding/json"
-	"io/ioutil"
 	"fmt"
+	"io/ioutil"
 	"util"
 )
 

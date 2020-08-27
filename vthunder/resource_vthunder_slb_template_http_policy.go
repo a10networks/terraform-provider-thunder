@@ -3,11 +3,11 @@ package vthunder
 //vThunder resource http policy
 
 import (
+	"fmt"
 	"github.com/go_vthunder/vthunder"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"log"
 	"util"
-	"fmt"
 )
 
 func resourceSlbTemplateHttpPolicy() *schema.Resource {

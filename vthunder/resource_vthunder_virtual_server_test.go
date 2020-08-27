@@ -110,91 +110,91 @@ func TestDataToVs(t *testing.T) {
 	ACLIDShared := 1
 
 	resourceSchema := map[string]*schema.Schema{
-		"stats_data_action": &schema.Schema{
+		"stats_data_action": {
 			Type: schema.TypeString,
 		},
-		"ipv6_acl_shared": &schema.Schema{
+		"ipv6_acl_shared": {
 			Type: schema.TypeString,
 		},
-		"acl_name": &schema.Schema{
+		"acl_name": {
 			Type: schema.TypeString,
 		},
-		"enable_disable_action": &schema.Schema{
+		"enable_disable_action": {
 			Type: schema.TypeString,
 		},
-		"ha_dynamic": &schema.Schema{
+		"ha_dynamic": {
 			Type: schema.TypeInt,
 		},
-		"redistribute_route_map": &schema.Schema{
+		"redistribute_route_map": {
 			Type: schema.TypeString,
 		},
-		"acl_name_shared": &schema.Schema{
+		"acl_name_shared": {
 			Type: schema.TypeString,
 		},
-		"ip_address": &schema.Schema{
+		"ip_address": {
 			Type: schema.TypeString,
 		},
-		"use_if_ip": &schema.Schema{
+		"use_if_ip": {
 			Type: schema.TypeInt,
 		},
-		"uuid": &schema.Schema{
+		"uuid": {
 			Type: schema.TypeString,
 		},
-		"vrid": &schema.Schema{
+		"vrid": {
 			Type: schema.TypeInt,
 		},
-		"disable_vip_adv": &schema.Schema{
+		"disable_vip_adv": {
 			Type: schema.TypeInt,
 		},
-		"template_virtual_server": &schema.Schema{
+		"template_virtual_server": {
 			Type: schema.TypeString,
 		},
-		"arp_disable": &schema.Schema{
+		"arp_disable": {
 			Type: schema.TypeInt,
 		},
-		"description": &schema.Schema{
+		"description": {
 			Type: schema.TypeString,
 		},
-		"redistribution_flagged": &schema.Schema{
+		"redistribution_flagged": {
 			Type: schema.TypeInt,
 		},
-		"netmask": &schema.Schema{
+		"netmask": {
 			Type: schema.TypeString,
 		},
-		"acl_id": &schema.Schema{
+		"acl_id": {
 			Type: schema.TypeInt,
 		},
-		"ipv6_acl": &schema.Schema{
+		"ipv6_acl": {
 			Type: schema.TypeString,
 		},
-		"template_logging": &schema.Schema{
+		"template_logging": {
 			Type: schema.TypeString,
 		},
-		"extended_stats": &schema.Schema{
+		"extended_stats": {
 			Type: schema.TypeInt,
 		},
-		"name": &schema.Schema{
+		"name": {
 			Type: schema.TypeString,
 		},
-		"template_scaleout": &schema.Schema{
+		"template_scaleout": {
 			Type: schema.TypeString,
 		},
-		"template_policy": &schema.Schema{
+		"template_policy": {
 			Type: schema.TypeString,
 		},
-		"user_tag": &schema.Schema{
+		"user_tag": {
 			Type: schema.TypeString,
 		},
-		"template_policy_shared": &schema.Schema{
+		"template_policy_shared": {
 			Type: schema.TypeString,
 		},
-		"ethernet": &schema.Schema{
+		"ethernet": {
 			Type: schema.TypeInt,
 		},
-		"shared_partition_policy_template": &schema.Schema{
+		"shared_partition_policy_template": {
 			Type: schema.TypeInt,
 		},
-		"acl_id_shared": &schema.Schema{
+		"acl_id_shared": {
 			Type: schema.TypeInt,
 		},
 		"port_list": {

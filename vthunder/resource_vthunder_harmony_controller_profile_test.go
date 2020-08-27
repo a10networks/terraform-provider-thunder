@@ -44,7 +44,6 @@ func TestAccVthunderProfile_create(t *testing.T) {
 					resource.TestCheckResourceAttr("vthunder_harmony_controller_profile.profile", "region", "India"),
 					resource.TestCheckResourceAttr("vthunder_harmony_controller_profile.profile", "availability_zone", "Pune"),
 					resource.TestCheckResourceAttr("vthunder_harmony_controller_profile.profile", "thunder_mgmt_ip.0.ip_address", "129.213.20.171"),
-					
 				),
 			},
 		},

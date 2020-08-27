@@ -40,17 +40,14 @@ type RibInst struct {
 	IPNextHopTunnel []IPNexthopTunnel    `json:"ip-nexthop-tunnel,omitempty"`
 	PartitionName   []IPNexthopPartition `json:"ip-nexthop-partition,omitempty"`
 	IPMask          string               `json:"ip-mask,omitempty"`
-	Instance string `json:"-"`
+	Instance        string               `json:"-"`
 }
 
 type Rib struct {
 	UUID RibInst `json:"rib,omitempty"`
-	
 }
 
-
-
-func GetRibRoute(id string, host string, instance string) (*Rib,error) {
+func GetRibRoute(id string, host string, instance string) (*Rib, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -64,18 +61,18 @@ func GetRibRoute(id string, host string, instance string) (*Rib,error) {
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 		logger.Println("The HTTP request failed with error \n", err)
-		return nil,err
+		return nil, err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var r Rib
 		erro := json.Unmarshal(data, &r)
 		if erro != nil {
 			fmt.Printf("Unmarshal error %s\n", err)
-			return nil,err
+			return nil, err
 		} else {
 			fmt.Print(r)
 			logger.Println("[INFO] GET REQ RES..........................", r)
-			return &r,nil
+			return &r, nil
 		}
 	}
 }
@@ -98,16 +95,16 @@ func PostRibRoute(id string, r Rib, host string, instance string) {
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error \n", err)
 	}
-	
-	url := "https://"+host+"/axapi/v3/ip/route/rib"
+
+	url := "https://" + host + "/axapi/v3/ip/route/rib"
 	logger.Println("The HTTP request url \n", url)
-	
+
 	resp, err := DoHttp("POST", url, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 		logger.Println("The HTTP request failed with error \n", err)
-		
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var rb Rib
@@ -131,7 +128,6 @@ func PutRibRoute(id string, instance string, r Rib, host string) {
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
 
-
 	payloadBytes, err := json.Marshal(r)
 
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
@@ -139,16 +135,16 @@ func PutRibRoute(id string, instance string, r Rib, host string) {
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error \n", err)
 	}
-	
-	url := "https://"+host+"/axapi/v3/ip/route/rib/"+ instance
+
+	url := "https://" + host + "/axapi/v3/ip/route/rib/" + instance
 	logger.Println("The HTTP request URL\n", url)
-	
-	resp, err := DoHttp("PUT", url , bytes.NewReader(payloadBytes), headers)
+
+	resp, err := DoHttp("PUT", url, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 		logger.Println("The HTTP request failed with error \n", err)
-		
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var rb Rib
@@ -192,4 +188,3 @@ func DeleteRibRoute(id string, instance string, host string) error {
 	}
 	return nil
 }
-

@@ -40,7 +40,7 @@ type DestinationIPAddressList struct {
 type VtepInstance struct {
 	UUID      string                     `json:"uuid,omitempty"`
 	UserTag   string                     `json:"user-tag,omitempty"`
-	Counters1 []SamplingEnableOT           `json:"sampling-enable,omitempty"`
+	Counters1 []SamplingEnableOT         `json:"sampling-enable,omitempty"`
 	IPAddress SourceIPAddress            `json:"source-ip-address,omitempty"`
 	Encap     string                     `json:"encap,omitempty"`
 	IPAddr    []HostList                 `json:"host-list,omitempty"`

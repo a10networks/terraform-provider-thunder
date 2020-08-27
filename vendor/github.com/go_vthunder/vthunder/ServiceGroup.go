@@ -98,7 +98,7 @@ type ServiceGroup struct {
 	Name ServiceGroupInstance `json:"service-group,omitempty"`
 }
 
-func GetSG(id string, name string, host string) (*ServiceGroup,error) {
+func GetSG(id string, name string, host string) (*ServiceGroup, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -112,18 +112,18 @@ func GetSG(id string, name string, host string) (*ServiceGroup,error) {
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 		logger.Println("The HTTP request failed with error \n", err)
-		return nil,err
+		return nil, err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m ServiceGroup
 		erro := json.Unmarshal(data, &m)
 		if erro != nil {
 			fmt.Printf("Unmarshal error %s\n", err)
-			return nil,err
+			return nil, err
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			return &m,nil
+			return &m, nil
 		}
 	}
 }

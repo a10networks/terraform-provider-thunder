@@ -190,7 +190,7 @@ func dataToGlm(d *schema.ResourceData) go_vthunder.Glm {
 
 	if d.Get("send.#").(int) > 0 {
 		//var send go_vthunder.Send
-		send2 := &go_vthunder.Send{LicenseRequest : d.Get("send.0.license_request").(int)}
+		send2 := &go_vthunder.Send{LicenseRequest: d.Get("send.0.license_request").(int)}
 		//send.LicenseRequest = d.Get("send.0.license_request").(int)
 		c.LicenseRequest = send2
 	}

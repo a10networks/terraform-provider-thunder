@@ -50,55 +50,55 @@ type AuthSamlIdp struct {
 	Overwrite          int    `json:"overwrite,omitempty"`
 }
 type ImportInstance struct {
-	GeoLocation          string         `json:"geo-location,omitempty"`
-	SslCertKey           string         `json:"ssl-cert-key,omitempty"`
-	ClassListConvert     string         `json:"class-list-convert,omitempty"`
-	BwList               string         `json:"bw-list,omitempty"`
-	UsbLicense           string         `json:"usb-license,omitempty"`
-	IPMapList            string         `json:"ip-map-list,omitempty"`
+	GeoLocation      string `json:"geo-location,omitempty"`
+	SslCertKey       string `json:"ssl-cert-key,omitempty"`
+	ClassListConvert string `json:"class-list-convert,omitempty"`
+	BwList           string `json:"bw-list,omitempty"`
+	UsbLicense       string `json:"usb-license,omitempty"`
+	IPMapList        string `json:"ip-map-list,omitempty"`
 	//Externalfilename       HealthExternal `json:"health-external,omitempty"`
-	AuthPortal           string         `json:"auth-portal,omitempty"`
-	LocalURIFile         string         `json:"local-uri-file,omitempty"`
-	Aflex                string         `json:"aflex,omitempty"`
-	Overwrite            int            `json:"overwrite,omitempty"`
-	ClassListType        string         `json:"class-list-type,omitempty"`
-	PfxPassword          string         `json:"pfx-password,omitempty,omitempty"`
-	WebCategoryLicense   string         `json:"web-category-license,omitempty"`
-	ThalesKmdata         string         `json:"thales-kmdata,omitempty"`
-	Secured              int            `json:"secured,omitempty"`
-	SslCrl               string         `json:"ssl-crl,omitempty"`
-	Terminal             int            `json:"terminal,omitempty"`
-	Policy               string         `json:"policy,omitempty"`
-	FileInspectionBwList string         `json:"file-inspection-bw-list,omitempty"`
-	ThalesSecworld       string         `json:"thales-secworld,omitempty"`
-	Lw4O6                string         `json:"lw-4o6,omitempty"`
-	AuthPortalImage      string         `json:"auth-portal-image,omitempty"`
+	AuthPortal           string `json:"auth-portal,omitempty"`
+	LocalURIFile         string `json:"local-uri-file,omitempty"`
+	Aflex                string `json:"aflex,omitempty"`
+	Overwrite            int    `json:"overwrite,omitempty"`
+	ClassListType        string `json:"class-list-type,omitempty"`
+	PfxPassword          string `json:"pfx-password,omitempty,omitempty"`
+	WebCategoryLicense   string `json:"web-category-license,omitempty"`
+	ThalesKmdata         string `json:"thales-kmdata,omitempty"`
+	Secured              int    `json:"secured,omitempty"`
+	SslCrl               string `json:"ssl-crl,omitempty"`
+	Terminal             int    `json:"terminal,omitempty"`
+	Policy               string `json:"policy,omitempty"`
+	FileInspectionBwList string `json:"file-inspection-bw-list,omitempty"`
+	ThalesSecworld       string `json:"thales-secworld,omitempty"`
+	Lw4O6                string `json:"lw-4o6,omitempty"`
+	AuthPortalImage      string `json:"auth-portal-image,omitempty"`
 	//Postfilename       HealthPostfile `json:"health-postfile,omitempty"`
-	ClassList            string         `json:"class-list,omitempty"`
-	GlmLicense           string         `json:"glm-license,omitempty"`
-	DnssecDs             string         `json:"dnssec-ds,omitempty"`
-	CloudCreds           string         `json:"cloud-creds,omitempty"`
-	AuthJwks             string         `json:"auth-jwks,omitempty"`
-	Wsdl                 string         `json:"wsdl,omitempty"`
-	Password             string         `json:"password,omitempty"`
-	SslKey               string         `json:"ssl-key,omitempty"`
-	UseMgmtPort          int            `json:"use-mgmt-port,omitempty"`
-	RemoteFile           string         `json:"remote-file,omitempty"`
-	CloudConfig          string         `json:"cloud-config,omitempty"`
+	ClassList   string `json:"class-list,omitempty"`
+	GlmLicense  string `json:"glm-license,omitempty"`
+	DnssecDs    string `json:"dnssec-ds,omitempty"`
+	CloudCreds  string `json:"cloud-creds,omitempty"`
+	AuthJwks    string `json:"auth-jwks,omitempty"`
+	Wsdl        string `json:"wsdl,omitempty"`
+	Password    string `json:"password,omitempty"`
+	SslKey      string `json:"ssl-key,omitempty"`
+	UseMgmtPort int    `json:"use-mgmt-port,omitempty"`
+	RemoteFile  string `json:"remote-file,omitempty"`
+	CloudConfig string `json:"cloud-config,omitempty"`
 	//Device             ToDevice       `json:"to-device,omitempty"`
-	UserTag              string         `json:"user-tag,omitempty"`
-	StoreName            string         `json:"store-name,omitempty"`
-	CaCert               string         `json:"ca-cert,omitempty"`
-	GlmCert              string         `json:"glm-cert,omitempty"`
+	UserTag   string `json:"user-tag,omitempty"`
+	StoreName string `json:"store-name,omitempty"`
+	CaCert    string `json:"ca-cert,omitempty"`
+	GlmCert   string `json:"glm-cert,omitempty"`
 	//Store                Store          `json:"store,omitempty"`
-	XMLSchema            string         `json:"xml-schema,omitempty"`
-	CertificateType      string         `json:"certificate-type,omitempty"`
+	XMLSchema       string `json:"xml-schema,omitempty"`
+	CertificateType string `json:"certificate-type,omitempty"`
 	//SamlIdpName          AuthSamlIdp    `json:"auth-saml-idp,omitempty"`
-	SslCert              string         `json:"ssl-cert,omitempty"`
-	DnssecDnskey         string         `json:"dnssec-dnskey,omitempty"`
+	SslCert      string `json:"ssl-cert,omitempty"`
+	DnssecDnskey string `json:"dnssec-dnskey,omitempty"`
 }
 
-func GetImport(id string, host string) (*Import,error) {
+func GetImport(id string, host string) (*Import, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -112,7 +112,7 @@ func GetImport(id string, host string) (*Import,error) {
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 		logger.Println("The HTTP request failed with error \n", err)
-		return nil,err
+		return nil, err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Import
@@ -120,11 +120,11 @@ func GetImport(id string, host string) (*Import,error) {
 		if erro != nil {
 			fmt.Printf("Unmarshal error %s\n", err)
 			logger.Println("[INFO] Unmarshal error- %s\n", err)
-			return nil,err
+			return nil, err
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			return &m,nil
+			return &m, nil
 		}
 	}
 }

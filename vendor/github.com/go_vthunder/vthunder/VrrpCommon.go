@@ -30,16 +30,16 @@ type Common struct {
 	DisableDefaultVrid       int                `json:"disable-default-vrid"`
 	TrackEventDelay          int                `json:"track-event-delay,omitempty"`
 	Action                   string             `json:"action,omitempty"`
-	HostidAppendToVridValue       HostidAppendToVrid `json:"hostid-append-to-vrid,omitempty"`
+	HostidAppendToVridValue  HostidAppendToVrid `json:"hostid-append-to-vrid,omitempty"`
 	RestartTime              int                `json:"restart-time,omitempty"`
-	InlineMode            InlineModeCfg      `json:"inline-mode-cfg,omitempty"`
+	InlineMode               InlineModeCfg      `json:"inline-mode-cfg,omitempty"`
 }
 
 type CommonInstance struct {
 	UUID Common `json:"common,omitempty"`
 }
 
-func GetVrrpCommon(id string, host string) (*CommonInstance,error) {
+func GetVrrpCommon(id string, host string) (*CommonInstance, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -53,20 +53,20 @@ func GetVrrpCommon(id string, host string) (*CommonInstance,error) {
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 		logger.Println("The HTTP request failed with error \n", err)
-		return nil,err
+		return nil, err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m CommonInstance
 		erro := json.Unmarshal(data, &m)
 		if erro != nil {
 			fmt.Printf("Unmarshal error %s\n", err)
-			return nil,err
+			return nil, err
 		} else {
 			fmt.Print(m)
 			logger.Println("Common instance from Read")
 			logger.Println(string(data))
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			return &m,nil
+			return &m, nil
 		}
 	}
 }

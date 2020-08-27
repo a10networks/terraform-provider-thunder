@@ -64,19 +64,19 @@ func resourceOverlayTunnelPartition() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-//						"allowable_ipv6_range": {
-//							Type:     schema.TypeList,
-//							Optional: true,
-//						},
+						//						"allowable_ipv6_range": {
+						//							Type:     schema.TypeList,
+						//							Optional: true,
+						//						},
 						"mgmt_floating_ip_address": {
 							Type:        schema.TypeString,
 							Optional:    true,
 							Description: "",
 						},
-//						"allowable_ip_range": {
-//							Type:     schema.TypeList,
-//							Optional: true,
-//						},
+						//						"allowable_ip_range": {
+						//							Type:     schema.TypeList,
+						//							Optional: true,
+						//						},
 						"uuid": {
 							Type:        schema.TypeString,
 							Optional:    true,
@@ -186,26 +186,26 @@ func dataToPartition(name string, d *schema.ResourceData) go_vthunder.Partition 
 	var s go_vthunder.Partition
 
 	var sInstance go_vthunder.PartitionInstance
-	
+
 	sInstance.UserTag = d.Get("user_tag").(string)
 	sInstance.PartitionName = d.Get("partition_name").(string)
 	sInstance.ApplicationType = d.Get("application_type").(string)
 	sInstance.ID = d.Get("id2").(int)
-	
+
 	var vlans go_vthunder.SharedVlan
-	
+
 	prefix := fmt.Sprintf("shared_vlan.0.")
 	vlans.MgmtFloatingIPAddress = d.Get(prefix + "mgmt_floating_ip_address").(string)
 	vlans.Vrid = d.Get(prefix + "vrid").(int)
 	vlans.Vlan = d.Get(prefix + "vlan").(int)
-	
+
 	sInstance.Vrid = vlans
-	
+
 	var template go_vthunder.Template
-	
+
 	prefix2 := fmt.Sprintf("template.0.")
 	template.ResourceAccounting = d.Get(prefix2 + "resource_accounting").(string)
-	
+
 	sInstance.ResourceAccounting = template
 
 	s.ID = sInstance

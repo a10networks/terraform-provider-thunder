@@ -28,7 +28,7 @@ type SMTPInstance struct {
 	ServerDomain       string                  `json:"server-domain,omitempty"`
 	ServiceGroup       []ClientDomainSwitching `json:"client-domain-switching,omitempty"`
 	ClientStarttlsType string                  `json:"client-starttls-type,omitempty"`
-	Logging            Template1                `json:"template,omitempty"`
+	Logging            Template1               `json:"template,omitempty"`
 	DisableType        []CommandDisable        `json:"command-disable,omitempty"`
 	ServerStarttlsType string                  `json:"server-starttls-type,omitempty"`
 	ServiceReadyMsg    string                  `json:"service-ready-msg,omitempty"`

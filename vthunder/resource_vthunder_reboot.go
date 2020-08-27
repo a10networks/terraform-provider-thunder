@@ -139,7 +139,7 @@ func dataToReboot(d *schema.ResourceData) go_vthunder.Reboot {
 	var vc go_vthunder.Reboot
 
 	var c go_vthunder.RebootInstance
-	
+
 	c.All = d.Get("all").(int)
 
 	vc.All = c

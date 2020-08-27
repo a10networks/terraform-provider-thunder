@@ -5,7 +5,6 @@ import (
 	"testing"
 )
 
-
 var TEST_PARTITION_RESOURCE = `
 resource "vthunder_partition" "partition"{
 user_tag="tag1"
@@ -21,7 +20,7 @@ func TestAccVthunderPartition_create(t *testing.T) {
 		PreCheck: func() {
 			testAcctPreCheck(t)
 		},
-		Providers:    testAccProviders,
+		Providers: testAccProviders,
 		Steps: []resource.TestStep{
 			{
 				Config: TEST_PARTITION_RESOURCE,

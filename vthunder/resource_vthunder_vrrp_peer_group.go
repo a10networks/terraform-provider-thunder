@@ -3,10 +3,10 @@ package vthunder
 //vThunder resource Vrrp peer group
 
 import (
+	"fmt"
 	"github.com/go_vthunder/vthunder"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"util"
-	"fmt"
 )
 
 func resourceVrrpPeerGroup() *schema.Resource {
@@ -85,7 +85,7 @@ func resourceVrrpPeerGroupRead(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(vThunder)
 
 	if client.Host != "" {
-		
+
 		name := d.Id()
 
 		vc, err := go_vthunder.GetVrrpPeerGroup(client.Token, client.Host)
