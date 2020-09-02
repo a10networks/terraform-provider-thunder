@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_ALG_DNS_RESOURCE = `
-{'resource': {'vthunder_fw_alg_dns': {'dns': {'default_port_disable': 'default-port-disable'}}}}
+resource "vthunder_fw_alg_dns" "FwAlgTest" {
+	default_port_disable = "default-port-disable" 
+}
 `
 
 //Acceptance test
@@ -18,7 +20,7 @@ func TestAccFwAlgDns_create(t *testing.T) {
 			{
 				Config: TEST_FW_ALG_DNS_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_alg_dns.FwAlgTest", "dns", "{'default-port-disable': 'default-port-disable'}"),
+					resource.TestCheckResourceAttr("vthunder_fw_alg_dns.FwAlgTest", "default_port_disable", "default-port-disable"),
 				),
 			},
 		},

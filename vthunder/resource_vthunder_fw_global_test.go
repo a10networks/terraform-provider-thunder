@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_GLOBAL_RESOURCE = `
-{'resource': {'vthunder_fw_global': {'global': {'disable_ip_fw_sessions': 1}}}}
+resource "vthunder_fw_global" "FwTest" {
+	disable_ip_fw_sessions = "1" 
+}
 `
 
 //Acceptance test
@@ -18,7 +20,7 @@ func TestAccFwGlobal_create(t *testing.T) {
 			{
 				Config: TEST_FW_GLOBAL_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_global.FwTest", "global", "{'disable-ip-fw-sessions': 1}"),
+					resource.TestCheckResourceAttr("vthunder_fw_global.FwTest", "disable_ip_fw_sessions", "1"),
 				),
 			},
 		},

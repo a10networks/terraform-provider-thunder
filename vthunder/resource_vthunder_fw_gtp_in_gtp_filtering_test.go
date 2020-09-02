@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_GTP_IN_GTP_FILTERING_RESOURCE = `
-{'resource': {'vthunder_fw_gtp_in_gtp_filtering': {'gtp_in_gtp_filtering': {'gtp_in_gtp_value': 'disable'}}}}
+resource "vthunder_fw_gtp_in_gtp_filtering" "FwTest" {
+	gtp_in_gtp_value = "disable" 
+}
 `
 
 //Acceptance test
@@ -18,7 +20,7 @@ func TestAccFwGtpInGtpFiltering_create(t *testing.T) {
 			{
 				Config: TEST_FW_GTP_IN_GTP_FILTERING_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_gtp_in_gtp_filtering.FwTest", "gtp_in_gtp_filtering", "{'gtp-in-gtp-value': 'disable'}"),
+					resource.TestCheckResourceAttr("vthunder_fw_gtp_in_gtp_filtering.FwTest", "gtp_in_gtp_value", "disable"),
 				),
 			},
 		},

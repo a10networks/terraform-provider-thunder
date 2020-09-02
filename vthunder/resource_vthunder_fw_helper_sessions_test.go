@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_HELPER_SESSIONS_RESOURCE = `
-{'resource': {'vthunder_fw_helper_sessions': {'helper_sessions': {'mode': 'disable'}}}}
+resource "vthunder_fw_helper_sessions" "FwTest" {
+	mode = "disable"
+}
 `
 
 //Acceptance test
@@ -18,7 +20,7 @@ func TestAccFwHelperSessions_create(t *testing.T) {
 			{
 				Config: TEST_FW_HELPER_SESSIONS_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_helper_sessions.FwTest", "helper_sessions", "{'mode': 'disable'}"),
+					resource.TestCheckResourceAttr("vthunder_fw_helper_sessions.FwTest", "mode", "disable"),
 				),
 			},
 		},

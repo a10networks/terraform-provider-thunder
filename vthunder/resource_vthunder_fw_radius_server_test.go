@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_RADIUS_SERVER_RESOURCE = `
-{'resource': {'vthunder_fw_radius_server': {'server': {'listen_port': 1024}}}}
+resource "vthunder_fw_radius_server" "FwRadiusTest" {
+	listen_port = "1024" 
+}
 `
 
 //Acceptance test
@@ -18,7 +20,7 @@ func TestAccFwRadiusServer_create(t *testing.T) {
 			{
 				Config: TEST_FW_RADIUS_SERVER_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_radius_server.FwRadiusTest", "server", "{'listen-port': 1024}"),
+					resource.TestCheckResourceAttr("vthunder_fw_radius_server.FwRadiusTest", "listen_port", "1024"),
 				),
 			},
 		},

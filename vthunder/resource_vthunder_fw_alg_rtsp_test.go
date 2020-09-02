@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_ALG_RTSP_RESOURCE = `
-{'resource': {'vthunder_fw_alg_rtsp': {'rtsp': {'default_port_disable': 'default-port-disable'}}}}
+resource "vthunder_fw_alg_rtsp" "FwAlgTest" {
+	default_port_disable = "default-port-disable" 
+}
 `
 
 //Acceptance test
@@ -18,7 +20,7 @@ func TestAccFwAlgRtsp_create(t *testing.T) {
 			{
 				Config: TEST_FW_ALG_RTSP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_alg_rtsp.FwAlgTest", "rtsp", "{'default-port-disable': 'default-port-disable'}"),
+					resource.TestCheckResourceAttr("vthunder_fw_alg_rtsp.FwAlgTest", "default_port_disable", "default-port-disable"),
 				),
 			},
 		},

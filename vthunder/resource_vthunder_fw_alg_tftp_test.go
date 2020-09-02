@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_ALG_TFTP_RESOURCE = `
-{'resource': {'vthunder_fw_alg_tftp': {'tftp': {'default_port_disable': 'default-port-disable'}}}}
+resource "vthunder_fw_alg_tftp" "FwAlgTest" {
+	default_port_disable = "default-port-disable" 
+}
 `
 
 //Acceptance test
@@ -18,7 +20,8 @@ func TestAccFwAlgTftp_create(t *testing.T) {
 			{
 				Config: TEST_FW_ALG_TFTP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_alg_tftp.FwAlgTest", "tftp", "{'default-port-disable': 'default-port-disable'}"),
+
+					resource.TestCheckResourceAttr("vthunder_fw_alg_tftp.FwAlgTest", "default_port_disable", "default-port-disable"),
 				),
 			},
 		},

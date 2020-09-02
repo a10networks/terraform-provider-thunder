@@ -7,7 +7,10 @@ import (
 )
 
 var TEST_FW_SERVER_RESOURCE = `
-{'resource': {'vthunder_fw_server': {'server': {'name': 'a', 'server_ipv6_addr': '2003::1'}}}}
+resource "vthunder_fw_server" "FwTest" {
+	name = "a"
+	server_ipv6_addr = "2003::1" 
+}
 `
 
 //Acceptance test
@@ -18,7 +21,8 @@ func TestAccFwServer_create(t *testing.T) {
 			{
 				Config: TEST_FW_SERVER_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_server.FwTest", "server", "{'name': 'a', 'server-ipv6-addr': '2003::1'}"),
+					resource.TestCheckResourceAttr("vthunder_fw_server.FwTest", "name", "a"),
+					resource.TestCheckResourceAttr("vthunder_fw_server.FwTest", "server_ipv6_addr", "2003::1"),
 				),
 			},
 		},

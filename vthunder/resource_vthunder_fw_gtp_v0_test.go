@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_GTP_V0_RESOURCE = `
-{'resource': {'vthunder_fw_gtp_v0': {'gtp_v0': {'gtpv0_value': 'enable'}}}}
+resource "vthunder_fw_gtp_v0" "FwTest" {
+	gtpv0_value = "enable" 
+}
 `
 
 //Acceptance test
@@ -18,7 +20,7 @@ func TestAccFwGtpV0_create(t *testing.T) {
 			{
 				Config: TEST_FW_GTP_V0_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_gtp_v0.FwTest", "gtp_v0", "{'gtpv0-value': 'enable'}"),
+					resource.TestCheckResourceAttr("vthunder_fw_gtp_v0.FwTest", "gtpv0_value", "enable"),
 				),
 			},
 		},

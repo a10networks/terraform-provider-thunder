@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_ALG_SIP_RESOURCE = `
-{'resource': {'vthunder_fw_alg_sip': {'sip': {'default_port_disable': 'default-port-disable'}}}}
+resource "vthunder_fw_alg_sip" "FwAlgTest" {
+	default_port_disable = "default-port-disable" 
+}
 `
 
 //Acceptance test
@@ -18,7 +20,7 @@ func TestAccFwAlgSip_create(t *testing.T) {
 			{
 				Config: TEST_FW_ALG_SIP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_alg_sip.FwAlgTest", "sip", "{'default-port-disable': 'default-port-disable'}"),
+					resource.TestCheckResourceAttr("vthunder_fw_alg_sip.FwAlgTest", "default_port_disable", "default-port-disable"),
 				),
 			},
 		},

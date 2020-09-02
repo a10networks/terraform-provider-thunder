@@ -7,7 +7,10 @@ import (
 )
 
 var TEST_FW_ALG_ICMP_RESOURCE = `
-{'resource': {'vthunder_fw_alg_icmp': {'icmp': {'disable': 'disable'}}}}
+resource "vthunder_fw_alg_icmp" "FwAlgTest" {
+	disable = "disable" 
+}
+
 `
 
 //Acceptance test
@@ -18,7 +21,7 @@ func TestAccFwAlgIcmp_create(t *testing.T) {
 			{
 				Config: TEST_FW_ALG_ICMP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_alg_icmp.FwAlgTest", "icmp", "{'disable': 'disable'}"),
+					resource.TestCheckResourceAttr("vthunder_fw_alg_icmp.FwAlgTest", "disable", "disable"),
 				),
 			},
 		},

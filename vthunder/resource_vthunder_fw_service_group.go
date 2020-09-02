@@ -197,12 +197,12 @@ func dataToFwServiceGroup(d *schema.ResourceData) go_vthunder.FwServiceGroup {
 		prefix := fmt.Sprintf("member_list.%d.", i)
 		obj1.Port = d.Get(prefix + "port").(int)
 
-		SamplingEnableCount := d.Get(prefix+"sampling_enable.#").(int)
+		SamplingEnableCount := d.Get(prefix + "sampling_enable.#").(int)
 		obj1.Counters1 = make([]go_vthunder.FwServiceSamplingEnable, 0, SamplingEnableCount)
 
 		for i := 0; i < SamplingEnableCount; i++ {
 			var obj1_1 go_vthunder.FwServiceSamplingEnable
-			prefix1 := prefix + fmt.Sprintf("sampling_enable.%d.", i)
+			prefix1 := prefix + fmt.Sprintf(prefix+"sampling_enable.%d.", i)
 			obj1_1.Counters1 = d.Get(prefix1 + "counters1").(string)
 			obj1.Counters1 = append(obj1.Counters1, obj1_1)
 		}

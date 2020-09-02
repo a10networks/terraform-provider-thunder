@@ -7,7 +7,10 @@ import (
 )
 
 var TEST_FW_ALG_PPTP_RESOURCE = `
-{'resource': {'vthunder_fw_alg_pptp': {'pptp': {'default_port_disable': 'default-port-disable'}}}}
+resource "vthunder_fw_alg_pptp" "FwAlgTest" {
+	default_port_disable = "default-port-disable" 
+}
+
 `
 
 //Acceptance test
@@ -18,7 +21,7 @@ func TestAccFwAlgPptp_create(t *testing.T) {
 			{
 				Config: TEST_FW_ALG_PPTP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_alg_pptp.FwAlgTest", "pptp", "{'default-port-disable': 'default-port-disable'}"),
+					resource.TestCheckResourceAttr("vthunder_fw_alg_pptp.FwAlgTest", "default_port_disable", "default-port-disable"),
 				),
 			},
 		},
