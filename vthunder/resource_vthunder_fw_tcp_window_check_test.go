@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_TCP_WINDOW_CHECK_RESOURCE = `
-{'resource': {'vthunder_fw_tcp_window_check': {'tcp_window_check': {'status': 'enable'}}}}
+resource "vthunder_fw_tcp_window_check" "FwTest" {
+        status = "enable" 
+}
 `
 
 //Acceptance test
@@ -18,7 +20,7 @@ func TestAccFwTcpWindowCheck_create(t *testing.T) {
 			{
 				Config: TEST_FW_TCP_WINDOW_CHECK_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_tcp_window_check.FwTest", "tcp_window_check", "{'status': 'enable'}"),
+					resource.TestCheckResourceAttr("vthunder_fw_tcp_window_check.FwTest", "status", "enable"),
 				),
 			},
 		},

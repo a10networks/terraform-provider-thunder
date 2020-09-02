@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_URPF_RESOURCE = `
-{'resource': {'vthunder_fw_urpf': {'urpf': {'status': 'strict'}}}}
+resource "vthunder_fw_urpf" "FwTest" {
+	status = "strict" 
+}
 `
 
 //Acceptance test
@@ -18,7 +20,7 @@ func TestAccFwUrpf_create(t *testing.T) {
 			{
 				Config: TEST_FW_URPF_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_urpf.FwTest", "urpf", "{'status': 'strict'}"),
+					resource.TestCheckResourceAttr("vthunder_fw_urpf.FwTest", "status", "strict"),
 				),
 			},
 		},

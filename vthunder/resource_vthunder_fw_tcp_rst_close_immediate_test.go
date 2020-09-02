@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_TCP_RST_CLOSE_IMMEDIATE_RESOURCE = `
-{'resource': {'vthunder_fw_tcp_rst_close_immediate': {'tcp_rst_close_immediate': {'status': 'enable'}}}}
+resource "vthunder_fw_tcp_rst_close_immediate" "FwTest" {
+	status = "enable" 
+}
 `
 
 //Acceptance test
@@ -18,7 +20,7 @@ func TestAccFwTcpRstCloseImmediate_create(t *testing.T) {
 			{
 				Config: TEST_FW_TCP_RST_CLOSE_IMMEDIATE_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_tcp_rst_close_immediate.FwTest", "tcp_rst_close_immediate", "{'status': 'enable'}"),
+					resource.TestCheckResourceAttr("vthunder_fw_tcp_rst_close_immediate.FwTest", "status", "enable"),
 				),
 			},
 		},

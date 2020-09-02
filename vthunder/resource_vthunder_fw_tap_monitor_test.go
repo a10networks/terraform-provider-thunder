@@ -7,7 +7,9 @@ import (
 )
 
 var TEST_FW_TAP_MONITOR_RESOURCE = `
-{'resource': {'vthunder_fw_tap_monitor': {'tap_monitor': {'status': 'enable'}}}}
+resource "vthunder_fw_tap_monitor" "FwTest" {
+	status = "enable" 
+}
 `
 
 //Acceptance test
@@ -18,7 +20,7 @@ func TestAccFwTapMonitor_create(t *testing.T) {
 			{
 				Config: TEST_FW_TAP_MONITOR_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_tap_monitor.FwTest", "tap_monitor", "{'status': 'enable'}"),
+				resource.TestCheckResourceAttr("vthunder_fw_tap_monitor.FwTest", "status", "enable"),
 				),
 			},
 		},

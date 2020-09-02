@@ -9,7 +9,7 @@ import (
 var TEST_FW_TEMPLATE_LOGGING_RESOURCE = `
 resource "vthunder_fw_template_logging" "FwTemplateTest" {
 	name = "a"
-	user_tag = "a"	
+	user_tag = "a" 
 }
 `
 
@@ -21,6 +21,7 @@ func TestAccFwTemplateLogging_create(t *testing.T) {
 			{
 				Config: TEST_FW_TEMPLATE_LOGGING_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
+					
 					resource.TestCheckResourceAttr("vthunder_fw_template_logging.FwTemplateTest", "name", "a"),
 					resource.TestCheckResourceAttr("vthunder_fw_template_logging.FwTemplateTest", "user_tag", "a"),
 				),
