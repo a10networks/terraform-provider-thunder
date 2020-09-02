@@ -19,7 +19,11 @@ provider "vthunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "vthunder_fw_app" "FwTest" {
+	sampling_enable {
+		counters1 = "all" 
+	}
+}
 ```
 
 ## Argument Reference

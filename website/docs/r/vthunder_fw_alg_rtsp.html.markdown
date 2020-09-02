@@ -19,7 +19,9 @@ provider "vthunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "vthunder_fw_alg_rtsp" "FwAlgTest" {
+	default_port_disable = "default-port-disable" 
+}
 ```
 
 ## Argument Reference

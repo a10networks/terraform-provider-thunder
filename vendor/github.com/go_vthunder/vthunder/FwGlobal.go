@@ -43,7 +43,7 @@ func PostFwGlobal(id string, inst FwGlobal, host string) {
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside PostFwGlobal")
 	payloadBytes, err := json.Marshal(inst)
-	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
+	logger.Println("[INFO] input payload bytes 0 - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
 	}

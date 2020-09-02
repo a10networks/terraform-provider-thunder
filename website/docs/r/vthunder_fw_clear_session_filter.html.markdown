@@ -8,19 +8,7 @@ description: |-
 
 # vthunder\_fw\_clear\_session\_filter
 
-`vthunder_fw_clear_session_filter` Provides details about vthunder fw clear session filter
-## Example Usage
-
-
-```hcl
-provider "vthunder" {
-  address  = "129.213.82.65"
-  username = "admin"
-  password = "admin"
-}
-
-// Put working JSON here
-```
+`vthunder_fw_clear_session_filter` Provides details about vthunder fw clear session filter`
 
 ## Argument Reference
 

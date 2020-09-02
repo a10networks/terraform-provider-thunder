@@ -19,7 +19,9 @@ provider "vthunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "vthunder_fw_gtp_v0" "FwTest" {
+	gtpv0_value = "enable" 
+}
 ```
 
 ## Argument Reference

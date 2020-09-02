@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_FW_ALG_FTP_RESOURCE = `
-  resource "vthunder_fw_alg_ftp" "FwAlgTest" {
+resource "vthunder_fw_alg_ftp" "FwAlgTest" {
 	default_port_disable = "default-port-disable" 
 }
 `

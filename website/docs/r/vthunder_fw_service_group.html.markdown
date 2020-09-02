@@ -19,7 +19,11 @@ provider "vthunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "vthunder_fw_service_group" "FwTest" {
+	protocol = "tcp"
+	name = "a"
+	user_tag = "a" 
+}
 ```
 
 ## Argument Reference

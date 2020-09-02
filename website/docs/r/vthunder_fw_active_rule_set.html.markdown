@@ -9,18 +9,6 @@ description: |-
 # vthunder\_fw\_active\_rule\_set
 
 `vthunder_fw_active_rule_set` Provides details about vthunder fw active rule set
-## Example Usage
-
-
-```hcl
-provider "vthunder" {
-  address  = "129.213.82.65"
-  username = "admin"
-  password = "admin"
-}
-
-// Put working JSON here
-```
 
 ## Argument Reference
 

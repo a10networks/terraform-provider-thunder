@@ -19,7 +19,9 @@ provider "vthunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "vthunder_fw_radius_server" "FwRadiusTest" {
+	listen_port = "1024" 
+}
 ```
 
 ## Argument Reference

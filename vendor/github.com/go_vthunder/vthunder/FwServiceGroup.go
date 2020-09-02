@@ -8,7 +8,7 @@ import (
 )
 
 type FwServiceGroup struct {
-	Protocol FwServiceGroupInstance `json:"service-group-instance,omitempty"`
+	UUID FwServiceGroupInstance `json:"service-group-instance,omitempty"`
 }
 
 type FwServiceGroupInstance struct {

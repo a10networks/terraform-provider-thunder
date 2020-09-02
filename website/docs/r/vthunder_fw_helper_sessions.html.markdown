@@ -19,7 +19,9 @@ provider "vthunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "vthunder_fw_helper_sessions" "FwTest" {
+	mode = "disable"
+}
 ```
 
 ## Argument Reference

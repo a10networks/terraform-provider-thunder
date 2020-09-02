@@ -19,7 +19,9 @@ provider "vthunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "vthunder_fw_gtp_in_gtp_filtering" "FwTest" {
+	gtp_in_gtp_value = "disable" 
+}
 ```
 
 ## Argument Reference

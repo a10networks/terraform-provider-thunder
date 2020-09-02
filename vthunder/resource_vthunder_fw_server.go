@@ -4,10 +4,10 @@ package vthunder
 
 import (
 	"fmt"
-	"github.com/go_vthunder/vthunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"strconv"
 	"util"
+
+	go_vthunder "github.com/go_vthunder/vthunder"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceFwServer() *schema.Resource {
@@ -146,10 +146,10 @@ func resourceFwServerCreate(d *schema.ResourceData, meta interface{}) error {
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwServer (Inside resourceFwServerCreate) ")
-		name := d.Get("name").(int)
+		name := d.Get("name").(string)
 		data := dataToFwServer(d)
 		logger.Println("[INFO] received formatted data from method data to FwServer --")
-		d.SetId(strconv.Itoa(name))
+		d.SetId(name)
 		go_vthunder.PostFwServer(client.Token, data, client.Host)
 
 		return resourceFwServerRead(d, meta)
@@ -264,6 +264,6 @@ func dataToFwServer(d *schema.ResourceData) go_vthunder.FwServer {
 	c.HealthCheck = d.Get("health_check").(string)
 	c.Name = d.Get("name").(string)
 
-	vc.HealthCheckDisable = c
+	vc.UUID = c
 	return vc
 }

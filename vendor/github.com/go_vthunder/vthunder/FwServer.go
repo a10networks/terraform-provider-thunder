@@ -8,7 +8,7 @@ import (
 )
 
 type FwServer struct {
-	HealthCheckDisable FwServerInstance `json:"server-instance,omitempty"`
+	UUID FwServerInstance `json:"server-instance,omitempty"`
 }
 
 type FwServerInstance struct {

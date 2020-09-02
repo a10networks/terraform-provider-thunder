@@ -8,7 +8,7 @@ import (
 )
 
 type FwApp struct {
-	SamplingEnable FwAppInstance `json:"app-instance,omitempty"`
+	UUID FwAppInstance `json:"app-instance,omitempty"`
 }
 
 type FwAppInstance struct {

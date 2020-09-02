@@ -19,7 +19,10 @@ provider "vthunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "vthunder_fw_server" "FwTest" {
+	name = "a"
+	server_ipv6_addr = "2003::1" 
+}
 ```
 
 ## Argument Reference

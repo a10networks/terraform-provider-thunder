@@ -19,7 +19,9 @@ provider "vthunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "vthunder_fw_alg_icmp" "FwAlgTest" {
+	disable = "disable" 
+}
 ```
 
 ## Argument Reference

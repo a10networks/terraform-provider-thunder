@@ -4,10 +4,10 @@ package vthunder
 
 import (
 	"fmt"
-	"github.com/go_vthunder/vthunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"strconv"
 	"util"
+
+	go_vthunder "github.com/go_vthunder/vthunder"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceFwServiceGroup() *schema.Resource {
@@ -106,10 +106,10 @@ func resourceFwServiceGroupCreate(d *schema.ResourceData, meta interface{}) erro
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwServiceGroup (Inside resourceFwServiceGroupCreate) ")
-		name := d.Get("name").(int)
+		name := d.Get("name").(string)
 		data := dataToFwServiceGroup(d)
 		logger.Println("[INFO] received formatted data from method data to FwServiceGroup --")
-		d.SetId(strconv.Itoa(name))
+		d.SetId(name)
 		go_vthunder.PostFwServiceGroup(client.Token, data, client.Host)
 
 		return resourceFwServiceGroupRead(d, meta)
@@ -215,6 +215,6 @@ func dataToFwServiceGroup(d *schema.ResourceData) go_vthunder.FwServiceGroup {
 	c.HealthCheck = d.Get("health_check").(string)
 	c.Name = d.Get("name").(string)
 
-	vc.Protocol = c
+	vc.UUID = c
 	return vc
 }

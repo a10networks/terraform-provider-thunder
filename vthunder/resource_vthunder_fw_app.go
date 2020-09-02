@@ -4,10 +4,11 @@ package vthunder
 
 import (
 	"fmt"
-	"github.com/go_vthunder/vthunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_vthunder "github.com/go_vthunder/vthunder"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceFwApp() *schema.Resource {
@@ -99,6 +100,6 @@ func dataToFwApp(d *schema.ResourceData) go_vthunder.FwApp {
 		c.Counters1 = append(c.Counters1, obj1)
 	}
 
-	vc.SamplingEnable = c
+	vc.UUID = c
 	return vc
 }

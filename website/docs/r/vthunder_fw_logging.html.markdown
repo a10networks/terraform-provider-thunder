@@ -9,18 +9,6 @@ description: |-
 # vthunder\_fw\_logging
 
 `vthunder_fw_logging` Provides details about vthunder fw logging
-## Example Usage
-
-
-```hcl
-provider "vthunder" {
-  address  = "129.213.82.65"
-  username = "admin"
-  password = "admin"
-}
-
-// Put working JSON here
-```
 
 ## Argument Reference
 
