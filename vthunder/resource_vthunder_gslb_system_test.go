@@ -6,21 +6,21 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 )
 
-var TEST_FW_TAP_MONITOR_RESOURCE = `
-resource "vthunder_fw_tap_monitor" "FwTest" {
-	status = "enable" 
+var TEST_GSLB_SYSTEM_RESOURCE = `
+resource "vthunder_gslb_system" "GslbTest" {
+	ttl = "1" 
 }
 `
 
 //Acceptance test
-func TestAccFwTapMonitor_create(t *testing.T) {
+func TestAccGslbSystem_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
 			{
-				Config: TEST_FW_TAP_MONITOR_RESOURCE,
+				Config: TEST_GSLB_SYSTEM_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("vthunder_fw_tap_monitor.FwTest", "status", "enable"),
+					resource.TestCheckResourceAttr("vthunder_gslb_system.GslbTest", "ttl", "1"),
 				),
 			},
 		},
