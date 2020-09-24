@@ -1,4 +1,40 @@
-## 0.2.0 (Unreleased)
+## 0.4.0 (Unreleased)
+FEATURES:
+- Added new 35 reources for firewall module.
+- Bug fixes.
+
+## 0.3.0 (July 28, 2020)
+
+FEATURES:
+- Added Resources for:
+  - vthunder_ip_dns_primary
+  - vthunder_ip_dns_secondary
+  - vthunder_ip_dns_suffix
+  - vthunder_ip_frag
+  - vthunder_ip_icmp
+  - vthunder_ip_nat_alg_pptp
+  - vthunder_ip_nat_global
+  - vthunder_ip_nat_icmp
+  - vthunder_ip_prefix_list
+  - vthunder_ip_reroute
+  - vthunder_ip_tcp
+  - vthunder_ipv6_frag
+  - vthunder_ipv6_icmpv6
+  - vthunder_ipv6_nat_icmpv6
+  - vthunder_ip_route_static_bfd
+  - vthunder_ip_address
+  - vthunder_interface_management
+  - vthunder_interface_ethernet_bfd
+  - vthunder_interface_ethernet_lldp
+  - vthunder_interface_ve_bfd
+  - vthunder_interface_ethernet_trunk_group
+  - vthunder_interface_ethernet_ipv6
+  - vthunder_interface_ve_ip
+  - vthunder_interface_ve_ipv6
+  - vthunder_interface_ethernet
+  - vthunder_interface_ve
+
+## 0.2.0 (June 26, 2020)
 
 FEATURES:
 - Added Resources for:

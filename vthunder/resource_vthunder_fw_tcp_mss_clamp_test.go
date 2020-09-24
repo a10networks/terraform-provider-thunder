@@ -22,9 +22,9 @@ func TestAccFwTcpMssClamp_create(t *testing.T) {
 			{
 				Config: TEST_FW_TCP_MSS_CLAMP_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					
-				resource.TestCheckResourceAttr("vthunder_fw_tcp_mss_clamp.FwTcpTest", "mss_clamp_type", "fixed"),
-				resource.TestCheckResourceAttr("vthunder_fw_tcp_mss_clamp.FwTcpTest", "mss_value", "0"),
+
+					resource.TestCheckResourceAttr("vthunder_fw_tcp_mss_clamp.FwTcpTest", "mss_clamp_type", "fixed"),
+					resource.TestCheckResourceAttr("vthunder_fw_tcp_mss_clamp.FwTcpTest", "mss_value", "0"),
 				),
 			},
 		},

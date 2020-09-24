@@ -20,7 +20,7 @@ func TestAccFwTapMonitor_create(t *testing.T) {
 			{
 				Config: TEST_FW_TAP_MONITOR_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-				resource.TestCheckResourceAttr("vthunder_fw_tap_monitor.FwTest", "status", "enable"),
+					resource.TestCheckResourceAttr("vthunder_fw_tap_monitor.FwTest", "status", "enable"),
 				),
 			},
 		},

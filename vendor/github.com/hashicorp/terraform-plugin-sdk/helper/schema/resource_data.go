@@ -133,16 +133,6 @@ func (d *ResourceData) getRaw(key string, level getSource) getResult {
 	return d.get(parts, level)
 }
 
-// HasChanges returns whether or not any of the given keys has been changed.
-func (d *ResourceData) HasChanges(keys ...string) bool {
-	for _, key := range keys {
-		if d.HasChange(key) {
-			return true
-		}
-	}
-	return false
-}
-
 // HasChange returns whether or not the given key has been changed.
 func (d *ResourceData) HasChange(key string) bool {
 	o, n := d.GetChange(key)
@@ -314,7 +304,7 @@ func (d *ResourceData) State() *terraform.InstanceState {
 	// integrity check of fields existing in the schema, allowing dynamic
 	// keys to be created.
 	hasDynamicAttributes := false
-	for k := range d.schema {
+	for k, _ := range d.schema {
 		if k == "__has_dynamic_attributes" {
 			hasDynamicAttributes = true
 			log.Printf("[INFO] Resource %s has dynamic attributes", result.ID)
