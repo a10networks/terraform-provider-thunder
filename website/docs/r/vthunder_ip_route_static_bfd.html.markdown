@@ -13,7 +13,7 @@ description: |-
 
 ```hcl
 provider "vthunder" {
-  address  = "129.213.82.65"
+  address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }

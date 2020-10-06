@@ -8,11 +8,11 @@ description: |-
 
 # A10 vThunder Provider
 
-A [Terraform](https://terraform.io) provider for A10 vThunder. Resources are currently available for LTM.
+A [Terraform](https://terraform.io) provider for A10 vThunder.
 
 ### Requirements
 
-This provider uses the axAPI.
+This provider uses the aXAPI.
 
 ## Example
 

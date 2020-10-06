@@ -14,23 +14,23 @@ description: |-
 
 ```hcl
 provider "vthunder" {
-  address  = "129.213.82.65"
+  address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
 resource "vthunder_harmony_controller_profile" "profile" {
-		host = "129.213.20.171"
+		host = "192.0.2.65"
 		port=8443
-		user_name = "scampbell@a10networks.com"
+		user_name = "terraform@a10networks.com"
 		secret_value = "admin123"
 		provider2 = "root"
 		action = "register"
 		use_mgmt_port = 1
-		region = "India"
-		availability_zone = "Pune"
+		region = "US/West"
+		availability_zone = "DC-1"
 		thunder_mgmt_ip {
-		ip_address = "129.213.20.171"
+		ip_address = "192.0.2.65"
 		}
 }
 ```

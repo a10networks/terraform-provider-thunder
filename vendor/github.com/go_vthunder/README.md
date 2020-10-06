@@ -1,6 +1,6 @@
 # go_vthunder
 
-A Go package that interacts with vThunder axAPI's REST APIs.
+A Go package that interacts with vThunder aXAPI's REST APIs.
 
 Some of the tasks you can do are as follows.
 
