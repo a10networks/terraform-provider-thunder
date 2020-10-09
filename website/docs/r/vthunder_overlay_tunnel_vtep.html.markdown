@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_overlay_tunnel_vtep"
-sidebar_current: "docs-vthunder-resource-overlay_tunnel_vtep"
+layout: "thunder"
+page_title: "thunder: thunder_overlay_tunnel_vtep"
+sidebar_current: "docs-thunder-resource-overlay_tunnel_vtep"
 description: |-
-    Provides details about vthunder overlay tunnel vtep resource for A10
+    Provides details about thunder overlay tunnel vtep resource for A10
 ---
 
-# vthunder\_overlay\_tunnel\_vtep
+# thunder\_overlay\_tunnel\_vtep
 
-`vthunder_overlay_tunnel_options` Provides details about vthunder overlay tunnel vtep
+`thunder_overlay_tunnel_options` Provides details about thunder overlay tunnel vtep
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_overlay_tunnel_vtep" "vtep"{
+resource "thunder_overlay_tunnel_vtep" "vtep"{
     source_ip_address{
         ip_address="1.2.3.4"
         vni_list{

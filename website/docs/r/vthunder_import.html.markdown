@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_import"
-sidebar_current: "docs-vthunder-resource-import"
+layout: "thunder"
+page_title: "thunder: thunder_import"
+sidebar_current: "docs-thunder-resource-import"
 description: |-
-    Provides details about vthunder import resource for A10
+    Provides details about thunder import resource for A10
 ---
 
-# vthunder\_import
+# thunder\_import
 
-`vthunder_import` provides details about Import
+`thunder_import` provides details about Import
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_import" "import1" {
+resource "thunder_import" "import1" {
 		password = ""
 	    cloud_creds = "oci_api_key.pem"
 	    use_mgmt_port = 1

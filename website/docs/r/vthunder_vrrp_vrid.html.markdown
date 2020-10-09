@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_vrrp_vrid"
-sidebar_current: "docs-vthunder-resource-vrrp-vrid"
+layout: "thunder"
+page_title: "thunder: thunder_vrrp_vrid"
+sidebar_current: "docs-thunder-resource-vrrp-vrid"
 description: |-
-    Provides details about vthunder vrrp vrid resource for A10
+    Provides details about thunder vrrp vrid resource for A10
 ---
 
-# vthunder\_vrrp\_vrid
+# thunder\_vrrp\_vrid
 
-`vthunder_vrrp_vrid` provides details about vrrp vrid
+`thunder_vrrp_vrid` provides details about vrrp vrid
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_vrrp_vrid" "vrrp_vrid" {
+resource "thunder_vrrp_vrid" "vrrp_vrid" {
 	  vrid_val = 1
       floating_ip {
         ip_address_cfg {

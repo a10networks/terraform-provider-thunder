@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_http"
-sidebar_current: "docs-vthunder-resource-slb_template_http"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_http"
+sidebar_current: "docs-thunder-resource-slb_template_http"
 description: |-
-    Provides details about vthunder SLB template http resource for A10
+    Provides details about thunder SLB template http resource for A10
 ---
 
-# vthunder\_slb\_template\_http
+# thunder\_slb\_template\_http
 
-`vthunder_slb_template_http` Provides details about vthunder SLB template http
+`thunder_slb_template_http` Provides details about thunder SLB template http
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_http" "http" {
+resource "thunder_slb_template_http" "http" {
 	name = "testhttp"
 	user_tag = "test_tag"
 	keep_client_alive = 1

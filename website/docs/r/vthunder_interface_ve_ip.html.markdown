@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_interface_ve_ip"
-sidebar_current: "docs-vthunder-resource-interface-ve-ip"
+layout: "thunder"
+page_title: "thunder: thunder_interface_ve_ip"
+sidebar_current: "docs-thunder-resource-interface-ve-ip"
 description: |-
-	Provides details about vthunder interface ve ip resource for A10
+	Provides details about thunder interface ve ip resource for A10
 ---
 
-# vthunder\_interface\_ve\_ip
+# thunder\_interface\_ve\_ip
 
-`vthunder_interface_ve_ip` Provides details about vthunder interface ve ip
+`thunder_interface_ve_ip` Provides details about thunder interface ve ip
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_interface_ve_bfd" "ve_bfd" {
+resource "thunder_interface_ve_bfd" "ve_bfd" {
   ifnum = 1
   authenticatio {
     method = "md5"

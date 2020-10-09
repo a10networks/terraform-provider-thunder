@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_tcp"
-sidebar_current: "docs-vthunder-resource-slb_template_tcp"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_tcp"
+sidebar_current: "docs-thunder-resource-slb_template_tcp"
 description: |-
-    Provides details about vthunder SLB template tcp resource for A10
+    Provides details about thunder SLB template tcp resource for A10
 ---
 
-# vthunder\_slb\_template\_tcp
+# thunder\_slb\_template\_tcp
 
-`vthunder_slb_template_tcp` Provides details about vthunder SLB template tcp
+`thunder_slb_template_tcp` Provides details about thunder SLB template tcp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_tcp" "tcp"{
+resource "thunder_slb_template_tcp" "tcp"{
     name= "tcp2"
     idle_timeout= 120
     insert_client_ip= 0

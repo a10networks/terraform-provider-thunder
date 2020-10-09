@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_sport_rate_limit"
-sidebar_current: "docs-vthunder-slb-sport-rate-limit"
+layout: "thunder"
+page_title: "thunder: thunder_slb_sport_rate_limit"
+sidebar_current: "docs-thunder-slb-sport-rate-limit"
 description: |-
-    Provides details about vthunder SLB sport rate limit resource for A10
+    Provides details about thunder SLB sport rate limit resource for A10
 ---
 
-# vthunder\_slb\_sport\_rate\_limit
+# thunder\_slb\_sport\_rate\_limit
 
-`vthunder_slb_sport_rate_limit` Provides details about vthunder SLB sport rate limit
+`thunder_slb_sport_rate_limit` Provides details about thunder SLB sport rate limit
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_sport_rate_limit" "sport_rate" {
+resource "thunder_slb_sport_rate_limit" "sport_rate" {
 	sampling_enable  {
 	    counters1 = "all"
 	}

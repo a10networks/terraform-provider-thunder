@@ -1,4 +1,4 @@
-# This configuration is used to configure vThunder device as a simple load balancer.
+# This configuration is used to configure Thunder device as a simple load balancer.
 # Resources added -
 # Routes
 # Ethernet
@@ -6,13 +6,13 @@
 # Backend server
 # Service group
 
-provider "vthunder" {
+provider "thunder" {
   address = ""
   username = ""
   password = ""
 }
 
-resource "vthunder_rib_route" "rib"{
+resource "thunder_rib_route" "rib"{
 ip_dest_addr=""
 ip_mask=""
 ip_nexthop_ipv4{
@@ -21,7 +21,7 @@ distance_nexthop_ip=
 }
 }
 
-resource "vthunder_ethernet" "eth"{
+resource "thunder_ethernet" "eth"{
 ethernet_list{
 ifnum=1
 ip{
@@ -46,7 +46,7 @@ action="enable"
 }
 }
 
-resource "vthunder_server" "rs9" {
+resource "thunder_server" "rs9" {
 health_check_disable=1
 name="rs9"
 host=""
@@ -57,24 +57,24 @@ protocol=""
 }
 }
 
-resource "vthunder_service_group" "sg9" {
+resource "thunder_service_group" "sg9" {
 name="sg9"
 protocol=""
 member_list {
-name="${vthunder_server.rs9.name}"
+name="${thunder_server.rs9.name}"
 port=
 }
 }
 
-resource "vthunder_virtual_server" "vs9" {
+resource "thunder_virtual_server" "vs9" {
 name="vs9"
 ip_address=""
 port_list {
 auto=1
 port_number=
 protocol=""
-service_group="${vthunder_service_group.sg9.name}"
+service_group="${thunder_service_group.sg9.name}"
 snat_on_vip=1
 }
 }
-#TF_ACC=true go test -v vthunder/*
+#TF_ACC=true go test -v thunder/*

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_policy"
-sidebar_current: "docs-vthunder-resource-slb_template_policy"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_policy"
+sidebar_current: "docs-thunder-resource-slb_template_policy"
 description: |-
-    Provides details about vthunder SLB template policy resource for A10
+    Provides details about thunder SLB template policy resource for A10
 ---
 
-# vthunder\_slb\_template\_policy
+# thunder\_slb\_template\_policy
 
-`vthunder_slb_template_policy` Provides details about vthunder SLB template policy
+`thunder_slb_template_policy` Provides details about thunder SLB template policy
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_policy" "policy" {
+resource "thunder_slb_template_policy" "policy" {
 	name = "testdynamicpolicy"
 	user_tag = "test_tag"
 	use_destination_ip = 1

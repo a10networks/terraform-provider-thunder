@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/hashicorp/terraform-plugin-sdk/plugin"
-	"terraform-provider-vthunder/vthunder"
+	"terraform-provider-thunder/thunder"
 )
 
 func main() {
 	plugin.Serve(&plugin.ServeOpts{
-		ProviderFunc: vthunder.Provider})
+		ProviderFunc: thunder.Provider})
 }

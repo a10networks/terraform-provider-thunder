@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_mlb"
-sidebar_current: "docs-vthunder-resource-slb-mlb"
+layout: "thunder"
+page_title: "thunder: thunder_slb_mlb"
+sidebar_current: "docs-thunder-resource-slb-mlb"
 description: |-
-    Provides details about vthunder SLB mlb resource for A10
+    Provides details about thunder SLB mlb resource for A10
 ---
 
-# vthunder\_slb\_mlb
+# thunder\_slb\_mlb
 
-`vthunder_slb_mlb` Provides details about vthunder SLB mlb
+`thunder_slb_mlb` Provides details about thunder SLB mlb
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_mlb" "mlb" {
+resource "thunder_slb_mlb" "mlb" {
 	sampling_enable {
 	    counters1 = "all"
 	 }

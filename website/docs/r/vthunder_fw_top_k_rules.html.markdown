@@ -1,14 +1,14 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_top_k_rules"
-sidebar_current: "docs-vthunder-resource-fw-top-k-rules"
+layout: "thunder"
+page_title: "thunder: thunder_fw_top_k_rules"
+sidebar_current: "docs-thunder-resource-fw-top-k-rules"
 description: |-
-	Provides details about vthunder fw top k rules resource for A10
+	Provides details about thunder fw top k rules resource for A10
 ---
 
-# vthunder\_fw\_top\_k\_rules
+# thunder\_fw\_top\_k\_rules
 
-`vthunder_fw_top_k_rules` Provides details about vthunder fw top k rules
+`thunder_fw_top_k_rules` Provides details about thunder fw top k rules
 
 ## Argument Reference
 

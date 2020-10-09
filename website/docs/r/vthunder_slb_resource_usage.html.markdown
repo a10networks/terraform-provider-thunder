@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_resource_usage"
-sidebar_current: "docs-vthunder-resource-slb-resource-usage"
+layout: "thunder"
+page_title: "thunder: thunder_slb_resource_usage"
+sidebar_current: "docs-thunder-resource-slb-resource-usage"
 description: |-
-    Provides details about vthunder SLB resource usage resource for A10
+    Provides details about thunder SLB resource usage resource for A10
 ---
 
-# vthunder\_slb\__resource\_usage
+# thunder\_slb\__resource\_usage
 
-`vthunder_slb_resource_usage` Provides details about vthunder SLB resource usage
+`thunder_slb_resource_usage` Provides details about thunder SLB resource usage
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_resource_usage" "resource_usage" {
+resource "thunder_slb_resource_usage" "resource_usage" {
 	real_server_count = 128
 	stream_template_count = 128
 	proxy_template_count = 128

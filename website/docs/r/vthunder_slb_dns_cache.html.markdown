@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_dns_cache"
-sidebar_current: "docs-vthunder-resource-slb-dns-cache"
+layout: "thunder"
+page_title: "thunder: thunder_slb_dns_cache"
+sidebar_current: "docs-thunder-resource-slb-dns-cache"
 description: |-
-    Provides details about vthunder SLB dns-cache resource for A10
+    Provides details about thunder SLB dns-cache resource for A10
 ---
 
-# vthunder\_slb\_dns\_cache
+# thunder\_slb\_dns\_cache
 
-`vthunder_slb_dns_cache` Provides details about vthunder SLB dns-cache
+`thunder_slb_dns_cache` Provides details about thunder SLB dns-cache
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_dns_cache" "dns_cache" {
+resource "thunder_slb_dns_cache" "dns_cache" {
 	sampling_enable {
 		counters1 = "all"
 	}

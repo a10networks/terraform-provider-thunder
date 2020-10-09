@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_server_ssl"
-sidebar_current: "docs-vthunder-resource-slb-template-server-ssl"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_server_ssl"
+sidebar_current: "docs-thunder-resource-slb-template-server-ssl"
 description: |-
-    Provides details about vthunder slb template server-ssl resource for A10
+    Provides details about thunder slb template server-ssl resource for A10
 ---
 
-# vthunder\_slb\_template\_server\_ssl
+# thunder\_slb\_template\_server\_ssl
 
-`vthunder_slb_template_server_ssl` provides details about slb template server_ssl
+`thunder_slb_template_server_ssl` provides details about slb template server_ssl
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_server_ssl" "server_ssl" {
+resource "thunder_slb_template_server_ssl" "server_ssl" {
 	name = "testserverssl"
 	user_tag = "test_tag"
 	sslilogging = "disable"

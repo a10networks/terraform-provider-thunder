@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_templateFix"
-sidebar_current: "docs-vthunder-resource-slb_templateFix"
+layout: "thunder"
+page_title: "thunder: thunder_slb_templateFix"
+sidebar_current: "docs-thunder-resource-slb_templateFix"
 description: |-
-    Provides details about vthunder SLB template fix resource for A10
+    Provides details about thunder SLB template fix resource for A10
 ---
 
-# vthunder\_slb\_template\_fix
+# thunder\_slb\_template\_fix
 
-`vthunder_TemplateFix` Provides details about vthunder SLB template fix
+`thunder_TemplateFix` Provides details about thunder SLB template fix
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_fix" "templatefix" {
+resource "thunder_slb_template_fix" "templatefix" {
 	name = "testfix"
 	logging = "init"
 	tag_switching {

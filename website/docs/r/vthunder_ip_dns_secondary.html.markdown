@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_ip_dns_secondary"
-sidebar_current: "docs-vthunder-resource-ip-dns-secondary"
+layout: "thunder"
+page_title: "thunder: thunder_ip_dns_secondary"
+sidebar_current: "docs-thunder-resource-ip-dns-secondary"
 description: |-
-	Provides details about vthunder ip dns secondary resource for A10
+	Provides details about thunder ip dns secondary resource for A10
 ---
 
-# vthunder\_ip\_dns\_secondary
+# thunder\_ip\_dns\_secondary
 
-`vthunder_ip_dns_secondary` Provides details about vthunder ip dns secondary
+`thunder_ip_dns_secondary` Provides details about thunder ip dns secondary
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_ip_dns_secondary" "dnssecondary" {
+resource "thunder_ip_dns_secondary" "dnssecondary" {
     ip_v4_addr = "10.10.10.3"
 }
 ```

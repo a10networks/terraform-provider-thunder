@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_fix"
-sidebar_current: "docs-vthunder-resource-slb-fix"
+layout: "thunder"
+page_title: "thunder: thunder_slb_fix"
+sidebar_current: "docs-thunder-resource-slb-fix"
 description: |-
-    Provides details about vthunder SLB fix resource for A10
+    Provides details about thunder SLB fix resource for A10
 ---
 
-# vthunder\_slb\_fix
+# thunder\_slb\_fix
 
-`vthunder_slb_fix` Provides details about vthunder SLB fix
+`thunder_slb_fix` Provides details about thunder SLB fix
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_fix" "fix" {
+resource "thunder_slb_fix" "fix" {
 	sampling_enable {
 		counters1 = "all"
 	}

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_ftp_data"
-sidebar_current: "docs-vthunder-resource-slb-ftp-data"
+layout: "thunder"
+page_title: "thunder: thunder_slb_ftp_data"
+sidebar_current: "docs-thunder-resource-slb-ftp-data"
 description: |-
-    Provides details about vthunder SLB ftp-data resource for A10
+    Provides details about thunder SLB ftp-data resource for A10
 ---
 
-# vthunder\_slb\_ftp_data
+# thunder\_slb\_ftp_data
 
-`vthunder_slb_ftp_data` Provides details about vthunder SLB ftp-data
+`thunder_slb_ftp_data` Provides details about thunder SLB ftp-data
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_ftp_data" "ftp_data" {
+resource "thunder_slb_ftp_data" "ftp_data" {
 	sampling_enable {
 		counters1 = "all"
 	}

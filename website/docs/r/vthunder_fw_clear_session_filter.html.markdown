@@ -1,14 +1,14 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_clear_session_filter"
-sidebar_current: "docs-vthunder-resource-fw-clear-session-filter"
+layout: "thunder"
+page_title: "thunder: thunder_fw_clear_session_filter"
+sidebar_current: "docs-thunder-resource-fw-clear-session-filter"
 description: |-
-	Provides details about vthunder fw clear session filter resource for A10
+	Provides details about thunder fw clear session filter resource for A10
 ---
 
-# vthunder\_fw\_clear\_session\_filter
+# thunder\_fw\_clear\_session\_filter
 
-`vthunder_fw_clear_session_filter` Provides details about vthunder fw clear session filter`
+`thunder_fw_clear_session_filter` Provides details about thunder fw clear session filter`
 
 ## Argument Reference
 

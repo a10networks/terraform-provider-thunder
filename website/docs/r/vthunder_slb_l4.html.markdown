@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_l4"
-sidebar_current: "docs-vthunder-resource-slb-l4"
+layout: "thunder"
+page_title: "thunder: thunder_slb_l4"
+sidebar_current: "docs-thunder-resource-slb-l4"
 description: |-
-    Provides details about vthunder SLB l4 resource for A10
+    Provides details about thunder SLB l4 resource for A10
 ---
 
-# vthunder\_slb\_l4
+# thunder\_slb\_l4
 
-`vthunder_slb_l4` Provides details about vthunder SLB l4
+`thunder_slb_l4` Provides details about thunder SLB l4
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_l4" "l4" {
+resource "thunder_slb_l4" "l4" {
 	sampling_enable  {
 	    counters1 = "all"
 	}

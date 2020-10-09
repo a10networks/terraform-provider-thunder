@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_csv"
-sidebar_current: "docs-vthunder-resource-slb-template-csv"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_csv"
+sidebar_current: "docs-thunder-resource-slb-template-csv"
 description: |-
-    Provides details about vthunder slb template csv resource for A10
+    Provides details about thunder slb template csv resource for A10
 ---
 
-# vthunder\_slb\_template\_csv
+# thunder\_slb\_template\_csv
 
-`vthunder_slb_template_csv` provides details about slb template csv
+`thunder_slb_template_csv` provides details about slb template csv
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_csv" "csv" {
+resource "thunder_slb_template_csv" "csv" {
 	csv_name = "testcsv"
 	user_tag = "test_tag"
 	ipv6_enable = 0

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_configure_sync"
-sidebar_current: "docs-vthunder-resource-configure-sync"
+layout: "thunder"
+page_title: "thunder: thunder_configure_sync"
+sidebar_current: "docs-thunder-resource-configure-sync"
 description: |-
-    Provides details about vthunder configure sync resource for A10
+    Provides details about thunder configure sync resource for A10
 ---
 
-# vthunder\_configure\_sync
+# thunder\_configure\_sync
 
-`vthunder_configure_sync` provides details about Configure Sync
+`thunder_configure_sync` provides details about Configure Sync
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_configure_sync" "configure_sync" {
+resource "thunder_configure_sync" "configure_sync" {
 		all_partitions = 1
 	    private_key = "smita_key.pem"
 }

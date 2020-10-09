@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_mssql"
-sidebar_current: "docs-vthunder-resource-slb-mssql"
+layout: "thunder"
+page_title: "thunder: thunder_slb_mssql"
+sidebar_current: "docs-thunder-resource-slb-mssql"
 description: |-
-    Provides details about vthunder SLB mssql resource for A10
+    Provides details about thunder SLB mssql resource for A10
 ---
 
-# vthunder\_slb\_mssql
+# thunder\_slb\_mssql
 
-`vthunder_slb_mssql` Provides details about vthunder SLB mssql
+`thunder_slb_mssql` Provides details about thunder SLB mssql
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_mssql" "mssql" {
+resource "thunder_slb_mssql" "mssql" {
 	sampling_enable {
 	    counters1 = "all"
 	}

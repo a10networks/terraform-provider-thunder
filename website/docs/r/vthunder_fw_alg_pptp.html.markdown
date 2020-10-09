@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_alg_pptp"
-sidebar_current: "docs-vthunder-resource-fw-alg-pptp"
+layout: "thunder"
+page_title: "thunder: thunder_fw_alg_pptp"
+sidebar_current: "docs-thunder-resource-fw-alg-pptp"
 description: |-
-	Provides details about vthunder fw alg pptp resource for A10
+	Provides details about thunder fw alg pptp resource for A10
 ---
 
-# vthunder\_fw\_alg\_pptp
+# thunder\_fw\_alg\_pptp
 
-`vthunder_fw_alg_pptp` Provides details about vthunder fw alg pptp
+`thunder_fw_alg_pptp` Provides details about thunder fw alg pptp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_alg_pptp" "FwAlgTest" {
+resource "thunder_fw_alg_pptp" "FwAlgTest" {
 	default_port_disable = "default-port-disable" 
 }
 ```

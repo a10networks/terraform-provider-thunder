@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_helper_sessions"
-sidebar_current: "docs-vthunder-resource-fw-helper-sessions"
+layout: "thunder"
+page_title: "thunder: thunder_fw_helper_sessions"
+sidebar_current: "docs-thunder-resource-fw-helper-sessions"
 description: |-
-	Provides details about vthunder fw helper sessions resource for A10
+	Provides details about thunder fw helper sessions resource for A10
 ---
 
-# vthunder\_fw\_helper\_sessions
+# thunder\_fw\_helper\_sessions
 
-`vthunder_fw_helper_sessions` Provides details about vthunder fw helper sessions
+`thunder_fw_helper_sessions` Provides details about thunder fw helper sessions
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_helper_sessions" "FwTest" {
+resource "thunder_fw_helper_sessions" "FwTest" {
 	mode = "disable"
 }
 ```

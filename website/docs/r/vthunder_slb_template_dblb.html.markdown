@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_dblb"
-sidebar_current: "docs-vthunder-resource-slb_template_dblb"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_dblb"
+sidebar_current: "docs-thunder-resource-slb_template_dblb"
 description: |-
-    Provides details about vthunder SLB template dblb resource for A10
+    Provides details about thunder SLB template dblb resource for A10
 ---
 
-# vthunder\_slb\_template\_dblb
+# thunder\_slb\_template\_dblb
 
-`vthunder_slb_template_dblb` Provides details about vthunder SLB template dblb
+`thunder_slb_template_dblb` Provides details about thunder SLB template dblb
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_dblb" "dblb" {
+resource "thunder_slb_template_dblb" "dblb" {
 	name = "testdblb"
 	user_tag = "test_tag"
 	server_version = "MSSQL2008"

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_glm"
-sidebar_current: "docs-vthunder-resource-glm"
+layout: "thunder"
+page_title: "thunder: thunder_glm"
+sidebar_current: "docs-thunder-resource-glm"
 description: |-
-    Provides details about vthunder GLM resource for A10
+    Provides details about thunder GLM resource for A10
 ---
 
-# vthunder\_glm
+# thunder\_glm
 
-`vthunder_glm provides` details about GLM
+`thunder_glm provides` details about GLM
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_glm" "glm1" {
+resource "thunder_glm" "glm1" {
 		token = "vTh7aa90d73d"
 		use_mgmt_port = 1
 	    enable_requests = 1

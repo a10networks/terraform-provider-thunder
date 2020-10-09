@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_server"
-sidebar_current: "docs-vthunder-resource-slb_template_server"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_server"
+sidebar_current: "docs-thunder-resource-slb_template_server"
 description: |-
-    Provides details about vthunder SLB template server resource for A10
+    Provides details about thunder SLB template server resource for A10
 ---
 
-# vthunder\_slb\_template\_server
+# thunder\_slb\_template\_server
 
-`vthunder_slb_template_server` Provides details about vthunder SLB template server
+`thunder_slb_template_server` Provides details about thunder SLB template server
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_server" "server" {
+resource "thunder_slb_template_server" "server" {
 	name = "testserver"
 	user_tag = "test_tag"
 	stats_data_action = "stats-data-enable"

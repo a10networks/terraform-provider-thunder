@@ -1,10 +1,10 @@
-provider "vthunder" {
+provider "thunder" {
   address = ""
   username = ""
   password = ""
 }
 
-resource "vthunder_virtual_server" "server5" {
+resource "thunder_virtual_server" "server5" {
 name="VS5"
 ha_dynamic = 1
 vrid = 2

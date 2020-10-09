@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_sip"
-sidebar_current: "docs-vthunder-resource-slb_template_sip"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_sip"
+sidebar_current: "docs-thunder-resource-slb_template_sip"
 description: |-
-    Provides details about vthunder SLB template sip resource for A10
+    Provides details about thunder SLB template sip resource for A10
 ---
 
-# vthunder\_slb\_template\_sip
+# thunder\_slb\_template\_sip
 
-`vthunder_slb_template_sip` Provides details about vthunder SLB template sip
+`thunder_slb_template_sip` Provides details about thunder SLB template sip
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_sip" "templatesip" {
+resource "thunder_slb_template_sip" "templatesip" {
 	name = "testsip"
 	user_tag = "test_tag"
 	smp_call_id_rtp_session = 1

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_port"
-sidebar_current: "docs-vthunder-resource-slb_template_port"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_port"
+sidebar_current: "docs-thunder-resource-slb_template_port"
 description: |-
-    Provides details about vthunder SLB template port resource for A10
+    Provides details about thunder SLB template port resource for A10
 ---
 
-# vthunder\_slb\_template\_port
+# thunder\_slb\_template\_port
 
-`vthunder_slb_template_port` Provides details about vthunder SLB template port
+`thunder_slb_template_port` Provides details about thunder SLB template port
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_port" "port" {
+resource "thunder_slb_template_port" "port" {
 	name = "testport"
 	user_tag = "test_tag"
 	slow_start = 1

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_mysql"
-sidebar_current: "docs-vthunder-resource-slb-mysql"
+layout: "thunder"
+page_title: "thunder: thunder_slb_mysql"
+sidebar_current: "docs-thunder-resource-slb-mysql"
 description: |-
-    Provides details about vthunder SLB mysql resource for A10
+    Provides details about thunder SLB mysql resource for A10
 ---
 
-# vthunder\_slb\_mysql
+# thunder\_slb\_mysql
 
-`vthunder_slb_mysql` Provides details about vthunder SLB mysql
+`thunder_slb_mysql` Provides details about thunder SLB mysql
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_mysql" "mysql" {
+resource "thunder_slb_mysql" "mysql" {
 	sampling_enable {
 	    counters1 = "all"
 	}

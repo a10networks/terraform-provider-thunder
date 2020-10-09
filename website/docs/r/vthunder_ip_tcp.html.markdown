@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_ip_tcp"
-sidebar_current: "docs-vthunder-resource-ip-tcp"
+layout: "thunder"
+page_title: "thunder: thunder_ip_tcp"
+sidebar_current: "docs-thunder-resource-ip-tcp"
 description: |-
-  Provides details about vthunder ip tcp resource for A10
+  Provides details about thunder ip tcp resource for A10
 ---
 
-# vthunder\_ip\_tcp
+# thunder\_ip\_tcp
 
-`vthunder_ip_tcp` Provides details about vthunder ip tcp
+`thunder_ip_tcp` Provides details about thunder ip tcp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_ip_tcp" "Iptcp" {
+resource "thunder_ip_tcp" "Iptcp" {
   syn_cookie  {
       threshold = 4
   }

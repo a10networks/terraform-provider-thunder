@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_perf"
-sidebar_current: "docs-vthunder-resource-slb-perf"
+layout: "thunder"
+page_title: "thunder: thunder_slb_perf"
+sidebar_current: "docs-thunder-resource-slb-perf"
 description: |-
-    Provides details about vthunder SLB perf resource for A10
+    Provides details about thunder SLB perf resource for A10
 ---
 
-# vthunder\_slb\_perf
+# thunder\_slb\_perf
 
-`vthunder_slb_perf` Provides details about vthunder SLB perf
+`thunder_slb_perf` Provides details about thunder SLB perf
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_perf" "perf" {
+resource "thunder_slb_perf" "perf" {
 	sampling_enable  {
 	    counters1 = "all"
 	}

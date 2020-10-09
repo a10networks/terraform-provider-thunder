@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_health_gateway"
-sidebar_current: "docs-vthunder-resource-slb-health-gateway"
+layout: "thunder"
+page_title: "thunder: thunder_slb_health_gateway"
+sidebar_current: "docs-thunder-resource-slb-health-gateway"
 description: |-
-    Provides details about vthunder SLB health-gateway resource for A10
+    Provides details about thunder SLB health-gateway resource for A10
 ---
 
-# vthunder\_slb\_health_gateway
+# thunder\_slb\_health_gateway
 
-`vthunder_slb_health_gateway` Provides details about vthunder SLB health-gateway
+`thunder_slb_health_gateway` Provides details about thunder SLB health-gateway
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_health_gateway" "health_gateway" {
+resource "thunder_slb_health_gateway" "health_gateway" {
 	sampling_enable {
 		counters1 = "all"
 	}

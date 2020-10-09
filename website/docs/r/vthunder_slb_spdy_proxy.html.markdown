@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_spdy_proxy"
-sidebar_current: "docs-vthunder-slb-spdy-proxy"
+layout: "thunder"
+page_title: "thunder: thunder_slb_spdy_proxy"
+sidebar_current: "docs-thunder-slb-spdy-proxy"
 description: |-
-    Provides details about vthunder SLB spdy proxy resource for A10
+    Provides details about thunder SLB spdy proxy resource for A10
 ---
 
-# vthunder\_slb\_spdy\_proxy
+# thunder\_slb\_spdy\_proxy
 
-`vthunder_slb_spdy_proxy` Provides details about vthunder SLB spdy proxy
+`thunder_slb_spdy_proxy` Provides details about thunder SLB spdy proxy
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_spdy_proxy" "spdy_proxy" {
+resource "thunder_slb_spdy_proxy" "spdy_proxy" {
 	sampling_enable  {
 		counters1= "all"
 	}

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_http_proxy"
-sidebar_current: "docs-vthunder-resource-slb-http-proxy"
+layout: "thunder"
+page_title: "thunder: thunder_slb_http_proxy"
+sidebar_current: "docs-thunder-resource-slb-http-proxy"
 description: |-
-    Provides details about vthunder SLB http-proxy resource for A10
+    Provides details about thunder SLB http-proxy resource for A10
 ---
 
-# vthunder\_slb\_http_proxy
+# thunder\_slb\_http_proxy
 
-`vthunder_slb_http_proxy` Provides details about vthunder SLB http-proxy
+`thunder_slb_http_proxy` Provides details about thunder SLB http-proxy
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_http_proxy" "http_proxy1" {
+resource "thunder_slb_http_proxy" "http_proxy1" {
 	sampling_enable {
 		counters1 = "all"
 		counters2 = "req_sz_8k"

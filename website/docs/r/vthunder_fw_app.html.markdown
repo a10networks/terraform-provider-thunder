@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_app"
-sidebar_current: "docs-vthunder-resource-fw-app"
+layout: "thunder"
+page_title: "thunder: thunder_fw_app"
+sidebar_current: "docs-thunder-resource-fw-app"
 description: |-
-	Provides details about vthunder fw app resource for A10
+	Provides details about thunder fw app resource for A10
 ---
 
-# vthunder\_fw\_app
+# thunder\_fw\_app
 
-`vthunder_fw_app` Provides details about vthunder fw app
+`thunder_fw_app` Provides details about thunder fw app
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_app" "FwTest" {
+resource "thunder_fw_app" "FwTest" {
 	sampling_enable {
 		counters1 = "all" 
 	}

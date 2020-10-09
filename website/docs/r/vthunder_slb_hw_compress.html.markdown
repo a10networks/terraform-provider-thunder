@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_hw_compress"
-sidebar_current: "docs-vthunder-resource-slb-hw-compress"
+layout: "thunder"
+page_title: "thunder: thunder_slb_hw_compress"
+sidebar_current: "docs-thunder-resource-slb-hw-compress"
 description: |-
-    Provides details about vthunder SLB hw-compress resource for A10
+    Provides details about thunder SLB hw-compress resource for A10
 ---
 
-# vthunder\_slb\_hw_compress
+# thunder\_slb\_hw_compress
 
-`vthunder_slb_hw_compress` Provides details about vthunder SLB hw-compress
+`thunder_slb_hw_compress` Provides details about thunder SLB hw-compress
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_hw_compress" "hw_compress" {
+resource "thunder_slb_hw_compress" "hw_compress" {
 	sampling_enable {
 		counters1 = "all"
 	}

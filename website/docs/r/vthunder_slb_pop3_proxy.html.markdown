@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_pop3_proxy"
-sidebar_current: "docs-vthunder-resource-slb-pop3-proxy"
+layout: "thunder"
+page_title: "thunder: thunder_slb_pop3_proxy"
+sidebar_current: "docs-thunder-resource-slb-pop3-proxy"
 description: |-
-    Provides details about vthunder SLB pop3 proxy resource for A10
+    Provides details about thunder SLB pop3 proxy resource for A10
 ---
 
-# vthunder\_slb\_pop3\_proxy
+# thunder\_slb\_pop3\_proxy
 
-`vthunder_slb_pop3_proxy` Provides details about vthunder SLB pop3 proxy
+`thunder_slb_pop3_proxy` Provides details about thunder SLB pop3 proxy
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_pop3_proxy" "pop3_proxy" {
+resource "thunder_slb_pop3_proxy" "pop3_proxy" {
 	sampling_enable {
 	    counters1 = "all"
 	}

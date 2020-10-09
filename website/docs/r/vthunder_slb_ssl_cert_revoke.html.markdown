@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_ssl_cert_revoke"
-sidebar_current: "docs-vthunder-resource-slb-ssl-cert-revoke"
+layout: "thunder"
+page_title: "thunder: thunder_slb_ssl_cert_revoke"
+sidebar_current: "docs-thunder-resource-slb-ssl-cert-revoke"
 description: |-
-    Provides details about vthunder SLB ssl cert revoke resource for A10
+    Provides details about thunder SLB ssl cert revoke resource for A10
 ---
 
-# vthunder\_slb\_ssl\_cert\_revoke
+# thunder\_slb\_ssl\_cert\_revoke
 
-`vthunder_slb_ssl_cert_revoke` Provides details about vthunder SLB ssl cert revoke
+`thunder_slb_ssl_cert_revoke` Provides details about thunder SLB ssl cert revoke
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_ssl_cert_revoke" "SSLCertRevoke" {
+resource "thunder_slb_ssl_cert_revoke" "SSLCertRevoke" {
 	sampling_enable {
 	    counters1 = "all"
 	}

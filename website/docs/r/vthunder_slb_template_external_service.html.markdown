@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_external_service"
-sidebar_current: "docs-vthunder-resource-slb-template-external-service"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_external_service"
+sidebar_current: "docs-thunder-resource-slb-template-external-service"
 description: |-
-    Provides details about vthunder slb template external-service resource for A10
+    Provides details about thunder slb template external-service resource for A10
 ---
 
-# vthunder\_slb\_template\_external\_service
+# thunder\_slb\_template\_external\_service
 
-`vthunder_slb_template_external_service` provides details about slb template external-service
+`thunder_slb_template_external_service` provides details about slb template external-service
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_external_service" "external_service" {
+resource "thunder_slb_template_external_service" "external_service" {
 	name = "testexternalservice"
 	user_tag = "test_tag"
 	type = "skyfire-icap"

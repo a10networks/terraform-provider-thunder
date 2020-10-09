@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_imapproxy"
-sidebar_current: "docs-vthunder-resource-slb-imapproxy"
+layout: "thunder"
+page_title: "thunder: thunder_slb_imapproxy"
+sidebar_current: "docs-thunder-resource-slb-imapproxy"
 description: |-
-    Provides details about vthunder SLB imapproxy resource for A10
+    Provides details about thunder SLB imapproxy resource for A10
 ---
 
-# vthunder\_slb\_imapproxy
+# thunder\_slb\_imapproxy
 
-`vthunder_slb_imapproxy` Provides details about vthunder SLB imapproxy
+`thunder_slb_imapproxy` Provides details about thunder SLB imapproxy
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_imapproxy" "imapProxy" {
+resource "thunder_slb_imapproxy" "imapProxy" {
 	sampling_enable {
 	    counters1 = "all"
 	}

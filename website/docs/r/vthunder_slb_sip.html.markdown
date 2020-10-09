@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_sip"
-sidebar_current: "docs-vthunder-slb-sip"
+layout: "thunder"
+page_title: "thunder: thunder_slb_sip"
+sidebar_current: "docs-thunder-slb-sip"
 description: |-
-    Provides details about vthunder SLB sip resource for A10
+    Provides details about thunder SLB sip resource for A10
 ---
 
-# vthunder\_slb\_sip
+# thunder\_slb\_sip
 
-`vthunder_slb_sip` Provides details about vthunder SLB sip
+`thunder_slb_sip` Provides details about thunder SLB sip
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_sip" "sip" {
+resource "thunder_slb_sip" "sip" {
 	sampling_enable {
 	    counters1 = "all"
 	}

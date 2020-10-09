@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_health_stat"
-sidebar_current: "docs-vthunder-resource-slb-health-stat"
+layout: "thunder"
+page_title: "thunder: thunder_slb_health_stat"
+sidebar_current: "docs-thunder-resource-slb-health-stat"
 description: |-
-    Provides details about vthunder SLB health-stat resource for A10
+    Provides details about thunder SLB health-stat resource for A10
 ---
 
-# vthunder\_slb\_health_stat
+# thunder\_slb\_health_stat
 
-`vthunder_slb_health_stat` Provides details about vthunder SLB health-stat
+`thunder_slb_health_stat` Provides details about thunder SLB health-stat
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_health_stat" "health_stat" {
+resource "thunder_slb_health_stat" "health_stat" {
 	sampling_enable {
 		counters1 = "all"
 	}

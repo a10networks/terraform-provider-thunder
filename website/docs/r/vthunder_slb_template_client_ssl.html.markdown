@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_client_ssl"
-sidebar_current: "docs-vthunder-resource-slb-template-client-ssl"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_client_ssl"
+sidebar_current: "docs-thunder-resource-slb-template-client-ssl"
 description: |-
-    Provides details about vthunder slb template client-ssl resource for A10
+    Provides details about thunder slb template client-ssl resource for A10
 ---
 
-# vthunder\_slb\_template\_client\_ssl
+# thunder\_slb\_template\_client\_ssl
 
-`vthunder_slb_template_client_ssl` provides details about slb template client_ssl
+`thunder_slb_template_client_ssl` provides details about slb template client_ssl
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_client_ssl" "client_ssl" {
+resource "thunder_slb_template_client_ssl" "client_ssl" {
 	name = "testclientssl"
 	user_tag = "test_tag"
 	forward_proxy_ssl_version = 33

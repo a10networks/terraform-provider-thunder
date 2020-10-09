@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_tap_monitor"
-sidebar_current: "docs-vthunder-resource-fw-tap-monitor"
+layout: "thunder"
+page_title: "thunder: thunder_fw_tap_monitor"
+sidebar_current: "docs-thunder-resource-fw-tap-monitor"
 description: |-
-	Provides details about vthunder fw tap monitor resource for A10
+	Provides details about thunder fw tap monitor resource for A10
 ---
 
-# vthunder\_fw\_tap\_monitor
+# thunder\_fw\_tap\_monitor
 
-`vthunder_fw_tap_monitor` Provides details about vthunder fw tap monitor
+`thunder_fw_tap_monitor` Provides details about thunder fw tap monitor
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_tap_monitor" "FwTest" {
+resource "thunder_fw_tap_monitor" "FwTest" {
 	status = "enable" 
 }
 ```

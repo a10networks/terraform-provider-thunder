@@ -1,10 +1,10 @@
-provider "vthunder" {
+provider "thunder" {
   address = ""
   username = ""
   password = ""
 }
 
-resource "vthunder_service_group" "sg3" {
+resource "thunder_service_group" "sg3" {
 name="SG3"
 protocol=""
 member_list {
@@ -17,7 +17,7 @@ member_list {
 		}
 }
 
-resource "vthunder_slb_template_client_ssl" "client_ssl1" {
+resource "thunder_slb_template_client_ssl" "client_ssl1" {
 	name = "testclientssl"
 	user_tag = "test_tag"
 	forward_proxy_ssl_version = 33

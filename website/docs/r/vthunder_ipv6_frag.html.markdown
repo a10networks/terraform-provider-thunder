@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_ipv6_frag"
-sidebar_current: "docs-vthunder-resource-ipv6-frag"
+layout: "thunder"
+page_title: "thunder: thunder_ipv6_frag"
+sidebar_current: "docs-thunder-resource-ipv6-frag"
 description: |-
-  Provides details about vthunder ipv6 frag resource for A10
+  Provides details about thunder ipv6 frag resource for A10
 ---
 
-# vthunder\_ipv6\_frag
+# thunder\_ipv6\_frag
 
-`vthunder_ipv6_frag` Provides details about vthunder ipv6 frag
+`thunder_ipv6_frag` Provides details about thunder ipv6 frag
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_ipv6_frag" "testname" {
+resource "thunder_ipv6_frag" "testname" {
 
   sampling_enable {
     counters1 = "all"

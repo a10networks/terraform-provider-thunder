@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_ipv6_icmpv6"
-sidebar_current: "docs-vthunder-resource-ipv6-icmpv6"
+layout: "thunder"
+page_title: "thunder: thunder_ipv6_icmpv6"
+sidebar_current: "docs-thunder-resource-ipv6-icmpv6"
 description: |-
-  Provides details about vthunder ipv6 icmpv6 resource for A10
+  Provides details about thunder ipv6 icmpv6 resource for A10
 ---
 
-# vthunder\_ipv6\_icmpv6
+# thunder\_ipv6\_icmpv6
 
-`vthunder_ipv6_icmpv6` Provides details about vthunder ipv6 icmpv6
+`thunder_ipv6_icmpv6` Provides details about thunder ipv6 icmpv6
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_ipv6_icmpv6" "testname" {
+resource "thunder_ipv6_icmpv6" "testname" {
     redirect = 0
   unreachable = 0
 }

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_harmony_controller_profile"
-sidebar_current: "docs-vthunder-resource-harmony-controller-profile"
+layout: "thunder"
+page_title: "thunder: thunder_harmony_controller_profile"
+sidebar_current: "docs-thunder-resource-harmony-controller-profile"
 description: |-
-    Provides details about vthunder harmony-controller profile resource for A10
+    Provides details about thunder harmony-controller profile resource for A10
 ---
 
-# vthunder\_harmony\_controller\_profile
+# thunder\_harmony\_controller\_profile
 
-`vthunder_harmony_controller_profile` provides details about harmony-controller profile
+`thunder_harmony_controller_profile` provides details about harmony-controller profile
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_harmony_controller_profile" "profile" {
+resource "thunder_harmony_controller_profile" "profile" {
 		host = "192.0.2.65"
 		port=8443
 		user_name = "terraform@a10networks.com"

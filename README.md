@@ -21,16 +21,16 @@ Requirements
 Building The Provider
 ---------------------
 
-Clone repository to: `$GOPATH/src/github.com/terraform-providers/terraform-provider-vthunder`
+Clone repository to: `$GOPATH/src/github.com/terraform-providers/terraform-provider-thunder`
 
 ```sh
-$ git clone git@github.com:terraform-providers/terraform-provider-vthunder $GOPATH/src/github.com/terraform-providers/terraform-provider-vthunder
+$ git clone git@github.com:terraform-providers/terraform-provider-thunder $GOPATH/src/github.com/terraform-providers/terraform-provider-thunder
 ```
 
 Enter the provider directory and build the provider
 
 ```sh
-$ cd $GOPATH/src/github.com/terraform-providers/terraform-provider-vthunder
+$ cd $GOPATH/src/github.com/terraform-providers/terraform-provider-thunder
 $ make build
 ```
 
@@ -39,7 +39,7 @@ $ make build
 ### Provider Configuration
 
 ```
-provider "vthunder" {
+provider "thunder" {
 address = "129.213.86.193"
 username = "myUser"  
 password = "myPassword“
@@ -47,17 +47,17 @@ password = "myPassword“
 ```
 ##### Argument Reference
 The following arguments are supported.
-•	username - User name to access vThunder.
-•	password - Password to access vThunder.
-•	address – IP address of vThunder; to be configured.
+•	username - User name to access Thunder.
+•	password - Password to access Thunder.
+•	address – IP address of Thunder; to be configured.
 
 
 ### Resource Configuration
 
-#### vthunder_ethernet
+#### thunder_ethernet
 
 ```
-resource "vthunder_ethernet" "eth"{
+resource "thunder_ethernet" "eth"{
 ethernet_list{
 ifnum=1
 ip{
@@ -87,7 +87,7 @@ See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapi
 
 #### vthuder_rib_route
 ```
-resource "vthunder_rib_route" "rib"{
+resource "thunder_rib_route" "rib"{
 ip_dest_addr="0.0.0.0"
 ip_mask="/0"
 ip_nexthop_ipv4{
@@ -100,9 +100,9 @@ distance_nexthop_ip=1
 #### Argument Reference
 See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapiv3/ip_route_rib.html for possible values for these arguments and for an exhaustive list of arguments.
 
-### vthunder_server
+### thunder_server
 ```
-resource "vthunder_server" "rs9" {
+resource "thunder_server" "rs9" {
 health_check_disable=1
 name="rs9"
 host="10.0.3.8"
@@ -117,24 +117,24 @@ protocol="tcp"
 #### Argument Reference
 See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapiv3/slb_server.html for possible values for these arguments and for an exhaustive list of arguments.
 
-### vthunder_service_group
+### thunder_service_group
 ```
-resource "vthunder_service_group" "sg9" {
+resource "thunder_service_group" "sg9" {
 name="sg9"
 protocol="TCP"
 member_list {
-name="${vthunder_server.rs9.name}"
+name="${thunder_server.rs9.name}"
 port=80
 }
 }
 ```
 
 #### Argument Reference
-See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapiv3/slb_service_group.html for possible values for these arguments and for an exhaustive list of arguments. Backend server name needs to be specified in the member list. This name can come from vthunder_server resource at runtime as specified in the sample.
+See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapiv3/slb_service_group.html for possible values for these arguments and for an exhaustive list of arguments. Backend server name needs to be specified in the member list. This name can come from thunder_server resource at runtime as specified in the sample.
 
-### vthunder_virtual_server
+### thunder_virtual_server
 ```
-resource "vthunder_virtual_server" "vs9" {
+resource "thunder_virtual_server" "vs9" {
 name="vs9"
 ha_dynamic = 1
 ip_address="10.0.2.7"
@@ -142,7 +142,7 @@ port_list {
 auto=1
 port_number=8080
 protocol="tcp"
-service_group="${vthunder_service_group.sg9.name}"
+service_group="${thunder_service_group.sg9.name}"
 snat_on_vip=1
 }
 }
@@ -161,7 +161,7 @@ To compile the provider, run `make build`. This will build the provider and put 
 ```sh
 $ make bin
 ...
-$ $GOPATH/bin/terraform-provider-vthunder
+$ $GOPATH/bin/terraform-provider-thunder
 ...
 ```
 

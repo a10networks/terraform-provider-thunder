@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_alg_icmp"
-sidebar_current: "docs-vthunder-resource-fw-alg-icmp"
+layout: "thunder"
+page_title: "thunder: thunder_fw_alg_icmp"
+sidebar_current: "docs-thunder-resource-fw-alg-icmp"
 description: |-
-	Provides details about vthunder fw alg icmp resource for A10
+	Provides details about thunder fw alg icmp resource for A10
 ---
 
-# vthunder\_fw\_alg\_icmp
+# thunder\_fw\_alg\_icmp
 
-`vthunder_fw_alg_icmp` Provides details about vthunder fw alg icmp
+`thunder_fw_alg_icmp` Provides details about thunder fw alg icmp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_alg_icmp" "FwAlgTest" {
+resource "thunder_fw_alg_icmp" "FwAlgTest" {
 	disable = "disable" 
 }
 ```

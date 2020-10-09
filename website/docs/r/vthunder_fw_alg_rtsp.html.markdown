@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_alg_rtsp"
-sidebar_current: "docs-vthunder-resource-fw-alg-rtsp"
+layout: "thunder"
+page_title: "thunder: thunder_fw_alg_rtsp"
+sidebar_current: "docs-thunder-resource-fw-alg-rtsp"
 description: |-
-	Provides details about vthunder fw alg rtsp resource for A10
+	Provides details about thunder fw alg rtsp resource for A10
 ---
 
-# vthunder\_fw\_alg\_rtsp
+# thunder\_fw\_alg\_rtsp
 
-`vthunder_fw_alg_rtsp` Provides details about vthunder fw alg rtsp
+`thunder_fw_alg_rtsp` Provides details about thunder fw alg rtsp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_alg_rtsp" "FwAlgTest" {
+resource "thunder_fw_alg_rtsp" "FwAlgTest" {
 	default_port_disable = "default-port-disable" 
 }
 ```

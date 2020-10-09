@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_ip_dns_primary"
-sidebar_current: "docs-vthunder-resource-ip-dns-primary"
+layout: "thunder"
+page_title: "thunder: thunder_ip_dns_primary"
+sidebar_current: "docs-thunder-resource-ip-dns-primary"
 description: |-
-	Provides details about vthunder ip dns primary resource for A10
+	Provides details about thunder ip dns primary resource for A10
 ---
 
-# vthunder\_ip\_dns\_primary
+# thunder\_ip\_dns\_primary
 
-`vthunder_ip_dns_primary` Provides details about vthunder ip dns primary
+`thunder_ip_dns_primary` Provides details about thunder ip dns primary
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_ip_dns_primary" "dnsPrimary" {
+resource "thunder_ip_dns_primary" "dnsPrimary" {
     ip_v4_addr = "10.10.10.3"
 }
 ```

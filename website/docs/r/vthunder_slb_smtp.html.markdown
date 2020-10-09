@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_smtp"
-sidebar_current: "docs-vthunder-slb-smtp"
+layout: "thunder"
+page_title: "thunder: thunder_slb_smtp"
+sidebar_current: "docs-thunder-slb-smtp"
 description: |-
-    Provides details about vthunder SLB smtp resource for A10
+    Provides details about thunder SLB smtp resource for A10
 ---
 
-# vthunder\_slb\_smtp
+# thunder\_slb\_smtp
 
-`vthunder_slb_smtp` Provides details about vthunder SLB smtp
+`thunder_slb_smtp` Provides details about thunder SLB smtp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_smtp" "smtp" {
+resource "thunder_slb_smtp" "smtp" {
 	sampling_enable {
 		counters1 = "all"
 	} 

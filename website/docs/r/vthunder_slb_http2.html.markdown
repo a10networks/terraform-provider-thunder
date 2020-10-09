@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_http2"
-sidebar_current: "docs-vthunder-resource-slb-http2"
+layout: "thunder"
+page_title: "thunder: thunder_slb_http2"
+sidebar_current: "docs-thunder-resource-slb-http2"
 description: |-
-    Provides details about vthunder SLB http2 resource for A10
+    Provides details about thunder SLB http2 resource for A10
 ---
 
-# vthunder\_slb\_http2
+# thunder\_slb\_http2
 
-`vthunder_slb_http2` Provides details about vthunder SLB http2
+`thunder_slb_http2` Provides details about thunder SLB http2
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_http2" "http2" {
+resource "thunder_slb_http2" "http2" {
 	sampling_enable {
 		counters1 = "all"
 	}

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_alg_tftp"
-sidebar_current: "docs-vthunder-resource-fw-alg-tftp"
+layout: "thunder"
+page_title: "thunder: thunder_fw_alg_tftp"
+sidebar_current: "docs-thunder-resource-fw-alg-tftp"
 description: |-
-	Provides details about vthunder fw alg tftp resource for A10
+	Provides details about thunder fw alg tftp resource for A10
 ---
 
-# vthunder\_fw\_alg\_tftp
+# thunder\_fw\_alg\_tftp
 
-`vthunder_fw_alg_tftp` Provides details about vthunder fw alg tftp
+`thunder_fw_alg_tftp` Provides details about thunder fw alg tftp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_alg_tftp" "FwAlgTest" {
+resource "thunder_fw_alg_tftp" "FwAlgTest" {
 	default_port_disable = "default-port-disable" 
 }
 ```

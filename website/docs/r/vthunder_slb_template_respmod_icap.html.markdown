@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_respmod_icap"
-sidebar_current: "docs-vthunder-resource-slb-template-respmod-icap"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_respmod_icap"
+sidebar_current: "docs-thunder-resource-slb-template-respmod-icap"
 description: |-
-    Provides details about vthunder slb template respmod-icap resource for A10
+    Provides details about thunder slb template respmod-icap resource for A10
 ---
 
-# vthunder\_slb\_template\_respmod\_icap
+# thunder\_slb\_template\_respmod\_icap
 
-`vthunder_slb_template_respmod_icap` provides details about slb template respmod-icap
+`thunder_slb_template_respmod_icap` provides details about slb template respmod-icap
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_respmod_icap" "respmod_icap" {
+resource "thunder_slb_template_respmod_icap" "respmod_icap" {
 	name = "testrespmodicap"
 	user_tag = "test_tag"
 	min_payload_size = 30

@@ -1,14 +1,14 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_interface_ethernet_trunk_group"
-sidebar_current: "docs-vthunder-resource-interface-ethernet-trunk-group"
+layout: "thunder"
+page_title: "thunder: thunder_interface_ethernet_trunk_group"
+sidebar_current: "docs-thunder-resource-interface-ethernet-trunk-group"
 description: |-
-	Provides details about vthunder interface ethernet trunk group resource for A10
+	Provides details about thunder interface ethernet trunk group resource for A10
 ---
 
-# vthunder\_interface\_ethernet\_trunk\_group
+# thunder\_interface\_ethernet\_trunk\_group
 
-`vthunder_interface_ethernet_trunk_group` Provides details about vthunder interface ethernet trunk group
+`thunder_interface_ethernet_trunk_group` Provides details about thunder interface ethernet trunk group
 ## Example Usage
 
 ## Argument Reference

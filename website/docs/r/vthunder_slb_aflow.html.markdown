@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_aflow"
-sidebar_current: "docs-vthunder-resource-slb-aflow"
+layout: "thunder"
+page_title: "thunder: thunder_slb_aflow"
+sidebar_current: "docs-thunder-resource-slb-aflow"
 description: |-
-    Provides details about vthunder SLB aflow resource for A10
+    Provides details about thunder SLB aflow resource for A10
 ---
 
-# vthunder\_slb\_aflow
+# thunder\_slb\_aflow
 
-`vthunder_slb_aflow` Provides details about vthunder SLB aflow
+`thunder_slb_aflow` Provides details about thunder SLB aflow
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_aflow" "aflow" {
+resource "thunder_slb_aflow" "aflow" {
 	sampling_enable {
 		counters1 = "all"
 	}

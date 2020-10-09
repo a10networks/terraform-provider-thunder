@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_server"
-sidebar_current: "docs-vthunder-resource-fw-server"
+layout: "thunder"
+page_title: "thunder: thunder_fw_server"
+sidebar_current: "docs-thunder-resource-fw-server"
 description: |-
-	Provides details about vthunder fw server resource for A10
+	Provides details about thunder fw server resource for A10
 ---
 
-# vthunder\_fw\_server
+# thunder\_fw\_server
 
-`vthunder_fw_server` Provides details about vthunder fw server
+`thunder_fw_server` Provides details about thunder fw server
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_server" "FwTest" {
+resource "thunder_fw_server" "FwTest" {
 	name = "a"
 	server_ipv6_addr = "2003::1" 
 }

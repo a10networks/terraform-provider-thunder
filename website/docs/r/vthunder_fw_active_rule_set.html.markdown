@@ -1,14 +1,14 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_active_rule_set"
-sidebar_current: "docs-vthunder-resource-fw-active-rule-set"
+layout: "thunder"
+page_title: "thunder: thunder_fw_active_rule_set"
+sidebar_current: "docs-thunder-resource-fw-active-rule-set"
 description: |-
-	Provides details about vthunder fw active rule set resource for A10
+	Provides details about thunder fw active rule set resource for A10
 ---
 
-# vthunder\_fw\_active\_rule\_set
+# thunder\_fw\_active\_rule\_set
 
-`vthunder_fw_active_rule_set` Provides details about vthunder fw active rule set
+`thunder_fw_active_rule_set` Provides details about thunder fw active rule set
 
 ## Argument Reference
 

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_common"
-sidebar_current: "docs-vthunder-resource-slb-common"
+layout: "thunder"
+page_title: "thunder: thunder_slb_common"
+sidebar_current: "docs-thunder-resource-slb-common"
 description: |-
-    Provides details about vthunder SLB common resource for A10
+    Provides details about thunder SLB common resource for A10
 ---
 
-# vthunder\_slb\_common
+# thunder\_slb\_common
 
-`vthunder_slb_common` Provides details about vthunder SLB common
+`thunder_slb_common` Provides details about thunder SLB common
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_common" "common" {
+resource "thunder_slb_common" "common" {
 	low_latency = 0
 	use_mss_tab = 0
 	stats_data_disable = 0

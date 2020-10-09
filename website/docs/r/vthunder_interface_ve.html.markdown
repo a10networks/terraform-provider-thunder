@@ -1,14 +1,14 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_interface_ve"
-sidebar_current: "docs-vthunder-resource-interface-ve"
+layout: "thunder"
+page_title: "thunder: thunder_interface_ve"
+sidebar_current: "docs-thunder-resource-interface-ve"
 description: |-
-	Provides details about vthunder interface ve resource for A10
+	Provides details about thunder interface ve resource for A10
 ---
 
-# vthunder\_interface\_ve
+# thunder\_interface\_ve
 
-`vthunder_interface_ve` Provides details about vthunder interface ve
+`thunder_interface_ve` Provides details about thunder interface ve
 
 
 ## Argument Reference

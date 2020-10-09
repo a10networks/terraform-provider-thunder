@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_partition"
-sidebar_current: "docs-vthunder-resource-partition"
+layout: "thunder"
+page_title: "thunder: thunder_partition"
+sidebar_current: "docs-thunder-resource-partition"
 description: |-
-    Provides details about vthunder partition resource for A10
+    Provides details about thunder partition resource for A10
 ---
 
-# vthunder\_partition
+# thunder\_partition
 
-`vthunder_partition` provides details about partition
+`thunder_partition` provides details about partition
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_partition" "partition"{
+resource "thunder_partition" "partition"{
 user_tag="tag1"
 partition_name="part8"
 application_type="adc"

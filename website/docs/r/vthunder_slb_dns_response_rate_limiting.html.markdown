@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_dns_response_rate_limiting"
-sidebar_current: "docs-vthunder-resource-slb-dns-response-rate-limiting"
+layout: "thunder"
+page_title: "thunder: thunder_slb_dns_response_rate_limiting"
+sidebar_current: "docs-thunder-resource-slb-dns-response-rate-limiting"
 description: |-
-    Provides details about vthunder SLB dns-response-rate-limiting resource for A10
+    Provides details about thunder SLB dns-response-rate-limiting resource for A10
 ---
 
-# vthunder\_slb\_dns_response_rate_limiting
+# thunder\_slb\_dns_response_rate_limiting
 
-`vthunder_slb_dns_response_rate_limiting` Provides details about vthunder SLB dns-response-rate-limiting
+`thunder_slb_dns_response_rate_limiting` Provides details about thunder SLB dns-response-rate-limiting
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_dns_response_rate_limiting" "response_rate" {
+resource "thunder_slb_dns_response_rate_limiting" "response_rate" {
 	sampling_enable {
 		counters1 = "all"
 	}

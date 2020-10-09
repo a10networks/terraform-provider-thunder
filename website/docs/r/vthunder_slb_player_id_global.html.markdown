@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_player_id_global"
-sidebar_current: "docs-vthunder-resource-slb-player-id-global"
+layout: "thunder"
+page_title: "thunder: thunder_slb_player_id_global"
+sidebar_current: "docs-thunder-resource-slb-player-id-global"
 description: |-
-    Provides details about vthunder SLB player id global resource for A10
+    Provides details about thunder SLB player id global resource for A10
 ---
 
-# vthunder\_slb\_player\_id\_global
+# thunder\_slb\_player\_id\_global
 
-`vthunder_slb_player_id_global` Provides details about vthunder SLB player id global
+`thunder_slb_player_id_global` Provides details about thunder SLB player id global
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_player_id_global" "player_id" {
+resource "thunder_slb_player_id_global" "player_id" {
 	enforcement_timer = 10
 	abs_max_expiration = 10
 	sampling_enable  {

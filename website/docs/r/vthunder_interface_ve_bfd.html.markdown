@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_interface_ve_bfd"
-sidebar_current: "docs-vthunder-resource-interface-ve-bfd"
+layout: "thunder"
+page_title: "thunder: thunder_interface_ve_bfd"
+sidebar_current: "docs-thunder-resource-interface-ve-bfd"
 description: |-
-	Provides details about vthunder interface ve bfd resource for A10
+	Provides details about thunder interface ve bfd resource for A10
 ---
 
-# vthunder\_interface\_ve\_bfd
+# thunder\_interface\_ve\_bfd
 
-`vthunder_interface_ve_bfd` Provides details about vthunder interface ve bfd
+`thunder_interface_ve_bfd` Provides details about thunder interface ve bfd
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_interface_ve_bfd" "vebfd" {
+resource "thunder_interface_ve_bfd" "vebfd" {
     ifnum=11
     authentication {
       method = "md5"

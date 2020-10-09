@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_crl_srcip"
-sidebar_current: "docs-vthunder-resource-slb-crl-srcip"
+layout: "thunder"
+page_title: "thunder: thunder_slb_crl_srcip"
+sidebar_current: "docs-thunder-resource-slb-crl-srcip"
 description: |-
-    Provides details about vthunder SLB crl-srcip resource for A10
+    Provides details about thunder SLB crl-srcip resource for A10
 ---
 
-# vthunder\_slb\_crl\_srcip
+# thunder\_slb\_crl\_srcip
 
-`vthunder_slb_crl_srcip` Provides details about vthunder SLB crl-srcip
+`thunder_slb_crl_srcip` Provides details about thunder SLB crl-srcip
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_crl_srcip" "crl_srcip" {
+resource "thunder_slb_crl_srcip" "crl_srcip" {
 	sampling_enable {
 		counters1 = "all"
 	}

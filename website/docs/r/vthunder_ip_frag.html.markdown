@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_ip_frag"
-sidebar_current: "docs-vthunder-resource-ip-frag"
+layout: "thunder"
+page_title: "thunder: thunder_ip_frag"
+sidebar_current: "docs-thunder-resource-ip-frag"
 description: |-
-	Provides details about vthunder ip frag resource for A10
+	Provides details about thunder ip frag resource for A10
 ---
 
-# vthunder\_ip\_frag
+# thunder\_ip\_frag
 
-`vthunder_ip_frag` Provides details about vthunder ip frag
+`thunder_ip_frag` Provides details about thunder ip frag
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_ip_frag" "frag" {
+resource "thunder_ip_frag" "frag" {
   buff = 10000
   max_packets_per_reassembly = 2
   max_reassembly_sessions = 1

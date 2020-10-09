@@ -1,14 +1,14 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_logging"
-sidebar_current: "docs-vthunder-resource-fw-logging"
+layout: "thunder"
+page_title: "thunder: thunder_fw_logging"
+sidebar_current: "docs-thunder-resource-fw-logging"
 description: |-
-	Provides details about vthunder fw logging resource for A10
+	Provides details about thunder fw logging resource for A10
 ---
 
-# vthunder\_fw\_logging
+# thunder\_fw\_logging
 
-`vthunder_fw_logging` Provides details about vthunder fw logging
+`thunder_fw_logging` Provides details about thunder fw logging
 
 ## Argument Reference
 

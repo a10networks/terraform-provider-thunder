@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_tcp_window_check"
-sidebar_current: "docs-vthunder-resource-fw-tcp-window-check"
+layout: "thunder"
+page_title: "thunder: thunder_fw_tcp_window_check"
+sidebar_current: "docs-thunder-resource-fw-tcp-window-check"
 description: |-
-	Provides details about vthunder fw tcp window check resource for A10
+	Provides details about thunder fw tcp window check resource for A10
 ---
 
-# vthunder\_fw\_tcp\_window\_check
+# thunder\_fw\_tcp\_window\_check
 
-`vthunder_fw_tcp_window_check` Provides details about vthunder fw tcp window check
+`thunder_fw_tcp_window_check` Provides details about thunder fw tcp window check
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_tcp_window_check" "FwTest" {
+resource "thunder_fw_tcp_window_check" "FwTest" {
         status = "enable" 
 }
 ```

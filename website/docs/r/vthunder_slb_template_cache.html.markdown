@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_cache"
-sidebar_current: "docs-vthunder-resource-slb-template-cache"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_cache"
+sidebar_current: "docs-thunder-resource-slb-template-cache"
 description: |-
-    Provides details about vthunder SLB template cache resource for A10
+    Provides details about thunder SLB template cache resource for A10
 ---
 
-# vthunder\_slb\_template\_cache
+# thunder\_slb\_template\_cache
 
-`vthunder_slb_template_cache` Provides details about vthunder SLB template cache
+`thunder_slb_template_cache` Provides details about thunder SLB template cache
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_cache" "cache" {
+resource "thunder_slb_template_cache" "cache" {
 	name = "testcache"
 	user_tag = "test_tag"
 	accept_reload_req = 0

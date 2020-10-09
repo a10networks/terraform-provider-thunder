@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_vrid"
-sidebar_current: "docs-vthunder-resource-fw-vrid"
+layout: "thunder"
+page_title: "thunder: thunder_fw_vrid"
+sidebar_current: "docs-thunder-resource-fw-vrid"
 description: |-
-	Provides details about vthunder fw vrid resource for A10
+	Provides details about thunder fw vrid resource for A10
 ---
 
-# vthunder\_fw\_vrid
+# thunder\_fw\_vrid
 
-`vthunder_fw_vrid` Provides details about vthunder fw vrid
+`thunder_fw_vrid` Provides details about thunder fw vrid
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_vrid" "FwTest" {
+resource "thunder_fw_vrid" "FwTest" {
 	vrid = 1 
 }
 ```

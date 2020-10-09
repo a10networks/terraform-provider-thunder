@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_rate_limit_log"
-sidebar_current: "docs-vthunder-resource-slb-rate-limit-log"
+layout: "thunder"
+page_title: "thunder: thunder_slb_rate_limit_log"
+sidebar_current: "docs-thunder-resource-slb-rate-limit-log"
 description: |-
-    Provides details about vthunder SLB rate limit log resource for A10
+    Provides details about thunder SLB rate limit log resource for A10
 ---
 
-# vthunder\_slb\_rate\_limit\_log
+# thunder\_slb\_rate\_limit\_log
 
-`vthunder_slb_rate_limit_log` Provides details about vthunder SLB rate limit log
+`thunder_slb_rate_limit_log` Provides details about thunder SLB rate limit log
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_rate_limit_log" "rate_limit" {
+resource "thunder_slb_rate_limit_log" "rate_limit" {
 
 	sampling_enable {
 		counters1 = "all"

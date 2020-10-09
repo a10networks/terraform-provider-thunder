@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_dns"
-sidebar_current: "docs-vthunder-resource-slb-dns"
+layout: "thunder"
+page_title: "thunder: thunder_slb_dns"
+sidebar_current: "docs-thunder-resource-slb-dns"
 description: |-
-    Provides details about vthunder SLB dns resource for A10
+    Provides details about thunder SLB dns resource for A10
 ---
 
-# vthunder\_slb\_dns
+# thunder\_slb\_dns
 
-`vthunder_slb_dns` Provides details about vthunder SLB dns
+`thunder_slb_dns` Provides details about thunder SLB dns
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_dns" "dns" {
+resource "thunder_slb_dns" "dns" {
 	sampling_enable {
 		counters1 = "all"
 	}

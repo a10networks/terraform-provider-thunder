@@ -1,14 +1,14 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_tcp_reset_on_error"
-sidebar_current: "docs-vthunder-resource-fw-tcp-reset-on-error"
+layout: "thunder"
+page_title: "thunder: thunder_fw_tcp_reset_on_error"
+sidebar_current: "docs-thunder-resource-fw-tcp-reset-on-error"
 description: |-
-	Provides details about vthunder fw tcp reset on error resource for A10
+	Provides details about thunder fw tcp reset on error resource for A10
 ---
 
-# vthunder\_fw\_tcp\_reset\_on\_error
+# thunder\_fw\_tcp\_reset\_on\_error
 
-`vthunder_fw_tcp_reset_on_error` Provides details about vthunder fw tcp reset on error
+`thunder_fw_tcp_reset_on_error` Provides details about thunder fw tcp reset on error
 
 ## Argument Reference
 

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_gtp"
-sidebar_current: "docs-vthunder-resource-fw-gtp"
+layout: "thunder"
+page_title: "thunder: thunder_fw_gtp"
+sidebar_current: "docs-thunder-resource-fw-gtp"
 description: |-
-	Provides details about vthunder fw gtp resource for A10
+	Provides details about thunder fw gtp resource for A10
 ---
 
-# vthunder\_fw\_gtp
+# thunder\_fw\_gtp
 
-`vthunder_fw_gtp` Provides details about vthunder fw gtp
+`thunder_fw_gtp` Provides details about thunder fw gtp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_gtp" "FwTest" {
+resource "thunder_fw_gtp" "FwTest" {
 	gtp_value = "enable" 
 }
 ```

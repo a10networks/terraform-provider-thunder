@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_tcp_proxy"
-sidebar_current: "docs-vthunder-resource-slb-template-tcp-proxy"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_tcp_proxy"
+sidebar_current: "docs-thunder-resource-slb-template-tcp-proxy"
 description: |-
-    Provides details about vthunder slb template tcp-proxy resource for A10
+    Provides details about thunder slb template tcp-proxy resource for A10
 ---
 
-# vthunder\_slb\_template\_tcp_proxy
+# thunder\_slb\_template\_tcp_proxy
 
-`vthunder_slb_template_tcp_proxy` provides details about slb template tcp-proxy
+`thunder_slb_template_tcp_proxy` provides details about slb template tcp-proxy
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_tcp_proxy" "tcp_proxy" {
+resource "thunder_slb_template_tcp_proxy" "tcp_proxy" {
 	name = "testtcpproxy"
 	user_tag = "test_tag"
 	qos = 2

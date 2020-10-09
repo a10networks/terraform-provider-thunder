@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_transparent_tcp_template"
-sidebar_current: "docs-vthunder-slb-transparent-tcp-template"
+layout: "thunder"
+page_title: "thunder: thunder_slb_transparent_tcp_template"
+sidebar_current: "docs-thunder-slb-transparent-tcp-template"
 description: |-
-    Provides details about vthunder SLB transparent tcp template resource for A10
+    Provides details about thunder SLB transparent tcp template resource for A10
 ---
 
-# vthunder\_slb\_transparent\_tcp\_template
+# thunder\_slb\_transparent\_tcp\_template
 
-`vthunder_slb_transparent_tcp_template` Provides details about vthunder SLB transparent tcp template
+`thunder_slb_transparent_tcp_template` Provides details about thunder SLB transparent tcp template
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_transparent_tcp_template" "tcp_template" {
+resource "thunder_slb_transparent_tcp_template" "tcp_template" {
 	name = "testtransperenttcptemplate"
 }
 ```

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_ethernet"
-sidebar_current: "docs-vthunder-resource-ethernet"
+layout: "thunder"
+page_title: "thunder: thunder_ethernet"
+sidebar_current: "docs-thunder-resource-ethernet"
 description: |-
-    Provides details about vthunder ethernet resource for A10
+    Provides details about thunder ethernet resource for A10
 ---
 
-# vthunder\_ethernet
+# thunder\_ethernet
 
-`vthunder_ethernet` provides details about how to enable ethernet interfaces on a device
+`thunder_ethernet` provides details about how to enable ethernet interfaces on a device
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_ethernet" "eth"{
+resource "thunder_ethernet" "eth"{
   ethernet_list{
     ifnum=1
     ip{

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_generic_proxy"
-sidebar_current: "docs-vthunder-resource-slb-generic-proxy"
+layout: "thunder"
+page_title: "thunder: thunder_slb_generic_proxy"
+sidebar_current: "docs-thunder-resource-slb-generic-proxy"
 description: |-
-    Provides details about vthunder SLB generic-proxy resource for A10
+    Provides details about thunder SLB generic-proxy resource for A10
 ---
 
-# vthunder\_slb\_generic_proxy
+# thunder\_slb\_generic_proxy
 
-`vthunder_slb_generic_proxy` Provides details about vthunder SLB generic-proxy
+`thunder_slb_generic_proxy` Provides details about thunder SLB generic-proxy
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_generic_proxy" "generic_proxy" {
+resource "thunder_slb_generic_proxy" "generic_proxy" {
 	sampling_enable {
 		counters1 = "all"
 	}

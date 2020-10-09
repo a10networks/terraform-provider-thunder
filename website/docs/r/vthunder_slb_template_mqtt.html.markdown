@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_mqtt"
-sidebar_current: "docs-vthunder-resource-slb_template_mqtt"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_mqtt"
+sidebar_current: "docs-thunder-resource-slb_template_mqtt"
 description: |-
-    Provides details about vthunder SLB template mqtt resource for A10
+    Provides details about thunder SLB template mqtt resource for A10
 ---
 
-# vthunder\_slb\_template\_mqtt
+# thunder\_slb\_template\_mqtt
 
-`vthunder_slb_template_mqtt` Provides details about vthunder SLB template mqtt
+`thunder_slb_template_mqtt` Provides details about thunder SLB template mqtt
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_mqtt" "mqtt"{
+resource "thunder_slb_template_mqtt" "mqtt"{
     user_tag="tag2"
     clientid_hash_persist=0
     name="mqtt2"

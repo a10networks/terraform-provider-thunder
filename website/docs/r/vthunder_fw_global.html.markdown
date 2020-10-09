@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_global"
-sidebar_current: "docs-vthunder-resource-fw-global"
+layout: "thunder"
+page_title: "thunder: thunder_fw_global"
+sidebar_current: "docs-thunder-resource-fw-global"
 description: |-
-	Provides details about vthunder fw global resource for A10
+	Provides details about thunder fw global resource for A10
 ---
 
-# vthunder\_fw\_global
+# thunder\_fw\_global
 
-`vthunder_fw_global` Provides details about vthunder fw global
+`thunder_fw_global` Provides details about thunder fw global
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_global" "FwTest" {
+resource "thunder_fw_global" "FwTest" {
 	disable_ip_fw_sessions = "1" 
 }
 ```

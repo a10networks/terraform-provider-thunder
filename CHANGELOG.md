@@ -7,32 +7,32 @@ FEATURES:
 
 FEATURES:
 - Added Resources for:
-  - vthunder_ip_dns_primary
-  - vthunder_ip_dns_secondary
-  - vthunder_ip_dns_suffix
-  - vthunder_ip_frag
-  - vthunder_ip_icmp
-  - vthunder_ip_nat_alg_pptp
-  - vthunder_ip_nat_global
-  - vthunder_ip_nat_icmp
-  - vthunder_ip_prefix_list
-  - vthunder_ip_reroute
-  - vthunder_ip_tcp
-  - vthunder_ipv6_frag
-  - vthunder_ipv6_icmpv6
-  - vthunder_ipv6_nat_icmpv6
-  - vthunder_ip_route_static_bfd
-  - vthunder_ip_address
-  - vthunder_interface_management
-  - vthunder_interface_ethernet_bfd
-  - vthunder_interface_ethernet_lldp
-  - vthunder_interface_ve_bfd
-  - vthunder_interface_ethernet_trunk_group
-  - vthunder_interface_ethernet_ipv6
-  - vthunder_interface_ve_ip
-  - vthunder_interface_ve_ipv6
-  - vthunder_interface_ethernet
-  - vthunder_interface_ve
+  - thunder_ip_dns_primary
+  - thunder_ip_dns_secondary
+  - thunder_ip_dns_suffix
+  - thunder_ip_frag
+  - thunder_ip_icmp
+  - thunder_ip_nat_alg_pptp
+  - thunder_ip_nat_global
+  - thunder_ip_nat_icmp
+  - thunder_ip_prefix_list
+  - thunder_ip_reroute
+  - thunder_ip_tcp
+  - thunder_ipv6_frag
+  - thunder_ipv6_icmpv6
+  - thunder_ipv6_nat_icmpv6
+  - thunder_ip_route_static_bfd
+  - thunder_ip_address
+  - thunder_interface_management
+  - thunder_interface_ethernet_bfd
+  - thunder_interface_ethernet_lldp
+  - thunder_interface_ve_bfd
+  - thunder_interface_ethernet_trunk_group
+  - thunder_interface_ethernet_ipv6
+  - thunder_interface_ve_ip
+  - thunder_interface_ve_ipv6
+  - thunder_interface_ethernet
+  - thunder_interface_ve
 
 ## 0.2.0 (June 26, 2020)
 

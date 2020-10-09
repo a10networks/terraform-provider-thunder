@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_ssli"
-sidebar_current: "docs-vthunder-resource-slb-template-ssli"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_ssli"
+sidebar_current: "docs-thunder-resource-slb-template-ssli"
 description: |-
-    Provides details about vthunder slb template ssli resource for A10
+    Provides details about thunder slb template ssli resource for A10
 ---
 
-# vthunder\_slb\_template\_ssli
+# thunder\_slb\_template\_ssli
 
-`vthunder_slb_template_ssli` provides details about slb template ssli
+`thunder_slb_template_ssli` provides details about slb template ssli
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_ssli" "ssli" {
+resource "thunder_slb_template_ssli" "ssli" {
 	name = "testssli"
 	type = "init"
 	user_tag = "test_user"

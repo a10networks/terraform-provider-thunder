@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_service_group"
-sidebar_current: "docs-vthunder-resource-fw-service-group"
+layout: "thunder"
+page_title: "thunder: thunder_fw_service_group"
+sidebar_current: "docs-thunder-resource-fw-service-group"
 description: |-
-	Provides details about vthunder fw service group resource for A10
+	Provides details about thunder fw service group resource for A10
 ---
 
-# vthunder\_fw\_service\_group
+# thunder\_fw\_service\_group
 
-`vthunder_fw_service_group` Provides details about vthunder fw service group
+`thunder_fw_service_group` Provides details about thunder fw service group
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_service_group" "FwTest" {
+resource "thunder_fw_service_group" "FwTest" {
 	protocol = "tcp"
 	name = "a"
 	user_tag = "a" 

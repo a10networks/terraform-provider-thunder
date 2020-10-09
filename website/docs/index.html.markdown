@@ -1,14 +1,14 @@
 ---
-layout: "vthunder"
-page_title: "vThunder Provider : Index"
-sidebar_current: "docs-vthunder-index"
+layout: "thunder"
+page_title: "Thunder Provider : Index"
+sidebar_current: "docs-thunder-index"
 description: |-
-    Provides details about provider vthunder
+    Provides details about provider thunder
 ---
 
-# A10 vThunder Provider
+# A10 Thunder Provider
 
-A [Terraform](https://terraform.io) provider for A10 vThunder.
+A [Terraform](https://terraform.io) provider for A10 Thunder.
 
 ### Requirements
 
@@ -17,7 +17,7 @@ This provider uses the aXAPI.
 ## Example
 
 ```
-provider "vthunder" {
+provider "thunder" {
   address = "${var.url}"
   username = "${var.username}"
   password = "${var.password}"

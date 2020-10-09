@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_ftp_proxy"
-sidebar_current: "docs-vthunder-resource-slb-ftp-proxy"
+layout: "thunder"
+page_title: "thunder: thunder_slb_ftp_proxy"
+sidebar_current: "docs-thunder-resource-slb-ftp-proxy"
 description: |-
-    Provides details about vthunder SLB ftp-proxy resource for A10
+    Provides details about thunder SLB ftp-proxy resource for A10
 ---
 
-# vthunder\_slb\_ftp_proxy
+# thunder\_slb\_ftp_proxy
 
-`vthunder_slb_ftp_proxy` Provides details about vthunder SLB ftp-proxy
+`thunder_slb_ftp_proxy` Provides details about thunder SLB ftp-proxy
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_ftp_proxy" "ftp_proxy" {
+resource "thunder_slb_ftp_proxy" "ftp_proxy" {
 	sampling_enable {
 		counters1 = "all"
 	}

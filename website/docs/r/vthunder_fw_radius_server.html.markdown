@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_radius_server"
-sidebar_current: "docs-vthunder-resource-fw-radius-server"
+layout: "thunder"
+page_title: "thunder: thunder_fw_radius_server"
+sidebar_current: "docs-thunder-resource-fw-radius-server"
 description: |-
-	Provides details about vthunder fw radius server resource for A10
+	Provides details about thunder fw radius server resource for A10
 ---
 
-# vthunder\_fw\_radius\_server
+# thunder\_fw\_radius\_server
 
-`vthunder_fw_radius_server` Provides details about vthunder fw radius server
+`thunder_fw_radius_server` Provides details about thunder fw radius server
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_radius_server" "FwRadiusTest" {
+resource "thunder_fw_radius_server" "FwRadiusTest" {
 	listen_port = "1024" 
 }
 ```

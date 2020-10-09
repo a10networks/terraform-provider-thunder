@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_icap_http"
-sidebar_current: "docs-vthunder-resource-slb-icap_http"
+layout: "thunder"
+page_title: "thunder: thunder_slb_icap_http"
+sidebar_current: "docs-thunder-resource-slb-icap_http"
 description: |-
-    Provides details about vthunder SLB icap http resource for A10
+    Provides details about thunder SLB icap http resource for A10
 ---
 
-# vthunder\_slb\_icap\_http
+# thunder\_slb\_icap\_http
 
-`vthunder_slb_icap_http` Provides details about vthunder SLB icap http
+`thunder_slb_icap_http` Provides details about thunder SLB icap http
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_icap_http" "icap" {
+resource "thunder_slb_icap_http" "icap" {
 	sampling_enable {
 	    counters1 = "all"
 	}

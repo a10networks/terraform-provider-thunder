@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_diameter"
-sidebar_current: "docs-vthunder-resource-slb-template-diameter"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_diameter"
+sidebar_current: "docs-thunder-resource-slb-template-diameter"
 description: |-
-    Provides details about vthunder slb template diameter resource for A10
+    Provides details about thunder slb template diameter resource for A10
 ---
 
-# vthunder\_slb\_template\_diameter
+# thunder\_slb\_template\_diameter
 
-`vthunder_slb_template_diameter` provides details about slb template diameter
+`thunder_slb_template_diameter` provides details about slb template diameter
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_diameter" "diameter" {
+resource "thunder_slb_template_diameter" "diameter" {
 	name = "testdiameter"
 	user_tag = "test_tag"
 	terminate_on_cca_t = 0

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_tcp_mss_clamp"
-sidebar_current: "docs-vthunder-resource-fw-tcp-mss-clamp"
+layout: "thunder"
+page_title: "thunder: thunder_fw_tcp_mss_clamp"
+sidebar_current: "docs-thunder-resource-fw-tcp-mss-clamp"
 description: |-
-	Provides details about vthunder fw tcp mss clamp resource for A10
+	Provides details about thunder fw tcp mss clamp resource for A10
 ---
 
-# vthunder\_fw\_tcp\_mss\_clamp
+# thunder\_fw\_tcp\_mss\_clamp
 
-`vthunder_fw_tcp_mss_clamp` Provides details about vthunder fw tcp mss clamp
+`thunder_fw_tcp_mss_clamp` Provides details about thunder fw tcp mss clamp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_tcp_mss_clamp" "FwTcpTest" {
+resource "thunder_fw_tcp_mss_clamp" "FwTcpTest" {
 	mss_clamp_type = "fixed"
 	mss_value = "0" 
 }

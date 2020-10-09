@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_vrrp_common"
-sidebar_current: "docs-vthunder-resource-vrrp-common"
+layout: "thunder"
+page_title: "thunder: thunder_vrrp_common"
+sidebar_current: "docs-thunder-resource-vrrp-common"
 description: |-
-    Provides details about vthunder vrrp common resource for A10
+    Provides details about thunder vrrp common resource for A10
 ---
 
-# vthunder\_vrrp\_common
+# thunder\_vrrp\_common
 
-`vthunder_vrrp_common` provides details about vrrp common
+`thunder_vrrp_common` provides details about vrrp common
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-	resource "vthunder_vrrp_common" "vrrp_common" {
+	resource "thunder_vrrp_common" "vrrp_common" {
 		set_id = 1
 		device_id = 1
 		action = "enable"

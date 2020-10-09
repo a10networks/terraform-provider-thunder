@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_ip_reroute"
-sidebar_current: "docs-vthunder-resource-ip-reroute"
+layout: "thunder"
+page_title: "thunder: thunder_ip_reroute"
+sidebar_current: "docs-thunder-resource-ip-reroute"
 description: |-
-  Provides details about vthunder ip reroute resource for A10
+  Provides details about thunder ip reroute resource for A10
 ---
 
-# vthunder\_ip\_reroute
+# thunder\_ip\_reroute
 
-`vthunder_ip_reroute` Provides details about vthunder ip reroute
+`thunder_ip_reroute` Provides details about thunder ip reroute
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_ip_reroute" "reRoute" {
+resource "thunder_ip_reroute" "reRoute" {
   suppress_protocols  {
         static = 0
         ospf = 0

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_templateDns"
-sidebar_current: "docs-vthunder-resource-slb_templateDns"
+layout: "thunder"
+page_title: "thunder: thunder_slb_templateDns"
+sidebar_current: "docs-thunder-resource-slb_templateDns"
 description: |-
-    Provides details about vthunder SLB template DNS resource for A10
+    Provides details about thunder SLB template DNS resource for A10
 ---
 
-# vthunder\_slb\_template\_dns
+# thunder\_slb\_template\_dns
 
-`vthunder_TemplateDNS` Provides details about vthunder SLB template DNS
+`thunder_TemplateDNS` Provides details about thunder SLB template DNS
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_dns" "templatedns" {
+resource "thunder_slb_template_dns" "templatedns" {
 		name = "testdns"
         response_rate_limiting {
             enable_log=1

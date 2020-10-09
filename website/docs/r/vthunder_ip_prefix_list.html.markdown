@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_ip_prefix_list"
-sidebar_current: "docs-vthunder-resource-ip-prefix-list"
+layout: "thunder"
+page_title: "thunder: thunder_ip_prefix_list"
+sidebar_current: "docs-thunder-resource-ip-prefix-list"
 description: |-
-  Provides details about vthunder ip prefix list resource for A10
+  Provides details about thunder ip prefix list resource for A10
 ---
 
-# vthunder\_ip\_prefix\_list
+# thunder\_ip\_prefix\_list
 
-`vthunder_ip_prefix_list` Provides details about vthunder ip prefix list
+`thunder_ip_prefix_list` Provides details about thunder ip prefix list
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_ip_prefix_list" "IpPrefixList" {
+resource "thunder_ip_prefix_list" "IpPrefixList" {
   name = "testprefixlist"
   rules {
         any= 1

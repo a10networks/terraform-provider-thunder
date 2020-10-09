@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_rc_cache_global"
-sidebar_current: "docs-vthunder-resource-slb-rc-cache-global"
+layout: "thunder"
+page_title: "thunder: thunder_slb_rc_cache_global"
+sidebar_current: "docs-thunder-resource-slb-rc-cache-global"
 description: |-
-    Provides details about vthunder SLB rc cache global resource for A10
+    Provides details about thunder SLB rc cache global resource for A10
 ---
 
-# vthunder\_slb\_rc\_cache\_global
+# thunder\_slb\_rc\_cache\_global
 
-`vthunder_slb_rc_cache_global` Provides details about vthunder SLB rc cache global
+`thunder_slb_rc_cache_global` Provides details about thunder SLB rc cache global
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_rc_cache_global" "rc_cache" {
+resource "thunder_slb_rc_cache_global" "rc_cache" {
 
 	sampling_enable  {
 	    counters1 = "all"

@@ -1,14 +1,14 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_apply_changes"
-sidebar_current: "docs-vthunder-resource-fw-apply-changes"
+layout: "thunder"
+page_title: "thunder: thunder_fw_apply_changes"
+sidebar_current: "docs-thunder-resource-fw-apply-changes"
 description: |-
-	Provides details about vthunder fw apply changes resource for A10
+	Provides details about thunder fw apply changes resource for A10
 ---
 
-# vthunder\_fw\_apply\_changes
+# thunder\_fw\_apply\_changes
 
-`vthunder_fw_apply_changes` Provides details about vthunder fw apply changes
+`thunder_fw_apply_changes` Provides details about thunder fw apply changes
 
 ## Argument Reference
 

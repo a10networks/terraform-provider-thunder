@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_persist"
-sidebar_current: "docs-vthunder-resource-slb-persist"
+layout: "thunder"
+page_title: "thunder: thunder_slb_persist"
+sidebar_current: "docs-thunder-resource-slb-persist"
 description: |-
-    Provides details about vthunder SLB persist resource for A10
+    Provides details about thunder SLB persist resource for A10
 ---
 
-# vthunder\_slb\_persist
+# thunder\_slb\_persist
 
-`vthunder_slb_persist` Provides details about vthunder SLB persist
+`thunder_slb_persist` Provides details about thunder SLB persist
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_persist" "persist" {
+resource "thunder_slb_persist" "persist" {
 	sampling_enable  {
 	    counters1 = "all"
 	}

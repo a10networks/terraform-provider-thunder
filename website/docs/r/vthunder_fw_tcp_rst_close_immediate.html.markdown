@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_tcp_rst_close_immediate"
-sidebar_current: "docs-vthunder-resource-fw-tcp-rst-close-immediate"
+layout: "thunder"
+page_title: "thunder: thunder_fw_tcp_rst_close_immediate"
+sidebar_current: "docs-thunder-resource-fw-tcp-rst-close-immediate"
 description: |-
-	Provides details about vthunder fw tcp rst close immediate resource for A10
+	Provides details about thunder fw tcp rst close immediate resource for A10
 ---
 
-# vthunder\_fw\_tcp\_rst\_close\_immediate
+# thunder\_fw\_tcp\_rst\_close\_immediate
 
-`vthunder_fw_tcp_rst_close_immediate` Provides details about vthunder fw tcp rst close immediate
+`thunder_fw_tcp_rst_close_immediate` Provides details about thunder fw tcp rst close immediate
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_fw_tcp_rst_close_immediate" "FwTest" {
+resource "thunder_fw_tcp_rst_close_immediate" "FwTest" {
 	status = "enable" 
 }
 ```

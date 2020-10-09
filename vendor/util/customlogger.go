@@ -18,7 +18,7 @@ var once sync.Once
 // start loggeando
 func GetLoggerInstance() *logger {
 	once.Do(func() {
-		myLogger = createLogger("vthunder.log")
+		myLogger = createLogger("thunder.log")
 	})
 	return myLogger
 }

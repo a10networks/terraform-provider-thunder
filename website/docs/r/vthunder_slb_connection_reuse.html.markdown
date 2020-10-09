@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_connection_reuse"
-sidebar_current: "docs-vthunder-resource-slb-connection-reuse"
+layout: "thunder"
+page_title: "thunder: thunder_slb_connection_reuse"
+sidebar_current: "docs-thunder-resource-slb-connection-reuse"
 description: |-
-    Provides details about vthunder SLB connection_reuse resource for A10
+    Provides details about thunder SLB connection_reuse resource for A10
 ---
 
-# vthunder\_slb\_connection\_reuse
+# thunder\_slb\_connection\_reuse
 
-`vthunder_slb_connection_reuse` Provides details about vthunder SLB connection-reuse
+`thunder_slb_connection_reuse` Provides details about thunder SLB connection-reuse
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_connection_reuse" "connection_reuse" {
+resource "thunder_slb_connection_reuse" "connection_reuse" {
 	sampling_enable {
 		counters1 = "all"
 	}

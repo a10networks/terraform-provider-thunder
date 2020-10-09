@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_ip_icmp"
-sidebar_current: "docs-vthunder-resource-ip-icmp"
+layout: "thunder"
+page_title: "thunder: thunder_ip_icmp"
+sidebar_current: "docs-thunder-resource-ip-icmp"
 description: |-
-  Provides details about vthunder ip icmp resource for A10
+  Provides details about thunder ip icmp resource for A10
 ---
 
-# vthunder\_ip\_icmp
+# thunder\_ip\_icmp
 
-`vthunder_ip_icmp` Provides details about vthunder ip icmp
+`thunder_ip_icmp` Provides details about thunder ip icmp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_ip_icmp" "ICMP" {
+resource "thunder_ip_icmp" "ICMP" {
   redirect = 0
   unreachable = 0
 }

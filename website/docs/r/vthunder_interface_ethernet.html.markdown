@@ -1,14 +1,14 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_interface_ethernet"
-sidebar_current: "docs-vthunder-resource-interface-ethernet"
+layout: "thunder"
+page_title: "thunder: thunder_interface_ethernet"
+sidebar_current: "docs-thunder-resource-interface-ethernet"
 description: |-
-	Provides details about vthunder interface ethernet resource for A10
+	Provides details about thunder interface ethernet resource for A10
 ---
 
-# vthunder\_interface\_ethernet
+# thunder\_interface\_ethernet
 
-`vthunder_interface_ethernet` Provides details about vthunder interface ethernet
+`thunder_interface_ethernet` Provides details about thunder interface ethernet
 
 
 ## Argument Reference

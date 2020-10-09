@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_reboot"
-sidebar_current: "docs-vthunder-resource-reboot"
+layout: "thunder"
+page_title: "thunder: thunder_reboot"
+sidebar_current: "docs-thunder-resource-reboot"
 description: |-
-    Provides details about vthunder reboot resource for A10
+    Provides details about thunder reboot resource for A10
 ---
 
-# vthunder\_import
+# thunder\_import
 
-`vthunder_reboot` provides details about reboot
+`thunder_reboot` provides details about reboot
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_reboot" "reboot1" {
+resource "thunder_reboot" "reboot1" {
 		all=1 
 }
 ```

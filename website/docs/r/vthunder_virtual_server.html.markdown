@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_virtual_server"
-sidebar_current: "docs-vthunder-resource-virtual-server"
+layout: "thunder"
+page_title: "thunder: thunder_virtual_server"
+sidebar_current: "docs-thunder-resource-virtual-server"
 description: |-
-    Provides details about vthunder virtual server resource for A10
+    Provides details about thunder virtual server resource for A10
 ---
 
-# vthunder\_virtual\_server
+# thunder\_virtual\_server
 
-`vthunder_virtual_server` provides details about configuring virtual server on device
+`thunder_virtual_server` provides details about configuring virtual server on device
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_virtual_server" "vs9" {
+resource "thunder_virtual_server" "vs9" {
   name="vs9"
   ip_address="10.0.2.10"
   port_list {

@@ -1,10 +1,10 @@
-provider "vthunder" {
+provider "thunder" {
   address = ""
   username = ""
   password = ""
 }
 
-resource "vthunder_service_group" "sg3" {
+resource "thunder_service_group" "sg3" {
 name="SG3"
 protocol=""
 member_list {

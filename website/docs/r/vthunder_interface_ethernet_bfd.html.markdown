@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_interface_ethernet_bfd"
-sidebar_current: "docs-vthunder-resource-interface-ethernet-bfd"
+layout: "thunder"
+page_title: "thunder: thunder_interface_ethernet_bfd"
+sidebar_current: "docs-thunder-resource-interface-ethernet-bfd"
 description: |-
-  Provides details about vthunder interface ethernet bfd resource for A10
+  Provides details about thunder interface ethernet bfd resource for A10
 ---
 
-# vthunder\_interface\_ethernet\_bfd
+# thunder\_interface\_ethernet\_bfd
 
-`vthunder_interface_ethernet_bfd` Provides details about vthunder interface ethernet bfd
+`thunder_interface_ethernet_bfd` Provides details about thunder interface ethernet bfd
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_interface_ethernet_bfd" "ethernetbfd" {
+resource "thunder_interface_ethernet_bfd" "ethernetbfd" {
   ifnum=1
   authentication {
     method = "md5"

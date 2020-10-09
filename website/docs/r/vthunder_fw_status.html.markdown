@@ -1,14 +1,14 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_status"
-sidebar_current: "docs-vthunder-resource-fw-status"
+layout: "thunder"
+page_title: "thunder: thunder_fw_status"
+sidebar_current: "docs-thunder-resource-fw-status"
 description: |-
-	Provides details about vthunder fw status resource for A10
+	Provides details about thunder fw status resource for A10
 ---
 
-# vthunder\_fw\_status
+# thunder\_fw\_status
 
-`vthunder_fw_status` Provides details about vthunder fw status
+`thunder_fw_status` Provides details about thunder fw status
 
 ## Argument Reference
 

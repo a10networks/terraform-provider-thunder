@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_switch"
-sidebar_current: "docs-vthunder-slb-switch"
+layout: "thunder"
+page_title: "thunder: thunder_slb_switch"
+sidebar_current: "docs-thunder-slb-switch"
 description: |-
-    Provides details about vthunder SLB switch resource for A10
+    Provides details about thunder SLB switch resource for A10
 ---
 
-# vthunder\_slb\_switch
+# thunder\_slb\_switch
 
-`vthunder_slb_switch` Provides details about vthunder SLB switch
+`thunder_slb_switch` Provides details about thunder SLB switch
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_switch" "switch" {
+resource "thunder_slb_switch" "switch" {
 	sampling_enable  {
 	   counters1 = all
 	} 

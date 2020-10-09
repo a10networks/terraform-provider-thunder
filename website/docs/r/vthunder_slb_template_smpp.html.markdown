@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_smpp"
-sidebar_current: "docs-vthunder-resource-slb_template_smpp"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_smpp"
+sidebar_current: "docs-thunder-resource-slb_template_smpp"
 description: |-
-    Provides details about vthunder SLB template smpp resource for A10
+    Provides details about thunder SLB template smpp resource for A10
 ---
 
-# vthunder\_slb\_template\_smpp
+# thunder\_slb\_template\_smpp
 
-`vthunder_slb_template_smpp` Provides details about vthunder SLB template smpp
+`thunder_slb_template_smpp` Provides details about thunder SLB template smpp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_smpp" "smpp"{
+resource "thunder_slb_template_smpp" "smpp"{
     name = "smpp2"
     server_enquire_link = 1
     server_selection_per_request = 1

@@ -1,14 +1,14 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_fw_limit_entry"
-sidebar_current: "docs-vthunder-resource-fw-limit-entry"
+layout: "thunder"
+page_title: "thunder: thunder_fw_limit_entry"
+sidebar_current: "docs-thunder-resource-fw-limit-entry"
 description: |-
-	Provides details about vthunder fw limit entry resource for A10
+	Provides details about thunder fw limit entry resource for A10
 ---
 
-# vthunder\_fw\_limit\_entry
+# thunder\_fw\_limit\_entry
 
-`vthunder_fw_limit_entry` Provides details about vthunder fw limit entry
+`thunder_fw_limit_entry` Provides details about thunder fw limit entry
 
 ## Argument Reference
 

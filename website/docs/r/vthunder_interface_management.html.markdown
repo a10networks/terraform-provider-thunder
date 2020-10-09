@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_interface_management"
-sidebar_current: "docs-vthunder-resource-interface-management"
+layout: "thunder"
+page_title: "thunder: thunder_interface_management"
+sidebar_current: "docs-thunder-resource-interface-management"
 description: |-
-	Provides details about vthunder interface management resource for A10
+	Provides details about thunder interface management resource for A10
 ---
 
-# vthunder\_interface\_management
+# thunder\_interface\_management
 
-`vthunder_interface_management` Provides details about vthunder interface management
+`thunder_interface_management` Provides details about thunder interface management
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_interface_management" "testname" {
+resource "thunder_interface_management" "testname" {
 	lldp {
     enable_cfg {
       rt_enable = 1

@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_cipher"
-sidebar_current: "docs-vthunder-resource-slb_template_cipher"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_cipher"
+sidebar_current: "docs-thunder-resource-slb_template_cipher"
 description: |-
-    Provides details about vthunder SLB template cipher resource for A10
+    Provides details about thunder SLB template cipher resource for A10
 ---
 
-# vthunder\_slb\_template\_cipher
+# thunder\_slb\_template\_cipher
 
-`vthunder_slb_template_cipher` Provides details about vthunder SLB template cipher
+`thunder_slb_template_cipher` Provides details about thunder SLB template cipher
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_cipher" "cipher" {
+resource "thunder_slb_template_cipher" "cipher" {
 	cipher_cfg {
 		priority = 10
 		cipher_suite = "SSL3_RSA_DES_192_CBC3_SHA"

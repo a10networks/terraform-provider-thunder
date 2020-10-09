@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_virtual_port"
-sidebar_current: "docs-vthunder-resource-slb-template-virtual-port"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_virtual_port"
+sidebar_current: "docs-thunder-resource-slb-template-virtual-port"
 description: |-
-    Provides details about vthunder slb template virtual-port resource for A10
+    Provides details about thunder slb template virtual-port resource for A10
 ---
 
-# vthunder\_slb\_template\_virtual_port
+# thunder\_slb\_template\_virtual_port
 
-`vthunder_slb_template_virtual_port` provides details about slb template virtual-port
+`thunder_slb_template_virtual_port` provides details about slb template virtual-port
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_virtual_port" "virtual_port" {
+resource "thunder_slb_template_virtual_port" "virtual_port" {
 	name = "testvirtualport"
 	user_tag = "test_tag"
 	reset_unknown_conn = 0

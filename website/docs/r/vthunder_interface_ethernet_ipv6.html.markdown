@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_interface_ethernet_ipv6"
-sidebar_current: "docs-vthunder-resource-interface-ethernet-ipv6"
+layout: "thunder"
+page_title: "thunder: thunder_interface_ethernet_ipv6"
+sidebar_current: "docs-thunder-resource-interface-ethernet-ipv6"
 description: |-
-	Provides details about vthunder interface ethernet ipv6 resource for A10
+	Provides details about thunder interface ethernet ipv6 resource for A10
 ---
 
-# vthunder\_interface\_ethernet\_ipv6
+# thunder\_interface\_ethernet\_ipv6
 
-`vthunder_interface_ethernet_ipv6` Provides details about vthunder interface ethernet ipv6
+`thunder_interface_ethernet_ipv6` Provides details about thunder interface ethernet ipv6
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_interface_ethernet_ipv6" "ethernet_ipv6" {
+resource "thunder_interface_ethernet_ipv6" "ethernet_ipv6" {
   ifnum=1
   stateful_firewall {
     inside = 1

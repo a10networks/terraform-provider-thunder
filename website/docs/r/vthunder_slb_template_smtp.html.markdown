@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_slb_template_smtp"
-sidebar_current: "docs-vthunder-resource-slb_template_smtp"
+layout: "thunder"
+page_title: "thunder: thunder_slb_template_smtp"
+sidebar_current: "docs-thunder-resource-slb_template_smtp"
 description: |-
-    Provides details about vthunder SLB template smtp resource for A10
+    Provides details about thunder SLB template smtp resource for A10
 ---
 
-# vthunder\_slb\_template\_smtp
+# thunder\_slb\_template\_smtp
 
-`vthunder_slb_template_smtp` Provides details about vthunder SLB template smtp
+`thunder_slb_template_smtp` Provides details about thunder SLB template smtp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_slb_template_smtp" "smtp" {
+resource "thunder_slb_template_smtp" "smtp" {
 	name = "testsmtp"
 	user_tag = "test_tag"
 	server_domain= "gmail.com"

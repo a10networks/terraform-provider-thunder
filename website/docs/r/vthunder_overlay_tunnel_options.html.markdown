@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_overlay_tunnel_options"
-sidebar_current: "docs-vthunder-resource-overlay_tunnel_options"
+layout: "thunder"
+page_title: "thunder: thunder_overlay_tunnel_options"
+sidebar_current: "docs-thunder-resource-overlay_tunnel_options"
 description: |-
-    Provides details about vthunder overlay tunnel options resource for A10
+    Provides details about thunder overlay tunnel options resource for A10
 ---
 
-# vthunder\_overlay\_tunnel\_options
+# thunder\_overlay\_tunnel\_options
 
-`vthunder_overlay_tunnel_options` Provides details about vthunder overlay tunnel options
+`thunder_overlay_tunnel_options` Provides details about thunder overlay tunnel options
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_overlay_tunnel_options" "options" {
+resource "thunder_overlay_tunnel_options" "options" {
 		tcp_mss_adjust_disable=1
 		nvgre_disable_flow_id=1
 		ip_dscp_preserve=1

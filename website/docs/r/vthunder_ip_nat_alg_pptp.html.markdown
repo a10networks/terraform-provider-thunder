@@ -1,25 +1,25 @@
 ---
-layout: "vthunder"
-page_title: "vthunder: vthunder_ip_nat_alg_pptp"
-sidebar_current: "docs-vthunder-resource-ip-nat-alg-pptp"
+layout: "thunder"
+page_title: "thunder: thunder_ip_nat_alg_pptp"
+sidebar_current: "docs-thunder-resource-ip-nat-alg-pptp"
 description: |-
-  Provides details about vthunder ip nat alg pptp resource for A10
+  Provides details about thunder ip nat alg pptp resource for A10
 ---
 
-# vthunder\_ip\_nat\_alg\_pptp
+# thunder\_ip\_nat\_alg\_pptp
 
-`vthunder_ip_nat_alg_pptp` Provides details about vthunder ip nat alg pptp
+`thunder_ip_nat_alg_pptp` Provides details about thunder ip nat alg pptp
 ## Example Usage
 
 
 ```hcl
-provider "vthunder" {
+provider "thunder" {
   address  = "192.0.2.65"
   username = "admin"
   password = "admin"
 }
 
-resource "vthunder_ip_nat_alg_pptp" "pptp" {
+resource "thunder_ip_nat_alg_pptp" "pptp" {
   pptp = "disable"
     sampling_enable {
         counters1 = "all"
