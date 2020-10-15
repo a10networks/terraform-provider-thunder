@@ -2249,7 +2249,7 @@ func dataToInterfaceEthernet(d *schema.ResourceData) go_thunder.InterfaceEtherne
 	obj1.Server = d.Get(prefix + "server").(int)
 
 	var obj1_6 go_thunder.EthernetOspf
-	prefix1 = "ospf.0."
+	prefix1 = prefix + "ospf.0."
 
 	OspfIpListCount := d.Get(prefix1 + "ospf_ip_list.#").(int)
 	obj1_6.DeadInterval = make([]go_thunder.EthernetOspfIPList, 0, OspfIpListCount)

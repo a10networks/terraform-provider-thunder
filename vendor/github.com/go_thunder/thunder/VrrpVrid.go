@@ -11,19 +11,23 @@ import (
 type VridInstance struct {
 	UUID Vrid `json:"vrid,omitempty"`
 }
-type VlanCfg struct {
+type VridPairFollow struct {
+	PairFollow int    `json:"pair-follow,omitempty"`
+	VridLead   string `json:"vrid-lead,omitempty"`
+}
+type VridVlanCfg struct {
 	Vlan         int `json:"vlan,omitempty"`
 	Timeout      int `json:"timeout,omitempty"`
 	PriorityCost int `json:"priority-cost,omitempty"`
 }
-type Ipv6DestinationCfg struct {
+type VridIpv6DestinationCfg struct {
 	Distance        int    `json:"distance,omitempty"`
 	Protocol        string `json:"protocol,omitempty"`
 	PriorityCost    int    `json:"priority-cost,omitempty"`
 	Ipv6Destination string `json:"ipv6-destination,omitempty"`
 	Gatewayv6       string `json:"gatewayv6,omitempty"`
 }
-type IPDestinationCfg struct {
+type VridIPDestinationCfg struct {
 	Distance      int    `json:"distance,omitempty"`
 	Protocol      string `json:"protocol,omitempty"`
 	Mask          string `json:"mask,omitempty"`
@@ -31,99 +35,104 @@ type IPDestinationCfg struct {
 	IPDestination string `json:"ip-destination,omitempty"`
 	Gateway       string `json:"gateway,omitempty"`
 }
-type Route struct {
-	Ipv6Destination []Ipv6DestinationCfg `json:"ipv6-destination-cfg,omitempty"`
-	IPDestination   []IPDestinationCfg   `json:"ip-destination-cfg,omitempty"`
+type VridRoute struct {
+	Distance []VridIpv6DestinationCfg `json:"ipv6-destination-cfg,omitempty"`
+	Protocol []VridIPDestinationCfg   `json:"ip-destination-cfg,omitempty"`
 }
-type BgpIpv4AddressCfg struct {
+type VridBgpIpv4AddressCfg struct {
 	BgpIpv4Address string `json:"bgp-ipv4-address,omitempty"`
 	PriorityCost   int    `json:"priority-cost,omitempty"`
 }
-type BgpIpv6AddressCfg struct {
+type VridBgpIpv6AddressCfg struct {
 	BgpIpv6Address string `json:"bgp-ipv6-address,omitempty"`
 	PriorityCost   int    `json:"priority-cost,omitempty"`
 }
-type Bgp struct {
-	BgpIpv4Address []BgpIpv4AddressCfg `json:"bgp-ipv4-address-cfg,omitempty"`
-	BgpIpv6Address []BgpIpv6AddressCfg `json:"bgp-ipv6-address-cfg,omitempty"`
+type VridBgp struct {
+	BgpIpv4Address []VridBgpIpv4AddressCfg `json:"bgp-ipv4-address-cfg,omitempty"`
+	BgpIpv6Address []VridBgpIpv6AddressCfg `json:"bgp-ipv6-address-cfg,omitempty"`
 }
-type Interface struct {
+type VridInterface struct {
 	Ethernet     int `json:"ethernet,omitempty"`
 	PriorityCost int `json:"priority-cost,omitempty"`
 }
-type Ipv4GatewayList struct {
+type VridIpv4GatewayList struct {
 	UUID         string `json:"uuid,omitempty"`
 	IPAddress    string `json:"ip-address,omitempty"`
 	PriorityCost int    `json:"priority-cost,omitempty"`
 }
-type Ipv6GatewayList struct {
+type VridIpv6GatewayList struct {
 	Ipv6Address  string `json:"ipv6-address,omitempty"`
 	UUID         string `json:"uuid,omitempty"`
 	PriorityCost int    `json:"priority-cost,omitempty"`
 }
-type Gateway struct {
-	IPAddress   []Ipv4GatewayList `json:"ipv4-gateway-list,omitempty"`
-	Ipv6Address []Ipv6GatewayList `json:"ipv6-gateway-list,omitempty"`
+type VridGateway struct {
+	IPAddress   []VridIpv4GatewayList `json:"ipv4-gateway-list,omitempty"`
+	Ipv6Address []VridIpv6GatewayList `json:"ipv6-gateway-list,omitempty"`
 }
-type TrunkCfg struct {
+type VridTrunkCfg struct {
 	PriorityCost int `json:"priority-cost,omitempty"`
 	Trunk        int `json:"trunk,omitempty"`
 	PerPortPri   int `json:"per-port-pri,omitempty"`
 }
-type TrackingOptions struct {
-	Vlan []VlanCfg `json:"vlan-cfg,omitempty"`
-	UUID string    `json:"uuid,omitempty"`
-	//IPDestination  Route       `json:"route,omitempty"`
-	//BgpIpv4Address Bgp         `json:"bgp,omitempty"`
-	Ethernet []Interface `json:"interface,omitempty"`
-	//IPAddress      Gateway     `json:"gateway,omitempty"`
-	Trunk []TrunkCfg `json:"trunk-cfg,omitempty"`
+type VridTrackingOptions struct {
+	Vlan           []VridVlanCfg   `json:"vlan-cfg,omitempty"`
+	UUID           string          `json:"uuid,omitempty"`
+	Distance       VridRoute       `json:"route,omitempty"`
+	BgpIpv4Address VridBgp         `json:"bgp,omitempty"`
+	Ethernet       []VridInterface `json:"interface,omitempty"`
+	IPAddress      VridGateway     `json:"gateway,omitempty"`
+	PriorityCost   []VridTrunkCfg  `json:"trunk-cfg,omitempty"`
 }
-type BladeParameters struct {
-	Priority               int             `json:"priority,omitempty"`
-	FailOverPolicyTemplate string          `json:"fail-over-policy-template,omitempty"`
-	UUID_BladeParams       string          `json:"uuid,omitempty"`
-	UUID                   TrackingOptions `json:"tracking-options,omitempty"`
+type VridBladeParameters struct {
+	Priority               int                 `json:"priority,omitempty"`
+	FailOverPolicyTemplate string              `json:"fail-over-policy-template,omitempty"`
+	UUID                   string              `json:"uuid,omitempty"`
+	Vlan                   VridTrackingOptions `json:"tracking-options,omitempty"`
 }
-type PreemptMode struct {
+type VridPreemptMode struct {
 	Threshold int `json:"threshold,omitempty"`
 	Disable   int `json:"disable,omitempty"`
 }
-type Ipv6AddressPartCfg struct {
+type VridSamplingEnable struct {
+	Counters1 string `json:"counters1,omitempty"`
+}
+type VridIpv6AddressPartCfg struct {
 	Ethernet             int    `json:"ethernet,omitempty"`
 	Ipv6AddressPartition string `json:"ipv6-address-partition,omitempty"`
 	Ve                   int    `json:"ve,omitempty"`
 	Trunk                int    `json:"trunk,omitempty"`
 }
-type IPAddressCfg struct {
+type VridIPAddressCfg struct {
 	IPAddress string `json:"ip-address,omitempty"`
 }
-type IPAddressPartCfg struct {
+type VridIPAddressPartCfg struct {
 	IPAddressPartition string `json:"ip-address-partition,omitempty"`
 }
-type Ipv6AddressCfg struct {
+type VridIpv6AddressCfg struct {
 	Ipv6Address string `json:"ipv6-address,omitempty"`
 	Ethernet    int    `json:"ethernet,omitempty"`
 	Ve          int    `json:"ve,omitempty"`
 	Trunk       int    `json:"trunk,omitempty"`
 }
-type FloatingIP struct {
-	Ipv6AddressPartition []Ipv6AddressPartCfg `json:"ipv6-address-part-cfg,omitempty"`
-	IPAddress            []IPAddressCfg       `json:"ip-address-cfg,omitempty"`
-	IPAddressPartition   []IPAddressPartCfg   `json:"ip-address-part-cfg,omitempty"`
-	Ipv6Address          []Ipv6AddressCfg     `json:"ipv6-address-cfg,omitempty"`
+type VridFloatingIP struct {
+	Ethernet           []VridIpv6AddressPartCfg `json:"ipv6-address-part-cfg,omitempty"`
+	IPAddress          []VridIPAddressCfg       `json:"ip-address-cfg,omitempty"`
+	IPAddressPartition []VridIPAddressPartCfg   `json:"ip-address-part-cfg,omitempty"`
+	Ipv6Address        []VridIpv6AddressCfg     `json:"ipv6-address-cfg,omitempty"`
 }
-type Follow struct {
+type VridFollow struct {
 	VridLead string `json:"vrid-lead,omitempty"`
 }
 type Vrid struct {
-	UUID_BladeParams BladeParameters `json:"blade-parameters,omitempty"`
-	UUID             string          `json:"uuid,omitempty"`
-	VridVal          int             `json:"vrid-val,omitempty"`
-	UserTag          string          `json:"user-tag,omitempty"`
-	Threshold        PreemptMode     `json:"preempt-mode,omitempty"`
-	Ipv6Address      FloatingIP      `json:"floating-ip,omitempty"`
-	VridLead         Follow          `json:"follow,omitempty"`
+	PairFollow VridPairFollow       `json:"pair-follow,omitempty"`
+	Priority   VridBladeParameters  `json:"blade-parameters,omitempty"`
+	UUID       string               `json:"uuid,omitempty"`
+	VridVal    int                  `json:"vrid-val,omitempty"`
+	UserTag    string               `json:"user-tag,omitempty"`
+	Threshold  VridPreemptMode      `json:"preempt-mode,omitempty"`
+	Counters1  []VridSamplingEnable `json:"sampling-enable,omitempty"`
+	Ethernet   VridFloatingIP       `json:"floating-ip,omitempty"`
+	VridLead   VridFollow           `json:"follow,omitempty"`
 }
 
 func GetVrrpVrid(id string, name string, host string) (*VridInstance, error) {

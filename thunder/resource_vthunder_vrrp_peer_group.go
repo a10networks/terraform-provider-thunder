@@ -4,9 +4,10 @@ package thunder
 
 import (
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceVrrpPeerGroup() *schema.Resource {
@@ -120,19 +121,32 @@ func dataToVrrpPeerGroup(d *schema.ResourceData) go_thunder.PeerGroup {
 
 	var c go_thunder.PeerGroupInstance
 
-	c.UUID = d.Get("uuid").(string)
+	var obj1 go_thunder.Peer
+	prefix := "peer.0."
 
-	var peer go_thunder.Peer
+	c.UUID = d.Get("uuid").(string) //kya ye line rakhni h
 
-	ip_count := d.Get("peer.0.ip_peer_address_cfg.#").(int)
-	peer.IPPeerAddress = make([]go_thunder.IPPeerAddressCfg, 0, ip_count)
+	IpPeerAddressCfgCount := d.Get(prefix + "ip_peer_address_cfg.#").(int)
+	obj1.IPPeerAddress = make([]go_thunder.IPPeerAddressCfg, 0, IpPeerAddressCfgCount)
 
-	for i := 0; i < ip_count; i++ {
-		var ip_cfg go_thunder.IPPeerAddressCfg
-		prefix := fmt.Sprintf("peer.0.ip_peer_address_cfg.%d", i)
-		ip_cfg.IPPeerAddress = d.Get(prefix + ".ip_peer_address").(string)
-		peer.IPPeerAddress = append(peer.IPPeerAddress, ip_cfg)
+	for i := 0; i < IpPeerAddressCfgCount; i++ {
+		var obj1_1 go_thunder.IPPeerAddressCfg
+		prefix1 := fmt.Sprintf(prefix+"ip_peer_address_cfg.%d.", i)
+		obj1_1.IPPeerAddress = d.Get(prefix1 + "ip_peer_address").(string)
+		obj1.IPPeerAddress = append(obj1.IPPeerAddress, obj1_1)
 	}
+
+	Ipv6PeerAddressCfgCount := d.Get(prefix + "ipv6_peer_address_cfg.#").(int)
+	obj1.Ipv6PeerAddress = make([]go_thunder.Ipv6PeerAddressCfg, 0, Ipv6PeerAddressCfgCount)
+
+	for i := 0; i < Ipv6PeerAddressCfgCount; i++ {
+		var obj1_2 go_thunder.Ipv6PeerAddressCfg
+		prefix2 := fmt.Sprintf(prefix+"ipv6_peer_address_cfg.%d.", i)
+		obj1_2.Ipv6PeerAddress = d.Get(prefix2 + "ipv6_peer_address").(string)
+		obj1.Ipv6PeerAddress = append(obj1.Ipv6PeerAddress, obj1_2)
+	}
+
+	c.IPPeerAddressCfg = obj1
 
 	vc.UUID = c
 
