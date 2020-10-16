@@ -124,8 +124,6 @@ func dataToVrrpPeerGroup(d *schema.ResourceData) go_thunder.PeerGroup {
 	var obj1 go_thunder.Peer
 	prefix := "peer.0."
 
-	c.UUID = d.Get("uuid").(string) //kya ye line rakhni h
-
 	IpPeerAddressCfgCount := d.Get(prefix + "ip_peer_address_cfg.#").(int)
 	obj1.IPPeerAddress = make([]go_thunder.IPPeerAddressCfg, 0, IpPeerAddressCfgCount)
 
