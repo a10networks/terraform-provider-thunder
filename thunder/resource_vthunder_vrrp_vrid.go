@@ -134,6 +134,38 @@ func resourceVrrpVrid() *schema.Resource {
 					},
 				},
 			},
+			"pair_follow": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"vrid_lead": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"pair_follow": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"sampling_enable": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"counters1": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
 			"follow": {
 				Type:     schema.TypeList,
 				Optional: true,
