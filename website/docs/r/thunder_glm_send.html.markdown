@@ -19,7 +19,12 @@ provider "thunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "thunder_glm_send" "glm_send1" {
+
+  depends_on = [thunder_ip_dns_primary.dns_primary, thunder_glm.glm1]
+  license_request = 1
+
+}
 ```
 
 ## Argument Reference
