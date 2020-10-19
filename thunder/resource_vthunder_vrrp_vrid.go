@@ -478,7 +478,7 @@ func resourceVrrpVridRead(d *schema.ResourceData, meta interface{}) error {
 
 		if vc == nil {
 			logger.Println("[INFO] No vrrp vrid found")
-			d.SetId("")
+
 			return nil
 		}
 
@@ -519,7 +519,7 @@ func resourceVrrpVridDelete(d *schema.ResourceData, meta interface{}) error {
 			logger.Printf("[ERROR] Unable to Delete vrrp vrid  (%s) (%v)", name, err)
 			return err
 		}
-		d.SetId("")
+
 		return nil
 	}
 	return nil
@@ -530,18 +530,28 @@ func resourceVrrpVridDelete(d *schema.ResourceData, meta interface{}) error {
 //TODO: Conf. for all the parameters
 
 func dataToVrrpVrid(d *schema.ResourceData) go_thunder.VridInstance {
+	logger := util.GetLoggerInstance()
 	var vc go_thunder.VridInstance
 
 	var c go_thunder.Vrid
+	logger.Println("DATA to CHECK line - 536")
 
 	var obj1 go_thunder.VridPairFollow
-	prefix := "pair_follow.0."
+	prefix := "pair_follow_p.0."
+	logger.Println("DATA to CHECK line - 540") // yaha per logs aa rhe h
+	logger.Println(prefix + "pair_follow")
+
 	obj1.PairFollow = d.Get(prefix + "pair_follow").(int)
+	//fmt.Println("hello")
+	logger.Println("DATA to CHECK line - 544") // but ye ni aa rha log pe
 	obj1.VridLead = d.Get(prefix + "vrid_lead").(string)
+	logger.Println("DATA to CHECK line - 546")
 	c.PairFollow = obj1
+	logger.Println("DATA to CHECK line - 548")
 
 	var obj2 go_thunder.VridBladeParameters
 	prefix = "blade_parameters.0."
+	logger.Println("DATA to CHECK line - 548")
 	obj2.Priority = d.Get(prefix + "priority").(int)
 	obj2.FailOverPolicyTemplate = d.Get(prefix + "fail_over_policy_template").(string)
 
@@ -602,6 +612,7 @@ func dataToVrrpVrid(d *schema.ResourceData) go_thunder.VridInstance {
 
 	for i := 0; i < BgpIpv4AddressCfgCount; i++ {
 		var obj2_1_3_1 go_thunder.VridBgpIpv4AddressCfg
+		logger.Println("DATA to CHECK line - 607")
 		prefix3 := prefix2 + fmt.Sprintf("bgp_ipv4_address_cfg.%d.", i)
 		obj2_1_3_1.BgpIpv4Address = d.Get(prefix3 + "bgp_ipv4_address").(string)
 		obj2_1_3_1.PriorityCost = d.Get(prefix3 + "priority_cost").(int)
@@ -674,7 +685,7 @@ func dataToVrrpVrid(d *schema.ResourceData) go_thunder.VridInstance {
 	obj2.Vlan = obj2_1
 
 	c.Priority = obj2
-
+	logger.Println("DATA to CHECK line - 680")
 	c.VridVal = d.Get("vrid_val").(int)
 	c.UserTag = d.Get("user_tag").(string)
 
@@ -702,6 +713,7 @@ func dataToVrrpVrid(d *schema.ResourceData) go_thunder.VridInstance {
 
 	for i := 0; i < Ipv6AddressPartCfgCount; i++ {
 		var obj5_1 go_thunder.VridIpv6AddressPartCfg
+		logger.Println("DATA to CHECK line - 708")
 		prefix1 = prefix + fmt.Sprintf("ipv6_address_part_cfg.%d.", i)
 		obj5_1.Ethernet = d.Get(prefix1 + "ethernet").(int)
 		obj5_1.Ipv6AddressPartition = d.Get(prefix1 + "ipv6_address_partition").(string)
@@ -734,6 +746,7 @@ func dataToVrrpVrid(d *schema.ResourceData) go_thunder.VridInstance {
 	obj5.Ipv6Address = make([]go_thunder.VridIpv6AddressCfg, 0, Ipv6AddressCfgCount)
 
 	for i := 0; i < Ipv6AddressCfgCount; i++ {
+		logger.Println("DATA to CHECK line - 741")
 		var obj5_4 go_thunder.VridIpv6AddressCfg
 		prefix1 := prefix + fmt.Sprintf("ipv6_address_cfg.%d.", i)
 		obj5_4.Ipv6Address = d.Get(prefix1 + "ipv6_address").(string)

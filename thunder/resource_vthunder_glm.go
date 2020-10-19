@@ -180,22 +180,36 @@ func resourceGlmDelete(d *schema.ResourceData, meta interface{}) error {
 
 func dataToGlm(d *schema.ResourceData) go_thunder.Glm {
 	var vc go_thunder.Glm
-
 	var c go_thunder.GlmInstance
+	c.UseMgmtPort = d.Get("use_mgmt_port").(int)
+	c.Burst = d.Get("burst").(int)
+	c.Interval = d.Get("interval").(int)
+
+	var obj1 go_thunder.Send
+	prefix := "send.0."
+	obj1.LicenseRequest = d.Get(prefix + "license_request").(int)
+
+	c.LicenseRequest = obj1
 
 	c.Token = d.Get("token").(string)
-	c.UseMgmtPort = d.Get("use_mgmt_port").(int)
+	c.Enterprise = d.Get("enterprise").(string)
+
+	var obj2 go_thunder.ProxyServer
+	prefix = "proxy_server.0."
+	obj2.Username = d.Get(prefix + "username").(string)
+	obj2.Encrypted = d.Get(prefix + "encrypted").(string)
+	obj2.Host = d.Get(prefix + "host").(string)
+	obj2.Password = d.Get(prefix + "password").(int)
+	obj2.Port = d.Get(prefix + "port").(int)
+	obj2.SecretString = d.Get(prefix + "secret_string").(string)
+
+	c.Username = obj2
+
+	c.ApplianceName = d.Get("appliance_name").(string)
 	c.EnableRequests = d.Get("enable_requests").(int)
 	c.AllocateBandwidth = d.Get("allocate_bandwidth").(int)
-
-	if d.Get("send.#").(int) > 0 {
-		//var send go_thunder.Send
-		send2 := &go_thunder.Send{LicenseRequest: d.Get("send.0.license_request").(int)}
-		//send.LicenseRequest = d.Get("send.0.license_request").(int)
-		c.LicenseRequest = send2
-	}
+	c.Port = d.Get("port").(int)
 
 	vc.UUID = c
-
 	return vc
 }
