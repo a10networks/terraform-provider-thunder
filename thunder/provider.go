@@ -198,6 +198,7 @@ func Provider() terraform.ResourceProvider {
 			"thunder_fw_urpf":                           resourceFwUrpf(),
 			"thunder_fw_vrid":                           resourceFwVrid(),
 			"thunder_fw_template_logging":               resourceFwTemplateLogging(),
+			"thunder_glm_send":                          resourceGlmSend(),
 		},
 
 		ConfigureFunc: providerConfigure,

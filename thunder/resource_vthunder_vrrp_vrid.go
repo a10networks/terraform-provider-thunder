@@ -510,7 +510,7 @@ func resourceVrrpVridRead(d *schema.ResourceData, meta interface{}) error {
 
 		if vc == nil {
 			logger.Println("[INFO] No vrrp vrid found")
-			d.SetId("")
+
 			return nil
 		}
 
@@ -551,7 +551,7 @@ func resourceVrrpVridDelete(d *schema.ResourceData, meta interface{}) error {
 			logger.Printf("[ERROR] Unable to Delete vrrp vrid  (%s) (%v)", name, err)
 			return err
 		}
-		d.SetId("")
+
 		return nil
 	}
 	return nil
@@ -567,7 +567,8 @@ func dataToVrrpVrid(d *schema.ResourceData) go_thunder.VridInstance {
 	var c go_thunder.Vrid
 
 	var obj1 go_thunder.VridPairFollow
-	prefix := "pair_follow.0."
+	prefix := "pair_follow_p.0."
+
 	obj1.PairFollow = d.Get(prefix + "pair_follow").(int)
 	obj1.VridLead = d.Get(prefix + "vrid_lead").(string)
 	c.PairFollow = obj1
@@ -706,7 +707,6 @@ func dataToVrrpVrid(d *schema.ResourceData) go_thunder.VridInstance {
 	obj2.Vlan = obj2_1
 
 	c.Priority = obj2
-
 	c.VridVal = d.Get("vrid_val").(int)
 	c.UserTag = d.Get("user_tag").(string)
 
