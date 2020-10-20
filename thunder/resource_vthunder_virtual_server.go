@@ -1185,6 +1185,7 @@ func dataToVs(name string, d *schema.ResourceData) go_thunder.VirtalServerInstan
 			pl.ACLName[x] = a
 		}
 
+		
 		vsMain.Protocol = append(vsMain.Protocol, pl)
 	}
 

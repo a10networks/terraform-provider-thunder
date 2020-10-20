@@ -158,7 +158,7 @@ type PortList struct {
 	Auto                                        int              `json:"auto,omitempty"`
 	TemplateDynamicServiceShared                string           `json:"template-dynamic-service-shared,omitempty"`
 	TemplateServerSSH                           string           `json:"template-server-ssh,omitempty"`
-	aflexScripts                                []AflexScripts   `json:"aflex-scripts,omitempty"`
+	Aflex                                       []AflexScripts   `json:"aflex-scripts,omitempty"`
 	TemplateHTTPShared                          string           `json:"template-http-shared,omitempty"`
 	TemplateServerSsl                           string           `json:"template-server-ssl,omitempty"`
 	SharedPartitionDiameterTemplate             int              `json:"shared-partition-diameter-template,omitempty"`
