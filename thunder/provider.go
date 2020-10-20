@@ -201,6 +201,11 @@ func Provider() terraform.ResourceProvider {
 			"thunder_glm_send":                          resourceGlmSend(),
 			"thunder_write_memory":                      resourceWriteMemory(),
 			"thunder_hostname":                          resourceHostname(),
+			"thunder_ip_nat_pool":                       resourceIpNatPool(),
+			"thunder_slb_server_port":                   resourceSlbServerPort(),
+			"thunder_slb_virtual_server_port":           resourceSlbVirtualServerPort(),
+			"thunder_slb_template_persist_cookie":       resourceSlbTemplatePersistCookie(),
+			"thunder_slb_template_persist_source_ip":    resourceSlbTemplatePersistSourceIp(),
 		},
 
 		ConfigureFunc: providerConfigure,
