@@ -1,9 +1,10 @@
 package thunder
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceGlm() *schema.Resource {
@@ -93,20 +94,6 @@ func resourceGlm() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"send": {
-				Type:     schema.TypeList,
-				Optional: true,
-				MaxItems: 1,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"license_request": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-					},
-				},
-			},
 			"enable_requests": {
 				Type:        schema.TypeInt,
 				Optional:    true,
@@ -185,31 +172,23 @@ func dataToGlm(d *schema.ResourceData) go_thunder.Glm {
 	c.Burst = d.Get("burst").(int)
 	c.Interval = d.Get("interval").(int)
 
-	var obj1 go_thunder.Send
-	prefix := "send.0."
-	obj1.LicenseRequest = d.Get(prefix + "license_request").(int)
-
-	c.LicenseRequest = obj1
-
 	c.Token = d.Get("token").(string)
 	c.Enterprise = d.Get("enterprise").(string)
 
 	var obj2 go_thunder.ProxyServer
-	prefix = "proxy_server.0."
+	prefix := "proxy_server.0."
 	obj2.Username = d.Get(prefix + "username").(string)
 	obj2.Encrypted = d.Get(prefix + "encrypted").(string)
 	obj2.Host = d.Get(prefix + "host").(string)
 	obj2.Password = d.Get(prefix + "password").(int)
 	obj2.Port = d.Get(prefix + "port").(int)
 	obj2.SecretString = d.Get(prefix + "secret_string").(string)
-
 	c.Username = obj2
 
 	c.ApplianceName = d.Get("appliance_name").(string)
 	c.EnableRequests = d.Get("enable_requests").(int)
 	c.AllocateBandwidth = d.Get("allocate_bandwidth").(int)
 	c.Port = d.Get("port").(int)
-
 	vc.UUID = c
 	return vc
 }
