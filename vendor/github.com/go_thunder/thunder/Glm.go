@@ -21,7 +21,6 @@ type GlmInstance struct {
 	Interval          int         `json:"interval,omitempty"`
 	Port              int         `json:"port,omitempty"`
 	Username          ProxyServer `json:"proxy-server,omitempty"`
-	LicenseRequest    Send        `json:"send,omitempty"`
 	Token             string      `json:"token,omitempty"`
 	UUID              string      `json:"uuid,omitempty"`
 	UseMgmtPort       int         `json:"use-mgmt-port,omitempty"`
@@ -35,10 +34,6 @@ type ProxyServer struct {
 	SecretString string `json:"secret-string,omitempty"`
 	UUID         string `json:"uuid,omitempty"`
 	Username     string `json:"username,omitempty"`
-}
-
-type Send struct {
-	LicenseRequest int `json:"license-request,omitempty"`
 }
 
 func GetGlm(id string, host string) (*Glm, error) {
