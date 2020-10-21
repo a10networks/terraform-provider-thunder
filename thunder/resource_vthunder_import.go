@@ -485,6 +485,10 @@ func dataToImport(d *schema.ResourceData) go_thunder.Import {
 	c.Password = d.Get("password").(string)
 	c.Overwrite = d.Get("overwrite").(int)
 
+	c.Aflex = d.Get("aflex").(string)
+
+
+
 	vc.GeoLocation = c
 
 	return vc

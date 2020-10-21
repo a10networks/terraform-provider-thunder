@@ -1204,6 +1204,26 @@ func dataToVs(name string, d *schema.ResourceData) go_thunder.VirtalServerInstan
 		pl.TemplateTCPProxyClient = d.Get(prefix + ".template_tcp_proxy_client").(string)
 		pl.TemplateTCPProxyServer = d.Get(prefix + ".template_tcp_proxy_server").(string)
 
+		aflexScriptsCount := d.Get(prefix + ".aflex_scripts.#").(int)
+		pl.Aflex = make([]go_thunder.AflexScripts, 0, aflexScriptsCount)
+		for x := 0; x < aflexScriptsCount; x++ {
+			var a1 go_thunder.AflexScripts
+			prefix1 := prefix + fmt.Sprintf(".aflex_scripts.%d.", x)
+			a1.Aflex = d.Get(prefix1 + "aflex").(string)
+			a1.AflexShared = d.Get(prefix1 + "aflex_shared").(string)
+			pl.Aflex = append(pl.Aflex, a1)
+		}
+
+		pl.NoAutoUpOnAflex = d.Get(prefix + ".no_auto_up_on_aflex").(int)
+		pl.Pool = d.Get(prefix + ".pool").(string)
+		pl.ServiceGroup = d.Get(prefix + ".service_group").(string)
+		pl.UseRcvHopForResp = d.Get(prefix + ".use_rcv_hop_for_resp").(int)
+		pl.TemplateConnectionReuse = d.Get(prefix + ".template_connection_reuse").(string)
+		pl.TemplatePersistCookie = d.Get(prefix + ".template_persist_cookie").(string)
+		pl.TemplateHTTP = d.Get(prefix + ".template_http").(string)
+		pl.TemplateTCPProxyClient = d.Get(prefix + ".template_tcp_proxy_client").(string)
+		pl.TemplateTCPProxyServer = d.Get(prefix + ".template_tcp_proxy_server").(string)
+
 		vsMain.Protocol = append(vsMain.Protocol, pl)
 	}
 
