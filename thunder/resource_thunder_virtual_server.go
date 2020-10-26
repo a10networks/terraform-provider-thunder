@@ -1057,10 +1057,8 @@ func resourceVirtualServerCreate(d *schema.ResourceData, meta interface{}) error
 		logger.Println("[INFO] received formatted data from method data to vs --" + v.Name.Name + ",--" + v.Name.UUID)
 		d.SetId(name)
 		go_thunder.PostVS(client.Token, v, client.Host)
-
-		//return resourceVirtualServerRead(d, meta)
-		return nil
-	}
+		return resourceVirtualServerRead(d, meta)
+		}
 	return nil
 }
 
@@ -1100,9 +1098,8 @@ func resourceVirtualServerUpdate(d *schema.ResourceData, meta interface{}) error
 		d.SetId(name)
 		go_thunder.PutVS(client.Token, name, v, client.Host)
 
-		//return resourceVirtualServerRead(d, meta)
-		return nil
-	}
+		return resourceVirtualServerRead(d, meta)
+		}
 	return nil
 }
 
