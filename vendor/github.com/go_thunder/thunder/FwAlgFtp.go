@@ -49,7 +49,8 @@ func PostFwAlgFtp(id string, inst FwAlgFtp, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwAlgFtp", data)
 
 		}
 	}
@@ -80,6 +81,7 @@ func GetFwAlgFtp(id string, host string) (*FwAlgFtp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwAlgFtp", data)
 			return &m, nil
 		}
 	}

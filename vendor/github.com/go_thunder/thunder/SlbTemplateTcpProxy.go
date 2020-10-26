@@ -87,7 +87,8 @@ func PostSlbTemplateTcpProxy(id string, inst TCPProxy, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateTcpProxy REQ RES..........................", m)
+			check_api_status("PostSlbTemplateTcpProxy", data)
 
 		}
 	}
@@ -117,7 +118,8 @@ func GetSlbTemplateTcpProxy(id string, name string, host string) (*TCPProxy, err
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateTcpProxy REQ RES..........................", m)
+			check_api_status("GetSlbTemplateTcpProxy", data)
 			return &m, nil
 		}
 	}
@@ -152,7 +154,8 @@ func PutSlbTemplateTcpProxy(id string, name string, inst TCPProxy, host string) 
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateTcpProxy REQ RES..........................", m)
+			check_api_status("PutSlbTemplateTcpProxy", data)
 
 		}
 	}

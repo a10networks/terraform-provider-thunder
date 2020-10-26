@@ -43,7 +43,8 @@ func PostIpv6NatIcmpv6(id string, inst NatIcmpv6, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIpv6NatIcmpv6 REQ RES..........................", m)
+			check_api_status("PostIpv6NatIcmpv6", data)
 
 		}
 	}
@@ -73,7 +74,8 @@ func GetIpv6NatIcmpv6(id string, host string) (*NatIcmpv6, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIpv6NatIcmpv6 REQ RES..........................", m)
+			check_api_status("GetIpv6NatIcmpv6", data)
 			return &m, nil
 		}
 	}

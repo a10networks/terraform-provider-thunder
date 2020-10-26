@@ -46,7 +46,8 @@ func PostSlbSportRateLimit(id string, inst SportRateLimit, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbSportRateLimit REQ RES..........................", m)
+			check_api_status("PostSlbSportRateLimit", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbSportRateLimit(id string, host string) (*SportRateLimit, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbSportRateLimit REQ RES..........................", m)
+			check_api_status("GetSlbSportRateLimit", data)
 			return &m, nil
 		}
 	}

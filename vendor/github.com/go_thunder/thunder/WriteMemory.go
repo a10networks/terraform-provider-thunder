@@ -46,7 +46,8 @@ func PostWriteMemory(id string, inst WriteMemory, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostWriteMemory REQ RES..........................", m)
+			check_api_status("PostWriteMemory", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetWriteMemory(id string, host string) (*WriteMemory, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GEGetWriteMemoryT REQ RES..........................", m)
+			check_api_status("GetWriteMemory", data)
 			return &m, nil
 		}
 	}

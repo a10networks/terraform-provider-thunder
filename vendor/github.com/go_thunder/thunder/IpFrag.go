@@ -56,7 +56,8 @@ func PostIpFrag(id string, inst Frag, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIpFrag REQ RES..........................", m)
+			check_api_status("PostIpFrag", data)
 
 		}
 	}
@@ -86,7 +87,8 @@ func GetIpFrag(id string, host string) (*Frag, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIpFrag REQ RES..........................", m)
+			check_api_status("GetIpFrag", data)
 			return &m, nil
 		}
 	}

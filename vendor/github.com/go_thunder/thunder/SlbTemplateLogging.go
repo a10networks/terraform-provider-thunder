@@ -55,7 +55,8 @@ func GetLogging(id string, name string, host string) (*Logging, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetLogging REQ RES..........................", m)
+			check_api_status("GetLogging", data)
 			return &m, nil
 		}
 	}
@@ -91,6 +92,7 @@ func PostLogging(id string, sg Logging, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostLogging", data)
 		}
 	}
 
@@ -126,6 +128,7 @@ func PutLogging(id string, name string, sg Logging, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PutLogging", data)
 		}
 	}
 

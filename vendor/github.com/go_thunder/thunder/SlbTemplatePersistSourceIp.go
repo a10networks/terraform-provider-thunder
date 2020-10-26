@@ -58,7 +58,8 @@ func PostSlbTemplatePersistSourceIp(id string, inst SlbTemplatePersistSourceIp, 
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplatePersistSourceIp REQ RES..........................", m)
+			check_api_status("PostSlbTemplatePersistSourceIp", data)
 
 		}
 	}
@@ -88,7 +89,8 @@ func GetSlbTemplatePersistSourceIp(id string, name string, host string) (*SlbTem
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplatePersistSourceIp REQ RES..........................", m)
+			check_api_status("GetSlbTemplatePersistSourceIp", data)
 			return &m, nil
 		}
 	}
@@ -123,7 +125,8 @@ func PutSlbTemplatePersistSourceIp(id string, name string, inst SlbTemplatePersi
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplatePersistSourceIp REQ RES..........................", m)
+			check_api_status("PutSlbTemplatePersistSourceIp", data)
 
 		}
 	}

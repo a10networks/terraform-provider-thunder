@@ -69,7 +69,8 @@ func PostFwServer(id string, inst FwServer, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwServer", data)
 
 		}
 	}
@@ -100,6 +101,7 @@ func GetFwServer(id string, name string, host string) (*FwServer, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwServer", data)
 			return &m, nil
 		}
 	}
@@ -134,7 +136,8 @@ func PutFwServer(id string, name string, inst FwServer, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PUT REQ RES..........................", m)
+			check_api_status("PutFwServer", data)
 
 		}
 	}

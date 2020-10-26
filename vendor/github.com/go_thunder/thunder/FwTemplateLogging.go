@@ -113,7 +113,8 @@ func PostFwTemplateLogging(id string, inst FwTemplateLogging, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostFwTemplateLogging REQ RES..........................", m)
+			check_api_status("PostFwTemplateLogging", data)
 
 		}
 	}
@@ -143,7 +144,8 @@ func GetFwTemplateLogging(id string, name string, host string) (*FwTemplateLoggi
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetFwTemplateLogging REQ RES..........................", m)
+			check_api_status("GetFwTemplateLogging", data)
 			return &m, nil
 		}
 	}

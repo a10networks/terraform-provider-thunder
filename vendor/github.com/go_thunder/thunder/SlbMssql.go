@@ -45,7 +45,8 @@ func PostSlbMssql(id string, inst Mssql, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbMssql REQ RES..........................", m)
+			check_api_status("PostSlbMssql", data)
 
 		}
 	}
@@ -75,7 +76,8 @@ func GetSlbMssql(id string, host string) (*Mssql, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbMssql REQ RES..........................", m)
+			check_api_status("GetSlbMssql", data)
 			return &m, nil
 		}
 	}

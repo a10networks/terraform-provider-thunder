@@ -46,7 +46,8 @@ func PostSlbPop3Proxy(id string, inst Pop3Proxy, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbPop3Proxy REQ RES..........................", m)
+			check_api_status("PostSlbPop3Proxy", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbPop3Proxy(id string, host string) (*Pop3Proxy, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbPop3Proxy REQ RES..........................", m)
+			check_api_status("GetSlbPop3Proxy", data)
 			return &m, nil
 		}
 	}

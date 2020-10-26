@@ -66,7 +66,8 @@ func PostSlbTemplateExternalService(id string, inst ExternalService, host string
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateExternalService REQ RES..........................", m)
+			check_api_status("PostSlbTemplateExternalService", data)
 
 		}
 	}
@@ -96,7 +97,8 @@ func GetSlbTemplateExternalService(id string, name string, host string) (*Extern
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateExternalService REQ RES..........................", m)
+			check_api_status("GetSlbTemplateExternalService", data)
 			return &m, nil
 		}
 	}
@@ -131,7 +133,8 @@ func PutSlbTemplateExternalService(id string, name string, inst ExternalService,
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateExternalService REQ RES..........................", m)
+			check_api_status("PutSlbTemplateExternalService", data)
 
 		}
 	}

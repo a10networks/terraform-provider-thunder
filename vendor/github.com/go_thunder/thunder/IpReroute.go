@@ -54,7 +54,8 @@ func PostIpReroute(id string, inst Reroute, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIpReroute REQ RES..........................", m)
+			check_api_status("PostIpReroute", data)
 
 		}
 	}
@@ -84,7 +85,8 @@ func GetIpReroute(id string, host string) (*Reroute, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIpReroute REQ RES..........................", m)
+			check_api_status("GetIpReroute", data)
 			return &m, nil
 		}
 	}

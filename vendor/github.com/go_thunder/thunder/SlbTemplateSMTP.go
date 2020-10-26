@@ -63,7 +63,8 @@ func PostSlbTemplateSMTP(id string, inst SMTP, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateSMTP REQ RES..........................", m)
+			check_api_status("PostSlbTemplateSMTP", data)
 
 		}
 	}
@@ -93,7 +94,8 @@ func GetSlbTemplateSMTP(id string, name string, host string) (*SMTP, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateSMTP REQ RES..........................", m)
+			check_api_status("GetSlbTemplateSMTP", data)
 			return &m, nil
 		}
 	}
@@ -128,7 +130,8 @@ func PutSlbTemplateSMTP(id string, name string, inst SMTP, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateSMTP REQ RES..........................", m)
+			check_api_status("PutSlbTemplateSMTP", data)
 
 		}
 	}

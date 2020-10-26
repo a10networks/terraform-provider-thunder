@@ -46,7 +46,8 @@ func PostSlbSSLForwardProxy(id string, inst SSLForwardProxy, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbSSLForwardProxy REQ RES..........................", m)
+			check_api_status("PostSlbSSLForwardProxy", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbSSLForwardProxy(id string, host string) (*SSLForwardProxy, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbSSLForwardProxy REQ RES..........................", m)
+			check_api_status("GetSlbSSLForwardProxy", data)
 			return &m, nil
 		}
 	}

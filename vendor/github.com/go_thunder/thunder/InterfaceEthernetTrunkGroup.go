@@ -56,7 +56,8 @@ func PostInterfaceEthernetTrunkGroup(id string, idNum int, inst EthernetTrunkGro
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostInterfaceEthernetTrunkGroup REQ RES..........................", m)
+			check_api_status("PostInterfaceEthernetTrunkGroup", data)
 
 		}
 	}
@@ -86,7 +87,8 @@ func GetInterfaceEthernetTrunkGroup(id string, idNum string, name string, host s
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetInterfaceEthernetTrunkGroup REQ RES..........................", m)
+			check_api_status("GetInterfaceEthernetTrunkGroup", data)
 			return &m, nil
 		}
 	}
@@ -122,6 +124,7 @@ func PutInterfaceEthernetTrunkGroup(id string, idNum int, name int, inst Etherne
 
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("PutInterfaceEthernetTrunkGroup", data)
 
 		}
 	}

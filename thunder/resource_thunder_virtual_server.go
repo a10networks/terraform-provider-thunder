@@ -1058,7 +1058,8 @@ func resourceVirtualServerCreate(d *schema.ResourceData, meta interface{}) error
 		d.SetId(name)
 		go_thunder.PostVS(client.Token, v, client.Host)
 
-		return resourceVirtualServerRead(d, meta)
+		//return resourceVirtualServerRead(d, meta)
+		return nil
 	}
 	return nil
 }
@@ -1099,7 +1100,8 @@ func resourceVirtualServerUpdate(d *schema.ResourceData, meta interface{}) error
 		d.SetId(name)
 		go_thunder.PutVS(client.Token, name, v, client.Host)
 
-		return resourceVirtualServerRead(d, meta)
+		//return resourceVirtualServerRead(d, meta)
+		return nil
 	}
 	return nil
 }

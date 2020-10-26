@@ -44,7 +44,8 @@ func PostIpDnsPrimary(id string, inst DnsPrimary, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIpDnsPrimary REQ RES..........................", m)
+			check_api_status("PostIpDnsPrimary", data)
 
 		}
 	}
@@ -74,7 +75,8 @@ func GetIpDnsPrimary(id string, host string) (*DnsPrimary, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIpDnsPrimary REQ RES..........................", m)
+			check_api_status("GetIpDnsPrimary", data)
 			return &m, nil
 		}
 	}

@@ -251,8 +251,9 @@ func GetVS(id string, name string, host string) (*VirtalServerInstanceMain, erro
 			fmt.Printf("Unmarshal error %s\n", err)
 			return nil, err
 		} else {
-			fmt.Print(m)
+			
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetVS", data)
 			return &m, nil
 		}
 	}
@@ -283,13 +284,14 @@ func PostVS(id string, vs VirtalServerInstanceMain, host string) {
 		logger.Println("The HTTP request failed with error \n", err)
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
+
 		var m VirtalServerInstanceMain
 		erro := json.Unmarshal(data, &m)
 		if erro != nil {
-			fmt.Printf("Unmarshal error %s\n", err)
+			logger.Println("Unmarshal error %s\n", err)
 		} else {
-			fmt.Println("response Body:", string(data))
-			logger.Println("response Body:", string(data))
+			check_api_status("PostVS", data)
+
 		}
 	}
 
@@ -327,6 +329,7 @@ func PutVS(id string, name string, vs VirtalServerInstanceMain, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PutVS", data)
 		}
 	}
 
@@ -357,6 +360,7 @@ func DeleteVS(id string, name string, host string) error {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("PutVS", data)
 		}
 	}
 	return nil

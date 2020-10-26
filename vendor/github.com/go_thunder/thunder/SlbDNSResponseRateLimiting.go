@@ -44,7 +44,8 @@ func GetSlbDNSResponseRateLimiting(id string, host string) (*SlbDNSResponseRateL
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbDNSResponseRateLimiting REQ RES..........................", m)
+			check_api_status("GetSlbDNSResponseRateLimiting", data)
 			return &m, nil
 		}
 	}
@@ -80,6 +81,7 @@ func PostSlbDNSResponseRateLimiting(id string, vc SlbDNSResponseRateLimiting, ho
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostSlbDNSResponseRateLimiting", data)
 		}
 	}
 

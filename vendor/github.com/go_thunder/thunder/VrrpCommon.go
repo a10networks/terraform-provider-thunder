@@ -65,7 +65,8 @@ func GetVrrpCommon(id string, host string) (*CommonInstance, error) {
 			fmt.Print(m)
 			logger.Println("Common instance from Read")
 			logger.Println(string(data))
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetVrrpCommon REQ RES..........................", m)
+			check_api_status("GetVrrpCommon", data)
 			return &m, nil
 		}
 	}
@@ -101,6 +102,7 @@ func PostVrrpCommon(id string, vc CommonInstance, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostVrrpCommon", data)
 		}
 	}
 

@@ -44,7 +44,8 @@ func PostFwAlgDns(id string, inst FwAlgDns, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwAlgDns", data)
 
 		}
 	}
@@ -75,6 +76,7 @@ func GetFwAlgDns(id string, host string) (*FwAlgDns, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwAlgDns", data)
 			return &m, nil
 		}
 	}

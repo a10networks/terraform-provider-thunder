@@ -44,7 +44,8 @@ func GetSlbFTPProxy(id string, host string) (*FTPProxy, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbFTPProxy REQ RES..........................", m)
+			check_api_status("GetSlbFTPProxy", data)
 			return &m, nil
 		}
 	}
@@ -80,6 +81,7 @@ func PostSlbFTPProxy(id string, vc FTPProxy, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostSlbFTPProxy", data)
 		}
 	}
 

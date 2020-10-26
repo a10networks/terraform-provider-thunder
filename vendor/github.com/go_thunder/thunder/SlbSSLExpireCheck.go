@@ -53,7 +53,8 @@ func PostSlbSSLExpireCheck(id string, inst SSLExpireCheck, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbSSLExpireCheck REQ RES..........................", m)
+			check_api_status("PostSlbSSLExpireCheck", data)
 
 		}
 	}
@@ -83,7 +84,8 @@ func GetSlbSSLExpireCheck(id string, host string) (*SSLExpireCheck, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbSSLExpireCheck REQ RES..........................", m)
+			check_api_status("GetSlbSSLExpireCheck", data)
 			return &m, nil
 		}
 	}

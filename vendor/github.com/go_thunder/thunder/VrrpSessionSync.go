@@ -40,7 +40,8 @@ func GetVrrpSessionSync(id string, host string) (*SessionSync, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetVrrpSessionSync REQ RES..........................", m)
+			check_api_status("GetVrrpSessionSync", data)
 			return &m, nil
 		}
 	}
@@ -76,6 +77,7 @@ func PostVrrpSessionSync(id string, vc SessionSync, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostVrrpSessionSync", data)
 		}
 	}
 

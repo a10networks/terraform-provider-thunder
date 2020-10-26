@@ -44,7 +44,8 @@ func PostFwTcpResetOnError(id string, inst FwTcpResetOnError, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostFwTcpResetOnError REQ RES..........................", m)
+			check_api_status("PostFwTcpResetOnError", data)
 
 		}
 	}
@@ -74,7 +75,8 @@ func GetFwTcpResetOnError(id string, host string) (*FwTcpResetOnError, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetFwTcpResetOnError REQ RES..........................", m)
+			check_api_status("GetFwTcpResetOnError", data)
 			return &m, nil
 		}
 	}

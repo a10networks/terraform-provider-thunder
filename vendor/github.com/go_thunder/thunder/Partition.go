@@ -58,8 +58,8 @@ func GetPartition(id string, name string, host string) (*Partition, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			return &m, nil
-		}
+			check_api_status("GetPartition", data)
+			return &m, nil		}
 	}
 }
 
@@ -93,6 +93,7 @@ func PostPartition(id string, sg Partition, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostPartition", data)
 		}
 	}
 
@@ -128,6 +129,7 @@ func PutPartition(id string, name string, sg Partition, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PutPartition", data)
 		}
 	}
 

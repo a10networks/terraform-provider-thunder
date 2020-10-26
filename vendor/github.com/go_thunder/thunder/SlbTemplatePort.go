@@ -89,7 +89,8 @@ func PostTemplatePort(id string, inst Port, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostTemplatePort REQ RES..........................", m)
+			check_api_status("PostTemplatePort", data)
 
 		}
 	}
@@ -119,7 +120,8 @@ func GetTemplatePort(id string, name string, host string) (*Port, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetTemplatePort REQ RES..........................", m)
+			check_api_status("GetTemplatePort", data)
 			return &m, nil
 		}
 	}
@@ -154,7 +156,8 @@ func PutTemplatePort(id string, name string, inst Port, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutTemplatePort REQ RES..........................", m)
+			check_api_status("PutTemplatePort", data)
 
 		}
 	}

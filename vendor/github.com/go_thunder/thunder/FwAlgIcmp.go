@@ -44,7 +44,8 @@ func PostFwAlgIcmp(id string, inst FwAlgIcmp, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwAlgIcmp", data)
 
 		}
 	}
@@ -75,6 +76,7 @@ func GetFwAlgIcmp(id string, host string) (*FwAlgIcmp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwAlgIcmp", data)
 			return &m, nil
 		}
 	}

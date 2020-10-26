@@ -43,7 +43,8 @@ func PostFwTopKRules(id string, inst FwTopKRules, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostFwTopKRules REQ RES..........................", m)
+			check_api_status("PostFwTopKRules", data)
 
 		}
 	}
@@ -73,7 +74,8 @@ func GetFwTopKRules(id string, host string) (*FwTopKRules, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetFwTopKRules REQ RES..........................", m)
+			check_api_status("GetFwTopKRules", data)
 			return &m, nil
 		}
 	}

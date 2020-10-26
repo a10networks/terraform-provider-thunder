@@ -50,7 +50,8 @@ func PostSlbCommonConnRateLimitSrcIP(id string, inst CommonConnRateLimitSrcIP, h
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbCommonConnRateLimitSrcIP REQ RES..........................", m)
+			check_api_status("PostSlbCommonConnRateLimitSrcIP", data)
 
 		}
 	}
@@ -80,7 +81,8 @@ func GetSlbCommonConnRateLimitSrcIP(id string, name string, host string) (*Commo
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbCommonConnRateLimitSrcIP REQ RES..........................", m)
+			check_api_status("GetSlbCommonConnRateLimitSrcIP", data)
 			return &m, nil
 		}
 	}
@@ -115,7 +117,8 @@ func PutSlbCommonConnRateLimitSrcIP(id string, name string, inst CommonConnRateL
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbCommonConnRateLimitSrcIP REQ RES..........................", m)
+			check_api_status("PutSlbCommonConnRateLimitSrcIP", data)
 
 		}
 	}

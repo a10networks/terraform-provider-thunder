@@ -183,7 +183,8 @@ func PostInterfaceEthernetIPv6(id string, name int, inst EthernetIPv6, host stri
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostInterfaceEthernetIPv6 REQ RES..........................", m)
+			check_api_status("PostInterfaceEthernetIPv6", data)
 
 		}
 	}
@@ -213,7 +214,8 @@ func GetInterfaceEthernetIPv6(id string, name string, host string) (*EthernetIPv
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetInterfaceEthernetIPv6 REQ RES..........................", m)
+			check_api_status("GetInterfaceEthernetIPv6", data)
 			return &m, nil
 		}
 	}

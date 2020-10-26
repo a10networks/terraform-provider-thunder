@@ -43,7 +43,8 @@ func PostFwStatus(id string, inst FwStatus, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostFwStatus REQ RES..........................", m)
+			check_api_status("PostFwStatus", data)
 
 		}
 	}
@@ -74,6 +75,7 @@ func GetFwStatus(id string, host string) (*FwStatus, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwStatus", data)
 			return &m, nil
 		}
 	}

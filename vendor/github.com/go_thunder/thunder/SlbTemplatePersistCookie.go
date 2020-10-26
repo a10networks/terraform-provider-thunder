@@ -62,7 +62,8 @@ func PostSlbTemplatePersistCookie(id string, inst SlbTemplatePersistCookie, host
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplatePersistCookie REQ RES..........................", m)
+			check_api_status("PostSlbTemplatePersistCookie", data)
 
 		}
 	}
@@ -92,7 +93,8 @@ func GetSlbTemplatePersistCookie(id string, name string, host string) (*SlbTempl
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplatePersistCookie REQ RES..........................", m)
+			check_api_status("GetSlbTemplatePersistCookie", data)
 			return &m, nil
 		}
 	}
@@ -127,7 +129,8 @@ func PutSlbTemplatePersistCookie(id string, name string, inst SlbTemplatePersist
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplatePersistCookie REQ RES..........................", m)
+			check_api_status("PutSlbTemplatePersistCookie", data)
 
 		}
 	}

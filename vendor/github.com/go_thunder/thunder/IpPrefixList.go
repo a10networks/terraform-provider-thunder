@@ -54,7 +54,8 @@ func PostIpPrefixList(id string, inst PrefixList, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIpPrefixList REQ RES..........................", m)
+			check_api_status("PostIpPrefixList", data)
 
 		}
 	}
@@ -84,7 +85,8 @@ func GetIpPrefixList(id string, name string, host string) (*PrefixList, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIpPrefixList REQ RES..........................", m)
+			check_api_status("GetIpPrefixList", data)
 			return &m, nil
 		}
 	}

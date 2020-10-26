@@ -44,7 +44,8 @@ func PostIpNatIcmp(id string, inst NatIcmp, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIpNatIcmp REQ RES..........................", m)
+			check_api_status("PostIpNatIcmp", data)
 
 		}
 	}
@@ -74,7 +75,8 @@ func GetIpNatIcmp(id string, host string) (*NatIcmp, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIpNatIcmp REQ RES..........................", m)
+			check_api_status("GetIpNatIcmp", data)
 			return &m, nil
 		}
 	}

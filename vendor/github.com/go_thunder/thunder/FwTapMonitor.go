@@ -50,7 +50,8 @@ func PostFwTapMonitor(id string, inst FwTapMonitor, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostFwTapMonitor REQ RES..........................", m)
+			check_api_status("PostFwTapMonitor", data)
 
 		}
 	}
@@ -81,6 +82,7 @@ func GetFwTapMonitor(id string, host string) (*FwTapMonitor, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwTapMonitor", data)
 			return &m, nil
 		}
 	}

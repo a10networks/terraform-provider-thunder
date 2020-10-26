@@ -46,7 +46,8 @@ func PostSlbMysql(id string, inst Mysql, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbMysql REQ RES..........................", m)
+			check_api_status("PostSlbMysql", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbMysql(id string, host string) (*Mysql, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbMysql REQ RES..........................", m)
+			check_api_status("GetSlbMysql", data)
 			return &m, nil
 		}
 	}

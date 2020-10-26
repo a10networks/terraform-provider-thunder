@@ -45,7 +45,8 @@ func PostSlbIcap(id string, inst Icap, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbIcap REQ RES..........................", m)
+			check_api_status("PostSlbIcap", data)
 
 		}
 	}
@@ -75,7 +76,8 @@ func GetSlbIcap(id string, host string) (*Icap, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbIcap REQ RES..........................", m)
+			check_api_status("GetSlbIcap", data)
 			return &m, nil
 		}
 	}

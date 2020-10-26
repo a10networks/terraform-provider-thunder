@@ -73,6 +73,7 @@ func GetVtep(id string, name string, host string) (*Vtep, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetVtep", data)
 			return &m, nil
 		}
 	}
@@ -108,6 +109,7 @@ func PostVtep(id string, sg Vtep, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostVtep", data)
 		}
 	}
 
@@ -143,6 +145,7 @@ func PutVtep(id string, name string, sg Vtep, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PutVtep", data)
 		}
 	}
 

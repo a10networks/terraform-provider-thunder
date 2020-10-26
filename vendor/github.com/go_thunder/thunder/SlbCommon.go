@@ -131,7 +131,8 @@ func GetSlbCommon(id string, host string) (*SlbCommon, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbCommon REQ RES..........................", m)
+			check_api_status("GetSlbCommon", data)
 			return &m, nil
 		}
 	}
@@ -167,6 +168,7 @@ func PostSlbCommon(id string, vc SlbCommon, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostSlbCommon", data)
 		}
 	}
 

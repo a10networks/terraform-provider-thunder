@@ -68,7 +68,8 @@ func PostSlbTemplateReqmodIcap(id string, inst ReqmodIcap, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateReqmodIcap REQ RES..........................", m)
+			check_api_status("PostSlbTemplateReqmodIcap", data)
 
 		}
 	}
@@ -98,7 +99,8 @@ func GetSlbTemplateReqmodIcap(id string, name string, host string) (*ReqmodIcap,
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateReqmodIcap REQ RES..........................", m)
+			check_api_status("GetSlbTemplateReqmodIcap", data)
 			return &m, nil
 		}
 	}
@@ -134,6 +136,7 @@ func PutSlbTemplateReqmodIcap(id string, name string, inst ReqmodIcap, host stri
 
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("PutSlbTemplateReqmodIcap", data)
 
 		}
 	}

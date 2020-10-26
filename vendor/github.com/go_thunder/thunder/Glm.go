@@ -60,7 +60,8 @@ func GetGlm(id string, host string) (*Glm, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetGlm REQ RES..........................", m)
+			check_api_status("GetGlm", data)
 			return &m, nil
 		}
 	}
@@ -96,6 +97,7 @@ func PostGlm(id string, vc Glm, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostGlm", data)
 		}
 	}
 

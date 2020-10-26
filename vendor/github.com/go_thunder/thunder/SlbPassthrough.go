@@ -46,7 +46,8 @@ func PostSlbPassthrough(id string, inst Passthrough, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbPassthrough REQ RES..........................", m)
+			check_api_status("PostSlbPassthrough", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbPassthrough(id string, host string) (*Passthrough, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbPassthrough REQ RES..........................", m)
+			check_api_status("GetSlbPassthrough", data)
 			return &m, nil
 		}
 	}

@@ -78,9 +78,9 @@ func PostSlbTemplateMonitor(id string, inst Monitor, host string) {
 		erro := json.Unmarshal(data, &m)
 		if erro != nil {
 			logger.Println("Unmarshal error ", err)
-
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("POSTSlbTemplateMonitor", data)
 
 		}
 	}
@@ -105,12 +105,15 @@ func GetSlbTemplateMonitor(id string, name string, host string) (*Monitor, error
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Monitor
+		logger.Println("data -->  ", data)
+		logger.Printf("type  data   %T\n", data)
 		erro := json.Unmarshal(data, &m)
 		if erro != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetSlbTemplateMonitor", data)
 			return &m, nil
 		}
 	}
@@ -145,7 +148,8 @@ func PutSlbTemplateMonitor(id string, name string, inst Monitor, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PUT REQ RES..........................", m)
+			check_api_status("PUTSlbTemplateMonitor", data)
 
 		}
 	}

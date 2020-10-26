@@ -44,7 +44,8 @@ func GetSlbHealthStat(id string, host string) (*HealthStat, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbHealthStat REQ RES..........................", m)
+			check_api_status("GetSlbHealthStat", data)
 			return &m, nil
 		}
 	}
@@ -80,6 +81,7 @@ func PostSlbHealthStat(id string, vc HealthStat, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostSlbHealthStat", data)
 		}
 	}
 

@@ -72,6 +72,7 @@ func GetRibRoute(id string, host string, instance string) (*Rib, error) {
 		} else {
 			fmt.Print(r)
 			logger.Println("[INFO] GET REQ RES..........................", r)
+			check_api_status("GetRibRoute", data)
 			return &r, nil
 		}
 	}
@@ -114,6 +115,7 @@ func PostRibRoute(id string, r Rib, host string, instance string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostRibRoute", data)
 		}
 	}
 
@@ -154,6 +156,7 @@ func PutRibRoute(id string, instance string, r Rib, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PutRibRoute", data)
 		}
 	}
 

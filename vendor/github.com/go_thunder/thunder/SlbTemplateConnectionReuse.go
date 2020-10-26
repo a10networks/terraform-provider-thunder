@@ -50,7 +50,8 @@ func PostTemplateConnectionReuse(id string, inst Connection_Reuse, host string) 
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostTemplateConnectionReuse REQ RES..........................", m)
+			check_api_status("PostTemplateConnectionReuse", data)
 
 		}
 	}
@@ -80,7 +81,8 @@ func GetTemplateConnectionReuse(id string, name string, host string) (*Connectio
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetTemplateConnectionReuse REQ RES..........................", m)
+			check_api_status("GetTemplateConnectionReuse", data)
 			return &m, nil
 		}
 	}
@@ -115,7 +117,8 @@ func PutTemplateConnectionReuse(id string, name string, inst Connection_Reuse, h
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutTemplateConnectionReuse REQ RES..........................", m)
+			check_api_status("PutTemplateConnectionReuse", data)
 
 		}
 	}

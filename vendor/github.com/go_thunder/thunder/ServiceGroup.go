@@ -123,6 +123,8 @@ func GetSG(id string, name string, host string) (*ServiceGroup, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			
+			check_api_status("GetSG", data)
 			return &m, nil
 		}
 	}
@@ -158,6 +160,11 @@ func PostSG(id string, sg ServiceGroup, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+
+			check_api_status("PostSG", data)
+
+
+
 		}
 	}
 
@@ -195,6 +202,8 @@ func PutSG(id string, name string, sg ServiceGroup, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+
+			check_api_status("PutSG", data)
 		}
 	}
 

@@ -49,7 +49,8 @@ func PostFwTcpWindowCheck(id string, inst FwTcpWindowCheck, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostFwTcpWindowCheck REQ RES..........................", m)
+			check_api_status("PostFwTcpWindowCheck", data)
 
 		}
 	}
@@ -79,7 +80,8 @@ func GetFwTcpWindowCheck(id string, host string) (*FwTcpWindowCheck, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetFwTcpWindowCheck REQ RES..........................", m)
+			check_api_status("GetFwTcpWindowCheck", data)
 			return &m, nil
 		}
 	}

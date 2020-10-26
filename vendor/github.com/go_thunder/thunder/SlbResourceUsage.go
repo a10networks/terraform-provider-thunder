@@ -62,7 +62,8 @@ func PostSlbResourceUsage(id string, inst ResourceUsage, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbResourceUsage REQ RES..........................", m)
+			check_api_status("PostSlbResourceUsage", data)
 
 		}
 	}
@@ -92,7 +93,8 @@ func GetSlbResourceUsage(id string, host string) (*ResourceUsage, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbResourceUsage REQ RES..........................", m)
+			check_api_status("GetSlbResourceUsage", data)
 			return &m, nil
 		}
 	}

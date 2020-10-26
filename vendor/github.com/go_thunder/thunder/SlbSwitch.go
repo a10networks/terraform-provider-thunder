@@ -46,7 +46,8 @@ func PostSlbSwitch(id string, inst Switch, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbSwitch REQ RES..........................", m)
+			check_api_status("PostSlbSwitch", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbSwitch(id string, host string) (*Switch, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbSwitch REQ RES..........................", m)
+			check_api_status("GetSlbSwitch", data)
 			return &m, nil
 		}
 	}

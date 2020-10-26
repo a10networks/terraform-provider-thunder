@@ -53,7 +53,8 @@ func GetProfile(id string, host string) (*ProfileInstance, error) {
 			fmt.Print(m)
 			logger.Println("Profile instance from Read")
 			logger.Println(string(data))
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetProfile REQ RES..........................", m)
+			check_api_status("GetProfile", data)
 			return &m, nil
 		}
 	}
@@ -89,6 +90,7 @@ func PostProfile(id string, vc Profile, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostProfile", data)
 		}
 	}
 

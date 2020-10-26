@@ -55,7 +55,8 @@ func PostIpNatPool(id string, inst IpNatPool, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIpNatPool REQ RES..........................", m)
+			check_api_status("PostIpNatPool", data)
 
 		}
 	}
@@ -85,7 +86,8 @@ func GetIpNatPool(id string, name string, host string) (*IpNatPool, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIpNatPool REQ RES..........................", m)
+			check_api_status("GetIpNatPool", data)
 			return &m, nil
 		}
 	}
@@ -120,7 +122,8 @@ func PutIpNatPool(id string, name string, inst IpNatPool, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutIpNatPool REQ RES..........................", m)
+			check_api_status("PutIpNatPool", data)
 
 		}
 	}

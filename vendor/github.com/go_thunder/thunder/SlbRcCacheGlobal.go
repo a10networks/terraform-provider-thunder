@@ -46,7 +46,8 @@ func PostSlbRcCacheGlobal(id string, inst RcCacheGlobal, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbRcCacheGlobal REQ RES..........................", m)
+			check_api_status("PostSlbRcCacheGlobal", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbRcCacheGlobal(id string, host string) (*RcCacheGlobal, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbRcCacheGlobal REQ RES..........................", m)
+			check_api_status("GetSlbRcCacheGlobal", data)
 			return &m, nil
 		}
 	}

@@ -44,7 +44,8 @@ func GetSlbDNS(id string, host string) (*SlbDNS, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbDNS REQ RES..........................", m)
+			check_api_status("GetSlbDNS", data)
 			return &m, nil
 		}
 	}
@@ -80,6 +81,7 @@ func PostSlbDNS(id string, vc SlbDNS, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostSlbDNS", data)
 		}
 	}
 

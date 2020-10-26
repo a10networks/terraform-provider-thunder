@@ -46,8 +46,8 @@ func PostSlbPerf(id string, inst Perf, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
-
+			logger.Println("[INFO] PostSlbPerf REQ RES..........................", m)
+			check_api_status("PostSlbPerf", data)
 		}
 	}
 
@@ -76,7 +76,8 @@ func GetSlbPerf(id string, host string) (*Perf, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbPerf REQ RES..........................", m)
+			check_api_status("GetSlbPerf", data)
 			return &m, nil
 		}
 	}

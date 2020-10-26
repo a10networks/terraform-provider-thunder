@@ -183,7 +183,8 @@ func PostInterfaceVeIP(id string, name int, inst VeIP, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostInterfaceVeIP REQ RES..........................", m)
+			check_api_status("PostInterfaceVeIP", data)
 
 		}
 	}
@@ -213,7 +214,8 @@ func GetInterfaceVeIP(id string, name string, host string) (*VeIP, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetInterfaceVeIP REQ RES..........................", m)
+			check_api_status("GetInterfaceVeIP", data)
 			return &m, nil
 		}
 	}

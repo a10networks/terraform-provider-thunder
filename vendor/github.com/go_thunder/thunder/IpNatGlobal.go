@@ -44,7 +44,8 @@ func PostIpNatGlobal(id string, inst NatGlobal, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIpNatGlobal REQ RES..........................", m)
+			check_api_status("PostIpNatGlobal", data)
 
 		}
 	}
@@ -74,7 +75,8 @@ func GetIpNatGlobal(id string, host string) (*NatGlobal, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIpNatGlobal REQ RES..........................", m)
+			check_api_status("GetIpNatGlobal", data)
 			return &m, nil
 		}
 	}

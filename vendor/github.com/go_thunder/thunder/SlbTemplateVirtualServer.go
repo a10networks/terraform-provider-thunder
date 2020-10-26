@@ -62,7 +62,8 @@ func PostSlbTemplateVirtualServer(id string, inst VirtualServer, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateVirtualServer REQ RES..........................", m)
+			check_api_status("PostSlbTemplateVirtualServer", data)
 
 		}
 	}
@@ -92,7 +93,8 @@ func GetSlbTemplateVirtualServer(id string, name string, host string) (*VirtualS
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateVirtualServer REQ RES..........................", m)
+			check_api_status("GetSlbTemplateVirtualServer", data)
 			return &m, nil
 		}
 	}
@@ -127,7 +129,8 @@ func PutSlbTemplateVirtualServer(id string, name string, inst VirtualServer, hos
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateVirtualServer REQ RES..........................", m)
+			check_api_status("PutSlbTemplateVirtualServer", data)
 
 		}
 	}

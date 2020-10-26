@@ -100,7 +100,8 @@ func PostSlbTemplateSIP(id string, inst SIP, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateSIP REQ RES..........................", m)
+			check_api_status("PostSlbTemplateSIP", data)
 
 		}
 	}
@@ -130,7 +131,8 @@ func GetSlbTemplateSIP(id string, name string, host string) (*SIP, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateSIP REQ RES..........................", m)
+			check_api_status("GetSlbTemplateSIP", data)
 			return &m, nil
 		}
 	}
@@ -165,7 +167,8 @@ func PutSlbTemplateSIP(id string, name string, inst SIP, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateSIP REQ RES..........................", m)
+			check_api_status("PutSlbTemplateSIP", data)
 
 		}
 	}

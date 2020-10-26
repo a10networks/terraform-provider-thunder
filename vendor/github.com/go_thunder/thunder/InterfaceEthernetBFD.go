@@ -59,7 +59,8 @@ func PostInterfaceEthernetBFD(id string, name int, inst EthernetBFD, host string
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostInterfaceEthernetBFD REQ RES..........................", m)
+			check_api_status("PostInterfaceEthernetBFD", data)
 
 		}
 	}
@@ -89,7 +90,8 @@ func GetInterfaceEthernetBFD(id string, name string, host string) (*EthernetBFD,
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetInterfaceEthernetBFD REQ RES..........................", m)
+			check_api_status("GetInterfaceEthernetBFD", data)
 			return &m, nil
 		}
 	}

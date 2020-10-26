@@ -45,7 +45,8 @@ func GetSlbHttpProxy(id string, host string) (*HttpProxy, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbHttpProxy REQ RES..........................", m)
+			check_api_status("GetSlbHttpProxy", data)
 			return &m, nil
 		}
 	}
@@ -81,6 +82,7 @@ func PostSlbHttpProxy(id string, vc HttpProxy, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostSlbHttpProxy", data)
 		}
 	}
 

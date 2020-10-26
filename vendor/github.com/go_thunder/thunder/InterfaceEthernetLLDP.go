@@ -71,7 +71,8 @@ func PostInterfaceEthernetLLDP(id string, name int, inst EthernetLLDP, host stri
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostInterfaceEthernetLLDP REQ RES..........................", m)
+			check_api_status("PostInterfaceEthernetLLDP", data)
 
 		}
 	}
@@ -101,7 +102,8 @@ func GetInterfaceEthernetLLDP(id string, name string, host string) (*EthernetLLD
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetInterfaceEthernetLLDP REQ RES..........................", m)
+			check_api_status("GetInterfaceEthernetLLDP", data)
 			return &m, nil
 		}
 	}

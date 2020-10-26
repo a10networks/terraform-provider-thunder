@@ -53,7 +53,8 @@ func PostSlbTemplateCSV(id string, inst CSV, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateCSV REQ RES..........................", m)
+			check_api_status("PostSlbTemplateCSV", data)
 
 		}
 	}
@@ -83,7 +84,8 @@ func GetSlbTemplateCSV(id string, name string, host string) (*CSV, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateCSV REQ RES..........................", m)
+			check_api_status("GetSlbTemplateCSV", data)
 			return &m, nil
 		}
 	}
@@ -118,7 +120,8 @@ func PutSlbTemplateCSV(id string, name string, inst CSV, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateCSV REQ RES..........................", m)
+			check_api_status("PutSlbTemplateCSV", data)
 
 		}
 	}

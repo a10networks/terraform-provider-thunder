@@ -44,7 +44,8 @@ func GetSlbCrlSrcip(id string, host string) (*CrlSrcip, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbCrlSrcip REQ RES..........................", m)
+			check_api_status("GetSlbCrlSrcip", data)
 			return &m, nil
 		}
 	}
@@ -80,6 +81,7 @@ func PostSlbCrlSrcip(id string, vc CrlSrcip, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostSlbCrlSrcip", data)
 		}
 	}
 

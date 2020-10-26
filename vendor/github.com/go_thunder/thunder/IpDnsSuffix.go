@@ -44,7 +44,8 @@ func PostIpDnsSuffix(id string, inst DnsSuffix, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIpDnsSuffix REQ RES..........................", m)
+			check_api_status("PostIpDnsSuffix", data)
 
 		}
 	}
@@ -74,7 +75,8 @@ func GetIpDnsSuffix(id string, host string) (*DnsSuffix, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIpDnsSuffix REQ RES..........................", m)
+			check_api_status("GetIpDnsSuffix", data)
 			return &m, nil
 		}
 	}

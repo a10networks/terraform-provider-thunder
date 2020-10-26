@@ -61,7 +61,8 @@ func PostFwGlobal(id string, inst FwGlobal, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwGlobal", data)
 
 		}
 	}
@@ -92,6 +93,7 @@ func GetFwGlobal(id string, host string) (*FwGlobal, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwGlobal", data)
 			return &m, nil
 		}
 	}
