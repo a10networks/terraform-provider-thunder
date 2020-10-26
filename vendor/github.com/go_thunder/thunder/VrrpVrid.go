@@ -150,7 +150,8 @@ func GetVrrpVrid(id string, name string, host string) (*VridInstance, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetVrrpVrid REQ RES..........................", m)
+			check_api_status("GetVrrpVrid", data)
 			return &m, nil
 		}
 	}
@@ -186,6 +187,7 @@ func PostVrrpVrid(id string, vc VridInstance, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostVrrpVrid", data)
 		}
 	}
 
@@ -223,6 +225,7 @@ func PutVrrpVrid(id string, name string, vc VridInstance, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PutVrrpVrid", data)
 		}
 	}
 

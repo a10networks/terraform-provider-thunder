@@ -192,7 +192,8 @@ func PostSlbTemplatePolicy(id string, inst Policy, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplatePolicy REQ RES..........................", m)
+			check_api_status("PostSlbTemplatePolicy", data)
 
 		}
 	}
@@ -222,7 +223,8 @@ func GetSlbTemplatePolicy(id string, name string, host string) (*Policy, error) 
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplatePolicy REQ RES..........................", m)
+			check_api_status("GetSlbTemplatePolicy", data)
 			return &m, nil
 		}
 	}
@@ -257,7 +259,8 @@ func PutSlbTemplatePolicy(id string, name string, inst Policy, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplatePolicy REQ RES..........................", m)
+			check_api_status("PutSlbTemplatePolicy", data)
 
 		}
 	}

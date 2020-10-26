@@ -45,7 +45,8 @@ func PostSlbIcapHTTP(id string, inst IcapHTTP, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbIcapHTTP REQ RES..........................", m)
+			check_api_status("PostSlbIcapHTTP", data)
 
 		}
 	}
@@ -75,7 +76,8 @@ func GetSlbIcapHTTP(id string, host string) (*IcapHTTP, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbIcapHTTP REQ RES..........................", m)
+			check_api_status("GetSlbIcapHTTP", data)
 			return &m, nil
 		}
 	}

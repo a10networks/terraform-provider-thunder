@@ -147,7 +147,8 @@ func PostSlbTemplateHTTP(id string, inst HTTP, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateHTTP REQ RES..........................", m)
+			check_api_status("PostSlbTemplateHTTP", data)
 
 		}
 	}
@@ -177,7 +178,8 @@ func GetSlbTemplateHTTP(id string, name string, host string) (*HTTP, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateHTTP REQ RES..........................", m)
+			check_api_status("GetSlbTemplateHTTP", data)
 			return &m, nil
 		}
 	}
@@ -212,7 +214,8 @@ func PutSlbTemplateHTTP(id string, name string, inst HTTP, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateHTTP REQ RES..........................", m)
+			check_api_status("PutSlbTemplateHTTP", data)
 
 		}
 	}

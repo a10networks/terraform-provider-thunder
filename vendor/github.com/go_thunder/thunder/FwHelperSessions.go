@@ -46,7 +46,8 @@ func PostFwHelperSessions(id string, inst FwHelperSessions, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwHelperSessions", data)
 
 		}
 	}
@@ -77,6 +78,7 @@ func GetFwHelperSessions(id string, host string) (*FwHelperSessions, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwHelperSessions", data)
 			return &m, nil
 		}
 	}

@@ -45,6 +45,7 @@ func GetSlbFTPData(id string, host string) (*FTPData, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetSlbFTPData", data)
 			return &m, nil
 		}
 	}
@@ -80,6 +81,7 @@ func PostSlbFTPData(id string, vc FTPData, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostSlbFTPData", data)
 		}
 	}
 

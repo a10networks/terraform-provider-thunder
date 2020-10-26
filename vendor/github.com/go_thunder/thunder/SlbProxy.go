@@ -46,7 +46,8 @@ func PostSlbProxy(id string, inst Proxy, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbProxy REQ RES..........................", m)
+			check_api_status("PostSlbProxy", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbProxy(id string, host string) (*Proxy, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbProxy REQ RES..........................", m)
+			check_api_status("GetSlbProxy", data)
 			return &m, nil
 		}
 	}

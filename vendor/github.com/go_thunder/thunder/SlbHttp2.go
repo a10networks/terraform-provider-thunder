@@ -45,6 +45,7 @@ func GetSlbHTTP2(id string, host string) (*HTTP2, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetSlbHTTP2", data)
 			return &m, nil
 		}
 	}
@@ -80,6 +81,7 @@ func PostSlbHTTP2(id string, vc HTTP2, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostSlbHTTP2", data)
 		}
 	}
 

@@ -58,7 +58,8 @@ func PostInterfaceVeBFD(id string, name int, inst VeBFD, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostInterfaceVeBFD REQ RES..........................", m)
+			check_api_status("PostInterfaceVeBFD", data)
 
 		}
 	}
@@ -88,7 +89,8 @@ func GetInterfaceVeBFD(id string, name string, host string) (*VeBFD, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetInterfaceVeBFD REQ RES..........................", m)
+			check_api_status("GetInterfaceVeBFD", data)
 			return &m, nil
 		}
 	}

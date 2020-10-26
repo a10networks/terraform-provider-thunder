@@ -49,7 +49,8 @@ func PostFwAlgSip(id string, inst FwAlgSip, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("POSTFwAlgSip", data)
 
 		}
 	}
@@ -80,6 +81,7 @@ func GetFwAlgSip(id string, host string) (*FwAlgSip, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwAlgSip", data)
 			return &m, nil
 		}
 	}

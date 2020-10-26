@@ -44,7 +44,8 @@ func PostFwTcpRstCloseImmediate(id string, inst FwTcpRstCloseImmediate, host str
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostFwTcpRstCloseImmediate REQ RES..........................", m)
+			check_api_status("PostFwTcpRstCloseImmediate", data)
 
 		}
 	}
@@ -74,7 +75,8 @@ func GetFwTcpRstCloseImmediate(id string, host string) (*FwTcpRstCloseImmediate,
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetFwTcpRstCloseImmediate REQ RES..........................", m)
+			check_api_status("GetFwTcpRstCloseImmediate", data)
 			return &m, nil
 		}
 	}

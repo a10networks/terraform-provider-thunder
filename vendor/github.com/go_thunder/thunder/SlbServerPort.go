@@ -83,7 +83,8 @@ func PostSlbServerPort(id string, name string, inst SlbServerPort, host string) 
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbServerPort REQ RES..........................", m)
+			check_api_status("PostSlbServerPort", data)
 
 		}
 	}
@@ -113,7 +114,8 @@ func GetSlbServerPort(id string, name1 string, name2 string, name3 string, host 
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbServerPort REQ RES..........................", m)
+			check_api_status("GetSlbServerPort", data)
 			return &m, nil
 		}
 	}
@@ -148,7 +150,8 @@ func PutSlbServerPort(id string, name1 string, name2 string, name3 string, inst 
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbServerPort REQ RES..........................", m)
+			check_api_status("PutSlbServerPort", data)
 
 		}
 	}

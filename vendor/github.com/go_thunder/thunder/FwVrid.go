@@ -44,7 +44,8 @@ func PostFwVrid(id string, inst FwVrid, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostFwVrid REQ RES..........................", m)
+			check_api_status("PostFwVrid", data)
 
 		}
 	}
@@ -74,7 +75,8 @@ func GetFwVrid(id string, host string) (*FwVrid, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetFwVrid REQ RES..........................", m)
+			check_api_status("GetFwVrid", data)
 			return &m, nil
 		}
 	}

@@ -44,7 +44,8 @@ func PostIPRouteStaticBfd(id string, name string, inst RouteStaticBfd, host stri
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIPRouteStaticBfd REQ RES..........................", m)
+			check_api_status("PostIPRouteStaticBfd", data)
 
 		}
 	}
@@ -74,7 +75,8 @@ func GetIPRouteStaticBfd(id string, name string, host string) (*RouteStaticBfd, 
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIPRouteStaticBfd REQ RES..........................", m)
+			check_api_status("GetIPRouteStaticBfd", data)
 			return &m, nil
 		}
 	}
@@ -109,7 +111,8 @@ func PutIPRouteStaticBfd(id string, name string, inst RouteStaticBfd, host strin
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutIPRouteStaticBfd REQ RES..........................", m)
+			check_api_status("PutIPRouteStaticBfd", data)
 
 		}
 	}

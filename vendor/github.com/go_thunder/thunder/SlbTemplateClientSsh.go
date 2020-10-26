@@ -49,7 +49,8 @@ func PostTemplateClientSsh(id string, inst ClientSSH, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostTemplateClientSsh REQ RES..........................", m)
+			check_api_status("PostTemplateClientSsh", data)
 
 		}
 	}
@@ -79,7 +80,8 @@ func GetTemplateClientSsh(id string, name string, host string) (*ClientSSH, erro
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetTemplateClientSsh REQ RES..........................", m)
+			check_api_status("GetTemplateClientSsh", data)
 			return &m, nil
 		}
 	}
@@ -114,7 +116,8 @@ func PutTemplateClientSsh(id string, name string, inst ClientSSH, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutTemplateClientSsh REQ RES..........................", m)
+			check_api_status("PutTemplateClientSsh", data)
 
 		}
 	}

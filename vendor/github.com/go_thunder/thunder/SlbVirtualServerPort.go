@@ -248,7 +248,8 @@ func PostSlbVirtualServerPort(id string, name string, inst SlbVirtualServerPort,
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbVirtualServerPort REQ RES..........................", m)
+			check_api_status("PostSlbVirtualServerPort", data)
 
 		}
 	}
@@ -278,7 +279,8 @@ func GetSlbVirtualServerPort(id string, name1 string, name2 string, name3 string
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbVirtualServerPort REQ RES..........................", m)
+			check_api_status("GetSlbVirtualServerPort", data)
 			return &m, nil
 		}
 	}
@@ -313,7 +315,8 @@ func PutSlbVirtualServerPort(id string, name1 string, name2 string, name3 string
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbVirtualServerPort REQ RES..........................", m)
+			check_api_status("PutSlbVirtualServerPort", data)
 
 		}
 	}

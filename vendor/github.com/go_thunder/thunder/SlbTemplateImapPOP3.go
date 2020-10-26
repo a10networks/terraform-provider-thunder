@@ -47,7 +47,8 @@ func PostTemplateImap_POP3(id string, inst Imap_pop3, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostTemplateImap_POP3 REQ RES..........................", m)
+			check_api_status("PostTemplateImap_POP3", data)
 
 		}
 	}
@@ -77,7 +78,8 @@ func GetTemplateImap_POP3(id string, name string, host string) (*Imap_pop3, erro
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetTemplateImap_POP3 REQ RES..........................", m)
+			check_api_status("GetTemplateImap_POP3", data)
 			return &m, nil
 		}
 	}
@@ -112,7 +114,8 @@ func PutTemplateImap_POP3(id string, name string, inst Imap_pop3, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutTemplateImap_POP3 REQ RES..........................", m)
+			check_api_status("PutTemplateImap_POP3", data)
 
 		}
 	}

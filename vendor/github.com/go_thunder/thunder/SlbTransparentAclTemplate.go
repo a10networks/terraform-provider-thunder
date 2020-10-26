@@ -43,7 +43,8 @@ func PostSlbTransparentAclTemplate(id string, inst TransparentAclTemplate, host 
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTransparentAclTemplate REQ RES..........................", m)
+			check_api_status("PostSlbTransparentAclTemplate", data)
 
 		}
 	}
@@ -73,7 +74,8 @@ func GetSlbTransparentAclTemplate(id string, name string, host string) (*Transpa
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTransparentAclTemplate REQ RES..........................", m)
+			check_api_status("GetSlbTransparentAclTemplate", data)
 			return &m, nil
 		}
 	}

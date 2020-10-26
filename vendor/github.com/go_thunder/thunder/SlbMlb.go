@@ -46,7 +46,8 @@ func PostSlbMlb(id string, inst Mlb, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbMlb REQ RES..........................", m)
+			check_api_status("PostSlbMlb", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbMlb(id string, host string) (*Mlb, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbMlb REQ RES..........................", m)
+			check_api_status("GetSlbMlb", data)
 			return &m, nil
 		}
 	}

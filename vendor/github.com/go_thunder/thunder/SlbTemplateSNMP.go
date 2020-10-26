@@ -61,7 +61,8 @@ func PostSlbTemplateSNMP(id string, inst SNMP, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateSNMP REQ RES..........................", m)
+			check_api_status("PostSlbTemplateSNMP", data)
 
 		}
 	}
@@ -91,7 +92,8 @@ func GetSlbTemplateSNMP(id string, snmp_name string, host string) (*SNMP, error)
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateSNMP REQ RES..........................", m)
+			check_api_status("GetSlbTemplateSNMP", data)
 			return &m, nil
 		}
 	}
@@ -126,7 +128,8 @@ func PutSlbTemplateSNMP(id string, snmp_name string, inst SNMP, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateSNMP REQ RES..........................", m)
+			check_api_status("PutSlbTemplateSNMP", data)
 
 		}
 	}

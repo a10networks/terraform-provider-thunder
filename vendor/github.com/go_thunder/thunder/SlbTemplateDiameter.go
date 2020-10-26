@@ -78,7 +78,8 @@ func PostSlbTemplateDiameter(id string, inst Diameter, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateDiameter REQ RES..........................", m)
+			check_api_status("PostSlbTemplateDiameter", data)
 
 		}
 	}
@@ -108,7 +109,8 @@ func GetSlbTemplateDiameter(id string, name string, host string) (*Diameter, err
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateDiameter REQ RES..........................", m)
+			check_api_status("GetSlbTemplateDiameter", data)
 			return &m, nil
 		}
 	}
@@ -143,7 +145,8 @@ func PutSlbTemplateDiameter(id string, name string, inst Diameter, host string) 
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateDiameter REQ RES..........................", m)
+			check_api_status("PutSlbTemplateDiameter", data)
 
 		}
 	}

@@ -44,7 +44,8 @@ func PostFwGtpInGtpFiltering(id string, inst FwGtpInGtpFiltering, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwGtpInGtpFiltering", data)
 
 		}
 	}
@@ -75,6 +76,7 @@ func GetFwGtpInGtpFiltering(id string, host string) (*FwGtpInGtpFiltering, error
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwGtpInGtpFiltering", data)
 			return &m, nil
 		}
 	}

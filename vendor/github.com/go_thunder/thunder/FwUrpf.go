@@ -44,7 +44,8 @@ func PostFwUrpf(id string, inst FwUrpf, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostFwUrpf REQ RES..........................", m)
+			check_api_status("PostFwUrpf", data)
 
 		}
 	}
@@ -74,7 +75,8 @@ func GetFwUrpf(id string, host string) (*FwUrpf, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetFwUrpf REQ RES..........................", m)
+			check_api_status("GetFwUrpf", data)
 			return &m, nil
 		}
 	}

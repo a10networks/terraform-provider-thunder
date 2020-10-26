@@ -50,7 +50,8 @@ func PostTemplateCipher(id string, inst Cipher, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostTemplateCipher REQ RES..........................", m)
+			check_api_status("PostTemplateCipher", data)
 
 		}
 	}
@@ -80,7 +81,8 @@ func GetTemplateCipher(id string, name string, host string) (*Cipher, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetTemplateCipher REQ RES..........................", m)
+			check_api_status("GetTemplateCipher", data)
 			return &m, nil
 		}
 	}
@@ -115,7 +117,8 @@ func PutTemplateCipher(id string, name string, inst Cipher, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutTemplateCipher REQ RES..........................", m)
+			check_api_status("PutTemplateCipher", data)
 
 		}
 	}

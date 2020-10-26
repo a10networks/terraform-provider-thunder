@@ -43,7 +43,8 @@ func PostFwFullConeSession(id string, inst FwFullConeSession, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwFullConeSession", data)
 
 		}
 	}
@@ -74,6 +75,7 @@ func GetFwFullConeSession(id string, host string) (*FwFullConeSession, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwFullConeSession", data)
 			return &m, nil
 		}
 	}

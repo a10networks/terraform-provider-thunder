@@ -43,7 +43,8 @@ func PostFwApplyChanges(id string, inst FwApplyChanges, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwApplyChanges", data)
 
 		}
 	}
@@ -74,6 +75,7 @@ func GetFwApplyChanges(id string, host string) (*FwApplyChanges, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwApplyChanges", data)
 			return &m, nil
 		}
 	}

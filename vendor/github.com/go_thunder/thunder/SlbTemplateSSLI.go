@@ -46,7 +46,8 @@ func PostTemplateSSLI(id string, inst SSLI, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostTemplateSSLI REQ RES..........................", m)
+			check_api_status("PostTemplateSSLI", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetTemplateSSLI(id string, name string, host string) (*SSLI, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetTemplateSSLI REQ RES..........................", m)
+			check_api_status("GetTemplateSSLI", data)
 			return &m, nil
 		}
 	}
@@ -111,7 +113,8 @@ func PutTemplateSSLI(id string, name string, inst SSLI, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutTemplateSSLI REQ RES..........................", m)
+			check_api_status("PutTemplateSSLI", data)
 
 		}
 	}

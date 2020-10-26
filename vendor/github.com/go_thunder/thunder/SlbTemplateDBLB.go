@@ -51,7 +51,8 @@ func PostTemplateDBLB(id string, inst DBLB, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostTemplateDBLB REQ RES..........................", m)
+			check_api_status("PostTemplateDBLB", data)
 
 		}
 	}
@@ -81,7 +82,8 @@ func GetTemplateDBLB(id string, name string, host string) (*DBLB, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetTemplateDBLB REQ RES..........................", m)
+			check_api_status("GetTemplateDBLB", data)
 			return &m, nil
 		}
 	}
@@ -116,7 +118,8 @@ func PutTemplateDBLB(id string, name string, inst DBLB, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutTemplateDBLB REQ RES..........................", m)
+			check_api_status("PutTemplateDBLB", data)
 
 		}
 	}

@@ -207,11 +207,16 @@ func resourceSlbTemplateMonitorRead(d *schema.ResourceData, meta interface{}) er
 		data, err := go_thunder.GetSlbTemplateMonitor(client.Token, name, client.Host)
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
+			
 			d.SetId("")
 			return nil
+			
 		}
+		
 		return err
+		
 	}
+	logger.Println("[INFO] No data found last")
 	return nil
 }
 

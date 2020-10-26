@@ -46,7 +46,8 @@ func PostSlbSmpp(id string, inst SlbSmpp, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbSmpp REQ RES..........................", m)
+			check_api_status("PostSlbSmpp", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbSmpp(id string, host string) (*SlbSmpp, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbSmpp REQ RES..........................", m)
+			check_api_status("GetSlbSmpp", data)
 			return &m, nil
 		}
 	}

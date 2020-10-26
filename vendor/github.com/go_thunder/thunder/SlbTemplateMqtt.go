@@ -45,7 +45,8 @@ func GetMqtt(id string, name string, host string) (*Mqtt, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetMqtt REQ RES..........................", m)
+			check_api_status("GetMqtt", data)
 			return &m, nil
 		}
 	}
@@ -81,6 +82,7 @@ func PostMqtt(id string, sg Mqtt, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostMqtt", data)
 		}
 	}
 
@@ -116,6 +118,7 @@ func PutMqtt(id string, name string, sg Mqtt, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PutMqtt", data)
 		}
 	}
 

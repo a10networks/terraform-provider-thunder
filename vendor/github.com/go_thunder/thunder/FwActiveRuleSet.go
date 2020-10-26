@@ -47,6 +47,7 @@ func PostFwActiveRuleSet(id string, inst FwActiveRuleSet, host string) {
 
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("PostFwActiveRuleSet", data)
 
 		}
 	}
@@ -77,6 +78,7 @@ func GetFwActiveRuleSet(id string, host string) (*FwActiveRuleSet, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwActiveRuleSet", data)
 			return &m, nil
 		}
 	}

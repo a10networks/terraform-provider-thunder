@@ -464,7 +464,8 @@ func PostInterfaceVE(id string, inst InterfaceVE, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostInterfaceVE REQ RES..........................", m)
+			check_api_status("PostInterfaceVE", data)
 
 		}
 	}
@@ -494,7 +495,8 @@ func GetInterfaceVE(id string, name string, host string) (*InterfaceVE, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetInterfaceVE REQ RES..........................", m)
+			check_api_status("GetInterfaceVE", data)
 			return &m, nil
 		}
 	}
@@ -529,7 +531,8 @@ func PutInterfaceVE(id string, name string, inst InterfaceVE, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutInterfaceVE REQ RES..........................", m)
+			check_api_status("PutInterfaceVE", data)
 
 		}
 	}

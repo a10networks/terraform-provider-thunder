@@ -47,7 +47,8 @@ func PostIpNatAlgPptp(id string, inst NatAlgPptp, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIpNatAlgPptp REQ RES..........................", m)
+			check_api_status("PostIpNatAlgPptp", data)
 
 		}
 	}
@@ -78,6 +79,7 @@ func GetIpNatAlgPptp(id string, host string) (*NatAlgPptp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetIpNatAlgPptp", data)
 			return &m, nil
 		}
 	}

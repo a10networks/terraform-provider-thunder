@@ -42,7 +42,8 @@ func PostSlbSvmSourceNat(id string, inst SvmSourceNat, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbSvmSourceNat REQ RES..........................", m)
+			check_api_status("PostSlbSvmSourceNat", data)
 
 		}
 	}
@@ -72,7 +73,8 @@ func GetSlbSvmSourceNat(id string, host string) (*SvmSourceNat, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbSvmSourceNat REQ RES..........................", m)
+			check_api_status("GetSlbSvmSourceNat", data)
 			return &m, nil
 		}
 	}

@@ -94,7 +94,8 @@ func PostSlbTemplateServerSSL(id string, inst ServerSSL, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateServerSSL REQ RES..........................", m)
+			check_api_status("PostSlbTemplateServerSSL", data)
 
 		}
 	}
@@ -124,7 +125,8 @@ func GetSlbTemplateServerSSL(id string, name string, host string) (*ServerSSL, e
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateServerSSL REQ RES..........................", m)
+			check_api_status("GetSlbTemplateServerSSL", data)
 			return &m, nil
 		}
 	}
@@ -159,7 +161,8 @@ func PutSlbTemplateServerSSL(id string, name string, inst ServerSSL, host string
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateServerSSL REQ RES..........................", m)
+			check_api_status("PutSlbTemplateServerSSL", data)
 
 		}
 	}

@@ -47,6 +47,7 @@ func GetTcp(id string, name string, host string) (*TCP, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetTcp", data)
 			return &m, nil
 		}
 	}
@@ -82,6 +83,7 @@ func PostTcp(id string, sg TCP, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostTcp", data)
 		}
 	}
 
@@ -117,6 +119,7 @@ func PutTcp(id string, name string, sg TCP, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PutTcp", data)
 		}
 	}
 

@@ -43,7 +43,8 @@ func PostSlbTransperentTcpTemplate(id string, inst TransperentTcpTemplate, host 
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTransperentTcpTemplate REQ RES..........................", m)
+			check_api_status("PostSlbTransperentTcpTemplate", data)
 
 		}
 	}
@@ -73,7 +74,8 @@ func GetSlbTransperentTcpTemplate(id string, name string, host string) (*Transpe
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTransperentTcpTemplate REQ RES..........................", m)
+			check_api_status("GetSlbTransperentTcpTemplate", data)
 			return &m, nil
 		}
 	}

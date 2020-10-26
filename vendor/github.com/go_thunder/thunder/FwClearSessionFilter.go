@@ -44,8 +44,8 @@ func PostFwClearSessionFilter(id string, inst FwClearSessionFilter, host string)
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
-
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwClearSessionFilter", data)
 		}
 	}
 
@@ -75,6 +75,7 @@ func GetFwClearSessionFilter(id string, host string) (*FwClearSessionFilter, err
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwClearSessionFilter", data)
 			return &m, nil
 		}
 	}

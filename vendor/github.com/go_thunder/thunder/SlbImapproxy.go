@@ -45,8 +45,8 @@ func PostSlbImapproxy(id string, inst Imapproxy, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
-
+			logger.Println("[INFO] PostSlbImapproxy REQ RES..........................", m)
+			check_api_status("PostSlbImapproxy", data)
 		}
 	}
 
@@ -75,7 +75,8 @@ func GetSlbImapproxy(id string, host string) (*Imapproxy, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbImapproxy REQ RES..........................", m)
+			check_api_status("GetSlbImapproxy", data)
 			return &m, nil
 		}
 	}

@@ -50,7 +50,8 @@ func PostSlbTemplateDynamicService(id string, inst DynamicService, host string) 
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateDynamicService REQ RES..........................", m)
+			check_api_status("PostSlbTemplateDynamicService", data)
 
 		}
 	}
@@ -80,7 +81,8 @@ func GetSlbTemplateDynamicService(id string, name string, host string) (*Dynamic
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateDynamicService REQ RES..........................", m)
+			check_api_status("GetSlbTemplateDynamicService", data)
 			return &m, nil
 		}
 	}
@@ -115,7 +117,8 @@ func PutSlbTemplateDynamicService(id string, name string, inst DynamicService, h
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateDynamicService REQ RES..........................", m)
+			check_api_status("PutSlbTemplateDynamicService", data)
 
 		}
 	}

@@ -180,7 +180,8 @@ func PostInterfaceVeIPv6(id string, name int, inst VeIPv6, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostInterfaceVeIPv6 REQ RES..........................", m)
+			check_api_status("PostInterfaceVeIPv6", data)
 
 		}
 	}
@@ -210,7 +211,8 @@ func GetInterfaceVeIPv6(id string, name string, host string) (*VeIPv6, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetInterfaceVeIPv6 REQ RES..........................", m)
+			check_api_status("GetInterfaceVeIPv6", data)
 			return &m, nil
 		}
 	}

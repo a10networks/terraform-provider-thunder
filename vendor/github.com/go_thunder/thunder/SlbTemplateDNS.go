@@ -86,7 +86,8 @@ func PostTemplateDNS(id string, inst DNS, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostTemplateDNS REQ RES..........................", m)
+			check_api_status("PostTemplateDNS", data)
 
 		}
 	}
@@ -116,7 +117,8 @@ func GetTemplateDNS(id string, name string, host string) (*DNS, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetTemplateDNS REQ RES..........................", m)
+			check_api_status("GetTemplateDNS", data)
 			return &m, nil
 		}
 	}
@@ -151,7 +153,8 @@ func PutTemplateDNS(id string, name string, inst DNS, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutTemplateDNS REQ RES..........................", m)
+			check_api_status("PutTemplateDNS", data)
 
 		}
 	}

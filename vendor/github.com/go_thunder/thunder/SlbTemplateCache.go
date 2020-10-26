@@ -72,7 +72,8 @@ func PostSlbTemplateCache(id string, inst Cache, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateCache REQ RES..........................", m)
+			check_api_status("PostSlbTemplateCache", data)
 
 		}
 	}
@@ -102,7 +103,8 @@ func GetSlbTemplateCache(id string, name string, host string) (*Cache, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateCache REQ RES..........................", m)
+			check_api_status("GetSlbTemplateCache", data)
 			return &m, nil
 		}
 	}
@@ -137,7 +139,8 @@ func PutSlbTemplateCache(id string, name string, inst Cache, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateCache REQ RES..........................", m)
+			check_api_status("PutSlbTemplateCache", data)
 
 		}
 	}

@@ -46,7 +46,8 @@ func PostSlbSSLCertRevoke(id string, inst SSLCertRevoke, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbSSLCertRevoke REQ RES..........................", m)
+			check_api_status("PostSlbSSLCertRevoke", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbSSLCertRevoke(id string, host string) (*SSLCertRevoke, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbSSLCertRevoke REQ RES..........................", m)
+			check_api_status("GetSlbSSLCertRevoke", data)
 			return &m, nil
 		}
 	}

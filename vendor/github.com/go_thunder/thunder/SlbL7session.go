@@ -47,7 +47,8 @@ func PostSlbL7session(id string, inst L7session, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbL7session REQ RES..........................", m)
+			check_api_status("PostSlbL7session", data)
 
 		}
 	}
@@ -77,7 +78,8 @@ func GetSlbL7session(id string, host string) (*L7session, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbL7session REQ RES..........................", m)
+			check_api_status("GetSlbL7session", data)
 			return &m, nil
 		}
 	}

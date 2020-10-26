@@ -45,8 +45,8 @@ func PostIPAddress(id string, inst IPAddress, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
-
+			logger.Println("[INFO] PostIPAddress REQ RES..........................", m)
+			check_api_status("PostIPAddress", data)
 		}
 	}
 
@@ -75,7 +75,8 @@ func GetIPAddress(id string, host string) (*IPAddress, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIPAddress REQ RES..........................", m)
+			check_api_status("GetIPAddress", data)
 			return &m, nil
 		}
 	}

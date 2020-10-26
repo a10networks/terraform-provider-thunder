@@ -51,7 +51,8 @@ func PostSlbPlayerIdGlobal(id string, inst PlayerIdGlobal, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbPlayerIdGlobal REQ RES..........................", m)
+			check_api_status("PostSlbPlayerIdGlobal", data)
 
 		}
 	}
@@ -81,7 +82,8 @@ func GetSlbPlayerIdGlobal(id string, host string) (*PlayerIdGlobal, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbPlayerIdGlobal REQ RES..........................", m)
+			check_api_status("GetSlbPlayerIdGlobal", data)
 			return &m, nil
 		}
 	}

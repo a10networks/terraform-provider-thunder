@@ -45,7 +45,8 @@ func GetUdp(id string, name string, host string) (*UDP, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetUdp REQ RES..........................", m)
+			check_api_status("GetUdp", data)
 			return &m, nil
 		}
 	}
@@ -81,6 +82,7 @@ func PostUdp(id string, sg UDP, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostUdp", data)
 		}
 	}
 
@@ -116,6 +118,7 @@ func PutUdp(id string, name string, sg UDP, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PutUdp", data)
 		}
 	}
 

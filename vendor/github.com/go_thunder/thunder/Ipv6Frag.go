@@ -47,7 +47,8 @@ func PostIpv6Frag(id string, inst IPv6Frag, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIpv6Frag REQ RES..........................", m)
+			check_api_status("PostIpv6Frag", data)
 
 		}
 	}
@@ -78,6 +79,7 @@ func GetIpv6Frag(id string, host string) (*IPv6Frag, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetIpv6Frag", data)
 			return &m, nil
 		}
 	}

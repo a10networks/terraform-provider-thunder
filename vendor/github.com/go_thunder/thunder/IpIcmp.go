@@ -45,8 +45,8 @@ func PostIpIcmp(id string, inst Icmp, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
-
+			logger.Println("[INFO] PostIpIcmp REQ RES..........................", m)
+			check_api_status("PostIpIcmp", data)
 		}
 	}
 
@@ -75,7 +75,8 @@ func GetIpIcmp(id string, host string) (*Icmp, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIpIcmp REQ RES..........................", m)
+			check_api_status("GetIpIcmp", data)
 			return &m, nil
 		}
 	}

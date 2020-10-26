@@ -52,7 +52,8 @@ func PostTemplateFix(id string, inst Fix, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostTemplateFix REQ RES..........................", m)
+			check_api_status("PostTemplateFix", data)
 
 		}
 	}
@@ -82,7 +83,8 @@ func GetTemplateFix(id string, name string, host string) (*Fix, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetTemplateFix REQ RES..........................", m)
+			check_api_status("GetTemplateFix", data)
 			return &m, nil
 		}
 	}
@@ -117,7 +119,8 @@ func PutTemplateFix(id string, name string, inst Fix, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutTemplateFix REQ RES..........................", m)
+			check_api_status("PutTemplateFix", data)
 
 		}
 	}

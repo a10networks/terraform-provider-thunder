@@ -44,7 +44,8 @@ func PostHostname(id string, inst Hostname, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostHostname REQ RES..........................", m)
+			check_api_status("PostHostname", data)
 
 		}
 	}
@@ -74,7 +75,8 @@ func GetHostname(id string, host string) (*Hostname, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetHostname REQ RES..........................", m)
+			check_api_status("GetHostname", data)
 			return &m, nil
 		}
 	}

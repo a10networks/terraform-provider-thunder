@@ -42,6 +42,7 @@ func GetDnsPrimary(id string, host string) (*Primary, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetDnsPrimary", data)
 			return &m, nil
 		}
 	}
@@ -77,6 +78,7 @@ func PostDnsPrimary(id string, vc Primary, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostDnsPrimary", data)
 		}
 	}
 

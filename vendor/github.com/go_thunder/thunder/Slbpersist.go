@@ -46,7 +46,8 @@ func PostSlbpersist(id string, inst SlbPersist, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbpersist REQ RES..........................", m)
+			check_api_status("PostSlbpersist", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbpersist(id string, host string) (*SlbPersist, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbpersist REQ RES..........................", m)
+			check_api_status("GetSlbpersist", data)
 			return &m, nil
 		}
 	}

@@ -45,7 +45,8 @@ func PostSlbSip(id string, inst SlbSip, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbSip REQ RES..........................", m)
+			check_api_status("PostSlbSip", data)
 
 		}
 	}
@@ -75,7 +76,8 @@ func GetSlbSip(id string, host string) (*SlbSip, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbSip REQ RES..........................", m)
+			check_api_status("GetSlbSip", data)
 			return &m, nil
 		}
 	}

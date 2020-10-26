@@ -85,7 +85,8 @@ func PostFwRadiusServer(id string, inst FwRadiusServer, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwRadiusServer", data)
 
 		}
 	}
@@ -116,6 +117,7 @@ func GetFwRadiusServer(id string, host string) (*FwRadiusServer, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwRadiusServer", data)
 			return &m, nil
 		}
 	}

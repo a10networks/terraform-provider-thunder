@@ -124,6 +124,7 @@ func postEthernet(id string, ip map[int]IP, host string) {
 			} else {
 				fmt.Println("response Body:", string(data))
 				logger.Println("response Body:", string(data))
+				check_api_status("postEthernet", data)
 			}
 		}
 
@@ -161,6 +162,7 @@ func PutEthernet(id string, ethernet map[int]Ethernet, host string) {
 			data, _ := ioutil.ReadAll(resp.Body)
 
 			logger.Println("HTTP Response -", string(data))
+			check_api_status("PutEthernet", data)
 
 		}
 
@@ -193,6 +195,7 @@ func GetEthernet(id string, name string, host string) (*Ethernet, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetEthernet", data)
 			return &m, nil
 		}
 	}

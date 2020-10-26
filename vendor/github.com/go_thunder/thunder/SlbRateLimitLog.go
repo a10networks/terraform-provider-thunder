@@ -46,7 +46,8 @@ func PostSlbRateLimitLog(id string, inst RateLimitLog, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbRateLimitLog REQ RES..........................", m)
+			check_api_status("PostSlbRateLimitLog", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbRateLimitLog(id string, host string) (*RateLimitLog, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbRateLimitLog REQ RES..........................", m)
+			check_api_status("GetSlbRateLimitLog", data)
 			return &m, nil
 		}
 	}

@@ -46,7 +46,8 @@ func PostSlbL4(id string, inst L4, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbL4 REQ RES..........................", m)
+			check_api_status("PostSlbL4", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetSlbL4(id string, host string) (*L4, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbL4 REQ RES..........................", m)
+			check_api_status("GetSlbL4", data)
 			return &m, nil
 		}
 	}

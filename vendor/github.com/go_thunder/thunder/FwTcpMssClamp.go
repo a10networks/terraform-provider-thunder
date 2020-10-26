@@ -47,7 +47,8 @@ func PostFwTcpMssClamp(id string, inst FwTcpMssClamp, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostFwTcpMssClamp REQ RES..........................", m)
+			check_api_status("PostFwTcpMssClamp", data)
 
 		}
 	}
@@ -77,7 +78,8 @@ func GetFwTcpMssClamp(id string, host string) (*FwTcpMssClamp, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetFwTcpMssClamp REQ RES..........................", m)
+			check_api_status("GetFwTcpMssClamp", data)
 			return &m, nil
 		}
 	}

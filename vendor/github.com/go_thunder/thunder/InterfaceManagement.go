@@ -117,7 +117,8 @@ func PostInterfaceManagement(id string, inst Management, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostInterfaceManagement REQ RES..........................", m)
+			check_api_status("PostInterfaceManagement", data)
 
 		}
 	}
@@ -147,7 +148,8 @@ func GetInterfaceManagement(id string, host string) (*Management, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetInterfaceManagement REQ RES..........................", m)
+			check_api_status("GetInterfaceManagement", data)
 			return &m, nil
 		}
 	}

@@ -44,7 +44,8 @@ func PostFwLocalLog(id string, inst FwLocalLog, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwLocalLog", data)
 
 		}
 	}
@@ -75,6 +76,7 @@ func GetFwLocalLog(id string, host string) (*FwLocalLog, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwLocalLog", data)
 			return &m, nil
 		}
 	}

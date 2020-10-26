@@ -45,7 +45,8 @@ func PostGlmSend(id string, inst GlmSend, host string) {
 			logger.Println("Unmarshal error ", erro)
 
 		} else {
-			logger.Println("[INFO] POST REQ RES..........................", m)
+			logger.Println("[INFO] PostGlmSend REQ RES..........................", m)
+			check_api_status("PostGlmSend", data)
 
 		}
 	}
@@ -77,7 +78,8 @@ func GetGlmSend(id string, host string) (*GlmSend, error) {
 			logger.Println("Unmarshal error ", erro)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetGlmSend REQ RES..........................", m)
+			check_api_status("GetGlmSend", data)
 			return &m, nil
 		}
 	}

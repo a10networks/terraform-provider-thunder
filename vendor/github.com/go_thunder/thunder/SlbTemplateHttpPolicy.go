@@ -61,7 +61,8 @@ func GetHttpPolicy(id string, name string, host string) (*HttpPolicy, error) {
 			return nil, err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetHttpPolicy REQ RES..........................", m)
+			check_api_status("GetHttpPolicy", data)
 			return &m, nil
 		}
 	}
@@ -97,6 +98,7 @@ func PostHttpPolicy(id string, sg HttpPolicy, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostHttpPolicy", data)
 		}
 	}
 
@@ -132,6 +134,7 @@ func PutHttpPolicy(id string, name string, sg HttpPolicy, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PutHttpPolicy", data)
 		}
 	}
 

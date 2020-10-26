@@ -43,7 +43,8 @@ func PostFwLimitEntry(id string, inst FwLimitEntry, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwLimitEntry", data)
 
 		}
 	}
@@ -74,6 +75,7 @@ func GetFwLimitEntry(id string, host string) (*FwLimitEntry, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwLimitEntry", data)
 			return &m, nil
 		}
 	}

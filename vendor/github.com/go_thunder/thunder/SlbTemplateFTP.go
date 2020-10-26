@@ -49,7 +49,8 @@ func PostSlbTemplateFTP(id string, inst FTP, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostSlbTemplateFTP REQ RES..........................", m)
+			check_api_status("PostSlbTemplateFTP", data)
 
 		}
 	}
@@ -79,7 +80,8 @@ func GetSlbTemplateFTP(id string, name string, host string) (*FTP, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetSlbTemplateFTP REQ RES..........................", m)
+			check_api_status("GetSlbTemplateFTP", data)
 			return &m, nil
 		}
 	}
@@ -114,7 +116,8 @@ func PutSlbTemplateFTP(id string, name string, inst FTP, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutSlbTemplateFTP REQ RES..........................", m)
+			check_api_status("PutSlbTemplateFTP", data)
 
 		}
 	}

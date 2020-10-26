@@ -43,7 +43,8 @@ func PostFwResourceUsage(id string, inst FwResourceUsage, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] POST REQ RES..........................", m)
+			check_api_status("PostFwResourceUsage", data)
 
 		}
 	}
@@ -74,6 +75,7 @@ func GetFwResourceUsage(id string, host string) (*FwResourceUsage, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwResourceUsage", data)
 			return &m, nil
 		}
 	}

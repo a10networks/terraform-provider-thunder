@@ -535,7 +535,8 @@ func PostInterfaceEthernet(id string, inst InterfaceEthernet, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostInterfaceEthernet REQ RES..........................", m)
+			check_api_status("PostInterfaceEthernet", data)
 
 		}
 	}
@@ -565,7 +566,8 @@ func GetInterfaceEthernet(id string, name string, host string) (*InterfaceEthern
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetInterfaceEthernet REQ RES..........................", m)
+			check_api_status("GetInterfaceEthernet", data)
 			return &m, nil
 		}
 	}
@@ -600,7 +602,8 @@ func PutInterfaceEthernet(id string, name string, inst InterfaceEthernet, host s
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PutInterfaceEthernet REQ RES..........................", m)
+			check_api_status("PutInterfaceEthernet", data)
 
 		}
 	}

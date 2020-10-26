@@ -250,3 +250,5 @@ func mapEntity(d map[string]interface{}, obj interface{}) {
 		}
 	}
 }
+
+

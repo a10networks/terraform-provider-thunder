@@ -61,7 +61,8 @@ func PostFwServiceGroup(id string, inst FwServiceGroup, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostFwServiceGroup REQ RES..........................", m)
+			check_api_status("PostFwServiceGroup", data)
 
 		}
 	}
@@ -92,6 +93,7 @@ func GetFwServiceGroup(id string, name string, host string) (*FwServiceGroup, er
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetFwServiceGroup", data)
 			return &m, nil
 		}
 	}
@@ -126,7 +128,8 @@ func PutFwServiceGroup(id string, name string, inst FwServiceGroup, host string)
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PUT REQ RES..........................", m)
+			check_api_status("PutFwServiceGroup", data)
 
 		}
 	}

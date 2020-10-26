@@ -45,6 +45,7 @@ func GetSlbHealthGateway(id string, host string) (*HealthGateway, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
+			check_api_status("GetSlbHealthGateway", data)
 			return &m, nil
 		}
 	}
@@ -80,6 +81,7 @@ func PostSlbHealthGateway(id string, vc HealthGateway, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
+			check_api_status("PostSlbHealthGateway", data)
 		}
 	}
 

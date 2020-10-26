@@ -46,7 +46,8 @@ func PostIpTcp(id string, inst IpTcp, host string) {
 			logger.Println("Unmarshal error ", err)
 
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] PostIpTcp REQ RES..........................", m)
+			check_api_status("PostIpTcp", data)
 
 		}
 	}
@@ -76,7 +77,8 @@ func GetIpTcp(id string, host string) (*IpTcp, error) {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] GetIpTcp REQ RES..........................", m)
+			check_api_status("GetIpTcp", data)
 			return &m, nil
 		}
 	}
