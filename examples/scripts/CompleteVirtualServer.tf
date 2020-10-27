@@ -1,7 +1,7 @@
 provider "thunder" {
-  address = "10.65.22.166"
-  username = "admin"
-  password = "a10"
+  address = ""
+  username = ""
+  password = ""
 }
 
  
