@@ -45,7 +45,7 @@ resource "thunder_slb_template_tcp_proxy" "test_tcp_proxy" {
 resource "thunder_import" "test_import_aflex" {
      
 		# depends_on = [thunder_service_group.test_group]
-    remote_file = "scp://visibility@10.65.22.163:/home/visibility/vip-switch-ar2"
+    remote_file = "scp://root@10.10.10.10:/home/visibility/vip-switch-ar2"
     use_mgmt_port =  1
     aflex =  "vip-switch-ar2"
     password = "password"
@@ -88,8 +88,8 @@ resource "thunder_service_group" "test_group" {
 resource "thunder_virtual_server" "test_virtual" {
       
       # depends_on = [thunder_service_group.test_group, thunder_import.test_import_aflex, thunder_slb_template_http.test_http]
-      name = "VS_10.16.36.101"
-      ip_address = "10.16.36.101"
+      name = "VS_10.10.10.101"
+      ip_address = "10.10.10.101"
       vrid = 4
       port_list {
           port_number = 80
@@ -109,32 +109,3 @@ resource "thunder_virtual_server" "test_virtual" {
       }        
             
 }
-
-# resource "thunder_virtual_server" "test_virtual1" {
-      
-#       # depends_on = [thunder_service_group.test_group, thunder_import.test_import_aflex, thunder_slb_template_http.test_http]
-#       depends_on = [thunder_virtual_server.test_virtual]
-#       name = "VS_10.16.36.102"
-#       ip_address = "10.16.36.101"
-#       vrid = 4
-#       port_list {
-#           port_number = 80
-#           protocol = "http"
-#           aflex_scripts {
-#               aflex = "vip-switch-ar2"
-#           }
-#           no_auto_up_on_aflex = 1
-#           pool = "SNAT_VRID1"
-#           service_group = "test_pool_group_dev"
-#           use_rcv_hop_for_resp = 1
-#           template_connection_reuse = "Template_ConRe-Use_5000"
-#           template_persist_cookie = "Template_Persist_Cookie_SSL"
-#           template_http = "Template_HTTP_XFF"
-#           template_tcp_proxy_client = "Template_TCP-Proxy_300"
-#           template_tcp_proxy_server = "Template_TCP-Proxy_300"
-#       }        
-            
-# }
-
-
-
