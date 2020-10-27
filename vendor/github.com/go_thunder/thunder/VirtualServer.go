@@ -359,8 +359,8 @@ func DeleteVS(id string, name string, host string) error {
 			return err
 		} else {
 			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("PutVS", data)
+			logger.Println("[INFO] DELETE REQ RES..........................", m)
+			
 		}
 	}
 	return nil

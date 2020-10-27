@@ -27,5 +27,10 @@ resource "thunder_configure_sync" "configure_sync" {
 
 ## Argument Reference
 
+* `address` - Specify the destination ip address to sync
 * `all_partitions` - All partition configurations
+* `auto_authentication` - Authenticate with local username and password
+* `partition_name` - Partition name
 * `private_key` - Use private key for authentication
+* `shared` - Shared partition
+* `type` - ‘running’: Sync local running to peer’s running configuration; ‘all’: Sync local running to peer’s running configuration, and local startup to peer’s startup configuration;
