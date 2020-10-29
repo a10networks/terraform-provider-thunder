@@ -19,13 +19,88 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_import" "test_import_aflex" {
-      
-    remote_file = "scp://root@10.1.1.1:/home/vip-switch-ar"
-    use_mgmt_port =  1
-    aflex =  "service-group-name"
-    password = "password"
-    overwrite =  1
+resource "thunder_import" "Import_Test" {
+
+geo_location = "string"
+ssl_cert_key = "string"
+class_list_convert = "string"
+bw_list = "string"
+usb_license = "string"
+ip_map_list = "string"
+health_external {  
+        description =  "string" 
+        remote_file =  "string" 
+        externalfilename =  "string" 
+        password =  "string" 
+        use_mgmt_port =  0 
+        overwrite =  0 
+        }
+auth_portal = "string"
+local_uri_file = "string"
+aflex = "string"
+overwrite = 0
+class_list_type = "string"
+pfx_password = "string"
+web_category_license = "string"
+thales_kmdata = "string"
+secured = 0
+ssl_crl = "string"
+terminal = 0
+policy = "string"
+file_inspection_bw_list = "string"
+thales_secworld = "string"
+lw_4o6 = "string"
+auth_portal_image = "string"
+health_postfile {  
+        postfilename =  "string" 
+        password =  "string" 
+        use_mgmt_port =  0 
+        remote_file =  "string" 
+        overwrite =  0 
+        }
+class_list = "string"
+glm_license = "string"
+dnssec_ds = "string"
+cloud_creds = "string"
+auth_jwks = "string"
+wsdl = "string"
+password = "string"
+ssl_key = "string"
+use_mgmt_port = 0
+remote_file = "string"
+cloud_config = "string"
+to_device {  
+        web_category_license =  "string" 
+        remote_file =  "string" 
+        glm_license =  "string" 
+        glm_cert =  "string" 
+        device =  0 
+        use_mgmt_port =  0 
+        overwrite =  0 
+        }
+user_tag = "string"
+store_name = "string"
+ca_cert = "string"
+glm_cert = "string"
+store {  
+        create =  0 
+        name =  "string" 
+        remote_file =  "string" 
+        delete =  0 
+        }
+xml_schema = "string"
+certificate_type = "string"
+auth_saml_idp {  
+        remote_file =  "string" 
+        saml_idp_name =  "string" 
+        verify_xml_signature =  0 
+        password =  "string" 
+        use_mgmt_port =  0 
+        overwrite =  0 
+        }
+ssl_cert = "string"
+dnssec_dnskey = "string"
+ 
 }
 
 ```

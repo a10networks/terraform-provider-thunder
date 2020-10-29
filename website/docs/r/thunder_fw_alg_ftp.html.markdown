@@ -19,9 +19,16 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_alg_ftp" "FwAlgTest" {
-	default_port_disable = "default-port-disable" 
+resource "thunder_fw_alg_ftp" "Fw_Alg_Ftp_Test" {
+default_port_disable = "string"
+sampling-enable {   
+counters1 =  "string" 
+        }
+uuid = "string"
+ 
 }
+
+
 ```
 
 ## Argument Reference

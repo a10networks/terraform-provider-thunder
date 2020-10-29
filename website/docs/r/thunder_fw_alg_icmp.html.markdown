@@ -20,7 +20,8 @@ provider "thunder" {
 }
 
 resource "thunder_fw_alg_icmp" "FwAlgTest" {
-	disable = "disable" 
+	disable = "disable"
+  uuid = "string" 
 }
 ```
 

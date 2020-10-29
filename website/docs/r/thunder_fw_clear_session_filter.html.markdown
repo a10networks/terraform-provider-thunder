@@ -8,10 +8,26 @@ description: |-
 
 # thunder\_fw\_clear\_session\_filter
 
-`thunder_fw_clear_session_filter` Provides details about thunder fw clear session filter`
+`thunder_fw_clear_session_filter` Provides details about thunder fw clear session filter
+## Example Usage
+
+
+```hcl
+provider "thunder" {
+  address  = "129.213.82.65"
+  username = "admin"
+  password = "admin"
+}
+
+resource "thunder_fw_clear_session_filter" "Fw_Clear_Session_Filter_Test" {
+status = "string"
+uuid = "string"
+ 
+}
+
+```
 
 ## Argument Reference
 
 * `status` - ‘disable’: Disable clear L4 session filter for fw (Default: disabled); ‘enable’: Enable clear L4 session filter for fw;
 * `uuid` - uuid of the object
-

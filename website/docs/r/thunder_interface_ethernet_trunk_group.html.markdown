@@ -11,6 +11,32 @@ description: |-
 `thunder_interface_ethernet_trunk_group` Provides details about thunder interface ethernet trunk group
 ## Example Usage
 
+
+```hcl
+provider "thunder" {
+  address  = "129.213.82.65"
+  username = "admin"
+  password = "admin"
+}
+
+resource "thunder_interface_ethernet_trunk_group" "Interface_Ethernet_Trunk_Group_Test" {
+
+uuid = "string"
+trunk_number = 0
+user_tag = "string"
+udld_timeout_cfg {  
+        slow =  0 
+        fast =  0 
+        }
+mode = "string"
+timeout = "string"
+type = "string"
+admin_key = 0
+port_priority = 0 
+}
+
+```
+
 ## Argument Reference
 
 * `admin_key` - LACP admin key (Admin key value)

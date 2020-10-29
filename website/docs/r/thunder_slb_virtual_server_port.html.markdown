@@ -19,7 +19,206 @@ provider "thunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "thunder_slb_virtual_server_port" "Slb_Virtual_Server_Port_Test" {
+
+ha_conn_mirror = 0
+protocol = "string"
+template_doh_shared = "string"
+precedence = 0
+template_dblb_shared = "string"
+port_translation = 0
+ip_map_list = "string"
+template_reqmod_icap = "string"
+acl-name-list {   
+        acl_name_src_nat_pool_shared =  "string" 
+        v_acl_name_src_nat_pool_shared =  "string" 
+        shared_partition_pool_name =  0 
+        acl_name_seq_num_shared =  0 
+        acl_name =  "string" 
+        v_shared_partition_pool_name =  0 
+        acl_name_src_nat_pool =  "string" 
+        v_acl_name_seq_num =  0 
+        acl_name_shared =  "string" 
+        acl_name_seq_num =  0 
+        v_acl_name_src_nat_pool =  "string" 
+        v_acl_name_seq_num_shared =  0 
+        }
+stats_data_action = "string"
+template_imap_pop3_shared = "string"
+use_default_if_no_server = 0
+template_connection_reuse = "string"
+cpu_compute = 0
+uuid = "string"
+template_tcp_shared = "string"
+template_tcp = "string"
+template_persist_destination_ip = "string"
+substitute_source_mac = 0
+shared_partition_dynamic_service_template = 0
+shared_partition_connection_reuse_template = 0
+when_down = 0
+template_client_ssl_shared = "string"
+shared_partition_persist_destination_ip_template = 0
+shared_partition_external_service_template = 0
+persist_type = "string"
+shared_partition_http_policy_template = 0
+use_rcv_hop_for_resp = 0
+scaleout_bucket_count = 0
+ignore_global = 0
+optimization_level = "string"
+req_fail = 0
+no_dest_nat = 0
+name = "string"
+template_smpp = "string"
+user_tag = "string"
+template_diameter = "string"
+sampling-enable {   
+        counters1 =  "string" 
+        }
+template_ssli = "string"
+memory_compute = 0
+shared_partition_policy_template = 0
+template_policy = "string"
+view = 0
+reset_on_server_selection_fail = 0
+waf_template = "string"
+ipinip = 0
+no_auto_up_on_aflex = 0
+rate = 0
+gslb_enable = 0
+template_dns_shared = "string"
+template_persist_ssl_sid = "string"
+template_dns = "string"
+shared_partition_dns_template = 0
+template_smpp_shared = "string"
+template_sip = "string"
+template_dblb = "string"
+shared_partition_server_ssl_template = 0
+template_client_ssl = "string"
+support_http2 = 0
+p_template_sip_shared = 0
+template_client_ssh = "string"
+shared_partition_tcp_proxy_template = 0
+enable_playerid_check = 0
+service_group = "string"
+shared_partition_persist_ssl_sid_template = 0
+def_selection_if_pref_failed = "string"
+shared_partition_udp = 0
+syn_cookie = 0
+template_doh = "string"
+alternate_port = 0
+alternate_port_number = 0
+template_persist_source_ip_shared = "string"
+template_cache = "string"
+template_persist_cookie_shared = "string"
+rtp_sip_call_id_match = 0
+shared_partition_persist_cookie_template = 0
+template_file_inspection = "string"
+template_ftp = "string"
+serv_sel_fail = 0
+template_udp = "string"
+template_virtual_port_shared = "string"
+template_mqtt = "string"
+action = "string"
+shared_partition_client_ssl_template = 0
+no_logging = 0
+shared_partition_fix_template = 0
+template_persist_source_ip = "string"
+template_dynamic_service = "string"
+gtp_session_lb = 0
+shared_partition_virtual_port_template = 0
+use_cgnv6 = 0
+template_persist_cookie = "string"
+shared_partition_smtp_template = 0
+template_virtual_port = "string"
+conn_limit = 0
+trunk_fwd = 0
+template_udp_shared = "string"
+template_http_policy_shared = "string"
+pool = "string"
+snat_on_vip = 0
+template_connection_reuse_shared = "string"
+shared_partition_tcp = 0
+acl-id-list {   
+        v_acl_id_seq_num =  0 
+        acl_id_seq_num =  0 
+        acl_id_src_nat_pool =  "string" 
+        acl_id_seq_num_shared =  0 
+        v_acl_id_src_nat_pool =  "string" 
+        acl_id_shared =  0 
+        v_acl_id_src_nat_pool_shared =  "string" 
+        acl_id =  0 
+        acl_id_src_nat_pool_shared =  "string" 
+        v_shared_partition_pool_id =  0 
+        shared_partition_pool_id =  0 
+        v_acl_id_seq_num_shared =  0 
+        }
+shared_partition_dblb_template = 0
+shared_partition_http_template = 0
+template_external_service = "string"
+on_syn = 0
+template_smtp_shared = "string"
+template_sip_shared = "string"
+template_persist_ssl_sid_shared = "string"
+force_routing_mode = 0
+template_http_policy = "string"
+template_policy_shared = "string"
+template_scaleout = "string"
+when_down_protocol2 = 0
+template_fix = "string"
+template_smtp = "string"
+redirect_to_https = 0
+alt_protocol2 = "string"
+alt_protocol1 = "string"
+message_switching = 0
+template_imap_pop3 = "string"
+scaleout_device_group = 0
+shared_partition_persist_source_ip_template = 0
+l7_hardware_assist = 0
+template_fix_shared = "string"
+template_tcp_proxy_shared = "string"
+shared_partition_cache_template = 0
+use_alternate_port = 0
+template_tcp_proxy_server = "string"
+trunk_rev = 0
+eth_fwd = 0
+pool_shared = "string"
+template_respmod_icap = "string"
+range = 0
+reset = 0
+template_external_service_shared = "string"
+auto = 0
+shared_partition_smpp_template = 0
+template_dynamic_service_shared = "string"
+template_server_ssh = "string"
+aflex-scripts {   
+        aflex =  "string" 
+        aflex_shared =  "string" 
+        }
+template_http_shared = "string"
+template_server_ssl = "string"
+shared_partition_diameter_template = 0
+template_server_ssl_shared = "string"
+template_persist_destination_ip_shared = "string"
+template_cache_shared = "string"
+port_number = 0
+template_tcp_proxy_client = "string"
+shared_partition_pool = 0
+template_tcp_proxy = "string"
+extended_stats = 0
+template_http = "string"
+expand = 0
+shared_partition_doh_template = 0
+skip_rev_hash = 0
+template_diameter_shared = "string"
+clientip_sticky_nat = 0
+secs = 0
+shared_partition_imap_pop3_template = 0
+auth_cfg {  
+        aaa_policy =  "string" 
+        }
+eth_rev = 0
+ 
+}
 ```
 
 ## Argument Reference
@@ -177,4 +376,3 @@ provider "thunder" {
 * `aflex` - Bind aFleX Script to the Virtual Port (aFleX Script Name)
 * `aflex_shared` - aFleX Script Name
 * `aaa_policy` - Specify AAA policy name to bind to the virtual port
-

@@ -1,40 +1,43 @@
 ---
 layout: "thunder"
-page_title: "thunder: thunder_slb_templateFtp"
-sidebar_current: "docs-thunder-resource-slb_templateFtp"
+page_title: "thunder: thunder_slb_template_ftp"
+sidebar_current: "docs-thunder-resource-slb-template-ftp"
 description: |-
-    Provides details about thunder SLB template ftp resource for A10
+	Provides details about thunder slb template ftp resource for A10
 ---
 
 # thunder\_slb\_template\_ftp
 
-`thunder_TemplateFtp` Provides details about thunder SLB template ftp
+`thunder_slb_template_ftp` Provides details about thunder slb template ftp
 ## Example Usage
 
 
 ```hcl
 provider "thunder" {
-  address  = "192.0.2.65"
+  address  = "129.213.82.65"
   username = "admin"
   password = "admin"
 }
 
-resource "thunder_slb_template_ftp" "templateftp" {
-	name = "testftp"
-	user_tag = "test_tag"
-	active_mode_port = 1
-	active_mode_port_val = 1
+resource "thunder_slb_template_ftp" "Slb_Template_Ftp_Test" {
+
+uuid = "string"
+user_tag = "string"
+to = 0
+active_mode_port = 0
+active_mode_port_val = 0
+any = 0
+name = "string"
+ 
 }
 ```
 
 ## Argument Reference
 
-* `name` - FTP Template Name
 * `active_mode_port` - Non-Standard FTP Active mode port
 * `active_mode_port_val` - Non-Standard FTP Active mode port
+* `any` - Allow any FTP Active mode port
+* `name` - FTP template name
 * `to` - End range of FTP Active mode port
 * `user_tag` - Customized tag
-
-
-
-
+* `uuid` - uuid of the object

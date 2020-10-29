@@ -19,10 +19,26 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_service_group" "FwTest" {
-	protocol = "tcp"
-	name = "a"
-	user_tag = "a" 
+resource "thunder_fw_service_group" "Fw_Service_Group_Test" {
+protocol = "string"
+uuid = "string"
+user_tag = "string"
+traffic_replication_mirror_ip_repl = 0
+sampling-enable {   
+        counters1 =  "string" 
+        }
+member-list {   
+        port =  0 
+sampling-enable {   
+        counters1 =  "string" 
+        }
+        uuid =  "string" 
+        user_tag =  "string" 
+        name =  "string" 
+        }
+health_check = "string"
+name = "string"
+ 
 }
 ```
 

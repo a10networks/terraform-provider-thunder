@@ -19,9 +19,34 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_server" "FwTest" {
-	name = "a"
-	server_ipv6_addr = "2003::1" 
+resource "thunder_fw_server" "Fw_Server_Test" {
+
+health_check_disable = 0
+port-list {   
+        health_check_disable =  0 
+        protocol =  "string" 
+        uuid =  "string" 
+        user_tag =  "string" 
+sampling-enable {   
+        counters1 =  "string" 
+        }
+        port_number =  0 
+        action =  "string" 
+        health_check =  "string" 
+        }
+uuid = "string"
+fqdn_name = "string"
+resolve_as = "string"
+sampling-enable {   
+        counters1 =  "string" 
+        }
+user_tag = "string"
+host = "string"
+action = "string"
+server_ipv6_addr = "string"
+health_check = "string"
+name = "string"
+ 
 }
 ```
 

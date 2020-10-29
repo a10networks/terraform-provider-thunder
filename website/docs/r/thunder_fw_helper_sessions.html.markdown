@@ -19,8 +19,13 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_helper_sessions" "FwTest" {
-	mode = "disable"
+resource "thunder_fw_helper_sessions" "Fw_Helper_Sessions_Test" {
+
+idle_timeout = 0
+limit = 0
+mode = "string"
+uuid = "string"
+ 
 }
 ```
 

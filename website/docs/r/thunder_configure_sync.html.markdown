@@ -19,10 +19,21 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_configure_sync" "configure_sync" {
-		all_partitions = 1
-	    private_key = "smita_key.pem"
+resource "thunder_configure_sync" "Configure_Sync_Test" {
+
+all_partitions = 0
+private_key = "string"
+partition_name = "string"
+pwd = "string"
+auto_authentication = 0
+address = "string"
+shared = 0
+type = "string"
+pwd_enc = "Unknown Type: encrypted"
+usr = "string" 
+
 }
+
 ```
 
 ## Argument Reference

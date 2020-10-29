@@ -19,15 +19,74 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_interface_management" "testname" {
-	lldp {
-    enable_cfg {
-      rt_enable = 1
-      rx = 1
-      tx = 1
-    }
-  }
+resource "thunder_interface_management" "Interface_Management_Test" {
+lldp {  
+ tx_dot1_cfg {  
+        link_aggregation =  0 
+        vlan =  0 
+        tx_dot1_tlvs =  0 
+        }
+notification_cfg {  
+        notification =  0 
+        notif_enable =  0 
+        }
+enable_cfg {  
+        rx =  0 
+        tx =  0 
+        rt_enable =  0 
+        }
+tx_tlvs_cfg {  
+        system_capabilities =  0 
+        system_description =  0 
+        management_address =  0 
+        tx_tlvs =  0 
+        exclude =  0 
+        port_description =  0 
+        system_name =  0 
+        }
+        uuid =  "string" 
+        }
+flow_control = 0
+broadcast_rate_limit {  
+        rate =  0 
+        bcast_rate_limit_enable =  0 
+        }
+uuid = "string"
+duplexity = "string"
+ip {  
+        dhcp =  0 
+        ipv4_address =  "string" 
+        control_apps_use_mgmt_port =  0 
+        default_gateway =  "string" 
+        ipv4_netmask =  "string" 
+        }
+secondary_ip {  
+        ipv4_netmask =  "string" 
+        control_apps_use_mgmt_port =  0 
+        secondary_ip =  0 
+        default_gateway =  "string" 
+        dhcp =  0 
+        ipv4_address =  "string" 
+        }
+access_list {  
+        acl_name =  "string" 
+        acl_id =  0 
+        }
+sampling-enable {   
+        counters1 =  "string" 
+        }
+ipv6 {   
+        default_ipv6_gateway =  "string" 
+        inbound =  0 
+        address_type =  "string" 
+        ipv6_addr =  "string" 
+        v6_acl_name =  "string" 
+        }
+action = "string"
+speed = "string"
+ 
 }
+
 ```
 
 ## Argument Reference

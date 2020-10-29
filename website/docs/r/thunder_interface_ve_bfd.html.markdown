@@ -14,19 +14,30 @@ description: |-
 
 ```hcl
 provider "thunder" {
-  address  = "192.0.2.65"
+  address  = "129.213.82.65"
   username = "admin"
   password = "admin"
 }
 
-resource "thunder_interface_ve_bfd" "vebfd" {
-    ifnum=11
-    authentication {
-      method = "md5"
-      key_id = 0
-      password = "joker"
-    }
+resource "thunder_interface_ve_bfd" "Interface_Ve_Bfd_Test" {
+
+interval_cfg {  
+        interval =  0 
+        min_rx =  0 
+        multiplier =  0 
+        }
+authentication {  
+        encrypted =  "Unknown Type: encrypted" 
+        password =  "string" 
+        method =  "string" 
+        key_id =  0 
+        }
+echo = 0
+uuid = "string"
+demand = 0
+ 
 }
+
 ```
 
 ## Argument Reference
@@ -41,4 +52,3 @@ resource "thunder_interface_ve_bfd" "vebfd" {
 * `interval` - Transmit interval between BFD packets (Milliseconds)
 * `min_rx` - Minimum receive interval capability (Milliseconds)
 * `multiplier` - Multiplier value used to compute holddown (value used to multiply the interval)
-

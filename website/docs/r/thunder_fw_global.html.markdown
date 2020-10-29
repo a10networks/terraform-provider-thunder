@@ -19,9 +19,27 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_global" "FwTest" {
-	disable_ip_fw_sessions = "1" 
+resource "thunder_fw_global" "Fw_Global_Test" {
+
+alg_processing = "string"
+uuid = "string"
+listen_on_port_timeout = 0
+disable_ip_fw_sessions = 0
+disable-app-list {   
+        disable_application_protocol =  "string" 
+        disable_application_category =  "string" 
+        }
+extended_matching = "string"
+sampling-enable {   
+        counters1 =  "string" 
+        }
+respond_to_user_mac = 0
+permit_default_action = "string"
+natip_ddos_protection = "string"
+ 
 }
+
+
 ```
 
 ## Argument Reference
