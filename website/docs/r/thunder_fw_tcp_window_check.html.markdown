@@ -19,9 +19,15 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_tcp_window_check" "FwTest" {
-        status = "enable" 
+resource "thunder_fw_tcp_window_check" "Fw_Tcp_Window_Check_Test" {
+status = "string"
+sampling-enable {   
+        counters1 =  "string" 
+        }
+uuid = "string"
+ 
 }
+
 ```
 
 ## Argument Reference

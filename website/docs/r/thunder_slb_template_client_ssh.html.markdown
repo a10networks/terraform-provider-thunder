@@ -3,36 +3,43 @@ layout: "thunder"
 page_title: "thunder: thunder_slb_template_client_ssh"
 sidebar_current: "docs-thunder-resource-slb-template-client-ssh"
 description: |-
-    Provides details about thunder slb template client-ssh resource for A10
+	Provides details about thunder slb template client ssh resource for A10
 ---
 
 # thunder\_slb\_template\_client\_ssh
 
-`thunder_slb_template_client_ssh` provides details about slb template client_ssh
+`thunder_slb_template_client_ssh` Provides details about thunder slb template client ssh
 ## Example Usage
 
 
 ```hcl
 provider "thunder" {
-  address  = "192.0.2.65"
+  address  = "129.213.82.65"
   username = "admin"
   password = "admin"
 }
 
-resource "thunder_slb_template_client_ssh" "client_ssh1" {
-	name = "testssh"
-	user_tag = "test_tag"
-	forward_proxy_enable = 1
-	forward_proxy_hostkey = "test"
-	passphrase = "testing123"
+resource "thunder_slb_template_client_ssh" "Slb_Template_Client_Ssh_Test" {
+
+uuid = "string"
+encrypted = "string"
+user_tag = "string"
+forward_proxy_enable = 0
+passphrase = "string"
+forward_proxy_hostkey = "string"
+name = "string"
+ 
 }
+
+
 ```
 
 ## Argument Reference
 
-* `name` - Client SSH Template Name
-* `user_tag` - Customized tag
+* `encrypted` - Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)
 * `forward_proxy_enable` - Enable SSH forward proxy
-* `forward_proxy_hostkey` - Specify private-key
+* `forward_proxy_hostkey` - Specify private-key (Key Name)
+* `name` - Client SSH Template Name
 * `passphrase` - Password Phrase
-
+* `user_tag` - Customized tag
+* `uuid` - uuid of the object

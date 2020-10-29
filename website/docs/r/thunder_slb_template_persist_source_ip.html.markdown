@@ -19,10 +19,25 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_slb_template_persist_source_ip" "test_source" {
+resource "thunder_slb_template_persist_source_ip" "Slb_Template_Persist_Source_Ip_Test" {
 
-         name = "Template_Persist_Source_IP"
-         timeout = 3         
+netmask6 = 0
+incl_dst_ip = 0
+hash_persist = 0
+name = "string"
+enforce_higher_priority = 0
+dont_honor_conn_rules = 0
+primary_port = 0
+user_tag = "string"
+server = 0
+service_group = 0
+timeout = 0
+scan_all_members = 0
+netmask = "string"
+incl_sport = 0
+match_type = 0
+uuid = "string"
+ 
 }
 ```
 

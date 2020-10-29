@@ -19,9 +19,45 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_radius_server" "FwRadiusTest" {
-	listen_port = "1024" 
+resource "thunder_fw_radius_server" "Fw_Radius_Server_Test" {
+accounting_start = "string"
+attribute_name = "string"
+vrid = 0
+remote {  
+ ip-list {   
+        ip_list_name =  "string" 
+        ip_list_encrypted =  "string" 
+        ip_list_secret_string =  "string" 
+        ip_list_secret =  0 
+        }
+        }
+uuid = "string"
+encrypted = "string"
+accounting_interim_update = "string"
+secret = 0
+sampling-enable {   
+        counters1 =  "string" 
+        }
+accounting_stop = "string"
+custom_attribute_name = "string"
+attribute {   
+        prefix_number =  0 
+        prefix_length =  "string" 
+        name =  "string" 
+        prefix_vendor =  0 
+        number =  0 
+        value =  "string" 
+        custom_vendor =  0 
+        custom_number =  0 
+        vendor =  0 
+        attribute_value =  "string" 
+        }
+listen_port = 0
+accounting_on = "string"
+secret_string = "string"
+ 
 }
+
 ```
 
 ## Argument Reference

@@ -19,7 +19,17 @@ provider "thunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "thunder_ip_nat_pool_group" "Ip_Nat_Pool_Group_Test" {
+member-list {   
+        uuid =  "string" 
+        pool_name =  "string" 
+        }
+pool_group_name = "string"
+vrid = 0
+user_tag = "string"
+uuid = "string"
+ 
+}
 ```
 
 ## Argument Reference

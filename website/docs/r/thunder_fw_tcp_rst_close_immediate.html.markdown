@@ -19,9 +19,12 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_tcp_rst_close_immediate" "FwTest" {
-	status = "enable" 
+resource "thunder_fw_tcp_rst_close_immediate" "Fw_Tcp_Rst_Close_Immediate_Test" {
+status = "string"
+uuid = "string"
+ 
 }
+
 ```
 
 ## Argument Reference

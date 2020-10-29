@@ -19,7 +19,45 @@ provider "thunder" {
   password = "admin"
 }
 
-// Put working JSON here
+resource "thunder_slb_server_port" "Slb_Server_Port_Test" {
+
+health_check_disable = 0
+protocol = "string"
+weight = 0
+shared_rport_health_check = 0
+stats_data_action = "string"
+health_check_follow_port = 0
+template_port = "string"
+conn_limit = 0
+template_port_shared = "string"
+uuid = "string"
+support_http2 = 0
+sampling-enable {   
+        counters1 =  "string" 
+        }
+no_ssl = 0
+follow_port_protocol = "string"
+template_server_ssl = "string"
+alternate-port {   
+        alternate_name =  "string" 
+        alternate =  0 
+        alternate_server_port =  0 
+        }
+port_number = 0
+extended_stats = 0
+rport_health_check_shared = "string"
+conn_resume = 0
+user_tag = "string"
+range = 0
+auth_cfg {  
+        service_principal_name =  "string" 
+        }
+action = "string"
+no_logging = 0
+health_check = "string"
+shared_partition_port_template = 0
+ 
+}
 ```
 
 ## Argument Reference

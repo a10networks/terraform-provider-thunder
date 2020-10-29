@@ -3,36 +3,44 @@ layout: "thunder"
 page_title: "thunder: thunder_slb_template_connection_reuse"
 sidebar_current: "docs-thunder-resource-slb-template-connection-reuse"
 description: |-
-    Provides details about thunder slb template connection-reuse resource for A10
+	Provides details about thunder slb template connection reuse resource for A10
 ---
 
 # thunder\_slb\_template\_connection\_reuse
 
-`thunder_slb_template_connection_reuse` provides details about slb template connection-reuse
+`thunder_slb_template_connection_reuse` Provides details about thunder slb template connection reuse
 ## Example Usage
 
 
 ```hcl
 provider "thunder" {
-  address  = "192.0.2.65"
+  address  = "129.213.82.65"
   username = "admin"
   password = "admin"
 }
 
-resource "thunder_slb_template_connection_reuse" "connection_reuse" {
-	name = "testConn"
-	keep_alive_conn = 0
-	limit_per_server = 10
-	timeout = 120
-	user_tag = "testtag"
+resource "thunder_slb_template_connection_reuse" "Slb_Template_Connection_Reuse_Test" {
+
+preopen = 0
+uuid = "string"
+keep_alive_conn = 0
+user_tag = "string"
+limit_per_server = 0
+timeout = 0
+num_conn_per_port = 0
+name = "string"
+ 
 }
+
 ```
 
 ## Argument Reference
 
-* `name` - Connection Reuse Template Name
 * `keep_alive_conn` - Keep a number of server connections open
 * `limit_per_server` - Max Server Connections allowed (Connections per Server Port (default 1000))
-* `timeout` - Timeout in seconds. Multiple of 60 (default 2400)
+* `name` - Connection Reuse Template Name
+* `num_conn_per_port` - Connections per Server Port (default 100)
+* `preopen` - Preopen server connection
+* `timeout` - Timeout in seconds. Multiple of 60 (def 2400)
 * `user_tag` - Customized tag
-
+* `uuid` - uuid of the object

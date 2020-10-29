@@ -19,8 +19,33 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_gtp" "FwTest" {
-	gtp_value = "enable" 
+resource "thunder_fw_gtp" "Fw_Gtp_Test" {
+uuid = "string"
+path_mgmt_logging = "string"
+apn_prefix_list = "string"
+network_element_list_v4 = "string"
+sampling-enable {   
+        counters1 =  "string" 
+        counters2 =  "string" 
+        }
+network_element_list_v6 = "string"
+network_element {  
+ sampling-enable {   
+        counters1 =  "string" 
+        counters2 =  "string" 
+        }
+        uuid =  "string" 
+        }
+apn_prefix {  
+ sampling-enable {   
+        counters1 =  "string" 
+        counters2 =  "string" 
+        }
+        uuid =  "string" 
+        }
+echo_timeout = 0
+gtp_value = "string"
+ 
 }
 ```
 

@@ -19,8 +19,14 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_tap_monitor" "FwTest" {
-	status = "enable" 
+resource "thunder_fw_tap_monitor" "Fw_Tap_Monitor_Test" {
+        status = "string"
+tap-port-cfg {   
+        tap_eth =  0 
+        tap_vlan =  0 
+        }
+uuid = "string"
+ 
 }
 ```
 

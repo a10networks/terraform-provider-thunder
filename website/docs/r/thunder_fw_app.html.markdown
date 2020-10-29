@@ -19,11 +19,14 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_app" "FwTest" {
-	sampling_enable {
-		counters1 = "all" 
-	}
+resource "thunder_fw_app" "Fw_App_Test" {
+sampling-enable {   
+    counters1 =  "string" 
+        }
+uuid = "string"
+ 
 }
+
 ```
 
 ## Argument Reference

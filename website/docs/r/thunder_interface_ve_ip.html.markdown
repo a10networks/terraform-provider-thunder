@@ -19,14 +19,134 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_interface_ve_bfd" "ve_bfd" {
-  ifnum = 1
-  authenticatio {
-    method = "md5"
-    key_id = 0
-    password = "a"
-  }
+resource "thunder_interface_ve_ip" "Interface_Ve_Ip_Test" {
+uuid = "string"
+generate_membership_query = 0
+address-list {   
+        ipv4_address =  "string" 
+        ipv4_netmask =  "string" 
+        }
+inside = 0
+allow_promiscuous_vip = 0
+helper-address-list {   
+        helper_address =  "string" 
+        }
+max_resp_time = 0
+query_interval = 0
+outside = 0
+client = 0
+stateful_firewall {  
+        uuid =  "string" 
+        class_list =  "string" 
+        inside =  0 
+        outside =  0 
+        acl_id =  0 
+        access_list =  0 
+        }
+rip {  
+ receive_cfg {  
+        receive =  0 
+        version =  "string" 
+        }
+        uuid =  "string" 
+        receive_packet =  0 
+split_horizon_cfg {  
+        state =  "string" 
+        }
+authentication {  
+ key_chain {  
+        key_chain =  "string" 
+        }
+mode {  
+        mode =  "string" 
+        }
+str {  
+        string =  "string" 
+        }
+        }
+send_cfg {  
+        version =  "string" 
+        send =  0 
+        }
+        send_packet =  0 
+        }
+ttl_ignore = 0
+router {  
+ isis {  
+        tag =  "string" 
+        uuid =  "string" 
+        }
+        }
+dhcp = 0
+server = 0
+ospf {  
+ ospf-ip-list {   
+        dead_interval =  0 
+        authentication_key =  "string" 
+        uuid =  "string" 
+        mtu_ignore =  0 
+        transmit_delay =  0 
+        value =  "string" 
+        priority =  0 
+        authentication =  0 
+        cost =  0 
+        database_filter =  "string" 
+        hello_interval =  0 
+        ip_addr =  "string" 
+        retransmit_interval =  0 
+message-digest-cfg {   
+        message_digest_key =  0 
+md5 {  
+        md5_value =  "string" 
+        encrypted =  "string" 
+        }
+        }
+        out =  0 
+        }
+ospf_global {  
+        cost =  0 
+        dead_interval =  0 
+        authentication_key =  "string" 
+network {  
+        broadcast =  0 
+        point_to_multipoint =  0 
+        non_broadcast =  0 
+        point_to_point =  0 
+        p2mp_nbma =  0 
+        }
+        mtu_ignore =  0 
+        transmit_delay =  0 
+authentication_cfg {  
+        authentication =  0 
+        value =  "string" 
+        }
+        retransmit_interval =  0 
+bfd_cfg {  
+        disable =  0 
+        bfd =  0 
+        }
+        disable =  "string" 
+        hello_interval =  0 
+database_filter_cfg {  
+        database_filter =  "string" 
+        out =  0 
+        }
+        priority =  0 
+        mtu =  0 
+message-digest-cfg {   
+        message_digest_key =  0 
+md5 {  
+        md5_value =  "string" 
+        encrypted =  "string" 
+        }
+        }
+        uuid =  "string" 
+        }
+        }
+slb_partition_redirect = 0
+ 
 }
+
 ```
 
 ## Argument Reference

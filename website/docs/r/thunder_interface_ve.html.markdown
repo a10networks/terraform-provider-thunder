@@ -9,7 +9,391 @@ description: |-
 # thunder\_interface\_ve
 
 `thunder_interface_ve` Provides details about thunder interface ve
+## Example Usage
 
+
+```hcl
+provider "thunder" {
+  address  = "129.213.82.65"
+  username = "admin"
+  password = "admin"
+}
+
+resource "thunder_interface_ve" "Interface_Ve_Test" {
+map {  
+        inside =  0 
+        map_t_inside =  0 
+        uuid =  "string" 
+        map_t_outside =  0 
+        outside =  0 
+        }
+nptv6 {  
+ domain-list {   
+        domain_name =  "string" 
+        bind_type =  "string" 
+        uuid =  "string" 
+        }
+        }
+isis {  
+ priority-list {   
+        priority =  0 
+        level =  "string" 
+        }
+        padding =  0 
+hello-interval-minimal-list {   
+        hello_interval_minimal =  0 
+        level =  "string" 
+        }
+mesh_group {  
+        value =  0 
+        blocked =  0 
+        }
+        network =  "string" 
+authentication {  
+ send-only-list {   
+        send_only =  0 
+        level =  "string" 
+        }
+mode-list {   
+        mode =  "string" 
+        level =  "string" 
+        }
+key-chain-list {   
+        key_chain =  "string" 
+        level =  "string" 
+        }
+        }
+csnp-interval-list {   
+        csnp_interval =  0 
+        level =  "string" 
+        }
+        retransmit_interval =  0 
+password-list {   
+        password =  "string" 
+        level =  "string" 
+        }
+bfd_cfg {  
+        disable =  0 
+        bfd =  0 
+        }
+wide-metric-list {   
+        wide_metric =  0 
+        level =  "string" 
+        }
+hello-interval-list {   
+        hello_interval =  0 
+        level =  "string" 
+        }
+        circuit_type =  "string" 
+hello-multiplier-list {   
+        hello_multiplier =  0 
+        level =  "string" 
+        }
+metric-list {   
+        metric =  0 
+        level =  "string" 
+        }
+        lsp_interval =  0 
+        uuid =  "string" 
+        }
+name = "string"
+trap_source = 0
+bfd {  
+ interval_cfg {  
+        interval =  0 
+        min_rx =  0 
+        multiplier =  0 
+        }
+authentication {  
+        encrypted =  "string" 
+        password =  "string" 
+        method =  "string" 
+        key_id =  0 
+        }
+        echo =  0 
+        uuid =  "string" 
+        demand =  0 
+        }
+ip {  
+        uuid =  "string" 
+        generate_membership_query =  0 
+address-list {   
+        address_type =  "string" 
+        ipv6_addr =  "string" 
+        }
+        inside =  0 
+        allow_promiscuous_vip =  0 
+helper-address-list {   
+        helper_address =  "string" 
+        }
+        max_resp_time =  0 
+        query_interval =  0 
+        outside =  0 
+        client =  0 
+stateful_firewall {  
+        uuid =  "string" 
+        class_list =  "string" 
+        inside =  0 
+        outside =  0 
+        acl_id =  0 
+        access_list =  0 
+        }
+rip {  
+ receive_cfg {  
+        receive =  0 
+        version =  "string" 
+        }
+        uuid =  "string" 
+        receive_packet =  0 
+split_horizon_cfg {  
+        state =  "string" 
+        }
+authentication {  
+ key_chain {  
+        key_chain =  "string" 
+        }
+mode {  
+        mode =  "string" 
+        }
+str {  
+        string =  "string" 
+        }
+        }
+send_cfg {  
+        version =  "string" 
+        send =  0 
+        }
+        send_packet =  0 
+        }
+        ttl_ignore =  0 
+router {  
+ isis {  
+        tag =  "string" 
+        uuid =  "string" 
+        }
+        }
+        dhcp =  0 
+        server =  0 
+ospf {  
+ ospf-ip-list {   
+        dead_interval =  0 
+        authentication_key =  "string" 
+        uuid =  "string" 
+        mtu_ignore =  0 
+        transmit_delay =  0 
+        value =  "string" 
+        priority =  0 
+        authentication =  0 
+        cost =  0 
+        database_filter =  "string" 
+        hello_interval =  0 
+        ip_addr =  "string" 
+        retransmit_interval =  0 
+message-digest-cfg {   
+        message_digest_key =  0 
+md5 {  
+        md5_value =  "string" 
+        encrypted =  "string" 
+        }
+        }
+        out =  0 
+        }
+ospf_global {  
+        cost =  0 
+        dead_interval =  0 
+        authentication_key =  "string" 
+network {  
+        broadcast =  0 
+        point_to_multipoint =  0 
+        non_broadcast =  0 
+        point_to_point =  0 
+        p2mp_nbma =  0 
+        }
+        mtu_ignore =  0 
+        transmit_delay =  0 
+authentication_cfg {  
+        authentication =  0 
+        value =  "string" 
+        }
+        retransmit_interval =  0 
+bfd_cfg {  
+        disable =  0 
+        bfd =  0 
+        }
+        disable =  "string" 
+        hello_interval =  0 
+database_filter_cfg {  
+        database_filter =  "string" 
+        out =  0 
+        }
+        priority =  0 
+        mtu =  0 
+message-digest-cfg {   
+        message_digest_key =  0 
+md5 {  
+        md5_value =  "string" 
+        encrypted =  "string" 
+        }
+        }
+        uuid =  "string" 
+        }
+        }
+        slb_partition_redirect =  0 
+        }
+icmpv6_rate_limit {  
+        lockup_period_v6 =  0 
+        normal_v6 =  0 
+        lockup_v6 =  0 
+        }
+user_tag = "string"
+mtu = 0
+action = "string"
+ifnum = 0
+sampling-enable {   
+        counters1 =  "string" 
+        }
+lw_4o6 {  
+        outside =  0 
+        inside =  0 
+        uuid =  "string" 
+        }
+ipv6 {  
+        uuid =  "string" 
+        inbound =  0 
+address-list {   
+        address_type =  "string" 
+        ipv6_addr =  "string" 
+        }
+        inside =  0 
+        ipv6_enable =  0 
+rip {  
+ split_horizon_cfg {  
+        state =  "string" 
+        }
+        uuid =  "string" 
+        }
+        outside =  0 
+stateful_firewall {  
+        uuid =  "string" 
+        class_list =  "string" 
+        acl_name =  "string" 
+        inside =  0 
+        outside =  0 
+        access_list =  0 
+        }
+        v6_acl_name =  "string" 
+        ttl_ignore =  0 
+router {  
+ ripng {  
+        uuid =  "string" 
+        rip =  0 
+        }
+ospf {  
+ area-list {   
+        area_id_addr =  "string" 
+        tag =  "string" 
+        instance_id =  0 
+        area_id_num =  0 
+        }
+        uuid =  "string" 
+        }
+isis {  
+        tag =  "string" 
+        uuid =  "string" 
+        }
+        }
+ospf {  
+        uuid =  "string" 
+        bfd =  0 
+cost-cfg {   
+        cost =  0 
+        instance_id =  0 
+        }
+priority-cfg {   
+        priority =  0 
+        instance_id =  0 
+        }
+hello-interval-cfg {   
+        hello_interval =  0 
+        instance_id =  0 
+        }
+mtu-ignore-cfg {   
+        mtu_ignore =  0 
+        instance_id =  0 
+        }
+retransmit-interval-cfg {   
+        retransmit_interval =  0 
+        instance_id =  0 
+        }
+        disable =  0 
+transmit-delay-cfg {   
+        transmit_delay =  0 
+        instance_id =  0 
+        }
+neighbor-cfg {   
+        neighbor_priority =  0 
+        neig_inst =  0 
+        neighbor_poll_interval =  0 
+        neighbor_cost =  0 
+        neighbor =  "string" 
+        }
+network-list {   
+        broadcast_type =  "string" 
+        p2mp_nbma =  0 
+        network_instance_id =  0 
+        }
+dead-interval-cfg {   
+        dead_interval =  0 
+        instance_id =  0 
+        }
+        }
+router_adver {  
+        max_interval =  0 
+        default_lifetime =  0 
+        reachable_time =  0 
+        other_config_action =  "string" 
+        floating_ip_default_vrid =  "string" 
+        managed_config_action =  "string" 
+        min_interval =  0 
+        rate_limit =  0 
+        adver_mtu_disable =  0 
+prefix-list {   
+        not_autonomous =  0 
+        valid_lifetime =  0 
+        not_on_link =  0 
+        prefix =  "string" 
+        preferred_lifetime =  0 
+        }
+        floating_ip =  "string" 
+        adver_vrid =  0 
+        use_floating_ip_default_vrid =  0 
+        action =  "string" 
+        adver_vrid_default =  0 
+        adver_mtu =  0 
+        retransmit_timer =  0 
+        hop_limit =  0 
+        use_floating_ip =  0 
+        }
+        }
+access_list {  
+        acl_name =  "string" 
+        acl_id =  0 
+        }
+l3_vlan_fwd_disable = 0
+icmp_rate_limit {  
+        lockup =  0 
+        lockup_period =  0 
+        normal =  0 
+        }
+ddos {  
+        outside =  0 
+        inside =  0 
+        uuid =  "string" 
+        }
+uuid = "string"
+ 
+}
+```
 
 ## Argument Reference
 
@@ -141,4 +525,3 @@ description: |-
 * `preferred_lifetime` - Specify Prefix Preferred Lifetime (default:604800) (Prefix Advertised Preferred Lifetime (default: 604800))
 * `prefix` - Set Router Advertisement On-Link Prefix (IPv6 On-Link Prefix)
 * `valid_lifetime` - Specify Valid Lifetime (default:2592000) (Prefix Advertised Valid Lifetime (default: 2592000))
-

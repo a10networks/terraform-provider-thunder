@@ -19,9 +19,11 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_alg_dns" "FwAlgTest" {
-	default_port_disable = "default-port-disable" 
+resource "thunder_fw_alg_dns" "Fw_Alg_Dns_Test" {
+default_port_disable = "string"
+uuid = "string"
 }
+
 ```
 
 ## Argument Reference
