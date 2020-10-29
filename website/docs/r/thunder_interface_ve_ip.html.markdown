@@ -98,7 +98,7 @@ message-digest-cfg {
         message_digest_key =  0 
 md5 {  
         md5_value =  "string" 
-        encrypted =  "Unknown Type: encrypted" 
+        encrypted =  "string" 
         }
         }
         out =  0 
@@ -137,7 +137,7 @@ message-digest-cfg {
         message_digest_key =  0 
 md5 {  
         md5_value =  "string" 
-        encrypted =  "Unknown Type: encrypted" 
+        encrypted =  "string" 
         }
         }
         uuid =  "string" 

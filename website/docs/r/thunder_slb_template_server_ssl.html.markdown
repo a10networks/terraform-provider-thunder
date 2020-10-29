@@ -32,7 +32,7 @@ crl-certs {
         }
 uuid = "string"
 certificate {  
-        encrypted =  "Unknown Type: encrypted" 
+        encrypted =  "string" 
         cert =  "string" 
         key =  "string" 
         passphrase =  "string" 
@@ -47,7 +47,7 @@ version = 0
 ec-list {   
         ec =  "string" 
         }
-encrypted = "Unknown Type: encrypted"
+encrypted = "string"
 ssli_logging = 0
 session_cache_size = 0
 dh_type = "string"
@@ -55,7 +55,7 @@ use_client_sni = 0
 renegotiation_disable = 0
 forward_proxy_enable = 0
 session_cache_timeout = 0
-key_shared_encrypted = "Unknown Type: encrypted"
+key_shared_encrypted = "string"
 cipher-without-prio-list {   
         cipher_wo_prio =  "string" 
         }

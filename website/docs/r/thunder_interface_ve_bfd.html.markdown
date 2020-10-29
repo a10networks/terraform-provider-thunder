@@ -27,7 +27,7 @@ interval_cfg {
         multiplier =  0 
         }
 authentication {  
-        encrypted =  "Unknown Type: encrypted" 
+        encrypted =  "string" 
         password =  "string" 
         method =  "string" 
         key_id =  0 

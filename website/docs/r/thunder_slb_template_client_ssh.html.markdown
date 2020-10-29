@@ -22,7 +22,7 @@ provider "thunder" {
 resource "thunder_slb_template_client_ssh" "Slb_Template_Client_Ssh_Test" {
 
 uuid = "string"
-encrypted = "Unknown Type: encrypted"
+encrypted = "string"
 user_tag = "string"
 forward_proxy_enable = 0
 passphrase = "string"

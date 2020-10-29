@@ -29,7 +29,7 @@ auto_authentication = 0
 address = "string"
 shared = 0
 type = "string"
-pwd_enc = "Unknown Type: encrypted"
+pwd_enc = "string"
 usr = "string" 
 
 }

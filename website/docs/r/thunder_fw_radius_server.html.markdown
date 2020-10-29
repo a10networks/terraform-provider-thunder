@@ -26,13 +26,13 @@ vrid = 0
 remote {  
  ip-list {   
         ip_list_name =  "string" 
-        ip_list_encrypted =  "Unknown Type: encrypted" 
+        ip_list_encrypted =  "string" 
         ip_list_secret_string =  "string" 
         ip_list_secret =  0 
         }
         }
 uuid = "string"
-encrypted = "Unknown Type: encrypted"
+encrypted = "string"
 accounting_interim_update = "string"
 secret = 0
 sampling-enable {   

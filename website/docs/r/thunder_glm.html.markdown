@@ -32,7 +32,7 @@ enterprise = "string"
 proxy_server {  
         username =  "string" 
         uuid =  "string" 
-        encrypted =  "Unknown Type: encrypted" 
+        encrypted =  "string" 
         host =  "string" 
         password =  0 
         port =  0 

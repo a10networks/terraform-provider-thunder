@@ -102,7 +102,7 @@ message-digest-cfg {
 	message_digest_key =  0 
 md5 {  
  	md5_value =  "string" 
-	encrypted =  "Unknown Type: encrypted" 
+	encrypted =  "string" 
 	}
 	}
 	out =  0 
@@ -141,7 +141,7 @@ message-digest-cfg {
 	message_digest_key =  0 
 md5 {  
  	md5_value =  "string" 
-	encrypted =  "Unknown Type: encrypted" 
+	encrypted =  "string" 
 	}
 	}
 	uuid =  "string" 
@@ -195,7 +195,7 @@ bfd {
 	multiplier =  0 
 	}
 authentication {  
- 	encrypted =  "Unknown Type: encrypted" 
+ 	encrypted =  "string" 
 	password =  "string" 
 	method =  "string" 
 	key_id =  0 

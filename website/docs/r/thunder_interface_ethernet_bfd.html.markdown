@@ -27,7 +27,7 @@ resource "thunder_interface_ethernet_bfd" "Interface_Ethernet_Bfd_Test" {
         multiplier =  0 
         }
 authentication {  
-        encrypted =  "Unknown Type: encrypted" 
+        encrypted =  "string" 
         password =  "string" 
         method =  "string" 
         key_id =  0 
