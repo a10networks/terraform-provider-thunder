@@ -24,6 +24,7 @@ resource "thunder_write_memory" "test_write_memory"{
     profile = "my_profile_name"
     destination = "local"
     partition =  "all"
+    specified_partition = "string"
 }
 ```
 

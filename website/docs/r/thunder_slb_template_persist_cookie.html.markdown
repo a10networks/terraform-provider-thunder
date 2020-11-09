@@ -19,14 +19,30 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_slb_template_persist_cookie" "test_cookie" {
-        
-         name = "Template_Persist_Cookie_SSL"
-          encrypt_level = 0
-          secure = 1
-          httponly = 1      
-}
+resource "thunder_slb_template_persist_cookie" "Slb_Template_Persist_Cookie_Test" {
 
+pass_phrase = "string"
+domain = "string"
+cookie_name = "string"
+secure = 0
+encrypted = "string"
+dont_honor_conn_rules = 0
+encrypt_level = 0
+uuid = "string"
+user_tag = "string"
+server = 0
+server_service_group = 0
+service_group = 0
+expire = 0
+httponly = 0
+path = "string"
+pass_thru = 0
+scan_all_members = 0
+insert_always = 0
+match_type = 0
+name = "string"
+ 
+}
 ```
 
 ## Argument Reference

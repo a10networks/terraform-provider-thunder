@@ -19,9 +19,14 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_tcp_mss_clamp" "FwTcpTest" {
-	mss_clamp_type = "fixed"
-	mss_value = "0" 
+resource "thunder_fw_tcp_mss_clamp" "Fw_Tcp_Mss_Clamp_Test" {
+
+mss_subtract = 0
+mss_value = 0
+mss_clamp_type = "string"
+uuid = "string"
+min = 0
+ 
 }
 ```
 

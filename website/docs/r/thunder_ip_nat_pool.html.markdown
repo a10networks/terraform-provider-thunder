@@ -19,16 +19,24 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_ip_nat_pool" "test_pool" {
-        
-        pool_name = "SNAT_VRID1"
-        start_address = "1.1.1.1"
-        end_address = "1.1.1.10"
-        netmask = "/24"
-        vrid = 4
-        ip_rr = 1
-        port_overload = 1        
+resource "thunder_ip_nat_pool" "Ip_Nat_Pool_Test" {
+
+use_if_ip = 0
+uuid = "string"
+start_address = "string"
+port_overload = 0
+vrid = 0
+netmask = "string"
+end_address = "string"
+ip_rr = 0
+chunk_netmask = "string"
+ethernet = 0
+scaleout_device_id = 0
+gateway = "string"
+pool_name = "string"
+ 
 }
+
 ```
 
 ## Argument Reference
@@ -44,4 +52,3 @@ resource "thunder_ip_nat_pool" "test_pool" {
 * `use_if_ip` - Use Interface IP
 * `uuid` - uuid of the object
 * `vrid` - Configure VRRP-A vrid (Specify ha VRRP-A vrid)
-

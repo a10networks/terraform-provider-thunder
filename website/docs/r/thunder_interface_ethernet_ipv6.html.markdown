@@ -14,20 +14,132 @@ description: |-
 
 ```hcl
 provider "thunder" {
-  address  = "192.0.2.65"
+  address  = "129.213.82.65"
   username = "admin"
   password = "admin"
 }
 
-resource "thunder_interface_ethernet_ipv6" "ethernet_ipv6" {
-  ifnum=1
-  stateful_firewall {
-    inside = 1
-  }
-  address_list {
-    ipv6_addr = "2003::/64"
-    address_type = "anycast"
-  }
+resource "thunder_interface_ethernet_ipv6" "Interface_Ethernet_Ipv6_Test" {
+
+uuid = "string"
+address-list {   
+        address_type =  "string" 
+        ipv6_addr =  "string" 
+        }
+inside = 0
+ipv6_enable = 0
+rip {  
+ split_horizon_cfg {  
+        state =  "string" 
+        }
+        uuid =  "string" 
+        }
+outside = 0
+stateful_firewall {  
+        uuid =  "string" 
+        class_list =  "string" 
+        acl_name =  "string" 
+        inside =  0 
+        outside =  0 
+        access_list =  0 
+        }
+ttl_ignore = 0
+router {  
+ ripng {  
+        uuid =  "string" 
+        rip =  0 
+        }
+ospf {  
+ area-list {   
+        area_id_addr =  "string" 
+        tag =  "string" 
+        instance_id =  0 
+        area_id_num =  0 
+        }
+        uuid =  "string" 
+        }
+isis {  
+        tag =  "string" 
+        uuid =  "string" 
+        }
+        }
+access_list_cfg {  
+        inbound =  0 
+        v6_acl_name =  "string" 
+        }
+ospf {  
+        uuid =  "string" 
+        bfd =  0 
+cost-cfg {   
+        cost =  0 
+        instance_id =  0 
+        }
+priority-cfg {   
+        priority =  0 
+        instance_id =  0 
+        }
+hello-interval-cfg {   
+        hello_interval =  0 
+        instance_id =  0 
+        }
+mtu-ignore-cfg {   
+        mtu_ignore =  0 
+        instance_id =  0 
+        }
+retransmit-interval-cfg {   
+        retransmit_interval =  0 
+        instance_id =  0 
+        }
+        disable =  0 
+transmit-delay-cfg {   
+        transmit_delay =  0 
+        instance_id =  0 
+        }
+neighbor-cfg {   
+        neighbor_priority =  0 
+        neig_inst =  0 
+        neighbor_poll_interval =  0 
+        neighbor_cost =  0 
+        neighbor =  "string" 
+        }
+network-list {   
+        broadcast_type =  "string" 
+        p2mp_nbma =  0 
+        network_instance_id =  0 
+        }
+dead-interval-cfg {   
+        dead_interval =  0 
+        instance_id =  0 
+        }
+        }
+router_adver {  
+        max_interval =  0 
+        default_lifetime =  0 
+        reachable_time =  0 
+        other_config_action =  "string" 
+        floating_ip_default_vrid =  "string" 
+        managed_config_action =  "string" 
+        min_interval =  0 
+        rate_limit =  0 
+        adver_mtu_disable =  0 
+prefix-list {   
+        not_autonomous =  0 
+        valid_lifetime =  0 
+        not_on_link =  0 
+        prefix =  "string" 
+        preferred_lifetime =  0 
+        }
+        floating_ip =  "string" 
+        adver_vrid =  0 
+        use_floating_ip_default_vrid =  0 
+        action =  "string" 
+        adver_vrid_default =  0 
+        adver_mtu =  0 
+        retransmit_timer =  0 
+        hop_limit =  0 
+        use_floating_ip =  0 
+        }
+ 
 }
 ```
 
@@ -91,4 +203,3 @@ resource "thunder_interface_ethernet_ipv6" "ethernet_ipv6" {
 * `preferred_lifetime` - Specify Prefix Preferred Lifetime (default:604800) (Prefix Advertised Preferred Lifetime (default: 604800))
 * `prefix` - Set Router Advertisement On-Link Prefix (IPv6 On-Link Prefix)
 * `valid_lifetime` - Specify Valid Lifetime (default:2592000) (Prefix Advertised Valid Lifetime (default: 2592000))
-

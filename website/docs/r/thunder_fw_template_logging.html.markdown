@@ -19,9 +19,61 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_fw_template_logging" "FwTemplateTest" {
-	name = "a"
-	user_tag = "a" 
+resource "thunder_fw_template_logging" "Fw_Template_Logging_Test" {
+include_http {  
+ header-cfg {   
+        custom_max_length =  0 
+        http_header =  "string" 
+        max_length =  0 
+        custom_header_name =  "string" 
+        }
+        request_number =  0 
+        file_extension =  0 
+        method =  0 
+        l4_session_info =  0 
+        }
+merged_style = 0
+name = "string"
+source_address {  
+        ip =  "string" 
+        uuid =  "string" 
+        ipv6 =  "string" 
+        }
+format = "string"
+log {  
+        http_requests =  "string" 
+        }
+severity = "string"
+include_dest_fqdn = 0
+facility = "string"
+include_radius_attribute {  
+        framed_ipv6_prefix =  0 
+        prefix_length =  "string" 
+        insert_if_not_existing =  0 
+        zero_in_custom_attr =  0 
+        no_quote =  0 
+attr-cfg {   
+        attr_event =  "string" 
+        attr =  "string" 
+        }
+        }
+rule {  
+ rule_http_requests {  
+        log_every_http_request =  0 
+        disable_sequence_check =  0 
+        include_all_headers =  0 
+dest-port {   
+        include_byte_count =  0 
+        dest_port_number =  0 
+        }
+        max_url_len =  0 
+        }
+        }
+service_group = "string"
+user_tag = "string"
+resolution = "string"
+uuid = "string"
+ 
 }
 ```
 

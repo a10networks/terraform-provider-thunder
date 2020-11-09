@@ -19,11 +19,17 @@ provider "thunder" {
   password = "admin"
 }
 
-resource "thunder_dns_primary" "dns_primary" {
-		ip_v4_addr = "8.8.8.8"
+resource "thunder_dns_primary" "Ip_Dns_Primary_Test" {
+
+ip_v4_addr = "string"
+ip_v6_addr = "string"
+uuid = "string"
+ 
 }
 ```
 
 ## Argument Reference
 
-* `ip_v4_addr` - IP v4 address
+* `ip_v4_addr` - DNS server address
+* `ip_v6_addr` - DNS server address
+* `uuid` - uuid of the object
