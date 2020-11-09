@@ -213,6 +213,16 @@ type CipherWithoutPrioList2 struct {
 type StartsWithList struct {
 	StartsWith string `json:"starts-with,omitempty"`
 }
+
+type SlbTemplateCertificateList struct {
+	Cert         string `json:"cert,omitempty"`
+	ChainCert    string `json:"chain-cert,omitempty"`
+	Key          string `json:"key,omitempty"`
+	KeyEncrypted string `json:"key-encrypted,omitempty"`
+	Passphrase   string `json:"passphrase,omitempty"`
+	UUID         string `json:"uuid,omitempty"`
+}
+
 type ClientSSLInstance struct {
 	BypassCertSubjectMultiClassListName []BypassCertSubjectMultiClassList  `json:"bypass-cert-subject-multi-class-list,omitempty"`
 	VerifyCertFailAction                string                             `json:"verify-cert-fail-action,omitempty"`
@@ -224,6 +234,7 @@ type ClientSSLInstance struct {
 	NoSharedCipherAction                string                             `json:"no-shared-cipher-action,omitempty"`
 	FpCertFetchAutonat                  string                             `json:"fp-cert-fetch-autonat,omitempty"`
 	Equals                              []EqualsList                       `json:"equals-list,omitempty"`
+	Key                                 []SlbTemplateCertificateList       `json:"certificate-list,omitempty"`
 	ExceptionCertificateSubjectClName   string                             `json:"exception-certificate-subject-cl-name,omitempty"`
 	UUID                                string                             `json:"uuid,omitempty"`
 	ForwardProxyTrustedCa               []ForwardProxyTrustedCaLists       `json:"forward-proxy-trusted-ca-lists,omitempty"`

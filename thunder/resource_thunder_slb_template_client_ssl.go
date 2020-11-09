@@ -152,6 +152,44 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 					},
 				},
 			},
+			"certificate_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"chain_cert": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"key": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"cert": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"passphrase": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"key_encrypted": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
 			"notbeforeday": {
 				Type:        schema.TypeInt,
 				Optional:    true,
@@ -1790,6 +1828,21 @@ func dataToSlbTemplateClientSSL(d *schema.ResourceData) go_thunder.ClientSSL {
 	c.SslFalseStartDisable = d.Get("ssl_false_start_disable").(int)
 	c.Dgversion = d.Get("dgversion").(int)
 	c.ClientAuthClassList = d.Get("client_auth_class_list").(string)
+
+	CertificateListCount := d.Get("certificate_list.#").(int)
+	c.Key = make([]go_thunder.SlbTemplateCertificateList, 0, CertificateListCount)
+
+	for i := 0; i < CertificateListCount; i++ {
+		var obj100 go_thunder.SlbTemplateCertificateList
+		prefix100 := fmt.Sprintf("certificate_list.%d.", i)
+		obj100.ChainCert = d.Get(prefix100 + "chain_cert").(string)
+		obj100.Key = d.Get(prefix100 + "key").(string)
+		obj100.Cert = d.Get(prefix100 + "cert").(string)
+		obj100.Passphrase = d.Get(prefix100 + "passphrase").(string)
+		obj100.KeyEncrypted = d.Get(prefix100 + "key_encrypted").(string)
+		c.Key = append(c.Key, obj100)
+	}
+
 	c.KeyEncrypted = d.Get("key_encrypted").(string)
 	c.Notafteryear = d.Get("notafteryear").(int)
 	c.ForwardProxyAltSign = d.Get("forward_proxy_alt_sign").(int)
