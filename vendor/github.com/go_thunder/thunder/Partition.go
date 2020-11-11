@@ -59,7 +59,8 @@ func GetPartition(id string, name string, host string) (*Partition, error) {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
 			check_api_status("GetPartition", data)
-			return &m, nil		}
+			return &m, nil
+		}
 	}
 }
 

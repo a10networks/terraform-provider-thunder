@@ -43,7 +43,7 @@ func PostIpNatPool(id string, inst IpNatPool, host string) {
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/ip/nat/pool", bytes.NewReader(payloadBytes), headers)
-	
+
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 
@@ -74,7 +74,7 @@ func GetIpNatPool(id string, name string, host string) (*IpNatPool, error) {
 	logger.Println("[INFO] Inside GetIpNatPool")
 
 	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/ip/nat/pool/"+name, nil, headers)
-	
+
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
@@ -110,7 +110,7 @@ func PutIpNatPool(id string, name string, inst IpNatPool, host string) {
 	}
 
 	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/ip/nat/pool/"+name, bytes.NewReader(payloadBytes), headers)
-	
+
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 
