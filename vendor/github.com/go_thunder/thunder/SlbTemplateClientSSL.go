@@ -234,7 +234,7 @@ type ClientSSLInstance struct {
 	NoSharedCipherAction                string                             `json:"no-shared-cipher-action,omitempty"`
 	FpCertFetchAutonat                  string                             `json:"fp-cert-fetch-autonat,omitempty"`
 	Equals                              []EqualsList                       `json:"equals-list,omitempty"`
-	Key                                 []SlbTemplateCertificateList       `json:"certificate-list,omitempty"`
+	Passphrase                          []SlbTemplateCertificateList       `json:"certificate-list,omitempty"`
 	ExceptionCertificateSubjectClName   string                             `json:"exception-certificate-subject-cl-name,omitempty"`
 	UUID                                string                             `json:"uuid,omitempty"`
 	ForwardProxyTrustedCa               []ForwardProxyTrustedCaLists       `json:"forward-proxy-trusted-ca-lists,omitempty"`
@@ -265,6 +265,8 @@ type ClientSSLInstance struct {
 	ClientAuthContains                  []ClientAuthContainsList           `json:"client-auth-contains-list,omitempty"`
 	CertificateSubjectContains          []CertificateSubjectContainsList   `json:"certificate-subject-contains-list,omitempty"`
 	Name                                string                             `json:"name,omitempty"`
+	Key                                 string                             `json:"key,omitempty"`
+	Cert                                string                             `json:"cert,omitempty"`
 	ForwardProxyCertRevokeAction        int                                `json:"forward-proxy-cert-revoke-action,omitempty"`
 	FpCertExtAiaOcsp                    string                             `json:"fp-cert-ext-aia-ocsp,omitempty"`
 	ClientCertificateRequestCA          []ReqCaLists                       `json:"req-ca-lists,omitempty"`
