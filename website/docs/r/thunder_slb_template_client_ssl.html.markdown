@@ -20,359 +20,468 @@ provider "thunder" {
 }
 
 resource "thunder_slb_template_client_ssl" "Slb_Template_Client_Ssl_Test" {
-bypass-cert-subject-multi-class-list {   
-        bypass_cert_subject_multi_class_list_name =  "string" 
+        name = "string"
+auth_username = "string"
+ca-certs {   
+        ca_cert =  "string" 
+        ca_shared =  0 
+        client_ocsp =  0 
+        client_ocsp_srvr =  "string" 
+        client_ocsp_sg =  "string" 
         }
-verify_cert_fail_action = "string"
-inspect_certificate_issuer_cl_name = "string"
-certificate-san-contains-list {   
-        certificate_san_contains =  "string" 
+chain_cert = "string"
+chain_cert_shared_str = "string"
+cert = "string"
+cert_shared_str = "string"
+cert_alternate = "string"
+cert_alt_partition_shared = 0
+dh_type = "string"
+ec-list {   
+        ec =  "string" 
         }
-forward_proxy_block_message = "string"
-direct_client_server_auth = 0
+local_logging = 0
+ocsp_stapling = 0
+ocspst_ca_cert = "string"
+ocspst_ocsp = 0
+ocspst_srvr = "string"
+ocspst_srvr_days = 0
+ocspst_srvr_hours = 0
+ocspst_srvr_minutes = 0
+ocspst_srvr_timeout = 0
+ocspst_sg = "string"
+ocspst_sg_days = 0
 ocspst_sg_hours = 0
-no_shared_cipher_action = "string"
-fp_cert_fetch_autonat = "string"
-equals-list {   
-        equals =  "string" 
+ocspst_sg_minutes = 0
+ocspst_sg_timeout = 0
+ssli_logging = 0
+sslilogging = "string"
+client_certificate = "string"
+req-ca-lists {   
+        client_certificate_Request_CA =  "string" 
+        client_cert_req_ca_shared =  0 
         }
-exception_certificate_subject_cl_name = "string"
-uuid = "string"
+close_notify = 0
+crl-certs {   
+        crl =  "string" 
+        crl_shared =  0 
+        }
+forward_proxy_ca_cert = "string"
+fp_ca_shared = 0
+forward_proxy_ca_key = "string"
+forward_passphrase = "string"
+forward_encrypted = "Unknown Type: encrypted"
+fp_ca_key_shared = 0
+forward_proxy_alt_sign = 0
+fp_alt_cert = "string"
+fp_alt_key = "string"
+fp_alt_passphrase = "string"
+fp_alt_encrypted = "Unknown Type: encrypted"
+fp_alt_shared = 0
 forward-proxy-trusted-ca-lists {   
         forward_proxy_trusted_ca =  "string" 
+        fp_trusted_ca_shared =  0 
         }
-template_cipher_shared = "string"
-forward_proxy_ca_cert = "string"
-ssl_false_start_disable = 0
-dgversion = 0
-client_auth_class_list = "string"
-key_encrypted = "string"
+forward_proxy_decrypted_dscp = 0
+forward_proxy_decrypted_dscp_bypass = 0
+enable_tls_alert_logging = 0
+alert_type = "string"
+forward_proxy_verify_cert_fail_action = 0
+verify_cert_fail_action = "string"
+forward_proxy_cert_revoke_action = 0
+cert_revoke_action = "string"
+forward_proxy_no_shared_cipher_action = 0
+no_shared_cipher_action = "string"
+forward_proxy_cert_unknown_action = 0
+cert_unknown_action = "string"
+forward_proxy_block_message = "string"
+cache_persistence_list_name = "string"
+fp_cert_ext_crldp = "string"
+fp_cert_ext_aia_ocsp = "string"
+fp_cert_ext_aia_ca_issuers = "string"
+notbefore = 0
+notbeforeday = 0
+notbeforemonth = 0
+notbeforeyear = 0
+notafter = 0
+notafterday = 0
+notaftermonth = 0
 notafteryear = 0
-forward_proxy_alt_sign = 0
-template_hsm = "string"
-forward_passphrase = "string"
-exception_certificate_issuer_cl_name = "string"
+forward_proxy_ssl_version = 0
+forward_proxy_ocsp_disable = 0
+forward_proxy_crl_disable = 0
+forward_proxy_cert_cache_timeout = 0
+forward_proxy_cert_cache_limit = 0
+forward_proxy_cert_expiry = 0
+expire_hours = 0
+forward_proxy_enable = 0
+handshake_logging_enable = 0
+forward_proxy_selfsign_redir = 0
+forward_proxy_failsafe_disable = 0
+forward_proxy_log_disable = 0
+fp_cert_fetch_natpool_name = "string"
+shared_partition_pool = 0
+fp_cert_fetch_natpool_name_shared = "string"
+fp_cert_fetch_natpool_precedence = 0
+fp_cert_fetch_autonat = "string"
+fp_cert_fetch_autonat_precedence = 0
+forward_proxy_no_sni_action = "string"
+case_insensitive = 0
+class_list_name = "string"
+multi-class-list {   
+        multi_clist_name =  "string" 
+        }
+user_name_list = "string"
+ad_group_list = "string"
+exception_user_name_list = "string"
+exception_ad_group_list = "string"
+exception_sni_cl_name = "string"
+inspect_list_name = "string"
+inspect_certificate_subject_cl_name = "string"
+inspect_certificate_issuer_cl_name = "string"
+inspect_certificate_san_cl_name = "string"
 contains-list {   
         contains =  "string" 
         }
-forward_proxy_ca_key = "string"
-notbefore = 0
 ends-with-list {   
         ends_with =  "string" 
         }
-bypass_cert_subject_class_list_name = "string"
-notafter = 0
-class_list_name = "string"
-ocspst_ocsp = 0
-notbeforeday = 0
-key_alt_passphrase = "string"
-forward_proxy_ssl_version = 0
-ca-certs {   
-        client_ocsp_srvr =  "string" 
-        ca_cert =  "string" 
-        client_ocsp_sg =  "string" 
-        client_ocsp =  0 
-        ca_shared =  0 
+equals-list {   
+        equals =  "string" 
         }
-forward_proxy_crl_disable = 0
-client-auth-contains-list {   
-        client_auth_contains =  "string" 
+starts-with-list {   
+        starts_with =  "string" 
         }
 certificate-subject-contains-list {   
         certificate_subject_contains =  "string" 
         }
-name = "string"
-forward_proxy_cert_revoke_action = 0
-fp_cert_ext_aia_ocsp = "string"
-req-ca-lists {   
-        client_certificate_Request_CA =  "string" 
+bypass_cert_subject_class_list_name = "string"
+bypass-cert-subject-multi-class-list {   
+        bypass_cert_subject_multi_class_list_name =  "string" 
         }
-user_tag = "string"
-cert_unknown_action = "string"
-sampling-enable {   
-        counters1 =  "string" 
+exception_certificate_subject_cl_name = "string"
+certificate-subject-ends-with-list {   
+        certificate_subject_ends_with =  "string" 
         }
-early_data = 0
-exception_ad_group_list = "string"
-key_alternate = "string"
-fp_alt_key = "string"
-server_name_auto_map = 0
-disable_sslv3 = 0
-bypass-cert-issuer-multi-class-list {   
-        bypass_cert_issuer_multi_class_list_name =  "string" 
+certificate-subject-equals-list {   
+        certificate_subject_equals =  "string" 
         }
-client-auth-equals-list {   
-        client_auth_equals =  "string" 
-        }
-forward_proxy_no_sni_action = "string"
-certificate-issuer-equals-list {   
-        certificate_issuer_equals =  "string" 
-        }
-fp_alt_passphrase = "string"
 certificate-subject-starts-with-list {   
         certificate_subject_starts =  "string" 
         }
+certificate-issuer-contains-list {   
+        certificate_issuer_contains =  "string" 
+        }
+bypass_cert_issuer_class_list_name = "string"
+bypass-cert-issuer-multi-class-list {   
+        bypass_cert_issuer_multi_class_list_name =  "string" 
+        }
+exception_certificate_issuer_cl_name = "string"
+certificate-issuer-ends-with-list {   
+        certificate_issuer_ends_with =  "string" 
+        }
+certificate-issuer-equals-list {   
+        certificate_issuer_equals =  "string" 
+        }
+certificate-issuer-starts-with-list {   
+        certificate_issuer_starts =  "string" 
+        }
+certificate-san-contains-list {   
+        certificate_san_contains =  "string" 
+        }
+bypass_cert_san_class_list_name = "string"
+bypass-cert-san-multi-class-list {   
+        bypass_cert_san_multi_class_list_name =  "string" 
+        }
+exception_certificate_san_cl_name = "string"
 certificate-san-ends-with-list {   
         certificate_san_ends_with =  "string" 
         }
-forward_proxy_cert_cache_timeout = 0
-fp_cert_fetch_natpool_name_shared = "string"
-crl-certs {   
-        crl_shared =  0 
-        crl =  "string" 
-        }
-notafterday = 0
-ocspst_srvr_hours = 0
-local_logging = 0
-fp_cert_fetch_autonat_precedence = 0
-certificate_list {   
-        chain_cert =  "string" 
-        uuid =  "string" 
-        key =  "string" 
-        cert =  "string" 
-        passphrase =  "string" 
-        key_encrypted =  "string" 
-        }
-cert_str = "string"
-cert_shared_str = "string"
-cert_revoke_action = "string"
-version = 0
-multi_class_list {   
-        multi_clist_name =  "string" 
-        }
-user_name_list = "string"
-session_ticket_lifetime = 0
-certificate_issuer_ends_with_list {   
-        certificate_issuer_ends_with =  "string" 
-        }
-ssli_logging = 0
-session_cache_size = 0
-handshake_logging_enable = 0
-non_ssl_bypass_service_group = "string"
-renegotiation_disable = 0
-forward_proxy_failsafe_disable = 0
-session_cache_timeout = 0
-sslv2_bypass_service_group = "string"
-forward_proxy_decrypted_dscp = 0
-auth_sg = "string"
-ocspst_ca_cert = "string"
-forward_proxy_selfsign_redir = 0
-auth_sg_dn = 0
-hsm_type = "string"
-forward_proxy_log_disable = 0
-fp_alt_encrypted = "string"
-inspect_certificate_san_cl_name = "string"
-web_category {  
-        philosophy_and_politics =  0 
-        stock_advice_and_tools =  0 
-        news_and_media =  0 
-        business_and_economy =  0 
-        peer_to_peer =  0 
-        phishing_and_other_fraud =  0 
-        nudity =  0 
-        weapons =  0 
-        health_and_medicine =  0 
-        marijuana =  0 
-        home_and_garden =  0 
-        cult_and_occult =  0 
-        society =  0 
-        personal_storage =  0 
-        computer_and_internet_security =  0 
-        food_and_dining =  0 
-        motor_vehicles =  0 
-        swimsuits_and_intimate_apparel =  0 
-        dead_sites =  0 
-        translation =  0 
-        proxy_avoid_and_anonymizers =  0 
-        financial_services =  0 
-        gross =  0 
-        cheating =  0 
-        entertainment_and_arts =  0 
-        sex_education =  0 
-        illegal =  0 
-        travel =  0 
-        cdns =  0 
-        local_information =  0 
-        legal =  0 
-        sports =  0 
-        bot_nets =  0 
-        religion =  0 
-        private_ip_addresses =  0 
-        music =  0 
-        hate_and_racism =  0 
-        open_http_proxies =  0 
-        internet_communications =  0 
-        shareware_and_freeware =  0 
-        dating =  0 
-        spyware_and_adware =  0 
-        uncategorized =  0 
-        questionable =  0 
-        reference_and_research =  0 
-        web_advertisements =  0 
-        streaming_media =  0 
-        social_network =  0 
-        government =  0 
-        drugs =  0 
-        web_hosting_sites =  0 
-        malware_sites =  0 
-        pay_to_surf =  0 
-        spam_urls =  0 
-        kids =  0 
-        gambling =  0 
-        online_greeting_cards =  0 
-        confirmed_spam_sources =  0 
-        image_and_video_search =  0 
-        educational_institutions =  0 
-        keyloggers_and_monitoring =  0 
-        hunting_and_fishing =  0 
-        search_engines =  0 
-        fashion_and_beauty =  0 
-        dynamic_comment =  0 
-        computer_and_internet_info =  0 
-        real_estate =  0 
-        internet_portals =  0 
-        shopping =  0 
-        violence =  0 
-        abortion =  0 
-        training_and_tools =  0 
-        web_based_email =  0 
-        personal_sites_and_blogs =  0 
-        unconfirmed_spam_sources =  0 
-        games =  0 
-        parked_domains =  0 
-        auctions =  0 
-        job_search =  0 
-        recreation_and_hobbies =  0 
-        hacking =  0 
-        alcohol_and_tobacco =  0 
-        adult_and_pornography =  0 
-        military =  0 
-        }
-certificate_san_equals_list {   
+certificate-san-equals-list {   
         certificate_san_equals =  "string" 
-        }
-template_cipher = "string"
-notbeforemonth = 0
-bypass_cert_san_class_list_name = "string"
-chain_cert = "string"
-forward_proxy_cert_unknown_action = 0
-exception_certificate_san_cl_name = "string"
-ocspst_sg = "string"
-key_alt_encrypted = "string"
-fp_cert_ext_aia_ca_issuers = "string"
-authen_name = "string"
-expire_hours = 0
-client_auth_case_insensitive = 0
-ocsp_stapling = 0
-notbeforeyear = 0
-forward_encrypted = "string"
-sni_enable_log = 0
-key_shared_str = "string"
-notaftermonth = 0
-cache_persistence_list_name = "string"
-ocspst_sg_timeout = 0
-key_passphrase = "string"
-ocspst_srvr = "string"
-ocspst_srvr_minutes = 0
-certificate_issuer_contains_list {   
-        certificate_issuer_contains =  "string" 
-        }
-require_web_category = 0
-bypass_cert_san_multi_class_list {   
-        bypass_cert_san_multi_class_list_name =  "string" 
-        }
-client_auth_starts_with_list {   
-        client_auth_starts_with =  "string" 
-        }
-certificate_subject_ends_with_list {   
-        certificate_subject_ends_with =  "string" 
-        }
-authorization = 0
-forward_proxy_verify_cert_fail_action = 0
-ocspst_srvr_days = 0
-ec-list {   
-        ec =  "string" 
-        }
-forward_proxy_decrypted_dscp_bypass = 0
-alert_type = "string"
-forward_proxy_cert_not_ready_action = "string"
-server-name-list {   
-        server_shared =  0 
-        server_passphrase_regex =  "string" 
-        server_chain =  "string" 
-        server_cert_regex =  "string" 
-        server_name =  "string" 
-        server_key_regex =  "string" 
-        server_name_regex_alternate =  0 
-        server_encrypted_regex =  "string" 
-        server_shared_regex =  0 
-        server_name_regex =  "string" 
-        server_passphrase =  "string" 
-        server_key =  "string" 
-        server_chain_regex =  "string" 
-        server_name_alternate =  0 
-        server_encrypted =  "string" 
-        server_cert =  "string" 
-        }
-bypass_cert_issuer_class_list_name = "string"
-no_anti_replay = 0
-fp_cert_ext_crldp = "string"
-shared_partition_cipher_template = 0
-fp_cert_fetch_natpool_precedence = 0
-cert_alternate = "string"
-forward_proxy_cert_cache_limit = 0
-non_ssl_bypass_l4session = 0
-certificate-issuer-starts-with-list {   
-        certificate_issuer_starts =  "string" 
         }
 certificate-san-starts-with-list {   
         certificate_san_starts =  "string" 
         }
+client_auth_case_insensitive = 0
+client_auth_class_list = "string"
+client-auth-contains-list {   
+        client_auth_contains =  "string" 
+        }
 client-auth-ends-with-list {   
         client_auth_ends_with =  "string" 
         }
-close_notify = 0
-forward_proxy_no_shared_cipher_action = 0
-forward_proxy_ocsp_disable = 0
-sslilogging = "string"
-auth_username = "string"
-exception_user_name_list = "string"
-ocspst_sg_days = 0
-key_str = "string"
-inspect_list_name = "string"
-auth_username_attribute = "string"
-fp_cert_fetch_natpool_name = "string"
-exception_sni_cl_name = "string"
-inspect_certificate_subject_cl_name = "string"
-session_ticket_disable = 0
-ldap_base_dn_from_cert = 0
-ad_group_list = "string"
-client_certificate = "string"
-forward_proxy_cert_expiry = 0
-forward_proxy_enable = 0
-shared_partition_pool = 0
-ldap_search_filter = "string"
-key_shared_encrypted = "string"
-auth_sg_filter = "string"
-ocspst_srvr_timeout = 0
-certificate-subject-equals-list {   
-        certificate_subject_equals =  "string" 
+client-auth-equals-list {   
+        client_auth_equals =  "string" 
         }
-chain_cert_shared_str = "string"
-enable_tls_alert_logging = 0
-dh_type = "string"
-fp_alt_cert = "string"
-case_insensitive = 0
+client-auth-starts-with-list {   
+        client_auth_starts_with =  "string" 
+        }
+forward_proxy_cert_not_ready_action = "string"
+web_reputation {  
+        bypass_trustworthy =  0 
+        bypass_low_risk =  0 
+        bypass_moderate_risk =  0 
+        bypass_suspicious =  0 
+        bypass_malicious =  0 
+        bypass_threshold =  0 
+        }
+exception_web_reputation {  
+        exception_trustworthy =  0 
+        exception_low_risk =  0 
+        exception_moderate_risk =  0 
+        exception_suspicious =  0 
+        exception_malicious =  0 
+        exception_threshold =  0 
+        }
+web_category {  
+        uncategorized =  0 
+        real_estate =  0 
+        computer_and_internet_security =  0 
+        financial_services =  0 
+        business_and_economy =  0 
+        computer_and_internet_info =  0 
+        auctions =  0 
+        shopping =  0 
+        cult_and_occult =  0 
+        travel =  0 
+        drugs =  0 
+        adult_and_pornography =  0 
+        home_and_garden =  0 
+        military =  0 
+        social_network =  0 
+        dead_sites =  0 
+        stock_advice_and_tools =  0 
+        training_and_tools =  0 
+        dating =  0 
+        sex_education =  0 
+        religion =  0 
+        entertainment_and_arts =  0 
+        personal_sites_and_blogs =  0 
+        legal =  0 
+        local_information =  0 
+        streaming_media =  0 
+        job_search =  0 
+        gambling =  0 
+        translation =  0 
+        reference_and_research =  0 
+        shareware_and_freeware =  0 
+        peer_to_peer =  0 
+        marijuana =  0 
+        hacking =  0 
+        games =  0 
+        philosophy_and_politics =  0 
+        weapons =  0 
+        pay_to_surf =  0 
+        hunting_and_fishing =  0 
+        society =  0 
+        educational_institutions =  0 
+        online_greeting_cards =  0 
+        sports =  0 
+        swimsuits_and_intimate_apparel =  0 
+        questionable =  0 
+        kids =  0 
+        hate_and_racism =  0 
+        personal_storage =  0 
+        violence =  0 
+        keyloggers_and_monitoring =  0 
+        search_engines =  0 
+        internet_portals =  0 
+        web_advertisements =  0 
+        cheating =  0 
+        gross =  0 
+        web_based_email =  0 
+        malware_sites =  0 
+        phishing_and_other_fraud =  0 
+        proxy_avoid_and_anonymizers =  0 
+        spyware_and_adware =  0 
+        music =  0 
+        government =  0 
+        nudity =  0 
+        news_and_media =  0 
+        illegal =  0 
+        cdns =  0 
+        internet_communications =  0 
+        bot_nets =  0 
+        abortion =  0 
+        health_and_medicine =  0 
+        confirmed_spam_sources =  0 
+        spam_urls =  0 
+        unconfirmed_spam_sources =  0 
+        open_http_proxies =  0 
+        dynamic_comment =  0 
+        parked_domains =  0 
+        alcohol_and_tobacco =  0 
+        private_ip_addresses =  0 
+        image_and_video_search =  0 
+        fashion_and_beauty =  0 
+        recreation_and_hobbies =  0 
+        motor_vehicles =  0 
+        web_hosting_sites =  0 
+        food_and_dining =  0 
+        }
+exception_web_category {  
+        exception_uncategorized =  0 
+        exception_real_estate =  0 
+        exception_computer_and_internet_security =  0 
+        exception_financial_services =  0 
+        exception_business_and_economy =  0 
+        exception_computer_and_internet_info =  0 
+        exception_auctions =  0 
+        exception_shopping =  0 
+        exception_cult_and_occult =  0 
+        exception_travel =  0 
+        exception_drugs =  0 
+        exception_adult_and_pornography =  0 
+        exception_home_and_garden =  0 
+        exception_military =  0 
+        exception_social_network =  0 
+        exception_dead_sites =  0 
+        exception_stock_advice_and_tools =  0 
+        exception_training_and_tools =  0 
+        exception_dating =  0 
+        exception_sex_education =  0 
+        exception_religion =  0 
+        exception_entertainment_and_arts =  0 
+        exception_personal_sites_and_blogs =  0 
+        exception_legal =  0 
+        exception_local_information =  0 
+        exception_streaming_media =  0 
+        exception_job_search =  0 
+        exception_gambling =  0 
+        exception_translation =  0 
+        exception_reference_and_research =  0 
+        exception_shareware_and_freeware =  0 
+        exception_peer_to_peer =  0 
+        exception_marijuana =  0 
+        exception_hacking =  0 
+        exception_games =  0 
+        exception_philosophy_and_politics =  0 
+        exception_weapons =  0 
+        exception_pay_to_surf =  0 
+        exception_hunting_and_fishing =  0 
+        exception_society =  0 
+        exception_educational_institutions =  0 
+        exception_online_greeting_cards =  0 
+        exception_sports =  0 
+        exception_swimsuits_and_intimate_apparel =  0 
+        exception_questionable =  0 
+        exception_kids =  0 
+        exception_hate_and_racism =  0 
+        exception_personal_storage =  0 
+        exception_violence =  0 
+        exception_keyloggers_and_monitoring =  0 
+        exception_search_engines =  0 
+        exception_internet_portals =  0 
+        exception_web_advertisements =  0 
+        exception_cheating =  0 
+        exception_gross =  0 
+        exception_web_based_email =  0 
+        exception_malware_sites =  0 
+        exception_phishing_and_other_fraud =  0 
+        exception_proxy_avoid_and_anonymizers =  0 
+        exception_spyware_and_adware =  0 
+        exception_music =  0 
+        exception_government =  0 
+        exception_nudity =  0 
+        exception_news_and_media =  0 
+        exception_illegal =  0 
+        exception_cdns =  0 
+        exception_internet_communications =  0 
+        exception_bot_nets =  0 
+        exception_abortion =  0 
+        exception_health_and_medicine =  0 
+        exception_confirmed_spam_sources =  0 
+        exception_spam_urls =  0 
+        exception_unconfirmed_spam_sources =  0 
+        exception_open_http_proxies =  0 
+        exception_dynamic_comment =  0 
+        exception_parked_domains =  0 
+        exception_alcohol_and_tobacco =  0 
+        exception_private_ip_addresses =  0 
+        exception_image_and_video_search =  0 
+        exception_fashion_and_beauty =  0 
+        exception_recreation_and_hobbies =  0 
+        exception_motor_vehicles =  0 
+        exception_web_hosting_sites =  0 
+        exception_food_and_dining =  0 
+        }
+require_web_category = 0
+forward_proxy_require_sni_cert_matched = "string"
+key = "string"
+key_passphrase = "string"
+key_encrypted = "Unknown Type: encrypted"
+key_shared_str = "string"
+key_shared_passphrase = "string"
+key_shared_encrypted = "Unknown Type: encrypted"
+key_alternate = "string"
+key_alt_passphrase = "string"
+key_alt_encrypted = "Unknown Type: encrypted"
+key_alt_partition_shared = 0
+template_cipher = "string"
+shared_partition_cipher_template = 0
+template_cipher_shared = "string"
+template_hsm = "string"
+hsm_type = "string"
 cipher-without-prio-list {   
         cipher_wo_prio =  "string" 
         }
-ocspst_sg_minutes = 0
-starts-with-list {   
-        starts_with =  "string" 
+server-name-list {   
+        server_name =  "string" 
+        server_cert =  "string" 
+        server_chain =  "string" 
+        server_key =  "string" 
+        server_passphrase =  "string" 
+        server_encrypted =  "Unknown Type: encrypted" 
+        server_name_alternate =  0 
+        server_shared =  0 
+        server_name_regex =  "string" 
+        server_cert_regex =  "string" 
+        server_chain_regex =  "string" 
+        server_key_regex =  "string" 
+        server_passphrase_regex =  "string" 
+        server_encrypted_regex =  "Unknown Type: encrypted" 
+        server_name_regex_alternate =  0 
+        server_shared_regex =  0 
         }
-key_shared_passphrase = "string"
+server_name_auto_map = 0
+sni_enable_log = 0
+direct_client_server_auth = 0
+session_cache_size = 0
+session_cache_timeout = 0
+session_ticket_disable = 0
+session_ticket_lifetime = 0
+ssl_false_start_disable = 0
+disable_sslv3 = 0
+version = 0
+dgversion = 0
+renegotiation_disable = 0
+sslv2_bypass_service_group = "string"
+authorization = 0
+authen_name = "string"
+ldap_base_dn_from_cert = 0
+ldap_search_filter = "string"
+auth_sg = "string"
+auth_sg_dn = 0
+auth_sg_filter = "string"
+auth_username_attribute = "string"
+non_ssl_bypass_service_group = "string"
+non_ssl_bypass_l4session = 0
+early_data = 0
+no_anti_replay = 0
+uuid = "string"
+user_tag = "string"
+certificate-list {   
+        cert =  "string" 
+        key =  "string" 
+        passphrase =  "string" 
+        key_encrypted =  "Unknown Type: encrypted" 
+        chain_cert =  "string" 
+        shared =  0 
+        uuid =  "string" 
+        }
  
 }
+
 
 ```
 

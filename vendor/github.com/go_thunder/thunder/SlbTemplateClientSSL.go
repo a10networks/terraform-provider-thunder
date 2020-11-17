@@ -45,9 +45,9 @@ type CertificateSubjectContainsList struct {
 type ReqCaLists struct {
 	ClientCertificateRequestCA string `json:"client-certificate-Request-CA,omitempty"`
 }
-type SamplingEnable5 struct {
-	Counters1 string `json:"counters1,omitempty"`
-}
+// type SamplingEnable5 struct {
+// 	Counters1 string `json:"counters1,omitempty"`
+// }
 type BypassCertIssuerMultiClassList struct {
 	BypassCertIssuerMultiClassListName string `json:"bypass-cert-issuer-multi-class-list-name,omitempty"`
 }
@@ -272,7 +272,7 @@ type ClientSSLInstance struct {
 	ClientCertificateRequestCA          []ReqCaLists                       `json:"req-ca-lists,omitempty"`
 	UserTag                             string                             `json:"user-tag,omitempty"`
 	CertUnknownAction                   string                             `json:"cert-unknown-action,omitempty"`
-	Counters1                           []SamplingEnable5                  `json:"sampling-enable,omitempty"`
+	//Counters1                           []SamplingEnable5                  `json:"sampling-enable,omitempty"`
 	RenegotiationDisable                int                                `json:"renegotiation-disable,omitempty"`
 	ExceptionAdGroupList                string                             `json:"exception-ad-group-list,omitempty"`
 	KeyAlternate                        string                             `json:"key-alternate,omitempty"`
@@ -293,7 +293,7 @@ type ClientSSLInstance struct {
 	OcspstSrvrHours                     int                                `json:"ocspst-srvr-hours,omitempty"`
 	LocalLogging                        int                                `json:"local-logging,omitempty"`
 	FpCertFetchAutonatPrecedence        int                                `json:"fp-cert-fetch-autonat-precedence,omitempty"`
-	CertStr                             string                             `json:"cert-str,omitempty"`
+	//CertStr                             string                             `json:"cert-str,omitempty"`
 	CertSharedStr                       string                             `json:"cert-shared-str,omitempty"`
 	CertRevokeAction                    string                             `json:"cert-revoke-action,omitempty"`
 	Version                             int                                `json:"version,omitempty"`
@@ -372,7 +372,7 @@ type ClientSSLInstance struct {
 	AuthUsername                        string                             `json:"auth-username,omitempty"`
 	ExceptionUserNameList               string                             `json:"exception-user-name-list,omitempty"`
 	OcspstSgDays                        int                                `json:"ocspst-sg-days,omitempty"`
-	KeyStr                              string                             `json:"key-str,omitempty"`
+	//KeyStr                              string                             `json:"key-str,omitempty"`
 	InspectListName                     string                             `json:"inspect-list-name,omitempty"`
 	AuthUsernameAttribute               string                             `json:"auth-username-attribute,omitempty"`
 	FpCertFetchNatpoolName              string                             `json:"fp-cert-fetch-natpool-name,omitempty"`

@@ -1879,7 +1879,7 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"client_certificate_Request_CA": {
+						"client_certificate_request_ca": {
 							Type:        schema.TypeString,
 							Optional:    true,
 							Description: "",
@@ -2488,15 +2488,15 @@ func dataToSlbTemplateClientSSL(d *schema.ResourceData) go_thunder.ClientSSL {
 	c.UserTag = d.Get("user_tag").(string)
 	c.CertUnknownAction = d.Get("cert_unknown_action").(string)
 
-	SamplingEnableCount := d.Get("sampling_enable.#").(int)
-	c.Counters1 = make([]go_thunder.SamplingEnable5, 0, SamplingEnableCount)
+	// SamplingEnableCount := d.Get("sampling_enable.#").(int)
+	// c.Counters1 = make([]go_thunder.SamplingEnable5, 0, SamplingEnableCount)
 
-	for i := 0; i < SamplingEnableCount; i++ {
-		var obj11 go_thunder.SamplingEnable5
-		prefix := fmt.Sprintf("sampling_enable.%d.", i)
-		obj11.Counters1 = d.Get(prefix + "counters1").(string)
-		c.Counters1 = append(c.Counters1, obj11)
-	}
+	// for i := 0; i < SamplingEnableCount; i++ {
+	// 	var obj11 go_thunder.SamplingEnable5
+	// 	prefix := fmt.Sprintf("sampling_enable.%d.", i)
+	// 	obj11.Counters1 = d.Get(prefix + "counters1").(string)
+	// 	c.Counters1 = append(c.Counters1, obj11)
+	// }
 
 	c.RenegotiationDisable = d.Get("renegotiation_disable").(int)
 	c.ExceptionAdGroupList = d.Get("exception_ad_group_list").(string)
@@ -2577,7 +2577,7 @@ func dataToSlbTemplateClientSSL(d *schema.ResourceData) go_thunder.ClientSSL {
 	c.OcspstSrvrHours = d.Get("ocspst_srvr_hours").(int)
 	c.LocalLogging = d.Get("local_logging").(int)
 	c.FpCertFetchAutonatPrecedence = d.Get("fp_cert_fetch_autonat_precedence").(int)
-	c.CertStr = d.Get("cert_str").(string)
+	//c.CertStr = d.Get("cert_str").(string)
 	c.CertSharedStr = d.Get("cert_shared_str").(string)
 	c.CertRevokeAction = d.Get("cert_revoke_action").(string)
 	c.Version = d.Get("version").(int)
@@ -2874,7 +2874,7 @@ func dataToSlbTemplateClientSSL(d *schema.ResourceData) go_thunder.ClientSSL {
 	c.AuthUsername = d.Get("auth_username").(string)
 	c.ExceptionUserNameList = d.Get("exception_user_name_list").(string)
 	c.OcspstSgDays = d.Get("ocspst_sg_days").(int)
-	c.KeyStr = d.Get("key_str").(string)
+	//c.KeyStr = d.Get("key_str").(string)
 	c.InspectListName = d.Get("inspect_list_name").(string)
 	c.AuthUsernameAttribute = d.Get("auth_username_attribute").(string)
 	c.FpCertFetchNatpoolName = d.Get("fp_cert_fetch_natpool_name").(string)
