@@ -17,6 +17,11 @@ func resourceSnmpServerSNMPv1V2cUserOid() *schema.Resource {
 		Read:   resourceSnmpServerSNMPv1V2cUserOidRead,
 		Delete: resourceSnmpServerSNMPv1V2cUserOidDelete,
 		Schema: map[string]*schema.Schema{
+			"oid": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
 			"user": {
 				Type:        schema.TypeString,
 				Optional:    true,
@@ -111,7 +116,7 @@ func resourceSnmpServerSNMPv1V2cUserOidCreate(d *schema.ResourceData, meta inter
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerSNMPv1V2cUserOid (Inside resourceSnmpServerSNMPv1V2cUserOidCreate) ")
 		name2 := d.Get("oid_val").(string)
-		name1 := d.Get("user").(string)
+		name1 := d.Get("user_tag").(string)
 		data := dataToSnmpServerSNMPv1V2cUserOid(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerSNMPv1V2cUserOid --")
 		d.SetId(name1 + "," + name2)

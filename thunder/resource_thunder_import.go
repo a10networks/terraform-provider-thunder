@@ -487,8 +487,6 @@ func dataToImport(d *schema.ResourceData) go_thunder.Import {
 
 	c.Aflex = d.Get("aflex").(string)
 
-
-
 	vc.GeoLocation = c
 
 	return vc

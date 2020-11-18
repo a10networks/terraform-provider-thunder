@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SNMP_SERVER_SNMPV1_V2C_USER_RESOURCE = `
-resource "thunder_snmp_server_snmpv1_v2c_user" "SnmpServerSNMPv1V2cTest" {
+resource "thunder_snmp_server_snmpv1_v2c_user" "thunder_snmp_server_snmpv1_v2c_user_test" {
 	user = "a"
 user_tag = "a"
  
@@ -22,8 +22,8 @@ func TestAccSnmpServerSNMPv1V2cUser_create(t *testing.T) {
 			{
 				Config: TEST_SNMP_SERVER_SNMPV1_V2C_USER_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("thunder_snmp_server_SNMPv1_v2c_user.SnmpServerSNMPv1V2cTest", "user", "a"),
-					resource.TestCheckResourceAttr("thunder_snmp_server_SNMPv1_v2c_user.SnmpServerSNMPv1V2cTest", "user_tag", "a"),
+					resource.TestCheckResourceAttr("thunder_snmp_server_snmpv1_v2c_user.thunder_snmp_server_snmpv1_v2c_user_test", "user", "a"),
+					resource.TestCheckResourceAttr("thunder_snmp_server_snmpv1_v2c_user.thunder_snmp_server_snmpv1_v2c_user_test", "user_tag", "a"),
 				),
 			},
 		},

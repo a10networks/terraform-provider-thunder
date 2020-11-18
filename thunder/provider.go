@@ -206,12 +206,13 @@ func Provider() terraform.ResourceProvider {
 			"thunder_slb_virtual_server_port":           resourceSlbVirtualServerPort(),
 			"thunder_slb_template_persist_cookie":       resourceSlbTemplatePersistCookie(),
 			"thunder_slb_template_persist_source_ip":    resourceSlbTemplatePersistSourceIp(),
-			"thunder_snmp_server_snmpv1_v2c_user":           resourceSnmpServerSNMPv1V2cUser(),
-			"thunder_snmp_server_snmpv1_v2c_user_oid":       resourceSnmpServerSNMPv1V2cUserOid(),
-			"thunder_snmp_server_snmpv3_user":               resourceSnmpServerSNMPv3User(),
-			"thunder_snmp_server_community_read":            resourceSnmpServerCommunityRead(),
-			"thunder_snmp_server_community_read_oid":        resourceSnmpServerCommunityReadOid(),
-			"thunder_snmp_server_disable_traps":             resourceSnmpServerDisableTraps(),
+			"thunder_snmp_server_snmpv1_v2c_user":       resourceSnmpServerSNMPv1V2cUser(),
+			"thunder_snmp_server_snmpv1_v2c_user_oid":   resourceSnmpServerSNMPv1V2cUserOid(),
+			"thunder_snmp_server_snmpv3_user":           resourceSnmpServerSNMPv3User(),
+			"thunder_snmp_server_community_read":        resourceSnmpServerCommunityRead(),
+			"thunder_snmp_server_community_read_oid":    resourceSnmpServerCommunityReadOid(),
+			"thunder_snmp_server_disable_traps":         resourceSnmpServerDisableTraps(),
+			"thunder_snmp_server_engine_id":             resourceSnmpServerEngineID(),
 		},
 
 		ConfigureFunc: providerConfigure,
@@ -256,5 +257,3 @@ func mapEntity(d map[string]interface{}, obj interface{}) {
 		}
 	}
 }
-
-

@@ -272,7 +272,7 @@ func dataToSnmpServerCommunityRead(d *schema.ResourceData) go_thunder.SnmpServer
 		obj1.DNSHost = append(obj1.DNSHost, obj1_1)
 	}
 
-	Ipv4ListCount := d.Get("ipv4_list.#").(int)
+	Ipv4ListCount := d.Get(prefix1 + "ipv4_list.#").(int)
 	obj1.Ipv4Host = make([]go_thunder.SnmpServerCommunityIpv4List, 0, Ipv4ListCount)
 
 	for i := 0; i < Ipv4ListCount; i++ {
@@ -283,7 +283,7 @@ func dataToSnmpServerCommunityRead(d *schema.ResourceData) go_thunder.SnmpServer
 		obj1.Ipv4Host = append(obj1.Ipv4Host, obj1_2)
 	}
 
-	Ipv6ListCount := d.Get("ipv6_list.#").(int)
+	Ipv6ListCount := d.Get(prefix1 + "ipv6_list.#").(int)
 	obj1.Ipv6Host = make([]go_thunder.SnmpServerCommunityIpv6List, 0, Ipv6ListCount)
 
 	for i := 0; i < Ipv6ListCount; i++ {
@@ -304,7 +304,7 @@ func dataToSnmpServerCommunityRead(d *schema.ResourceData) go_thunder.SnmpServer
 		prefix2 := fmt.Sprintf("oid_list.%d.", i)
 
 		var obj2_1 go_thunder.SnmpServerCommunityRemote
-		prefix2_1 := "remote.0."
+		prefix2_1 := prefix2 + "remote.0."
 
 		HostListCount := d.Get(prefix2_1 + "host_list.#").(int)
 		obj1.DNSHost = make([]go_thunder.SnmpServerCommunityHostList, 0, HostListCount)

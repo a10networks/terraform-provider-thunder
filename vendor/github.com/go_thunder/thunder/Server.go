@@ -108,7 +108,7 @@ func GetServer(id string, name string, host string) (*Server, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetServer",data)
+			check_api_status("GetServer", data)
 			return &m, nil
 		}
 	}
@@ -144,7 +144,7 @@ func PostServer(id string, sg Server, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("POSTServer",data)
+			check_api_status("POSTServer", data)
 
 		}
 	}
@@ -183,7 +183,7 @@ func PutServer(id string, name string, sg Server, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PUTServer",data)
+			check_api_status("PUTServer", data)
 
 		}
 	}
