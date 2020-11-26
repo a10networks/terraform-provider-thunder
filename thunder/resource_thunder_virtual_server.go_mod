@@ -1056,13 +1056,16 @@ func resourceVirtualServerCreate(d *schema.ResourceData, meta interface{}) error
 		v := dataToVs(name, d)
 		logger.Println("[INFO] received formatted data from method data to vs --" + v.Name.Name + ",--" + v.Name.UUID)
 		d.SetId(name)
-		go_thunder.PostVS(client.Token, v, client.Host)
-		return resourceVirtualServerRead(d, meta)
-	}
+		return_string := go_thunder.PostVS(client.Token, v, client.Host)
+		
+		return resourceVirtualServerRead(d, meta, return_string)
+			
+		}
+		
 	return nil
 }
 
-func resourceVirtualServerRead(d *schema.ResourceData, meta interface{}) error {
+func resourceVirtualServerRead(d *schema.ResourceData, meta interface{}, return_str string) error {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading virtual server (Inside resourceVirtualServerRead)")
 
@@ -1073,7 +1076,7 @@ func resourceVirtualServerRead(d *schema.ResourceData, meta interface{}) error {
 
 		logger.Println("[INFO] Fetching virtual server Read" + name)
 
-		vs, err := go_thunder.GetVS(client.Token, name, client.Host)
+		vs, err := go_thunder.GetVS(client.Token, name, client.Host, return_str)
 
 		if vs == nil {
 			logger.Println("[INFO] No virtual server found " + name)
@@ -1098,8 +1101,8 @@ func resourceVirtualServerUpdate(d *schema.ResourceData, meta interface{}) error
 		d.SetId(name)
 		go_thunder.PutVS(client.Token, name, v, client.Host)
 
-		return resourceVirtualServerRead(d, meta)
-	}
+		return resourceVirtualServerRead(d, meta,"ok")
+		}
 	return nil
 }
 
@@ -1165,12 +1168,8 @@ func dataToVs(name string, d *schema.ResourceData) go_thunder.VirtalServerInstan
 		pl.Name = d.Get(prefix + ".name").(string)
 		pl.OptimizationLevel = d.Get(prefix + ".optimization_level").(string)
 		pl.Protocol = d.Get(prefix + ".protocol").(string)
-		pl.TemplateClientSsl = d.Get(prefix + ".template_client_ssl").(string)
-		pl.TemplateServerSsl = d.Get(prefix + ".template_server_ssl").(string)
-		pl.TemplatePersistSourceIP = d.Get(prefix + ".template_persist_source_ip").(string)
 		pl.StatsDataAction = d.Get(prefix + ".stats_data_action").(string)
 		pl.PersistType = d.Get(prefix + ".persist_type").(string)
-		pl.TemplateTCPProxy = d.Get(prefix + ".template_tcp_proxy").(string)
 		pl.DefSelectionIfPrefFailed = d.Get(prefix + ".def_selection_if_pref_failed").(string)
 		pl.Action = d.Get(prefix + ".action").(string)
 		pl.AltProtocol2 = d.Get(prefix + ".alt_protocol2").(string)

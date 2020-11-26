@@ -38,6 +38,16 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"no_anti_replay": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"cert": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
 			"ocspst_sg_minutes": {
 				Type:        schema.TypeInt,
 				Optional:    true,
@@ -73,12 +83,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"template_cipher_shared": {
+			"ocspst_srvr": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
-			"ocspst_srvr": {
+			"template_cipher_shared": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
@@ -97,6 +107,11 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				},
 			},
 			"exception_ad_group_list": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"forward_proxy_require_sni_cert_matched": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
@@ -157,13 +172,18 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"forward_proxy_cert_cache_limit": {
+			"session_ticket_disable": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
 			"auth_username": {
 				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"forward_proxy_cert_cache_limit": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -195,11 +215,6 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 					},
 				},
 			},
-			"server_name_auto_map": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
 			"client_auth_equals_list": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -213,17 +228,22 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 					},
 				},
 			},
+			"server_name_auto_map": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"shared_partition_pool": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
 			"template_hsm": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
 			"version": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"shared_partition_pool": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -256,18 +276,23 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"notafteryear": {
+			"forward_proxy_cert_unknown_action": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"forward_proxy_cert_unknown_action": {
+			"notafteryear": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
 			"key_shared_encrypted": {
 				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"ocspst_srvr_timeout": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -289,11 +314,6 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 					},
 				},
 			},
-			"ocspst_srvr_timeout": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
 			"forward_proxy_ca_cert": {
 				Type:        schema.TypeString,
 				Optional:    true,
@@ -304,13 +324,23 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"fp_alt_cert": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
 			"key_alt_encrypted": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
-			"fp_alt_cert": {
+			"cert_alternate": {
 				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"forward_proxy_selfsign_redir": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -327,16 +357,6 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 					},
 				},
 			},
-			"forward_proxy_selfsign_redir": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"cert_alternate": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
 			"forward_proxy_ssl_version": {
 				Type:        schema.TypeInt,
 				Optional:    true,
@@ -352,6 +372,435 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"exception_web_category": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"exception_motor_vehicles": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_home_and_garden": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_shopping": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_real_estate": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_peer_to_peer": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_health_and_medicine": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_society": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_proxy_avoid_and_anonymizers": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_military": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_business_and_economy": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_personal_sites_and_blogs": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_legal": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_philosophy_and_politics": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_abortion": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_private_ip_addresses": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_local_information": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_online_greeting_cards": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_drugs": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_phishing_and_other_fraud": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_job_search": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_web_advertisements": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_web_based_email": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_computer_and_internet_info": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_cult_and_occult": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_shareware_and_freeware": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_spam_urls": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_games": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_hunting_and_fishing": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_streaming_media": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_unconfirmed_spam_sources": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_adult_and_pornography": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_kids": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_bot_nets": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_violence": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_entertainment_and_arts": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_gross": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_cdns": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_open_http_proxies": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_internet_portals": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_translation": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_gambling": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_internet_communications": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_marijuana": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_malware_sites": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_web_hosting_sites": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_alcohol_and_tobacco": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_training_and_tools": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_cheating": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_dating": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_weapons": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_hacking": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_dynamic_comment": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_food_and_dining": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_news_and_media": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_social_network": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_recreation_and_hobbies": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_stock_advice_and_tools": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_educational_institutions": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_sex_education": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_financial_services": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_dead_sites": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_uncategorized": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_personal_storage": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_fashion_and_beauty": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_search_engines": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_nudity": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_questionable": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_hate_and_racism": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_keyloggers_and_monitoring": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_religion": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_confirmed_spam_sources": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_music": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_spyware_and_adware": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_image_and_video_search": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_sports": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_reference_and_research": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_auctions": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_parked_domains": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_computer_and_internet_security": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_illegal": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_pay_to_surf": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_travel": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_government": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_swimsuits_and_intimate_apparel": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
 			"notbefore": {
 				Type:        schema.TypeInt,
 				Optional:    true,
@@ -364,11 +813,6 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 			},
 			"client_auth_class_list": {
 				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"session_cache_timeout": {
-				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -410,13 +854,13 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"server_shared": {
-							Type:        schema.TypeInt,
+						"server_passphrase": {
+							Type:        schema.TypeString,
 							Optional:    true,
 							Description: "",
 						},
-						"server_passphrase": {
-							Type:        schema.TypeString,
+						"server_shared": {
+							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
@@ -473,15 +917,102 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 					},
 				},
 			},
+			"session_cache_timeout": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
 			"exception_certificate_subject_cl_name": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
+			"exception_web_reputation": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"exception_suspicious": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_threshold": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_moderate_risk": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_malicious": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_low_risk": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"exception_trustworthy": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
 			"non_ssl_bypass_service_group": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
+			},
+			"certificate_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"chain_cert": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"shared": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"cert": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"passphrase": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"key_encrypted": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"key": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
 			},
 			"fp_cert_fetch_autonat": {
 				Type:        schema.TypeString,
@@ -493,8 +1024,8 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"bypass_cert_subject_class_list_name": {
-				Type:        schema.TypeString,
+			"fp_ca_shared": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -503,7 +1034,17 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"bypass_cert_subject_class_list_name": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
 			"inspect_certificate_san_cl_name": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"key": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
@@ -546,12 +1087,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"authen_name": {
+			"cache_persistence_list_name": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
-			"cache_persistence_list_name": {
+			"authen_name": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
@@ -571,13 +1112,13 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"forward_passphrase": {
-				Type:        schema.TypeString,
+			"ocspst_srvr_days": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"ocspst_srvr_days": {
-				Type:        schema.TypeInt,
+			"forward_passphrase": {
+				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
@@ -596,12 +1137,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"direct_client_server_auth": {
+			"sni_enable_log": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"sni_enable_log": {
+			"direct_client_server_auth": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -610,6 +1151,45 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
+			},
+			"web_reputation": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"bypass_malicious": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"bypass_moderate_risk": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"bypass_low_risk": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"bypass_suspicious": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"bypass_trustworthy": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"bypass_threshold": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
 			},
 			"ocspst_srvr_minutes": {
 				Type:        schema.TypeInt,
@@ -654,18 +1234,23 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"uuid": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
 			"fp_cert_fetch_natpool_name_shared": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
-			"key_str": {
+			"uuid": {
 				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"cert_alt_partition_shared": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"local_logging": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -674,6 +1259,11 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"fp_trusted_ca_shared": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
 						"forward_proxy_trusted_ca": {
 							Type:        schema.TypeString,
 							Optional:    true,
@@ -681,11 +1271,6 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 						},
 					},
 				},
-			},
-			"local_logging": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
 			},
 			"notaftermonth": {
 				Type:        schema.TypeInt,
@@ -698,6 +1283,11 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Description: "",
 			},
 			"disable_sslv3": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"fp_alt_shared": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -730,18 +1320,10 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"client_auth_contains_list": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"client_auth_contains": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-					},
-				},
+			"fp_ca_key_shared": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
 			},
 			"bypass_cert_issuer_multi_class_list": {
 				Type:     schema.TypeList,
@@ -749,6 +1331,19 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"bypass_cert_issuer_multi_class_list_name": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"client_auth_contains_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"client_auth_contains": {
 							Type:        schema.TypeString,
 							Optional:    true,
 							Description: "",
@@ -774,6 +1369,11 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"notbeforeyear": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
 			"forward_proxy_no_sni_action": {
 				Type:        schema.TypeString,
 				Optional:    true,
@@ -790,12 +1390,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"keyloggers_and_monitoring": {
+						"job_search": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
-						"job_search": {
+						"keyloggers_and_monitoring": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -840,12 +1440,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"alcohol_and_tobacco": {
+						"adult_and_pornography": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
-						"adult_and_pornography": {
+						"alcohol_and_tobacco": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -885,12 +1485,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"bot_nets": {
+						"military": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
-						"military": {
+						"bot_nets": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -925,12 +1525,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"gross": {
+						"hate_and_racism": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
-						"hate_and_racism": {
+						"gross": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -955,12 +1555,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"personal_storage": {
+						"computer_and_internet_security": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
-						"computer_and_internet_security": {
+						"personal_storage": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -975,12 +1575,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"motor_vehicles": {
+						"computer_and_internet_info": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
-						"computer_and_internet_info": {
+						"motor_vehicles": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -1000,12 +1600,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"news_and_media": {
+						"sex_education": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
-						"sex_education": {
+						"news_and_media": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -1150,22 +1750,22 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"shareware_and_freeware": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
 						"uncategorized": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
-						"peer_to_peer": {
+						"shareware_and_freeware": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
 						"religion": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"peer_to_peer": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -1208,17 +1808,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 					},
 				},
 			},
-			"notbeforeyear": {
+			"close_notify": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
 			"client_auth_case_insensitive": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"close_notify": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -1235,6 +1830,11 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 						},
 					},
 				},
+			},
+			"early_data": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
 			},
 			"ocsp_stapling": {
 				Type:        schema.TypeInt,
@@ -1274,6 +1874,11 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"client_cert_req_ca_shared": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
 						"client_certificate_request_ca": {
 							Type:        schema.TypeString,
 							Optional:    true,
@@ -1308,12 +1913,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 					},
 				},
 			},
-			"inspect_certificate_issuer_cl_name": {
+			"fp_alt_encrypted": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
-			"fp_alt_encrypted": {
+			"inspect_certificate_issuer_cl_name": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
@@ -1323,8 +1928,8 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"handshake_logging_enable": {
-				Type:        schema.TypeInt,
+			"sslilogging": {
+				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
@@ -1333,8 +1938,8 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"sslilogging": {
-				Type:        schema.TypeString,
+			"handshake_logging_enable": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -1361,12 +1966,12 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"ocspst_ca_cert": {
-				Type:        schema.TypeString,
+			"key_alt_partition_shared": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"inspect_list_name": {
+			"ocspst_ca_cert": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
@@ -1376,8 +1981,18 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"inspect_list_name": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
 			"auth_sg_dn": {
 				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"user_name_list": {
+				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
@@ -1393,11 +2008,6 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 						},
 					},
 				},
-			},
-			"user_name_list": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
 			},
 			"certificate_issuer_starts_with_list": {
 				Type:     schema.TypeList,
@@ -1488,18 +2098,13 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"forward_proxy_cert_cache_timeout": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"cert_str": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
 			"cert_revoke_action": {
 				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"forward_proxy_cert_cache_timeout": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -1527,19 +2132,6 @@ func resourceSlbTemplateClientSSL() *schema.Resource {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
-			},
-			"sampling_enable": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"counters1": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-					},
-				},
 			},
 			"session_cache_size": {
 				Type:        schema.TypeInt,
@@ -1790,6 +2382,21 @@ func dataToSlbTemplateClientSSL(d *schema.ResourceData) go_thunder.ClientSSL {
 	c.SslFalseStartDisable = d.Get("ssl_false_start_disable").(int)
 	c.Dgversion = d.Get("dgversion").(int)
 	c.ClientAuthClassList = d.Get("client_auth_class_list").(string)
+
+	CertificateListCount := d.Get("certificate_list.#").(int)
+	c.Passphrase = make([]go_thunder.SlbTemplateCertificateList, 0, CertificateListCount)
+
+	for i := 0; i < CertificateListCount; i++ {
+		var obj100 go_thunder.SlbTemplateCertificateList
+		prefix100 := fmt.Sprintf("certificate_list.%d.", i)
+		obj100.ChainCert = d.Get(prefix100 + "chain_cert").(string)
+		obj100.Key = d.Get(prefix100 + "key").(string)
+		obj100.Cert = d.Get(prefix100 + "cert").(string)
+		obj100.Passphrase = d.Get(prefix100 + "passphrase").(string)
+		obj100.KeyEncrypted = d.Get(prefix100 + "key_encrypted").(string)
+		c.Passphrase = append(c.Passphrase, obj100)
+	}
+
 	c.KeyEncrypted = d.Get("key_encrypted").(string)
 	c.Notafteryear = d.Get("notafteryear").(int)
 	c.ForwardProxyAltSign = d.Get("forward_proxy_alt_sign").(int)
@@ -1881,15 +2488,15 @@ func dataToSlbTemplateClientSSL(d *schema.ResourceData) go_thunder.ClientSSL {
 	c.UserTag = d.Get("user_tag").(string)
 	c.CertUnknownAction = d.Get("cert_unknown_action").(string)
 
-	SamplingEnableCount := d.Get("sampling_enable.#").(int)
-	c.Counters1 = make([]go_thunder.SamplingEnable5, 0, SamplingEnableCount)
+	// SamplingEnableCount := d.Get("sampling_enable.#").(int)
+	// c.Counters1 = make([]go_thunder.SamplingEnable5, 0, SamplingEnableCount)
 
-	for i := 0; i < SamplingEnableCount; i++ {
-		var obj11 go_thunder.SamplingEnable5
-		prefix := fmt.Sprintf("sampling_enable.%d.", i)
-		obj11.Counters1 = d.Get(prefix + "counters1").(string)
-		c.Counters1 = append(c.Counters1, obj11)
-	}
+	// for i := 0; i < SamplingEnableCount; i++ {
+	// 	var obj11 go_thunder.SamplingEnable5
+	// 	prefix := fmt.Sprintf("sampling_enable.%d.", i)
+	// 	obj11.Counters1 = d.Get(prefix + "counters1").(string)
+	// 	c.Counters1 = append(c.Counters1, obj11)
+	// }
 
 	c.RenegotiationDisable = d.Get("renegotiation_disable").(int)
 	c.ExceptionAdGroupList = d.Get("exception_ad_group_list").(string)
@@ -1970,7 +2577,7 @@ func dataToSlbTemplateClientSSL(d *schema.ResourceData) go_thunder.ClientSSL {
 	c.OcspstSrvrHours = d.Get("ocspst_srvr_hours").(int)
 	c.LocalLogging = d.Get("local_logging").(int)
 	c.FpCertFetchAutonatPrecedence = d.Get("fp_cert_fetch_autonat_precedence").(int)
-	c.CertStr = d.Get("cert_str").(string)
+	//c.CertStr = d.Get("cert_str").(string)
 	c.CertSharedStr = d.Get("cert_shared_str").(string)
 	c.CertRevokeAction = d.Get("cert_revoke_action").(string)
 	c.Version = d.Get("version").(int)
@@ -2267,7 +2874,7 @@ func dataToSlbTemplateClientSSL(d *schema.ResourceData) go_thunder.ClientSSL {
 	c.AuthUsername = d.Get("auth_username").(string)
 	c.ExceptionUserNameList = d.Get("exception_user_name_list").(string)
 	c.OcspstSgDays = d.Get("ocspst_sg_days").(int)
-	c.KeyStr = d.Get("key_str").(string)
+	//c.KeyStr = d.Get("key_str").(string)
 	c.InspectListName = d.Get("inspect_list_name").(string)
 	c.AuthUsernameAttribute = d.Get("auth_username_attribute").(string)
 	c.FpCertFetchNatpoolName = d.Get("fp_cert_fetch_natpool_name").(string)
@@ -2298,6 +2905,8 @@ func dataToSlbTemplateClientSSL(d *schema.ResourceData) go_thunder.ClientSSL {
 	c.EnableTLSAlertLogging = d.Get("enable_tls_alert_logging").(int)
 	c.DhType = d.Get("dh_type").(string)
 	c.FpAltCert = d.Get("fp_alt_cert").(string)
+	c.Key = d.Get("key").(string)
+	c.Cert = d.Get("cert").(string)
 	c.CaseInsensitive = d.Get("case_insensitive").(int)
 
 	CipherWithoutPrioListCount := d.Get("cipher_without_prio_list.#").(int)
