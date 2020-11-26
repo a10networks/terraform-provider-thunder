@@ -5,7 +5,7 @@ package thunder
 import (
 	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	
+
 	"util"
 )
 

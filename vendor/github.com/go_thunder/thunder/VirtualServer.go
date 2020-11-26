@@ -251,7 +251,7 @@ func GetVS(id string, name string, host string) (*VirtalServerInstanceMain, erro
 			fmt.Printf("Unmarshal error %s\n", err)
 			return nil, err
 		} else {
-			
+
 			logger.Println("[INFO] GET REQ RES..........................", m)
 			check_api_status("GetVS", data)
 			return &m, nil
@@ -360,7 +360,7 @@ func DeleteVS(id string, name string, host string) error {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] DELETE REQ RES..........................", m)
-			
+
 		}
 	}
 	return nil

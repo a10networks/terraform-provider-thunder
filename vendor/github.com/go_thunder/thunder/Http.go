@@ -12,15 +12,15 @@ func DoHttp(method string, host string, body io.Reader, headers map[string]strin
 	logger := util.GetLoggerInstance()
 
 	logger.Println("[INFO] inside do http")
-	
+
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 	client := &http.Client{Transport: tr}
-	
+
 	req, err := http.NewRequest(method, host, body)
 	//logger.Println("req new request - ", req.StatusCode)
-	
+
 	if err != nil {
 		logger.Println("[INFO] error creating new request")
 	}
@@ -29,7 +29,7 @@ func DoHttp(method string, host string, body io.Reader, headers map[string]strin
 		req.Header.Set(property, value)
 	}
 	resp, err := client.Do(req)
-	 logger.Println("req new request - ", resp.StatusCode)
+	logger.Println("req new request - ", resp.StatusCode)
 
 	if err != nil {
 		logger.Println("[INFO] error ")

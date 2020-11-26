@@ -50,7 +50,7 @@ func PostFwAlgTftp(id string, inst FwAlgTftp, host string) {
 
 		} else {
 			logger.Println("[INFO] POST REQ RES..........................", m)
-			check_api_status("PostFwAlgTftp", data)	
+			check_api_status("PostFwAlgTftp", data)
 		}
 	}
 

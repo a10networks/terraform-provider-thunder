@@ -97,7 +97,7 @@ func resourceConfigureSyncRead(d *schema.ResourceData, meta interface{}) error {
 
 		if vc == nil {
 			logger.Println("[INFO] No ConfigureSync found")
-			
+
 			return nil
 		}
 
@@ -128,13 +128,13 @@ func dataToConfigureSync(d *schema.ResourceData) go_thunder.Sync {
 	c.AllPartitions = d.Get("all_partitions").(int)
 	c.PrivateKey = d.Get("private_key").(string)
 	c.PartitionName = d.Get("partition_name").(string)
-	c.Pwd  =  d.Get("pwd").(string)
-	c.AutoAuthentication =  d.Get("auto_authentication").(int)
-	c.Address =  d.Get("address").(string)
-	c.Shared =  d.Get("shared").(int)
-	c.Type =  d.Get("type").(string)
-	c.PwdEnc =  d.Get("pwd_enc").(string)
-	c.Usr =  d.Get("usr").(string)
+	c.Pwd = d.Get("pwd").(string)
+	c.AutoAuthentication = d.Get("auto_authentication").(int)
+	c.Address = d.Get("address").(string)
+	c.Shared = d.Get("shared").(int)
+	c.Type = d.Get("type").(string)
+	c.PwdEnc = d.Get("pwd_enc").(string)
+	c.Usr = d.Get("usr").(string)
 
 	vc.AllPartitions = c
 
