@@ -7,7 +7,7 @@ import (
 )
 
 var TEST_SNMP_SERVER_ENGINEID_RESOURCE = `
-resource "thunder_snmp_server_engineid" "SnmpServerTest" {
+resource "thunder_snmp_server_engine_id" "SnmpServerTest" {
 	eng_id = "ABABABABAB"
  
 }
@@ -21,7 +21,7 @@ func TestAccSnmpServerEngineID_create(t *testing.T) {
 			{
 				Config: TEST_SNMP_SERVER_ENGINEID_RESOURCE,
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("thunder_snmp_server_engineID.SnmpServerTest", "eng_id", "ABABABABAB"),
+					resource.TestCheckResourceAttr("thunder_snmp_server_engine_id.SnmpServerTest", "eng_id", "ABABABABAB"),
 				),
 			},
 		},
