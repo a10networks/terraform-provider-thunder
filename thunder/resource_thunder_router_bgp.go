@@ -2624,7 +2624,7 @@ func dataToRouterBgp(d *schema.ResourceData) go_thunder.RouterBgp {
 
 	for i := 0; i < Ipv4NeighborListCount; i++ {
 		var obj6_2 go_thunder.RouterBgpIpv4NeighborList
-		prefix6_2 := prefix2 + fmt.Sprintf("ipv4_neighbor_list.%d.", i)
+		prefix6_2 := prefix6 + fmt.Sprintf("ipv4_neighbor_list.%d.", i)
 		obj6_2.NeighborIpv4 = d.Get(prefix6_2 + "neighbor_ipv4").(string)
 		obj6_2.PeerGroupName = d.Get(prefix6_2 + "peer_group_name").(string)
 		obj6_2.Activate = d.Get(prefix6_2 + "activate").(int)

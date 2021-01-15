@@ -48,7 +48,7 @@ func resourceRouterBgpAddressFamilyIpv6NetworkIpv6Network() *schema.Resource {
 				Description: "",
 			},
 			"as_number": {
-				Type:        schema.TypeString,
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
