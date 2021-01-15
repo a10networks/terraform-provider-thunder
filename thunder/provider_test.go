@@ -233,6 +233,37 @@ func ProviderTest() terraform.ResourceProvider {
 			"thunder_ntp_auth_key":                          resourceNtpAuthKey(),
 			"thunder_ntp_server_hostname":                   resourceNtpServerHostname(),
 			"thunder_ntp_trusted_key":                       resourceNtpTrustedKey(),
+			"thunder_router_bgp_neighbor_ipv4_neighbor":     resourceRouterBgpNeighborIpv4Neighbor(),
+			"thunder_router_ospf_default_information":       resourceRouterOspfDefaultInformation(),
+			"thunder_router_ospf_area":                      resourceRouterOspfArea(),
+			"thunder_router_bgp_address_family_ipv6":        resourceRouterBgpAddressFamilyIpv6(),
+			"thunder_router_bgp":                            resourceRouterBgp(),
+			"thunder_router_bgp_address_family_ipv6_neighbor_peer_group_neighbor": resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(),
+			"thunder_router_bgp_neighbor_ve_neighbor":                             resourceRouterBgpNeighborVeNeighbor(),
+
+			"thunder_router_bgp_neighbor_ethernet_neighbor": resourceRouterBgpNeighborEthernetNeighbor(),
+
+			"thunder_router_bgp_address_family_ipv6_neighbor_ethernet_neighbor_ipv6": resourceRouterBgpAddressFamilyIpv6NeighborEthernetNeighborIpv6(),
+
+			"thunder_router_bgp_network_synchronization":                       resourceRouterBgpNetworkSynchronization(),
+			"thunder_router_bgp_address_family_ipv6_neighbor_ipv6_neighbor":    resourceRouterBgpAddressFamilyIpv6NeighborIpv6Neighbor(),
+			"thunder_router_bgp_neighbor_trunk_neighbor":                       resourceRouterBgpNeighborTrunkNeighbor(),
+			"thunder_router_bgp_network_ip_cidr":                               resourceRouterBgpNetworkIpCidr(),
+			"thunder_bgp":                                                      resourceBgp(),
+			"thunder_router_bgp_address_family_ipv6_neighbor_ve_neighbor_ipv6": resourceRouterBgpAddressFamilyIpv6NeighborVeNeighborIpv6(),
+			"thunder_router_bgp_address_family_ipv6_redistribute":              resourceRouterBgpAddressFamilyIpv6Redistribute(),
+			"thunder_router_bgp_redistribute":                                  resourceRouterBgpRedistribute(),
+
+			"thunder_router_ospf_redistribute":                                    resourceRouterOspfRedistribute(),
+			"thunder_router_bgp_address_family_ipv6_neighbor_trunk_neighbor_ipv6": resourceRouterBgpAddressFamilyIpv6NeighborTrunkNeighborIpv6(),
+
+			"thunder_router_bgp_address_family_ipv6_neighbor_ipv4_neighbor":  resourceRouterBgpAddressFamilyIpv6NeighborIpv4Neighbor(),
+			"thunder_router_bgp_address_family_ipv6_network_synchronization": resourceRouterBgpAddressFamilyIpv6NetworkSynchronization(),
+			"thunder_router_bgp_address_family_ipv6_network_ipv6_network":    resourceRouterBgpAddressFamilyIpv6NetworkIpv6Network(),
+			"thunder_route_map":                               resourceRouteMap(),
+			"thunder_router_bgp_neighbor_ipv6_neighbor":       resourceRouterBgpNeighborIpv6Neighbor(),
+			"thunder_router_ospf":                             resourceRouterOspf(),
+			"thunder_router_bgp_neighbor_peer_group_neighbor": resourceRouterBgpNeighborPeerGroupNeighbor(),
 		},
 
 		ConfigureFunc: providerConfigureTest,
