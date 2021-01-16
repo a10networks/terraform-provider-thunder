@@ -12,7 +12,7 @@ func DoHttp(method string, host string, body io.Reader, headers map[string]strin
 	logger := util.GetLoggerInstance()
 
 	logger.Println("[INFO] inside do http")
-
+	//logger.Println("*****"  + method + "    "+ host + "******" )
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
