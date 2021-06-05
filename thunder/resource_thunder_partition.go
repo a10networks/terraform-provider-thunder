@@ -3,42 +3,34 @@ package thunder
 //Thunder resource Partition
 
 import (
-	"fmt"
 	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"log"
-	"strconv"
 	"util"
 )
 
-func resourceOverlayTunnelPartition() *schema.Resource {
+func resourcePartition() *schema.Resource {
 	return &schema.Resource{
 		Create: resourcePartitionCreate,
 		Update: resourcePartitionUpdate,
 		Read:   resourcePartitionRead,
 		Delete: resourcePartitionDelete,
-
 		Schema: map[string]*schema.Schema{
-			"template": {
-				Type:     schema.TypeList,
-				Optional: true,
-				MaxItems: 1,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"uuid": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"resource_accounting": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-					},
-				},
-			},
 			"partition_name": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"id1": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"application_type": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"uuid": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
@@ -54,29 +46,21 @@ func resourceOverlayTunnelPartition() *schema.Resource {
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"vrid": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
 						"vlan": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
-						//						"allowable_ipv6_range": {
-						//							Type:     schema.TypeList,
-						//							Optional: true,
-						//						},
 						"mgmt_floating_ip_address": {
 							Type:        schema.TypeString,
 							Optional:    true,
 							Description: "",
 						},
-						//						"allowable_ip_range": {
-						//							Type:     schema.TypeList,
-						//							Optional: true,
-						//						},
+						"vrid": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
 						"uuid": {
 							Type:        schema.TypeString,
 							Optional:    true,
@@ -85,20 +69,24 @@ func resourceOverlayTunnelPartition() *schema.Resource {
 					},
 				},
 			},
-			"id2": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"application_type": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"uuid": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
+			"template": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"resource_accounting": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
 			},
 		},
 	}
@@ -109,13 +97,15 @@ func resourcePartitionCreate(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(Thunder)
 
 	if client.Host != "" {
-		name := strconv.Itoa(d.Get("id2").(int))
-		logger.Println("[INFO] Creating partition (Inside resourcePartitionCreate    " + name)
-		v := dataToPartition(name, d)
-		d.SetId(name)
-		go_thunder.PostPartition(client.Token, v, client.Host)
+		logger.Println("[INFO] Creating Partition (Inside resourcePartitionCreate) ")
+		name1 := d.Get("partition_name").(string)
+		data := dataToPartition(d)
+		logger.Println("[INFO] received formatted data from method data to Partition --")
+		d.SetId(name1)
+		go_thunder.PostPartition(client.Token, data, client.Host)
 
 		return resourcePartitionRead(d, meta)
+
 	}
 	return nil
 }
@@ -123,92 +113,65 @@ func resourcePartitionCreate(d *schema.ResourceData, meta interface{}) error {
 func resourcePartitionRead(d *schema.ResourceData, meta interface{}) error {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-	logger.Println("[INFO] Reading partition (Inside resourcePartitionRead)")
+	logger.Println("[INFO] Reading Partition (Inside resourcePartitionRead)")
 
 	if client.Host != "" {
-		client := meta.(Thunder)
-
-		name := d.Id()
-
-		logger.Println("[INFO] Fetching partition Read" + name)
-
-		partition, err := go_thunder.GetPartition(client.Token, name, client.Host)
-
-		if partition == nil {
-			logger.Println("[INFO] No partition found " + name)
-			d.SetId("")
+		name1 := d.Id()
+		logger.Println("[INFO] Fetching service Read" + name1)
+		data, err := go_thunder.GetPartition(client.Token, name1, client.Host)
+		if data == nil {
+			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-
 		return err
 	}
 	return nil
 }
 
 func resourcePartitionUpdate(d *schema.ResourceData, meta interface{}) error {
-	logger := util.GetLoggerInstance()
-	client := meta.(Thunder)
 
-	if client.Host != "" {
-		name := strconv.Itoa(d.Get("id2").(int))
-		logger.Println("[INFO] Modifying partition (Inside resourcePartitionUpdate    " + name)
-		v := dataToPartition(name, d)
-		d.SetId(name)
-		go_thunder.PutPartition(client.Token, name, v, client.Host)
-
-		return resourcePartitionRead(d, meta)
-	}
-	return nil
+	return resourcePartitionRead(d, meta)
 }
 
 func resourcePartitionDelete(d *schema.ResourceData, meta interface{}) error {
-
-	client := meta.(Thunder)
 	logger := util.GetLoggerInstance()
+	client := meta.(Thunder)
 
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Deleting partition (Inside resourcePartitionDelete) " + name)
-
-		err := go_thunder.DeletePartition(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Deleting instance (Inside resourcePartitionDelete) " + name1)
+		err := go_thunder.DeletePartition(client.Token, name1, client.Host)
 		if err != nil {
-			log.Printf("[ERROR] Unable to Delete partition  (%s) (%v)", name, err)
+			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
 			return err
 		}
-		d.SetId("")
 		return nil
 	}
 	return nil
 }
 
-//utility method to instantiate partition structure
-func dataToPartition(name string, d *schema.ResourceData) go_thunder.Partition {
-	var s go_thunder.Partition
+func dataToPartition(d *schema.ResourceData) go_thunder.Partition {
+	var vc go_thunder.Partition
+	var c go_thunder.PartitionInstance
+	c.PartitionName = d.Get("partition_name").(string)
+	c.ID = d.Get("id1").(int)
+	c.ApplicationType = d.Get("application_type").(string)
+	c.UserTag = d.Get("user_tag").(string)
 
-	var sInstance go_thunder.PartitionInstance
+	var obj1 go_thunder.SharedVlan
+	prefix1 := "shared_vlan.0."
+	obj1.Vlan = d.Get(prefix1 + "vlan").(int)
+	obj1.MgmtFloatingIPAddress = d.Get(prefix1 + "mgmt_floating_ip_address").(string)
+	obj1.Vrid = d.Get(prefix1 + "vrid").(int)
 
-	sInstance.UserTag = d.Get("user_tag").(string)
-	sInstance.PartitionName = d.Get("partition_name").(string)
-	sInstance.ApplicationType = d.Get("application_type").(string)
-	sInstance.ID = d.Get("id2").(int)
+	c.Vlan = obj1
 
-	var vlans go_thunder.SharedVlan
+	var obj2 go_thunder.Template
+	prefix2 := "template.0."
+	obj2.ResourceAccounting = d.Get(prefix2 + "resource_accounting").(string)
 
-	prefix := fmt.Sprintf("shared_vlan.0.")
-	vlans.MgmtFloatingIPAddress = d.Get(prefix + "mgmt_floating_ip_address").(string)
-	vlans.Vrid = d.Get(prefix + "vrid").(int)
-	vlans.Vlan = d.Get(prefix + "vlan").(int)
+	c.ResourceAccounting = obj2
 
-	sInstance.Vrid = vlans
-
-	var template go_thunder.Template
-
-	prefix2 := fmt.Sprintf("template.0.")
-	template.ResourceAccounting = d.Get(prefix2 + "resource_accounting").(string)
-
-	sInstance.ResourceAccounting = template
-
-	s.ID = sInstance
-
-	return s
+	vc.PartitionName = c
+	return vc
 }

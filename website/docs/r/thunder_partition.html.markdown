@@ -23,7 +23,7 @@ resource "thunder_partition" "partition"{
 user_tag="tag1"
 partition_name="part8"
 application_type="adc"
-id2=8
+id1=8
 }
 ```
 
@@ -32,5 +32,5 @@ id2=8
 * `user_tag` - Customized tag
 * `partition_name` - Object partition name
 * `application_type` - 'adc’: Application type ADC; 'cgnv6’: Application type CGNv6;
-* `id2` - Specify unique Partition id
+* `id1` - Specify unique Partition id
 
