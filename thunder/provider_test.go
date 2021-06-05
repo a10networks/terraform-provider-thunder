@@ -45,7 +45,6 @@ func ProviderTest() terraform.ResourceProvider {
 			"thunder_harmony_controller_profile":            resourceHarmonyControllerProfile(),
 			"thunder_overlay_tunnel_options":                resourceOverlayTunnelOptions(),
 			"thunder_overlay_tunnel_vtep":                   resourceOverlayTunnelVtep(),
-			"thunder_partition":                             resourceOverlayTunnelPartition(),
 			"thunder_slb_template_tcp":                      resourceSlbTemplateTcp(),
 			"thunder_slb_template_udp":                      resourceSlbTemplateUdp(),
 			"thunder_slb_template_smpp":                     resourceSlbTemplateSmpp(),
@@ -264,6 +263,8 @@ func ProviderTest() terraform.ResourceProvider {
 			"thunder_router_bgp_neighbor_ipv6_neighbor":       resourceRouterBgpNeighborIpv6Neighbor(),
 			"thunder_router_ospf":                             resourceRouterOspf(),
 			"thunder_router_bgp_neighbor_peer_group_neighbor": resourceRouterBgpNeighborPeerGroupNeighbor(),
+			"thunder_active_partition":                        resourceActivePartition(),
+			"thunder_partition":                               resourcePartition(),
 		},
 
 		ConfigureFunc: providerConfigureTest,
