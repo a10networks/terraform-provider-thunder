@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	go_thunder "github.com/go_thunder/thunder"
-	
 	"util"
 )
 
@@ -37,7 +36,7 @@ func PostActivePartition(id string, inst ActivePartition, host string) {
 	if err != nil {
 		logger.Println("The HTTP request For Partition failed with error ", err)
 
-	} 
+	}
 
 }
 
