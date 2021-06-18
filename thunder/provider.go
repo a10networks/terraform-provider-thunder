@@ -1,12 +1,12 @@
 package thunder
 
 import (
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 	"log"
 	"reflect"
 	"strings"
-
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+	"util"
 )
 
 const DEFAULT_PARTITION = "Common"
@@ -31,6 +31,12 @@ func Provider() terraform.ResourceProvider {
 				Required:    true,
 				Description: "The user's password",
 				DefaultFunc: schema.EnvDefaultFunc("THUNDER_PASSWORD", nil),
+			},
+			"partition": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "partition name",
+				DefaultFunc: schema.EnvDefaultFunc("THUNDER_PARTITION", nil),
 			},
 		},
 
@@ -286,14 +292,33 @@ func setToStringSlice(s *schema.Set) []string {
 	return list
 }
 
+func callPartition(global_partition string, t Thunder) {
+
+	logger := util.GetLoggerInstance()
+	if global_partition != "" {
+		logger.Println("switching to patition ---> " + global_partition)
+		p := ActivePartition{
+			Shared: ActivePartitionInstance{
+				CurrPartName: global_partition,
+			},
+		}
+		ActivePartitionEnable(p, t)
+
+	} else {
+		logger.Println("using shared patition")
+	}
+}
+
 func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	config := Config{
 		Address:  d.Get("address").(string),
 		Username: d.Get("username").(string),
 		Password: d.Get("password").(string),
 	}
-
-	return config.Client()
+	var global_partition string = d.Get("partition").(string)
+	tt, err := config.Client()
+	callPartition(global_partition, tt)
+	return tt, err
 }
 
 func mapEntity(d map[string]interface{}, obj interface{}) {

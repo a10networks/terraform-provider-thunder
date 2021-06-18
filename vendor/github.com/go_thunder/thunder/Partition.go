@@ -3,9 +3,9 @@ package go_thunder
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"util"
-	"fmt"
 )
 
 type Partition struct {

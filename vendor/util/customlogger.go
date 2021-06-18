@@ -28,6 +28,6 @@ func createLogger(fname string) *logger {
 
 	return &logger{
 		filename: fname,
-		Logger:   log.New(file, "My app Name ", log.Lshortfile),
+		Logger:   log.New(file, "A10Thunder -> ", log.Lshortfile),
 	}
 }

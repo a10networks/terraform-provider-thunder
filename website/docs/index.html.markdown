@@ -18,9 +18,10 @@ This provider uses the aXAPI.
 
 ```
 provider "thunder" {
-  address = "${var.url}"
-  username = "${var.username}"
-  password = "${var.password}"
+  address    = "${var.url}"
+  username   = "${var.username}"
+  password   = "${var.password}"
+  partition  = "${var.partition} 
 }
 ```
 
@@ -29,3 +30,4 @@ provider "thunder" {
 - `address` - (Required) Address of the device
 - `username` - (Required) Username for authentication
 - `password` - (Required) Password for authentication
+- `partition` - (Optional) If any specific partition to use; default is "shared"
