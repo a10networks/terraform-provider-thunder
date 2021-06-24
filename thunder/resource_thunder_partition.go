@@ -5,6 +5,7 @@ package thunder
 import (
 	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
 	"util"
 )
 
@@ -16,9 +17,10 @@ func resourcePartition() *schema.Resource {
 		Delete: resourcePartitionDelete,
 		Schema: map[string]*schema.Schema{
 			"partition_name": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
+				Type:         schema.TypeString,
+				Optional:     true,
+				Description:  "",
+				ValidateFunc: validation.StringLenBetween(0, 14),
 			},
 			"id1": {
 				Type:        schema.TypeInt,

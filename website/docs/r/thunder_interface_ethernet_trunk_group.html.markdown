@@ -14,9 +14,9 @@ description: |-
 
 ```hcl
 provider "thunder" {
-  address  = "129.213.82.65"
-  username = "admin"
-  password = "admin"
+    address  = "${var.address}"
+    username = "${var.username}"  
+    password = "${var.password}"
 }
 
 resource "thunder_interface_ethernet_trunk_group" "Interface_Ethernet_Trunk_Group_Test" {

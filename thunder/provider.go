@@ -2,6 +2,7 @@ package thunder
 
 import (
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
 	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 	"log"
 	"reflect"
@@ -33,10 +34,11 @@ func Provider() terraform.ResourceProvider {
 				DefaultFunc: schema.EnvDefaultFunc("THUNDER_PASSWORD", nil),
 			},
 			"partition": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "partition name",
-				DefaultFunc: schema.EnvDefaultFunc("THUNDER_PARTITION", nil),
+				Type:         schema.TypeString,
+				Optional:     true,
+				Description:  "partition name",
+				DefaultFunc:  schema.EnvDefaultFunc("THUNDER_PARTITION", nil),
+				ValidateFunc: validation.StringLenBetween(0, 14),
 			},
 		},
 
@@ -278,6 +280,15 @@ func Provider() terraform.ResourceProvider {
 			"thunder_router_bgp_neighbor_peer_group_neighbor": resourceRouterBgpNeighborPeerGroupNeighbor(),
 			"thunder_active_partition":                        resourceActivePartition(),
 			"thunder_partition":                               resourcePartition(),
+			"thunder_system_ve_mac_scheme":                    resourceSystemVeMacScheme(),
+			"thunder_web_category_category_list":              resourceWebCategoryCategoryList(),
+			"thunder_web_category_statistics":                 resourceWebCategoryStatistics(),
+			"thunder_access_list_extended":                    resourceAccessListExtended(),
+			"thunder_access_list_standard":                    resourceAccessListStandard(),
+			"thunder_web_category":                            resourceWebCategory(),
+			"thunder_web_category_reputation_scope":           resourceWebCategoryReputationScope(),
+			"thunder_web_category_proxy_server":               resourceWebCategoryProxyServer(),
+			"thunder_system":                                  resourceSystem(),
 		},
 
 		ConfigureFunc: providerConfigure,

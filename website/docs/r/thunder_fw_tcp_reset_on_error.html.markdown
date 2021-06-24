@@ -14,9 +14,9 @@ description: |-
 
 ```hcl
 provider "thunder" {
-  address  = "129.213.82.65"
-  username = "admin"
-  password = "admin"
+    address  = "${var.address}"
+    username = "${var.username}"  
+    password = "${var.password}"
 }
 
 resource "thunder_fw_tcp_reset_on_error" "Fw_Tcp_Reset_On_Error_Test" {

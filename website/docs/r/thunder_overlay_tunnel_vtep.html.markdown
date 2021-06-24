@@ -14,9 +14,9 @@ description: |-
 
 ```hcl
 provider "thunder" {
-  address  = "129.213.82.65"
-  username = "admin"
-  password = "admin"
+    address  = "${var.address}"
+    username = "${var.username}"  
+    password = "${var.password}"
 }
 
 resource "thunder_overlay_tunnel_vtep" "Overlay_Tunnel_Vtep_Test" {
