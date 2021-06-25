@@ -14,9 +14,9 @@ description: |-
 
 ```hcl
 provider "thunder" {
-  address  = "129.213.82.65"
-  username = "admin"
-  password = "admin"
+    address  = "${var.address}"
+    username = "${var.username}"  
+    password = "${var.password}"
 }
 
 resource "thunder_snmp_server_snmpv1_v2c_user" "Snmp_Server_SNMPv1_V2c_User_Test" {

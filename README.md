@@ -40,10 +40,11 @@ $ make build
 
 ```
 provider "thunder" {
-address = "129.213.86.193"
-username = "myUser"  
-password = "myPassword“
+    address  = "${var.address}"
+    username = "${var.username}"  
+    password = "${var.password}"
 }
+
 ```
 ##### Argument Reference
 The following arguments are supported.
