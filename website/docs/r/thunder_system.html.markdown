@@ -16,7 +16,7 @@ description: |-
 provider "thunder" {
     address  = "${var.address}"
     username = "${var.username}"  
-    password = "${var.password}"
+    password = "${var.mypassword}"
 }
 
 
