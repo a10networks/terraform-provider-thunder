@@ -274,6 +274,8 @@ func ProviderTest() terraform.ResourceProvider {
 			"thunder_web_category_reputation_scope":           resourceWebCategoryReputationScope(),
 			"thunder_web_category_proxy_server":               resourceWebCategoryProxyServer(),
 			"thunder_system":                                  resourceSystem(),
+			"thunder_interface_lif":                           resourceInterfaceLif(),
+			"thunder_interface_lif_ip":                        resourceInterfaceLifIp(),
 		},
 
 		ConfigureFunc: providerConfigureTest,

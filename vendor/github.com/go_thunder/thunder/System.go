@@ -18,7 +18,7 @@ type SystemInstance struct {
 	AnomalyLog int `json:"anomaly-log,omitempty"`
 	//UUID                        AppPerformance      `json:"app-performance,omitempty"`
 	//LogSessionOnEstablished AppsGlobal `json:"apps-global,omitempty"`
-	AttackLog               int        `json:"attack-log,omitempty"`
+	AttackLog int `json:"attack-log,omitempty"`
 	//UUID                        AppPerformance      `json:"bandwidth,omitempty"`
 	//UUID                        AppPerformance      `json:"bfd,omitempty"`
 	//Enable CPUHyperThread `json:"cpu-hyper-thread,omitempty"`
