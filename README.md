@@ -42,6 +42,7 @@ Inside your cloned repo; here x.y.z is version example 0.4.5
 2. $ mkdir -p ~/.terraform.d/plugins/a10networks.com/a10networks/thunder/x.y.z/linux_amd64/
 3. $ cp terraform-provider-thunder ~/.terraform.d/plugins/a10networks.com/a10networks/thunder/x.y.z/linux_amd64/
 4. create version.tf file like:-
+```
 terraform {
   required_providers {
     thunder = {
@@ -50,7 +51,7 @@ terraform {
     }
   }
 }
-
+```
 
 # Usage
 
