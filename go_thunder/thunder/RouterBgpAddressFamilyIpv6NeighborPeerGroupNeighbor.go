@@ -54,7 +54,7 @@ type RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRouteMapLists struct {
 	NbrRouteMap      string `json:"nbr-route-map,omitempty"`
 }
 
-func PostRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(id string, name1 string, inst RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor, host string) {
+func PostRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(id string, name1 string, inst RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -73,6 +73,7 @@ func PostRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(id string, name1 st
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -83,11 +84,14 @@ func PostRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(id string, name1 st
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor", data)
+			err := check_api_status("PostRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(id string, name1 string, name2 string, host string) (*RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor, error) {
@@ -105,6 +109,7 @@ func GetRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(id string, name1 str
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor
@@ -114,14 +119,17 @@ func GetRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(id string, name1 str
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor", data)
+			err := check_api_status("GetRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(id string, name1 string, name2 string, inst RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor, host string) {
+func PutRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(id string, name1 string, name2 string, inst RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -140,6 +148,7 @@ func PutRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(id string, name1 str
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -150,9 +159,12 @@ func PutRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(id string, name1 str
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor", data)
+			err := check_api_status("PutRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }

@@ -16,7 +16,7 @@ type FwVridInstance struct {
 	Vrid int    `json:"vrid,omitempty"`
 }
 
-func PostFwVrid(id string, inst FwVrid, host string) {
+func PostFwVrid(id string, inst FwVrid, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostFwVrid(id string, inst FwVrid, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostFwVrid(id string, inst FwVrid, host string) {
 
 		} else {
 			logger.Println("[INFO] PostFwVrid REQ RES..........................", m)
-			check_api_status("PostFwVrid", data)
+			err := check_api_status("PostFwVrid", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwVrid(id string, host string) (*FwVrid, error) {
@@ -67,6 +71,7 @@ func GetFwVrid(id string, host string) (*FwVrid, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwVrid
@@ -76,7 +81,10 @@ func GetFwVrid(id string, host string) (*FwVrid, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetFwVrid REQ RES..........................", m)
-			check_api_status("GetFwVrid", data)
+			err := check_api_status("GetFwVrid", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

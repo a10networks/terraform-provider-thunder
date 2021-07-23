@@ -45,13 +45,16 @@ func GetSlbHwCompress(id string, host string) (*HwCompress, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetSlbHwCompress", data)
+			err := check_api_status("GetSlbHwCompress", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbHwCompress(id string, vc HwCompress, host string) {
+func PostSlbHwCompress(id string, vc HwCompress, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -81,8 +84,11 @@ func PostSlbHwCompress(id string, vc HwCompress, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbHwCompress", data)
+			err := check_api_status("PostSlbHwCompress", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

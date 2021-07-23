@@ -18,7 +18,7 @@ type RouterBgpNeighborVeNeighborInstance struct {
 	Ve            int    `json:"ve,omitempty"`
 }
 
-func PostRouterBgpNeighborVeNeighbor(id string, name1 string, inst RouterBgpNeighborVeNeighbor, host string) {
+func PostRouterBgpNeighborVeNeighbor(id string, name1 string, inst RouterBgpNeighborVeNeighbor, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostRouterBgpNeighborVeNeighbor(id string, name1 string, inst RouterBgpNeig
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostRouterBgpNeighborVeNeighbor(id string, name1 string, inst RouterBgpNeig
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostRouterBgpNeighborVeNeighbor", data)
+			err := check_api_status("PostRouterBgpNeighborVeNeighbor", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetRouterBgpNeighborVeNeighbor(id string, name1 string, name2 string, host string) (*RouterBgpNeighborVeNeighbor, error) {
@@ -69,6 +73,7 @@ func GetRouterBgpNeighborVeNeighbor(id string, name1 string, name2 string, host 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterBgpNeighborVeNeighbor
@@ -78,14 +83,17 @@ func GetRouterBgpNeighborVeNeighbor(id string, name1 string, name2 string, host 
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetRouterBgpNeighborVeNeighbor", data)
+			err := check_api_status("GetRouterBgpNeighborVeNeighbor", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutRouterBgpNeighborVeNeighbor(id string, name1 string, name2 string, inst RouterBgpNeighborVeNeighbor, host string) {
+func PutRouterBgpNeighborVeNeighbor(id string, name1 string, name2 string, inst RouterBgpNeighborVeNeighbor, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -104,6 +112,7 @@ func PutRouterBgpNeighborVeNeighbor(id string, name1 string, name2 string, inst 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -114,11 +123,14 @@ func PutRouterBgpNeighborVeNeighbor(id string, name1 string, name2 string, inst 
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutRouterBgpNeighborVeNeighbor", data)
+			err := check_api_status("PutRouterBgpNeighborVeNeighbor", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteRouterBgpNeighborVeNeighbor(id string, name1 string, name2 string, host string) error {
@@ -136,6 +148,7 @@ func DeleteRouterBgpNeighborVeNeighbor(id string, name1 string, name2 string, ho
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
+		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterBgpNeighborVeNeighbor
@@ -145,7 +158,10 @@ func DeleteRouterBgpNeighborVeNeighbor(id string, name1 string, name2 string, ho
 			return err
 		} else {
 			logger.Println("[INFO] Delete REQ RES..........................", m)
-			check_api_status("DeleteRouterBgpNeighborVeNeighbor", data)
+			err := check_api_status("DeleteRouterBgpNeighborVeNeighbor", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}

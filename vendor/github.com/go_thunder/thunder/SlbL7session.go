@@ -19,7 +19,7 @@ type L7sessionInstance struct {
 	Counters1 []SamplingEnable43 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbL7session(id string, inst L7session, host string) {
+func PostSlbL7session(id string, inst L7session, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -38,6 +38,7 @@ func PostSlbL7session(id string, inst L7session, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -48,11 +49,14 @@ func PostSlbL7session(id string, inst L7session, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbL7session REQ RES..........................", m)
-			check_api_status("PostSlbL7session", data)
+			err := check_api_status("PostSlbL7session", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbL7session(id string, host string) (*L7session, error) {
@@ -70,6 +74,7 @@ func GetSlbL7session(id string, host string) (*L7session, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m L7session
@@ -79,7 +84,10 @@ func GetSlbL7session(id string, host string) (*L7session, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbL7session REQ RES..........................", m)
-			check_api_status("GetSlbL7session", data)
+			err := check_api_status("GetSlbL7session", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

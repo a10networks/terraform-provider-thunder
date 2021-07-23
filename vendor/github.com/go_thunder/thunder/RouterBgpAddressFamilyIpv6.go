@@ -279,7 +279,7 @@ type RouterBgpAddressFamilyIpv6OnlyNotFlaggedCfg struct {
 	RouteMap       string `json:"route-map,omitempty"`
 }
 
-func PostRouterBgpAddressFamilyIpv6(id string, name1 string, inst RouterBgpAddressFamilyIpv6, host string) {
+func PostRouterBgpAddressFamilyIpv6(id string, name1 string, inst RouterBgpAddressFamilyIpv6, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -298,6 +298,7 @@ func PostRouterBgpAddressFamilyIpv6(id string, name1 string, inst RouterBgpAddre
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -308,11 +309,14 @@ func PostRouterBgpAddressFamilyIpv6(id string, name1 string, inst RouterBgpAddre
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostRouterBgpAddressFamilyIpv6", data)
+			err := check_api_status("PostRouterBgpAddressFamilyIpv6", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetRouterBgpAddressFamilyIpv6(id string, name1 string, host string) (*RouterBgpAddressFamilyIpv6, error) {
@@ -330,6 +334,7 @@ func GetRouterBgpAddressFamilyIpv6(id string, name1 string, host string) (*Route
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterBgpAddressFamilyIpv6
@@ -339,7 +344,10 @@ func GetRouterBgpAddressFamilyIpv6(id string, name1 string, host string) (*Route
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetRouterBgpAddressFamilyIpv6", data)
+			err := check_api_status("GetRouterBgpAddressFamilyIpv6", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

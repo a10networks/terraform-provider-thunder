@@ -3,19 +3,21 @@ package thunder
 // Thunder resource Slb DNSCache
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbDNSCache() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbDNSCacheCreate,
-		Update: resourceSlbDNSCacheUpdate,
-		Read:   resourceSlbDNSCacheRead,
-		Delete: resourceSlbDNSCacheDelete,
+		CreateContext: resourceSlbDNSCacheCreate,
+		UpdateContext: resourceSlbDNSCacheUpdate,
+		ReadContext:   resourceSlbDNSCacheRead,
+		DeleteContext: resourceSlbDNSCacheDelete,
 
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
@@ -41,53 +43,61 @@ func resourceSlbDNSCache() *schema.Resource {
 
 }
 
-func resourceSlbDNSCacheCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbDNSCacheCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating DNSCache (Inside resourceSlbDNSCacheCreate)")
 
 	if client.Host != "" {
 		vc := dataToSlbDNSCache(d)
 		d.SetId("1")
-		go_thunder.PostSlbDNSCache(client.Token, vc, client.Host)
-
-		return resourceSlbDNSCacheRead(d, meta)
+		err := go_thunder.PostSlbDNSCache(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSlbDNSCacheRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbDNSCacheRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbDNSCacheRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading DNSCache (Inside resourceSlbDNSCacheRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbDNSCache(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No DNSCache found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbDNSCacheUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbDNSCacheUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbDNSCacheRead(d, meta)
+	return resourceSlbDNSCacheRead(ctx, d, meta)
 }
 
-func resourceSlbDNSCacheDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbDNSCacheDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbDNSCacheRead(d, meta)
+	return resourceSlbDNSCacheRead(ctx, d, meta)
 }
 
 //Utility method to instantiate DNSCache Structure

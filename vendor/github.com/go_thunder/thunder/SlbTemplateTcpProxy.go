@@ -59,7 +59,7 @@ type TCPProxyInstance struct {
 	HalfCloseIdleTimeout    int    `json:"half-close-idle-timeout,omitempty"`
 }
 
-func PostSlbTemplateTcpProxy(id string, inst TCPProxy, host string) {
+func PostSlbTemplateTcpProxy(id string, inst TCPProxy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -78,6 +78,7 @@ func PostSlbTemplateTcpProxy(id string, inst TCPProxy, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -88,11 +89,14 @@ func PostSlbTemplateTcpProxy(id string, inst TCPProxy, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateTcpProxy REQ RES..........................", m)
-			check_api_status("PostSlbTemplateTcpProxy", data)
+			err := check_api_status("PostSlbTemplateTcpProxy", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateTcpProxy(id string, name string, host string) (*TCPProxy, error) {
@@ -110,6 +114,7 @@ func GetSlbTemplateTcpProxy(id string, name string, host string) (*TCPProxy, err
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m TCPProxy
@@ -119,14 +124,17 @@ func GetSlbTemplateTcpProxy(id string, name string, host string) (*TCPProxy, err
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateTcpProxy REQ RES..........................", m)
-			check_api_status("GetSlbTemplateTcpProxy", data)
+			err := check_api_status("GetSlbTemplateTcpProxy", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateTcpProxy(id string, name string, inst TCPProxy, host string) {
+func PutSlbTemplateTcpProxy(id string, name string, inst TCPProxy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -145,6 +153,7 @@ func PutSlbTemplateTcpProxy(id string, name string, inst TCPProxy, host string) 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -155,11 +164,14 @@ func PutSlbTemplateTcpProxy(id string, name string, inst TCPProxy, host string) 
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateTcpProxy REQ RES..........................", m)
-			check_api_status("PutSlbTemplateTcpProxy", data)
+			err := check_api_status("PutSlbTemplateTcpProxy", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateTcpProxy(id string, name string, host string) error {
@@ -176,6 +188,7 @@ func DeleteSlbTemplateTcpProxy(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

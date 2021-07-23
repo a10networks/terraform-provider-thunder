@@ -507,7 +507,7 @@ type InterfaceEthernetInstance struct {
 	FlowControl             int                      `json:"flow-control,omitempty"`
 }
 
-func PostInterfaceEthernet(id string, inst InterfaceEthernet, host string) {
+func PostInterfaceEthernet(id string, inst InterfaceEthernet, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -526,6 +526,7 @@ func PostInterfaceEthernet(id string, inst InterfaceEthernet, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -536,11 +537,14 @@ func PostInterfaceEthernet(id string, inst InterfaceEthernet, host string) {
 
 		} else {
 			logger.Println("[INFO] PostInterfaceEthernet REQ RES..........................", m)
-			check_api_status("PostInterfaceEthernet", data)
+			err := check_api_status("PostInterfaceEthernet", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetInterfaceEthernet(id string, name string, host string) (*InterfaceEthernet, error) {
@@ -558,6 +562,7 @@ func GetInterfaceEthernet(id string, name string, host string) (*InterfaceEthern
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceEthernet
@@ -567,14 +572,17 @@ func GetInterfaceEthernet(id string, name string, host string) (*InterfaceEthern
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetInterfaceEthernet REQ RES..........................", m)
-			check_api_status("GetInterfaceEthernet", data)
+			err := check_api_status("GetInterfaceEthernet", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutInterfaceEthernet(id string, name string, inst InterfaceEthernet, host string) {
+func PutInterfaceEthernet(id string, name string, inst InterfaceEthernet, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -593,6 +601,7 @@ func PutInterfaceEthernet(id string, name string, inst InterfaceEthernet, host s
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -603,11 +612,14 @@ func PutInterfaceEthernet(id string, name string, inst InterfaceEthernet, host s
 
 		} else {
 			logger.Println("[INFO] PutInterfaceEthernet REQ RES..........................", m)
-			check_api_status("PutInterfaceEthernet", data)
+			err := check_api_status("PutInterfaceEthernet", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteInterfaceEthernet(id string, name string, host string) error {
@@ -624,6 +636,7 @@ func DeleteInterfaceEthernet(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

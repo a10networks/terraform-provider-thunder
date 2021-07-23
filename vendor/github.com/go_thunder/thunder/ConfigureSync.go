@@ -49,13 +49,16 @@ func GetConfigureSync(id string, host string) (*Sync, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetConfigureSync", data)
+			err := check_api_status("GetConfigureSync", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostConfigureSync(id string, vc Sync, host string) {
+func PostConfigureSync(id string, vc Sync, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -85,8 +88,11 @@ func PostConfigureSync(id string, vc Sync, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostConfigureSync", data)
+			err := check_api_status("PostConfigureSync", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

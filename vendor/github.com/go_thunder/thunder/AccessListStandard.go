@@ -29,7 +29,7 @@ type AccessListStdrules struct {
 	TransparentSessionOnly int    `json:"transparent-session-only,omitempty"`
 }
 
-func PostAccessListStandard(id string, inst AccessListStandard, host string) {
+func PostAccessListStandard(id string, inst AccessListStandard, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -48,6 +48,7 @@ func PostAccessListStandard(id string, inst AccessListStandard, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -58,11 +59,14 @@ func PostAccessListStandard(id string, inst AccessListStandard, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostAccessListStandard", data)
+			err := check_api_status("PostAccessListStandard", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetAccessListStandard(id string, name1 string, host string) (*AccessListStandard, error) {
@@ -80,6 +84,7 @@ func GetAccessListStandard(id string, name1 string, host string) (*AccessListSta
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m AccessListStandard
@@ -89,14 +94,17 @@ func GetAccessListStandard(id string, name1 string, host string) (*AccessListSta
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetAccessListStandard", data)
+			err := check_api_status("GetAccessListStandard", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutAccessListStandard(id string, name1 string, inst AccessListStandard, host string) {
+func PutAccessListStandard(id string, name1 string, inst AccessListStandard, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -115,6 +123,7 @@ func PutAccessListStandard(id string, name1 string, inst AccessListStandard, hos
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -125,11 +134,14 @@ func PutAccessListStandard(id string, name1 string, inst AccessListStandard, hos
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutAccessListStandard", data)
+			err := check_api_status("PutAccessListStandard", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteAccessListStandard(id string, name1 string, host string) error {
@@ -147,6 +159,7 @@ func DeleteAccessListStandard(id string, name1 string, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
+		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m AccessListStandard
@@ -156,7 +169,10 @@ func DeleteAccessListStandard(id string, name1 string, host string) error {
 			return err
 		} else {
 			logger.Println("[INFO] Delete REQ RES..........................", m)
-			check_api_status("DeleteAccessListStandard", data)
+			err := check_api_status("DeleteAccessListStandard", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}

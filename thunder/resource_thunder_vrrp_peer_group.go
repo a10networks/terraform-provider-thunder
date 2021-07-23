@@ -3,19 +3,20 @@ package thunder
 //Thunder resource Vrrp peer group
 
 import (
+	"context"
 	"fmt"
 	"util"
-
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceVrrpPeerGroup() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceVrrpPeerGroupCreate,
-		Update: resourceVrrpPeerGroupUpdate,
-		Read:   resourceVrrpPeerGroupRead,
-		Delete: resourceVrrpPeerGroupDelete,
+		CreateContext: resourceVrrpPeerGroupCreate,
+		UpdateContext: resourceVrrpPeerGroupUpdate,
+		ReadContext:   resourceVrrpPeerGroupRead,
+		DeleteContext: resourceVrrpPeerGroupDelete,
 
 		Schema: map[string]*schema.Schema{
 			"peer": {
@@ -63,53 +64,61 @@ func resourceVrrpPeerGroup() *schema.Resource {
 
 }
 
-func resourceVrrpPeerGroupCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceVrrpPeerGroupCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating vrrp PeerGroup (Inside resourceVrrpPeerGroupCreate)")
 
 	if client.Host != "" {
 		vc := dataToVrrpPeerGroup(d)
 		d.SetId("1")
-		go_thunder.PostVrrpPeerGroup(client.Token, vc, client.Host)
-
-		return resourceVrrpPeerGroupRead(d, meta)
+		err := go_thunder.PostVrrpPeerGroup(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceVrrpPeerGroupRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceVrrpPeerGroupRead(d *schema.ResourceData, meta interface{}) error {
+func resourceVrrpPeerGroupRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading vrrp PeerGroup (Inside resourceVrrpPeerGroupRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetVrrpPeerGroup(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No vrrp PeerGroup found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceVrrpPeerGroupUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceVrrpPeerGroupUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceVrrpPeerGroupRead(d, meta)
+	return resourceVrrpPeerGroupRead(ctx, d, meta)
 }
 
-func resourceVrrpPeerGroupDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceVrrpPeerGroupDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceVrrpPeerGroupRead(d, meta)
+	return resourceVrrpPeerGroupRead(ctx, d, meta)
 }
 
 //Utility method to instantiate Vrrp PeerGroup Structure

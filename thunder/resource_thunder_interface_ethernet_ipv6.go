@@ -3,20 +3,22 @@ package thunder
 //Thunder resource InterfaceEthernetIPv6
 
 import (
+	"context"
 	"fmt"
 	"strconv"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceInterfaceEthernetIPv6() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceInterfaceEthernetIPv6Create,
-		Update: resourceInterfaceEthernetIPv6Update,
-		Read:   resourceInterfaceEthernetIPv6Read,
-		Delete: resourceInterfaceEthernetIPv6Delete,
+		CreateContext: resourceInterfaceEthernetIPv6Create,
+		UpdateContext: resourceInterfaceEthernetIPv6Update,
+		ReadContext:   resourceInterfaceEthernetIPv6Read,
+		DeleteContext: resourceInterfaceEthernetIPv6Delete,
 		Schema: map[string]*schema.Schema{
 			"ifnum": {
 				Type:        schema.TypeInt,
@@ -583,9 +585,11 @@ func resourceInterfaceEthernetIPv6() *schema.Resource {
 	}
 }
 
-func resourceInterfaceEthernetIPv6Create(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetIPv6Create(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating InterfaceEthernetIPv6 (Inside resourceInterfaceEthernetIPv6Create) ")
@@ -593,41 +597,49 @@ func resourceInterfaceEthernetIPv6Create(d *schema.ResourceData, meta interface{
 		data := dataToInterfaceEthernetIPv6(d)
 		logger.Println("[INFO] received V from method data to InterfaceEthernetIPv6 --")
 		d.SetId(strconv.Itoa(name))
-		go_thunder.PostInterfaceEthernetIPv6(client.Token, name, data, client.Host)
+		err := go_thunder.PostInterfaceEthernetIPv6(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceEthernetIPv6Read(d, meta)
+		return resourceInterfaceEthernetIPv6Read(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceEthernetIPv6Read(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetIPv6Read(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading InterfaceEthernetIPv6 (Inside resourceInterfaceEthernetIPv6Read)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetInterfaceEthernetIPv6(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceInterfaceEthernetIPv6Update(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetIPv6Update(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceEthernetIPv6Read(d, meta)
+	return resourceInterfaceEthernetIPv6Read(ctx, d, meta)
 }
 
-func resourceInterfaceEthernetIPv6Delete(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetIPv6Delete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceEthernetIPv6Read(d, meta)
+	return resourceInterfaceEthernetIPv6Read(ctx, d, meta)
 }
 func dataToInterfaceEthernetIPv6(d *schema.ResourceData) go_thunder.EthernetIPv6 {
 	var vc go_thunder.EthernetIPv6

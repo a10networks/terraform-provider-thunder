@@ -45,13 +45,16 @@ func GetSlbFix(id string, host string) (*SlbFix, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetSlbFix REQ RES..........................", m)
-			check_api_status("GetSlbFix", data)
+			err := check_api_status("GetSlbFix", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbFix(id string, vc SlbFix, host string) {
+func PostSlbFix(id string, vc SlbFix, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -81,8 +84,11 @@ func PostSlbFix(id string, vc SlbFix, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbFix", data)
+			err := check_api_status("PostSlbFix", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

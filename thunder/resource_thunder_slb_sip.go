@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbSip
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbSip() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbSipCreate,
-		Update: resourceSlbSipUpdate,
-		Read:   resourceSlbSipRead,
-		Delete: resourceSlbSipDelete,
+		CreateContext: resourceSlbSipCreate,
+		UpdateContext: resourceSlbSipUpdate,
+		ReadContext:   resourceSlbSipRead,
+		DeleteContext: resourceSlbSipDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbSip() *schema.Resource {
 	}
 }
 
-func resourceSlbSipCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSipCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbSip (Inside resourceSlbSipCreate) ")
@@ -44,17 +48,22 @@ func resourceSlbSipCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSlbSip(d)
 		logger.Println("[INFO] received formatted data from method data to SlbSip --")
 		d.SetId("1")
-		go_thunder.PostSlbSip(client.Token, data, client.Host)
+		err := go_thunder.PostSlbSip(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbSipRead(d, meta)
+		return resourceSlbSipRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbSipRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSipRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbSip (Inside resourceSlbSipRead)")
 
 	if client.Host != "" {
@@ -62,24 +71,27 @@ func resourceSlbSipRead(d *schema.ResourceData, meta interface{}) error {
 		name := d.Id()
 
 		data, err := go_thunder.GetSlbSip(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No Slb Sip found" + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbSipUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSipUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSipRead(d, meta)
+	return resourceSlbSipRead(ctx, d, meta)
 }
 
-func resourceSlbSipDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSipDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSipRead(d, meta)
+	return resourceSlbSipRead(ctx, d, meta)
 }
 
 func dataToSlbSip(d *schema.ResourceData) go_thunder.SlbSip {

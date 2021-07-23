@@ -31,7 +31,7 @@ type EthernetBFDInstance struct {
 	Demand    int            `json:"demand,omitempty"`
 }
 
-func PostInterfaceEthernetBFD(id string, name int, inst EthernetBFD, host string) {
+func PostInterfaceEthernetBFD(id string, name int, inst EthernetBFD, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -50,6 +50,7 @@ func PostInterfaceEthernetBFD(id string, name int, inst EthernetBFD, host string
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -60,11 +61,14 @@ func PostInterfaceEthernetBFD(id string, name int, inst EthernetBFD, host string
 
 		} else {
 			logger.Println("[INFO] PostInterfaceEthernetBFD REQ RES..........................", m)
-			check_api_status("PostInterfaceEthernetBFD", data)
+			err := check_api_status("PostInterfaceEthernetBFD", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetInterfaceEthernetBFD(id string, name string, host string) (*EthernetBFD, error) {
@@ -82,6 +86,7 @@ func GetInterfaceEthernetBFD(id string, name string, host string) (*EthernetBFD,
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m EthernetBFD
@@ -91,7 +96,10 @@ func GetInterfaceEthernetBFD(id string, name string, host string) (*EthernetBFD,
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetInterfaceEthernetBFD REQ RES..........................", m)
-			check_api_status("GetInterfaceEthernetBFD", data)
+			err := check_api_status("GetInterfaceEthernetBFD", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

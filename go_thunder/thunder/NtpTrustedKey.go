@@ -16,7 +16,7 @@ type NtpTrustedKeyInstance struct {
 	UUID string `json:"uuid,omitempty"`
 }
 
-func PostNtpTrustedKey(id string, inst NtpTrustedKey, host string) {
+func PostNtpTrustedKey(id string, inst NtpTrustedKey, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostNtpTrustedKey(id string, inst NtpTrustedKey, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostNtpTrustedKey(id string, inst NtpTrustedKey, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostNtpTrustedKey", data)
+			err := check_api_status("PostNtpTrustedKey", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetNtpTrustedKey(id string, name1 string, host string) (*NtpTrustedKey, error) {
@@ -67,6 +71,7 @@ func GetNtpTrustedKey(id string, name1 string, host string) (*NtpTrustedKey, err
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m NtpTrustedKey
@@ -76,14 +81,17 @@ func GetNtpTrustedKey(id string, name1 string, host string) (*NtpTrustedKey, err
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetNtpTrustedKey", data)
+			err := check_api_status("GetNtpTrustedKey", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutNtpTrustedKey(id string, name1 string, inst NtpTrustedKey, host string) {
+func PutNtpTrustedKey(id string, name1 string, inst NtpTrustedKey, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -102,6 +110,7 @@ func PutNtpTrustedKey(id string, name1 string, inst NtpTrustedKey, host string) 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -112,11 +121,14 @@ func PutNtpTrustedKey(id string, name1 string, inst NtpTrustedKey, host string) 
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutNtpTrustedKey", data)
+			err := check_api_status("PutNtpTrustedKey", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteNtpTrustedKey(id string, name1 string, host string) error {
@@ -133,6 +145,7 @@ func DeleteNtpTrustedKey(id string, name1 string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

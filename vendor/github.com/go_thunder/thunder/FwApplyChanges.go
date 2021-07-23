@@ -15,7 +15,7 @@ type FwApplyChangesInstance struct {
 	Forced int `json:"forced,omitempty"`
 }
 
-func PostFwApplyChanges(id string, inst FwApplyChanges, host string) {
+func PostFwApplyChanges(id string, inst FwApplyChanges, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -34,6 +34,7 @@ func PostFwApplyChanges(id string, inst FwApplyChanges, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -44,11 +45,14 @@ func PostFwApplyChanges(id string, inst FwApplyChanges, host string) {
 
 		} else {
 			logger.Println("[INFO] POST REQ RES..........................", m)
-			check_api_status("PostFwApplyChanges", data)
+			err := check_api_status("PostFwApplyChanges", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwApplyChanges(id string, host string) (*FwApplyChanges, error) {
@@ -66,6 +70,7 @@ func GetFwApplyChanges(id string, host string) (*FwApplyChanges, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwApplyChanges
@@ -75,7 +80,10 @@ func GetFwApplyChanges(id string, host string) (*FwApplyChanges, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwApplyChanges", data)
+			err := check_api_status("GetFwApplyChanges", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

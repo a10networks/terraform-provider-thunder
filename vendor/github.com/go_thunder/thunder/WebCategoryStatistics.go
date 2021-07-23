@@ -20,7 +20,7 @@ type WebCategoryStatisticsSamplingEnable struct {
 	Counters1 string `json:"counters1,omitempty"`
 }
 
-func PostWebCategoryStatistics(id string, inst WebCategoryStatistics, host string) {
+func PostWebCategoryStatistics(id string, inst WebCategoryStatistics, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -39,6 +39,7 @@ func PostWebCategoryStatistics(id string, inst WebCategoryStatistics, host strin
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -49,11 +50,14 @@ func PostWebCategoryStatistics(id string, inst WebCategoryStatistics, host strin
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostWebCategoryStatistics", data)
+			err := check_api_status("PostWebCategoryStatistics", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetWebCategoryStatistics(id string, host string) (*WebCategoryStatistics, error) {
@@ -71,6 +75,7 @@ func GetWebCategoryStatistics(id string, host string) (*WebCategoryStatistics, e
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m WebCategoryStatistics
@@ -80,7 +85,10 @@ func GetWebCategoryStatistics(id string, host string) (*WebCategoryStatistics, e
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetWebCategoryStatistics", data)
+			err := check_api_status("GetWebCategoryStatistics", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

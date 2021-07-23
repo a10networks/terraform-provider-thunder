@@ -25,7 +25,7 @@ type SSLExpireCheckInstance struct {
 	Before                int       `json:"before,omitempty"`
 }
 
-func PostSlbSSLExpireCheck(id string, inst SSLExpireCheck, host string) {
+func PostSlbSSLExpireCheck(id string, inst SSLExpireCheck, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -44,6 +44,7 @@ func PostSlbSSLExpireCheck(id string, inst SSLExpireCheck, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -54,11 +55,14 @@ func PostSlbSSLExpireCheck(id string, inst SSLExpireCheck, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbSSLExpireCheck REQ RES..........................", m)
-			check_api_status("PostSlbSSLExpireCheck", data)
+			err := check_api_status("PostSlbSSLExpireCheck", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbSSLExpireCheck(id string, host string) (*SSLExpireCheck, error) {
@@ -76,6 +80,7 @@ func GetSlbSSLExpireCheck(id string, host string) (*SSLExpireCheck, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SSLExpireCheck
@@ -85,7 +90,10 @@ func GetSlbSSLExpireCheck(id string, host string) (*SSLExpireCheck, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbSSLExpireCheck REQ RES..........................", m)
-			check_api_status("GetSlbSSLExpireCheck", data)
+			err := check_api_status("GetSlbSSLExpireCheck", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

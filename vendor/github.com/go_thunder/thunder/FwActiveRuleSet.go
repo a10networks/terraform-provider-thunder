@@ -18,7 +18,7 @@ type FwActiveRuleSetInstance struct {
 	UUID             string `json:"uuid,omitempty"`
 }
 
-func PostFwActiveRuleSet(id string, inst FwActiveRuleSet, host string) {
+func PostFwActiveRuleSet(id string, inst FwActiveRuleSet, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostFwActiveRuleSet(id string, inst FwActiveRuleSet, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostFwActiveRuleSet(id string, inst FwActiveRuleSet, host string) {
 
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("PostFwActiveRuleSet", data)
+			err := check_api_status("PostFwActiveRuleSet", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwActiveRuleSet(id string, host string) (*FwActiveRuleSet, error) {
@@ -69,6 +73,7 @@ func GetFwActiveRuleSet(id string, host string) (*FwActiveRuleSet, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwActiveRuleSet
@@ -78,7 +83,10 @@ func GetFwActiveRuleSet(id string, host string) (*FwActiveRuleSet, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwActiveRuleSet", data)
+			err := check_api_status("GetFwActiveRuleSet", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

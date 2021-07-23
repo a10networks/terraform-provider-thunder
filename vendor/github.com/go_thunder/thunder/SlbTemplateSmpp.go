@@ -48,13 +48,16 @@ func GetSmpp(id string, name string, host string) (*Smpp, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetSmpp REQ RES..........................", m)
-			check_api_status("GetSmpp", data)
+			err := check_api_status("GetSmpp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSmpp(id string, sg Smpp, host string) {
+func PostSmpp(id string, sg Smpp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -84,13 +87,16 @@ func PostSmpp(id string, sg Smpp, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSmpp", data)
+			err := check_api_status("PostSmpp", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
-func PutSmpp(id string, name string, sg Smpp, host string) {
+func PutSmpp(id string, name string, sg Smpp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -120,10 +126,13 @@ func PutSmpp(id string, name string, sg Smpp, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PutSmpp", data)
+			err := check_api_status("PutSmpp", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func DeleteSmpp(id string, name string, host string) error {

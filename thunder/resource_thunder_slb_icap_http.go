@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbIcapHTTP
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbIcapHTTP() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbIcapHTTPCreate,
-		Update: resourceSlbIcapHTTPUpdate,
-		Read:   resourceSlbIcapHTTPRead,
-		Delete: resourceSlbIcapHTTPDelete,
+		CreateContext: resourceSlbIcapHTTPCreate,
+		UpdateContext: resourceSlbIcapHTTPUpdate,
+		ReadContext:   resourceSlbIcapHTTPRead,
+		DeleteContext: resourceSlbIcapHTTPDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbIcapHTTP() *schema.Resource {
 	}
 }
 
-func resourceSlbIcapHTTPCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbIcapHTTPCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbIcapHTTP (Inside resourceSlbIcapHTTPCreate) ")
@@ -44,37 +48,45 @@ func resourceSlbIcapHTTPCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSlbIcapHTTP(d)
 		logger.Println("[INFO] received V from method data to SlbIcapHTTP --")
 		d.SetId("1")
-		go_thunder.PostSlbIcapHTTP(client.Token, data, client.Host)
+		err := go_thunder.PostSlbIcapHTTP(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbIcapHTTPRead(d, meta)
+		return resourceSlbIcapHTTPRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbIcapHTTPRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbIcapHTTPRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbIcapHTTP (Inside resourceSlbIcapHTTPRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetSlbIcapHTTP(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
-func resourceSlbIcapHTTPUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbIcapHTTPUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbIcapHTTPRead(d, meta)
+	return resourceSlbIcapHTTPRead(ctx, d, meta)
 }
 
-func resourceSlbIcapHTTPDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbIcapHTTPDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbIcapHTTPRead(d, meta)
+	return resourceSlbIcapHTTPRead(ctx, d, meta)
 }
 func dataToSlbIcapHTTP(d *schema.ResourceData) go_thunder.IcapHTTP {
 	var vc go_thunder.IcapHTTP

@@ -3,20 +3,22 @@ package thunder
 //Thunder resource FwApp
 
 import (
+	"context"
 	"fmt"
 	"strconv"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwApp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwAppCreate,
-		Update: resourceFwAppUpdate,
-		Read:   resourceFwAppRead,
-		Delete: resourceFwAppDelete,
+		CreateContext: resourceFwAppCreate,
+		UpdateContext: resourceFwAppUpdate,
+		ReadContext:   resourceFwAppRead,
+		DeleteContext: resourceFwAppDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -40,9 +42,11 @@ func resourceFwApp() *schema.Resource {
 	}
 }
 
-func resourceFwAppCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAppCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwApp (Inside resourceFwAppCreate) ")
@@ -50,41 +54,49 @@ func resourceFwAppCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToFwApp(d)
 		logger.Println("[INFO] received formatted data from method data to FwApp --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwApp(client.Token, data, client.Host)
+		err := go_thunder.PostFwApp(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwAppRead(d, meta)
+		return resourceFwAppRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwAppRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAppRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwApp (Inside resourceFwAppRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwApp(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwAppUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAppUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwAppRead(d, meta)
+	return resourceFwAppRead(ctx, d, meta)
 }
 
-func resourceFwAppDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAppDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwAppRead(d, meta)
+	return resourceFwAppRead(ctx, d, meta)
 }
 func dataToFwApp(d *schema.ResourceData) go_thunder.FwApp {
 	var vc go_thunder.FwApp

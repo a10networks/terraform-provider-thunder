@@ -46,13 +46,16 @@ func GetUdp(id string, name string, host string) (*UDP, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetUdp REQ RES..........................", m)
-			check_api_status("GetUdp", data)
+			err := check_api_status("GetUdp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostUdp(id string, sg UDP, host string) {
+func PostUdp(id string, sg UDP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -82,13 +85,16 @@ func PostUdp(id string, sg UDP, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostUdp", data)
+			err := check_api_status("PostUdp", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
-func PutUdp(id string, name string, sg UDP, host string) {
+func PutUdp(id string, name string, sg UDP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -118,10 +124,13 @@ func PutUdp(id string, name string, sg UDP, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PutUdp", data)
+			err := check_api_status("PutUdp", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func DeleteUdp(id string, name string, host string) error {

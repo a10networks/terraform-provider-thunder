@@ -34,7 +34,7 @@ type Template struct {
 	UUID               string `json:"uuid,omitempty"`
 }
 
-func PostPartition(id string, inst Partition, host string) {
+func PostPartition(id string, inst Partition, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -55,6 +55,7 @@ func PostPartition(id string, inst Partition, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -65,11 +66,14 @@ func PostPartition(id string, inst Partition, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostPartition", data)
+			err := check_api_status("PostPartition", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetPartition(id string, name1 string, host string) (*Partition, error) {
@@ -87,6 +91,7 @@ func GetPartition(id string, name1 string, host string) (*Partition, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Partition
@@ -96,7 +101,10 @@ func GetPartition(id string, name1 string, host string) (*Partition, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetPartition", data)
+			err := check_api_status("GetPartition", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
@@ -118,6 +126,7 @@ func DeletePartition(id string, name1 string, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
+		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Partition
@@ -127,7 +136,10 @@ func DeletePartition(id string, name1 string, host string) error {
 			return err
 		} else {
 			logger.Println("[INFO] Delete REQ RES..........................", m)
-			check_api_status("DeletePartition", data)
+			err := check_api_status("DeletePartition", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}

@@ -132,13 +132,16 @@ func GetSlbCommon(id string, host string) (*SlbCommon, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetSlbCommon REQ RES..........................", m)
-			check_api_status("GetSlbCommon", data)
+			err := check_api_status("GetSlbCommon", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbCommon(id string, vc SlbCommon, host string) {
+func PostSlbCommon(id string, vc SlbCommon, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -168,8 +171,11 @@ func PostSlbCommon(id string, vc SlbCommon, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbCommon", data)
+			err := check_api_status("PostSlbCommon", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

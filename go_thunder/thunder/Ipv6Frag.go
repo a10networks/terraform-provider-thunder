@@ -19,7 +19,7 @@ type IPv6FragInstance struct {
 	FragTimeout int                `json:"frag-timeout,omitempty"`
 }
 
-func PostIpv6Frag(id string, inst IPv6Frag, host string) {
+func PostIpv6Frag(id string, inst IPv6Frag, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -38,6 +38,7 @@ func PostIpv6Frag(id string, inst IPv6Frag, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -48,11 +49,14 @@ func PostIpv6Frag(id string, inst IPv6Frag, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpv6Frag REQ RES..........................", m)
-			check_api_status("PostIpv6Frag", data)
+			err := check_api_status("PostIpv6Frag", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpv6Frag(id string, host string) (*IPv6Frag, error) {
@@ -70,6 +74,7 @@ func GetIpv6Frag(id string, host string) (*IPv6Frag, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m IPv6Frag
@@ -79,7 +84,10 @@ func GetIpv6Frag(id string, host string) (*IPv6Frag, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetIpv6Frag", data)
+			err := check_api_status("GetIpv6Frag", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

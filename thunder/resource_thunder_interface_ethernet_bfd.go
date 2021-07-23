@@ -3,19 +3,21 @@ package thunder
 //Thunder resource InterfaceEthernetBFD
 
 import (
+	"context"
 	"strconv"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceInterfaceEthernetBFD() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceInterfaceEthernetBFDCreate,
-		Update: resourceInterfaceEthernetBFDUpdate,
-		Read:   resourceInterfaceEthernetBFDRead,
-		Delete: resourceInterfaceEthernetBFDDelete,
+		CreateContext: resourceInterfaceEthernetBFDCreate,
+		UpdateContext: resourceInterfaceEthernetBFDUpdate,
+		ReadContext:   resourceInterfaceEthernetBFDRead,
+		DeleteContext: resourceInterfaceEthernetBFDDelete,
 		Schema: map[string]*schema.Schema{
 			"ifnum": {
 				Type:        schema.TypeInt,
@@ -94,9 +96,11 @@ func resourceInterfaceEthernetBFD() *schema.Resource {
 	}
 }
 
-func resourceInterfaceEthernetBFDCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetBFDCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating InterfaceEthernetBFD (Inside resourceInterfaceEthernetBFDCreate) ")
@@ -104,41 +108,49 @@ func resourceInterfaceEthernetBFDCreate(d *schema.ResourceData, meta interface{}
 		data := dataToInterfaceEthernetBFD(d)
 		logger.Println("[INFO] received V from method data to InterfaceEthernetBFD --")
 		d.SetId(strconv.Itoa(name))
-		go_thunder.PostInterfaceEthernetBFD(client.Token, name, data, client.Host)
+		err := go_thunder.PostInterfaceEthernetBFD(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceEthernetBFDRead(d, meta)
+		return resourceInterfaceEthernetBFDRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceEthernetBFDRead(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetBFDRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading InterfaceEthernetBFD (Inside resourceInterfaceEthernetBFDRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetInterfaceEthernetBFD(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceInterfaceEthernetBFDUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetBFDUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceEthernetBFDRead(d, meta)
+	return resourceInterfaceEthernetBFDRead(ctx, d, meta)
 }
 
-func resourceInterfaceEthernetBFDDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetBFDDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceEthernetBFDRead(d, meta)
+	return resourceInterfaceEthernetBFDRead(ctx, d, meta)
 }
 func dataToInterfaceEthernetBFD(d *schema.ResourceData) go_thunder.EthernetBFD {
 	var vc go_thunder.EthernetBFD

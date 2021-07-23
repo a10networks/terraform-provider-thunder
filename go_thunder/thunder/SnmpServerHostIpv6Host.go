@@ -20,7 +20,7 @@ type SnmpServerHostIpv6HostInstance struct {
 	Version   string `json:"version,omitempty"`
 }
 
-func PostSnmpServerHostIpv6Host(id string, inst SnmpServerHostIpv6Host, host string) {
+func PostSnmpServerHostIpv6Host(id string, inst SnmpServerHostIpv6Host, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -39,6 +39,7 @@ func PostSnmpServerHostIpv6Host(id string, inst SnmpServerHostIpv6Host, host str
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -49,11 +50,14 @@ func PostSnmpServerHostIpv6Host(id string, inst SnmpServerHostIpv6Host, host str
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerHostIpv6Host", data)
+			err := check_api_status("PostSnmpServerHostIpv6Host", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerHostIpv6Host(id string, name1 string, name2 string, host string) (*SnmpServerHostIpv6Host, error) {
@@ -71,6 +75,7 @@ func GetSnmpServerHostIpv6Host(id string, name1 string, name2 string, host strin
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerHostIpv6Host
@@ -80,14 +85,17 @@ func GetSnmpServerHostIpv6Host(id string, name1 string, name2 string, host strin
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerHostIpv6Host", data)
+			err := check_api_status("GetSnmpServerHostIpv6Host", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSnmpServerHostIpv6Host(id string, name1 string, name2 string, inst SnmpServerHostIpv6Host, host string) {
+func PutSnmpServerHostIpv6Host(id string, name1 string, name2 string, inst SnmpServerHostIpv6Host, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -106,6 +114,7 @@ func PutSnmpServerHostIpv6Host(id string, name1 string, name2 string, inst SnmpS
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -116,11 +125,14 @@ func PutSnmpServerHostIpv6Host(id string, name1 string, name2 string, inst SnmpS
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutSnmpServerHostIpv6Host", data)
+			err := check_api_status("PutSnmpServerHostIpv6Host", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSnmpServerHostIpv6Host(id string, name1 string, name2 string, host string) error {
@@ -137,6 +149,7 @@ func DeleteSnmpServerHostIpv6Host(id string, name1 string, name2 string, host st
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbTemplateVirtualPort
 
 import (
+	"context"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateVirtualPort() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateVirtualPortCreate,
-		Update: resourceSlbTemplateVirtualPortUpdate,
-		Read:   resourceSlbTemplateVirtualPortRead,
-		Delete: resourceSlbTemplateVirtualPortDelete,
+		CreateContext: resourceSlbTemplateVirtualPortCreate,
+		UpdateContext: resourceSlbTemplateVirtualPortUpdate,
+		ReadContext:   resourceSlbTemplateVirtualPortRead,
+		DeleteContext: resourceSlbTemplateVirtualPortDelete,
 		Schema: map[string]*schema.Schema{
 			"allow_syn_otherflags": {
 				Type:        schema.TypeInt,
@@ -156,9 +158,11 @@ func resourceSlbTemplateVirtualPort() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateVirtualPortCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateVirtualPortCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateVirtualPort (Inside resourceSlbTemplateVirtualPortCreate) ")
@@ -166,36 +170,46 @@ func resourceSlbTemplateVirtualPortCreate(d *schema.ResourceData, meta interface
 		data := dataToSlbTemplateVirtualPort(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateVirtualPort --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplateVirtualPort(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateVirtualPort(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateVirtualPortRead(d, meta)
+		return resourceSlbTemplateVirtualPortRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateVirtualPortRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateVirtualPortRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateVirtualPort (Inside resourceSlbTemplateVirtualPortRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplateVirtualPort(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplateVirtualPortUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateVirtualPortUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateVirtualPort   (Inside resourceSlbTemplateVirtualPortUpdate) ")
@@ -203,17 +217,22 @@ func resourceSlbTemplateVirtualPortUpdate(d *schema.ResourceData, meta interface
 		data := dataToSlbTemplateVirtualPort(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateVirtualPort ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplateVirtualPort(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateVirtualPort(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateVirtualPortRead(d, meta)
+		return resourceSlbTemplateVirtualPortRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateVirtualPortDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateVirtualPortDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -221,7 +240,7 @@ func resourceSlbTemplateVirtualPortDelete(d *schema.ResourceData, meta interface
 		err := go_thunder.DeleteSlbTemplateVirtualPort(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

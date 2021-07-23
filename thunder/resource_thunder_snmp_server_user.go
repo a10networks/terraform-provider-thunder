@@ -3,17 +3,20 @@ package thunder
 //Thunder resource SnmpServerUser
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSnmpServerUser() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSnmpServerUserCreate,
-		Update: resourceSnmpServerUserUpdate,
-		Read:   resourceSnmpServerUserRead,
-		Delete: resourceSnmpServerUserDelete,
+		CreateContext: resourceSnmpServerUserCreate,
+		UpdateContext: resourceSnmpServerUserUpdate,
+		ReadContext:   resourceSnmpServerUserRead,
+		DeleteContext: resourceSnmpServerUserDelete,
 		Schema: map[string]*schema.Schema{
 			"username": {
 				Type:        schema.TypeString,
@@ -69,9 +72,11 @@ func resourceSnmpServerUser() *schema.Resource {
 	}
 }
 
-func resourceSnmpServerUserCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerUserCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerUser (Inside resourceSnmpServerUserCreate) ")
@@ -79,52 +84,67 @@ func resourceSnmpServerUserCreate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToSnmpServerUser(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerUser --")
 		d.SetId(name1)
-		go_thunder.PostSnmpServerUser(client.Token, data, client.Host)
+		err := go_thunder.PostSnmpServerUser(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerUserRead(d, meta)
+		return resourceSnmpServerUserRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerUserRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerUserRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SnmpServerUser (Inside resourceSnmpServerUserRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetSnmpServerUser(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSnmpServerUserUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerUserUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying SnmpServerUser   (Inside resourceSnmpServerUserUpdate) ")
 		data := dataToSnmpServerUser(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerUser ")
-		go_thunder.PutSnmpServerUser(client.Token, name1, data, client.Host)
+		err := go_thunder.PutSnmpServerUser(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerUserRead(d, meta)
+		return resourceSnmpServerUserRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerUserDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerUserDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -132,11 +152,11 @@ func resourceSnmpServerUserDelete(d *schema.ResourceData, meta interface{}) erro
 		err := go_thunder.DeleteSnmpServerUser(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToSnmpServerUser(d *schema.ResourceData) go_thunder.SnmpServerUser {

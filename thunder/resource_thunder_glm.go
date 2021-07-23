@@ -1,18 +1,20 @@
 package thunder
 
 import (
+	"context"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceGlm() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceGlmCreate,
-		Update: resourceGlmUpdate,
-		Read:   resourceGlmRead,
-		Delete: resourceGlmDelete,
+		CreateContext: resourceGlmCreate,
+		UpdateContext: resourceGlmUpdate,
+		ReadContext:   resourceGlmRead,
+		DeleteContext: resourceGlmDelete,
 
 		Schema: map[string]*schema.Schema{
 			"use_mgmt_port": {
@@ -114,51 +116,61 @@ func resourceGlm() *schema.Resource {
 
 }
 
-func resourceGlmCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceGlmCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating Glm (Inside resourceGlmCreate)")
 
 	if client.Host != "" {
 		vc := dataToGlm(d)
-		go_thunder.PostGlm(client.Token, vc, client.Host)
+		err := go_thunder.PostGlm(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+
 		d.SetId("1")
 
-		return resourceGlmRead(d, meta)
+		return resourceGlmRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceGlmRead(d *schema.ResourceData, meta interface{}) error {
+func resourceGlmRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading Glm (Inside resourceGlmRead)")
 
 	client := meta.(Thunder)
 
+	var diags diag.Diagnostics
+
 	if client.Host != "" {
 
 		vc, err := go_thunder.GetGlm(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No Glm found")
 			//d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceGlmUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceGlmUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceGlmRead(d, meta)
+	return resourceGlmRead(ctx, d, meta)
 }
 
-func resourceGlmDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceGlmDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceGlmRead(d, meta)
+	return resourceGlmRead(ctx, d, meta)
 }
 
 //Utility method to instantiate Glm Structure

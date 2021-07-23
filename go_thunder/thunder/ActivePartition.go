@@ -16,7 +16,7 @@ type ActivePartitionInstance struct {
 	Shared       int    `json:"shared,omitempty"`
 }
 
-func PostActivePartition(id string, inst ActivePartition, host string) {
+func PostActivePartition(id string, inst ActivePartition, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostActivePartition(id string, inst ActivePartition, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostActivePartition(id string, inst ActivePartition, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostActivePartition", data)
+			err := check_api_status("PostActivePartition", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetActivePartition(id string, host string) (*ActivePartition, error) {
@@ -67,6 +71,7 @@ func GetActivePartition(id string, host string) (*ActivePartition, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m ActivePartition
@@ -76,7 +81,10 @@ func GetActivePartition(id string, host string) (*ActivePartition, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetActivePartition", data)
+			err := check_api_status("GetActivePartition", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

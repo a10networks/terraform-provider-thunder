@@ -3,19 +3,21 @@ package thunder
 //Thunder resource InterfaceManagement
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceInterfaceManagement() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceInterfaceManagementCreate,
-		Update: resourceInterfaceManagementUpdate,
-		Read:   resourceInterfaceManagementRead,
-		Delete: resourceInterfaceManagementDelete,
+		CreateContext: resourceInterfaceManagementCreate,
+		UpdateContext: resourceInterfaceManagementUpdate,
+		ReadContext:   resourceInterfaceManagementRead,
+		DeleteContext: resourceInterfaceManagementDelete,
 		Schema: map[string]*schema.Schema{
 			"broadcast_rate_limit": {
 				Type:     schema.TypeList,
@@ -328,9 +330,11 @@ func resourceInterfaceManagement() *schema.Resource {
 	}
 }
 
-func resourceInterfaceManagementCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceManagementCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating InterfaceManagement (Inside resourceInterfaceManagementCreate) ")
@@ -338,41 +342,49 @@ func resourceInterfaceManagementCreate(d *schema.ResourceData, meta interface{})
 		data := dataToInterfaceManagement(d)
 		logger.Println("[INFO] received V from method data to InterfaceManagement --")
 		d.SetId("1")
-		go_thunder.PostInterfaceManagement(client.Token, data, client.Host)
+		err := go_thunder.PostInterfaceManagement(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceManagementRead(d, meta)
+		return resourceInterfaceManagementRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceManagementRead(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceManagementRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading InterfaceManagement (Inside resourceInterfaceManagementRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetInterfaceManagement(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceInterfaceManagementUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceManagementUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceManagementRead(d, meta)
+	return resourceInterfaceManagementRead(ctx, d, meta)
 }
 
-func resourceInterfaceManagementDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceManagementDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceManagementRead(d, meta)
+	return resourceInterfaceManagementRead(ctx, d, meta)
 }
 
 func dataToInterfaceManagement(d *schema.ResourceData) go_thunder.Management {

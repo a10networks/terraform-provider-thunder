@@ -1,9 +1,13 @@
 package thunder
 
 import (
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
-	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+	"context"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
+
+	//"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 	"log"
 	"reflect"
 	"strings"
@@ -12,7 +16,7 @@ import (
 
 const DEFAULT_PARTITION = "Common"
 
-func Provider() terraform.ResourceProvider {
+func Provider() *schema.Provider {
 	return &schema.Provider{
 		Schema: map[string]*schema.Schema{
 			"address": {
@@ -293,7 +297,7 @@ func Provider() terraform.ResourceProvider {
 			"thunder_interface_lif_ip":                        resourceInterfaceLifIp(),
 		},
 
-		ConfigureFunc: providerConfigure,
+		ConfigureContextFunc: providerConfigure,
 	}
 }
 
@@ -305,33 +309,54 @@ func setToStringSlice(s *schema.Set) []string {
 	return list
 }
 
-func callPartition(global_partition string, t Thunder) {
+func callPartition(global_partition string, t Thunder) error {
 
 	logger := util.GetLoggerInstance()
+
 	if global_partition != "" {
-		logger.Println("switching to patition ---> " + global_partition)
-		p := ActivePartition{
-			Shared: ActivePartitionInstance{
+		
+		p := ActivePartitionSession{
+			Shared: ActivePartitionSessionInstance{
 				CurrPartName: global_partition,
 			},
 		}
-		ActivePartitionEnable(p, t)
-
+		err := ActivePartitionEnable(p, t)
+		if err != nil {
+			logger.Println("Fail to switch patition ---> " + global_partition)
+			return err
+		}
+		logger.Println("switching to patition ---> " + global_partition)
 	} else {
 		logger.Println("using shared patition")
+		return nil
 	}
+	return nil
 }
 
-func providerConfigure(d *schema.ResourceData) (interface{}, error) {
+func providerConfigure(ctx context.Context, d *schema.ResourceData) (interface{}, diag.Diagnostics) {
 	config := Config{
 		Address:  d.Get("address").(string),
 		Username: d.Get("username").(string),
 		Password: d.Get("password").(string),
 	}
+
+	var diags diag.Diagnostics
+
 	var global_partition string = d.Get("partition").(string)
 	tt, err := config.Client()
-	callPartition(global_partition, tt)
-	return tt, err
+	if err != nil {
+		diags = append(diags, diag.Diagnostic{
+			Severity: diag.Error,
+			Summary:  "Unable to create thunder client",
+			Detail:   "Unable to authenticate user for authenticated thunder client",
+		})
+		return tt, diags
+	}
+	err1 := callPartition(global_partition, tt)
+	if err1 != nil {
+		return tt, diag.FromErr(err1)
+	}
+	return tt, diags
 }
 
 func mapEntity(d map[string]interface{}, obj interface{}) {

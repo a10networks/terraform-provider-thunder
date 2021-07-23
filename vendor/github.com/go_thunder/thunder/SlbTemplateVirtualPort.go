@@ -41,7 +41,7 @@ type VirtualPortInstance struct {
 	ConnRateLimit          int    `json:"conn-rate-limit,omitempty"`
 }
 
-func PostSlbTemplateVirtualPort(id string, inst VirtualPort, host string) {
+func PostSlbTemplateVirtualPort(id string, inst VirtualPort, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -60,6 +60,7 @@ func PostSlbTemplateVirtualPort(id string, inst VirtualPort, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -70,11 +71,14 @@ func PostSlbTemplateVirtualPort(id string, inst VirtualPort, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateVirtualPort REQ RES..........................", m)
-			check_api_status("PostSlbTemplateVirtualPort", data)
+			err := check_api_status("PostSlbTemplateVirtualPort", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateVirtualPort(id string, name string, host string) (*VirtualPort, error) {
@@ -92,6 +96,7 @@ func GetSlbTemplateVirtualPort(id string, name string, host string) (*VirtualPor
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m VirtualPort
@@ -101,14 +106,17 @@ func GetSlbTemplateVirtualPort(id string, name string, host string) (*VirtualPor
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateVirtualPort REQ RES..........................", m)
-			check_api_status("GetSlbTemplateVirtualPort", data)
+			err := check_api_status("GetSlbTemplateVirtualPort", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateVirtualPort(id string, name string, inst VirtualPort, host string) {
+func PutSlbTemplateVirtualPort(id string, name string, inst VirtualPort, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -127,6 +135,7 @@ func PutSlbTemplateVirtualPort(id string, name string, inst VirtualPort, host st
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -137,11 +146,14 @@ func PutSlbTemplateVirtualPort(id string, name string, inst VirtualPort, host st
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateVirtualPort REQ RES..........................", m)
-			check_api_status("PutSlbTemplateVirtualPort", data)
+			err := check_api_status("PutSlbTemplateVirtualPort", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateVirtualPort(id string, name string, host string) error {
@@ -158,6 +170,7 @@ func DeleteSlbTemplateVirtualPort(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

@@ -51,13 +51,16 @@ func GetVrrpPeerGroup(id string, host string) (*PeerGroup, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetVrrpPeerGroup", data)
+			err := check_api_status("GetVrrpPeerGroup", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostVrrpPeerGroup(id string, vc PeerGroup, host string) {
+func PostVrrpPeerGroup(id string, vc PeerGroup, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -87,8 +90,11 @@ func PostVrrpPeerGroup(id string, vc PeerGroup, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostVrrpPeerGroup", data)
+			err := check_api_status("PostVrrpPeerGroup", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

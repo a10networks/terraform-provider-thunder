@@ -16,7 +16,7 @@ type RouterBgpAddressFamilyIpv6NetworkSynchronizationInstance struct {
 	UUID                   string `json:"uuid,omitempty"`
 }
 
-func PostRouterBgpAddressFamilyIpv6NetworkSynchronization(id string, name1 string, inst RouterBgpAddressFamilyIpv6NetworkSynchronization, host string) {
+func PostRouterBgpAddressFamilyIpv6NetworkSynchronization(id string, name1 string, inst RouterBgpAddressFamilyIpv6NetworkSynchronization, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostRouterBgpAddressFamilyIpv6NetworkSynchronization(id string, name1 strin
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostRouterBgpAddressFamilyIpv6NetworkSynchronization(id string, name1 strin
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostRouterBgpAddressFamilyIpv6NetworkSynchronization", data)
+			err := check_api_status("PostRouterBgpAddressFamilyIpv6NetworkSynchronization", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetRouterBgpAddressFamilyIpv6NetworkSynchronization(id string, name1 string, host string) (*RouterBgpAddressFamilyIpv6NetworkSynchronization, error) {
@@ -67,6 +71,7 @@ func GetRouterBgpAddressFamilyIpv6NetworkSynchronization(id string, name1 string
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterBgpAddressFamilyIpv6NetworkSynchronization
@@ -76,7 +81,10 @@ func GetRouterBgpAddressFamilyIpv6NetworkSynchronization(id string, name1 string
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetRouterBgpAddressFamilyIpv6NetworkSynchronization", data)
+			err := check_api_status("GetRouterBgpAddressFamilyIpv6NetworkSynchronization", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

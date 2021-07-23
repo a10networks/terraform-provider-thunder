@@ -15,7 +15,7 @@ type GlmSendInstance struct {
 	LicenseRequest int `json:"license-request,omitempty"`
 }
 
-func PostGlmSend(id string, inst GlmSend, host string) {
+func PostGlmSend(id string, inst GlmSend, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -34,10 +34,12 @@ func PostGlmSend(id string, inst GlmSend, host string) {
 	logger.Println("post resp --> ", resp)
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		logger.Println("post - data -> ", data)
+		return err
 		var m GlmSend
 		erro := json.Unmarshal(data, &m)
 
@@ -46,11 +48,14 @@ func PostGlmSend(id string, inst GlmSend, host string) {
 
 		} else {
 			logger.Println("[INFO] PostGlmSend REQ RES..........................", m)
-			check_api_status("PostGlmSend", data)
+			err := check_api_status("PostGlmSend", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetGlmSend(id string, host string) (*GlmSend, error) {
@@ -68,6 +73,7 @@ func GetGlmSend(id string, host string) (*GlmSend, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 
@@ -79,7 +85,10 @@ func GetGlmSend(id string, host string) (*GlmSend, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetGlmSend REQ RES..........................", m)
-			check_api_status("GetGlmSend", data)
+			err := check_api_status("GetGlmSend", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

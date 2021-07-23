@@ -3,19 +3,22 @@ package thunder
 //Thunder resource FwRadiusServer
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwRadiusServer() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwRadiusServerCreate,
-		Update: resourceFwRadiusServerUpdate,
-		Read:   resourceFwRadiusServerRead,
-		Delete: resourceFwRadiusServerDelete,
+		CreateContext: resourceFwRadiusServerCreate,
+		UpdateContext: resourceFwRadiusServerUpdate,
+		ReadContext:   resourceFwRadiusServerRead,
+		DeleteContext: resourceFwRadiusServerDelete,
 		Schema: map[string]*schema.Schema{
 			"accounting_start": {
 				Type:        schema.TypeString,
@@ -189,9 +192,11 @@ func resourceFwRadiusServer() *schema.Resource {
 	}
 }
 
-func resourceFwRadiusServerCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwRadiusServerCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwRadiusServer (Inside resourceFwRadiusServerCreate) ")
@@ -199,41 +204,49 @@ func resourceFwRadiusServerCreate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToFwRadiusServer(d)
 		logger.Println("[INFO] received formatted data from method data to FwRadiusServer --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwRadiusServer(client.Token, data, client.Host)
+		err := go_thunder.PostFwRadiusServer(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwRadiusServerRead(d, meta)
+		return resourceFwRadiusServerRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwRadiusServerRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwRadiusServerRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwRadiusServer (Inside resourceFwRadiusServerRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwRadiusServer(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwRadiusServerUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwRadiusServerUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwRadiusServerRead(d, meta)
+	return resourceFwRadiusServerRead(ctx, d, meta)
 }
 
-func resourceFwRadiusServerDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwRadiusServerDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwRadiusServerRead(d, meta)
+	return resourceFwRadiusServerRead(ctx, d, meta)
 }
 func dataToFwRadiusServer(d *schema.ResourceData) go_thunder.FwRadiusServer {
 	var vc go_thunder.FwRadiusServer

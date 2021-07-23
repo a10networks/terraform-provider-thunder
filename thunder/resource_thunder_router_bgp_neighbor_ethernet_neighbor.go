@@ -3,19 +3,22 @@ package thunder
 //Thunder resource RouterBgpNeighborEthernetNeighbor
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strconv"
 	"strings"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceRouterBgpNeighborEthernetNeighbor() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceRouterBgpNeighborEthernetNeighborCreate,
-		Update: resourceRouterBgpNeighborEthernetNeighborUpdate,
-		Read:   resourceRouterBgpNeighborEthernetNeighborRead,
-		Delete: resourceRouterBgpNeighborEthernetNeighborDelete,
+		CreateContext: resourceRouterBgpNeighborEthernetNeighborCreate,
+		UpdateContext: resourceRouterBgpNeighborEthernetNeighborUpdate,
+		ReadContext:   resourceRouterBgpNeighborEthernetNeighborRead,
+		DeleteContext: resourceRouterBgpNeighborEthernetNeighborDelete,
 		Schema: map[string]*schema.Schema{
 			"ethernet": {
 				Type:        schema.TypeInt,
@@ -61,9 +64,11 @@ func resourceRouterBgpNeighborEthernetNeighbor() *schema.Resource {
 	}
 }
 
-func resourceRouterBgpNeighborEthernetNeighborCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpNeighborEthernetNeighborCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RouterBgpNeighborEthernetNeighbor (Inside resourceRouterBgpNeighborEthernetNeighborCreate) ")
@@ -73,17 +78,22 @@ func resourceRouterBgpNeighborEthernetNeighborCreate(d *schema.ResourceData, met
 		data := dataToRouterBgpNeighborEthernetNeighbor(d)
 		logger.Println("[INFO] received formatted data from method data to RouterBgpNeighborEthernetNeighbor --")
 		d.SetId(strconv.Itoa(name1) + "," + strconv.Itoa(name2))
-		go_thunder.PostRouterBgpNeighborEthernetNeighbor(client.Token, name, data, client.Host)
+		err := go_thunder.PostRouterBgpNeighborEthernetNeighbor(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouterBgpNeighborEthernetNeighborRead(d, meta)
+		return resourceRouterBgpNeighborEthernetNeighborRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouterBgpNeighborEthernetNeighborRead(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpNeighborEthernetNeighborRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading RouterBgpNeighborEthernetNeighbor (Inside resourceRouterBgpNeighborEthernetNeighborRead)")
 
 	if client.Host != "" {
@@ -92,18 +102,23 @@ func resourceRouterBgpNeighborEthernetNeighborRead(d *schema.ResourceData, meta 
 		name2 := id[1]
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetRouterBgpNeighborEthernetNeighbor(client.Token, name1, name2, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceRouterBgpNeighborEthernetNeighborUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpNeighborEthernetNeighborUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -112,17 +127,22 @@ func resourceRouterBgpNeighborEthernetNeighborUpdate(d *schema.ResourceData, met
 		logger.Println("[INFO] Modifying RouterBgpNeighborEthernetNeighbor   (Inside resourceRouterBgpNeighborEthernetNeighborUpdate) ")
 		data := dataToRouterBgpNeighborEthernetNeighbor(d)
 		logger.Println("[INFO] received formatted data from method data to RouterBgpNeighborEthernetNeighbor ")
-		go_thunder.PutRouterBgpNeighborEthernetNeighbor(client.Token, name1, name2, data, client.Host)
+		err := go_thunder.PutRouterBgpNeighborEthernetNeighbor(client.Token, name1, name2, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouterBgpNeighborEthernetNeighborRead(d, meta)
+		return resourceRouterBgpNeighborEthernetNeighborRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouterBgpNeighborEthernetNeighborDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpNeighborEthernetNeighborDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -132,11 +152,11 @@ func resourceRouterBgpNeighborEthernetNeighborDelete(d *schema.ResourceData, met
 		err := go_thunder.DeleteRouterBgpNeighborEthernetNeighbor(client.Token, name1, name2, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToRouterBgpNeighborEthernetNeighbor(d *schema.ResourceData) go_thunder.RouterBgpNeighborEthernetNeighbor {

@@ -124,13 +124,16 @@ func GetImport(id string, host string) (*Import, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetImport REQ RES..........................", m)
-			check_api_status("GetImport", data)
+			err := check_api_status("GetImport", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostImport(id string, vc Import, host string) {
+func PostImport(id string, vc Import, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -160,8 +163,11 @@ func PostImport(id string, vc Import, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostImport", data)
+			err := check_api_status("PostImport", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

@@ -66,13 +66,16 @@ func GetVrrpCommon(id string, host string) (*CommonInstance, error) {
 			logger.Println("Common instance from Read")
 			logger.Println(string(data))
 			logger.Println("[INFO] GetVrrpCommon REQ RES..........................", m)
-			check_api_status("GetVrrpCommon", data)
+			err := check_api_status("GetVrrpCommon", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostVrrpCommon(id string, vc CommonInstance, host string) {
+func PostVrrpCommon(id string, vc CommonInstance, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -102,8 +105,11 @@ func PostVrrpCommon(id string, vc CommonInstance, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostVrrpCommon", data)
+			err := check_api_status("PostVrrpCommon", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

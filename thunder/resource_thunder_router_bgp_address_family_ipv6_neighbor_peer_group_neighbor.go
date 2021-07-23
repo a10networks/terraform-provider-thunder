@@ -3,20 +3,23 @@ package thunder
 //Thunder resource RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"strings"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborCreate,
-		Update: resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborUpdate,
-		Read:   resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRead,
-		Delete: resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborDelete,
+		CreateContext: resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborCreate,
+		UpdateContext: resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborUpdate,
+		ReadContext:   resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRead,
+		DeleteContext: resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborDelete,
 		Schema: map[string]*schema.Schema{
 			"peer_group": {
 				Type:        schema.TypeString,
@@ -184,9 +187,11 @@ func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor() *schema.Resou
 	}
 }
 
-func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor (Inside resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborCreate) ")
@@ -196,17 +201,22 @@ func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborCreate(d *schema
 		data := dataToRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(d)
 		logger.Println("[INFO] received formatted data from method data to RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor --")
 		d.SetId(strconv.Itoa(name1) + "," + name2)
-		go_thunder.PostRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(client.Token, name, data, client.Host)
+		err := go_thunder.PostRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRead(d, meta)
+		return resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRead(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor (Inside resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRead)")
 
 	if client.Host != "" {
@@ -215,18 +225,23 @@ func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRead(d *schema.R
 		name2 := id[1]
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(client.Token, name1, name2, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -235,17 +250,20 @@ func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborUpdate(d *schema
 		logger.Println("[INFO] Modifying RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor   (Inside resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborUpdate) ")
 		data := dataToRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(d)
 		logger.Println("[INFO] received formatted data from method data to RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor ")
-		go_thunder.PutRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(client.Token, name1, name2, data, client.Host)
+		err := go_thunder.PutRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighbor(client.Token, name1, name2, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRead(d, meta)
+		return resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRead(d, meta)
+	return resourceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborRead(ctx, d, meta)
 
 }
 

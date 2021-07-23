@@ -16,7 +16,7 @@ type SnmpServerEngineIDInstance struct {
 	UUID  string `json:"uuid,omitempty"`
 }
 
-func PostSnmpServerEngineID(id string, inst SnmpServerEngineID, host string) {
+func PostSnmpServerEngineID(id string, inst SnmpServerEngineID, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostSnmpServerEngineID(id string, inst SnmpServerEngineID, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostSnmpServerEngineID(id string, inst SnmpServerEngineID, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerEngineID", data)
+			err := check_api_status("PostSnmpServerEngineID", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerEngineID(id string, host string) (*SnmpServerEngineID, error) {
@@ -67,6 +71,7 @@ func GetSnmpServerEngineID(id string, host string) (*SnmpServerEngineID, error) 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerEngineID
@@ -76,7 +81,10 @@ func GetSnmpServerEngineID(id string, host string) (*SnmpServerEngineID, error) 
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerEngineID", data)
+			err := check_api_status("GetSnmpServerEngineID", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

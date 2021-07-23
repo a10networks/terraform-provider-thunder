@@ -17,7 +17,7 @@ type SlbSipInstance struct {
 	Counters1 []SamplingEnable10 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbSip(id string, inst SlbSip, host string) {
+func PostSlbSip(id string, inst SlbSip, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -36,6 +36,7 @@ func PostSlbSip(id string, inst SlbSip, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -46,11 +47,14 @@ func PostSlbSip(id string, inst SlbSip, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbSip REQ RES..........................", m)
-			check_api_status("PostSlbSip", data)
+			err := check_api_status("PostSlbSip", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbSip(id string, host string) (*SlbSip, error) {
@@ -68,6 +72,7 @@ func GetSlbSip(id string, host string) (*SlbSip, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SlbSip
@@ -77,7 +82,10 @@ func GetSlbSip(id string, host string) (*SlbSip, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbSip REQ RES..........................", m)
-			check_api_status("GetSlbSip", data)
+			err := check_api_status("GetSlbSip", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

@@ -48,13 +48,16 @@ func GetOptions(id string, host string) (*Options, error) {
 			logger.Println("Options instance from Read")
 			logger.Println(string(data))
 			logger.Println("[INFO] GetOptions REQ RES..........................", m)
-			check_api_status("GetOptions", data)
+			err := check_api_status("GetOptions", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostOptions(id string, vc Options, host string) {
+func PostOptions(id string, vc Options, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -84,8 +87,11 @@ func PostOptions(id string, vc Options, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostOptions", data)
+			err := check_api_status("PostOptions", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

@@ -3,19 +3,21 @@ package thunder
 //Thunder resource RouteMap
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strconv"
 	"strings"
 	"util"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceRouteMap() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceRouteMapCreate,
-		Update: resourceRouteMapUpdate,
-		Read:   resourceRouteMapRead,
-		Delete: resourceRouteMapDelete,
+		CreateContext: resourceRouteMapCreate,
+		UpdateContext: resourceRouteMapUpdate,
+		ReadContext:   resourceRouteMapRead,
+		DeleteContext: resourceRouteMapDelete,
 		Schema: map[string]*schema.Schema{
 			"tag": {
 				Type:        schema.TypeString,
@@ -941,9 +943,11 @@ func resourceRouteMap() *schema.Resource {
 	}
 }
 
-func resourceRouteMapCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouteMapCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RouteMap (Inside resourceRouteMapCreate) ")
@@ -953,17 +957,22 @@ func resourceRouteMapCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToRouteMap(d)
 		logger.Println("[INFO] received formatted data from method data to RouteMap --")
 		d.SetId(name1 + "," + name2 + "," + strconv.Itoa(name3))
-		go_thunder.PostRouteMap(client.Token, data, client.Host)
+		err := go_thunder.PostRouteMap(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouteMapRead(d, meta)
+		return resourceRouteMapRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouteMapRead(d *schema.ResourceData, meta interface{}) error {
+func resourceRouteMapRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading RouteMap (Inside resourceRouteMapRead)")
 
 	if client.Host != "" {
@@ -973,18 +982,23 @@ func resourceRouteMapRead(d *schema.ResourceData, meta interface{}) error {
 		name3 := id[2]
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetRouteMap(client.Token, name1, name2, name3, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceRouteMapUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouteMapUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -994,17 +1008,22 @@ func resourceRouteMapUpdate(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Modifying RouteMap   (Inside resourceRouteMapUpdate) ")
 		data := dataToRouteMap(d)
 		logger.Println("[INFO] received formatted data from method data to RouteMap ")
-		go_thunder.PutRouteMap(client.Token, name1, name2, name3, data, client.Host)
+		err := go_thunder.PutRouteMap(client.Token, name1, name2, name3, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouteMapRead(d, meta)
+		return resourceRouteMapRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouteMapDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceRouteMapDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -1015,11 +1034,11 @@ func resourceRouteMapDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteRouteMap(client.Token, name1, name2, name3, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToRouteMap(d *schema.ResourceData) go_thunder.RouteMap {

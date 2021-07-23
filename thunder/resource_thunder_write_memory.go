@@ -3,17 +3,20 @@ package thunder
 //Thunder resource WriteMemory
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceWriteMemory() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceWriteMemoryCreate,
-		Update: resourceWriteMemoryUpdate,
-		Read:   resourceWriteMemoryRead,
-		Delete: resourceWriteMemoryDelete,
+		CreateContext: resourceWriteMemoryCreate,
+		UpdateContext: resourceWriteMemoryUpdate,
+		ReadContext:   resourceWriteMemoryRead,
+		DeleteContext: resourceWriteMemoryDelete,
 		Schema: map[string]*schema.Schema{
 			"profile": {
 				Type:        schema.TypeString,
@@ -39,9 +42,11 @@ func resourceWriteMemory() *schema.Resource {
 	}
 }
 
-func resourceWriteMemoryCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceWriteMemoryCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating WriteMemory (Inside resourceWriteMemoryCreate) ")
@@ -49,39 +54,47 @@ func resourceWriteMemoryCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToWriteMemory(d)
 		logger.Println("[INFO] received formatted data from method data to WriteMemory --")
 		d.SetId("1")
-		go_thunder.PostWriteMemory(client.Token, data, client.Host)
+		err := go_thunder.PostWriteMemory(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceWriteMemoryRead(d, meta)
+		return resourceWriteMemoryRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceWriteMemoryRead(d *schema.ResourceData, meta interface{}) error {
+func resourceWriteMemoryRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading WriteMemory (Inside resourceWriteMemoryRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetWriteMemory(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceWriteMemoryUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceWriteMemoryUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceWriteMemoryRead(d, meta)
+	return resourceWriteMemoryRead(ctx, d, meta)
 }
 
-func resourceWriteMemoryDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceWriteMemoryDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceWriteMemoryRead(d, meta)
+	return resourceWriteMemoryRead(ctx, d, meta)
 }
 func dataToWriteMemory(d *schema.ResourceData) go_thunder.WriteMemory {
 	var vc go_thunder.WriteMemory

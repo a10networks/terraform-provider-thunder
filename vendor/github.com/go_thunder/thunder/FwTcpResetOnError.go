@@ -16,7 +16,7 @@ type FwTcpResetOnErrorInstance struct {
 	UUID   string `json:"uuid,omitempty"`
 }
 
-func PostFwTcpResetOnError(id string, inst FwTcpResetOnError, host string) {
+func PostFwTcpResetOnError(id string, inst FwTcpResetOnError, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostFwTcpResetOnError(id string, inst FwTcpResetOnError, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostFwTcpResetOnError(id string, inst FwTcpResetOnError, host string) {
 
 		} else {
 			logger.Println("[INFO] PostFwTcpResetOnError REQ RES..........................", m)
-			check_api_status("PostFwTcpResetOnError", data)
+			err := check_api_status("PostFwTcpResetOnError", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwTcpResetOnError(id string, host string) (*FwTcpResetOnError, error) {
@@ -67,6 +71,7 @@ func GetFwTcpResetOnError(id string, host string) (*FwTcpResetOnError, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwTcpResetOnError
@@ -76,7 +81,10 @@ func GetFwTcpResetOnError(id string, host string) (*FwTcpResetOnError, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetFwTcpResetOnError REQ RES..........................", m)
-			check_api_status("GetFwTcpResetOnError", data)
+			err := check_api_status("GetFwTcpResetOnError", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

@@ -38,7 +38,7 @@ type ExternalServiceInstance struct {
 	UUID                                   string                     `json:"uuid,omitempty"`
 }
 
-func PostSlbTemplateExternalService(id string, inst ExternalService, host string) {
+func PostSlbTemplateExternalService(id string, inst ExternalService, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -57,6 +57,7 @@ func PostSlbTemplateExternalService(id string, inst ExternalService, host string
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -67,11 +68,14 @@ func PostSlbTemplateExternalService(id string, inst ExternalService, host string
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateExternalService REQ RES..........................", m)
-			check_api_status("PostSlbTemplateExternalService", data)
+			err := check_api_status("PostSlbTemplateExternalService", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateExternalService(id string, name string, host string) (*ExternalService, error) {
@@ -89,6 +93,7 @@ func GetSlbTemplateExternalService(id string, name string, host string) (*Extern
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m ExternalService
@@ -98,14 +103,17 @@ func GetSlbTemplateExternalService(id string, name string, host string) (*Extern
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateExternalService REQ RES..........................", m)
-			check_api_status("GetSlbTemplateExternalService", data)
+			err := check_api_status("GetSlbTemplateExternalService", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateExternalService(id string, name string, inst ExternalService, host string) {
+func PutSlbTemplateExternalService(id string, name string, inst ExternalService, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -124,6 +132,7 @@ func PutSlbTemplateExternalService(id string, name string, inst ExternalService,
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -134,11 +143,14 @@ func PutSlbTemplateExternalService(id string, name string, inst ExternalService,
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateExternalService REQ RES..........................", m)
-			check_api_status("PutSlbTemplateExternalService", data)
+			err := check_api_status("PutSlbTemplateExternalService", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateExternalService(id string, name string, host string) error {
@@ -155,6 +167,7 @@ func DeleteSlbTemplateExternalService(id string, name string, host string) error
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

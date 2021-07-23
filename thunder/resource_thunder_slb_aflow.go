@@ -3,19 +3,21 @@ package thunder
 // Thunder resource Slb Aflow
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbAflow() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbAflowCreate,
-		Update: resourceSlbAflowUpdate,
-		Read:   resourceSlbAflowRead,
-		Delete: resourceSlbAflowDelete,
+		CreateContext: resourceSlbAflowCreate,
+		UpdateContext: resourceSlbAflowUpdate,
+		ReadContext:   resourceSlbAflowRead,
+		DeleteContext: resourceSlbAflowDelete,
 
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
@@ -41,53 +43,61 @@ func resourceSlbAflow() *schema.Resource {
 
 }
 
-func resourceSlbAflowCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbAflowCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating aflow (Inside resourceSlbAflowCreate)")
 
 	if client.Host != "" {
 		vc := dataToSlbAflow(d)
 		d.SetId("1")
-		go_thunder.PostSlbAflow(client.Token, vc, client.Host)
-
-		return resourceSlbAflowRead(d, meta)
+		err := go_thunder.PostSlbAflow(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSlbAflowRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbAflowRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbAflowRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading aflow (Inside resourceSlbAflowRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbAflow(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No aflow found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbAflowUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbAflowUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbAflowRead(d, meta)
+	return resourceSlbAflowRead(ctx, d, meta)
 }
 
-func resourceSlbAflowDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbAflowDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbAflowRead(d, meta)
+	return resourceSlbAflowRead(ctx, d, meta)
 }
 
 //Utility method to instantiate Aflow Structure

@@ -45,13 +45,16 @@ func GetSlbDNSCache(id string, host string) (*DNSCache, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetSlbDNSCache REQ RES..........................", m)
-			check_api_status("GetSlbDNSCache", data)
+			err := check_api_status("GetSlbDNSCache", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbDNSCache(id string, vc DNSCache, host string) {
+func PostSlbDNSCache(id string, vc DNSCache, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -81,8 +84,11 @@ func PostSlbDNSCache(id string, vc DNSCache, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbDNSCache", data)
+			err := check_api_status("PostSlbDNSCache", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

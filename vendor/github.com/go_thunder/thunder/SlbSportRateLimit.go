@@ -18,7 +18,7 @@ type SportRateLimitInstance struct {
 	Counters1 []SamplingEnable15 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbSportRateLimit(id string, inst SportRateLimit, host string) {
+func PostSlbSportRateLimit(id string, inst SportRateLimit, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbSportRateLimit(id string, inst SportRateLimit, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbSportRateLimit(id string, inst SportRateLimit, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbSportRateLimit REQ RES..........................", m)
-			check_api_status("PostSlbSportRateLimit", data)
+			err := check_api_status("PostSlbSportRateLimit", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbSportRateLimit(id string, host string) (*SportRateLimit, error) {
@@ -69,6 +73,7 @@ func GetSlbSportRateLimit(id string, host string) (*SportRateLimit, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SportRateLimit
@@ -78,7 +83,10 @@ func GetSlbSportRateLimit(id string, host string) (*SportRateLimit, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbSportRateLimit REQ RES..........................", m)
-			check_api_status("GetSlbSportRateLimit", data)
+			err := check_api_status("GetSlbSportRateLimit", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

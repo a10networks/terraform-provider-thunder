@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbRcCacheGlobal
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbRcCacheGlobal() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbRcCacheGlobalCreate,
-		Update: resourceSlbRcCacheGlobalUpdate,
-		Read:   resourceSlbRcCacheGlobalRead,
-		Delete: resourceSlbRcCacheGlobalDelete,
+		CreateContext: resourceSlbRcCacheGlobalCreate,
+		UpdateContext: resourceSlbRcCacheGlobalUpdate,
+		ReadContext:   resourceSlbRcCacheGlobalRead,
+		DeleteContext: resourceSlbRcCacheGlobalDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbRcCacheGlobal() *schema.Resource {
 	}
 }
 
-func resourceSlbRcCacheGlobalCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbRcCacheGlobalCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbRcCacheGlobal (Inside resourceSlbRcCacheGlobalCreate) ")
@@ -44,37 +48,45 @@ func resourceSlbRcCacheGlobalCreate(d *schema.ResourceData, meta interface{}) er
 		data := dataToSlbRcCacheGlobal(d)
 		logger.Println("[INFO] received formatted data from method data to SlbRcCacheGlobal --")
 		d.SetId("1")
-		go_thunder.PostSlbRcCacheGlobal(client.Token, data, client.Host)
+		err := go_thunder.PostSlbRcCacheGlobal(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbRcCacheGlobalRead(d, meta)
+		return resourceSlbRcCacheGlobalRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
-func resourceSlbRcCacheGlobalUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbRcCacheGlobalUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbRcCacheGlobalRead(d, meta)
-}
-
-func resourceSlbRcCacheGlobalDelete(d *schema.ResourceData, meta interface{}) error {
-
-	return resourceSlbRcCacheGlobalRead(d, meta)
+	return resourceSlbRcCacheGlobalRead(ctx, d, meta)
 }
 
-func resourceSlbRcCacheGlobalRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbRcCacheGlobalDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+
+	return resourceSlbRcCacheGlobalRead(ctx, d, meta)
+}
+
+func resourceSlbRcCacheGlobalRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbRcCacheGlobal (Inside resourceSlbRcCacheGlobalRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbRcCacheGlobal(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }

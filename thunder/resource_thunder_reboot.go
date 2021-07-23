@@ -1,17 +1,20 @@
 package thunder
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceReboot() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceRebootCreate,
-		Update: resourceRebootUpdate,
-		Read:   resourceRebootRead,
-		Delete: resourceRebootDelete,
+		CreateContext: resourceRebootCreate,
+		UpdateContext: resourceRebootUpdate,
+		ReadContext:   resourceRebootRead,
+		DeleteContext: resourceRebootDelete,
 
 		Schema: map[string]*schema.Schema{
 			"all": {
@@ -84,51 +87,61 @@ func resourceReboot() *schema.Resource {
 
 }
 
-func resourceRebootCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceRebootCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating Reboot (Inside resourceRebootCreate)")
 
 	if client.Host != "" {
 		vc := dataToReboot(d)
-		go_thunder.PostReboot(client.Token, vc, client.Host)
+		err := go_thunder.PostReboot(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+
 		d.SetId("1")
 
-		return resourceRebootRead(d, meta)
+		return resourceRebootRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceRebootRead(d *schema.ResourceData, meta interface{}) error {
+func resourceRebootRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading Reboot (Inside resourceRebootRead)")
 
 	client := meta.(Thunder)
 
+	var diags diag.Diagnostics
+
 	if client.Host != "" {
 
 		vc, err := go_thunder.GetReboot(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No Reboot found")
 			//d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceRebootUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceRebootUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceRebootRead(d, meta)
+	return resourceRebootRead(ctx, d, meta)
 }
 
-func resourceRebootDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceRebootDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceRebootRead(d, meta)
+	return resourceRebootRead(ctx, d, meta)
 }
 
 //Utility method to instantiate Reboot Structure

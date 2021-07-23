@@ -292,7 +292,7 @@ type RouteMapLocal struct {
 	Address string `json:"address,omitempty"`
 }
 
-func PostRouteMap(id string, inst RouteMap, host string) {
+func PostRouteMap(id string, inst RouteMap, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -311,6 +311,7 @@ func PostRouteMap(id string, inst RouteMap, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -321,11 +322,14 @@ func PostRouteMap(id string, inst RouteMap, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostRouteMap", data)
+			err := check_api_status("PostRouteMap", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetRouteMap(id string, name1 string, name2 string, name3 string, host string) (*RouteMap, error) {
@@ -343,6 +347,7 @@ func GetRouteMap(id string, name1 string, name2 string, name3 string, host strin
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouteMap
@@ -352,14 +357,17 @@ func GetRouteMap(id string, name1 string, name2 string, name3 string, host strin
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetRouteMap", data)
+			err := check_api_status("GetRouteMap", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutRouteMap(id string, name1 string, name2 string, name3 string, inst RouteMap, host string) {
+func PutRouteMap(id string, name1 string, name2 string, name3 string, inst RouteMap, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -378,6 +386,7 @@ func PutRouteMap(id string, name1 string, name2 string, name3 string, inst Route
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -388,11 +397,14 @@ func PutRouteMap(id string, name1 string, name2 string, name3 string, inst Route
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutRouteMap", data)
+			err := check_api_status("PutRouteMap", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteRouteMap(id string, name1 string, name2 string, name3 string, host string) error {
@@ -410,6 +422,7 @@ func DeleteRouteMap(id string, name1 string, name2 string, name3 string, host st
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
+		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouteMap
@@ -419,7 +432,10 @@ func DeleteRouteMap(id string, name1 string, name2 string, name3 string, host st
 			return err
 		} else {
 			logger.Println("[INFO] Delete REQ RES..........................", m)
-			check_api_status("DeleteRouteMap", data)
+			err := check_api_status("DeleteRouteMap", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}

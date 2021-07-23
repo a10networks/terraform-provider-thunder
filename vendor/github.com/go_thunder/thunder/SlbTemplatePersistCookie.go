@@ -34,7 +34,7 @@ type SlbTemplatePersistCookieInstance struct {
 	UserTag            string `json:"user-tag,omitempty"`
 }
 
-func PostSlbTemplatePersistCookie(id string, inst SlbTemplatePersistCookie, host string) {
+func PostSlbTemplatePersistCookie(id string, inst SlbTemplatePersistCookie, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -53,6 +53,7 @@ func PostSlbTemplatePersistCookie(id string, inst SlbTemplatePersistCookie, host
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -63,11 +64,14 @@ func PostSlbTemplatePersistCookie(id string, inst SlbTemplatePersistCookie, host
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplatePersistCookie REQ RES..........................", m)
-			check_api_status("PostSlbTemplatePersistCookie", data)
+			err := check_api_status("PostSlbTemplatePersistCookie", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplatePersistCookie(id string, name string, host string) (*SlbTemplatePersistCookie, error) {
@@ -85,6 +89,7 @@ func GetSlbTemplatePersistCookie(id string, name string, host string) (*SlbTempl
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SlbTemplatePersistCookie
@@ -94,14 +99,17 @@ func GetSlbTemplatePersistCookie(id string, name string, host string) (*SlbTempl
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplatePersistCookie REQ RES..........................", m)
-			check_api_status("GetSlbTemplatePersistCookie", data)
+			err := check_api_status("GetSlbTemplatePersistCookie", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplatePersistCookie(id string, name string, inst SlbTemplatePersistCookie, host string) {
+func PutSlbTemplatePersistCookie(id string, name string, inst SlbTemplatePersistCookie, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -120,6 +128,7 @@ func PutSlbTemplatePersistCookie(id string, name string, inst SlbTemplatePersist
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -130,11 +139,14 @@ func PutSlbTemplatePersistCookie(id string, name string, inst SlbTemplatePersist
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplatePersistCookie REQ RES..........................", m)
-			check_api_status("PutSlbTemplatePersistCookie", data)
+			err := check_api_status("PutSlbTemplatePersistCookie", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplatePersistCookie(id string, name string, host string) error {
@@ -151,6 +163,7 @@ func DeleteSlbTemplatePersistCookie(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

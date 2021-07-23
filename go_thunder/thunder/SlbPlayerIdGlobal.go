@@ -23,7 +23,7 @@ type PlayerIdGlobalInstance struct {
 	Enable64BitPlayerID   int                `json:"enable-64bit-player-id,omitempty"`
 }
 
-func PostSlbPlayerIdGlobal(id string, inst PlayerIdGlobal, host string) {
+func PostSlbPlayerIdGlobal(id string, inst PlayerIdGlobal, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -42,6 +42,7 @@ func PostSlbPlayerIdGlobal(id string, inst PlayerIdGlobal, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -52,11 +53,14 @@ func PostSlbPlayerIdGlobal(id string, inst PlayerIdGlobal, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbPlayerIdGlobal REQ RES..........................", m)
-			check_api_status("PostSlbPlayerIdGlobal", data)
+			err := check_api_status("PostSlbPlayerIdGlobal", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbPlayerIdGlobal(id string, host string) (*PlayerIdGlobal, error) {
@@ -74,6 +78,7 @@ func GetSlbPlayerIdGlobal(id string, host string) (*PlayerIdGlobal, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m PlayerIdGlobal
@@ -83,7 +88,10 @@ func GetSlbPlayerIdGlobal(id string, host string) (*PlayerIdGlobal, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbPlayerIdGlobal REQ RES..........................", m)
-			check_api_status("GetSlbPlayerIdGlobal", data)
+			err := check_api_status("GetSlbPlayerIdGlobal", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

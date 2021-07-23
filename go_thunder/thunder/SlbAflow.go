@@ -45,13 +45,16 @@ func GetSlbAflow(id string, host string) (*Aflow, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetSlbAflow REQ RES..........................", m)
-			check_api_status("GetSlbAflow", data)
+			err := check_api_status("GetSlbAflow", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbAflow(id string, vc Aflow, host string) {
+func PostSlbAflow(id string, vc Aflow, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -81,8 +84,11 @@ func PostSlbAflow(id string, vc Aflow, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbAflow", data)
+			err := check_api_status("PostSlbAflow", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

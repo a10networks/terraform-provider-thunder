@@ -3,19 +3,21 @@ package thunder
 // Thunder resource Slb GenericProxy
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbGenericProxy() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbGenericProxyCreate,
-		Update: resourceSlbGenericProxyUpdate,
-		Read:   resourceSlbGenericProxyRead,
-		Delete: resourceSlbGenericProxyDelete,
+		CreateContext: resourceSlbGenericProxyCreate,
+		UpdateContext: resourceSlbGenericProxyUpdate,
+		ReadContext:   resourceSlbGenericProxyRead,
+		DeleteContext: resourceSlbGenericProxyDelete,
 
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
@@ -41,53 +43,61 @@ func resourceSlbGenericProxy() *schema.Resource {
 
 }
 
-func resourceSlbGenericProxyCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbGenericProxyCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating generic-proxy (Inside resourceSlbGenericProxyCreate)")
 
 	if client.Host != "" {
 		vc := dataToSlbGenericProxy(d)
 		d.SetId("1")
-		go_thunder.PostSlbGenericProxy(client.Token, vc, client.Host)
-
-		return resourceSlbGenericProxyRead(d, meta)
+		err := go_thunder.PostSlbGenericProxy(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSlbGenericProxyRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbGenericProxyRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbGenericProxyRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading generic-proxy (Inside resourceSlbGenericProxyRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbGenericProxy(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No generic-proxy found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbGenericProxyUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbGenericProxyUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbGenericProxyRead(d, meta)
+	return resourceSlbGenericProxyRead(ctx, d, meta)
 }
 
-func resourceSlbGenericProxyDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbGenericProxyDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbGenericProxyRead(d, meta)
+	return resourceSlbGenericProxyRead(ctx, d, meta)
 }
 
 //Utility method to instantiate GenericProxy Structure

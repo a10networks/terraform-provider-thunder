@@ -18,7 +18,7 @@ type SSLForwardProxyInstance struct {
 	Counters1 []SamplingEnable38 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbSSLForwardProxy(id string, inst SSLForwardProxy, host string) {
+func PostSlbSSLForwardProxy(id string, inst SSLForwardProxy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbSSLForwardProxy(id string, inst SSLForwardProxy, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbSSLForwardProxy(id string, inst SSLForwardProxy, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbSSLForwardProxy REQ RES..........................", m)
-			check_api_status("PostSlbSSLForwardProxy", data)
+			err := check_api_status("PostSlbSSLForwardProxy", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbSSLForwardProxy(id string, host string) (*SSLForwardProxy, error) {
@@ -69,6 +73,7 @@ func GetSlbSSLForwardProxy(id string, host string) (*SSLForwardProxy, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SSLForwardProxy
@@ -78,7 +83,10 @@ func GetSlbSSLForwardProxy(id string, host string) (*SSLForwardProxy, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbSSLForwardProxy REQ RES..........................", m)
-			check_api_status("GetSlbSSLForwardProxy", data)
+			err := check_api_status("GetSlbSSLForwardProxy", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

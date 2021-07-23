@@ -3,18 +3,21 @@ package thunder
 //Thunder resource smpp
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"log"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateSmpp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSmppCreate,
-		Update: resourceSmppUpdate,
-		Read:   resourceSmppRead,
-		Delete: resourceSmppDelete,
+		CreateContext: resourceSmppCreate,
+		UpdateContext: resourceSmppUpdate,
+		ReadContext:   resourceSmppRead,
+		DeleteContext: resourceSmppDelete,
 
 		Schema: map[string]*schema.Schema{
 			"client_enquire_link": {
@@ -66,66 +69,81 @@ func resourceSlbTemplateSmpp() *schema.Resource {
 	}
 }
 
-func resourceSmppCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSmppCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Creating smpp (Inside resourceSmppCreate    " + name)
 		v := dataToSmpp(name, d)
 		d.SetId(name)
-		go_thunder.PostSmpp(client.Token, v, client.Host)
-
-		return resourceSmppRead(d, meta)
+		err := go_thunder.PostSmpp(client.Token, v, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSmppRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSmppRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSmppRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading smpp (Inside resourceSmppRead)")
 
 	if client.Host != "" {
 		client := meta.(Thunder)
+
 
 		name := d.Id()
 
 		logger.Println("[INFO] Fetching smppp Read" + name)
 
 		smpp, err := go_thunder.GetSmpp(client.Token, name, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if smpp == nil {
 			logger.Println("[INFO] No smpp found " + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSmppUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSmppUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Modifying smpp (Inside resourceSmppUpdate    " + name)
 		v := dataToSmpp(name, d)
 		d.SetId(name)
-		go_thunder.PutSmpp(client.Token, name, v, client.Host)
-
-		return resourceSmppRead(d, meta)
+		err := go_thunder.PutSmpp(client.Token, name, v, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSmppRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSmppDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSmppDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger := util.GetLoggerInstance()
 
 	if client.Host != "" {
@@ -135,7 +153,7 @@ func resourceSmppDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteSmpp(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete smpp  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

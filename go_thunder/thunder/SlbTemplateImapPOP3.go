@@ -19,7 +19,7 @@ type ImapPop3Instance struct {
 	Name          string `json:"name,omitempty"`
 }
 
-func PostTemplateImap_POP3(id string, inst Imap_pop3, host string) {
+func PostTemplateImap_POP3(id string, inst Imap_pop3, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -38,6 +38,7 @@ func PostTemplateImap_POP3(id string, inst Imap_pop3, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -48,11 +49,14 @@ func PostTemplateImap_POP3(id string, inst Imap_pop3, host string) {
 
 		} else {
 			logger.Println("[INFO] PostTemplateImap_POP3 REQ RES..........................", m)
-			check_api_status("PostTemplateImap_POP3", data)
+			err := check_api_status("PostTemplateImap_POP3", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetTemplateImap_POP3(id string, name string, host string) (*Imap_pop3, error) {
@@ -70,6 +74,7 @@ func GetTemplateImap_POP3(id string, name string, host string) (*Imap_pop3, erro
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Imap_pop3
@@ -79,14 +84,17 @@ func GetTemplateImap_POP3(id string, name string, host string) (*Imap_pop3, erro
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetTemplateImap_POP3 REQ RES..........................", m)
-			check_api_status("GetTemplateImap_POP3", data)
+			err := check_api_status("GetTemplateImap_POP3", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutTemplateImap_POP3(id string, name string, inst Imap_pop3, host string) {
+func PutTemplateImap_POP3(id string, name string, inst Imap_pop3, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -105,6 +113,7 @@ func PutTemplateImap_POP3(id string, name string, inst Imap_pop3, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -115,11 +124,14 @@ func PutTemplateImap_POP3(id string, name string, inst Imap_pop3, host string) {
 
 		} else {
 			logger.Println("[INFO] PutTemplateImap_POP3 REQ RES..........................", m)
-			check_api_status("PutTemplateImap_POP3", data)
+			err := check_api_status("PutTemplateImap_POP3", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteTemplateImap_POP3(id string, name string, host string) error {
@@ -136,6 +148,7 @@ func DeleteTemplateImap_POP3(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

@@ -46,13 +46,16 @@ func GetSlbFastHttpProxy(id string, host string) (*FastHttpProxy, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetSlbFastHttpProxy REQ RES..........................", m)
-			check_api_status("GetSlbFastHttpProxy", data)
+			err := check_api_status("GetSlbFastHttpProxy", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbFastHttpProxy(id string, vc FastHttpProxy, host string) {
+func PostSlbFastHttpProxy(id string, vc FastHttpProxy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -82,8 +85,11 @@ func PostSlbFastHttpProxy(id string, vc FastHttpProxy, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbFastHttpProxy", data)
+			err := check_api_status("PostSlbFastHttpProxy", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

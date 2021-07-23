@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbTemplateSNMP
 
 import (
+	"context"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateSNMP() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateSNMPCreate,
-		Update: resourceSlbTemplateSNMPUpdate,
-		Read:   resourceSlbTemplateSNMPRead,
-		Delete: resourceSlbTemplateSNMPDelete,
+		CreateContext: resourceSlbTemplateSNMPCreate,
+		UpdateContext: resourceSlbTemplateSNMPUpdate,
+		ReadContext:   resourceSlbTemplateSNMPRead,
+		DeleteContext: resourceSlbTemplateSNMPDelete,
 		Schema: map[string]*schema.Schema{
 			"security_level": {
 				Type:        schema.TypeString,
@@ -116,9 +118,11 @@ func resourceSlbTemplateSNMP() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateSNMPCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateSNMPCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateSNMP (Inside resourceSlbTemplateSNMPCreate) ")
@@ -126,36 +130,46 @@ func resourceSlbTemplateSNMPCreate(d *schema.ResourceData, meta interface{}) err
 		data := dataToSlbTemplateSNMP(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateSNMP --")
 		d.SetId(snmp_name)
-		go_thunder.PostSlbTemplateSNMP(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateSNMP(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateSNMPRead(d, meta)
+		return resourceSlbTemplateSNMPRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateSNMPRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateSNMPRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateSNMP (Inside resourceSlbTemplateSNMPRead)")
 
 	if client.Host != "" {
 		snmp_name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + snmp_name)
 		data, err := go_thunder.GetSlbTemplateSNMP(client.Token, snmp_name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + snmp_name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplateSNMPUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateSNMPUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateSNMP   (Inside resourceSlbTemplateSNMPUpdate) ")
@@ -163,17 +177,22 @@ func resourceSlbTemplateSNMPUpdate(d *schema.ResourceData, meta interface{}) err
 		data := dataToSlbTemplateSNMP(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateSNMP ")
 		d.SetId(snmp_name)
-		go_thunder.PutSlbTemplateSNMP(client.Token, snmp_name, data, client.Host)
+		err := go_thunder.PutSlbTemplateSNMP(client.Token, snmp_name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateSNMPRead(d, meta)
+		return resourceSlbTemplateSNMPRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateSNMPDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateSNMPDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		snmp_name := d.Id()
@@ -181,7 +200,7 @@ func resourceSlbTemplateSNMPDelete(d *schema.ResourceData, meta interface{}) err
 		err := go_thunder.DeleteSlbTemplateSNMP(client.Token, snmp_name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", snmp_name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

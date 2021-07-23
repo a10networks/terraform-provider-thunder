@@ -18,7 +18,7 @@ type SlbSmppInstance struct {
 	Counters1 []SamplingEnable11 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbSmpp(id string, inst SlbSmpp, host string) {
+func PostSlbSmpp(id string, inst SlbSmpp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbSmpp(id string, inst SlbSmpp, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbSmpp(id string, inst SlbSmpp, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbSmpp REQ RES..........................", m)
-			check_api_status("PostSlbSmpp", data)
+			err := check_api_status("PostSlbSmpp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbSmpp(id string, host string) (*SlbSmpp, error) {
@@ -69,6 +73,7 @@ func GetSlbSmpp(id string, host string) (*SlbSmpp, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SlbSmpp
@@ -78,7 +83,10 @@ func GetSlbSmpp(id string, host string) (*SlbSmpp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbSmpp REQ RES..........................", m)
-			check_api_status("GetSlbSmpp", data)
+			err := check_api_status("GetSlbSmpp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

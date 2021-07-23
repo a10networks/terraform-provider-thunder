@@ -3,20 +3,22 @@ package thunder
 //Thunder resource InterfaceVeIP
 
 import (
+	"context"
 	"fmt"
 	"strconv"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceInterfaceVeIP() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceInterfaceVeIPCreate,
-		Update: resourceInterfaceVeIPUpdate,
-		Read:   resourceInterfaceVeIPRead,
-		Delete: resourceInterfaceVeIPDelete,
+		CreateContext: resourceInterfaceVeIPCreate,
+		UpdateContext: resourceInterfaceVeIPUpdate,
+		ReadContext:   resourceInterfaceVeIPRead,
+		DeleteContext: resourceInterfaceVeIPDelete,
 		Schema: map[string]*schema.Schema{
 			"ifnum": {
 				Type:        schema.TypeInt,
@@ -618,9 +620,11 @@ func resourceInterfaceVeIP() *schema.Resource {
 	}
 }
 
-func resourceInterfaceVeIPCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceVeIPCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating InterfaceVeIP (Inside resourceInterfaceVeIPCreate) ")
@@ -628,41 +632,49 @@ func resourceInterfaceVeIPCreate(d *schema.ResourceData, meta interface{}) error
 		data := dataToInterfaceVeIP(d)
 		logger.Println("[INFO] received V from method data to InterfaceVeIP --")
 		d.SetId(strconv.Itoa(name))
-		go_thunder.PostInterfaceVeIP(client.Token, name, data, client.Host)
+		err := go_thunder.PostInterfaceVeIP(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceVeIPRead(d, meta)
+		return resourceInterfaceVeIPRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceVeIPRead(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceVeIPRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading InterfaceVeIP (Inside resourceInterfaceVeIPRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetInterfaceVeIP(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceInterfaceVeIPUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceVeIPUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceVeIPRead(d, meta)
+	return resourceInterfaceVeIPRead(ctx, d, meta)
 }
 
-func resourceInterfaceVeIPDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceVeIPDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceVeIPRead(d, meta)
+	return resourceInterfaceVeIPRead(ctx, d, meta)
 }
 
 func dataToInterfaceVeIP(d *schema.ResourceData) go_thunder.VeIP {

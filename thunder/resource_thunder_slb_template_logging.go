@@ -3,18 +3,21 @@ package thunder
 //Thunder resource logging
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"log"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateLogging() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceLoggingCreate,
-		Update: resourceLoggingUpdate,
-		Read:   resourceLoggingRead,
-		Delete: resourceLoggingDelete,
+		CreateContext: resourceLoggingCreate,
+		UpdateContext: resourceLoggingUpdate,
+		ReadContext:   resourceLoggingRead,
+		DeleteContext: resourceLoggingDelete,
 
 		Schema: map[string]*schema.Schema{
 			"template_tcp_proxy_shared": {
@@ -106,66 +109,81 @@ func resourceSlbTemplateLogging() *schema.Resource {
 	}
 }
 
-func resourceLoggingCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceLoggingCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Creating Logging (Inside resourceLoggingCreate    " + name)
 		v := dataToLogging(name, d)
 		d.SetId(name)
-		go_thunder.PostLogging(client.Token, v, client.Host)
-
-		return resourceLoggingRead(d, meta)
+		err := go_thunder.PostLogging(client.Token, v, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceLoggingRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceLoggingRead(d *schema.ResourceData, meta interface{}) error {
+func resourceLoggingRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading Logging (Inside resourcLoggingRead)")
 
 	if client.Host != "" {
 		client := meta.(Thunder)
+
 
 		name := d.Id()
 
 		logger.Println("[INFO] Fetching Logging Read" + name)
 
 		logging, err := go_thunder.GetLogging(client.Token, name, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if logging == nil {
 			logger.Println("[INFO] No Logging found " + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceLoggingUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceLoggingUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Modifying Logging (Inside resourceLoggingUpdate    " + name)
 		v := dataToLogging(name, d)
 		d.SetId(name)
-		go_thunder.PutLogging(client.Token, name, v, client.Host)
-
-		return resourceLoggingRead(d, meta)
+		err := go_thunder.PutLogging(client.Token, name, v, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceLoggingRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceLoggingDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceLoggingDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger := util.GetLoggerInstance()
 
 	if client.Host != "" {
@@ -175,7 +193,7 @@ func resourceLoggingDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteLogging(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete Logging  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

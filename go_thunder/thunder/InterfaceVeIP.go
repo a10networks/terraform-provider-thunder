@@ -155,7 +155,7 @@ type VeIPInstance struct {
 	SlbPartitionRedirect    int                     `json:"slb-partition-redirect,omitempty"`
 }
 
-func PostInterfaceVeIP(id string, name int, inst VeIP, host string) {
+func PostInterfaceVeIP(id string, name int, inst VeIP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -174,6 +174,7 @@ func PostInterfaceVeIP(id string, name int, inst VeIP, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -184,11 +185,14 @@ func PostInterfaceVeIP(id string, name int, inst VeIP, host string) {
 
 		} else {
 			logger.Println("[INFO] PostInterfaceVeIP REQ RES..........................", m)
-			check_api_status("PostInterfaceVeIP", data)
+			err := check_api_status("PostInterfaceVeIP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetInterfaceVeIP(id string, name string, host string) (*VeIP, error) {
@@ -206,6 +210,7 @@ func GetInterfaceVeIP(id string, name string, host string) (*VeIP, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m VeIP
@@ -215,7 +220,10 @@ func GetInterfaceVeIP(id string, name string, host string) (*VeIP, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetInterfaceVeIP REQ RES..........................", m)
-			check_api_status("GetInterfaceVeIP", data)
+			err := check_api_status("GetInterfaceVeIP", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

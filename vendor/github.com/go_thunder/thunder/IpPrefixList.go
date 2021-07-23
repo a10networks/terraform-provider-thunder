@@ -26,7 +26,7 @@ type PrefixListInstance struct {
 	UUID string  `json:"uuid,omitempty"`
 }
 
-func PostIpPrefixList(id string, inst PrefixList, host string) {
+func PostIpPrefixList(id string, inst PrefixList, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -45,6 +45,7 @@ func PostIpPrefixList(id string, inst PrefixList, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -55,11 +56,14 @@ func PostIpPrefixList(id string, inst PrefixList, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpPrefixList REQ RES..........................", m)
-			check_api_status("PostIpPrefixList", data)
+			err := check_api_status("PostIpPrefixList", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpPrefixList(id string, name string, host string) (*PrefixList, error) {
@@ -77,6 +81,7 @@ func GetIpPrefixList(id string, name string, host string) (*PrefixList, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m PrefixList
@@ -86,7 +91,10 @@ func GetIpPrefixList(id string, name string, host string) (*PrefixList, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIpPrefixList REQ RES..........................", m)
-			check_api_status("GetIpPrefixList", data)
+			err := check_api_status("GetIpPrefixList", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

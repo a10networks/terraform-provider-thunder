@@ -18,7 +18,7 @@ type MysqlInstance struct {
 	Counters1 []SamplingEnable46 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbMysql(id string, inst Mysql, host string) {
+func PostSlbMysql(id string, inst Mysql, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbMysql(id string, inst Mysql, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbMysql(id string, inst Mysql, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbMysql REQ RES..........................", m)
-			check_api_status("PostSlbMysql", data)
+			err := check_api_status("PostSlbMysql", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbMysql(id string, host string) (*Mysql, error) {
@@ -69,6 +73,7 @@ func GetSlbMysql(id string, host string) (*Mysql, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Mysql
@@ -78,7 +83,10 @@ func GetSlbMysql(id string, host string) (*Mysql, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbMysql REQ RES..........................", m)
-			check_api_status("GetSlbMysql", data)
+			err := check_api_status("GetSlbMysql", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

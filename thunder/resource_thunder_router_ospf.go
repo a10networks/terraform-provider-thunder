@@ -3,19 +3,22 @@ package thunder
 //Thunder resource RouterOspf
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceRouterOspf() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceRouterOspfCreate,
-		Update: resourceRouterOspfUpdate,
-		Read:   resourceRouterOspfRead,
-		Delete: resourceRouterOspfDelete,
+		CreateContext: resourceRouterOspfCreate,
+		UpdateContext: resourceRouterOspfUpdate,
+		ReadContext:   resourceRouterOspfRead,
+		DeleteContext: resourceRouterOspfDelete,
 		Schema: map[string]*schema.Schema{
 			"process_id": {
 				Type:        schema.TypeInt,
@@ -1023,9 +1026,11 @@ func resourceRouterOspf() *schema.Resource {
 	}
 }
 
-func resourceRouterOspfCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterOspfCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RouterOspf (Inside resourceRouterOspfCreate) ")
@@ -1033,52 +1038,67 @@ func resourceRouterOspfCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToRouterOspf(d)
 		logger.Println("[INFO] received formatted data from method data to RouterOspf --")
 		d.SetId(strconv.Itoa(name1))
-		go_thunder.PostRouterOspf(client.Token, data, client.Host)
+		err := go_thunder.PostRouterOspf(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouterOspfRead(d, meta)
+		return resourceRouterOspfRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouterOspfRead(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterOspfRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading RouterOspf (Inside resourceRouterOspfRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetRouterOspf(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceRouterOspfUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterOspfUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying RouterOspf   (Inside resourceRouterOspfUpdate) ")
 		data := dataToRouterOspf(d)
 		logger.Println("[INFO] received formatted data from method data to RouterOspf ")
-		go_thunder.PutRouterOspf(client.Token, name1, data, client.Host)
+		err := go_thunder.PutRouterOspf(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouterOspfRead(d, meta)
+		return resourceRouterOspfRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouterOspfDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterOspfDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -1086,11 +1106,11 @@ func resourceRouterOspfDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteRouterOspf(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToRouterOspf(d *schema.ResourceData) go_thunder.RouterOspf {

@@ -41,13 +41,16 @@ func GetVrrpSessionSync(id string, host string) (*SessionSync, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetVrrpSessionSync REQ RES..........................", m)
-			check_api_status("GetVrrpSessionSync", data)
+			err := check_api_status("GetVrrpSessionSync", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostVrrpSessionSync(id string, vc SessionSync, host string) {
+func PostVrrpSessionSync(id string, vc SessionSync, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -77,8 +80,11 @@ func PostVrrpSessionSync(id string, vc SessionSync, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostVrrpSessionSync", data)
+			err := check_api_status("PostVrrpSessionSync", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

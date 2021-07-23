@@ -3,9 +3,10 @@ package go_thunder
 import (
 	"bytes"
 	//"encoding/json"
-	"github.com/clarketm/json" // go get -u github.com/clarketm/json  ===> to avoide null dictionary in json
 	"io/ioutil"
 	"util"
+
+	"github.com/clarketm/json" // go get -u github.com/clarketm/json  ===> to avoide null dictionary in json
 )
 
 type OverlayTunnelVtep struct {
@@ -88,7 +89,7 @@ type OverlayTunnelUseLif struct {
 	UUID      string `json:"uuid,omitempty"`
 }
 
-func PostOverlayTunnelVtep(id string, inst OverlayTunnelVtep, host string) {
+func PostOverlayTunnelVtep(id string, inst OverlayTunnelVtep, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -109,6 +110,7 @@ func PostOverlayTunnelVtep(id string, inst OverlayTunnelVtep, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -119,11 +121,14 @@ func PostOverlayTunnelVtep(id string, inst OverlayTunnelVtep, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostOverlayTunnelVtep", data)
+			err := check_api_status("PostOverlayTunnelVtep", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetOverlayTunnelVtep(id string, name1 string, host string) (*OverlayTunnelVtep, error) {
@@ -141,6 +146,7 @@ func GetOverlayTunnelVtep(id string, name1 string, host string) (*OverlayTunnelV
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m OverlayTunnelVtep
@@ -150,14 +156,17 @@ func GetOverlayTunnelVtep(id string, name1 string, host string) (*OverlayTunnelV
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetOverlayTunnelVtep", data)
+			err := check_api_status("GetOverlayTunnelVtep", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutOverlayTunnelVtep(id string, name1 string, inst OverlayTunnelVtep, host string) {
+func PutOverlayTunnelVtep(id string, name1 string, inst OverlayTunnelVtep, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -176,6 +185,7 @@ func PutOverlayTunnelVtep(id string, name1 string, inst OverlayTunnelVtep, host 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -186,11 +196,14 @@ func PutOverlayTunnelVtep(id string, name1 string, inst OverlayTunnelVtep, host 
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutOverlayTunnelVtep", data)
+			err := check_api_status("PutOverlayTunnelVtep", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteOverlayTunnelVtep(id string, name1 string, host string) error {
@@ -208,6 +221,7 @@ func DeleteOverlayTunnelVtep(id string, name1 string, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
+		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m OverlayTunnelVtep
@@ -217,7 +231,10 @@ func DeleteOverlayTunnelVtep(id string, name1 string, host string) error {
 			return err
 		} else {
 			logger.Println("[INFO] Delete REQ RES..........................", m)
-			check_api_status("DeleteOverlayTunnelVtep", data)
+			err := check_api_status("DeleteOverlayTunnelVtep", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}

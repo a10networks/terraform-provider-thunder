@@ -16,7 +16,7 @@ type DnsPrimaryInstance struct {
 	UUID     string `json:"uuid,omitempty"`
 }
 
-func PostIpDnsPrimary(id string, inst DnsPrimary, host string) {
+func PostIpDnsPrimary(id string, inst DnsPrimary, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostIpDnsPrimary(id string, inst DnsPrimary, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostIpDnsPrimary(id string, inst DnsPrimary, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpDnsPrimary REQ RES..........................", m)
-			check_api_status("PostIpDnsPrimary", data)
+			err := check_api_status("PostIpDnsPrimary", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpDnsPrimary(id string, host string) (*DnsPrimary, error) {
@@ -67,6 +71,7 @@ func GetIpDnsPrimary(id string, host string) (*DnsPrimary, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m DnsPrimary
@@ -76,7 +81,10 @@ func GetIpDnsPrimary(id string, host string) (*DnsPrimary, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIpDnsPrimary REQ RES..........................", m)
-			check_api_status("GetIpDnsPrimary", data)
+			err := check_api_status("GetIpDnsPrimary", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

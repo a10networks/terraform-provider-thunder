@@ -3,18 +3,21 @@ package thunder
 //Thunder resource SnmpServerHostIpv4Host
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strings"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSnmpServerHostIpv4Host() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSnmpServerHostIpv4HostCreate,
-		Update: resourceSnmpServerHostIpv4HostUpdate,
-		Read:   resourceSnmpServerHostIpv4HostRead,
-		Delete: resourceSnmpServerHostIpv4HostDelete,
+		CreateContext: resourceSnmpServerHostIpv4HostCreate,
+		UpdateContext: resourceSnmpServerHostIpv4HostUpdate,
+		ReadContext:   resourceSnmpServerHostIpv4HostRead,
+		DeleteContext: resourceSnmpServerHostIpv4HostDelete,
 		Schema: map[string]*schema.Schema{
 			"uuid": {
 				Type:        schema.TypeString,
@@ -50,9 +53,11 @@ func resourceSnmpServerHostIpv4Host() *schema.Resource {
 	}
 }
 
-func resourceSnmpServerHostIpv4HostCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerHostIpv4HostCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerHostIpv4Host (Inside resourceSnmpServerHostIpv4HostCreate) ")
@@ -61,17 +66,22 @@ func resourceSnmpServerHostIpv4HostCreate(d *schema.ResourceData, meta interface
 		data := dataToSnmpServerHostIpv4Host(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerHostIpv4Host --")
 		d.SetId(name1 + "," + name2)
-		go_thunder.PostSnmpServerHostIpv4Host(client.Token, data, client.Host)
+		err := go_thunder.PostSnmpServerHostIpv4Host(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerHostIpv4HostRead(d, meta)
+		return resourceSnmpServerHostIpv4HostRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerHostIpv4HostRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerHostIpv4HostRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SnmpServerHostIpv4Host (Inside resourceSnmpServerHostIpv4HostRead)")
 
 	if client.Host != "" {
@@ -80,18 +90,23 @@ func resourceSnmpServerHostIpv4HostRead(d *schema.ResourceData, meta interface{}
 		name2 := id[1]
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetSnmpServerHostIpv4Host(client.Token, name1, name2, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSnmpServerHostIpv4HostUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerHostIpv4HostUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -100,17 +115,22 @@ func resourceSnmpServerHostIpv4HostUpdate(d *schema.ResourceData, meta interface
 		logger.Println("[INFO] Modifying SnmpServerHostIpv4Host   (Inside resourceSnmpServerHostIpv4HostUpdate) ")
 		data := dataToSnmpServerHostIpv4Host(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerHostIpv4Host ")
-		go_thunder.PutSnmpServerHostIpv4Host(client.Token, name1, name2, data, client.Host)
+		err := go_thunder.PutSnmpServerHostIpv4Host(client.Token, name1, name2, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerHostIpv4HostRead(d, meta)
+		return resourceSnmpServerHostIpv4HostRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerHostIpv4HostDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerHostIpv4HostDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -120,11 +140,11 @@ func resourceSnmpServerHostIpv4HostDelete(d *schema.ResourceData, meta interface
 		err := go_thunder.DeleteSnmpServerHostIpv4Host(client.Token, name1, name2, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToSnmpServerHostIpv4Host(d *schema.ResourceData) go_thunder.SnmpServerHostIpv4Host {

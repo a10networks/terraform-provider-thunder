@@ -21,7 +21,7 @@ type FwGtpSamplingEnable struct {
 	Counters1 string `json:"counters1,omitempty"`
 }
 
-func PostFwGtp(id string, inst FwGtp, host string) {
+func PostFwGtp(id string, inst FwGtp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -40,6 +40,7 @@ func PostFwGtp(id string, inst FwGtp, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -50,11 +51,14 @@ func PostFwGtp(id string, inst FwGtp, host string) {
 
 		} else {
 			logger.Println("[INFO] POST REQ RES..........................", m)
-			check_api_status("PostFwGtp", data)
+			err := check_api_status("PostFwGtp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwGtp(id string, host string) (*FwGtp, error) {
@@ -72,6 +76,7 @@ func GetFwGtp(id string, host string) (*FwGtp, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwGtp
@@ -81,7 +86,10 @@ func GetFwGtp(id string, host string) (*FwGtp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwGtp", data)
+			err := check_api_status("GetFwGtp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

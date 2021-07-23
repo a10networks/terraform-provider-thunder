@@ -16,7 +16,7 @@ type FwTCPRstCloseImmediateInstance struct {
 	UUID   string `json:"uuid,omitempty"`
 }
 
-func PostFwTcpRstCloseImmediate(id string, inst FwTcpRstCloseImmediate, host string) {
+func PostFwTcpRstCloseImmediate(id string, inst FwTcpRstCloseImmediate, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostFwTcpRstCloseImmediate(id string, inst FwTcpRstCloseImmediate, host str
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostFwTcpRstCloseImmediate(id string, inst FwTcpRstCloseImmediate, host str
 
 		} else {
 			logger.Println("[INFO] PostFwTcpRstCloseImmediate REQ RES..........................", m)
-			check_api_status("PostFwTcpRstCloseImmediate", data)
+			err := check_api_status("PostFwTcpRstCloseImmediate", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwTcpRstCloseImmediate(id string, host string) (*FwTcpRstCloseImmediate, error) {
@@ -67,6 +71,7 @@ func GetFwTcpRstCloseImmediate(id string, host string) (*FwTcpRstCloseImmediate,
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwTcpRstCloseImmediate
@@ -76,7 +81,10 @@ func GetFwTcpRstCloseImmediate(id string, host string) (*FwTcpRstCloseImmediate,
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetFwTcpRstCloseImmediate REQ RES..........................", m)
-			check_api_status("GetFwTcpRstCloseImmediate", data)
+			err := check_api_status("GetFwTcpRstCloseImmediate", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

@@ -62,7 +62,7 @@ type AccessListRules struct {
 	Vlan                   int    `json:"vlan,omitempty"`
 }
 
-func PostAccessListExtended(id string, inst AccessListExtended, host string) {
+func PostAccessListExtended(id string, inst AccessListExtended, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -81,6 +81,7 @@ func PostAccessListExtended(id string, inst AccessListExtended, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -91,11 +92,14 @@ func PostAccessListExtended(id string, inst AccessListExtended, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostAccessListExtended", data)
+			err := check_api_status("PostAccessListExtended", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetAccessListExtended(id string, name1 string, host string) (*AccessListExtended, error) {
@@ -113,6 +117,7 @@ func GetAccessListExtended(id string, name1 string, host string) (*AccessListExt
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m AccessListExtended
@@ -122,14 +127,17 @@ func GetAccessListExtended(id string, name1 string, host string) (*AccessListExt
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetAccessListExtended", data)
+			err := check_api_status("GetAccessListExtended", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutAccessListExtended(id string, name1 string, inst AccessListExtended, host string) {
+func PutAccessListExtended(id string, name1 string, inst AccessListExtended, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -148,6 +156,7 @@ func PutAccessListExtended(id string, name1 string, inst AccessListExtended, hos
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -158,11 +167,14 @@ func PutAccessListExtended(id string, name1 string, inst AccessListExtended, hos
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutAccessListExtended", data)
+			err := check_api_status("PutAccessListExtended", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteAccessListExtended(id string, name1 string, host string) error {
@@ -180,6 +192,7 @@ func DeleteAccessListExtended(id string, name1 string, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
+		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m AccessListExtended
@@ -189,7 +202,10 @@ func DeleteAccessListExtended(id string, name1 string, host string) error {
 			return err
 		} else {
 			logger.Println("[INFO] Delete REQ RES..........................", m)
-			check_api_status("DeleteAccessListExtended", data)
+			err := check_api_status("DeleteAccessListExtended", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}

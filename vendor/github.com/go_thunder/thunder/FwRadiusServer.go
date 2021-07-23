@@ -57,7 +57,7 @@ type FwRadiusServerIPList struct {
 	IPListSecretString string `json:"ip-list-secret-string,omitempty"`
 }
 
-func PostFwRadiusServer(id string, inst FwRadiusServer, host string) {
+func PostFwRadiusServer(id string, inst FwRadiusServer, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -76,6 +76,7 @@ func PostFwRadiusServer(id string, inst FwRadiusServer, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -86,11 +87,14 @@ func PostFwRadiusServer(id string, inst FwRadiusServer, host string) {
 
 		} else {
 			logger.Println("[INFO] POST REQ RES..........................", m)
-			check_api_status("PostFwRadiusServer", data)
+			err := check_api_status("PostFwRadiusServer", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwRadiusServer(id string, host string) (*FwRadiusServer, error) {
@@ -108,6 +112,7 @@ func GetFwRadiusServer(id string, host string) (*FwRadiusServer, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwRadiusServer
@@ -117,7 +122,10 @@ func GetFwRadiusServer(id string, host string) (*FwRadiusServer, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwRadiusServer", data)
+			err := check_api_status("GetFwRadiusServer", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

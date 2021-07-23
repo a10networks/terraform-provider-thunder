@@ -60,7 +60,7 @@ type RouterOspfRedistributeVipList struct {
 	TypeVip       string `json:"type-vip,omitempty"`
 }
 
-func PostRouterOspfRedistribute(id string, name1 string, inst RouterOspfRedistribute, host string) {
+func PostRouterOspfRedistribute(id string, name1 string, inst RouterOspfRedistribute, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -79,6 +79,7 @@ func PostRouterOspfRedistribute(id string, name1 string, inst RouterOspfRedistri
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -89,11 +90,14 @@ func PostRouterOspfRedistribute(id string, name1 string, inst RouterOspfRedistri
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostRouterOspfRedistribute", data)
+			err := check_api_status("PostRouterOspfRedistribute", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetRouterOspfRedistribute(id string, name1 string, host string) (*RouterOspfRedistribute, error) {
@@ -111,6 +115,7 @@ func GetRouterOspfRedistribute(id string, name1 string, host string) (*RouterOsp
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterOspfRedistribute
@@ -120,7 +125,10 @@ func GetRouterOspfRedistribute(id string, name1 string, host string) (*RouterOsp
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetRouterOspfRedistribute", data)
+			err := check_api_status("GetRouterOspfRedistribute", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

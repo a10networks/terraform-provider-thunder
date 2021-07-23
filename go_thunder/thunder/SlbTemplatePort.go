@@ -61,7 +61,7 @@ type PortInstance struct {
 	HealthCheck            string `json:"health-check,omitempty"`
 }
 
-func PostTemplatePort(id string, inst Port, host string) {
+func PostTemplatePort(id string, inst Port, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -80,6 +80,7 @@ func PostTemplatePort(id string, inst Port, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -90,11 +91,14 @@ func PostTemplatePort(id string, inst Port, host string) {
 
 		} else {
 			logger.Println("[INFO] PostTemplatePort REQ RES..........................", m)
-			check_api_status("PostTemplatePort", data)
+			err := check_api_status("PostTemplatePort", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetTemplatePort(id string, name string, host string) (*Port, error) {
@@ -112,6 +116,7 @@ func GetTemplatePort(id string, name string, host string) (*Port, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Port
@@ -121,14 +126,17 @@ func GetTemplatePort(id string, name string, host string) (*Port, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetTemplatePort REQ RES..........................", m)
-			check_api_status("GetTemplatePort", data)
+			err := check_api_status("GetTemplatePort", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutTemplatePort(id string, name string, inst Port, host string) {
+func PutTemplatePort(id string, name string, inst Port, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -147,6 +155,7 @@ func PutTemplatePort(id string, name string, inst Port, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -157,11 +166,14 @@ func PutTemplatePort(id string, name string, inst Port, host string) {
 
 		} else {
 			logger.Println("[INFO] PutTemplatePort REQ RES..........................", m)
-			check_api_status("PutTemplatePort", data)
+			err := check_api_status("PutTemplatePort", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteTemplatePort(id string, name string, host string) error {
@@ -178,6 +190,7 @@ func DeleteTemplatePort(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

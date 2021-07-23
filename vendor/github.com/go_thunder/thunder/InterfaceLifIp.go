@@ -153,7 +153,7 @@ type InterfaceLifStr struct {
 	String string `json:"string,omitempty"`
 }
 
-func PostInterfaceLifIp(id string, name1 string, inst InterfaceLifIp, host string) {
+func PostInterfaceLifIp(id string, name1 string, inst InterfaceLifIp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -172,6 +172,7 @@ func PostInterfaceLifIp(id string, name1 string, inst InterfaceLifIp, host strin
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -182,11 +183,14 @@ func PostInterfaceLifIp(id string, name1 string, inst InterfaceLifIp, host strin
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostInterfaceLifIp", data)
+			err := check_api_status("PostInterfaceLifIp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetInterfaceLifIp(id string, name1 string, host string) (*InterfaceLifIp, error) {
@@ -204,6 +208,7 @@ func GetInterfaceLifIp(id string, name1 string, host string) (*InterfaceLifIp, e
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceLifIp
@@ -213,7 +218,10 @@ func GetInterfaceLifIp(id string, name1 string, host string) (*InterfaceLifIp, e
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetInterfaceLifIp", data)
+			err := check_api_status("GetInterfaceLifIp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

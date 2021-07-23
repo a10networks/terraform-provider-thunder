@@ -18,7 +18,7 @@ type SSLCertRevokeInstance struct {
 	Counters1 []SamplingEnable37 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbSSLCertRevoke(id string, inst SSLCertRevoke, host string) {
+func PostSlbSSLCertRevoke(id string, inst SSLCertRevoke, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbSSLCertRevoke(id string, inst SSLCertRevoke, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbSSLCertRevoke(id string, inst SSLCertRevoke, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbSSLCertRevoke REQ RES..........................", m)
-			check_api_status("PostSlbSSLCertRevoke", data)
+			err := check_api_status("PostSlbSSLCertRevoke", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbSSLCertRevoke(id string, host string) (*SSLCertRevoke, error) {
@@ -69,6 +73,7 @@ func GetSlbSSLCertRevoke(id string, host string) (*SSLCertRevoke, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SSLCertRevoke
@@ -78,7 +83,10 @@ func GetSlbSSLCertRevoke(id string, host string) (*SSLCertRevoke, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbSSLCertRevoke REQ RES..........................", m)
-			check_api_status("GetSlbSSLCertRevoke", data)
+			err := check_api_status("GetSlbSSLCertRevoke", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

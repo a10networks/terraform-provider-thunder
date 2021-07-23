@@ -18,7 +18,7 @@ type IpTcpInstance struct {
 	Threshold SynCookie `json:"syn-cookie,omitempty"`
 }
 
-func PostIpTcp(id string, inst IpTcp, host string) {
+func PostIpTcp(id string, inst IpTcp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostIpTcp(id string, inst IpTcp, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostIpTcp(id string, inst IpTcp, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpTcp REQ RES..........................", m)
-			check_api_status("PostIpTcp", data)
+			err := check_api_status("PostIpTcp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpTcp(id string, host string) (*IpTcp, error) {
@@ -69,6 +73,7 @@ func GetIpTcp(id string, host string) (*IpTcp, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m IpTcp
@@ -78,7 +83,10 @@ func GetIpTcp(id string, host string) (*IpTcp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIpTcp REQ RES..........................", m)
-			check_api_status("GetIpTcp", data)
+			err := check_api_status("GetIpTcp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

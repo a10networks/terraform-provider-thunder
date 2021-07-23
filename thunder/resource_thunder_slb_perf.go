@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbPerf
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbPerf() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbPerfCreate,
-		Update: resourceSlbPerfUpdate,
-		Read:   resourceSlbPerfRead,
-		Delete: resourceSlbPerfDelete,
+		CreateContext: resourceSlbPerfCreate,
+		UpdateContext: resourceSlbPerfUpdate,
+		ReadContext:   resourceSlbPerfRead,
+		DeleteContext: resourceSlbPerfDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbPerf() *schema.Resource {
 	}
 }
 
-func resourceSlbPerfCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPerfCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbPerf (Inside resourceSlbPerfCreate) ")
@@ -44,41 +48,49 @@ func resourceSlbPerfCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSlbPerf(d)
 		logger.Println("[INFO] received formatted data from method data to SlbPerf --")
 		d.SetId("1")
-		go_thunder.PostSlbPerf(client.Token, data, client.Host)
+		err := go_thunder.PostSlbPerf(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbPerfRead(d, meta)
+		return resourceSlbPerfRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbPerfRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPerfRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbPerf (Inside resourceSlbPerfRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 
 		data, err := go_thunder.GetSlbPerf(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbPerfUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPerfUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbPerfRead(d, meta)
+	return resourceSlbPerfRead(ctx, d, meta)
 }
 
-func resourceSlbPerfDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPerfDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbPerfRead(d, meta)
+	return resourceSlbPerfRead(ctx, d, meta)
 }
 
 func dataToSlbPerf(d *schema.ResourceData) go_thunder.Perf {

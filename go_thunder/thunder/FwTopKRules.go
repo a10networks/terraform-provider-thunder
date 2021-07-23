@@ -15,7 +15,7 @@ type FwTopKRulesInstance struct {
 	UUID string `json:"uuid,omitempty"`
 }
 
-func PostFwTopKRules(id string, inst FwTopKRules, host string) {
+func PostFwTopKRules(id string, inst FwTopKRules, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -34,6 +34,7 @@ func PostFwTopKRules(id string, inst FwTopKRules, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -44,11 +45,14 @@ func PostFwTopKRules(id string, inst FwTopKRules, host string) {
 
 		} else {
 			logger.Println("[INFO] PostFwTopKRules REQ RES..........................", m)
-			check_api_status("PostFwTopKRules", data)
+			err := check_api_status("PostFwTopKRules", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwTopKRules(id string, host string) (*FwTopKRules, error) {
@@ -66,6 +70,7 @@ func GetFwTopKRules(id string, host string) (*FwTopKRules, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwTopKRules
@@ -75,7 +80,10 @@ func GetFwTopKRules(id string, host string) (*FwTopKRules, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetFwTopKRules REQ RES..........................", m)
-			check_api_status("GetFwTopKRules", data)
+			err := check_api_status("GetFwTopKRules", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

@@ -20,7 +20,7 @@ type FwAppSamplingEnable struct {
 	Counters1 string `json:"counters1,omitempty"`
 }
 
-func PostFwApp(id string, inst FwApp, host string) {
+func PostFwApp(id string, inst FwApp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -39,6 +39,7 @@ func PostFwApp(id string, inst FwApp, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -49,11 +50,14 @@ func PostFwApp(id string, inst FwApp, host string) {
 
 		} else {
 			logger.Println("[INFO] POST REQ RES..........................", m)
-			check_api_status("PostFwApp", data)
+			err := check_api_status("PostFwApp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwApp(id string, host string) (*FwApp, error) {
@@ -71,6 +75,7 @@ func GetFwApp(id string, host string) (*FwApp, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwApp
@@ -80,7 +85,10 @@ func GetFwApp(id string, host string) (*FwApp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwApp", data)
+			err := check_api_status("GetFwApp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

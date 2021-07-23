@@ -45,13 +45,16 @@ func GetSlbFTPProxy(id string, host string) (*FTPProxy, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetSlbFTPProxy REQ RES..........................", m)
-			check_api_status("GetSlbFTPProxy", data)
+			err := check_api_status("GetSlbFTPProxy", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbFTPProxy(id string, vc FTPProxy, host string) {
+func PostSlbFTPProxy(id string, vc FTPProxy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -81,8 +84,11 @@ func PostSlbFTPProxy(id string, vc FTPProxy, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbFTPProxy", data)
+			err := check_api_status("PostSlbFTPProxy", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

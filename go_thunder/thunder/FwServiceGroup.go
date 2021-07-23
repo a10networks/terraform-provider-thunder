@@ -33,7 +33,7 @@ type FwServiceSamplingEnable struct {
 	Counters1 string `json:"counters1,omitempty"`
 }
 
-func PostFwServiceGroup(id string, inst FwServiceGroup, host string) {
+func PostFwServiceGroup(id string, inst FwServiceGroup, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -52,6 +52,7 @@ func PostFwServiceGroup(id string, inst FwServiceGroup, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -62,11 +63,14 @@ func PostFwServiceGroup(id string, inst FwServiceGroup, host string) {
 
 		} else {
 			logger.Println("[INFO] PostFwServiceGroup REQ RES..........................", m)
-			check_api_status("PostFwServiceGroup", data)
+			err := check_api_status("PostFwServiceGroup", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwServiceGroup(id string, name string, host string) (*FwServiceGroup, error) {
@@ -84,6 +88,7 @@ func GetFwServiceGroup(id string, name string, host string) (*FwServiceGroup, er
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwServiceGroup
@@ -93,14 +98,17 @@ func GetFwServiceGroup(id string, name string, host string) (*FwServiceGroup, er
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwServiceGroup", data)
+			err := check_api_status("GetFwServiceGroup", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutFwServiceGroup(id string, name string, inst FwServiceGroup, host string) {
+func PutFwServiceGroup(id string, name string, inst FwServiceGroup, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -119,6 +127,7 @@ func PutFwServiceGroup(id string, name string, inst FwServiceGroup, host string)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -129,11 +138,14 @@ func PutFwServiceGroup(id string, name string, inst FwServiceGroup, host string)
 
 		} else {
 			logger.Println("[INFO] PUT REQ RES..........................", m)
-			check_api_status("PutFwServiceGroup", data)
+			err := check_api_status("PutFwServiceGroup", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteFwServiceGroup(id string, name string, host string) error {
@@ -150,6 +162,7 @@ func DeleteFwServiceGroup(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

@@ -28,7 +28,7 @@ type EthernetTrunkGroupInstance struct {
 	PortPriority int            `json:"port-priority,omitempty"`
 }
 
-func PostInterfaceEthernetTrunkGroup(id string, idNum int, inst EthernetTrunkGroup, host string) {
+func PostInterfaceEthernetTrunkGroup(id string, idNum int, inst EthernetTrunkGroup, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -47,6 +47,7 @@ func PostInterfaceEthernetTrunkGroup(id string, idNum int, inst EthernetTrunkGro
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -57,11 +58,14 @@ func PostInterfaceEthernetTrunkGroup(id string, idNum int, inst EthernetTrunkGro
 
 		} else {
 			logger.Println("[INFO] PostInterfaceEthernetTrunkGroup REQ RES..........................", m)
-			check_api_status("PostInterfaceEthernetTrunkGroup", data)
+			err := check_api_status("PostInterfaceEthernetTrunkGroup", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetInterfaceEthernetTrunkGroup(id string, idNum string, name string, host string) (*EthernetTrunkGroup, error) {
@@ -79,6 +83,7 @@ func GetInterfaceEthernetTrunkGroup(id string, idNum string, name string, host s
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m EthernetTrunkGroup
@@ -88,14 +93,17 @@ func GetInterfaceEthernetTrunkGroup(id string, idNum string, name string, host s
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetInterfaceEthernetTrunkGroup REQ RES..........................", m)
-			check_api_status("GetInterfaceEthernetTrunkGroup", data)
+			err := check_api_status("GetInterfaceEthernetTrunkGroup", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutInterfaceEthernetTrunkGroup(id string, idNum int, name int, inst EthernetTrunkGroup, host string) {
+func PutInterfaceEthernetTrunkGroup(id string, idNum int, name int, inst EthernetTrunkGroup, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -114,6 +122,7 @@ func PutInterfaceEthernetTrunkGroup(id string, idNum int, name int, inst Etherne
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -124,11 +133,14 @@ func PutInterfaceEthernetTrunkGroup(id string, idNum int, name int, inst Etherne
 
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("PutInterfaceEthernetTrunkGroup", data)
+			err := check_api_status("PutInterfaceEthernetTrunkGroup", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteInterfaceEthernetTrunkGroup(id string, idNum string, name string, host string) error {
@@ -145,6 +157,7 @@ func DeleteInterfaceEthernetTrunkGroup(id string, idNum string, name string, hos
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

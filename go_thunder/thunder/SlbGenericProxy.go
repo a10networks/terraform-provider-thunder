@@ -45,13 +45,16 @@ func GetSlbGenericProxy(id string, host string) (*GenericProxy, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetSlbGenericProxy REQ RES..........................", m)
-			check_api_status("GetSlbGenericProxy", data)
+			err := check_api_status("GetSlbGenericProxy", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbGenericProxy(id string, vc GenericProxy, host string) {
+func PostSlbGenericProxy(id string, vc GenericProxy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -81,8 +84,11 @@ func PostSlbGenericProxy(id string, vc GenericProxy, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbGenericProxy", data)
+			err := check_api_status("PostSlbGenericProxy", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

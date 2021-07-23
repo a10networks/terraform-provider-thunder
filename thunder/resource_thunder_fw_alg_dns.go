@@ -3,18 +3,20 @@ package thunder
 //Thunder resource FwAlgDns
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strconv"
 	"util"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwAlgDns() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwAlgDnsCreate,
-		Update: resourceFwAlgDnsUpdate,
-		Read:   resourceFwAlgDnsRead,
-		Delete: resourceFwAlgDnsDelete,
+		CreateContext: resourceFwAlgDnsCreate,
+		UpdateContext: resourceFwAlgDnsUpdate,
+		ReadContext:   resourceFwAlgDnsRead,
+		DeleteContext: resourceFwAlgDnsDelete,
 		Schema: map[string]*schema.Schema{
 			"default_port_disable": {
 				Type:        schema.TypeString,
@@ -30,9 +32,11 @@ func resourceFwAlgDns() *schema.Resource {
 	}
 }
 
-func resourceFwAlgDnsCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAlgDnsCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwAlgDns (Inside resourceFwAlgDnsCreate) ")
@@ -40,41 +44,49 @@ func resourceFwAlgDnsCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToFwAlgDns(d)
 		logger.Println("[INFO] received formatted data from method data to FwAlgDns --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwAlgDns(client.Token, data, client.Host)
+		err := go_thunder.PostFwAlgDns(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwAlgDnsRead(d, meta)
+		return resourceFwAlgDnsRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwAlgDnsRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAlgDnsRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwAlgDns (Inside resourceFwAlgDnsRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwAlgDns(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwAlgDnsUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAlgDnsUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwAlgDnsRead(d, meta)
+	return resourceFwAlgDnsRead(ctx, d, meta)
 }
 
-func resourceFwAlgDnsDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAlgDnsDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwAlgDnsRead(d, meta)
+	return resourceFwAlgDnsRead(ctx, d, meta)
 }
 func dataToFwAlgDns(d *schema.ResourceData) go_thunder.FwAlgDns {
 	var vc go_thunder.FwAlgDns

@@ -3,18 +3,21 @@ package thunder
 //Thunder resource Udp
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"log"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateUdp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceUdpCreate,
-		Update: resourceUdpUpdate,
-		Read:   resourceUdpRead,
-		Delete: resourceUdpDelete,
+		CreateContext: resourceUdpCreate,
+		UpdateContext: resourceUdpUpdate,
+		ReadContext:   resourceUdpRead,
+		DeleteContext: resourceUdpDelete,
 
 		Schema: map[string]*schema.Schema{
 			"qos": {
@@ -56,66 +59,81 @@ func resourceSlbTemplateUdp() *schema.Resource {
 	}
 }
 
-func resourceUdpCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceUdpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Creating udp (Inside resourceUdpCreate    " + name)
 		v := dataToUdp(name, d)
 		d.SetId(name)
-		go_thunder.PostUdp(client.Token, v, client.Host)
-
-		return resourceUdpRead(d, meta)
+		err := go_thunder.PostUdp(client.Token, v, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceUdpRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceUdpRead(d *schema.ResourceData, meta interface{}) error {
+func resourceUdpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading udp (Inside resourceUdpRead)")
 
 	if client.Host != "" {
 		client := meta.(Thunder)
+
 
 		name := d.Id()
 
 		logger.Println("[INFO] Fetching udp Read" + name)
 
 		udp, err := go_thunder.GetUdp(client.Token, name, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if udp == nil {
 			logger.Println("[INFO] No udp found " + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceUdpUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceUdpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Modifying udp (Inside resourceUdpUpdate    " + name)
 		v := dataToUdp(name, d)
 		d.SetId(name)
-		go_thunder.PutUdp(client.Token, name, v, client.Host)
-
-		return resourceUdpRead(d, meta)
+		err := go_thunder.PutUdp(client.Token, name, v, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceUdpRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceUdpDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceUdpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger := util.GetLoggerInstance()
 
 	if client.Host != "" {
@@ -125,7 +143,7 @@ func resourceUdpDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteUdp(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete udp  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

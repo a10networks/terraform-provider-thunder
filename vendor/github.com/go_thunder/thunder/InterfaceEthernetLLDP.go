@@ -43,7 +43,7 @@ type EthernetLLDPInstance struct {
 	UUID               string              `json:"uuid,omitempty"`
 }
 
-func PostInterfaceEthernetLLDP(id string, name int, inst EthernetLLDP, host string) {
+func PostInterfaceEthernetLLDP(id string, name int, inst EthernetLLDP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -62,6 +62,7 @@ func PostInterfaceEthernetLLDP(id string, name int, inst EthernetLLDP, host stri
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -72,11 +73,14 @@ func PostInterfaceEthernetLLDP(id string, name int, inst EthernetLLDP, host stri
 
 		} else {
 			logger.Println("[INFO] PostInterfaceEthernetLLDP REQ RES..........................", m)
-			check_api_status("PostInterfaceEthernetLLDP", data)
+			err := check_api_status("PostInterfaceEthernetLLDP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetInterfaceEthernetLLDP(id string, name string, host string) (*EthernetLLDP, error) {
@@ -94,6 +98,7 @@ func GetInterfaceEthernetLLDP(id string, name string, host string) (*EthernetLLD
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m EthernetLLDP
@@ -103,7 +108,10 @@ func GetInterfaceEthernetLLDP(id string, name string, host string) (*EthernetLLD
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetInterfaceEthernetLLDP REQ RES..........................", m)
-			check_api_status("GetInterfaceEthernetLLDP", data)
+			err := check_api_status("GetInterfaceEthernetLLDP", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

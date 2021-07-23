@@ -58,7 +58,7 @@ type DNSInstance struct {
 	UUID               string               `json:"uuid,omitempty"`
 }
 
-func PostTemplateDNS(id string, inst DNS, host string) {
+func PostTemplateDNS(id string, inst DNS, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -77,6 +77,7 @@ func PostTemplateDNS(id string, inst DNS, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -87,11 +88,14 @@ func PostTemplateDNS(id string, inst DNS, host string) {
 
 		} else {
 			logger.Println("[INFO] PostTemplateDNS REQ RES..........................", m)
-			check_api_status("PostTemplateDNS", data)
+			err := check_api_status("PostTemplateDNS", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetTemplateDNS(id string, name string, host string) (*DNS, error) {
@@ -109,6 +113,7 @@ func GetTemplateDNS(id string, name string, host string) (*DNS, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m DNS
@@ -118,14 +123,17 @@ func GetTemplateDNS(id string, name string, host string) (*DNS, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetTemplateDNS REQ RES..........................", m)
-			check_api_status("GetTemplateDNS", data)
+			err := check_api_status("GetTemplateDNS", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutTemplateDNS(id string, name string, inst DNS, host string) {
+func PutTemplateDNS(id string, name string, inst DNS, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -144,6 +152,7 @@ func PutTemplateDNS(id string, name string, inst DNS, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -154,11 +163,14 @@ func PutTemplateDNS(id string, name string, inst DNS, host string) {
 
 		} else {
 			logger.Println("[INFO] PutTemplateDNS REQ RES..........................", m)
-			check_api_status("PutTemplateDNS", data)
+			err := check_api_status("PutTemplateDNS", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteTemplateDNS(id string, name string, host string) error {
@@ -175,6 +187,7 @@ func DeleteTemplateDNS(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

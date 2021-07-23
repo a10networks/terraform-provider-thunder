@@ -16,7 +16,7 @@ type FwGtpInGtpFilteringInstance struct {
 	UUID          string `json:"uuid,omitempty"`
 }
 
-func PostFwGtpInGtpFiltering(id string, inst FwGtpInGtpFiltering, host string) {
+func PostFwGtpInGtpFiltering(id string, inst FwGtpInGtpFiltering, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostFwGtpInGtpFiltering(id string, inst FwGtpInGtpFiltering, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostFwGtpInGtpFiltering(id string, inst FwGtpInGtpFiltering, host string) {
 
 		} else {
 			logger.Println("[INFO] POST REQ RES..........................", m)
-			check_api_status("PostFwGtpInGtpFiltering", data)
+			err := check_api_status("PostFwGtpInGtpFiltering", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwGtpInGtpFiltering(id string, host string) (*FwGtpInGtpFiltering, error) {
@@ -67,6 +71,7 @@ func GetFwGtpInGtpFiltering(id string, host string) (*FwGtpInGtpFiltering, error
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwGtpInGtpFiltering
@@ -76,7 +81,10 @@ func GetFwGtpInGtpFiltering(id string, host string) (*FwGtpInGtpFiltering, error
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwGtpInGtpFiltering", data)
+			err := check_api_status("GetFwGtpInGtpFiltering", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

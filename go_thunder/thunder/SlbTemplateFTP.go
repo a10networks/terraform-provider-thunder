@@ -21,7 +21,7 @@ type FTPInstance struct {
 	Name              string `json:"name,omitempty"`
 }
 
-func PostSlbTemplateFTP(id string, inst FTP, host string) {
+func PostSlbTemplateFTP(id string, inst FTP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -40,6 +40,7 @@ func PostSlbTemplateFTP(id string, inst FTP, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -50,11 +51,14 @@ func PostSlbTemplateFTP(id string, inst FTP, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateFTP REQ RES..........................", m)
-			check_api_status("PostSlbTemplateFTP", data)
+			err := check_api_status("PostSlbTemplateFTP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateFTP(id string, name string, host string) (*FTP, error) {
@@ -72,6 +76,7 @@ func GetSlbTemplateFTP(id string, name string, host string) (*FTP, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FTP
@@ -81,14 +86,17 @@ func GetSlbTemplateFTP(id string, name string, host string) (*FTP, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateFTP REQ RES..........................", m)
-			check_api_status("GetSlbTemplateFTP", data)
+			err := check_api_status("GetSlbTemplateFTP", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateFTP(id string, name string, inst FTP, host string) {
+func PutSlbTemplateFTP(id string, name string, inst FTP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -107,6 +115,7 @@ func PutSlbTemplateFTP(id string, name string, inst FTP, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -117,11 +126,14 @@ func PutSlbTemplateFTP(id string, name string, inst FTP, host string) {
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateFTP REQ RES..........................", m)
-			check_api_status("PutSlbTemplateFTP", data)
+			err := check_api_status("PutSlbTemplateFTP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateFTP(id string, name string, host string) error {
@@ -138,6 +150,7 @@ func DeleteSlbTemplateFTP(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

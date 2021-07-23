@@ -3,18 +3,21 @@ package thunder
 //Thunder resource InterfaceLifIp
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceInterfaceLifIp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceInterfaceLifIpCreate,
-		Update: resourceInterfaceLifIpUpdate,
-		Read:   resourceInterfaceLifIpRead,
-		Delete: resourceInterfaceLifIpDelete,
+		CreateContext: resourceInterfaceLifIpCreate,
+		UpdateContext: resourceInterfaceLifIpUpdate,
+		ReadContext:   resourceInterfaceLifIpRead,
+		DeleteContext: resourceInterfaceLifIpDelete,
 		Schema: map[string]*schema.Schema{
 			"dhcp": {
 				Type:        schema.TypeInt,
@@ -521,9 +524,11 @@ func resourceInterfaceLifIp() *schema.Resource {
 	}
 }
 
-func resourceInterfaceLifIpCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceLifIpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating InterfaceLifIp (Inside resourceInterfaceLifIpCreate) ")
@@ -531,40 +536,48 @@ func resourceInterfaceLifIpCreate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToInterfaceLifIp(d)
 		logger.Println("[INFO] received formatted data from method data to InterfaceLifIp --")
 		d.SetId(name1)
-		go_thunder.PostInterfaceLifIp(client.Token, name1, data, client.Host)
+		err := go_thunder.PostInterfaceLifIp(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceLifIpRead(d, meta)
+		return resourceInterfaceLifIpRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceLifIpRead(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceLifIpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading InterfaceLifIp (Inside resourceInterfaceLifIpRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetInterfaceLifIp(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceInterfaceLifIpUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceLifIpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceLifIpRead(d, meta)
+	return resourceInterfaceLifIpRead(ctx, d, meta)
 }
 
-func resourceInterfaceLifIpDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceLifIpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceLifIpRead(d, meta)
+	return resourceInterfaceLifIpRead(ctx, d, meta)
 }
 func dataToInterfaceLifIp(d *schema.ResourceData) go_thunder.InterfaceLifIp {
 	var vc go_thunder.InterfaceLifIp

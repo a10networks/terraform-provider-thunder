@@ -18,7 +18,7 @@ type SlbSmtpInstance struct {
 	Counters1 []SamplingEnable12 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbSmtp(id string, inst SlbSmtp, host string) {
+func PostSlbSmtp(id string, inst SlbSmtp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbSmtp(id string, inst SlbSmtp, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbSmtp(id string, inst SlbSmtp, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbSmtp REQ RES..........................", m)
-			check_api_status("PostSlbSmtp", data)
+			err := check_api_status("PostSlbSmtp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbSmtp(id string, host string) (*SlbSmtp, error) {
@@ -69,6 +73,7 @@ func GetSlbSmtp(id string, host string) (*SlbSmtp, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SlbSmtp
@@ -78,7 +83,10 @@ func GetSlbSmtp(id string, host string) (*SlbSmtp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbSmtp REQ RES..........................", m)
-			check_api_status("GetSlbSmtp", data)
+			err := check_api_status("GetSlbSmtp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

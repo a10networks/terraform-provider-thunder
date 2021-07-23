@@ -56,13 +56,16 @@ func GetLogging(id string, name string, host string) (*Logging, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetLogging REQ RES..........................", m)
-			check_api_status("GetLogging", data)
+			err := check_api_status("GetLogging", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostLogging(id string, sg Logging, host string) {
+func PostLogging(id string, sg Logging, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -92,13 +95,16 @@ func PostLogging(id string, sg Logging, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostLogging", data)
+			err := check_api_status("PostLogging", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
-func PutLogging(id string, name string, sg Logging, host string) {
+func PutLogging(id string, name string, sg Logging, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -128,10 +134,13 @@ func PutLogging(id string, name string, sg Logging, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PutLogging", data)
+			err := check_api_status("PutLogging", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func DeleteLogging(id string, name string, host string) error {

@@ -26,7 +26,7 @@ type RerouteInstance struct {
 	UUID   string            `json:"uuid,omitempty"`
 }
 
-func PostIpReroute(id string, inst Reroute, host string) {
+func PostIpReroute(id string, inst Reroute, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -45,6 +45,7 @@ func PostIpReroute(id string, inst Reroute, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -55,11 +56,14 @@ func PostIpReroute(id string, inst Reroute, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpReroute REQ RES..........................", m)
-			check_api_status("PostIpReroute", data)
+			err := check_api_status("PostIpReroute", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpReroute(id string, host string) (*Reroute, error) {
@@ -77,6 +81,7 @@ func GetIpReroute(id string, host string) (*Reroute, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Reroute
@@ -86,7 +91,10 @@ func GetIpReroute(id string, host string) (*Reroute, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIpReroute REQ RES..........................", m)
-			check_api_status("GetIpReroute", data)
+			err := check_api_status("GetIpReroute", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

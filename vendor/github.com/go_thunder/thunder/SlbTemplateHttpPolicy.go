@@ -62,13 +62,16 @@ func GetHttpPolicy(id string, name string, host string) (*HttpPolicy, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetHttpPolicy REQ RES..........................", m)
-			check_api_status("GetHttpPolicy", data)
+			err := check_api_status("GetHttpPolicy", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostHttpPolicy(id string, sg HttpPolicy, host string) {
+func PostHttpPolicy(id string, sg HttpPolicy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -98,13 +101,16 @@ func PostHttpPolicy(id string, sg HttpPolicy, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostHttpPolicy", data)
+			err := check_api_status("PostHttpPolicy", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
-func PutHttpPolicy(id string, name string, sg HttpPolicy, host string) {
+func PutHttpPolicy(id string, name string, sg HttpPolicy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -134,10 +140,13 @@ func PutHttpPolicy(id string, name string, sg HttpPolicy, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PutHttpPolicy", data)
+			err := check_api_status("PutHttpPolicy", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func DeleteHttpPolicy(id string, name string, host string) error {

@@ -16,7 +16,7 @@ type SystemVeMacSchemeInstance struct {
 	VeMacSchemeVal string `json:"ve-mac-scheme-val,omitempty"`
 }
 
-func PostSystemVeMacScheme(id string, inst SystemVeMacScheme, host string) {
+func PostSystemVeMacScheme(id string, inst SystemVeMacScheme, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostSystemVeMacScheme(id string, inst SystemVeMacScheme, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostSystemVeMacScheme(id string, inst SystemVeMacScheme, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSystemVeMacScheme", data)
+			err := check_api_status("PostSystemVeMacScheme", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSystemVeMacScheme(id string, host string) (*SystemVeMacScheme, error) {
@@ -67,6 +71,7 @@ func GetSystemVeMacScheme(id string, host string) (*SystemVeMacScheme, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SystemVeMacScheme
@@ -76,7 +81,10 @@ func GetSystemVeMacScheme(id string, host string) (*SystemVeMacScheme, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSystemVeMacScheme", data)
+			err := check_api_status("GetSystemVeMacScheme", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

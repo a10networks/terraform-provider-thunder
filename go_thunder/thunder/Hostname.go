@@ -16,7 +16,7 @@ type HostnameInstance struct {
 	Value string `json:"value,omitempty"`
 }
 
-func PostHostname(id string, inst Hostname, host string) {
+func PostHostname(id string, inst Hostname, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostHostname(id string, inst Hostname, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostHostname(id string, inst Hostname, host string) {
 
 		} else {
 			logger.Println("[INFO] PostHostname REQ RES..........................", m)
-			check_api_status("PostHostname", data)
+			err := check_api_status("PostHostname", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetHostname(id string, host string) (*Hostname, error) {
@@ -67,6 +71,7 @@ func GetHostname(id string, host string) (*Hostname, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Hostname
@@ -76,7 +81,10 @@ func GetHostname(id string, host string) (*Hostname, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetHostname REQ RES..........................", m)
-			check_api_status("GetHostname", data)
+			err := check_api_status("GetHostname", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

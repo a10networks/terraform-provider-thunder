@@ -28,7 +28,7 @@ type FragInstance struct {
 	Buff                    int                `json:"buff,omitempty"`
 }
 
-func PostIpFrag(id string, inst Frag, host string) {
+func PostIpFrag(id string, inst Frag, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -47,6 +47,7 @@ func PostIpFrag(id string, inst Frag, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -57,11 +58,14 @@ func PostIpFrag(id string, inst Frag, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpFrag REQ RES..........................", m)
-			check_api_status("PostIpFrag", data)
+			err := check_api_status("PostIpFrag", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpFrag(id string, host string) (*Frag, error) {
@@ -79,6 +83,7 @@ func GetIpFrag(id string, host string) (*Frag, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Frag
@@ -88,7 +93,10 @@ func GetIpFrag(id string, host string) (*Frag, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIpFrag REQ RES..........................", m)
-			check_api_status("GetIpFrag", data)
+			err := check_api_status("GetIpFrag", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

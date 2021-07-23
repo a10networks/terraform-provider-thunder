@@ -16,7 +16,7 @@ type NatGlobalInstance struct {
 	ResetIdleTcpConn int    `json:"reset-idle-tcp-conn,omitempty"`
 }
 
-func PostIpNatGlobal(id string, inst NatGlobal, host string) {
+func PostIpNatGlobal(id string, inst NatGlobal, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostIpNatGlobal(id string, inst NatGlobal, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostIpNatGlobal(id string, inst NatGlobal, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpNatGlobal REQ RES..........................", m)
-			check_api_status("PostIpNatGlobal", data)
+			err := check_api_status("PostIpNatGlobal", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpNatGlobal(id string, host string) (*NatGlobal, error) {
@@ -67,6 +71,7 @@ func GetIpNatGlobal(id string, host string) (*NatGlobal, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m NatGlobal
@@ -76,7 +81,10 @@ func GetIpNatGlobal(id string, host string) (*NatGlobal, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIpNatGlobal REQ RES..........................", m)
-			check_api_status("GetIpNatGlobal", data)
+			err := check_api_status("GetIpNatGlobal", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

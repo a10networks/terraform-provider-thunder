@@ -3,17 +3,20 @@ package thunder
 //Thunder resource SnmpServerContact
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSnmpServerContact() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSnmpServerContactCreate,
-		Update: resourceSnmpServerContactUpdate,
-		Read:   resourceSnmpServerContactRead,
-		Delete: resourceSnmpServerContactDelete,
+		CreateContext: resourceSnmpServerContactCreate,
+		UpdateContext: resourceSnmpServerContactUpdate,
+		ReadContext:   resourceSnmpServerContactRead,
+		DeleteContext: resourceSnmpServerContactDelete,
 		Schema: map[string]*schema.Schema{
 			"contact_name": {
 				Type:        schema.TypeString,
@@ -29,9 +32,11 @@ func resourceSnmpServerContact() *schema.Resource {
 	}
 }
 
-func resourceSnmpServerContactCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerContactCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerContact (Inside resourceSnmpServerContactCreate) ")
@@ -39,39 +44,47 @@ func resourceSnmpServerContactCreate(d *schema.ResourceData, meta interface{}) e
 		data := dataToSnmpServerContact(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerContact --")
 		d.SetId("1")
-		go_thunder.PostSnmpServerContact(client.Token, data, client.Host)
+		err := go_thunder.PostSnmpServerContact(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerContactRead(d, meta)
+		return resourceSnmpServerContactRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerContactRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerContactRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SnmpServerContact (Inside resourceSnmpServerContactRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetSnmpServerContact(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSnmpServerContactUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerContactUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSnmpServerContactRead(d, meta)
+	return resourceSnmpServerContactRead(ctx, d, meta)
 }
 
-func resourceSnmpServerContactDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerContactDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSnmpServerContactRead(d, meta)
+	return resourceSnmpServerContactRead(ctx, d, meta)
 }
 func dataToSnmpServerContact(d *schema.ResourceData) go_thunder.SnmpServerContact {
 	var vc go_thunder.SnmpServerContact

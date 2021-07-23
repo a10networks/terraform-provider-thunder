@@ -911,7 +911,7 @@ type SslcpsLimitCfg struct {
 	SslcpsLimitMax int `json:"sslcps-limit-max,omitempty"`
 }
 
-func PostSystem(id string, inst System, host string) {
+func PostSystem(id string, inst System, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -930,6 +930,7 @@ func PostSystem(id string, inst System, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -940,11 +941,14 @@ func PostSystem(id string, inst System, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSystem", data)
+			err := check_api_status("PostSystem", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSystem(id string, host string) (*System, error) {
@@ -962,6 +966,7 @@ func GetSystem(id string, host string) (*System, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m System
@@ -971,7 +976,10 @@ func GetSystem(id string, host string) (*System, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSystem", data)
+			err := check_api_status("GetSystem", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

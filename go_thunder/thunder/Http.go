@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"io"
 	"net/http"
+	"time"
 	"util"
 )
 
@@ -16,11 +17,10 @@ func DoHttp(method string, host string, body io.Reader, headers map[string]strin
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
-	client := &http.Client{Transport: tr}
-
+	//client := &http.Client{Transport: tr}
+	client := &http.Client{Transport: tr, Timeout: 60 * time.Second}
 	req, err := http.NewRequest(method, host, body)
 	//logger.Println("req new request - ", req.StatusCode)
-
 	if err != nil {
 		logger.Println("[INFO] error creating new request")
 	}
@@ -29,11 +29,8 @@ func DoHttp(method string, host string, body io.Reader, headers map[string]strin
 		req.Header.Set(property, value)
 	}
 	resp, err := client.Do(req)
-	logger.Println("req new request - ", resp.StatusCode)
-
 	if err != nil {
-		logger.Println("[INFO] error ")
+		logger.Println("[INFO] error from Http.go ")
 	}
-
 	return resp, err
 }

@@ -18,7 +18,7 @@ type SwitchInstance struct {
 	Counters1 []SamplingEnable13 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbSwitch(id string, inst Switch, host string) {
+func PostSlbSwitch(id string, inst Switch, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbSwitch(id string, inst Switch, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbSwitch(id string, inst Switch, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbSwitch REQ RES..........................", m)
-			check_api_status("PostSlbSwitch", data)
+			err := check_api_status("PostSlbSwitch", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbSwitch(id string, host string) (*Switch, error) {
@@ -69,6 +73,7 @@ func GetSlbSwitch(id string, host string) (*Switch, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Switch
@@ -78,7 +83,10 @@ func GetSlbSwitch(id string, host string) (*Switch, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbSwitch REQ RES..........................", m)
-			check_api_status("GetSlbSwitch", data)
+			err := check_api_status("GetSlbSwitch", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

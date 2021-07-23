@@ -25,7 +25,7 @@ type CSVInstance struct {
 	Field      []MultipleFields `json:"multiple-fields,omitempty"`
 }
 
-func PostSlbTemplateCSV(id string, inst CSV, host string) {
+func PostSlbTemplateCSV(id string, inst CSV, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -44,6 +44,7 @@ func PostSlbTemplateCSV(id string, inst CSV, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -54,11 +55,14 @@ func PostSlbTemplateCSV(id string, inst CSV, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateCSV REQ RES..........................", m)
-			check_api_status("PostSlbTemplateCSV", data)
+			err := check_api_status("PostSlbTemplateCSV", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateCSV(id string, name string, host string) (*CSV, error) {
@@ -76,6 +80,7 @@ func GetSlbTemplateCSV(id string, name string, host string) (*CSV, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m CSV
@@ -85,14 +90,17 @@ func GetSlbTemplateCSV(id string, name string, host string) (*CSV, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateCSV REQ RES..........................", m)
-			check_api_status("GetSlbTemplateCSV", data)
+			err := check_api_status("GetSlbTemplateCSV", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateCSV(id string, name string, inst CSV, host string) {
+func PutSlbTemplateCSV(id string, name string, inst CSV, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -111,6 +119,7 @@ func PutSlbTemplateCSV(id string, name string, inst CSV, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -121,11 +130,14 @@ func PutSlbTemplateCSV(id string, name string, inst CSV, host string) {
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateCSV REQ RES..........................", m)
-			check_api_status("PutSlbTemplateCSV", data)
+			err := check_api_status("PutSlbTemplateCSV", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateCSV(id string, name string, host string) error {
@@ -142,6 +154,7 @@ func DeleteSlbTemplateCSV(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

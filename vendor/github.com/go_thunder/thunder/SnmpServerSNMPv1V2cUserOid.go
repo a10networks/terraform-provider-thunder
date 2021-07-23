@@ -39,7 +39,7 @@ type SnmpServerSNMPv1V2cUserIpv6List struct {
 	Ipv6Mask int    `json:"ipv6-mask,omitempty"`
 }
 
-func PostSnmpServerSNMPv1V2cUserOid(id string, name1 string, inst SnmpServerSNMPv1V2cUserOid, host string) {
+func PostSnmpServerSNMPv1V2cUserOid(id string, name1 string, inst SnmpServerSNMPv1V2cUserOid, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -58,6 +58,7 @@ func PostSnmpServerSNMPv1V2cUserOid(id string, name1 string, inst SnmpServerSNMP
 	logger.Println("POST-------->   https://" + host + "/axapi/v3/snmp-server/SNMPv1-v2c/user/" + name1 + "/oid/")
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -68,10 +69,13 @@ func PostSnmpServerSNMPv1V2cUserOid(id string, name1 string, inst SnmpServerSNMP
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerSNMPv1V2cUserOid", data)
+			err := check_api_status("PostSnmpServerSNMPv1V2cUserOid", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerSNMPv1V2cUserOid(id string, name1 string, name2 string, host string) (*SnmpServerSNMPv1V2cUserOid, error) {
@@ -89,6 +93,7 @@ func GetSnmpServerSNMPv1V2cUserOid(id string, name1 string, name2 string, host s
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerSNMPv1V2cUserOid
@@ -98,14 +103,17 @@ func GetSnmpServerSNMPv1V2cUserOid(id string, name1 string, name2 string, host s
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerSNMPv1V2cUserOid", data)
+			err := check_api_status("GetSnmpServerSNMPv1V2cUserOid", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSnmpServerSNMPv1V2cUserOid(id string, name1 string, name2 string, inst SnmpServerSNMPv1V2cUserOid, host string) {
+func PutSnmpServerSNMPv1V2cUserOid(id string, name1 string, name2 string, inst SnmpServerSNMPv1V2cUserOid, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -124,6 +132,7 @@ func PutSnmpServerSNMPv1V2cUserOid(id string, name1 string, name2 string, inst S
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -134,10 +143,13 @@ func PutSnmpServerSNMPv1V2cUserOid(id string, name1 string, name2 string, inst S
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutSnmpServerSNMPv1V2cUserOid", data)
+			err := check_api_status("PutSnmpServerSNMPv1V2cUserOid", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func DeleteSnmpServerSNMPv1V2cUserOid(id string, name1 string, name2 string, host string) error {
@@ -154,6 +166,7 @@ func DeleteSnmpServerSNMPv1V2cUserOid(id string, name1 string, name2 string, hos
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

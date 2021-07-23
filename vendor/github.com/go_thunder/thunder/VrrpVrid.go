@@ -151,13 +151,16 @@ func GetVrrpVrid(id string, name string, host string) (*VridInstance, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetVrrpVrid REQ RES..........................", m)
-			check_api_status("GetVrrpVrid", data)
+			err := check_api_status("GetVrrpVrid", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostVrrpVrid(id string, vc VridInstance, host string) {
+func PostVrrpVrid(id string, vc VridInstance, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -187,13 +190,16 @@ func PostVrrpVrid(id string, vc VridInstance, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostVrrpVrid", data)
+			err := check_api_status("PostVrrpVrid", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
-func PutVrrpVrid(id string, name string, vc VridInstance, host string) {
+func PutVrrpVrid(id string, name string, vc VridInstance, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -225,10 +231,13 @@ func PutVrrpVrid(id string, name string, vc VridInstance, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PutVrrpVrid", data)
+			err := check_api_status("PutVrrpVrid", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func DeleteVrrpVrid(id string, name string, host string) error {

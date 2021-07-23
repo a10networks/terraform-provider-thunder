@@ -22,7 +22,7 @@ type FwTapMonitorPortCfg struct {
 	TapVlan int `json:"tap-vlan,omitempty"`
 }
 
-func PostFwTapMonitor(id string, inst FwTapMonitor, host string) {
+func PostFwTapMonitor(id string, inst FwTapMonitor, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -41,6 +41,7 @@ func PostFwTapMonitor(id string, inst FwTapMonitor, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -51,11 +52,14 @@ func PostFwTapMonitor(id string, inst FwTapMonitor, host string) {
 
 		} else {
 			logger.Println("[INFO] PostFwTapMonitor REQ RES..........................", m)
-			check_api_status("PostFwTapMonitor", data)
+			err := check_api_status("PostFwTapMonitor", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwTapMonitor(id string, host string) (*FwTapMonitor, error) {
@@ -73,6 +77,7 @@ func GetFwTapMonitor(id string, host string) (*FwTapMonitor, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwTapMonitor
@@ -82,7 +87,10 @@ func GetFwTapMonitor(id string, host string) (*FwTapMonitor, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwTapMonitor", data)
+			err := check_api_status("GetFwTapMonitor", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

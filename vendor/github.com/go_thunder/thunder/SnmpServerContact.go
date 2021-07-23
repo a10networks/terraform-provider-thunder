@@ -16,7 +16,7 @@ type SnmpServerContactInstance struct {
 	UUID        string `json:"uuid,omitempty"`
 }
 
-func PostSnmpServerContact(id string, inst SnmpServerContact, host string) {
+func PostSnmpServerContact(id string, inst SnmpServerContact, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostSnmpServerContact(id string, inst SnmpServerContact, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostSnmpServerContact(id string, inst SnmpServerContact, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerContact", data)
+			err := check_api_status("PostSnmpServerContact", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerContact(id string, host string) (*SnmpServerContact, error) {
@@ -67,6 +71,7 @@ func GetSnmpServerContact(id string, host string) (*SnmpServerContact, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerContact
@@ -76,7 +81,10 @@ func GetSnmpServerContact(id string, host string) (*SnmpServerContact, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerContact", data)
+			err := check_api_status("GetSnmpServerContact", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

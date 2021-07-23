@@ -16,7 +16,7 @@ type FwUrpfInstance struct {
 	UUID   string `json:"uuid,omitempty"`
 }
 
-func PostFwUrpf(id string, inst FwUrpf, host string) {
+func PostFwUrpf(id string, inst FwUrpf, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostFwUrpf(id string, inst FwUrpf, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostFwUrpf(id string, inst FwUrpf, host string) {
 
 		} else {
 			logger.Println("[INFO] PostFwUrpf REQ RES..........................", m)
-			check_api_status("PostFwUrpf", data)
+			err := check_api_status("PostFwUrpf", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwUrpf(id string, host string) (*FwUrpf, error) {
@@ -67,6 +71,7 @@ func GetFwUrpf(id string, host string) (*FwUrpf, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwUrpf
@@ -76,7 +81,10 @@ func GetFwUrpf(id string, host string) (*FwUrpf, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetFwUrpf REQ RES..........................", m)
-			check_api_status("GetFwUrpf", data)
+			err := check_api_status("GetFwUrpf", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

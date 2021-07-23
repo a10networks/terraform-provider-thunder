@@ -20,7 +20,7 @@ type RouterBgpNetworkIPCidrInstance struct {
 	UUID            string `json:"uuid,omitempty"`
 }
 
-func PostRouterBgpNetworkIpCidr(id string, name1 string, inst RouterBgpNetworkIpCidr, host string) {
+func PostRouterBgpNetworkIpCidr(id string, name1 string, inst RouterBgpNetworkIpCidr, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -39,6 +39,7 @@ func PostRouterBgpNetworkIpCidr(id string, name1 string, inst RouterBgpNetworkIp
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -49,11 +50,14 @@ func PostRouterBgpNetworkIpCidr(id string, name1 string, inst RouterBgpNetworkIp
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostRouterBgpNetworkIpCidr", data)
+			err := check_api_status("PostRouterBgpNetworkIpCidr", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetRouterBgpNetworkIpCidr(id string, name1 string, name2 string, host string) (*RouterBgpNetworkIpCidr, error) {
@@ -71,6 +75,7 @@ func GetRouterBgpNetworkIpCidr(id string, name1 string, name2 string, host strin
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterBgpNetworkIpCidr
@@ -80,14 +85,17 @@ func GetRouterBgpNetworkIpCidr(id string, name1 string, name2 string, host strin
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetRouterBgpNetworkIpCidr", data)
+			err := check_api_status("GetRouterBgpNetworkIpCidr", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutRouterBgpNetworkIpCidr(id string, name1 string, name2 string, inst RouterBgpNetworkIpCidr, host string) {
+func PutRouterBgpNetworkIpCidr(id string, name1 string, name2 string, inst RouterBgpNetworkIpCidr, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -106,6 +114,7 @@ func PutRouterBgpNetworkIpCidr(id string, name1 string, name2 string, inst Route
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -116,11 +125,14 @@ func PutRouterBgpNetworkIpCidr(id string, name1 string, name2 string, inst Route
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutRouterBgpNetworkIpCidr", data)
+			err := check_api_status("PutRouterBgpNetworkIpCidr", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteRouterBgpNetworkIpCidr(id string, name1 string, name2 string, host string) error {
@@ -138,6 +150,7 @@ func DeleteRouterBgpNetworkIpCidr(id string, name1 string, name2 string, host st
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
+		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterBgpNetworkIpCidr
@@ -147,7 +160,10 @@ func DeleteRouterBgpNetworkIpCidr(id string, name1 string, name2 string, host st
 			return err
 		} else {
 			logger.Println("[INFO] Delete REQ RES..........................", m)
-			check_api_status("DeleteRouterBgpNetworkIpCidr", data)
+			err := check_api_status("DeleteRouterBgpNetworkIpCidr", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}

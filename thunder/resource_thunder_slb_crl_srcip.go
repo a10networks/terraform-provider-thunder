@@ -3,19 +3,21 @@ package thunder
 // Thunder resource Slb CrlSrcip
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbCrlSrcip() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbCrlSrcipCreate,
-		Update: resourceSlbCrlSrcipUpdate,
-		Read:   resourceSlbCrlSrcipRead,
-		Delete: resourceSlbCrlSrcipDelete,
+		CreateContext: resourceSlbCrlSrcipCreate,
+		UpdateContext: resourceSlbCrlSrcipUpdate,
+		ReadContext:   resourceSlbCrlSrcipRead,
+		DeleteContext: resourceSlbCrlSrcipDelete,
 
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
@@ -41,53 +43,61 @@ func resourceSlbCrlSrcip() *schema.Resource {
 
 }
 
-func resourceSlbCrlSrcipCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbCrlSrcipCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating crl-srcip (Inside resourceSlbCrlSrcipCreate)")
 
 	if client.Host != "" {
 		vc := dataToSlbCrlSrcip(d)
 		d.SetId("1")
-		go_thunder.PostSlbCrlSrcip(client.Token, vc, client.Host)
-
-		return resourceSlbCrlSrcipRead(d, meta)
+		err := go_thunder.PostSlbCrlSrcip(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSlbCrlSrcipRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbCrlSrcipRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbCrlSrcipRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading crl-srcip (Inside resourceSlbCrlSrcipRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbCrlSrcip(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No crl-srcip found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbCrlSrcipUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbCrlSrcipUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbCrlSrcipRead(d, meta)
+	return resourceSlbCrlSrcipRead(ctx, d, meta)
 }
 
-func resourceSlbCrlSrcipDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbCrlSrcipDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbCrlSrcipRead(d, meta)
+	return resourceSlbCrlSrcipRead(ctx, d, meta)
 }
 
 //Utility method to instantiate CrlSrcip Structure

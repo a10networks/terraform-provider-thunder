@@ -40,7 +40,7 @@ type ReqmodIcapInstance struct {
 	SourceIP                               string        `json:"source-ip,omitempty"`
 }
 
-func PostSlbTemplateReqmodIcap(id string, inst ReqmodIcap, host string) {
+func PostSlbTemplateReqmodIcap(id string, inst ReqmodIcap, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -59,6 +59,7 @@ func PostSlbTemplateReqmodIcap(id string, inst ReqmodIcap, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -69,11 +70,14 @@ func PostSlbTemplateReqmodIcap(id string, inst ReqmodIcap, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateReqmodIcap REQ RES..........................", m)
-			check_api_status("PostSlbTemplateReqmodIcap", data)
+			err := check_api_status("PostSlbTemplateReqmodIcap", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateReqmodIcap(id string, name string, host string) (*ReqmodIcap, error) {
@@ -91,6 +95,7 @@ func GetSlbTemplateReqmodIcap(id string, name string, host string) (*ReqmodIcap,
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m ReqmodIcap
@@ -100,14 +105,17 @@ func GetSlbTemplateReqmodIcap(id string, name string, host string) (*ReqmodIcap,
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateReqmodIcap REQ RES..........................", m)
-			check_api_status("GetSlbTemplateReqmodIcap", data)
+			err := check_api_status("GetSlbTemplateReqmodIcap", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateReqmodIcap(id string, name string, inst ReqmodIcap, host string) {
+func PutSlbTemplateReqmodIcap(id string, name string, inst ReqmodIcap, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -126,6 +134,7 @@ func PutSlbTemplateReqmodIcap(id string, name string, inst ReqmodIcap, host stri
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -136,11 +145,14 @@ func PutSlbTemplateReqmodIcap(id string, name string, inst ReqmodIcap, host stri
 
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("PutSlbTemplateReqmodIcap", data)
+			err := check_api_status("PutSlbTemplateReqmodIcap", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateReqmodIcap(id string, name string, host string) error {
@@ -157,6 +169,7 @@ func DeleteSlbTemplateReqmodIcap(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

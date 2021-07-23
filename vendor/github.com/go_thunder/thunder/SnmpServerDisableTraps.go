@@ -21,7 +21,7 @@ type SnmpServerDisableTrapsInstance struct {
 	VrrpA     int    `json:"vrrp-a,omitempty"`
 }
 
-func PostSnmpServerDisableTraps(id string, inst SnmpServerDisableTraps, host string) {
+func PostSnmpServerDisableTraps(id string, inst SnmpServerDisableTraps, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -40,6 +40,7 @@ func PostSnmpServerDisableTraps(id string, inst SnmpServerDisableTraps, host str
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -50,11 +51,14 @@ func PostSnmpServerDisableTraps(id string, inst SnmpServerDisableTraps, host str
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerDisableTraps", data)
+			err := check_api_status("PostSnmpServerDisableTraps", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerDisableTraps(id string, host string) (*SnmpServerDisableTraps, error) {
@@ -72,6 +76,7 @@ func GetSnmpServerDisableTraps(id string, host string) (*SnmpServerDisableTraps,
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerDisableTraps
@@ -81,7 +86,10 @@ func GetSnmpServerDisableTraps(id string, host string) (*SnmpServerDisableTraps,
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerDisableTraps", data)
+			err := check_api_status("GetSnmpServerDisableTraps", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

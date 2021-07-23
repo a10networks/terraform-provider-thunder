@@ -45,13 +45,16 @@ func GetSlbDNS(id string, host string) (*SlbDNS, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetSlbDNS REQ RES..........................", m)
-			check_api_status("GetSlbDNS", data)
+			err := check_api_status("GetSlbDNS", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbDNS(id string, vc SlbDNS, host string) {
+func PostSlbDNS(id string, vc SlbDNS, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -81,8 +84,11 @@ func PostSlbDNS(id string, vc SlbDNS, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbDNS", data)
+			err := check_api_status("PostSlbDNS", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

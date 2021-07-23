@@ -3,19 +3,21 @@ package thunder
 // Thunder resource Slb ConnectionReuse
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbConnectionReuse() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbConnectionReuseCreate,
-		Update: resourceSlbConnectionReuseUpdate,
-		Read:   resourceSlbConnectionReuseRead,
-		Delete: resourceSlbConnectionReuseDelete,
+		CreateContext: resourceSlbConnectionReuseCreate,
+		UpdateContext: resourceSlbConnectionReuseUpdate,
+		ReadContext:   resourceSlbConnectionReuseRead,
+		DeleteContext: resourceSlbConnectionReuseDelete,
 
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
@@ -41,53 +43,61 @@ func resourceSlbConnectionReuse() *schema.Resource {
 
 }
 
-func resourceSlbConnectionReuseCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbConnectionReuseCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating connection-reuse (Inside resourceSlbConnectionReuseCreate)")
 
 	if client.Host != "" {
 		vc := dataToSlbConnectionReuse(d)
 		d.SetId("1")
-		go_thunder.PostSlbConnectionReuse(client.Token, vc, client.Host)
-
-		return resourceSlbConnectionReuseRead(d, meta)
+		err := go_thunder.PostSlbConnectionReuse(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSlbConnectionReuseRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbConnectionReuseRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbConnectionReuseRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading connection-reuse (Inside resourceSlbConnectionReuseRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbConnectionReuse(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No connection-reuse found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbConnectionReuseUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbConnectionReuseUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbConnectionReuseRead(d, meta)
+	return resourceSlbConnectionReuseRead(ctx, d, meta)
 }
 
-func resourceSlbConnectionReuseDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbConnectionReuseDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbConnectionReuseRead(d, meta)
+	return resourceSlbConnectionReuseRead(ctx, d, meta)
 }
 
 //Utility method to instantiate ConnectionReuse Structure

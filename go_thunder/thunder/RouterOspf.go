@@ -306,7 +306,7 @@ type RouterOspfExp struct {
 	MinDelay int `json:"min-delay,omitempty"`
 }
 
-func PostRouterOspf(id string, inst RouterOspf, host string) {
+func PostRouterOspf(id string, inst RouterOspf, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -325,6 +325,7 @@ func PostRouterOspf(id string, inst RouterOspf, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -335,11 +336,14 @@ func PostRouterOspf(id string, inst RouterOspf, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostRouterOspf", data)
+			err := check_api_status("PostRouterOspf", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetRouterOspf(id string, name1 string, host string) (*RouterOspf, error) {
@@ -357,6 +361,7 @@ func GetRouterOspf(id string, name1 string, host string) (*RouterOspf, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterOspf
@@ -366,14 +371,17 @@ func GetRouterOspf(id string, name1 string, host string) (*RouterOspf, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetRouterOspf", data)
+			err := check_api_status("GetRouterOspf", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutRouterOspf(id string, name1 string, inst RouterOspf, host string) {
+func PutRouterOspf(id string, name1 string, inst RouterOspf, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -392,6 +400,7 @@ func PutRouterOspf(id string, name1 string, inst RouterOspf, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -402,11 +411,14 @@ func PutRouterOspf(id string, name1 string, inst RouterOspf, host string) {
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutRouterOspf", data)
+			err := check_api_status("PutRouterOspf", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteRouterOspf(id string, name1 string, host string) error {
@@ -424,6 +436,7 @@ func DeleteRouterOspf(id string, name1 string, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
+		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterOspf
@@ -433,7 +446,10 @@ func DeleteRouterOspf(id string, name1 string, host string) error {
 			return err
 		} else {
 			logger.Println("[INFO] Delete REQ RES..........................", m)
-			check_api_status("DeleteRouterOspf", data)
+			err := check_api_status("DeleteRouterOspf", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}

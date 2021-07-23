@@ -22,7 +22,7 @@ type NtpAuthKeyInstance struct {
 	UUID         string `json:"uuid,omitempty"`
 }
 
-func PostNtpAuthKey(id string, inst NtpAuthKey, host string) {
+func PostNtpAuthKey(id string, inst NtpAuthKey, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -41,6 +41,7 @@ func PostNtpAuthKey(id string, inst NtpAuthKey, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -51,11 +52,14 @@ func PostNtpAuthKey(id string, inst NtpAuthKey, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostNtpAuthKey", data)
+			err := check_api_status("PostNtpAuthKey", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetNtpAuthKey(id string, name1 string, host string) (*NtpAuthKey, error) {
@@ -73,6 +77,7 @@ func GetNtpAuthKey(id string, name1 string, host string) (*NtpAuthKey, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m NtpAuthKey
@@ -82,14 +87,17 @@ func GetNtpAuthKey(id string, name1 string, host string) (*NtpAuthKey, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetNtpAuthKey", data)
+			err := check_api_status("GetNtpAuthKey", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutNtpAuthKey(id string, name1 string, inst NtpAuthKey, host string) {
+func PutNtpAuthKey(id string, name1 string, inst NtpAuthKey, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -108,6 +116,7 @@ func PutNtpAuthKey(id string, name1 string, inst NtpAuthKey, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -118,11 +127,14 @@ func PutNtpAuthKey(id string, name1 string, inst NtpAuthKey, host string) {
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutNtpAuthKey", data)
+			err := check_api_status("PutNtpAuthKey", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteNtpAuthKey(id string, name1 string, host string) error {
@@ -139,6 +151,7 @@ func DeleteNtpAuthKey(id string, name1 string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

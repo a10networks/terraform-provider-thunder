@@ -3,18 +3,21 @@ package thunder
 //Thunder resource FwVrid
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwVrid() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwVridCreate,
-		Update: resourceFwVridUpdate,
-		Read:   resourceFwVridRead,
-		Delete: resourceFwVridDelete,
+		CreateContext: resourceFwVridCreate,
+		UpdateContext: resourceFwVridUpdate,
+		ReadContext:   resourceFwVridRead,
+		DeleteContext: resourceFwVridDelete,
 		Schema: map[string]*schema.Schema{
 			"vrid": {
 				Type:        schema.TypeInt,
@@ -30,9 +33,11 @@ func resourceFwVrid() *schema.Resource {
 	}
 }
 
-func resourceFwVridCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwVridCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwVrid (Inside resourceFwVridCreate) ")
@@ -40,41 +45,49 @@ func resourceFwVridCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToFwVrid(d)
 		logger.Println("[INFO] received formatted data from method data to FwVrid --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwVrid(client.Token, data, client.Host)
+		err := go_thunder.PostFwVrid(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwVridRead(d, meta)
+		return resourceFwVridRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwVridRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwVridRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwVrid (Inside resourceFwVridRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwVrid(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwVridUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwVridUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwVridRead(d, meta)
+	return resourceFwVridRead(ctx, d, meta)
 }
 
-func resourceFwVridDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwVridDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwVridRead(d, meta)
+	return resourceFwVridRead(ctx, d, meta)
 }
 func dataToFwVrid(d *schema.ResourceData) go_thunder.FwVrid {
 	var vc go_thunder.FwVrid

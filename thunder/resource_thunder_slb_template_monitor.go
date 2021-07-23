@@ -3,21 +3,23 @@ package thunder
 //Thunder resource SlbTemplateMonitor
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"strconv"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateMonitor() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateMonitorCreate,
-		Update: resourceSlbTemplateMonitorUpdate,
-		Read:   resourceSlbTemplateMonitorRead,
-		Delete: resourceSlbTemplateMonitorDelete,
+		CreateContext: resourceSlbTemplateMonitorCreate,
+		UpdateContext: resourceSlbTemplateMonitorUpdate,
+		ReadContext:   resourceSlbTemplateMonitorRead,
+		DeleteContext: resourceSlbTemplateMonitorDelete,
 		Schema: map[string]*schema.Schema{
 			"link_enable_cfg": {
 				Type:     schema.TypeList,
@@ -178,9 +180,11 @@ func resourceSlbTemplateMonitor() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateMonitorCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateMonitorCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateMonitor (Inside resourceSlbTemplateMonitorCreate) ")
@@ -188,23 +192,31 @@ func resourceSlbTemplateMonitorCreate(d *schema.ResourceData, meta interface{}) 
 		data := dataToSlbTemplateMonitor(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateMonitor --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplateMonitor(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateMonitor(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateMonitorRead(d, meta)
+		return resourceSlbTemplateMonitorRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateMonitorRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateMonitorRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateMonitor (Inside resourceSlbTemplateMonitorRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplateMonitor(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 
@@ -213,16 +225,18 @@ func resourceSlbTemplateMonitorRead(d *schema.ResourceData, meta interface{}) er
 
 		}
 
-		return err
+		return diags
 
 	}
 	logger.Println("[INFO] No data found last")
 	return nil
 }
 
-func resourceSlbTemplateMonitorUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateMonitorUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateMonitor   (Inside resourceSlbTemplateMonitorUpdate) ")
@@ -230,17 +244,22 @@ func resourceSlbTemplateMonitorUpdate(d *schema.ResourceData, meta interface{}) 
 		data := dataToSlbTemplateMonitor(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateMonitor ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplateMonitor(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateMonitor(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateMonitorRead(d, meta)
+		return resourceSlbTemplateMonitorRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateMonitorDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateMonitorDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -248,7 +267,7 @@ func resourceSlbTemplateMonitorDelete(d *schema.ResourceData, meta interface{}) 
 		err := go_thunder.DeleteSlbTemplateMonitor(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

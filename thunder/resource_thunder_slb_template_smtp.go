@@ -3,20 +3,22 @@ package thunder
 //Thunder resource SlbTemplateSMTP
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateSMTP() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateSMTPCreate,
-		Update: resourceSlbTemplateSMTPUpdate,
-		Read:   resourceSlbTemplateSMTPRead,
-		Delete: resourceSlbTemplateSMTPDelete,
+		CreateContext: resourceSlbTemplateSMTPCreate,
+		UpdateContext: resourceSlbTemplateSMTPUpdate,
+		ReadContext:   resourceSlbTemplateSMTPRead,
+		DeleteContext: resourceSlbTemplateSMTPDelete,
 		Schema: map[string]*schema.Schema{
 			"template": {
 				Type:     schema.TypeList,
@@ -107,9 +109,11 @@ func resourceSlbTemplateSMTP() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateSMTPCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateSMTPCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateSMTP (Inside resourceSlbTemplateSMTPCreate) ")
@@ -117,36 +121,46 @@ func resourceSlbTemplateSMTPCreate(d *schema.ResourceData, meta interface{}) err
 		data := dataToTemplateSMTP(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateSMTP --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplateSMTP(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateSMTP(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateSMTPRead(d, meta)
+		return resourceSlbTemplateSMTPRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateSMTPRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateSMTPRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateSMTP (Inside resourceSlbTemplateSMTPRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplateSMTP(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplateSMTPUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateSMTPUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateSMTP   (Inside resourceSlbTemplateSMTPUpdate) ")
@@ -154,17 +168,22 @@ func resourceSlbTemplateSMTPUpdate(d *schema.ResourceData, meta interface{}) err
 		data := dataToTemplateSMTP(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateSMTP ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplateSMTP(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateSMTP(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateSMTPRead(d, meta)
+		return resourceSlbTemplateSMTPRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateSMTPDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateSMTPDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -172,7 +191,7 @@ func resourceSlbTemplateSMTPDelete(d *schema.ResourceData, meta interface{}) err
 		err := go_thunder.DeleteSlbTemplateSMTP(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

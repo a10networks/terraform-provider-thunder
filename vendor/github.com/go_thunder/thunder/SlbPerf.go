@@ -18,7 +18,7 @@ type PerfInstance struct {
 	Counters1 []SamplingEnable25 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbPerf(id string, inst Perf, host string) {
+func PostSlbPerf(id string, inst Perf, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbPerf(id string, inst Perf, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,10 +48,13 @@ func PostSlbPerf(id string, inst Perf, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbPerf REQ RES..........................", m)
-			check_api_status("PostSlbPerf", data)
+			err := check_api_status("PostSlbPerf", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func GetSlbPerf(id string, host string) (*Perf, error) {
@@ -68,6 +72,7 @@ func GetSlbPerf(id string, host string) (*Perf, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Perf
@@ -77,7 +82,10 @@ func GetSlbPerf(id string, host string) (*Perf, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbPerf REQ RES..........................", m)
-			check_api_status("GetSlbPerf", data)
+			err := check_api_status("GetSlbPerf", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

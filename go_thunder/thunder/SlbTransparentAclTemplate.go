@@ -15,7 +15,7 @@ type TransparentAclTemplateInstance struct {
 	Name string `json:"name,omitempty"`
 }
 
-func PostSlbTransparentAclTemplate(id string, inst TransparentAclTemplate, host string) {
+func PostSlbTransparentAclTemplate(id string, inst TransparentAclTemplate, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -34,6 +34,7 @@ func PostSlbTransparentAclTemplate(id string, inst TransparentAclTemplate, host 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -44,11 +45,14 @@ func PostSlbTransparentAclTemplate(id string, inst TransparentAclTemplate, host 
 
 		} else {
 			logger.Println("[INFO] PostSlbTransparentAclTemplate REQ RES..........................", m)
-			check_api_status("PostSlbTransparentAclTemplate", data)
+			err := check_api_status("PostSlbTransparentAclTemplate", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTransparentAclTemplate(id string, name string, host string) (*TransparentAclTemplate, error) {
@@ -66,6 +70,7 @@ func GetSlbTransparentAclTemplate(id string, name string, host string) (*Transpa
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m TransparentAclTemplate
@@ -75,7 +80,10 @@ func GetSlbTransparentAclTemplate(id string, name string, host string) (*Transpa
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTransparentAclTemplate REQ RES..........................", m)
-			check_api_status("GetSlbTransparentAclTemplate", data)
+			err := check_api_status("GetSlbTransparentAclTemplate", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

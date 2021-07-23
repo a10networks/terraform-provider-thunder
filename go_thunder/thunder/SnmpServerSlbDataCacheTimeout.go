@@ -16,7 +16,7 @@ type SnmpServerSlbDataCacheTimeoutInstance struct {
 	UUID     string `json:"uuid,omitempty"`
 }
 
-func PostSnmpServerSlbDataCacheTimeout(id string, inst SnmpServerSlbDataCacheTimeout, host string) {
+func PostSnmpServerSlbDataCacheTimeout(id string, inst SnmpServerSlbDataCacheTimeout, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostSnmpServerSlbDataCacheTimeout(id string, inst SnmpServerSlbDataCacheTim
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostSnmpServerSlbDataCacheTimeout(id string, inst SnmpServerSlbDataCacheTim
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerSlbDataCacheTimeout", data)
+			err := check_api_status("PostSnmpServerSlbDataCacheTimeout", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerSlbDataCacheTimeout(id string, host string) (*SnmpServerSlbDataCacheTimeout, error) {
@@ -67,6 +71,7 @@ func GetSnmpServerSlbDataCacheTimeout(id string, host string) (*SnmpServerSlbDat
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerSlbDataCacheTimeout
@@ -76,7 +81,10 @@ func GetSnmpServerSlbDataCacheTimeout(id string, host string) (*SnmpServerSlbDat
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerSlbDataCacheTimeout", data)
+			err := check_api_status("GetSnmpServerSlbDataCacheTimeout", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

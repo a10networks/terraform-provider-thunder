@@ -3,17 +3,20 @@ package thunder
 //Thunder resource SnmpServerEnableTrapsRoutingBgp
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSnmpServerEnableTrapsRoutingBgp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSnmpServerEnableTrapsRoutingBgpCreate,
-		Update: resourceSnmpServerEnableTrapsRoutingBgpUpdate,
-		Read:   resourceSnmpServerEnableTrapsRoutingBgpRead,
-		Delete: resourceSnmpServerEnableTrapsRoutingBgpDelete,
+		CreateContext: resourceSnmpServerEnableTrapsRoutingBgpCreate,
+		UpdateContext: resourceSnmpServerEnableTrapsRoutingBgpUpdate,
+		ReadContext:   resourceSnmpServerEnableTrapsRoutingBgpRead,
+		DeleteContext: resourceSnmpServerEnableTrapsRoutingBgpDelete,
 		Schema: map[string]*schema.Schema{
 			"bgp_established_notification": {
 				Type:        schema.TypeInt,
@@ -34,9 +37,11 @@ func resourceSnmpServerEnableTrapsRoutingBgp() *schema.Resource {
 	}
 }
 
-func resourceSnmpServerEnableTrapsRoutingBgpCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEnableTrapsRoutingBgpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerEnableTrapsRoutingBgp (Inside resourceSnmpServerEnableTrapsRoutingBgpCreate) ")
@@ -44,39 +49,47 @@ func resourceSnmpServerEnableTrapsRoutingBgpCreate(d *schema.ResourceData, meta 
 		data := dataToSnmpServerEnableTrapsRoutingBgp(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerEnableTrapsRoutingBgp --")
 		d.SetId("1")
-		go_thunder.PostSnmpServerEnableTrapsRoutingBgp(client.Token, data, client.Host)
+		err := go_thunder.PostSnmpServerEnableTrapsRoutingBgp(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerEnableTrapsRoutingBgpRead(d, meta)
+		return resourceSnmpServerEnableTrapsRoutingBgpRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerEnableTrapsRoutingBgpRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEnableTrapsRoutingBgpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SnmpServerEnableTrapsRoutingBgp (Inside resourceSnmpServerEnableTrapsRoutingBgpRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetSnmpServerEnableTrapsRoutingBgp(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSnmpServerEnableTrapsRoutingBgpUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEnableTrapsRoutingBgpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSnmpServerEnableTrapsRoutingBgpRead(d, meta)
+	return resourceSnmpServerEnableTrapsRoutingBgpRead(ctx, d, meta)
 }
 
-func resourceSnmpServerEnableTrapsRoutingBgpDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEnableTrapsRoutingBgpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSnmpServerEnableTrapsRoutingBgpRead(d, meta)
+	return resourceSnmpServerEnableTrapsRoutingBgpRead(ctx, d, meta)
 }
 func dataToSnmpServerEnableTrapsRoutingBgp(d *schema.ResourceData) go_thunder.SnmpServerEnableTrapsRoutingBgp {
 	var vc go_thunder.SnmpServerEnableTrapsRoutingBgp

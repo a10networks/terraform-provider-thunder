@@ -89,7 +89,7 @@ type ManagementInstance struct {
 	Speed              string                     `json:"speed,omitempty"`
 }
 
-func PostInterfaceManagement(id string, inst Management, host string) {
+func PostInterfaceManagement(id string, inst Management, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -108,6 +108,7 @@ func PostInterfaceManagement(id string, inst Management, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -118,11 +119,14 @@ func PostInterfaceManagement(id string, inst Management, host string) {
 
 		} else {
 			logger.Println("[INFO] PostInterfaceManagement REQ RES..........................", m)
-			check_api_status("PostInterfaceManagement", data)
+			err := check_api_status("PostInterfaceManagement", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetInterfaceManagement(id string, host string) (*Management, error) {
@@ -140,6 +144,7 @@ func GetInterfaceManagement(id string, host string) (*Management, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Management
@@ -149,7 +154,10 @@ func GetInterfaceManagement(id string, host string) (*Management, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetInterfaceManagement REQ RES..........................", m)
-			check_api_status("GetInterfaceManagement", data)
+			err := check_api_status("GetInterfaceManagement", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

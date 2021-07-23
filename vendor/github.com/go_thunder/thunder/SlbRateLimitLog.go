@@ -18,7 +18,7 @@ type RateLimitLogInstance struct {
 	Counters1 []SamplingEnable30 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbRateLimitLog(id string, inst RateLimitLog, host string) {
+func PostSlbRateLimitLog(id string, inst RateLimitLog, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbRateLimitLog(id string, inst RateLimitLog, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbRateLimitLog(id string, inst RateLimitLog, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbRateLimitLog REQ RES..........................", m)
-			check_api_status("PostSlbRateLimitLog", data)
+			err := check_api_status("PostSlbRateLimitLog", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbRateLimitLog(id string, host string) (*RateLimitLog, error) {
@@ -69,6 +73,7 @@ func GetSlbRateLimitLog(id string, host string) (*RateLimitLog, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RateLimitLog
@@ -78,7 +83,10 @@ func GetSlbRateLimitLog(id string, host string) (*RateLimitLog, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbRateLimitLog REQ RES..........................", m)
-			check_api_status("GetSlbRateLimitLog", data)
+			err := check_api_status("GetSlbRateLimitLog", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

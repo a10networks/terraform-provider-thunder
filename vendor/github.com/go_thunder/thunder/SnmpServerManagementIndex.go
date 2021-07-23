@@ -16,7 +16,7 @@ type SnmpServerManagementIndexInstance struct {
 	UUID      string `json:"uuid,omitempty"`
 }
 
-func PostSnmpServerManagementIndex(id string, inst SnmpServerManagementIndex, host string) {
+func PostSnmpServerManagementIndex(id string, inst SnmpServerManagementIndex, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostSnmpServerManagementIndex(id string, inst SnmpServerManagementIndex, ho
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostSnmpServerManagementIndex(id string, inst SnmpServerManagementIndex, ho
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerManagementIndex", data)
+			err := check_api_status("PostSnmpServerManagementIndex", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerManagementIndex(id string, host string) (*SnmpServerManagementIndex, error) {
@@ -67,6 +71,7 @@ func GetSnmpServerManagementIndex(id string, host string) (*SnmpServerManagement
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerManagementIndex
@@ -76,7 +81,10 @@ func GetSnmpServerManagementIndex(id string, host string) (*SnmpServerManagement
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerManagementIndex", data)
+			err := check_api_status("GetSnmpServerManagementIndex", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

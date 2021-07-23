@@ -89,7 +89,7 @@ type EthList struct {
 	UUID []EthernetInstance `json:"ethernet-list,omitempty"`
 }
 
-func postEthernet(id string, ip map[int]IP, host string) {
+func postEthernet(id string, ip map[int]IP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -115,6 +115,7 @@ func postEthernet(id string, ip map[int]IP, host string) {
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)
 			logger.Println("The HTTP request failed with error \n", err)
+			return err
 		} else {
 			data, _ := ioutil.ReadAll(resp.Body)
 			var m ServiceGroup
@@ -124,15 +125,18 @@ func postEthernet(id string, ip map[int]IP, host string) {
 			} else {
 				fmt.Println("response Body:", string(data))
 				logger.Println("response Body:", string(data))
-				check_api_status("postEthernet", data)
+				err := check_api_status("postEthernet", data)
+				if err != nil {
+					return err
+				}
 			}
 		}
 
 	}
-
+return nil
 }
 
-func PutEthernet(id string, ethernet map[int]Ethernet, host string) {
+func PutEthernet(id string, ethernet map[int]Ethernet, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -158,16 +162,20 @@ func PutEthernet(id string, ethernet map[int]Ethernet, host string) {
 		if err != nil {
 			fmt.Printf("The HTTP request failed with error %s\n", err)
 			logger.Println("The HTTP request failed with error \n", err)
+			return err
 		} else {
 			data, _ := ioutil.ReadAll(resp.Body)
 
 			logger.Println("HTTP Response -", string(data))
-			check_api_status("PutEthernet", data)
+			err := check_api_status("PutEthernet", data)
+			if err != nil {
+				return err
+			}
 
 		}
 
 	}
-
+	return nil
 }
 
 func GetEthernet(id string, name string, host string) (*Ethernet, error) {
@@ -195,7 +203,10 @@ func GetEthernet(id string, name string, host string) (*Ethernet, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetEthernet", data)
+			err := check_api_status("GetEthernet", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

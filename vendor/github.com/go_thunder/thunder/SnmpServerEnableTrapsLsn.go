@@ -22,7 +22,7 @@ type SnmpServerEnableTrapsLsnInstance struct {
 	UUID                          string `json:"uuid,omitempty"`
 }
 
-func PostSnmpServerEnableTrapsLsn(id string, inst SnmpServerEnableTrapsLsn, host string) {
+func PostSnmpServerEnableTrapsLsn(id string, inst SnmpServerEnableTrapsLsn, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -41,6 +41,7 @@ func PostSnmpServerEnableTrapsLsn(id string, inst SnmpServerEnableTrapsLsn, host
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -51,11 +52,14 @@ func PostSnmpServerEnableTrapsLsn(id string, inst SnmpServerEnableTrapsLsn, host
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerEnableTrapsLsn", data)
+			err := check_api_status("PostSnmpServerEnableTrapsLsn", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerEnableTrapsLsn(id string, host string) (*SnmpServerEnableTrapsLsn, error) {
@@ -73,6 +77,7 @@ func GetSnmpServerEnableTrapsLsn(id string, host string) (*SnmpServerEnableTraps
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerEnableTrapsLsn
@@ -82,7 +87,10 @@ func GetSnmpServerEnableTrapsLsn(id string, host string) (*SnmpServerEnableTraps
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerEnableTrapsLsn", data)
+			err := check_api_status("GetSnmpServerEnableTrapsLsn", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

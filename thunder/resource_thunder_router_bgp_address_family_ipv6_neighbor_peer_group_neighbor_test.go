@@ -3,7 +3,7 @@ package thunder
 import (
 	"testing"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
 var TEST_ROUTER_BGP_ADDRESS_FAMILY_IPV6_NEIGHBOR_PEER_GROUP_NEIGHBOR_RESOURCE = `

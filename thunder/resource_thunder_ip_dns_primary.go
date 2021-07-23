@@ -3,18 +3,20 @@ package thunder
 //Thunder resource IpDnsPrimary
 
 import (
+	"context"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceIpDnsPrimary() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceIpDnsPrimaryCreate,
-		Update: resourceIpDnsPrimaryUpdate,
-		Read:   resourceIpDnsPrimaryRead,
-		Delete: resourceIpDnsPrimaryDelete,
+		CreateContext: resourceIpDnsPrimaryCreate,
+		UpdateContext: resourceIpDnsPrimaryUpdate,
+		ReadContext:   resourceIpDnsPrimaryRead,
+		DeleteContext: resourceIpDnsPrimaryDelete,
 		Schema: map[string]*schema.Schema{
 			"ip_v6_addr": {
 				Type:        schema.TypeString,
@@ -35,9 +37,11 @@ func resourceIpDnsPrimary() *schema.Resource {
 	}
 }
 
-func resourceIpDnsPrimaryCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpDnsPrimaryCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating IpDnsPrimary (Inside resourceIpDnsPrimaryCreate) ")
@@ -45,38 +49,46 @@ func resourceIpDnsPrimaryCreate(d *schema.ResourceData, meta interface{}) error 
 		data := dataToIpDnsPrimary(d)
 		logger.Println("[INFO] received V from method data to IpDnsPrimary --")
 		d.SetId("1")
-		go_thunder.PostIpDnsPrimary(client.Token, data, client.Host)
+		err := go_thunder.PostIpDnsPrimary(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceIpDnsPrimaryRead(d, meta)
+		return resourceIpDnsPrimaryRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceIpDnsPrimaryRead(d *schema.ResourceData, meta interface{}) error {
+func resourceIpDnsPrimaryRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading IpDnsPrimary (Inside resourceIpDnsPrimaryRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetIpDnsPrimary(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceIpDnsPrimaryUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpDnsPrimaryUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpDnsPrimaryRead(d, meta)
+	return resourceIpDnsPrimaryRead(ctx, d, meta)
 }
 
-func resourceIpDnsPrimaryDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceIpDnsPrimaryDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpDnsPrimaryRead(d, meta)
+	return resourceIpDnsPrimaryRead(ctx, d, meta)
 }
 func dataToIpDnsPrimary(d *schema.ResourceData) go_thunder.DnsPrimary {
 	var vc go_thunder.DnsPrimary

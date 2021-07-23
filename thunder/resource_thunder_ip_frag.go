@@ -3,19 +3,21 @@ package thunder
 //Thunder resource IpFrag
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceIpFrag() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceIpFragCreate,
-		Update: resourceIpFragUpdate,
-		Read:   resourceIpFragRead,
-		Delete: resourceIpFragDelete,
+		CreateContext: resourceIpFragCreate,
+		UpdateContext: resourceIpFragUpdate,
+		ReadContext:   resourceIpFragRead,
+		DeleteContext: resourceIpFragDelete,
 		Schema: map[string]*schema.Schema{
 			"cpu_threshold": {
 				Type:     schema.TypeList,
@@ -78,9 +80,11 @@ func resourceIpFrag() *schema.Resource {
 	}
 }
 
-func resourceIpFragCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpFragCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating IpFrag (Inside resourceIpFragCreate) ")
@@ -88,38 +92,46 @@ func resourceIpFragCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToIpFrag(d)
 		logger.Println("[INFO] received V from method data to IpFrag --")
 		d.SetId("1")
-		go_thunder.PostIpFrag(client.Token, data, client.Host)
+		err := go_thunder.PostIpFrag(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceIpFragRead(d, meta)
+		return resourceIpFragRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceIpFragRead(d *schema.ResourceData, meta interface{}) error {
+func resourceIpFragRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading IpFrag (Inside resourceIpFragRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetIpFrag(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceIpFragUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpFragUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpFragRead(d, meta)
+	return resourceIpFragRead(ctx, d, meta)
 }
 
-func resourceIpFragDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceIpFragDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpFragRead(d, meta)
+	return resourceIpFragRead(ctx, d, meta)
 }
 func dataToIpFrag(d *schema.ResourceData) go_thunder.Frag {
 	var vc go_thunder.Frag

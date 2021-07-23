@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbTemplateVirtualServer
 
 import (
+	"context"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateVirtualServer() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateVirtualServerCreate,
-		Update: resourceSlbTemplateVirtualServerUpdate,
-		Read:   resourceSlbTemplateVirtualServerRead,
-		Delete: resourceSlbTemplateVirtualServerDelete,
+		CreateContext: resourceSlbTemplateVirtualServerCreate,
+		UpdateContext: resourceSlbTemplateVirtualServerUpdate,
+		ReadContext:   resourceSlbTemplateVirtualServerRead,
+		DeleteContext: resourceSlbTemplateVirtualServerDelete,
 		Schema: map[string]*schema.Schema{
 			"conn_rate_limit": {
 				Type:        schema.TypeInt,
@@ -121,9 +123,11 @@ func resourceSlbTemplateVirtualServer() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateVirtualServerCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateVirtualServerCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateVirtualServer (Inside resourceSlbTemplateVirtualServerCreate) ")
@@ -131,36 +135,46 @@ func resourceSlbTemplateVirtualServerCreate(d *schema.ResourceData, meta interfa
 		data := dataToSlbTemplateVirtualServer(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateVirtualServer --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplateVirtualServer(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateVirtualServer(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateVirtualServerRead(d, meta)
+		return resourceSlbTemplateVirtualServerRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateVirtualServerRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateVirtualServerRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateVirtualServer (Inside resourceSlbTemplateVirtualServerRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplateVirtualServer(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplateVirtualServerUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateVirtualServerUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateVirtualServer   (Inside resourceSlbTemplateVirtualServerUpdate) ")
@@ -168,17 +182,22 @@ func resourceSlbTemplateVirtualServerUpdate(d *schema.ResourceData, meta interfa
 		data := dataToSlbTemplateVirtualServer(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateVirtualServer ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplateVirtualServer(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateVirtualServer(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateVirtualServerRead(d, meta)
+		return resourceSlbTemplateVirtualServerRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateVirtualServerDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateVirtualServerDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -186,7 +205,7 @@ func resourceSlbTemplateVirtualServerDelete(d *schema.ResourceData, meta interfa
 		err := go_thunder.DeleteSlbTemplateVirtualServer(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

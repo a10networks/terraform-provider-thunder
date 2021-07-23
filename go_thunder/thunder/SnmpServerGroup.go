@@ -18,7 +18,7 @@ type SnmpServerGroupInstance struct {
 	V3        string `json:"v3,omitempty"`
 }
 
-func PostSnmpServerGroup(id string, inst SnmpServerGroup, host string) {
+func PostSnmpServerGroup(id string, inst SnmpServerGroup, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSnmpServerGroup(id string, inst SnmpServerGroup, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSnmpServerGroup(id string, inst SnmpServerGroup, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerGroup", data)
+			err := check_api_status("PostSnmpServerGroup", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerGroup(id string, name1 string, host string) (*SnmpServerGroup, error) {
@@ -69,6 +73,7 @@ func GetSnmpServerGroup(id string, name1 string, host string) (*SnmpServerGroup,
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerGroup
@@ -78,14 +83,17 @@ func GetSnmpServerGroup(id string, name1 string, host string) (*SnmpServerGroup,
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerGroup", data)
+			err := check_api_status("GetSnmpServerGroup", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSnmpServerGroup(id string, name1 string, inst SnmpServerGroup, host string) {
+func PutSnmpServerGroup(id string, name1 string, inst SnmpServerGroup, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -104,6 +112,7 @@ func PutSnmpServerGroup(id string, name1 string, inst SnmpServerGroup, host stri
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -114,11 +123,14 @@ func PutSnmpServerGroup(id string, name1 string, inst SnmpServerGroup, host stri
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutSnmpServerGroup", data)
+			err := check_api_status("PutSnmpServerGroup", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSnmpServerGroup(id string, name1 string, host string) error {
@@ -135,6 +147,7 @@ func DeleteSnmpServerGroup(id string, name1 string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

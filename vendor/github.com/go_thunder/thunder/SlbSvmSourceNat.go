@@ -14,7 +14,7 @@ type SvmSourceNatInstance struct {
 	Pool string `json:"pool,omitempty"`
 }
 
-func PostSlbSvmSourceNat(id string, inst SvmSourceNat, host string) {
+func PostSlbSvmSourceNat(id string, inst SvmSourceNat, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -33,6 +33,7 @@ func PostSlbSvmSourceNat(id string, inst SvmSourceNat, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -43,11 +44,14 @@ func PostSlbSvmSourceNat(id string, inst SvmSourceNat, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbSvmSourceNat REQ RES..........................", m)
-			check_api_status("PostSlbSvmSourceNat", data)
+			err := check_api_status("PostSlbSvmSourceNat", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbSvmSourceNat(id string, host string) (*SvmSourceNat, error) {
@@ -65,6 +69,7 @@ func GetSlbSvmSourceNat(id string, host string) (*SvmSourceNat, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SvmSourceNat
@@ -74,7 +79,10 @@ func GetSlbSvmSourceNat(id string, host string) (*SvmSourceNat, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbSvmSourceNat REQ RES..........................", m)
-			check_api_status("GetSlbSvmSourceNat", data)
+			err := check_api_status("GetSlbSvmSourceNat", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

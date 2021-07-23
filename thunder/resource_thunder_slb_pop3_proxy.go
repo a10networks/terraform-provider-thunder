@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbPop3Proxy
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbPop3Proxy() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbPop3ProxyCreate,
-		Update: resourceSlbPop3ProxyUpdate,
-		Read:   resourceSlbPop3ProxyRead,
-		Delete: resourceSlbPop3ProxyDelete,
+		CreateContext: resourceSlbPop3ProxyCreate,
+		UpdateContext: resourceSlbPop3ProxyUpdate,
+		ReadContext:   resourceSlbPop3ProxyRead,
+		DeleteContext: resourceSlbPop3ProxyDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbPop3Proxy() *schema.Resource {
 	}
 }
 
-func resourceSlbPop3ProxyCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPop3ProxyCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbPop3Proxy (Inside resourceSlbPop3ProxyCreate) ")
@@ -44,40 +48,48 @@ func resourceSlbPop3ProxyCreate(d *schema.ResourceData, meta interface{}) error 
 		data := dataToSlbPop3Proxy(d)
 		logger.Println("[INFO] received formatted data from method data to SlbPop3Proxy --")
 		d.SetId("1")
-		go_thunder.PostSlbPop3Proxy(client.Token, data, client.Host)
+		err := go_thunder.PostSlbPop3Proxy(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbPop3ProxyRead(d, meta)
+		return resourceSlbPop3ProxyRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbPop3ProxyRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPop3ProxyRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbPop3Proxy (Inside resourceSlbPop3ProxyRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbPop3Proxy(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbPop3ProxyUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPop3ProxyUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbPop3ProxyRead(d, meta)
+	return resourceSlbPop3ProxyRead(ctx, d, meta)
 }
 
-func resourceSlbPop3ProxyDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPop3ProxyDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbPop3ProxyRead(d, meta)
+	return resourceSlbPop3ProxyRead(ctx, d, meta)
 }
 
 func dataToSlbPop3Proxy(d *schema.ResourceData) go_thunder.Pop3Proxy {

@@ -23,7 +23,7 @@ type WebCategoryProxyServerInstance struct {
 	Username     string `json:"username,omitempty"`
 }
 
-func PostWebCategoryProxyServer(id string, inst WebCategoryProxyServer, host string) {
+func PostWebCategoryProxyServer(id string, inst WebCategoryProxyServer, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -42,6 +42,7 @@ func PostWebCategoryProxyServer(id string, inst WebCategoryProxyServer, host str
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -52,11 +53,14 @@ func PostWebCategoryProxyServer(id string, inst WebCategoryProxyServer, host str
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostWebCategoryProxyServer", data)
+			err := check_api_status("PostWebCategoryProxyServer", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetWebCategoryProxyServer(id string, host string) (*WebCategoryProxyServer, error) {
@@ -74,6 +78,7 @@ func GetWebCategoryProxyServer(id string, host string) (*WebCategoryProxyServer,
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m WebCategoryProxyServer
@@ -83,7 +88,10 @@ func GetWebCategoryProxyServer(id string, host string) (*WebCategoryProxyServer,
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetWebCategoryProxyServer", data)
+			err := check_api_status("GetWebCategoryProxyServer", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

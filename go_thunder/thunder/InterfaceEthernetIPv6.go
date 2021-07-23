@@ -155,7 +155,7 @@ type EthernetIPv6Instance struct {
 	MaxInterval EthernetIPv6RouterAdver      `json:"router-adver,omitempty"`
 }
 
-func PostInterfaceEthernetIPv6(id string, name int, inst EthernetIPv6, host string) {
+func PostInterfaceEthernetIPv6(id string, name int, inst EthernetIPv6, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -174,6 +174,7 @@ func PostInterfaceEthernetIPv6(id string, name int, inst EthernetIPv6, host stri
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -184,11 +185,14 @@ func PostInterfaceEthernetIPv6(id string, name int, inst EthernetIPv6, host stri
 
 		} else {
 			logger.Println("[INFO] PostInterfaceEthernetIPv6 REQ RES..........................", m)
-			check_api_status("PostInterfaceEthernetIPv6", data)
+			err := check_api_status("PostInterfaceEthernetIPv6", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetInterfaceEthernetIPv6(id string, name string, host string) (*EthernetIPv6, error) {
@@ -206,6 +210,7 @@ func GetInterfaceEthernetIPv6(id string, name string, host string) (*EthernetIPv
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m EthernetIPv6
@@ -215,7 +220,10 @@ func GetInterfaceEthernetIPv6(id string, name string, host string) (*EthernetIPv
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetInterfaceEthernetIPv6 REQ RES..........................", m)
-			check_api_status("GetInterfaceEthernetIPv6", data)
+			err := check_api_status("GetInterfaceEthernetIPv6", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

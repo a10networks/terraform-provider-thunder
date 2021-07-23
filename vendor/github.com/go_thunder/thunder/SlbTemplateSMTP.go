@@ -35,7 +35,7 @@ type SMTPInstance struct {
 	UUID               string                  `json:"uuid,omitempty"`
 }
 
-func PostSlbTemplateSMTP(id string, inst SMTP, host string) {
+func PostSlbTemplateSMTP(id string, inst SMTP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -54,6 +54,7 @@ func PostSlbTemplateSMTP(id string, inst SMTP, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -64,11 +65,14 @@ func PostSlbTemplateSMTP(id string, inst SMTP, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateSMTP REQ RES..........................", m)
-			check_api_status("PostSlbTemplateSMTP", data)
+			err := check_api_status("PostSlbTemplateSMTP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateSMTP(id string, name string, host string) (*SMTP, error) {
@@ -86,6 +90,7 @@ func GetSlbTemplateSMTP(id string, name string, host string) (*SMTP, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SMTP
@@ -95,14 +100,17 @@ func GetSlbTemplateSMTP(id string, name string, host string) (*SMTP, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateSMTP REQ RES..........................", m)
-			check_api_status("GetSlbTemplateSMTP", data)
+			err := check_api_status("GetSlbTemplateSMTP", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateSMTP(id string, name string, inst SMTP, host string) {
+func PutSlbTemplateSMTP(id string, name string, inst SMTP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -121,6 +129,7 @@ func PutSlbTemplateSMTP(id string, name string, inst SMTP, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -131,11 +140,14 @@ func PutSlbTemplateSMTP(id string, name string, inst SMTP, host string) {
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateSMTP REQ RES..........................", m)
-			check_api_status("PutSlbTemplateSMTP", data)
+			err := check_api_status("PutSlbTemplateSMTP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateSMTP(id string, name string, host string) error {
@@ -152,6 +164,7 @@ func DeleteSlbTemplateSMTP(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

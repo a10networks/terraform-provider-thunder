@@ -3,19 +3,21 @@ package thunder
 //Thunder resource TemplateDBLB
 
 import (
+	"context"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceTemplateDBLB() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceTemplateDBLBCreate,
-		Update: resourceTemplateDBLBUpdate,
-		Read:   resourceTemplateDBLBRead,
-		Delete: resourceTemplateDBLBDelete,
+		CreateContext: resourceTemplateDBLBCreate,
+		UpdateContext: resourceTemplateDBLBUpdate,
+		ReadContext:   resourceTemplateDBLBRead,
+		DeleteContext: resourceTemplateDBLBDelete,
 		Schema: map[string]*schema.Schema{
 			"user_tag": {
 				Type:        schema.TypeString,
@@ -60,9 +62,11 @@ func resourceTemplateDBLB() *schema.Resource {
 	}
 }
 
-func resourceTemplateDBLBCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateDBLBCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating TemplateDBLB (Inside resourceTemplateDBLBCreate) ")
@@ -70,36 +74,46 @@ func resourceTemplateDBLBCreate(d *schema.ResourceData, meta interface{}) error 
 		data := dataToTemplateDBLB(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateDBLB --")
 		d.SetId(name)
-		go_thunder.PostTemplateDBLB(client.Token, data, client.Host)
+		err := go_thunder.PostTemplateDBLB(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateDBLBRead(d, meta)
+		return resourceTemplateDBLBRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateDBLBRead(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateDBLBRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading TemplateDBLB (Inside resourceTemplateDBLBRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetTemplateDBLB(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceTemplateDBLBUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateDBLBUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying TemplateDBLB   (Inside resourceTemplateDBLBUpdate) ")
@@ -107,17 +121,22 @@ func resourceTemplateDBLBUpdate(d *schema.ResourceData, meta interface{}) error 
 		data := dataToTemplateDBLB(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateDBLB ")
 		d.SetId(name)
-		go_thunder.PutTemplateDBLB(client.Token, name, data, client.Host)
+		err := go_thunder.PutTemplateDBLB(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateDBLBRead(d, meta)
+		return resourceTemplateDBLBRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateDBLBDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateDBLBDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -125,7 +144,7 @@ func resourceTemplateDBLBDelete(d *schema.ResourceData, meta interface{}) error 
 		err := go_thunder.DeleteTemplateDBLB(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

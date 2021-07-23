@@ -22,7 +22,7 @@ type CommonConnRateLimitSrcIPInstance struct {
 	UUID         string `json:"uuid,omitempty"`
 }
 
-func PostSlbCommonConnRateLimitSrcIP(id string, inst CommonConnRateLimitSrcIP, host string) {
+func PostSlbCommonConnRateLimitSrcIP(id string, inst CommonConnRateLimitSrcIP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -41,6 +41,7 @@ func PostSlbCommonConnRateLimitSrcIP(id string, inst CommonConnRateLimitSrcIP, h
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -51,11 +52,14 @@ func PostSlbCommonConnRateLimitSrcIP(id string, inst CommonConnRateLimitSrcIP, h
 
 		} else {
 			logger.Println("[INFO] PostSlbCommonConnRateLimitSrcIP REQ RES..........................", m)
-			check_api_status("PostSlbCommonConnRateLimitSrcIP", data)
+			err := check_api_status("PostSlbCommonConnRateLimitSrcIP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbCommonConnRateLimitSrcIP(id string, name string, host string) (*CommonConnRateLimitSrcIP, error) {
@@ -73,6 +77,7 @@ func GetSlbCommonConnRateLimitSrcIP(id string, name string, host string) (*Commo
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m CommonConnRateLimitSrcIP
@@ -82,14 +87,17 @@ func GetSlbCommonConnRateLimitSrcIP(id string, name string, host string) (*Commo
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbCommonConnRateLimitSrcIP REQ RES..........................", m)
-			check_api_status("GetSlbCommonConnRateLimitSrcIP", data)
+			err := check_api_status("GetSlbCommonConnRateLimitSrcIP", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbCommonConnRateLimitSrcIP(id string, name string, inst CommonConnRateLimitSrcIP, host string) {
+func PutSlbCommonConnRateLimitSrcIP(id string, name string, inst CommonConnRateLimitSrcIP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -108,6 +116,7 @@ func PutSlbCommonConnRateLimitSrcIP(id string, name string, inst CommonConnRateL
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -118,11 +127,14 @@ func PutSlbCommonConnRateLimitSrcIP(id string, name string, inst CommonConnRateL
 
 		} else {
 			logger.Println("[INFO] PutSlbCommonConnRateLimitSrcIP REQ RES..........................", m)
-			check_api_status("PutSlbCommonConnRateLimitSrcIP", data)
+			err := check_api_status("PutSlbCommonConnRateLimitSrcIP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbCommonConnRateLimitSrcIP(id string, name string, host string) error {
@@ -139,6 +151,7 @@ func DeleteSlbCommonConnRateLimitSrcIP(id string, name string, host string) erro
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

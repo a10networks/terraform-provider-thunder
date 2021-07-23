@@ -19,7 +19,7 @@ type NtpServerHostnameInstance struct {
 	UUID           string `json:"uuid,omitempty"`
 }
 
-func PostNtpServerHostname(id string, inst NtpServerHostname, host string) {
+func PostNtpServerHostname(id string, inst NtpServerHostname, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -38,6 +38,7 @@ func PostNtpServerHostname(id string, inst NtpServerHostname, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -48,11 +49,14 @@ func PostNtpServerHostname(id string, inst NtpServerHostname, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostNtpServerHostname", data)
+			err := check_api_status("PostNtpServerHostname", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetNtpServerHostname(id string, name1 string, host string) (*NtpServerHostname, error) {
@@ -70,6 +74,7 @@ func GetNtpServerHostname(id string, name1 string, host string) (*NtpServerHostn
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m NtpServerHostname
@@ -79,14 +84,17 @@ func GetNtpServerHostname(id string, name1 string, host string) (*NtpServerHostn
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetNtpServerHostname", data)
+			err := check_api_status("GetNtpServerHostname", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutNtpServerHostname(id string, name1 string, inst NtpServerHostname, host string) {
+func PutNtpServerHostname(id string, name1 string, inst NtpServerHostname, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -105,6 +113,7 @@ func PutNtpServerHostname(id string, name1 string, inst NtpServerHostname, host 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -115,11 +124,14 @@ func PutNtpServerHostname(id string, name1 string, inst NtpServerHostname, host 
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutNtpServerHostname", data)
+			err := check_api_status("PutNtpServerHostname", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteNtpServerHostname(id string, name1 string, host string) error {
@@ -136,6 +148,7 @@ func DeleteNtpServerHostname(id string, name1 string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

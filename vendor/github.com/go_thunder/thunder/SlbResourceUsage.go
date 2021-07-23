@@ -34,7 +34,7 @@ type ResourceUsageInstance struct {
 	ServiceGroupCount           int `json:"service-group-count,omitempty"`
 }
 
-func PostSlbResourceUsage(id string, inst ResourceUsage, host string) {
+func PostSlbResourceUsage(id string, inst ResourceUsage, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -53,6 +53,7 @@ func PostSlbResourceUsage(id string, inst ResourceUsage, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -63,11 +64,14 @@ func PostSlbResourceUsage(id string, inst ResourceUsage, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbResourceUsage REQ RES..........................", m)
-			check_api_status("PostSlbResourceUsage", data)
+			err := check_api_status("PostSlbResourceUsage", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbResourceUsage(id string, host string) (*ResourceUsage, error) {
@@ -85,6 +89,7 @@ func GetSlbResourceUsage(id string, host string) (*ResourceUsage, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m ResourceUsage
@@ -94,7 +99,10 @@ func GetSlbResourceUsage(id string, host string) (*ResourceUsage, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbResourceUsage REQ RES..........................", m)
-			check_api_status("GetSlbResourceUsage", data)
+			err := check_api_status("GetSlbResourceUsage", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

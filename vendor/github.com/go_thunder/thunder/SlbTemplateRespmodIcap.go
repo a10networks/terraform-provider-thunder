@@ -40,7 +40,7 @@ type RespmodIcapInstance struct {
 	SourceIP                               string         `json:"source-ip,omitempty"`
 }
 
-func PostSlbTemplateRespmodIcap(id string, inst RespmodIcap, host string) {
+func PostSlbTemplateRespmodIcap(id string, inst RespmodIcap, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -59,6 +59,7 @@ func PostSlbTemplateRespmodIcap(id string, inst RespmodIcap, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -69,11 +70,14 @@ func PostSlbTemplateRespmodIcap(id string, inst RespmodIcap, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateRespmodIcap REQ RES..........................", m)
-			check_api_status("PostSlbTemplateRespmodIcap", data)
+			err := check_api_status("PostSlbTemplateRespmodIcap", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateRespmodIcap(id string, name string, host string) (*RespmodIcap, error) {
@@ -91,6 +95,7 @@ func GetSlbTemplateRespmodIcap(id string, name string, host string) (*RespmodIca
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RespmodIcap
@@ -100,14 +105,17 @@ func GetSlbTemplateRespmodIcap(id string, name string, host string) (*RespmodIca
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateRespmodIcap REQ RES..........................", m)
-			check_api_status("GetSlbTemplateRespmodIcap", data)
+			err := check_api_status("GetSlbTemplateRespmodIcap", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateRespmodIcap(id string, name string, inst RespmodIcap, host string) {
+func PutSlbTemplateRespmodIcap(id string, name string, inst RespmodIcap, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -126,6 +134,7 @@ func PutSlbTemplateRespmodIcap(id string, name string, inst RespmodIcap, host st
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -136,11 +145,14 @@ func PutSlbTemplateRespmodIcap(id string, name string, inst RespmodIcap, host st
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateRespmodIcap REQ RES..........................", m)
-			check_api_status("PutSlbTemplateRespmodIcap", data)
+			err := check_api_status("PutSlbTemplateRespmodIcap", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateRespmodIcap(id string, name string, host string) error {
@@ -157,6 +169,7 @@ func DeleteSlbTemplateRespmodIcap(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

@@ -3,20 +3,22 @@ package thunder
 //Thunder resource SlbTemplateExternalService
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateExternalService() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateExternalServiceCreate,
-		Update: resourceSlbTemplateExternalServiceUpdate,
-		Read:   resourceSlbTemplateExternalServiceRead,
-		Delete: resourceSlbTemplateExternalServiceDelete,
+		CreateContext: resourceSlbTemplateExternalServiceCreate,
+		UpdateContext: resourceSlbTemplateExternalServiceUpdate,
+		ReadContext:   resourceSlbTemplateExternalServiceRead,
+		DeleteContext: resourceSlbTemplateExternalServiceDelete,
 		Schema: map[string]*schema.Schema{
 			"template_tcp_proxy_shared": {
 				Type:        schema.TypeString,
@@ -123,9 +125,11 @@ func resourceSlbTemplateExternalService() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateExternalServiceCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateExternalServiceCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateExternalService (Inside resourceSlbTemplateExternalServiceCreate) ")
@@ -133,36 +137,46 @@ func resourceSlbTemplateExternalServiceCreate(d *schema.ResourceData, meta inter
 		data := dataToSlbTemplateExternalService(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateExternalService --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplateExternalService(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateExternalService(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateExternalServiceRead(d, meta)
+		return resourceSlbTemplateExternalServiceRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateExternalServiceRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateExternalServiceRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateExternalService (Inside resourceSlbTemplateExternalServiceRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplateExternalService(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplateExternalServiceUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateExternalServiceUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateExternalService   (Inside resourceSlbTemplateExternalServiceUpdate) ")
@@ -170,17 +184,22 @@ func resourceSlbTemplateExternalServiceUpdate(d *schema.ResourceData, meta inter
 		data := dataToSlbTemplateExternalService(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateExternalService ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplateExternalService(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateExternalService(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateExternalServiceRead(d, meta)
+		return resourceSlbTemplateExternalServiceRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateExternalServiceDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateExternalServiceDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -188,7 +207,7 @@ func resourceSlbTemplateExternalServiceDelete(d *schema.ResourceData, meta inter
 		err := go_thunder.DeleteSlbTemplateExternalService(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

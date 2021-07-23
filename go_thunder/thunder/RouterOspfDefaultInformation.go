@@ -20,7 +20,7 @@ type RouterOspfDefaultInformationInstance struct {
 	UUID       string `json:"uuid,omitempty"`
 }
 
-func PostRouterOspfDefaultInformation(id string, name1 string, inst RouterOspfDefaultInformation, host string) {
+func PostRouterOspfDefaultInformation(id string, name1 string, inst RouterOspfDefaultInformation, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -39,6 +39,7 @@ func PostRouterOspfDefaultInformation(id string, name1 string, inst RouterOspfDe
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -49,11 +50,14 @@ func PostRouterOspfDefaultInformation(id string, name1 string, inst RouterOspfDe
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostRouterOspfDefaultInformation", data)
+			err := check_api_status("PostRouterOspfDefaultInformation", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetRouterOspfDefaultInformation(id string, name1 string, host string) (*RouterOspfDefaultInformation, error) {
@@ -71,6 +75,7 @@ func GetRouterOspfDefaultInformation(id string, name1 string, host string) (*Rou
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterOspfDefaultInformation
@@ -80,7 +85,10 @@ func GetRouterOspfDefaultInformation(id string, name1 string, host string) (*Rou
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetRouterOspfDefaultInformation", data)
+			err := check_api_status("GetRouterOspfDefaultInformation", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

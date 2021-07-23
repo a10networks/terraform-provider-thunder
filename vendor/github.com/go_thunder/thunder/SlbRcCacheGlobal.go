@@ -18,7 +18,7 @@ type RcCacheGlobalInstance struct {
 	Counters1 []SamplingEnable31 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbRcCacheGlobal(id string, inst RcCacheGlobal, host string) {
+func PostSlbRcCacheGlobal(id string, inst RcCacheGlobal, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbRcCacheGlobal(id string, inst RcCacheGlobal, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbRcCacheGlobal(id string, inst RcCacheGlobal, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbRcCacheGlobal REQ RES..........................", m)
-			check_api_status("PostSlbRcCacheGlobal", data)
+			err := check_api_status("PostSlbRcCacheGlobal", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbRcCacheGlobal(id string, host string) (*RcCacheGlobal, error) {
@@ -69,6 +73,7 @@ func GetSlbRcCacheGlobal(id string, host string) (*RcCacheGlobal, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RcCacheGlobal
@@ -78,7 +83,10 @@ func GetSlbRcCacheGlobal(id string, host string) (*RcCacheGlobal, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbRcCacheGlobal REQ RES..........................", m)
-			check_api_status("GetSlbRcCacheGlobal", data)
+			err := check_api_status("GetSlbRcCacheGlobal", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

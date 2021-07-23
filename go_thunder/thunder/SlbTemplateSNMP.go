@@ -33,7 +33,7 @@ type SNMPInstance struct {
 	SnmpName         string `json:"snmp-name,omitempty"`
 }
 
-func PostSlbTemplateSNMP(id string, inst SNMP, host string) {
+func PostSlbTemplateSNMP(id string, inst SNMP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -52,6 +52,7 @@ func PostSlbTemplateSNMP(id string, inst SNMP, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -62,11 +63,14 @@ func PostSlbTemplateSNMP(id string, inst SNMP, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateSNMP REQ RES..........................", m)
-			check_api_status("PostSlbTemplateSNMP", data)
+			err := check_api_status("PostSlbTemplateSNMP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateSNMP(id string, snmp_name string, host string) (*SNMP, error) {
@@ -84,6 +88,7 @@ func GetSlbTemplateSNMP(id string, snmp_name string, host string) (*SNMP, error)
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SNMP
@@ -93,14 +98,17 @@ func GetSlbTemplateSNMP(id string, snmp_name string, host string) (*SNMP, error)
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateSNMP REQ RES..........................", m)
-			check_api_status("GetSlbTemplateSNMP", data)
+			err := check_api_status("GetSlbTemplateSNMP", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateSNMP(id string, snmp_name string, inst SNMP, host string) {
+func PutSlbTemplateSNMP(id string, snmp_name string, inst SNMP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -119,6 +127,7 @@ func PutSlbTemplateSNMP(id string, snmp_name string, inst SNMP, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -129,11 +138,14 @@ func PutSlbTemplateSNMP(id string, snmp_name string, inst SNMP, host string) {
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateSNMP REQ RES..........................", m)
-			check_api_status("PutSlbTemplateSNMP", data)
+			err := check_api_status("PutSlbTemplateSNMP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateSNMP(id string, snmp_name string, host string) error {
@@ -150,6 +162,7 @@ func DeleteSlbTemplateSNMP(id string, snmp_name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

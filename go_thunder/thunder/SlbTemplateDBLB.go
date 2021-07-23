@@ -23,7 +23,7 @@ type DblbInstance struct {
 	UUID          string   `json:"uuid,omitempty"`
 }
 
-func PostTemplateDBLB(id string, inst DBLB, host string) {
+func PostTemplateDBLB(id string, inst DBLB, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -42,6 +42,7 @@ func PostTemplateDBLB(id string, inst DBLB, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -52,11 +53,14 @@ func PostTemplateDBLB(id string, inst DBLB, host string) {
 
 		} else {
 			logger.Println("[INFO] PostTemplateDBLB REQ RES..........................", m)
-			check_api_status("PostTemplateDBLB", data)
+			err := check_api_status("PostTemplateDBLB", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetTemplateDBLB(id string, name string, host string) (*DBLB, error) {
@@ -74,6 +78,7 @@ func GetTemplateDBLB(id string, name string, host string) (*DBLB, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m DBLB
@@ -83,14 +88,17 @@ func GetTemplateDBLB(id string, name string, host string) (*DBLB, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetTemplateDBLB REQ RES..........................", m)
-			check_api_status("GetTemplateDBLB", data)
+			err := check_api_status("GetTemplateDBLB", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutTemplateDBLB(id string, name string, inst DBLB, host string) {
+func PutTemplateDBLB(id string, name string, inst DBLB, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -109,6 +117,7 @@ func PutTemplateDBLB(id string, name string, inst DBLB, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -119,11 +128,14 @@ func PutTemplateDBLB(id string, name string, inst DBLB, host string) {
 
 		} else {
 			logger.Println("[INFO] PutTemplateDBLB REQ RES..........................", m)
-			check_api_status("PutTemplateDBLB", data)
+			err := check_api_status("PutTemplateDBLB", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteTemplateDBLB(id string, name string, host string) error {
@@ -140,6 +152,7 @@ func DeleteTemplateDBLB(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

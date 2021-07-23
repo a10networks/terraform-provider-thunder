@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbSportRateLimit
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbSportRateLimit() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbSportRateLimitCreate,
-		Update: resourceSlbSportRateLimitUpdate,
-		Read:   resourceSlbSportRateLimitRead,
-		Delete: resourceSlbSportRateLimitDelete,
+		CreateContext: resourceSlbSportRateLimitCreate,
+		UpdateContext: resourceSlbSportRateLimitUpdate,
+		ReadContext:   resourceSlbSportRateLimitRead,
+		DeleteContext: resourceSlbSportRateLimitDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbSportRateLimit() *schema.Resource {
 	}
 }
 
-func resourceSlbSportRateLimitCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSportRateLimitCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbSportRateLimit (Inside resourceSlbSportRateLimitCreate) ")
@@ -44,39 +48,47 @@ func resourceSlbSportRateLimitCreate(d *schema.ResourceData, meta interface{}) e
 		data := dataToSlbSportRateLimit(d)
 		logger.Println("[INFO] received formatted data from method data to SlbSportRateLimit --")
 		d.SetId("1")
-		go_thunder.PostSlbSportRateLimit(client.Token, data, client.Host)
+		err := go_thunder.PostSlbSportRateLimit(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbSportRateLimitRead(d, meta)
+		return resourceSlbSportRateLimitRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbSportRateLimitRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSportRateLimitRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbSportRateLimit (Inside resourceSlbSportRateLimitRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbSportRateLimit(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbSportRateLimitUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSportRateLimitUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSportRateLimitRead(d, meta)
+	return resourceSlbSportRateLimitRead(ctx, d, meta)
 }
 
-func resourceSlbSportRateLimitDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSportRateLimitDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSportRateLimitRead(d, meta)
+	return resourceSlbSportRateLimitRead(ctx, d, meta)
 }
 
 func dataToSlbSportRateLimit(d *schema.ResourceData) go_thunder.SportRateLimit {

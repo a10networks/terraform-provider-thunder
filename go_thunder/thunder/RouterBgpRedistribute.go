@@ -97,7 +97,7 @@ type RouterBgpRedistributeOnlyNotFlaggedCfg struct {
 	RouteMap       string `json:"route-map,omitempty"`
 }
 
-func PostRouterBgpRedistribute(id string, name1 string, inst RouterBgpRedistribute, host string) {
+func PostRouterBgpRedistribute(id string, name1 string, inst RouterBgpRedistribute, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -116,6 +116,7 @@ func PostRouterBgpRedistribute(id string, name1 string, inst RouterBgpRedistribu
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -126,11 +127,14 @@ func PostRouterBgpRedistribute(id string, name1 string, inst RouterBgpRedistribu
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostRouterBgpRedistribute", data)
+			err := check_api_status("PostRouterBgpRedistribute", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetRouterBgpRedistribute(id string, name1 string, host string) (*RouterBgpRedistribute, error) {
@@ -148,6 +152,7 @@ func GetRouterBgpRedistribute(id string, name1 string, host string) (*RouterBgpR
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterBgpRedistribute
@@ -157,7 +162,10 @@ func GetRouterBgpRedistribute(id string, name1 string, host string) (*RouterBgpR
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetRouterBgpRedistribute", data)
+			err := check_api_status("GetRouterBgpRedistribute", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

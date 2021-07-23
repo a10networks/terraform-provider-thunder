@@ -3,19 +3,22 @@ package thunder
 //Thunder resource FwTcpWindowCheck
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwTcpWindowCheck() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwTcpWindowCheckCreate,
-		Update: resourceFwTcpWindowCheckUpdate,
-		Read:   resourceFwTcpWindowCheckRead,
-		Delete: resourceFwTcpWindowCheckDelete,
+		CreateContext: resourceFwTcpWindowCheckCreate,
+		UpdateContext: resourceFwTcpWindowCheckUpdate,
+		ReadContext:   resourceFwTcpWindowCheckRead,
+		DeleteContext: resourceFwTcpWindowCheckDelete,
 		Schema: map[string]*schema.Schema{
 			"status": {
 				Type:        schema.TypeString,
@@ -44,9 +47,11 @@ func resourceFwTcpWindowCheck() *schema.Resource {
 	}
 }
 
-func resourceFwTcpWindowCheckCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTcpWindowCheckCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwTcpWindowCheck (Inside resourceFwTcpWindowCheckCreate) ")
@@ -54,41 +59,49 @@ func resourceFwTcpWindowCheckCreate(d *schema.ResourceData, meta interface{}) er
 		data := dataToFwTcpWindowCheck(d)
 		logger.Println("[INFO] received formatted data from method data to FwTcpWindowCheck --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwTcpWindowCheck(client.Token, data, client.Host)
+		err := go_thunder.PostFwTcpWindowCheck(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwTcpWindowCheckRead(d, meta)
+		return resourceFwTcpWindowCheckRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwTcpWindowCheckRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTcpWindowCheckRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwTcpWindowCheck (Inside resourceFwTcpWindowCheckRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwTcpWindowCheck(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwTcpWindowCheckUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTcpWindowCheckUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwTcpWindowCheckRead(d, meta)
+	return resourceFwTcpWindowCheckRead(ctx, d, meta)
 }
 
-func resourceFwTcpWindowCheckDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTcpWindowCheckDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwTcpWindowCheckRead(d, meta)
+	return resourceFwTcpWindowCheckRead(ctx, d, meta)
 }
 func dataToFwTcpWindowCheck(d *schema.ResourceData) go_thunder.FwTcpWindowCheck {
 	var vc go_thunder.FwTcpWindowCheck

@@ -3,19 +3,22 @@ package thunder
 //Thunder resource RouterBgp
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceRouterBgp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceRouterBgpCreate,
-		Update: resourceRouterBgpUpdate,
-		Read:   resourceRouterBgpRead,
-		Delete: resourceRouterBgpDelete,
+		CreateContext: resourceRouterBgpCreate,
+		UpdateContext: resourceRouterBgpUpdate,
+		ReadContext:   resourceRouterBgpRead,
+		DeleteContext: resourceRouterBgpDelete,
 		Schema: map[string]*schema.Schema{
 			"as_number": {
 				Type:        schema.TypeInt,
@@ -2353,9 +2356,11 @@ func resourceRouterBgp() *schema.Resource {
 	}
 }
 
-func resourceRouterBgpCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RouterBgp (Inside resourceRouterBgpCreate) ")
@@ -2363,52 +2368,67 @@ func resourceRouterBgpCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToRouterBgp(d)
 		logger.Println("[INFO] received formatted data from method data to RouterBgp --")
 		d.SetId(strconv.Itoa(name1))
-		go_thunder.PostRouterBgp(client.Token, data, client.Host)
+		err := go_thunder.PostRouterBgp(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouterBgpRead(d, meta)
+		return resourceRouterBgpRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouterBgpRead(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading RouterBgp (Inside resourceRouterBgpRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetRouterBgp(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceRouterBgpUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying RouterBgp   (Inside resourceRouterBgpUpdate) ")
 		data := dataToRouterBgp(d)
 		logger.Println("[INFO] received formatted data from method data to RouterBgp ")
-		go_thunder.PutRouterBgp(client.Token, name1, data, client.Host)
+		err := go_thunder.PutRouterBgp(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouterBgpRead(d, meta)
+		return resourceRouterBgpRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouterBgpDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -2416,11 +2436,11 @@ func resourceRouterBgpDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteRouterBgp(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToRouterBgp(d *schema.ResourceData) go_thunder.RouterBgp {

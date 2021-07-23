@@ -3,18 +3,21 @@ package thunder
 //Thunder resource FwApplyChanges
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwApplyChanges() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwApplyChangesCreate,
-		Update: resourceFwApplyChangesUpdate,
-		Read:   resourceFwApplyChangesRead,
-		Delete: resourceFwApplyChangesDelete,
+		CreateContext: resourceFwApplyChangesCreate,
+		UpdateContext: resourceFwApplyChangesUpdate,
+		ReadContext:   resourceFwApplyChangesRead,
+		DeleteContext: resourceFwApplyChangesDelete,
 		Schema: map[string]*schema.Schema{
 			"forced": {
 				Type:        schema.TypeInt,
@@ -25,9 +28,11 @@ func resourceFwApplyChanges() *schema.Resource {
 	}
 }
 
-func resourceFwApplyChangesCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwApplyChangesCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwApplyChanges (Inside resourceFwApplyChangesCreate) ")
@@ -35,41 +40,49 @@ func resourceFwApplyChangesCreate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToFwApplyChanges(d)
 		logger.Println("[INFO] received formatted data from method data to FwApplyChanges --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwApplyChanges(client.Token, data, client.Host)
+		err := go_thunder.PostFwApplyChanges(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwApplyChangesRead(d, meta)
+		return resourceFwApplyChangesRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwApplyChangesRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwApplyChangesRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwApplyChanges (Inside resourceFwApplyChangesRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwApplyChanges(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwApplyChangesUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwApplyChangesUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwApplyChangesRead(d, meta)
+	return resourceFwApplyChangesRead(ctx, d, meta)
 }
 
-func resourceFwApplyChangesDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwApplyChangesDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwApplyChangesRead(d, meta)
+	return resourceFwApplyChangesRead(ctx, d, meta)
 }
 func dataToFwApplyChanges(d *schema.ResourceData) go_thunder.FwApplyChanges {
 	var vc go_thunder.FwApplyChanges

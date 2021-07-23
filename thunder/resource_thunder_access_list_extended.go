@@ -3,19 +3,22 @@ package thunder
 //Thunder resource AccessListExtended
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceAccessListExtended() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceAccessListExtendedCreate,
-		Update: resourceAccessListExtendedUpdate,
-		Read:   resourceAccessListExtendedRead,
-		Delete: resourceAccessListExtendedDelete,
+		CreateContext: resourceAccessListExtendedCreate,
+		UpdateContext: resourceAccessListExtendedUpdate,
+		ReadContext:   resourceAccessListExtendedRead,
+		DeleteContext: resourceAccessListExtendedDelete,
 		Schema: map[string]*schema.Schema{
 			"extd": {
 				Type:        schema.TypeInt,
@@ -249,9 +252,11 @@ func resourceAccessListExtended() *schema.Resource {
 	}
 }
 
-func resourceAccessListExtendedCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceAccessListExtendedCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating AccessListExtended (Inside resourceAccessListExtendedCreate) ")
@@ -259,52 +264,67 @@ func resourceAccessListExtendedCreate(d *schema.ResourceData, meta interface{}) 
 		data := dataToAccessListExtended(d)
 		logger.Println("[INFO] received formatted data from method data to AccessListExtended --")
 		d.SetId(strconv.Itoa(name1))
-		go_thunder.PostAccessListExtended(client.Token, data, client.Host)
+		err := go_thunder.PostAccessListExtended(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceAccessListExtendedRead(d, meta)
+		return resourceAccessListExtendedRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceAccessListExtendedRead(d *schema.ResourceData, meta interface{}) error {
+func resourceAccessListExtendedRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading AccessListExtended (Inside resourceAccessListExtendedRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetAccessListExtended(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceAccessListExtendedUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceAccessListExtendedUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying AccessListExtended   (Inside resourceAccessListExtendedUpdate) ")
 		data := dataToAccessListExtended(d)
 		logger.Println("[INFO] received formatted data from method data to AccessListExtended ")
-		go_thunder.PutAccessListExtended(client.Token, name1, data, client.Host)
+		err := go_thunder.PutAccessListExtended(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceAccessListExtendedRead(d, meta)
+		return resourceAccessListExtendedRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceAccessListExtendedDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceAccessListExtendedDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -312,11 +332,11 @@ func resourceAccessListExtendedDelete(d *schema.ResourceData, meta interface{}) 
 		err := go_thunder.DeleteAccessListExtended(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToAccessListExtended(d *schema.ResourceData) go_thunder.AccessListExtended {

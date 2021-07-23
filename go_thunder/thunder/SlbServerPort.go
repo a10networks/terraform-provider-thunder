@@ -55,7 +55,7 @@ type SlbServerSamplingEnable struct {
 	Counters1 string `json:"counters1,omitempty"`
 }
 
-func PostSlbServerPort(id string, name string, inst SlbServerPort, host string) {
+func PostSlbServerPort(id string, name string, inst SlbServerPort, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -74,6 +74,7 @@ func PostSlbServerPort(id string, name string, inst SlbServerPort, host string) 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -84,11 +85,14 @@ func PostSlbServerPort(id string, name string, inst SlbServerPort, host string) 
 
 		} else {
 			logger.Println("[INFO] PostSlbServerPort REQ RES..........................", m)
-			check_api_status("PostSlbServerPort", data)
+			err := check_api_status("PostSlbServerPort", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbServerPort(id string, name1 string, name2 string, name3 string, host string) (*SlbServerPort, error) {
@@ -106,6 +110,7 @@ func GetSlbServerPort(id string, name1 string, name2 string, name3 string, host 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SlbServerPort
@@ -115,14 +120,17 @@ func GetSlbServerPort(id string, name1 string, name2 string, name3 string, host 
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbServerPort REQ RES..........................", m)
-			check_api_status("GetSlbServerPort", data)
+			err := check_api_status("GetSlbServerPort", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbServerPort(id string, name1 string, name2 string, name3 string, inst SlbServerPort, host string) {
+func PutSlbServerPort(id string, name1 string, name2 string, name3 string, inst SlbServerPort, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -141,6 +149,7 @@ func PutSlbServerPort(id string, name1 string, name2 string, name3 string, inst 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -151,11 +160,14 @@ func PutSlbServerPort(id string, name1 string, name2 string, name3 string, inst 
 
 		} else {
 			logger.Println("[INFO] PutSlbServerPort REQ RES..........................", m)
-			check_api_status("PutSlbServerPort", data)
+			err := check_api_status("PutSlbServerPort", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbServerPort(id string, name1 string, name2 string, name3 string, host string) error {
@@ -172,6 +184,7 @@ func DeleteSlbServerPort(id string, name1 string, name2 string, name3 string, ho
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

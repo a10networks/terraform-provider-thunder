@@ -3,18 +3,21 @@ package thunder
 //Thunder resource SnmpServerView
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strings"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSnmpServerView() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSnmpServerViewCreate,
-		Update: resourceSnmpServerViewUpdate,
-		Read:   resourceSnmpServerViewRead,
-		Delete: resourceSnmpServerViewDelete,
+		CreateContext: resourceSnmpServerViewCreate,
+		UpdateContext: resourceSnmpServerViewUpdate,
+		ReadContext:   resourceSnmpServerViewRead,
+		DeleteContext: resourceSnmpServerViewDelete,
 		Schema: map[string]*schema.Schema{
 			"type": {
 				Type:        schema.TypeString,
@@ -45,9 +48,11 @@ func resourceSnmpServerView() *schema.Resource {
 	}
 }
 
-func resourceSnmpServerViewCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerViewCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerView (Inside resourceSnmpServerViewCreate) ")
@@ -56,17 +61,22 @@ func resourceSnmpServerViewCreate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToSnmpServerView(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerView --")
 		d.SetId(name1 + "," + name2)
-		go_thunder.PostSnmpServerView(client.Token, data, client.Host)
+		err := go_thunder.PostSnmpServerView(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerViewRead(d, meta)
+		return resourceSnmpServerViewRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerViewRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerViewRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SnmpServerView (Inside resourceSnmpServerViewRead)")
 
 	if client.Host != "" {
@@ -75,18 +85,23 @@ func resourceSnmpServerViewRead(d *schema.ResourceData, meta interface{}) error 
 		name2 := id[1]
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetSnmpServerView(client.Token, name1, name2, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSnmpServerViewUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerViewUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -95,17 +110,22 @@ func resourceSnmpServerViewUpdate(d *schema.ResourceData, meta interface{}) erro
 		logger.Println("[INFO] Modifying SnmpServerView   (Inside resourceSnmpServerViewUpdate) ")
 		data := dataToSnmpServerView(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerView ")
-		go_thunder.PutSnmpServerView(client.Token, name1, name2, data, client.Host)
+		err := go_thunder.PutSnmpServerView(client.Token, name1, name2, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerViewRead(d, meta)
+		return resourceSnmpServerViewRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerViewDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerViewDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -115,11 +135,11 @@ func resourceSnmpServerViewDelete(d *schema.ResourceData, meta interface{}) erro
 		err := go_thunder.DeleteSnmpServerView(client.Token, name1, name2, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToSnmpServerView(d *schema.ResourceData) go_thunder.SnmpServerView {

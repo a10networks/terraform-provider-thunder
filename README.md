@@ -31,17 +31,19 @@ $ git clone git@github.com:terraform-providers/terraform-provider-thunder $GOPAT
 Enter the provider directory and build the provider
 
 ```sh
-$ cd $GOPATH/src/github.com/terraform-providers/terraform-provider-thunder
+$ cd $GOPATH/src/github.com/a10networks/terraform-provider-thunder
 $ make build
 ```
 
 ## Local Plugin Installation
 
 Inside your cloned repo; here x.y.z is version example 0.4.5
-1. $ go build -o terraform-provider-thunder
-2. $ mkdir -p ~/.terraform.d/plugins/a10networks.com/a10networks/thunder/x.y.z/linux_amd64/
-3. $ cp terraform-provider-thunder ~/.terraform.d/plugins/a10networks.com/a10networks/thunder/x.y.z/linux_amd64/
-4. create version.tf file like:-
+1. $ go mod tidy
+2. $ go mod vendor
+3. $ go build -o terraform-provider-thunder
+4. $ mkdir -p ~/.terraform.d/plugins/a10networks.com/a10networks/thunder/x.y.z/linux_amd64/
+5. $ cp terraform-provider-thunder ~/.terraform.d/plugins/a10networks.com/a10networks/thunder/x.y.z/linux_amd64/
+6. create version.tf file like:-
 ```
 terraform {
   required_providers {

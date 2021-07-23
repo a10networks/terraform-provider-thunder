@@ -15,7 +15,7 @@ type FwFullConeSessionInstance struct {
 	UUID string `json:"uuid,omitempty"`
 }
 
-func PostFwFullConeSession(id string, inst FwFullConeSession, host string) {
+func PostFwFullConeSession(id string, inst FwFullConeSession, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -34,6 +34,7 @@ func PostFwFullConeSession(id string, inst FwFullConeSession, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -44,11 +45,14 @@ func PostFwFullConeSession(id string, inst FwFullConeSession, host string) {
 
 		} else {
 			logger.Println("[INFO] POST REQ RES..........................", m)
-			check_api_status("PostFwFullConeSession", data)
+			err := check_api_status("PostFwFullConeSession", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwFullConeSession(id string, host string) (*FwFullConeSession, error) {
@@ -66,6 +70,7 @@ func GetFwFullConeSession(id string, host string) (*FwFullConeSession, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwFullConeSession
@@ -75,7 +80,10 @@ func GetFwFullConeSession(id string, host string) (*FwFullConeSession, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwFullConeSession", data)
+			err := check_api_status("GetFwFullConeSession", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

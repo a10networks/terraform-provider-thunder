@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbMlb
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbMlb() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbMlbCreate,
-		Update: resourceSlbMlbUpdate,
-		Read:   resourceSlbMlbRead,
-		Delete: resourceSlbMlbDelete,
+		CreateContext: resourceSlbMlbCreate,
+		UpdateContext: resourceSlbMlbUpdate,
+		ReadContext:   resourceSlbMlbRead,
+		DeleteContext: resourceSlbMlbDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbMlb() *schema.Resource {
 	}
 }
 
-func resourceSlbMlbCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbMlbCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbMlb (Inside resourceSlbMlbCreate) ")
@@ -44,40 +48,48 @@ func resourceSlbMlbCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSlbMlb(d)
 		logger.Println("[INFO] received V from method data to SlbMlb --")
 		d.SetId("1")
-		go_thunder.PostSlbMlb(client.Token, data, client.Host)
+		err := go_thunder.PostSlbMlb(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbMlbRead(d, meta)
+		return resourceSlbMlbRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbMlbRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbMlbRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbMlb (Inside resourceSlbMlbRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbMlb(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbMlbUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbMlbUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbMlbRead(d, meta)
+	return resourceSlbMlbRead(ctx, d, meta)
 }
 
-func resourceSlbMlbDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbMlbDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbMlbRead(d, meta)
+	return resourceSlbMlbRead(ctx, d, meta)
 }
 
 func dataToSlbMlb(d *schema.ResourceData) go_thunder.Mlb {

@@ -19,7 +19,7 @@ type SnmpServerViewInstance struct {
 	Viewname string `json:"viewname,omitempty"`
 }
 
-func PostSnmpServerView(id string, inst SnmpServerView, host string) {
+func PostSnmpServerView(id string, inst SnmpServerView, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -38,6 +38,7 @@ func PostSnmpServerView(id string, inst SnmpServerView, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -48,11 +49,14 @@ func PostSnmpServerView(id string, inst SnmpServerView, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerView", data)
+			err := check_api_status("PostSnmpServerView", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerView(id string, name1 string, name2 string, host string) (*SnmpServerView, error) {
@@ -70,6 +74,7 @@ func GetSnmpServerView(id string, name1 string, name2 string, host string) (*Snm
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerView
@@ -79,14 +84,17 @@ func GetSnmpServerView(id string, name1 string, name2 string, host string) (*Snm
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerView", data)
+			err := check_api_status("GetSnmpServerView", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSnmpServerView(id string, name1 string, name2 string, inst SnmpServerView, host string) {
+func PutSnmpServerView(id string, name1 string, name2 string, inst SnmpServerView, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -105,6 +113,7 @@ func PutSnmpServerView(id string, name1 string, name2 string, inst SnmpServerVie
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -115,11 +124,14 @@ func PutSnmpServerView(id string, name1 string, name2 string, inst SnmpServerVie
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutSnmpServerView", data)
+			err := check_api_status("PutSnmpServerView", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSnmpServerView(id string, name1 string, name2 string, host string) error {
@@ -136,6 +148,7 @@ func DeleteSnmpServerView(id string, name1 string, name2 string, host string) er
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

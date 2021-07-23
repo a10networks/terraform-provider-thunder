@@ -3,19 +3,22 @@ package thunder
 //Thunder resource FwTapMonitor
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwTapMonitor() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwTapMonitorCreate,
-		Update: resourceFwTapMonitorUpdate,
-		Read:   resourceFwTapMonitorRead,
-		Delete: resourceFwTapMonitorDelete,
+		CreateContext: resourceFwTapMonitorCreate,
+		UpdateContext: resourceFwTapMonitorUpdate,
+		ReadContext:   resourceFwTapMonitorRead,
+		DeleteContext: resourceFwTapMonitorDelete,
 		Schema: map[string]*schema.Schema{
 			"status": {
 				Type:        schema.TypeString,
@@ -49,9 +52,11 @@ func resourceFwTapMonitor() *schema.Resource {
 	}
 }
 
-func resourceFwTapMonitorCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTapMonitorCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwTapMonitor (Inside resourceFwTapMonitorCreate) ")
@@ -59,41 +64,49 @@ func resourceFwTapMonitorCreate(d *schema.ResourceData, meta interface{}) error 
 		data := dataToFwTapMonitor(d)
 		logger.Println("[INFO] received formatted data from method data to FwTapMonitor --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwTapMonitor(client.Token, data, client.Host)
+		err := go_thunder.PostFwTapMonitor(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwTapMonitorRead(d, meta)
+		return resourceFwTapMonitorRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwTapMonitorRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTapMonitorRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwTapMonitor (Inside resourceFwTapMonitorRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwTapMonitor(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwTapMonitorUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTapMonitorUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwTapMonitorRead(d, meta)
+	return resourceFwTapMonitorRead(ctx, d, meta)
 }
 
-func resourceFwTapMonitorDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTapMonitorDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwTapMonitorRead(d, meta)
+	return resourceFwTapMonitorRead(ctx, d, meta)
 }
 func dataToFwTapMonitor(d *schema.ResourceData) go_thunder.FwTapMonitor {
 	var vc go_thunder.FwTapMonitor

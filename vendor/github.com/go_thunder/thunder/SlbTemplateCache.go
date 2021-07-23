@@ -44,7 +44,7 @@ type CacheInstance struct {
 	UUID                 string            `json:"uuid,omitempty"`
 }
 
-func PostSlbTemplateCache(id string, inst Cache, host string) {
+func PostSlbTemplateCache(id string, inst Cache, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -63,6 +63,7 @@ func PostSlbTemplateCache(id string, inst Cache, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -73,11 +74,14 @@ func PostSlbTemplateCache(id string, inst Cache, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateCache REQ RES..........................", m)
-			check_api_status("PostSlbTemplateCache", data)
+			err := check_api_status("PostSlbTemplateCache", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateCache(id string, name string, host string) (*Cache, error) {
@@ -95,6 +99,7 @@ func GetSlbTemplateCache(id string, name string, host string) (*Cache, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Cache
@@ -104,14 +109,17 @@ func GetSlbTemplateCache(id string, name string, host string) (*Cache, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateCache REQ RES..........................", m)
-			check_api_status("GetSlbTemplateCache", data)
+			err := check_api_status("GetSlbTemplateCache", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateCache(id string, name string, inst Cache, host string) {
+func PutSlbTemplateCache(id string, name string, inst Cache, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -130,6 +138,7 @@ func PutSlbTemplateCache(id string, name string, inst Cache, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -140,11 +149,14 @@ func PutSlbTemplateCache(id string, name string, inst Cache, host string) {
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateCache REQ RES..........................", m)
-			check_api_status("PutSlbTemplateCache", data)
+			err := check_api_status("PutSlbTemplateCache", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateCache(id string, name string, host string) error {
@@ -161,6 +173,7 @@ func DeleteSlbTemplateCache(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

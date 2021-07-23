@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlL7session
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlL7session() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbL7sessionCreate,
-		Update: resourceSlbL7sessionUpdate,
-		Read:   resourceSlbL7sessionRead,
-		Delete: resourceSlbL7sessionDelete,
+		CreateContext: resourceSlbL7sessionCreate,
+		UpdateContext: resourceSlbL7sessionUpdate,
+		ReadContext:   resourceSlbL7sessionRead,
+		DeleteContext: resourceSlbL7sessionDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,47 +36,57 @@ func resourceSlL7session() *schema.Resource {
 	}
 }
 
-func resourceSlbL7sessionCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbL7sessionCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlL7session (Inside resourceSlL7sessionCreate) ")
 		data := dataToSlL7session(d)
 		logger.Println("[INFO] received V from method data to SlL7session --")
 		d.SetId("1")
-		go_thunder.PostSlbL7session(client.Token, data, client.Host)
+		err := go_thunder.PostSlbL7session(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbL7sessionRead(d, meta)
+		return resourceSlbL7sessionRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbL7sessionRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbL7sessionRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlL7session (Inside resourceSlL7sessionRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetSlbL7session(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbL7sessionUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbL7sessionUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbL7sessionRead(d, meta)
+	return resourceSlbL7sessionRead(ctx, d, meta)
 }
 
-func resourceSlbL7sessionDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbL7sessionDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbL7sessionRead(d, meta)
+	return resourceSlbL7sessionRead(ctx, d, meta)
 }
 
 func dataToSlL7session(d *schema.ResourceData) go_thunder.L7session {

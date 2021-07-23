@@ -19,7 +19,7 @@ type FwTcpMssClampInstance struct {
 	UUID         string `json:"uuid,omitempty"`
 }
 
-func PostFwTcpMssClamp(id string, inst FwTcpMssClamp, host string) {
+func PostFwTcpMssClamp(id string, inst FwTcpMssClamp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -38,6 +38,7 @@ func PostFwTcpMssClamp(id string, inst FwTcpMssClamp, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -48,11 +49,14 @@ func PostFwTcpMssClamp(id string, inst FwTcpMssClamp, host string) {
 
 		} else {
 			logger.Println("[INFO] PostFwTcpMssClamp REQ RES..........................", m)
-			check_api_status("PostFwTcpMssClamp", data)
+			err := check_api_status("PostFwTcpMssClamp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwTcpMssClamp(id string, host string) (*FwTcpMssClamp, error) {
@@ -70,6 +74,7 @@ func GetFwTcpMssClamp(id string, host string) (*FwTcpMssClamp, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwTcpMssClamp
@@ -79,7 +84,10 @@ func GetFwTcpMssClamp(id string, host string) (*FwTcpMssClamp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetFwTcpMssClamp REQ RES..........................", m)
-			check_api_status("GetFwTcpMssClamp", data)
+			err := check_api_status("GetFwTcpMssClamp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

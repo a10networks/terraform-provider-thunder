@@ -3,19 +3,22 @@ package thunder
 //Thunder resource http policy
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"log"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateHttpPolicy() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceHttpPolicyCreate,
-		Update: resourceHttpPolicyUpdate,
-		Read:   resourceHttpPolicyRead,
-		Delete: resourceHttpPolicyDelete,
+		CreateContext: resourceHttpPolicyCreate,
+		UpdateContext: resourceHttpPolicyUpdate,
+		ReadContext:   resourceHttpPolicyRead,
+		DeleteContext: resourceHttpPolicyDelete,
 
 		Schema: map[string]*schema.Schema{
 			"user_tag": {
@@ -123,66 +126,80 @@ func resourceSlbTemplateHttpPolicy() *schema.Resource {
 	}
 }
 
-func resourceHttpPolicyCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceHttpPolicyCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Creating http policy (Inside resourceHttpPolicyCreate    " + name)
 		v := dataToHttpPolicy(name, d)
 		d.SetId(name)
-		go_thunder.PostHttpPolicy(client.Token, v, client.Host)
-
-		return resourceHttpPolicyRead(d, meta)
+		err := go_thunder.PostHttpPolicy(client.Token, v, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceHttpPolicyRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceHttpPolicyRead(d *schema.ResourceData, meta interface{}) error {
+func resourceHttpPolicyRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading http policy (Inside resourceHttpPolicyRead)")
 
 	if client.Host != "" {
 		client := meta.(Thunder)
+
 
 		name := d.Id()
 
 		logger.Println("[INFO] Fetching htpp policy Read" + name)
 
 		http_policy, err := go_thunder.GetHttpPolicy(client.Token, name, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if http_policy == nil {
 			logger.Println("[INFO] No http policy found " + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceHttpPolicyUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceHttpPolicyUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Modifying http policy (Inside resourceHttpPolicyUpdate    " + name)
 		v := dataToHttpPolicy(name, d)
 		d.SetId(name)
-		go_thunder.PutHttpPolicy(client.Token, name, v, client.Host)
-
-		return resourceHttpPolicyRead(d, meta)
+		err := go_thunder.PutHttpPolicy(client.Token, name, v, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceHttpPolicyRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceHttpPolicyDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceHttpPolicyDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger := util.GetLoggerInstance()
 
 	if client.Host != "" {
@@ -192,7 +209,7 @@ func resourceHttpPolicyDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteHttpPolicy(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete http policy  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

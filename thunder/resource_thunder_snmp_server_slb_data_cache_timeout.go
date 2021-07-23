@@ -3,17 +3,20 @@ package thunder
 //Thunder resource SnmpServerSlbDataCacheTimeout
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSnmpServerSlbDataCacheTimeout() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSnmpServerSlbDataCacheTimeoutCreate,
-		Update: resourceSnmpServerSlbDataCacheTimeoutUpdate,
-		Read:   resourceSnmpServerSlbDataCacheTimeoutRead,
-		Delete: resourceSnmpServerSlbDataCacheTimeoutDelete,
+		CreateContext: resourceSnmpServerSlbDataCacheTimeoutCreate,
+		UpdateContext: resourceSnmpServerSlbDataCacheTimeoutUpdate,
+		ReadContext:   resourceSnmpServerSlbDataCacheTimeoutRead,
+		DeleteContext: resourceSnmpServerSlbDataCacheTimeoutDelete,
 		Schema: map[string]*schema.Schema{
 			"uuid": {
 				Type:        schema.TypeString,
@@ -29,9 +32,11 @@ func resourceSnmpServerSlbDataCacheTimeout() *schema.Resource {
 	}
 }
 
-func resourceSnmpServerSlbDataCacheTimeoutCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerSlbDataCacheTimeoutCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerSlbDataCacheTimeout (Inside resourceSnmpServerSlbDataCacheTimeoutCreate) ")
@@ -39,39 +44,47 @@ func resourceSnmpServerSlbDataCacheTimeoutCreate(d *schema.ResourceData, meta in
 		data := dataToSnmpServerSlbDataCacheTimeout(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerSlbDataCacheTimeout --")
 		d.SetId("1")
-		go_thunder.PostSnmpServerSlbDataCacheTimeout(client.Token, data, client.Host)
+		err := go_thunder.PostSnmpServerSlbDataCacheTimeout(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerSlbDataCacheTimeoutRead(d, meta)
+		return resourceSnmpServerSlbDataCacheTimeoutRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerSlbDataCacheTimeoutRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerSlbDataCacheTimeoutRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SnmpServerSlbDataCacheTimeout (Inside resourceSnmpServerSlbDataCacheTimeoutRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetSnmpServerSlbDataCacheTimeout(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSnmpServerSlbDataCacheTimeoutUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerSlbDataCacheTimeoutUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSnmpServerSlbDataCacheTimeoutRead(d, meta)
+	return resourceSnmpServerSlbDataCacheTimeoutRead(ctx, d, meta)
 }
 
-func resourceSnmpServerSlbDataCacheTimeoutDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerSlbDataCacheTimeoutDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSnmpServerSlbDataCacheTimeoutRead(d, meta)
+	return resourceSnmpServerSlbDataCacheTimeoutRead(ctx, d, meta)
 }
 func dataToSnmpServerSlbDataCacheTimeout(d *schema.ResourceData) go_thunder.SnmpServerSlbDataCacheTimeout {
 	var vc go_thunder.SnmpServerSlbDataCacheTimeout

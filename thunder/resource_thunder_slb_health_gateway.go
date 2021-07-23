@@ -3,19 +3,21 @@ package thunder
 // Thunder resource Slb HealthGateway
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbHealthGateway() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbHealthGatewayCreate,
-		Update: resourceSlbHealthGatewayUpdate,
-		Read:   resourceSlbHealthGatewayRead,
-		Delete: resourceSlbHealthGatewayDelete,
+		CreateContext: resourceSlbHealthGatewayCreate,
+		UpdateContext: resourceSlbHealthGatewayUpdate,
+		ReadContext:   resourceSlbHealthGatewayRead,
+		DeleteContext: resourceSlbHealthGatewayDelete,
 
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
@@ -41,53 +43,61 @@ func resourceSlbHealthGateway() *schema.Resource {
 
 }
 
-func resourceSlbHealthGatewayCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbHealthGatewayCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating health_gateway (Inside resourceSlbHealthGatewayCreate)")
 
 	if client.Host != "" {
 		vc := dataToSlbHealthGateway(d)
 		d.SetId("1")
-		go_thunder.PostSlbHealthGateway(client.Token, vc, client.Host)
-
-		return resourceSlbHealthGatewayRead(d, meta)
+		err := go_thunder.PostSlbHealthGateway(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSlbHealthGatewayRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbHealthGatewayRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbHealthGatewayRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading health_gateway (Inside resourceSlbHealthGatewayRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbHealthGateway(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No health_gateway found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbHealthGatewayUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbHealthGatewayUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbHealthGatewayRead(d, meta)
+	return resourceSlbHealthGatewayRead(ctx, d, meta)
 }
 
-func resourceSlbHealthGatewayDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbHealthGatewayDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbHealthGatewayRead(d, meta)
+	return resourceSlbHealthGatewayRead(ctx, d, meta)
 }
 
 //Utility method to instantiate HealthGateway Structure

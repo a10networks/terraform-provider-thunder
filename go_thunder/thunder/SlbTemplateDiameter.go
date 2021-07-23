@@ -50,7 +50,7 @@ type DiameterInstance struct {
 	ForwardToLatestServer   int               `json:"forward-to-latest-server,omitempty"`
 }
 
-func PostSlbTemplateDiameter(id string, inst Diameter, host string) {
+func PostSlbTemplateDiameter(id string, inst Diameter, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -69,6 +69,7 @@ func PostSlbTemplateDiameter(id string, inst Diameter, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -79,11 +80,14 @@ func PostSlbTemplateDiameter(id string, inst Diameter, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateDiameter REQ RES..........................", m)
-			check_api_status("PostSlbTemplateDiameter", data)
+			err := check_api_status("PostSlbTemplateDiameter", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateDiameter(id string, name string, host string) (*Diameter, error) {
@@ -101,6 +105,7 @@ func GetSlbTemplateDiameter(id string, name string, host string) (*Diameter, err
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Diameter
@@ -110,14 +115,17 @@ func GetSlbTemplateDiameter(id string, name string, host string) (*Diameter, err
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateDiameter REQ RES..........................", m)
-			check_api_status("GetSlbTemplateDiameter", data)
+			err := check_api_status("GetSlbTemplateDiameter", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateDiameter(id string, name string, inst Diameter, host string) {
+func PutSlbTemplateDiameter(id string, name string, inst Diameter, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -136,6 +144,7 @@ func PutSlbTemplateDiameter(id string, name string, inst Diameter, host string) 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -146,11 +155,14 @@ func PutSlbTemplateDiameter(id string, name string, inst Diameter, host string) 
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateDiameter REQ RES..........................", m)
-			check_api_status("PutSlbTemplateDiameter", data)
+			err := check_api_status("PutSlbTemplateDiameter", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateDiameter(id string, name string, host string) error {
@@ -167,6 +179,7 @@ func DeleteSlbTemplateDiameter(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

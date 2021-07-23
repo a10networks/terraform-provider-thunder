@@ -72,7 +72,7 @@ type SIPInstance struct {
 	ACLNameValue                 string                 `json:"acl-name-value,omitempty"`
 }
 
-func PostSlbTemplateSIP(id string, inst SIP, host string) {
+func PostSlbTemplateSIP(id string, inst SIP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -91,6 +91,7 @@ func PostSlbTemplateSIP(id string, inst SIP, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -101,11 +102,14 @@ func PostSlbTemplateSIP(id string, inst SIP, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateSIP REQ RES..........................", m)
-			check_api_status("PostSlbTemplateSIP", data)
+			err := check_api_status("PostSlbTemplateSIP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateSIP(id string, name string, host string) (*SIP, error) {
@@ -123,6 +127,7 @@ func GetSlbTemplateSIP(id string, name string, host string) (*SIP, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SIP
@@ -132,14 +137,17 @@ func GetSlbTemplateSIP(id string, name string, host string) (*SIP, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateSIP REQ RES..........................", m)
-			check_api_status("GetSlbTemplateSIP", data)
+			err := check_api_status("GetSlbTemplateSIP", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateSIP(id string, name string, inst SIP, host string) {
+func PutSlbTemplateSIP(id string, name string, inst SIP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -158,6 +166,7 @@ func PutSlbTemplateSIP(id string, name string, inst SIP, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -168,11 +177,14 @@ func PutSlbTemplateSIP(id string, name string, inst SIP, host string) {
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateSIP REQ RES..........................", m)
-			check_api_status("PutSlbTemplateSIP", data)
+			err := check_api_status("PutSlbTemplateSIP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateSIP(id string, name string, host string) error {
@@ -189,6 +201,7 @@ func DeleteSlbTemplateSIP(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

@@ -21,7 +21,7 @@ type FwTCPWindowCheckSamplingEnable struct {
 	Counters1 string `json:"counters1,omitempty"`
 }
 
-func PostFwTcpWindowCheck(id string, inst FwTcpWindowCheck, host string) {
+func PostFwTcpWindowCheck(id string, inst FwTcpWindowCheck, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -40,6 +40,7 @@ func PostFwTcpWindowCheck(id string, inst FwTcpWindowCheck, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -50,11 +51,14 @@ func PostFwTcpWindowCheck(id string, inst FwTcpWindowCheck, host string) {
 
 		} else {
 			logger.Println("[INFO] PostFwTcpWindowCheck REQ RES..........................", m)
-			check_api_status("PostFwTcpWindowCheck", data)
+			err := check_api_status("PostFwTcpWindowCheck", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwTcpWindowCheck(id string, host string) (*FwTcpWindowCheck, error) {
@@ -72,6 +76,7 @@ func GetFwTcpWindowCheck(id string, host string) (*FwTcpWindowCheck, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwTcpWindowCheck
@@ -81,7 +86,10 @@ func GetFwTcpWindowCheck(id string, host string) (*FwTcpWindowCheck, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetFwTcpWindowCheck REQ RES..........................", m)
-			check_api_status("GetFwTcpWindowCheck", data)
+			err := check_api_status("GetFwTcpWindowCheck", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

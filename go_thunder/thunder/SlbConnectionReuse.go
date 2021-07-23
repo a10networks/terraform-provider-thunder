@@ -45,13 +45,16 @@ func GetSlbConnectionReuse(id string, host string) (*ConnectionReuse, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetSlbConnectionReuse REQ RES..........................", m)
-			check_api_status("GetSlbConnectionReuse", data)
+			err := check_api_status("GetSlbConnectionReuse", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbConnectionReuse(id string, vc ConnectionReuse, host string) {
+func PostSlbConnectionReuse(id string, vc ConnectionReuse, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -81,8 +84,11 @@ func PostSlbConnectionReuse(id string, vc ConnectionReuse, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbConnectionReuse", data)
+			err := check_api_status("PostSlbConnectionReuse", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

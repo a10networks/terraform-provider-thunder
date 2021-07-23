@@ -401,7 +401,7 @@ type ClientSSLInstance struct {
 	KeySharedPassphrase             string                         `json:"key-shared-passphrase,omitempty"`
 }
 
-func PostSlbTemplateClientSSL(id string, inst ClientSSL, host string) {
+func PostSlbTemplateClientSSL(id string, inst ClientSSL, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -420,6 +420,7 @@ func PostSlbTemplateClientSSL(id string, inst ClientSSL, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -430,11 +431,14 @@ func PostSlbTemplateClientSSL(id string, inst ClientSSL, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateClientSSL REQ RES..........................", m)
-			check_api_status("PostSlbTemplateClientSSL", data)
+			err := check_api_status("PostSlbTemplateClientSSL", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateClientSSL(id string, name string, host string) (*ClientSSL, error) {
@@ -452,6 +456,7 @@ func GetSlbTemplateClientSSL(id string, name string, host string) (*ClientSSL, e
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m ClientSSL
@@ -461,14 +466,17 @@ func GetSlbTemplateClientSSL(id string, name string, host string) (*ClientSSL, e
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateClientSSL REQ RES..........................", m)
-			check_api_status("GetSlbTemplateClientSSL", data)
+			err := check_api_status("GetSlbTemplateClientSSL", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateClientSSL(id string, name string, inst ClientSSL, host string) {
+func PutSlbTemplateClientSSL(id string, name string, inst ClientSSL, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -487,6 +495,7 @@ func PutSlbTemplateClientSSL(id string, name string, inst ClientSSL, host string
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -497,11 +506,14 @@ func PutSlbTemplateClientSSL(id string, name string, inst ClientSSL, host string
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateClientSSL REQ RES..........................", m)
-			check_api_status("PutSlbTemplateClientSSL", data)
+			err := check_api_status("PutSlbTemplateClientSSL", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateClientSSL(id string, name string, host string) error {
@@ -518,6 +530,7 @@ func DeleteSlbTemplateClientSSL(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

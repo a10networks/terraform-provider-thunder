@@ -436,7 +436,7 @@ type InterfaceVEInstance struct {
 	UUID                    string             `json:"uuid,omitempty"`
 }
 
-func PostInterfaceVE(id string, inst InterfaceVE, host string) {
+func PostInterfaceVE(id string, inst InterfaceVE, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -455,6 +455,7 @@ func PostInterfaceVE(id string, inst InterfaceVE, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -465,11 +466,14 @@ func PostInterfaceVE(id string, inst InterfaceVE, host string) {
 
 		} else {
 			logger.Println("[INFO] PostInterfaceVE REQ RES..........................", m)
-			check_api_status("PostInterfaceVE", data)
+			err := check_api_status("PostInterfaceVE", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetInterfaceVE(id string, name string, host string) (*InterfaceVE, error) {
@@ -487,6 +491,7 @@ func GetInterfaceVE(id string, name string, host string) (*InterfaceVE, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceVE
@@ -496,14 +501,17 @@ func GetInterfaceVE(id string, name string, host string) (*InterfaceVE, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetInterfaceVE REQ RES..........................", m)
-			check_api_status("GetInterfaceVE", data)
+			err := check_api_status("GetInterfaceVE", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutInterfaceVE(id string, name string, inst InterfaceVE, host string) {
+func PutInterfaceVE(id string, name string, inst InterfaceVE, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -522,6 +530,7 @@ func PutInterfaceVE(id string, name string, inst InterfaceVE, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -532,11 +541,14 @@ func PutInterfaceVE(id string, name string, inst InterfaceVE, host string) {
 
 		} else {
 			logger.Println("[INFO] PutInterfaceVE REQ RES..........................", m)
-			check_api_status("PutInterfaceVE", data)
+			err := check_api_status("PutInterfaceVE", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteInterfaceVE(id string, name string, host string) error {
@@ -553,6 +565,7 @@ func DeleteInterfaceVE(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

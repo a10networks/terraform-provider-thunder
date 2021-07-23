@@ -30,7 +30,7 @@ type VeBFDInstance struct {
 	Demand    int                 `json:"demand,omitempty"`
 }
 
-func PostInterfaceVeBFD(id string, name int, inst VeBFD, host string) {
+func PostInterfaceVeBFD(id string, name int, inst VeBFD, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -49,6 +49,7 @@ func PostInterfaceVeBFD(id string, name int, inst VeBFD, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -59,11 +60,14 @@ func PostInterfaceVeBFD(id string, name int, inst VeBFD, host string) {
 
 		} else {
 			logger.Println("[INFO] PostInterfaceVeBFD REQ RES..........................", m)
-			check_api_status("PostInterfaceVeBFD", data)
+			err := check_api_status("PostInterfaceVeBFD", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetInterfaceVeBFD(id string, name string, host string) (*VeBFD, error) {
@@ -81,6 +85,7 @@ func GetInterfaceVeBFD(id string, name string, host string) (*VeBFD, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m VeBFD
@@ -90,7 +95,10 @@ func GetInterfaceVeBFD(id string, name string, host string) (*VeBFD, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetInterfaceVeBFD REQ RES..........................", m)
-			check_api_status("GetInterfaceVeBFD", data)
+			err := check_api_status("GetInterfaceVeBFD", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

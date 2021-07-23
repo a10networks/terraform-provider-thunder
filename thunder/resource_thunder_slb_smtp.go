@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbSmtp
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbSmtp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbSmtpCreate,
-		Update: resourceSlbSmtpUpdate,
-		Read:   resourceSlbSmtpRead,
-		Delete: resourceSlbSmtpDelete,
+		CreateContext: resourceSlbSmtpCreate,
+		UpdateContext: resourceSlbSmtpUpdate,
+		ReadContext:   resourceSlbSmtpRead,
+		DeleteContext: resourceSlbSmtpDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbSmtp() *schema.Resource {
 	}
 }
 
-func resourceSlbSmtpCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSmtpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbSmtp (Inside resourceSlbSmtpCreate) ")
@@ -44,39 +48,47 @@ func resourceSlbSmtpCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSlbSmtp(d)
 		logger.Println("[INFO] received formatted data from method data to SlbSmtp --")
 		d.SetId("1")
-		go_thunder.PostSlbSmtp(client.Token, data, client.Host)
+		err := go_thunder.PostSlbSmtp(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbSmtpRead(d, meta)
+		return resourceSlbSmtpRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbSmtpRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSmtpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbSmtp (Inside resourceSlbSmtpRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbSmtp(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbSmtpUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSmtpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSmtpRead(d, meta)
+	return resourceSlbSmtpRead(ctx, d, meta)
 }
 
-func resourceSlbSmtpDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSmtpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSmtpRead(d, meta)
+	return resourceSlbSmtpRead(ctx, d, meta)
 }
 func dataToSlbSmtp(d *schema.ResourceData) go_thunder.SlbSmtp {
 	var vc go_thunder.SlbSmtp

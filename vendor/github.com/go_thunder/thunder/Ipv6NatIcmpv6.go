@@ -15,7 +15,7 @@ type NatIcmpv6Instance struct {
 	UUID          string `json:"uuid,omitempty"`
 }
 
-func PostIpv6NatIcmpv6(id string, inst NatIcmpv6, host string) {
+func PostIpv6NatIcmpv6(id string, inst NatIcmpv6, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -34,6 +34,7 @@ func PostIpv6NatIcmpv6(id string, inst NatIcmpv6, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -44,11 +45,14 @@ func PostIpv6NatIcmpv6(id string, inst NatIcmpv6, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpv6NatIcmpv6 REQ RES..........................", m)
-			check_api_status("PostIpv6NatIcmpv6", data)
+			err := check_api_status("PostIpv6NatIcmpv6", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpv6NatIcmpv6(id string, host string) (*NatIcmpv6, error) {
@@ -66,6 +70,7 @@ func GetIpv6NatIcmpv6(id string, host string) (*NatIcmpv6, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m NatIcmpv6
@@ -75,7 +80,10 @@ func GetIpv6NatIcmpv6(id string, host string) (*NatIcmpv6, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIpv6NatIcmpv6 REQ RES..........................", m)
-			check_api_status("GetIpv6NatIcmpv6", data)
+			err := check_api_status("GetIpv6NatIcmpv6", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

@@ -39,7 +39,7 @@ type SnmpServerCommunityReadIpv6List struct {
 	Ipv6Mask int    `json:"ipv6-mask,omitempty"`
 }
 
-func PostSnmpServerCommunityReadOid(id string, name1 string, inst SnmpServerCommunityReadOid, host string) {
+func PostSnmpServerCommunityReadOid(id string, name1 string, inst SnmpServerCommunityReadOid, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -58,6 +58,7 @@ func PostSnmpServerCommunityReadOid(id string, name1 string, inst SnmpServerComm
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -68,11 +69,14 @@ func PostSnmpServerCommunityReadOid(id string, name1 string, inst SnmpServerComm
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerCommunityReadOid", data)
+			err := check_api_status("PostSnmpServerCommunityReadOid", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerCommunityReadOid(id string, name1 string, name2 string, host string) (*SnmpServerCommunityReadOid, error) {
@@ -90,6 +94,7 @@ func GetSnmpServerCommunityReadOid(id string, name1 string, name2 string, host s
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerCommunityReadOid
@@ -99,14 +104,17 @@ func GetSnmpServerCommunityReadOid(id string, name1 string, name2 string, host s
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerCommunityReadOid", data)
+			err := check_api_status("GetSnmpServerCommunityReadOid", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSnmpServerCommunityReadOid(id string, name1 string, name2 string, inst SnmpServerCommunityReadOid, host string) {
+func PutSnmpServerCommunityReadOid(id string, name1 string, name2 string, inst SnmpServerCommunityReadOid, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -125,6 +133,7 @@ func PutSnmpServerCommunityReadOid(id string, name1 string, name2 string, inst S
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -135,11 +144,14 @@ func PutSnmpServerCommunityReadOid(id string, name1 string, name2 string, inst S
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutSnmpServerCommunityReadOid", data)
+			err := check_api_status("PutSnmpServerCommunityReadOid", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSnmpServerCommunityReadOid(id string, name1 string, name2 string, host string) error {
@@ -156,6 +168,7 @@ func DeleteSnmpServerCommunityReadOid(id string, name1 string, name2 string, hos
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

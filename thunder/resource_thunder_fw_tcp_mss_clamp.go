@@ -3,18 +3,21 @@ package thunder
 //Thunder resource FwTcpMssClamp
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwTcpMssClamp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwTcpMssClampCreate,
-		Update: resourceFwTcpMssClampUpdate,
-		Read:   resourceFwTcpMssClampRead,
-		Delete: resourceFwTcpMssClampDelete,
+		CreateContext: resourceFwTcpMssClampCreate,
+		UpdateContext: resourceFwTcpMssClampUpdate,
+		ReadContext:   resourceFwTcpMssClampRead,
+		DeleteContext: resourceFwTcpMssClampDelete,
 		Schema: map[string]*schema.Schema{
 			"mss_subtract": {
 				Type:        schema.TypeInt,
@@ -45,9 +48,11 @@ func resourceFwTcpMssClamp() *schema.Resource {
 	}
 }
 
-func resourceFwTcpMssClampCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTcpMssClampCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwTcpMssClamp (Inside resourceFwTcpMssClampCreate) ")
@@ -55,41 +60,49 @@ func resourceFwTcpMssClampCreate(d *schema.ResourceData, meta interface{}) error
 		data := dataToFwTcpMssClamp(d)
 		logger.Println("[INFO] received formatted data from method data to FwTcpMssClamp --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwTcpMssClamp(client.Token, data, client.Host)
+		err := go_thunder.PostFwTcpMssClamp(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwTcpMssClampRead(d, meta)
+		return resourceFwTcpMssClampRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwTcpMssClampRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTcpMssClampRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwTcpMssClamp (Inside resourceFwTcpMssClampRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwTcpMssClamp(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwTcpMssClampUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTcpMssClampUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwTcpMssClampRead(d, meta)
+	return resourceFwTcpMssClampRead(ctx, d, meta)
 }
 
-func resourceFwTcpMssClampDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTcpMssClampDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwTcpMssClampRead(d, meta)
+	return resourceFwTcpMssClampRead(ctx, d, meta)
 }
 func dataToFwTcpMssClamp(d *schema.ResourceData) go_thunder.FwTcpMssClamp {
 	var vc go_thunder.FwTcpMssClamp

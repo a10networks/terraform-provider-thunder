@@ -33,7 +33,7 @@ type FwGlobalSamplingEnable struct {
 	Counters1 string `json:"counters1,omitempty"`
 }
 
-func PostFwGlobal(id string, inst FwGlobal, host string) {
+func PostFwGlobal(id string, inst FwGlobal, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -52,6 +52,7 @@ func PostFwGlobal(id string, inst FwGlobal, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -62,11 +63,14 @@ func PostFwGlobal(id string, inst FwGlobal, host string) {
 
 		} else {
 			logger.Println("[INFO] POST REQ RES..........................", m)
-			check_api_status("PostFwGlobal", data)
+			err := check_api_status("PostFwGlobal", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwGlobal(id string, host string) (*FwGlobal, error) {
@@ -84,6 +88,7 @@ func GetFwGlobal(id string, host string) (*FwGlobal, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwGlobal
@@ -93,7 +98,10 @@ func GetFwGlobal(id string, host string) (*FwGlobal, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwGlobal", data)
+			err := check_api_status("GetFwGlobal", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

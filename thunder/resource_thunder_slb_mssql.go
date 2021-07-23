@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbMssql
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbMssql() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbMssqlCreate,
-		Update: resourceSlbMssqlUpdate,
-		Read:   resourceSlbMssqlRead,
-		Delete: resourceSlbMssqlDelete,
+		CreateContext: resourceSlbMssqlCreate,
+		UpdateContext: resourceSlbMssqlUpdate,
+		ReadContext:   resourceSlbMssqlRead,
+		DeleteContext: resourceSlbMssqlDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbMssql() *schema.Resource {
 	}
 }
 
-func resourceSlbMssqlCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbMssqlCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbMssql (Inside resourceSlbMssqlCreate) ")
@@ -44,40 +48,48 @@ func resourceSlbMssqlCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSlbMssql(d)
 		logger.Println("[INFO] received V from method data to SlbMssql --")
 		d.SetId("1")
-		go_thunder.PostSlbMssql(client.Token, data, client.Host)
+		err := go_thunder.PostSlbMssql(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbMssqlRead(d, meta)
+		return resourceSlbMssqlRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbMssqlRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbMssqlRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbMssql (Inside resourceSlbMssqlRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbMssql(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbMssqlUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbMssqlUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbMssqlRead(d, meta)
+	return resourceSlbMssqlRead(ctx, d, meta)
 }
 
-func resourceSlbMssqlDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbMssqlDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbMssqlRead(d, meta)
+	return resourceSlbMssqlRead(ctx, d, meta)
 }
 
 func dataToSlbMssql(d *schema.ResourceData) go_thunder.Mssql {

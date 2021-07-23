@@ -22,7 +22,7 @@ type ConnectionReuseInstance struct {
 	Name           string `json:"name,omitempty"`
 }
 
-func PostTemplateConnectionReuse(id string, inst Connection_Reuse, host string) {
+func PostTemplateConnectionReuse(id string, inst Connection_Reuse, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -41,6 +41,7 @@ func PostTemplateConnectionReuse(id string, inst Connection_Reuse, host string) 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -51,11 +52,14 @@ func PostTemplateConnectionReuse(id string, inst Connection_Reuse, host string) 
 
 		} else {
 			logger.Println("[INFO] PostTemplateConnectionReuse REQ RES..........................", m)
-			check_api_status("PostTemplateConnectionReuse", data)
+			err := check_api_status("PostTemplateConnectionReuse", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetTemplateConnectionReuse(id string, name string, host string) (*Connection_Reuse, error) {
@@ -73,6 +77,7 @@ func GetTemplateConnectionReuse(id string, name string, host string) (*Connectio
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Connection_Reuse
@@ -82,14 +87,17 @@ func GetTemplateConnectionReuse(id string, name string, host string) (*Connectio
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetTemplateConnectionReuse REQ RES..........................", m)
-			check_api_status("GetTemplateConnectionReuse", data)
+			err := check_api_status("GetTemplateConnectionReuse", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutTemplateConnectionReuse(id string, name string, inst Connection_Reuse, host string) {
+func PutTemplateConnectionReuse(id string, name string, inst Connection_Reuse, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -108,6 +116,7 @@ func PutTemplateConnectionReuse(id string, name string, inst Connection_Reuse, h
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -118,11 +127,14 @@ func PutTemplateConnectionReuse(id string, name string, inst Connection_Reuse, h
 
 		} else {
 			logger.Println("[INFO] PutTemplateConnectionReuse REQ RES..........................", m)
-			check_api_status("PutTemplateConnectionReuse", data)
+			err := check_api_status("PutTemplateConnectionReuse", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteTemplateConnectionReuse(id string, name string, host string) error {
@@ -139,6 +151,7 @@ func DeleteTemplateConnectionReuse(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

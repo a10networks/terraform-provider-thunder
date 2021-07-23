@@ -46,13 +46,16 @@ func GetMqtt(id string, name string, host string) (*Mqtt, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetMqtt REQ RES..........................", m)
-			check_api_status("GetMqtt", data)
+			err := check_api_status("GetMqtt", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostMqtt(id string, sg Mqtt, host string) {
+func PostMqtt(id string, sg Mqtt, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -82,13 +85,16 @@ func PostMqtt(id string, sg Mqtt, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostMqtt", data)
+			err := check_api_status("PostMqtt", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
-func PutMqtt(id string, name string, sg Mqtt, host string) {
+func PutMqtt(id string, name string, sg Mqtt, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -118,10 +124,13 @@ func PutMqtt(id string, name string, sg Mqtt, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PutMqtt", data)
+			err := check_api_status("PutMqtt", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func DeleteMqtt(id string, name string, host string) error {

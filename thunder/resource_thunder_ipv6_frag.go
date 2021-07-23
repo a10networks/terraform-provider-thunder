@@ -3,19 +3,21 @@ package thunder
 //Thunder resource Ipv6Frag
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceIpv6Frag() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceIpv6FragCreate,
-		Update: resourceIpv6FragUpdate,
-		Read:   resourceIpv6FragRead,
-		Delete: resourceIpv6FragDelete,
+		CreateContext: resourceIpv6FragCreate,
+		UpdateContext: resourceIpv6FragUpdate,
+		ReadContext:   resourceIpv6FragRead,
+		DeleteContext: resourceIpv6FragDelete,
 		Schema: map[string]*schema.Schema{
 			"frag_timeout": {
 				Type:        schema.TypeInt,
@@ -44,9 +46,11 @@ func resourceIpv6Frag() *schema.Resource {
 	}
 }
 
-func resourceIpv6FragCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpv6FragCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating Ipv6Frag (Inside resourceIpv6FragCreate) ")
@@ -54,38 +58,46 @@ func resourceIpv6FragCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToIpv6Frag(d)
 		logger.Println("[INFO] received V from method data to Ipv6Frag --")
 		d.SetId("1")
-		go_thunder.PostIpv6Frag(client.Token, data, client.Host)
+		err := go_thunder.PostIpv6Frag(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceIpv6FragRead(d, meta)
+		return resourceIpv6FragRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceIpv6FragRead(d *schema.ResourceData, meta interface{}) error {
+func resourceIpv6FragRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading Ipv6Frag (Inside resourceIpv6FragRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetIpv6Frag(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceIpv6FragUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpv6FragUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpv6FragRead(d, meta)
+	return resourceIpv6FragRead(ctx, d, meta)
 }
 
-func resourceIpv6FragDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceIpv6FragDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpv6FragRead(d, meta)
+	return resourceIpv6FragRead(ctx, d, meta)
 }
 func dataToIpv6Frag(d *schema.ResourceData) go_thunder.IPv6Frag {
 	var vc go_thunder.IPv6Frag

@@ -3,18 +3,20 @@ package thunder
 //Thunder resource SlbSvmSourceNat
 
 import (
+	"context"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbSvmSourceNat() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbSvmSourceNatCreate,
-		Update: resourceSlbSvmSourceNatUpdate,
-		Read:   resourceSlbSvmSourceNatRead,
-		Delete: resourceSlbSvmSourceNatDelete,
+		CreateContext: resourceSlbSvmSourceNatCreate,
+		UpdateContext: resourceSlbSvmSourceNatUpdate,
+		ReadContext:   resourceSlbSvmSourceNatRead,
+		DeleteContext: resourceSlbSvmSourceNatDelete,
 		Schema: map[string]*schema.Schema{
 			"pool": {
 				Type:        schema.TypeString,
@@ -25,9 +27,11 @@ func resourceSlbSvmSourceNat() *schema.Resource {
 	}
 }
 
-func resourceSlbSvmSourceNatCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSvmSourceNatCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbSvmSourceNat (Inside resourceSlbSvmSourceNatCreate) ")
@@ -35,39 +39,47 @@ func resourceSlbSvmSourceNatCreate(d *schema.ResourceData, meta interface{}) err
 		data := dataToSlbSvmSourceNat(d)
 		logger.Println("[INFO] received formatted data from method data to SlbSvmSourceNat --")
 		d.SetId("1")
-		go_thunder.PostSlbSvmSourceNat(client.Token, data, client.Host)
+		err := go_thunder.PostSlbSvmSourceNat(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbSvmSourceNatRead(d, meta)
+		return resourceSlbSvmSourceNatRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbSvmSourceNatRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSvmSourceNatRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbSvmSourceNat (Inside resourceSlbSvmSourceNatRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbSvmSourceNat(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbSvmSourceNatUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSvmSourceNatUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSvmSourceNatRead(d, meta)
+	return resourceSlbSvmSourceNatRead(ctx, d, meta)
 }
 
-func resourceSlbSvmSourceNatDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSvmSourceNatDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSvmSourceNatRead(d, meta)
+	return resourceSlbSvmSourceNatRead(ctx, d, meta)
 }
 
 func dataToSlbSvmSourceNat(d *schema.ResourceData) go_thunder.SvmSourceNat {

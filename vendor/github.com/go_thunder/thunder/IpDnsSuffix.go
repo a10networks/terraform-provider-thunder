@@ -16,7 +16,7 @@ type DnsSuffixInstance struct {
 	UUID       string `json:"uuid"`
 }
 
-func PostIpDnsSuffix(id string, inst DnsSuffix, host string) {
+func PostIpDnsSuffix(id string, inst DnsSuffix, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostIpDnsSuffix(id string, inst DnsSuffix, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostIpDnsSuffix(id string, inst DnsSuffix, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpDnsSuffix REQ RES..........................", m)
-			check_api_status("PostIpDnsSuffix", data)
+			err := check_api_status("PostIpDnsSuffix", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpDnsSuffix(id string, host string) (*DnsSuffix, error) {
@@ -67,6 +71,7 @@ func GetIpDnsSuffix(id string, host string) (*DnsSuffix, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m DnsSuffix
@@ -76,7 +81,10 @@ func GetIpDnsSuffix(id string, host string) (*DnsSuffix, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIpDnsSuffix REQ RES..........................", m)
-			check_api_status("GetIpDnsSuffix", data)
+			err := check_api_status("GetIpDnsSuffix", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

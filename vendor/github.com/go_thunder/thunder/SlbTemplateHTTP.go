@@ -119,7 +119,7 @@ type HTTPInstance struct {
 	RdRespCode                          string                          `json:"rd-resp-code,omitempty"`
 }
 
-func PostSlbTemplateHTTP(id string, inst HTTP, host string) {
+func PostSlbTemplateHTTP(id string, inst HTTP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -138,6 +138,7 @@ func PostSlbTemplateHTTP(id string, inst HTTP, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -148,11 +149,14 @@ func PostSlbTemplateHTTP(id string, inst HTTP, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateHTTP REQ RES..........................", m)
-			check_api_status("PostSlbTemplateHTTP", data)
+			err := check_api_status("PostSlbTemplateHTTP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateHTTP(id string, name string, host string) (*HTTP, error) {
@@ -170,6 +174,7 @@ func GetSlbTemplateHTTP(id string, name string, host string) (*HTTP, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m HTTP
@@ -179,14 +184,17 @@ func GetSlbTemplateHTTP(id string, name string, host string) (*HTTP, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateHTTP REQ RES..........................", m)
-			check_api_status("GetSlbTemplateHTTP", data)
+			err := check_api_status("GetSlbTemplateHTTP", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateHTTP(id string, name string, inst HTTP, host string) {
+func PutSlbTemplateHTTP(id string, name string, inst HTTP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -205,6 +213,7 @@ func PutSlbTemplateHTTP(id string, name string, inst HTTP, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -215,11 +224,14 @@ func PutSlbTemplateHTTP(id string, name string, inst HTTP, host string) {
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateHTTP REQ RES..........................", m)
-			check_api_status("PutSlbTemplateHTTP", data)
+			err := check_api_status("PutSlbTemplateHTTP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateHTTP(id string, name string, host string) error {
@@ -236,6 +248,7 @@ func DeleteSlbTemplateHTTP(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

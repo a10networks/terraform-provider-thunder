@@ -18,7 +18,7 @@ type L4Instance struct {
 	Counters1 []SamplingEnable42 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbL4(id string, inst L4, host string) {
+func PostSlbL4(id string, inst L4, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbL4(id string, inst L4, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbL4(id string, inst L4, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbL4 REQ RES..........................", m)
-			check_api_status("PostSlbL4", data)
+			err := check_api_status("PostSlbL4", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbL4(id string, host string) (*L4, error) {
@@ -69,6 +73,7 @@ func GetSlbL4(id string, host string) (*L4, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m L4
@@ -78,7 +83,10 @@ func GetSlbL4(id string, host string) (*L4, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbL4 REQ RES..........................", m)
-			check_api_status("GetSlbL4", data)
+			err := check_api_status("GetSlbL4", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

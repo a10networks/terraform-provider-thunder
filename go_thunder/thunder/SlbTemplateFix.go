@@ -24,7 +24,7 @@ type FixInstance struct {
 	UUID           string         `json:"uuid,omitempty"`
 }
 
-func PostTemplateFix(id string, inst Fix, host string) {
+func PostTemplateFix(id string, inst Fix, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -43,6 +43,7 @@ func PostTemplateFix(id string, inst Fix, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -53,11 +54,14 @@ func PostTemplateFix(id string, inst Fix, host string) {
 
 		} else {
 			logger.Println("[INFO] PostTemplateFix REQ RES..........................", m)
-			check_api_status("PostTemplateFix", data)
+			err := check_api_status("PostTemplateFix", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetTemplateFix(id string, name string, host string) (*Fix, error) {
@@ -75,6 +79,7 @@ func GetTemplateFix(id string, name string, host string) (*Fix, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Fix
@@ -84,14 +89,17 @@ func GetTemplateFix(id string, name string, host string) (*Fix, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetTemplateFix REQ RES..........................", m)
-			check_api_status("GetTemplateFix", data)
+			err := check_api_status("GetTemplateFix", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutTemplateFix(id string, name string, inst Fix, host string) {
+func PutTemplateFix(id string, name string, inst Fix, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -110,6 +118,7 @@ func PutTemplateFix(id string, name string, inst Fix, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -120,11 +129,14 @@ func PutTemplateFix(id string, name string, inst Fix, host string) {
 
 		} else {
 			logger.Println("[INFO] PutTemplateFix REQ RES..........................", m)
-			check_api_status("PutTemplateFix", data)
+			err := check_api_status("PutTemplateFix", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteTemplateFix(id string, name string, host string) error {
@@ -141,6 +153,7 @@ func DeleteTemplateFix(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

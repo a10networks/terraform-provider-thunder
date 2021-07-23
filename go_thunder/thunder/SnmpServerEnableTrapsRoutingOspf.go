@@ -31,7 +31,7 @@ type SnmpServerEnableTrapsRoutingOspfInstance struct {
 	UUID                        string `json:"uuid,omitempty"`
 }
 
-func PostSnmpServerEnableTrapsRoutingOspf(id string, inst SnmpServerEnableTrapsRoutingOspf, host string) {
+func PostSnmpServerEnableTrapsRoutingOspf(id string, inst SnmpServerEnableTrapsRoutingOspf, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -50,6 +50,7 @@ func PostSnmpServerEnableTrapsRoutingOspf(id string, inst SnmpServerEnableTrapsR
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -60,11 +61,14 @@ func PostSnmpServerEnableTrapsRoutingOspf(id string, inst SnmpServerEnableTrapsR
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerEnableTrapsRoutingOspf", data)
+			err := check_api_status("PostSnmpServerEnableTrapsRoutingOspf", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerEnableTrapsRoutingOspf(id string, host string) (*SnmpServerEnableTrapsRoutingOspf, error) {
@@ -82,6 +86,7 @@ func GetSnmpServerEnableTrapsRoutingOspf(id string, host string) (*SnmpServerEna
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerEnableTrapsRoutingOspf
@@ -91,7 +96,10 @@ func GetSnmpServerEnableTrapsRoutingOspf(id string, host string) (*SnmpServerEna
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerEnableTrapsRoutingOspf", data)
+			err := check_api_status("GetSnmpServerEnableTrapsRoutingOspf", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

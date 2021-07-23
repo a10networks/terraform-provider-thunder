@@ -18,7 +18,7 @@ type MlbInstance struct {
 	Counters1 []SamplingEnable44 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbMlb(id string, inst Mlb, host string) {
+func PostSlbMlb(id string, inst Mlb, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbMlb(id string, inst Mlb, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbMlb(id string, inst Mlb, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbMlb REQ RES..........................", m)
-			check_api_status("PostSlbMlb", data)
+			err := check_api_status("PostSlbMlb", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbMlb(id string, host string) (*Mlb, error) {
@@ -69,6 +73,7 @@ func GetSlbMlb(id string, host string) (*Mlb, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Mlb
@@ -78,7 +83,10 @@ func GetSlbMlb(id string, host string) (*Mlb, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbMlb REQ RES..........................", m)
-			check_api_status("GetSlbMlb", data)
+			err := check_api_status("GetSlbMlb", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

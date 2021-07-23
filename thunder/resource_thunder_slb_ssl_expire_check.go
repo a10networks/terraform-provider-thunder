@@ -3,18 +3,20 @@ package thunder
 //Thunder resource SlbSSLExpireCheck
 
 import (
+	"context"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbSSLExpireCheck() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbSSLExpireCheckCreate,
-		Update: resourceSlbSSLExpireCheckUpdate,
-		Read:   resourceSlbSSLExpireCheckRead,
-		Delete: resourceSlbSSLExpireCheckDelete,
+		CreateContext: resourceSlbSSLExpireCheckCreate,
+		UpdateContext: resourceSlbSSLExpireCheckUpdate,
+		ReadContext:   resourceSlbSSLExpireCheckRead,
+		DeleteContext: resourceSlbSSLExpireCheckDelete,
 		Schema: map[string]*schema.Schema{
 			"exception": {
 				Type:     schema.TypeList,
@@ -64,9 +66,11 @@ func resourceSlbSSLExpireCheck() *schema.Resource {
 	}
 }
 
-func resourceSlbSSLExpireCheckCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSSLExpireCheckCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbSSLExpireCheck (Inside resourceSlbSSLExpireCheckCreate) ")
@@ -74,38 +78,46 @@ func resourceSlbSSLExpireCheckCreate(d *schema.ResourceData, meta interface{}) e
 		data := dataToSlbSSLExpireCheck(d)
 		logger.Println("[INFO] received SSL Expire Check from method data to SlbSSLExpireCheck --")
 		d.SetId("1")
-		go_thunder.PostSlbSSLExpireCheck(client.Token, data, client.Host)
+		err := go_thunder.PostSlbSSLExpireCheck(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbSSLExpireCheckRead(d, meta)
+		return resourceSlbSSLExpireCheckRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbSSLExpireCheckRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSSLExpireCheckRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbSSLExpireCheck (Inside resourceSlbSSLExpireCheckRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetSlbSSLExpireCheck(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbSSLExpireCheckUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSSLExpireCheckUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSSLExpireCheckRead(d, meta)
+	return resourceSlbSSLExpireCheckRead(ctx, d, meta)
 }
 
-func resourceSlbSSLExpireCheckDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSSLExpireCheckDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSSLExpireCheckRead(d, meta)
+	return resourceSlbSSLExpireCheckRead(ctx, d, meta)
 }
 func dataToSlbSSLExpireCheck(d *schema.ResourceData) go_thunder.SSLExpireCheck {
 	var vc go_thunder.SSLExpireCheck

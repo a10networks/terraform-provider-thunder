@@ -3,19 +3,22 @@ package thunder
 //Thunder resource AccessListStandard
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceAccessListStandard() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceAccessListStandardCreate,
-		Update: resourceAccessListStandardUpdate,
-		Read:   resourceAccessListStandardRead,
-		Delete: resourceAccessListStandardDelete,
+		CreateContext: resourceAccessListStandardCreate,
+		UpdateContext: resourceAccessListStandardUpdate,
+		ReadContext:   resourceAccessListStandardRead,
+		DeleteContext: resourceAccessListStandardDelete,
 		Schema: map[string]*schema.Schema{
 			"std": {
 				Type:        schema.TypeInt,
@@ -84,9 +87,11 @@ func resourceAccessListStandard() *schema.Resource {
 	}
 }
 
-func resourceAccessListStandardCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceAccessListStandardCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating AccessListStandard (Inside resourceAccessListStandardCreate) ")
@@ -94,52 +99,67 @@ func resourceAccessListStandardCreate(d *schema.ResourceData, meta interface{}) 
 		data := dataToAccessListStandard(d)
 		logger.Println("[INFO] received formatted data from method data to AccessListStandard --")
 		d.SetId(strconv.Itoa(name1))
-		go_thunder.PostAccessListStandard(client.Token, data, client.Host)
+		err := go_thunder.PostAccessListStandard(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceAccessListStandardRead(d, meta)
+		return resourceAccessListStandardRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceAccessListStandardRead(d *schema.ResourceData, meta interface{}) error {
+func resourceAccessListStandardRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading AccessListStandard (Inside resourceAccessListStandardRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetAccessListStandard(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceAccessListStandardUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceAccessListStandardUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying AccessListStandard   (Inside resourceAccessListStandardUpdate) ")
 		data := dataToAccessListStandard(d)
 		logger.Println("[INFO] received formatted data from method data to AccessListStandard ")
-		go_thunder.PutAccessListStandard(client.Token, name1, data, client.Host)
+		err := go_thunder.PutAccessListStandard(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceAccessListStandardRead(d, meta)
+		return resourceAccessListStandardRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceAccessListStandardDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceAccessListStandardDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -147,11 +167,11 @@ func resourceAccessListStandardDelete(d *schema.ResourceData, meta interface{}) 
 		err := go_thunder.DeleteAccessListStandard(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToAccessListStandard(d *schema.ResourceData) go_thunder.AccessListStandard {

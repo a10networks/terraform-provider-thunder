@@ -34,7 +34,7 @@ type VirtualServerInstance struct {
 	UUID                       string `json:"uuid,omitempty"`
 }
 
-func PostSlbTemplateVirtualServer(id string, inst VirtualServer, host string) {
+func PostSlbTemplateVirtualServer(id string, inst VirtualServer, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -53,6 +53,7 @@ func PostSlbTemplateVirtualServer(id string, inst VirtualServer, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -63,11 +64,14 @@ func PostSlbTemplateVirtualServer(id string, inst VirtualServer, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateVirtualServer REQ RES..........................", m)
-			check_api_status("PostSlbTemplateVirtualServer", data)
+			err := check_api_status("PostSlbTemplateVirtualServer", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateVirtualServer(id string, name string, host string) (*VirtualServer, error) {
@@ -85,6 +89,7 @@ func GetSlbTemplateVirtualServer(id string, name string, host string) (*VirtualS
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m VirtualServer
@@ -94,14 +99,17 @@ func GetSlbTemplateVirtualServer(id string, name string, host string) (*VirtualS
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateVirtualServer REQ RES..........................", m)
-			check_api_status("GetSlbTemplateVirtualServer", data)
+			err := check_api_status("GetSlbTemplateVirtualServer", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateVirtualServer(id string, name string, inst VirtualServer, host string) {
+func PutSlbTemplateVirtualServer(id string, name string, inst VirtualServer, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -120,6 +128,7 @@ func PutSlbTemplateVirtualServer(id string, name string, inst VirtualServer, hos
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -130,11 +139,14 @@ func PutSlbTemplateVirtualServer(id string, name string, inst VirtualServer, hos
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateVirtualServer REQ RES..........................", m)
-			check_api_status("PutSlbTemplateVirtualServer", data)
+			err := check_api_status("PutSlbTemplateVirtualServer", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateVirtualServer(id string, name string, host string) error {
@@ -151,6 +163,7 @@ func DeleteSlbTemplateVirtualServer(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

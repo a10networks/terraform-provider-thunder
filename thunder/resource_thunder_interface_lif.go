@@ -3,18 +3,21 @@ package thunder
 //Thunder resource InterfaceLif
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceInterfaceLif() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceInterfaceLifCreate,
-		Update: resourceInterfaceLifUpdate,
-		Read:   resourceInterfaceLifRead,
-		Delete: resourceInterfaceLifDelete,
+		CreateContext: resourceInterfaceLifCreate,
+		UpdateContext: resourceInterfaceLifUpdate,
+		ReadContext:   resourceInterfaceLifRead,
+		DeleteContext: resourceInterfaceLifDelete,
 		Schema: map[string]*schema.Schema{
 			"ifname": {
 				Type:        schema.TypeString,
@@ -1295,9 +1298,11 @@ func resourceInterfaceLif() *schema.Resource {
 	}
 }
 
-func resourceInterfaceLifCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceLifCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating InterfaceLif (Inside resourceInterfaceLifCreate) ")
@@ -1305,52 +1310,67 @@ func resourceInterfaceLifCreate(d *schema.ResourceData, meta interface{}) error 
 		data := dataToInterfaceLif(d)
 		logger.Println("[INFO] received formatted data from method data to InterfaceLif --")
 		d.SetId(name1)
-		go_thunder.PostInterfaceLif(client.Token, data, client.Host)
+		err := go_thunder.PostInterfaceLif(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceLifRead(d, meta)
+		return resourceInterfaceLifRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceLifRead(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceLifRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading InterfaceLif (Inside resourceInterfaceLifRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetInterfaceLif(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceInterfaceLifUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceLifUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying InterfaceLif   (Inside resourceInterfaceLifUpdate) ")
 		data := dataToInterfaceLif(d)
 		logger.Println("[INFO] received formatted data from method data to InterfaceLif ")
-		go_thunder.PutInterfaceLif(client.Token, name1, data, client.Host)
+		err := go_thunder.PutInterfaceLif(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceLifRead(d, meta)
+		return resourceInterfaceLifRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceLifDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceLifDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -1358,11 +1378,11 @@ func resourceInterfaceLifDelete(d *schema.ResourceData, meta interface{}) error 
 		err := go_thunder.DeleteInterfaceLif(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToInterfaceLif(d *schema.ResourceData) go_thunder.InterfaceLif {

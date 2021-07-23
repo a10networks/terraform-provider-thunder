@@ -3,18 +3,20 @@ package thunder
 //Thunder resource Vrrp common
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strconv"
 	"util"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceVrrpCommon() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceVrrpCommonCreate,
-		Update: resourceVrrpCommonUpdate,
-		Read:   resourceVrrpCommonRead,
-		Delete: resourceVrrpCommonDelete,
+		CreateContext: resourceVrrpCommonCreate,
+		UpdateContext: resourceVrrpCommonUpdate,
+		ReadContext:   resourceVrrpCommonRead,
+		DeleteContext: resourceVrrpCommonDelete,
 
 		Schema: map[string]*schema.Schema{
 			"preemption_delay": {
@@ -130,9 +132,11 @@ func resourceVrrpCommon() *schema.Resource {
 
 }
 
-func resourceVrrpCommonCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceVrrpCommonCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating vrrp common (Inside resourceVrrpCommonCreate)")
 
@@ -140,44 +144,50 @@ func resourceVrrpCommonCreate(d *schema.ResourceData, meta interface{}) error {
 		name := d.Get("device_id").(int)
 		vc := dataToVrrpCommon(d)
 		d.SetId(strconv.Itoa(name))
-		go_thunder.PostVrrpCommon(client.Token, vc, client.Host)
-
-		return resourceVrrpCommonRead(d, meta)
+		err := go_thunder.PostVrrpCommon(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceVrrpCommonRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceVrrpCommonRead(d *schema.ResourceData, meta interface{}) error {
+func resourceVrrpCommonRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading vrrp common (Inside resourceVrrpCommonRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetVrrpCommon(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No vrrp common found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceVrrpCommonUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceVrrpCommonUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceVrrpCommonRead(d, meta)
+	return resourceVrrpCommonRead(ctx, d, meta)
 }
 
-func resourceVrrpCommonDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceVrrpCommonDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceVrrpCommonRead(d, meta)
+	return resourceVrrpCommonRead(ctx, d, meta)
 }
 
 //Utility method to instantiate Vrrp Common Structure

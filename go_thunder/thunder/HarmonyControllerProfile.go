@@ -54,13 +54,16 @@ func GetProfile(id string, host string) (*ProfileInstance, error) {
 			logger.Println("Profile instance from Read")
 			logger.Println(string(data))
 			logger.Println("[INFO] GetProfile REQ RES..........................", m)
-			check_api_status("GetProfile", data)
+			err := check_api_status("GetProfile", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostProfile(id string, vc Profile, host string) {
+func PostProfile(id string, vc Profile, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -90,8 +93,11 @@ func PostProfile(id string, vc Profile, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostProfile", data)
+			err := check_api_status("PostProfile", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

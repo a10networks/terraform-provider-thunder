@@ -18,7 +18,7 @@ type PassthroughInstance struct {
 	Counters1 []SamplingEnable24 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbPassthrough(id string, inst Passthrough, host string) {
+func PostSlbPassthrough(id string, inst Passthrough, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbPassthrough(id string, inst Passthrough, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbPassthrough(id string, inst Passthrough, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbPassthrough REQ RES..........................", m)
-			check_api_status("PostSlbPassthrough", data)
+			err := check_api_status("PostSlbPassthrough", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbPassthrough(id string, host string) (*Passthrough, error) {
@@ -69,6 +73,7 @@ func GetSlbPassthrough(id string, host string) (*Passthrough, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Passthrough
@@ -78,7 +83,10 @@ func GetSlbPassthrough(id string, host string) (*Passthrough, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbPassthrough REQ RES..........................", m)
-			check_api_status("GetSlbPassthrough", data)
+			err := check_api_status("GetSlbPassthrough", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

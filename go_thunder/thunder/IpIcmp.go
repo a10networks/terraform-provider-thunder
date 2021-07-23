@@ -17,7 +17,7 @@ type IcmpInstance struct {
 	UUID        string `json:"uuid,omitempty"`
 }
 
-func PostIpIcmp(id string, inst Icmp, host string) {
+func PostIpIcmp(id string, inst Icmp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -36,6 +36,7 @@ func PostIpIcmp(id string, inst Icmp, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -46,10 +47,13 @@ func PostIpIcmp(id string, inst Icmp, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpIcmp REQ RES..........................", m)
-			check_api_status("PostIpIcmp", data)
+			err := check_api_status("PostIpIcmp", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func GetIpIcmp(id string, host string) (*Icmp, error) {
@@ -67,6 +71,7 @@ func GetIpIcmp(id string, host string) (*Icmp, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Icmp
@@ -76,7 +81,10 @@ func GetIpIcmp(id string, host string) (*Icmp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIpIcmp REQ RES..........................", m)
-			check_api_status("GetIpIcmp", data)
+			err := check_api_status("GetIpIcmp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

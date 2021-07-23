@@ -27,7 +27,7 @@ type IpNatPoolInstance struct {
 	Vrid             int    `json:"vrid,omitempty"`
 }
 
-func PostIpNatPool(id string, inst IpNatPool, host string) {
+func PostIpNatPool(id string, inst IpNatPool, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -46,6 +46,7 @@ func PostIpNatPool(id string, inst IpNatPool, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -56,11 +57,14 @@ func PostIpNatPool(id string, inst IpNatPool, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpNatPool REQ RES..........................", m)
-			check_api_status("PostIpNatPool", data)
+			err := check_api_status("PostIpNatPool", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpNatPool(id string, name string, host string) (*IpNatPool, error) {
@@ -78,6 +82,7 @@ func GetIpNatPool(id string, name string, host string) (*IpNatPool, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m IpNatPool
@@ -87,14 +92,17 @@ func GetIpNatPool(id string, name string, host string) (*IpNatPool, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIpNatPool REQ RES..........................", m)
-			check_api_status("GetIpNatPool", data)
+			err := check_api_status("GetIpNatPool", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutIpNatPool(id string, name string, inst IpNatPool, host string) {
+func PutIpNatPool(id string, name string, inst IpNatPool, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -113,6 +121,7 @@ func PutIpNatPool(id string, name string, inst IpNatPool, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -123,11 +132,14 @@ func PutIpNatPool(id string, name string, inst IpNatPool, host string) {
 
 		} else {
 			logger.Println("[INFO] PutIpNatPool REQ RES..........................", m)
-			check_api_status("PutIpNatPool", data)
+			err := check_api_status("PutIpNatPool", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteIpNatPool(id string, name string, host string) error {
@@ -144,6 +156,7 @@ func DeleteIpNatPool(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

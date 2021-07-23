@@ -18,7 +18,7 @@ type Pop3ProxyInstance struct {
 	Counters1 []SamplingEnable28 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbPop3Proxy(id string, inst Pop3Proxy, host string) {
+func PostSlbPop3Proxy(id string, inst Pop3Proxy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbPop3Proxy(id string, inst Pop3Proxy, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbPop3Proxy(id string, inst Pop3Proxy, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbPop3Proxy REQ RES..........................", m)
-			check_api_status("PostSlbPop3Proxy", data)
+			err := check_api_status("PostSlbPop3Proxy", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbPop3Proxy(id string, host string) (*Pop3Proxy, error) {
@@ -69,6 +73,7 @@ func GetSlbPop3Proxy(id string, host string) (*Pop3Proxy, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Pop3Proxy
@@ -78,7 +83,10 @@ func GetSlbPop3Proxy(id string, host string) (*Pop3Proxy, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbPop3Proxy REQ RES..........................", m)
-			check_api_status("GetSlbPop3Proxy", data)
+			err := check_api_status("GetSlbPop3Proxy", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

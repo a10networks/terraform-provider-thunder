@@ -16,7 +16,7 @@ type SnmpServerEnableTrapsVcsInstance struct {
 	UUID        string `json:"uuid,omitempty"`
 }
 
-func PostSnmpServerEnableTrapsVcs(id string, inst SnmpServerEnableTrapsVcs, host string) {
+func PostSnmpServerEnableTrapsVcs(id string, inst SnmpServerEnableTrapsVcs, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostSnmpServerEnableTrapsVcs(id string, inst SnmpServerEnableTrapsVcs, host
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostSnmpServerEnableTrapsVcs(id string, inst SnmpServerEnableTrapsVcs, host
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerEnableTrapsVcs", data)
+			err := check_api_status("PostSnmpServerEnableTrapsVcs", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerEnableTrapsVcs(id string, host string) (*SnmpServerEnableTrapsVcs, error) {
@@ -67,6 +71,7 @@ func GetSnmpServerEnableTrapsVcs(id string, host string) (*SnmpServerEnableTraps
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerEnableTrapsVcs
@@ -76,7 +81,10 @@ func GetSnmpServerEnableTrapsVcs(id string, host string) (*SnmpServerEnableTraps
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerEnableTrapsVcs", data)
+			err := check_api_status("GetSnmpServerEnableTrapsVcs", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

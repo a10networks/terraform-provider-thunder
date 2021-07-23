@@ -124,13 +124,16 @@ func GetSG(id string, name string, host string) (*ServiceGroup, error) {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
 
-			check_api_status("GetSG", data)
+			err := check_api_status("GetSG", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSG(id string, sg ServiceGroup, host string) {
+func PostSG(id string, sg ServiceGroup, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -161,14 +164,17 @@ func PostSG(id string, sg ServiceGroup, host string) {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
 
-			check_api_status("PostSG", data)
+			err := check_api_status("PostSG", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
-func PutSG(id string, name string, sg ServiceGroup, host string) {
+func PutSG(id string, name string, sg ServiceGroup, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -201,10 +207,13 @@ func PutSG(id string, name string, sg ServiceGroup, host string) {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
 
-			check_api_status("PutSG", data)
+			err := check_api_status("PutSG", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func DeleteSG(id string, name string, host string) error {

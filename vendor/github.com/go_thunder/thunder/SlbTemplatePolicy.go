@@ -164,7 +164,7 @@ type PolicyInstance struct {
 	Overlap          int               `json:"overlap,omitempty"`
 }
 
-func PostSlbTemplatePolicy(id string, inst Policy, host string) {
+func PostSlbTemplatePolicy(id string, inst Policy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -183,6 +183,7 @@ func PostSlbTemplatePolicy(id string, inst Policy, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -193,11 +194,14 @@ func PostSlbTemplatePolicy(id string, inst Policy, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplatePolicy REQ RES..........................", m)
-			check_api_status("PostSlbTemplatePolicy", data)
+			err := check_api_status("PostSlbTemplatePolicy", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplatePolicy(id string, name string, host string) (*Policy, error) {
@@ -215,6 +219,7 @@ func GetSlbTemplatePolicy(id string, name string, host string) (*Policy, error) 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Policy
@@ -224,14 +229,17 @@ func GetSlbTemplatePolicy(id string, name string, host string) (*Policy, error) 
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplatePolicy REQ RES..........................", m)
-			check_api_status("GetSlbTemplatePolicy", data)
+			err := check_api_status("GetSlbTemplatePolicy", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplatePolicy(id string, name string, inst Policy, host string) {
+func PutSlbTemplatePolicy(id string, name string, inst Policy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -250,6 +258,7 @@ func PutSlbTemplatePolicy(id string, name string, inst Policy, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -260,11 +269,14 @@ func PutSlbTemplatePolicy(id string, name string, inst Policy, host string) {
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplatePolicy REQ RES..........................", m)
-			check_api_status("PutSlbTemplatePolicy", data)
+			err := check_api_status("PutSlbTemplatePolicy", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplatePolicy(id string, name string, host string) error {
@@ -281,6 +293,7 @@ func DeleteSlbTemplatePolicy(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

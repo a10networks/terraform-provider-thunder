@@ -3,18 +3,20 @@ package thunder
 //Thunder resource IPAddress
 
 import (
+	"context"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceIPAddress() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceIPAddressCreate,
-		Update: resourceIPAddressUpdate,
-		Read:   resourceIPAddressRead,
-		Delete: resourceIPAddressDelete,
+		CreateContext: resourceIPAddressCreate,
+		UpdateContext: resourceIPAddressUpdate,
+		ReadContext:   resourceIPAddressRead,
+		DeleteContext: resourceIPAddressDelete,
 		Schema: map[string]*schema.Schema{
 			"ip_addr": {
 				Type:        schema.TypeString,
@@ -35,50 +37,60 @@ func resourceIPAddress() *schema.Resource {
 	}
 }
 
-func resourceIPAddressCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceIPAddressCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating IPAddress (Inside resourceIPAddressCreate) ")
 		data := dataToIPAddress(d)
 		logger.Println("[INFO] received V from method data to IPAddress --")
 		d.SetId("1")
-		go_thunder.PostIPAddress(client.Token, data, client.Host)
+		err := go_thunder.PostIPAddress(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceIPAddressRead(d, meta)
+		return resourceIPAddressRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceIPAddressRead(d *schema.ResourceData, meta interface{}) error {
+func resourceIPAddressRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading IPAddress (Inside resourceIPAddressRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetIPAddress(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceIPAddressUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceIPAddressUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIPAddressRead(d, meta)
+	return resourceIPAddressRead(ctx, d, meta)
 }
 
-func resourceIPAddressDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceIPAddressDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIPAddressRead(d, meta)
+	return resourceIPAddressRead(ctx, d, meta)
 }
 func dataToIPAddress(d *schema.ResourceData) go_thunder.IPAddress {
 	var vc go_thunder.IPAddress

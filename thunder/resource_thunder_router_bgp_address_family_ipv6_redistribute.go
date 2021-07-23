@@ -3,18 +3,21 @@ package thunder
 //Thunder resource RouterBgpAddressFamilyIpv6Redistribute
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceRouterBgpAddressFamilyIpv6Redistribute() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceRouterBgpAddressFamilyIpv6RedistributeCreate,
-		Update: resourceRouterBgpAddressFamilyIpv6RedistributeUpdate,
-		Read:   resourceRouterBgpAddressFamilyIpv6RedistributeRead,
-		Delete: resourceRouterBgpAddressFamilyIpv6RedistributeDelete,
+		CreateContext: resourceRouterBgpAddressFamilyIpv6RedistributeCreate,
+		UpdateContext: resourceRouterBgpAddressFamilyIpv6RedistributeUpdate,
+		ReadContext:   resourceRouterBgpAddressFamilyIpv6RedistributeRead,
+		DeleteContext: resourceRouterBgpAddressFamilyIpv6RedistributeDelete,
 		Schema: map[string]*schema.Schema{
 			"connected_cfg": {
 				Type:     schema.TypeList,
@@ -320,9 +323,11 @@ func resourceRouterBgpAddressFamilyIpv6Redistribute() *schema.Resource {
 	}
 }
 
-func resourceRouterBgpAddressFamilyIpv6RedistributeCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpAddressFamilyIpv6RedistributeCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RouterBgpAddressFamilyIpv6Redistribute (Inside resourceRouterBgpAddressFamilyIpv6RedistributeCreate) ")
@@ -331,40 +336,48 @@ func resourceRouterBgpAddressFamilyIpv6RedistributeCreate(d *schema.ResourceData
 		data := dataToRouterBgpAddressFamilyIpv6Redistribute(d)
 		logger.Println("[INFO] received formatted data from method data to RouterBgpAddressFamilyIpv6Redistribute --")
 		d.SetId(strconv.Itoa(name1))
-		go_thunder.PostRouterBgpAddressFamilyIpv6Redistribute(client.Token, name, data, client.Host)
+		err := go_thunder.PostRouterBgpAddressFamilyIpv6Redistribute(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouterBgpAddressFamilyIpv6RedistributeRead(d, meta)
+		return resourceRouterBgpAddressFamilyIpv6RedistributeRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouterBgpAddressFamilyIpv6RedistributeRead(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpAddressFamilyIpv6RedistributeRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading RouterBgpAddressFamilyIpv6Redistribute (Inside resourceRouterBgpAddressFamilyIpv6RedistributeRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetRouterBgpAddressFamilyIpv6Redistribute(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceRouterBgpAddressFamilyIpv6RedistributeUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpAddressFamilyIpv6RedistributeUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceRouterBgpAddressFamilyIpv6RedistributeRead(d, meta)
+	return resourceRouterBgpAddressFamilyIpv6RedistributeRead(ctx, d, meta)
 }
 
-func resourceRouterBgpAddressFamilyIpv6RedistributeDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpAddressFamilyIpv6RedistributeDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceRouterBgpAddressFamilyIpv6RedistributeRead(d, meta)
+	return resourceRouterBgpAddressFamilyIpv6RedistributeRead(ctx, d, meta)
 }
 func dataToRouterBgpAddressFamilyIpv6Redistribute(d *schema.ResourceData) go_thunder.RouterBgpAddressFamilyIpv6Redistribute {
 	var vc go_thunder.RouterBgpAddressFamilyIpv6Redistribute

@@ -106,7 +106,7 @@ type WebCategorySamplingEnable struct {
 	Counters1 string `json:"counters1,omitempty"`
 }
 
-func PostWebCategoryCategoryList(id string, inst WebCategoryCategoryList, host string) {
+func PostWebCategoryCategoryList(id string, inst WebCategoryCategoryList, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -125,6 +125,7 @@ func PostWebCategoryCategoryList(id string, inst WebCategoryCategoryList, host s
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -135,11 +136,14 @@ func PostWebCategoryCategoryList(id string, inst WebCategoryCategoryList, host s
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostWebCategoryCategoryList", data)
+			err := check_api_status("PostWebCategoryCategoryList", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetWebCategoryCategoryList(id string, name1 string, host string) (*WebCategoryCategoryList, error) {
@@ -157,6 +161,7 @@ func GetWebCategoryCategoryList(id string, name1 string, host string) (*WebCateg
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m WebCategoryCategoryList
@@ -166,14 +171,17 @@ func GetWebCategoryCategoryList(id string, name1 string, host string) (*WebCateg
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetWebCategoryCategoryList", data)
+			err := check_api_status("GetWebCategoryCategoryList", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutWebCategoryCategoryList(id string, name1 string, inst WebCategoryCategoryList, host string) {
+func PutWebCategoryCategoryList(id string, name1 string, inst WebCategoryCategoryList, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -192,6 +200,7 @@ func PutWebCategoryCategoryList(id string, name1 string, inst WebCategoryCategor
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -202,11 +211,14 @@ func PutWebCategoryCategoryList(id string, name1 string, inst WebCategoryCategor
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutWebCategoryCategoryList", data)
+			err := check_api_status("PutWebCategoryCategoryList", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteWebCategoryCategoryList(id string, name1 string, host string) error {
@@ -224,6 +236,7 @@ func DeleteWebCategoryCategoryList(id string, name1 string, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
+		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m WebCategoryCategoryList
@@ -233,7 +246,10 @@ func DeleteWebCategoryCategoryList(id string, name1 string, host string) error {
 			return err
 		} else {
 			logger.Println("[INFO] Delete REQ RES..........................", m)
-			check_api_status("DeleteWebCategoryCategoryList", data)
+			err := check_api_status("DeleteWebCategoryCategoryList", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}

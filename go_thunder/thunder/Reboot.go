@@ -52,13 +52,16 @@ func GetReboot(id string, host string) (*Reboot, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetReboot", data)
+			err := check_api_status("GetReboot", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostReboot(id string, vc Reboot, host string) {
+func PostReboot(id string, vc Reboot, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -88,8 +91,11 @@ func PostReboot(id string, vc Reboot, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostReboot", data)
+			err := check_api_status("PostReboot", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

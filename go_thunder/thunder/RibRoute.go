@@ -72,13 +72,16 @@ func GetRibRoute(id string, host string, instance string) (*Rib, error) {
 		} else {
 			fmt.Print(r)
 			logger.Println("[INFO] GET REQ RES..........................", r)
-			check_api_status("GetRibRoute", data)
+			err := check_api_status("GetRibRoute", data)
+			if err != nil {
+				return nil, err
+			}
 			return &r, nil
 		}
 	}
 }
 
-func PostRibRoute(id string, r Rib, host string, instance string) {
+func PostRibRoute(id string, r Rib, host string, instance string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -115,13 +118,16 @@ func PostRibRoute(id string, r Rib, host string, instance string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostRibRoute", data)
+			err := check_api_status("PostRibRoute", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
-func PutRibRoute(id string, instance string, r Rib, host string) {
+func PutRibRoute(id string, instance string, r Rib, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -156,10 +162,13 @@ func PutRibRoute(id string, instance string, r Rib, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PutRibRoute", data)
+			err := check_api_status("PutRibRoute", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func DeleteRibRoute(id string, instance string, host string) error {

@@ -3,19 +3,21 @@ package thunder
 //Thunder resource IpPrefixList
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceIpPrefixList() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceIpPrefixListCreate,
-		Update: resourceIpPrefixListUpdate,
-		Read:   resourceIpPrefixListRead,
-		Delete: resourceIpPrefixListDelete,
+		CreateContext: resourceIpPrefixListCreate,
+		UpdateContext: resourceIpPrefixListUpdate,
+		ReadContext:   resourceIpPrefixListRead,
+		DeleteContext: resourceIpPrefixListDelete,
 		Schema: map[string]*schema.Schema{
 			"name": {
 				Type:        schema.TypeString,
@@ -74,9 +76,11 @@ func resourceIpPrefixList() *schema.Resource {
 	}
 }
 
-func resourceIpPrefixListCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpPrefixListCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating IpPrefixList (Inside resourceIpPrefixListCreate) ")
@@ -84,40 +88,48 @@ func resourceIpPrefixListCreate(d *schema.ResourceData, meta interface{}) error 
 		data := dataToIpPrefixList(d)
 		logger.Println("[INFO] received V from method data to IpPrefixList --")
 		d.SetId(name)
-		go_thunder.PostIpPrefixList(client.Token, data, client.Host)
+		err := go_thunder.PostIpPrefixList(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceIpPrefixListRead(d, meta)
+		return resourceIpPrefixListRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceIpPrefixListRead(d *schema.ResourceData, meta interface{}) error {
+func resourceIpPrefixListRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading IpPrefixList (Inside resourceIpPrefixListRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetIpPrefixList(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceIpPrefixListUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpPrefixListUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpPrefixListRead(d, meta)
+	return resourceIpPrefixListRead(ctx, d, meta)
 }
 
-func resourceIpPrefixListDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceIpPrefixListDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpPrefixListRead(d, meta)
+	return resourceIpPrefixListRead(ctx, d, meta)
 }
 func dataToIpPrefixList(d *schema.ResourceData) go_thunder.PrefixList {
 	var vc go_thunder.PrefixList

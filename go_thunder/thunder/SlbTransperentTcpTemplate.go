@@ -15,7 +15,7 @@ type TransperentTcpTemplateInstance struct {
 	Name string `json:"name,omitempty"`
 }
 
-func PostSlbTransperentTcpTemplate(id string, inst TransperentTcpTemplate, host string) {
+func PostSlbTransperentTcpTemplate(id string, inst TransperentTcpTemplate, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -34,6 +34,7 @@ func PostSlbTransperentTcpTemplate(id string, inst TransperentTcpTemplate, host 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -44,11 +45,14 @@ func PostSlbTransperentTcpTemplate(id string, inst TransperentTcpTemplate, host 
 
 		} else {
 			logger.Println("[INFO] PostSlbTransperentTcpTemplate REQ RES..........................", m)
-			check_api_status("PostSlbTransperentTcpTemplate", data)
+			err := check_api_status("PostSlbTransperentTcpTemplate", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTransperentTcpTemplate(id string, name string, host string) (*TransperentTcpTemplate, error) {
@@ -66,6 +70,7 @@ func GetSlbTransperentTcpTemplate(id string, name string, host string) (*Transpe
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m TransperentTcpTemplate
@@ -75,7 +80,10 @@ func GetSlbTransperentTcpTemplate(id string, name string, host string) (*Transpe
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTransperentTcpTemplate REQ RES..........................", m)
-			check_api_status("GetSlbTransperentTcpTemplate", data)
+			err := check_api_status("GetSlbTransperentTcpTemplate", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

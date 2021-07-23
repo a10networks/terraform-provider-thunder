@@ -18,7 +18,7 @@ type SpdyProxyInstance struct {
 	Counters1 []SamplingEnable14 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbSpdyProxy(id string, inst SpdyProxy, host string) {
+func PostSlbSpdyProxy(id string, inst SpdyProxy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostSlbSpdyProxy(id string, inst SpdyProxy, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostSlbSpdyProxy(id string, inst SpdyProxy, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbSpdyProxy REQ RES..........................", m)
-			check_api_status("PostSlbSpdyProxy", data)
+			err := check_api_status("PostSlbSpdyProxy", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbSpdyProxy(id string, host string) (*SpdyProxy, error) {
@@ -69,6 +73,7 @@ func GetSlbSpdyProxy(id string, host string) (*SpdyProxy, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SpdyProxy
@@ -78,7 +83,10 @@ func GetSlbSpdyProxy(id string, host string) (*SpdyProxy, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbSpdyProxy REQ RES..........................", m)
-			check_api_status("GetSlbSpdyProxy", data)
+			err := check_api_status("GetSlbSpdyProxy", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

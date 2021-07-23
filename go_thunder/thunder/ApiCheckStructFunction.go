@@ -2,6 +2,7 @@ package go_thunder
 
 import (
 	"encoding/json"
+	"errors"
 	"util"
 )
 
@@ -16,7 +17,7 @@ type response_struct1 struct {
 	} `json:"response"`
 }
 
-func check_api_status(resource_name_with_method string, byte_body []uint8) {
+func check_api_status(resource_name_with_method string, byte_body []uint8) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -26,6 +27,8 @@ func check_api_status(resource_name_with_method string, byte_body []uint8) {
 	if response_struct_var.Response.Status == "fail" {
 		panic_string := string(resource_name_with_method) + "  --->  " + string(response_struct_var.Response.Err.Msg)
 		logger.Println(panic_string)
-		panic(panic_string)
+		err := errors.New(panic_string)
+		return err
 	}
+	return nil
 }

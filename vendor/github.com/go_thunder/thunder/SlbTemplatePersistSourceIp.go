@@ -30,7 +30,7 @@ type SlbTemplatePersistSourceIPInstance struct {
 	UserTag               string `json:"user-tag,omitempty"`
 }
 
-func PostSlbTemplatePersistSourceIp(id string, inst SlbTemplatePersistSourceIp, host string) {
+func PostSlbTemplatePersistSourceIp(id string, inst SlbTemplatePersistSourceIp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -49,6 +49,7 @@ func PostSlbTemplatePersistSourceIp(id string, inst SlbTemplatePersistSourceIp, 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -59,11 +60,14 @@ func PostSlbTemplatePersistSourceIp(id string, inst SlbTemplatePersistSourceIp, 
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplatePersistSourceIp REQ RES..........................", m)
-			check_api_status("PostSlbTemplatePersistSourceIp", data)
+			err := check_api_status("PostSlbTemplatePersistSourceIp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplatePersistSourceIp(id string, name string, host string) (*SlbTemplatePersistSourceIp, error) {
@@ -81,6 +85,7 @@ func GetSlbTemplatePersistSourceIp(id string, name string, host string) (*SlbTem
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SlbTemplatePersistSourceIp
@@ -90,14 +95,17 @@ func GetSlbTemplatePersistSourceIp(id string, name string, host string) (*SlbTem
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplatePersistSourceIp REQ RES..........................", m)
-			check_api_status("GetSlbTemplatePersistSourceIp", data)
+			err := check_api_status("GetSlbTemplatePersistSourceIp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplatePersistSourceIp(id string, name string, inst SlbTemplatePersistSourceIp, host string) {
+func PutSlbTemplatePersistSourceIp(id string, name string, inst SlbTemplatePersistSourceIp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -116,6 +124,7 @@ func PutSlbTemplatePersistSourceIp(id string, name string, inst SlbTemplatePersi
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -126,11 +135,14 @@ func PutSlbTemplatePersistSourceIp(id string, name string, inst SlbTemplatePersi
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplatePersistSourceIp REQ RES..........................", m)
-			check_api_status("PutSlbTemplatePersistSourceIp", data)
+			err := check_api_status("PutSlbTemplatePersistSourceIp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplatePersistSourceIp(id string, name string, host string) error {
@@ -147,6 +159,7 @@ func DeleteSlbTemplatePersistSourceIp(id string, name string, host string) error
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

@@ -3,9 +3,9 @@ package thunder
 import (
 	"fmt"
 	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 	"reflect"
 	"testing"
 )
@@ -1152,7 +1152,9 @@ func testCheckVirtualServerExists(name string, exists bool) resource.TestCheckFu
 
 		client := testAccProvider.Meta().(Thunder)
 		vs, err := go_thunder.GetVS(client.Token, name, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if err != nil {
 			return err
 		}

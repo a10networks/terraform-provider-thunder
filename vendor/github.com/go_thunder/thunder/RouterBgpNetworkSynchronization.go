@@ -16,7 +16,7 @@ type RouterBgpNetworkSynchronizationInstance struct {
 	UUID                   string `json:"uuid,omitempty"`
 }
 
-func PostRouterBgpNetworkSynchronization(id string, name1 string, inst RouterBgpNetworkSynchronization, host string) {
+func PostRouterBgpNetworkSynchronization(id string, name1 string, inst RouterBgpNetworkSynchronization, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostRouterBgpNetworkSynchronization(id string, name1 string, inst RouterBgp
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostRouterBgpNetworkSynchronization(id string, name1 string, inst RouterBgp
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostRouterBgpNetworkSynchronization", data)
+			err := check_api_status("PostRouterBgpNetworkSynchronization", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetRouterBgpNetworkSynchronization(id string, name1 string, host string) (*RouterBgpNetworkSynchronization, error) {
@@ -67,6 +71,7 @@ func GetRouterBgpNetworkSynchronization(id string, name1 string, host string) (*
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterBgpNetworkSynchronization
@@ -76,7 +81,10 @@ func GetRouterBgpNetworkSynchronization(id string, name1 string, host string) (*
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetRouterBgpNetworkSynchronization", data)
+			err := check_api_status("GetRouterBgpNetworkSynchronization", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

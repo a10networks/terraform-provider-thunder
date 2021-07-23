@@ -16,7 +16,7 @@ type NatIcmpInstance struct {
 	UUID                  string `json:"uuid,omitempty"`
 }
 
-func PostIpNatIcmp(id string, inst NatIcmp, host string) {
+func PostIpNatIcmp(id string, inst NatIcmp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostIpNatIcmp(id string, inst NatIcmp, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostIpNatIcmp(id string, inst NatIcmp, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpNatIcmp REQ RES..........................", m)
-			check_api_status("PostIpNatIcmp", data)
+			err := check_api_status("PostIpNatIcmp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpNatIcmp(id string, host string) (*NatIcmp, error) {
@@ -67,6 +71,7 @@ func GetIpNatIcmp(id string, host string) (*NatIcmp, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m NatIcmp
@@ -76,7 +81,10 @@ func GetIpNatIcmp(id string, host string) (*NatIcmp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIpNatIcmp REQ RES..........................", m)
-			check_api_status("GetIpNatIcmp", data)
+			err := check_api_status("GetIpNatIcmp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

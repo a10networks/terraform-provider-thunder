@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbTemplateTcpProxy
 
 import (
+	"context"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateTcpProxy() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateTcpProxyCreate,
-		Update: resourceSlbTemplateTcpProxyUpdate,
-		Read:   resourceSlbTemplateTcpProxyRead,
-		Delete: resourceSlbTemplateTcpProxyDelete,
+		CreateContext: resourceSlbTemplateTcpProxyCreate,
+		UpdateContext: resourceSlbTemplateTcpProxyUpdate,
+		ReadContext:   resourceSlbTemplateTcpProxyRead,
+		DeleteContext: resourceSlbTemplateTcpProxyDelete,
 		Schema: map[string]*schema.Schema{
 			"disable_sack": {
 				Type:        schema.TypeInt,
@@ -246,9 +248,11 @@ func resourceSlbTemplateTcpProxy() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateTcpProxyCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateTcpProxyCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateTcpProxy (Inside resourceSlbTemplateTcpProxyCreate) ")
@@ -256,36 +260,46 @@ func resourceSlbTemplateTcpProxyCreate(d *schema.ResourceData, meta interface{})
 		data := dataToSlbTemplateTcpProxy(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateTcpProxy --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplateTcpProxy(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateTcpProxy(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateTcpProxyRead(d, meta)
+		return resourceSlbTemplateTcpProxyRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateTcpProxyRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateTcpProxyRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateTcpProxy (Inside resourceSlbTemplateTcpProxyRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplateTcpProxy(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplateTcpProxyUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateTcpProxyUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateTcpProxy   (Inside resourceSlbTemplateTcpProxyUpdate) ")
@@ -293,17 +307,22 @@ func resourceSlbTemplateTcpProxyUpdate(d *schema.ResourceData, meta interface{})
 		data := dataToSlbTemplateTcpProxy(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateTcpProxy ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplateTcpProxy(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateTcpProxy(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateTcpProxyRead(d, meta)
+		return resourceSlbTemplateTcpProxyRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateTcpProxyDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateTcpProxyDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -311,7 +330,7 @@ func resourceSlbTemplateTcpProxyDelete(d *schema.ResourceData, meta interface{})
 		err := go_thunder.DeleteSlbTemplateTcpProxy(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

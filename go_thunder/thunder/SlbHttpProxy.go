@@ -46,13 +46,16 @@ func GetSlbHttpProxy(id string, host string) (*HttpProxy, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetSlbHttpProxy REQ RES..........................", m)
-			check_api_status("GetSlbHttpProxy", data)
+			err := check_api_status("GetSlbHttpProxy", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbHttpProxy(id string, vc HttpProxy, host string) {
+func PostSlbHttpProxy(id string, vc HttpProxy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -82,8 +85,11 @@ func PostSlbHttpProxy(id string, vc HttpProxy, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbHttpProxy", data)
+			err := check_api_status("PostSlbHttpProxy", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

@@ -3,20 +3,22 @@ package thunder
 //Thunder resource TemplateCipher
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceTemplateCipher() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceTemplateCipherCreate,
-		Update: resourceTemplateCipherUpdate,
-		Read:   resourceTemplateCipherRead,
-		Delete: resourceTemplateCipherDelete,
+		CreateContext: resourceTemplateCipherCreate,
+		UpdateContext: resourceTemplateCipherUpdate,
+		ReadContext:   resourceTemplateCipherRead,
+		DeleteContext: resourceTemplateCipherDelete,
 		Schema: map[string]*schema.Schema{
 			"user_tag": {
 				Type:        schema.TypeString,
@@ -55,9 +57,11 @@ func resourceTemplateCipher() *schema.Resource {
 	}
 }
 
-func resourceTemplateCipherCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateCipherCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating TemplateCipher (Inside resourceTemplateCipherCreate) ")
@@ -65,36 +69,46 @@ func resourceTemplateCipherCreate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToTemplateCipher(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateCipher --")
 		d.SetId(name)
-		go_thunder.PostTemplateCipher(client.Token, data, client.Host)
+		err := go_thunder.PostTemplateCipher(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateCipherRead(d, meta)
+		return resourceTemplateCipherRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateCipherRead(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateCipherRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading TemplateCipher (Inside resourceTemplateCipherRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetTemplateCipher(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceTemplateCipherUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateCipherUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying TemplateCipher   (Inside resourceTemplateCipherUpdate) ")
@@ -102,17 +116,22 @@ func resourceTemplateCipherUpdate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToTemplateCipher(d)
 		logger.Println("[INFO] received V from method data to TemplateCipher ")
 		d.SetId(name)
-		go_thunder.PutTemplateCipher(client.Token, name, data, client.Host)
+		err := go_thunder.PutTemplateCipher(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateCipherRead(d, meta)
+		return resourceTemplateCipherRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateCipherDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateCipherDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -120,7 +139,7 @@ func resourceTemplateCipherDelete(d *schema.ResourceData, meta interface{}) erro
 		err := go_thunder.DeleteTemplateCipher(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

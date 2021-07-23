@@ -22,7 +22,7 @@ type DynamicServiceInstance struct {
 	UUID          string      `json:"uuid,omitempty"`
 }
 
-func PostSlbTemplateDynamicService(id string, inst DynamicService, host string) {
+func PostSlbTemplateDynamicService(id string, inst DynamicService, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -41,6 +41,7 @@ func PostSlbTemplateDynamicService(id string, inst DynamicService, host string) 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -51,11 +52,14 @@ func PostSlbTemplateDynamicService(id string, inst DynamicService, host string) 
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateDynamicService REQ RES..........................", m)
-			check_api_status("PostSlbTemplateDynamicService", data)
+			err := check_api_status("PostSlbTemplateDynamicService", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateDynamicService(id string, name string, host string) (*DynamicService, error) {
@@ -73,6 +77,7 @@ func GetSlbTemplateDynamicService(id string, name string, host string) (*Dynamic
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m DynamicService
@@ -82,14 +87,17 @@ func GetSlbTemplateDynamicService(id string, name string, host string) (*Dynamic
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateDynamicService REQ RES..........................", m)
-			check_api_status("GetSlbTemplateDynamicService", data)
+			err := check_api_status("GetSlbTemplateDynamicService", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateDynamicService(id string, name string, inst DynamicService, host string) {
+func PutSlbTemplateDynamicService(id string, name string, inst DynamicService, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -108,6 +116,7 @@ func PutSlbTemplateDynamicService(id string, name string, inst DynamicService, h
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -118,11 +127,14 @@ func PutSlbTemplateDynamicService(id string, name string, inst DynamicService, h
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateDynamicService REQ RES..........................", m)
-			check_api_status("PutSlbTemplateDynamicService", data)
+			err := check_api_status("PutSlbTemplateDynamicService", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateDynamicService(id string, name string, host string) error {
@@ -139,6 +151,7 @@ func DeleteSlbTemplateDynamicService(id string, name string, host string) error 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

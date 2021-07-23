@@ -18,7 +18,7 @@ type SsliInstance struct {
 	UUID    string `json:"uuid,omitempty"`
 }
 
-func PostTemplateSSLI(id string, inst SSLI, host string) {
+func PostTemplateSSLI(id string, inst SSLI, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -37,6 +37,7 @@ func PostTemplateSSLI(id string, inst SSLI, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -47,11 +48,14 @@ func PostTemplateSSLI(id string, inst SSLI, host string) {
 
 		} else {
 			logger.Println("[INFO] PostTemplateSSLI REQ RES..........................", m)
-			check_api_status("PostTemplateSSLI", data)
+			err := check_api_status("PostTemplateSSLI", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetTemplateSSLI(id string, name string, host string) (*SSLI, error) {
@@ -69,6 +73,7 @@ func GetTemplateSSLI(id string, name string, host string) (*SSLI, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SSLI
@@ -78,14 +83,17 @@ func GetTemplateSSLI(id string, name string, host string) (*SSLI, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetTemplateSSLI REQ RES..........................", m)
-			check_api_status("GetTemplateSSLI", data)
+			err := check_api_status("GetTemplateSSLI", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutTemplateSSLI(id string, name string, inst SSLI, host string) {
+func PutTemplateSSLI(id string, name string, inst SSLI, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -104,6 +112,7 @@ func PutTemplateSSLI(id string, name string, inst SSLI, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -114,11 +123,14 @@ func PutTemplateSSLI(id string, name string, inst SSLI, host string) {
 
 		} else {
 			logger.Println("[INFO] PutTemplateSSLI REQ RES..........................", m)
-			check_api_status("PutTemplateSSLI", data)
+			err := check_api_status("PutTemplateSSLI", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteTemplateSSLI(id string, name string, host string) error {
@@ -135,6 +147,7 @@ func DeleteTemplateSSLI(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

@@ -3,18 +3,21 @@ package thunder
 //Thunder resource Tcp
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"log"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateTcp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceTcpCreate,
-		Update: resourceTcpUpdate,
-		Read:   resourceTcpRead,
-		Delete: resourceTcpDelete,
+		CreateContext: resourceTcpCreate,
+		UpdateContext: resourceTcpUpdate,
+		ReadContext:   resourceTcpRead,
+		DeleteContext: resourceTcpDelete,
 
 		Schema: map[string]*schema.Schema{
 			"insert_client_ip": {
@@ -61,66 +64,81 @@ func resourceSlbTemplateTcp() *schema.Resource {
 	}
 }
 
-func resourceTcpCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceTcpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Creating tcp (Inside resourceTcpCreate    " + name)
 		v := dataToTcp(name, d)
 		d.SetId(name)
-		go_thunder.PostTcp(client.Token, v, client.Host)
-
-		return resourceTcpRead(d, meta)
+		err := go_thunder.PostTcp(client.Token, v, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceTcpRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceTcpRead(d *schema.ResourceData, meta interface{}) error {
+func resourceTcpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading tcp (Inside resourceTcpRead)")
 
 	if client.Host != "" {
 		client := meta.(Thunder)
+
 
 		name := d.Id()
 
 		logger.Println("[INFO] Fetching tcp Read" + name)
 
 		tcp, err := go_thunder.GetTcp(client.Token, name, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if tcp == nil {
 			logger.Println("[INFO] No tcp found " + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceTcpUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceTcpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Modifying tcp (Inside resourceTcpUpdate    " + name)
 		v := dataToTcp(name, d)
 		d.SetId(name)
-		go_thunder.PutTcp(client.Token, name, v, client.Host)
-
-		return resourceTcpRead(d, meta)
+		err := go_thunder.PutTcp(client.Token, name, v, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceTcpRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceTcpDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceTcpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger := util.GetLoggerInstance()
 
 	if client.Host != "" {
@@ -130,7 +148,7 @@ func resourceTcpDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteTcp(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete tcp  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

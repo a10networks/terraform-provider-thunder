@@ -1,17 +1,20 @@
 package thunder
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceConfigureSync() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceConfigureSyncCreate,
-		Update: resourceConfigureSyncUpdate,
-		Read:   resourceConfigureSyncRead,
-		Delete: resourceConfigureSyncDelete,
+		CreateContext: resourceConfigureSyncCreate,
+		UpdateContext: resourceConfigureSyncUpdate,
+		ReadContext:   resourceConfigureSyncRead,
+		DeleteContext: resourceConfigureSyncDelete,
 
 		Schema: map[string]*schema.Schema{
 			"shared": {
@@ -69,51 +72,61 @@ func resourceConfigureSync() *schema.Resource {
 
 }
 
-func resourceConfigureSyncCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceConfigureSyncCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating ConfigureSync (Inside resourceConfigureSyncCreate)")
 
 	if client.Host != "" {
 		vc := dataToConfigureSync(d)
-		go_thunder.PostConfigureSync(client.Token, vc, client.Host)
+		err := go_thunder.PostConfigureSync(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+
 		d.SetId("1")
 
-		return resourceConfigureSyncRead(d, meta)
+		return resourceConfigureSyncRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceConfigureSyncRead(d *schema.ResourceData, meta interface{}) error {
+func resourceConfigureSyncRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading ConfigureSync (Inside resourceConfigureSyncRead)")
 
 	client := meta.(Thunder)
 
+	var diags diag.Diagnostics
+
 	if client.Host != "" {
 
 		vc, err := go_thunder.GetConfigureSync(client.Token, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No ConfigureSync found")
 
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceConfigureSyncUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceConfigureSyncUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceConfigureSyncRead(d, meta)
+	return resourceConfigureSyncRead(ctx, d, meta)
 }
 
-func resourceConfigureSyncDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceConfigureSyncDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceConfigureSyncRead(d, meta)
+	return resourceConfigureSyncRead(ctx, d, meta)
 }
 
 //Utility method to instantiate Glm Structure

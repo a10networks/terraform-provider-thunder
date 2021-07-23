@@ -3,18 +3,20 @@ package thunder
 //Thunder resource SlbTransperentTcpTemplate
 
 import (
+	"context"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTransperentTcpTemplate() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTransperentTcpTemplateCreate,
-		Update: resourceSlbTransperentTcpTemplateUpdate,
-		Read:   resourceSlbTransperentTcpTemplateRead,
-		Delete: resourceSlbTransperentTcpTemplateDelete,
+		CreateContext: resourceSlbTransperentTcpTemplateCreate,
+		UpdateContext: resourceSlbTransperentTcpTemplateUpdate,
+		ReadContext:   resourceSlbTransperentTcpTemplateRead,
+		DeleteContext: resourceSlbTransperentTcpTemplateDelete,
 		Schema: map[string]*schema.Schema{
 			"name": {
 				Type:        schema.TypeString,
@@ -25,9 +27,11 @@ func resourceSlbTransperentTcpTemplate() *schema.Resource {
 	}
 }
 
-func resourceSlbTransperentTcpTemplateCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTransperentTcpTemplateCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTransperentTcpTemplate (Inside resourceSlbTransperentTcpTemplateCreate) ")
@@ -35,41 +39,49 @@ func resourceSlbTransperentTcpTemplateCreate(d *schema.ResourceData, meta interf
 		data := dataToSlbTransperentTcpTemplate(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTransperentTcpTemplate --")
 		d.SetId(name)
-		go_thunder.PostSlbTransperentTcpTemplate(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTransperentTcpTemplate(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTransperentTcpTemplateRead(d, meta)
+		return resourceSlbTransperentTcpTemplateRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTransperentTcpTemplateRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTransperentTcpTemplateRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTransperentTcpTemplate (Inside resourceSlbTransperentTcpTemplateRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTransperentTcpTemplate(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTransperentTcpTemplateUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTransperentTcpTemplateUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbTransperentTcpTemplateRead(d, meta)
+	return resourceSlbTransperentTcpTemplateRead(ctx, d, meta)
 }
 
-func resourceSlbTransperentTcpTemplateDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTransperentTcpTemplateDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbTransperentTcpTemplateRead(d, meta)
+	return resourceSlbTransperentTcpTemplateRead(ctx, d, meta)
 }
 
 func dataToSlbTransperentTcpTemplate(d *schema.ResourceData) go_thunder.TransperentTcpTemplate {

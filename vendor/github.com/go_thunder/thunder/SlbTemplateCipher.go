@@ -22,7 +22,7 @@ type CipherInstance struct {
 	UUID     string      `json:"uuid,omitempty"`
 }
 
-func PostTemplateCipher(id string, inst Cipher, host string) {
+func PostTemplateCipher(id string, inst Cipher, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -41,6 +41,7 @@ func PostTemplateCipher(id string, inst Cipher, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -51,11 +52,14 @@ func PostTemplateCipher(id string, inst Cipher, host string) {
 
 		} else {
 			logger.Println("[INFO] PostTemplateCipher REQ RES..........................", m)
-			check_api_status("PostTemplateCipher", data)
+			err := check_api_status("PostTemplateCipher", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetTemplateCipher(id string, name string, host string) (*Cipher, error) {
@@ -73,6 +77,7 @@ func GetTemplateCipher(id string, name string, host string) (*Cipher, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Cipher
@@ -82,14 +87,17 @@ func GetTemplateCipher(id string, name string, host string) (*Cipher, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetTemplateCipher REQ RES..........................", m)
-			check_api_status("GetTemplateCipher", data)
+			err := check_api_status("GetTemplateCipher", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutTemplateCipher(id string, name string, inst Cipher, host string) {
+func PutTemplateCipher(id string, name string, inst Cipher, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -108,6 +116,7 @@ func PutTemplateCipher(id string, name string, inst Cipher, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -118,11 +127,14 @@ func PutTemplateCipher(id string, name string, inst Cipher, host string) {
 
 		} else {
 			logger.Println("[INFO] PutTemplateCipher REQ RES..........................", m)
-			check_api_status("PutTemplateCipher", data)
+			err := check_api_status("PutTemplateCipher", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteTemplateCipher(id string, name string, host string) error {
@@ -139,6 +151,7 @@ func DeleteTemplateCipher(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

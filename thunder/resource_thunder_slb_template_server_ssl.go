@@ -3,20 +3,22 @@ package thunder
 //Thunder resource SlbTemplateServerSSL
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateServerSSL() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateServerSSLCreate,
-		Update: resourceSlbTemplateServerSSLUpdate,
-		Read:   resourceSlbTemplateServerSSLRead,
-		Delete: resourceSlbTemplateServerSSLDelete,
+		CreateContext: resourceSlbTemplateServerSSLCreate,
+		UpdateContext: resourceSlbTemplateServerSSLUpdate,
+		ReadContext:   resourceSlbTemplateServerSSLRead,
+		DeleteContext: resourceSlbTemplateServerSSLDelete,
 		Schema: map[string]*schema.Schema{
 			"session_cache_timeout": {
 				Type:        schema.TypeInt,
@@ -252,9 +254,11 @@ func resourceSlbTemplateServerSSL() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateServerSSLCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateServerSSLCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateServerSSL (Inside resourceSlbTemplateServerSSLCreate) ")
@@ -262,36 +266,46 @@ func resourceSlbTemplateServerSSLCreate(d *schema.ResourceData, meta interface{}
 		data := dataToSlbTemplateServerSSL(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateServerSSL --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplateServerSSL(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateServerSSL(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateServerSSLRead(d, meta)
+		return resourceSlbTemplateServerSSLRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateServerSSLRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateServerSSLRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateServerSSL (Inside resourceSlbTemplateServerSSLRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplateServerSSL(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplateServerSSLUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateServerSSLUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateServerSSL   (Inside resourceSlbTemplateServerSSLUpdate) ")
@@ -299,17 +313,22 @@ func resourceSlbTemplateServerSSLUpdate(d *schema.ResourceData, meta interface{}
 		data := dataToSlbTemplateServerSSL(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateServerSSL ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplateServerSSL(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateServerSSL(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateServerSSLRead(d, meta)
+		return resourceSlbTemplateServerSSLRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateServerSSLDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateServerSSLDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -317,7 +336,7 @@ func resourceSlbTemplateServerSSLDelete(d *schema.ResourceData, meta interface{}
 		err := go_thunder.DeleteSlbTemplateServerSSL(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

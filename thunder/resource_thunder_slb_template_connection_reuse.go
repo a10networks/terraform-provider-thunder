@@ -3,19 +3,20 @@ package thunder
 //Thunder resource TemplateConnectionReuse
 
 import (
+	"context"
 	"log"
 	"util"
-
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceTemplateConnectionReuse() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceTemplateConnectionReuseCreate,
-		Update: resourceTemplateConnectionReuseUpdate,
-		Read:   resourceTemplateConnectionReuseRead,
-		Delete: resourceTemplateConnectionReuseDelete,
+		CreateContext: resourceTemplateConnectionReuseCreate,
+		UpdateContext: resourceTemplateConnectionReuseUpdate,
+		ReadContext:   resourceTemplateConnectionReuseRead,
+		DeleteContext: resourceTemplateConnectionReuseDelete,
 		Schema: map[string]*schema.Schema{
 			"user_tag": {
 				Type:        schema.TypeString,
@@ -61,9 +62,11 @@ func resourceTemplateConnectionReuse() *schema.Resource {
 	}
 }
 
-func resourceTemplateConnectionReuseCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateConnectionReuseCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating TemplateConnectionReuse (Inside resourceTemplateConnectionReuseCreate) ")
@@ -71,36 +74,46 @@ func resourceTemplateConnectionReuseCreate(d *schema.ResourceData, meta interfac
 		data := dataToTemplateConnectionReuse(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateConnectionReuse --")
 		d.SetId(name)
-		go_thunder.PostTemplateConnectionReuse(client.Token, data, client.Host)
+		err := go_thunder.PostTemplateConnectionReuse(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateConnectionReuseRead(d, meta)
+		return resourceTemplateConnectionReuseRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateConnectionReuseRead(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateConnectionReuseRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading TemplateConnectionReuse (Inside resourceTemplateConnectionReuseRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetTemplateConnectionReuse(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceTemplateConnectionReuseUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateConnectionReuseUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying TemplateConnectionReuse   (Inside resourceTemplateConnectionReuseUpdate) ")
@@ -108,17 +121,22 @@ func resourceTemplateConnectionReuseUpdate(d *schema.ResourceData, meta interfac
 		data := dataToTemplateConnectionReuse(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateConnectionReuse ")
 		d.SetId(name)
-		go_thunder.PutTemplateConnectionReuse(client.Token, name, data, client.Host)
+		err := go_thunder.PutTemplateConnectionReuse(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateConnectionReuseRead(d, meta)
+		return resourceTemplateConnectionReuseRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateConnectionReuseDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateConnectionReuseDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -126,7 +144,7 @@ func resourceTemplateConnectionReuseDelete(d *schema.ResourceData, meta interfac
 		err := go_thunder.DeleteTemplateConnectionReuse(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

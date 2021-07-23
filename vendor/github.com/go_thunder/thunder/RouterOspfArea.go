@@ -72,7 +72,7 @@ type RouterOspfAreaVirtualLinkList struct {
 	VirtualLinkIPAddr         string `json:"virtual-link-ip-addr,omitempty"`
 }
 
-func PostRouterOspfArea(id string, name1 string, inst RouterOspfArea, host string) {
+func PostRouterOspfArea(id string, name1 string, inst RouterOspfArea, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -91,6 +91,7 @@ func PostRouterOspfArea(id string, name1 string, inst RouterOspfArea, host strin
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -101,11 +102,14 @@ func PostRouterOspfArea(id string, name1 string, inst RouterOspfArea, host strin
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostRouterOspfArea", data)
+			err := check_api_status("PostRouterOspfArea", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetRouterOspfArea(id string, name1 string, name2 string, name3 string, host string) (*RouterOspfArea, error) {
@@ -123,6 +127,7 @@ func GetRouterOspfArea(id string, name1 string, name2 string, name3 string, host
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterOspfArea
@@ -132,14 +137,17 @@ func GetRouterOspfArea(id string, name1 string, name2 string, name3 string, host
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetRouterOspfArea", data)
+			err := check_api_status("GetRouterOspfArea", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutRouterOspfArea(id string, name1 string, name2 string, name3 string, inst RouterOspfArea, host string) {
+func PutRouterOspfArea(id string, name1 string, name2 string, name3 string, inst RouterOspfArea, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -158,6 +166,7 @@ func PutRouterOspfArea(id string, name1 string, name2 string, name3 string, inst
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -168,11 +177,14 @@ func PutRouterOspfArea(id string, name1 string, name2 string, name3 string, inst
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutRouterOspfArea", data)
+			err := check_api_status("PutRouterOspfArea", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteRouterOspfArea(id string, name1 string, name2 string, name3 string, host string) error {
@@ -190,6 +202,7 @@ func DeleteRouterOspfArea(id string, name1 string, name2 string, name3 string, h
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
+		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterOspfArea
@@ -199,7 +212,10 @@ func DeleteRouterOspfArea(id string, name1 string, name2 string, name3 string, h
 			return err
 		} else {
 			logger.Println("[INFO] Delete REQ RES..........................", m)
-			check_api_status("DeleteRouterOspfArea", data)
+			err := check_api_status("DeleteRouterOspfArea", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}

@@ -3,18 +3,21 @@ package thunder
 //Thunder resource Bgp
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"util"
 )
 
 func resourceBgp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceBgpCreate,
-		Update: resourceBgpUpdate,
-		Read:   resourceBgpRead,
-		Delete: resourceBgpDelete,
+		CreateContext: resourceBgpCreate,
+		UpdateContext: resourceBgpUpdate,
+		ReadContext:   resourceBgpRead,
+		DeleteContext: resourceBgpDelete,
 		Schema: map[string]*schema.Schema{
 			"extended_asn_cap": {
 				Type:        schema.TypeInt,
@@ -69,9 +72,11 @@ func resourceBgp() *schema.Resource {
 	}
 }
 
-func resourceBgpCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceBgpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating Bgp (Inside resourceBgpCreate) ")
@@ -79,39 +84,47 @@ func resourceBgpCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToBgp(d)
 		logger.Println("[INFO] received formatted data from method data to Bgp --")
 		d.SetId("1")
-		go_thunder.PostBgp(client.Token, data, client.Host)
+		err := go_thunder.PostBgp(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceBgpRead(d, meta)
+		return resourceBgpRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceBgpRead(d *schema.ResourceData, meta interface{}) error {
+func resourceBgpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading Bgp (Inside resourceBgpRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetBgp(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceBgpUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceBgpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceBgpRead(d, meta)
+	return resourceBgpRead(ctx, d, meta)
 }
 
-func resourceBgpDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceBgpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceBgpRead(d, meta)
+	return resourceBgpRead(ctx, d, meta)
 }
 func dataToBgp(d *schema.ResourceData) go_thunder.Bgp1 {
 	var vc go_thunder.Bgp1

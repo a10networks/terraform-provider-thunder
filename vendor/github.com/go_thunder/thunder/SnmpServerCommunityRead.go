@@ -47,7 +47,7 @@ type SnmpServerCommunityIpv6List struct {
 	Ipv6Mask int    `json:"ipv6-mask,omitempty"`
 }
 
-func PostSnmpServerCommunityRead(id string, inst SnmpServerCommunityRead, host string) {
+func PostSnmpServerCommunityRead(id string, inst SnmpServerCommunityRead, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -66,6 +66,7 @@ func PostSnmpServerCommunityRead(id string, inst SnmpServerCommunityRead, host s
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -76,11 +77,14 @@ func PostSnmpServerCommunityRead(id string, inst SnmpServerCommunityRead, host s
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerCommunityRead", data)
+			err := check_api_status("PostSnmpServerCommunityRead", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerCommunityRead(id string, name string, host string) (*SnmpServerCommunityRead, error) {
@@ -98,6 +102,7 @@ func GetSnmpServerCommunityRead(id string, name string, host string) (*SnmpServe
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerCommunityRead
@@ -107,14 +112,17 @@ func GetSnmpServerCommunityRead(id string, name string, host string) (*SnmpServe
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerCommunityRead", data)
+			err := check_api_status("GetSnmpServerCommunityRead", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSnmpServerCommunityRead(id string, name string, inst SnmpServerCommunityRead, host string) {
+func PutSnmpServerCommunityRead(id string, name string, inst SnmpServerCommunityRead, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -133,6 +141,7 @@ func PutSnmpServerCommunityRead(id string, name string, inst SnmpServerCommunity
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -143,11 +152,14 @@ func PutSnmpServerCommunityRead(id string, name string, inst SnmpServerCommunity
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutSnmpServerCommunityRead", data)
+			err := check_api_status("PutSnmpServerCommunityRead", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSnmpServerCommunityRead(id string, name string, host string) error {
@@ -164,6 +176,7 @@ func DeleteSnmpServerCommunityRead(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

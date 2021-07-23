@@ -47,13 +47,16 @@ func GetTcp(id string, name string, host string) (*TCP, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetTcp", data)
+			err := check_api_status("GetTcp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostTcp(id string, sg TCP, host string) {
+func PostTcp(id string, sg TCP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -83,13 +86,16 @@ func PostTcp(id string, sg TCP, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostTcp", data)
+			err := check_api_status("PostTcp", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
-func PutTcp(id string, name string, sg TCP, host string) {
+func PutTcp(id string, name string, sg TCP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -119,10 +125,13 @@ func PutTcp(id string, name string, sg TCP, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PutTcp", data)
+			err := check_api_status("PutTcp", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func DeleteTcp(id string, name string, host string) error {

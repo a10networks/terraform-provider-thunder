@@ -3,19 +3,21 @@ package thunder
 // Thunder resource Slb Common
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbCommon() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbCommonCreate,
-		Update: resourceSlbCommonUpdate,
-		Read:   resourceSlbCommonRead,
-		Delete: resourceSlbCommonDelete,
+		CreateContext: resourceSlbCommonCreate,
+		UpdateContext: resourceSlbCommonUpdate,
+		ReadContext:   resourceSlbCommonRead,
+		DeleteContext: resourceSlbCommonDelete,
 
 		Schema: map[string]*schema.Schema{
 			"auto_nat_no_ip_refresh": {
@@ -446,53 +448,61 @@ func resourceSlbCommon() *schema.Resource {
 
 }
 
-func resourceSlbCommonCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbCommonCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating common (Inside resourceSlbCommonCreate)")
 
 	if client.Host != "" {
 		vc := dataToSlbCommon(d)
 		d.SetId("1")
-		go_thunder.PostSlbCommon(client.Token, vc, client.Host)
-
-		return resourceSlbCommonRead(d, meta)
+		err := go_thunder.PostSlbCommon(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSlbCommonRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbCommonRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbCommonRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading common (Inside resourceSlbCommonRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbCommon(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No common found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbCommonUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbCommonUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbCommonRead(d, meta)
+	return resourceSlbCommonRead(ctx, d, meta)
 }
 
-func resourceSlbCommonDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbCommonDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbCommonRead(d, meta)
+	return resourceSlbCommonRead(ctx, d, meta)
 }
 
 //Utility method to instantiate Common Structure

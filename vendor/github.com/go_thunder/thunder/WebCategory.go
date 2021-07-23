@@ -188,7 +188,7 @@ type LessThan struct {
 	LessTrustworthy  int `json:"less-trustworthy,omitempty"`
 }
 
-func PostWebCategory(id string, inst WebCategorySelf, host string) {
+func PostWebCategory(id string, inst WebCategorySelf, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -207,6 +207,7 @@ func PostWebCategory(id string, inst WebCategorySelf, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -217,11 +218,14 @@ func PostWebCategory(id string, inst WebCategorySelf, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostWebCategory", data)
+			err := check_api_status("PostWebCategory", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetWebCategory(id string, host string) (*WebCategorySelf, error) {
@@ -239,6 +243,7 @@ func GetWebCategory(id string, host string) (*WebCategorySelf, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m WebCategorySelf
@@ -248,7 +253,10 @@ func GetWebCategory(id string, host string) (*WebCategorySelf, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetWebCategory", data)
+			err := check_api_status("GetWebCategory", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

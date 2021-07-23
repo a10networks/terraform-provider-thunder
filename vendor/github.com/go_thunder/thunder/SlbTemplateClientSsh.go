@@ -21,7 +21,7 @@ type ClientSSHInstance struct {
 	Name                string `json:"name,omitempty"`
 }
 
-func PostTemplateClientSsh(id string, inst ClientSSH, host string) {
+func PostTemplateClientSsh(id string, inst ClientSSH, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -40,6 +40,7 @@ func PostTemplateClientSsh(id string, inst ClientSSH, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -50,11 +51,14 @@ func PostTemplateClientSsh(id string, inst ClientSSH, host string) {
 
 		} else {
 			logger.Println("[INFO] PostTemplateClientSsh REQ RES..........................", m)
-			check_api_status("PostTemplateClientSsh", data)
+			err := check_api_status("PostTemplateClientSsh", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetTemplateClientSsh(id string, name string, host string) (*ClientSSH, error) {
@@ -72,6 +76,7 @@ func GetTemplateClientSsh(id string, name string, host string) (*ClientSSH, erro
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m ClientSSH
@@ -81,14 +86,17 @@ func GetTemplateClientSsh(id string, name string, host string) (*ClientSSH, erro
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetTemplateClientSsh REQ RES..........................", m)
-			check_api_status("GetTemplateClientSsh", data)
+			err := check_api_status("GetTemplateClientSsh", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutTemplateClientSsh(id string, name string, inst ClientSSH, host string) {
+func PutTemplateClientSsh(id string, name string, inst ClientSSH, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -107,6 +115,7 @@ func PutTemplateClientSsh(id string, name string, inst ClientSSH, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -117,11 +126,14 @@ func PutTemplateClientSsh(id string, name string, inst ClientSSH, host string) {
 
 		} else {
 			logger.Println("[INFO] PutTemplateClientSsh REQ RES..........................", m)
-			check_api_status("PutTemplateClientSsh", data)
+			err := check_api_status("PutTemplateClientSsh", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteTemplateClientSsh(id string, name string, host string) error {
@@ -138,6 +150,7 @@ func DeleteTemplateClientSsh(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

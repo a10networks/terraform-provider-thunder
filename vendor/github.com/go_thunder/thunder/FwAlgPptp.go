@@ -21,7 +21,7 @@ type FwAlgPptpSamplingEnable struct {
 	Counters1 string `json:"counters1,omitempty"`
 }
 
-func PostFwAlgPptp(id string, inst FwAlgPptp, host string) {
+func PostFwAlgPptp(id string, inst FwAlgPptp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -40,6 +40,7 @@ func PostFwAlgPptp(id string, inst FwAlgPptp, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -50,11 +51,14 @@ func PostFwAlgPptp(id string, inst FwAlgPptp, host string) {
 
 		} else {
 			logger.Println("[INFO] POST REQ RES..........................", m)
-			check_api_status("PostFwAlgPptp", data)
+			err := check_api_status("PostFwAlgPptp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwAlgPptp(id string, host string) (*FwAlgPptp, error) {
@@ -72,6 +76,7 @@ func GetFwAlgPptp(id string, host string) (*FwAlgPptp, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwAlgPptp
@@ -81,7 +86,10 @@ func GetFwAlgPptp(id string, host string) (*FwAlgPptp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwAlgPptp", data)
+			err := check_api_status("GetFwAlgPptp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

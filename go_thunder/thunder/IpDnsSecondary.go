@@ -16,7 +16,7 @@ type DnsSecondaryInstance struct {
 	UUID     string `json:"uuid,omitempty"`
 }
 
-func PostIpDnsSecondary(id string, inst DnsSecondary, host string) {
+func PostIpDnsSecondary(id string, inst DnsSecondary, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostIpDnsSecondary(id string, inst DnsSecondary, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostIpDnsSecondary(id string, inst DnsSecondary, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpDnsSecondary REQ RES..........................", m)
-			check_api_status("PostIpDnsSecondary", data)
+			err := check_api_status("PostIpDnsSecondary", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpDnsSecondary(id string, host string) (*DnsSecondary, error) {
@@ -67,6 +71,7 @@ func GetIpDnsSecondary(id string, host string) (*DnsSecondary, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m DnsSecondary
@@ -76,7 +81,10 @@ func GetIpDnsSecondary(id string, host string) (*DnsSecondary, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIpDnsSecondary REQ RES..........................", m)
-			check_api_status("GetIpDnsSecondary", data)
+			err := check_api_status("GetIpDnsSecondary", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

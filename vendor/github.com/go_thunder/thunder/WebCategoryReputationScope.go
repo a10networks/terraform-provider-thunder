@@ -42,7 +42,7 @@ type WebCategoryScopeSamplingEnable struct {
 	Counters1 string `json:"counters1,omitempty"`
 }
 
-func PostWebCategoryReputationScope(id string, inst WebCategoryReputationScope, host string) {
+func PostWebCategoryReputationScope(id string, inst WebCategoryReputationScope, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -61,6 +61,7 @@ func PostWebCategoryReputationScope(id string, inst WebCategoryReputationScope, 
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -71,11 +72,14 @@ func PostWebCategoryReputationScope(id string, inst WebCategoryReputationScope, 
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostWebCategoryReputationScope", data)
+			err := check_api_status("PostWebCategoryReputationScope", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetWebCategoryReputationScope(id string, name1 string, host string) (*WebCategoryReputationScope, error) {
@@ -93,6 +97,7 @@ func GetWebCategoryReputationScope(id string, name1 string, host string) (*WebCa
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m WebCategoryReputationScope
@@ -102,14 +107,17 @@ func GetWebCategoryReputationScope(id string, name1 string, host string) (*WebCa
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetWebCategoryReputationScope", data)
+			err := check_api_status("GetWebCategoryReputationScope", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutWebCategoryReputationScope(id string, name1 string, inst WebCategoryReputationScope, host string) {
+func PutWebCategoryReputationScope(id string, name1 string, inst WebCategoryReputationScope, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -128,6 +136,7 @@ func PutWebCategoryReputationScope(id string, name1 string, inst WebCategoryRepu
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -138,11 +147,14 @@ func PutWebCategoryReputationScope(id string, name1 string, inst WebCategoryRepu
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutWebCategoryReputationScope", data)
+			err := check_api_status("PutWebCategoryReputationScope", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteWebCategoryReputationScope(id string, name1 string, host string) error {
@@ -160,6 +172,7 @@ func DeleteWebCategoryReputationScope(id string, name1 string, host string) erro
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
+		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m WebCategoryReputationScope
@@ -169,7 +182,10 @@ func DeleteWebCategoryReputationScope(id string, name1 string, host string) erro
 			return err
 		} else {
 			logger.Println("[INFO] Delete REQ RES..........................", m)
-			check_api_status("DeleteWebCategoryReputationScope", data)
+			err := check_api_status("DeleteWebCategoryReputationScope", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}

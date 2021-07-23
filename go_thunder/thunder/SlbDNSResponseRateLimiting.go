@@ -45,13 +45,16 @@ func GetSlbDNSResponseRateLimiting(id string, host string) (*SlbDNSResponseRateL
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetSlbDNSResponseRateLimiting REQ RES..........................", m)
-			check_api_status("GetSlbDNSResponseRateLimiting", data)
+			err := check_api_status("GetSlbDNSResponseRateLimiting", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbDNSResponseRateLimiting(id string, vc SlbDNSResponseRateLimiting, host string) {
+func PostSlbDNSResponseRateLimiting(id string, vc SlbDNSResponseRateLimiting, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -81,8 +84,11 @@ func PostSlbDNSResponseRateLimiting(id string, vc SlbDNSResponseRateLimiting, ho
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbDNSResponseRateLimiting", data)
+			err := check_api_status("PostSlbDNSResponseRateLimiting", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

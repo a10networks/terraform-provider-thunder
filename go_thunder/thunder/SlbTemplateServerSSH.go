@@ -21,7 +21,7 @@ type ServerSSHInstance struct {
 	UUID               string            `json:"uuid,omitempty"`
 }
 
-func PostSlbTemplateServerSSH(id string, inst ServerSSH, host string) {
+func PostSlbTemplateServerSSH(id string, inst ServerSSH, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -40,6 +40,7 @@ func PostSlbTemplateServerSSH(id string, inst ServerSSH, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -50,11 +51,14 @@ func PostSlbTemplateServerSSH(id string, inst ServerSSH, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbTemplateServerSSH REQ RES..........................", m)
-			check_api_status("PostSlbTemplateServerSSH", data)
+			err := check_api_status("PostSlbTemplateServerSSH", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbTemplateServerSSH(id string, name string, host string) (*ServerSSH, error) {
@@ -72,6 +76,7 @@ func GetSlbTemplateServerSSH(id string, name string, host string) (*ServerSSH, e
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m ServerSSH
@@ -81,14 +86,17 @@ func GetSlbTemplateServerSSH(id string, name string, host string) (*ServerSSH, e
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbTemplateServerSSH REQ RES..........................", m)
-			check_api_status("GetSlbTemplateServerSSH", data)
+			err := check_api_status("GetSlbTemplateServerSSH", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutSlbTemplateServerSSH(id string, name string, inst ServerSSH, host string) {
+func PutSlbTemplateServerSSH(id string, name string, inst ServerSSH, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -107,6 +115,7 @@ func PutSlbTemplateServerSSH(id string, name string, inst ServerSSH, host string
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -117,11 +126,14 @@ func PutSlbTemplateServerSSH(id string, name string, inst ServerSSH, host string
 
 		} else {
 			logger.Println("[INFO] PutSlbTemplateServerSSH REQ RES..........................", m)
-			check_api_status("PutSlbTemplateServerSSH", data)
+			err := check_api_status("PutSlbTemplateServerSSH", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteSlbTemplateServerSSH(id string, name string, host string) error {
@@ -138,6 +150,7 @@ func DeleteSlbTemplateServerSSH(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

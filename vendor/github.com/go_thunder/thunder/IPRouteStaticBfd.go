@@ -16,7 +16,7 @@ type IPBfd struct {
 	UUID      string `json:"uuid"`
 }
 
-func PostIPRouteStaticBfd(id string, name string, inst RouteStaticBfd, host string) {
+func PostIPRouteStaticBfd(id string, name string, inst RouteStaticBfd, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostIPRouteStaticBfd(id string, name string, inst RouteStaticBfd, host stri
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostIPRouteStaticBfd(id string, name string, inst RouteStaticBfd, host stri
 
 		} else {
 			logger.Println("[INFO] PostIPRouteStaticBfd REQ RES..........................", m)
-			check_api_status("PostIPRouteStaticBfd", data)
+			err := check_api_status("PostIPRouteStaticBfd", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIPRouteStaticBfd(id string, name string, host string) (*RouteStaticBfd, error) {
@@ -67,6 +71,7 @@ func GetIPRouteStaticBfd(id string, name string, host string) (*RouteStaticBfd, 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouteStaticBfd
@@ -76,14 +81,17 @@ func GetIPRouteStaticBfd(id string, name string, host string) (*RouteStaticBfd, 
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetIPRouteStaticBfd REQ RES..........................", m)
-			check_api_status("GetIPRouteStaticBfd", data)
+			err := check_api_status("GetIPRouteStaticBfd", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutIPRouteStaticBfd(id string, name string, inst RouteStaticBfd, host string) {
+func PutIPRouteStaticBfd(id string, name string, inst RouteStaticBfd, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -102,6 +110,7 @@ func PutIPRouteStaticBfd(id string, name string, inst RouteStaticBfd, host strin
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -112,11 +121,14 @@ func PutIPRouteStaticBfd(id string, name string, inst RouteStaticBfd, host strin
 
 		} else {
 			logger.Println("[INFO] PutIPRouteStaticBfd REQ RES..........................", m)
-			check_api_status("PutIPRouteStaticBfd", data)
+			err := check_api_status("PutIPRouteStaticBfd", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteIPRouteStaticBfd(id string, name string, host string) error {
@@ -133,6 +145,7 @@ func DeleteIPRouteStaticBfd(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

@@ -16,7 +16,7 @@ type FwAlgDNSInstance struct {
 	UUID               string `json:"uuid,omitempty"`
 }
 
-func PostFwAlgDns(id string, inst FwAlgDns, host string) {
+func PostFwAlgDns(id string, inst FwAlgDns, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,6 +35,7 @@ func PostFwAlgDns(id string, inst FwAlgDns, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -45,11 +46,14 @@ func PostFwAlgDns(id string, inst FwAlgDns, host string) {
 
 		} else {
 			logger.Println("[INFO] POST REQ RES..........................", m)
-			check_api_status("PostFwAlgDns", data)
+			err := check_api_status("PostFwAlgDns", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwAlgDns(id string, host string) (*FwAlgDns, error) {
@@ -67,6 +71,7 @@ func GetFwAlgDns(id string, host string) (*FwAlgDns, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwAlgDns
@@ -76,7 +81,10 @@ func GetFwAlgDns(id string, host string) (*FwAlgDns, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwAlgDns", data)
+			err := check_api_status("GetFwAlgDns", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

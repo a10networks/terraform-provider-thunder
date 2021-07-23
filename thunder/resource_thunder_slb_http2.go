@@ -3,19 +3,21 @@ package thunder
 // Thunder resource Slb HTTP2
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbHTTP2() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbHTTP2Create,
-		Update: resourceSlbHTTP2Update,
-		Read:   resourceSlbHTTP2Read,
-		Delete: resourceSlbHTTP2Delete,
+		CreateContext: resourceSlbHTTP2Create,
+		UpdateContext: resourceSlbHTTP2Update,
+		ReadContext:   resourceSlbHTTP2Read,
+		DeleteContext: resourceSlbHTTP2Delete,
 
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
@@ -41,53 +43,61 @@ func resourceSlbHTTP2() *schema.Resource {
 
 }
 
-func resourceSlbHTTP2Create(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbHTTP2Create(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating HTTP2 (Inside resourceSlbHTTP2Create)")
 
 	if client.Host != "" {
 		vc := dataToSlbHTTP2(d)
 		d.SetId("1")
-		go_thunder.PostSlbHTTP2(client.Token, vc, client.Host)
-
-		return resourceSlbHTTP2Read(d, meta)
+		err := go_thunder.PostSlbHTTP2(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSlbHTTP2Read(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbHTTP2Read(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbHTTP2Read(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading HTTP2 (Inside resourceSlbHTTP2Read)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbHTTP2(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No HTTP2 found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbHTTP2Update(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbHTTP2Update(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbHTTP2Read(d, meta)
+	return resourceSlbHTTP2Read(ctx, d, meta)
 }
 
-func resourceSlbHTTP2Delete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbHTTP2Delete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbHTTP2Read(d, meta)
+	return resourceSlbHTTP2Read(ctx, d, meta)
 }
 
 //Utility method to instantiate HTTP2 Structure

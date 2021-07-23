@@ -85,7 +85,7 @@ type FwTemplateLoggingDestPort struct {
 	IncludeByteCount int `json:"include-byte-count,omitempty"`
 }
 
-func PostFwTemplateLogging(id string, inst FwTemplateLogging, host string) {
+func PostFwTemplateLogging(id string, inst FwTemplateLogging, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -104,6 +104,7 @@ func PostFwTemplateLogging(id string, inst FwTemplateLogging, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -114,11 +115,14 @@ func PostFwTemplateLogging(id string, inst FwTemplateLogging, host string) {
 
 		} else {
 			logger.Println("[INFO] PostFwTemplateLogging REQ RES..........................", m)
-			check_api_status("PostFwTemplateLogging", data)
+			err := check_api_status("PostFwTemplateLogging", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwTemplateLogging(id string, name string, host string) (*FwTemplateLogging, error) {
@@ -136,6 +140,7 @@ func GetFwTemplateLogging(id string, name string, host string) (*FwTemplateLoggi
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwTemplateLogging
@@ -145,7 +150,10 @@ func GetFwTemplateLogging(id string, name string, host string) (*FwTemplateLoggi
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetFwTemplateLogging REQ RES..........................", m)
-			check_api_status("GetFwTemplateLogging", data)
+			err := check_api_status("GetFwTemplateLogging", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

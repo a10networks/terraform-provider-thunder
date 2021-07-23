@@ -3,20 +3,22 @@ package thunder
 //Thunder resource TemplateFix
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceTemplateFix() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceTemplateFixCreate,
-		Update: resourceTemplateFixUpdate,
-		Read:   resourceTemplateFixRead,
-		Delete: resourceTemplateFixDelete,
+		CreateContext: resourceTemplateFixCreate,
+		UpdateContext: resourceTemplateFixUpdate,
+		ReadContext:   resourceTemplateFixRead,
+		DeleteContext: resourceTemplateFixDelete,
 		Schema: map[string]*schema.Schema{
 			"insert_client_ip": {
 				Type:        schema.TypeInt,
@@ -70,9 +72,11 @@ func resourceTemplateFix() *schema.Resource {
 	}
 }
 
-func resourceTemplateFixCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateFixCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating TemplateFix (Inside resourceTemplateFixCreate) ")
@@ -80,36 +84,46 @@ func resourceTemplateFixCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToTemplateFix(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateFix --")
 		d.SetId(name)
-		go_thunder.PostTemplateFix(client.Token, data, client.Host)
+		err := go_thunder.PostTemplateFix(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateFixRead(d, meta)
+		return resourceTemplateFixRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateFixRead(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateFixRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading TemplateFix (Inside resourceTemplateFixRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetTemplateFix(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceTemplateFixUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateFixUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying TemplateFix   (Inside resourceTemplateFixUpdate) ")
@@ -117,17 +131,22 @@ func resourceTemplateFixUpdate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToTemplateFix(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateFix ")
 		d.SetId(name)
-		go_thunder.PutTemplateFix(client.Token, name, data, client.Host)
+		err := go_thunder.PutTemplateFix(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateFixRead(d, meta)
+		return resourceTemplateFixRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateFixDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateFixDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -135,7 +154,7 @@ func resourceTemplateFixDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteTemplateFix(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

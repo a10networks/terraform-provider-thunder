@@ -45,13 +45,16 @@ func GetSlbFTPData(id string, host string) (*FTPData, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetSlbFTPData", data)
+			err := check_api_status("GetSlbFTPData", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostSlbFTPData(id string, vc FTPData, host string) {
+func PostSlbFTPData(id string, vc FTPData, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -81,8 +84,11 @@ func PostSlbFTPData(id string, vc FTPData, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostSlbFTPData", data)
+			err := check_api_status("PostSlbFTPData", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

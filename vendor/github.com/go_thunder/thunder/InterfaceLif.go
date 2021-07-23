@@ -381,7 +381,7 @@ type InterfaceAreaList struct {
 	Tag        string `json:"tag,omitempty"`
 }
 
-func PostInterfaceLif(id string, inst InterfaceLif, host string) {
+func PostInterfaceLif(id string, inst InterfaceLif, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -400,6 +400,7 @@ func PostInterfaceLif(id string, inst InterfaceLif, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -410,11 +411,14 @@ func PostInterfaceLif(id string, inst InterfaceLif, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostInterfaceLif", data)
+			err := check_api_status("PostInterfaceLif", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetInterfaceLif(id string, name1 string, host string) (*InterfaceLif, error) {
@@ -432,6 +436,7 @@ func GetInterfaceLif(id string, name1 string, host string) (*InterfaceLif, error
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceLif
@@ -441,14 +446,17 @@ func GetInterfaceLif(id string, name1 string, host string) (*InterfaceLif, error
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetInterfaceLif", data)
+			err := check_api_status("GetInterfaceLif", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutInterfaceLif(id string, name1 string, inst InterfaceLif, host string) {
+func PutInterfaceLif(id string, name1 string, inst InterfaceLif, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -467,6 +475,7 @@ func PutInterfaceLif(id string, name1 string, inst InterfaceLif, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -477,11 +486,14 @@ func PutInterfaceLif(id string, name1 string, inst InterfaceLif, host string) {
 
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
-			check_api_status("PutInterfaceLif", data)
+			err := check_api_status("PutInterfaceLif", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteInterfaceLif(id string, name1 string, host string) error {
@@ -499,6 +511,7 @@ func DeleteInterfaceLif(id string, name1 string, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
+		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceLif
@@ -508,7 +521,10 @@ func DeleteInterfaceLif(id string, name1 string, host string) error {
 			return err
 		} else {
 			logger.Println("[INFO] Delete REQ RES..........................", m)
-			check_api_status("DeleteInterfaceLif", data)
+			err := check_api_status("DeleteInterfaceLif", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}

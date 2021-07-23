@@ -152,7 +152,7 @@ type VeIPv6Instance struct {
 	MaxInterval VeIPv6RouterAdver      `json:"router-adver,omitempty"`
 }
 
-func PostInterfaceVeIPv6(id string, name int, inst VeIPv6, host string) {
+func PostInterfaceVeIPv6(id string, name int, inst VeIPv6, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -171,6 +171,7 @@ func PostInterfaceVeIPv6(id string, name int, inst VeIPv6, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -181,11 +182,14 @@ func PostInterfaceVeIPv6(id string, name int, inst VeIPv6, host string) {
 
 		} else {
 			logger.Println("[INFO] PostInterfaceVeIPv6 REQ RES..........................", m)
-			check_api_status("PostInterfaceVeIPv6", data)
+			err := check_api_status("PostInterfaceVeIPv6", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetInterfaceVeIPv6(id string, name string, host string) (*VeIPv6, error) {
@@ -203,6 +207,7 @@ func GetInterfaceVeIPv6(id string, name string, host string) (*VeIPv6, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m VeIPv6
@@ -212,7 +217,10 @@ func GetInterfaceVeIPv6(id string, name string, host string) (*VeIPv6, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetInterfaceVeIPv6 REQ RES..........................", m)
-			check_api_status("GetInterfaceVeIPv6", data)
+			err := check_api_status("GetInterfaceVeIPv6", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

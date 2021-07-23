@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbSmpp
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbSmpp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbSmppCreate,
-		Update: resourceSlbSmppUpdate,
-		Read:   resourceSlbSmppRead,
-		Delete: resourceSlbSmppDelete,
+		CreateContext: resourceSlbSmppCreate,
+		UpdateContext: resourceSlbSmppUpdate,
+		ReadContext:   resourceSlbSmppRead,
+		DeleteContext: resourceSlbSmppDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbSmpp() *schema.Resource {
 	}
 }
 
-func resourceSlbSmppCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSmppCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbSmpp (Inside resourceSlbSmppCreate) ")
@@ -44,39 +48,47 @@ func resourceSlbSmppCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSlbSmpp(d)
 		logger.Println("[INFO] received formatted data from method data to SlbSmpp --")
 		d.SetId("1")
-		go_thunder.PostSlbSmpp(client.Token, data, client.Host)
+		err := go_thunder.PostSlbSmpp(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbSmppRead(d, meta)
+		return resourceSlbSmppRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbSmppRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSmppRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbSmpp (Inside resourceSlbSmppRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbSmpp(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbSmppUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSmppUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSmppRead(d, meta)
+	return resourceSlbSmppRead(ctx, d, meta)
 }
 
-func resourceSlbSmppDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSmppDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSmppRead(d, meta)
+	return resourceSlbSmppRead(ctx, d, meta)
 }
 
 func dataToSlbSmpp(d *schema.ResourceData) go_thunder.SlbSmpp {

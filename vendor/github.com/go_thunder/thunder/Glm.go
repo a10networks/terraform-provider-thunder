@@ -61,13 +61,16 @@ func GetGlm(id string, host string) (*Glm, error) {
 		} else {
 			fmt.Print(m)
 			logger.Println("[INFO] GetGlm REQ RES..........................", m)
-			check_api_status("GetGlm", data)
+			err := check_api_status("GetGlm", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostGlm(id string, vc Glm, host string) {
+func PostGlm(id string, vc Glm, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -97,8 +100,11 @@ func PostGlm(id string, vc Glm, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PostGlm", data)
+			err := check_api_status("PostGlm", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }

@@ -3,18 +3,21 @@ package thunder
 //Thunder resource Partition
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
 func resourcePartition() *schema.Resource {
 	return &schema.Resource{
-		Create: resourcePartitionCreate,
-		Update: resourcePartitionUpdate,
-		Read:   resourcePartitionRead,
-		Delete: resourcePartitionDelete,
+		CreateContext: resourcePartitionCreate,
+		UpdateContext: resourcePartitionUpdate,
+		ReadContext:   resourcePartitionRead,
+		DeleteContext: resourcePartitionDelete,
 		Schema: map[string]*schema.Schema{
 			"partition_name": {
 				Type:         schema.TypeString,
@@ -94,9 +97,11 @@ func resourcePartition() *schema.Resource {
 	}
 }
 
-func resourcePartitionCreate(d *schema.ResourceData, meta interface{}) error {
+func resourcePartitionCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating Partition (Inside resourcePartitionCreate) ")
@@ -104,40 +109,50 @@ func resourcePartitionCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToPartition(d)
 		logger.Println("[INFO] received formatted data from method data to Partition --")
 		d.SetId(name1)
-		go_thunder.PostPartition(client.Token, data, client.Host)
+		err := go_thunder.PostPartition(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourcePartitionRead(d, meta)
+		return resourcePartitionRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourcePartitionRead(d *schema.ResourceData, meta interface{}) error {
+func resourcePartitionRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading Partition (Inside resourcePartitionRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetPartition(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourcePartitionUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourcePartitionUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourcePartitionRead(d, meta)
+	return resourcePartitionRead(ctx, d, meta)
 }
 
-func resourcePartitionDelete(d *schema.ResourceData, meta interface{}) error {
+func resourcePartitionDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -145,11 +160,11 @@ func resourcePartitionDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeletePartition(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToPartition(d *schema.ResourceData) go_thunder.Partition {

@@ -19,7 +19,7 @@ type NatAlgPptpInstance struct {
 	UUID      string             `json:"uuid,omitempty"`
 }
 
-func PostIpNatAlgPptp(id string, inst NatAlgPptp, host string) {
+func PostIpNatAlgPptp(id string, inst NatAlgPptp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -38,6 +38,7 @@ func PostIpNatAlgPptp(id string, inst NatAlgPptp, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -48,11 +49,14 @@ func PostIpNatAlgPptp(id string, inst NatAlgPptp, host string) {
 
 		} else {
 			logger.Println("[INFO] PostIpNatAlgPptp REQ RES..........................", m)
-			check_api_status("PostIpNatAlgPptp", data)
+			err := check_api_status("PostIpNatAlgPptp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetIpNatAlgPptp(id string, host string) (*NatAlgPptp, error) {
@@ -70,6 +74,7 @@ func GetIpNatAlgPptp(id string, host string) (*NatAlgPptp, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m NatAlgPptp
@@ -79,7 +84,10 @@ func GetIpNatAlgPptp(id string, host string) (*NatAlgPptp, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetIpNatAlgPptp", data)
+			err := check_api_status("GetIpNatAlgPptp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

@@ -3,17 +3,20 @@ package thunder
 //Thunder resource Hostname
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceHostname() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceHostnameCreate,
-		Update: resourceHostnameUpdate,
-		Read:   resourceHostnameRead,
-		Delete: resourceHostnameDelete,
+		CreateContext: resourceHostnameCreate,
+		UpdateContext: resourceHostnameUpdate,
+		ReadContext:   resourceHostnameRead,
+		DeleteContext: resourceHostnameDelete,
 		Schema: map[string]*schema.Schema{
 			"uuid": {
 				Type:        schema.TypeString,
@@ -29,9 +32,11 @@ func resourceHostname() *schema.Resource {
 	}
 }
 
-func resourceHostnameCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceHostnameCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating Hostname (Inside resourceHostnameCreate) ")
@@ -39,39 +44,47 @@ func resourceHostnameCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToHostname(d)
 		logger.Println("[INFO] received formatted data from method data to Hostname --")
 		d.SetId("1")
-		go_thunder.PostHostname(client.Token, data, client.Host)
+		err := go_thunder.PostHostname(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceHostnameRead(d, meta)
+		return resourceHostnameRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceHostnameRead(d *schema.ResourceData, meta interface{}) error {
+func resourceHostnameRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading Hostname (Inside resourceHostnameRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read hostname")
 		data, err := go_thunder.GetHostname(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found hostname ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceHostnameUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceHostnameUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceHostnameRead(d, meta)
+	return resourceHostnameRead(ctx, d, meta)
 }
 
-func resourceHostnameDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceHostnameDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceHostnameRead(d, meta)
+	return resourceHostnameRead(ctx, d, meta)
 }
 func dataToHostname(d *schema.ResourceData) go_thunder.Hostname {
 	var vc go_thunder.Hostname

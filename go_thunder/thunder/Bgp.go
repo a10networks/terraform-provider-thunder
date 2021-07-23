@@ -22,7 +22,7 @@ type NexthopTrigger struct {
 	Enable int `json:"enable,omitempty"`
 }
 
-func PostBgp(id string, inst Bgp1, host string) {
+func PostBgp(id string, inst Bgp1, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -41,6 +41,7 @@ func PostBgp(id string, inst Bgp1, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -51,11 +52,14 @@ func PostBgp(id string, inst Bgp1, host string) {
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostBgp", data)
+			err := check_api_status("PostBgp", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetBgp(id string, host string) (*Bgp1, error) {
@@ -73,6 +77,7 @@ func GetBgp(id string, host string) (*Bgp1, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Bgp1
@@ -82,7 +87,10 @@ func GetBgp(id string, host string) (*Bgp1, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetBgp", data)
+			err := check_api_status("GetBgp", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

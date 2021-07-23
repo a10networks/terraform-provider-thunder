@@ -253,13 +253,16 @@ func GetVS(id string, name string, host string) (*VirtalServerInstanceMain, erro
 		} else {
 
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetVS", data)
+			err := check_api_status("GetVS", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 }
 
-func PostVS(id string, vs VirtalServerInstanceMain, host string) {
+func PostVS(id string, vs VirtalServerInstanceMain, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -290,14 +293,17 @@ func PostVS(id string, vs VirtalServerInstanceMain, host string) {
 		if erro != nil {
 			logger.Println("Unmarshal error %s\n", err)
 		} else {
-			check_api_status("PostVS", data)
+			err := check_api_status("PostVS", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
-func PutVS(id string, name string, vs VirtalServerInstanceMain, host string) {
+func PutVS(id string, name string, vs VirtalServerInstanceMain, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -329,10 +335,13 @@ func PutVS(id string, name string, vs VirtalServerInstanceMain, host string) {
 		} else {
 			fmt.Println("response Body:", string(data))
 			logger.Println("response Body:", string(data))
-			check_api_status("PutVS", data)
+			err := check_api_status("PutVS", data)
+			if err != nil {
+				return err
+			}
 		}
 	}
-
+return err
 }
 
 func DeleteVS(id string, name string, host string) error {

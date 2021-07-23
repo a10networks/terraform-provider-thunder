@@ -3,18 +3,21 @@ package thunder
 //Thunder resource RouterBgpRedistribute
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceRouterBgpRedistribute() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceRouterBgpRedistributeCreate,
-		Update: resourceRouterBgpRedistributeUpdate,
-		Read:   resourceRouterBgpRedistributeRead,
-		Delete: resourceRouterBgpRedistributeDelete,
+		CreateContext: resourceRouterBgpRedistributeCreate,
+		UpdateContext: resourceRouterBgpRedistributeUpdate,
+		ReadContext:   resourceRouterBgpRedistributeRead,
+		DeleteContext: resourceRouterBgpRedistributeDelete,
 		Schema: map[string]*schema.Schema{
 			"connected_cfg": {
 				Type:     schema.TypeList,
@@ -301,9 +304,11 @@ func resourceRouterBgpRedistribute() *schema.Resource {
 	}
 }
 
-func resourceRouterBgpRedistributeCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpRedistributeCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RouterBgpRedistribute (Inside resourceRouterBgpRedistributeCreate) ")
@@ -312,40 +317,48 @@ func resourceRouterBgpRedistributeCreate(d *schema.ResourceData, meta interface{
 		data := dataToRouterBgpRedistribute(d)
 		logger.Println("[INFO] received formatted data from method data to RouterBgpRedistribute --")
 		d.SetId(strconv.Itoa(name1))
-		go_thunder.PostRouterBgpRedistribute(client.Token, name, data, client.Host)
+		err := go_thunder.PostRouterBgpRedistribute(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouterBgpRedistributeRead(d, meta)
+		return resourceRouterBgpRedistributeRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouterBgpRedistributeRead(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpRedistributeRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading RouterBgpRedistribute (Inside resourceRouterBgpRedistributeRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetRouterBgpRedistribute(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceRouterBgpRedistributeUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpRedistributeUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceRouterBgpRedistributeRead(d, meta)
+	return resourceRouterBgpRedistributeRead(ctx, d, meta)
 }
 
-func resourceRouterBgpRedistributeDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterBgpRedistributeDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceRouterBgpRedistributeRead(d, meta)
+	return resourceRouterBgpRedistributeRead(ctx, d, meta)
 }
 func dataToRouterBgpRedistribute(d *schema.ResourceData) go_thunder.RouterBgpRedistribute {
 	var vc go_thunder.RouterBgpRedistribute

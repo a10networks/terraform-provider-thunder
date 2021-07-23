@@ -15,7 +15,7 @@ type FwStatusInstance struct {
 	UUID string `json:"uuid,omitempty"`
 }
 
-func PostFwStatus(id string, inst FwStatus, host string) {
+func PostFwStatus(id string, inst FwStatus, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -34,6 +34,7 @@ func PostFwStatus(id string, inst FwStatus, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -44,11 +45,14 @@ func PostFwStatus(id string, inst FwStatus, host string) {
 
 		} else {
 			logger.Println("[INFO] PostFwStatus REQ RES..........................", m)
-			check_api_status("PostFwStatus", data)
+			err := check_api_status("PostFwStatus", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwStatus(id string, host string) (*FwStatus, error) {
@@ -66,6 +70,7 @@ func GetFwStatus(id string, host string) (*FwStatus, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwStatus
@@ -75,7 +80,10 @@ func GetFwStatus(id string, host string) (*FwStatus, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwStatus", data)
+			err := check_api_status("GetFwStatus", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

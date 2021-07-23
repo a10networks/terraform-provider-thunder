@@ -17,7 +17,7 @@ type IcapHTTPInstance struct {
 	Counters1 []SamplingEnable40 `json:"sampling-enable,omitempty"`
 }
 
-func PostSlbIcapHTTP(id string, inst IcapHTTP, host string) {
+func PostSlbIcapHTTP(id string, inst IcapHTTP, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -36,6 +36,7 @@ func PostSlbIcapHTTP(id string, inst IcapHTTP, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -46,11 +47,14 @@ func PostSlbIcapHTTP(id string, inst IcapHTTP, host string) {
 
 		} else {
 			logger.Println("[INFO] PostSlbIcapHTTP REQ RES..........................", m)
-			check_api_status("PostSlbIcapHTTP", data)
+			err := check_api_status("PostSlbIcapHTTP", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSlbIcapHTTP(id string, host string) (*IcapHTTP, error) {
@@ -68,6 +72,7 @@ func GetSlbIcapHTTP(id string, host string) (*IcapHTTP, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m IcapHTTP
@@ -77,7 +82,10 @@ func GetSlbIcapHTTP(id string, host string) (*IcapHTTP, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GetSlbIcapHTTP REQ RES..........................", m)
-			check_api_status("GetSlbIcapHTTP", data)
+			err := check_api_status("GetSlbIcapHTTP", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

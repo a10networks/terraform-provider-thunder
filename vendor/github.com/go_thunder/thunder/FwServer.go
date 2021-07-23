@@ -41,7 +41,7 @@ type FwServerSamplingEnable struct {
 	Counters1 string `json:"counters1,omitempty"`
 }
 
-func PostFwServer(id string, inst FwServer, host string) {
+func PostFwServer(id string, inst FwServer, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -60,6 +60,7 @@ func PostFwServer(id string, inst FwServer, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -70,11 +71,14 @@ func PostFwServer(id string, inst FwServer, host string) {
 
 		} else {
 			logger.Println("[INFO] POST REQ RES..........................", m)
-			check_api_status("PostFwServer", data)
+			err := check_api_status("PostFwServer", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetFwServer(id string, name string, host string) (*FwServer, error) {
@@ -92,6 +96,7 @@ func GetFwServer(id string, name string, host string) (*FwServer, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwServer
@@ -101,14 +106,17 @@ func GetFwServer(id string, name string, host string) (*FwServer, error) {
 			return nil, err
 		} else {
 			logger.Println("[INFO] GET REQ RES..........................", m)
-			check_api_status("GetFwServer", data)
+			err := check_api_status("GetFwServer", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}
 
 }
 
-func PutFwServer(id string, name string, inst FwServer, host string) {
+func PutFwServer(id string, name string, inst FwServer, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -127,6 +135,7 @@ func PutFwServer(id string, name string, inst FwServer, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -137,11 +146,14 @@ func PutFwServer(id string, name string, inst FwServer, host string) {
 
 		} else {
 			logger.Println("[INFO] PUT REQ RES..........................", m)
-			check_api_status("PutFwServer", data)
+			err := check_api_status("PutFwServer", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func DeleteFwServer(id string, name string, host string) error {
@@ -158,6 +170,7 @@ func DeleteFwServer(id string, name string, host string) error {
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)

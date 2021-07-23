@@ -3,19 +3,21 @@ package thunder
 // Thunder resource Slb FastHttpProxy
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbFastHttpProxy() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbFastHttpProxyCreate,
-		Update: resourceSlbFastHttpProxyUpdate,
-		Read:   resourceSlbFastHttpProxyRead,
-		Delete: resourceSlbFastHttpProxyDelete,
+		CreateContext: resourceSlbFastHttpProxyCreate,
+		UpdateContext: resourceSlbFastHttpProxyUpdate,
+		ReadContext:   resourceSlbFastHttpProxyRead,
+		DeleteContext: resourceSlbFastHttpProxyDelete,
 
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
@@ -46,53 +48,61 @@ func resourceSlbFastHttpProxy() *schema.Resource {
 
 }
 
-func resourceSlbFastHttpProxyCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbFastHttpProxyCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating fast-http-proxy (Inside resourceSlbFastHttpProxyCreate)")
 
 	if client.Host != "" {
 		vc := dataToSlbFastHttpProxy(d)
 		d.SetId("1")
-		go_thunder.PostSlbFastHttpProxy(client.Token, vc, client.Host)
-
-		return resourceSlbFastHttpProxyRead(d, meta)
+		err := go_thunder.PostSlbFastHttpProxy(client.Token, vc, client.Host)
+if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSlbFastHttpProxyRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbFastHttpProxyRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbFastHttpProxyRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading fast-http-proxy (Inside resourceSlbFastHttpProxyRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbFastHttpProxy(client.Token, client.Host)
-
+if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No fast-http-proxy found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbFastHttpProxyUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbFastHttpProxyUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbFastHttpProxyRead(d, meta)
+	return resourceSlbFastHttpProxyRead(ctx, d, meta)
 }
 
-func resourceSlbFastHttpProxyDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbFastHttpProxyDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbFastHttpProxyRead(d, meta)
+	return resourceSlbFastHttpProxyRead(ctx, d, meta)
 }
 
 //Utility method to instantiate FastHttpProxy Structure

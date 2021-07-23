@@ -20,7 +20,7 @@ type SnmpServerEnableTrapsGslbInstance struct {
 	Zone      int    `json:"zone,omitempty"`
 }
 
-func PostSnmpServerEnableTrapsGslb(id string, inst SnmpServerEnableTrapsGslb, host string) {
+func PostSnmpServerEnableTrapsGslb(id string, inst SnmpServerEnableTrapsGslb, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -39,6 +39,7 @@ func PostSnmpServerEnableTrapsGslb(id string, inst SnmpServerEnableTrapsGslb, ho
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
+		return err
 
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
@@ -49,11 +50,14 @@ func PostSnmpServerEnableTrapsGslb(id string, inst SnmpServerEnableTrapsGslb, ho
 
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			check_api_status("PostSnmpServerEnableTrapsGslb", data)
+			err := check_api_status("PostSnmpServerEnableTrapsGslb", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-
+return err
 }
 
 func GetSnmpServerEnableTrapsGslb(id string, host string) (*SnmpServerEnableTrapsGslb, error) {
@@ -71,6 +75,7 @@ func GetSnmpServerEnableTrapsGslb(id string, host string) (*SnmpServerEnableTrap
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
+
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SnmpServerEnableTrapsGslb
@@ -80,7 +85,10 @@ func GetSnmpServerEnableTrapsGslb(id string, host string) (*SnmpServerEnableTrap
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			check_api_status("GetSnmpServerEnableTrapsGslb", data)
+			err := check_api_status("GetSnmpServerEnableTrapsGslb", data)
+			if err != nil {
+				return nil, err
+			}
 			return &m, nil
 		}
 	}

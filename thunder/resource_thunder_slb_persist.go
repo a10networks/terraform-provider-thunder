@@ -3,19 +3,21 @@ package thunder
 //Thunder resource Slbpersist
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbpersist() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbpersistCreate,
-		Update: resourceSlbpersistUpdate,
-		Read:   resourceSlbpersistRead,
-		Delete: resourceSlbpersistDelete,
+		CreateContext: resourceSlbpersistCreate,
+		UpdateContext: resourceSlbpersistUpdate,
+		ReadContext:   resourceSlbpersistRead,
+		DeleteContext: resourceSlbpersistDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbpersist() *schema.Resource {
 	}
 }
 
-func resourceSlbpersistCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbpersistCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating Slbpersist (Inside resourceSlbpersistCreate) ")
@@ -44,40 +48,48 @@ func resourceSlbpersistCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSlbpersist(d)
 		logger.Println("[INFO] received formatted data from method data to Slbpersist --")
 		d.SetId("1")
-		go_thunder.PostSlbpersist(client.Token, data, client.Host)
+		err := go_thunder.PostSlbpersist(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbpersistRead(d, meta)
+		return resourceSlbpersistRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbpersistRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbpersistRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading Slbpersist (Inside resourceSlbpersistRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbpersist(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbpersistUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbpersistUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbpersistRead(d, meta)
+	return resourceSlbpersistRead(ctx, d, meta)
 }
 
-func resourceSlbpersistDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbpersistDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbpersistRead(d, meta)
+	return resourceSlbpersistRead(ctx, d, meta)
 }
 func dataToSlbpersist(d *schema.ResourceData) go_thunder.SlbPersist {
 	var vc go_thunder.SlbPersist
