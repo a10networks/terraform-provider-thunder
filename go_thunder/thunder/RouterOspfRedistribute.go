@@ -97,7 +97,7 @@ func PostRouterOspfRedistribute(id string, name1 string, inst RouterOspfRedistri
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterOspfRedistribute(id string, name1 string, host string) (*RouterOspfRedistribute, error) {

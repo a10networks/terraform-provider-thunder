@@ -50,7 +50,7 @@ func resourceDnsPrimaryCreate(ctx context.Context, d *schema.ResourceData, meta 
 	if client.Host != "" {
 		vc := dataToDnsPrimary(d)
 		err := go_thunder.PostDnsPrimary(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 

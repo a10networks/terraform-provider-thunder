@@ -460,7 +460,7 @@ func resourceSlbCommonCreate(ctx context.Context, d *schema.ResourceData, meta i
 		vc := dataToSlbCommon(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbCommon(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbCommonRead(ctx, d, meta)
@@ -481,7 +481,7 @@ func resourceSlbCommonRead(ctx context.Context, d *schema.ResourceData, meta int
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbCommon(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

@@ -78,7 +78,7 @@ func PostFwServer(id string, inst FwServer, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwServer(id string, name string, host string) (*FwServer, error) {
@@ -153,7 +153,7 @@ func PutFwServer(id string, name string, inst FwServer, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteFwServer(id string, name string, host string) error {

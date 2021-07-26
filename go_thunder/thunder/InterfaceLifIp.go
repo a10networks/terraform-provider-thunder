@@ -190,7 +190,7 @@ func PostInterfaceLifIp(id string, name1 string, inst InterfaceLifIp, host strin
 
 		}
 	}
-return err
+	return err
 }
 
 func GetInterfaceLifIp(id string, name1 string, host string) (*InterfaceLifIp, error) {

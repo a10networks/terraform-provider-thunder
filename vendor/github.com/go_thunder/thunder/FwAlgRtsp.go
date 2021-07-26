@@ -58,7 +58,7 @@ func PostFwAlgRtsp(id string, inst FwAlgRtsp, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwAlgRtsp(id string, host string) (*FwAlgRtsp, error) {

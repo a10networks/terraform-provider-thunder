@@ -57,7 +57,7 @@ func PostRouterOspfDefaultInformation(id string, name1 string, inst RouterOspfDe
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterOspfDefaultInformation(id string, name1 string, host string) (*RouterOspfDefaultInformation, error) {

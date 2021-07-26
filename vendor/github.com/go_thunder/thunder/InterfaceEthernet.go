@@ -544,7 +544,7 @@ func PostInterfaceEthernet(id string, inst InterfaceEthernet, host string) error
 
 		}
 	}
-return err
+	return err
 }
 
 func GetInterfaceEthernet(id string, name string, host string) (*InterfaceEthernet, error) {
@@ -619,7 +619,7 @@ func PutInterfaceEthernet(id string, name string, inst InterfaceEthernet, host s
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteInterfaceEthernet(id string, name string, host string) error {

@@ -440,9 +440,6 @@ func testCheckServerExists(name string, exists bool) resource.TestCheckFunc {
 
 		client := testAccProvider.Meta().(Thunder)
 		vs, err := go_thunder.GetServer(client.Token, name, client.Host)
-if err != nil {
-			return diag.FromErr(err)
-		}
 		if err != nil {
 			return err
 		}

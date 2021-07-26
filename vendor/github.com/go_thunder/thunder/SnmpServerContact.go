@@ -53,7 +53,7 @@ func PostSnmpServerContact(id string, inst SnmpServerContact, host string) error
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerContact(id string, host string) (*SnmpServerContact, error) {

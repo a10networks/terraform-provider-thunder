@@ -80,7 +80,7 @@ func PostInterfaceEthernetLLDP(id string, name int, inst EthernetLLDP, host stri
 
 		}
 	}
-return err
+	return err
 }
 
 func GetInterfaceEthernetLLDP(id string, name string, host string) (*EthernetLLDP, error) {

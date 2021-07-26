@@ -316,7 +316,7 @@ func PostRouterBgpAddressFamilyIpv6(id string, name1 string, inst RouterBgpAddre
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterBgpAddressFamilyIpv6(id string, name1 string, host string) (*RouterBgpAddressFamilyIpv6, error) {

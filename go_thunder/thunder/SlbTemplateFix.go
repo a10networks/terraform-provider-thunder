@@ -61,7 +61,7 @@ func PostTemplateFix(id string, inst Fix, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetTemplateFix(id string, name string, host string) (*Fix, error) {
@@ -136,7 +136,7 @@ func PutTemplateFix(id string, name string, inst Fix, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteTemplateFix(id string, name string, host string) error {

@@ -53,7 +53,7 @@ func PostSnmpServerEngineID(id string, inst SnmpServerEngineID, host string) err
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerEngineID(id string, host string) (*SnmpServerEngineID, error) {

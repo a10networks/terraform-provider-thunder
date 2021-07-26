@@ -53,7 +53,7 @@ func PostNtpTrustedKey(id string, inst NtpTrustedKey, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetNtpTrustedKey(id string, name1 string, host string) (*NtpTrustedKey, error) {
@@ -128,7 +128,7 @@ func PutNtpTrustedKey(id string, name1 string, inst NtpTrustedKey, host string) 
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteNtpTrustedKey(id string, name1 string, host string) error {

@@ -109,7 +109,7 @@ func PostSlbTemplateSIP(id string, inst SIP, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateSIP(id string, name string, host string) (*SIP, error) {
@@ -184,7 +184,7 @@ func PutSlbTemplateSIP(id string, name string, inst SIP, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateSIP(id string, name string, host string) error {

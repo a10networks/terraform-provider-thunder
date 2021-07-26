@@ -103,7 +103,7 @@ func PostSlbTemplateServerSSL(id string, inst ServerSSL, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateServerSSL(id string, name string, host string) (*ServerSSL, error) {
@@ -178,7 +178,7 @@ func PutSlbTemplateServerSSL(id string, name string, inst ServerSSL, host string
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateServerSSL(id string, name string, host string) error {

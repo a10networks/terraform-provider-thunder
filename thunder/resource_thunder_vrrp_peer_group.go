@@ -5,10 +5,10 @@ package thunder
 import (
 	"context"
 	"fmt"
-	"util"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"util"
 )
 
 func resourceVrrpPeerGroup() *schema.Resource {
@@ -76,7 +76,7 @@ func resourceVrrpPeerGroupCreate(ctx context.Context, d *schema.ResourceData, me
 		vc := dataToVrrpPeerGroup(d)
 		d.SetId("1")
 		err := go_thunder.PostVrrpPeerGroup(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceVrrpPeerGroupRead(ctx, d, meta)
@@ -97,7 +97,7 @@ func resourceVrrpPeerGroupRead(ctx context.Context, d *schema.ResourceData, meta
 		name := d.Id()
 
 		vc, err := go_thunder.GetVrrpPeerGroup(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

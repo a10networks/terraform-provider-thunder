@@ -55,7 +55,7 @@ func resourceSlbFTPProxyCreate(ctx context.Context, d *schema.ResourceData, meta
 		vc := dataToSlbFTPProxy(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbFTPProxy(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbFTPProxyRead(ctx, d, meta)
@@ -76,7 +76,7 @@ func resourceSlbFTPProxyRead(ctx context.Context, d *schema.ResourceData, meta i
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbFTPProxy(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

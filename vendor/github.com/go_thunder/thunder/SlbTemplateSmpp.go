@@ -93,7 +93,7 @@ func PostSmpp(id string, sg Smpp, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func PutSmpp(id string, name string, sg Smpp, host string) error {
@@ -132,7 +132,7 @@ func PutSmpp(id string, name string, sg Smpp, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSmpp(id string, name string, host string) error {

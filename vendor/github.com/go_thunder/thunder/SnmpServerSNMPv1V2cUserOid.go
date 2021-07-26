@@ -75,7 +75,7 @@ func PostSnmpServerSNMPv1V2cUserOid(id string, name1 string, inst SnmpServerSNMP
 			}
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerSNMPv1V2cUserOid(id string, name1 string, name2 string, host string) (*SnmpServerSNMPv1V2cUserOid, error) {
@@ -149,7 +149,7 @@ func PutSnmpServerSNMPv1V2cUserOid(id string, name1 string, name2 string, inst S
 			}
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSnmpServerSNMPv1V2cUserOid(id string, name1 string, name2 string, host string) error {

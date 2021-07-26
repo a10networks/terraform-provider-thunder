@@ -55,7 +55,7 @@ func PostSlbpersist(id string, inst SlbPersist, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbpersist(id string, host string) (*SlbPersist, error) {

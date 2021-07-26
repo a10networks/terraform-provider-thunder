@@ -329,7 +329,7 @@ func PostRouteMap(id string, inst RouteMap, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouteMap(id string, name1 string, name2 string, name3 string, host string) (*RouteMap, error) {
@@ -404,7 +404,7 @@ func PutRouteMap(id string, name1 string, name2 string, name3 string, inst Route
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteRouteMap(id string, name1 string, name2 string, name3 string, host string) error {

@@ -70,7 +70,7 @@ func PostSlbTemplateSNMP(id string, inst SNMP, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateSNMP(id string, snmp_name string, host string) (*SNMP, error) {
@@ -145,7 +145,7 @@ func PutSlbTemplateSNMP(id string, snmp_name string, inst SNMP, host string) err
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateSNMP(id string, snmp_name string, host string) error {

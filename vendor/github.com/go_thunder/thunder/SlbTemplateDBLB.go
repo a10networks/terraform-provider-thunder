@@ -60,7 +60,7 @@ func PostTemplateDBLB(id string, inst DBLB, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetTemplateDBLB(id string, name string, host string) (*DBLB, error) {
@@ -135,7 +135,7 @@ func PutTemplateDBLB(id string, name string, inst DBLB, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteTemplateDBLB(id string, name string, host string) error {

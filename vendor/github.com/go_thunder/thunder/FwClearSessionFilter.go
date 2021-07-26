@@ -52,7 +52,7 @@ func PostFwClearSessionFilter(id string, inst FwClearSessionFilter, host string)
 			}
 		}
 	}
-return err
+	return err
 }
 
 func GetFwClearSessionFilter(id string, host string) (*FwClearSessionFilter, error) {

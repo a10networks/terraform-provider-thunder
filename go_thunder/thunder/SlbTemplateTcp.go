@@ -92,7 +92,7 @@ func PostTcp(id string, sg TCP, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func PutTcp(id string, name string, sg TCP, host string) error {
@@ -131,7 +131,7 @@ func PutTcp(id string, name string, sg TCP, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func DeleteTcp(id string, name string, host string) error {

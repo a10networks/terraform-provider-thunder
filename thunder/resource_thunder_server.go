@@ -352,7 +352,7 @@ func resourceServerCreate(ctx context.Context, d *schema.ResourceData, meta inte
 		logger.Println("[INFO] received formatted data from method data to sg --" + v.Name.Name)
 		d.SetId(name)
 		err := go_thunder.PostServer(client.Token, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceServerRead(ctx, d, meta)
@@ -364,12 +364,11 @@ func resourceServerRead(ctx context.Context, d *schema.ResourceData, meta interf
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
 	var diags diag.Diagnostics
-	
+
 	logger.Println("[INFO] Reading Server (Inside resourceServerRead)")
 
 	if client.Host != "" {
 		client := meta.(Thunder)
-
 
 		name := d.Id()
 
@@ -403,7 +402,7 @@ func resourceServerUpdate(ctx context.Context, d *schema.ResourceData, meta inte
 		logger.Println("[INFO] received formatted data from method data to sg --" + v.Name.Name)
 		d.SetId(name)
 		err := go_thunder.PutServer(client.Token, name, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceServerRead(ctx, d, meta)

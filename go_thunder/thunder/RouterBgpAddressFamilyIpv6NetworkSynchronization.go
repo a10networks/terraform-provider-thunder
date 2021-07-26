@@ -53,7 +53,7 @@ func PostRouterBgpAddressFamilyIpv6NetworkSynchronization(id string, name1 strin
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterBgpAddressFamilyIpv6NetworkSynchronization(id string, name1 string, host string) (*RouterBgpAddressFamilyIpv6NetworkSynchronization, error) {

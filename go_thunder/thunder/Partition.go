@@ -73,7 +73,7 @@ func PostPartition(id string, inst Partition, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetPartition(id string, name1 string, host string) (*Partition, error) {

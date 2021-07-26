@@ -52,7 +52,7 @@ func PostFwFullConeSession(id string, inst FwFullConeSession, host string) error
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwFullConeSession(id string, host string) (*FwFullConeSession, error) {

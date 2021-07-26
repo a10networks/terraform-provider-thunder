@@ -56,7 +56,7 @@ func PostFwTcpMssClamp(id string, inst FwTcpMssClamp, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwTcpMssClamp(id string, host string) (*FwTcpMssClamp, error) {

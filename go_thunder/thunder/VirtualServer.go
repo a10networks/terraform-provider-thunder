@@ -300,7 +300,7 @@ func PostVS(id string, vs VirtalServerInstanceMain, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func PutVS(id string, name string, vs VirtalServerInstanceMain, host string) error {
@@ -341,7 +341,7 @@ func PutVS(id string, name string, vs VirtalServerInstanceMain, host string) err
 			}
 		}
 	}
-return err
+	return err
 }
 
 func DeleteVS(id string, name string, host string) error {

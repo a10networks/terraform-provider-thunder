@@ -54,7 +54,7 @@ func PostSlbSip(id string, inst SlbSip, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbSip(id string, host string) (*SlbSip, error) {

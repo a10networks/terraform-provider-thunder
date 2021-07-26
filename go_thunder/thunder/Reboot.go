@@ -97,5 +97,5 @@ func PostReboot(id string, vc Reboot, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

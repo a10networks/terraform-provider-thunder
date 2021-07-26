@@ -56,7 +56,7 @@ func PostTemplateImap_POP3(id string, inst Imap_pop3, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetTemplateImap_POP3(id string, name string, host string) (*Imap_pop3, error) {
@@ -131,7 +131,7 @@ func PutTemplateImap_POP3(id string, name string, inst Imap_pop3, host string) e
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteTemplateImap_POP3(id string, name string, host string) error {

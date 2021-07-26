@@ -59,7 +59,7 @@ func PostFwTapMonitor(id string, inst FwTapMonitor, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwTapMonitor(id string, host string) (*FwTapMonitor, error) {

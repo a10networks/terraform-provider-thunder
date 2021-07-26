@@ -58,7 +58,7 @@ func PostFwAlgPptp(id string, inst FwAlgPptp, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwAlgPptp(id string, host string) (*FwAlgPptp, error) {

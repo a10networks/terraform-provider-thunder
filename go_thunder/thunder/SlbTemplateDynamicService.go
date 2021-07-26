@@ -59,7 +59,7 @@ func PostSlbTemplateDynamicService(id string, inst DynamicService, host string) 
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateDynamicService(id string, name string, host string) (*DynamicService, error) {
@@ -134,7 +134,7 @@ func PutSlbTemplateDynamicService(id string, name string, inst DynamicService, h
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateDynamicService(id string, name string, host string) error {

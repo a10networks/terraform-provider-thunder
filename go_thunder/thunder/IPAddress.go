@@ -53,7 +53,7 @@ func PostIPAddress(id string, inst IPAddress, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func GetIPAddress(id string, host string) (*IPAddress, error) {

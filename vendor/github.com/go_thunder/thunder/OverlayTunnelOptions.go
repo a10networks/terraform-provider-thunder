@@ -93,5 +93,5 @@ func PostOptions(id string, vc Options, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

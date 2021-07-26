@@ -56,7 +56,7 @@ func PostNtpServerHostname(id string, inst NtpServerHostname, host string) error
 
 		}
 	}
-return err
+	return err
 }
 
 func GetNtpServerHostname(id string, name1 string, host string) (*NtpServerHostname, error) {
@@ -131,7 +131,7 @@ func PutNtpServerHostname(id string, name1 string, inst NtpServerHostname, host 
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteNtpServerHostname(id string, name1 string, host string) error {

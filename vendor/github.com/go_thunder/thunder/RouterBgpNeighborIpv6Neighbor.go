@@ -128,7 +128,7 @@ func PostRouterBgpNeighborIpv6Neighbor(id string, name1 string, inst RouterBgpNe
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterBgpNeighborIpv6Neighbor(id string, name1 string, name2 string, host string) (*RouterBgpNeighborIpv6Neighbor, error) {
@@ -203,7 +203,7 @@ func PutRouterBgpNeighborIpv6Neighbor(id string, name1 string, name2 string, ins
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteRouterBgpNeighborIpv6Neighbor(id string, name1 string, name2 string, host string) error {

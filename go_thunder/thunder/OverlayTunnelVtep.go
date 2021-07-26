@@ -128,7 +128,7 @@ func PostOverlayTunnelVtep(id string, inst OverlayTunnelVtep, host string) error
 
 		}
 	}
-return err
+	return err
 }
 
 func GetOverlayTunnelVtep(id string, name1 string, host string) (*OverlayTunnelVtep, error) {
@@ -203,7 +203,7 @@ func PutOverlayTunnelVtep(id string, name1 string, inst OverlayTunnelVtep, host 
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteOverlayTunnelVtep(id string, name1 string, host string) error {

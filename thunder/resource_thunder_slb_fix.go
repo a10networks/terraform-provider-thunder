@@ -55,7 +55,7 @@ func resourceSlbFixCreate(ctx context.Context, d *schema.ResourceData, meta inte
 		vc := dataToSlbFix(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbFix(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbFixRead(ctx, d, meta)
@@ -76,7 +76,7 @@ func resourceSlbFixRead(ctx context.Context, d *schema.ResourceData, meta interf
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbFix(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

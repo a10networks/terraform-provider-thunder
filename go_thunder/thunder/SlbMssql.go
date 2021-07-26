@@ -54,7 +54,7 @@ func PostSlbMssql(id string, inst Mssql, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbMssql(id string, host string) (*Mssql, error) {

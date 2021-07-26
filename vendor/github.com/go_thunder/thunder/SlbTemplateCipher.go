@@ -59,7 +59,7 @@ func PostTemplateCipher(id string, inst Cipher, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetTemplateCipher(id string, name string, host string) (*Cipher, error) {
@@ -134,7 +134,7 @@ func PutTemplateCipher(id string, name string, inst Cipher, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteTemplateCipher(id string, name string, host string) error {

@@ -55,7 +55,7 @@ func PostRouterBgpNeighborEthernetNeighbor(id string, name1 string, inst RouterB
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterBgpNeighborEthernetNeighbor(id string, name1 string, name2 string, host string) (*RouterBgpNeighborEthernetNeighbor, error) {
@@ -130,7 +130,7 @@ func PutRouterBgpNeighborEthernetNeighbor(id string, name1 string, name2 string,
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteRouterBgpNeighborEthernetNeighbor(id string, name1 string, name2 string, host string) error {

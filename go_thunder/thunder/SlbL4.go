@@ -55,7 +55,7 @@ func PostSlbL4(id string, inst L4, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbL4(id string, host string) (*L4, error) {

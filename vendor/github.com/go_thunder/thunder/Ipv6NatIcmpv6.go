@@ -52,7 +52,7 @@ func PostIpv6NatIcmpv6(id string, inst NatIcmpv6, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpv6NatIcmpv6(id string, host string) (*NatIcmpv6, error) {

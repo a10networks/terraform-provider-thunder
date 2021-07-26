@@ -52,7 +52,7 @@ func PostFwTopKRules(id string, inst FwTopKRules, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwTopKRules(id string, host string) (*FwTopKRules, error) {

@@ -60,7 +60,7 @@ func PostWebCategoryProxyServer(id string, inst WebCategoryProxyServer, host str
 
 		}
 	}
-return err
+	return err
 }
 
 func GetWebCategoryProxyServer(id string, host string) (*WebCategoryProxyServer, error) {

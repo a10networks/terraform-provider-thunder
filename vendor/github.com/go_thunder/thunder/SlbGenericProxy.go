@@ -90,5 +90,5 @@ func PostSlbGenericProxy(id string, vc GenericProxy, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

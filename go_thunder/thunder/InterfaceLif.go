@@ -418,7 +418,7 @@ func PostInterfaceLif(id string, inst InterfaceLif, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetInterfaceLif(id string, name1 string, host string) (*InterfaceLif, error) {
@@ -493,7 +493,7 @@ func PutInterfaceLif(id string, name1 string, inst InterfaceLif, host string) er
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteInterfaceLif(id string, name1 string, host string) error {

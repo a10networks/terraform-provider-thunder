@@ -62,7 +62,7 @@ func PostSlbTemplateCSV(id string, inst CSV, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateCSV(id string, name string, host string) (*CSV, error) {
@@ -137,7 +137,7 @@ func PutSlbTemplateCSV(id string, name string, inst CSV, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateCSV(id string, name string, host string) error {

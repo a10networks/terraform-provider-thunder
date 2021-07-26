@@ -55,7 +55,7 @@ func PostSlbSSLCertRevoke(id string, inst SSLCertRevoke, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbSSLCertRevoke(id string, host string) (*SSLCertRevoke, error) {

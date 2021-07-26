@@ -4,11 +4,11 @@ package thunder
 
 import (
 	"context"
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"strconv"
 	"util"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
-	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceVrrpCommon() *schema.Resource {
@@ -145,7 +145,7 @@ func resourceVrrpCommonCreate(ctx context.Context, d *schema.ResourceData, meta 
 		vc := dataToVrrpCommon(d)
 		d.SetId(strconv.Itoa(name))
 		err := go_thunder.PostVrrpCommon(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceVrrpCommonRead(ctx, d, meta)
@@ -166,7 +166,7 @@ func resourceVrrpCommonRead(ctx context.Context, d *schema.ResourceData, meta in
 		name := d.Id()
 
 		vc, err := go_thunder.GetVrrpCommon(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

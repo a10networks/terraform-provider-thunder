@@ -70,7 +70,7 @@ func PostFwGlobal(id string, inst FwGlobal, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwGlobal(id string, host string) (*FwGlobal, error) {

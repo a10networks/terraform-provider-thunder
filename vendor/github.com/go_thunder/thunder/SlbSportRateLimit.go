@@ -55,7 +55,7 @@ func PostSlbSportRateLimit(id string, inst SportRateLimit, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbSportRateLimit(id string, host string) (*SportRateLimit, error) {

@@ -53,7 +53,7 @@ func PostRouterBgpNetworkSynchronization(id string, name1 string, inst RouterBgp
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterBgpNetworkSynchronization(id string, name1 string, host string) (*RouterBgpNetworkSynchronization, error) {

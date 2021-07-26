@@ -52,7 +52,7 @@ func PostFwLimitEntry(id string, inst FwLimitEntry, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwLimitEntry(id string, host string) (*FwLimitEntry, error) {

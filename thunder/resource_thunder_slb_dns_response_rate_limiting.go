@@ -55,7 +55,7 @@ func resourceSlbDNSResponseRateLimitingCreate(ctx context.Context, d *schema.Res
 		vc := dataToSlbDNSResponseRateLimiting(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbDNSResponseRateLimiting(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbDNSResponseRateLimitingRead(ctx, d, meta)
@@ -76,7 +76,7 @@ func resourceSlbDNSResponseRateLimitingRead(ctx context.Context, d *schema.Resou
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbDNSResponseRateLimiting(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

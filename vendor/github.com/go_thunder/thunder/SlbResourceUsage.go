@@ -71,7 +71,7 @@ func PostSlbResourceUsage(id string, inst ResourceUsage, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbResourceUsage(id string, host string) (*ResourceUsage, error) {

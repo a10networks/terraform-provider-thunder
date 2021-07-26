@@ -58,7 +58,7 @@ func PostSlbTemplateFTP(id string, inst FTP, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateFTP(id string, name string, host string) (*FTP, error) {
@@ -133,7 +133,7 @@ func PutSlbTemplateFTP(id string, name string, inst FTP, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateFTP(id string, name string, host string) error {

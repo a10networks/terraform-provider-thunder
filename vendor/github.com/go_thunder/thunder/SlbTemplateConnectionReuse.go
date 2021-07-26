@@ -59,7 +59,7 @@ func PostTemplateConnectionReuse(id string, inst Connection_Reuse, host string) 
 
 		}
 	}
-return err
+	return err
 }
 
 func GetTemplateConnectionReuse(id string, name string, host string) (*Connection_Reuse, error) {
@@ -134,7 +134,7 @@ func PutTemplateConnectionReuse(id string, name string, inst Connection_Reuse, h
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteTemplateConnectionReuse(id string, name string, host string) error {

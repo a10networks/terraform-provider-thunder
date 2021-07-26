@@ -55,7 +55,7 @@ func PostWriteMemory(id string, inst WriteMemory, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetWriteMemory(id string, host string) (*WriteMemory, error) {

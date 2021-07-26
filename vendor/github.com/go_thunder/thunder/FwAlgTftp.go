@@ -57,7 +57,7 @@ func PostFwAlgTftp(id string, inst FwAlgTftp, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func GetFwAlgTftp(id string, host string) (*FwAlgTftp, error) {

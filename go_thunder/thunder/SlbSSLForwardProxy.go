@@ -55,7 +55,7 @@ func PostSlbSSLForwardProxy(id string, inst SSLForwardProxy, host string) error 
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbSSLForwardProxy(id string, host string) (*SSLForwardProxy, error) {

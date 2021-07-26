@@ -55,7 +55,7 @@ func resourceSlbFTPDataCreate(ctx context.Context, d *schema.ResourceData, meta 
 		vc := dataToSlbFTPData(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbFTPData(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbFTPDataRead(ctx, d, meta)
@@ -76,7 +76,7 @@ func resourceSlbFTPDataRead(ctx context.Context, d *schema.ResourceData, meta in
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbFTPData(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

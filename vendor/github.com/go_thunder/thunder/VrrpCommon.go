@@ -111,5 +111,5 @@ func PostVrrpCommon(id string, vc CommonInstance, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

@@ -55,7 +55,7 @@ func PostSnmpServerEnableTrapsVrrpA(id string, inst SnmpServerEnableTrapsVrrpA, 
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerEnableTrapsVrrpA(id string, host string) (*SnmpServerEnableTrapsVrrpA, error) {

@@ -52,7 +52,7 @@ func PostSlbTransperentTcpTemplate(id string, inst TransperentTcpTemplate, host 
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTransperentTcpTemplate(id string, name string, host string) (*TransperentTcpTemplate, error) {

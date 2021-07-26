@@ -55,7 +55,7 @@ func PostSlbSpdyProxy(id string, inst SpdyProxy, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbSpdyProxy(id string, host string) (*SpdyProxy, error) {

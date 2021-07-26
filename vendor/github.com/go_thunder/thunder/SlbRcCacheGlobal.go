@@ -55,7 +55,7 @@ func PostSlbRcCacheGlobal(id string, inst RcCacheGlobal, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbRcCacheGlobal(id string, host string) (*RcCacheGlobal, error) {

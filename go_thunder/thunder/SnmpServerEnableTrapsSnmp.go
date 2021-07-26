@@ -55,7 +55,7 @@ func PostSnmpServerEnableTrapsSnmp(id string, inst SnmpServerEnableTrapsSnmp, ho
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerEnableTrapsSnmp(id string, host string) (*SnmpServerEnableTrapsSnmp, error) {

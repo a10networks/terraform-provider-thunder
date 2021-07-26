@@ -55,7 +55,7 @@ func PostSlbSwitch(id string, inst Switch, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbSwitch(id string, host string) (*Switch, error) {

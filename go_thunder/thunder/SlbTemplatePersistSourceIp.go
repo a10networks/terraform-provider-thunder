@@ -67,7 +67,7 @@ func PostSlbTemplatePersistSourceIp(id string, inst SlbTemplatePersistSourceIp, 
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplatePersistSourceIp(id string, name string, host string) (*SlbTemplatePersistSourceIp, error) {
@@ -142,7 +142,7 @@ func PutSlbTemplatePersistSourceIp(id string, name string, inst SlbTemplatePersi
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplatePersistSourceIp(id string, name string, host string) error {

@@ -54,7 +54,7 @@ func PostSlbIcap(id string, inst Icap, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbIcap(id string, host string) (*Icap, error) {

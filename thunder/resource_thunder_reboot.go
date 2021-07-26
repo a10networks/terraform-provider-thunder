@@ -98,7 +98,7 @@ func resourceRebootCreate(ctx context.Context, d *schema.ResourceData, meta inte
 	if client.Host != "" {
 		vc := dataToReboot(d)
 		err := go_thunder.PostReboot(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 
@@ -120,7 +120,7 @@ func resourceRebootRead(ctx context.Context, d *schema.ResourceData, meta interf
 	if client.Host != "" {
 
 		vc, err := go_thunder.GetReboot(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

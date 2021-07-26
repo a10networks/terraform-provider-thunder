@@ -56,7 +56,7 @@ func PostSlbL7session(id string, inst L7session, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbL7session(id string, host string) (*L7session, error) {

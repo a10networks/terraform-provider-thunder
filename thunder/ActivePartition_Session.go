@@ -2,12 +2,12 @@ package thunder
 
 import (
 	"bytes"
-	"errors"
-	"io/ioutil"
 	"encoding/json"
+	"errors"
 	"fmt"
-	"util"
 	go_thunder "github.com/go_thunder/thunder"
+	"io/ioutil"
+	"util"
 )
 
 type GetActivePartitionSessionStructInstance struct {
@@ -26,7 +26,6 @@ type ActivePartitionSessionInstance struct {
 type ActivePartitionSession struct {
 	Shared ActivePartitionSessionInstance `json:"active-partition,omitempty"`
 }
-
 
 func GetActivePartitionSession(id string, host string) (*GetActivePartitionSessionStruct, error) {
 
@@ -49,7 +48,7 @@ func GetActivePartitionSession(id string, host string) (*GetActivePartitionSessi
 		var m GetActivePartitionSessionStruct
 		erro := json.Unmarshal(data, &m)
 		logger.Println(string(data))
-		logger.Printf("mm--> %v",m)
+		logger.Printf("mm--> %v", m)
 		if erro != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
@@ -60,7 +59,6 @@ func GetActivePartitionSession(id string, host string) (*GetActivePartitionSessi
 	}
 
 }
-
 
 func PostActivePartitionSession(id string, inst ActivePartitionSession, host string) error {
 
@@ -86,17 +84,17 @@ func PostActivePartitionSession(id string, inst ActivePartitionSession, host str
 	}
 
 	datapr, err := GetActivePartitionSession(id, host)
-	logger.Println("provider active partition status --> ", (*datapr).PartitionName.PartitionName )
+	logger.Println("provider active partition status --> ", (*datapr).PartitionName.PartitionName)
 	if err != nil {
 		return err
 	}
-	
+
 	if string(partition_name) == string((*datapr).PartitionName.PartitionName) {
 		logger.Println("partition switch to -----> ", string(partition_name))
 		return nil
 	} else {
 		logger.Println("partition switch fail enter valid partition")
-		partition_string := fmt.Sprintf("Fail to switch partition %s, Please enter valid partition",partition_name )
+		partition_string := fmt.Sprintf("Fail to switch partition %s, Please enter valid partition", partition_name)
 		return errors.New(partition_string)
 	}
 
@@ -107,9 +105,9 @@ func ActivePartitionEnable(p ActivePartitionSession, client Thunder) error {
 	//var diags diag.Diagnostics
 	if client.Host != "" {
 		err := PostActivePartitionSession(client.Token, p, client.Host)
-		 if err != nil {
+		if err != nil {
 			logger.Println("Activating partition fail, please check whether partiton is presesnt or not")
-		 	return err
+			return err
 		}
 
 		//return resourceActivePartitionRead(ctx, d, meta)

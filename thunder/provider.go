@@ -314,7 +314,7 @@ func callPartition(global_partition string, t Thunder) error {
 	logger := util.GetLoggerInstance()
 
 	if global_partition != "" {
-		
+
 		p := ActivePartitionSession{
 			Shared: ActivePartitionSessionInstance{
 				CurrPartName: global_partition,

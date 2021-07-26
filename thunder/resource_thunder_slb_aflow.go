@@ -55,7 +55,7 @@ func resourceSlbAflowCreate(ctx context.Context, d *schema.ResourceData, meta in
 		vc := dataToSlbAflow(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbAflow(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbAflowRead(ctx, d, meta)
@@ -76,7 +76,7 @@ func resourceSlbAflowRead(ctx context.Context, d *schema.ResourceData, meta inte
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbAflow(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

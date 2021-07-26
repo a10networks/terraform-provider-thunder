@@ -56,7 +56,7 @@ func PostIpNatAlgPptp(id string, inst NatAlgPptp, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpNatAlgPptp(id string, host string) (*NatAlgPptp, error) {

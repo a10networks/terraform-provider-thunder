@@ -55,7 +55,7 @@ func resourceSlbGenericProxyCreate(ctx context.Context, d *schema.ResourceData, 
 		vc := dataToSlbGenericProxy(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbGenericProxy(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbGenericProxyRead(ctx, d, meta)
@@ -76,7 +76,7 @@ func resourceSlbGenericProxyRead(ctx context.Context, d *schema.ResourceData, me
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbGenericProxy(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

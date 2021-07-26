@@ -53,7 +53,7 @@ func PostSnmpServerEnableTrapsSsl(id string, inst SnmpServerEnableTrapsSsl, host
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerEnableTrapsSsl(id string, host string) (*SnmpServerEnableTrapsSsl, error) {

@@ -53,7 +53,7 @@ func PostActivePartition(id string, inst ActivePartition, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetActivePartition(id string, host string) (*ActivePartition, error) {

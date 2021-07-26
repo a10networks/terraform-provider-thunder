@@ -71,7 +71,7 @@ func resourceOverlayTunnelOptionsCreate(ctx context.Context, d *schema.ResourceD
 		d.SetId("1")
 		vc := dataToOptions(d)
 		err := go_thunder.PostOptions(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceOverlayTunnelOptionsRead(ctx, d, meta)
@@ -90,7 +90,7 @@ func resourceOverlayTunnelOptionsRead(ctx context.Context, d *schema.ResourceDat
 	if client.Host != "" {
 
 		vc, err := go_thunder.GetOptions(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

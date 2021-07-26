@@ -127,7 +127,7 @@ func resourceGlmCreate(ctx context.Context, d *schema.ResourceData, meta interfa
 	if client.Host != "" {
 		vc := dataToGlm(d)
 		err := go_thunder.PostGlm(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 
@@ -149,7 +149,7 @@ func resourceGlmRead(ctx context.Context, d *schema.ResourceData, meta interface
 	if client.Host != "" {
 
 		vc, err := go_thunder.GetGlm(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

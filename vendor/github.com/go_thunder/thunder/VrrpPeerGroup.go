@@ -96,5 +96,5 @@ func PostVrrpPeerGroup(id string, vc PeerGroup, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

@@ -506,9 +506,7 @@ func testCheckVrrpVridExists(name string, exists bool) resource.TestCheckFunc {
 
 		client := testAccProvider.Meta().(Thunder)
 		vs, err := go_thunder.GetVrrpVrid(client.Token, name, client.Host)
-if err != nil {
-			return diag.FromErr(err)
-		}
+
 		if err != nil {
 			return err
 		}

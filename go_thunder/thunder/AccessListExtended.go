@@ -99,7 +99,7 @@ func PostAccessListExtended(id string, inst AccessListExtended, host string) err
 
 		}
 	}
-return err
+	return err
 }
 
 func GetAccessListExtended(id string, name1 string, host string) (*AccessListExtended, error) {
@@ -174,7 +174,7 @@ func PutAccessListExtended(id string, name1 string, inst AccessListExtended, hos
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteAccessListExtended(id string, name1 string, host string) error {

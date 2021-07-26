@@ -53,7 +53,7 @@ func PostSnmpServerManagementIndex(id string, inst SnmpServerManagementIndex, ho
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerManagementIndex(id string, host string) (*SnmpServerManagementIndex, error) {

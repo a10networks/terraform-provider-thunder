@@ -192,7 +192,7 @@ func PostInterfaceEthernetIPv6(id string, name int, inst EthernetIPv6, host stri
 
 		}
 	}
-return err
+	return err
 }
 
 func GetInterfaceEthernetIPv6(id string, name string, host string) (*EthernetIPv6, error) {

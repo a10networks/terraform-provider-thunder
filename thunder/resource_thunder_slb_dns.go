@@ -55,7 +55,7 @@ func resourceSlbDNSCreate(ctx context.Context, d *schema.ResourceData, meta inte
 		vc := dataToSlbDNS(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbDNS(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbDNSRead(ctx, d, meta)
@@ -76,7 +76,7 @@ func resourceSlbDNSRead(ctx context.Context, d *schema.ResourceData, meta interf
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbDNS(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

@@ -65,7 +65,7 @@ func PostInterfaceEthernetTrunkGroup(id string, idNum int, inst EthernetTrunkGro
 
 		}
 	}
-return err
+	return err
 }
 
 func GetInterfaceEthernetTrunkGroup(id string, idNum string, name string, host string) (*EthernetTrunkGroup, error) {
@@ -140,7 +140,7 @@ func PutInterfaceEthernetTrunkGroup(id string, idNum int, name int, inst Etherne
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteInterfaceEthernetTrunkGroup(id string, idNum string, name string, host string) error {

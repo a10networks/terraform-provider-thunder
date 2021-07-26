@@ -58,7 +58,7 @@ func PostFwTcpWindowCheck(id string, inst FwTcpWindowCheck, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwTcpWindowCheck(id string, host string) (*FwTcpWindowCheck, error) {

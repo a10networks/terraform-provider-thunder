@@ -133,7 +133,7 @@ func postEthernet(id string, ip map[int]IP, host string) error {
 		}
 
 	}
-return nil
+	return nil
 }
 
 func PutEthernet(id string, ethernet map[int]Ethernet, host string) error {

@@ -124,7 +124,7 @@ func PostRibRoute(id string, r Rib, host string, instance string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func PutRibRoute(id string, instance string, r Rib, host string) error {
@@ -168,7 +168,7 @@ func PutRibRoute(id string, instance string, r Rib, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func DeleteRibRoute(id string, instance string, host string) error {

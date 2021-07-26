@@ -138,7 +138,7 @@ func resourceHttpPolicyCreate(ctx context.Context, d *schema.ResourceData, meta 
 		v := dataToHttpPolicy(name, d)
 		d.SetId(name)
 		err := go_thunder.PostHttpPolicy(client.Token, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceHttpPolicyRead(ctx, d, meta)
@@ -154,7 +154,6 @@ func resourceHttpPolicyRead(ctx context.Context, d *schema.ResourceData, meta in
 
 	if client.Host != "" {
 		client := meta.(Thunder)
-
 
 		name := d.Id()
 
@@ -187,7 +186,7 @@ func resourceHttpPolicyUpdate(ctx context.Context, d *schema.ResourceData, meta 
 		v := dataToHttpPolicy(name, d)
 		d.SetId(name)
 		err := go_thunder.PutHttpPolicy(client.Token, name, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceHttpPolicyRead(ctx, d, meta)

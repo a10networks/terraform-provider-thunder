@@ -451,7 +451,7 @@ func PostRouterBgp(id string, inst RouterBgp, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterBgp(id string, name1 string, host string) (*RouterBgp, error) {
@@ -526,7 +526,7 @@ func PutRouterBgp(id string, name1 string, inst RouterBgp, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteRouterBgp(id string, name1 string, host string) error {

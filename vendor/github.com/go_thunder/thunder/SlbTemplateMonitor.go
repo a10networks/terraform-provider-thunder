@@ -88,7 +88,7 @@ func PostSlbTemplateMonitor(id string, inst Monitor, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateMonitor(id string, name string, host string) (*Monitor, error) {
@@ -167,7 +167,7 @@ func PutSlbTemplateMonitor(id string, name string, inst Monitor, host string) er
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateMonitor(id string, name string, host string) error {

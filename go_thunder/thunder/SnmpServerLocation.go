@@ -53,7 +53,7 @@ func PostSnmpServerLocation(id string, inst SnmpServerLocation, host string) err
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerLocation(id string, host string) (*SnmpServerLocation, error) {

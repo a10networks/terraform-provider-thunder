@@ -55,7 +55,7 @@ func PostSlbPassthrough(id string, inst Passthrough, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbPassthrough(id string, host string) (*Passthrough, error) {

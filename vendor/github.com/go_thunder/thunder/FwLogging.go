@@ -58,7 +58,7 @@ func PostFwLogging(id string, inst FwLogging, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwLogging(id string, host string) (*FwLogging, error) {

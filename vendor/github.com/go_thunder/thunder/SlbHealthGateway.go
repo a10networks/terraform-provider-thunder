@@ -90,5 +90,5 @@ func PostSlbHealthGateway(id string, vc HealthGateway, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

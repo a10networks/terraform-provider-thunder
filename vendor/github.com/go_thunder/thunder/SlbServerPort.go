@@ -92,7 +92,7 @@ func PostSlbServerPort(id string, name string, inst SlbServerPort, host string) 
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbServerPort(id string, name1 string, name2 string, name3 string, host string) (*SlbServerPort, error) {
@@ -167,7 +167,7 @@ func PutSlbServerPort(id string, name1 string, name2 string, name3 string, inst 
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbServerPort(id string, name1 string, name2 string, name3 string, host string) error {

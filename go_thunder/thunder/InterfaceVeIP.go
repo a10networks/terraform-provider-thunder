@@ -192,7 +192,7 @@ func PostInterfaceVeIP(id string, name int, inst VeIP, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetInterfaceVeIP(id string, name string, host string) (*VeIP, error) {

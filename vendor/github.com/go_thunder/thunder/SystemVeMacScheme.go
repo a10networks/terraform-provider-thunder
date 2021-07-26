@@ -53,7 +53,7 @@ func PostSystemVeMacScheme(id string, inst SystemVeMacScheme, host string) error
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSystemVeMacScheme(id string, host string) (*SystemVeMacScheme, error) {

@@ -53,7 +53,7 @@ func PostFwLocalLog(id string, inst FwLocalLog, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwLocalLog(id string, host string) (*FwLocalLog, error) {

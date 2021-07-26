@@ -72,7 +72,7 @@ func PostSlbTemplateSMTP(id string, inst SMTP, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateSMTP(id string, name string, host string) (*SMTP, error) {
@@ -147,7 +147,7 @@ func PutSlbTemplateSMTP(id string, name string, inst SMTP, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateSMTP(id string, name string, host string) error {

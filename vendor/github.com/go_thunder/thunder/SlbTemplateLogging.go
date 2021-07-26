@@ -101,7 +101,7 @@ func PostLogging(id string, sg Logging, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func PutLogging(id string, name string, sg Logging, host string) error {
@@ -140,7 +140,7 @@ func PutLogging(id string, name string, sg Logging, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func DeleteLogging(id string, name string, host string) error {

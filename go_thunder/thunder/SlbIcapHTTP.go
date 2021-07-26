@@ -54,7 +54,7 @@ func PostSlbIcapHTTP(id string, inst IcapHTTP, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbIcapHTTP(id string, host string) (*IcapHTTP, error) {

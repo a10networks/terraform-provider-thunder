@@ -87,7 +87,7 @@ func PostSlbTemplateDiameter(id string, inst Diameter, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateDiameter(id string, name string, host string) (*Diameter, error) {
@@ -162,7 +162,7 @@ func PutSlbTemplateDiameter(id string, name string, inst Diameter, host string) 
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateDiameter(id string, name string, host string) error {

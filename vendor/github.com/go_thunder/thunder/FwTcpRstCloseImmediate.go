@@ -53,7 +53,7 @@ func PostFwTcpRstCloseImmediate(id string, inst FwTcpRstCloseImmediate, host str
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwTcpRstCloseImmediate(id string, host string) (*FwTcpRstCloseImmediate, error) {

@@ -415,7 +415,7 @@ func resourceServiceGroupCreate(ctx context.Context, d *schema.ResourceData, met
 		logger.Println("[INFO] received formatted data from method data to sg --" + v.Name.Name + ",--" + v.Name.UUID)
 		d.SetId(name)
 		err := go_thunder.PostSG(client.Token, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceServiceGroupRead(ctx, d, meta)
@@ -464,7 +464,7 @@ func resourceServiceGroupUpdate(ctx context.Context, d *schema.ResourceData, met
 		logger.Println("[INFO] received formatted data from method data to sg --" + v.Name.Name)
 		d.SetId(name)
 		err := go_thunder.PutSG(client.Token, name, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceServiceGroupRead(ctx, d, meta)

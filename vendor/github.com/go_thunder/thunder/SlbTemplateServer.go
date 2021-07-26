@@ -82,7 +82,7 @@ func PostSlbTemplateServer(id string, inst TemplateServer, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateServer(id string, name string, host string) (*TemplateServer, error) {
@@ -157,7 +157,7 @@ func PutSlbTemplateServer(id string, name string, inst TemplateServer, host stri
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateServer(id string, name string, host string) error {

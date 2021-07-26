@@ -55,7 +55,7 @@ func resourceSlbDNSCacheCreate(ctx context.Context, d *schema.ResourceData, meta
 		vc := dataToSlbDNSCache(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbDNSCache(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbDNSCacheRead(ctx, d, meta)
@@ -76,7 +76,7 @@ func resourceSlbDNSCacheRead(ctx context.Context, d *schema.ResourceData, meta i
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbDNSCache(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

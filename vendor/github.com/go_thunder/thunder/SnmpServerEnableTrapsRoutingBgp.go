@@ -54,7 +54,7 @@ func PostSnmpServerEnableTrapsRoutingBgp(id string, inst SnmpServerEnableTrapsRo
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerEnableTrapsRoutingBgp(id string, host string) (*SnmpServerEnableTrapsRoutingBgp, error) {

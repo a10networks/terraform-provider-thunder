@@ -948,7 +948,7 @@ func PostSystem(id string, inst System, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSystem(id string, host string) (*System, error) {

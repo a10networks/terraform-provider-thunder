@@ -55,7 +55,7 @@ func PostSlbSmpp(id string, inst SlbSmpp, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbSmpp(id string, host string) (*SlbSmpp, error) {

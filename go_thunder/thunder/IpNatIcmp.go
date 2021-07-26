@@ -53,7 +53,7 @@ func PostIpNatIcmp(id string, inst NatIcmp, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpNatIcmp(id string, host string) (*NatIcmp, error) {

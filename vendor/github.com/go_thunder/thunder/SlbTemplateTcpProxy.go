@@ -96,7 +96,7 @@ func PostSlbTemplateTcpProxy(id string, inst TCPProxy, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateTcpProxy(id string, name string, host string) (*TCPProxy, error) {
@@ -171,7 +171,7 @@ func PutSlbTemplateTcpProxy(id string, name string, inst TCPProxy, host string) 
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateTcpProxy(id string, name string, host string) error {

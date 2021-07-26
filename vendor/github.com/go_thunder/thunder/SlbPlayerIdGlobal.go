@@ -60,7 +60,7 @@ func PostSlbPlayerIdGlobal(id string, inst PlayerIdGlobal, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbPlayerIdGlobal(id string, host string) (*PlayerIdGlobal, error) {

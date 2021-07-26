@@ -94,7 +94,7 @@ func resourceProfileCreate(ctx context.Context, d *schema.ResourceData, meta int
 		vc := dataToProfile(d)
 		d.SetId(name)
 		err := go_thunder.PostProfile(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceProfileRead(ctx, d, meta)
@@ -115,7 +115,7 @@ func resourceProfileRead(ctx context.Context, d *schema.ResourceData, meta inter
 		name := d.Id()
 
 		vc, err := go_thunder.GetProfile(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

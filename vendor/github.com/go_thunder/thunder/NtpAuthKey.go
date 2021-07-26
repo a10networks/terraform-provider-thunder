@@ -59,7 +59,7 @@ func PostNtpAuthKey(id string, inst NtpAuthKey, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetNtpAuthKey(id string, name1 string, host string) (*NtpAuthKey, error) {
@@ -134,7 +134,7 @@ func PutNtpAuthKey(id string, name1 string, inst NtpAuthKey, host string) error 
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteNtpAuthKey(id string, name1 string, host string) error {

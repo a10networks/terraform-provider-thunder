@@ -53,7 +53,7 @@ func PostFwAlgIcmp(id string, inst FwAlgIcmp, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwAlgIcmp(id string, host string) (*FwAlgIcmp, error) {

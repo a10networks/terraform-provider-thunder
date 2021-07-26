@@ -58,7 +58,7 @@ func PostFwGtp(id string, inst FwGtp, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwGtp(id string, host string) (*FwGtp, error) {

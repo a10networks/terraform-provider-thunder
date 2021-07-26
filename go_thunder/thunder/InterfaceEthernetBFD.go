@@ -68,7 +68,7 @@ func PostInterfaceEthernetBFD(id string, name int, inst EthernetBFD, host string
 
 		}
 	}
-return err
+	return err
 }
 
 func GetInterfaceEthernetBFD(id string, name string, host string) (*EthernetBFD, error) {

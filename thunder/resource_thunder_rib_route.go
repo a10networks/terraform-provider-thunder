@@ -196,7 +196,7 @@ func resourceRibRouteUpdate(ctx context.Context, d *schema.ResourceData, meta in
 		logger.Println("[INFO] received formatted data from method data to RibRoute --")
 		d.SetId(ribRoute.UUID.Instance)
 		err := go_thunder.PutRibRoute(client.Token, ribRoute.UUID.Instance, ribRoute, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceRibRouteRead(ctx, d, meta)

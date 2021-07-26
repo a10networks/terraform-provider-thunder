@@ -75,7 +75,7 @@ func PostSlbTemplateExternalService(id string, inst ExternalService, host string
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateExternalService(id string, name string, host string) (*ExternalService, error) {
@@ -150,7 +150,7 @@ func PutSlbTemplateExternalService(id string, name string, inst ExternalService,
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateExternalService(id string, name string, host string) error {

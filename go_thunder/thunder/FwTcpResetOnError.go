@@ -53,7 +53,7 @@ func PostFwTcpResetOnError(id string, inst FwTcpResetOnError, host string) error
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwTcpResetOnError(id string, host string) (*FwTcpResetOnError, error) {

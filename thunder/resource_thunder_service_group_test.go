@@ -529,9 +529,6 @@ func testCheckServiceGroupExists(name string, exists bool) resource.TestCheckFun
 
 		client := testAccProvider.Meta().(Thunder)
 		sg, err := go_thunder.GetSG(client.Token, name, client.Host)
-if err != nil {
-			return diag.FromErr(err)
-		}
 		if err != nil {
 			return err
 		}

@@ -59,7 +59,7 @@ func PostBgp(id string, inst Bgp1, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetBgp(id string, host string) (*Bgp1, error) {

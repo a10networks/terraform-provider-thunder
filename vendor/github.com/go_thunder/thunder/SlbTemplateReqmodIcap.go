@@ -77,7 +77,7 @@ func PostSlbTemplateReqmodIcap(id string, inst ReqmodIcap, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateReqmodIcap(id string, name string, host string) (*ReqmodIcap, error) {
@@ -152,7 +152,7 @@ func PutSlbTemplateReqmodIcap(id string, name string, inst ReqmodIcap, host stri
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateReqmodIcap(id string, name string, host string) error {

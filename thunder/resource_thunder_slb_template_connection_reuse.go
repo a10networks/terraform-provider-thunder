@@ -4,11 +4,11 @@ package thunder
 
 import (
 	"context"
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"log"
 	"util"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
-	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceTemplateConnectionReuse() *schema.Resource {

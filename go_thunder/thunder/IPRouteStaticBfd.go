@@ -53,7 +53,7 @@ func PostIPRouteStaticBfd(id string, name string, inst RouteStaticBfd, host stri
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIPRouteStaticBfd(id string, name string, host string) (*RouteStaticBfd, error) {
@@ -128,7 +128,7 @@ func PutIPRouteStaticBfd(id string, name string, inst RouteStaticBfd, host strin
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteIPRouteStaticBfd(id string, name string, host string) error {

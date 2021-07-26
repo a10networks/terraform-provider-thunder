@@ -132,7 +132,7 @@ func resourceEthernetCreate(ctx context.Context, d *schema.ResourceData, meta in
 		d.SetId(strconv.Itoa(name))
 		logger.Println("[INFO] received V from method data to ip --")
 		err := go_thunder.PutEthernet(client.Token, ethernet, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceEthernetRead(ctx, d, meta)

@@ -58,7 +58,7 @@ func PostFwAlgSip(id string, inst FwAlgSip, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwAlgSip(id string, host string) (*FwAlgSip, error) {

@@ -140,7 +140,7 @@ func PostRouterBgpAddressFamilyIpv6Redistribute(id string, name1 string, inst Ro
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterBgpAddressFamilyIpv6Redistribute(id string, name1 string, host string) (*RouterBgpAddressFamilyIpv6Redistribute, error) {

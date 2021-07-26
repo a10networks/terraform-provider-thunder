@@ -90,5 +90,5 @@ func PostSlbHwCompress(id string, vc HwCompress, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

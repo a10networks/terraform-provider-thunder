@@ -53,7 +53,7 @@ func PostIpNatGlobal(id string, inst NatGlobal, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpNatGlobal(id string, host string) (*NatGlobal, error) {

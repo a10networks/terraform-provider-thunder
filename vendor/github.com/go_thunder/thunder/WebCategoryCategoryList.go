@@ -143,7 +143,7 @@ func PostWebCategoryCategoryList(id string, inst WebCategoryCategoryList, host s
 
 		}
 	}
-return err
+	return err
 }
 
 func GetWebCategoryCategoryList(id string, name1 string, host string) (*WebCategoryCategoryList, error) {
@@ -218,7 +218,7 @@ func PutWebCategoryCategoryList(id string, name1 string, inst WebCategoryCategor
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteWebCategoryCategoryList(id string, name1 string, host string) error {

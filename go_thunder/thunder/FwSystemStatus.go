@@ -52,7 +52,7 @@ func PostFwSystemStatus(id string, inst FwSystemStatus, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwSystemStatus(id string, host string) (*FwSystemStatus, error) {

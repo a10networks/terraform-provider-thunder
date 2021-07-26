@@ -61,7 +61,7 @@ func PostSnmpServerUser(id string, inst SnmpServerUser, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerUser(id string, name1 string, host string) (*SnmpServerUser, error) {
@@ -136,7 +136,7 @@ func PutSnmpServerUser(id string, name1 string, inst SnmpServerUser, host string
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSnmpServerUser(id string, name1 string, host string) error {

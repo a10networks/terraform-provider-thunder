@@ -53,7 +53,7 @@ func PostFwVrid(id string, inst FwVrid, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwVrid(id string, host string) (*FwVrid, error) {

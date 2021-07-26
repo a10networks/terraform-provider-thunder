@@ -55,7 +55,7 @@ func PostSnmpServerGroup(id string, inst SnmpServerGroup, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerGroup(id string, name1 string, host string) (*SnmpServerGroup, error) {
@@ -130,7 +130,7 @@ func PutSnmpServerGroup(id string, name1 string, inst SnmpServerGroup, host stri
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSnmpServerGroup(id string, name1 string, host string) error {

@@ -99,5 +99,5 @@ func PostProfile(id string, vc Profile, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

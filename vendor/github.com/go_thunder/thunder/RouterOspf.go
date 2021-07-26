@@ -343,7 +343,7 @@ func PostRouterOspf(id string, inst RouterOspf, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterOspf(id string, name1 string, host string) (*RouterOspf, error) {
@@ -418,7 +418,7 @@ func PutRouterOspf(id string, name1 string, inst RouterOspf, host string) error 
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteRouterOspf(id string, name1 string, host string) error {

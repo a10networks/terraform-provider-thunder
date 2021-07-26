@@ -53,7 +53,7 @@ func PostIpIcmp(id string, inst Icmp, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func GetIpIcmp(id string, host string) (*Icmp, error) {

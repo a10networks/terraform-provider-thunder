@@ -71,7 +71,7 @@ func PostSlbTemplatePersistCookie(id string, inst SlbTemplatePersistCookie, host
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplatePersistCookie(id string, name string, host string) (*SlbTemplatePersistCookie, error) {
@@ -146,7 +146,7 @@ func PutSlbTemplatePersistCookie(id string, name string, inst SlbTemplatePersist
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplatePersistCookie(id string, name string, host string) error {

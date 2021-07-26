@@ -71,7 +71,7 @@ func resourceMqttCreate(ctx context.Context, d *schema.ResourceData, meta interf
 		v := dataToMqtt(name, d)
 		d.SetId(name)
 		err := go_thunder.PostMqtt(client.Token, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceMqttRead(ctx, d, meta)
@@ -89,13 +89,12 @@ func resourceMqttRead(ctx context.Context, d *schema.ResourceData, meta interfac
 	if client.Host != "" {
 		client := meta.(Thunder)
 
-
 		name := d.Id()
 
 		logger.Println("[INFO] Fetching mqtt Read" + name)
 
 		mqtt, err := go_thunder.GetMqtt(client.Token, name, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if mqtt == nil {
@@ -121,7 +120,7 @@ func resourceMqttUpdate(ctx context.Context, d *schema.ResourceData, meta interf
 		v := dataToMqtt(name, d)
 		d.SetId(name)
 		err := go_thunder.PutMqtt(client.Token, name, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceMqttRead(ctx, d, meta)

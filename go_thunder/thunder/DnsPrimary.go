@@ -87,5 +87,5 @@ func PostDnsPrimary(id string, vc Primary, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

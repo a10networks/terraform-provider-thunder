@@ -71,7 +71,7 @@ func PostSlbTemplateVirtualServer(id string, inst VirtualServer, host string) er
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateVirtualServer(id string, name string, host string) (*VirtualServer, error) {
@@ -146,7 +146,7 @@ func PutSlbTemplateVirtualServer(id string, name string, inst VirtualServer, hos
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateVirtualServer(id string, name string, host string) error {

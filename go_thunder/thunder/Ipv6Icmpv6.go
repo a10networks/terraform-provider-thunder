@@ -54,7 +54,7 @@ func PostIpv6Icmpv6(id string, inst Icmpv6, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpv6Icmpv6(id string, host string) (*Icmpv6, error) {

@@ -69,7 +69,7 @@ func PostSnmpServerEnableTrapsRoutingIsis(id string, inst SnmpServerEnableTrapsR
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerEnableTrapsRoutingIsis(id string, host string) (*SnmpServerEnableTrapsRoutingIsis, error) {

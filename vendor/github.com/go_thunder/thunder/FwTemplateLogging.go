@@ -122,7 +122,7 @@ func PostFwTemplateLogging(id string, inst FwTemplateLogging, host string) error
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwTemplateLogging(id string, name string, host string) (*FwTemplateLogging, error) {

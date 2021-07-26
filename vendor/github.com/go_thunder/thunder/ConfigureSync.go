@@ -94,5 +94,5 @@ func PostConfigureSync(id string, vc Sync, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

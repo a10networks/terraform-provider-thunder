@@ -95,7 +95,7 @@ func PostTemplateDNS(id string, inst DNS, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetTemplateDNS(id string, name string, host string) (*DNS, error) {
@@ -170,7 +170,7 @@ func PutTemplateDNS(id string, name string, inst DNS, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteTemplateDNS(id string, name string, host string) error {

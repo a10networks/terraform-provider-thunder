@@ -91,5 +91,5 @@ func PostSlbFastHttpProxy(id string, vc FastHttpProxy, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

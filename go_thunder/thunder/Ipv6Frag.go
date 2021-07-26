@@ -56,7 +56,7 @@ func PostIpv6Frag(id string, inst IPv6Frag, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpv6Frag(id string, host string) (*IPv6Frag, error) {

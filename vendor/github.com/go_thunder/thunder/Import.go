@@ -169,5 +169,5 @@ func PostImport(id string, vc Import, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

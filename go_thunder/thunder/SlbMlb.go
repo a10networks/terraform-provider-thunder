@@ -55,7 +55,7 @@ func PostSlbMlb(id string, inst Mlb, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbMlb(id string, host string) (*Mlb, error) {

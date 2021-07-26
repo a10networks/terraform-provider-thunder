@@ -52,7 +52,7 @@ func PostFwResourceUsage(id string, inst FwResourceUsage, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwResourceUsage(id string, host string) (*FwResourceUsage, error) {

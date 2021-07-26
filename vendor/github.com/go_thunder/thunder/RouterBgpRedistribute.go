@@ -134,7 +134,7 @@ func PostRouterBgpRedistribute(id string, name1 string, inst RouterBgpRedistribu
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterBgpRedistribute(id string, name1 string, host string) (*RouterBgpRedistribute, error) {

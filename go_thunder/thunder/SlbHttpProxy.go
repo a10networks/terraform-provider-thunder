@@ -91,5 +91,5 @@ func PostSlbHttpProxy(id string, vc HttpProxy, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

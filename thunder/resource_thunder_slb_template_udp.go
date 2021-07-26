@@ -71,7 +71,7 @@ func resourceUdpCreate(ctx context.Context, d *schema.ResourceData, meta interfa
 		v := dataToUdp(name, d)
 		d.SetId(name)
 		err := go_thunder.PostUdp(client.Token, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceUdpRead(ctx, d, meta)
@@ -89,13 +89,12 @@ func resourceUdpRead(ctx context.Context, d *schema.ResourceData, meta interface
 	if client.Host != "" {
 		client := meta.(Thunder)
 
-
 		name := d.Id()
 
 		logger.Println("[INFO] Fetching udp Read" + name)
 
 		udp, err := go_thunder.GetUdp(client.Token, name, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if udp == nil {
@@ -121,7 +120,7 @@ func resourceUdpUpdate(ctx context.Context, d *schema.ResourceData, meta interfa
 		v := dataToUdp(name, d)
 		d.SetId(name)
 		err := go_thunder.PutUdp(client.Token, name, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceUdpRead(ctx, d, meta)

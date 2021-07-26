@@ -57,7 +57,7 @@ func PostRouterBgpAddressFamilyIpv6NetworkIpv6Network(id string, name1 string, i
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterBgpAddressFamilyIpv6NetworkIpv6Network(id string, name1 string, name2 string, host string) (*RouterBgpAddressFamilyIpv6NetworkIpv6Network, error) {
@@ -132,7 +132,7 @@ func PutRouterBgpAddressFamilyIpv6NetworkIpv6Network(id string, name1 string, na
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteRouterBgpAddressFamilyIpv6NetworkIpv6Network(id string, name1 string, name2 string, host string) error {

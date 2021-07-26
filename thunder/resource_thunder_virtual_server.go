@@ -1083,7 +1083,7 @@ func resourceVirtualServerRead(ctx context.Context, d *schema.ResourceData, meta
 		logger.Println("[INFO] Fetching virtual server Read" + name)
 
 		vs, err := go_thunder.GetVS(client.Token, name, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vs == nil {
@@ -1110,7 +1110,7 @@ func resourceVirtualServerUpdate(ctx context.Context, d *schema.ResourceData, me
 		logger.Println("[INFO] received formatted data from method data to vs --" + v.Name.Name + ",--" + v.Name.UUID)
 		d.SetId(name)
 		err := go_thunder.PutVS(client.Token, name, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceVirtualServerRead(ctx, d, meta)

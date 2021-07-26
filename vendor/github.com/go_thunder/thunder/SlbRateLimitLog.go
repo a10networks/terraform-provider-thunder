@@ -55,7 +55,7 @@ func PostSlbRateLimitLog(id string, inst RateLimitLog, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbRateLimitLog(id string, host string) (*RateLimitLog, error) {

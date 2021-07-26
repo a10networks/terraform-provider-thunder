@@ -58,7 +58,7 @@ func PostTemplateClientSsh(id string, inst ClientSSH, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetTemplateClientSsh(id string, name string, host string) (*ClientSSH, error) {
@@ -133,7 +133,7 @@ func PutTemplateClientSsh(id string, name string, inst ClientSSH, host string) e
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteTemplateClientSsh(id string, name string, host string) error {

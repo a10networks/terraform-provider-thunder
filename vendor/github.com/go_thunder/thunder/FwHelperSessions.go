@@ -55,7 +55,7 @@ func PostFwHelperSessions(id string, inst FwHelperSessions, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwHelperSessions(id string, host string) (*FwHelperSessions, error) {

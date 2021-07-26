@@ -55,7 +55,7 @@ func PostSlbMysql(id string, inst Mysql, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbMysql(id string, host string) (*Mysql, error) {

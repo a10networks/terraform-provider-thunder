@@ -63,7 +63,7 @@ func PostIpPrefixList(id string, inst PrefixList, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpPrefixList(id string, name string, host string) (*PrefixList, error) {

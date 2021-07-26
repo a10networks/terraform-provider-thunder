@@ -55,7 +55,7 @@ func PostGlmSend(id string, inst GlmSend, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetGlmSend(id string, host string) (*GlmSend, error) {

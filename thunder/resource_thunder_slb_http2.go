@@ -55,7 +55,7 @@ func resourceSlbHTTP2Create(ctx context.Context, d *schema.ResourceData, meta in
 		vc := dataToSlbHTTP2(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbHTTP2(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbHTTP2Read(ctx, d, meta)
@@ -76,7 +76,7 @@ func resourceSlbHTTP2Read(ctx context.Context, d *schema.ResourceData, meta inte
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbHTTP2(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

@@ -60,7 +60,7 @@ func resourceSlbHttpProxyCreate(ctx context.Context, d *schema.ResourceData, met
 		vc := dataToSlbHttpProxy(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbHttpProxy(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbHttpProxyRead(ctx, d, meta)
@@ -81,7 +81,7 @@ func resourceSlbHttpProxyRead(ctx context.Context, d *schema.ResourceData, meta 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbHttpProxy(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

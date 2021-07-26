@@ -54,7 +54,7 @@ func PostRouterBgpAddressFamilyIpv6NeighborTrunkNeighborIpv6(id string, name1 st
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterBgpAddressFamilyIpv6NeighborTrunkNeighborIpv6(id string, name1 string, name2 string, host string) (*RouterBgpAddressFamilyIpv6NeighborTrunkNeighborIpv6, error) {
@@ -129,5 +129,5 @@ func PutRouterBgpAddressFamilyIpv6NeighborTrunkNeighborIpv6(id string, name1 str
 
 		}
 	}
-return err
+	return err
 }

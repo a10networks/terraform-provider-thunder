@@ -55,7 +55,7 @@ func PostTemplateSSLI(id string, inst SSLI, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetTemplateSSLI(id string, name string, host string) (*SSLI, error) {
@@ -130,7 +130,7 @@ func PutTemplateSSLI(id string, name string, inst SSLI, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteTemplateSSLI(id string, name string, host string) error {

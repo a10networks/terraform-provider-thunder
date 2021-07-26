@@ -55,7 +55,7 @@ func PostSlbSmtp(id string, inst SlbSmtp, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbSmtp(id string, host string) (*SlbSmtp, error) {

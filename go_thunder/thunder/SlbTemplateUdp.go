@@ -91,7 +91,7 @@ func PostUdp(id string, sg UDP, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func PutUdp(id string, name string, sg UDP, host string) error {
@@ -130,7 +130,7 @@ func PutUdp(id string, name string, sg UDP, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func DeleteUdp(id string, name string, host string) error {

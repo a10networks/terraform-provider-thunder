@@ -55,7 +55,7 @@ func resourceSlbHealthStatCreate(ctx context.Context, d *schema.ResourceData, me
 		vc := dataToSlbHealthStat(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbHealthStat(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbHealthStatRead(ctx, d, meta)
@@ -76,7 +76,7 @@ func resourceSlbHealthStatRead(ctx context.Context, d *schema.ResourceData, meta
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbHealthStat(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

@@ -52,7 +52,7 @@ func PostSlbTransparentAclTemplate(id string, inst TransparentAclTemplate, host 
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTransparentAclTemplate(id string, name string, host string) (*TransparentAclTemplate, error) {

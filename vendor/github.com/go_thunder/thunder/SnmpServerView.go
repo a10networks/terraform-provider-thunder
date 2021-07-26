@@ -56,7 +56,7 @@ func PostSnmpServerView(id string, inst SnmpServerView, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerView(id string, name1 string, name2 string, host string) (*SnmpServerView, error) {
@@ -131,7 +131,7 @@ func PutSnmpServerView(id string, name1 string, name2 string, inst SnmpServerVie
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSnmpServerView(id string, name1 string, name2 string, host string) error {

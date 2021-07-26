@@ -57,7 +57,7 @@ func PostRouterBgpNetworkIpCidr(id string, name1 string, inst RouterBgpNetworkIp
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterBgpNetworkIpCidr(id string, name1 string, name2 string, host string) (*RouterBgpNetworkIpCidr, error) {
@@ -132,7 +132,7 @@ func PutRouterBgpNetworkIpCidr(id string, name1 string, name2 string, inst Route
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteRouterBgpNetworkIpCidr(id string, name1 string, name2 string, host string) error {

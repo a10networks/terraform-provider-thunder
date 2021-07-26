@@ -460,7 +460,7 @@ func resourceVrrpVridCreate(ctx context.Context, d *schema.ResourceData, meta in
 		vc := dataToVrrpVrid(d)
 		d.SetId(strconv.Itoa(name))
 		err := go_thunder.PostVrrpVrid(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceVrrpVridRead(ctx, d, meta)
@@ -483,7 +483,7 @@ func resourceVrrpVridRead(ctx context.Context, d *schema.ResourceData, meta inte
 		logger.Println("[INFO] Fetching vrrp vrid" + name)
 
 		vc, err := go_thunder.GetVrrpVrid(client.Token, name, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {
@@ -510,7 +510,7 @@ func resourceVrrpVridUpdate(ctx context.Context, d *schema.ResourceData, meta in
 		v := dataToVrrpVrid(d)
 		d.SetId(name)
 		err := go_thunder.PutVrrpVrid(client.Token, name, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceVrrpVridRead(ctx, d, meta)

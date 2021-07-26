@@ -53,7 +53,7 @@ func PostFwAlgDns(id string, inst FwAlgDns, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwAlgDns(id string, host string) (*FwAlgDns, error) {

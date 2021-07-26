@@ -121,7 +121,7 @@ func resourceLoggingCreate(ctx context.Context, d *schema.ResourceData, meta int
 		v := dataToLogging(name, d)
 		d.SetId(name)
 		err := go_thunder.PostLogging(client.Token, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceLoggingRead(ctx, d, meta)
@@ -138,7 +138,6 @@ func resourceLoggingRead(ctx context.Context, d *schema.ResourceData, meta inter
 
 	if client.Host != "" {
 		client := meta.(Thunder)
-
 
 		name := d.Id()
 
@@ -171,7 +170,7 @@ func resourceLoggingUpdate(ctx context.Context, d *schema.ResourceData, meta int
 		v := dataToLogging(name, d)
 		d.SetId(name)
 		err := go_thunder.PutLogging(client.Token, name, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceLoggingRead(ctx, d, meta)

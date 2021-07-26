@@ -473,7 +473,7 @@ func PostInterfaceVE(id string, inst InterfaceVE, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetInterfaceVE(id string, name string, host string) (*InterfaceVE, error) {
@@ -548,7 +548,7 @@ func PutInterfaceVE(id string, name string, inst InterfaceVE, host string) error
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteInterfaceVE(id string, name string, host string) error {

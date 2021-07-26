@@ -189,7 +189,7 @@ func PostInterfaceVeIPv6(id string, name int, inst VeIPv6, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetInterfaceVeIPv6(id string, name string, host string) (*VeIPv6, error) {

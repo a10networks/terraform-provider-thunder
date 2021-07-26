@@ -53,7 +53,7 @@ func PostFwUrpf(id string, inst FwUrpf, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwUrpf(id string, host string) (*FwUrpf, error) {

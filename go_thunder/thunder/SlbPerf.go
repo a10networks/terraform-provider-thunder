@@ -54,7 +54,7 @@ func PostSlbPerf(id string, inst Perf, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbPerf(id string, host string) (*Perf, error) {

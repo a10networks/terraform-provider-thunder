@@ -107,7 +107,7 @@ func PostHttpPolicy(id string, sg HttpPolicy, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func PutHttpPolicy(id string, name string, sg HttpPolicy, host string) error {
@@ -146,7 +146,7 @@ func PutHttpPolicy(id string, name string, sg HttpPolicy, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func DeleteHttpPolicy(id string, name string, host string) error {

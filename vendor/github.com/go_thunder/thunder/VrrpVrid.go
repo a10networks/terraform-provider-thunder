@@ -196,7 +196,7 @@ func PostVrrpVrid(id string, vc VridInstance, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func PutVrrpVrid(id string, name string, vc VridInstance, host string) error {
@@ -237,7 +237,7 @@ func PutVrrpVrid(id string, name string, vc VridInstance, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func DeleteVrrpVrid(id string, name string, host string) error {

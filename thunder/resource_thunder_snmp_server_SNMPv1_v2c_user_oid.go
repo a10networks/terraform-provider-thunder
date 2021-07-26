@@ -5,11 +5,11 @@ package thunder
 import (
 	"context"
 	"fmt"
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"strings"
 	"util"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
-	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSnmpServerSNMPv1V2cUserOid() *schema.Resource {

@@ -98,7 +98,7 @@ func PostTemplatePort(id string, inst Port, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetTemplatePort(id string, name string, host string) (*Port, error) {
@@ -173,7 +173,7 @@ func PutTemplatePort(id string, name string, inst Port, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteTemplatePort(id string, name string, host string) error {

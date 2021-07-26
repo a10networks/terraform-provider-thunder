@@ -64,7 +64,7 @@ func PostIpNatPool(id string, inst IpNatPool, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpNatPool(id string, name string, host string) (*IpNatPool, error) {
@@ -139,7 +139,7 @@ func PutIpNatPool(id string, name string, inst IpNatPool, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteIpNatPool(id string, name string, host string) error {

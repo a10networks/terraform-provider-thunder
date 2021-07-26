@@ -51,7 +51,7 @@ func PostSlbSvmSourceNat(id string, inst SvmSourceNat, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbSvmSourceNat(id string, host string) (*SvmSourceNat, error) {

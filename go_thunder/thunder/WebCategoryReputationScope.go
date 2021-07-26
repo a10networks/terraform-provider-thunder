@@ -79,7 +79,7 @@ func PostWebCategoryReputationScope(id string, inst WebCategoryReputationScope, 
 
 		}
 	}
-return err
+	return err
 }
 
 func GetWebCategoryReputationScope(id string, name1 string, host string) (*WebCategoryReputationScope, error) {
@@ -154,7 +154,7 @@ func PutWebCategoryReputationScope(id string, name1 string, inst WebCategoryRepu
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteWebCategoryReputationScope(id string, name1 string, host string) error {

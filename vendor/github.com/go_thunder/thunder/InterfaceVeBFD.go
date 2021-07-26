@@ -67,7 +67,7 @@ func PostInterfaceVeBFD(id string, name int, inst VeBFD, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetInterfaceVeBFD(id string, name string, host string) (*VeBFD, error) {

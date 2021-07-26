@@ -81,7 +81,7 @@ func PostSlbTemplateCache(id string, inst Cache, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateCache(id string, name string, host string) (*Cache, error) {
@@ -156,7 +156,7 @@ func PutSlbTemplateCache(id string, name string, inst Cache, host string) error 
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateCache(id string, name string, host string) error {

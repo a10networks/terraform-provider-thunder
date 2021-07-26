@@ -94,7 +94,7 @@ func PostFwRadiusServer(id string, inst FwRadiusServer, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwRadiusServer(id string, host string) (*FwRadiusServer, error) {

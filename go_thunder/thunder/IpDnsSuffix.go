@@ -53,7 +53,7 @@ func PostIpDnsSuffix(id string, inst DnsSuffix, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpDnsSuffix(id string, host string) (*DnsSuffix, error) {

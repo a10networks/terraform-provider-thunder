@@ -201,7 +201,7 @@ func PostSlbTemplatePolicy(id string, inst Policy, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplatePolicy(id string, name string, host string) (*Policy, error) {
@@ -276,7 +276,7 @@ func PutSlbTemplatePolicy(id string, name string, inst Policy, host string) erro
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplatePolicy(id string, name string, host string) error {

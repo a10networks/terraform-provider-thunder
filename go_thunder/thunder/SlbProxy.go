@@ -55,7 +55,7 @@ func PostSlbProxy(id string, inst Proxy, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbProxy(id string, host string) (*Proxy, error) {

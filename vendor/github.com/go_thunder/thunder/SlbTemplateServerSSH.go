@@ -58,7 +58,7 @@ func PostSlbTemplateServerSSH(id string, inst ServerSSH, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateServerSSH(id string, name string, host string) (*ServerSSH, error) {
@@ -133,7 +133,7 @@ func PutSlbTemplateServerSSH(id string, name string, inst ServerSSH, host string
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateServerSSH(id string, name string, host string) error {

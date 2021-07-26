@@ -57,7 +57,7 @@ func PostFwApp(id string, inst FwApp, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwApp(id string, host string) (*FwApp, error) {

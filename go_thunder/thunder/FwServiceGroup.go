@@ -70,7 +70,7 @@ func PostFwServiceGroup(id string, inst FwServiceGroup, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwServiceGroup(id string, name string, host string) (*FwServiceGroup, error) {
@@ -145,7 +145,7 @@ func PutFwServiceGroup(id string, name string, inst FwServiceGroup, host string)
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteFwServiceGroup(id string, name string, host string) error {

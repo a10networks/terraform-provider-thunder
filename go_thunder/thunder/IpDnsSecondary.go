@@ -53,7 +53,7 @@ func PostIpDnsSecondary(id string, inst DnsSecondary, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpDnsSecondary(id string, host string) (*DnsSecondary, error) {

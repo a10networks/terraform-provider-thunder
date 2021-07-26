@@ -171,7 +171,7 @@ func PostSG(id string, sg ServiceGroup, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func PutSG(id string, name string, sg ServiceGroup, host string) error {
@@ -213,7 +213,7 @@ func PutSG(id string, name string, sg ServiceGroup, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSG(id string, name string, host string) error {

@@ -154,7 +154,7 @@ func PostServer(id string, sg Server, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func PutServer(id string, name string, sg Server, host string) error {
@@ -196,7 +196,7 @@ func PutServer(id string, name string, sg Server, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteServer(id string, name string, host string) error {

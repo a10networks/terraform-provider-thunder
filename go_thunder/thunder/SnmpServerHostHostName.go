@@ -57,7 +57,7 @@ func PostSnmpServerHostHostName(id string, inst SnmpServerHostHostName, host str
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerHostHostName(id string, name1 string, name2 string, host string) (*SnmpServerHostHostName, error) {
@@ -132,7 +132,7 @@ func PutSnmpServerHostHostName(id string, name1 string, name2 string, inst SnmpS
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSnmpServerHostHostName(id string, name1 string, name2 string, host string) error {

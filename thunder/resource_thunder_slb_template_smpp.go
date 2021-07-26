@@ -81,7 +81,7 @@ func resourceSmppCreate(ctx context.Context, d *schema.ResourceData, meta interf
 		v := dataToSmpp(name, d)
 		d.SetId(name)
 		err := go_thunder.PostSmpp(client.Token, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSmppRead(ctx, d, meta)
@@ -99,13 +99,12 @@ func resourceSmppRead(ctx context.Context, d *schema.ResourceData, meta interfac
 	if client.Host != "" {
 		client := meta.(Thunder)
 
-
 		name := d.Id()
 
 		logger.Println("[INFO] Fetching smppp Read" + name)
 
 		smpp, err := go_thunder.GetSmpp(client.Token, name, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if smpp == nil {
@@ -131,7 +130,7 @@ func resourceSmppUpdate(ctx context.Context, d *schema.ResourceData, meta interf
 		v := dataToSmpp(name, d)
 		d.SetId(name)
 		err := go_thunder.PutSmpp(client.Token, name, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSmppRead(ctx, d, meta)

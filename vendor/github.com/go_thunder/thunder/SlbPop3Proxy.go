@@ -55,7 +55,7 @@ func PostSlbPop3Proxy(id string, inst Pop3Proxy, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbPop3Proxy(id string, host string) (*Pop3Proxy, error) {

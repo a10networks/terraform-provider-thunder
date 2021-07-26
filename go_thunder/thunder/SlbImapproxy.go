@@ -53,7 +53,7 @@ func PostSlbImapproxy(id string, inst Imapproxy, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbImapproxy(id string, host string) (*Imapproxy, error) {

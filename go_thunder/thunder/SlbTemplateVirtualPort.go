@@ -78,7 +78,7 @@ func PostSlbTemplateVirtualPort(id string, inst VirtualPort, host string) error 
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateVirtualPort(id string, name string, host string) (*VirtualPort, error) {
@@ -153,7 +153,7 @@ func PutSlbTemplateVirtualPort(id string, name string, inst VirtualPort, host st
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateVirtualPort(id string, name string, host string) error {

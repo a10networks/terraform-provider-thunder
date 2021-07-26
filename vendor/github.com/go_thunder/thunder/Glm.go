@@ -106,5 +106,5 @@ func PostGlm(id string, vc Glm, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

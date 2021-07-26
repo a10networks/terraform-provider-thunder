@@ -1152,9 +1152,7 @@ func testCheckVirtualServerExists(name string, exists bool) resource.TestCheckFu
 
 		client := testAccProvider.Meta().(Thunder)
 		vs, err := go_thunder.GetVS(client.Token, name, client.Host)
-if err != nil {
-			return diag.FromErr(err)
-		}
+
 		if err != nil {
 			return err
 		}

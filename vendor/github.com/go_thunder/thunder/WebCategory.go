@@ -225,7 +225,7 @@ func PostWebCategory(id string, inst WebCategorySelf, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetWebCategory(id string, host string) (*WebCategorySelf, error) {

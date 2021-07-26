@@ -53,7 +53,7 @@ func PostFwGtpInGtpFiltering(id string, inst FwGtpInGtpFiltering, host string) e
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwGtpInGtpFiltering(id string, host string) (*FwGtpInGtpFiltering, error) {

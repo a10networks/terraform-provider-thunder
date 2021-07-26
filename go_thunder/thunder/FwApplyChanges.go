@@ -52,7 +52,7 @@ func PostFwApplyChanges(id string, inst FwApplyChanges, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwApplyChanges(id string, host string) (*FwApplyChanges, error) {

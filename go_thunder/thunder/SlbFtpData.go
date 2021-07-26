@@ -90,5 +90,5 @@ func PostSlbFTPData(id string, vc FTPData, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

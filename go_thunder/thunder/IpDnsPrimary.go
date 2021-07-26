@@ -53,7 +53,7 @@ func PostIpDnsPrimary(id string, inst DnsPrimary, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpDnsPrimary(id string, host string) (*DnsPrimary, error) {

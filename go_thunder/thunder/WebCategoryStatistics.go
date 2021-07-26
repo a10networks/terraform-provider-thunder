@@ -57,7 +57,7 @@ func PostWebCategoryStatistics(id string, inst WebCategoryStatistics, host strin
 
 		}
 	}
-return err
+	return err
 }
 
 func GetWebCategoryStatistics(id string, host string) (*WebCategoryStatistics, error) {

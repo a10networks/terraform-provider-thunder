@@ -45,7 +45,7 @@ func resourceVrrpSessionSyncCreate(ctx context.Context, d *schema.ResourceData, 
 	if client.Host != "" {
 		vc := dataToVrrpSessionSync(d)
 		err := go_thunder.PostVrrpSessionSync(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 
@@ -67,7 +67,7 @@ func resourceVrrpSessionSyncRead(ctx context.Context, d *schema.ResourceData, me
 	if client.Host != "" {
 
 		vc, err := go_thunder.GetVrrpSessionSync(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

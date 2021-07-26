@@ -65,7 +65,7 @@ func PostIpFrag(id string, inst Frag, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpFrag(id string, host string) (*Frag, error) {

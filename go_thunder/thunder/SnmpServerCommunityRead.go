@@ -84,7 +84,7 @@ func PostSnmpServerCommunityRead(id string, inst SnmpServerCommunityRead, host s
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerCommunityRead(id string, name string, host string) (*SnmpServerCommunityRead, error) {
@@ -159,7 +159,7 @@ func PutSnmpServerCommunityRead(id string, name string, inst SnmpServerCommunity
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSnmpServerCommunityRead(id string, name string, host string) error {

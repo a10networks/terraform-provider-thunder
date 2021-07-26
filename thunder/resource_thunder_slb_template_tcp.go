@@ -76,7 +76,7 @@ func resourceTcpCreate(ctx context.Context, d *schema.ResourceData, meta interfa
 		v := dataToTcp(name, d)
 		d.SetId(name)
 		err := go_thunder.PostTcp(client.Token, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceTcpRead(ctx, d, meta)
@@ -94,13 +94,12 @@ func resourceTcpRead(ctx context.Context, d *schema.ResourceData, meta interface
 	if client.Host != "" {
 		client := meta.(Thunder)
 
-
 		name := d.Id()
 
 		logger.Println("[INFO] Fetching tcp Read" + name)
 
 		tcp, err := go_thunder.GetTcp(client.Token, name, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if tcp == nil {
@@ -126,7 +125,7 @@ func resourceTcpUpdate(ctx context.Context, d *schema.ResourceData, meta interfa
 		v := dataToTcp(name, d)
 		d.SetId(name)
 		err := go_thunder.PutTcp(client.Token, name, v, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceTcpRead(ctx, d, meta)

@@ -109,7 +109,7 @@ func PostRouterOspfArea(id string, name1 string, inst RouterOspfArea, host strin
 
 		}
 	}
-return err
+	return err
 }
 
 func GetRouterOspfArea(id string, name1 string, name2 string, name3 string, host string) (*RouterOspfArea, error) {
@@ -184,7 +184,7 @@ func PutRouterOspfArea(id string, name1 string, name2 string, name3 string, inst
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteRouterOspfArea(id string, name1 string, name2 string, name3 string, host string) error {

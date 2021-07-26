@@ -432,7 +432,7 @@ func resourceImportCreate(ctx context.Context, d *schema.ResourceData, meta inte
 		vc := dataToImport(d)
 		d.SetId(name)
 		err := go_thunder.PostImport(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceImportRead(ctx, d, meta)
@@ -455,7 +455,7 @@ func resourceImportRead(ctx context.Context, d *schema.ResourceData, meta interf
 		logger.Println("[INFO] Fetching Import Read - " + name)
 
 		vc, err := go_thunder.GetImport(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

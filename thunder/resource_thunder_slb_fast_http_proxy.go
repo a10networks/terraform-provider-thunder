@@ -60,7 +60,7 @@ func resourceSlbFastHttpProxyCreate(ctx context.Context, d *schema.ResourceData,
 		vc := dataToSlbFastHttpProxy(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbFastHttpProxy(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbFastHttpProxyRead(ctx, d, meta)
@@ -81,7 +81,7 @@ func resourceSlbFastHttpProxyRead(ctx context.Context, d *schema.ResourceData, m
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbFastHttpProxy(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

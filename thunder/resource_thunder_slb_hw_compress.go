@@ -55,7 +55,7 @@ func resourceSlbHwCompressCreate(ctx context.Context, d *schema.ResourceData, me
 		vc := dataToSlbHwCompress(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbHwCompress(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbHwCompressRead(ctx, d, meta)
@@ -76,7 +76,7 @@ func resourceSlbHwCompressRead(ctx context.Context, d *schema.ResourceData, meta
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbHwCompress(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

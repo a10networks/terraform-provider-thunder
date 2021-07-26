@@ -55,7 +55,7 @@ func resourceSlbConnectionReuseCreate(ctx context.Context, d *schema.ResourceDat
 		vc := dataToSlbConnectionReuse(d)
 		d.SetId("1")
 		err := go_thunder.PostSlbConnectionReuse(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceSlbConnectionReuseRead(ctx, d, meta)
@@ -76,7 +76,7 @@ func resourceSlbConnectionReuseRead(ctx context.Context, d *schema.ResourceData,
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbConnectionReuse(client.Token, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 		if vc == nil {

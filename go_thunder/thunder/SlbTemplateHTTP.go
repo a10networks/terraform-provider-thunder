@@ -156,7 +156,7 @@ func PostSlbTemplateHTTP(id string, inst HTTP, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSlbTemplateHTTP(id string, name string, host string) (*HTTP, error) {
@@ -231,7 +231,7 @@ func PutSlbTemplateHTTP(id string, name string, inst HTTP, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteSlbTemplateHTTP(id string, name string, host string) error {

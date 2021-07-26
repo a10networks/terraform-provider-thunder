@@ -90,5 +90,5 @@ func PostSlbConnectionReuse(id string, vc ConnectionReuse, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

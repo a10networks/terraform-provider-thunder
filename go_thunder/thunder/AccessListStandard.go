@@ -66,7 +66,7 @@ func PostAccessListStandard(id string, inst AccessListStandard, host string) err
 
 		}
 	}
-return err
+	return err
 }
 
 func GetAccessListStandard(id string, name1 string, host string) (*AccessListStandard, error) {
@@ -141,7 +141,7 @@ func PutAccessListStandard(id string, name1 string, inst AccessListStandard, hos
 
 		}
 	}
-return err
+	return err
 }
 
 func DeleteAccessListStandard(id string, name1 string, host string) error {

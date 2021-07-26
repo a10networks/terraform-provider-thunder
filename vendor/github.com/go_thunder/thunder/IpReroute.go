@@ -63,7 +63,7 @@ func PostIpReroute(id string, inst Reroute, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetIpReroute(id string, host string) (*Reroute, error) {

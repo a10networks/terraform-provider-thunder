@@ -91,7 +91,7 @@ func PostMqtt(id string, sg Mqtt, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func PutMqtt(id string, name string, sg Mqtt, host string) error {
@@ -130,7 +130,7 @@ func PutMqtt(id string, name string, sg Mqtt, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }
 
 func DeleteMqtt(id string, name string, host string) error {

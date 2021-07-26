@@ -86,5 +86,5 @@ func PostVrrpSessionSync(id string, vc SessionSync, host string) error {
 			}
 		}
 	}
-return err
+	return err
 }

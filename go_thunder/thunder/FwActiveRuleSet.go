@@ -55,7 +55,7 @@ func PostFwActiveRuleSet(id string, inst FwActiveRuleSet, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetFwActiveRuleSet(id string, host string) (*FwActiveRuleSet, error) {

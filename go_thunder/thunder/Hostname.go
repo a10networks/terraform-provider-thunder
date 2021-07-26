@@ -53,7 +53,7 @@ func PostHostname(id string, inst Hostname, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetHostname(id string, host string) (*Hostname, error) {

@@ -126,7 +126,7 @@ func PostInterfaceManagement(id string, inst Management, host string) error {
 
 		}
 	}
-return err
+	return err
 }
 
 func GetInterfaceManagement(id string, host string) (*Management, error) {

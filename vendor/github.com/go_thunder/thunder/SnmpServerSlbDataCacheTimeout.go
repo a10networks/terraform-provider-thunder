@@ -53,7 +53,7 @@ func PostSnmpServerSlbDataCacheTimeout(id string, inst SnmpServerSlbDataCacheTim
 
 		}
 	}
-return err
+	return err
 }
 
 func GetSnmpServerSlbDataCacheTimeout(id string, host string) (*SnmpServerSlbDataCacheTimeout, error) {

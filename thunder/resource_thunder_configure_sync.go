@@ -83,7 +83,7 @@ func resourceConfigureSyncCreate(ctx context.Context, d *schema.ResourceData, me
 	if client.Host != "" {
 		vc := dataToConfigureSync(d)
 		err := go_thunder.PostConfigureSync(client.Token, vc, client.Host)
-if err != nil {
+		if err != nil {
 			return diag.FromErr(err)
 		}
 
