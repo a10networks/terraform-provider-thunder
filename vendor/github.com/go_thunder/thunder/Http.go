@@ -18,7 +18,7 @@ func DoHttp(method string, host string, body io.Reader, headers map[string]strin
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 	//client := &http.Client{Transport: tr}
-	client := &http.Client{Transport: tr, Timeout: 60 * time.Second}
+	client := &http.Client{Transport: tr, Timeout: 30 * time.Second}
 	req, err := http.NewRequest(method, host, body)
 	//logger.Println("req new request - ", req.StatusCode)
 	if err != nil {
