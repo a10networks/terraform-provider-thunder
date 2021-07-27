@@ -3,19 +3,21 @@ package thunder
 // Thunder resource Slb Fix
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbFix() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbFixCreate,
-		Update: resourceSlbFixUpdate,
-		Read:   resourceSlbFixRead,
-		Delete: resourceSlbFixDelete,
+		CreateContext: resourceSlbFixCreate,
+		UpdateContext: resourceSlbFixUpdate,
+		ReadContext:   resourceSlbFixRead,
+		DeleteContext: resourceSlbFixDelete,
 
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
@@ -41,53 +43,61 @@ func resourceSlbFix() *schema.Resource {
 
 }
 
-func resourceSlbFixCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbFixCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating fix (Inside resourceSlbFixCreate)")
 
 	if client.Host != "" {
 		vc := dataToSlbFix(d)
 		d.SetId("1")
-		go_thunder.PostSlbFix(client.Token, vc, client.Host)
-
-		return resourceSlbFixRead(d, meta)
+		err := go_thunder.PostSlbFix(client.Token, vc, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSlbFixRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbFixRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbFixRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading fix (Inside resourceSlbFixRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbFix(client.Token, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No fix found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbFixUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbFixUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbFixRead(d, meta)
+	return resourceSlbFixRead(ctx, d, meta)
 }
 
-func resourceSlbFixDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbFixDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbFixRead(d, meta)
+	return resourceSlbFixRead(ctx, d, meta)
 }
 
 //Utility method to instantiate Fix Structure

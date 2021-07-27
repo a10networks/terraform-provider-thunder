@@ -3,20 +3,22 @@ package thunder
 //Thunder resource InterfaceEthernet
 
 import (
+	"context"
 	"fmt"
 	"strconv"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceInterfaceEthernet() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceInterfaceEthernetCreate,
-		Update: resourceInterfaceEthernetUpdate,
-		Read:   resourceInterfaceEthernetRead,
-		Delete: resourceInterfaceEthernetDelete,
+		CreateContext: resourceInterfaceEthernetCreate,
+		UpdateContext: resourceInterfaceEthernetUpdate,
+		ReadContext:   resourceInterfaceEthernetRead,
+		DeleteContext: resourceInterfaceEthernetDelete,
 		Schema: map[string]*schema.Schema{
 			"speed_forced_40g": {
 				Type:        schema.TypeInt,
@@ -2067,9 +2069,11 @@ func resourceInterfaceEthernet() *schema.Resource {
 	}
 }
 
-func resourceInterfaceEthernetCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating InterfaceEthernet (Inside resourceInterfaceEthernetCreate) ")
@@ -2077,36 +2081,46 @@ func resourceInterfaceEthernetCreate(d *schema.ResourceData, meta interface{}) e
 		data := dataToInterfaceEthernet(d)
 		logger.Println("[INFO] received V from method data to InterfaceEthernet --")
 		d.SetId(strconv.Itoa(name))
-		go_thunder.PostInterfaceEthernet(client.Token, data, client.Host)
+		err := go_thunder.PostInterfaceEthernet(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceEthernetRead(d, meta)
+		return resourceInterfaceEthernetRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceEthernetRead(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading InterfaceEthernet (Inside resourceInterfaceEthernetRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetInterfaceEthernet(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceInterfaceEthernetUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying InterfaceEthernet   (Inside resourceInterfaceEthernetUpdate) ")
@@ -2114,17 +2128,22 @@ func resourceInterfaceEthernetUpdate(d *schema.ResourceData, meta interface{}) e
 		data := dataToInterfaceEthernet(d)
 		logger.Println("[INFO] received V from method data to InterfaceEthernet ")
 		d.SetId(strconv.Itoa(name))
-		go_thunder.PutInterfaceEthernet(client.Token, strconv.Itoa(name), data, client.Host)
+		err := go_thunder.PutInterfaceEthernet(client.Token, strconv.Itoa(name), data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceEthernetRead(d, meta)
+		return resourceInterfaceEthernetRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceEthernetDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -2132,7 +2151,7 @@ func resourceInterfaceEthernetDelete(d *schema.ResourceData, meta interface{}) e
 		err := go_thunder.DeleteInterfaceEthernet(client.Token, name, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

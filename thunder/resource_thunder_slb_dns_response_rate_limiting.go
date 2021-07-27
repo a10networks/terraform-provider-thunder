@@ -3,19 +3,21 @@ package thunder
 // Thunder resource Slb DNSResponseRateLimiting
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbDNSResponseRateLimiting() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbDNSResponseRateLimitingCreate,
-		Update: resourceSlbDNSResponseRateLimitingUpdate,
-		Read:   resourceSlbDNSResponseRateLimitingRead,
-		Delete: resourceSlbDNSResponseRateLimitingDelete,
+		CreateContext: resourceSlbDNSResponseRateLimitingCreate,
+		UpdateContext: resourceSlbDNSResponseRateLimitingUpdate,
+		ReadContext:   resourceSlbDNSResponseRateLimitingRead,
+		DeleteContext: resourceSlbDNSResponseRateLimitingDelete,
 
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
@@ -41,53 +43,61 @@ func resourceSlbDNSResponseRateLimiting() *schema.Resource {
 
 }
 
-func resourceSlbDNSResponseRateLimitingCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbDNSResponseRateLimitingCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating DNS Response Rate Limiting (Inside resourceSlbDNSResponseRateLimitingCreate)")
 
 	if client.Host != "" {
 		vc := dataToSlbDNSResponseRateLimiting(d)
 		d.SetId("1")
-		go_thunder.PostSlbDNSResponseRateLimiting(client.Token, vc, client.Host)
-
-		return resourceSlbDNSResponseRateLimitingRead(d, meta)
+		err := go_thunder.PostSlbDNSResponseRateLimiting(client.Token, vc, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSlbDNSResponseRateLimitingRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbDNSResponseRateLimitingRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbDNSResponseRateLimitingRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading DNS Response Rate Limiting (Inside resourceSlbDNSResponseRateLimitingRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbDNSResponseRateLimiting(client.Token, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No DNS Response Rate Limiting found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbDNSResponseRateLimitingUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbDNSResponseRateLimitingUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbDNSResponseRateLimitingRead(d, meta)
+	return resourceSlbDNSResponseRateLimitingRead(ctx, d, meta)
 }
 
-func resourceSlbDNSResponseRateLimitingDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbDNSResponseRateLimitingDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbDNSResponseRateLimitingRead(d, meta)
+	return resourceSlbDNSResponseRateLimitingRead(ctx, d, meta)
 }
 
 //Utility method to instantiate DNSResponseRateLimiting Structure

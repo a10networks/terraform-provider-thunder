@@ -3,18 +3,21 @@ package thunder
 //Thunder resource WebCategoryCategoryList
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceWebCategoryCategoryList() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceWebCategoryCategoryListCreate,
-		Update: resourceWebCategoryCategoryListUpdate,
-		Read:   resourceWebCategoryCategoryListRead,
-		Delete: resourceWebCategoryCategoryListDelete,
+		CreateContext: resourceWebCategoryCategoryListCreate,
+		UpdateContext: resourceWebCategoryCategoryListUpdate,
+		ReadContext:   resourceWebCategoryCategoryListRead,
+		DeleteContext: resourceWebCategoryCategoryListDelete,
 		Schema: map[string]*schema.Schema{
 			"name": {
 				Type:        schema.TypeString,
@@ -468,9 +471,11 @@ func resourceWebCategoryCategoryList() *schema.Resource {
 	}
 }
 
-func resourceWebCategoryCategoryListCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryCategoryListCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating WebCategoryCategoryList (Inside resourceWebCategoryCategoryListCreate) ")
@@ -478,52 +483,67 @@ func resourceWebCategoryCategoryListCreate(d *schema.ResourceData, meta interfac
 		data := dataToWebCategoryCategoryList(d)
 		logger.Println("[INFO] received formatted data from method data to WebCategoryCategoryList --")
 		d.SetId(name1)
-		go_thunder.PostWebCategoryCategoryList(client.Token, data, client.Host)
+		err := go_thunder.PostWebCategoryCategoryList(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceWebCategoryCategoryListRead(d, meta)
+		return resourceWebCategoryCategoryListRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceWebCategoryCategoryListRead(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryCategoryListRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading WebCategoryCategoryList (Inside resourceWebCategoryCategoryListRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetWebCategoryCategoryList(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceWebCategoryCategoryListUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryCategoryListUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying WebCategoryCategoryList   (Inside resourceWebCategoryCategoryListUpdate) ")
 		data := dataToWebCategoryCategoryList(d)
 		logger.Println("[INFO] received formatted data from method data to WebCategoryCategoryList ")
-		go_thunder.PutWebCategoryCategoryList(client.Token, name1, data, client.Host)
+		err := go_thunder.PutWebCategoryCategoryList(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceWebCategoryCategoryListRead(d, meta)
+		return resourceWebCategoryCategoryListRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceWebCategoryCategoryListDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryCategoryListDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -531,11 +551,11 @@ func resourceWebCategoryCategoryListDelete(d *schema.ResourceData, meta interfac
 		err := go_thunder.DeleteWebCategoryCategoryList(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToWebCategoryCategoryList(d *schema.ResourceData) go_thunder.WebCategoryCategoryList {

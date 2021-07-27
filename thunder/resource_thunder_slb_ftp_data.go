@@ -3,19 +3,21 @@ package thunder
 // Thunder resource Slb FTPData
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbFTPData() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbFTPDataCreate,
-		Update: resourceSlbFTPDataUpdate,
-		Read:   resourceSlbFTPDataRead,
-		Delete: resourceSlbFTPDataDelete,
+		CreateContext: resourceSlbFTPDataCreate,
+		UpdateContext: resourceSlbFTPDataUpdate,
+		ReadContext:   resourceSlbFTPDataRead,
+		DeleteContext: resourceSlbFTPDataDelete,
 
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
@@ -41,53 +43,61 @@ func resourceSlbFTPData() *schema.Resource {
 
 }
 
-func resourceSlbFTPDataCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbFTPDataCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating FTPData (Inside resourceSlbFTPDataCreate)")
 
 	if client.Host != "" {
 		vc := dataToSlbFTPData(d)
 		d.SetId("1")
-		go_thunder.PostSlbFTPData(client.Token, vc, client.Host)
-
-		return resourceSlbFTPDataRead(d, meta)
+		err := go_thunder.PostSlbFTPData(client.Token, vc, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceSlbFTPDataRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbFTPDataRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbFTPDataRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading FTPData (Inside resourceSlbFTPDataRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetSlbFTPData(client.Token, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No FTPData found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbFTPDataUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbFTPDataUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbFTPDataRead(d, meta)
+	return resourceSlbFTPDataRead(ctx, d, meta)
 }
 
-func resourceSlbFTPDataDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbFTPDataDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbFTPDataRead(d, meta)
+	return resourceSlbFTPDataRead(ctx, d, meta)
 }
 
 //Utility method to instantiate FTPData Structure

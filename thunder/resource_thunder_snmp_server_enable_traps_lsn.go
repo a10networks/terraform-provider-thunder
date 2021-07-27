@@ -3,17 +3,20 @@ package thunder
 //Thunder resource SnmpServerEnableTrapsLsn
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSnmpServerEnableTrapsLsn() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSnmpServerEnableTrapsLsnCreate,
-		Update: resourceSnmpServerEnableTrapsLsnUpdate,
-		Read:   resourceSnmpServerEnableTrapsLsnRead,
-		Delete: resourceSnmpServerEnableTrapsLsnDelete,
+		CreateContext: resourceSnmpServerEnableTrapsLsnCreate,
+		UpdateContext: resourceSnmpServerEnableTrapsLsnUpdate,
+		ReadContext:   resourceSnmpServerEnableTrapsLsnRead,
+		DeleteContext: resourceSnmpServerEnableTrapsLsnDelete,
 		Schema: map[string]*schema.Schema{
 			"all": {
 				Type:        schema.TypeInt,
@@ -59,9 +62,11 @@ func resourceSnmpServerEnableTrapsLsn() *schema.Resource {
 	}
 }
 
-func resourceSnmpServerEnableTrapsLsnCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEnableTrapsLsnCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerEnableTrapsLsn (Inside resourceSnmpServerEnableTrapsLsnCreate) ")
@@ -69,39 +74,47 @@ func resourceSnmpServerEnableTrapsLsnCreate(d *schema.ResourceData, meta interfa
 		data := dataToSnmpServerEnableTrapsLsn(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerEnableTrapsLsn --")
 		d.SetId("1")
-		go_thunder.PostSnmpServerEnableTrapsLsn(client.Token, data, client.Host)
+		err := go_thunder.PostSnmpServerEnableTrapsLsn(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerEnableTrapsLsnRead(d, meta)
+		return resourceSnmpServerEnableTrapsLsnRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerEnableTrapsLsnRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEnableTrapsLsnRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SnmpServerEnableTrapsLsn (Inside resourceSnmpServerEnableTrapsLsnRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetSnmpServerEnableTrapsLsn(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSnmpServerEnableTrapsLsnUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEnableTrapsLsnUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSnmpServerEnableTrapsLsnRead(d, meta)
+	return resourceSnmpServerEnableTrapsLsnRead(ctx, d, meta)
 }
 
-func resourceSnmpServerEnableTrapsLsnDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEnableTrapsLsnDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSnmpServerEnableTrapsLsnRead(d, meta)
+	return resourceSnmpServerEnableTrapsLsnRead(ctx, d, meta)
 }
 func dataToSnmpServerEnableTrapsLsn(d *schema.ResourceData) go_thunder.SnmpServerEnableTrapsLsn {
 	var vc go_thunder.SnmpServerEnableTrapsLsn

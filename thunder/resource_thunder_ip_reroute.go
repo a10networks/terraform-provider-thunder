@@ -3,18 +3,20 @@ package thunder
 //Thunder resource IpReroute
 
 import (
+	"context"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceIpReroute() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceIpRerouteCreate,
-		Update: resourceIpRerouteUpdate,
-		Read:   resourceIpRerouteRead,
-		Delete: resourceIpRerouteDelete,
+		CreateContext: resourceIpRerouteCreate,
+		UpdateContext: resourceIpRerouteUpdate,
+		ReadContext:   resourceIpRerouteRead,
+		DeleteContext: resourceIpRerouteDelete,
 		Schema: map[string]*schema.Schema{
 			"suppress_protocols": {
 				Type:     schema.TypeList,
@@ -74,9 +76,11 @@ func resourceIpReroute() *schema.Resource {
 	}
 }
 
-func resourceIpRerouteCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpRerouteCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating IpReroute (Inside resourceIpRerouteCreate) ")
@@ -84,38 +88,46 @@ func resourceIpRerouteCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToIpReroute(d)
 		logger.Println("[INFO] received V from method data to IpReroute --")
 		d.SetId("1")
-		go_thunder.PostIpReroute(client.Token, data, client.Host)
+		err := go_thunder.PostIpReroute(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceIpRerouteRead(d, meta)
+		return resourceIpRerouteRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceIpRerouteRead(d *schema.ResourceData, meta interface{}) error {
+func resourceIpRerouteRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading IpReroute (Inside resourceIpRerouteRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetIpReroute(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceIpRerouteUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpRerouteUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpRerouteRead(d, meta)
+	return resourceIpRerouteRead(ctx, d, meta)
 }
 
-func resourceIpRerouteDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceIpRerouteDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpRerouteRead(d, meta)
+	return resourceIpRerouteRead(ctx, d, meta)
 }
 
 func dataToIpReroute(d *schema.ResourceData) go_thunder.Reroute {

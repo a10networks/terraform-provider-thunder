@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbSwitch
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbSwitch() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbSwitchCreate,
-		Update: resourceSlbSwitchUpdate,
-		Read:   resourceSlbSwitchRead,
-		Delete: resourceSlbSwitchDelete,
+		CreateContext: resourceSlbSwitchCreate,
+		UpdateContext: resourceSlbSwitchUpdate,
+		ReadContext:   resourceSlbSwitchRead,
+		DeleteContext: resourceSlbSwitchDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,46 +36,56 @@ func resourceSlbSwitch() *schema.Resource {
 	}
 }
 
-func resourceSlbSwitchCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSwitchCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbSwitch (Inside resourceSlbSwitchCreate) ")
 		d.SetId("1")
 		data := dataToSlbSwitch(d)
 		logger.Println("[INFO] received formatted data from method data to SlbSwitch --")
-		go_thunder.PostSlbSwitch(client.Token, data, client.Host)
+		err := go_thunder.PostSlbSwitch(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbSwitchRead(d, meta)
+		return resourceSlbSwitchRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbSwitchRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSwitchRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbSwitch (Inside resourceSlbSwitchRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetSlbSwitch(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbSwitchUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSwitchUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSwitchRead(d, meta)
+	return resourceSlbSwitchRead(ctx, d, meta)
 }
 
-func resourceSlbSwitchDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSwitchDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSwitchRead(d, meta)
+	return resourceSlbSwitchRead(ctx, d, meta)
 }
 
 func dataToSlbSwitch(d *schema.ResourceData) go_thunder.Switch {

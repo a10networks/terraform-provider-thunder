@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbIcapHTTP
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbIcap() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbIcapCreate,
-		Update: resourceSlbIcapUpdate,
-		Read:   resourceSlbIcapRead,
-		Delete: resourceSlbIcapDelete,
+		CreateContext: resourceSlbIcapCreate,
+		UpdateContext: resourceSlbIcapUpdate,
+		ReadContext:   resourceSlbIcapRead,
+		DeleteContext: resourceSlbIcapDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbIcap() *schema.Resource {
 	}
 }
 
-func resourceSlbIcapCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbIcapCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbIcap (Inside resourceSlbIcapCreate) ")
@@ -44,37 +48,45 @@ func resourceSlbIcapCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSlbIcap(d)
 		logger.Println("[INFO] received V from method data to SlbIcap --")
 		d.SetId("1")
-		go_thunder.PostSlbIcap(client.Token, data, client.Host)
+		err := go_thunder.PostSlbIcap(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbIcapRead(d, meta)
+		return resourceSlbIcapRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbIcapRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbIcapRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbIcap (Inside resourceSlbIcapRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetSlbIcap(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
-func resourceSlbIcapUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbIcapUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbIcapRead(d, meta)
+	return resourceSlbIcapRead(ctx, d, meta)
 }
 
-func resourceSlbIcapDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbIcapDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbIcapRead(d, meta)
+	return resourceSlbIcapRead(ctx, d, meta)
 }
 func dataToSlbIcap(d *schema.ResourceData) go_thunder.Icap {
 	var vc go_thunder.Icap

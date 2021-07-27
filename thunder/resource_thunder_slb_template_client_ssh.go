@@ -3,19 +3,21 @@ package thunder
 //Thunder resource TemplateClientSsh
 
 import (
+	"context"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceTemplateClientSsh() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceTemplateClientSshCreate,
-		Update: resourceTemplateClientSshUpdate,
-		Read:   resourceTemplateClientSshRead,
-		Delete: resourceTemplateClientSshDelete,
+		CreateContext: resourceTemplateClientSshCreate,
+		UpdateContext: resourceTemplateClientSshUpdate,
+		ReadContext:   resourceTemplateClientSshRead,
+		DeleteContext: resourceTemplateClientSshDelete,
 		Schema: map[string]*schema.Schema{
 			"forward_proxy_hostkey": {
 				Type:        schema.TypeString,
@@ -56,9 +58,11 @@ func resourceTemplateClientSsh() *schema.Resource {
 	}
 }
 
-func resourceTemplateClientSshCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateClientSshCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating TemplateClientSsh (Inside resourceTemplateClientSshCreate) ")
@@ -66,36 +70,46 @@ func resourceTemplateClientSshCreate(d *schema.ResourceData, meta interface{}) e
 		data := dataToTemplateClientSsh(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateClientSsh --")
 		d.SetId(name)
-		go_thunder.PostTemplateClientSsh(client.Token, data, client.Host)
+		err := go_thunder.PostTemplateClientSsh(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateClientSshRead(d, meta)
+		return resourceTemplateClientSshRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateClientSshRead(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateClientSshRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading TemplateClientSsh (Inside resourceTemplateClientSshRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetTemplateClientSsh(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceTemplateClientSshUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateClientSshUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying TemplateClientSsh   (Inside resourceTemplateClientSshUpdate) ")
@@ -103,17 +117,22 @@ func resourceTemplateClientSshUpdate(d *schema.ResourceData, meta interface{}) e
 		data := dataToTemplateClientSsh(d)
 		logger.Println("[INFO] received V from method data to TemplateClientSsh ")
 		d.SetId(name)
-		go_thunder.PutTemplateClientSsh(client.Token, name, data, client.Host)
+		err := go_thunder.PutTemplateClientSsh(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateClientSshRead(d, meta)
+		return resourceTemplateClientSshRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateClientSshDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateClientSshDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -121,7 +140,7 @@ func resourceTemplateClientSshDelete(d *schema.ResourceData, meta interface{}) e
 		err := go_thunder.DeleteTemplateClientSsh(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

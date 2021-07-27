@@ -15,24 +15,53 @@ This provider plugin is maintained by the Cloud team at [A10Networks](https://ww
 Requirements
 ------------
 
--	[Terraform](https://www.terraform.io/downloads.html) 0.10.x
--	[Go](https://golang.org/doc/install) 1.12 (to build the provider plugin)
+-	[Terraform](https://www.terraform.io/downloads.html) 1.0.x
+-	[Go](https://golang.org/doc/install) 1.16 (to build the provider plugin)
 
-Building The Provider
----------------------
 
-Clone repository to: `$GOPATH/src/github.com/terraform-providers/terraform-provider-thunder`
-
+Building The Provider 
+-----------------------
 ```sh
-$ git clone git@github.com:terraform-providers/terraform-provider-thunder $GOPATH/src/github.com/terraform-providers/terraform-provider-thunder
-```
-
-Enter the provider directory and build the provider
-
-```sh
-$ cd $GOPATH/src/github.com/terraform-providers/terraform-provider-thunder
+$ git clone git@github.com:a10networks/terraform-provider-thunder.git
 $ make build
 ```
+
+Building The Provider in Go Work-Space
+----------------------------------------
+
+```
+$ mkdir -p $GOPATH/src/github.com/a10networks/
+$ cd  $GOPATH/src/github.com/a10networks/
+$ git clone git@github.com:a10networks/terraform-provider-thunder.git
+```
+Build the provider
+
+```sh
+$ make build
+```
+
+## Local Plugin Installation
+
+For Thunder plugin Installation without fetching it from A10 Networks Namespace.  
+
+Inside your cloned repo; here x.y.z is version example 0.4.5
+1. $ go build -o terraform-provider-thunder
+2. $ mkdir -p ~/.terraform.d/plugins/a10networks.com/a10networks/thunder/x.y.z/linux_amd64/
+3. $ cp terraform-provider-thunder ~/.terraform.d/plugins/a10networks.com/a10networks/thunder/x.y.z/linux_amd64/
+4. create version.tf file like:-
+```
+terraform {
+  required_providers {
+    thunder = {
+      source  = "a10networks.com/a10networks/thunder"
+      version = "x.y.z"
+    }
+  }
+}
+```
+
+If you face some dependency issue try "$ go mod tidy" or "$ go mod vendor"
+
 
 # Usage
 
@@ -58,28 +87,28 @@ The following arguments are supported.
 #### thunder_ethernet
 
 ```
-resource "thunder_ethernet" "eth"{
-ethernet_list{
-ifnum=1
-ip{
-address_list={
-ipv4_address="10.0.2.9"
-ipv4_netmask="255.255.255.0"
-}
-}
-action="enable"
-}
-ethernet_list{
-ifnum=2
-ip{
-#dhcp=1
-address_list={
-ipv4_address="10.0.3.9"
-ipv4_netmask="255.255.255.0"
-}
-}
-action="enable"
-}
+resource "thunder_ethernet" "eth" {
+  ethernet_list {
+    ifnum = 1
+    ip {
+      address_list = {
+        ipv4_address = "10.0.2.9"
+        ipv4_netmask = "255.255.255.0"
+      }
+    }
+    action = "enable"
+  }
+  ethernet_list {
+    ifnum = 2
+    ip {
+      #dhcp=1
+      address_list = {
+        ipv4_address = "10.0.3.9"
+        ipv4_netmask = "255.255.255.0"
+      }
+    }
+    action = "enable"
+  }
 }
 ```
 
@@ -88,13 +117,13 @@ See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapi
 
 #### vthuder_rib_route
 ```
-resource "thunder_rib_route" "rib"{
-ip_dest_addr="0.0.0.0"
-ip_mask="/0"
-ip_nexthop_ipv4{
-ip_next_hop="10.0.2.9"
-distance_nexthop_ip=1
-}
+resource "thunder_rib_route" "rib" {
+  ip_dest_addr = "0.0.0.0"
+  ip_mask      = "/0"
+  ip_nexthop_ipv4 {
+    ip_next_hop         = "10.0.2.9"
+    distance_nexthop_ip = 1
+  }
 }
 ```
 
@@ -104,14 +133,14 @@ See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapi
 ### thunder_server
 ```
 resource "thunder_server" "rs9" {
-health_check_disable=1
-name="rs9"
-host="10.0.3.8"
-port_list {
-health_check_disable=1
-port_number=80
-protocol="tcp"
-}
+  health_check_disable = 1
+  name                 = "rs9"
+  host                 = "10.0.3.8"
+  port_list {
+    health_check_disable = 1
+    port_number          = 80
+    protocol             = "tcp"
+  }
 }
 ```
 
@@ -121,12 +150,12 @@ See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapi
 ### thunder_service_group
 ```
 resource "thunder_service_group" "sg9" {
-name="sg9"
-protocol="TCP"
-member_list {
-name="${thunder_server.rs9.name}"
-port=80
-}
+  name     = "sg9"
+  protocol = "TCP"
+  member_list {
+    name = "${thunder_server.rs9.name}"
+    port = 80
+  }
 }
 ```
 
@@ -136,16 +165,16 @@ See https://documentation.a10networks.com/ACOS/414x/ACOS_4_1_4-GR1-P1/html/axapi
 ### thunder_virtual_server
 ```
 resource "thunder_virtual_server" "vs9" {
-name="vs9"
-ha_dynamic = 1
-ip_address="10.0.2.7"
-port_list {
-auto=1
-port_number=8080
-protocol="tcp"
-service_group="${thunder_service_group.sg9.name}"
-snat_on_vip=1
-}
+  name       = "vs9"
+  ha_dynamic = 1
+  ip_address = "10.0.2.7"
+  port_list {
+    auto          = 1
+    port_number   = 8080
+    protocol      = "tcp"
+    service_group = "${thunder_service_group.sg9.name}"
+    snat_on_vip   = 1
+  }
 }
 ```
 
@@ -188,3 +217,4 @@ Please submit bug reports and feature requests via GitHub issues. When reporting
 
 ## Contact
 If you have a question that cannot be submitted via Github Issues, please email support@a10networks.com with "a10-terraform-provider" in the subject line.
+

@@ -1,17 +1,20 @@
 package thunder
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceImport() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceImportCreate,
-		Update: resourceImportUpdate,
-		Read:   resourceImportRead,
-		Delete: resourceImportDelete,
+		CreateContext: resourceImportCreate,
+		UpdateContext: resourceImportUpdate,
+		ReadContext:   resourceImportRead,
+		DeleteContext: resourceImportDelete,
 
 		Schema: map[string]*schema.Schema{
 			"ssl_cert": {
@@ -416,9 +419,11 @@ func resourceImport() *schema.Resource {
 
 }
 
-func resourceImportCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceImportCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating Import (Inside resourceImportCreate)")
 
@@ -426,18 +431,22 @@ func resourceImportCreate(d *schema.ResourceData, meta interface{}) error {
 		name := d.Get("remote_file").(string)
 		vc := dataToImport(d)
 		d.SetId(name)
-		go_thunder.PostImport(client.Token, vc, client.Host)
-
-		return resourceImportRead(d, meta)
+		err := go_thunder.PostImport(client.Token, vc, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceImportRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceImportRead(d *schema.ResourceData, meta interface{}) error {
+func resourceImportRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading Import (Inside resourceImportRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
@@ -446,26 +455,28 @@ func resourceImportRead(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Fetching Import Read - " + name)
 
 		vc, err := go_thunder.GetImport(client.Token, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No Import found")
 			//d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceImportUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceImportUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceImportRead(d, meta)
+	return resourceImportRead(ctx, d, meta)
 }
 
-func resourceImportDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceImportDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceImportRead(d, meta)
+	return resourceImportRead(ctx, d, meta)
 }
 
 //Utility method to instantiate Import Structure

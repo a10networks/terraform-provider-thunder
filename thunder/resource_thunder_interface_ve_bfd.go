@@ -3,19 +3,21 @@ package thunder
 //Thunder resource InterfaceVeBFD
 
 import (
+	"context"
 	"strconv"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceInterfaceVeBFD() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceInterfaceVeBFDCreate,
-		Update: resourceInterfaceVeBFDUpdate,
-		Read:   resourceInterfaceVeBFDRead,
-		Delete: resourceInterfaceVeBFDDelete,
+		CreateContext: resourceInterfaceVeBFDCreate,
+		UpdateContext: resourceInterfaceVeBFDUpdate,
+		ReadContext:   resourceInterfaceVeBFDRead,
+		DeleteContext: resourceInterfaceVeBFDDelete,
 		Schema: map[string]*schema.Schema{
 			"ifnum": {
 				Type:        schema.TypeInt,
@@ -94,9 +96,11 @@ func resourceInterfaceVeBFD() *schema.Resource {
 	}
 }
 
-func resourceInterfaceVeBFDCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceVeBFDCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating InterfaceVeBFD (Inside resourceInterfaceVeBFDCreate) ")
@@ -104,41 +108,49 @@ func resourceInterfaceVeBFDCreate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToInterfaceVeBFD(d)
 		logger.Println("[INFO] received V from method data to InterfaceVeBFD --")
 		d.SetId(strconv.Itoa(name))
-		go_thunder.PostInterfaceVeBFD(client.Token, name, data, client.Host)
+		err := go_thunder.PostInterfaceVeBFD(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceVeBFDRead(d, meta)
+		return resourceInterfaceVeBFDRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceVeBFDRead(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceVeBFDRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading InterfaceVeBFD (Inside resourceInterfaceVeBFDRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetInterfaceVeBFD(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceInterfaceVeBFDUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceVeBFDUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceVeBFDRead(d, meta)
+	return resourceInterfaceVeBFDRead(ctx, d, meta)
 }
 
-func resourceInterfaceVeBFDDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceVeBFDDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceVeBFDRead(d, meta)
+	return resourceInterfaceVeBFDRead(ctx, d, meta)
 }
 func dataToInterfaceVeBFD(d *schema.ResourceData) go_thunder.VeBFD {
 	var vc go_thunder.VeBFD

@@ -3,19 +3,22 @@ package thunder
 //Thunder resource FwGlobal
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwGlobal() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwGlobalCreate,
-		Update: resourceFwGlobalUpdate,
-		Read:   resourceFwGlobalRead,
-		Delete: resourceFwGlobalDelete,
+		CreateContext: resourceFwGlobalCreate,
+		UpdateContext: resourceFwGlobalUpdate,
+		ReadContext:   resourceFwGlobalRead,
+		DeleteContext: resourceFwGlobalDelete,
 		Schema: map[string]*schema.Schema{
 			"alg_processing": {
 				Type:        schema.TypeString,
@@ -92,9 +95,11 @@ func resourceFwGlobal() *schema.Resource {
 	}
 }
 
-func resourceFwGlobalCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwGlobalCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwGlobal (Inside resourceFwGlobalCreate) ")
@@ -102,41 +107,49 @@ func resourceFwGlobalCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToFwGlobal(d)
 		logger.Println("[INFO] received formatted data from method data to FwGlobal --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwGlobal(client.Token, data, client.Host)
+		err := go_thunder.PostFwGlobal(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwGlobalRead(d, meta)
+		return resourceFwGlobalRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwGlobalRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwGlobalRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwGlobal (Inside resourceFwGlobalRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwGlobal(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwGlobalUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwGlobalUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwGlobalRead(d, meta)
+	return resourceFwGlobalRead(ctx, d, meta)
 }
 
-func resourceFwGlobalDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwGlobalDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwGlobalRead(d, meta)
+	return resourceFwGlobalRead(ctx, d, meta)
 }
 func dataToFwGlobal(d *schema.ResourceData) go_thunder.FwGlobal {
 	var vc go_thunder.FwGlobal

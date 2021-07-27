@@ -3,20 +3,22 @@ package thunder
 //Thunder resource SlbTemplateSIP
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateSIP() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateSIPCreate,
-		Update: resourceSlbTemplateSIPUpdate,
-		Read:   resourceSlbTemplateSIPRead,
-		Delete: resourceSlbTemplateSIPDelete,
+		CreateContext: resourceSlbTemplateSIPCreate,
+		UpdateContext: resourceSlbTemplateSIPUpdate,
+		ReadContext:   resourceSlbTemplateSIPRead,
+		DeleteContext: resourceSlbTemplateSIPDelete,
 		Schema: map[string]*schema.Schema{
 			"insert_client_ip": {
 				Type:        schema.TypeInt,
@@ -277,9 +279,11 @@ func resourceSlbTemplateSIP() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateSIPCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateSIPCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateSIP (Inside resourceSlbTemplateSIPCreate) ")
@@ -287,36 +291,46 @@ func resourceSlbTemplateSIPCreate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToSlbTemplateSIP(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateSIP --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplateSIP(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateSIP(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateSIPRead(d, meta)
+		return resourceSlbTemplateSIPRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateSIPRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateSIPRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateSIP (Inside resourceSlbTemplateSIPRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplateSIP(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplateSIPUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateSIPUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateSIP   (Inside resourceSlbTemplateSIPUpdate) ")
@@ -324,17 +338,22 @@ func resourceSlbTemplateSIPUpdate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToSlbTemplateSIP(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateSIP ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplateSIP(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateSIP(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateSIPRead(d, meta)
+		return resourceSlbTemplateSIPRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateSIPDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateSIPDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -342,7 +361,7 @@ func resourceSlbTemplateSIPDelete(d *schema.ResourceData, meta interface{}) erro
 		err := go_thunder.DeleteSlbTemplateSIP(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

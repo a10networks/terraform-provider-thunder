@@ -3,19 +3,21 @@ package thunder
 //Thunder resource TemplateSSLI
 
 import (
+	"context"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceTemplateSSLI() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceTemplateSSLICreate,
-		Update: resourceTemplateSSLIUpdate,
-		Read:   resourceTemplateSSLIRead,
-		Delete: resourceTemplateSSLIDelete,
+		CreateContext: resourceTemplateSSLICreate,
+		UpdateContext: resourceTemplateSSLIUpdate,
+		ReadContext:   resourceTemplateSSLIRead,
+		DeleteContext: resourceTemplateSSLIDelete,
 		Schema: map[string]*schema.Schema{
 			"user_tag": {
 				Type:        schema.TypeString,
@@ -41,9 +43,11 @@ func resourceTemplateSSLI() *schema.Resource {
 	}
 }
 
-func resourceTemplateSSLICreate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateSSLICreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating TemplateSSLI (Inside resourceTemplateSSLICreate) ")
@@ -51,36 +55,46 @@ func resourceTemplateSSLICreate(d *schema.ResourceData, meta interface{}) error 
 		data := dataToTemplateSSLI(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateSSLI --")
 		d.SetId(name)
-		go_thunder.PostTemplateSSLI(client.Token, data, client.Host)
+		err := go_thunder.PostTemplateSSLI(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateSSLIRead(d, meta)
+		return resourceTemplateSSLIRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateSSLIRead(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateSSLIRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading TemplateSSLI (Inside resourceTemplateSSLIRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetTemplateSSLI(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceTemplateSSLIUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateSSLIUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying TemplateSSLI   (Inside resourceTemplateSSLIUpdate) ")
@@ -88,17 +102,22 @@ func resourceTemplateSSLIUpdate(d *schema.ResourceData, meta interface{}) error 
 		data := dataToTemplateSSLI(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateSSLI ")
 		d.SetId(name)
-		go_thunder.PutTemplateSSLI(client.Token, name, data, client.Host)
+		err := go_thunder.PutTemplateSSLI(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateSSLIRead(d, meta)
+		return resourceTemplateSSLIRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateSSLIDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateSSLIDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -106,7 +125,7 @@ func resourceTemplateSSLIDelete(d *schema.ResourceData, meta interface{}) error 
 		err := go_thunder.DeleteTemplateSSLI(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

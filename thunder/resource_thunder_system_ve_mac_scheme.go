@@ -3,17 +3,20 @@ package thunder
 //Thunder resource SystemVeMacScheme
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSystemVeMacScheme() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSystemVeMacSchemeCreate,
-		Update: resourceSystemVeMacSchemeUpdate,
-		Read:   resourceSystemVeMacSchemeRead,
-		Delete: resourceSystemVeMacSchemeDelete,
+		CreateContext: resourceSystemVeMacSchemeCreate,
+		UpdateContext: resourceSystemVeMacSchemeUpdate,
+		ReadContext:   resourceSystemVeMacSchemeRead,
+		DeleteContext: resourceSystemVeMacSchemeDelete,
 		Schema: map[string]*schema.Schema{
 			"ve_mac_scheme_val": {
 				Type:        schema.TypeString,
@@ -29,9 +32,11 @@ func resourceSystemVeMacScheme() *schema.Resource {
 	}
 }
 
-func resourceSystemVeMacSchemeCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSystemVeMacSchemeCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SystemVeMacScheme (Inside resourceSystemVeMacSchemeCreate) ")
@@ -39,39 +44,47 @@ func resourceSystemVeMacSchemeCreate(d *schema.ResourceData, meta interface{}) e
 		data := dataToSystemVeMacScheme(d)
 		logger.Println("[INFO] received formatted data from method data to SystemVeMacScheme --")
 		d.SetId("1")
-		go_thunder.PostSystemVeMacScheme(client.Token, data, client.Host)
+		err := go_thunder.PostSystemVeMacScheme(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSystemVeMacSchemeRead(d, meta)
+		return resourceSystemVeMacSchemeRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSystemVeMacSchemeRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSystemVeMacSchemeRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SystemVeMacScheme (Inside resourceSystemVeMacSchemeRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetSystemVeMacScheme(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSystemVeMacSchemeUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSystemVeMacSchemeUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSystemVeMacSchemeRead(d, meta)
+	return resourceSystemVeMacSchemeRead(ctx, d, meta)
 }
 
-func resourceSystemVeMacSchemeDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSystemVeMacSchemeDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSystemVeMacSchemeRead(d, meta)
+	return resourceSystemVeMacSchemeRead(ctx, d, meta)
 }
 func dataToSystemVeMacScheme(d *schema.ResourceData) go_thunder.SystemVeMacScheme {
 	var vc go_thunder.SystemVeMacScheme

@@ -61,6 +61,7 @@ func NewSession(host, user, passwd string) Thunder {
 func NewTokenSession(host string, user string, passwd string) (b Thunder, err error) {
 	log.Println("[INFO] TOKEN")
 	b.Host = host
-	b.Token = getAuthHeader(host, user, passwd, "/axapi/v3/auth")
-	return
+	var err1 error
+	b.Token, err1 = getAuthHeader(host, user, passwd, "/axapi/v3/auth")
+	return b, err1
 }

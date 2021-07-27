@@ -3,20 +3,22 @@ package thunder
 //Thunder resource InterfaceVE
 
 import (
+	"context"
 	"fmt"
 	"strconv"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceInterfaceVE() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceInterfaceVECreate,
-		Update: resourceInterfaceVEUpdate,
-		Read:   resourceInterfaceVERead,
-		Delete: resourceInterfaceVEDelete,
+		CreateContext: resourceInterfaceVECreate,
+		UpdateContext: resourceInterfaceVEUpdate,
+		ReadContext:   resourceInterfaceVERead,
+		DeleteContext: resourceInterfaceVEDelete,
 		Schema: map[string]*schema.Schema{
 			"bfd": {
 				Type:     schema.TypeList,
@@ -1773,9 +1775,11 @@ func resourceInterfaceVE() *schema.Resource {
 	}
 }
 
-func resourceInterfaceVECreate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceVECreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating InterfaceVE (Inside resourceInterfaceVECreate) ")
@@ -1783,36 +1787,46 @@ func resourceInterfaceVECreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToInterfaceVE(d)
 		logger.Println("[INFO] received V from method data to InterfaceVE --")
 		d.SetId(strconv.Itoa(name))
-		go_thunder.PostInterfaceVE(client.Token, data, client.Host)
+		err := go_thunder.PostInterfaceVE(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceVERead(d, meta)
+		return resourceInterfaceVERead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceVERead(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceVERead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading InterfaceVE (Inside resourceInterfaceVERead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetInterfaceVE(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceInterfaceVEUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceVEUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying InterfaceVE   (Inside resourceInterfaceVEUpdate) ")
@@ -1820,17 +1834,22 @@ func resourceInterfaceVEUpdate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToInterfaceVE(d)
 		logger.Println("[INFO] received V from method data to InterfaceVE ")
 		d.SetId(strconv.Itoa(name))
-		go_thunder.PutInterfaceVE(client.Token, strconv.Itoa(name), data, client.Host)
+		err := go_thunder.PutInterfaceVE(client.Token, strconv.Itoa(name), data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceVERead(d, meta)
+		return resourceInterfaceVERead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceVEDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceVEDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -1838,7 +1857,7 @@ func resourceInterfaceVEDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteInterfaceVE(client.Token, name, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

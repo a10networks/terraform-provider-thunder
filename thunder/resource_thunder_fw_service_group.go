@@ -3,19 +3,21 @@ package thunder
 //Thunder resource FwServiceGroup
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwServiceGroup() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwServiceGroupCreate,
-		Update: resourceFwServiceGroupUpdate,
-		Read:   resourceFwServiceGroupRead,
-		Delete: resourceFwServiceGroupDelete,
+		CreateContext: resourceFwServiceGroupCreate,
+		UpdateContext: resourceFwServiceGroupUpdate,
+		ReadContext:   resourceFwServiceGroupRead,
+		DeleteContext: resourceFwServiceGroupDelete,
 		Schema: map[string]*schema.Schema{
 			"protocol": {
 				Type:        schema.TypeString,
@@ -100,9 +102,11 @@ func resourceFwServiceGroup() *schema.Resource {
 	}
 }
 
-func resourceFwServiceGroupCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwServiceGroupCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwServiceGroup (Inside resourceFwServiceGroupCreate) ")
@@ -110,36 +114,46 @@ func resourceFwServiceGroupCreate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToFwServiceGroup(d)
 		logger.Println("[INFO] received formatted data from method data to FwServiceGroup --")
 		d.SetId(name)
-		go_thunder.PostFwServiceGroup(client.Token, data, client.Host)
+		err := go_thunder.PostFwServiceGroup(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwServiceGroupRead(d, meta)
+		return resourceFwServiceGroupRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwServiceGroupRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwServiceGroupRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwServiceGroup (Inside resourceFwServiceGroupRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwServiceGroup(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwServiceGroupUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwServiceGroupUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying FwServiceGroup   (Inside resourceFwServiceGroupUpdate) ")
@@ -147,17 +161,22 @@ func resourceFwServiceGroupUpdate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToFwServiceGroup(d)
 		logger.Println("[INFO] received formatted data from method data to FwServiceGroup ")
 		d.SetId(name)
-		go_thunder.PutFwServiceGroup(client.Token, name, data, client.Host)
+		err := go_thunder.PutFwServiceGroup(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwServiceGroupRead(d, meta)
+		return resourceFwServiceGroupRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwServiceGroupDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwServiceGroupDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -165,7 +184,7 @@ func resourceFwServiceGroupDelete(d *schema.ResourceData, meta interface{}) erro
 		err := go_thunder.DeleteFwServiceGroup(client.Token, name, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

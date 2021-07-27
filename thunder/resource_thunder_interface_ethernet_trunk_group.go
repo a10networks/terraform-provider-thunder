@@ -3,20 +3,22 @@ package thunder
 //Thunder resource InterfaceEthernetTrunkGroup
 
 import (
+	"context"
 	"strconv"
 	"strings"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceInterfaceEthernetTrunkGroup() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceInterfaceEthernetTrunkGroupCreate,
-		Update: resourceInterfaceEthernetTrunkGroupUpdate,
-		Read:   resourceInterfaceEthernetTrunkGroupRead,
-		Delete: resourceInterfaceEthernetTrunkGroupDelete,
+		CreateContext: resourceInterfaceEthernetTrunkGroupCreate,
+		UpdateContext: resourceInterfaceEthernetTrunkGroupUpdate,
+		ReadContext:   resourceInterfaceEthernetTrunkGroupRead,
+		DeleteContext: resourceInterfaceEthernetTrunkGroupDelete,
 		Schema: map[string]*schema.Schema{
 			"ifnum": {
 				Type:        schema.TypeInt,
@@ -86,9 +88,11 @@ func resourceInterfaceEthernetTrunkGroup() *schema.Resource {
 	}
 }
 
-func resourceInterfaceEthernetTrunkGroupCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetTrunkGroupCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating InterfaceEthernetTrunkGroup (Inside resourceInterfaceEthernetTrunkGroupCreate) ")
@@ -97,17 +101,22 @@ func resourceInterfaceEthernetTrunkGroupCreate(d *schema.ResourceData, meta inte
 		data := dataToInterfaceEthernetTrunkGroup(d)
 		logger.Println("[INFO] received V from method data to InterfaceEthernetTrunkGroup --")
 		d.SetId(strconv.Itoa(name) + "," + strconv.Itoa(idNum))
-		go_thunder.PostInterfaceEthernetTrunkGroup(client.Token, idNum, data, client.Host)
+		err := go_thunder.PostInterfaceEthernetTrunkGroup(client.Token, idNum, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceEthernetTrunkGroupRead(d, meta)
+		return resourceInterfaceEthernetTrunkGroupRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceEthernetTrunkGroupRead(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetTrunkGroupRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading InterfaceEthernetTrunkGroup (Inside resourceInterfaceEthernetTrunkGroupRead)")
 
 	if client.Host != "" {
@@ -116,19 +125,24 @@ func resourceInterfaceEthernetTrunkGroupRead(d *schema.ResourceData, meta interf
 		idNum := id[1]
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetInterfaceEthernetTrunkGroup(client.Token, idNum, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceInterfaceEthernetTrunkGroupUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetTrunkGroupUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying InterfaceEthernetTrunkGroup   (Inside resourceInterfaceEthernetTrunkGroupUpdate) ")
@@ -137,17 +151,22 @@ func resourceInterfaceEthernetTrunkGroupUpdate(d *schema.ResourceData, meta inte
 		data := dataToInterfaceEthernetTrunkGroup(d)
 		logger.Println("[INFO] received V from method data to InterfaceEthernetTrunkGroup ")
 		d.SetId("strconv.Itoa(name)")
-		go_thunder.PutInterfaceEthernetTrunkGroup(client.Token, idNum, name, data, client.Host)
+		err := go_thunder.PutInterfaceEthernetTrunkGroup(client.Token, idNum, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceEthernetTrunkGroupRead(d, meta)
+		return resourceInterfaceEthernetTrunkGroupRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceEthernetTrunkGroupDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetTrunkGroupDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -157,7 +176,7 @@ func resourceInterfaceEthernetTrunkGroupDelete(d *schema.ResourceData, meta inte
 		err := go_thunder.DeleteInterfaceEthernetTrunkGroup(client.Token, idNum, name, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

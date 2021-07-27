@@ -3,19 +3,21 @@ package thunder
 //Thunder resource FwServer
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwServer() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwServerCreate,
-		Update: resourceFwServerUpdate,
-		Read:   resourceFwServerRead,
-		Delete: resourceFwServerDelete,
+		CreateContext: resourceFwServerCreate,
+		UpdateContext: resourceFwServerUpdate,
+		ReadContext:   resourceFwServerRead,
+		DeleteContext: resourceFwServerDelete,
 		Schema: map[string]*schema.Schema{
 			"health_check_disable": {
 				Type:        schema.TypeInt,
@@ -140,9 +142,11 @@ func resourceFwServer() *schema.Resource {
 	}
 }
 
-func resourceFwServerCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwServerCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwServer (Inside resourceFwServerCreate) ")
@@ -150,36 +154,46 @@ func resourceFwServerCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToFwServer(d)
 		logger.Println("[INFO] received formatted data from method data to FwServer --")
 		d.SetId(name)
-		go_thunder.PostFwServer(client.Token, data, client.Host)
+		err := go_thunder.PostFwServer(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwServerRead(d, meta)
+		return resourceFwServerRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwServerRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwServerRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwServer (Inside resourceFwServerRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwServer(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwServerUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwServerUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying FwServer   (Inside resourceFwServerUpdate) ")
@@ -187,17 +201,22 @@ func resourceFwServerUpdate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToFwServer(d)
 		logger.Println("[INFO] received formatted data from method data to FwServer ")
 		d.SetId(name)
-		go_thunder.PutFwServer(client.Token, name, data, client.Host)
+		err := go_thunder.PutFwServer(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwServerRead(d, meta)
+		return resourceFwServerRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwServerDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwServerDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -205,7 +224,7 @@ func resourceFwServerDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteFwServer(client.Token, name, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

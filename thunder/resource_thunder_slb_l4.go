@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlL4
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlL4() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbL4Create,
-		Update: resourceSlbL4Update,
-		Read:   resourceSlbL4Read,
-		Delete: resourceSlbL4Delete,
+		CreateContext: resourceSlbL4Create,
+		UpdateContext: resourceSlbL4Update,
+		ReadContext:   resourceSlbL4Read,
+		DeleteContext: resourceSlbL4Delete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlL4() *schema.Resource {
 	}
 }
 
-func resourceSlbL4Create(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbL4Create(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlL4 (Inside resourceSlL4Create) ")
@@ -44,38 +48,46 @@ func resourceSlbL4Create(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSlL4(d)
 		logger.Println("[INFO] received V from method data to SlL4 --")
 		d.SetId("1")
-		go_thunder.PostSlbL4(client.Token, data, client.Host)
+		err := go_thunder.PostSlbL4(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbL4Read(d, meta)
+		return resourceSlbL4Read(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbL4Read(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbL4Read(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlL4 (Inside resourceSlL4Read)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetSlbL4(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbL4Update(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbL4Update(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbL4Read(d, meta)
+	return resourceSlbL4Read(ctx, d, meta)
 }
 
-func resourceSlbL4Delete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbL4Delete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbL4Read(d, meta)
+	return resourceSlbL4Read(ctx, d, meta)
 }
 
 func dataToSlL4(d *schema.ResourceData) go_thunder.L4 {

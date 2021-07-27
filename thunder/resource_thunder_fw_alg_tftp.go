@@ -3,19 +3,22 @@ package thunder
 //Thunder resource FwAlgTftp
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwAlgTftp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwAlgTftpCreate,
-		Update: resourceFwAlgTftpUpdate,
-		Read:   resourceFwAlgTftpRead,
-		Delete: resourceFwAlgTftpDelete,
+		CreateContext: resourceFwAlgTftpCreate,
+		UpdateContext: resourceFwAlgTftpUpdate,
+		ReadContext:   resourceFwAlgTftpRead,
+		DeleteContext: resourceFwAlgTftpDelete,
 		Schema: map[string]*schema.Schema{
 			"default_port_disable": {
 				Type:        schema.TypeString,
@@ -44,9 +47,11 @@ func resourceFwAlgTftp() *schema.Resource {
 	}
 }
 
-func resourceFwAlgTftpCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAlgTftpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwAlgTftp (Inside resourceFwAlgTftpCreate) ")
@@ -54,41 +59,49 @@ func resourceFwAlgTftpCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToFwAlgTftp(d)
 		logger.Println("[INFO] received formatted data from method data to FwAlgTftp --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwAlgTftp(client.Token, data, client.Host)
+		err := go_thunder.PostFwAlgTftp(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwAlgTftpRead(d, meta)
+		return resourceFwAlgTftpRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwAlgTftpRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAlgTftpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwAlgTftp (Inside resourceFwAlgTftpRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwAlgTftp(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwAlgTftpUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAlgTftpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwAlgTftpRead(d, meta)
+	return resourceFwAlgTftpRead(ctx, d, meta)
 }
 
-func resourceFwAlgTftpDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAlgTftpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwAlgTftpRead(d, meta)
+	return resourceFwAlgTftpRead(ctx, d, meta)
 }
 func dataToFwAlgTftp(d *schema.ResourceData) go_thunder.FwAlgTftp {
 	var vc go_thunder.FwAlgTftp

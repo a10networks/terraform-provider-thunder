@@ -3,18 +3,21 @@ package thunder
 //Thunder resource SlbTemplatePersistCookie
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"util"
 )
 
 func resourceSlbTemplatePersistCookie() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplatePersistCookieCreate,
-		Update: resourceSlbTemplatePersistCookieUpdate,
-		Read:   resourceSlbTemplatePersistCookieRead,
-		Delete: resourceSlbTemplatePersistCookieDelete,
+		CreateContext: resourceSlbTemplatePersistCookieCreate,
+		UpdateContext: resourceSlbTemplatePersistCookieUpdate,
+		ReadContext:   resourceSlbTemplatePersistCookieRead,
+		DeleteContext: resourceSlbTemplatePersistCookieDelete,
 		Schema: map[string]*schema.Schema{
 			"pass_phrase": {
 				Type:        schema.TypeString,
@@ -120,9 +123,11 @@ func resourceSlbTemplatePersistCookie() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplatePersistCookieCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplatePersistCookieCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplatePersistCookie (Inside resourceSlbTemplatePersistCookieCreate) ")
@@ -130,52 +135,67 @@ func resourceSlbTemplatePersistCookieCreate(d *schema.ResourceData, meta interfa
 		data := dataToSlbTemplatePersistCookie(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplatePersistCookie --")
 		d.SetId(name1)
-		go_thunder.PostSlbTemplatePersistCookie(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplatePersistCookie(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplatePersistCookieRead(d, meta)
+		return resourceSlbTemplatePersistCookieRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplatePersistCookieRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplatePersistCookieRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplatePersistCookie (Inside resourceSlbTemplatePersistCookieRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read SlbTemplatePersistCookie")
 		data, err := go_thunder.GetSlbTemplatePersistCookie(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found SlbTemplatePersistCookie")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplatePersistCookieUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplatePersistCookieUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying SlbTemplatePersistCookie   (Inside resourceSlbTemplatePersistCookieUpdate) ")
 		data := dataToSlbTemplatePersistCookie(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplatePersistCookie ")
-		go_thunder.PutSlbTemplatePersistCookie(client.Token, name1, data, client.Host)
+		err := go_thunder.PutSlbTemplatePersistCookie(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplatePersistCookieRead(d, meta)
+		return resourceSlbTemplatePersistCookieRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplatePersistCookieDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplatePersistCookieDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -183,11 +203,11 @@ func resourceSlbTemplatePersistCookieDelete(d *schema.ResourceData, meta interfa
 		err := go_thunder.DeleteSlbTemplatePersistCookie(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance SlbTemplatePersistCookie (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToSlbTemplatePersistCookie(d *schema.ResourceData) go_thunder.SlbTemplatePersistCookie {

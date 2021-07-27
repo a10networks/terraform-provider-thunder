@@ -3,18 +3,21 @@ package thunder
 //Thunder resource SlbTemplatePersistSourceIp
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"util"
 )
 
 func resourceSlbTemplatePersistSourceIp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplatePersistSourceIpCreate,
-		Update: resourceSlbTemplatePersistSourceIpUpdate,
-		Read:   resourceSlbTemplatePersistSourceIpRead,
-		Delete: resourceSlbTemplatePersistSourceIpDelete,
+		CreateContext: resourceSlbTemplatePersistSourceIpCreate,
+		UpdateContext: resourceSlbTemplatePersistSourceIpUpdate,
+		ReadContext:   resourceSlbTemplatePersistSourceIpRead,
+		DeleteContext: resourceSlbTemplatePersistSourceIpDelete,
 		Schema: map[string]*schema.Schema{
 			"netmask6": {
 				Type:        schema.TypeInt,
@@ -100,9 +103,11 @@ func resourceSlbTemplatePersistSourceIp() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplatePersistSourceIpCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplatePersistSourceIpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplatePersistSourceIp (Inside resourceSlbTemplatePersistSourceIpCreate) ")
@@ -110,52 +115,67 @@ func resourceSlbTemplatePersistSourceIpCreate(d *schema.ResourceData, meta inter
 		data := dataToSlbTemplatePersistSourceIp(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplatePersistSourceIp --")
 		d.SetId(name1)
-		go_thunder.PostSlbTemplatePersistSourceIp(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplatePersistSourceIp(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplatePersistSourceIpRead(d, meta)
+		return resourceSlbTemplatePersistSourceIpRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplatePersistSourceIpRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplatePersistSourceIpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplatePersistSourceIp (Inside resourceSlbTemplatePersistSourceIpRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read SlbTemplatePersistSourceIp ")
 		data, err := go_thunder.GetSlbTemplatePersistSourceIp(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found SlbTemplatePersistSourceIp ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplatePersistSourceIpUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplatePersistSourceIpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying SlbTemplatePersistSourceIp   (Inside resourceSlbTemplatePersistSourceIpUpdate) ")
 		data := dataToSlbTemplatePersistSourceIp(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplatePersistSourceIp ")
-		go_thunder.PutSlbTemplatePersistSourceIp(client.Token, name1, data, client.Host)
+		err := go_thunder.PutSlbTemplatePersistSourceIp(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplatePersistSourceIpRead(d, meta)
+		return resourceSlbTemplatePersistSourceIpRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplatePersistSourceIpDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplatePersistSourceIpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -163,11 +183,11 @@ func resourceSlbTemplatePersistSourceIpDelete(d *schema.ResourceData, meta inter
 		err := go_thunder.DeleteSlbTemplatePersistSourceIp(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToSlbTemplatePersistSourceIp(d *schema.ResourceData) go_thunder.SlbTemplatePersistSourceIp {

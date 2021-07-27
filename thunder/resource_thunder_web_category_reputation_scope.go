@@ -3,18 +3,21 @@ package thunder
 //Thunder resource WebCategoryReputationScope
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceWebCategoryReputationScope() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceWebCategoryReputationScopeCreate,
-		Update: resourceWebCategoryReputationScopeUpdate,
-		Read:   resourceWebCategoryReputationScopeRead,
-		Delete: resourceWebCategoryReputationScopeDelete,
+		CreateContext: resourceWebCategoryReputationScopeCreate,
+		UpdateContext: resourceWebCategoryReputationScopeUpdate,
+		ReadContext:   resourceWebCategoryReputationScopeRead,
+		DeleteContext: resourceWebCategoryReputationScopeDelete,
 		Schema: map[string]*schema.Schema{
 			"name": {
 				Type:        schema.TypeString,
@@ -126,9 +129,11 @@ func resourceWebCategoryReputationScope() *schema.Resource {
 	}
 }
 
-func resourceWebCategoryReputationScopeCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryReputationScopeCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating WebCategoryReputationScope (Inside resourceWebCategoryReputationScopeCreate) ")
@@ -136,52 +141,67 @@ func resourceWebCategoryReputationScopeCreate(d *schema.ResourceData, meta inter
 		data := dataToWebCategoryReputationScope(d)
 		logger.Println("[INFO] received formatted data from method data to WebCategoryReputationScope --")
 		d.SetId(name1)
-		go_thunder.PostWebCategoryReputationScope(client.Token, data, client.Host)
+		err := go_thunder.PostWebCategoryReputationScope(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceWebCategoryReputationScopeRead(d, meta)
+		return resourceWebCategoryReputationScopeRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceWebCategoryReputationScopeRead(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryReputationScopeRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading WebCategoryReputationScope (Inside resourceWebCategoryReputationScopeRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetWebCategoryReputationScope(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceWebCategoryReputationScopeUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryReputationScopeUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying WebCategoryReputationScope   (Inside resourceWebCategoryReputationScopeUpdate) ")
 		data := dataToWebCategoryReputationScope(d)
 		logger.Println("[INFO] received formatted data from method data to WebCategoryReputationScope ")
-		go_thunder.PutWebCategoryReputationScope(client.Token, name1, data, client.Host)
+		err := go_thunder.PutWebCategoryReputationScope(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceWebCategoryReputationScopeRead(d, meta)
+		return resourceWebCategoryReputationScopeRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceWebCategoryReputationScopeDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryReputationScopeDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -189,11 +209,11 @@ func resourceWebCategoryReputationScopeDelete(d *schema.ResourceData, meta inter
 		err := go_thunder.DeleteWebCategoryReputationScope(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToWebCategoryReputationScope(d *schema.ResourceData) go_thunder.WebCategoryReputationScope {

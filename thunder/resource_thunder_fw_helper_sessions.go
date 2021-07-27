@@ -3,18 +3,21 @@ package thunder
 //Thunder resource FwHelperSessions
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwHelperSessions() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwHelperSessionsCreate,
-		Update: resourceFwHelperSessionsUpdate,
-		Read:   resourceFwHelperSessionsRead,
-		Delete: resourceFwHelperSessionsDelete,
+		CreateContext: resourceFwHelperSessionsCreate,
+		UpdateContext: resourceFwHelperSessionsUpdate,
+		ReadContext:   resourceFwHelperSessionsRead,
+		DeleteContext: resourceFwHelperSessionsDelete,
 		Schema: map[string]*schema.Schema{
 			"idle_timeout": {
 				Type:        schema.TypeInt,
@@ -40,9 +43,11 @@ func resourceFwHelperSessions() *schema.Resource {
 	}
 }
 
-func resourceFwHelperSessionsCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwHelperSessionsCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwHelperSessions (Inside resourceFwHelperSessionsCreate) ")
@@ -50,41 +55,49 @@ func resourceFwHelperSessionsCreate(d *schema.ResourceData, meta interface{}) er
 		data := dataToFwHelperSessions(d)
 		logger.Println("[INFO] received formatted data from method data to FwHelperSessions --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwHelperSessions(client.Token, data, client.Host)
+		err := go_thunder.PostFwHelperSessions(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwHelperSessionsRead(d, meta)
+		return resourceFwHelperSessionsRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwHelperSessionsRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwHelperSessionsRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwHelperSessions (Inside resourceFwHelperSessionsRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwHelperSessions(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwHelperSessionsUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwHelperSessionsUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwHelperSessionsRead(d, meta)
+	return resourceFwHelperSessionsRead(ctx, d, meta)
 }
 
-func resourceFwHelperSessionsDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwHelperSessionsDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwHelperSessionsRead(d, meta)
+	return resourceFwHelperSessionsRead(ctx, d, meta)
 }
 func dataToFwHelperSessions(d *schema.ResourceData) go_thunder.FwHelperSessions {
 	var vc go_thunder.FwHelperSessions

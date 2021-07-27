@@ -3,20 +3,22 @@ package thunder
 //Thunder resource - Ethernet
 
 import (
+	"context"
 	"fmt"
 	"strconv"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceEthernet() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceEthernetCreate,
-		Update: resourceEthernetUpdate,
-		Read:   resourceEthernetRead,
-		Delete: resourceEthernetDelete,
+		CreateContext: resourceEthernetCreate,
+		UpdateContext: resourceEthernetUpdate,
+		ReadContext:   resourceEthernetRead,
+		DeleteContext: resourceEthernetDelete,
 
 		Schema: map[string]*schema.Schema{
 			"ethernet_list": {
@@ -117,9 +119,11 @@ func resourceEthernet() *schema.Resource {
 	}
 }
 
-func resourceEthernetCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceEthernetCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating ip (Inside resourceEthernetCreate)")
@@ -127,19 +131,23 @@ func resourceEthernetCreate(d *schema.ResourceData, meta interface{}) error {
 		ethernet := dataToEthernet(d)
 		d.SetId(strconv.Itoa(name))
 		logger.Println("[INFO] received V from method data to ip --")
-		go_thunder.PutEthernet(client.Token, ethernet, client.Host)
-
-		return resourceEthernetRead(d, meta)
+		err := go_thunder.PutEthernet(client.Token, ethernet, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceEthernetRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceEthernetRead(d *schema.ResourceData, meta interface{}) error {
+func resourceEthernetRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading vrrp common (Inside resourceEthernetRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
@@ -148,24 +156,26 @@ func resourceEthernetRead(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Fetching ethernet" + name)
 
 		vc, err := go_thunder.GetEthernet(client.Token, name, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No ethernet found")
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceEthernetUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceEthernetUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	return nil
 }
 
-func resourceEthernetDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceEthernetDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	return nil
 }

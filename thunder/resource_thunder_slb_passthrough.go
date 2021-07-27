@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbPassthrough
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbPassthrough() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbPassthroughCreate,
-		Update: resourceSlbPassthroughUpdate,
-		Read:   resourceSlbPassthroughRead,
-		Delete: resourceSlbPassthroughDelete,
+		CreateContext: resourceSlbPassthroughCreate,
+		UpdateContext: resourceSlbPassthroughUpdate,
+		ReadContext:   resourceSlbPassthroughRead,
+		DeleteContext: resourceSlbPassthroughDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbPassthrough() *schema.Resource {
 	}
 }
 
-func resourceSlbPassthroughCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPassthroughCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbPassthrough (Inside resourceSlbPassthroughCreate) ")
@@ -44,40 +48,48 @@ func resourceSlbPassthroughCreate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToSlbPassthrough(d)
 		logger.Println("[INFO] received formatted data from method data to SlbPassthrough --")
 		d.SetId("1")
-		go_thunder.PostSlbPassthrough(client.Token, data, client.Host)
+		err := go_thunder.PostSlbPassthrough(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbPassthroughRead(d, meta)
+		return resourceSlbPassthroughRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbPassthroughRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPassthroughRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbPassthrough (Inside resourceSlbPassthroughRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 
 		data, err := go_thunder.GetSlbPassthrough(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
-func resourceSlbPassthroughUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPassthroughUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbPassthroughRead(d, meta)
+	return resourceSlbPassthroughRead(ctx, d, meta)
 }
 
-func resourceSlbPassthroughDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPassthroughDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbPassthroughRead(d, meta)
+	return resourceSlbPassthroughRead(ctx, d, meta)
 }
 
 func dataToSlbPassthrough(d *schema.ResourceData) go_thunder.Passthrough {

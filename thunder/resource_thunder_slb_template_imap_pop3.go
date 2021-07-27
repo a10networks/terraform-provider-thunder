@@ -3,19 +3,21 @@ package thunder
 //Thunder resource TemplateImap_POP3
 
 import (
+	"context"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceTemplateImap_POP3() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceTemplateImap_POP3Create,
-		Update: resourceTemplateImap_POP3Update,
-		Read:   resourceTemplateImap_POP3Read,
-		Delete: resourceTemplateImap_POP3Delete,
+		CreateContext: resourceTemplateImap_POP3Create,
+		UpdateContext: resourceTemplateImap_POP3Update,
+		ReadContext:   resourceTemplateImap_POP3Read,
+		DeleteContext: resourceTemplateImap_POP3Delete,
 		Schema: map[string]*schema.Schema{
 			"starttls": {
 				Type:        schema.TypeString,
@@ -46,9 +48,11 @@ func resourceTemplateImap_POP3() *schema.Resource {
 	}
 }
 
-func resourceTemplateImap_POP3Create(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateImap_POP3Create(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating TemplateImap_POP3 (Inside resourceTemplateImap_POP3Create) ")
@@ -56,36 +60,46 @@ func resourceTemplateImap_POP3Create(d *schema.ResourceData, meta interface{}) e
 		data := dataToTemplateImapPOP(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateImap_POP3 --")
 		d.SetId(name)
-		go_thunder.PostTemplateImap_POP3(client.Token, data, client.Host)
+		err := go_thunder.PostTemplateImap_POP3(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateImap_POP3Read(d, meta)
+		return resourceTemplateImap_POP3Read(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateImap_POP3Read(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateImap_POP3Read(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading TemplateImap_POP3 (Inside resourceTemplateImap_POP3Read)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetTemplateImap_POP3(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceTemplateImap_POP3Update(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateImap_POP3Update(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying TemplateImap_POP3   (Inside resourceTemplateImap_POP3Update) ")
@@ -93,17 +107,22 @@ func resourceTemplateImap_POP3Update(d *schema.ResourceData, meta interface{}) e
 		data := dataToTemplateImapPOP(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateImap_POP3 ")
 		d.SetId(name)
-		go_thunder.PutTemplateImap_POP3(client.Token, name, data, client.Host)
+		err := go_thunder.PutTemplateImap_POP3(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateImap_POP3Read(d, meta)
+		return resourceTemplateImap_POP3Read(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateImap_POP3Delete(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateImap_POP3Delete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -111,7 +130,7 @@ func resourceTemplateImap_POP3Delete(d *schema.ResourceData, meta interface{}) e
 		err := go_thunder.DeleteTemplateImap_POP3(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

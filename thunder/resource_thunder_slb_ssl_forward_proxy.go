@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbSSLForwardProxy
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbSSLForwardProxy() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbSSLForwardProxyCreate,
-		Update: resourceSlbSSLForwardProxyUpdate,
-		Read:   resourceSlbSSLForwardProxyRead,
-		Delete: resourceSlbSSLForwardProxyDelete,
+		CreateContext: resourceSlbSSLForwardProxyCreate,
+		UpdateContext: resourceSlbSSLForwardProxyUpdate,
+		ReadContext:   resourceSlbSSLForwardProxyRead,
+		DeleteContext: resourceSlbSSLForwardProxyDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbSSLForwardProxy() *schema.Resource {
 	}
 }
 
-func resourceSlbSSLForwardProxyCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSSLForwardProxyCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbSSLForwardProxy (Inside resourceSlbSSLForwardProxyCreate) ")
@@ -44,36 +48,44 @@ func resourceSlbSSLForwardProxyCreate(d *schema.ResourceData, meta interface{}) 
 		data := dataToSlbSSLForwardProxy(d)
 		logger.Println("[INFO] received V from method data to SlbSSLForwardProxy --")
 		d.SetId("1")
-		go_thunder.PostSlbSSLForwardProxy(client.Token, data, client.Host)
+		err := go_thunder.PostSlbSSLForwardProxy(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbSSLForwardProxyRead(d, meta)
+		return resourceSlbSSLForwardProxyRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbSSLForwardProxyUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSSLForwardProxyUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSSLForwardProxyRead(d, meta)
+	return resourceSlbSSLForwardProxyRead(ctx, d, meta)
 }
 
-func resourceSlbSSLForwardProxyDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSSLForwardProxyDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbSSLForwardProxyRead(d, meta)
+	return resourceSlbSSLForwardProxyRead(ctx, d, meta)
 }
 
-func resourceSlbSSLForwardProxyRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbSSLForwardProxyRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbSSLForwardProxy (Inside resourceSlbSSLForwardProxyRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetSlbSSLForwardProxy(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }

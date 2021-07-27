@@ -3,8 +3,11 @@ package thunder
 //Thunder resource SnmpServerCommunityReadOid
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"fmt"
 	"strings"
@@ -13,10 +16,10 @@ import (
 
 func resourceSnmpServerCommunityReadOid() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSnmpServerCommunityReadOidCreate,
-		Update: resourceSnmpServerCommunityReadOidUpdate,
-		Read:   resourceSnmpServerCommunityReadOidRead,
-		Delete: resourceSnmpServerCommunityReadOidDelete,
+		CreateContext: resourceSnmpServerCommunityReadOidCreate,
+		UpdateContext: resourceSnmpServerCommunityReadOidUpdate,
+		ReadContext:   resourceSnmpServerCommunityReadOidRead,
+		DeleteContext: resourceSnmpServerCommunityReadOidDelete,
 		Schema: map[string]*schema.Schema{
 			"remote": {
 				Type:     schema.TypeList,
@@ -105,9 +108,11 @@ func resourceSnmpServerCommunityReadOid() *schema.Resource {
 	}
 }
 
-func resourceSnmpServerCommunityReadOidCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerCommunityReadOidCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerCommunityReadOid (Inside resourceSnmpServerCommunityReadOidCreate) ")
@@ -116,17 +121,22 @@ func resourceSnmpServerCommunityReadOidCreate(d *schema.ResourceData, meta inter
 		data := dataToSnmpServerCommunityReadOid(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerCommunityReadOid --")
 		d.SetId(name1 + "," + name2)
-		go_thunder.PostSnmpServerCommunityReadOid(client.Token, name1, data, client.Host)
+		err := go_thunder.PostSnmpServerCommunityReadOid(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerCommunityReadOidRead(d, meta)
+		return resourceSnmpServerCommunityReadOidRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerCommunityReadOidRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerCommunityReadOidRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SnmpServerCommunityReadOid (Inside resourceSnmpServerCommunityReadOidRead)")
 
 	if client.Host != "" {
@@ -135,18 +145,23 @@ func resourceSnmpServerCommunityReadOidRead(d *schema.ResourceData, meta interfa
 		name2 := id[1]
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetSnmpServerCommunityReadOid(client.Token, name1, name2, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSnmpServerCommunityReadOidUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerCommunityReadOidUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -155,17 +170,22 @@ func resourceSnmpServerCommunityReadOidUpdate(d *schema.ResourceData, meta inter
 		logger.Println("[INFO] Modifying SnmpServerCommunityReadOid   (Inside resourceSnmpServerCommunityReadOidUpdate) ")
 		data := dataToSnmpServerCommunityReadOid(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerCommunityReadOid ")
-		go_thunder.PutSnmpServerCommunityReadOid(client.Token, name1, name2, data, client.Host)
+		err := go_thunder.PutSnmpServerCommunityReadOid(client.Token, name1, name2, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerCommunityReadOidRead(d, meta)
+		return resourceSnmpServerCommunityReadOidRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerCommunityReadOidDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerCommunityReadOidDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -175,11 +195,11 @@ func resourceSnmpServerCommunityReadOidDelete(d *schema.ResourceData, meta inter
 		err := go_thunder.DeleteSnmpServerCommunityReadOid(client.Token, name1, name2, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToSnmpServerCommunityReadOid(d *schema.ResourceData) go_thunder.SnmpServerCommunityReadOid {

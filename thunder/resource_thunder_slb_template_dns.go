@@ -3,20 +3,22 @@ package thunder
 //Thunder resource TemplateDNS
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceTemplateDNS() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceTemplateDNSCreate,
-		Update: resourceTemplateDNSUpdate,
-		Read:   resourceTemplateDNSRead,
-		Delete: resourceTemplateDNSDelete,
+		CreateContext: resourceTemplateDNSCreate,
+		UpdateContext: resourceTemplateDNSUpdate,
+		ReadContext:   resourceTemplateDNSRead,
+		DeleteContext: resourceTemplateDNSDelete,
 
 		Schema: map[string]*schema.Schema{
 			"drop": {
@@ -219,9 +221,11 @@ func resourceTemplateDNS() *schema.Resource {
 	}
 }
 
-func resourceTemplateDNSCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateDNSCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating TemplateDNS (Inside resourceTemplateDNSCreate) ")
@@ -229,17 +233,22 @@ func resourceTemplateDNSCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToTemplateDNS(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateDNS --")
 		d.SetId(name)
-		go_thunder.PostTemplateDNS(client.Token, data, client.Host)
+		err := go_thunder.PostTemplateDNS(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateDNSRead(d, meta)
+		return resourceTemplateDNSRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateDNSRead(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateDNSRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading TemplateDNS (Inside resourceTemplateDNSRead)")
 
 	if client.Host != "" {
@@ -247,19 +256,24 @@ func resourceTemplateDNSRead(d *schema.ResourceData, meta interface{}) error {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetTemplateDNS(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceTemplateDNSUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateDNSUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying TemplateDNS   (Inside resourceTemplateDNSUpdate) ")
@@ -267,17 +281,22 @@ func resourceTemplateDNSUpdate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToTemplateDNS(d)
 		logger.Println("[INFO] received formatted data from method data to TemplateDNS ")
 		d.SetId(name)
-		go_thunder.PutTemplateDNS(client.Token, name, data, client.Host)
+		err := go_thunder.PutTemplateDNS(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplateDNSRead(d, meta)
+		return resourceTemplateDNSRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplateDNSDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplateDNSDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -285,7 +304,7 @@ func resourceTemplateDNSDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteTemplateDNS(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

@@ -3,17 +3,20 @@ package thunder
 //Thunder resource RouterOspfDefaultInformation
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceRouterOspfDefaultInformation() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceRouterOspfDefaultInformationCreate,
-		Update: resourceRouterOspfDefaultInformationUpdate,
-		Read:   resourceRouterOspfDefaultInformationRead,
-		Delete: resourceRouterOspfDefaultInformationDelete,
+		CreateContext: resourceRouterOspfDefaultInformationCreate,
+		UpdateContext: resourceRouterOspfDefaultInformationUpdate,
+		ReadContext:   resourceRouterOspfDefaultInformationRead,
+		DeleteContext: resourceRouterOspfDefaultInformationDelete,
 		Schema: map[string]*schema.Schema{
 			"originate": {
 				Type:        schema.TypeInt,
@@ -59,9 +62,11 @@ func resourceRouterOspfDefaultInformation() *schema.Resource {
 	}
 }
 
-func resourceRouterOspfDefaultInformationCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterOspfDefaultInformationCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RouterOspfDefaultInformation (Inside resourceRouterOspfDefaultInformationCreate) ")
@@ -69,40 +74,48 @@ func resourceRouterOspfDefaultInformationCreate(d *schema.ResourceData, meta int
 		data := dataToRouterOspfDefaultInformation(d)
 		logger.Println("[INFO] received formatted data from method data to RouterOspfDefaultInformation --")
 		d.SetId(name1)
-		go_thunder.PostRouterOspfDefaultInformation(client.Token, name1, data, client.Host)
+		err := go_thunder.PostRouterOspfDefaultInformation(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouterOspfDefaultInformationRead(d, meta)
+		return resourceRouterOspfDefaultInformationRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouterOspfDefaultInformationRead(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterOspfDefaultInformationRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading RouterOspfDefaultInformation (Inside resourceRouterOspfDefaultInformationRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetRouterOspfDefaultInformation(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceRouterOspfDefaultInformationUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterOspfDefaultInformationUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceRouterOspfDefaultInformationRead(d, meta)
+	return resourceRouterOspfDefaultInformationRead(ctx, d, meta)
 }
 
-func resourceRouterOspfDefaultInformationDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterOspfDefaultInformationDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceRouterOspfDefaultInformationRead(d, meta)
+	return resourceRouterOspfDefaultInformationRead(ctx, d, meta)
 }
 func dataToRouterOspfDefaultInformation(d *schema.ResourceData) go_thunder.RouterOspfDefaultInformation {
 	var vc go_thunder.RouterOspfDefaultInformation

@@ -3,20 +3,23 @@ package thunder
 //Thunder resource SlbServerPort
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"strings"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbServerPort() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbServerPortCreate,
-		Update: resourceSlbServerPortUpdate,
-		Read:   resourceSlbServerPortRead,
-		Delete: resourceSlbServerPortDelete,
+		CreateContext: resourceSlbServerPortCreate,
+		UpdateContext: resourceSlbServerPortUpdate,
+		ReadContext:   resourceSlbServerPortRead,
+		DeleteContext: resourceSlbServerPortDelete,
 		Schema: map[string]*schema.Schema{
 			"health_check_disable": {
 				Type:        schema.TypeInt,
@@ -197,9 +200,11 @@ func resourceSlbServerPort() *schema.Resource {
 	}
 }
 
-func resourceSlbServerPortCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbServerPortCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbServerPort (Inside resourceSlbServerPortCreate) ")
@@ -210,17 +215,22 @@ func resourceSlbServerPortCreate(d *schema.ResourceData, meta interface{}) error
 		data := dataToSlbServerPort(d)
 		logger.Println("[INFO] received formatted data from method data to SlbServerPort --")
 		d.SetId(name1 + "," + strconv.Itoa(name2) + "," + name3)
-		go_thunder.PostSlbServerPort(client.Token, name1, data, client.Host)
+		err := go_thunder.PostSlbServerPort(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbServerPortRead(d, meta)
+		return resourceSlbServerPortRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbServerPortRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbServerPortRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbServerPort (Inside resourceSlbServerPortRead)")
 
 	if client.Host != "" {
@@ -231,18 +241,23 @@ func resourceSlbServerPortRead(d *schema.ResourceData, meta interface{}) error {
 
 		logger.Println("[INFO] Fetching service Read server/port")
 		data, err := go_thunder.GetSlbServerPort(client.Token, name1, name2, name3, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found slb/server/port")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbServerPortUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbServerPortUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -253,17 +268,22 @@ func resourceSlbServerPortUpdate(d *schema.ResourceData, meta interface{}) error
 		logger.Println("[INFO] Modifying SlbServerPort   (Inside resourceSlbServerPortUpdate) ")
 		data := dataToSlbServerPort(d)
 		logger.Println("[INFO] received formatted data from method data to SlbServerPort ")
-		go_thunder.PutSlbServerPort(client.Token, name1, name2, name3, data, client.Host)
+		err := go_thunder.PutSlbServerPort(client.Token, name1, name2, name3, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbServerPortRead(d, meta)
+		return resourceSlbServerPortRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbServerPortDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbServerPortDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -275,11 +295,11 @@ func resourceSlbServerPortDelete(d *schema.ResourceData, meta interface{}) error
 		err := go_thunder.DeleteSlbServerPort(client.Token, name1, name2, name3, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToSlbServerPort(d *schema.ResourceData) go_thunder.SlbServerPort {

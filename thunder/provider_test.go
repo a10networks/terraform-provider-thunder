@@ -4,29 +4,28 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 var TEST_PARTITION = "Common"
 
-var testAccProviders map[string]terraform.ResourceProvider
+var testAccProviders map[string]*schema.Provider
 var testAccProvider *schema.Provider
 
-var testProviders = map[string]terraform.ResourceProvider{
+var testProviders = map[string]*schema.Provider{
 	"thunder": Provider(),
 }
 
 func init() {
 
-	testAccProvider = ProviderTest().(*schema.Provider)
-	testAccProviders = map[string]terraform.ResourceProvider{
+	testAccProvider = ProviderTest() //.(*schema.Provider)
+	testAccProviders = map[string]*schema.Provider{
 		"thunder": testAccProvider,
 	}
 
 }
 
-func ProviderTest() terraform.ResourceProvider {
+func ProviderTest() *schema.Provider {
 	return &schema.Provider{
 
 		ResourcesMap: map[string]*schema.Resource{
@@ -293,7 +292,8 @@ func providerConfigureTest(d *schema.ResourceData) (interface{}, error) {
 }
 
 func TestAccProvider(t *testing.T) {
-	if err := Provider().(*schema.Provider).InternalValidate(); err != nil {
+	if err := Provider().InternalValidate(); //.(*schema.Provider).InternalValidate();
+	err != nil {
 		t.Fatalf("err: %s", err)
 	}
 }

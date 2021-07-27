@@ -3,18 +3,21 @@ package thunder
 //Thunder resource SnmpServerEngineID
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"util"
 )
 
 func resourceSnmpServerEngineID() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSnmpServerEngineIDCreate,
-		Update: resourceSnmpServerEngineIDUpdate,
-		Read:   resourceSnmpServerEngineIDRead,
-		Delete: resourceSnmpServerEngineIDDelete,
+		CreateContext: resourceSnmpServerEngineIDCreate,
+		UpdateContext: resourceSnmpServerEngineIDUpdate,
+		ReadContext:   resourceSnmpServerEngineIDRead,
+		DeleteContext: resourceSnmpServerEngineIDDelete,
 		Schema: map[string]*schema.Schema{
 			"uuid": {
 				Type:        schema.TypeString,
@@ -30,9 +33,11 @@ func resourceSnmpServerEngineID() *schema.Resource {
 	}
 }
 
-func resourceSnmpServerEngineIDCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEngineIDCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerEngineID (Inside resourceSnmpServerEngineIDCreate) ")
@@ -40,39 +45,47 @@ func resourceSnmpServerEngineIDCreate(d *schema.ResourceData, meta interface{}) 
 		data := dataToSnmpServerEngineID(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerEngineID --")
 		d.SetId("1")
-		go_thunder.PostSnmpServerEngineID(client.Token, data, client.Host)
+		err := go_thunder.PostSnmpServerEngineID(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerEngineIDRead(d, meta)
+		return resourceSnmpServerEngineIDRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerEngineIDRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEngineIDRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SnmpServerEngineID (Inside resourceSnmpServerEngineIDRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetSnmpServerEngineID(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSnmpServerEngineIDUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEngineIDUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSnmpServerEngineIDRead(d, meta)
+	return resourceSnmpServerEngineIDRead(ctx, d, meta)
 }
 
-func resourceSnmpServerEngineIDDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEngineIDDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSnmpServerEngineIDRead(d, meta)
+	return resourceSnmpServerEngineIDRead(ctx, d, meta)
 }
 func dataToSnmpServerEngineID(d *schema.ResourceData) go_thunder.SnmpServerEngineID {
 	var vc go_thunder.SnmpServerEngineID

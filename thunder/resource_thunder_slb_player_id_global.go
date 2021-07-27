@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbPlayerIdGlobal
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbPlayerIdGlobal() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbPlayerIdGlobalCreate,
-		Update: resourceSlbPlayerIdGlobalUpdate,
-		Read:   resourceSlbPlayerIdGlobalRead,
-		Delete: resourceSlbPlayerIdGlobalDelete,
+		CreateContext: resourceSlbPlayerIdGlobalCreate,
+		UpdateContext: resourceSlbPlayerIdGlobalUpdate,
+		ReadContext:   resourceSlbPlayerIdGlobalRead,
+		DeleteContext: resourceSlbPlayerIdGlobalDelete,
 		Schema: map[string]*schema.Schema{
 			"min_expiration": {
 				Type:        schema.TypeInt,
@@ -64,9 +66,11 @@ func resourceSlbPlayerIdGlobal() *schema.Resource {
 	}
 }
 
-func resourceSlbPlayerIdGlobalCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPlayerIdGlobalCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbPlayerIdGlobal (Inside resourceSlbPlayerIdGlobalCreate) ")
@@ -74,40 +78,48 @@ func resourceSlbPlayerIdGlobalCreate(d *schema.ResourceData, meta interface{}) e
 		data := dataToSlbPlayerIdGlobal(d)
 		logger.Println("[INFO] received formatted data from method data to SlbPlayerIdGlobal --")
 		d.SetId("1")
-		go_thunder.PostSlbPlayerIdGlobal(client.Token, data, client.Host)
+		err := go_thunder.PostSlbPlayerIdGlobal(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbPlayerIdGlobalRead(d, meta)
+		return resourceSlbPlayerIdGlobalRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbPlayerIdGlobalRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPlayerIdGlobalRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbPlayerIdGlobal (Inside resourceSlbPlayerIdGlobalRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbPlayerIdGlobal(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbPlayerIdGlobalUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPlayerIdGlobalUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbPlayerIdGlobalRead(d, meta)
+	return resourceSlbPlayerIdGlobalRead(ctx, d, meta)
 }
 
-func resourceSlbPlayerIdGlobalDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbPlayerIdGlobalDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbPlayerIdGlobalRead(d, meta)
+	return resourceSlbPlayerIdGlobalRead(ctx, d, meta)
 }
 
 func dataToSlbPlayerIdGlobal(d *schema.ResourceData) go_thunder.PlayerIdGlobal {

@@ -3,20 +3,22 @@ package thunder
 //Thunder resource - Rib Route
 
 import (
+	"context"
 	"fmt"
 	"strconv"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceRibRoute() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceRibRouteCreate,
-		Update: resourceRibRouteUpdate,
-		Read:   resourceRibRouteRead,
-		Delete: resourceRibRouteDelete,
+		CreateContext: resourceRibRouteCreate,
+		UpdateContext: resourceRibRouteUpdate,
+		ReadContext:   resourceRibRouteRead,
+		DeleteContext: resourceRibRouteDelete,
 
 		Schema: map[string]*schema.Schema{
 			"ip_nexthop_ipv4": {
@@ -135,64 +137,78 @@ func resourceRibRoute() *schema.Resource {
 	}
 }
 
-func resourceRibRouteCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceRibRouteCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RibRoute (Inside resourceRibRouteCreate    ") // + name)
 		ribRoute := dataToRibRoute(d)
 		logger.Println("[INFO] received formatted data from method data to RibRoute --")
 		d.SetId(ribRoute.UUID.Instance)
-		go_thunder.PostRibRoute(client.Token, ribRoute, client.Host, ribRoute.UUID.Instance)
-
-		return resourceRibRouteRead(d, meta)
+		err := go_thunder.PostRibRoute(client.Token, ribRoute, client.Host, ribRoute.UUID.Instance)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceRibRouteRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceRibRouteRead(d *schema.ResourceData, meta interface{}) error {
+func resourceRibRouteRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading Route (Inside resourceRibRouteRead)")
 
 	if client.Host != "" {
 		client := meta.(Thunder)
+
 		name := d.Id()
 
 		logger.Println("[INFO] Fetching route Read" + name)
 
 		rib, err := go_thunder.GetRibRoute(client.Token, client.Host, name)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if rib == nil {
 			logger.Println("[INFO] No Route found " + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceRibRouteUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceRibRouteUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		ribRoute := dataToRibRoute(d)
 		logger.Println("[INFO] received formatted data from method data to RibRoute --")
 		d.SetId(ribRoute.UUID.Instance)
-		go_thunder.PutRibRoute(client.Token, ribRoute.UUID.Instance, ribRoute, client.Host)
-
-		return resourceRibRouteRead(d, meta)
+		err := go_thunder.PutRibRoute(client.Token, ribRoute.UUID.Instance, ribRoute, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceRibRouteRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceRibRouteDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceRibRouteDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger := util.GetLoggerInstance()
 
 	if client.Host != "" {
@@ -202,7 +218,7 @@ func resourceRibRouteDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteRibRoute(client.Token, name, client.Host)
 		if err != nil {
 			logger.Println("[ERROR] Unable to Delete service group", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

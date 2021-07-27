@@ -3,19 +3,21 @@ package thunder
 //Thunder resource FwTemplateLogging
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwTemplateLogging() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwTemplateLoggingCreate,
-		Update: resourceFwTemplateLoggingUpdate,
-		Read:   resourceFwTemplateLoggingRead,
-		Delete: resourceFwTemplateLoggingDelete,
+		CreateContext: resourceFwTemplateLoggingCreate,
+		UpdateContext: resourceFwTemplateLoggingUpdate,
+		ReadContext:   resourceFwTemplateLoggingRead,
+		DeleteContext: resourceFwTemplateLoggingDelete,
 		Schema: map[string]*schema.Schema{
 			"include_http": {
 				Type:     schema.TypeList,
@@ -274,9 +276,11 @@ func resourceFwTemplateLogging() *schema.Resource {
 	}
 }
 
-func resourceFwTemplateLoggingCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTemplateLoggingCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwTemplateLogging (Inside resourceFwTemplateLoggingCreate) ")
@@ -284,41 +288,49 @@ func resourceFwTemplateLoggingCreate(d *schema.ResourceData, meta interface{}) e
 		data := dataToFwTemplateLogging(d)
 		logger.Println("[INFO] received formatted data from method data to FwTemplateLogging --")
 		d.SetId(name)
-		go_thunder.PostFwTemplateLogging(client.Token, data, client.Host)
+		err := go_thunder.PostFwTemplateLogging(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwTemplateLoggingRead(d, meta)
+		return resourceFwTemplateLoggingRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwTemplateLoggingRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTemplateLoggingRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwTemplateLogging (Inside resourceFwTemplateLoggingRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwTemplateLogging(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwTemplateLoggingUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTemplateLoggingUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwTemplateLoggingRead(d, meta)
+	return resourceFwTemplateLoggingRead(ctx, d, meta)
 }
 
-func resourceFwTemplateLoggingDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTemplateLoggingDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwTemplateLoggingRead(d, meta)
+	return resourceFwTemplateLoggingRead(ctx, d, meta)
 }
 func dataToFwTemplateLogging(d *schema.ResourceData) go_thunder.FwTemplateLogging {
 	var vc go_thunder.FwTemplateLogging

@@ -82,7 +82,7 @@ func encodeMapStringInterfaceValue(e *Encoder, v reflect.Value) error {
 
 func (e *Encoder) encodeSortedMapStringString(m map[string]string) error {
 	keys := make([]string, 0, len(m))
-	for k := range m {
+	for k, _ := range m {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
@@ -102,7 +102,7 @@ func (e *Encoder) encodeSortedMapStringString(m map[string]string) error {
 
 func (e *Encoder) encodeSortedMapStringInterface(m map[string]interface{}) error {
 	keys := make([]string, 0, len(m))
-	for k := range m {
+	for k, _ := range m {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
@@ -125,7 +125,7 @@ func (e *Encoder) EncodeMapLen(l int) error {
 		return e.writeCode(codes.FixedMapLow | codes.Code(l))
 	}
 	if l < 65536 {
-		return e.write2(codes.Map16, uint64(l))
+		return e.write2(codes.Map16, uint16(l))
 	}
 	return e.write4(codes.Map32, uint32(l))
 }

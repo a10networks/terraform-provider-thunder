@@ -3,18 +3,21 @@ package thunder
 //Thunder resource FwTopKRules
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwTopKRules() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwTopKRulesCreate,
-		Update: resourceFwTopKRulesUpdate,
-		Read:   resourceFwTopKRulesRead,
-		Delete: resourceFwTopKRulesDelete,
+		CreateContext: resourceFwTopKRulesCreate,
+		UpdateContext: resourceFwTopKRulesUpdate,
+		ReadContext:   resourceFwTopKRulesRead,
+		DeleteContext: resourceFwTopKRulesDelete,
 		Schema: map[string]*schema.Schema{
 			"uuid": {
 				Type:        schema.TypeString,
@@ -25,9 +28,11 @@ func resourceFwTopKRules() *schema.Resource {
 	}
 }
 
-func resourceFwTopKRulesCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTopKRulesCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwTopKRules (Inside resourceFwTopKRulesCreate) ")
@@ -35,41 +40,49 @@ func resourceFwTopKRulesCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToFwTopKRules(d)
 		logger.Println("[INFO] received formatted data from method data to FwTopKRules --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwTopKRules(client.Token, data, client.Host)
+		err := go_thunder.PostFwTopKRules(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwTopKRulesRead(d, meta)
+		return resourceFwTopKRulesRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwTopKRulesRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTopKRulesRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwTopKRules (Inside resourceFwTopKRulesRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwTopKRules(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwTopKRulesUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTopKRulesUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwTopKRulesRead(d, meta)
+	return resourceFwTopKRulesRead(ctx, d, meta)
 }
 
-func resourceFwTopKRulesDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwTopKRulesDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwTopKRulesRead(d, meta)
+	return resourceFwTopKRulesRead(ctx, d, meta)
 }
 func dataToFwTopKRules(d *schema.ResourceData) go_thunder.FwTopKRules {
 	var vc go_thunder.FwTopKRules

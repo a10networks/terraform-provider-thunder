@@ -3,18 +3,20 @@ package thunder
 //Thunder resource IpTcp
 
 import (
+	"context"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceIpTcp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceIpTcpCreate,
-		Update: resourceIpTcpUpdate,
-		Read:   resourceIpTcpRead,
-		Delete: resourceIpTcpDelete,
+		CreateContext: resourceIpTcpCreate,
+		UpdateContext: resourceIpTcpUpdate,
+		ReadContext:   resourceIpTcpRead,
+		DeleteContext: resourceIpTcpDelete,
 		Schema: map[string]*schema.Schema{
 			"syn_cookie": {
 				Type:     schema.TypeList,
@@ -39,9 +41,11 @@ func resourceIpTcp() *schema.Resource {
 	}
 }
 
-func resourceIpTcpCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpTcpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println(d)
 	if client.Host != "" {
 		logger.Println("[INFO] Creating IpTcp (Inside resourceIpTcpCreate) ")
@@ -49,37 +53,45 @@ func resourceIpTcpCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToIpTcp(d)
 		logger.Println("[INFO] received V from method data to IpTcp --")
 		d.SetId("1")
-		go_thunder.PostIpTcp(client.Token, data, client.Host)
+		err := go_thunder.PostIpTcp(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceIpTcpRead(d, meta)
+		return resourceIpTcpRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceIpTcpRead(d *schema.ResourceData, meta interface{}) error {
+func resourceIpTcpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading IpTcp (Inside resourceIpTcpRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetIpTcp(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
-func resourceIpTcpUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpTcpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpTcpRead(d, meta)
+	return resourceIpTcpRead(ctx, d, meta)
 }
 
-func resourceIpTcpDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceIpTcpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpTcpRead(d, meta)
+	return resourceIpTcpRead(ctx, d, meta)
 }
 
 func dataToIpTcp(d *schema.ResourceData) go_thunder.IpTcp {

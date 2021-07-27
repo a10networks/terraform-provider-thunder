@@ -3,20 +3,22 @@ package thunder
 //Thunder resource Virtual Server
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceVirtualServer() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceVirtualServerCreate,
-		Update: resourceVirtualServerUpdate,
-		Read:   resourceVirtualServerRead,
-		Delete: resourceVirtualServerDelete,
+		CreateContext: resourceVirtualServerCreate,
+		UpdateContext: resourceVirtualServerUpdate,
+		ReadContext:   resourceVirtualServerRead,
+		DeleteContext: resourceVirtualServerDelete,
 
 		Schema: map[string]*schema.Schema{
 			"extended_stats": {
@@ -1046,9 +1048,11 @@ func validateName() {
 	return
 }
 
-func resourceVirtualServerCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceVirtualServerCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
@@ -1056,17 +1060,22 @@ func resourceVirtualServerCreate(d *schema.ResourceData, meta interface{}) error
 		v := dataToVs(name, d)
 		logger.Println("[INFO] received formatted data from method data to vs --" + v.Name.Name + ",--" + v.Name.UUID)
 		d.SetId(name)
-		go_thunder.PostVS(client.Token, v, client.Host)
-		return resourceVirtualServerRead(d, meta)
+		err := go_thunder.PostVS(client.Token, v, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceVirtualServerRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceVirtualServerRead(d *schema.ResourceData, meta interface{}) error {
+func resourceVirtualServerRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading virtual server (Inside resourceVirtualServerRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -1074,21 +1083,25 @@ func resourceVirtualServerRead(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Fetching virtual server Read" + name)
 
 		vs, err := go_thunder.GetVS(client.Token, name, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if vs == nil {
 			logger.Println("[INFO] No virtual server found " + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceVirtualServerUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceVirtualServerUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
@@ -1096,16 +1109,20 @@ func resourceVirtualServerUpdate(d *schema.ResourceData, meta interface{}) error
 		v := dataToVs(name, d)
 		logger.Println("[INFO] received formatted data from method data to vs --" + v.Name.Name + ",--" + v.Name.UUID)
 		d.SetId(name)
-		go_thunder.PutVS(client.Token, name, v, client.Host)
-
-		return resourceVirtualServerRead(d, meta)
+		err := go_thunder.PutVS(client.Token, name, v, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceVirtualServerRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceVirtualServerDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceVirtualServerDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger := util.GetLoggerInstance()
 	name := d.Id()
 	logger.Println("[INFO] Deleting virtual server (Inside resourceVirtualServerDelete) " + name)
@@ -1114,7 +1131,7 @@ func resourceVirtualServerDelete(d *schema.ResourceData, meta interface{}) error
 		err := go_thunder.DeleteVS(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete Virtual Server  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

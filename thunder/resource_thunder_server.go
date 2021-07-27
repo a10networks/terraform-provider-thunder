@@ -3,20 +3,22 @@ package thunder
 //Thunder resource Server
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceServer() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceServerCreate,
-		Update: resourceServerUpdate,
-		Read:   resourceServerRead,
-		Delete: resourceServerDelete,
+		CreateContext: resourceServerCreate,
+		UpdateContext: resourceServerUpdate,
+		ReadContext:   resourceServerRead,
+		DeleteContext: resourceServerDelete,
 
 		Schema: map[string]*schema.Schema{
 			"health_check": {
@@ -337,9 +339,11 @@ func resourceServer() *schema.Resource {
 	}
 }
 
-func resourceServerCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceServerCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
@@ -347,16 +351,20 @@ func resourceServerCreate(d *schema.ResourceData, meta interface{}) error {
 		v := dataToServer(name, d)
 		logger.Println("[INFO] received formatted data from method data to sg --" + v.Name.Name)
 		d.SetId(name)
-		go_thunder.PostServer(client.Token, v, client.Host)
-
-		return resourceServerRead(d, meta)
+		err := go_thunder.PostServer(client.Token, v, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceServerRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceServerRead(d *schema.ResourceData, meta interface{}) error {
+func resourceServerRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+	var diags diag.Diagnostics
+
 	logger.Println("[INFO] Reading Server (Inside resourceServerRead)")
 
 	if client.Host != "" {
@@ -367,21 +375,25 @@ func resourceServerRead(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Fetching service Read" + name)
 
 		server, err := go_thunder.GetServer(client.Token, name, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if server == nil {
 			logger.Println("[INFO] No server found " + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceServerUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceServerUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
@@ -389,16 +401,20 @@ func resourceServerUpdate(d *schema.ResourceData, meta interface{}) error {
 		v := dataToServer(name, d)
 		logger.Println("[INFO] received formatted data from method data to sg --" + v.Name.Name)
 		d.SetId(name)
-		go_thunder.PutServer(client.Token, name, v, client.Host)
-
-		return resourceServerRead(d, meta)
+		err := go_thunder.PutServer(client.Token, name, v, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceServerRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceServerDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceServerDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger := util.GetLoggerInstance()
 
 	if client.Host != "" {
@@ -408,7 +424,7 @@ func resourceServerDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteServer(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete service group  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

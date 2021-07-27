@@ -3,18 +3,20 @@ package thunder
 //Thunder resource IpNatIcmp
 
 import (
+	"context"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceIpNatIcmp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceIpNatIcmpCreate,
-		Update: resourceIpNatIcmpUpdate,
-		Read:   resourceIpNatIcmpRead,
-		Delete: resourceIpNatIcmpDelete,
+		CreateContext: resourceIpNatIcmpCreate,
+		UpdateContext: resourceIpNatIcmpUpdate,
+		ReadContext:   resourceIpNatIcmpRead,
+		DeleteContext: resourceIpNatIcmpDelete,
 		Schema: map[string]*schema.Schema{
 			"respond_to_ping": {
 				Type:        schema.TypeInt,
@@ -35,9 +37,11 @@ func resourceIpNatIcmp() *schema.Resource {
 	}
 }
 
-func resourceIpNatIcmpCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpNatIcmpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating IpNatIcmp (Inside resourceIpNatIcmpCreate) ")
@@ -45,40 +49,48 @@ func resourceIpNatIcmpCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToIpNatIcmp(d)
 		logger.Println("[INFO] received V from method data to IpNatIcmp --")
 		d.SetId("1")
-		go_thunder.PostIpNatIcmp(client.Token, data, client.Host)
+		err := go_thunder.PostIpNatIcmp(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceIpNatIcmpRead(d, meta)
+		return resourceIpNatIcmpRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceIpNatIcmpRead(d *schema.ResourceData, meta interface{}) error {
+func resourceIpNatIcmpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading IpNatIcmp (Inside resourceIpNatIcmpRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetIpNatIcmp(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceIpNatIcmpUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpNatIcmpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpNatIcmpRead(d, meta)
+	return resourceIpNatIcmpRead(ctx, d, meta)
 }
 
-func resourceIpNatIcmpDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceIpNatIcmpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpNatIcmpRead(d, meta)
+	return resourceIpNatIcmpRead(ctx, d, meta)
 }
 func dataToIpNatIcmp(d *schema.ResourceData) go_thunder.NatIcmp {
 	var vc go_thunder.NatIcmp

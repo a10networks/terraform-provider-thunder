@@ -3,18 +3,21 @@ package thunder
 //Thunder resource NtpAuthKey
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceNtpAuthKey() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceNtpAuthKeyCreate,
-		Update: resourceNtpAuthKeyUpdate,
-		Read:   resourceNtpAuthKeyRead,
-		Delete: resourceNtpAuthKeyDelete,
+		CreateContext: resourceNtpAuthKeyCreate,
+		UpdateContext: resourceNtpAuthKeyUpdate,
+		ReadContext:   resourceNtpAuthKeyRead,
+		DeleteContext: resourceNtpAuthKeyDelete,
 		Schema: map[string]*schema.Schema{
 			"key": {
 				Type:        schema.TypeInt,
@@ -60,9 +63,11 @@ func resourceNtpAuthKey() *schema.Resource {
 	}
 }
 
-func resourceNtpAuthKeyCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceNtpAuthKeyCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating NtpAuthKey (Inside resourceNtpAuthKeyCreate) ")
@@ -70,52 +75,67 @@ func resourceNtpAuthKeyCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToNtpAuthKey(d)
 		logger.Println("[INFO] received formatted data from method data to NtpAuthKey --")
 		d.SetId(strconv.Itoa(name1))
-		go_thunder.PostNtpAuthKey(client.Token, data, client.Host)
+		err := go_thunder.PostNtpAuthKey(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceNtpAuthKeyRead(d, meta)
+		return resourceNtpAuthKeyRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceNtpAuthKeyRead(d *schema.ResourceData, meta interface{}) error {
+func resourceNtpAuthKeyRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading NtpAuthKey (Inside resourceNtpAuthKeyRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetNtpAuthKey(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceNtpAuthKeyUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceNtpAuthKeyUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying NtpAuthKey   (Inside resourceNtpAuthKeyUpdate) ")
 		data := dataToNtpAuthKey(d)
 		logger.Println("[INFO] received formatted data from method data to NtpAuthKey ")
-		go_thunder.PutNtpAuthKey(client.Token, name1, data, client.Host)
+		err := go_thunder.PutNtpAuthKey(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceNtpAuthKeyRead(d, meta)
+		return resourceNtpAuthKeyRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceNtpAuthKeyDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceNtpAuthKeyDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -123,11 +143,11 @@ func resourceNtpAuthKeyDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteNtpAuthKey(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToNtpAuthKey(d *schema.ResourceData) go_thunder.NtpAuthKey {

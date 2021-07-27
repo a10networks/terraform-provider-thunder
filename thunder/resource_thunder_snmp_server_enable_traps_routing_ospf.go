@@ -3,17 +3,20 @@ package thunder
 //Thunder resource SnmpServerEnableTrapsRoutingOspf
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSnmpServerEnableTrapsRoutingOspf() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSnmpServerEnableTrapsRoutingOspfCreate,
-		Update: resourceSnmpServerEnableTrapsRoutingOspfUpdate,
-		Read:   resourceSnmpServerEnableTrapsRoutingOspfRead,
-		Delete: resourceSnmpServerEnableTrapsRoutingOspfDelete,
+		CreateContext: resourceSnmpServerEnableTrapsRoutingOspfCreate,
+		UpdateContext: resourceSnmpServerEnableTrapsRoutingOspfUpdate,
+		ReadContext:   resourceSnmpServerEnableTrapsRoutingOspfRead,
+		DeleteContext: resourceSnmpServerEnableTrapsRoutingOspfDelete,
 		Schema: map[string]*schema.Schema{
 			"ospf_lsdb_overflow": {
 				Type:        schema.TypeInt,
@@ -104,9 +107,11 @@ func resourceSnmpServerEnableTrapsRoutingOspf() *schema.Resource {
 	}
 }
 
-func resourceSnmpServerEnableTrapsRoutingOspfCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEnableTrapsRoutingOspfCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerEnableTrapsRoutingOspf (Inside resourceSnmpServerEnableTrapsRoutingOspfCreate) ")
@@ -114,39 +119,47 @@ func resourceSnmpServerEnableTrapsRoutingOspfCreate(d *schema.ResourceData, meta
 		data := dataToSnmpServerEnableTrapsRoutingOspf(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerEnableTrapsRoutingOspf --")
 		d.SetId("1")
-		go_thunder.PostSnmpServerEnableTrapsRoutingOspf(client.Token, data, client.Host)
+		err := go_thunder.PostSnmpServerEnableTrapsRoutingOspf(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerEnableTrapsRoutingOspfRead(d, meta)
+		return resourceSnmpServerEnableTrapsRoutingOspfRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerEnableTrapsRoutingOspfRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEnableTrapsRoutingOspfRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SnmpServerEnableTrapsRoutingOspf (Inside resourceSnmpServerEnableTrapsRoutingOspfRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetSnmpServerEnableTrapsRoutingOspf(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSnmpServerEnableTrapsRoutingOspfUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEnableTrapsRoutingOspfUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSnmpServerEnableTrapsRoutingOspfRead(d, meta)
+	return resourceSnmpServerEnableTrapsRoutingOspfRead(ctx, d, meta)
 }
 
-func resourceSnmpServerEnableTrapsRoutingOspfDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerEnableTrapsRoutingOspfDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSnmpServerEnableTrapsRoutingOspfRead(d, meta)
+	return resourceSnmpServerEnableTrapsRoutingOspfRead(ctx, d, meta)
 }
 func dataToSnmpServerEnableTrapsRoutingOspf(d *schema.ResourceData) go_thunder.SnmpServerEnableTrapsRoutingOspf {
 	var vc go_thunder.SnmpServerEnableTrapsRoutingOspf

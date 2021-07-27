@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbProxy
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbProxy() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbProxyCreate,
-		Update: resourceSlbProxyUpdate,
-		Read:   resourceSlbProxyRead,
-		Delete: resourceSlbProxyDelete,
+		CreateContext: resourceSlbProxyCreate,
+		UpdateContext: resourceSlbProxyUpdate,
+		ReadContext:   resourceSlbProxyRead,
+		DeleteContext: resourceSlbProxyDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbProxy() *schema.Resource {
 	}
 }
 
-func resourceSlbProxyCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbProxyCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbProxy (Inside resourceSlbProxyCreate) ")
@@ -44,40 +48,48 @@ func resourceSlbProxyCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSlbProxy(d)
 		logger.Println("[INFO] received formatted data from method data to SlbProxy --")
 		d.SetId("1")
-		go_thunder.PostSlbProxy(client.Token, data, client.Host)
+		err := go_thunder.PostSlbProxy(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbProxyRead(d, meta)
+		return resourceSlbProxyRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbProxyRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbProxyRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbProxy (Inside resourceSlbProxyRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbProxy(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbProxyUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbProxyUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbProxyRead(d, meta)
+	return resourceSlbProxyRead(ctx, d, meta)
 }
 
-func resourceSlbProxyDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbProxyDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbProxyRead(d, meta)
+	return resourceSlbProxyRead(ctx, d, meta)
 }
 
 func dataToSlbProxy(d *schema.ResourceData) go_thunder.Proxy {

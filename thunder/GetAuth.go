@@ -21,7 +21,7 @@ type Token struct {
 
 var global_token = make(map[string]Token)
 
-func getAuthHeader(host string, user string, passwd string, uri string) string {
+func getAuthHeader(host string, user string, passwd string, uri string) (string, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -29,7 +29,7 @@ func getAuthHeader(host string, user string, passwd string, uri string) string {
 		global_token[host].Credentials.Username == user &&
 		global_token[host].Credentials.Password == passwd {
 		logger.Println("Using existing token.")
-		return "A10 " + global_token[host].token
+		return "A10 " + global_token[host].token, nil
 	}
 
 	var id string
@@ -69,6 +69,7 @@ func getAuthHeader(host string, user string, passwd string, uri string) string {
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 		logger.Println("[INFO] IThe HTTP request failed with error ")
+		return "", err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m Res
@@ -87,5 +88,5 @@ func getAuthHeader(host string, user string, passwd string, uri string) string {
 			}
 		}
 	}
-	return "A10 " + id
+	return "A10 " + id, nil
 }

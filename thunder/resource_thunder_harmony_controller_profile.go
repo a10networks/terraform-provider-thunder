@@ -3,17 +3,20 @@ package thunder
 //Thunder resource harmony controller profile
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceHarmonyControllerProfile() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceProfileCreate,
-		Update: resourceProfileUpdate,
-		Read:   resourceProfileRead,
-		Delete: resourceProfileDelete,
+		CreateContext: resourceProfileCreate,
+		UpdateContext: resourceProfileUpdate,
+		ReadContext:   resourceProfileRead,
+		DeleteContext: resourceProfileDelete,
 		Schema: map[string]*schema.Schema{
 			"thunder_mgmt_ip": {
 				Type:     schema.TypeList,
@@ -78,9 +81,11 @@ func resourceHarmonyControllerProfile() *schema.Resource {
 	}
 }
 
-func resourceProfileCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceProfileCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating Profile (Inside resourceProfileCreate)")
 
@@ -88,44 +93,50 @@ func resourceProfileCreate(d *schema.ResourceData, meta interface{}) error {
 		name := d.Get("user_name").(string)
 		vc := dataToProfile(d)
 		d.SetId(name)
-		go_thunder.PostProfile(client.Token, vc, client.Host)
-
-		return resourceProfileRead(d, meta)
+		err := go_thunder.PostProfile(client.Token, vc, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceProfileRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceProfileRead(d *schema.ResourceData, meta interface{}) error {
+func resourceProfileRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading Profile (Inside resourceProfileRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
 		name := d.Id()
 
 		vc, err := go_thunder.GetProfile(client.Token, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No Profile found" + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceProfileUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceProfileUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceProfileRead(d, meta)
+	return resourceProfileRead(ctx, d, meta)
 }
 
-func resourceProfileDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceProfileDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceProfileRead(d, meta)
+	return resourceProfileRead(ctx, d, meta)
 }
 
 //Utility method to instantiate Profile Structure

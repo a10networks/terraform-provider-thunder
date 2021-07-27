@@ -3,20 +3,22 @@ package thunder
 //Thunder resource - Service Group
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceServiceGroup() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceServiceGroupCreate,
-		Update: resourceServiceGroupUpdate,
-		Read:   resourceServiceGroupRead,
-		Delete: resourceServiceGroupDelete,
+		CreateContext: resourceServiceGroupCreate,
+		UpdateContext: resourceServiceGroupUpdate,
+		ReadContext:   resourceServiceGroupRead,
+		DeleteContext: resourceServiceGroupDelete,
 
 		Schema: map[string]*schema.Schema{
 			"extended_stats": {
@@ -400,9 +402,11 @@ func resourceServiceGroup() *schema.Resource {
 
 }
 
-func resourceServiceGroupCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceServiceGroupCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
@@ -410,18 +414,22 @@ func resourceServiceGroupCreate(d *schema.ResourceData, meta interface{}) error 
 		v := dataToSg(name, d)
 		logger.Println("[INFO] received formatted data from method data to sg --" + v.Name.Name + ",--" + v.Name.UUID)
 		d.SetId(name)
-		go_thunder.PostSG(client.Token, v, client.Host)
-
-		return resourceServiceGroupRead(d, meta)
+		err := go_thunder.PostSG(client.Token, v, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceServiceGroupRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceServiceGroupRead(d *schema.ResourceData, meta interface{}) error {
+func resourceServiceGroupRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading service group (Inside resourceServiceGroupRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -429,21 +437,25 @@ func resourceServiceGroupRead(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Fetching service group Read" + name)
 
 		sg, err := go_thunder.GetSG(client.Token, name, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if sg == nil {
 			logger.Println("[INFO] No service group found " + name)
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceServiceGroupUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceServiceGroupUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
@@ -451,16 +463,20 @@ func resourceServiceGroupUpdate(d *schema.ResourceData, meta interface{}) error 
 		v := dataToSg(name, d)
 		logger.Println("[INFO] received formatted data from method data to sg --" + v.Name.Name)
 		d.SetId(name)
-		go_thunder.PutSG(client.Token, name, v, client.Host)
-
-		return resourceServiceGroupRead(d, meta)
+		err := go_thunder.PutSG(client.Token, name, v, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceServiceGroupRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceServiceGroupDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceServiceGroupDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger := util.GetLoggerInstance()
 
 	if client.Host != "" {
@@ -471,7 +487,7 @@ func resourceServiceGroupDelete(d *schema.ResourceData, meta interface{}) error 
 		err := go_thunder.DeleteSG(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete service group  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

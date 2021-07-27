@@ -3,20 +3,22 @@ package thunder
 //Thunder resource SlbTemplateCSV
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateCSV() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateCSVCreate,
-		Update: resourceSlbTemplateCSVUpdate,
-		Read:   resourceSlbTemplateCSVRead,
-		Delete: resourceSlbTemplateCSVDelete,
+		CreateContext: resourceSlbTemplateCSVCreate,
+		UpdateContext: resourceSlbTemplateCSVUpdate,
+		ReadContext:   resourceSlbTemplateCSVRead,
+		DeleteContext: resourceSlbTemplateCSVDelete,
 		Schema: map[string]*schema.Schema{
 			"delim_char": {
 				Type:        schema.TypeString,
@@ -70,9 +72,11 @@ func resourceSlbTemplateCSV() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateCSVCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateCSVCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateCSV (Inside resourceSlbTemplateCSVCreate) ")
@@ -80,36 +84,46 @@ func resourceSlbTemplateCSVCreate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToSlbTemplateCSV(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateCSV --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplateCSV(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateCSV(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateCSVRead(d, meta)
+		return resourceSlbTemplateCSVRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateCSVRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateCSVRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateCSV (Inside resourceSlbTemplateCSVRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplateCSV(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplateCSVUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateCSVUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateCSV   (Inside resourceSlbTemplateCSVUpdate) ")
@@ -117,17 +131,22 @@ func resourceSlbTemplateCSVUpdate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToSlbTemplateCSV(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateCSV ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplateCSV(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateCSV(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateCSVRead(d, meta)
+		return resourceSlbTemplateCSVRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateCSVDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateCSVDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -135,7 +154,7 @@ func resourceSlbTemplateCSVDelete(d *schema.ResourceData, meta interface{}) erro
 		err := go_thunder.DeleteSlbTemplateCSV(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

@@ -3,18 +3,21 @@ package thunder
 //Thunder resource ActivePartition
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
 func resourceActivePartition() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceActivePartitionCreate,
-		Update: resourceActivePartitionUpdate,
-		Read:   resourceActivePartitionRead,
-		Delete: resourceActivePartitionDelete,
+		CreateContext: resourceActivePartitionCreate,
+		UpdateContext: resourceActivePartitionUpdate,
+		ReadContext:   resourceActivePartitionRead,
+		DeleteContext: resourceActivePartitionDelete,
 		Schema: map[string]*schema.Schema{
 			"shared": {
 				Type:        schema.TypeInt,
@@ -31,9 +34,11 @@ func resourceActivePartition() *schema.Resource {
 	}
 }
 
-func resourceActivePartitionCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceActivePartitionCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating ActivePartition (Inside resourceActivePartitionCreate) ")
@@ -41,39 +46,47 @@ func resourceActivePartitionCreate(d *schema.ResourceData, meta interface{}) err
 		data := dataToActivePartition(d)
 		logger.Println("[INFO] received formatted data from method data to ActivePartition --")
 		d.SetId("1")
-		go_thunder.PostActivePartition(client.Token, data, client.Host)
+		err := go_thunder.PostActivePartition(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceActivePartitionRead(d, meta)
+		return resourceActivePartitionRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceActivePartitionRead(d *schema.ResourceData, meta interface{}) error {
+func resourceActivePartitionRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading ActivePartition (Inside resourceActivePartitionRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetActivePartition(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceActivePartitionUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceActivePartitionUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceActivePartitionRead(d, meta)
+	return resourceActivePartitionRead(ctx, d, meta)
 }
 
-func resourceActivePartitionDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceActivePartitionDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceActivePartitionRead(d, meta)
+	return resourceActivePartitionRead(ctx, d, meta)
 }
 func dataToActivePartition(d *schema.ResourceData) go_thunder.ActivePartition {
 	var vc go_thunder.ActivePartition

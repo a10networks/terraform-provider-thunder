@@ -3,18 +3,20 @@ package thunder
 //Thunder resource SlbResourceUsage
 
 import (
+	"context"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbResourceUsage() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbResourceUsageCreate,
-		Update: resourceSlbResourceUsageUpdate,
-		Read:   resourceSlbResourceUsageRead,
-		Delete: resourceSlbResourceUsageDelete,
+		CreateContext: resourceSlbResourceUsageCreate,
+		UpdateContext: resourceSlbResourceUsageUpdate,
+		ReadContext:   resourceSlbResourceUsageRead,
+		DeleteContext: resourceSlbResourceUsageDelete,
 		Schema: map[string]*schema.Schema{
 			"persist_srcip_template_count": {
 				Type:        schema.TypeInt,
@@ -120,9 +122,11 @@ func resourceSlbResourceUsage() *schema.Resource {
 	}
 }
 
-func resourceSlbResourceUsageCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbResourceUsageCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbResourceUsage (Inside resourceSlbResourceUsageCreate) ")
@@ -130,40 +134,48 @@ func resourceSlbResourceUsageCreate(d *schema.ResourceData, meta interface{}) er
 		data := dataToSlbResourceUsage(d)
 		logger.Println("[INFO] received formatted data from method data to SlbResourceUsage --")
 		d.SetId("1")
-		go_thunder.PostSlbResourceUsage(client.Token, data, client.Host)
+		err := go_thunder.PostSlbResourceUsage(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbResourceUsageRead(d, meta)
+		return resourceSlbResourceUsageRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbResourceUsageRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbResourceUsageRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbResourceUsage (Inside resourceSlbResourceUsageRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbResourceUsage(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbResourceUsageUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbResourceUsageUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbResourceUsageRead(d, meta)
+	return resourceSlbResourceUsageRead(ctx, d, meta)
 }
 
-func resourceSlbResourceUsageDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbResourceUsageDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbResourceUsageRead(d, meta)
+	return resourceSlbResourceUsageRead(ctx, d, meta)
 }
 
 func dataToSlbResourceUsage(d *schema.ResourceData) go_thunder.ResourceUsage {

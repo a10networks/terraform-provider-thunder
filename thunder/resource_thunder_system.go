@@ -3,17 +3,20 @@ package thunder
 //Thunder resource System
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSystem() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSystemCreate,
-		Update: resourceSystemUpdate,
-		Read:   resourceSystemRead,
-		Delete: resourceSystemDelete,
+		CreateContext: resourceSystemCreate,
+		UpdateContext: resourceSystemUpdate,
+		ReadContext:   resourceSystemRead,
+		DeleteContext: resourceSystemDelete,
 		Schema: map[string]*schema.Schema{
 			"anomaly_log": {
 				Type:        schema.TypeInt,
@@ -4180,9 +4183,11 @@ func resourceSystem() *schema.Resource {
 	}
 }
 
-func resourceSystemCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSystemCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating System (Inside resourceSystemCreate) ")
@@ -4190,39 +4195,47 @@ func resourceSystemCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSystem(d)
 		logger.Println("[INFO] received formatted data from method data to System --")
 		d.SetId("1")
-		go_thunder.PostSystem(client.Token, data, client.Host)
+		err := go_thunder.PostSystem(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSystemRead(d, meta)
+		return resourceSystemRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSystemRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSystemRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading System (Inside resourceSystemRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetSystem(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSystemUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSystemUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSystemRead(d, meta)
+	return resourceSystemRead(ctx, d, meta)
 }
 
-func resourceSystemDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSystemDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSystemRead(d, meta)
+	return resourceSystemRead(ctx, d, meta)
 }
 func dataToSystem(d *schema.ResourceData) go_thunder.System {
 	var vc go_thunder.System

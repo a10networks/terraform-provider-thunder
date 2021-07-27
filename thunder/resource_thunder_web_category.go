@@ -3,18 +3,21 @@ package thunder
 //Thunder resource WebCategory
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceWebCategory() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceWebCategoryCreate,
-		Update: resourceWebCategoryUpdate,
-		Read:   resourceWebCategoryRead,
-		Delete: resourceWebCategoryDelete,
+		CreateContext: resourceWebCategoryCreate,
+		UpdateContext: resourceWebCategoryUpdate,
+		ReadContext:   resourceWebCategoryRead,
+		DeleteContext: resourceWebCategoryDelete,
 		Schema: map[string]*schema.Schema{
 			"server": {
 				Type:        schema.TypeString,
@@ -858,9 +861,11 @@ func resourceWebCategory() *schema.Resource {
 	}
 }
 
-func resourceWebCategoryCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating WebCategory (Inside resourceWebCategoryCreate) ")
@@ -868,39 +873,47 @@ func resourceWebCategoryCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToWebCategory(d)
 		logger.Println("[INFO] received formatted data from method data to WebCategory --")
 		d.SetId("1")
-		go_thunder.PostWebCategory(client.Token, data, client.Host)
+		err := go_thunder.PostWebCategory(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceWebCategoryRead(d, meta)
+		return resourceWebCategoryRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceWebCategoryRead(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading WebCategory (Inside resourceWebCategoryRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetWebCategory(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceWebCategoryUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceWebCategoryRead(d, meta)
+	return resourceWebCategoryRead(ctx, d, meta)
 }
 
-func resourceWebCategoryDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceWebCategoryRead(d, meta)
+	return resourceWebCategoryRead(ctx, d, meta)
 }
 func dataToWebCategory(d *schema.ResourceData) go_thunder.WebCategorySelf {
 	var vc go_thunder.WebCategorySelf

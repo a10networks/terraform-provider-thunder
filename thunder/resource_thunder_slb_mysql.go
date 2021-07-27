@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbMysql
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbMysql() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbMysqlCreate,
-		Update: resourceSlbMysqlUpdate,
-		Read:   resourceSlbMysqlRead,
-		Delete: resourceSlbMysqlDelete,
+		CreateContext: resourceSlbMysqlCreate,
+		UpdateContext: resourceSlbMysqlUpdate,
+		ReadContext:   resourceSlbMysqlRead,
+		DeleteContext: resourceSlbMysqlDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbMysql() *schema.Resource {
 	}
 }
 
-func resourceSlbMysqlCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbMysqlCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbMysql (Inside resourceSlbMysqlCreate) ")
@@ -44,39 +48,47 @@ func resourceSlbMysqlCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToSlbMysql(d)
 		logger.Println("[INFO] received V from method data to SlbMysql --")
 		d.SetId("1")
-		go_thunder.PostSlbMysql(client.Token, data, client.Host)
+		err := go_thunder.PostSlbMysql(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbMysqlRead(d, meta)
+		return resourceSlbMysqlRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbMysqlRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbMysqlRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbMysql (Inside resourceSlbMysqlRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbMysql(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
-func resourceSlbMysqlUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbMysqlUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbMysqlRead(d, meta)
+	return resourceSlbMysqlRead(ctx, d, meta)
 }
 
-func resourceSlbMysqlDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbMysqlDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbMysqlRead(d, meta)
+	return resourceSlbMysqlRead(ctx, d, meta)
 }
 func dataToSlbMysql(d *schema.ResourceData) go_thunder.Mysql {
 	var vc go_thunder.Mysql

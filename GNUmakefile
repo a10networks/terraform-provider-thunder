@@ -49,6 +49,15 @@ ifeq (,$(wildcard $(GOPATH)/src/$(WEBSITE_REPO)))
 endif
 	@$(MAKE) -C $(GOPATH)/src/$(WEBSITE_REPO) website-provider PROVIDER_PATH=$(shell pwd) PROVIDER_NAME=$(PKG_NAME)
 
+local:
+	go mod tidy
+	go mod vendor
+	go build -o terraform-provider-thunder
+	echo "local build using version as 7.7.7"
+	mkdir -p ~/.terraform.d/plugins/a10networks.com/a10networks/thunder/7.7.7/linux_amd64/
+	cp terraform-provider-thunder ~/.terraform.d/plugins/a10networks.com/a10networks/thunder/7.7.7/linux_amd64/
+	echo "terraform { \n\trequired_providers { \n\tthunder = { \n\tsource  = \"a10networks.com/a10networks/thunder\" \n\tversion = \"7.7.7\" \n\t\t} \n\t} \n}" > version.tf
+
 website-test:
 ifeq (,$(wildcard $(GOPATH)/src/$(WEBSITE_REPO)))
 	echo "$(WEBSITE_REPO) not found in your GOPATH (necessary for layouts and assets), get-ting..."

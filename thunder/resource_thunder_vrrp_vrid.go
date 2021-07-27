@@ -3,19 +3,22 @@ package thunder
 //Thunder resource vrrp vrid
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceVrrpVrid() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceVrrpVridCreate,
-		Update: resourceVrrpVridUpdate,
-		Read:   resourceVrrpVridRead,
-		Delete: resourceVrrpVridDelete,
+		CreateContext: resourceVrrpVridCreate,
+		UpdateContext: resourceVrrpVridUpdate,
+		ReadContext:   resourceVrrpVridRead,
+		DeleteContext: resourceVrrpVridDelete,
 
 		Schema: map[string]*schema.Schema{
 			"preempt_mode": {
@@ -444,9 +447,11 @@ func resourceVrrpVrid() *schema.Resource {
 
 }
 
-func resourceVrrpVridCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceVrrpVridCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	logger.Println("[INFO] Creating vrrp vrid (Inside resourceVrrpVridCreate)")
 
@@ -454,18 +459,22 @@ func resourceVrrpVridCreate(d *schema.ResourceData, meta interface{}) error {
 		name := d.Get("vrid_val").(int)
 		vc := dataToVrrpVrid(d)
 		d.SetId(strconv.Itoa(name))
-		go_thunder.PostVrrpVrid(client.Token, vc, client.Host)
-
-		return resourceVrrpVridRead(d, meta)
+		err := go_thunder.PostVrrpVrid(client.Token, vc, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceVrrpVridRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceVrrpVridRead(d *schema.ResourceData, meta interface{}) error {
+func resourceVrrpVridRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	logger.Println("[INFO] Reading vrrp common (Inside resourceVrrpVridRead)")
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 
@@ -474,38 +483,46 @@ func resourceVrrpVridRead(d *schema.ResourceData, meta interface{}) error {
 		logger.Println("[INFO] Fetching vrrp vrid" + name)
 
 		vc, err := go_thunder.GetVrrpVrid(client.Token, name, client.Host)
-
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if vc == nil {
 			logger.Println("[INFO] No vrrp vrid found")
 			d.SetId("")
 			return nil
 		}
 
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceVrrpVridUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceVrrpVridUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Get("name").(string)
 		logger.Println("[INFO] Modifying vrrp vrid   (Inside resourceVrrpVridUpdate " + name)
 		v := dataToVrrpVrid(d)
 		d.SetId(name)
-		go_thunder.PutVrrpVrid(client.Token, name, v, client.Host)
-
-		return resourceVrrpVridRead(d, meta)
+		err := go_thunder.PutVrrpVrid(client.Token, name, v, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceVrrpVridRead(ctx, d, meta)
 	}
-	return nil
+	return diags
 }
 
-func resourceVrrpVridDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceVrrpVridDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger := util.GetLoggerInstance()
 
 	if client.Host != "" {
@@ -516,7 +533,7 @@ func resourceVrrpVridDelete(d *schema.ResourceData, meta interface{}) error {
 		err := go_thunder.DeleteVrrpVrid(client.Token, name, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete vrrp vrid  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

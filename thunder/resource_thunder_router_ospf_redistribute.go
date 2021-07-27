@@ -3,19 +3,22 @@ package thunder
 //Thunder resource RouterOspfRedistribute
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceRouterOspfRedistribute() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceRouterOspfRedistributeCreate,
-		Update: resourceRouterOspfRedistributeUpdate,
-		Read:   resourceRouterOspfRedistributeRead,
-		Delete: resourceRouterOspfRedistributeDelete,
+		CreateContext: resourceRouterOspfRedistributeCreate,
+		UpdateContext: resourceRouterOspfRedistributeUpdate,
+		ReadContext:   resourceRouterOspfRedistributeRead,
+		DeleteContext: resourceRouterOspfRedistributeDelete,
 		Schema: map[string]*schema.Schema{
 			"redist_list": {
 				Type:     schema.TypeList,
@@ -211,9 +214,11 @@ func resourceRouterOspfRedistribute() *schema.Resource {
 	}
 }
 
-func resourceRouterOspfRedistributeCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterOspfRedistributeCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RouterOspfRedistribute (Inside resourceRouterOspfRedistributeCreate) ")
@@ -222,40 +227,48 @@ func resourceRouterOspfRedistributeCreate(d *schema.ResourceData, meta interface
 		data := dataToRouterOspfRedistribute(d)
 		logger.Println("[INFO] received formatted data from method data to RouterOspfRedistribute --")
 		d.SetId(strconv.Itoa(name1))
-		go_thunder.PostRouterOspfRedistribute(client.Token, name, data, client.Host)
+		err := go_thunder.PostRouterOspfRedistribute(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceRouterOspfRedistributeRead(d, meta)
+		return resourceRouterOspfRedistributeRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceRouterOspfRedistributeRead(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterOspfRedistributeRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading RouterOspfRedistribute (Inside resourceRouterOspfRedistributeRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetRouterOspfRedistribute(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceRouterOspfRedistributeUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterOspfRedistributeUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceRouterOspfRedistributeRead(d, meta)
+	return resourceRouterOspfRedistributeRead(ctx, d, meta)
 }
 
-func resourceRouterOspfRedistributeDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceRouterOspfRedistributeDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceRouterOspfRedistributeRead(d, meta)
+	return resourceRouterOspfRedistributeRead(ctx, d, meta)
 }
 func dataToRouterOspfRedistribute(d *schema.ResourceData) go_thunder.RouterOspfRedistribute {
 	var vc go_thunder.RouterOspfRedistribute

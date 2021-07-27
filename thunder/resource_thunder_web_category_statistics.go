@@ -3,18 +3,21 @@ package thunder
 //Thunder resource WebCategoryStatistics
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceWebCategoryStatistics() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceWebCategoryStatisticsCreate,
-		Update: resourceWebCategoryStatisticsUpdate,
-		Read:   resourceWebCategoryStatisticsRead,
-		Delete: resourceWebCategoryStatisticsDelete,
+		CreateContext: resourceWebCategoryStatisticsCreate,
+		UpdateContext: resourceWebCategoryStatisticsUpdate,
+		ReadContext:   resourceWebCategoryStatisticsRead,
+		DeleteContext: resourceWebCategoryStatisticsDelete,
 		Schema: map[string]*schema.Schema{
 			"uuid": {
 				Type:        schema.TypeString,
@@ -38,9 +41,11 @@ func resourceWebCategoryStatistics() *schema.Resource {
 	}
 }
 
-func resourceWebCategoryStatisticsCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryStatisticsCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating WebCategoryStatistics (Inside resourceWebCategoryStatisticsCreate) ")
@@ -48,39 +53,47 @@ func resourceWebCategoryStatisticsCreate(d *schema.ResourceData, meta interface{
 		data := dataToWebCategoryStatistics(d)
 		logger.Println("[INFO] received formatted data from method data to WebCategoryStatistics --")
 		d.SetId("1")
-		go_thunder.PostWebCategoryStatistics(client.Token, data, client.Host)
+		err := go_thunder.PostWebCategoryStatistics(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceWebCategoryStatisticsRead(d, meta)
+		return resourceWebCategoryStatisticsRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceWebCategoryStatisticsRead(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryStatisticsRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading WebCategoryStatistics (Inside resourceWebCategoryStatisticsRead)")
 
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetWebCategoryStatistics(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found ")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceWebCategoryStatisticsUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryStatisticsUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceWebCategoryStatisticsRead(d, meta)
+	return resourceWebCategoryStatisticsRead(ctx, d, meta)
 }
 
-func resourceWebCategoryStatisticsDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceWebCategoryStatisticsDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceWebCategoryStatisticsRead(d, meta)
+	return resourceWebCategoryStatisticsRead(ctx, d, meta)
 }
 func dataToWebCategoryStatistics(d *schema.ResourceData) go_thunder.WebCategoryStatistics {
 	var vc go_thunder.WebCategoryStatistics

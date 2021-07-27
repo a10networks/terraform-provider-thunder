@@ -3,20 +3,22 @@ package thunder
 //Thunder resource SlbTemplateDiameter
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateDiameter() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateDiameterCreate,
-		Update: resourceSlbTemplateDiameterUpdate,
-		Read:   resourceSlbTemplateDiameterRead,
-		Delete: resourceSlbTemplateDiameterDelete,
+		CreateContext: resourceSlbTemplateDiameterCreate,
+		UpdateContext: resourceSlbTemplateDiameterUpdate,
+		ReadContext:   resourceSlbTemplateDiameterRead,
+		DeleteContext: resourceSlbTemplateDiameterDelete,
 		Schema: map[string]*schema.Schema{
 			"multiple_origin_host": {
 				Type:        schema.TypeInt,
@@ -182,9 +184,11 @@ func resourceSlbTemplateDiameter() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateDiameterCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateDiameterCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateDiameter (Inside resourceSlbTemplateDiameterCreate) ")
@@ -192,36 +196,46 @@ func resourceSlbTemplateDiameterCreate(d *schema.ResourceData, meta interface{})
 		data := dataToSlbTemplateDiameter(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateDiameter --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplateDiameter(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateDiameter(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateDiameterRead(d, meta)
+		return resourceSlbTemplateDiameterRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateDiameterRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateDiameterRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateDiameter (Inside resourceSlbTemplateDiameterRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplateDiameter(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplateDiameterUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateDiameterUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateDiameter   (Inside resourceSlbTemplateDiameterUpdate) ")
@@ -229,17 +243,22 @@ func resourceSlbTemplateDiameterUpdate(d *schema.ResourceData, meta interface{})
 		data := dataToSlbTemplateDiameter(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateDiameter ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplateDiameter(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateDiameter(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateDiameterRead(d, meta)
+		return resourceSlbTemplateDiameterRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateDiameterDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateDiameterDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -247,7 +266,7 @@ func resourceSlbTemplateDiameterDelete(d *schema.ResourceData, meta interface{})
 		err := go_thunder.DeleteSlbTemplateDiameter(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

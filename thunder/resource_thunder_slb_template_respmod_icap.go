@@ -3,20 +3,22 @@ package thunder
 //Thunder resource SlbTemplateRespmodIcap
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateRespmodIcap() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateRespmodIcapCreate,
-		Update: resourceSlbTemplateRespmodIcapUpdate,
-		Read:   resourceSlbTemplateRespmodIcapRead,
-		Delete: resourceSlbTemplateRespmodIcapDelete,
+		CreateContext: resourceSlbTemplateRespmodIcapCreate,
+		UpdateContext: resourceSlbTemplateRespmodIcapUpdate,
+		ReadContext:   resourceSlbTemplateRespmodIcapRead,
+		DeleteContext: resourceSlbTemplateRespmodIcapDelete,
 		Schema: map[string]*schema.Schema{
 			"preview": {
 				Type:        schema.TypeInt,
@@ -145,9 +147,11 @@ func resourceSlbTemplateRespmodIcap() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateRespmodIcapCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateRespmodIcapCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateRespmodIcap (Inside resourceSlbTemplateRespmodIcapCreate) ")
@@ -155,36 +159,46 @@ func resourceSlbTemplateRespmodIcapCreate(d *schema.ResourceData, meta interface
 		data := dataToSlbTemplateRespmodIcap(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateRespmodIcap --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplateRespmodIcap(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateRespmodIcap(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateRespmodIcapRead(d, meta)
+		return resourceSlbTemplateRespmodIcapRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateRespmodIcapRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateRespmodIcapRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateRespmodIcap (Inside resourceSlbTemplateRespmodIcapRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplateRespmodIcap(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplateRespmodIcapUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateRespmodIcapUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateRespmodIcap   (Inside resourceSlbTemplateRespmodIcapUpdate) ")
@@ -192,17 +206,22 @@ func resourceSlbTemplateRespmodIcapUpdate(d *schema.ResourceData, meta interface
 		data := dataToSlbTemplateRespmodIcap(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateRespmodIcap ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplateRespmodIcap(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateRespmodIcap(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateRespmodIcapRead(d, meta)
+		return resourceSlbTemplateRespmodIcapRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateRespmodIcapDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateRespmodIcapDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -210,7 +229,7 @@ func resourceSlbTemplateRespmodIcapDelete(d *schema.ResourceData, meta interface
 		err := go_thunder.DeleteSlbTemplateRespmodIcap(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

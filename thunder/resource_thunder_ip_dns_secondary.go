@@ -3,18 +3,20 @@ package thunder
 //Thunder resource IpDnsSecondary
 
 import (
+	"context"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceIpDnsSecondary() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceIpDnsSecondaryCreate,
-		Update: resourceIpDnsSecondaryUpdate,
-		Read:   resourceIpDnsSecondaryRead,
-		Delete: resourceIpDnsSecondaryDelete,
+		CreateContext: resourceIpDnsSecondaryCreate,
+		UpdateContext: resourceIpDnsSecondaryUpdate,
+		ReadContext:   resourceIpDnsSecondaryRead,
+		DeleteContext: resourceIpDnsSecondaryDelete,
 		Schema: map[string]*schema.Schema{
 			"ip_v6_addr": {
 				Type:        schema.TypeString,
@@ -35,9 +37,11 @@ func resourceIpDnsSecondary() *schema.Resource {
 	}
 }
 
-func resourceIpDnsSecondaryCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpDnsSecondaryCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating IpDnsSecondary (Inside resourceIpDnsSecondaryCreate) ")
@@ -45,38 +49,46 @@ func resourceIpDnsSecondaryCreate(d *schema.ResourceData, meta interface{}) erro
 		data := dataToIpDnsSecondary(d)
 		logger.Println("[INFO] received V from method data to IpDnsSecondary --")
 		d.SetId("1")
-		go_thunder.PostIpDnsSecondary(client.Token, data, client.Host)
+		err := go_thunder.PostIpDnsSecondary(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceIpDnsSecondaryRead(d, meta)
+		return resourceIpDnsSecondaryRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceIpDnsSecondaryRead(d *schema.ResourceData, meta interface{}) error {
+func resourceIpDnsSecondaryRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading IpDnsSecondary (Inside resourceIpDnsSecondaryRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetIpDnsSecondary(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceIpDnsSecondaryUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceIpDnsSecondaryUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpDnsSecondaryRead(d, meta)
+	return resourceIpDnsSecondaryRead(ctx, d, meta)
 }
 
-func resourceIpDnsSecondaryDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceIpDnsSecondaryDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceIpDnsSecondaryRead(d, meta)
+	return resourceIpDnsSecondaryRead(ctx, d, meta)
 }
 func dataToIpDnsSecondary(d *schema.ResourceData) go_thunder.DnsSecondary {
 	var vc go_thunder.DnsSecondary

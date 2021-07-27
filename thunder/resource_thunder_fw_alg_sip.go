@@ -3,19 +3,22 @@ package thunder
 //Thunder resource FwAlgSip
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwAlgSip() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwAlgSipCreate,
-		Update: resourceFwAlgSipUpdate,
-		Read:   resourceFwAlgSipRead,
-		Delete: resourceFwAlgSipDelete,
+		CreateContext: resourceFwAlgSipCreate,
+		UpdateContext: resourceFwAlgSipUpdate,
+		ReadContext:   resourceFwAlgSipRead,
+		DeleteContext: resourceFwAlgSipDelete,
 		Schema: map[string]*schema.Schema{
 			"default_port_disable": {
 				Type:        schema.TypeString,
@@ -44,9 +47,11 @@ func resourceFwAlgSip() *schema.Resource {
 	}
 }
 
-func resourceFwAlgSipCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAlgSipCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwAlgSip (Inside resourceFwAlgSipCreate) ")
@@ -54,41 +59,49 @@ func resourceFwAlgSipCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToFwAlgSip(d)
 		logger.Println("[INFO] received formatted data from method data to FwAlgSip --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwAlgSip(client.Token, data, client.Host)
+		err := go_thunder.PostFwAlgSip(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwAlgSipRead(d, meta)
+		return resourceFwAlgSipRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwAlgSipRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAlgSipRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwAlgSip (Inside resourceFwAlgSipRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwAlgSip(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwAlgSipUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAlgSipUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwAlgSipRead(d, meta)
+	return resourceFwAlgSipRead(ctx, d, meta)
 }
 
-func resourceFwAlgSipDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwAlgSipDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwAlgSipRead(d, meta)
+	return resourceFwAlgSipRead(ctx, d, meta)
 }
 func dataToFwAlgSip(d *schema.ResourceData) go_thunder.FwAlgSip {
 	var vc go_thunder.FwAlgSip

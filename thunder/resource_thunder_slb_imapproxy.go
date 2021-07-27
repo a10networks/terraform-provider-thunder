@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbImapproxy
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbImapproxy() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbImapproxyCreate,
-		Update: resourceSlbImapproxyUpdate,
-		Read:   resourceSlbImapproxyRead,
-		Delete: resourceSlbImapproxyDelete,
+		CreateContext: resourceSlbImapproxyCreate,
+		UpdateContext: resourceSlbImapproxyUpdate,
+		ReadContext:   resourceSlbImapproxyRead,
+		DeleteContext: resourceSlbImapproxyDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbImapproxy() *schema.Resource {
 	}
 }
 
-func resourceSlbImapproxyCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbImapproxyCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbImapproxy (Inside resourceSlbImapproxyCreate) ")
@@ -44,38 +48,46 @@ func resourceSlbImapproxyCreate(d *schema.ResourceData, meta interface{}) error 
 		data := dataToSlbImapproxy(d)
 		logger.Println("[INFO] received V from method data to SlbImapproxy --")
 		d.SetId("1")
-		go_thunder.PostSlbImapproxy(client.Token, data, client.Host)
+		err := go_thunder.PostSlbImapproxy(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbImapproxyRead(d, meta)
+		return resourceSlbImapproxyRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbImapproxyRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbImapproxyRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbImapproxy (Inside resourceSlbImapproxyRead)")
 
 	if client.Host != "" {
 		data, err := go_thunder.GetSlbImapproxy(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbImapproxyUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbImapproxyUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbImapproxyRead(d, meta)
+	return resourceSlbImapproxyRead(ctx, d, meta)
 }
 
-func resourceSlbImapproxyDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbImapproxyDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbImapproxyRead(d, meta)
+	return resourceSlbImapproxyRead(ctx, d, meta)
 }
 
 func dataToSlbImapproxy(d *schema.ResourceData) go_thunder.Imapproxy {

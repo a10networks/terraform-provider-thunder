@@ -3,20 +3,22 @@ package thunder
 //Thunder resource SlbTemplateCache
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplateCache() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplateCacheCreate,
-		Update: resourceSlbTemplateCacheUpdate,
-		Read:   resourceSlbTemplateCacheRead,
-		Delete: resourceSlbTemplateCacheDelete,
+		CreateContext: resourceSlbTemplateCacheCreate,
+		UpdateContext: resourceSlbTemplateCacheUpdate,
+		ReadContext:   resourceSlbTemplateCacheRead,
+		DeleteContext: resourceSlbTemplateCacheDelete,
 		Schema: map[string]*schema.Schema{
 			"verify_host": {
 				Type:        schema.TypeInt,
@@ -151,9 +153,11 @@ func resourceSlbTemplateCache() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplateCacheCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateCacheCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateCache (Inside resourceSlbTemplateCacheCreate) ")
@@ -161,36 +165,46 @@ func resourceSlbTemplateCacheCreate(d *schema.ResourceData, meta interface{}) er
 		data := dataToSlbTemplateCache(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateCache --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplateCache(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplateCache(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateCacheRead(d, meta)
+		return resourceSlbTemplateCacheRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateCacheRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateCacheRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateCache (Inside resourceSlbTemplateCacheRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplateCache(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplateCacheUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateCacheUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplateCache   (Inside resourceSlbTemplateCacheUpdate) ")
@@ -198,17 +212,22 @@ func resourceSlbTemplateCacheUpdate(d *schema.ResourceData, meta interface{}) er
 		data := dataToSlbTemplateCache(d)
 		logger.Println("[INFO] received V from method data to SlbTemplateCache ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplateCache(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateCache(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplateCacheRead(d, meta)
+		return resourceSlbTemplateCacheRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplateCacheDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplateCacheDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -216,7 +235,7 @@ func resourceSlbTemplateCacheDelete(d *schema.ResourceData, meta interface{}) er
 		err := go_thunder.DeleteSlbTemplateCache(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

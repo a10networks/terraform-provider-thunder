@@ -3,18 +3,21 @@ package thunder
 //Thunder resource SnmpServerHostHostName
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
 	"strings"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSnmpServerHostHostName() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSnmpServerHostHostNameCreate,
-		Update: resourceSnmpServerHostHostNameUpdate,
-		Read:   resourceSnmpServerHostHostNameRead,
-		Delete: resourceSnmpServerHostHostNameDelete,
+		CreateContext: resourceSnmpServerHostHostNameCreate,
+		UpdateContext: resourceSnmpServerHostHostNameUpdate,
+		ReadContext:   resourceSnmpServerHostHostNameRead,
+		DeleteContext: resourceSnmpServerHostHostNameDelete,
 		Schema: map[string]*schema.Schema{
 			"uuid": {
 				Type:        schema.TypeString,
@@ -50,9 +53,11 @@ func resourceSnmpServerHostHostName() *schema.Resource {
 	}
 }
 
-func resourceSnmpServerHostHostNameCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerHostHostNameCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerHostHostName (Inside resourceSnmpServerHostHostNameCreate) ")
@@ -61,17 +66,22 @@ func resourceSnmpServerHostHostNameCreate(d *schema.ResourceData, meta interface
 		data := dataToSnmpServerHostHostName(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerHostHostName --")
 		d.SetId(name1 + "," + name2)
-		go_thunder.PostSnmpServerHostHostName(client.Token, data, client.Host)
+		err := go_thunder.PostSnmpServerHostHostName(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerHostHostNameRead(d, meta)
+		return resourceSnmpServerHostHostNameRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerHostHostNameRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerHostHostNameRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SnmpServerHostHostName (Inside resourceSnmpServerHostHostNameRead)")
 
 	if client.Host != "" {
@@ -80,18 +90,23 @@ func resourceSnmpServerHostHostNameRead(d *schema.ResourceData, meta interface{}
 		name2 := id[1]
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetSnmpServerHostHostName(client.Token, name1, name2, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSnmpServerHostHostNameUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerHostHostNameUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -100,17 +115,22 @@ func resourceSnmpServerHostHostNameUpdate(d *schema.ResourceData, meta interface
 		logger.Println("[INFO] Modifying SnmpServerHostHostName   (Inside resourceSnmpServerHostHostNameUpdate) ")
 		data := dataToSnmpServerHostHostName(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerHostHostName ")
-		go_thunder.PutSnmpServerHostHostName(client.Token, name1, name2, data, client.Host)
+		err := go_thunder.PutSnmpServerHostHostName(client.Token, name1, name2, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerHostHostNameRead(d, meta)
+		return resourceSnmpServerHostHostNameRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerHostHostNameDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerHostHostNameDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
@@ -120,11 +140,11 @@ func resourceSnmpServerHostHostNameDelete(d *schema.ResourceData, meta interface
 		err := go_thunder.DeleteSnmpServerHostHostName(client.Token, name1, name2, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToSnmpServerHostHostName(d *schema.ResourceData) go_thunder.SnmpServerHostHostName {

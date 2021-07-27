@@ -3,19 +3,21 @@ package thunder
 //Thunder resource TemplatePort
 
 import (
+	"context"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceTemplatePort() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceTemplatePortCreate,
-		Update: resourceTemplatePortUpdate,
-		Read:   resourceTemplatePortRead,
-		Delete: resourceTemplatePortDelete,
+		CreateContext: resourceTemplatePortCreate,
+		UpdateContext: resourceTemplatePortUpdate,
+		ReadContext:   resourceTemplatePortRead,
+		DeleteContext: resourceTemplatePortDelete,
 		Schema: map[string]*schema.Schema{
 			"source_nat": {
 				Type:        schema.TypeString,
@@ -256,9 +258,11 @@ func resourceTemplatePort() *schema.Resource {
 	}
 }
 
-func resourceTemplatePortCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplatePortCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating TemplatePort (Inside resourceTemplatePortCreate) ")
@@ -266,36 +270,46 @@ func resourceTemplatePortCreate(d *schema.ResourceData, meta interface{}) error 
 		data := dataToTemplatePort(d)
 		logger.Println("[INFO] received formatted data from method data to TemplatePort --")
 		d.SetId(name)
-		go_thunder.PostTemplatePort(client.Token, data, client.Host)
+		err := go_thunder.PostTemplatePort(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplatePortRead(d, meta)
+		return resourceTemplatePortRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplatePortRead(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplatePortRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading TemplatePort (Inside resourceTemplatePortRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetTemplatePort(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceTemplatePortUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplatePortUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying TemplatePort   (Inside resourceTemplatePortUpdate) ")
@@ -303,17 +317,22 @@ func resourceTemplatePortUpdate(d *schema.ResourceData, meta interface{}) error 
 		data := dataToTemplatePort(d)
 		logger.Println("[INFO] received formatted data from method data to TemplatePort ")
 		d.SetId(name)
-		go_thunder.PutTemplatePort(client.Token, name, data, client.Host)
+		err := go_thunder.PutTemplatePort(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceTemplatePortRead(d, meta)
+		return resourceTemplatePortRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceTemplatePortDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceTemplatePortDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -321,7 +340,7 @@ func resourceTemplatePortDelete(d *schema.ResourceData, meta interface{}) error 
 		err := go_thunder.DeleteTemplatePort(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

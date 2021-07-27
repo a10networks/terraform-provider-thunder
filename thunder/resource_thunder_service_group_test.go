@@ -3,9 +3,9 @@ package thunder
 import (
 	"fmt"
 	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 	"reflect"
 	"testing"
 )
@@ -529,7 +529,6 @@ func testCheckServiceGroupExists(name string, exists bool) resource.TestCheckFun
 
 		client := testAccProvider.Meta().(Thunder)
 		sg, err := go_thunder.GetSG(client.Token, name, client.Host)
-
 		if err != nil {
 			return err
 		}

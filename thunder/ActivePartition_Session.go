@@ -3,20 +3,64 @@ package thunder
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
+	"fmt"
 	go_thunder "github.com/go_thunder/thunder"
+	"io/ioutil"
 	"util"
 )
 
-type ActivePartitionInstance struct {
+type GetActivePartitionSessionStructInstance struct {
+	PartitionName string `json:"partition-name"`
+}
+
+type GetActivePartitionSessionStruct struct {
+	PartitionName GetActivePartitionSessionStructInstance `json:"active-partition"`
+}
+
+type ActivePartitionSessionInstance struct {
 	CurrPartName string `json:"curr_part_name,omitempty"`
 	Shared       int    `json:"shared,omitempty"`
 }
 
-type ActivePartition struct {
-	Shared ActivePartitionInstance `json:"active-partition,omitempty"`
+type ActivePartitionSession struct {
+	Shared ActivePartitionSessionInstance `json:"active-partition,omitempty"`
 }
 
-func PostActivePartition(id string, inst ActivePartition, host string) {
+func GetActivePartitionSession(id string, host string) (*GetActivePartitionSessionStruct, error) {
+
+	logger := util.GetLoggerInstance()
+
+	var headers = make(map[string]string)
+	headers["Accept"] = "application/json"
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = id
+	logger.Println("[INFO] Inside GetActivePartition")
+
+	resp, err := go_thunder.DoHttp("GET", "https://"+host+"/axapi/v3/active-partition", nil, headers)
+
+	if err != nil {
+		logger.Println("The HTTP request failed with error ", err)
+		return nil, err
+
+	} else {
+		data, _ := ioutil.ReadAll(resp.Body)
+		var m GetActivePartitionSessionStruct
+		erro := json.Unmarshal(data, &m)
+		logger.Println(string(data))
+		logger.Printf("mm--> %v", m)
+		if erro != nil {
+			logger.Println("Unmarshal error ", err)
+			return nil, err
+		} else {
+			logger.Println("[INFO] Get REQ RES..........................", m)
+			return &m, nil
+		}
+	}
+
+}
+
+func PostActivePartitionSession(id string, inst ActivePartitionSession, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -25,6 +69,7 @@ func PostActivePartition(id string, inst ActivePartition, host string) {
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside PostActivePartition")
+	partition_name := inst.Shared.CurrPartName
 	payloadBytes, err := json.Marshal(inst)
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
@@ -35,22 +80,39 @@ func PostActivePartition(id string, inst ActivePartition, host string) {
 
 	if err != nil {
 		logger.Println("The HTTP request For Partition failed with error ", err)
+		return err
+	}
 
+	datapr, err := GetActivePartitionSession(id, host)
+	logger.Println("provider active partition status --> ", (*datapr).PartitionName.PartitionName)
+	if err != nil {
+		return err
+	}
+
+	if string(partition_name) == string((*datapr).PartitionName.PartitionName) {
+		logger.Println("partition switch to -----> ", string(partition_name))
+		return nil
+	} else {
+		logger.Println("partition switch fail enter valid partition")
+		partition_string := fmt.Sprintf("Fail to switch partition %s, Please enter valid partition", partition_name)
+		return errors.New(partition_string)
 	}
 
 }
 
-func ActivePartitionEnable(p ActivePartition, client Thunder) error {
+func ActivePartitionEnable(p ActivePartitionSession, client Thunder) error {
 	logger := util.GetLoggerInstance()
-
+	//var diags diag.Diagnostics
 	if client.Host != "" {
-		logger.Println("[INFO] Creating ActivePartition (Inside resourceActivePartitionCreate) ")
+		err := PostActivePartitionSession(client.Token, p, client.Host)
+		if err != nil {
+			logger.Println("Activating partition fail, please check whether partiton is presesnt or not")
+			return err
+		}
 
-		logger.Println("[INFO] received formatted data from method data to ActivePartition --")
-		PostActivePartition(client.Token, p, client.Host)
-
-		//return resourceActivePartitionRead(d, meta)
+		//return resourceActivePartitionRead(ctx, d, meta)
 
 	}
 	return nil
+	//return diags
 }

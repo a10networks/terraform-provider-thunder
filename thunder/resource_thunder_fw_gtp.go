@@ -3,19 +3,22 @@ package thunder
 //Thunder resource FwGtp
 
 import (
+	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"strconv"
 	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceFwGtp() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceFwGtpCreate,
-		Update: resourceFwGtpUpdate,
-		Read:   resourceFwGtpRead,
-		Delete: resourceFwGtpDelete,
+		CreateContext: resourceFwGtpCreate,
+		UpdateContext: resourceFwGtpUpdate,
+		ReadContext:   resourceFwGtpRead,
+		DeleteContext: resourceFwGtpDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -44,9 +47,11 @@ func resourceFwGtp() *schema.Resource {
 	}
 }
 
-func resourceFwGtpCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwGtpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwGtp (Inside resourceFwGtpCreate) ")
@@ -54,41 +59,49 @@ func resourceFwGtpCreate(d *schema.ResourceData, meta interface{}) error {
 		data := dataToFwGtp(d)
 		logger.Println("[INFO] received formatted data from method data to FwGtp --")
 		d.SetId(strconv.Itoa('1'))
-		go_thunder.PostFwGtp(client.Token, data, client.Host)
+		err := go_thunder.PostFwGtp(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceFwGtpRead(d, meta)
+		return resourceFwGtpRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceFwGtpRead(d *schema.ResourceData, meta interface{}) error {
+func resourceFwGtpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwGtp (Inside resourceFwGtpRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetFwGtp(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceFwGtpUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceFwGtpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwGtpRead(d, meta)
+	return resourceFwGtpRead(ctx, d, meta)
 }
 
-func resourceFwGtpDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceFwGtpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceFwGtpRead(d, meta)
+	return resourceFwGtpRead(ctx, d, meta)
 }
 func dataToFwGtp(d *schema.ResourceData) go_thunder.FwGtp {
 	var vc go_thunder.FwGtp

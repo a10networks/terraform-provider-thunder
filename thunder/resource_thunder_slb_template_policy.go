@@ -3,20 +3,22 @@ package thunder
 //Thunder resource SlbTemplatePolicy
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbTemplatePolicy() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbTemplatePolicyCreate,
-		Update: resourceSlbTemplatePolicyUpdate,
-		Read:   resourceSlbTemplatePolicyRead,
-		Delete: resourceSlbTemplatePolicyDelete,
+		CreateContext: resourceSlbTemplatePolicyCreate,
+		UpdateContext: resourceSlbTemplatePolicyUpdate,
+		ReadContext:   resourceSlbTemplatePolicyRead,
+		DeleteContext: resourceSlbTemplatePolicyDelete,
 		Schema: map[string]*schema.Schema{
 			"over_limit_reset": {
 				Type:        schema.TypeInt,
@@ -707,9 +709,11 @@ func resourceSlbTemplatePolicy() *schema.Resource {
 	}
 }
 
-func resourceSlbTemplatePolicyCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplatePolicyCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplatePolicy (Inside resourceSlbTemplatePolicyCreate) ")
@@ -717,36 +721,46 @@ func resourceSlbTemplatePolicyCreate(d *schema.ResourceData, meta interface{}) e
 		data := dataToSlbTemplatePolicy(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplatePolicy --")
 		d.SetId(name)
-		go_thunder.PostSlbTemplatePolicy(client.Token, data, client.Host)
+		err := go_thunder.PostSlbTemplatePolicy(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplatePolicyRead(d, meta)
+		return resourceSlbTemplatePolicyRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplatePolicyRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplatePolicyRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplatePolicy (Inside resourceSlbTemplatePolicyRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetSlbTemplatePolicy(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbTemplatePolicyUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplatePolicyUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Modifying SlbTemplatePolicy   (Inside resourceSlbTemplatePolicyUpdate) ")
@@ -754,17 +768,22 @@ func resourceSlbTemplatePolicyUpdate(d *schema.ResourceData, meta interface{}) e
 		data := dataToSlbTemplatePolicy(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplatePolicy ")
 		d.SetId(name)
-		go_thunder.PutSlbTemplatePolicy(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplatePolicy(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbTemplatePolicyRead(d, meta)
+		return resourceSlbTemplatePolicyRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbTemplatePolicyDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbTemplatePolicyDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name := d.Id()
@@ -772,7 +791,7 @@ func resourceSlbTemplatePolicyDelete(d *schema.ResourceData, meta interface{}) e
 		err := go_thunder.DeleteSlbTemplatePolicy(client.Token, name, client.Host)
 		if err != nil {
 			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
-			return err
+			return diags
 		}
 		d.SetId("")
 		return nil

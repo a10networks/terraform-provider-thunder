@@ -1,8 +1,14 @@
-module github.com/terraform-providers/terraform-provider-thunder
+module github.com/a10networks/terraform-provider-thunder
 
-go 1.12
+go 1.16
+
+replace github.com/go_thunder/thunder => ./go_thunder/thunder
+
+replace util => ./util/UtilLog
 
 require (
-	github.com/clarketm/json v1.15.7 // indirect
-	github.com/hashicorp/terraform-plugin-sdk v1.15.0
+	github.com/go_thunder/thunder v0.0.0-00010101000000-000000000000
+	github.com/hashicorp/terraform-plugin-sdk/v2 v2.7.0
+	util v0.0.0-00010101000000-000000000000
+
 )

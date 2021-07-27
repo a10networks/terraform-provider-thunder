@@ -3,19 +3,21 @@ package thunder
 //Thunder resource SlbRateLimitLog
 
 import (
+	"context"
 	"fmt"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceSlbRateLimitLog() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSlbRateLimitLogCreate,
-		Update: resourceSlbRateLimitLogUpdate,
-		Read:   resourceSlbRateLimitLogRead,
-		Delete: resourceSlbRateLimitLogDelete,
+		CreateContext: resourceSlbRateLimitLogCreate,
+		UpdateContext: resourceSlbRateLimitLogUpdate,
+		ReadContext:   resourceSlbRateLimitLogRead,
+		DeleteContext: resourceSlbRateLimitLogDelete,
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
 				Type:     schema.TypeList,
@@ -34,9 +36,11 @@ func resourceSlbRateLimitLog() *schema.Resource {
 	}
 }
 
-func resourceSlbRateLimitLogCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbRateLimitLogCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbRateLimitLog (Inside resourceSlbRateLimitLogCreate) ")
@@ -44,40 +48,48 @@ func resourceSlbRateLimitLogCreate(d *schema.ResourceData, meta interface{}) err
 		data := dataToSlbRateLimitLog(d)
 		logger.Println("[INFO] received formatted data from method data to SlbRateLimitLog --")
 		d.SetId("1")
-		go_thunder.PostSlbRateLimitLog(client.Token, data, client.Host)
+		err := go_thunder.PostSlbRateLimitLog(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSlbRateLimitLogRead(d, meta)
+		return resourceSlbRateLimitLogRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSlbRateLimitLogRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbRateLimitLogRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbRateLimitLog (Inside resourceSlbRateLimitLogRead)")
 
 	if client.Host != "" {
 
 		data, err := go_thunder.GetSlbRateLimitLog(client.Token, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSlbRateLimitLogUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbRateLimitLogUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbRateLimitLogRead(d, meta)
+	return resourceSlbRateLimitLogRead(ctx, d, meta)
 }
 
-func resourceSlbRateLimitLogDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSlbRateLimitLogDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceSlbRateLimitLogRead(d, meta)
+	return resourceSlbRateLimitLogRead(ctx, d, meta)
 }
 
 func dataToSlbRateLimitLog(d *schema.ResourceData) go_thunder.RateLimitLog {

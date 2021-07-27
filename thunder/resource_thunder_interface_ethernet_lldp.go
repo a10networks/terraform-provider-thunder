@@ -3,19 +3,21 @@ package thunder
 //Thunder resource InterfaceEthernetLLDP
 
 import (
+	"context"
 	"strconv"
 	"util"
 
 	go_thunder "github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceInterfaceEthernetLLDP() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceInterfaceEthernetLLDPCreate,
-		Update: resourceInterfaceEthernetLLDPUpdate,
-		Read:   resourceInterfaceEthernetLLDPRead,
-		Delete: resourceInterfaceEthernetLLDPDelete,
+		CreateContext: resourceInterfaceEthernetLLDPCreate,
+		UpdateContext: resourceInterfaceEthernetLLDPUpdate,
+		ReadContext:   resourceInterfaceEthernetLLDPRead,
+		DeleteContext: resourceInterfaceEthernetLLDPDelete,
 		Schema: map[string]*schema.Schema{
 			"ifnum": {
 				Type:        schema.TypeInt,
@@ -142,9 +144,11 @@ func resourceInterfaceEthernetLLDP() *schema.Resource {
 	}
 }
 
-func resourceInterfaceEthernetLLDPCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetLLDPCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating InterfaceEthernetLLDP (Inside resourceInterfaceEthernetLLDPCreate) ")
@@ -152,41 +156,49 @@ func resourceInterfaceEthernetLLDPCreate(d *schema.ResourceData, meta interface{
 		data := dataToInterfaceEthernetLLDP(d)
 		logger.Println("[INFO] received V from method data to InterfaceEthernetLLDP --")
 		d.SetId(strconv.Itoa(name))
-		go_thunder.PostInterfaceEthernetLLDP(client.Token, name, data, client.Host)
+		err := go_thunder.PostInterfaceEthernetLLDP(client.Token, name, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceInterfaceEthernetLLDPRead(d, meta)
+		return resourceInterfaceEthernetLLDPRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceInterfaceEthernetLLDPRead(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetLLDPRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading InterfaceEthernetLLDP (Inside resourceInterfaceEthernetLLDPRead)")
 
 	if client.Host != "" {
 		name := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetInterfaceEthernetLLDP(client.Token, name, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name)
 			d.SetId("")
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceInterfaceEthernetLLDPUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetLLDPUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceEthernetLLDPRead(d, meta)
+	return resourceInterfaceEthernetLLDPRead(ctx, d, meta)
 }
 
-func resourceInterfaceEthernetLLDPDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceInterfaceEthernetLLDPDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
-	return resourceInterfaceEthernetLLDPRead(d, meta)
+	return resourceInterfaceEthernetLLDPRead(ctx, d, meta)
 }
 func dataToInterfaceEthernetLLDP(d *schema.ResourceData) go_thunder.EthernetLLDP {
 	var vc go_thunder.EthernetLLDP

@@ -3,18 +3,21 @@ package thunder
 //Thunder resource SnmpServerGroup
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"util"
 )
 
 func resourceSnmpServerGroup() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceSnmpServerGroupCreate,
-		Update: resourceSnmpServerGroupUpdate,
-		Read:   resourceSnmpServerGroupRead,
-		Delete: resourceSnmpServerGroupDelete,
+		CreateContext: resourceSnmpServerGroupCreate,
+		UpdateContext: resourceSnmpServerGroupUpdate,
+		ReadContext:   resourceSnmpServerGroupRead,
+		DeleteContext: resourceSnmpServerGroupDelete,
 		Schema: map[string]*schema.Schema{
 			"read": {
 				Type:        schema.TypeString,
@@ -40,9 +43,11 @@ func resourceSnmpServerGroup() *schema.Resource {
 	}
 }
 
-func resourceSnmpServerGroupCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerGroupCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SnmpServerGroup (Inside resourceSnmpServerGroupCreate) ")
@@ -50,52 +55,67 @@ func resourceSnmpServerGroupCreate(d *schema.ResourceData, meta interface{}) err
 		data := dataToSnmpServerGroup(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerGroup --")
 		d.SetId(name1)
-		go_thunder.PostSnmpServerGroup(client.Token, data, client.Host)
+		err := go_thunder.PostSnmpServerGroup(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerGroupRead(d, meta)
+		return resourceSnmpServerGroupRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerGroupRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerGroupRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SnmpServerGroup (Inside resourceSnmpServerGroupRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetSnmpServerGroup(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceSnmpServerGroupUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerGroupUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying SnmpServerGroup   (Inside resourceSnmpServerGroupUpdate) ")
 		data := dataToSnmpServerGroup(d)
 		logger.Println("[INFO] received formatted data from method data to SnmpServerGroup ")
-		go_thunder.PutSnmpServerGroup(client.Token, name1, data, client.Host)
+		err := go_thunder.PutSnmpServerGroup(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceSnmpServerGroupRead(d, meta)
+		return resourceSnmpServerGroupRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceSnmpServerGroupDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSnmpServerGroupDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -103,11 +123,11 @@ func resourceSnmpServerGroupDelete(d *schema.ResourceData, meta interface{}) err
 		err := go_thunder.DeleteSnmpServerGroup(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToSnmpServerGroup(d *schema.ResourceData) go_thunder.SnmpServerGroup {

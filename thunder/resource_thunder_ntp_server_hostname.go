@@ -3,18 +3,21 @@ package thunder
 //Thunder resource NtpServerHostname
 
 import (
-	"github.com/go_thunder/thunder"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"context"
+
+	go_thunder "github.com/go_thunder/thunder"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"util"
 )
 
 func resourceNtpServerHostname() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceNtpServerHostnameCreate,
-		Update: resourceNtpServerHostnameUpdate,
-		Read:   resourceNtpServerHostnameRead,
-		Delete: resourceNtpServerHostnameDelete,
+		CreateContext: resourceNtpServerHostnameCreate,
+		UpdateContext: resourceNtpServerHostnameUpdate,
+		ReadContext:   resourceNtpServerHostnameRead,
+		DeleteContext: resourceNtpServerHostnameDelete,
 		Schema: map[string]*schema.Schema{
 			"host_servername": {
 				Type:        schema.TypeString,
@@ -45,9 +48,11 @@ func resourceNtpServerHostname() *schema.Resource {
 	}
 }
 
-func resourceNtpServerHostnameCreate(d *schema.ResourceData, meta interface{}) error {
+func resourceNtpServerHostnameCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		logger.Println("[INFO] Creating NtpServerHostname (Inside resourceNtpServerHostnameCreate) ")
@@ -55,52 +60,67 @@ func resourceNtpServerHostnameCreate(d *schema.ResourceData, meta interface{}) e
 		data := dataToNtpServerHostname(d)
 		logger.Println("[INFO] received formatted data from method data to NtpServerHostname --")
 		d.SetId(name1)
-		go_thunder.PostNtpServerHostname(client.Token, data, client.Host)
+		err := go_thunder.PostNtpServerHostname(client.Token, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceNtpServerHostnameRead(d, meta)
+		return resourceNtpServerHostnameRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceNtpServerHostnameRead(d *schema.ResourceData, meta interface{}) error {
+func resourceNtpServerHostnameRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading NtpServerHostname (Inside resourceNtpServerHostnameRead)")
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
 		data, err := go_thunder.GetNtpServerHostname(client.Token, name1, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 		if data == nil {
 			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-		return err
+		return diags
 	}
 	return nil
 }
 
-func resourceNtpServerHostnameUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceNtpServerHostnameUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Modifying NtpServerHostname   (Inside resourceNtpServerHostnameUpdate) ")
 		data := dataToNtpServerHostname(d)
 		logger.Println("[INFO] received formatted data from method data to NtpServerHostname ")
-		go_thunder.PutNtpServerHostname(client.Token, name1, data, client.Host)
+		err := go_thunder.PutNtpServerHostname(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
 
-		return resourceNtpServerHostnameRead(d, meta)
+		return resourceNtpServerHostnameRead(ctx, d, meta)
 
 	}
-	return nil
+	return diags
 }
 
-func resourceNtpServerHostnameDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceNtpServerHostnameDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+
+	var diags diag.Diagnostics
 
 	if client.Host != "" {
 		name1 := d.Id()
@@ -108,11 +128,11 @@ func resourceNtpServerHostnameDelete(d *schema.ResourceData, meta interface{}) e
 		err := go_thunder.DeleteNtpServerHostname(client.Token, name1, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return err
+			return diag.FromErr(err)
 		}
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToNtpServerHostname(d *schema.ResourceData) go_thunder.NtpServerHostname {
