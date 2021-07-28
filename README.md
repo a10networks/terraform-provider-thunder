@@ -62,6 +62,7 @@ terraform {
 
 If you face some dependency issue try "$ go mod tidy" or "$ go mod vendor"
 
+Note:- After cloing you can also run ```$ make local ``` to perform these above step automatically for dummy version 7.7.7 in Linux env.
 
 # Usage
 
