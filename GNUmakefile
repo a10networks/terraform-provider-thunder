@@ -52,6 +52,7 @@ endif
 local:
 	go mod tidy
 	go mod vendor
+	gofmt -s -w .
 	go build -o terraform-provider-thunder
 	echo "local build using version as 7.7.7"
 	mkdir -p ~/.terraform.d/plugins/a10networks.com/a10networks/thunder/7.7.7/linux_amd64/
