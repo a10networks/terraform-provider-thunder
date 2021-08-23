@@ -3,7 +3,6 @@ package go_thunder
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"util"
 )
@@ -44,8 +43,6 @@ func PostPartition(id string, inst Partition, host string) error {
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside PostPartition")
 	payloadBytes, err := json.Marshal(inst)
-	fmt.Println("payload to send------->")
-	fmt.Println(payloadBytes)
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)

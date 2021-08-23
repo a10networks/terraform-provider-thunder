@@ -29,8 +29,10 @@ func DoHttp(method string, host string, body io.Reader, headers map[string]strin
 		req.Header.Set(property, value)
 	}
 	resp, err := client.Do(req)
+	//logger.Println("DoHttp response body ---> ", resp)
 	if err != nil {
 		logger.Println("[INFO] error from Http.go ")
 	}
+
 	return resp, err
 }
