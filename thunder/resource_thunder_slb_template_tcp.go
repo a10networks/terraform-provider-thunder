@@ -1,25 +1,72 @@
 package thunder
 
-//Thunder resource Tcp
+//Thunder resource SlbTemplateTcp
 
 import (
 	"context"
-	"log"
-	"util"
-
-	go_thunder "github.com/go_thunder/thunder"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"util"
 )
 
 func resourceSlbTemplateTcp() *schema.Resource {
 	return &schema.Resource{
-		CreateContext: resourceTcpCreate,
-		UpdateContext: resourceTcpUpdate,
-		ReadContext:   resourceTcpRead,
-		DeleteContext: resourceTcpDelete,
-
+		CreateContext: resourceSlbTemplateTcpCreate,
+		UpdateContext: resourceSlbTemplateTcpUpdate,
+		ReadContext:   resourceSlbTemplateTcpRead,
+		DeleteContext: resourceSlbTemplateTcpDelete,
 		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"logging": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"idle_timeout": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"half_open_idle_timeout": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"half_close_idle_timeout": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"initial_window_size": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"force_delete_timeout": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"force_delete_timeout_100ms": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"alive_if_active": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"qos": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
 			"insert_client_ip": {
 				Type:        schema.TypeInt,
 				Optional:    true,
@@ -30,12 +77,7 @@ func resourceSlbTemplateTcp() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"name": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"idle_timeout": {
+			"reset_fwd": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -50,7 +92,17 @@ func resourceSlbTemplateTcp() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"reset_fwd": {
+			"disable": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"down": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"re_select_if_server_down": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -60,116 +112,127 @@ func resourceSlbTemplateTcp() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"uuid": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"user_tag": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
 		},
 	}
 }
 
-func resourceTcpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+func resourceSlbTemplateTcpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
-		name := d.Get("name").(string)
-		logger.Println("[INFO] Creating tcp (Inside resourceTcpCreate    " + name)
-		v := dataToTcp(name, d)
-		d.SetId(name)
-		err := go_thunder.PostTcp(client.Token, v, client.Host)
+		logger.Println("[INFO] Creating SlbTemplateTcp (Inside resourceSlbTemplateTcpCreate) ")
+		name1 := d.Get("name").(string)
+		data := dataToSlbTemplateTcp(d)
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateTcp --")
+		d.SetId(name1)
+		err := go_thunder.PostSlbTemplateTcp(client.Token, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
-		return resourceTcpRead(ctx, d, meta)
+
+		return resourceSlbTemplateTcpRead(ctx, d, meta)
+
 	}
 	return diags
 }
 
-func resourceTcpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+func resourceSlbTemplateTcpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+	logger.Println("[INFO] Reading SlbTemplateTcp (Inside resourceSlbTemplateTcpRead)")
 
 	var diags diag.Diagnostics
-	logger.Println("[INFO] Reading tcp (Inside resourceTcpRead)")
-
 	if client.Host != "" {
-		client := meta.(Thunder)
-
-		name := d.Id()
-
-		logger.Println("[INFO] Fetching tcp Read" + name)
-
-		tcp, err := go_thunder.GetTcp(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Fetching service Read" + name1)
+		data, err := go_thunder.GetSlbTemplateTcp(client.Token, name1, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
-		if tcp == nil {
-			logger.Println("[INFO] No tcp found " + name)
-			d.SetId("")
+		if data == nil {
+			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-
 		return diags
-	}
-	return nil
-}
-
-func resourceTcpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	logger := util.GetLoggerInstance()
-	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
-
-	if client.Host != "" {
-		name := d.Get("name").(string)
-		logger.Println("[INFO] Modifying tcp (Inside resourceTcpUpdate    " + name)
-		v := dataToTcp(name, d)
-		d.SetId(name)
-		err := go_thunder.PutTcp(client.Token, name, v, client.Host)
-		if err != nil {
-			return diag.FromErr(err)
-		}
-		return resourceTcpRead(ctx, d, meta)
 	}
 	return diags
 }
 
-func resourceTcpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-
+func resourceSlbTemplateTcpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-	logger := util.GetLoggerInstance()
-
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Deleting tcp (Inside resourceTcpDelete) " + name)
-
-		err := go_thunder.DeleteTcp(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Modifying SlbTemplateTcp   (Inside resourceSlbTemplateTcpUpdate) ")
+		data := dataToSlbTemplateTcp(d)
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateTcp ")
+		err := go_thunder.PutSlbTemplateTcp(client.Token, name1, data, client.Host)
 		if err != nil {
-			log.Printf("[ERROR] Unable to Delete tcp  (%s) (%v)", name, err)
-			return diags
+			return diag.FromErr(err)
 		}
-		d.SetId("")
-		return nil
+
+		return resourceSlbTemplateTcpRead(ctx, d, meta)
+
 	}
-	return nil
+	return diags
 }
 
-//utility method to instantiate tcp structure
-func dataToTcp(name string, d *schema.ResourceData) go_thunder.TCP {
-	var s go_thunder.TCP
+func resourceSlbTemplateTcpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	logger := util.GetLoggerInstance()
+	client := meta.(Thunder)
 
-	var sInstance go_thunder.TCPInstance
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		name1 := d.Id()
+		logger.Println("[INFO] Deleting instance (Inside resourceSlbTemplateTcpDelete) " + name1)
+		err := go_thunder.DeleteSlbTemplateTcp(client.Token, name1, client.Host)
+		if err != nil {
+			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
+			return diags
+		}
+		return nil
+	}
+	return diags
+}
 
-	sInstance.IdleTimeout = d.Get("idle_timeout").(int)
-	sInstance.InsertClientIP = d.Get("insert_client_ip").(int)
-	sInstance.LanFastAck = d.Get("lan_fast_ack").(int)
-	sInstance.ResetFwd = d.Get("reset_fwd").(int)
-	sInstance.ResetRev = d.Get("reset_rev").(int)
-	sInstance.ResetFollowFin = d.Get("reset_follow_fin").(int)
-	sInstance.DelSessionOnServerDown = d.Get("del_session_on_server_down").(int)
+func dataToSlbTemplateTcp(d *schema.ResourceData) go_thunder.SlbTemplateTcp {
+	var vc go_thunder.SlbTemplateTcp
+	var c go_thunder.SlbTemplateTCPInstance
+	c.SlbTemplateTCPInstanceName = d.Get("name").(string)
+	c.SlbTemplateTCPInstanceLogging = d.Get("logging").(string)
+	c.SlbTemplateTCPInstanceIdleTimeout = d.Get("idle_timeout").(int)
+	c.SlbTemplateTCPInstanceHalfOpenIdleTimeout = d.Get("half_open_idle_timeout").(int)
+	c.SlbTemplateTCPInstanceHalfCloseIdleTimeout = d.Get("half_close_idle_timeout").(int)
+	c.SlbTemplateTCPInstanceInitialWindowSize = d.Get("initial_window_size").(int)
+	c.SlbTemplateTCPInstanceForceDeleteTimeout = d.Get("force_delete_timeout").(int)
+	c.SlbTemplateTCPInstanceForceDeleteTimeout100Ms = d.Get("force_delete_timeout_100ms").(int)
+	c.SlbTemplateTCPInstanceAliveIfActive = d.Get("alive_if_active").(int)
+	c.SlbTemplateTCPInstanceQos = d.Get("qos").(int)
+	c.SlbTemplateTCPInstanceInsertClientIP = d.Get("insert_client_ip").(int)
+	c.SlbTemplateTCPInstanceLanFastAck = d.Get("lan_fast_ack").(int)
+	c.SlbTemplateTCPInstanceResetFwd = d.Get("reset_fwd").(int)
+	c.SlbTemplateTCPInstanceResetRev = d.Get("reset_rev").(int)
+	c.SlbTemplateTCPInstanceResetFollowFin = d.Get("reset_follow_fin").(int)
+	c.SlbTemplateTCPInstanceDisable = d.Get("disable").(int)
+	c.SlbTemplateTCPInstanceDown = d.Get("down").(int)
+	c.SlbTemplateTCPInstanceReSelectIfServerDown = d.Get("re_select_if_server_down").(int)
+	c.SlbTemplateTCPInstanceDelSessionOnServerDown = d.Get("del_session_on_server_down").(int)
+	c.SlbTemplateTCPInstanceUserTag = d.Get("user_tag").(string)
 
-	s.Name = sInstance
-
-	return s
+	vc.SlbTemplateTCPInstanceName = c
+	return vc
 }
