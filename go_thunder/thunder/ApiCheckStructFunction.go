@@ -1,8 +1,8 @@
 package go_thunder
 
 import (
-	"encoding/json"
 	"errors"
+	"github.com/clarketm/json" // "encoding/json"
 	"util"
 )
 

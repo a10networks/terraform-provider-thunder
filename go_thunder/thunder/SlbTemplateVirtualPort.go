@@ -2,46 +2,46 @@ package go_thunder
 
 import (
 	"bytes"
-	"encoding/json"
+	"github.com/clarketm/json" // "encoding/json"
 	"io/ioutil"
 	"util"
 )
 
-type VirtualPort struct {
-	UUID VirtualPortInstance `json:"virtual-port,omitempty"`
+type SlbTemplateVirtualPort struct {
+	SlbTemplateVirtualPortInstanceName SlbTemplateVirtualPortInstance `json:"virtual-port,omitempty"`
 }
 
-type VirtualPortInstance struct {
-	ResetUnknownConn       int    `json:"reset-unknown-conn,omitempty"`
-	IgnoreTCPMsl           int    `json:"ignore-tcp-msl,omitempty"`
-	Rate                   int    `json:"rate,omitempty"`
-	SnatMsl                int    `json:"snat-msl,omitempty"`
-	AllowSynOtherflags     int    `json:"allow-syn-otherflags,omitempty"`
-	Aflow                  int    `json:"aflow,omitempty"`
-	ConnLimit              int    `json:"conn-limit,omitempty"`
-	DropUnknownConn        int    `json:"drop-unknown-conn,omitempty"`
-	UUID                   string `json:"uuid,omitempty"`
-	ResetL7OnFailover      int    `json:"reset-l7-on-failover,omitempty"`
-	PktRateType            string `json:"pkt-rate-type,omitempty"`
-	RateInterval           string `json:"rate-interval,omitempty"`
-	SnatPortPreserve       int    `json:"snat-port-preserve,omitempty"`
-	ConnRateLimitReset     int    `json:"conn-rate-limit-reset,omitempty"`
-	WhenRrEnable           int    `json:"when-rr-enable,omitempty"`
-	NonSynInitiation       int    `json:"non-syn-initiation,omitempty"`
-	ConnLimitReset         int    `json:"conn-limit-reset,omitempty"`
-	Dscp                   int    `json:"dscp,omitempty"`
-	PktRateLimitReset      int    `json:"pkt-rate-limit-reset,omitempty"`
-	ConnLimitNoLogging     int    `json:"conn-limit-no-logging,omitempty"`
-	ConnRateLimitNoLogging int    `json:"conn-rate-limit-no-logging,omitempty"`
-	LogOptions             string `json:"log-options,omitempty"`
-	Name                   string `json:"name,omitempty"`
-	AllowVipToRportMapping int    `json:"allow-vip-to-rport-mapping,omitempty"`
-	PktRateInterval        string `json:"pkt-rate-interval,omitempty"`
-	UserTag                string `json:"user-tag,omitempty"`
-	ConnRateLimit          int    `json:"conn-rate-limit,omitempty"`
+type SlbTemplateVirtualPortInstance struct {
+	SlbTemplateVirtualPortInstanceAflow                  int    `json:"aflow,omitempty"`
+	SlbTemplateVirtualPortInstanceAllowSynOtherflags     int    `json:"allow-syn-otherflags,omitempty"`
+	SlbTemplateVirtualPortInstanceAllowVipToRportMapping int    `json:"allow-vip-to-rport-mapping,omitempty"`
+	SlbTemplateVirtualPortInstanceConnLimit              int    `json:"conn-limit,omitempty"`
+	SlbTemplateVirtualPortInstanceConnLimitNoLogging     int    `json:"conn-limit-no-logging,omitempty"`
+	SlbTemplateVirtualPortInstanceConnLimitReset         int    `json:"conn-limit-reset,omitempty"`
+	SlbTemplateVirtualPortInstanceConnRateLimit          int    `json:"conn-rate-limit,omitempty"`
+	SlbTemplateVirtualPortInstanceConnRateLimitNoLogging int    `json:"conn-rate-limit-no-logging,omitempty"`
+	SlbTemplateVirtualPortInstanceConnRateLimitReset     int    `json:"conn-rate-limit-reset,omitempty"`
+	SlbTemplateVirtualPortInstanceDropUnknownConn        int    `json:"drop-unknown-conn,omitempty"`
+	SlbTemplateVirtualPortInstanceDscp                   int    `json:"dscp,omitempty"`
+	SlbTemplateVirtualPortInstanceIgnoreTCPMsl           int    `json:"ignore-tcp-msl,omitempty"`
+	SlbTemplateVirtualPortInstanceLogOptions             string `json:"log-options,omitempty"`
+	SlbTemplateVirtualPortInstanceName                   string `json:"name,omitempty"`
+	SlbTemplateVirtualPortInstanceNonSynInitiation       int    `json:"non-syn-initiation,omitempty"`
+	SlbTemplateVirtualPortInstancePktRateInterval        string `json:"pkt-rate-interval,omitempty"`
+	SlbTemplateVirtualPortInstancePktRateLimitReset      int    `json:"pkt-rate-limit-reset,omitempty"`
+	SlbTemplateVirtualPortInstancePktRateType            string `json:"pkt-rate-type,omitempty"`
+	SlbTemplateVirtualPortInstanceRate                   int    `json:"rate,omitempty"`
+	SlbTemplateVirtualPortInstanceRateInterval           string `json:"rate-interval,omitempty"`
+	SlbTemplateVirtualPortInstanceResetL7OnFailover      int    `json:"reset-l7-on-failover,omitempty"`
+	SlbTemplateVirtualPortInstanceResetUnknownConn       int    `json:"reset-unknown-conn,omitempty"`
+	SlbTemplateVirtualPortInstanceSnatMsl                int    `json:"snat-msl,omitempty"`
+	SlbTemplateVirtualPortInstanceSnatPortPreserve       int    `json:"snat-port-preserve,omitempty"`
+	SlbTemplateVirtualPortInstanceUUID                   string `json:"uuid,omitempty"`
+	SlbTemplateVirtualPortInstanceUserTag                string `json:"user-tag,omitempty"`
+	SlbTemplateVirtualPortInstanceWhenRrEnable           int    `json:"when-rr-enable,omitempty"`
 }
 
-func PostSlbTemplateVirtualPort(id string, inst VirtualPort, host string) error {
+func PostSlbTemplateVirtualPort(id string, inst SlbTemplateVirtualPort, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -54,6 +54,7 @@ func PostSlbTemplateVirtualPort(id string, inst VirtualPort, host string) error 
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/slb/template/virtual-port", bytes.NewReader(payloadBytes), headers)
@@ -61,16 +62,15 @@ func PostSlbTemplateVirtualPort(id string, inst VirtualPort, host string) error 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m VirtualPort
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m SlbTemplateVirtualPort
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] PostSlbTemplateVirtualPort REQ RES..........................", m)
+			logger.Println("[INFO] Post REQ RES..........................", m)
 			err := check_api_status("PostSlbTemplateVirtualPort", data)
 			if err != nil {
 				return err
@@ -81,7 +81,7 @@ func PostSlbTemplateVirtualPort(id string, inst VirtualPort, host string) error 
 	return err
 }
 
-func GetSlbTemplateVirtualPort(id string, name string, host string) (*VirtualPort, error) {
+func GetSlbTemplateVirtualPort(id string, name1 string, host string) (*SlbTemplateVirtualPort, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -91,21 +91,20 @@ func GetSlbTemplateVirtualPort(id string, name string, host string) (*VirtualPor
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside GetSlbTemplateVirtualPort")
 
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/template/virtual-port/"+name, nil, headers)
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/template/virtual-port/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m VirtualPort
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m SlbTemplateVirtualPort
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GetSlbTemplateVirtualPort REQ RES..........................", m)
+			logger.Println("[INFO] Get REQ RES..........................", m)
 			err := check_api_status("GetSlbTemplateVirtualPort", data)
 			if err != nil {
 				return nil, err
@@ -116,7 +115,7 @@ func GetSlbTemplateVirtualPort(id string, name string, host string) (*VirtualPor
 
 }
 
-func PutSlbTemplateVirtualPort(id string, name string, inst VirtualPort, host string) error {
+func PutSlbTemplateVirtualPort(id string, name1 string, inst SlbTemplateVirtualPort, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -129,23 +128,23 @@ func PutSlbTemplateVirtualPort(id string, name string, inst VirtualPort, host st
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/template/virtual-port/"+name, bytes.NewReader(payloadBytes), headers)
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/template/virtual-port/"+name1, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m VirtualPort
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m SlbTemplateVirtualPort
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] PutSlbTemplateVirtualPort REQ RES..........................", m)
+			logger.Println("[INFO] Put REQ RES..........................", m)
 			err := check_api_status("PutSlbTemplateVirtualPort", data)
 			if err != nil {
 				return err
@@ -156,7 +155,7 @@ func PutSlbTemplateVirtualPort(id string, name string, inst VirtualPort, host st
 	return err
 }
 
-func DeleteSlbTemplateVirtualPort(id string, name string, host string) error {
+func DeleteSlbTemplateVirtualPort(id string, name1 string, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -166,23 +165,26 @@ func DeleteSlbTemplateVirtualPort(id string, name string, host string) error {
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside DeleteSlbTemplateVirtualPort")
 
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/template/virtual-port/"+name, nil, headers)
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/template/virtual-port/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m VirtualPort
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m SlbTemplateVirtualPort
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] Delete REQ RES..........................", m)
+			err := check_api_status("DeleteSlbTemplateVirtualPort", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-	return nil
+	return err
 }

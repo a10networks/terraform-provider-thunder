@@ -5,12 +5,10 @@ package thunder
 import (
 	"context"
 	"fmt"
-	"log"
-	"util"
-
-	go_thunder "github.com/go_thunder/thunder"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"util"
 )
 
 func resourceSlbTemplateCache() *schema.Resource {
@@ -20,8 +18,8 @@ func resourceSlbTemplateCache() *schema.Resource {
 		ReadContext:   resourceSlbTemplateCacheRead,
 		DeleteContext: resourceSlbTemplateCacheDelete,
 		Schema: map[string]*schema.Schema{
-			"verify_host": {
-				Type:        schema.TypeInt,
+			"name": {
+				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
@@ -30,25 +28,7 @@ func resourceSlbTemplateCache() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"sampling_enable": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"counters1": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-					},
-				},
-			},
-			"uuid": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"max_content_size": {
+			"age": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -58,7 +38,27 @@ func resourceSlbTemplateCache() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"disable_insert_age": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
 			"disable_insert_via": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"max_cache_size": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"min_content_size": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"max_content_size": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -76,20 +76,33 @@ func resourceSlbTemplateCache() *schema.Resource {
 					},
 				},
 			},
-			"max_cache_size": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"min_content_size": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"user_tag": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
+			"uri_policy": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"uri": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"cache_action": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"cache_value": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"invalidate": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
 			},
 			"remove_cookies": {
 				Type:        schema.TypeInt,
@@ -101,51 +114,23 @@ func resourceSlbTemplateCache() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"name": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"uri_policy": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"cache_value": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"invalidate": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"cache_action": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"uri": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-					},
-				},
-			},
 			"logging": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
-			"age": {
+			"verify_host": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"disable_insert_age": {
-				Type:        schema.TypeInt,
+			"uuid": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"user_tag": {
+				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
@@ -158,13 +143,12 @@ func resourceSlbTemplateCacheCreate(ctx context.Context, d *schema.ResourceData,
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateCache (Inside resourceSlbTemplateCacheCreate) ")
-		name := d.Get("name").(string)
+		name1 := d.Get("name").(string)
 		data := dataToSlbTemplateCache(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateCache --")
-		d.SetId(name)
+		d.SetId(name1)
 		err := go_thunder.PostSlbTemplateCache(client.Token, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
@@ -179,25 +163,23 @@ func resourceSlbTemplateCacheCreate(ctx context.Context, d *schema.ResourceData,
 func resourceSlbTemplateCacheRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateCache (Inside resourceSlbTemplateCacheRead)")
 
+	var diags diag.Diagnostics
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Fetching service Read" + name)
-		data, err := go_thunder.GetSlbTemplateCache(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Fetching service Read" + name1)
+		data, err := go_thunder.GetSlbTemplateCache(client.Token, name1, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
 		if data == nil {
-			logger.Println("[INFO] No data found " + name)
-			d.SetId("")
+			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
 		return diags
 	}
-	return nil
+	return diags
 }
 
 func resourceSlbTemplateCacheUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
@@ -205,14 +187,12 @@ func resourceSlbTemplateCacheUpdate(ctx context.Context, d *schema.ResourceData,
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
+		name1 := d.Id()
 		logger.Println("[INFO] Modifying SlbTemplateCache   (Inside resourceSlbTemplateCacheUpdate) ")
-		name := d.Get("name").(string)
 		data := dataToSlbTemplateCache(d)
-		logger.Println("[INFO] received V from method data to SlbTemplateCache ")
-		d.SetId(name)
-		err := go_thunder.PutSlbTemplateCache(client.Token, name, data, client.Host)
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateCache ")
+		err := go_thunder.PutSlbTemplateCache(client.Token, name1, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -228,67 +208,61 @@ func resourceSlbTemplateCacheDelete(ctx context.Context, d *schema.ResourceData,
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Deleting instance (Inside resourceSlbTemplateCacheDelete) " + name)
-		err := go_thunder.DeleteSlbTemplateCache(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Deleting instance (Inside resourceSlbTemplateCacheDelete) " + name1)
+		err := go_thunder.DeleteSlbTemplateCache(client.Token, name1, client.Host)
 		if err != nil {
-			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
+			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
 			return diags
 		}
-		d.SetId("")
 		return nil
 	}
-	return nil
+	return diags
 }
 
-func dataToSlbTemplateCache(d *schema.ResourceData) go_thunder.Cache {
-	var vc go_thunder.Cache
-	var c go_thunder.CacheInstance
+func dataToSlbTemplateCache(d *schema.ResourceData) go_thunder.SlbTemplateCache {
+	var vc go_thunder.SlbTemplateCache
+	var c go_thunder.SlbTemplateCacheInstance
+	c.SlbTemplateCacheInstanceName = d.Get("name").(string)
+	c.SlbTemplateCacheInstanceAcceptReloadReq = d.Get("accept_reload_req").(int)
+	c.SlbTemplateCacheInstanceAge = d.Get("age").(int)
+	c.SlbTemplateCacheInstanceDefaultPolicyNocache = d.Get("default_policy_nocache").(int)
+	c.SlbTemplateCacheInstanceDisableInsertAge = d.Get("disable_insert_age").(int)
+	c.SlbTemplateCacheInstanceDisableInsertVia = d.Get("disable_insert_via").(int)
+	c.SlbTemplateCacheInstanceMaxCacheSize = d.Get("max_cache_size").(int)
+	c.SlbTemplateCacheInstanceMinContentSize = d.Get("min_content_size").(int)
+	c.SlbTemplateCacheInstanceMaxContentSize = d.Get("max_content_size").(int)
 
-	c.AcceptReloadReq = d.Get("accept_reload_req").(int)
-	c.Name = d.Get("name").(string)
-	c.DefaultPolicyNocache = d.Get("default_policy_nocache").(int)
-	c.Age = d.Get("age").(int)
-	c.DisableInsertVia = d.Get("disable_insert_via").(int)
-	c.UserTag = d.Get("user_tag").(string)
-	c.ReplacementPolicy = d.Get("replacement_policy").(string)
-	c.DisableInsertAge = d.Get("disable_insert_age").(int)
-	c.MaxContentSize = d.Get("max_content_size").(int)
-	c.MaxCacheSize = d.Get("max_cache_size").(int)
-	c.Logging = d.Get("logging").(string)
-	c.RemoveCookies = d.Get("remove_cookies").(int)
-	c.VerifyHost = d.Get("verify_host").(int)
-	c.MinContentSize = d.Get("min_content_size").(int)
-	LocalURIPolicyCount := d.Get("local_uri_policy.#").(int)
-	c.LocalURI = make([]go_thunder.LocalURIPolicy, 0, LocalURIPolicyCount)
-	for i := 0; i < LocalURIPolicyCount; i++ {
-		var lup go_thunder.LocalURIPolicy
-		prefix := fmt.Sprintf("local_uri_policy.%d", i)
-		lup.LocalURI = d.Get(prefix + ".local_uri").(string)
-		c.LocalURI = append(c.LocalURI, lup)
-	}
-	SamplingEnable4Count := d.Get("sampling_enable.#").(int)
-	c.Counters1 = make([]go_thunder.SamplingEnable4, 0, SamplingEnable4Count)
-	for i := 0; i < SamplingEnable4Count; i++ {
-		var se go_thunder.SamplingEnable4
-		prefix := fmt.Sprintf("sampling_enable.%d", i)
-		se.Counters1 = d.Get(prefix + ".counters1").(string)
-		c.Counters1 = append(c.Counters1, se)
-	}
-	URIPolicyCount := d.Get("uri_policy.#").(int)
-	c.URI = make([]go_thunder.URIPolicy, 0, URIPolicyCount)
-	for i := 0; i < URIPolicyCount; i++ {
-		var up go_thunder.URIPolicy
-		prefix := fmt.Sprintf("uri_policy.%d", i)
-		up.CacheAction = d.Get(prefix + ".cache_action").(string)
-		up.CacheValue = d.Get(prefix + ".cache_value").(int)
-		up.Invalidate = d.Get(prefix + ".invalidate").(string)
-		up.URI = d.Get(prefix + ".uri").(string)
-		c.URI = append(c.URI, up)
+	SlbTemplateCacheInstanceLocalURIPolicyCount := d.Get("local_uri_policy.#").(int)
+	c.SlbTemplateCacheInstanceLocalURIPolicyLocalURI = make([]go_thunder.SlbTemplateCacheInstanceLocalURIPolicy, 0, SlbTemplateCacheInstanceLocalURIPolicyCount)
+
+	for i := 0; i < SlbTemplateCacheInstanceLocalURIPolicyCount; i++ {
+		var obj1 go_thunder.SlbTemplateCacheInstanceLocalURIPolicy
+		prefix1 := fmt.Sprintf("local_uri_policy.%d.", i)
+		obj1.SlbTemplateCacheInstanceLocalURIPolicyLocalURI = d.Get(prefix1 + "local_uri").(string)
+		c.SlbTemplateCacheInstanceLocalURIPolicyLocalURI = append(c.SlbTemplateCacheInstanceLocalURIPolicyLocalURI, obj1)
 	}
 
-	vc.UUID = c
+	SlbTemplateCacheInstanceURIPolicyCount := d.Get("uri_policy.#").(int)
+	c.SlbTemplateCacheInstanceURIPolicyURI = make([]go_thunder.SlbTemplateCacheInstanceURIPolicy, 0, SlbTemplateCacheInstanceURIPolicyCount)
+
+	for i := 0; i < SlbTemplateCacheInstanceURIPolicyCount; i++ {
+		var obj2 go_thunder.SlbTemplateCacheInstanceURIPolicy
+		prefix2 := fmt.Sprintf("uri_policy.%d.", i)
+		obj2.SlbTemplateCacheInstanceURIPolicyURI = d.Get(prefix2 + "uri").(string)
+		obj2.SlbTemplateCacheInstanceURIPolicyCacheAction = d.Get(prefix2 + "cache_action").(string)
+		obj2.SlbTemplateCacheInstanceURIPolicyCacheValue = d.Get(prefix2 + "cache_value").(int)
+		obj2.SlbTemplateCacheInstanceURIPolicyInvalidate = d.Get(prefix2 + "invalidate").(string)
+		c.SlbTemplateCacheInstanceURIPolicyURI = append(c.SlbTemplateCacheInstanceURIPolicyURI, obj2)
+	}
+
+	c.SlbTemplateCacheInstanceRemoveCookies = d.Get("remove_cookies").(int)
+	c.SlbTemplateCacheInstanceReplacementPolicy = d.Get("replacement_policy").(string)
+	c.SlbTemplateCacheInstanceLogging = d.Get("logging").(string)
+	c.SlbTemplateCacheInstanceVerifyHost = d.Get("verify_host").(int)
+	c.SlbTemplateCacheInstanceUserTag = d.Get("user_tag").(string)
+
+	vc.SlbTemplateCacheInstanceName = c
 	return vc
 }

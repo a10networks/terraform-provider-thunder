@@ -88,5 +88,11 @@ func getAuthHeader(host string, user string, passwd string, uri string) (string,
 			}
 		}
 	}
+	// var headers_session = make(map[string]string)
+	// headers_session["Accept"] = "application/json"
+	// headers_session["Content-Type"] = "application/json"
+	// headers_session["Authorization"] = "A10 " + id
+
+	// defer go_thunder.SessionLogOff("https://"+host+uri, headers_session)
 	return "A10 " + id, nil
 }

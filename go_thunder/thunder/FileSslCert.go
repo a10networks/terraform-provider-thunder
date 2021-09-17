@@ -3,8 +3,8 @@ package go_thunder
 import (
 	"bytes"
 	"crypto/tls"
-	"encoding/json"
 	"fmt"
+	"github.com/clarketm/json" // "encoding/json"
 	"io"
 	"io/ioutil"
 	"mime/multipart"

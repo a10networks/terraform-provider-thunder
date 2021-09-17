@@ -17,6 +17,7 @@ import (
 const DEFAULT_PARTITION = "Common"
 
 func Provider() *schema.Provider {
+
 	return &schema.Provider{
 		Schema: map[string]*schema.Schema{
 			"address": {
@@ -79,7 +80,7 @@ func Provider() *schema.Provider {
 			"thunder_slb_template_client_ssh":               resourceTemplateClientSsh(),
 			"thunder_slb_template_dblb":                     resourceTemplateDBLB(),
 			"thunder_slb_template_port":                     resourceTemplatePort(),
-			"thunder_slb_template_smtp":                     resourceSlbTemplateSMTP(),
+			"thunder_slb_template_smtp":                     resourceSlbTemplateSmtp(),
 			"thunder_slb_template_tcp_proxy":                resourceSlbTemplateTcpProxy(),
 			"thunder_slb_template_server":                   resourceSlbTemplateServer(),
 			"thunder_slb_template_virtual_port":             resourceSlbTemplateVirtualPort(),

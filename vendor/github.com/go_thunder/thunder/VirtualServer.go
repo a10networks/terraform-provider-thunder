@@ -2,233 +2,278 @@ package go_thunder
 
 import (
 	"bytes"
-	"encoding/json"
-	"fmt"
+	"github.com/clarketm/json" // "encoding/json"
 	"io/ioutil"
 	"util"
 )
 
-type ACLNameList struct {
-	ACLNameSrcNatPoolShared string `json:"acl-name-src-nat-pool-shared,omitempty"`
-	SharedPartitionPoolName int    `json:"shared-partition-pool-name,omitempty"`
-	ACLNameSeqNumShared     int    `json:"acl-name-seq-num-shared,omitempty"`
-	ACLName                 string `json:"acl-name,omitempty"`
-	ACLNameSrcNatPool       string `json:"acl-name-src-nat-pool,omitempty"`
-	ACLNameSeqNum           int    `json:"acl-name-seq-num,omitempty"`
+type VirtualServer struct {
+	VirtualServerInstanceName VirtualServerInstance `json:"virtual-server,omitempty"`
 }
 
-type ACLIDList struct {
-	ACLIDSeqNum           int    `json:"acl-id-seq-num,omitempty"`
-	ACLIDSrcNatPool       string `json:"acl-id-src-nat-pool,omitempty"`
-	ACLIDSeqNumShared     int    `json:"acl-id-seq-num-shared,omitempty"`
-	ACLID                 int    `json:"acl-id,omitempty"`
-	SharedPartitionPoolID int    `json:"shared-partition-pool-id,omitempty"`
-	ACLIDSrcNatPoolShared string `json:"acl-id-src-nat-pool-shared,omitempty"`
+type VirtualServerInstance struct {
+	VirtualServerInstanceAclID                         int                             `json:"acl-id,omitempty"`
+	VirtualServerInstanceAclIDShared                   int                             `json:"acl-id-shared,omitempty"`
+	VirtualServerInstanceAclName                       string                          `json:"acl-name,omitempty"`
+	VirtualServerInstanceAclNameShared                 string                          `json:"acl-name-shared,omitempty"`
+	VirtualServerInstanceArpDisable                    int                             `json:"arp-disable,omitempty"`
+	VirtualServerInstanceDescription                   string                          `json:"description,omitempty"`
+	VirtualServerInstanceDisableVipAdv                 int                             `json:"disable-vip-adv,omitempty"`
+	VirtualServerInstanceEnableDisableAction           string                          `json:"enable-disable-action,omitempty"`
+	VirtualServerInstanceEthernet                      int                             `json:"ethernet,omitempty"`
+	VirtualServerInstanceExtendedStats                 int                             `json:"extended-stats,omitempty"`
+	VirtualServerInstanceHaDynamic                     int                             `json:"ha-dynamic,omitempty"`
+	VirtualServerInstanceIPAddress                     string                          `json:"ip-address,omitempty"`
+	VirtualServerInstanceIpv6Acl                       string                          `json:"ipv6-acl,omitempty"`
+	VirtualServerInstanceIpv6AclShared                 string                          `json:"ipv6-acl-shared,omitempty"`
+	VirtualServerInstanceIpv6Address                   string                          `json:"ipv6-address,omitempty"`
+	VirtualServerInstanceMigrateVipTargetDataCPU       VirtualServerInstanceMigrateVip `json:"migrate-vip,omitempty"`
+	VirtualServerInstanceName                          string                          `json:"name,omitempty"`
+	VirtualServerInstanceNetmask                       string                          `json:"netmask,omitempty"`
+	VirtualServerInstancePortListPortNumber            []VirtualServerInstancePortList `json:"port-list,omitempty"`
+	VirtualServerInstanceRedistributeRouteMap          string                          `json:"redistribute-route-map,omitempty"`
+	VirtualServerInstanceRedistributionFlagged         int                             `json:"redistribution-flagged,omitempty"`
+	VirtualServerInstanceSharedPartitionPolicyTemplate int                             `json:"shared-partition-policy-template,omitempty"`
+	VirtualServerInstanceSharedPartitionVsTemplate     int                             `json:"shared-partition-vs-template,omitempty"`
+	VirtualServerInstanceStatsDataAction               string                          `json:"stats-data-action,omitempty"`
+	VirtualServerInstanceSuppressInternalLoopback      int                             `json:"suppress-internal-loopback,omitempty"`
+	VirtualServerInstanceTemplateLogging               string                          `json:"template-logging,omitempty"`
+	VirtualServerInstanceTemplatePolicy                string                          `json:"template-policy,omitempty"`
+	VirtualServerInstanceTemplatePolicyShared          string                          `json:"template-policy-shared,omitempty"`
+	VirtualServerInstanceTemplateScaleout              string                          `json:"template-scaleout,omitempty"`
+	VirtualServerInstanceTemplateVirtualServer         string                          `json:"template-virtual-server,omitempty"`
+	VirtualServerInstanceTemplateVirtualServerShared   string                          `json:"template-virtual-server-shared,omitempty"`
+	VirtualServerInstanceUUID                          string                          `json:"uuid,omitempty"`
+	VirtualServerInstanceUseIfIP                       int                             `json:"use-if-ip,omitempty"`
+	VirtualServerInstanceUserTag                       string                          `json:"user-tag,omitempty"`
+	VirtualServerInstanceVportDisableAction            string                          `json:"vport-disable-action,omitempty"`
+	VirtualServerInstanceVrid                          int                             `json:"vrid,omitempty"`
 }
 
-type AflexScripts struct {
-	Aflex       string `json:"aflex,omitempty"`
-	AflexShared string `json:"aflex-shared,omitempty"`
+type VirtualServerInstanceMigrateVip struct {
+	VirtualServerInstanceMigrateVipCancelMigration    int    `json:"cancel-migration,omitempty"`
+	VirtualServerInstanceMigrateVipFinishMigration    int    `json:"finish-migration,omitempty"`
+	VirtualServerInstanceMigrateVipTargetDataCPU      int    `json:"target-data-cpu,omitempty"`
+	VirtualServerInstanceMigrateVipTargetFloatingIpv4 string `json:"target-floating-ipv4,omitempty"`
+	VirtualServerInstanceMigrateVipTargetFloatingIpv6 string `json:"target-floating-ipv6,omitempty"`
+	VirtualServerInstanceMigrateVipUUID               string `json:"uuid,omitempty"`
 }
 
-type AuthCfg struct {
-	AaaPolicy string `json:"aaa-policy"`
+type VirtualServerInstancePortList struct {
+	VirtualServerInstancePortListAclListAclID                                []VirtualServerInstancePortListAclList      `json:"acl-list,omitempty"`
+	VirtualServerInstancePortListAction                                      string                                      `json:"action,omitempty"`
+	VirtualServerInstancePortListAflexScriptsAflex                           []VirtualServerInstancePortListAflexScripts `json:"aflex-scripts,omitempty"`
+	VirtualServerInstancePortListAflexTableEntrySynDisable                   int                                         `json:"aflex-table-entry-syn-disable,omitempty"`
+	VirtualServerInstancePortListAflexTableEntrySynEnable                    int                                         `json:"aflex-table-entry-syn-enable,omitempty"`
+	VirtualServerInstancePortListAltProtocol1                                string                                      `json:"alt-protocol1,omitempty"`
+	VirtualServerInstancePortListAltProtocol2                                string                                      `json:"alt-protocol2,omitempty"`
+	VirtualServerInstancePortListAlternatePort                               int                                         `json:"alternate-port,omitempty"`
+	VirtualServerInstancePortListAlternatePortNumber                         int                                         `json:"alternate-port-number,omitempty"`
+	VirtualServerInstancePortListAttackDetection                             int                                         `json:"attack-detection,omitempty"`
+	VirtualServerInstancePortListAuthCfgAaaPolicy                            VirtualServerInstancePortListAuthCfg        `json:"auth-cfg,omitempty"`
+	VirtualServerInstancePortListAuto                                        int                                         `json:"auto,omitempty"`
+	VirtualServerInstancePortListCPUCompute                                  int                                         `json:"cpu-compute,omitempty"`
+	VirtualServerInstancePortListClientipStickyNat                           int                                         `json:"clientip-sticky-nat,omitempty"`
+	VirtualServerInstancePortListConnLimit                                   int                                         `json:"conn-limit,omitempty"`
+	VirtualServerInstancePortListDefSelectionIfPrefFailed                    string                                      `json:"def-selection-if-pref-failed,omitempty"`
+	VirtualServerInstancePortListEnablePlayeridCheck                         int                                         `json:"enable-playerid-check,omitempty"`
+	VirtualServerInstancePortListEnableScaleout                              int                                         `json:"enable-scaleout,omitempty"`
+	VirtualServerInstancePortListEthFwd                                      int                                         `json:"eth-fwd,omitempty"`
+	VirtualServerInstancePortListEthRev                                      int                                         `json:"eth-rev,omitempty"`
+	VirtualServerInstancePortListExpand                                      int                                         `json:"expand,omitempty"`
+	VirtualServerInstancePortListExtendedStats                               int                                         `json:"extended-stats,omitempty"`
+	VirtualServerInstancePortListForceRoutingMode                            int                                         `json:"force-routing-mode,omitempty"`
+	VirtualServerInstancePortListGslbEnable                                  int                                         `json:"gslb-enable,omitempty"`
+	VirtualServerInstancePortListGtpSessionLb                                int                                         `json:"gtp-session-lb,omitempty"`
+	VirtualServerInstancePortListHaConnMirror                                int                                         `json:"ha-conn-mirror,omitempty"`
+	VirtualServerInstancePortListIPMapList                                   string                                      `json:"ip-map-list,omitempty"`
+	VirtualServerInstancePortListIPOnlyLb                                    int                                         `json:"ip-only-lb,omitempty"`
+	VirtualServerInstancePortListIPSmartRr                                   int                                         `json:"ip-smart-rr,omitempty"`
+	VirtualServerInstancePortListIgnoreGlobal                                int                                         `json:"ignore-global,omitempty"`
+	VirtualServerInstancePortListIpinip                                      int                                         `json:"ipinip,omitempty"`
+	VirtualServerInstancePortListL7HardwareAssist                            int                                         `json:"l7-hardware-assist,omitempty"`
+	VirtualServerInstancePortListL7ServiceChain                              int                                         `json:"l7-service-chain,omitempty"`
+	VirtualServerInstancePortListMemoryCompute                               int                                         `json:"memory-compute,omitempty"`
+	VirtualServerInstancePortListMessageSwitching                            int                                         `json:"message-switching,omitempty"`
+	VirtualServerInstancePortListName                                        string                                      `json:"name,omitempty"`
+	VirtualServerInstancePortListNoAutoUpOnAflex                             int                                         `json:"no-auto-up-on-aflex,omitempty"`
+	VirtualServerInstancePortListNoDestNat                                   int                                         `json:"no-dest-nat,omitempty"`
+	VirtualServerInstancePortListNoLogging                                   int                                         `json:"no-logging,omitempty"`
+	VirtualServerInstancePortListOnSyn                                       int                                         `json:"on-syn,omitempty"`
+	VirtualServerInstancePortListOneServerConn                               int                                         `json:"one-server-conn,omitempty"`
+	VirtualServerInstancePortListOptimizationLevel                           string                                      `json:"optimization-level,omitempty"`
+	VirtualServerInstancePortListPTemplateSipShared                          int                                         `json:"p-template-sip-shared,omitempty"`
+	VirtualServerInstancePortListPersistType                                 string                                      `json:"persist-type,omitempty"`
+	VirtualServerInstancePortListPool                                        string                                      `json:"pool,omitempty"`
+	VirtualServerInstancePortListPoolShared                                  string                                      `json:"pool-shared,omitempty"`
+	VirtualServerInstancePortListPortNumber                                  int                                         `json:"port-number,omitempty"`
+	VirtualServerInstancePortListPortTranslation                             int                                         `json:"port-translation,omitempty"`
+	VirtualServerInstancePortListPrecedence                                  int                                         `json:"precedence,omitempty"`
+	VirtualServerInstancePortListProtocol                                    string                                      `json:"protocol,omitempty"`
+	VirtualServerInstancePortListProxyLayer                                  string                                      `json:"proxy-layer,omitempty"`
+	VirtualServerInstancePortListRange                                       int                                         `json:"range,omitempty"`
+	VirtualServerInstancePortListRate                                        int                                         `json:"rate,omitempty"`
+	VirtualServerInstancePortListRedirectToHTTPS                             int                                         `json:"redirect-to-https,omitempty"`
+	VirtualServerInstancePortListReplyAcmeChallenge                          int                                         `json:"reply-acme-challenge,omitempty"`
+	VirtualServerInstancePortListReqFail                                     int                                         `json:"req-fail,omitempty"`
+	VirtualServerInstancePortListReselection                                 string                                      `json:"reselection,omitempty"`
+	VirtualServerInstancePortListReset                                       int                                         `json:"reset,omitempty"`
+	VirtualServerInstancePortListResetOnServerSelectionFail                  int                                         `json:"reset-on-server-selection-fail,omitempty"`
+	VirtualServerInstancePortListResolveWebCatList                           string                                      `json:"resolve-web-cat-list,omitempty"`
+	VirtualServerInstancePortListRtpSipCallIDMatch                           int                                         `json:"rtp-sip-call-id-match,omitempty"`
+	VirtualServerInstancePortListScaleoutBucketCount                         int                                         `json:"scaleout-bucket-count,omitempty"`
+	VirtualServerInstancePortListScaleoutDeviceGroup                         int                                         `json:"scaleout-device-group,omitempty"`
+	VirtualServerInstancePortListSecs                                        int                                         `json:"secs,omitempty"`
+	VirtualServerInstancePortListServSelFail                                 int                                         `json:"serv-sel-fail,omitempty"`
+	VirtualServerInstancePortListServerGroup                                 string                                      `json:"server-group,omitempty"`
+	VirtualServerInstancePortListServiceGroup                                string                                      `json:"service-group,omitempty"`
+	VirtualServerInstancePortListSharedPartitionCacheTemplate                int                                         `json:"shared-partition-cache-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionClientSslTemplate            int                                         `json:"shared-partition-client-ssl-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionConnectionReuseTemplate      int                                         `json:"shared-partition-connection-reuse-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionDNSTemplate                  int                                         `json:"shared-partition-dns-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionDblbTemplate                 int                                         `json:"shared-partition-dblb-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionDiameterTemplate             int                                         `json:"shared-partition-diameter-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionDohTemplate                  int                                         `json:"shared-partition-doh-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionDynamicServiceTemplate       int                                         `json:"shared-partition-dynamic-service-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionExternalServiceTemplate      int                                         `json:"shared-partition-external-service-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionFixTemplate                  int                                         `json:"shared-partition-fix-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionHTTPPolicyTemplate           int                                         `json:"shared-partition-http-policy-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionHTTPTemplate                 int                                         `json:"shared-partition-http-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionImapPop3Template             int                                         `json:"shared-partition-imap-pop3-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionPersistCookieTemplate        int                                         `json:"shared-partition-persist-cookie-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionPersistDestinationIPTemplate int                                         `json:"shared-partition-persist-destination-ip-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionPersistSourceIPTemplate      int                                         `json:"shared-partition-persist-source-ip-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionPersistSslSidTemplate        int                                         `json:"shared-partition-persist-ssl-sid-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionPolicyTemplate               int                                         `json:"shared-partition-policy-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionPool                         int                                         `json:"shared-partition-pool,omitempty"`
+	VirtualServerInstancePortListSharedPartitionSMTPTemplate                 int                                         `json:"shared-partition-smtp-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionServerSslTemplate            int                                         `json:"shared-partition-server-ssl-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionSmppTemplate                 int                                         `json:"shared-partition-smpp-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionTCP                          int                                         `json:"shared-partition-tcp,omitempty"`
+	VirtualServerInstancePortListSharedPartitionTCPProxyTemplate             int                                         `json:"shared-partition-tcp-proxy-template,omitempty"`
+	VirtualServerInstancePortListSharedPartitionUDP                          int                                         `json:"shared-partition-udp,omitempty"`
+	VirtualServerInstancePortListSharedPartitionVirtualPortTemplate          int                                         `json:"shared-partition-virtual-port-template,omitempty"`
+	VirtualServerInstancePortListSkipRevHash                                 int                                         `json:"skip-rev-hash,omitempty"`
+	VirtualServerInstancePortListSnatOnVip                                   int                                         `json:"snat-on-vip,omitempty"`
+	VirtualServerInstancePortListStatsDataAction                             string                                      `json:"stats-data-action,omitempty"`
+	VirtualServerInstancePortListSubstituteSourceMac                         int                                         `json:"substitute-source-mac,omitempty"`
+	VirtualServerInstancePortListSupportHTTP2                                int                                         `json:"support-http2,omitempty"`
+	VirtualServerInstancePortListSynCookie                                   int                                         `json:"syn-cookie,omitempty"`
+	VirtualServerInstancePortListTemplateCache                               string                                      `json:"template-cache,omitempty"`
+	VirtualServerInstancePortListTemplateCacheShared                         string                                      `json:"template-cache-shared,omitempty"`
+	VirtualServerInstancePortListTemplateClientSSH                           string                                      `json:"template-client-ssh,omitempty"`
+	VirtualServerInstancePortListTemplateClientSsl                           string                                      `json:"template-client-ssl,omitempty"`
+	VirtualServerInstancePortListTemplateClientSslShared                     string                                      `json:"template-client-ssl-shared,omitempty"`
+	VirtualServerInstancePortListTemplateConnectionReuse                     string                                      `json:"template-connection-reuse,omitempty"`
+	VirtualServerInstancePortListTemplateConnectionReuseShared               string                                      `json:"template-connection-reuse-shared,omitempty"`
+	VirtualServerInstancePortListTemplateDNS                                 string                                      `json:"template-dns,omitempty"`
+	VirtualServerInstancePortListTemplateDNSShared                           string                                      `json:"template-dns-shared,omitempty"`
+	VirtualServerInstancePortListTemplateDblb                                string                                      `json:"template-dblb,omitempty"`
+	VirtualServerInstancePortListTemplateDblbShared                          string                                      `json:"template-dblb-shared,omitempty"`
+	VirtualServerInstancePortListTemplateDiameter                            string                                      `json:"template-diameter,omitempty"`
+	VirtualServerInstancePortListTemplateDiameterShared                      string                                      `json:"template-diameter-shared,omitempty"`
+	VirtualServerInstancePortListTemplateDoh                                 string                                      `json:"template-doh,omitempty"`
+	VirtualServerInstancePortListTemplateDohShared                           string                                      `json:"template-doh-shared,omitempty"`
+	VirtualServerInstancePortListTemplateDynamicService                      string                                      `json:"template-dynamic-service,omitempty"`
+	VirtualServerInstancePortListTemplateDynamicServiceShared                string                                      `json:"template-dynamic-service-shared,omitempty"`
+	VirtualServerInstancePortListTemplateExternalService                     string                                      `json:"template-external-service,omitempty"`
+	VirtualServerInstancePortListTemplateExternalServiceShared               string                                      `json:"template-external-service-shared,omitempty"`
+	VirtualServerInstancePortListTemplateFix                                 string                                      `json:"template-fix,omitempty"`
+	VirtualServerInstancePortListTemplateFixShared                           string                                      `json:"template-fix-shared,omitempty"`
+	VirtualServerInstancePortListTemplateFtp                                 string                                      `json:"template-ftp,omitempty"`
+	VirtualServerInstancePortListTemplateHTTP                                string                                      `json:"template-http,omitempty"`
+	VirtualServerInstancePortListTemplateHTTPPolicy                          string                                      `json:"template-http-policy,omitempty"`
+	VirtualServerInstancePortListTemplateHTTPPolicyShared                    string                                      `json:"template-http-policy-shared,omitempty"`
+	VirtualServerInstancePortListTemplateHTTPShared                          string                                      `json:"template-http-shared,omitempty"`
+	VirtualServerInstancePortListTemplateImapPop3                            string                                      `json:"template-imap-pop3,omitempty"`
+	VirtualServerInstancePortListTemplateImapPop3Shared                      string                                      `json:"template-imap-pop3-shared,omitempty"`
+	VirtualServerInstancePortListTemplateMqtt                                string                                      `json:"template-mqtt,omitempty"`
+	VirtualServerInstancePortListTemplatePersistCookie                       string                                      `json:"template-persist-cookie,omitempty"`
+	VirtualServerInstancePortListTemplatePersistCookieShared                 string                                      `json:"template-persist-cookie-shared,omitempty"`
+	VirtualServerInstancePortListTemplatePersistDestinationIP                string                                      `json:"template-persist-destination-ip,omitempty"`
+	VirtualServerInstancePortListTemplatePersistDestinationIPShared          string                                      `json:"template-persist-destination-ip-shared,omitempty"`
+	VirtualServerInstancePortListTemplatePersistSourceIP                     string                                      `json:"template-persist-source-ip,omitempty"`
+	VirtualServerInstancePortListTemplatePersistSourceIPShared               string                                      `json:"template-persist-source-ip-shared,omitempty"`
+	VirtualServerInstancePortListTemplatePersistSslSid                       string                                      `json:"template-persist-ssl-sid,omitempty"`
+	VirtualServerInstancePortListTemplatePersistSslSidShared                 string                                      `json:"template-persist-ssl-sid-shared,omitempty"`
+	VirtualServerInstancePortListTemplatePolicy                              string                                      `json:"template-policy,omitempty"`
+	VirtualServerInstancePortListTemplatePolicyShared                        string                                      `json:"template-policy-shared,omitempty"`
+	VirtualServerInstancePortListTemplateRAMCache                            string                                      `json:"template-ram-cache,omitempty"`
+	VirtualServerInstancePortListTemplateReqmodIcap                          string                                      `json:"template-reqmod-icap,omitempty"`
+	VirtualServerInstancePortListTemplateRespmodIcap                         string                                      `json:"template-respmod-icap,omitempty"`
+	VirtualServerInstancePortListTemplateSMTP                                string                                      `json:"template-smtp,omitempty"`
+	VirtualServerInstancePortListTemplateSMTPShared                          string                                      `json:"template-smtp-shared,omitempty"`
+	VirtualServerInstancePortListTemplateScaleout                            string                                      `json:"template-scaleout,omitempty"`
+	VirtualServerInstancePortListTemplateServerSSH                           string                                      `json:"template-server-ssh,omitempty"`
+	VirtualServerInstancePortListTemplateServerSsl                           string                                      `json:"template-server-ssl,omitempty"`
+	VirtualServerInstancePortListTemplateServerSslShared                     string                                      `json:"template-server-ssl-shared,omitempty"`
+	VirtualServerInstancePortListTemplateSip                                 string                                      `json:"template-sip,omitempty"`
+	VirtualServerInstancePortListTemplateSipShared                           string                                      `json:"template-sip-shared,omitempty"`
+	VirtualServerInstancePortListTemplateSmpp                                string                                      `json:"template-smpp,omitempty"`
+	VirtualServerInstancePortListTemplateSmppShared                          string                                      `json:"template-smpp-shared,omitempty"`
+	VirtualServerInstancePortListTemplateSsli                                string                                      `json:"template-ssli,omitempty"`
+	VirtualServerInstancePortListTemplateTCP                                 string                                      `json:"template-tcp,omitempty"`
+	VirtualServerInstancePortListTemplateTCPProxy                            string                                      `json:"template-tcp-proxy,omitempty"`
+	VirtualServerInstancePortListTemplateTCPProxyClient                      string                                      `json:"template-tcp-proxy-client,omitempty"`
+	VirtualServerInstancePortListTemplateTCPProxyServer                      string                                      `json:"template-tcp-proxy-server,omitempty"`
+	VirtualServerInstancePortListTemplateTCPProxyShared                      string                                      `json:"template-tcp-proxy-shared,omitempty"`
+	VirtualServerInstancePortListTemplateTCPShared                           string                                      `json:"template-tcp-shared,omitempty"`
+	VirtualServerInstancePortListTemplateUDP                                 string                                      `json:"template-udp,omitempty"`
+	VirtualServerInstancePortListTemplateUDPShared                           string                                      `json:"template-udp-shared,omitempty"`
+	VirtualServerInstancePortListTemplateVirtualPort                         string                                      `json:"template-virtual-port,omitempty"`
+	VirtualServerInstancePortListTemplateVirtualPortShared                   string                                      `json:"template-virtual-port-shared,omitempty"`
+	VirtualServerInstancePortListTrunkFwd                                    int                                         `json:"trunk-fwd,omitempty"`
+	VirtualServerInstancePortListTrunkRev                                    int                                         `json:"trunk-rev,omitempty"`
+	VirtualServerInstancePortListUUID                                        string                                      `json:"uuid,omitempty"`
+	VirtualServerInstancePortListUseAlternatePort                            int                                         `json:"use-alternate-port,omitempty"`
+	VirtualServerInstancePortListUseCgnv6                                    int                                         `json:"use-cgnv6,omitempty"`
+	VirtualServerInstancePortListUseDefaultIfNoServer                        int                                         `json:"use-default-if-no-server,omitempty"`
+	VirtualServerInstancePortListUseRcvHopForResp                            int                                         `json:"use-rcv-hop-for-resp,omitempty"`
+	VirtualServerInstancePortListUseRcvHopGroup                              int                                         `json:"use-rcv-hop-group,omitempty"`
+	VirtualServerInstancePortListUserTag                                     string                                      `json:"user-tag,omitempty"`
+	VirtualServerInstancePortListView                                        int                                         `json:"view,omitempty"`
+	VirtualServerInstancePortListWafTemplate                                 string                                      `json:"waf-template,omitempty"`
+	VirtualServerInstancePortListWhenDown                                    int                                         `json:"when-down,omitempty"`
+	VirtualServerInstancePortListWhenDownProtocol2                           int                                         `json:"when-down-protocol2,omitempty"`
 }
 
-type PortList struct {
-	HaConnMirror                                int              `json:"ha-conn-mirror,omitempty"`
-	Protocol                                    string           `json:"protocol,omitempty"`
-	Precedence                                  int              `json:"precedence,omitempty"`
-	PortTranslation                             int              `json:"port-translation,omitempty"`
-	IPMapList                                   string           `json:"ip-map-list,omitempty"`
-	TemplateReqmodIcap                          string           `json:"template-reqmod-icap,omitempty"`
-	ACLName                                     []ACLNameList    `json:"acl-name-list,omitempty"`
-	StatsDataAction                             string           `json:"stats-data-action,omitempty"`
-	UseDefaultIfNoServer                        int              `json:"use-default-if-no-server,omitempty"`
-	TemplateConnectionReuse                     string           `json:"template-connection-reuse,omitempty"`
-	UUID                                        string           `json:"uuid,omitempty"`
-	TemplateTCPShared                           string           `json:"template-tcp-shared,omitempty"`
-	TemplateTCP                                 string           `json:"template-tcp,omitempty"`
-	TemplatePersistCookie                       string           `json:"template-persist-cookie,omitempty"`
-	SharedPartitionDynamicServiceTemplate       int              `json:"shared-partition-dynamic-service-template,omitempty"`
-	SharedPartitionConnectionReuseTemplate      int              `json:"shared-partition-connection-reuse-template,omitempty"`
-	WhenDown                                    int              `json:"when-down,omitempty"`
-	TemplateClientSslShared                     string           `json:"template-client-ssl-shared,omitempty"`
-	SharedPartitionPersistDestinationIPTemplate int              `json:"shared-partition-persist-destination-ip-template,omitempty"`
-	SharedPartitionExternalServiceTemplate      int              `json:"shared-partition-external-service-template,omitempty"`
-	PersistType                                 string           `json:"persist-type,omitempty"`
-	SharedPartitionHTTPPolicyTemplate           int              `json:"shared-partition-http-policy-template,omitempty"`
-	UseRcvHopForResp                            int              `json:"use-rcv-hop-for-resp,omitempty"`
-	ScaleoutBucketCount                         int              `json:"scaleout-bucket-count,omitempty"`
-	OptimizationLevel                           string           `json:"optimization-level,omitempty"`
-	ReqFail                                     int              `json:"req-fail,omitempty"`
-	NoDestNat                                   int              `json:"no-dest-nat,omitempty"`
-	Name                                        string           `json:"name,omitempty"`
-	TemplateSmpp                                string           `json:"template-smpp,omitempty"`
-	UserTag                                     string           `json:"user-tag,omitempty"`
-	TemplateDiameter                            string           `json:"template-diameter,omitempty"`
-	samplingEnable                              []SamplingEnable `json:"sampling-enable,omitempty"`
-	TemplateSsli                                string           `json:"template-ssli,omitempty"`
-	SharedPartitionPersistCookieTemplate        int              `json:"shared-partition-persist-cookie-template,omitempty"`
-	SharedPartitionPolicyTemplate               int              `json:"shared-partition-policy-template,omitempty"`
-	TemplatePolicy                              string           `json:"template-policy,omitempty"`
-	NoLogging                                   int              `json:"no-logging,omitempty"`
-	ResetOnServerSelectionFail                  int              `json:"reset-on-server-selection-fail,omitempty"`
-	WafTemplate                                 string           `json:"waf-template,omitempty"`
-	Ipinip                                      int              `json:"ipinip,omitempty"`
-	NoAutoUpOnAflex                             int              `json:"no-auto-up-on-aflex,omitempty"`
-	Rate                                        int              `json:"rate,omitempty"`
-	GslbEnable                                  int              `json:"gslb-enable,omitempty"`
-	TemplateDNSShared                           string           `json:"template-dns-shared,omitempty"`
-	TemplatePersistSslSid                       string           `json:"template-persist-ssl-sid,omitempty"`
-	TemplateDNS                                 string           `json:"template-dns,omitempty"`
-	SharedPartitionDNSTemplate                  int              `json:"shared-partition-dns-template,omitempty"`
-	TemplateSip                                 string           `json:"template-sip,omitempty"`
-	TemplateDblb                                string           `json:"template-dblb,omitempty"`
-	SharedPartitionServerSslTemplate            int              `json:"shared-partition-server-ssl-template,omitempty"`
-	TemplateClientSsl                           string           `json:"template-client-ssl,omitempty"`
-	SupportHTTP2                                int              `json:"support-http2,omitempty"`
-	TemplateClientSSH                           string           `json:"template-client-ssh,omitempty"`
-	SharedPartitionTCPProxyTemplate             int              `json:"shared-partition-tcp-proxy-template,omitempty"`
-	EnablePlayeridCheck                         int              `json:"enable-playerid-check,omitempty"`
-	ServiceGroup                                string           `json:"service-group,omitempty"`
-	SharedPartitionPersistSslSidTemplate        int              `json:"shared-partition-persist-ssl-sid-template,omitempty"`
-	DefSelectionIfPrefFailed                    string           `json:"def-selection-if-pref-failed,omitempty"`
-	SharedPartitionUDP                          int              `json:"shared-partition-udp,omitempty"`
-	SynCookie                                   int              `json:"syn-cookie,omitempty"`
-	AlternatePort                               int              `json:"alternate-port,omitempty"`
-	AlternatePortNumber                         int              `json:"alternate-port-number,omitempty"`
-	TemplatePersistSourceIPShared               string           `json:"template-persist-source-ip-shared,omitempty"`
-	TemplateCache                               string           `json:"template-cache,omitempty"`
-	TemplatePersistCookieShared                 string           `json:"template-persist-cookie-shared,omitempty"`
-	RtpSipCallIDMatch                           int              `json:"rtp-sip-call-id-match,omitempty"`
-	TemplateFileInspection                      string           `json:"template-file-inspection,omitempty"`
-	TemplateFtp                                 string           `json:"template-ftp,omitempty"`
-	ServSelFail                                 int              `json:"serv-sel-fail,omitempty"`
-	TemplateUDP                                 string           `json:"template-udp,omitempty"`
-	TemplateVirtualPortShared                   string           `json:"template-virtual-port-shared,omitempty"`
-	Action                                      string           `json:"action,omitempty"`
-	TemplateHTTP                                string           `json:"template-http,omitempty"`
-	View                                        int              `json:"view,omitempty"`
-	TemplatePersistSourceIP                     string           `json:"template-persist-source-ip,omitempty"`
-	TemplateDynamicService                      string           `json:"template-dynamic-service,omitempty"`
-	SharedPartitionVirtualPortTemplate          int              `json:"shared-partition-virtual-port-template,omitempty"`
-	UseCgnv6                                    int              `json:"use-cgnv6,omitempty"`
-	TemplatePersistDestinationIP                string           `json:"template-persist-destination-ip,omitempty"`
-	TemplateVirtualPort                         string           `json:"template-virtual-port,omitempty"`
-	ConnLimit                                   int              `json:"conn-limit,omitempty"`
-	TrunkFwd                                    int              `json:"trunk-fwd,omitempty"`
-	TemplateUDPShared                           string           `json:"template-udp-shared,omitempty"`
-	TemplateHTTPPolicyShared                    string           `json:"template-http-policy-shared,omitempty"`
-	Pool                                        string           `json:"pool,omitempty"`
-	SnatOnVip                                   int              `json:"snat-on-vip,omitempty"`
-	TemplateConnectionReuseShared               string           `json:"template-connection-reuse-shared,omitempty"`
-	SharedPartitionTCP                          int              `json:"shared-partition-tcp,omitempty"`
-	aclidList                                   []ACLIDList      `json:"acl-id-list,omitempty"`
-	SharedPartitionHTTPTemplate                 int              `json:"shared-partition-http-template,omitempty"`
-	TemplateExternalService                     string           `json:"template-external-service,omitempty"`
-	OnSyn                                       int              `json:"on-syn,omitempty"`
-	TemplatePersistSslSidShared                 string           `json:"template-persist-ssl-sid-shared,omitempty"`
-	ForceRoutingMode                            int              `json:"force-routing-mode,omitempty"`
-	TemplateHTTPPolicy                          string           `json:"template-http-policy,omitempty"`
-	TemplatePolicyShared                        string           `json:"template-policy-shared,omitempty"`
-	TemplateScaleout                            string           `json:"template-scaleout,omitempty"`
-	WhenDownProtocol2                           int              `json:"when-down-protocol2,omitempty"`
-	TemplateFix                                 string           `json:"template-fix,omitempty"`
-	TemplateSMTP                                string           `json:"template-smtp,omitempty"`
-	RedirectToHTTPS                             int              `json:"redirect-to-https,omitempty"`
-	AltProtocol2                                string           `json:"alt-protocol2,omitempty"`
-	AltProtocol1                                string           `json:"alt-protocol1,omitempty"`
-	MessageSwitching                            int              `json:"message-switching,omitempty"`
-	TemplateImapPop3                            string           `json:"template-imap-pop3,omitempty"`
-	ScaleoutDeviceGroup                         int              `json:"scaleout-device-group,omitempty"`
-	SharedPartitionPersistSourceIPTemplate      int              `json:"shared-partition-persist-source-ip-template,omitempty"`
-	L7HardwareAssist                            int              `json:"l7-hardware-assist,omitempty"`
-	TemplateTCPProxyShared                      string           `json:"template-tcp-proxy-shared,omitempty"`
-	SharedPartitionCacheTemplate                int              `json:"shared-partition-cache-template,omitempty"`
-	UseAlternatePort                            int              `json:"use-alternate-port,omitempty"`
-	TemplateTCPProxyServer                      string           `json:"template-tcp-proxy-server,omitempty"`
-	TrunkRev                                    int              `json:"trunk-rev,omitempty"`
-	EthFwd                                      int              `json:"eth-fwd,omitempty"`
-	PoolShared                                  string           `json:"pool-shared,omitempty"`
-	TemplateRespmodIcap                         string           `json:"template-respmod-icap,omitempty"`
-	Range                                       int              `json:"range,omitempty"`
-	Reset                                       int              `json:"reset,omitempty"`
-	TemplateExternalServiceShared               string           `json:"template-external-service-shared,omitempty"`
-	Auto                                        int              `json:"auto,omitempty"`
-	TemplateDynamicServiceShared                string           `json:"template-dynamic-service-shared,omitempty"`
-	TemplateServerSSH                           string           `json:"template-server-ssh,omitempty"`
-	Aflex                                       []AflexScripts   `json:"aflex-scripts,omitempty"`
-	TemplateHTTPShared                          string           `json:"template-http-shared,omitempty"`
-	TemplateServerSsl                           string           `json:"template-server-ssl,omitempty"`
-	SharedPartitionDiameterTemplate             int              `json:"shared-partition-diameter-template,omitempty"`
-	TemplateServerSslShared                     string           `json:"template-server-ssl-shared,omitempty"`
-	TemplatePersistDestinationIPShared          string           `json:"template-persist-destination-ip-shared,omitempty"`
-	TemplateCacheShared                         string           `json:"template-cache-shared,omitempty"`
-	PortNumber                                  int              `json:"port-number,omitempty"`
-	TemplateTCPProxyClient                      string           `json:"template-tcp-proxy-client,omitempty"`
-	SharedPartitionPool                         int              `json:"shared-partition-pool,omitempty"`
-	TemplateTCPProxy                            string           `json:"template-tcp-proxy,omitempty"`
-	ExtendedStats                               int              `json:"extended-stats,omitempty"`
-	SharedPartitionClientSslTemplate            int              `json:"shared-partition-client-ssl-template,omitempty"`
-	Expand                                      int              `json:"expand,omitempty"`
-	SkipRevHash                                 int              `json:"skip-rev-hash,omitempty"`
-	TemplateDiameterShared                      string           `json:"template-diameter-shared,omitempty"`
-	ClientipStickyNat                           int              `json:"clientip-sticky-nat,omitempty"`
-	Secs                                        int              `json:"secs,omitempty"`
-	authCfg                                     AuthCfg          `json:"auth-cfg,omitempty"`
-	EthRev                                      int              `json:"eth-rev,omitempty"`
+type VirtualServerInstancePortListAclList struct {
+	VirtualServerInstancePortListAclListAclID                    int    `json:"acl-id,omitempty"`
+	VirtualServerInstancePortListAclListAclIDSeqNum              int    `json:"acl-id-seq-num,omitempty"`
+	VirtualServerInstancePortListAclListAclIDSeqNumShared        int    `json:"acl-id-seq-num-shared,omitempty"`
+	VirtualServerInstancePortListAclListAclIDShared              int    `json:"acl-id-shared,omitempty"`
+	VirtualServerInstancePortListAclListAclIDSrcNatPool          string `json:"acl-id-src-nat-pool,omitempty"`
+	VirtualServerInstancePortListAclListAclIDSrcNatPoolShared    string `json:"acl-id-src-nat-pool-shared,omitempty"`
+	VirtualServerInstancePortListAclListAclName                  string `json:"acl-name,omitempty"`
+	VirtualServerInstancePortListAclListAclNameSeqNum            int    `json:"acl-name-seq-num,omitempty"`
+	VirtualServerInstancePortListAclListAclNameSeqNumShared      int    `json:"acl-name-seq-num-shared,omitempty"`
+	VirtualServerInstancePortListAclListAclNameShared            string `json:"acl-name-shared,omitempty"`
+	VirtualServerInstancePortListAclListAclNameSrcNatPool        string `json:"acl-name-src-nat-pool,omitempty"`
+	VirtualServerInstancePortListAclListAclNameSrcNatPoolShared  string `json:"acl-name-src-nat-pool-shared,omitempty"`
+	VirtualServerInstancePortListAclListSharedPartitionPoolID    int    `json:"shared-partition-pool-id,omitempty"`
+	VirtualServerInstancePortListAclListSharedPartitionPoolName  int    `json:"shared-partition-pool-name,omitempty"`
+	VirtualServerInstancePortListAclListVAclIDSeqNum             int    `json:"v-acl-id-seq-num,omitempty"`
+	VirtualServerInstancePortListAclListVAclIDSeqNumShared       int    `json:"v-acl-id-seq-num-shared,omitempty"`
+	VirtualServerInstancePortListAclListVAclIDSrcNatPool         string `json:"v-acl-id-src-nat-pool,omitempty"`
+	VirtualServerInstancePortListAclListVAclIDSrcNatPoolShared   string `json:"v-acl-id-src-nat-pool-shared,omitempty"`
+	VirtualServerInstancePortListAclListVAclNameSeqNum           int    `json:"v-acl-name-seq-num,omitempty"`
+	VirtualServerInstancePortListAclListVAclNameSeqNumShared     int    `json:"v-acl-name-seq-num-shared,omitempty"`
+	VirtualServerInstancePortListAclListVAclNameSrcNatPool       string `json:"v-acl-name-src-nat-pool,omitempty"`
+	VirtualServerInstancePortListAclListVAclNameSrcNatPoolShared string `json:"v-acl-name-src-nat-pool-shared,omitempty"`
+	VirtualServerInstancePortListAclListVSharedPartitionPoolID   int    `json:"v-shared-partition-pool-id,omitempty"`
+	VirtualServerInstancePortListAclListVSharedPartitionPoolName int    `json:"v-shared-partition-pool-name,omitempty"`
 }
 
-type MigrateVip struct {
-	TargetDataCPU      int    `json:"target-data-cpu,omitempty"`
-	UUID               string `json:"uuid,omitempty"`
-	FinishMigration    int    `json:"finish-migration,omitempty"`
-	TargetFloatingIpv6 string `json:"target-floating-ipv6,omitempty"`
-	TargetFloatingIpv4 string `json:"target-floating-ipv4,omitempty"`
-	CancelMigration    int    `json:"cancel-migration,omitempty"`
+type VirtualServerInstancePortListAflexScripts struct {
+	VirtualServerInstancePortListAflexScriptsAflex       string `json:"aflex,omitempty"`
+	VirtualServerInstancePortListAflexScriptsAflexShared string `json:"aflex-shared,omitempty"`
 }
 
-type VirtualServerMain struct {
-	Protocol                      []PortList `json:"port-list,omitempty"`
-	StatsDataAction               string     `json:"stats-data-action,omitempty"`
-	Ipv6ACLShared                 string     `json:"ipv6-acl-shared,omitempty"`
-	ACLName                       string     `json:"acl-name,omitempty"`
-	EnableDisableAction           string     `json:"enable-disable-action,omitempty"`
-	HaDynamic                     int        `json:"ha-dynamic,omitempty"`
-	RedistributeRouteMap          string     `json:"redistribute-route-map,omitempty"`
-	ACLNameShared                 string     `json:"acl-name-shared,omitempty"`
-	IPAddress                     string     `json:"ip-address,omitempty"`
-	migrateVip                    MigrateVip `json:"migrate-vip,omitempty"`
-	UseIfIP                       int        `json:"use-if-ip,omitempty"`
-	UUID                          string     `json:"uuid,omitempty"`
-	Vrid                          int        `json:"vrid,omitempty"`
-	DisableVipAdv                 int        `json:"disable-vip-adv,omitempty"`
-	TemplateVirtualServer         string     `json:"template-virtual-server,omitempty"`
-	ArpDisable                    int        `json:"arp-disable,omitempty"`
-	Description                   string     `json:"description,omitempty"`
-	RedistributionFlagged         int        `json:"redistribution-flagged,omitempty"`
-	Netmask                       string     `json:"netmask,omitempty"`
-	ACLID                         int        `json:"acl-id,omitempty"`
-	Ipv6ACL                       string     `json:"ipv6-acl,omitempty"`
-	TemplateLogging               string     `json:"template-logging,omitempty"`
-	ExtendedStats                 int        `json:"extended-stats,omitempty"`
-	Name                          string     `json:"name,omitempty"`
-	TemplateScaleout              string     `json:"template-scaleout,omitempty"`
-	TemplatePolicy                string     `json:"template-policy,omitempty"`
-	UserTag                       string     `json:"user-tag,omitempty"`
-	TemplatePolicyShared          string     `json:"template-policy-shared,omitempty"`
-	Ipv6Address                   string     `json:"ipv6-address,omitempty"`
-	Ethernet                      int        `json:"ethernet,omitempty"`
-	SharedPartitionPolicyTemplate int        `json:"shared-partition-policy-template,omitempty"`
-	ACLIDShared                   int        `json:"acl-id-shared,omitempty"`
+type VirtualServerInstancePortListAuthCfg struct {
+	VirtualServerInstancePortListAuthCfgAaaPolicy string `json:"aaa-policy,omitempty"`
 }
 
-type VirtalServerInstanceMain struct {
-	Name VirtualServerMain `json:"virtual-server,omitempty"`
-}
-
-func GetVS(id string, name string, host string) (*VirtalServerInstanceMain, error) {
+func PostVirtualServer(id string, inst VirtualServer, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -236,33 +281,73 @@ func GetVS(id string, name string, host string) (*VirtalServerInstanceMain, erro
 	headers["Accept"] = "application/json"
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
+	logger.Println("[INFO] Inside PostVirtualServer")
+	payloadBytes, err := json.Marshal(inst)
+	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
+	if err != nil {
+		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
+	}
 
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/virtual-server/"+name, nil, headers)
+	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/slb/virtual-server", bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-		logger.Println("The HTTP request failed with error \n", err)
+		logger.Println("The HTTP request failed with error ", err)
+		return err
+	} else {
+		data, _ := ioutil.ReadAll(resp.Body)
+		var m VirtualServer
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
+			return err
+		} else {
+			logger.Println("[INFO] Post REQ RES..........................", m)
+			err := check_api_status("PostVirtualServer", data)
+			if err != nil {
+				return err
+			}
+
+		}
+	}
+	return err
+}
+
+func GetVirtualServer(id string, name1 string, host string) (*VirtualServer, error) {
+
+	logger := util.GetLoggerInstance()
+
+	var headers = make(map[string]string)
+	headers["Accept"] = "application/json"
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = id
+	logger.Println("[INFO] Inside GetVirtualServer")
+
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/virtual-server/"+name1, nil, headers)
+
+	if err != nil {
+		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m VirtalServerInstanceMain
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
-			fmt.Printf("Unmarshal error %s\n", err)
+		var m VirtualServer
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-
-			logger.Println("[INFO] GET REQ RES..........................", m)
-			err := check_api_status("GetVS", data)
+			logger.Println("[INFO] Get REQ RES..........................", m)
+			err := check_api_status("GetVirtualServer", data)
 			if err != nil {
 				return nil, err
 			}
 			return &m, nil
 		}
 	}
+
 }
 
-func PostVS(id string, vs VirtalServerInstanceMain, host string) error {
+func PutVirtualServer(id string, name1 string, inst VirtualServer, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -270,107 +355,68 @@ func PostVS(id string, vs VirtalServerInstanceMain, host string) error {
 	headers["Accept"] = "application/json"
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
-
-	logger.Println("[INFO] received V  --" + vs.Name.Name + ",--" + vs.Name.UUID)
-
-	payloadBytes, err := json.Marshal(vs)
-
+	logger.Println("[INFO] Inside PutVirtualServer")
+	payloadBytes, err := json.Marshal(inst)
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
-
 	if err != nil {
-		logger.Println("[INFO] Marshalling failed with error \n", err)
+		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
-	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/slb/virtual-server", bytes.NewReader(payloadBytes), headers)
+
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/virtual-server/"+name1, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-		logger.Println("The HTTP request failed with error \n", err)
-	} else {
-		data, _ := ioutil.ReadAll(resp.Body)
-
-		var m VirtalServerInstanceMain
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
-			logger.Println("Unmarshal error %s\n", err)
-		} else {
-			err := check_api_status("PostVS", data)
-			if err != nil {
-				return err
-			}
-
-		}
-	}
-	return err
-}
-
-func PutVS(id string, name string, vs VirtalServerInstanceMain, host string) error {
-
-	logger := util.GetLoggerInstance()
-
-	var headers = make(map[string]string)
-	headers["Accept"] = "application/json"
-	headers["Content-Type"] = "application/json"
-	headers["Authorization"] = id
-
-	logger.Println("[INFO] received V  --" + vs.Name.Name + ",--" + vs.Name.UUID)
-
-	payloadBytes, err := json.Marshal(vs)
-
-	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
-
-	if err != nil {
-		logger.Println("[INFO] Marshalling failed with error \n", err)
-	}
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/virtual-server/"+name, bytes.NewReader(payloadBytes), headers)
-
-	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-		logger.Println("The HTTP request failed with error \n", err)
-	} else {
-		data, _ := ioutil.ReadAll(resp.Body)
-		var m VirtalServerInstanceMain
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
-			fmt.Printf("Unmarshal error %s\n", err)
-		} else {
-			fmt.Println("response Body:", string(data))
-			logger.Println("response Body:", string(data))
-			err := check_api_status("PutVS", data)
-			if err != nil {
-				return err
-			}
-		}
-	}
-	return err
-}
-
-func DeleteVS(id string, name string, host string) error {
-
-	logger := util.GetLoggerInstance()
-
-	var headers = make(map[string]string)
-	headers["Accept"] = "application/json"
-	headers["Content-Type"] = "application/json"
-	headers["Authorization"] = id
-
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/virtual-server/"+name, nil, headers)
-
-	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-		logger.Println("The HTTP request failed with error \n", err)
+		logger.Println("The HTTP request failed with error ", err)
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m VirtalServerInstanceMain
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
-			fmt.Printf("Unmarshal error %s\n", err)
+		var m VirtualServer
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
-			fmt.Print(m)
-			logger.Println("[INFO] DELETE REQ RES..........................", m)
+			logger.Println("[INFO] Put REQ RES..........................", m)
+			err := check_api_status("PutVirtualServer", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-	return nil
+	return err
+}
+
+func DeleteVirtualServer(id string, name1 string, host string) error {
+
+	logger := util.GetLoggerInstance()
+
+	var headers = make(map[string]string)
+	headers["Accept"] = "application/json"
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = id
+	logger.Println("[INFO] Inside DeleteVirtualServer")
+
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/virtual-server/"+name1, nil, headers)
+
+	if err != nil {
+		logger.Println("The HTTP request failed with error ", err)
+		return err
+	} else {
+		data, _ := ioutil.ReadAll(resp.Body)
+		var m VirtualServer
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
+			return err
+		} else {
+			logger.Println("[INFO] Delete REQ RES..........................", m)
+			err := check_api_status("DeleteVirtualServer", data)
+			if err != nil {
+				return err
+			}
+
+		}
+	}
+	return err
 }
