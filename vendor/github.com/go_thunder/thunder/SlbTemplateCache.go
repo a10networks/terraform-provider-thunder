@@ -2,49 +2,47 @@ package go_thunder
 
 import (
 	"bytes"
-	"encoding/json"
+	"github.com/clarketm/json" // "encoding/json"
 	"io/ioutil"
 	"util"
 )
 
-type Cache struct {
-	UUID CacheInstance `json:"cache,omitempty"`
+type SlbTemplateCache struct {
+	SlbTemplateCacheInstanceName SlbTemplateCacheInstance `json:"cache,omitempty"`
 }
 
-type LocalURIPolicy struct {
-	LocalURI string `json:"local-uri,omitempty"`
-}
-type SamplingEnable4 struct {
-	Counters1 string `json:"counters1,omitempty"`
-}
-type URIPolicy struct {
-	CacheAction string `json:"cache-action,omitempty"`
-	CacheValue  int    `json:"cache-value,omitempty"`
-	URI         string `json:"uri,omitempty"`
-	Invalidate  string `json:"invalidate,omitempty"`
-}
-type CacheInstance struct {
-	AcceptReloadReq      int               `json:"accept-reload-req,omitempty"`
-	Name                 string            `json:"name,omitempty"`
-	DefaultPolicyNocache int               `json:"default-policy-nocache,omitempty"`
-	Age                  int               `json:"age,omitempty"`
-	DisableInsertVia     int               `json:"disable-insert-via,omitempty"`
-	UserTag              string            `json:"user-tag,omitempty"`
-	LocalURI             []LocalURIPolicy  `json:"local-uri-policy,omitempty"`
-	Counters1            []SamplingEnable4 `json:"sampling-enable,omitempty"`
-	ReplacementPolicy    string            `json:"replacement-policy,omitempty"`
-	DisableInsertAge     int               `json:"disable-insert-age,omitempty"`
-	MaxContentSize       int               `json:"max-content-size,omitempty"`
-	MaxCacheSize         int               `json:"max-cache-size,omitempty"`
-	Logging              string            `json:"logging,omitempty"`
-	URI                  []URIPolicy       `json:"uri-policy,omitempty"`
-	RemoveCookies        int               `json:"remove-cookies,omitempty"`
-	VerifyHost           int               `json:"verify-host,omitempty"`
-	MinContentSize       int               `json:"min-content-size,omitempty"`
-	UUID                 string            `json:"uuid,omitempty"`
+type SlbTemplateCacheInstance struct {
+	SlbTemplateCacheInstanceAcceptReloadReq        int                                      `json:"accept-reload-req,omitempty"`
+	SlbTemplateCacheInstanceAge                    int                                      `json:"age,omitempty"`
+	SlbTemplateCacheInstanceDefaultPolicyNocache   int                                      `json:"default-policy-nocache,omitempty"`
+	SlbTemplateCacheInstanceDisableInsertAge       int                                      `json:"disable-insert-age,omitempty"`
+	SlbTemplateCacheInstanceDisableInsertVia       int                                      `json:"disable-insert-via,omitempty"`
+	SlbTemplateCacheInstanceLocalURIPolicyLocalURI []SlbTemplateCacheInstanceLocalURIPolicy `json:"local-uri-policy,omitempty"`
+	SlbTemplateCacheInstanceLogging                string                                   `json:"logging,omitempty"`
+	SlbTemplateCacheInstanceMaxCacheSize           int                                      `json:"max-cache-size,omitempty"`
+	SlbTemplateCacheInstanceMaxContentSize         int                                      `json:"max-content-size,omitempty"`
+	SlbTemplateCacheInstanceMinContentSize         int                                      `json:"min-content-size,omitempty"`
+	SlbTemplateCacheInstanceName                   string                                   `json:"name,omitempty"`
+	SlbTemplateCacheInstanceRemoveCookies          int                                      `json:"remove-cookies,omitempty"`
+	SlbTemplateCacheInstanceReplacementPolicy      string                                   `json:"replacement-policy,omitempty"`
+	SlbTemplateCacheInstanceURIPolicyURI           []SlbTemplateCacheInstanceURIPolicy      `json:"uri-policy,omitempty"`
+	SlbTemplateCacheInstanceUUID                   string                                   `json:"uuid,omitempty"`
+	SlbTemplateCacheInstanceUserTag                string                                   `json:"user-tag,omitempty"`
+	SlbTemplateCacheInstanceVerifyHost             int                                      `json:"verify-host,omitempty"`
 }
 
-func PostSlbTemplateCache(id string, inst Cache, host string) error {
+type SlbTemplateCacheInstanceLocalURIPolicy struct {
+	SlbTemplateCacheInstanceLocalURIPolicyLocalURI string `json:"local-uri,omitempty"`
+}
+
+type SlbTemplateCacheInstanceURIPolicy struct {
+	SlbTemplateCacheInstanceURIPolicyCacheAction string `json:"cache-action,omitempty"`
+	SlbTemplateCacheInstanceURIPolicyCacheValue  int    `json:"cache-value,omitempty"`
+	SlbTemplateCacheInstanceURIPolicyInvalidate  string `json:"invalidate,omitempty"`
+	SlbTemplateCacheInstanceURIPolicyURI         string `json:"uri,omitempty"`
+}
+
+func PostSlbTemplateCache(id string, inst SlbTemplateCache, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -57,6 +55,7 @@ func PostSlbTemplateCache(id string, inst Cache, host string) error {
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/slb/template/cache", bytes.NewReader(payloadBytes), headers)
@@ -64,16 +63,15 @@ func PostSlbTemplateCache(id string, inst Cache, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m Cache
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m SlbTemplateCache
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] PostSlbTemplateCache REQ RES..........................", m)
+			logger.Println("[INFO] Post REQ RES..........................", m)
 			err := check_api_status("PostSlbTemplateCache", data)
 			if err != nil {
 				return err
@@ -84,7 +82,7 @@ func PostSlbTemplateCache(id string, inst Cache, host string) error {
 	return err
 }
 
-func GetSlbTemplateCache(id string, name string, host string) (*Cache, error) {
+func GetSlbTemplateCache(id string, name1 string, host string) (*SlbTemplateCache, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -94,21 +92,20 @@ func GetSlbTemplateCache(id string, name string, host string) (*Cache, error) {
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside GetSlbTemplateCache")
 
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/template/cache/"+name, nil, headers)
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/template/cache/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m Cache
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m SlbTemplateCache
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GetSlbTemplateCache REQ RES..........................", m)
+			logger.Println("[INFO] Get REQ RES..........................", m)
 			err := check_api_status("GetSlbTemplateCache", data)
 			if err != nil {
 				return nil, err
@@ -119,7 +116,7 @@ func GetSlbTemplateCache(id string, name string, host string) (*Cache, error) {
 
 }
 
-func PutSlbTemplateCache(id string, name string, inst Cache, host string) error {
+func PutSlbTemplateCache(id string, name1 string, inst SlbTemplateCache, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -132,23 +129,23 @@ func PutSlbTemplateCache(id string, name string, inst Cache, host string) error 
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/template/cache/"+name, bytes.NewReader(payloadBytes), headers)
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/template/cache/"+name1, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m Cache
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m SlbTemplateCache
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] PutSlbTemplateCache REQ RES..........................", m)
+			logger.Println("[INFO] Put REQ RES..........................", m)
 			err := check_api_status("PutSlbTemplateCache", data)
 			if err != nil {
 				return err
@@ -159,7 +156,7 @@ func PutSlbTemplateCache(id string, name string, inst Cache, host string) error 
 	return err
 }
 
-func DeleteSlbTemplateCache(id string, name string, host string) error {
+func DeleteSlbTemplateCache(id string, name1 string, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -169,23 +166,26 @@ func DeleteSlbTemplateCache(id string, name string, host string) error {
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside DeleteSlbTemplateCache")
 
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/template/cache/"+name, nil, headers)
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/template/cache/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m Cache
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m SlbTemplateCache
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] Delete REQ RES..........................", m)
+			err := check_api_status("DeleteSlbTemplateCache", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-	return nil
+	return err
 }

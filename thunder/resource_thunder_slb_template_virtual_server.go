@@ -4,12 +4,10 @@ package thunder
 
 import (
 	"context"
-	"log"
-	"util"
-
-	go_thunder "github.com/go_thunder/thunder"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"util"
 )
 
 func resourceSlbTemplateVirtualServer() *schema.Resource {
@@ -19,12 +17,52 @@ func resourceSlbTemplateVirtualServer() *schema.Resource {
 		ReadContext:   resourceSlbTemplateVirtualServerRead,
 		DeleteContext: resourceSlbTemplateVirtualServerDelete,
 		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"conn_limit": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"conn_limit_reset": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"conn_limit_no_logging": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
 			"conn_rate_limit": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"tcp_stack_tfo_backoff_time": {
+			"rate_interval": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"conn_rate_limit_reset": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"conn_rate_limit_no_logging": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"icmp_rate_limit": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"icmp_lockup": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -34,12 +72,12 @@ func resourceSlbTemplateVirtualServer() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"uuid": {
-				Type:        schema.TypeString,
+			"icmpv6_rate_limit": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"conn_rate_limit_reset": {
+			"icmpv6_lockup": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -54,32 +92,12 @@ func resourceSlbTemplateVirtualServer() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"conn_limit": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"conn_rate_limit_no_logging": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"user_tag": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"icmpv6_rate_limit": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
 			"tcp_stack_tfo_cookie_time_limit": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"conn_limit_reset": {
+			"tcp_stack_tfo_backoff_time": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -89,33 +107,23 @@ func resourceSlbTemplateVirtualServer() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"conn_limit_no_logging": {
+			"disable_when_all_ports_down": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"name": {
+			"disable_when_any_port_down": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"uuid": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
-			"rate_interval": {
+			"user_tag": {
 				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"icmp_rate_limit": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"icmpv6_lockup": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"icmp_lockup": {
-				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -128,13 +136,12 @@ func resourceSlbTemplateVirtualServerCreate(ctx context.Context, d *schema.Resou
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateVirtualServer (Inside resourceSlbTemplateVirtualServerCreate) ")
-		name := d.Get("name").(string)
+		name1 := d.Get("name").(string)
 		data := dataToSlbTemplateVirtualServer(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateVirtualServer --")
-		d.SetId(name)
+		d.SetId(name1)
 		err := go_thunder.PostSlbTemplateVirtualServer(client.Token, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
@@ -149,25 +156,23 @@ func resourceSlbTemplateVirtualServerCreate(ctx context.Context, d *schema.Resou
 func resourceSlbTemplateVirtualServerRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateVirtualServer (Inside resourceSlbTemplateVirtualServerRead)")
 
+	var diags diag.Diagnostics
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Fetching service Read" + name)
-		data, err := go_thunder.GetSlbTemplateVirtualServer(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Fetching service Read" + name1)
+		data, err := go_thunder.GetSlbTemplateVirtualServer(client.Token, name1, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
 		if data == nil {
-			logger.Println("[INFO] No data found " + name)
-			d.SetId("")
+			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
 		return diags
 	}
-	return nil
+	return diags
 }
 
 func resourceSlbTemplateVirtualServerUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
@@ -175,14 +180,12 @@ func resourceSlbTemplateVirtualServerUpdate(ctx context.Context, d *schema.Resou
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
+		name1 := d.Id()
 		logger.Println("[INFO] Modifying SlbTemplateVirtualServer   (Inside resourceSlbTemplateVirtualServerUpdate) ")
-		name := d.Get("name").(string)
 		data := dataToSlbTemplateVirtualServer(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateVirtualServer ")
-		d.SetId(name)
-		err := go_thunder.PutSlbTemplateVirtualServer(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateVirtualServer(client.Token, name1, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -198,45 +201,44 @@ func resourceSlbTemplateVirtualServerDelete(ctx context.Context, d *schema.Resou
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Deleting instance (Inside resourceSlbTemplateVirtualServerDelete) " + name)
-		err := go_thunder.DeleteSlbTemplateVirtualServer(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Deleting instance (Inside resourceSlbTemplateVirtualServerDelete) " + name1)
+		err := go_thunder.DeleteSlbTemplateVirtualServer(client.Token, name1, client.Host)
 		if err != nil {
-			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
+			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
 			return diags
 		}
-		d.SetId("")
 		return nil
 	}
-	return nil
+	return diags
 }
 
-func dataToSlbTemplateVirtualServer(d *schema.ResourceData) go_thunder.VirtualServer {
-	var vc go_thunder.VirtualServer
-	var c go_thunder.VirtualServerInstance
+func dataToSlbTemplateVirtualServer(d *schema.ResourceData) go_thunder.SlbTemplateVirtualServer {
+	var vc go_thunder.SlbTemplateVirtualServer
+	var c go_thunder.SlbTemplateVirtualServerInstance
+	c.SlbTemplateVirtualServerInstanceName = d.Get("name").(string)
+	c.SlbTemplateVirtualServerInstanceConnLimit = d.Get("conn_limit").(int)
+	c.SlbTemplateVirtualServerInstanceConnLimitReset = d.Get("conn_limit_reset").(int)
+	c.SlbTemplateVirtualServerInstanceConnLimitNoLogging = d.Get("conn_limit_no_logging").(int)
+	c.SlbTemplateVirtualServerInstanceConnRateLimit = d.Get("conn_rate_limit").(int)
+	c.SlbTemplateVirtualServerInstanceRateInterval = d.Get("rate_interval").(string)
+	c.SlbTemplateVirtualServerInstanceConnRateLimitReset = d.Get("conn_rate_limit_reset").(int)
+	c.SlbTemplateVirtualServerInstanceConnRateLimitNoLogging = d.Get("conn_rate_limit_no_logging").(int)
+	c.SlbTemplateVirtualServerInstanceIcmpRateLimit = d.Get("icmp_rate_limit").(int)
+	c.SlbTemplateVirtualServerInstanceIcmpLockup = d.Get("icmp_lockup").(int)
+	c.SlbTemplateVirtualServerInstanceIcmpLockupPeriod = d.Get("icmp_lockup_period").(int)
+	c.SlbTemplateVirtualServerInstanceIcmpv6RateLimit = d.Get("icmpv6_rate_limit").(int)
+	c.SlbTemplateVirtualServerInstanceIcmpv6Lockup = d.Get("icmpv6_lockup").(int)
+	c.SlbTemplateVirtualServerInstanceIcmpv6LockupPeriod = d.Get("icmpv6_lockup_period").(int)
+	c.SlbTemplateVirtualServerInstanceTCPStackTfoActiveConnLimit = d.Get("tcp_stack_tfo_active_conn_limit").(int)
+	c.SlbTemplateVirtualServerInstanceTCPStackTfoCookieTimeLimit = d.Get("tcp_stack_tfo_cookie_time_limit").(int)
+	c.SlbTemplateVirtualServerInstanceTCPStackTfoBackoffTime = d.Get("tcp_stack_tfo_backoff_time").(int)
+	c.SlbTemplateVirtualServerInstanceSubnetGratuitousArp = d.Get("subnet_gratuitous_arp").(int)
+	c.SlbTemplateVirtualServerInstanceDisableWhenAllPortsDown = d.Get("disable_when_all_ports_down").(int)
+	c.SlbTemplateVirtualServerInstanceDisableWhenAnyPortDown = d.Get("disable_when_any_port_down").(int)
+	c.SlbTemplateVirtualServerInstanceUserTag = d.Get("user_tag").(string)
 
-	c.ConnLimit = d.Get("conn_limit").(int)
-	c.ConnRateLimitNoLogging = d.Get("conn_rate_limit_no_logging").(int)
-	c.Name = d.Get("name").(string)
-	c.IcmpLockupPeriod = d.Get("icmp_lockup_period").(int)
-	c.ConnLimitReset = d.Get("conn_limit_reset").(int)
-	c.RateInterval = d.Get("rate_interval").(string)
-	c.UserTag = d.Get("user_tag").(string)
-	c.Icmpv6RateLimit = d.Get("icmpv6_rate_limit").(int)
-	c.SubnetGratuitousArp = d.Get("subnet_gratuitous_arp").(int)
-	c.Icmpv6Lockup = d.Get("icmpv6_lockup").(int)
-	c.ConnRateLimitReset = d.Get("conn_rate_limit_reset").(int)
-	c.TCPStackTfoBackoffTime = d.Get("tcp_stack_tfo_backoff_time").(int)
-	c.TCPStackTfoCookieTimeLimit = d.Get("tcp_stack_tfo_cookie_time_limit").(int)
-	c.ConnLimitNoLogging = d.Get("conn_limit_no_logging").(int)
-	c.Icmpv6LockupPeriod = d.Get("icmpv6_lockup_period").(int)
-	c.ConnRateLimit = d.Get("conn_rate_limit").(int)
-	c.TCPStackTfoActiveConnLimit = d.Get("tcp_stack_tfo_active_conn_limit").(int)
-	c.IcmpLockup = d.Get("icmp_lockup").(int)
-	c.IcmpRateLimit = d.Get("icmp_rate_limit").(int)
-
-	vc.UUID = c
+	vc.SlbTemplateVirtualServerInstanceName = c
 	return vc
 }

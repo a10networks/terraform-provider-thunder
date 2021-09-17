@@ -2,7 +2,7 @@ package go_thunder
 
 import (
 	"bytes"
-	//"encoding/json"
+	//"github.com/clarketm/json" // "encoding/json"
 	"io/ioutil"
 	"util"
 

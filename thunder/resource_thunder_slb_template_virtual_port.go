@@ -4,12 +4,10 @@ package thunder
 
 import (
 	"context"
-	"log"
-	"util"
-
-	go_thunder "github.com/go_thunder/thunder"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"util"
 )
 
 func resourceSlbTemplateVirtualPort() *schema.Resource {
@@ -19,18 +17,8 @@ func resourceSlbTemplateVirtualPort() *schema.Resource {
 		ReadContext:   resourceSlbTemplateVirtualPortRead,
 		DeleteContext: resourceSlbTemplateVirtualPortDelete,
 		Schema: map[string]*schema.Schema{
-			"allow_syn_otherflags": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"snat_port_preserve": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"conn_rate_limit": {
-				Type:        schema.TypeInt,
+			"name": {
+				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
@@ -39,43 +27,13 @@ func resourceSlbTemplateVirtualPort() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"uuid": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"conn_rate_limit_reset": {
+			"allow_syn_otherflags": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"dscp": {
+			"conn_limit": {
 				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"snat_msl": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"user_tag": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"rate": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"allow_vip_to_rport_mapping": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"pkt_rate_type": {
-				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
@@ -89,12 +47,42 @@ func resourceSlbTemplateVirtualPort() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"conn_rate_limit": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
 			"rate_interval": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
-			"reset_unknown_conn": {
+			"conn_rate_limit_reset": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"conn_rate_limit_no_logging": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"pkt_rate_type": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"rate": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"pkt_rate_interval": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"pkt_rate_limit_reset": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -104,8 +92,28 @@ func resourceSlbTemplateVirtualPort() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"pkt_rate_interval": {
-				Type:        schema.TypeString,
+			"when_rr_enable": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"allow_vip_to_rport_mapping": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"dscp": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"drop_unknown_conn": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"reset_unknown_conn": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -119,38 +127,28 @@ func resourceSlbTemplateVirtualPort() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"pkt_rate_limit_reset": {
+			"snat_msl": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"conn_limit": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"conn_rate_limit_no_logging": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"drop_unknown_conn": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"name": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"when_rr_enable": {
+			"snat_port_preserve": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
 			"non_syn_initiation": {
 				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"uuid": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"user_tag": {
+				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
@@ -163,13 +161,12 @@ func resourceSlbTemplateVirtualPortCreate(ctx context.Context, d *schema.Resourc
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateVirtualPort (Inside resourceSlbTemplateVirtualPortCreate) ")
-		name := d.Get("name").(string)
+		name1 := d.Get("name").(string)
 		data := dataToSlbTemplateVirtualPort(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateVirtualPort --")
-		d.SetId(name)
+		d.SetId(name1)
 		err := go_thunder.PostSlbTemplateVirtualPort(client.Token, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
@@ -184,25 +181,23 @@ func resourceSlbTemplateVirtualPortCreate(ctx context.Context, d *schema.Resourc
 func resourceSlbTemplateVirtualPortRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateVirtualPort (Inside resourceSlbTemplateVirtualPortRead)")
 
+	var diags diag.Diagnostics
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Fetching service Read" + name)
-		data, err := go_thunder.GetSlbTemplateVirtualPort(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Fetching service Read" + name1)
+		data, err := go_thunder.GetSlbTemplateVirtualPort(client.Token, name1, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
 		if data == nil {
-			logger.Println("[INFO] No data found " + name)
-			d.SetId("")
+			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
 		return diags
 	}
-	return nil
+	return diags
 }
 
 func resourceSlbTemplateVirtualPortUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
@@ -210,14 +205,12 @@ func resourceSlbTemplateVirtualPortUpdate(ctx context.Context, d *schema.Resourc
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
+		name1 := d.Id()
 		logger.Println("[INFO] Modifying SlbTemplateVirtualPort   (Inside resourceSlbTemplateVirtualPortUpdate) ")
-		name := d.Get("name").(string)
 		data := dataToSlbTemplateVirtualPort(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateVirtualPort ")
-		d.SetId(name)
-		err := go_thunder.PutSlbTemplateVirtualPort(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateVirtualPort(client.Token, name1, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -233,51 +226,49 @@ func resourceSlbTemplateVirtualPortDelete(ctx context.Context, d *schema.Resourc
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Deleting instance (Inside resourceSlbTemplateVirtualPortDelete) " + name)
-		err := go_thunder.DeleteSlbTemplateVirtualPort(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Deleting instance (Inside resourceSlbTemplateVirtualPortDelete) " + name1)
+		err := go_thunder.DeleteSlbTemplateVirtualPort(client.Token, name1, client.Host)
 		if err != nil {
-			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
+			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
 			return diags
 		}
-		d.SetId("")
 		return nil
 	}
-	return nil
+	return diags
 }
 
-func dataToSlbTemplateVirtualPort(d *schema.ResourceData) go_thunder.VirtualPort {
-	var vc go_thunder.VirtualPort
-	var c go_thunder.VirtualPortInstance
+func dataToSlbTemplateVirtualPort(d *schema.ResourceData) go_thunder.SlbTemplateVirtualPort {
+	var vc go_thunder.SlbTemplateVirtualPort
+	var c go_thunder.SlbTemplateVirtualPortInstance
+	c.SlbTemplateVirtualPortInstanceName = d.Get("name").(string)
+	c.SlbTemplateVirtualPortInstanceAflow = d.Get("aflow").(int)
+	c.SlbTemplateVirtualPortInstanceAllowSynOtherflags = d.Get("allow_syn_otherflags").(int)
+	c.SlbTemplateVirtualPortInstanceConnLimit = d.Get("conn_limit").(int)
+	c.SlbTemplateVirtualPortInstanceConnLimitReset = d.Get("conn_limit_reset").(int)
+	c.SlbTemplateVirtualPortInstanceConnLimitNoLogging = d.Get("conn_limit_no_logging").(int)
+	c.SlbTemplateVirtualPortInstanceConnRateLimit = d.Get("conn_rate_limit").(int)
+	c.SlbTemplateVirtualPortInstanceRateInterval = d.Get("rate_interval").(string)
+	c.SlbTemplateVirtualPortInstanceConnRateLimitReset = d.Get("conn_rate_limit_reset").(int)
+	c.SlbTemplateVirtualPortInstanceConnRateLimitNoLogging = d.Get("conn_rate_limit_no_logging").(int)
+	c.SlbTemplateVirtualPortInstancePktRateType = d.Get("pkt_rate_type").(string)
+	c.SlbTemplateVirtualPortInstanceRate = d.Get("rate").(int)
+	c.SlbTemplateVirtualPortInstancePktRateInterval = d.Get("pkt_rate_interval").(string)
+	c.SlbTemplateVirtualPortInstancePktRateLimitReset = d.Get("pkt_rate_limit_reset").(int)
+	c.SlbTemplateVirtualPortInstanceLogOptions = d.Get("log_options").(string)
+	c.SlbTemplateVirtualPortInstanceWhenRrEnable = d.Get("when_rr_enable").(int)
+	c.SlbTemplateVirtualPortInstanceAllowVipToRportMapping = d.Get("allow_vip_to_rport_mapping").(int)
+	c.SlbTemplateVirtualPortInstanceDscp = d.Get("dscp").(int)
+	c.SlbTemplateVirtualPortInstanceDropUnknownConn = d.Get("drop_unknown_conn").(int)
+	c.SlbTemplateVirtualPortInstanceResetUnknownConn = d.Get("reset_unknown_conn").(int)
+	c.SlbTemplateVirtualPortInstanceResetL7OnFailover = d.Get("reset_l7_on_failover").(int)
+	c.SlbTemplateVirtualPortInstanceIgnoreTCPMsl = d.Get("ignore_tcp_msl").(int)
+	c.SlbTemplateVirtualPortInstanceSnatMsl = d.Get("snat_msl").(int)
+	c.SlbTemplateVirtualPortInstanceSnatPortPreserve = d.Get("snat_port_preserve").(int)
+	c.SlbTemplateVirtualPortInstanceNonSynInitiation = d.Get("non_syn_initiation").(int)
+	c.SlbTemplateVirtualPortInstanceUserTag = d.Get("user_tag").(string)
 
-	c.ResetUnknownConn = d.Get("reset_unknown_conn").(int)
-	c.IgnoreTCPMsl = d.Get("ignore_tcp_msl").(int)
-	c.Rate = d.Get("rate").(int)
-	c.SnatMsl = d.Get("snat_msl").(int)
-	c.AllowSynOtherflags = d.Get("allow_syn_otherflags").(int)
-	c.Aflow = d.Get("aflow").(int)
-	c.ConnLimit = d.Get("conn_limit").(int)
-	c.DropUnknownConn = d.Get("drop_unknown_conn").(int)
-	c.ResetL7OnFailover = d.Get("reset_l7_on_failover").(int)
-	c.PktRateType = d.Get("pkt_rate_type").(string)
-	c.RateInterval = d.Get("rate_interval").(string)
-	c.SnatPortPreserve = d.Get("snat_port_preserve").(int)
-	c.ConnRateLimitReset = d.Get("conn_rate_limit_reset").(int)
-	c.WhenRrEnable = d.Get("when_rr_enable").(int)
-	c.NonSynInitiation = d.Get("non_syn_initiation").(int)
-	c.ConnLimitReset = d.Get("conn_limit_reset").(int)
-	c.Dscp = d.Get("dscp").(int)
-	c.PktRateLimitReset = d.Get("pkt_rate_limit_reset").(int)
-	c.ConnLimitNoLogging = d.Get("conn_limit_no_logging").(int)
-	c.ConnRateLimitNoLogging = d.Get("conn_rate_limit_no_logging").(int)
-	c.LogOptions = d.Get("log_options").(string)
-	c.Name = d.Get("name").(string)
-	c.AllowVipToRportMapping = d.Get("allow_vip_to_rport_mapping").(int)
-	c.PktRateInterval = d.Get("pkt_rate_interval").(string)
-	c.UserTag = d.Get("user_tag").(string)
-	c.ConnRateLimit = d.Get("conn_rate_limit").(int)
-	vc.UUID = c
+	vc.SlbTemplateVirtualPortInstanceName = c
 	return vc
 }

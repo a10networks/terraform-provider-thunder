@@ -2,26 +2,32 @@ package go_thunder
 
 import (
 	"bytes"
-	"encoding/json"
-	"fmt"
+	"github.com/clarketm/json" // "encoding/json"
 	"io/ioutil"
 	"util"
 )
 
-type UDP struct {
-	Name UDPInstance `json:"udp"`
-}
-type UDPInstance struct {
-	Qos                  int    `json:"qos"`
-	Name                 string `json:"name"`
-	StatelessConnTimeout int    `json:"stateless-conn-timeout"`
-	IdleTimeout          int    `json:"idle-timeout"`
-	ReSelectIfServerDown int    `json:"re-select-if-server-down"`
-	Immediate            int    `json:"immediate"`
-	UserTag              string `json:"user-tag"`
+type SlbTemplateUdp struct {
+	SlbTemplateUDPInstanceName SlbTemplateUDPInstance `json:"udp,omitempty"`
 }
 
-func GetUdp(id string, name string, host string) (*UDP, error) {
+type SlbTemplateUDPInstance struct {
+	SlbTemplateUDPInstanceAge                    int    `json:"age,omitempty"`
+	SlbTemplateUDPInstanceAvp                    string `json:"avp,omitempty"`
+	SlbTemplateUDPInstanceDisableClearSession    int    `json:"disable-clear-session,omitempty"`
+	SlbTemplateUDPInstanceIdleTimeout            int    `json:"idle-timeout,omitempty"`
+	SlbTemplateUDPInstanceImmediate              int    `json:"immediate,omitempty"`
+	SlbTemplateUDPInstanceName                   string `json:"name,omitempty"`
+	SlbTemplateUDPInstanceQos                    int    `json:"qos,omitempty"`
+	SlbTemplateUDPInstanceRadiusLbMethodHashType string `json:"radius-lb-method-hash-type,omitempty"`
+	SlbTemplateUDPInstanceReSelectIfServerDown   int    `json:"re-select-if-server-down,omitempty"`
+	SlbTemplateUDPInstanceShort                  int    `json:"short,omitempty"`
+	SlbTemplateUDPInstanceStatelessConnTimeout   int    `json:"stateless-conn-timeout,omitempty"`
+	SlbTemplateUDPInstanceUUID                   string `json:"uuid,omitempty"`
+	SlbTemplateUDPInstanceUserTag                string `json:"user-tag,omitempty"`
+}
+
+func PostSlbTemplateUdp(id string, inst SlbTemplateUdp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -29,33 +35,73 @@ func GetUdp(id string, name string, host string) (*UDP, error) {
 	headers["Accept"] = "application/json"
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
+	logger.Println("[INFO] Inside PostSlbTemplateUdp")
+	payloadBytes, err := json.Marshal(inst)
+	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
+	if err != nil {
+		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
+	}
 
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/template/udp/"+name, nil, headers)
+	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/slb/template/udp", bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-		logger.Println("The HTTP request failed with error \n", err)
+		logger.Println("The HTTP request failed with error ", err)
+		return err
+	} else {
+		data, _ := ioutil.ReadAll(resp.Body)
+		var m SlbTemplateUdp
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
+			return err
+		} else {
+			logger.Println("[INFO] Post REQ RES..........................", m)
+			err := check_api_status("PostSlbTemplateUdp", data)
+			if err != nil {
+				return err
+			}
+
+		}
+	}
+	return err
+}
+
+func GetSlbTemplateUdp(id string, name1 string, host string) (*SlbTemplateUdp, error) {
+
+	logger := util.GetLoggerInstance()
+
+	var headers = make(map[string]string)
+	headers["Accept"] = "application/json"
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = id
+	logger.Println("[INFO] Inside GetSlbTemplateUdp")
+
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/template/udp/"+name1, nil, headers)
+
+	if err != nil {
+		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m UDP
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
-			fmt.Printf("Unmarshal error %s\n", err)
+		var m SlbTemplateUdp
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			fmt.Print(m)
-			logger.Println("[INFO] GetUdp REQ RES..........................", m)
-			err := check_api_status("GetUdp", data)
+			logger.Println("[INFO] Get REQ RES..........................", m)
+			err := check_api_status("GetSlbTemplateUdp", data)
 			if err != nil {
 				return nil, err
 			}
 			return &m, nil
 		}
 	}
+
 }
 
-func PostUdp(id string, sg UDP, host string) error {
+func PutSlbTemplateUdp(id string, name1 string, inst SlbTemplateUdp, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -63,102 +109,68 @@ func PostUdp(id string, sg UDP, host string) error {
 	headers["Accept"] = "application/json"
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
-
-	payloadBytes, err := json.Marshal(sg)
-
+	logger.Println("[INFO] Inside PutSlbTemplateUdp")
+	payloadBytes, err := json.Marshal(inst)
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
-
 	if err != nil {
-		logger.Println("[INFO] Marshalling failed with error \n", err)
+		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
-	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/slb/template/udp", bytes.NewReader(payloadBytes), headers)
+
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/template/udp/"+name1, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-		logger.Println("The HTTP request failed with error \n", err)
-	} else {
-		data, _ := ioutil.ReadAll(resp.Body)
-		var m UDP
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
-			fmt.Printf("Unmarshal error %s\n", err)
-		} else {
-			fmt.Println("response Body:", string(data))
-			logger.Println("response Body:", string(data))
-			err := check_api_status("PostUdp", data)
-			if err != nil {
-				return err
-			}
-		}
-	}
-	return err
-}
-
-func PutUdp(id string, name string, sg UDP, host string) error {
-
-	logger := util.GetLoggerInstance()
-
-	var headers = make(map[string]string)
-	headers["Accept"] = "application/json"
-	headers["Content-Type"] = "application/json"
-	headers["Authorization"] = id
-
-	payloadBytes, err := json.Marshal(sg)
-
-	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
-
-	if err != nil {
-		logger.Println("[INFO] Marshalling failed with error \n", err)
-	}
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/template/udp/"+name, bytes.NewReader(payloadBytes), headers)
-
-	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-		logger.Println("The HTTP request failed with error \n", err)
-	} else {
-		data, _ := ioutil.ReadAll(resp.Body)
-		var m UDP
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
-			fmt.Printf("Unmarshal error %s\n", err)
-		} else {
-			fmt.Println("response Body:", string(data))
-			logger.Println("response Body:", string(data))
-			err := check_api_status("PutUdp", data)
-			if err != nil {
-				return err
-			}
-		}
-	}
-	return err
-}
-
-func DeleteUdp(id string, name string, host string) error {
-
-	logger := util.GetLoggerInstance()
-
-	var headers = make(map[string]string)
-	headers["Accept"] = "application/json"
-	headers["Content-Type"] = "application/json"
-	headers["Authorization"] = id
-
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/template/udp/"+name, nil, headers)
-
-	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
-		logger.Println("The HTTP request failed with error \n", err)
+		logger.Println("The HTTP request failed with error ", err)
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m UDP
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
-			fmt.Printf("Unmarshal error %s\n", err)
+		var m SlbTemplateUdp
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
-			fmt.Print(m)
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] Put REQ RES..........................", m)
+			err := check_api_status("PutSlbTemplateUdp", data)
+			if err != nil {
+				return err
+			}
+
 		}
 	}
-	return nil
+	return err
+}
+
+func DeleteSlbTemplateUdp(id string, name1 string, host string) error {
+
+	logger := util.GetLoggerInstance()
+
+	var headers = make(map[string]string)
+	headers["Accept"] = "application/json"
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = id
+	logger.Println("[INFO] Inside DeleteSlbTemplateUdp")
+
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/template/udp/"+name1, nil, headers)
+
+	if err != nil {
+		logger.Println("The HTTP request failed with error ", err)
+		return err
+	} else {
+		data, _ := ioutil.ReadAll(resp.Body)
+		var m SlbTemplateUdp
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
+			return err
+		} else {
+			logger.Println("[INFO] Delete REQ RES..........................", m)
+			err := check_api_status("DeleteSlbTemplateUdp", data)
+			if err != nil {
+				return err
+			}
+
+		}
+	}
+	return err
 }

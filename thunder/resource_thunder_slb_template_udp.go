@@ -1,45 +1,22 @@
 package thunder
 
-//Thunder resource Udp
+//Thunder resource SlbTemplateUdp
 
 import (
 	"context"
-	"log"
-	"util"
-
-	go_thunder "github.com/go_thunder/thunder"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"util"
 )
 
 func resourceSlbTemplateUdp() *schema.Resource {
 	return &schema.Resource{
-		CreateContext: resourceUdpCreate,
-		UpdateContext: resourceUdpUpdate,
-		ReadContext:   resourceUdpRead,
-		DeleteContext: resourceUdpDelete,
-
+		CreateContext: resourceSlbTemplateUdpCreate,
+		UpdateContext: resourceSlbTemplateUdpUpdate,
+		ReadContext:   resourceSlbTemplateUdpRead,
+		DeleteContext: resourceSlbTemplateUdpDelete,
 		Schema: map[string]*schema.Schema{
-			"qos": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"user_tag": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"re_select_if_server_down": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"immediate": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
 			"name": {
 				Type:        schema.TypeString,
 				Optional:    true,
@@ -50,8 +27,58 @@ func resourceSlbTemplateUdp() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"qos": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
 			"stateless_conn_timeout": {
 				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"immediate": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"short": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"age": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"re_select_if_server_down": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"disable_clear_session": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"radius_lb_method_hash_type": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"avp": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"uuid": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"user_tag": {
+				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
@@ -59,112 +86,105 @@ func resourceSlbTemplateUdp() *schema.Resource {
 	}
 }
 
-func resourceUdpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+func resourceSlbTemplateUdpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
-		name := d.Get("name").(string)
-		logger.Println("[INFO] Creating udp (Inside resourceUdpCreate    " + name)
-		v := dataToUdp(name, d)
-		d.SetId(name)
-		err := go_thunder.PostUdp(client.Token, v, client.Host)
+		logger.Println("[INFO] Creating SlbTemplateUdp (Inside resourceSlbTemplateUdpCreate) ")
+		name1 := d.Get("name").(string)
+		data := dataToSlbTemplateUdp(d)
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateUdp --")
+		d.SetId(name1)
+		err := go_thunder.PostSlbTemplateUdp(client.Token, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
-		return resourceUdpRead(ctx, d, meta)
+
+		return resourceSlbTemplateUdpRead(ctx, d, meta)
+
 	}
 	return diags
 }
 
-func resourceUdpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+func resourceSlbTemplateUdpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
+	logger.Println("[INFO] Reading SlbTemplateUdp (Inside resourceSlbTemplateUdpRead)")
 
 	var diags diag.Diagnostics
-	logger.Println("[INFO] Reading udp (Inside resourceUdpRead)")
-
 	if client.Host != "" {
-		client := meta.(Thunder)
-
-		name := d.Id()
-
-		logger.Println("[INFO] Fetching udp Read" + name)
-
-		udp, err := go_thunder.GetUdp(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Fetching service Read" + name1)
+		data, err := go_thunder.GetSlbTemplateUdp(client.Token, name1, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
-		if udp == nil {
-			logger.Println("[INFO] No udp found " + name)
-			d.SetId("")
+		if data == nil {
+			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
-
 		return diags
-	}
-	return nil
-}
-
-func resourceUdpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	logger := util.GetLoggerInstance()
-	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
-
-	if client.Host != "" {
-		name := d.Get("name").(string)
-		logger.Println("[INFO] Modifying udp (Inside resourceUdpUpdate    " + name)
-		v := dataToUdp(name, d)
-		d.SetId(name)
-		err := go_thunder.PutUdp(client.Token, name, v, client.Host)
-		if err != nil {
-			return diag.FromErr(err)
-		}
-		return resourceUdpRead(ctx, d, meta)
 	}
 	return diags
 }
 
-func resourceUdpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-
+func resourceSlbTemplateUdpUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-	logger := util.GetLoggerInstance()
-
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Deleting udp (Inside resourceUdpDelete) " + name)
-
-		err := go_thunder.DeleteUdp(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Modifying SlbTemplateUdp   (Inside resourceSlbTemplateUdpUpdate) ")
+		data := dataToSlbTemplateUdp(d)
+		logger.Println("[INFO] received formatted data from method data to SlbTemplateUdp ")
+		err := go_thunder.PutSlbTemplateUdp(client.Token, name1, data, client.Host)
 		if err != nil {
-			log.Printf("[ERROR] Unable to Delete udp  (%s) (%v)", name, err)
-			return diags
+			return diag.FromErr(err)
 		}
-		d.SetId("")
-		return nil
+
+		return resourceSlbTemplateUdpRead(ctx, d, meta)
+
 	}
-	return nil
+	return diags
 }
 
-//utility method to instantiate udp structure
-func dataToUdp(name string, d *schema.ResourceData) go_thunder.UDP {
-	var s go_thunder.UDP
+func resourceSlbTemplateUdpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	logger := util.GetLoggerInstance()
+	client := meta.(Thunder)
 
-	var sInstance go_thunder.UDPInstance
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		name1 := d.Id()
+		logger.Println("[INFO] Deleting instance (Inside resourceSlbTemplateUdpDelete) " + name1)
+		err := go_thunder.DeleteSlbTemplateUdp(client.Token, name1, client.Host)
+		if err != nil {
+			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
+			return diags
+		}
+		return nil
+	}
+	return diags
+}
 
-	sInstance.Qos = d.Get("qos").(int)
-	sInstance.Name = d.Get("name").(string)
-	sInstance.StatelessConnTimeout = d.Get("stateless_conn_timeout").(int)
-	sInstance.IdleTimeout = d.Get("idle_timeout").(int)
-	sInstance.ReSelectIfServerDown = d.Get("re_select_if_server_down").(int)
-	sInstance.Immediate = d.Get("immediate").(int)
-	sInstance.UserTag = d.Get("user_tag").(string)
+func dataToSlbTemplateUdp(d *schema.ResourceData) go_thunder.SlbTemplateUdp {
+	var vc go_thunder.SlbTemplateUdp
+	var c go_thunder.SlbTemplateUDPInstance
+	c.SlbTemplateUDPInstanceName = d.Get("name").(string)
+	c.SlbTemplateUDPInstanceIdleTimeout = d.Get("idle_timeout").(int)
+	c.SlbTemplateUDPInstanceQos = d.Get("qos").(int)
+	c.SlbTemplateUDPInstanceStatelessConnTimeout = d.Get("stateless_conn_timeout").(int)
+	c.SlbTemplateUDPInstanceImmediate = d.Get("immediate").(int)
+	c.SlbTemplateUDPInstanceShort = d.Get("short").(int)
+	c.SlbTemplateUDPInstanceAge = d.Get("age").(int)
+	c.SlbTemplateUDPInstanceReSelectIfServerDown = d.Get("re_select_if_server_down").(int)
+	c.SlbTemplateUDPInstanceDisableClearSession = d.Get("disable_clear_session").(int)
+	c.SlbTemplateUDPInstanceRadiusLbMethodHashType = d.Get("radius_lb_method_hash_type").(string)
+	c.SlbTemplateUDPInstanceAvp = d.Get("avp").(string)
+	c.SlbTemplateUDPInstanceUserTag = d.Get("user_tag").(string)
 
-	s.Name = sInstance
-
-	return s
+	vc.SlbTemplateUDPInstanceName = c
+	return vc
 }
