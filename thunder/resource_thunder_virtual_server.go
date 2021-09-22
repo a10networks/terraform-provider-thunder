@@ -5,10 +5,11 @@ package thunder
 import (
 	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
+	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"util"
 )
 
 func resourceVirtualServer() *schema.Resource {
@@ -1252,6 +1253,24 @@ func resourceVirtualServer() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
+						"sampling_enable": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"counters1": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"packet_capture_template": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
 					},
 				},
 			},
@@ -1619,6 +1638,18 @@ func dataToVirtualServer(d *schema.ResourceData) go_thunder.VirtualServer {
 		obj2.VirtualServerInstancePortListReplyAcmeChallenge = d.Get(prefix2 + "reply_acme_challenge").(int)
 		obj2.VirtualServerInstancePortListResolveWebCatList = d.Get(prefix2 + "resolve_web_cat_list").(string)
 		obj2.VirtualServerInstancePortListUserTag = d.Get(prefix2 + "user_tag").(string)
+
+		VirtualServerInstancePortListSamplingEnableCount := d.Get(prefix2 + "sampling_enable.#").(int)
+		obj2.VirtualServerInstancePortListSamplingEnableCounters1 = make([]go_thunder.VirtualServerInstancePortListSamplingEnable, 0, VirtualServerInstancePortListSamplingEnableCount)
+
+		for i := 0; i < VirtualServerInstancePortListSamplingEnableCount; i++ {
+			var obj2_4 go_thunder.VirtualServerInstancePortListSamplingEnable
+			prefix2_4 := prefix2 + fmt.Sprintf("sampling_enable.%d.", i)
+			obj2_4.VirtualServerInstancePortListSamplingEnableCounters1 = d.Get(prefix2_4 + "counters1").(string)
+			obj2.VirtualServerInstancePortListSamplingEnableCounters1 = append(obj2.VirtualServerInstancePortListSamplingEnableCounters1, obj2_4)
+		}
+
+		obj2.VirtualServerInstancePortListPacketCaptureTemplate = d.Get(prefix2 + "packet_capture_template").(string)
 		c.VirtualServerInstancePortListPortNumber = append(c.VirtualServerInstancePortListPortNumber, obj2)
 	}
 
