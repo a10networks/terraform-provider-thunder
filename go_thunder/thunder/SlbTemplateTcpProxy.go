@@ -7,59 +7,65 @@ import (
 	"util"
 )
 
-type TCPProxy struct {
-	UUID TCPProxyInstance `json:"tcp-proxy,omitempty"`
+type SlbTemplateTcpProxy struct {
+	SlbTemplateTCPProxyInstanceName SlbTemplateTCPProxyInstance `json:"tcp-proxy,omitempty"`
 }
 
-type TCPProxyInstance struct {
-	Qos                     int    `json:"qos,omitempty"`
-	InitCwnd                int    `json:"init-cwnd,omitempty"`
-	IdleTimeout             int    `json:"idle-timeout,omitempty"`
-	FinTimeout              int    `json:"fin-timeout,omitempty"`
-	HalfOpenIdleTimeout     int    `json:"half-open-idle-timeout,omitempty"`
-	Reno                    int    `json:"reno,omitempty"`
-	Down                    int    `json:"down,omitempty"`
-	EarlyRetransmit         int    `json:"early-retransmit,omitempty"`
-	ServerDownAction        string `json:"server-down-action,omitempty"`
-	Timewait                int    `json:"timewait,omitempty"`
-	MinRto                  int    `json:"min-rto,omitempty"`
-	DynamicBufferAllocation int    `json:"dynamic-buffer-allocation,omitempty"`
-	LimitedSlowstart        int    `json:"limited-slowstart,omitempty"`
-	DisableSack             int    `json:"disable-sack,omitempty"`
-	DisableWindowScale      int    `json:"disable-window-scale,omitempty"`
-	AliveIfActive           int    `json:"alive-if-active,omitempty"`
-	Mss                     int    `json:"mss,omitempty"`
-	KeepaliveInterval       int    `json:"keepalive-interval,omitempty"`
-	RetransmitRetries       int    `json:"retransmit-retries,omitempty"`
-	InsertClientIP          int    `json:"insert-client-ip,omitempty"`
-	TransmitBuffer          int    `json:"transmit-buffer,omitempty"`
-	Nagle                   int    `json:"nagle,omitempty"`
-	ForceDeleteTimeout100Ms int    `json:"force-delete-timeout-100ms,omitempty"`
-	InitialWindowSize       int    `json:"initial-window-size,omitempty"`
-	KeepaliveProbes         int    `json:"keepalive-probes,omitempty"`
-	PshFlagOptimization     int    `json:"psh-flag-optimization,omitempty"`
-	AckAggressiveness       string `json:"ack-aggressiveness,omitempty"`
-	BackendWscale           int    `json:"backend-wscale,omitempty"`
-	Disable                 int    `json:"disable,omitempty"`
-	ResetRev                int    `json:"reset-rev,omitempty"`
-	Maxburst                int    `json:"maxburst,omitempty"`
-	UUID                    string `json:"uuid,omitempty"`
-	ReceiveBuffer           int    `json:"receive-buffer,omitempty"`
-	DelSessionOnServerDown  int    `json:"del-session-on-server-down,omitempty"`
-	Name                    string `json:"name,omitempty"`
-	ReassemblyTimeout       int    `json:"reassembly-timeout,omitempty"`
-	ResetFwd                int    `json:"reset-fwd,omitempty"`
-	DisableTCPTimestamps    int    `json:"disable-tcp-timestamps,omitempty"`
-	SynRetries              int    `json:"syn-retries,omitempty"`
-	ForceDeleteTimeout      int    `json:"force-delete-timeout,omitempty"`
-	UserTag                 string `json:"user-tag,omitempty"`
-	ReassemblyLimit         int    `json:"reassembly-limit,omitempty"`
-	InvalidRateLimit        int    `json:"invalid-rate-limit,omitempty"`
-	DisableAbc              int    `json:"disable-abc,omitempty"`
-	HalfCloseIdleTimeout    int    `json:"half-close-idle-timeout,omitempty"`
+type SlbTemplateTCPProxyInstance struct {
+	SlbTemplateTCPProxyInstanceAckAggressiveness            string                                 `json:"ack-aggressiveness,omitempty"`
+	SlbTemplateTCPProxyInstanceAliveIfActive                int                                    `json:"alive-if-active,omitempty"`
+	SlbTemplateTCPProxyInstanceBackendWscale                int                                    `json:"backend-wscale,omitempty"`
+	SlbTemplateTCPProxyInstanceDelSessionOnServerDown       int                                    `json:"del-session-on-server-down,omitempty"`
+	SlbTemplateTCPProxyInstanceDisable                      int                                    `json:"disable,omitempty"`
+	SlbTemplateTCPProxyInstanceDisableAbc                   int                                    `json:"disable-abc,omitempty"`
+	SlbTemplateTCPProxyInstanceDisableSack                  int                                    `json:"disable-sack,omitempty"`
+	SlbTemplateTCPProxyInstanceDisableTCPTimestamps         int                                    `json:"disable-tcp-timestamps,omitempty"`
+	SlbTemplateTCPProxyInstanceDisableWindowScale           int                                    `json:"disable-window-scale,omitempty"`
+	SlbTemplateTCPProxyInstanceDown                         int                                    `json:"down,omitempty"`
+	SlbTemplateTCPProxyInstanceDynamicBufferAllocation      int                                    `json:"dynamic-buffer-allocation,omitempty"`
+	SlbTemplateTCPProxyInstanceEarlyRetransmit              int                                    `json:"early-retransmit,omitempty"`
+	SlbTemplateTCPProxyInstanceFinTimeout                   int                                    `json:"fin-timeout,omitempty"`
+	SlbTemplateTCPProxyInstanceForceDeleteTimeout           int                                    `json:"force-delete-timeout,omitempty"`
+	SlbTemplateTCPProxyInstanceForceDeleteTimeout100Ms      int                                    `json:"force-delete-timeout-100ms,omitempty"`
+	SlbTemplateTCPProxyInstanceHalfCloseIdleTimeout         int                                    `json:"half-close-idle-timeout,omitempty"`
+	SlbTemplateTCPProxyInstanceHalfOpenIdleTimeout          int                                    `json:"half-open-idle-timeout,omitempty"`
+	SlbTemplateTCPProxyInstanceIdleTimeout                  int                                    `json:"idle-timeout,omitempty"`
+	SlbTemplateTCPProxyInstanceInitCwnd                     int                                    `json:"init-cwnd,omitempty"`
+	SlbTemplateTCPProxyInstanceInitialWindowSize            int                                    `json:"initial-window-size,omitempty"`
+	SlbTemplateTCPProxyInstanceInsertClientIP               int                                    `json:"insert-client-ip,omitempty"`
+	SlbTemplateTCPProxyInstanceInvalidRateLimit             int                                    `json:"invalid-rate-limit,omitempty"`
+	SlbTemplateTCPProxyInstanceKeepaliveInterval            int                                    `json:"keepalive-interval,omitempty"`
+	SlbTemplateTCPProxyInstanceKeepaliveProbes              int                                    `json:"keepalive-probes,omitempty"`
+	SlbTemplateTCPProxyInstanceLimitedSlowstart             int                                    `json:"limited-slowstart,omitempty"`
+	SlbTemplateTCPProxyInstanceMaxburst                     int                                    `json:"maxburst,omitempty"`
+	SlbTemplateTCPProxyInstanceMinRto                       int                                    `json:"min-rto,omitempty"`
+	SlbTemplateTCPProxyInstanceMss                          int                                    `json:"mss,omitempty"`
+	SlbTemplateTCPProxyInstanceNagle                        int                                    `json:"nagle,omitempty"`
+	SlbTemplateTCPProxyInstanceName                         string                                 `json:"name,omitempty"`
+	SlbTemplateTCPProxyInstanceProxyHeaderProxyHeaderAction SlbTemplateTCPProxyInstanceProxyHeader `json:"proxy-header,omitempty"`
+	SlbTemplateTCPProxyInstancePshFlagOptimization          int                                    `json:"psh-flag-optimization,omitempty"`
+	SlbTemplateTCPProxyInstanceQos                          int                                    `json:"qos,omitempty"`
+	SlbTemplateTCPProxyInstanceReassemblyLimit              int                                    `json:"reassembly-limit,omitempty"`
+	SlbTemplateTCPProxyInstanceReassemblyTimeout            int                                    `json:"reassembly-timeout,omitempty"`
+	SlbTemplateTCPProxyInstanceReceiveBuffer                int                                    `json:"receive-buffer,omitempty"`
+	SlbTemplateTCPProxyInstanceReno                         int                                    `json:"reno,omitempty"`
+	SlbTemplateTCPProxyInstanceResetFwd                     int                                    `json:"reset-fwd,omitempty"`
+	SlbTemplateTCPProxyInstanceResetRev                     int                                    `json:"reset-rev,omitempty"`
+	SlbTemplateTCPProxyInstanceRetransmitRetries            int                                    `json:"retransmit-retries,omitempty"`
+	SlbTemplateTCPProxyInstanceServerDownAction             string                                 `json:"server-down-action,omitempty"`
+	SlbTemplateTCPProxyInstanceSynRetries                   int                                    `json:"syn-retries,omitempty"`
+	SlbTemplateTCPProxyInstanceTimewait                     int                                    `json:"timewait,omitempty"`
+	SlbTemplateTCPProxyInstanceTransmitBuffer               int                                    `json:"transmit-buffer,omitempty"`
+	SlbTemplateTCPProxyInstanceUUID                         string                                 `json:"uuid,omitempty"`
+	SlbTemplateTCPProxyInstanceUserTag                      string                                 `json:"user-tag,omitempty"`
 }
 
-func PostSlbTemplateTcpProxy(id string, inst TCPProxy, host string) error {
+type SlbTemplateTCPProxyInstanceProxyHeader struct {
+	SlbTemplateTCPProxyInstanceProxyHeaderProxyHeaderAction string `json:"proxy-header-action,omitempty"`
+	SlbTemplateTCPProxyInstanceProxyHeaderVersion           string `json:"version,omitempty"`
+}
+
+func PostSlbTemplateTcpProxy(id string, inst SlbTemplateTcpProxy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -72,6 +78,7 @@ func PostSlbTemplateTcpProxy(id string, inst TCPProxy, host string) error {
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/slb/template/tcp-proxy", bytes.NewReader(payloadBytes), headers)
@@ -79,16 +86,15 @@ func PostSlbTemplateTcpProxy(id string, inst TCPProxy, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m TCPProxy
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m SlbTemplateTcpProxy
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] PostSlbTemplateTcpProxy REQ RES..........................", m)
+			logger.Println("[INFO] Post REQ RES..........................", m)
 			err := check_api_status("PostSlbTemplateTcpProxy", data)
 			if err != nil {
 				return err
@@ -99,7 +105,7 @@ func PostSlbTemplateTcpProxy(id string, inst TCPProxy, host string) error {
 	return err
 }
 
-func GetSlbTemplateTcpProxy(id string, name string, host string) (*TCPProxy, error) {
+func GetSlbTemplateTcpProxy(id string, name1 string, host string) (*SlbTemplateTcpProxy, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -109,21 +115,20 @@ func GetSlbTemplateTcpProxy(id string, name string, host string) (*TCPProxy, err
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside GetSlbTemplateTcpProxy")
 
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/template/tcp-proxy/"+name, nil, headers)
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/template/tcp-proxy/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m TCPProxy
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m SlbTemplateTcpProxy
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GetSlbTemplateTcpProxy REQ RES..........................", m)
+			logger.Println("[INFO] Get REQ RES..........................", m)
 			err := check_api_status("GetSlbTemplateTcpProxy", data)
 			if err != nil {
 				return nil, err
@@ -134,7 +139,7 @@ func GetSlbTemplateTcpProxy(id string, name string, host string) (*TCPProxy, err
 
 }
 
-func PutSlbTemplateTcpProxy(id string, name string, inst TCPProxy, host string) error {
+func PutSlbTemplateTcpProxy(id string, name1 string, inst SlbTemplateTcpProxy, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -147,23 +152,23 @@ func PutSlbTemplateTcpProxy(id string, name string, inst TCPProxy, host string) 
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/template/tcp-proxy/"+name, bytes.NewReader(payloadBytes), headers)
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/template/tcp-proxy/"+name1, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m TCPProxy
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m SlbTemplateTcpProxy
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] PutSlbTemplateTcpProxy REQ RES..........................", m)
+			logger.Println("[INFO] Put REQ RES..........................", m)
 			err := check_api_status("PutSlbTemplateTcpProxy", data)
 			if err != nil {
 				return err
@@ -174,7 +179,7 @@ func PutSlbTemplateTcpProxy(id string, name string, inst TCPProxy, host string) 
 	return err
 }
 
-func DeleteSlbTemplateTcpProxy(id string, name string, host string) error {
+func DeleteSlbTemplateTcpProxy(id string, name1 string, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -184,23 +189,26 @@ func DeleteSlbTemplateTcpProxy(id string, name string, host string) error {
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside DeleteSlbTemplateTcpProxy")
 
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/template/tcp-proxy/"+name, nil, headers)
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/template/tcp-proxy/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m TCPProxy
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m SlbTemplateTcpProxy
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] Delete REQ RES..........................", m)
+			err := check_api_status("DeleteSlbTemplateTcpProxy", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-	return nil
+	return err
 }

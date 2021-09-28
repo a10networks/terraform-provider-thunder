@@ -297,6 +297,7 @@ func Provider() *schema.Provider {
 			"thunder_interface_lif":                           resourceInterfaceLif(),
 			"thunder_interface_lif_ip":                        resourceInterfaceLifIp(),
 			"thunder_file_ssl_cert":                           resourceFileSslCert(),
+			"thunder_admin_session":                           resourceAdminSession(),
 		},
 
 		ConfigureContextFunc: providerConfigure,
