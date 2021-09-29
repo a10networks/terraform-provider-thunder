@@ -2,8 +2,10 @@ package go_thunder
 
 import (
 	"bytes"
-	"github.com/clarketm/json" // "encoding/json"
+	"encoding/json"
+	json_marsh "github.com/clarketm/json" // "encoding/json"
 	"io/ioutil"
+	"net/url"
 	"util"
 )
 
@@ -288,7 +290,7 @@ func PostVirtualServer(id string, inst VirtualServer, host string) error {
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside PostVirtualServer")
-	payloadBytes, err := json.Marshal(inst)
+	payloadBytes, err := json_marsh.Marshal(inst)
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
@@ -328,8 +330,8 @@ func GetVirtualServer(id string, name1 string, host string) (*VirtualServer, err
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside GetVirtualServer")
-
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/virtual-server/"+name1, nil, headers)
+	nameEncode := url.QueryEscape(name1)
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/virtual-server/"+nameEncode, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
@@ -362,14 +364,14 @@ func PutVirtualServer(id string, name1 string, inst VirtualServer, host string) 
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside PutVirtualServer")
-	payloadBytes, err := json.Marshal(inst)
+	payloadBytes, err := json_marsh.Marshal(inst)
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
 		return err
 	}
-
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/virtual-server/"+name1, bytes.NewReader(payloadBytes), headers)
+	nameEncode := url.QueryEscape(name1)
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/virtual-server/"+nameEncode, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
@@ -402,8 +404,8 @@ func DeleteVirtualServer(id string, name1 string, host string) error {
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside DeleteVirtualServer")
-
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/virtual-server/"+name1, nil, headers)
+	nameEncode := url.QueryEscape(name1)
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/virtual-server/"+nameEncode, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)

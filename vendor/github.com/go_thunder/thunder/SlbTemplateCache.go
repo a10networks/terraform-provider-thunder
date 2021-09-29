@@ -12,27 +12,33 @@ type SlbTemplateCache struct {
 }
 
 type SlbTemplateCacheInstance struct {
-	SlbTemplateCacheInstanceAcceptReloadReq        int                                      `json:"accept-reload-req,omitempty"`
-	SlbTemplateCacheInstanceAge                    int                                      `json:"age,omitempty"`
-	SlbTemplateCacheInstanceDefaultPolicyNocache   int                                      `json:"default-policy-nocache,omitempty"`
-	SlbTemplateCacheInstanceDisableInsertAge       int                                      `json:"disable-insert-age,omitempty"`
-	SlbTemplateCacheInstanceDisableInsertVia       int                                      `json:"disable-insert-via,omitempty"`
-	SlbTemplateCacheInstanceLocalURIPolicyLocalURI []SlbTemplateCacheInstanceLocalURIPolicy `json:"local-uri-policy,omitempty"`
-	SlbTemplateCacheInstanceLogging                string                                   `json:"logging,omitempty"`
-	SlbTemplateCacheInstanceMaxCacheSize           int                                      `json:"max-cache-size,omitempty"`
-	SlbTemplateCacheInstanceMaxContentSize         int                                      `json:"max-content-size,omitempty"`
-	SlbTemplateCacheInstanceMinContentSize         int                                      `json:"min-content-size,omitempty"`
-	SlbTemplateCacheInstanceName                   string                                   `json:"name,omitempty"`
-	SlbTemplateCacheInstanceRemoveCookies          int                                      `json:"remove-cookies,omitempty"`
-	SlbTemplateCacheInstanceReplacementPolicy      string                                   `json:"replacement-policy,omitempty"`
-	SlbTemplateCacheInstanceURIPolicyURI           []SlbTemplateCacheInstanceURIPolicy      `json:"uri-policy,omitempty"`
-	SlbTemplateCacheInstanceUUID                   string                                   `json:"uuid,omitempty"`
-	SlbTemplateCacheInstanceUserTag                string                                   `json:"user-tag,omitempty"`
-	SlbTemplateCacheInstanceVerifyHost             int                                      `json:"verify-host,omitempty"`
+	SlbTemplateCacheInstanceAcceptReloadReq         int                                      `json:"accept-reload-req,omitempty"`
+	SlbTemplateCacheInstanceAge                     int                                      `json:"age,omitempty"`
+	SlbTemplateCacheInstanceDefaultPolicyNocache    int                                      `json:"default-policy-nocache,omitempty"`
+	SlbTemplateCacheInstanceDisableInsertAge        int                                      `json:"disable-insert-age,omitempty"`
+	SlbTemplateCacheInstanceDisableInsertVia        int                                      `json:"disable-insert-via,omitempty"`
+	SlbTemplateCacheInstanceLocalURIPolicyLocalURI  []SlbTemplateCacheInstanceLocalURIPolicy `json:"local-uri-policy,omitempty"`
+	SlbTemplateCacheInstanceLogging                 string                                   `json:"logging,omitempty"`
+	SlbTemplateCacheInstanceMaxCacheSize            int                                      `json:"max-cache-size,omitempty"`
+	SlbTemplateCacheInstanceMaxContentSize          int                                      `json:"max-content-size,omitempty"`
+	SlbTemplateCacheInstanceMinContentSize          int                                      `json:"min-content-size,omitempty"`
+	SlbTemplateCacheInstanceName                    string                                   `json:"name,omitempty"`
+	SlbTemplateCacheInstancePacketCaptureTemplate   string                                   `json:"packet-capture-template,omitempty"`
+	SlbTemplateCacheInstanceRemoveCookies           int                                      `json:"remove-cookies,omitempty"`
+	SlbTemplateCacheInstanceReplacementPolicy       string                                   `json:"replacement-policy,omitempty"`
+	SlbTemplateCacheInstanceSamplingEnableCounters1 []SlbTemplateCacheInstanceSamplingEnable `json:"sampling-enable,omitempty"`
+	SlbTemplateCacheInstanceURIPolicyURI            []SlbTemplateCacheInstanceURIPolicy      `json:"uri-policy,omitempty"`
+	SlbTemplateCacheInstanceUUID                    string                                   `json:"uuid,omitempty"`
+	SlbTemplateCacheInstanceUserTag                 string                                   `json:"user-tag,omitempty"`
+	SlbTemplateCacheInstanceVerifyHost              int                                      `json:"verify-host,omitempty"`
 }
 
 type SlbTemplateCacheInstanceLocalURIPolicy struct {
 	SlbTemplateCacheInstanceLocalURIPolicyLocalURI string `json:"local-uri,omitempty"`
+}
+
+type SlbTemplateCacheInstanceSamplingEnable struct {
+	SlbTemplateCacheInstanceSamplingEnableCounters1 string `json:"counters1,omitempty"`
 }
 
 type SlbTemplateCacheInstanceURIPolicy struct {

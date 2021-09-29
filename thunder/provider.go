@@ -95,7 +95,7 @@ func Provider() *schema.Provider {
 			"thunder_slb_template_server_ssl":               resourceSlbTemplateServerSSL(),
 			"thunder_slb_template_client_ssl":               resourceSlbTemplateClientSSL(),
 			"thunder_slb_template_sip":                      resourceSlbTemplateSIP(),
-			"thunder_slb_template_http":                     resourceSlbTemplateHTTP(),
+			"thunder_slb_template_http":                     resourceSlbTemplateHttp(),
 			"thunder_slb_template_monitor":                  resourceSlbTemplateMonitor(),
 			"thunder_slb_template_logging":                  resourceSlbTemplateLogging(),
 			"thunder_slb_template_snmp":                     resourceSlbTemplateSNMP(),
@@ -298,6 +298,8 @@ func Provider() *schema.Provider {
 			"thunder_interface_lif_ip":                        resourceInterfaceLifIp(),
 			"thunder_file_ssl_cert":                           resourceFileSslCert(),
 			"thunder_admin_session":                           resourceAdminSession(),
+			"thunder_file_ssl_cert_key":                       resourceFileSslCertKey(),
+			"thunder_file_ssl_key":                            resourceFileSslKey(),
 		},
 
 		ConfigureContextFunc: providerConfigure,

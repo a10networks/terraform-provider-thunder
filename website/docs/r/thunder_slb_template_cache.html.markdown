@@ -45,6 +45,10 @@ logging = "string"
 verify_host = 0
 uuid = "string"
 user_tag = "string"
+sampling-enable {   
+	counters1 =  "string" 
+	}
+packet_capture_template = "string"
  
 }
 
@@ -73,4 +77,6 @@ user_tag = "string"
 * `verify-host` - Verify request using host before sending response from RAM cache
 * `uuid` - uuid of the object
 * `user-tag` - Customized tag
+* `counters1` - 'all': all; 'hits': Cache hits; 'miss': Cache misses; 'bytes_served': Bytes served from cache; 'total_req': Total requests received; 'caching_req': Total requests to cache; 'nc_req_header': nc_req_header; 'nc_res_header': nc_res_header; 'rv_success': rv_success; 'rv_failure': rv_failure; 'ims_request': ims_request; 'nm_response': nm_response; 'rsp_type_CL': rsp_type_CL; 'rsp_type_CE': rsp_type_CE; 'rsp_type_304': rsp_type_304; 'rsp_type_other': rsp_type_other; 'rsp_no_compress': rsp_no_compress; 'rsp_gzip': rsp_gzip; 'rsp_deflate': rsp_deflate; 'rsp_other': rsp_other; 'nocache_match': nocache_match; 'match': match; 'invalidate_match': invalidate_match; 'content_toobig': content_toobig; 'content_toosmall': content_toosmall; 'entry_create_failures': entry_create_failures; 'mem_size': mem_size; 'entry_num': entry_num; 'replaced_entry': replaced_entry; 'aging_entry': aging_entry; 'cleaned_entry': cleaned_entry; 'rsp_type_stream': rsp_type_stream; 'header_save_error': header_save_error;
+* `packet-capture-template` - Name of the packet capture template to be bind with this object
 

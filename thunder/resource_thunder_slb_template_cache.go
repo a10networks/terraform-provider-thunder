@@ -134,6 +134,24 @@ func resourceSlbTemplateCache() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"sampling_enable": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"counters1": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"packet_capture_template": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
 		},
 	}
 }
@@ -262,6 +280,18 @@ func dataToSlbTemplateCache(d *schema.ResourceData) go_thunder.SlbTemplateCache 
 	c.SlbTemplateCacheInstanceLogging = d.Get("logging").(string)
 	c.SlbTemplateCacheInstanceVerifyHost = d.Get("verify_host").(int)
 	c.SlbTemplateCacheInstanceUserTag = d.Get("user_tag").(string)
+
+	SlbTemplateCacheInstanceSamplingEnableCount := d.Get("sampling_enable.#").(int)
+	c.SlbTemplateCacheInstanceSamplingEnableCounters1 = make([]go_thunder.SlbTemplateCacheInstanceSamplingEnable, 0, SlbTemplateCacheInstanceSamplingEnableCount)
+
+	for i := 0; i < SlbTemplateCacheInstanceSamplingEnableCount; i++ {
+		var obj3 go_thunder.SlbTemplateCacheInstanceSamplingEnable
+		prefix3 := fmt.Sprintf("sampling_enable.%d.", i)
+		obj3.SlbTemplateCacheInstanceSamplingEnableCounters1 = d.Get(prefix3 + "counters1").(string)
+		c.SlbTemplateCacheInstanceSamplingEnableCounters1 = append(c.SlbTemplateCacheInstanceSamplingEnableCounters1, obj3)
+	}
+
+	c.SlbTemplateCacheInstancePacketCaptureTemplate = d.Get("packet_capture_template").(string)
 
 	vc.SlbTemplateCacheInstanceName = c
 	return vc
