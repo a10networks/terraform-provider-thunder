@@ -25,6 +25,7 @@ resource "thunder_file_ssl_cert_key" "resourceFileSslCertKeyTest" {
 size = 0
 file_handle = "string"
 secured = 0
+file_local_path = "/path/to/pki-ssl-cert"
 action = "string"
 dst_file = "string"
  
@@ -41,4 +42,5 @@ dst_file = "string"
 * `secured` - Mark keys as non-exportable
 * `action` - 'create': create; 'import': import; 'export': export; 'copy': copy; 'rename': rename; 'check': check; 'replace': replace; 'delete': delete;
 * `dst-file` - destination file name for copy and rename action
+* `file_local_path` - local directory path for pki ssl-cert to upload
 

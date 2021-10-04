@@ -4,12 +4,10 @@ package thunder
 
 import (
 	"context"
-	"log"
-	"util"
-
-	go_thunder "github.com/go_thunder/thunder"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"util"
 )
 
 func resourceSlbTemplateServer() *schema.Resource {
@@ -19,22 +17,22 @@ func resourceSlbTemplateServer() *schema.Resource {
 		ReadContext:   resourceSlbTemplateServerRead,
 		DeleteContext: resourceSlbTemplateServerDelete,
 		Schema: map[string]*schema.Schema{
-			"health_check": {
+			"name": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
-			"extended_stats": {
+			"conn_limit": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"till": {
+			"resume": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"max_dynamic_server": {
+			"conn_limit_no_logging": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -44,13 +42,68 @@ func resourceSlbTemplateServer() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"rate_interval": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"conn_rate_limit_no_logging": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
 			"dns_query_interval": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
-			"uuid": {
+			"dns_fail_interval": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"dynamic_server_prefix": {
 				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"extended_stats": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"log_selection_failure": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"health_check": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"health_check_disable": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"max_dynamic_server": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"min_ttl_ratio": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"weight": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"spoofing_cache": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -69,7 +122,7 @@ func resourceSlbTemplateServer() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"min_ttl_ratio": {
+			"add": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -79,28 +132,18 @@ func resourceSlbTemplateServer() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"user_tag": {
+			"every": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"till": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"bw_rate_limit_acct": {
 				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"health_check_disable": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"conn_limit_no_logging": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"rate_interval": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"log_selection_failure": {
-				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -114,32 +157,7 @@ func resourceSlbTemplateServer() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"every": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"resume": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"add": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"dynamic_server_prefix": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"weight": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"spoofing_cache": {
+			"bw_rate_limit_duration": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -149,27 +167,12 @@ func resourceSlbTemplateServer() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"conn_limit": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"conn_rate_limit_no_logging": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"bw_rate_limit_acct": {
+			"uuid": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
-			"bw_rate_limit_duration": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"name": {
+			"user_tag": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
@@ -183,13 +186,12 @@ func resourceSlbTemplateServerCreate(ctx context.Context, d *schema.ResourceData
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SlbTemplateServer (Inside resourceSlbTemplateServerCreate) ")
-		name := d.Get("name").(string)
+		name1 := d.Get("name").(string)
 		data := dataToSlbTemplateServer(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateServer --")
-		d.SetId(name)
+		d.SetId(name1)
 		err := go_thunder.PostSlbTemplateServer(client.Token, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
@@ -204,25 +206,23 @@ func resourceSlbTemplateServerCreate(ctx context.Context, d *schema.ResourceData
 func resourceSlbTemplateServerRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SlbTemplateServer (Inside resourceSlbTemplateServerRead)")
 
+	var diags diag.Diagnostics
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Fetching service Read" + name)
-		data, err := go_thunder.GetSlbTemplateServer(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Fetching service Read" + name1)
+		data, err := go_thunder.GetSlbTemplateServer(client.Token, name1, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
 		if data == nil {
-			logger.Println("[INFO] No data found " + name)
-			d.SetId("")
+			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
 		return diags
 	}
-	return nil
+	return diags
 }
 
 func resourceSlbTemplateServerUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
@@ -230,14 +230,12 @@ func resourceSlbTemplateServerUpdate(ctx context.Context, d *schema.ResourceData
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
+		name1 := d.Id()
 		logger.Println("[INFO] Modifying SlbTemplateServer   (Inside resourceSlbTemplateServerUpdate) ")
-		name := d.Get("name").(string)
 		data := dataToSlbTemplateServer(d)
 		logger.Println("[INFO] received formatted data from method data to SlbTemplateServer ")
-		d.SetId(name)
-		err := go_thunder.PutSlbTemplateServer(client.Token, name, data, client.Host)
+		err := go_thunder.PutSlbTemplateServer(client.Token, name1, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -253,55 +251,54 @@ func resourceSlbTemplateServerDelete(ctx context.Context, d *schema.ResourceData
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Deleting instance (Inside resourceSlbTemplateServerDelete) " + name)
-		err := go_thunder.DeleteSlbTemplateServer(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Deleting instance (Inside resourceSlbTemplateServerDelete) " + name1)
+		err := go_thunder.DeleteSlbTemplateServer(client.Token, name1, client.Host)
 		if err != nil {
-			log.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
+			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
 			return diags
 		}
-		d.SetId("")
 		return nil
 	}
-	return nil
+	return diags
 }
 
-func dataToSlbTemplateServer(d *schema.ResourceData) go_thunder.TemplateServer {
-	var vc go_thunder.TemplateServer
-	var c go_thunder.TemplateServerInstance
+func dataToSlbTemplateServer(d *schema.ResourceData) go_thunder.SlbTemplateServer {
+	var vc go_thunder.SlbTemplateServer
+	var c go_thunder.SlbTemplateServerInstance
+	c.SlbTemplateServerInstanceName = d.Get("name").(string)
+	c.SlbTemplateServerInstanceConnLimit = d.Get("conn_limit").(int)
+	c.SlbTemplateServerInstanceResume = d.Get("resume").(int)
+	c.SlbTemplateServerInstanceConnLimitNoLogging = d.Get("conn_limit_no_logging").(int)
+	c.SlbTemplateServerInstanceConnRateLimit = d.Get("conn_rate_limit").(int)
+	c.SlbTemplateServerInstanceRateInterval = d.Get("rate_interval").(string)
+	c.SlbTemplateServerInstanceConnRateLimitNoLogging = d.Get("conn_rate_limit_no_logging").(int)
+	c.SlbTemplateServerInstanceDNSQueryInterval = d.Get("dns_query_interval").(int)
+	c.SlbTemplateServerInstanceDNSFailInterval = d.Get("dns_fail_interval").(int)
+	c.SlbTemplateServerInstanceDynamicServerPrefix = d.Get("dynamic_server_prefix").(string)
+	c.SlbTemplateServerInstanceExtendedStats = d.Get("extended_stats").(int)
+	c.SlbTemplateServerInstanceLogSelectionFailure = d.Get("log_selection_failure").(int)
+	c.SlbTemplateServerInstanceHealthCheck = d.Get("health_check").(string)
+	c.SlbTemplateServerInstanceHealthCheckDisable = d.Get("health_check_disable").(int)
+	c.SlbTemplateServerInstanceMaxDynamicServer = d.Get("max_dynamic_server").(int)
+	c.SlbTemplateServerInstanceMinTTLRatio = d.Get("min_ttl_ratio").(int)
+	c.SlbTemplateServerInstanceWeight = d.Get("weight").(int)
+	c.SlbTemplateServerInstanceSpoofingCache = d.Get("spoofing_cache").(int)
+	c.SlbTemplateServerInstanceStatsDataAction = d.Get("stats_data_action").(string)
+	c.SlbTemplateServerInstanceSlowStart = d.Get("slow_start").(int)
+	c.SlbTemplateServerInstanceInitialSlowStart = d.Get("initial_slow_start").(int)
+	c.SlbTemplateServerInstanceAdd = d.Get("add").(int)
+	c.SlbTemplateServerInstanceTimes = d.Get("times").(int)
+	c.SlbTemplateServerInstanceEvery = d.Get("every").(int)
+	c.SlbTemplateServerInstanceTill = d.Get("till").(int)
+	c.SlbTemplateServerInstanceBwRateLimitAcct = d.Get("bw_rate_limit_acct").(string)
+	c.SlbTemplateServerInstanceBwRateLimit = d.Get("bw_rate_limit").(int)
+	c.SlbTemplateServerInstanceBwRateLimitResume = d.Get("bw_rate_limit_resume").(int)
+	c.SlbTemplateServerInstanceBwRateLimitDuration = d.Get("bw_rate_limit_duration").(int)
+	c.SlbTemplateServerInstanceBwRateLimitNoLogging = d.Get("bw_rate_limit_no_logging").(int)
+	c.SlbTemplateServerInstanceUserTag = d.Get("user_tag").(string)
 
-	c.Add = d.Get("add").(int)
-	c.BwRateLimit = d.Get("bw_rate_limit").(int)
-	c.BwRateLimitAcct = d.Get("bw_rate_limit_acct").(string)
-	c.BwRateLimitDuration = d.Get("bw_rate_limit_duration").(int)
-	c.BwRateLimitNoLogging = d.Get("bw_rate_limit_no_logging").(int)
-	c.BwRateLimitResume = d.Get("bw_rate_limit_resume").(int)
-	c.ConnLimit = d.Get("conn_limit").(int)
-	c.ConnLimitNoLogging = d.Get("conn_rate_limit_no_logging").(int)
-	c.ConnRateLimit = d.Get("conn_rate_limit").(int)
-	c.ConnRateLimitNoLogging = d.Get("conn_rate_limit_no_logging").(int)
-	c.DNSQueryInterval = d.Get("dns_query_interval").(int)
-	c.DynamicServerPrefix = d.Get("dynamic_server_prefix").(string)
-	c.Every = d.Get("every").(int)
-	c.ExtendedStats = d.Get("extended_stats").(int)
-	c.HealthCheck = d.Get("health_check").(string)
-	c.HealthCheckDisable = d.Get("health_check_disable").(int)
-	c.InitialSlowStart = d.Get("initial_slow_start").(int)
-	c.LogSelectionFailure = d.Get("log_selection_failure").(int)
-	c.MaxDynamicServer = d.Get("max_dynamic_server").(int)
-	c.MinTTLRatio = d.Get("min_ttl_ratio").(int)
-	c.Name = d.Get("name").(string)
-	c.RateInterval = d.Get("rate_interval").(string)
-	c.Resume = d.Get("resume").(int)
-	c.SlowStart = d.Get("slow_start").(int)
-	c.SpoofingCache = d.Get("spoofing_cache").(int)
-	c.StatsDataAction = d.Get("stats_data_action").(string)
-	c.Till = d.Get("till").(int)
-	c.Times = d.Get("times").(int)
-	c.Weight = d.Get("weight").(int)
-
-	vc.UUID = c
+	vc.SlbTemplateServerInstanceName = c
 	return vc
 }
