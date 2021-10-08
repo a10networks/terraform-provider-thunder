@@ -75,7 +75,7 @@ func Provider() *schema.Provider {
 			"thunder_slb_template_ssli":                     resourceTemplateSSLI(),
 			"thunder_slb_template_cipher":                   resourceTemplateCipher(),
 			"thunder_slb_template_imap_pop3":                resourceTemplateImap_POP3(),
-			"thunder_slb_template_dns":                      resourceTemplateDNS(),
+			"thunder_slb_template_dns":                      resourceSlbTemplateDns(),
 			"thunder_slb_template_connection_reuse":         resourceTemplateConnectionReuse(),
 			"thunder_slb_template_client_ssh":               resourceTemplateClientSsh(),
 			"thunder_slb_template_dblb":                     resourceTemplateDBLB(),
