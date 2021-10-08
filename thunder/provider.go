@@ -170,7 +170,6 @@ func Provider() *schema.Provider {
 			"thunder_interface_ethernet_lldp":               resourceInterfaceEthernetLLDP(),
 			"thunder_interface_ve_bfd":                      resourceInterfaceVeBFD(),
 			"thunder_interface_ethernet_trunk_group":        resourceInterfaceEthernetTrunkGroup(),
-			"thunder_interface_ethernet_ipv6":               resourceInterfaceEthernetIPv6(),
 			"thunder_interface_ve_ip":                       resourceInterfaceVeIP(),
 			"thunder_interface_ve_ipv6":                     resourceInterfaceVeIPv6(),
 			"thunder_interface_ethernet":                    resourceInterfaceEthernet(),
@@ -300,6 +299,7 @@ func Provider() *schema.Provider {
 			"thunder_admin_session":                           resourceAdminSession(),
 			"thunder_file_ssl_cert_key":                       resourceFileSslCertKey(),
 			"thunder_file_ssl_key":                            resourceFileSslKey(),
+			"thunder_interface_ethernet_ipv6":                 resourceInterfaceEthernetIpv6(),
 		},
 
 		ConfigureContextFunc: providerConfigure,
