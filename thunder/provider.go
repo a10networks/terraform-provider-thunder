@@ -54,7 +54,6 @@ func Provider() *schema.Provider {
 			"thunder_ethernet":                              resourceEthernet(),
 			"thunder_rib_route":                             resourceRibRoute(),
 			"thunder_vrrp_common":                           resourceVrrpCommon(),
-			"thunder_vrrp_vrid":                             resourceVrrpVrid(),
 			"thunder_vrrp_peer_group":                       resourceVrrpPeerGroup(),
 			"thunder_dns_primary":                           resourceDnsPrimary(),
 			"thunder_import":                                resourceImport(),
@@ -300,6 +299,7 @@ func Provider() *schema.Provider {
 			"thunder_file_ssl_cert_key":                       resourceFileSslCertKey(),
 			"thunder_file_ssl_key":                            resourceFileSslKey(),
 			"thunder_interface_ethernet_ipv6":                 resourceInterfaceEthernetIpv6(),
+			"thunder_vrrp_a_vrid":                             resourceVrrpAVrid(),
 		},
 
 		ConfigureContextFunc: providerConfigure,
