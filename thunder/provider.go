@@ -91,8 +91,6 @@ func Provider() *schema.Provider {
 			"thunder_slb_template_dynamic_service":          resourceSlbTemplateDynamicService(),
 			"thunder_slb_template_server_ssh":               resourceSlbTemplateServerSSH(),
 			"thunder_slb_template_policy":                   resourceSlbTemplatePolicy(),
-			"thunder_slb_template_server_ssl":               resourceSlbTemplateServerSSL(),
-			"thunder_slb_template_client_ssl":               resourceSlbTemplateClientSSL(),
 			"thunder_slb_template_sip":                      resourceSlbTemplateSIP(),
 			"thunder_slb_template_http":                     resourceSlbTemplateHttp(),
 			"thunder_slb_template_monitor":                  resourceSlbTemplateMonitor(),
@@ -300,6 +298,9 @@ func Provider() *schema.Provider {
 			"thunder_file_ssl_key":                            resourceFileSslKey(),
 			"thunder_interface_ethernet_ipv6":                 resourceInterfaceEthernetIpv6(),
 			"thunder_vrrp_a_vrid":                             resourceVrrpAVrid(),
+			"thunder_slb_template_client_ssl":                 resourceSlbTemplateClientSsl(),
+			"thunder_interface_ethernet_ip":                   resourceInterfaceEthernetIp(),
+			"thunder_slb_template_server_ssl":                 resourceSlbTemplateServerSsl(),
 		},
 
 		ConfigureContextFunc: providerConfigure,
