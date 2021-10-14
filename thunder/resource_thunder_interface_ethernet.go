@@ -20,7 +20,47 @@ func resourceInterfaceEthernet() *schema.Resource {
 		ReadContext:   resourceInterfaceEthernetRead,
 		DeleteContext: resourceInterfaceEthernetDelete,
 		Schema: map[string]*schema.Schema{
-			"speed_forced_40g": {
+			"ifnum": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"name": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"port_scan_detection": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"ping_sweep_detection": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"l3_vlan_fwd_disable": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"load_interval": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"media_type_copper": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"auto_neg_enable": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"fec_forced_on": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -30,10 +70,343 @@ func resourceInterfaceEthernet() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
+			"port_breakout": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"speed_forced_1g": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"speed_forced_10g": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"speed_forced_40g": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"ipg_bit_time": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"remove_vlan_tag": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"mtu": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"trap_source": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"duplexity": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"speed": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
 			"flow_control": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
+			},
+			"action": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"icmp_rate_limit": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"normal": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"lockup": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"lockup_period": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"icmpv6_rate_limit": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"normal_v6": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"lockup_v6": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"lockup_period_v6": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"monitor_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"monitor": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"mirror_index": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"monitor_vlan": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"cpu_process": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"cpu_process_dir": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"traffic_distribution_mode": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"virtual_wire": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"update_l2_info": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"vlan_learning": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"mac_learning": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"access_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"acl_id": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"acl_name": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"uuid": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"user_tag": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"sampling_enable": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"counters1": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"packet_capture_template": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"lldp": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"enable_cfg": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"rt_enable": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"rx": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"tx": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"notification_cfg": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"notification": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"notif_enable": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"tx_dot1_cfg": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"tx_dot1_tlvs": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"link_aggregation": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"vlan": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"tx_tlvs_cfg": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"tx_tlvs": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"exclude": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"management_address": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"port_description": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"system_capabilities": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"system_description": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"system_name": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
 			},
 			"ddos": {
 				Type:     schema.TypeList,
@@ -59,88 +432,584 @@ func resourceInterfaceEthernet() *schema.Resource {
 					},
 				},
 			},
-			"uuid": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"speed": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"monitor_list": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"monitor_vlan": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"mirror_index": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"monitor": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-					},
-				},
-			},
-			"traffic_distribution_mode": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"user_tag": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"access_list": {
+			"ip": {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"acl_id": {
+						"dhcp": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
-						"acl_name": {
+						"address_list": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ipv6_addr": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"address_type": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"allow_promiscuous_vip": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"cache_spoofing_port": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"helper_address_list": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"helper_address": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"inside": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"outside": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"ttl_ignore": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"syn_cookie": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"slb_partition_redirect": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"generate_membership_query": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"query_interval": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"max_resp_time": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"client": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"server": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
 							Type:        schema.TypeString,
 							Optional:    true,
 							Description: "",
 						},
-					},
-				},
-			},
-			"icmpv6_rate_limit": {
-				Type:     schema.TypeList,
-				Optional: true,
-				MaxItems: 1,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"lockup_v6": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
+						"stateful_firewall": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"inside": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"class_list": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"outside": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"access_list": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"acl_id": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"uuid": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
 						},
-						"lockup_period_v6": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
+						"router": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"isis": {
+										Type:     schema.TypeList,
+										Optional: true,
+										MaxItems: 1,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"tag": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+												"uuid": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+								},
+							},
 						},
-						"normal_v6": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
+						"rip": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"authentication": {
+										Type:     schema.TypeList,
+										Optional: true,
+										MaxItems: 1,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"str": {
+													Type:     schema.TypeList,
+													Optional: true,
+													MaxItems: 1,
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"string": {
+																Type:        schema.TypeString,
+																Optional:    true,
+																Description: "",
+															},
+														},
+													},
+												},
+												"mode": {
+													Type:     schema.TypeList,
+													Optional: true,
+													MaxItems: 1,
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"mode": {
+																Type:        schema.TypeString,
+																Optional:    true,
+																Description: "",
+															},
+														},
+													},
+												},
+												"key_chain": {
+													Type:     schema.TypeList,
+													Optional: true,
+													MaxItems: 1,
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"key_chain": {
+																Type:        schema.TypeString,
+																Optional:    true,
+																Description: "",
+															},
+														},
+													},
+												},
+											},
+										},
+									},
+									"send_packet": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"receive_packet": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"send_cfg": {
+										Type:     schema.TypeList,
+										Optional: true,
+										MaxItems: 1,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"send": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"version": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+									"receive_cfg": {
+										Type:     schema.TypeList,
+										Optional: true,
+										MaxItems: 1,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"receive": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"version": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+									"split_horizon_cfg": {
+										Type:     schema.TypeList,
+										Optional: true,
+										MaxItems: 1,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"state": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+									"uuid": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"ospf": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ospf_global": {
+										Type:     schema.TypeList,
+										Optional: true,
+										MaxItems: 1,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"authentication_cfg": {
+													Type:     schema.TypeList,
+													Optional: true,
+													MaxItems: 1,
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"authentication": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+															"value": {
+																Type:        schema.TypeString,
+																Optional:    true,
+																Description: "",
+															},
+														},
+													},
+												},
+												"authentication_key": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+												"bfd_cfg": {
+													Type:     schema.TypeList,
+													Optional: true,
+													MaxItems: 1,
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"bfd": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+															"disable": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+														},
+													},
+												},
+												"cost": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"database_filter_cfg": {
+													Type:     schema.TypeList,
+													Optional: true,
+													MaxItems: 1,
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"database_filter": {
+																Type:        schema.TypeString,
+																Optional:    true,
+																Description: "",
+															},
+															"out": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+														},
+													},
+												},
+												"dead_interval": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"disable": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+												"hello_interval": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"message_digest_cfg": {
+													Type:     schema.TypeList,
+													Optional: true,
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"message_digest_key": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+															"md5_value": {
+																Type:        schema.TypeString,
+																Optional:    true,
+																Description: "",
+															},
+														},
+													},
+												},
+												"mtu": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"mtu_ignore": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"network": {
+													Type:     schema.TypeList,
+													Optional: true,
+													MaxItems: 1,
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"broadcast": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+															"non_broadcast": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+															"point_to_point": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+															"point_to_multipoint": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+															"p2mp_nbma": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+														},
+													},
+												},
+												"priority": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"retransmit_interval": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"transmit_delay": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"uuid": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+									"ospf_ip_list": {
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"ip_addr": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+												"authentication": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"value": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+												"authentication_key": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+												"cost": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"database_filter": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+												"out": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"dead_interval": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"hello_interval": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"message_digest_cfg": {
+													Type:     schema.TypeList,
+													Optional: true,
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"message_digest_key": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+															"md5_value": {
+																Type:        schema.TypeString,
+																Optional:    true,
+																Description: "",
+															},
+														},
+													},
+												},
+												"mtu_ignore": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"priority": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"retransmit_interval": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"transmit_delay": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"uuid": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+								},
+							},
 						},
 					},
 				},
@@ -151,29 +1020,208 @@ func resourceInterfaceEthernet() *schema.Resource {
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"address_list": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ipv6_addr": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"address_type": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"inside": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"outside": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"ipv6_enable": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"ttl_ignore": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"access_list_cfg": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"v6_acl_name": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"inbound": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"router_adver": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"action": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"hop_limit": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"max_interval": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"min_interval": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"default_lifetime": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"rate_limit": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"reachable_time": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"retransmit_timer": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"adver_mtu_disable": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"adver_mtu": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"prefix_list": {
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"prefix": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+												"not_autonomous": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"not_on_link": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"preferred_lifetime": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"valid_lifetime": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+									"managed_config_action": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"other_config_action": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"adver_vrid": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"use_floating_ip": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"floating_ip": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"adver_vrid_default": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"use_floating_ip_default_vrid": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"floating_ip_default_vrid": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
 						"stateful_firewall": {
 							Type:     schema.TypeList,
 							Optional: true,
 							MaxItems: 1,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"access_list": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"outside": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
 									"inside": {
 										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"uuid": {
-										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
 									},
@@ -182,26 +1230,22 @@ func resourceInterfaceEthernet() *schema.Resource {
 										Optional:    true,
 										Description: "",
 									},
+									"outside": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"access_list": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
 									"acl_name": {
 										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
 									},
-								},
-							},
-						},
-						"access_list_cfg": {
-							Type:     schema.TypeList,
-							Optional: true,
-							MaxItems: 1,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"inbound": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"v6_acl_name": {
+									"uuid": {
 										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
@@ -234,6 +1278,48 @@ func resourceInterfaceEthernet() *schema.Resource {
 											},
 										},
 									},
+									"ospf": {
+										Type:     schema.TypeList,
+										Optional: true,
+										MaxItems: 1,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"area_list": {
+													Type:     schema.TypeList,
+													Optional: true,
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"area_id_num": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+															"area_id_addr": {
+																Type:        schema.TypeString,
+																Optional:    true,
+																Description: "",
+															},
+															"tag": {
+																Type:        schema.TypeString,
+																Optional:    true,
+																Description: "",
+															},
+															"instance_id": {
+																Type:        schema.TypeInt,
+																Optional:    true,
+																Description: "",
+															},
+														},
+													},
+												},
+												"uuid": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
 									"isis": {
 										Type:     schema.TypeList,
 										Optional: true,
@@ -253,55 +1339,8 @@ func resourceInterfaceEthernet() *schema.Resource {
 											},
 										},
 									},
-									"ospf": {
-										Type:     schema.TypeList,
-										Optional: true,
-										MaxItems: 1,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"area_list": {
-													Type:     schema.TypeList,
-													Optional: true,
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"instance_id": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-															"tag": {
-																Type:        schema.TypeString,
-																Optional:    true,
-																Description: "",
-															},
-															"area_id_addr": {
-																Type:        schema.TypeString,
-																Optional:    true,
-																Description: "",
-															},
-															"area_id_num": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-														},
-													},
-												},
-												"uuid": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-											},
-										},
-									},
 								},
 							},
-						},
-						"outside": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
 						},
 						"rip": {
 							Type:     schema.TypeList,
@@ -331,226 +1370,28 @@ func resourceInterfaceEthernet() *schema.Resource {
 								},
 							},
 						},
-						"router_adver": {
-							Type:     schema.TypeList,
-							Optional: true,
-							MaxItems: 1,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"managed_config_action": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"hop_limit": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"other_config_action": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"rate_limit": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"prefix_list": {
-										Type:     schema.TypeList,
-										Optional: true,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"valid_lifetime": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"not_autonomous": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"prefix": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-												"not_on_link": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"preferred_lifetime": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-											},
-										},
-									},
-									"use_floating_ip": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"retransmit_timer": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"min_interval": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"adver_vrid": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"floating_ip_default_vrid": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"adver_vrid_default": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"max_interval": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"use_floating_ip_default_vrid": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"adver_mtu_disable": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"reachable_time": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"floating_ip": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"action": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"adver_mtu": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"default_lifetime": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"address_list": {
-							Type:     schema.TypeList,
-							Optional: true,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"address_type": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"ipv6_addr": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"inside": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"uuid": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"ipv6_enable": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
 						"ospf": {
 							Type:     schema.TypeList,
 							Optional: true,
 							MaxItems: 1,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"bfd": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"neighbor_cfg": {
+									"network_list": {
 										Type:     schema.TypeList,
 										Optional: true,
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
-												"neighbor_priority": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"neig_inst": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"neighbor_poll_interval": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"neighbor_cost": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"neighbor": {
+												"broadcast_type": {
 													Type:        schema.TypeString,
 													Optional:    true,
 													Description: "",
 												},
-											},
-										},
-									},
-									"mtu_ignore_cfg": {
-										Type:     schema.TypeList,
-										Optional: true,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"mtu_ignore": {
+												"p2mp_nbma": {
 													Type:        schema.TypeInt,
 													Optional:    true,
 													Description: "",
 												},
-												"instance_id": {
+												"network_instance_id": {
 													Type:        schema.TypeInt,
 													Optional:    true,
 													Description: "",
@@ -558,59 +1399,10 @@ func resourceInterfaceEthernet() *schema.Resource {
 											},
 										},
 									},
-									"dead_interval_cfg": {
-										Type:     schema.TypeList,
-										Optional: true,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"instance_id": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"dead_interval": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-											},
-										},
-									},
-									"retransmit_interval_cfg": {
-										Type:     schema.TypeList,
-										Optional: true,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"instance_id": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"retransmit_interval": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-											},
-										},
-									},
-									"hello_interval_cfg": {
-										Type:     schema.TypeList,
-										Optional: true,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"instance_id": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"hello_interval": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-											},
-										},
+									"bfd": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
 									},
 									"disable": {
 										Type:        schema.TypeInt,
@@ -635,17 +1427,122 @@ func resourceInterfaceEthernet() *schema.Resource {
 											},
 										},
 									},
-									"priority_cfg": {
+									"dead_interval_cfg": {
 										Type:     schema.TypeList,
 										Optional: true,
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
+												"dead_interval": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
 												"instance_id": {
 													Type:        schema.TypeInt,
 													Optional:    true,
 													Description: "",
 												},
+											},
+										},
+									},
+									"hello_interval_cfg": {
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"hello_interval": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"instance_id": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+									"mtu_ignore_cfg": {
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"mtu_ignore": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"instance_id": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+									"neighbor_cfg": {
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"neighbor": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+												"neig_inst": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"neighbor_cost": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"neighbor_poll_interval": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"neighbor_priority": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+									"priority_cfg": {
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
 												"priority": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"instance_id": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+									"retransmit_interval_cfg": {
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"retransmit_interval": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"instance_id": {
 													Type:        schema.TypeInt,
 													Optional:    true,
 													Description: "",
@@ -676,44 +1573,43 @@ func resourceInterfaceEthernet() *schema.Resource {
 										Optional:    true,
 										Description: "",
 									},
-									"network_list": {
-										Type:     schema.TypeList,
-										Optional: true,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"network_instance_id": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"broadcast_type": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-												"p2mp_nbma": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-											},
-										},
-									},
 								},
 							},
-						},
-						"ttl_ignore": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
 						},
 					},
 				},
 			},
-			"action": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
+			"nptv6": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"domain_list": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"domain_name": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"bind_type": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"uuid": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+					},
+				},
 			},
 			"map": {
 				Type:     schema.TypeList,
@@ -721,7 +1617,12 @@ func resourceInterfaceEthernet() *schema.Resource {
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"map_t_outside": {
+						"inside": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"outside": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -731,6 +1632,25 @@ func resourceInterfaceEthernet() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
+						"map_t_outside": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"lw_4o6": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
 						"outside": {
 							Type:        schema.TypeInt,
 							Optional:    true,
@@ -749,20 +1669,72 @@ func resourceInterfaceEthernet() *schema.Resource {
 					},
 				},
 			},
-			"remove_vlan_tag": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"duplexity": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"load_interval": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
+			"trunk_group_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"trunk_number": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"type": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"admin_key": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"port_priority": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"udld_timeout_cfg": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"fast": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"slow": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"mode": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"timeout": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"user_tag": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
 			},
 			"bfd": {
 				Type:     schema.TypeList,
@@ -770,24 +1742,24 @@ func resourceInterfaceEthernet() *schema.Resource {
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"interval_cfg": {
+						"authentication": {
 							Type:     schema.TypeList,
 							Optional: true,
 							MaxItems: 1,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"multiplier": {
+									"key_id": {
 										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
 									},
-									"interval": {
-										Type:        schema.TypeInt,
+									"method": {
+										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
 									},
-									"min_rx": {
-										Type:        schema.TypeInt,
+									"password": {
+										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
 									},
@@ -799,44 +1771,39 @@ func resourceInterfaceEthernet() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"uuid": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
 						"demand": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
-						"authentication": {
+						"interval_cfg": {
 							Type:     schema.TypeList,
 							Optional: true,
 							MaxItems: 1,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"password": {
-										Type:        schema.TypeString,
+									"interval": {
+										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
 									},
-									"encrypted": {
-										Type:        schema.TypeString,
+									"min_rx": {
+										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
 									},
-									"method": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"key_id": {
+									"multiplier": {
 										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
 									},
 								},
 							},
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
 						},
 					},
 				},
@@ -847,207 +1814,19 @@ func resourceInterfaceEthernet() *schema.Resource {
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"mesh_group": {
-							Type:     schema.TypeList,
-							Optional: true,
-							MaxItems: 1,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"blocked": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"value": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"padding": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"priority_list": {
-							Type:     schema.TypeList,
-							Optional: true,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"level": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"priority": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"retransmit_interval": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"wide_metric_list": {
-							Type:     schema.TypeList,
-							Optional: true,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"wide_metric": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"level": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"csnp_interval_list": {
-							Type:     schema.TypeList,
-							Optional: true,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"level": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"csnp_interval": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"uuid": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"network": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"hello_interval_minimal_list": {
-							Type:     schema.TypeList,
-							Optional: true,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"level": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"hello_interval_minimal": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"hello_interval_list": {
-							Type:     schema.TypeList,
-							Optional: true,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"level": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"hello_interval": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"password_list": {
-							Type:     schema.TypeList,
-							Optional: true,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"password": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"level": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"metric_list": {
-							Type:     schema.TypeList,
-							Optional: true,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"metric": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"level": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"circuit_type": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"hello_multiplier_list": {
-							Type:     schema.TypeList,
-							Optional: true,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"hello_multiplier": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"level": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
 						"authentication": {
 							Type:     schema.TypeList,
 							Optional: true,
 							MaxItems: 1,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"mode_list": {
+									"send_only_list": {
 										Type:     schema.TypeList,
 										Optional: true,
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
-												"mode": {
-													Type:        schema.TypeString,
+												"send_only": {
+													Type:        schema.TypeInt,
 													Optional:    true,
 													Description: "",
 												},
@@ -1059,13 +1838,13 @@ func resourceInterfaceEthernet() *schema.Resource {
 											},
 										},
 									},
-									"send_only_list": {
+									"mode_list": {
 										Type:     schema.TypeList,
 										Optional: true,
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
-												"send_only": {
-													Type:        schema.TypeInt,
+												"mode": {
+													Type:        schema.TypeString,
 													Optional:    true,
 													Description: "",
 												},
@@ -1117,52 +1896,123 @@ func resourceInterfaceEthernet() *schema.Resource {
 								},
 							},
 						},
+						"circuit_type": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"csnp_interval_list": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"csnp_interval": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"level": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"padding": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"hello_interval_list": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"hello_interval": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"level": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"hello_interval_minimal_list": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"hello_interval_minimal": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"level": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"hello_multiplier_list": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"hello_multiplier": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"level": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
 						"lsp_interval": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
 						},
-					},
-				},
-			},
-			"ip": {
-				Type:     schema.TypeList,
-				Optional: true,
-				MaxItems: 1,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"stateful_firewall": {
+						"mesh_group": {
 							Type:     schema.TypeList,
 							Optional: true,
 							MaxItems: 1,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"acl_id": {
+									"value": {
 										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
 									},
-									"access_list": {
+									"blocked": {
 										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
 									},
-									"outside": {
+								},
+							},
+						},
+						"metric_list": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"metric": {
 										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
 									},
-									"inside": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"uuid": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"class_list": {
+									"level": {
 										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
@@ -1170,37 +2020,22 @@ func resourceInterfaceEthernet() *schema.Resource {
 								},
 							},
 						},
-						"server": {
-							Type:        schema.TypeInt,
+						"network": {
+							Type:        schema.TypeString,
 							Optional:    true,
 							Description: "",
 						},
-						"slb_partition_redirect": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"allow_promiscuous_vip": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"max_resp_time": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"address_list": {
+						"password_list": {
 							Type:     schema.TypeList,
 							Optional: true,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"address_type": {
+									"password": {
 										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
 									},
-									"ipv6_addr": {
+									"level": {
 										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
@@ -1208,17 +2043,40 @@ func resourceInterfaceEthernet() *schema.Resource {
 								},
 							},
 						},
-						"inside": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"helper_address_list": {
+						"priority_list": {
 							Type:     schema.TypeList,
 							Optional: true,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"helper_address": {
+									"priority": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"level": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"retransmit_interval": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"wide_metric_list": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"wide_metric": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"level": {
 										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
@@ -1231,597 +2089,44 @@ func resourceInterfaceEthernet() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"ospf": {
-							Type:     schema.TypeList,
-							Optional: true,
-							MaxItems: 1,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"ospf_ip_list": {
-										Type:     schema.TypeList,
-										Optional: true,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"cost": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"ip_addr": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-												"mtu_ignore": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"database_filter": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-												"retransmit_interval": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"dead_interval": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"message_digest_cfg": {
-													Type:     schema.TypeList,
-													Optional: true,
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"message_digest_key": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-															"md5": {
-																Type:     schema.TypeList,
-																Optional: true,
-																MaxItems: 1,
-																Elem: &schema.Resource{
-																	Schema: map[string]*schema.Schema{
-																		"encrypted": {
-																			Type:        schema.TypeString,
-																			Optional:    true,
-																			Description: "",
-																		},
-																		"md5_value": {
-																			Type:        schema.TypeString,
-																			Optional:    true,
-																			Description: "",
-																		},
-																	},
-																},
-															},
-														},
-													},
-												},
-												"priority": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"uuid": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-												"out": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"transmit_delay": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"hello_interval": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"authentication_key": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-												"value": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-												"authentication": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-											},
-										},
-									},
-									"ospf_global": {
-										Type:     schema.TypeList,
-										Optional: true,
-										MaxItems: 1,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"cost": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"mtu_ignore": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"retransmit_interval": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"dead_interval": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"message_digest_cfg": {
-													Type:     schema.TypeList,
-													Optional: true,
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"message_digest_key": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-															"md5": {
-																Type:     schema.TypeList,
-																Optional: true,
-																MaxItems: 1,
-																Elem: &schema.Resource{
-																	Schema: map[string]*schema.Schema{
-																		"encrypted": {
-																			Type:        schema.TypeString,
-																			Optional:    true,
-																			Description: "",
-																		},
-																		"md5_value": {
-																			Type:        schema.TypeString,
-																			Optional:    true,
-																			Description: "",
-																		},
-																	},
-																},
-															},
-														},
-													},
-												},
-												"priority": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"uuid": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-												"network": {
-													Type:     schema.TypeList,
-													Optional: true,
-													MaxItems: 1,
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"broadcast": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-															"non_broadcast": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-															"point_to_multipoint": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-															"point_to_point": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-															"p2mp_nbma": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-														},
-													},
-												},
-												"mtu": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"transmit_delay": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"disable": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-												"authentication_cfg": {
-													Type:     schema.TypeList,
-													Optional: true,
-													MaxItems: 1,
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"value": {
-																Type:        schema.TypeString,
-																Optional:    true,
-																Description: "",
-															},
-															"authentication": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-														},
-													},
-												},
-												"hello_interval": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"authentication_key": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-												"database_filter_cfg": {
-													Type:     schema.TypeList,
-													Optional: true,
-													MaxItems: 1,
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"database_filter": {
-																Type:        schema.TypeString,
-																Optional:    true,
-																Description: "",
-															},
-															"out": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-														},
-													},
-												},
-												"bfd_cfg": {
-													Type:     schema.TypeList,
-													Optional: true,
-													MaxItems: 1,
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"bfd": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-															"disable": {
-																Type:        schema.TypeInt,
-																Optional:    true,
-																Description: "",
-															},
-														},
-													},
-												},
-											},
-										},
-									},
-								},
-							},
-						},
-						"router": {
-							Type:     schema.TypeList,
-							Optional: true,
-							MaxItems: 1,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"isis": {
-										Type:     schema.TypeList,
-										Optional: true,
-										MaxItems: 1,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"tag": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-												"uuid": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-											},
-										},
-									},
-								},
-							},
-						},
-						"cache_spoofing_port": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"outside": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"rip": {
-							Type:     schema.TypeList,
-							Optional: true,
-							MaxItems: 1,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"receive_packet": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"split_horizon_cfg": {
-										Type:     schema.TypeList,
-										Optional: true,
-										MaxItems: 1,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"state": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-											},
-										},
-									},
-									"send_packet": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"receive_cfg": {
-										Type:     schema.TypeList,
-										Optional: true,
-										MaxItems: 1,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"receive": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"version": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-											},
-										},
-									},
-									"send_cfg": {
-										Type:     schema.TypeList,
-										Optional: true,
-										MaxItems: 1,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"version": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "",
-												},
-												"send": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-											},
-										},
-									},
-									"uuid": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"authentication": {
-										Type:     schema.TypeList,
-										Optional: true,
-										MaxItems: 1,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"mode": {
-													Type:     schema.TypeList,
-													Optional: true,
-													MaxItems: 1,
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"mode": {
-																Type:        schema.TypeString,
-																Optional:    true,
-																Description: "",
-															},
-														},
-													},
-												},
-												"str": {
-													Type:     schema.TypeList,
-													Optional: true,
-													MaxItems: 1,
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"string": {
-																Type:        schema.TypeString,
-																Optional:    true,
-																Description: "",
-															},
-														},
-													},
-												},
-												"key_chain": {
-													Type:     schema.TypeList,
-													Optional: true,
-													MaxItems: 1,
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"key_chain": {
-																Type:        schema.TypeString,
-																Optional:    true,
-																Description: "",
-															},
-														},
-													},
-												},
-											},
-										},
-									},
-								},
-							},
-						},
-						"client": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"query_interval": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"generate_membership_query": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"dhcp": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"ttl_ignore": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
 					},
 				},
 			},
-			"media_type_copper": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"sampling_enable": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"counters1": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-					},
-				},
-			},
-			"mtu": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"auto_neg_enable": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"nptv6": {
+			"spanning_tree": {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"domain_list": {
+						"auto_edge": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"admin_edge": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"instance_list": {
 							Type:     schema.TypeList,
 							Optional: true,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"domain_name": {
-										Type:        schema.TypeString,
+									"instance_start": {
+										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
 									},
-									"bind_type": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"uuid": {
-										Type:        schema.TypeString,
+									"mstp_path_cost": {
+										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
 									},
 								},
 							},
 						},
-					},
-				},
-			},
-			"l3_vlan_fwd_disable": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"cpu_process": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"trap_source": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"cpu_process_dir": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"lw_4o6": {
-				Type:     schema.TypeList,
-				Optional: true,
-				MaxItems: 1,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"outside": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"inside": {
+						"path_cost": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -1833,237 +2138,6 @@ func resourceInterfaceEthernet() *schema.Resource {
 						},
 					},
 				},
-			},
-			"fec_forced_on": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"name": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"icmp_rate_limit": {
-				Type:     schema.TypeList,
-				Optional: true,
-				MaxItems: 1,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"lockup": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"normal": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"lockup_period": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-					},
-				},
-			},
-			"trunk_group_list": {
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"mode": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"user_tag": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"udld_timeout_cfg": {
-							Type:     schema.TypeList,
-							Optional: true,
-							MaxItems: 1,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"fast": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"slow": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"port_priority": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"admin_key": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"type": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"uuid": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"timeout": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"trunk_number": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-					},
-				},
-			},
-			"lldp": {
-				Type:     schema.TypeList,
-				Optional: true,
-				MaxItems: 1,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"tx_tlvs_cfg": {
-							Type:     schema.TypeList,
-							Optional: true,
-							MaxItems: 1,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"system_description": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"system_name": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"system_capabilities": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"tx_tlvs": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"port_description": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"exclude": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"management_address": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"tx_dot1_cfg": {
-							Type:     schema.TypeList,
-							Optional: true,
-							MaxItems: 1,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"link_aggregation": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"vlan": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"tx_dot1_tlvs": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"enable_cfg": {
-							Type:     schema.TypeList,
-							Optional: true,
-							MaxItems: 1,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"rt_enable": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"tx": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"rx": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"uuid": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"notification_cfg": {
-							Type:     schema.TypeList,
-							Optional: true,
-							MaxItems: 1,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"notification": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"notif_enable": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-			"ifnum": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
 			},
 		},
 	}
@@ -2074,13 +2148,12 @@ func resourceInterfaceEthernetCreate(ctx context.Context, d *schema.ResourceData
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		logger.Println("[INFO] Creating InterfaceEthernet (Inside resourceInterfaceEthernetCreate) ")
-		name := d.Get("ifnum").(int)
+		name1 := d.Get("ifnum").(int)
 		data := dataToInterfaceEthernet(d)
-		logger.Println("[INFO] received V from method data to InterfaceEthernet --")
-		d.SetId(strconv.Itoa(name))
+		logger.Println("[INFO] received formatted data from method data to InterfaceEthernet --")
+		d.SetId(strconv.Itoa(name1))
 		err := go_thunder.PostInterfaceEthernet(client.Token, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
@@ -2095,25 +2168,23 @@ func resourceInterfaceEthernetCreate(ctx context.Context, d *schema.ResourceData
 func resourceInterfaceEthernetRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading InterfaceEthernet (Inside resourceInterfaceEthernetRead)")
 
+	var diags diag.Diagnostics
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Fetching service Read" + name)
-		data, err := go_thunder.GetInterfaceEthernet(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Fetching service Read" + name1)
+		data, err := go_thunder.GetInterfaceEthernet(client.Token, name1, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
 		if data == nil {
-			logger.Println("[INFO] No data found " + name)
-			d.SetId("")
+			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
 		return diags
 	}
-	return nil
+	return diags
 }
 
 func resourceInterfaceEthernetUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
@@ -2121,14 +2192,12 @@ func resourceInterfaceEthernetUpdate(ctx context.Context, d *schema.ResourceData
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
+		name1 := d.Id()
 		logger.Println("[INFO] Modifying InterfaceEthernet   (Inside resourceInterfaceEthernetUpdate) ")
-		name := d.Get("ifnum").(int)
 		data := dataToInterfaceEthernet(d)
-		logger.Println("[INFO] received V from method data to InterfaceEthernet ")
-		d.SetId(strconv.Itoa(name))
-		err := go_thunder.PutInterfaceEthernet(client.Token, strconv.Itoa(name), data, client.Host)
+		logger.Println("[INFO] received formatted data from method data to InterfaceEthernet ")
+		err := go_thunder.PutInterfaceEthernet(client.Token, name1, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -2144,809 +2213,851 @@ func resourceInterfaceEthernetDelete(ctx context.Context, d *schema.ResourceData
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Deleting instance (Inside resourceInterfaceEthernetDelete) " + name)
-		err := go_thunder.DeleteInterfaceEthernet(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Deleting instance (Inside resourceInterfaceEthernetDelete) " + name1)
+		err := go_thunder.DeleteInterfaceEthernet(client.Token, name1, client.Host)
 		if err != nil {
-			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name, err)
+			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
 			return diags
 		}
-		d.SetId("")
 		return nil
 	}
-	return nil
+	return diags
 }
 
 func dataToInterfaceEthernet(d *schema.ResourceData) go_thunder.InterfaceEthernet {
 	var vc go_thunder.InterfaceEthernet
 	var c go_thunder.InterfaceEthernetInstance
-	c.FecForcedOn = d.Get("fec_forced_on").(int)
-	c.TrapSource = d.Get("trap_source").(int)
+	c.InterfaceEthernetInstanceIfnum = d.Get("ifnum").(int)
+	c.InterfaceEthernetInstanceName = d.Get("name").(string)
+	c.InterfaceEthernetInstancePortScanDetection = d.Get("port_scan_detection").(string)
+	c.InterfaceEthernetInstancePingSweepDetection = d.Get("ping_sweep_detection").(string)
+	c.InterfaceEthernetInstanceL3VlanFwdDisable = d.Get("l3_vlan_fwd_disable").(int)
+	c.InterfaceEthernetInstanceLoadInterval = d.Get("load_interval").(int)
+	c.InterfaceEthernetInstanceMediaTypeCopper = d.Get("media_type_copper").(int)
+	c.InterfaceEthernetInstanceAutoNegEnable = d.Get("auto_neg_enable").(int)
+	c.InterfaceEthernetInstanceFecForcedOn = d.Get("fec_forced_on").(int)
+	c.InterfaceEthernetInstanceFecForcedOff = d.Get("fec_forced_off").(int)
+	c.InterfaceEthernetInstancePortBreakout = d.Get("port_breakout").(string)
+	c.InterfaceEthernetInstanceSpeedForced1G = d.Get("speed_forced_1g").(int)
+	c.InterfaceEthernetInstanceSpeedForced10G = d.Get("speed_forced_10g").(int)
+	c.InterfaceEthernetInstanceSpeedForced40G = d.Get("speed_forced_40g").(int)
+	c.InterfaceEthernetInstanceIpgBitTime = d.Get("ipg_bit_time").(int)
+	c.InterfaceEthernetInstanceRemoveVlanTag = d.Get("remove_vlan_tag").(int)
+	c.InterfaceEthernetInstanceMtu = d.Get("mtu").(int)
+	c.InterfaceEthernetInstanceTrapSource = d.Get("trap_source").(int)
+	c.InterfaceEthernetInstanceDuplexity = d.Get("duplexity").(string)
+	c.InterfaceEthernetInstanceSpeed = d.Get("speed").(string)
+	c.InterfaceEthernetInstanceFlowControl = d.Get("flow_control").(int)
+	c.InterfaceEthernetInstanceAction = d.Get("action").(string)
 
-	var obj1 go_thunder.EthernetIP
-	prefix := "ip.0."
+	var obj1 go_thunder.InterfaceEthernetInstanceIcmpRateLimit
+	prefix1 := "icmp_rate_limit.0."
+	obj1.InterfaceEthernetInstanceIcmpRateLimitNormal = d.Get(prefix1 + "normal").(int)
+	obj1.InterfaceEthernetInstanceIcmpRateLimitLockup = d.Get(prefix1 + "lockup").(int)
+	obj1.InterfaceEthernetInstanceIcmpRateLimitLockupPeriod = d.Get(prefix1 + "lockup_period").(int)
 
-	AddressListCount := d.Get(prefix + "address_list.#").(int)
-	obj1.AddressType = make([]go_thunder.EthernetAddressList, 0, AddressListCount)
+	c.InterfaceEthernetInstanceIcmpRateLimitNormal = obj1
 
-	for i := 0; i < AddressListCount; i++ {
-		var obj1_1 go_thunder.EthernetAddressList
-		prefix1 := prefix + fmt.Sprintf("address_list.%d.", i)
-		obj1_1.AddressType = d.Get(prefix1 + "address_type").(string)
-		obj1_1.Ipv6Addr = d.Get(prefix1 + "ipv6_addr").(string)
-		obj1.AddressType = append(obj1.AddressType, obj1_1)
+	var obj2 go_thunder.InterfaceEthernetInstanceIcmpv6RateLimit
+	prefix2 := "icmpv6_rate_limit.0."
+	obj2.InterfaceEthernetInstanceIcmpv6RateLimitNormalV6 = d.Get(prefix2 + "normal_v6").(int)
+	obj2.InterfaceEthernetInstanceIcmpv6RateLimitLockupV6 = d.Get(prefix2 + "lockup_v6").(int)
+	obj2.InterfaceEthernetInstanceIcmpv6RateLimitLockupPeriodV6 = d.Get(prefix2 + "lockup_period_v6").(int)
+
+	c.InterfaceEthernetInstanceIcmpv6RateLimitNormalV6 = obj2
+
+	InterfaceEthernetInstanceMonitorListCount := d.Get("monitor_list.#").(int)
+	c.InterfaceEthernetInstanceMonitorListMonitor = make([]go_thunder.InterfaceEthernetInstanceMonitorList, 0, InterfaceEthernetInstanceMonitorListCount)
+
+	for i := 0; i < InterfaceEthernetInstanceMonitorListCount; i++ {
+		var obj3 go_thunder.InterfaceEthernetInstanceMonitorList
+		prefix3 := fmt.Sprintf("monitor_list.%d.", i)
+		obj3.InterfaceEthernetInstanceMonitorListMonitor = d.Get(prefix3 + "monitor").(string)
+		obj3.InterfaceEthernetInstanceMonitorListMirrorIndex = d.Get(prefix3 + "mirror_index").(int)
+		obj3.InterfaceEthernetInstanceMonitorListMonitorVlan = d.Get(prefix3 + "monitor_vlan").(int)
+		c.InterfaceEthernetInstanceMonitorListMonitor = append(c.InterfaceEthernetInstanceMonitorListMonitor, obj3)
 	}
 
-	obj1.GenerateMembershipQuery = d.Get(prefix + "generate_membership_query").(int)
-	obj1.CacheSpoofingPort = d.Get(prefix + "cache_spoofing_port").(int)
-	obj1.Inside = d.Get(prefix + "inside").(int)
-	obj1.AllowPromiscuousVip = d.Get(prefix + "allow_promiscuous_vip").(int)
-	obj1.Client = d.Get(prefix + "client").(int)
-	obj1.MaxRespTime = d.Get(prefix + "max_resp_time").(int)
-	obj1.QueryInterval = d.Get(prefix + "query_interval").(int)
-	obj1.Outside = d.Get(prefix + "outside").(int)
+	c.InterfaceEthernetInstanceCPUProcess = d.Get("cpu_process").(int)
+	c.InterfaceEthernetInstanceCPUProcessDir = d.Get("cpu_process_dir").(string)
+	c.InterfaceEthernetInstanceTrafficDistributionMode = d.Get("traffic_distribution_mode").(string)
+	c.InterfaceEthernetInstanceVirtualWire = d.Get("virtual_wire").(int)
+	c.InterfaceEthernetInstanceUpdateL2Info = d.Get("update_l2_info").(int)
+	c.InterfaceEthernetInstanceVlanLearning = d.Get("vlan_learning").(string)
+	c.InterfaceEthernetInstanceMacLearning = d.Get("mac_learning").(string)
 
-	HelperAddressListCount := d.Get(prefix + "helper_address_list.#").(int)
-	obj1.HelperAddress = make([]go_thunder.EthernetHelperAddressList, 0, HelperAddressListCount)
+	var obj4 go_thunder.InterfaceEthernetInstanceAccessList
+	prefix4 := "access_list.0."
+	obj4.InterfaceEthernetInstanceAccessListAclID = d.Get(prefix4 + "acl_id").(int)
+	obj4.InterfaceEthernetInstanceAccessListAclName = d.Get(prefix4 + "acl_name").(string)
 
-	for i := 0; i < HelperAddressListCount; i++ {
-		var obj1_2 go_thunder.EthernetHelperAddressList
-		prefix1 := prefix + fmt.Sprintf("helper_address_list.%d.", i)
-		obj1_2.HelperAddress = d.Get(prefix1 + "helper_address").(string)
-		obj1.HelperAddress = append(obj1.HelperAddress, obj1_2)
+	c.InterfaceEthernetInstanceAccessListAclID = obj4
+
+	c.InterfaceEthernetInstanceUserTag = d.Get("user_tag").(string)
+
+	InterfaceEthernetInstanceSamplingEnableCount := d.Get("sampling_enable.#").(int)
+	c.InterfaceEthernetInstanceSamplingEnableCounters1 = make([]go_thunder.InterfaceEthernetInstanceSamplingEnable, 0, InterfaceEthernetInstanceSamplingEnableCount)
+
+	for i := 0; i < InterfaceEthernetInstanceSamplingEnableCount; i++ {
+		var obj5 go_thunder.InterfaceEthernetInstanceSamplingEnable
+		prefix5 := fmt.Sprintf("sampling_enable.%d.", i)
+		obj5.InterfaceEthernetInstanceSamplingEnableCounters1 = d.Get(prefix5 + "counters1").(string)
+		c.InterfaceEthernetInstanceSamplingEnableCounters1 = append(c.InterfaceEthernetInstanceSamplingEnableCounters1, obj5)
 	}
 
-	var obj1_3 go_thunder.EthernetStatefulFirewallId
-	prefix1 := prefix + "stateful_firewall.0."
-	obj1_3.ClassList = d.Get(prefix1 + "class_list").(string)
-	obj1_3.Inside = d.Get(prefix1 + "inside").(int)
-	obj1_3.Outside = d.Get(prefix1 + "outside").(int)
-	obj1_3.ACLID = d.Get(prefix1 + "acl_id").(int)
-	obj1_3.AccessList = d.Get(prefix1 + "access_list").(int)
-	obj1.ClassList = obj1_3
+	c.InterfaceEthernetInstancePacketCaptureTemplate = d.Get("packet_capture_template").(string)
 
-	var obj1_4 go_thunder.EthernetRip
-	prefix1 = prefix + "rip.0."
+	var obj6 go_thunder.InterfaceEthernetInstanceLldp
+	prefix6 := "lldp.0."
 
-	var obj1_4_1 go_thunder.EthernetReceiveCfg
-	prefix2 := prefix1 + "receive_cfg.0."
-	obj1_4_1.Receive = d.Get(prefix2 + "receive").(int)
-	obj1_4_1.Version = d.Get(prefix2 + "version").(string)
-	obj1_4.Receive = obj1_4_1
+	var obj6_1 go_thunder.InterfaceEthernetInstanceLldpEnableCfg
+	prefix6_1 := prefix6 + "enable_cfg.0."
+	obj6_1.InterfaceEthernetInstanceLldpEnableCfgRtEnable = d.Get(prefix6_1 + "rt_enable").(int)
+	obj6_1.InterfaceEthernetInstanceLldpEnableCfgRx = d.Get(prefix6_1 + "rx").(int)
+	obj6_1.InterfaceEthernetInstanceLldpEnableCfgTx = d.Get(prefix6_1 + "tx").(int)
 
-	obj1_4.ReceivePacket = d.Get(prefix1 + "receive_packet").(int)
+	obj6.InterfaceEthernetInstanceLldpEnableCfgRtEnable = obj6_1
 
-	var obj1_4_2 go_thunder.EthernetSplitHorizonCfg
-	prefix2 = prefix1 + "split_horizon_cfg.0."
-	obj1_4_2.State = d.Get(prefix2 + "state").(string)
-	obj1_4.State = obj1_4_2
+	var obj6_2 go_thunder.InterfaceEthernetInstanceLldpNotificationCfg
+	prefix6_2 := prefix6 + "notification_cfg.0."
+	obj6_2.InterfaceEthernetInstanceLldpNotificationCfgNotification = d.Get(prefix6_2 + "notification").(int)
+	obj6_2.InterfaceEthernetInstanceLldpNotificationCfgNotifEnable = d.Get(prefix6_2 + "notif_enable").(int)
 
-	var obj1_4_3 go_thunder.EthernetAuthentication
-	prefix2 = prefix1 + "authentication.0."
+	obj6.InterfaceEthernetInstanceLldpNotificationCfgNotification = obj6_2
 
-	var obj1_4_3_1 go_thunder.EthernetKeyChain
-	prefix3 := prefix2 + "key_chain.0."
-	obj1_4_3_1.KeyChain = d.Get(prefix3 + "key_chain").(string)
-	obj1_4_3.KeyChain = obj1_4_3_1
+	var obj6_3 go_thunder.InterfaceEthernetInstanceLldpTxDot1Cfg
+	prefix6_3 := prefix6 + "tx_dot1_cfg.0."
+	obj6_3.InterfaceEthernetInstanceLldpTxDot1CfgTxDot1Tlvs = d.Get(prefix6_3 + "tx_dot1_tlvs").(int)
+	obj6_3.InterfaceEthernetInstanceLldpTxDot1CfgLinkAggregation = d.Get(prefix6_3 + "link_aggregation").(int)
+	obj6_3.InterfaceEthernetInstanceLldpTxDot1CfgVlan = d.Get(prefix6_3 + "vlan").(int)
 
-	var obj1_4_3_2 go_thunder.EthernetMode
-	prefix3 = prefix2 + "mode.0."
-	obj1_4_3_2.Mode = d.Get(prefix3 + "mode").(string)
-	obj1_4_3.Mode = obj1_4_3_2
+	obj6.InterfaceEthernetInstanceLldpTxDot1CfgTxDot1Tlvs = obj6_3
 
-	var obj1_4_3_3 go_thunder.EthernetStr
-	prefix3 = prefix2 + "str.0."
-	obj1_4_3_3.String = d.Get(prefix3 + "string").(string)
-	obj1_4_3.String = obj1_4_3_3
+	var obj6_4 go_thunder.InterfaceEthernetInstanceLldpTxTlvsCfg
+	prefix6_4 := prefix6 + "tx_tlvs_cfg.0."
+	obj6_4.InterfaceEthernetInstanceLldpTxTlvsCfgTxTlvs = d.Get(prefix6_4 + "tx_tlvs").(int)
+	obj6_4.InterfaceEthernetInstanceLldpTxTlvsCfgExclude = d.Get(prefix6_4 + "exclude").(int)
+	obj6_4.InterfaceEthernetInstanceLldpTxTlvsCfgManagementAddress = d.Get(prefix6_4 + "management_address").(int)
+	obj6_4.InterfaceEthernetInstanceLldpTxTlvsCfgPortDescription = d.Get(prefix6_4 + "port_description").(int)
+	obj6_4.InterfaceEthernetInstanceLldpTxTlvsCfgSystemCapabilities = d.Get(prefix6_4 + "system_capabilities").(int)
+	obj6_4.InterfaceEthernetInstanceLldpTxTlvsCfgSystemDescription = d.Get(prefix6_4 + "system_description").(int)
+	obj6_4.InterfaceEthernetInstanceLldpTxTlvsCfgSystemName = d.Get(prefix6_4 + "system_name").(int)
 
-	obj1_4.KeyChain = obj1_4_3
+	obj6.InterfaceEthernetInstanceLldpTxTlvsCfgTxTlvs = obj6_4
 
-	var obj1_4_4 go_thunder.EthernetSendCfg
-	prefix2 = prefix1 + "send_cfg.0."
-	obj1_4_4.Version = d.Get(prefix2 + "version").(string)
-	obj1_4_4.Send = d.Get(prefix2 + "send").(int)
-	obj1_4.Version = obj1_4_4
+	c.InterfaceEthernetInstanceLldpEnableCfg = obj6
 
-	obj1_4.SendPacket = d.Get(prefix1 + "send_packet").(int)
-	obj1.ReceiveCfg = obj1_4
+	var obj7 go_thunder.InterfaceEthernetInstanceDdos
+	prefix7 := "ddos.0."
+	obj7.InterfaceEthernetInstanceDdosOutside = d.Get(prefix7 + "outside").(int)
+	obj7.InterfaceEthernetInstanceDdosInside = d.Get(prefix7 + "inside").(int)
 
-	obj1.TTLIgnore = d.Get(prefix + "ttl_ignore").(int)
+	c.InterfaceEthernetInstanceDdosOutside = obj7
 
-	var obj1_5 go_thunder.EthernetRouter
-	prefix1 = prefix + "router.0."
+	var obj8 go_thunder.InterfaceEthernetInstanceIP
+	prefix8 := "ip.0."
+	obj8.InterfaceEthernetInstanceIPDhcp = d.Get(prefix8 + "dhcp").(int)
 
-	var obj1_5_1 go_thunder.EthernetIsis
-	prefix2 = prefix1 + "isis.0."
-	obj1_5_1.Tag = d.Get(prefix2 + "tag").(string)
-	obj1_5.Tag = obj1_5_1
+	InterfaceEthernetInstanceIPAddressListCount := d.Get(prefix8 + "address_list.#").(int)
+	obj8.InterfaceEthernetInstanceIPAddressListIpv6Addr = make([]go_thunder.InterfaceEthernetInstanceIPAddressList, 0, InterfaceEthernetInstanceIPAddressListCount)
 
-	obj1.Tag = obj1_5
+	for i := 0; i < InterfaceEthernetInstanceIPAddressListCount; i++ {
+		var obj8_1 go_thunder.InterfaceEthernetInstanceIPAddressList
+		prefix8_1 := prefix8 + fmt.Sprintf("address_list.%d.", i)
+		obj8_1.InterfaceEthernetInstanceIPAddressListIpv6Addr = d.Get(prefix8_1 + "ipv6_addr").(string)
+		obj8_1.InterfaceEthernetInstanceIPAddressListAddressType = d.Get(prefix8_1 + "address_type").(string)
+		obj8.InterfaceEthernetInstanceIPAddressListIpv6Addr = append(obj8.InterfaceEthernetInstanceIPAddressListIpv6Addr, obj8_1)
+	}
 
-	obj1.Dhcp = d.Get(prefix + "dhcp").(int)
-	obj1.Server = d.Get(prefix + "server").(int)
+	obj8.InterfaceEthernetInstanceIPAllowPromiscuousVip = d.Get(prefix8 + "allow_promiscuous_vip").(int)
+	obj8.InterfaceEthernetInstanceIPCacheSpoofingPort = d.Get(prefix8 + "cache_spoofing_port").(int)
 
-	var obj1_6 go_thunder.EthernetOspf
-	prefix1 = prefix + "ospf.0."
+	InterfaceEthernetInstanceIPHelperAddressListCount := d.Get(prefix8 + "helper_address_list.#").(int)
+	obj8.InterfaceEthernetInstanceIPHelperAddressListHelperAddress = make([]go_thunder.InterfaceEthernetInstanceIPHelperAddressList, 0, InterfaceEthernetInstanceIPHelperAddressListCount)
 
-	OspfIpListCount := d.Get(prefix1 + "ospf_ip_list.#").(int)
-	obj1_6.DeadInterval = make([]go_thunder.EthernetOspfIPList, 0, OspfIpListCount)
+	for i := 0; i < InterfaceEthernetInstanceIPHelperAddressListCount; i++ {
+		var obj8_2 go_thunder.InterfaceEthernetInstanceIPHelperAddressList
+		prefix8_2 := prefix8 + fmt.Sprintf("helper_address_list.%d.", i)
+		obj8_2.InterfaceEthernetInstanceIPHelperAddressListHelperAddress = d.Get(prefix8_2 + "helper_address").(string)
+		obj8.InterfaceEthernetInstanceIPHelperAddressListHelperAddress = append(obj8.InterfaceEthernetInstanceIPHelperAddressListHelperAddress, obj8_2)
+	}
 
-	for i := 0; i < OspfIpListCount; i++ {
-		var obj1_6_1 go_thunder.EthernetOspfIPList
-		prefix2 = prefix1 + fmt.Sprintf("ospf_ip_list.%d.", i)
-		obj1_6_1.DeadInterval = d.Get(prefix2 + "dead_interval").(int)
-		obj1_6_1.AuthenticationKey = d.Get(prefix2 + "authentication_key").(string)
-		obj1_6_1.MtuIgnore = d.Get(prefix2 + "mtu_ignore").(int)
-		obj1_6_1.TransmitDelay = d.Get(prefix2 + "transmit_delay").(int)
-		obj1_6_1.Value = d.Get(prefix2 + "value").(string)
-		obj1_6_1.Priority = d.Get(prefix2 + "priority").(int)
-		obj1_6_1.Authentication = d.Get(prefix2 + "authentication").(int)
-		obj1_6_1.Cost = d.Get(prefix2 + "cost").(int)
-		obj1_6_1.DatabaseFilter = d.Get(prefix2 + "database_filter").(string)
-		obj1_6_1.HelloInterval = d.Get(prefix2 + "hello_interval").(int)
-		obj1_6_1.IPAddr = d.Get(prefix2 + "ip_addr").(string)
-		obj1_6_1.RetransmitInterval = d.Get(prefix2 + "retransmit_interval").(int)
+	obj8.InterfaceEthernetInstanceIPInside = d.Get(prefix8 + "inside").(int)
+	obj8.InterfaceEthernetInstanceIPOutside = d.Get(prefix8 + "outside").(int)
+	obj8.InterfaceEthernetInstanceIPTTLIgnore = d.Get(prefix8 + "ttl_ignore").(int)
+	obj8.InterfaceEthernetInstanceIPSynCookie = d.Get(prefix8 + "syn_cookie").(int)
+	obj8.InterfaceEthernetInstanceIPSlbPartitionRedirect = d.Get(prefix8 + "slb_partition_redirect").(int)
+	obj8.InterfaceEthernetInstanceIPGenerateMembershipQuery = d.Get(prefix8 + "generate_membership_query").(int)
+	obj8.InterfaceEthernetInstanceIPQueryInterval = d.Get(prefix8 + "query_interval").(int)
+	obj8.InterfaceEthernetInstanceIPMaxRespTime = d.Get(prefix8 + "max_resp_time").(int)
+	obj8.InterfaceEthernetInstanceIPClient = d.Get(prefix8 + "client").(int)
+	obj8.InterfaceEthernetInstanceIPServer = d.Get(prefix8 + "server").(int)
 
-		MessageDigestCfgCount := d.Get(prefix2 + "message_digest_cfg.#").(int)
-		obj1_6_1.MessageDigestKey = make([]go_thunder.EthernetMessageDigestCfg, 0, MessageDigestCfgCount)
+	var obj8_3 go_thunder.InterfaceEthernetInstanceIPStatefulFirewall
+	prefix8_3 := prefix8 + "stateful_firewall.0."
+	obj8_3.InterfaceEthernetInstanceIPStatefulFirewallInside = d.Get(prefix8_3 + "inside").(int)
+	obj8_3.InterfaceEthernetInstanceIPStatefulFirewallClassList = d.Get(prefix8_3 + "class_list").(string)
+	obj8_3.InterfaceEthernetInstanceIPStatefulFirewallOutside = d.Get(prefix8_3 + "outside").(int)
+	obj8_3.InterfaceEthernetInstanceIPStatefulFirewallAccessList = d.Get(prefix8_3 + "access_list").(int)
+	obj8_3.InterfaceEthernetInstanceIPStatefulFirewallAclID = d.Get(prefix8_3 + "acl_id").(int)
 
-		for i := 0; i < MessageDigestCfgCount; i++ {
-			var obj1_6_1_1 go_thunder.EthernetMessageDigestCfg
-			prefix3 = prefix2 + fmt.Sprintf("message_digest_cfg.%d.", i)
-			obj1_6_1_1.MessageDigestKey = d.Get(prefix3 + "message_digest_key").(int)
+	obj8.InterfaceEthernetInstanceIPStatefulFirewallInside = obj8_3
 
-			var obj1_6_1_1_1 go_thunder.EthernetMd5
-			prefix4 := prefix3 + "md5.0."
-			obj1_6_1_1_1.Md5Value = d.Get(prefix4 + "md5_value").(string)
-			obj1_6_1_1_1.Encrypted = d.Get(prefix4 + "encrypted").(string)
-			obj1_6_1_1.Md5Value = obj1_6_1_1_1
+	var obj8_4 go_thunder.InterfaceEthernetInstanceIPRouter
+	prefix8_4 := prefix8 + "router.0."
 
-			obj1_6_1.MessageDigestKey = append(obj1_6_1.MessageDigestKey, obj1_6_1_1)
+	var obj8_4_1 go_thunder.InterfaceEthernetInstanceIPRouterIsis
+	prefix8_4_1 := prefix8_4 + "isis.0."
+	obj8_4_1.InterfaceEthernetInstanceIPRouterIsisTag = d.Get(prefix8_4_1 + "tag").(string)
+
+	obj8_4.InterfaceEthernetInstanceIPRouterIsisTag = obj8_4_1
+
+	obj8.InterfaceEthernetInstanceIPRouterIsis = obj8_4
+
+	var obj8_5 go_thunder.InterfaceEthernetInstanceIPRip
+	prefix8_5 := prefix8 + "rip.0."
+
+	var obj8_5_1 go_thunder.InterfaceEthernetInstanceIPRipAuthentication
+	prefix8_5_1 := prefix8_5 + "authentication.0."
+
+	var obj8_5_1_1 go_thunder.InterfaceEthernetInstanceIPRipAuthenticationStr
+	prefix8_5_1_1 := prefix8_5_1 + "str.0."
+	obj8_5_1_1.InterfaceEthernetInstanceIPRipAuthenticationStrString = d.Get(prefix8_5_1_1 + "string").(string)
+
+	obj8_5_1.InterfaceEthernetInstanceIPRipAuthenticationStrString = obj8_5_1_1
+
+	var obj8_5_1_2 go_thunder.InterfaceEthernetInstanceIPRipAuthenticationMode
+	prefix8_5_1_2 := prefix8_5_1 + "mode.0."
+	obj8_5_1_2.InterfaceEthernetInstanceIPRipAuthenticationModeMode = d.Get(prefix8_5_1_2 + "mode").(string)
+
+	obj8_5_1.InterfaceEthernetInstanceIPRipAuthenticationModeMode = obj8_5_1_2
+
+	var obj8_5_1_3 go_thunder.InterfaceEthernetInstanceIPRipAuthenticationKeyChain
+	prefix8_5_1_3 := prefix8_5_1 + "key_chain.0."
+	obj8_5_1_3.InterfaceEthernetInstanceIPRipAuthenticationKeyChainKeyChain = d.Get(prefix8_5_1_3 + "key_chain").(string)
+
+	obj8_5_1.InterfaceEthernetInstanceIPRipAuthenticationKeyChainKeyChain = obj8_5_1_3
+
+	obj8_5.InterfaceEthernetInstanceIPRipAuthenticationStr = obj8_5_1
+
+	obj8_5.InterfaceEthernetInstanceIPRipSendPacket = d.Get(prefix8_5 + "send_packet").(int)
+	obj8_5.InterfaceEthernetInstanceIPRipReceivePacket = d.Get(prefix8_5 + "receive_packet").(int)
+
+	var obj8_5_2 go_thunder.InterfaceEthernetInstanceIPRipSendCfg
+	prefix8_5_2 := prefix8_5 + "send_cfg.0."
+	obj8_5_2.InterfaceEthernetInstanceIPRipSendCfgSend = d.Get(prefix8_5_2 + "send").(int)
+	obj8_5_2.InterfaceEthernetInstanceIPRipSendCfgVersion = d.Get(prefix8_5_2 + "version").(string)
+
+	obj8_5.InterfaceEthernetInstanceIPRipSendCfgSend = obj8_5_2
+
+	var obj8_5_3 go_thunder.InterfaceEthernetInstanceIPRipReceiveCfg
+	prefix8_5_3 := prefix8_5 + "receive_cfg.0."
+	obj8_5_3.InterfaceEthernetInstanceIPRipReceiveCfgReceive = d.Get(prefix8_5_3 + "receive").(int)
+	obj8_5_3.InterfaceEthernetInstanceIPRipReceiveCfgVersion = d.Get(prefix8_5_3 + "version").(string)
+
+	obj8_5.InterfaceEthernetInstanceIPRipReceiveCfgReceive = obj8_5_3
+
+	var obj8_5_4 go_thunder.InterfaceEthernetInstanceIPRipSplitHorizonCfg
+	prefix8_5_4 := prefix8_5 + "split_horizon_cfg.0."
+	obj8_5_4.InterfaceEthernetInstanceIPRipSplitHorizonCfgState = d.Get(prefix8_5_4 + "state").(string)
+
+	obj8_5.InterfaceEthernetInstanceIPRipSplitHorizonCfgState = obj8_5_4
+
+	obj8.InterfaceEthernetInstanceIPRipAuthentication = obj8_5
+
+	var obj8_6 go_thunder.InterfaceEthernetInstanceIPOspf
+	prefix8_6 := prefix8 + "ospf.0."
+
+	var obj8_6_1 go_thunder.InterfaceEthernetInstanceIPOspfOspfGlobal
+	prefix8_6_1 := prefix8_6 + "ospf_global.0."
+
+	var obj8_6_1_1 go_thunder.InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationCfg
+	prefix8_6_1_1 := prefix8_6_1 + "authentication_cfg.0."
+	obj8_6_1_1.InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationCfgAuthentication = d.Get(prefix8_6_1_1 + "authentication").(int)
+	obj8_6_1_1.InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationCfgValue = d.Get(prefix8_6_1_1 + "value").(string)
+
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationCfgAuthentication = obj8_6_1_1
+
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationKey = d.Get(prefix8_6_1 + "authentication_key").(string)
+
+	var obj8_6_1_2 go_thunder.InterfaceEthernetInstanceIPOspfOspfGlobalBfdCfg
+	prefix8_6_1_2 := prefix8_6_1 + "bfd_cfg.0."
+	obj8_6_1_2.InterfaceEthernetInstanceIPOspfOspfGlobalBfdCfgBfd = d.Get(prefix8_6_1_2 + "bfd").(int)
+	obj8_6_1_2.InterfaceEthernetInstanceIPOspfOspfGlobalBfdCfgDisable = d.Get(prefix8_6_1_2 + "disable").(int)
+
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalBfdCfgBfd = obj8_6_1_2
+
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalCost = d.Get(prefix8_6_1 + "cost").(int)
+
+	var obj8_6_1_3 go_thunder.InterfaceEthernetInstanceIPOspfOspfGlobalDatabaseFilterCfg
+	prefix8_6_1_3 := prefix8_6_1 + "database_filter_cfg.0."
+	obj8_6_1_3.InterfaceEthernetInstanceIPOspfOspfGlobalDatabaseFilterCfgDatabaseFilter = d.Get(prefix8_6_1_3 + "database_filter").(string)
+	obj8_6_1_3.InterfaceEthernetInstanceIPOspfOspfGlobalDatabaseFilterCfgOut = d.Get(prefix8_6_1_3 + "out").(int)
+
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalDatabaseFilterCfgDatabaseFilter = obj8_6_1_3
+
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalDeadInterval = d.Get(prefix8_6_1 + "dead_interval").(int)
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalDisable = d.Get(prefix8_6_1 + "disable").(string)
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalHelloInterval = d.Get(prefix8_6_1 + "hello_interval").(int)
+
+	InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfgCount := d.Get(prefix8_6_1 + "message_digest_cfg.#").(int)
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfgMessageDigestKey = make([]go_thunder.InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfg, 0, InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfgCount)
+
+	for i := 0; i < InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfgCount; i++ {
+		var obj8_6_1_4 go_thunder.InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfg
+		prefix8_6_1_4 := prefix8_6_1 + fmt.Sprintf("message_digest_cfg.%d.", i)
+		obj8_6_1_4.InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfgMessageDigestKey = d.Get(prefix8_6_1_4 + "message_digest_key").(int)
+		obj8_6_1_4.InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfgMd5Value = d.Get(prefix8_6_1_4 + "md5_value").(string)
+		obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfgMessageDigestKey = append(obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfgMessageDigestKey, obj8_6_1_4)
+	}
+
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalMtu = d.Get(prefix8_6_1 + "mtu").(int)
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalMtuIgnore = d.Get(prefix8_6_1 + "mtu_ignore").(int)
+
+	var obj8_6_1_5 go_thunder.InterfaceEthernetInstanceIPOspfOspfGlobalNetwork
+	prefix8_6_1_5 := prefix8_6_1 + "network.0."
+	obj8_6_1_5.InterfaceEthernetInstanceIPOspfOspfGlobalNetworkBroadcast = d.Get(prefix8_6_1_5 + "broadcast").(int)
+	obj8_6_1_5.InterfaceEthernetInstanceIPOspfOspfGlobalNetworkNonBroadcast = d.Get(prefix8_6_1_5 + "non_broadcast").(int)
+	obj8_6_1_5.InterfaceEthernetInstanceIPOspfOspfGlobalNetworkPointToPoint = d.Get(prefix8_6_1_5 + "point_to_point").(int)
+	obj8_6_1_5.InterfaceEthernetInstanceIPOspfOspfGlobalNetworkPointToMultipoint = d.Get(prefix8_6_1_5 + "point_to_multipoint").(int)
+	obj8_6_1_5.InterfaceEthernetInstanceIPOspfOspfGlobalNetworkP2MpNbma = d.Get(prefix8_6_1_5 + "p2mp_nbma").(int)
+
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalNetworkBroadcast = obj8_6_1_5
+
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalPriority = d.Get(prefix8_6_1 + "priority").(int)
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalRetransmitInterval = d.Get(prefix8_6_1 + "retransmit_interval").(int)
+	obj8_6_1.InterfaceEthernetInstanceIPOspfOspfGlobalTransmitDelay = d.Get(prefix8_6_1 + "transmit_delay").(int)
+
+	obj8_6.InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationCfg = obj8_6_1
+
+	InterfaceEthernetInstanceIPOspfOspfIPListCount := d.Get(prefix8_6 + "ospf_ip_list.#").(int)
+	obj8_6.InterfaceEthernetInstanceIPOspfOspfIPListIPAddr = make([]go_thunder.InterfaceEthernetInstanceIPOspfOspfIPList, 0, InterfaceEthernetInstanceIPOspfOspfIPListCount)
+
+	for i := 0; i < InterfaceEthernetInstanceIPOspfOspfIPListCount; i++ {
+		var obj8_6_2 go_thunder.InterfaceEthernetInstanceIPOspfOspfIPList
+		prefix8_6_2 := prefix8_6 + fmt.Sprintf("ospf_ip_list.%d.", i)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListIPAddr = d.Get(prefix8_6_2 + "ip_addr").(string)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListAuthentication = d.Get(prefix8_6_2 + "authentication").(int)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListValue = d.Get(prefix8_6_2 + "value").(string)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListAuthenticationKey = d.Get(prefix8_6_2 + "authentication_key").(string)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListCost = d.Get(prefix8_6_2 + "cost").(int)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListDatabaseFilter = d.Get(prefix8_6_2 + "database_filter").(string)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListOut = d.Get(prefix8_6_2 + "out").(int)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListDeadInterval = d.Get(prefix8_6_2 + "dead_interval").(int)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListHelloInterval = d.Get(prefix8_6_2 + "hello_interval").(int)
+
+		InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfgCount := d.Get(prefix8_6_2 + "message_digest_cfg.#").(int)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfgMessageDigestKey = make([]go_thunder.InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfg, 0, InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfgCount)
+
+		for i := 0; i < InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfgCount; i++ {
+			var obj8_6_2_1 go_thunder.InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfg
+			prefix8_6_2_1 := prefix8_6_2 + fmt.Sprintf("message_digest_cfg.%d.", i)
+			obj8_6_2_1.InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfgMessageDigestKey = d.Get(prefix8_6_2_1 + "message_digest_key").(int)
+			obj8_6_2_1.InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfgMd5Value = d.Get(prefix8_6_2_1 + "md5_value").(string)
+			obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfgMessageDigestKey = append(obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfgMessageDigestKey, obj8_6_2_1)
 		}
 
-		obj1_6_1.Out = d.Get(prefix2 + "out").(int)
-		obj1_6.DeadInterval = append(obj1_6.DeadInterval, obj1_6_1)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListMtuIgnore = d.Get(prefix8_6_2 + "mtu_ignore").(int)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListPriority = d.Get(prefix8_6_2 + "priority").(int)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListRetransmitInterval = d.Get(prefix8_6_2 + "retransmit_interval").(int)
+		obj8_6_2.InterfaceEthernetInstanceIPOspfOspfIPListTransmitDelay = d.Get(prefix8_6_2 + "transmit_delay").(int)
+		obj8_6.InterfaceEthernetInstanceIPOspfOspfIPListIPAddr = append(obj8_6.InterfaceEthernetInstanceIPOspfOspfIPListIPAddr, obj8_6_2)
 	}
 
-	var obj1_6_2 go_thunder.EthernetOspfGlobal
-	prefix2 = prefix1 + "ospf_global.0."
-	obj1_6_2.Cost = d.Get(prefix2 + "cost").(int)
-	obj1_6_2.DeadInterval = d.Get(prefix2 + "dead_interval").(int)
-	obj1_6_2.AuthenticationKey = d.Get(prefix2 + "authentication_key").(string)
+	obj8.InterfaceEthernetInstanceIPOspfOspfGlobal = obj8_6
 
-	var obj1_6_2_1 go_thunder.EthernetNetwork
-	prefix3 = prefix2 + "network.0."
-	obj1_6_2_1.Broadcast = d.Get(prefix3 + "broadcast").(int)
-	obj1_6_2_1.PointToMultipoint = d.Get(prefix3 + "point_to_multipoint").(int)
-	obj1_6_2_1.NonBroadcast = d.Get(prefix3 + "non_broadcast").(int)
-	obj1_6_2_1.PointToPoint = d.Get(prefix3 + "point_to_point").(int)
-	obj1_6_2_1.P2MpNbma = d.Get(prefix3 + "p2mp_nbma").(int)
-	obj1_6_2.Broadcast = obj1_6_2_1
+	c.InterfaceEthernetInstanceIPDhcp = obj8
 
-	obj1_6_2.MtuIgnore = d.Get(prefix2 + "mtu_ignore").(int)
-	obj1_6_2.TransmitDelay = d.Get(prefix2 + "transmit_delay").(int)
+	var obj9 go_thunder.InterfaceEthernetInstanceIpv6
+	prefix9 := "ipv6.0."
 
-	var obj1_6_2_2 go_thunder.EthernetAuthenticationCfg
-	prefix3 = prefix2 + "authentication_cfg.0."
-	obj1_6_2_2.Authentication = d.Get(prefix3 + "authentication").(int)
-	obj1_6_2_2.Value = d.Get(prefix3 + "value").(string)
-	obj1_6_2.Authentication = obj1_6_2_2
+	InterfaceEthernetInstanceIpv6AddressListCount := d.Get(prefix9 + "address_list.#").(int)
+	obj9.InterfaceEthernetInstanceIpv6AddressListIpv6Addr = make([]go_thunder.InterfaceEthernetInstanceIpv6AddressList, 0, InterfaceEthernetInstanceIpv6AddressListCount)
 
-	obj1_6_2.RetransmitInterval = d.Get(prefix2 + "retransmit_interval").(int)
-
-	var obj1_6_2_3 go_thunder.EthernetBfdCfg
-	prefix3 = prefix2 + "bfd_cfg.0."
-	obj1_6_2_3.Disable = d.Get(prefix3 + "disable").(int)
-	obj1_6_2_3.Bfd = d.Get(prefix3 + "bfd").(int)
-	obj1_6_2.Bfd = obj1_6_2_3
-
-	obj1_6_2.Disable = d.Get(prefix2 + "disable").(string)
-	obj1_6_2.HelloInterval = d.Get(prefix2 + "hello_interval").(int)
-
-	var obj1_6_2_4 go_thunder.EthernetDatabaseFilterCfg
-	prefix3 = prefix2 + "database_filter_cfg.0."
-	obj1_6_2_4.DatabaseFilter = d.Get(prefix3 + "database_filter").(string)
-	obj1_6_2_4.Out = d.Get(prefix3 + "out").(int)
-	obj1_6_2.DatabaseFilter = obj1_6_2_4
-
-	obj1_6_2.Priority = d.Get(prefix2 + "priority").(int)
-	obj1_6_2.Mtu = d.Get(prefix2 + "mtu").(int)
-
-	MessageDigestCfgCount := d.Get(prefix2 + "message_digest_cfg.#").(int)
-	obj1_6_2.MessageDigestKey = make([]go_thunder.EthernetMessageDigestCfg, 0, MessageDigestCfgCount)
-
-	for i := 0; i < MessageDigestCfgCount; i++ {
-		var obj1_6_2_5 go_thunder.EthernetMessageDigestCfg
-		prefix3 = prefix2 + fmt.Sprintf("message_digest_cfg.%d.", i)
-		obj1_6_2_5.MessageDigestKey = d.Get(prefix3 + "message_digest_key").(int)
-
-		var obj1_6_2_5_1 go_thunder.EthernetMd5
-		prefix4 := prefix3 + "md5.0."
-		obj1_6_2_5_1.Md5Value = d.Get(prefix4 + "md5_value").(string)
-		obj1_6_2_5_1.Encrypted = d.Get(prefix4 + "encrypted").(string)
-		obj1_6_2_5.Md5Value = obj1_6_2_5_1
-
-		obj1_6_2.MessageDigestKey = append(obj1_6_2.MessageDigestKey, obj1_6_2_5)
+	for i := 0; i < InterfaceEthernetInstanceIpv6AddressListCount; i++ {
+		var obj9_1 go_thunder.InterfaceEthernetInstanceIpv6AddressList
+		prefix9_1 := prefix9 + fmt.Sprintf("address_list.%d.", i)
+		obj9_1.InterfaceEthernetInstanceIpv6AddressListIpv6Addr = d.Get(prefix9_1 + "ipv6_addr").(string)
+		obj9_1.InterfaceEthernetInstanceIpv6AddressListAddressType = d.Get(prefix9_1 + "address_type").(string)
+		obj9.InterfaceEthernetInstanceIpv6AddressListIpv6Addr = append(obj9.InterfaceEthernetInstanceIpv6AddressListIpv6Addr, obj9_1)
 	}
 
-	obj1_6.Cost = obj1_6_2
+	obj9.InterfaceEthernetInstanceIpv6Inside = d.Get(prefix9 + "inside").(int)
+	obj9.InterfaceEthernetInstanceIpv6Outside = d.Get(prefix9 + "outside").(int)
+	obj9.InterfaceEthernetInstanceIpv6Ipv6Enable = d.Get(prefix9 + "ipv6_enable").(int)
+	obj9.InterfaceEthernetInstanceIpv6TTLIgnore = d.Get(prefix9 + "ttl_ignore").(int)
 
-	obj1.DeadInterval = obj1_6
+	var obj9_2 go_thunder.InterfaceEthernetInstanceIpv6AccessListCfg
+	prefix9_2 := prefix9 + "access_list_cfg.0."
+	obj9_2.InterfaceEthernetInstanceIpv6AccessListCfgV6AclName = d.Get(prefix9_2 + "v6_acl_name").(string)
+	obj9_2.InterfaceEthernetInstanceIpv6AccessListCfgInbound = d.Get(prefix9_2 + "inbound").(int)
 
-	obj1.SlbPartitionRedirect = d.Get(prefix + "slb_partition_redirect").(int)
-	c.AddressType = obj1
+	obj9.InterfaceEthernetInstanceIpv6AccessListCfgV6AclName = obj9_2
 
-	var obj2 go_thunder.EthernetDdos
-	prefix = "ddos.0."
-	obj2.Outside = d.Get(prefix + "outside").(int)
-	obj2.Inside = d.Get(prefix + "inside").(int)
-	c.Outside = obj2
+	var obj9_3 go_thunder.InterfaceEthernetInstanceIpv6RouterAdver
+	prefix9_3 := prefix9 + "router_adver.0."
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverAction = d.Get(prefix9_3 + "action").(string)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverHopLimit = d.Get(prefix9_3 + "hop_limit").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverMaxInterval = d.Get(prefix9_3 + "max_interval").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverMinInterval = d.Get(prefix9_3 + "min_interval").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverDefaultLifetime = d.Get(prefix9_3 + "default_lifetime").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverRateLimit = d.Get(prefix9_3 + "rate_limit").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverReachableTime = d.Get(prefix9_3 + "reachable_time").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverRetransmitTimer = d.Get(prefix9_3 + "retransmit_timer").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverAdverMtuDisable = d.Get(prefix9_3 + "adver_mtu_disable").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverAdverMtu = d.Get(prefix9_3 + "adver_mtu").(int)
 
-	c.L3VlanFwdDisable = d.Get("l3_vlan_fwd_disable").(int)
+	InterfaceEthernetInstanceIpv6RouterAdverPrefixListCount := d.Get(prefix9_3 + "prefix_list.#").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverPrefixListPrefix = make([]go_thunder.InterfaceEthernetInstanceIpv6RouterAdverPrefixList, 0, InterfaceEthernetInstanceIpv6RouterAdverPrefixListCount)
 
-	var obj3 go_thunder.EthernetAccessList
-	prefix = "access_list.0."
-	obj3.ACLName = d.Get(prefix + "acl_name").(string)
-	obj3.ACLID = d.Get(prefix + "acl_id").(int)
-	c.ACLName = obj3
-
-	c.Speed = d.Get("speed").(string)
-	c.SpeedForced40G = d.Get("speed_forced_40g").(int)
-
-	var obj4 go_thunder.EthernetLldp
-	prefix = "lldp.0."
-
-	var obj4_1 go_thunder.EthernetTxDot1Cfg
-	prefix1 = prefix + "tx_dot1_cfg.0."
-	obj4_1.LinkAggregation = d.Get(prefix1 + "link_aggregation").(int)
-	obj4_1.Vlan = d.Get(prefix1 + "vlan").(int)
-	obj4_1.TxDot1Tlvs = d.Get(prefix1 + "tx_dot1_tlvs").(int)
-	obj4.LinkAggregation = obj4_1
-
-	var obj4_2 go_thunder.EthernetNotificationCfg
-	prefix1 = prefix + "notification_cfg.0."
-	obj4_2.Notification = d.Get(prefix1 + "notification").(int)
-	obj4_2.NotifEnable = d.Get(prefix1 + "notif_enable").(int)
-	obj4.Notification = obj4_2
-
-	var obj4_3 go_thunder.EthernetEnableCfg
-	prefix1 = prefix + "enable_cfg.0."
-	obj4_3.Rx = d.Get(prefix1 + "rx").(int)
-	obj4_3.Tx = d.Get(prefix1 + "tx").(int)
-	obj4_3.RtEnable = d.Get(prefix1 + "rt_enable").(int)
-	obj4.Rx = obj4_3
-
-	var obj4_4 go_thunder.EthernetTxTlvsCfg
-	prefix1 = prefix + "tx_tlvs_cfg.0."
-	obj4_4.SystemCapabilities = d.Get(prefix1 + "system_capabilities").(int)
-	obj4_4.SystemDescription = d.Get(prefix1 + "system_description").(int)
-	obj4_4.ManagementAddress = d.Get(prefix1 + "management_address").(int)
-	obj4_4.TxTlvs = d.Get(prefix1 + "tx_tlvs").(int)
-	obj4_4.Exclude = d.Get(prefix1 + "exclude").(int)
-	obj4_4.PortDescription = d.Get(prefix1 + "port_description").(int)
-	obj4_4.SystemName = d.Get(prefix1 + "system_name").(int)
-	obj4.SystemCapabilities = obj4_4
-
-	c.LinkAggregation = obj4
-
-	var obj5 go_thunder.EthernetBfd
-	prefix = "bfd.0."
-
-	var obj5_1 go_thunder.EthernetIntervalCfg
-	prefix1 = prefix + "interval_cfg.0."
-	obj5_1.Interval = d.Get(prefix1 + "interval").(int)
-	obj5_1.MinRx = d.Get(prefix1 + "min_rx").(int)
-	obj5_1.Multiplier = d.Get(prefix1 + "multiplier").(int)
-	obj5.Interval = obj5_1
-
-	var obj5_2 go_thunder.EthernetAuthentication2
-	prefix1 = prefix + "authentication.0."
-	obj5_2.Encrypted = d.Get(prefix1 + "encrypted").(string)
-	obj5_2.Password = d.Get(prefix1 + "password").(string)
-	obj5_2.Method = d.Get(prefix1 + "method").(string)
-	obj5_2.KeyID = d.Get(prefix1 + "key_id").(int)
-	obj5.Encrypted = obj5_2
-
-	obj5.Echo = d.Get(prefix + "echo").(int)
-	obj5.Demand = d.Get(prefix + "demand").(int)
-	c.Interval = obj5
-
-	c.MediaTypeCopper = d.Get("media_type_copper").(int)
-	c.Ifnum = d.Get("ifnum").(int)
-	c.RemoveVlanTag = d.Get("remove_vlan_tag").(int)
-
-	MonitorListCount := d.Get("monitor_list.#").(int)
-	c.MonitorVlan = make([]go_thunder.EthernetMonitorList, 0, MonitorListCount)
-
-	for i := 0; i < MonitorListCount; i++ {
-		var obj6 go_thunder.EthernetMonitorList
-		prefix = fmt.Sprintf("monitor_list.%d.", i)
-		obj6.MonitorVlan = d.Get(prefix + "monitor_vlan").(int)
-		obj6.Monitor = d.Get(prefix + "monitor").(string)
-		obj6.MirrorIndex = d.Get(prefix + "mirror_index").(int)
-		c.MonitorVlan = append(c.MonitorVlan, obj6)
+	for i := 0; i < InterfaceEthernetInstanceIpv6RouterAdverPrefixListCount; i++ {
+		var obj9_3_1 go_thunder.InterfaceEthernetInstanceIpv6RouterAdverPrefixList
+		prefix9_3_1 := prefix9_3 + fmt.Sprintf("prefix_list.%d.", i)
+		obj9_3_1.InterfaceEthernetInstanceIpv6RouterAdverPrefixListPrefix = d.Get(prefix9_3_1 + "prefix").(string)
+		obj9_3_1.InterfaceEthernetInstanceIpv6RouterAdverPrefixListNotAutonomous = d.Get(prefix9_3_1 + "not_autonomous").(int)
+		obj9_3_1.InterfaceEthernetInstanceIpv6RouterAdverPrefixListNotOnLink = d.Get(prefix9_3_1 + "not_on_link").(int)
+		obj9_3_1.InterfaceEthernetInstanceIpv6RouterAdverPrefixListPreferredLifetime = d.Get(prefix9_3_1 + "preferred_lifetime").(int)
+		obj9_3_1.InterfaceEthernetInstanceIpv6RouterAdverPrefixListValidLifetime = d.Get(prefix9_3_1 + "valid_lifetime").(int)
+		obj9_3.InterfaceEthernetInstanceIpv6RouterAdverPrefixListPrefix = append(obj9_3.InterfaceEthernetInstanceIpv6RouterAdverPrefixListPrefix, obj9_3_1)
 	}
 
-	c.CPUProcess = d.Get("cpu_process").(int)
-	c.AutoNegEnable = d.Get("auto_neg_enable").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverManagedConfigAction = d.Get(prefix9_3 + "managed_config_action").(string)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverOtherConfigAction = d.Get(prefix9_3 + "other_config_action").(string)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverAdverVrid = d.Get(prefix9_3 + "adver_vrid").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverUseFloatingIP = d.Get(prefix9_3 + "use_floating_ip").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverFloatingIP = d.Get(prefix9_3 + "floating_ip").(string)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverAdverVridDefault = d.Get(prefix9_3 + "adver_vrid_default").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverUseFloatingIPDefaultVrid = d.Get(prefix9_3 + "use_floating_ip_default_vrid").(int)
+	obj9_3.InterfaceEthernetInstanceIpv6RouterAdverFloatingIPDefaultVrid = d.Get(prefix9_3 + "floating_ip_default_vrid").(string)
 
-	var obj7 go_thunder.EthernetMap
-	prefix = "map.0."
-	obj7.Inside = d.Get(prefix + "inside").(int)
-	obj7.MapTInside = d.Get(prefix + "map_t_inside").(int)
-	obj7.MapTOutside = d.Get(prefix + "map_t_outside").(int)
-	obj7.Outside = d.Get(prefix + "outside").(int)
-	c.Inside = obj7
+	obj9.InterfaceEthernetInstanceIpv6RouterAdverAction = obj9_3
 
-	c.TrafficDistributionMode = d.Get("traffic_distribution_mode").(string)
+	var obj9_4 go_thunder.InterfaceEthernetInstanceIpv6StatefulFirewall
+	prefix9_4 := prefix9 + "stateful_firewall.0."
+	obj9_4.InterfaceEthernetInstanceIpv6StatefulFirewallInside = d.Get(prefix9_4 + "inside").(int)
+	obj9_4.InterfaceEthernetInstanceIpv6StatefulFirewallClassList = d.Get(prefix9_4 + "class_list").(string)
+	obj9_4.InterfaceEthernetInstanceIpv6StatefulFirewallOutside = d.Get(prefix9_4 + "outside").(int)
+	obj9_4.InterfaceEthernetInstanceIpv6StatefulFirewallAccessList = d.Get(prefix9_4 + "access_list").(int)
+	obj9_4.InterfaceEthernetInstanceIpv6StatefulFirewallAclName = d.Get(prefix9_4 + "acl_name").(string)
 
-	TrunkGroupListCount := d.Get("trunk_group_list.#").(int)
-	c.TrunkNumber = make([]go_thunder.EthernetTrunkGroupList, 0, TrunkGroupListCount)
+	obj9.InterfaceEthernetInstanceIpv6StatefulFirewallInside = obj9_4
 
-	for i := 0; i < TrunkGroupListCount; i++ {
-		var obj8 go_thunder.EthernetTrunkGroupList
-		prefix = fmt.Sprintf("trunk_group_list.%d.", i)
-		obj8.TrunkNumber = d.Get(prefix + "trunk_number").(int)
-		obj8.UserTag = d.Get(prefix + "user_tag").(string)
+	var obj9_5 go_thunder.InterfaceEthernetInstanceIpv6Router
+	prefix9_5 := prefix9 + "router.0."
 
-		var obj8_1 go_thunder.EthernetUdldTimeoutCfg
-		prefix1 = prefix + "udld_timeout_cfg.0."
-		obj8_1.Slow = d.Get(prefix1 + "slow").(int)
-		obj8_1.Fast = d.Get(prefix1 + "fast").(int)
-		obj8.Slow = obj8_1
+	var obj9_5_1 go_thunder.InterfaceEthernetInstanceIpv6RouterRipng
+	prefix9_5_1 := prefix9_5 + "ripng.0."
+	obj9_5_1.InterfaceEthernetInstanceIpv6RouterRipngRip = d.Get(prefix9_5_1 + "rip").(int)
 
-		obj8.Mode = d.Get(prefix + "mode").(string)
-		obj8.Timeout = d.Get(prefix + "timeout").(string)
-		obj8.Type = d.Get(prefix + "type").(string)
-		obj8.AdminKey = d.Get(prefix + "admin_key").(int)
-		obj8.PortPriority = d.Get(prefix + "port_priority").(int)
-		c.TrunkNumber = append(c.TrunkNumber, obj8)
+	obj9_5.InterfaceEthernetInstanceIpv6RouterRipngRip = obj9_5_1
+
+	var obj9_5_2 go_thunder.InterfaceEthernetInstanceIpv6RouterOspf
+	prefix9_5_2 := prefix9_5 + "ospf.0."
+
+	InterfaceEthernetInstanceIpv6RouterOspfAreaListCount := d.Get(prefix9_5_2 + "area_list.#").(int)
+	obj9_5_2.InterfaceEthernetInstanceIpv6RouterOspfAreaListAreaIDNum = make([]go_thunder.InterfaceEthernetInstanceIpv6RouterOspfAreaList, 0, InterfaceEthernetInstanceIpv6RouterOspfAreaListCount)
+
+	for i := 0; i < InterfaceEthernetInstanceIpv6RouterOspfAreaListCount; i++ {
+		var obj9_5_2_1 go_thunder.InterfaceEthernetInstanceIpv6RouterOspfAreaList
+		prefix9_5_2_1 := prefix9_5_2 + fmt.Sprintf("area_list.%d.", i)
+		obj9_5_2_1.InterfaceEthernetInstanceIpv6RouterOspfAreaListAreaIDNum = d.Get(prefix9_5_2_1 + "area_id_num").(int)
+		obj9_5_2_1.InterfaceEthernetInstanceIpv6RouterOspfAreaListAreaIDAddr = d.Get(prefix9_5_2_1 + "area_id_addr").(string)
+		obj9_5_2_1.InterfaceEthernetInstanceIpv6RouterOspfAreaListTag = d.Get(prefix9_5_2_1 + "tag").(string)
+		obj9_5_2_1.InterfaceEthernetInstanceIpv6RouterOspfAreaListInstanceID = d.Get(prefix9_5_2_1 + "instance_id").(int)
+		obj9_5_2.InterfaceEthernetInstanceIpv6RouterOspfAreaListAreaIDNum = append(obj9_5_2.InterfaceEthernetInstanceIpv6RouterOspfAreaListAreaIDNum, obj9_5_2_1)
 	}
 
-	var obj9 go_thunder.EthernetNptv6
-	prefix = "nptv6.0."
+	obj9_5.InterfaceEthernetInstanceIpv6RouterOspfAreaList = obj9_5_2
 
-	DomainListCount := d.Get(prefix + "domain_list.#").(int)
-	obj9.DomainName = make([]go_thunder.EthernetDomainList, 0, DomainListCount)
+	var obj9_5_3 go_thunder.InterfaceEthernetInstanceIpv6RouterIsis
+	prefix9_5_3 := prefix9_5 + "isis.0."
+	obj9_5_3.InterfaceEthernetInstanceIpv6RouterIsisTag = d.Get(prefix9_5_3 + "tag").(string)
 
-	for i := 0; i < DomainListCount; i++ {
-		var obj9_1 go_thunder.EthernetDomainList
-		prefix1 := prefix + fmt.Sprintf("domain_list.%d.", i)
-		obj9_1.DomainName = d.Get(prefix1 + "domain_name").(string)
-		obj9_1.BindType = d.Get(prefix1 + "bind_type").(string)
-		obj9.DomainName = append(obj9.DomainName, obj9_1)
+	obj9_5.InterfaceEthernetInstanceIpv6RouterIsisTag = obj9_5_3
+
+	obj9.InterfaceEthernetInstanceIpv6RouterRipng = obj9_5
+
+	var obj9_6 go_thunder.InterfaceEthernetInstanceIpv6Rip
+	prefix9_6 := prefix9 + "rip.0."
+
+	var obj9_6_1 go_thunder.InterfaceEthernetInstanceIpv6RipSplitHorizonCfg
+	prefix9_6_1 := prefix9_6 + "split_horizon_cfg.0."
+	obj9_6_1.InterfaceEthernetInstanceIpv6RipSplitHorizonCfgState = d.Get(prefix9_6_1 + "state").(string)
+
+	obj9_6.InterfaceEthernetInstanceIpv6RipSplitHorizonCfgState = obj9_6_1
+
+	obj9.InterfaceEthernetInstanceIpv6RipSplitHorizonCfg = obj9_6
+
+	var obj9_7 go_thunder.InterfaceEthernetInstanceIpv6Ospf
+	prefix9_7 := prefix9 + "ospf.0."
+
+	InterfaceEthernetInstanceIpv6OspfNetworkListCount := d.Get(prefix9_7 + "network_list.#").(int)
+	obj9_7.InterfaceEthernetInstanceIpv6OspfNetworkListBroadcastType = make([]go_thunder.InterfaceEthernetInstanceIpv6OspfNetworkList, 0, InterfaceEthernetInstanceIpv6OspfNetworkListCount)
+
+	for i := 0; i < InterfaceEthernetInstanceIpv6OspfNetworkListCount; i++ {
+		var obj9_7_1 go_thunder.InterfaceEthernetInstanceIpv6OspfNetworkList
+		prefix9_7_1 := prefix9_7 + fmt.Sprintf("network_list.%d.", i)
+		obj9_7_1.InterfaceEthernetInstanceIpv6OspfNetworkListBroadcastType = d.Get(prefix9_7_1 + "broadcast_type").(string)
+		obj9_7_1.InterfaceEthernetInstanceIpv6OspfNetworkListP2MpNbma = d.Get(prefix9_7_1 + "p2mp_nbma").(int)
+		obj9_7_1.InterfaceEthernetInstanceIpv6OspfNetworkListNetworkInstanceID = d.Get(prefix9_7_1 + "network_instance_id").(int)
+		obj9_7.InterfaceEthernetInstanceIpv6OspfNetworkListBroadcastType = append(obj9_7.InterfaceEthernetInstanceIpv6OspfNetworkListBroadcastType, obj9_7_1)
 	}
 
-	c.Nptv6 = obj9
+	obj9_7.InterfaceEthernetInstanceIpv6OspfBfd = d.Get(prefix9_7 + "bfd").(int)
+	obj9_7.InterfaceEthernetInstanceIpv6OspfDisable = d.Get(prefix9_7 + "disable").(int)
 
-	c.CPUProcessDir = d.Get("cpu_process_dir").(string)
+	InterfaceEthernetInstanceIpv6OspfCostCfgCount := d.Get(prefix9_7 + "cost_cfg.#").(int)
+	obj9_7.InterfaceEthernetInstanceIpv6OspfCostCfgCost = make([]go_thunder.InterfaceEthernetInstanceIpv6OspfCostCfg, 0, InterfaceEthernetInstanceIpv6OspfCostCfgCount)
 
-	var obj10 go_thunder.EthernetIsis2
-	prefix = "isis.0."
-
-	PriorityListCount := d.Get(prefix + "priority_list.#").(int)
-	obj10.Priority = make([]go_thunder.EthernetPriorityList, 0, PriorityListCount)
-
-	for i := 0; i < PriorityListCount; i++ {
-		var obj10_1 go_thunder.EthernetPriorityList
-		prefix1 = prefix + fmt.Sprintf("priority_list.%d.", i)
-		obj10_1.Priority = d.Get(prefix1 + "priority").(int)
-		obj10_1.Level = d.Get(prefix1 + "level").(string)
-		obj10.Priority = append(obj10.Priority, obj10_1)
+	for i := 0; i < InterfaceEthernetInstanceIpv6OspfCostCfgCount; i++ {
+		var obj9_7_2 go_thunder.InterfaceEthernetInstanceIpv6OspfCostCfg
+		prefix9_7_2 := prefix9_7 + fmt.Sprintf("cost_cfg.%d.", i)
+		obj9_7_2.InterfaceEthernetInstanceIpv6OspfCostCfgCost = d.Get(prefix9_7_2 + "cost").(int)
+		obj9_7_2.InterfaceEthernetInstanceIpv6OspfCostCfgInstanceID = d.Get(prefix9_7_2 + "instance_id").(int)
+		obj9_7.InterfaceEthernetInstanceIpv6OspfCostCfgCost = append(obj9_7.InterfaceEthernetInstanceIpv6OspfCostCfgCost, obj9_7_2)
 	}
 
-	obj10.Padding = d.Get(prefix + "padding").(int)
+	InterfaceEthernetInstanceIpv6OspfDeadIntervalCfgCount := d.Get(prefix9_7 + "dead_interval_cfg.#").(int)
+	obj9_7.InterfaceEthernetInstanceIpv6OspfDeadIntervalCfgDeadInterval = make([]go_thunder.InterfaceEthernetInstanceIpv6OspfDeadIntervalCfg, 0, InterfaceEthernetInstanceIpv6OspfDeadIntervalCfgCount)
 
-	HelloIntervalMinimalListCount := d.Get(prefix + "hello_interval_minimal_list.#").(int)
-	obj10.HelloIntervalMinimal = make([]go_thunder.EthernetHelloIntervalMinimalList, 0, HelloIntervalMinimalListCount)
-
-	for i := 0; i < HelloIntervalMinimalListCount; i++ {
-		var obj10_2 go_thunder.EthernetHelloIntervalMinimalList
-		prefix1 = prefix + fmt.Sprintf("hello_interval_minimal_list.%d.", i)
-		obj10_2.HelloIntervalMinimal = d.Get(prefix1 + "hello_interval_minimal").(int)
-		obj10_2.Level = d.Get(prefix1 + "level").(string)
-		obj10.HelloIntervalMinimal = append(obj10.HelloIntervalMinimal, obj10_2)
+	for i := 0; i < InterfaceEthernetInstanceIpv6OspfDeadIntervalCfgCount; i++ {
+		var obj9_7_3 go_thunder.InterfaceEthernetInstanceIpv6OspfDeadIntervalCfg
+		prefix9_7_3 := prefix9_7 + fmt.Sprintf("dead_interval_cfg.%d.", i)
+		obj9_7_3.InterfaceEthernetInstanceIpv6OspfDeadIntervalCfgDeadInterval = d.Get(prefix9_7_3 + "dead_interval").(int)
+		obj9_7_3.InterfaceEthernetInstanceIpv6OspfDeadIntervalCfgInstanceID = d.Get(prefix9_7_3 + "instance_id").(int)
+		obj9_7.InterfaceEthernetInstanceIpv6OspfDeadIntervalCfgDeadInterval = append(obj9_7.InterfaceEthernetInstanceIpv6OspfDeadIntervalCfgDeadInterval, obj9_7_3)
 	}
 
-	var obj10_3 go_thunder.EthernetMeshGroup
-	prefix1 = prefix + "mesh_group.0."
-	obj10_3.Value = d.Get(prefix1 + "value").(int)
-	obj10_3.Blocked = d.Get(prefix1 + "blocked").(int)
-	obj10.Value = obj10_3
+	InterfaceEthernetInstanceIpv6OspfHelloIntervalCfgCount := d.Get(prefix9_7 + "hello_interval_cfg.#").(int)
+	obj9_7.InterfaceEthernetInstanceIpv6OspfHelloIntervalCfgHelloInterval = make([]go_thunder.InterfaceEthernetInstanceIpv6OspfHelloIntervalCfg, 0, InterfaceEthernetInstanceIpv6OspfHelloIntervalCfgCount)
 
-	obj10.Network = d.Get(prefix + "network").(string)
-
-	var obj10_4 go_thunder.EthernetAuthentication3
-	prefix1 = prefix + "authentication.0."
-
-	SendOnlyListCount := d.Get(prefix1 + "send_only_list.#").(int)
-	obj10_4.SendOnly = make([]go_thunder.EthernetSendOnlyList, 0, SendOnlyListCount)
-
-	for i := 0; i < SendOnlyListCount; i++ {
-		var obj10_4_1 go_thunder.EthernetSendOnlyList
-		prefix2 = prefix1 + fmt.Sprintf("send_only_list.%d.", i)
-		obj10_4_1.SendOnly = d.Get(prefix2 + "send_only").(int)
-		obj10_4_1.Level = d.Get(prefix2 + "level").(string)
-		obj10_4.SendOnly = append(obj10_4.SendOnly, obj10_4_1)
+	for i := 0; i < InterfaceEthernetInstanceIpv6OspfHelloIntervalCfgCount; i++ {
+		var obj9_7_4 go_thunder.InterfaceEthernetInstanceIpv6OspfHelloIntervalCfg
+		prefix9_7_4 := prefix9_7 + fmt.Sprintf("hello_interval_cfg.%d.", i)
+		obj9_7_4.InterfaceEthernetInstanceIpv6OspfHelloIntervalCfgHelloInterval = d.Get(prefix9_7_4 + "hello_interval").(int)
+		obj9_7_4.InterfaceEthernetInstanceIpv6OspfHelloIntervalCfgInstanceID = d.Get(prefix9_7_4 + "instance_id").(int)
+		obj9_7.InterfaceEthernetInstanceIpv6OspfHelloIntervalCfgHelloInterval = append(obj9_7.InterfaceEthernetInstanceIpv6OspfHelloIntervalCfgHelloInterval, obj9_7_4)
 	}
 
-	ModeListCount := d.Get(prefix1 + "mode_list.#").(int)
-	obj10_4.Mode = make([]go_thunder.EthernetModeList, 0, ModeListCount)
+	InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfgCount := d.Get(prefix9_7 + "mtu_ignore_cfg.#").(int)
+	obj9_7.InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfgMtuIgnore = make([]go_thunder.InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfg, 0, InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfgCount)
 
-	for i := 0; i < ModeListCount; i++ {
-		var obj10_4_2 go_thunder.EthernetModeList
-		prefix2 = prefix1 + fmt.Sprintf("mode_list.%d.", i)
-		obj10_4_2.Mode = d.Get(prefix2 + "mode").(string)
-		obj10_4_2.Level = d.Get(prefix2 + "level").(string)
-		obj10_4.Mode = append(obj10_4.Mode, obj10_4_2)
+	for i := 0; i < InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfgCount; i++ {
+		var obj9_7_5 go_thunder.InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfg
+		prefix9_7_5 := prefix9_7 + fmt.Sprintf("mtu_ignore_cfg.%d.", i)
+		obj9_7_5.InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfgMtuIgnore = d.Get(prefix9_7_5 + "mtu_ignore").(int)
+		obj9_7_5.InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfgInstanceID = d.Get(prefix9_7_5 + "instance_id").(int)
+		obj9_7.InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfgMtuIgnore = append(obj9_7.InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfgMtuIgnore, obj9_7_5)
 	}
 
-	KeyChainListCount := d.Get(prefix1 + "key_chain_list.#").(int)
-	obj10_4.KeyChain = make([]go_thunder.EthernetKeyChainList, 0, KeyChainListCount)
+	InterfaceEthernetInstanceIpv6OspfNeighborCfgCount := d.Get(prefix9_7 + "neighbor_cfg.#").(int)
+	obj9_7.InterfaceEthernetInstanceIpv6OspfNeighborCfgNeighbor = make([]go_thunder.InterfaceEthernetInstanceIpv6OspfNeighborCfg, 0, InterfaceEthernetInstanceIpv6OspfNeighborCfgCount)
 
-	for i := 0; i < KeyChainListCount; i++ {
-		var obj10_4_3 go_thunder.EthernetKeyChainList
-		prefix2 = prefix1 + fmt.Sprintf("key_chain_list.%d.", i)
-		obj10_4_3.KeyChain = d.Get(prefix2 + "key_chain").(string)
-		obj10_4_3.Level = d.Get(prefix2 + "level").(string)
-		obj10_4.KeyChain = append(obj10_4.KeyChain, obj10_4_3)
+	for i := 0; i < InterfaceEthernetInstanceIpv6OspfNeighborCfgCount; i++ {
+		var obj9_7_6 go_thunder.InterfaceEthernetInstanceIpv6OspfNeighborCfg
+		prefix9_7_6 := prefix9_7 + fmt.Sprintf("neighbor_cfg.%d.", i)
+		obj9_7_6.InterfaceEthernetInstanceIpv6OspfNeighborCfgNeighbor = d.Get(prefix9_7_6 + "neighbor").(string)
+		obj9_7_6.InterfaceEthernetInstanceIpv6OspfNeighborCfgNeigInst = d.Get(prefix9_7_6 + "neig_inst").(int)
+		obj9_7_6.InterfaceEthernetInstanceIpv6OspfNeighborCfgNeighborCost = d.Get(prefix9_7_6 + "neighbor_cost").(int)
+		obj9_7_6.InterfaceEthernetInstanceIpv6OspfNeighborCfgNeighborPollInterval = d.Get(prefix9_7_6 + "neighbor_poll_interval").(int)
+		obj9_7_6.InterfaceEthernetInstanceIpv6OspfNeighborCfgNeighborPriority = d.Get(prefix9_7_6 + "neighbor_priority").(int)
+		obj9_7.InterfaceEthernetInstanceIpv6OspfNeighborCfgNeighbor = append(obj9_7.InterfaceEthernetInstanceIpv6OspfNeighborCfgNeighbor, obj9_7_6)
 	}
 
-	obj10.SendOnly = obj10_4
+	InterfaceEthernetInstanceIpv6OspfPriorityCfgCount := d.Get(prefix9_7 + "priority_cfg.#").(int)
+	obj9_7.InterfaceEthernetInstanceIpv6OspfPriorityCfgPriority = make([]go_thunder.InterfaceEthernetInstanceIpv6OspfPriorityCfg, 0, InterfaceEthernetInstanceIpv6OspfPriorityCfgCount)
 
-	CsnpIntervalListCount := d.Get(prefix + "csnp_interval_list.#").(int)
-	obj10.CsnpInterval = make([]go_thunder.EthernetCsnpIntervalList, 0, CsnpIntervalListCount)
-
-	for i := 0; i < CsnpIntervalListCount; i++ {
-		var obj10_5 go_thunder.EthernetCsnpIntervalList
-		prefix1 = prefix + fmt.Sprintf("csnp_interval_list.%d.", i)
-		obj10_5.CsnpInterval = d.Get(prefix1 + "csnp_interval").(int)
-		obj10_5.Level = d.Get(prefix1 + "level").(string)
-		obj10.CsnpInterval = append(obj10.CsnpInterval, obj10_5)
+	for i := 0; i < InterfaceEthernetInstanceIpv6OspfPriorityCfgCount; i++ {
+		var obj9_7_7 go_thunder.InterfaceEthernetInstanceIpv6OspfPriorityCfg
+		prefix9_7_7 := prefix9_7 + fmt.Sprintf("priority_cfg.%d.", i)
+		obj9_7_7.InterfaceEthernetInstanceIpv6OspfPriorityCfgPriority = d.Get(prefix9_7_7 + "priority").(int)
+		obj9_7_7.InterfaceEthernetInstanceIpv6OspfPriorityCfgInstanceID = d.Get(prefix9_7_7 + "instance_id").(int)
+		obj9_7.InterfaceEthernetInstanceIpv6OspfPriorityCfgPriority = append(obj9_7.InterfaceEthernetInstanceIpv6OspfPriorityCfgPriority, obj9_7_7)
 	}
 
-	obj10.RetransmitInterval = d.Get(prefix + "retransmit_interval").(int)
+	InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfgCount := d.Get(prefix9_7 + "retransmit_interval_cfg.#").(int)
+	obj9_7.InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfgRetransmitInterval = make([]go_thunder.InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfg, 0, InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfgCount)
 
-	PasswordListCount := d.Get(prefix + "password_list.#").(int)
-	obj10.Password = make([]go_thunder.EthernetPasswordList, 0, PasswordListCount)
-
-	for i := 0; i < PasswordListCount; i++ {
-		var obj10_6 go_thunder.EthernetPasswordList
-		prefix1 = prefix + fmt.Sprintf("password_list.%d.", i)
-		obj10_6.Password = d.Get(prefix1 + "password").(string)
-		obj10_6.Level = d.Get(prefix1 + "level").(string)
-		obj10.Password = append(obj10.Password, obj10_6)
+	for i := 0; i < InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfgCount; i++ {
+		var obj9_7_8 go_thunder.InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfg
+		prefix9_7_8 := prefix9_7 + fmt.Sprintf("retransmit_interval_cfg.%d.", i)
+		obj9_7_8.InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfgRetransmitInterval = d.Get(prefix9_7_8 + "retransmit_interval").(int)
+		obj9_7_8.InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfgInstanceID = d.Get(prefix9_7_8 + "instance_id").(int)
+		obj9_7.InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfgRetransmitInterval = append(obj9_7.InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfgRetransmitInterval, obj9_7_8)
 	}
 
-	var obj10_7 go_thunder.EthernetBfdCfg
-	prefix1 = prefix + "bfd_cfg.0."
-	obj10_7.Disable = d.Get(prefix1 + "disable").(int)
-	obj10_7.Bfd = d.Get(prefix1 + "bfd").(int)
-	obj10.Disable = obj10_7
+	InterfaceEthernetInstanceIpv6OspfTransmitDelayCfgCount := d.Get(prefix9_7 + "transmit_delay_cfg.#").(int)
+	obj9_7.InterfaceEthernetInstanceIpv6OspfTransmitDelayCfgTransmitDelay = make([]go_thunder.InterfaceEthernetInstanceIpv6OspfTransmitDelayCfg, 0, InterfaceEthernetInstanceIpv6OspfTransmitDelayCfgCount)
 
-	WideMetricListCount := d.Get(prefix + "wide_metric_list.#").(int)
-	obj10.WideMetric = make([]go_thunder.EthernetWideMetricList, 0, WideMetricListCount)
-
-	for i := 0; i < WideMetricListCount; i++ {
-		var obj10_8 go_thunder.EthernetWideMetricList
-		prefix1 = prefix + fmt.Sprintf("wide_metric_list.%d.", i)
-		obj10_8.WideMetric = d.Get(prefix1 + "wide_metric").(int)
-		obj10_8.Level = d.Get(prefix1 + "level").(string)
-		obj10.WideMetric = append(obj10.WideMetric, obj10_8)
+	for i := 0; i < InterfaceEthernetInstanceIpv6OspfTransmitDelayCfgCount; i++ {
+		var obj9_7_9 go_thunder.InterfaceEthernetInstanceIpv6OspfTransmitDelayCfg
+		prefix9_7_9 := prefix9_7 + fmt.Sprintf("transmit_delay_cfg.%d.", i)
+		obj9_7_9.InterfaceEthernetInstanceIpv6OspfTransmitDelayCfgTransmitDelay = d.Get(prefix9_7_9 + "transmit_delay").(int)
+		obj9_7_9.InterfaceEthernetInstanceIpv6OspfTransmitDelayCfgInstanceID = d.Get(prefix9_7_9 + "instance_id").(int)
+		obj9_7.InterfaceEthernetInstanceIpv6OspfTransmitDelayCfgTransmitDelay = append(obj9_7.InterfaceEthernetInstanceIpv6OspfTransmitDelayCfgTransmitDelay, obj9_7_9)
 	}
 
-	HelloIntervalListCount := d.Get(prefix + "hello_interval_list.#").(int)
-	obj10.HelloInterval = make([]go_thunder.EthernetHelloIntervalList, 0, HelloIntervalListCount)
+	obj9.InterfaceEthernetInstanceIpv6OspfNetworkList = obj9_7
 
-	for i := 0; i < HelloIntervalListCount; i++ {
-		var obj10_9 go_thunder.EthernetHelloIntervalList
-		prefix1 = prefix + fmt.Sprintf("hello_interval_list.%d.", i)
-		obj10_9.HelloInterval = d.Get(prefix1 + "hello_interval").(int)
-		obj10_9.Level = d.Get(prefix1 + "level").(string)
-		obj10.HelloInterval = append(obj10.HelloInterval, obj10_9)
+	c.InterfaceEthernetInstanceIpv6AddressList = obj9
+
+	var obj10 go_thunder.InterfaceEthernetInstanceNptv6
+	prefix10 := "nptv6.0."
+
+	InterfaceEthernetInstanceNptv6DomainListCount := d.Get(prefix10 + "domain_list.#").(int)
+	obj10.InterfaceEthernetInstanceNptv6DomainListDomainName = make([]go_thunder.InterfaceEthernetInstanceNptv6DomainList, 0, InterfaceEthernetInstanceNptv6DomainListCount)
+
+	for i := 0; i < InterfaceEthernetInstanceNptv6DomainListCount; i++ {
+		var obj10_1 go_thunder.InterfaceEthernetInstanceNptv6DomainList
+		prefix10_1 := prefix10 + fmt.Sprintf("domain_list.%d.", i)
+		obj10_1.InterfaceEthernetInstanceNptv6DomainListDomainName = d.Get(prefix10_1 + "domain_name").(string)
+		obj10_1.InterfaceEthernetInstanceNptv6DomainListBindType = d.Get(prefix10_1 + "bind_type").(string)
+		obj10.InterfaceEthernetInstanceNptv6DomainListDomainName = append(obj10.InterfaceEthernetInstanceNptv6DomainListDomainName, obj10_1)
 	}
 
-	obj10.CircuitType = d.Get(prefix + "circuit_type").(string)
+	c.InterfaceEthernetInstanceNptv6DomainList = obj10
 
-	HelloMultiplierListCount := d.Get(prefix + "hello_multiplier_list.#").(int)
-	obj10.HelloMultiplier = make([]go_thunder.EthernetHelloMultiplierList, 0, HelloMultiplierListCount)
+	var obj11 go_thunder.InterfaceEthernetInstanceMap
+	prefix11 := "map.0."
+	obj11.InterfaceEthernetInstanceMapInside = d.Get(prefix11 + "inside").(int)
+	obj11.InterfaceEthernetInstanceMapOutside = d.Get(prefix11 + "outside").(int)
+	obj11.InterfaceEthernetInstanceMapMapTInside = d.Get(prefix11 + "map_t_inside").(int)
+	obj11.InterfaceEthernetInstanceMapMapTOutside = d.Get(prefix11 + "map_t_outside").(int)
 
-	for i := 0; i < HelloMultiplierListCount; i++ {
-		var obj10_10 go_thunder.EthernetHelloMultiplierList
-		prefix1 = prefix + fmt.Sprintf("hello_multiplier_list.%d.", i)
-		obj10_10.HelloMultiplier = d.Get(prefix1 + "hello_multiplier").(int)
-		obj10_10.Level = d.Get(prefix1 + "level").(string)
-		obj10.HelloMultiplier = append(obj10.HelloMultiplier, obj10_10)
+	c.InterfaceEthernetInstanceMapInside = obj11
+
+	var obj12 go_thunder.InterfaceEthernetInstanceLw4O6
+	prefix12 := "lw_4o6.0."
+	obj12.InterfaceEthernetInstanceLw4O6Outside = d.Get(prefix12 + "outside").(int)
+	obj12.InterfaceEthernetInstanceLw4O6Inside = d.Get(prefix12 + "inside").(int)
+
+	c.InterfaceEthernetInstanceLw4O6Outside = obj12
+
+	InterfaceEthernetInstanceTrunkGroupListCount := d.Get("trunk_group_list.#").(int)
+	c.InterfaceEthernetInstanceTrunkGroupListTrunkNumber = make([]go_thunder.InterfaceEthernetInstanceTrunkGroupList, 0, InterfaceEthernetInstanceTrunkGroupListCount)
+
+	for i := 0; i < InterfaceEthernetInstanceTrunkGroupListCount; i++ {
+		var obj13 go_thunder.InterfaceEthernetInstanceTrunkGroupList
+		prefix13 := fmt.Sprintf("trunk_group_list.%d.", i)
+		obj13.InterfaceEthernetInstanceTrunkGroupListTrunkNumber = d.Get(prefix13 + "trunk_number").(int)
+		obj13.InterfaceEthernetInstanceTrunkGroupListType = d.Get(prefix13 + "type").(string)
+		obj13.InterfaceEthernetInstanceTrunkGroupListAdminKey = d.Get(prefix13 + "admin_key").(int)
+		obj13.InterfaceEthernetInstanceTrunkGroupListPortPriority = d.Get(prefix13 + "port_priority").(int)
+
+		var obj13_1 go_thunder.InterfaceEthernetInstanceTrunkGroupListUdldTimeoutCfg
+		prefix13_1 := prefix13 + "udld_timeout_cfg.0."
+		obj13_1.InterfaceEthernetInstanceTrunkGroupListUdldTimeoutCfgFast = d.Get(prefix13_1 + "fast").(int)
+		obj13_1.InterfaceEthernetInstanceTrunkGroupListUdldTimeoutCfgSlow = d.Get(prefix13_1 + "slow").(int)
+
+		obj13.InterfaceEthernetInstanceTrunkGroupListUdldTimeoutCfgFast = obj13_1
+
+		obj13.InterfaceEthernetInstanceTrunkGroupListMode = d.Get(prefix13 + "mode").(string)
+		obj13.InterfaceEthernetInstanceTrunkGroupListTimeout = d.Get(prefix13 + "timeout").(string)
+		obj13.InterfaceEthernetInstanceTrunkGroupListUserTag = d.Get(prefix13 + "user_tag").(string)
+		c.InterfaceEthernetInstanceTrunkGroupListTrunkNumber = append(c.InterfaceEthernetInstanceTrunkGroupListTrunkNumber, obj13)
 	}
 
-	MetricListCount := d.Get(prefix + "metric_list.#").(int)
-	obj10.Metric = make([]go_thunder.EthernetMetricList, 0, MetricListCount)
+	var obj14 go_thunder.InterfaceEthernetInstanceBfd
+	prefix14 := "bfd.0."
 
-	for i := 0; i < MetricListCount; i++ {
-		var obj10_11 go_thunder.EthernetMetricList
-		prefix1 = prefix + fmt.Sprintf("metric_list.%d.", i)
-		obj10_11.Metric = d.Get(prefix1 + "metric").(int)
-		obj10_11.Level = d.Get(prefix1 + "level").(string)
-		obj10.Metric = append(obj10.Metric, obj10_11)
+	var obj14_1 go_thunder.InterfaceEthernetInstanceBfdAuthentication
+	prefix14_1 := prefix14 + "authentication.0."
+	obj14_1.InterfaceEthernetInstanceBfdAuthenticationKeyID = d.Get(prefix14_1 + "key_id").(int)
+	obj14_1.InterfaceEthernetInstanceBfdAuthenticationMethod = d.Get(prefix14_1 + "method").(string)
+	obj14_1.InterfaceEthernetInstanceBfdAuthenticationPassword = d.Get(prefix14_1 + "password").(string)
+
+	obj14.InterfaceEthernetInstanceBfdAuthenticationKeyID = obj14_1
+
+	obj14.InterfaceEthernetInstanceBfdEcho = d.Get(prefix14 + "echo").(int)
+	obj14.InterfaceEthernetInstanceBfdDemand = d.Get(prefix14 + "demand").(int)
+
+	var obj14_2 go_thunder.InterfaceEthernetInstanceBfdIntervalCfg
+	prefix14_2 := prefix14 + "interval_cfg.0."
+	obj14_2.InterfaceEthernetInstanceBfdIntervalCfgInterval = d.Get(prefix14_2 + "interval").(int)
+	obj14_2.InterfaceEthernetInstanceBfdIntervalCfgMinRx = d.Get(prefix14_2 + "min_rx").(int)
+	obj14_2.InterfaceEthernetInstanceBfdIntervalCfgMultiplier = d.Get(prefix14_2 + "multiplier").(int)
+
+	obj14.InterfaceEthernetInstanceBfdIntervalCfgInterval = obj14_2
+
+	c.InterfaceEthernetInstanceBfdAuthentication = obj14
+
+	var obj15 go_thunder.InterfaceEthernetInstanceIsis
+	prefix15 := "isis.0."
+
+	var obj15_1 go_thunder.InterfaceEthernetInstanceIsisAuthentication
+	prefix15_1 := prefix15 + "authentication.0."
+
+	InterfaceEthernetInstanceIsisAuthenticationSendOnlyListCount := d.Get(prefix15_1 + "send_only_list.#").(int)
+	obj15_1.InterfaceEthernetInstanceIsisAuthenticationSendOnlyListSendOnly = make([]go_thunder.InterfaceEthernetInstanceIsisAuthenticationSendOnlyList, 0, InterfaceEthernetInstanceIsisAuthenticationSendOnlyListCount)
+
+	for i := 0; i < InterfaceEthernetInstanceIsisAuthenticationSendOnlyListCount; i++ {
+		var obj15_1_1 go_thunder.InterfaceEthernetInstanceIsisAuthenticationSendOnlyList
+		prefix15_1_1 := prefix15_1 + fmt.Sprintf("send_only_list.%d.", i)
+		obj15_1_1.InterfaceEthernetInstanceIsisAuthenticationSendOnlyListSendOnly = d.Get(prefix15_1_1 + "send_only").(int)
+		obj15_1_1.InterfaceEthernetInstanceIsisAuthenticationSendOnlyListLevel = d.Get(prefix15_1_1 + "level").(string)
+		obj15_1.InterfaceEthernetInstanceIsisAuthenticationSendOnlyListSendOnly = append(obj15_1.InterfaceEthernetInstanceIsisAuthenticationSendOnlyListSendOnly, obj15_1_1)
 	}
 
-	obj10.LspInterval = d.Get(prefix + "lsp_interval").(int)
-	c.Priority = obj10
+	InterfaceEthernetInstanceIsisAuthenticationModeListCount := d.Get(prefix15_1 + "mode_list.#").(int)
+	obj15_1.InterfaceEthernetInstanceIsisAuthenticationModeListMode = make([]go_thunder.InterfaceEthernetInstanceIsisAuthenticationModeList, 0, InterfaceEthernetInstanceIsisAuthenticationModeListCount)
 
-	c.Name = d.Get("name").(string)
-	c.Duplexity = d.Get("duplexity").(string)
-
-	var obj11 go_thunder.EthernetIcmpv6RateLimit
-	prefix = "icmpv6_rate_limit.0."
-	obj11.LockupPeriodV6 = d.Get(prefix + "lockup_period_v6").(int)
-	obj11.NormalV6 = d.Get(prefix + "normal_v6").(int)
-	obj11.LockupV6 = d.Get(prefix + "lockup_v6").(int)
-	c.LockupPeriodV6 = obj11
-
-	c.UserTag = d.Get("user_tag").(string)
-	c.Mtu = d.Get("mtu").(int)
-
-	var obj12 go_thunder.EthernetIpv6
-	prefix = "ipv6.0."
-
-	AddressListCount = d.Get(prefix + "address_list.#").(int)
-	obj12.AddressType = make([]go_thunder.EthernetAddressList, 0, AddressListCount)
-
-	for i := 0; i < AddressListCount; i++ {
-		var obj12_1 go_thunder.EthernetAddressList
-		prefix1 = prefix + fmt.Sprintf("address_list.%d.", i)
-		obj12_1.AddressType = d.Get(prefix1 + "address_type").(string)
-		obj12_1.Ipv6Addr = d.Get(prefix1 + "ipv6_addr").(string)
-		obj12.AddressType = append(obj12.AddressType, obj12_1)
+	for i := 0; i < InterfaceEthernetInstanceIsisAuthenticationModeListCount; i++ {
+		var obj15_1_2 go_thunder.InterfaceEthernetInstanceIsisAuthenticationModeList
+		prefix15_1_2 := prefix15_1 + fmt.Sprintf("mode_list.%d.", i)
+		obj15_1_2.InterfaceEthernetInstanceIsisAuthenticationModeListMode = d.Get(prefix15_1_2 + "mode").(string)
+		obj15_1_2.InterfaceEthernetInstanceIsisAuthenticationModeListLevel = d.Get(prefix15_1_2 + "level").(string)
+		obj15_1.InterfaceEthernetInstanceIsisAuthenticationModeListMode = append(obj15_1.InterfaceEthernetInstanceIsisAuthenticationModeListMode, obj15_1_2)
 	}
 
-	obj12.Inside = d.Get(prefix + "inside").(int)
-	obj12.Ipv6Enable = d.Get(prefix + "ipv6_enable").(int)
+	InterfaceEthernetInstanceIsisAuthenticationKeyChainListCount := d.Get(prefix15_1 + "key_chain_list.#").(int)
+	obj15_1.InterfaceEthernetInstanceIsisAuthenticationKeyChainListKeyChain = make([]go_thunder.InterfaceEthernetInstanceIsisAuthenticationKeyChainList, 0, InterfaceEthernetInstanceIsisAuthenticationKeyChainListCount)
 
-	var obj12_2 go_thunder.EthernetRip2
-	prefix1 = prefix + "rip.0."
-
-	var obj12_2_1 go_thunder.EthernetSplitHorizonCfg
-	prefix2 = prefix1 + "split_horizon_cfg.0."
-	obj12_2_1.State = d.Get(prefix2 + "state").(string)
-	obj12_2.State = obj12_2_1
-
-	obj12.State = obj12_2
-
-	obj12.Outside = d.Get(prefix + "outside").(int)
-
-	var obj12_3 go_thunder.EthernetStatefulFirewall
-	prefix1 = prefix + "stateful_firewall.0."
-	obj12_3.ClassList = d.Get(prefix1 + "class_list").(string)
-	obj12_3.ACLName = d.Get(prefix1 + "acl_name").(string)
-	obj12_3.Inside = d.Get(prefix1 + "inside").(int)
-	obj12_3.Outside = d.Get(prefix1 + "outside").(int)
-	obj12_3.AccessList = d.Get(prefix1 + "access_list").(int)
-	obj12.ClassList = obj12_3
-
-	obj12.TTLIgnore = d.Get(prefix + "ttl_ignore").(int)
-
-	var obj12_4 go_thunder.EthernetRouter2
-	prefix1 = prefix + "router.0."
-
-	var obj12_4_1 go_thunder.EthernetRipng
-	prefix2 = prefix1 + "ripng.0."
-	obj12_4_1.Rip = d.Get(prefix2 + "rip").(int)
-	obj12_4.UUID = obj12_4_1
-
-	var obj12_4_2 go_thunder.EthernetOspf2
-	prefix2 = prefix1 + "ospf.0."
-
-	AreaListCount := d.Get(prefix2 + "area_list.#").(int)
-	obj12_4_2.AreaIDAddr = make([]go_thunder.EthernetAreaList, 0, AreaListCount)
-
-	for i := 0; i < AreaListCount; i++ {
-		var obj12_4_2_1 go_thunder.EthernetAreaList
-		prefix3 = prefix2 + fmt.Sprintf("area_list.%d.", i)
-		obj12_4_2_1.AreaIDAddr = d.Get(prefix3 + "area_id_addr").(string)
-		obj12_4_2_1.Tag = d.Get(prefix3 + "tag").(string)
-		obj12_4_2_1.InstanceID = d.Get(prefix3 + "instance_id").(int)
-		obj12_4_2_1.AreaIDNum = d.Get(prefix3 + "area_id_num").(int)
-		obj12_4_2.AreaIDAddr = append(obj12_4_2.AreaIDAddr, obj12_4_2_1)
+	for i := 0; i < InterfaceEthernetInstanceIsisAuthenticationKeyChainListCount; i++ {
+		var obj15_1_3 go_thunder.InterfaceEthernetInstanceIsisAuthenticationKeyChainList
+		prefix15_1_3 := prefix15_1 + fmt.Sprintf("key_chain_list.%d.", i)
+		obj15_1_3.InterfaceEthernetInstanceIsisAuthenticationKeyChainListKeyChain = d.Get(prefix15_1_3 + "key_chain").(string)
+		obj15_1_3.InterfaceEthernetInstanceIsisAuthenticationKeyChainListLevel = d.Get(prefix15_1_3 + "level").(string)
+		obj15_1.InterfaceEthernetInstanceIsisAuthenticationKeyChainListKeyChain = append(obj15_1.InterfaceEthernetInstanceIsisAuthenticationKeyChainListKeyChain, obj15_1_3)
 	}
 
-	obj12_4.AreaIDAddr = obj12_4_2
+	obj15.InterfaceEthernetInstanceIsisAuthenticationSendOnlyList = obj15_1
 
-	var obj12_4_3 go_thunder.EthernetIsis
-	prefix2 = prefix1 + "isis.0."
-	obj12_4_3.Tag = d.Get(prefix2 + "tag").(string)
-	obj12_4.Tag = obj12_4_3
+	var obj15_2 go_thunder.InterfaceEthernetInstanceIsisBfdCfg
+	prefix15_2 := prefix15 + "bfd_cfg.0."
+	obj15_2.InterfaceEthernetInstanceIsisBfdCfgBfd = d.Get(prefix15_2 + "bfd").(int)
+	obj15_2.InterfaceEthernetInstanceIsisBfdCfgDisable = d.Get(prefix15_2 + "disable").(int)
 
-	obj12.AreaIDAddr = obj12_4
+	obj15.InterfaceEthernetInstanceIsisBfdCfgBfd = obj15_2
 
-	var obj12_5 go_thunder.EthernetAccessListCfg
-	prefix1 = prefix + "access_list_cfg.0."
-	obj12_5.Inbound = d.Get(prefix1 + "inbound").(int)
-	obj12_5.V6ACLName = d.Get(prefix1 + "v6_acl_name").(string)
-	obj12.Inbound = obj12_5
+	obj15.InterfaceEthernetInstanceIsisCircuitType = d.Get(prefix15 + "circuit_type").(string)
 
-	var obj12_6 go_thunder.EthernetOspf3
-	prefix1 = prefix + "ospf.0."
-	obj12_6.Bfd = d.Get(prefix1 + "bfd").(int)
+	InterfaceEthernetInstanceIsisCsnpIntervalListCount := d.Get(prefix15 + "csnp_interval_list.#").(int)
+	obj15.InterfaceEthernetInstanceIsisCsnpIntervalListCsnpInterval = make([]go_thunder.InterfaceEthernetInstanceIsisCsnpIntervalList, 0, InterfaceEthernetInstanceIsisCsnpIntervalListCount)
 
-	CostCfgCount := d.Get(prefix1 + "cost_cfg.#").(int)
-	obj12_6.Cost = make([]go_thunder.EthernetCostCfg, 0, CostCfgCount)
-
-	for i := 0; i < CostCfgCount; i++ {
-		var obj12_6_1 go_thunder.EthernetCostCfg
-		prefix2 = prefix1 + fmt.Sprintf("cost_cfg.%d.", i)
-		obj12_6_1.Cost = d.Get(prefix2 + "cost").(int)
-		obj12_6_1.InstanceID = d.Get(prefix2 + "instance_id").(int)
-		obj12_6.Cost = append(obj12_6.Cost, obj12_6_1)
+	for i := 0; i < InterfaceEthernetInstanceIsisCsnpIntervalListCount; i++ {
+		var obj15_3 go_thunder.InterfaceEthernetInstanceIsisCsnpIntervalList
+		prefix15_3 := prefix15 + fmt.Sprintf("csnp_interval_list.%d.", i)
+		obj15_3.InterfaceEthernetInstanceIsisCsnpIntervalListCsnpInterval = d.Get(prefix15_3 + "csnp_interval").(int)
+		obj15_3.InterfaceEthernetInstanceIsisCsnpIntervalListLevel = d.Get(prefix15_3 + "level").(string)
+		obj15.InterfaceEthernetInstanceIsisCsnpIntervalListCsnpInterval = append(obj15.InterfaceEthernetInstanceIsisCsnpIntervalListCsnpInterval, obj15_3)
 	}
 
-	PriorityCfgCount := d.Get(prefix1 + "priority_cfg.#").(int)
-	obj12_6.Priority = make([]go_thunder.EthernetPriorityCfg, 0, PriorityCfgCount)
+	obj15.InterfaceEthernetInstanceIsisPadding = d.Get(prefix15 + "padding").(int)
 
-	for i := 0; i < PriorityCfgCount; i++ {
-		var obj12_6_2 go_thunder.EthernetPriorityCfg
-		prefix2 = prefix1 + fmt.Sprintf("priority_cfg.%d.", i)
-		obj12_6_2.Priority = d.Get(prefix2 + "priority").(int)
-		obj12_6_2.InstanceID = d.Get(prefix2 + "instance_id").(int)
-		obj12_6.Priority = append(obj12_6.Priority, obj12_6_2)
+	InterfaceEthernetInstanceIsisHelloIntervalListCount := d.Get(prefix15 + "hello_interval_list.#").(int)
+	obj15.InterfaceEthernetInstanceIsisHelloIntervalListHelloInterval = make([]go_thunder.InterfaceEthernetInstanceIsisHelloIntervalList, 0, InterfaceEthernetInstanceIsisHelloIntervalListCount)
+
+	for i := 0; i < InterfaceEthernetInstanceIsisHelloIntervalListCount; i++ {
+		var obj15_4 go_thunder.InterfaceEthernetInstanceIsisHelloIntervalList
+		prefix15_4 := prefix15 + fmt.Sprintf("hello_interval_list.%d.", i)
+		obj15_4.InterfaceEthernetInstanceIsisHelloIntervalListHelloInterval = d.Get(prefix15_4 + "hello_interval").(int)
+		obj15_4.InterfaceEthernetInstanceIsisHelloIntervalListLevel = d.Get(prefix15_4 + "level").(string)
+		obj15.InterfaceEthernetInstanceIsisHelloIntervalListHelloInterval = append(obj15.InterfaceEthernetInstanceIsisHelloIntervalListHelloInterval, obj15_4)
 	}
 
-	HelloIntervalCfgCount := d.Get(prefix1 + "hello_interval_cfg.#").(int)
-	obj12_6.HelloInterval = make([]go_thunder.EthernetHelloIntervalCfg, 0, HelloIntervalCfgCount)
+	InterfaceEthernetInstanceIsisHelloIntervalMinimalListCount := d.Get(prefix15 + "hello_interval_minimal_list.#").(int)
+	obj15.InterfaceEthernetInstanceIsisHelloIntervalMinimalListHelloIntervalMinimal = make([]go_thunder.InterfaceEthernetInstanceIsisHelloIntervalMinimalList, 0, InterfaceEthernetInstanceIsisHelloIntervalMinimalListCount)
 
-	for i := 0; i < HelloIntervalCfgCount; i++ {
-		var obj12_6_3 go_thunder.EthernetHelloIntervalCfg
-		prefix2 = prefix1 + fmt.Sprintf("hello_interval_cfg.%d.", i)
-		obj12_6_3.HelloInterval = d.Get(prefix2 + "hello_interval").(int)
-		obj12_6_3.InstanceID = d.Get(prefix2 + "instance_id").(int)
-		obj12_6.HelloInterval = append(obj12_6.HelloInterval, obj12_6_3)
+	for i := 0; i < InterfaceEthernetInstanceIsisHelloIntervalMinimalListCount; i++ {
+		var obj15_5 go_thunder.InterfaceEthernetInstanceIsisHelloIntervalMinimalList
+		prefix15_5 := prefix15 + fmt.Sprintf("hello_interval_minimal_list.%d.", i)
+		obj15_5.InterfaceEthernetInstanceIsisHelloIntervalMinimalListHelloIntervalMinimal = d.Get(prefix15_5 + "hello_interval_minimal").(int)
+		obj15_5.InterfaceEthernetInstanceIsisHelloIntervalMinimalListLevel = d.Get(prefix15_5 + "level").(string)
+		obj15.InterfaceEthernetInstanceIsisHelloIntervalMinimalListHelloIntervalMinimal = append(obj15.InterfaceEthernetInstanceIsisHelloIntervalMinimalListHelloIntervalMinimal, obj15_5)
 	}
 
-	MtuIgnoreCfgCount := d.Get(prefix1 + "mtu_ignore_cfg.#").(int)
-	obj12_6.MtuIgnore = make([]go_thunder.EthernetMtuIgnoreCfg, 0, MtuIgnoreCfgCount)
+	InterfaceEthernetInstanceIsisHelloMultiplierListCount := d.Get(prefix15 + "hello_multiplier_list.#").(int)
+	obj15.InterfaceEthernetInstanceIsisHelloMultiplierListHelloMultiplier = make([]go_thunder.InterfaceEthernetInstanceIsisHelloMultiplierList, 0, InterfaceEthernetInstanceIsisHelloMultiplierListCount)
 
-	for i := 0; i < MtuIgnoreCfgCount; i++ {
-		var obj12_6_4 go_thunder.EthernetMtuIgnoreCfg
-		prefix2 := prefix1 + fmt.Sprintf("mtu_ignore_cfg.%d.", i)
-		obj12_6_4.MtuIgnore = d.Get(prefix2 + "mtu_ignore").(int)
-		obj12_6_4.InstanceID = d.Get(prefix2 + "instance_id").(int)
-		obj12_6.MtuIgnore = append(obj12_6.MtuIgnore, obj12_6_4)
+	for i := 0; i < InterfaceEthernetInstanceIsisHelloMultiplierListCount; i++ {
+		var obj15_6 go_thunder.InterfaceEthernetInstanceIsisHelloMultiplierList
+		prefix15_6 := prefix15 + fmt.Sprintf("hello_multiplier_list.%d.", i)
+		obj15_6.InterfaceEthernetInstanceIsisHelloMultiplierListHelloMultiplier = d.Get(prefix15_6 + "hello_multiplier").(int)
+		obj15_6.InterfaceEthernetInstanceIsisHelloMultiplierListLevel = d.Get(prefix15_6 + "level").(string)
+		obj15.InterfaceEthernetInstanceIsisHelloMultiplierListHelloMultiplier = append(obj15.InterfaceEthernetInstanceIsisHelloMultiplierListHelloMultiplier, obj15_6)
 	}
 
-	RetransmitIntervalCfgCount := d.Get(prefix1 + "retransmit_interval_cfg.#").(int)
-	obj12_6.RetransmitInterval = make([]go_thunder.EthernetRetransmitIntervalCfg, 0, RetransmitIntervalCfgCount)
+	obj15.InterfaceEthernetInstanceIsisLspInterval = d.Get(prefix15 + "lsp_interval").(int)
 
-	for i := 0; i < RetransmitIntervalCfgCount; i++ {
-		var obj12_6_5 go_thunder.EthernetRetransmitIntervalCfg
-		prefix2 = prefix1 + fmt.Sprintf("retransmit_interval_cfg.%d.", i)
-		obj12_6_5.RetransmitInterval = d.Get(prefix2 + "retransmit_interval").(int)
-		obj12_6_5.InstanceID = d.Get(prefix2 + "instance_id").(int)
-		obj12_6.RetransmitInterval = append(obj12_6.RetransmitInterval, obj12_6_5)
+	var obj15_7 go_thunder.InterfaceEthernetInstanceIsisMeshGroup
+	prefix15_7 := prefix15 + "mesh_group.0."
+	obj15_7.InterfaceEthernetInstanceIsisMeshGroupValue = d.Get(prefix15_7 + "value").(int)
+	obj15_7.InterfaceEthernetInstanceIsisMeshGroupBlocked = d.Get(prefix15_7 + "blocked").(int)
+
+	obj15.InterfaceEthernetInstanceIsisMeshGroupValue = obj15_7
+
+	InterfaceEthernetInstanceIsisMetricListCount := d.Get(prefix15 + "metric_list.#").(int)
+	obj15.InterfaceEthernetInstanceIsisMetricListMetric = make([]go_thunder.InterfaceEthernetInstanceIsisMetricList, 0, InterfaceEthernetInstanceIsisMetricListCount)
+
+	for i := 0; i < InterfaceEthernetInstanceIsisMetricListCount; i++ {
+		var obj15_8 go_thunder.InterfaceEthernetInstanceIsisMetricList
+		prefix15_8 := prefix15 + fmt.Sprintf("metric_list.%d.", i)
+		obj15_8.InterfaceEthernetInstanceIsisMetricListMetric = d.Get(prefix15_8 + "metric").(int)
+		obj15_8.InterfaceEthernetInstanceIsisMetricListLevel = d.Get(prefix15_8 + "level").(string)
+		obj15.InterfaceEthernetInstanceIsisMetricListMetric = append(obj15.InterfaceEthernetInstanceIsisMetricListMetric, obj15_8)
 	}
 
-	obj12_6.Disable = d.Get(prefix1 + "disable").(int)
+	obj15.InterfaceEthernetInstanceIsisNetwork = d.Get(prefix15 + "network").(string)
 
-	TransmitDelayCfgCount := d.Get(prefix1 + "transmit_delay_cfg.#").(int)
-	obj12_6.TransmitDelay = make([]go_thunder.EthernetTransmitDelayCfg, 0, TransmitDelayCfgCount)
+	InterfaceEthernetInstanceIsisPasswordListCount := d.Get(prefix15 + "password_list.#").(int)
+	obj15.InterfaceEthernetInstanceIsisPasswordListPassword = make([]go_thunder.InterfaceEthernetInstanceIsisPasswordList, 0, InterfaceEthernetInstanceIsisPasswordListCount)
 
-	for i := 0; i < TransmitDelayCfgCount; i++ {
-		var obj12_6_6 go_thunder.EthernetTransmitDelayCfg
-		prefix2 = prefix1 + fmt.Sprintf("transmit_delay_cfg.%d.", i)
-		obj12_6_6.TransmitDelay = d.Get(prefix2 + "transmit_delay").(int)
-		obj12_6_6.InstanceID = d.Get(prefix2 + "instance_id").(int)
-		obj12_6.TransmitDelay = append(obj12_6.TransmitDelay, obj12_6_6)
+	for i := 0; i < InterfaceEthernetInstanceIsisPasswordListCount; i++ {
+		var obj15_9 go_thunder.InterfaceEthernetInstanceIsisPasswordList
+		prefix15_9 := prefix15 + fmt.Sprintf("password_list.%d.", i)
+		obj15_9.InterfaceEthernetInstanceIsisPasswordListPassword = d.Get(prefix15_9 + "password").(string)
+		obj15_9.InterfaceEthernetInstanceIsisPasswordListLevel = d.Get(prefix15_9 + "level").(string)
+		obj15.InterfaceEthernetInstanceIsisPasswordListPassword = append(obj15.InterfaceEthernetInstanceIsisPasswordListPassword, obj15_9)
 	}
 
-	NeighborCfgCount := d.Get(prefix1 + "neighbor_cfg.#").(int)
-	obj12_6.NeighborPriority = make([]go_thunder.EthernetNeighborCfg, 0, NeighborCfgCount)
+	InterfaceEthernetInstanceIsisPriorityListCount := d.Get(prefix15 + "priority_list.#").(int)
+	obj15.InterfaceEthernetInstanceIsisPriorityListPriority = make([]go_thunder.InterfaceEthernetInstanceIsisPriorityList, 0, InterfaceEthernetInstanceIsisPriorityListCount)
 
-	for i := 0; i < NeighborCfgCount; i++ {
-		var obj12_6_7 go_thunder.EthernetNeighborCfg
-		prefix2 = prefix1 + fmt.Sprintf("neighbor_cfg.%d.", i)
-		obj12_6_7.NeighborPriority = d.Get(prefix2 + "neighbor_priority").(int)
-		obj12_6_7.NeigInst = d.Get(prefix2 + "neig_inst").(int)
-		obj12_6_7.NeighborPollInterval = d.Get(prefix2 + "neighbor_poll_interval").(int)
-		obj12_6_7.NeighborCost = d.Get(prefix2 + "neighbor_cost").(int)
-		obj12_6_7.Neighbor = d.Get(prefix2 + "neighbor").(string)
-		obj12_6.NeighborPriority = append(obj12_6.NeighborPriority, obj12_6_7)
+	for i := 0; i < InterfaceEthernetInstanceIsisPriorityListCount; i++ {
+		var obj15_10 go_thunder.InterfaceEthernetInstanceIsisPriorityList
+		prefix15_10 := prefix15 + fmt.Sprintf("priority_list.%d.", i)
+		obj15_10.InterfaceEthernetInstanceIsisPriorityListPriority = d.Get(prefix15_10 + "priority").(int)
+		obj15_10.InterfaceEthernetInstanceIsisPriorityListLevel = d.Get(prefix15_10 + "level").(string)
+		obj15.InterfaceEthernetInstanceIsisPriorityListPriority = append(obj15.InterfaceEthernetInstanceIsisPriorityListPriority, obj15_10)
 	}
 
-	NetworkListCount := d.Get(prefix1 + "network_list.#").(int)
-	obj12_6.BroadcastType = make([]go_thunder.EthernetNetworkList, 0, NetworkListCount)
+	obj15.InterfaceEthernetInstanceIsisRetransmitInterval = d.Get(prefix15 + "retransmit_interval").(int)
 
-	for i := 0; i < NetworkListCount; i++ {
-		var obj12_6_8 go_thunder.EthernetNetworkList
-		prefix2 = prefix1 + fmt.Sprintf("network_list.%d.", i)
-		obj12_6_8.BroadcastType = d.Get(prefix2 + "broadcast_type").(string)
-		obj12_6_8.P2MpNbma = d.Get(prefix2 + "p2mp_nbma").(int)
-		obj12_6_8.NetworkInstanceID = d.Get(prefix2 + "network_instance_id").(int)
-		obj12_6.BroadcastType = append(obj12_6.BroadcastType, obj12_6_8)
+	InterfaceEthernetInstanceIsisWideMetricListCount := d.Get(prefix15 + "wide_metric_list.#").(int)
+	obj15.InterfaceEthernetInstanceIsisWideMetricListWideMetric = make([]go_thunder.InterfaceEthernetInstanceIsisWideMetricList, 0, InterfaceEthernetInstanceIsisWideMetricListCount)
+
+	for i := 0; i < InterfaceEthernetInstanceIsisWideMetricListCount; i++ {
+		var obj15_11 go_thunder.InterfaceEthernetInstanceIsisWideMetricList
+		prefix15_11 := prefix15 + fmt.Sprintf("wide_metric_list.%d.", i)
+		obj15_11.InterfaceEthernetInstanceIsisWideMetricListWideMetric = d.Get(prefix15_11 + "wide_metric").(int)
+		obj15_11.InterfaceEthernetInstanceIsisWideMetricListLevel = d.Get(prefix15_11 + "level").(string)
+		obj15.InterfaceEthernetInstanceIsisWideMetricListWideMetric = append(obj15.InterfaceEthernetInstanceIsisWideMetricListWideMetric, obj15_11)
 	}
 
-	DeadIntervalCfgCount := d.Get(prefix1 + "dead_interval_cfg.#").(int)
-	obj12_6.DeadInterval = make([]go_thunder.EthernetDeadIntervalCfg, 0, DeadIntervalCfgCount)
+	c.InterfaceEthernetInstanceIsisAuthentication = obj15
 
-	for i := 0; i < DeadIntervalCfgCount; i++ {
-		var obj12_6_9 go_thunder.EthernetDeadIntervalCfg
-		prefix2 = prefix1 + fmt.Sprintf("dead_interval_cfg.%d.", i)
-		obj12_6_9.DeadInterval = d.Get(prefix2 + "dead_interval").(int)
-		obj12_6_9.InstanceID = d.Get(prefix2 + "instance_id").(int)
-		obj12_6.DeadInterval = append(obj12_6.DeadInterval, obj12_6_9)
+	var obj16 go_thunder.InterfaceEthernetInstanceSpanningTree
+	prefix16 := "spanning_tree.0."
+	obj16.InterfaceEthernetInstanceSpanningTreeAutoEdge = d.Get(prefix16 + "auto_edge").(int)
+	obj16.InterfaceEthernetInstanceSpanningTreeAdminEdge = d.Get(prefix16 + "admin_edge").(int)
+
+	InterfaceEthernetInstanceSpanningTreeInstanceListCount := d.Get(prefix16 + "instance_list.#").(int)
+	obj16.InterfaceEthernetInstanceSpanningTreeInstanceListInstanceStart = make([]go_thunder.InterfaceEthernetInstanceSpanningTreeInstanceList, 0, InterfaceEthernetInstanceSpanningTreeInstanceListCount)
+
+	for i := 0; i < InterfaceEthernetInstanceSpanningTreeInstanceListCount; i++ {
+		var obj16_1 go_thunder.InterfaceEthernetInstanceSpanningTreeInstanceList
+		prefix16_1 := prefix16 + fmt.Sprintf("instance_list.%d.", i)
+		obj16_1.InterfaceEthernetInstanceSpanningTreeInstanceListInstanceStart = d.Get(prefix16_1 + "instance_start").(int)
+		obj16_1.InterfaceEthernetInstanceSpanningTreeInstanceListMstpPathCost = d.Get(prefix16_1 + "mstp_path_cost").(int)
+		obj16.InterfaceEthernetInstanceSpanningTreeInstanceListInstanceStart = append(obj16.InterfaceEthernetInstanceSpanningTreeInstanceListInstanceStart, obj16_1)
 	}
 
-	obj12.Bfd = obj12_6
+	obj16.InterfaceEthernetInstanceSpanningTreePathCost = d.Get(prefix16 + "path_cost").(int)
 
-	var obj12_7 go_thunder.EthernetRouterAdver
-	prefix1 = prefix + "router_adver.0."
-	obj12_7.MaxInterval = d.Get(prefix1 + "max_interval").(int)
-	obj12_7.DefaultLifetime = d.Get(prefix1 + "default_lifetime").(int)
-	obj12_7.ReachableTime = d.Get(prefix1 + "reachable_time").(int)
-	obj12_7.OtherConfigAction = d.Get(prefix1 + "other_config_action").(string)
-	obj12_7.FloatingIPDefaultVrid = d.Get(prefix1 + "floating_ip_default_vrid").(string)
-	obj12_7.ManagedConfigAction = d.Get(prefix1 + "managed_config_action").(string)
-	obj12_7.MinInterval = d.Get(prefix1 + "min_interval").(int)
-	obj12_7.RateLimit = d.Get(prefix1 + "rate_limit").(int)
-	obj12_7.AdverMtuDisable = d.Get(prefix1 + "adver_mtu_disable").(int)
+	c.InterfaceEthernetInstanceSpanningTreeAutoEdge = obj16
 
-	PrefixListCount := d.Get(prefix1 + "prefix_list.#").(int)
-	obj12_7.NotAutonomous = make([]go_thunder.EthernetPrefixList, 0, PrefixListCount)
-
-	for i := 0; i < PrefixListCount; i++ {
-		var obj12_7_1 go_thunder.EthernetPrefixList
-		prefix2 = prefix1 + fmt.Sprintf("prefix_list.%d.", i)
-		obj12_7_1.NotAutonomous = d.Get(prefix2 + "not_autonomous").(int)
-		obj12_7_1.ValidLifetime = d.Get(prefix2 + "valid_lifetime").(int)
-		obj12_7_1.NotOnLink = d.Get(prefix2 + "not_on_link").(int)
-		obj12_7_1.Prefix = d.Get(prefix2 + "prefix").(string)
-		obj12_7_1.PreferredLifetime = d.Get(prefix2 + "preferred_lifetime").(int)
-		obj12_7.NotAutonomous = append(obj12_7.NotAutonomous, obj12_7_1)
-	}
-
-	obj12_7.FloatingIP = d.Get(prefix1 + "floating_ip").(string)
-	obj12_7.AdverVrid = d.Get(prefix1 + "adver_vrid").(int)
-	obj12_7.UseFloatingIPDefaultVrid = d.Get(prefix1 + "use_floating_ip_default_vrid").(int)
-	obj12_7.Action = d.Get(prefix1 + "action").(string)
-	obj12_7.AdverVridDefault = d.Get(prefix1 + "adver_vrid_default").(int)
-	obj12_7.AdverMtu = d.Get(prefix1 + "adver_mtu").(int)
-	obj12_7.RetransmitTimer = d.Get(prefix1 + "retransmit_timer").(int)
-	obj12_7.HopLimit = d.Get(prefix1 + "hop_limit").(int)
-	obj12_7.UseFloatingIP = d.Get(prefix1 + "use_floating_ip").(int)
-	obj12.MaxInterval = obj12_7
-
-	c.Ipv6Enable = obj12
-
-	SamplingEnableCount := d.Get("sampling_enable.#").(int)
-	c.Counters1 = make([]go_thunder.EthernetSamplingEnable, 0, SamplingEnableCount)
-
-	for i := 0; i < SamplingEnableCount; i++ {
-		var obj13 go_thunder.EthernetSamplingEnable
-		prefix := fmt.Sprintf("sampling_enable.%d.", i)
-		obj13.Counters1 = d.Get(prefix + "counters1").(string)
-		c.Counters1 = append(c.Counters1, obj13)
-	}
-
-	c.LoadInterval = d.Get("load_interval").(int)
-
-	var obj14 go_thunder.EthernetLw4O6
-	prefix = "lw_4o6.0."
-	obj14.Outside1 = d.Get(prefix + "outside").(int)
-	obj14.Inside = d.Get(prefix + "inside").(int)
-	c.Outside1 = obj14
-
-	c.Action = d.Get("action").(string)
-	c.FecForcedOff = d.Get("fec_forced_off").(int)
-
-	var obj15 go_thunder.EthernetIcmpRateLimit
-	prefix = "icmp_rate_limit.0."
-	obj15.Lockup = d.Get(prefix + "lockup").(int)
-	obj15.LockupPeriod = d.Get(prefix + "lockup_period").(int)
-	obj15.Normal = d.Get(prefix + "normal").(int)
-	c.Lockup = obj15
-
-	c.FlowControl = d.Get("flow_control").(int)
-
-	vc.UUID = c
+	vc.InterfaceEthernetInstanceIfnum = c
 	return vc
 }

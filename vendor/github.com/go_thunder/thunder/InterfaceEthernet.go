@@ -8,503 +8,623 @@ import (
 )
 
 type InterfaceEthernet struct {
-	UUID InterfaceEthernetInstance `json:"ethernet,omitempty"`
+	InterfaceEthernetInstanceIfnum InterfaceEthernetInstance `json:"ethernet,omitempty"`
 }
 
-type EthernetAddressList struct {
-	AddressType string `json:"address-type,omitempty"`
-	Ipv6Addr    string `json:"ipv6-addr,omitempty"`
-}
-type EthernetHelperAddressList struct {
-	HelperAddress string `json:"helper-address,omitempty"`
-}
-type EthernetStatefulFirewallId struct {
-	UUID       string `json:"uuid,omitempty"`
-	ClassList  string `json:"class-list,omitempty"`
-	Inside     int    `json:"inside,omitempty"`
-	Outside    int    `json:"outside,omitempty"`
-	ACLID      int    `json:"acl-id,omitempty"`
-	AccessList int    `json:"access-list,omitempty"`
-}
-type EthernetReceiveCfg struct {
-	Receive int    `json:"receive,omitempty"`
-	Version string `json:"version,omitempty"`
-}
-type EthernetSplitHorizonCfg struct {
-	State string `json:"state,omitempty"`
-}
-type EthernetKeyChain struct {
-	KeyChain string `json:"key-chain,omitempty"`
-}
-type EthernetMode struct {
-	Mode string `json:"mode,omitempty"`
-}
-type EthernetStr struct {
-	String string `json:"string,omitempty"`
-}
-type EthernetAuthentication struct {
-	KeyChain EthernetKeyChain `json:"key-chain,omitempty"`
-	Mode     EthernetMode     `json:"mode,omitempty"`
-	String   EthernetStr      `json:"str,omitempty"`
-}
-type EthernetSendCfg struct {
-	Version string `json:"version,omitempty"`
-	Send    int    `json:"send,omitempty"`
-}
-type EthernetRip struct {
-	Receive       EthernetReceiveCfg      `json:"receive-cfg,omitempty"`
-	UUID          string                  `json:"uuid,omitempty"`
-	ReceivePacket int                     `json:"receive-packet,omitempty"`
-	State         EthernetSplitHorizonCfg `json:"split-horizon-cfg,omitempty"`
-	KeyChain      EthernetAuthentication  `json:"authentication,omitempty"`
-	Version       EthernetSendCfg         `json:"send-cfg,omitempty"`
-	SendPacket    int                     `json:"send-packet,omitempty"`
-}
-type EthernetIsis struct {
-	Tag  string `json:"tag,omitempty"`
-	UUID string `json:"uuid,omitempty"`
-}
-type EthernetRouter struct {
-	Tag EthernetIsis `json:"isis,omitempty"`
-}
-type EthernetMd5 struct {
-	Md5Value  string `json:"md5-value,omitempty"`
-	Encrypted string `json:"encrypted,omitempty"`
-}
-type EthernetMessageDigestCfg struct {
-	MessageDigestKey int         `json:"message-digest-key,omitempty"`
-	Md5Value         EthernetMd5 `json:"md5,omitempty"`
-}
-type EthernetOspfIPList struct {
-	DeadInterval       int                        `json:"dead-interval,omitempty"`
-	AuthenticationKey  string                     `json:"authentication-key,omitempty"`
-	UUID               string                     `json:"uuid,omitempty"`
-	MtuIgnore          int                        `json:"mtu-ignore,omitempty"`
-	TransmitDelay      int                        `json:"transmit-delay,omitempty"`
-	Value              string                     `json:"value,omitempty"`
-	Priority           int                        `json:"priority,omitempty"`
-	Authentication     int                        `json:"authentication,omitempty"`
-	Cost               int                        `json:"cost,omitempty"`
-	DatabaseFilter     string                     `json:"database-filter,omitempty"`
-	HelloInterval      int                        `json:"hello-interval,omitempty"`
-	IPAddr             string                     `json:"ip-addr,omitempty"`
-	RetransmitInterval int                        `json:"retransmit-interval,omitempty"`
-	MessageDigestKey   []EthernetMessageDigestCfg `json:"message-digest-cfg,omitempty"`
-	Out                int                        `json:"out,omitempty"`
-}
-type EthernetNetwork struct {
-	Broadcast         int `json:"broadcast,omitempty"`
-	PointToMultipoint int `json:"point-to-multipoint,omitempty"`
-	NonBroadcast      int `json:"non-broadcast,omitempty"`
-	PointToPoint      int `json:"point-to-point,omitempty"`
-	P2MpNbma          int `json:"p2mp-nbma,omitempty"`
-}
-type EthernetAuthenticationCfg struct {
-	Authentication int    `json:"authentication,omitempty"`
-	Value          string `json:"value,omitempty"`
-}
-type EthernetBfdCfg struct {
-	Disable int `json:"disable,omitempty"`
-	Bfd     int `json:"bfd,omitempty"`
-}
-type EthernetDatabaseFilterCfg struct {
-	DatabaseFilter string `json:"database-filter,omitempty"`
-	Out            int    `json:"out,omitempty"`
-}
-type EthernetOspfGlobal struct {
-	Cost               int                        `json:"cost,omitempty"`
-	DeadInterval       int                        `json:"dead-interval,omitempty"`
-	AuthenticationKey  string                     `json:"authentication-key,omitempty"`
-	Broadcast          EthernetNetwork            `json:"network,omitempty"`
-	MtuIgnore          int                        `json:"mtu-ignore,omitempty"`
-	TransmitDelay      int                        `json:"transmit-delay,omitempty"`
-	Authentication     EthernetAuthenticationCfg  `json:"authentication-cfg,omitempty"`
-	RetransmitInterval int                        `json:"retransmit-interval,omitempty"`
-	Bfd                EthernetBfdCfg             `json:"bfd-cfg,omitempty"`
-	Disable            string                     `json:"disable,omitempty"`
-	HelloInterval      int                        `json:"hello-interval,omitempty"`
-	DatabaseFilter     EthernetDatabaseFilterCfg  `json:"database-filter-cfg,omitempty"`
-	Priority           int                        `json:"priority,omitempty"`
-	Mtu                int                        `json:"mtu,omitempty"`
-	MessageDigestKey   []EthernetMessageDigestCfg `json:"message-digest-cfg,omitempty"`
-	UUID               string                     `json:"uuid,omitempty"`
-}
-type EthernetOspf struct {
-	DeadInterval []EthernetOspfIPList `json:"ospf-ip-list,omitempty"`
-	Cost         EthernetOspfGlobal   `json:"ospf-global,omitempty"`
-}
-type EthernetIP struct {
-	UUID                    string                      `json:"uuid,omitempty"`
-	AddressType             []EthernetAddressList       `json:"address-list,omitempty"`
-	GenerateMembershipQuery int                         `json:"generate-membership-query,omitempty"`
-	CacheSpoofingPort       int                         `json:"cache-spoofing-port,omitempty"`
-	Inside                  int                         `json:"inside,omitempty"`
-	AllowPromiscuousVip     int                         `json:"allow-promiscuous-vip,omitempty"`
-	Client                  int                         `json:"client,omitempty"`
-	MaxRespTime             int                         `json:"max-resp-time,omitempty"`
-	QueryInterval           int                         `json:"query-interval,omitempty"`
-	Outside                 int                         `json:"outside,omitempty"`
-	HelperAddress           []EthernetHelperAddressList `json:"helper-address-list,omitempty"`
-	ClassList               EthernetStatefulFirewallId  `json:"stateful-firewall,omitempty"`
-	ReceiveCfg              EthernetRip                 `json:"rip,omitempty"`
-	TTLIgnore               int                         `json:"ttl-ignore,omitempty"`
-	Tag                     EthernetRouter              `json:"router,omitempty"`
-	Dhcp                    int                         `json:"dhcp,omitempty"`
-	Server                  int                         `json:"server,omitempty"`
-	DeadInterval            EthernetOspf                `json:"ospf,omitempty"`
-	SlbPartitionRedirect    int                         `json:"slb-partition-redirect,omitempty"`
-}
-type EthernetDdos struct {
-	Outside int    `json:"outside,omitempty"`
-	Inside  int    `json:"inside,omitempty"`
-	UUID    string `json:"uuid,omitempty"`
-}
-type EthernetAccessList struct {
-	ACLName string `json:"acl-name,omitempty"`
-	ACLID   int    `json:"acl-id,omitempty"`
-}
-type EthernetTxDot1Cfg struct {
-	LinkAggregation int `json:"link-aggregation,omitempty"`
-	Vlan            int `json:"vlan,omitempty"`
-	TxDot1Tlvs      int `json:"tx-dot1-tlvs,omitempty"`
-}
-type EthernetNotificationCfg struct {
-	Notification int `json:"notification,omitempty"`
-	NotifEnable  int `json:"notif-enable,omitempty"`
-}
-type EthernetEnableCfg struct {
-	Rx       int `json:"rx,omitempty"`
-	Tx       int `json:"tx,omitempty"`
-	RtEnable int `json:"rt-enable,omitempty"`
-}
-type EthernetTxTlvsCfg struct {
-	SystemCapabilities int `json:"system-capabilities,omitempty"`
-	SystemDescription  int `json:"system-description,omitempty"`
-	ManagementAddress  int `json:"management-address,omitempty"`
-	TxTlvs             int `json:"tx-tlvs,omitempty"`
-	Exclude            int `json:"exclude,omitempty"`
-	PortDescription    int `json:"port-description,omitempty"`
-	SystemName         int `json:"system-name,omitempty"`
-}
-type EthernetLldp struct {
-	LinkAggregation    EthernetTxDot1Cfg       `json:"tx-dot1-cfg,omitempty"`
-	Notification       EthernetNotificationCfg `json:"notification-cfg,omitempty"`
-	Rx                 EthernetEnableCfg       `json:"enable-cfg,omitempty"`
-	SystemCapabilities EthernetTxTlvsCfg       `json:"tx-tlvs-cfg,omitempty"`
-	UUID               string                  `json:"uuid,omitempty"`
-}
-type EthernetIntervalCfg struct {
-	Interval   int `json:"interval,omitempty"`
-	MinRx      int `json:"min-rx,omitempty"`
-	Multiplier int `json:"multiplier,omitempty"`
-}
-type EthernetAuthentication2 struct {
-	Encrypted string `json:"encrypted,omitempty"`
-	Password  string `json:"password,omitempty"`
-	Method    string `json:"method,omitempty"`
-	KeyID     int    `json:"key-id,omitempty"`
-}
-type EthernetBfd struct {
-	Interval  EthernetIntervalCfg     `json:"interval-cfg,omitempty"`
-	Encrypted EthernetAuthentication2 `json:"authentication,omitempty"`
-	Echo      int                     `json:"echo,omitempty"`
-	UUID      string                  `json:"uuid,omitempty"`
-	Demand    int                     `json:"demand,omitempty"`
-}
-type EthernetMonitorList struct {
-	MonitorVlan int    `json:"monitor-vlan,omitempty"`
-	Monitor     string `json:"monitor,omitempty"`
-	MirrorIndex int    `json:"mirror-index,omitempty"`
-}
-type EthernetMap struct {
-	Inside      int    `json:"inside,omitempty"`
-	MapTInside  int    `json:"map-t-inside,omitempty"`
-	UUID        string `json:"uuid,omitempty"`
-	MapTOutside int    `json:"map-t-outside,omitempty"`
-	Outside     int    `json:"outside,omitempty"`
-}
-type EthernetUdldTimeoutCfg struct {
-	Slow int `json:"slow,omitempty"`
-	Fast int `json:"fast,omitempty"`
-}
-type EthernetTrunkGroupList struct {
-	UUID         string                 `json:"uuid,omitempty"`
-	TrunkNumber  int                    `json:"trunk-number,omitempty"`
-	UserTag      string                 `json:"user-tag,omitempty"`
-	Slow         EthernetUdldTimeoutCfg `json:"udld-timeout-cfg,omitempty"`
-	Mode         string                 `json:"mode,omitempty"`
-	Timeout      string                 `json:"timeout,omitempty"`
-	Type         string                 `json:"type,omitempty"`
-	AdminKey     int                    `json:"admin-key,omitempty"`
-	PortPriority int                    `json:"port-priority,omitempty"`
-}
-type EthernetDomainList struct {
-	DomainName string `json:"domain-name,omitempty"`
-	BindType   string `json:"bind-type,omitempty"`
-	UUID       string `json:"uuid,omitempty"`
-}
-type EthernetNptv6 struct {
-	DomainName []EthernetDomainList `json:"domain-list,omitempty"`
-}
-type EthernetPriorityList struct {
-	Priority int    `json:"priority,omitempty"`
-	Level    string `json:"level,omitempty"`
-}
-type EthernetHelloIntervalMinimalList struct {
-	HelloIntervalMinimal int    `json:"hello-interval-minimal,omitempty"`
-	Level                string `json:"level,omitempty"`
-}
-type EthernetMeshGroup struct {
-	Value   int `json:"value,omitempty"`
-	Blocked int `json:"blocked,omitempty"`
-}
-type EthernetSendOnlyList struct {
-	SendOnly int    `json:"send-only,omitempty"`
-	Level    string `json:"level,omitempty"`
-}
-type EthernetModeList struct {
-	Mode  string `json:"mode,omitempty"`
-	Level string `json:"level,omitempty"`
-}
-type EthernetKeyChainList struct {
-	KeyChain string `json:"key-chain,omitempty"`
-	Level    string `json:"level,omitempty"`
-}
-type EthernetAuthentication3 struct {
-	SendOnly []EthernetSendOnlyList `json:"send-only-list,omitempty"`
-	Mode     []EthernetModeList     `json:"mode-list,omitempty"`
-	KeyChain []EthernetKeyChainList `json:"key-chain-list,omitempty"`
-}
-type EthernetCsnpIntervalList struct {
-	CsnpInterval int    `json:"csnp-interval,omitempty"`
-	Level        string `json:"level,omitempty"`
-}
-type EthernetPasswordList struct {
-	Password string `json:"password,omitempty"`
-	Level    string `json:"level,omitempty"`
-}
-type EthernetWideMetricList struct {
-	WideMetric int    `json:"wide-metric,omitempty"`
-	Level      string `json:"level,omitempty"`
-}
-type EthernetHelloIntervalList struct {
-	HelloInterval int    `json:"hello-interval,omitempty"`
-	Level         string `json:"level,omitempty"`
-}
-type EthernetHelloMultiplierList struct {
-	HelloMultiplier int    `json:"hello-multiplier,omitempty"`
-	Level           string `json:"level,omitempty"`
-}
-type EthernetMetricList struct {
-	Metric int    `json:"metric,omitempty"`
-	Level  string `json:"level,omitempty"`
-}
-type EthernetIsis2 struct {
-	Priority             []EthernetPriorityList             `json:"priority-list,omitempty"`
-	Padding              int                                `json:"padding,omitempty"`
-	HelloIntervalMinimal []EthernetHelloIntervalMinimalList `json:"hello-interval-minimal-list,omitempty"`
-	Value                EthernetMeshGroup                  `json:"mesh-group,omitempty"`
-	Network              string                             `json:"network,omitempty"`
-	SendOnly             EthernetAuthentication3            `json:"authentication,omitempty"`
-	CsnpInterval         []EthernetCsnpIntervalList         `json:"csnp-interval-list,omitempty"`
-	RetransmitInterval   int                                `json:"retransmit-interval,omitempty"`
-	Password             []EthernetPasswordList             `json:"password-list,omitempty"`
-	Disable              EthernetBfdCfg                     `json:"bfd-cfg,omitempty"`
-	WideMetric           []EthernetWideMetricList           `json:"wide-metric-list,omitempty"`
-	HelloInterval        []EthernetHelloIntervalList        `json:"hello-interval-list,omitempty"`
-	CircuitType          string                             `json:"circuit-type,omitempty"`
-	HelloMultiplier      []EthernetHelloMultiplierList      `json:"hello-multiplier-list,omitempty"`
-	Metric               []EthernetMetricList               `json:"metric-list,omitempty"`
-	LspInterval          int                                `json:"lsp-interval,omitempty"`
-	UUID                 string                             `json:"uuid,omitempty"`
-}
-type EthernetIcmpv6RateLimit struct {
-	LockupPeriodV6 int `json:"lockup-period-v6,omitempty"`
-	NormalV6       int `json:"normal-v6,omitempty"`
-	LockupV6       int `json:"lockup-v6,omitempty"`
-}
-type EthernetRip2 struct {
-	State EthernetSplitHorizonCfg `json:"split-horizon-cfg,omitempty"`
-	UUID  string                  `json:"uuid,omitempty"`
-}
-type EthernetStatefulFirewall struct {
-	UUID       string `json:"uuid,omitempty"`
-	ClassList  string `json:"class-list,omitempty"`
-	ACLName    string `json:"acl-name,omitempty"`
-	Inside     int    `json:"inside,omitempty"`
-	Outside    int    `json:"outside,omitempty"`
-	AccessList int    `json:"access-list,omitempty"`
-}
-type EthernetRipng struct {
-	UUID string `json:"uuid,omitempty"`
-	Rip  int    `json:"rip,omitempty"`
-}
-type EthernetAreaList struct {
-	AreaIDAddr string `json:"area-id-addr,omitempty"`
-	Tag        string `json:"tag,omitempty"`
-	InstanceID int    `json:"instance-id,omitempty"`
-	AreaIDNum  int    `json:"area-id-num,omitempty"`
-}
-type EthernetOspf2 struct {
-	AreaIDAddr []EthernetAreaList `json:"area-list,omitempty"`
-	UUID       string             `json:"uuid,omitempty"`
-}
-
-type EthernetRouter2 struct {
-	UUID       EthernetRipng `json:"ripng,omitempty"`
-	AreaIDAddr EthernetOspf2 `json:"ospf,omitempty"`
-	Tag        EthernetIsis  `json:"isis,omitempty"`
-}
-type EthernetAccessListCfg struct {
-	Inbound   int    `json:"inbound,omitempty"`
-	V6ACLName string `json:"v6-acl-name,omitempty"`
-}
-type EthernetCostCfg struct {
-	Cost       int `json:"cost,omitempty"`
-	InstanceID int `json:"instance-id,omitempty"`
-}
-type EthernetPriorityCfg struct {
-	Priority   int `json:"priority,omitempty"`
-	InstanceID int `json:"instance-id,omitempty"`
-}
-type EthernetHelloIntervalCfg struct {
-	HelloInterval int `json:"hello-interval,omitempty"`
-	InstanceID    int `json:"instance-id,omitempty"`
-}
-type EthernetMtuIgnoreCfg struct {
-	MtuIgnore  int `json:"mtu-ignore,omitempty"`
-	InstanceID int `json:"instance-id,omitempty"`
-}
-type EthernetRetransmitIntervalCfg struct {
-	RetransmitInterval int `json:"retransmit-interval,omitempty"`
-	InstanceID         int `json:"instance-id,omitempty"`
-}
-type EthernetTransmitDelayCfg struct {
-	TransmitDelay int `json:"transmit-delay,omitempty"`
-	InstanceID    int `json:"instance-id,omitempty"`
-}
-type EthernetNeighborCfg struct {
-	NeighborPriority     int    `json:"neighbor-priority,omitempty"`
-	NeigInst             int    `json:"neig-inst,omitempty"`
-	NeighborPollInterval int    `json:"neighbor-poll-interval,omitempty"`
-	NeighborCost         int    `json:"neighbor-cost,omitempty"`
-	Neighbor             string `json:"neighbor,omitempty"`
-}
-type EthernetNetworkList struct {
-	BroadcastType     string `json:"broadcast-type,omitempty"`
-	P2MpNbma          int    `json:"p2mp-nbma,omitempty"`
-	NetworkInstanceID int    `json:"network-instance-id,omitempty"`
-}
-type EthernetDeadIntervalCfg struct {
-	DeadInterval int `json:"dead-interval,omitempty"`
-	InstanceID   int `json:"instance-id,omitempty"`
-}
-type EthernetOspf3 struct {
-	UUID               string                          `json:"uuid,omitempty"`
-	Bfd                int                             `json:"bfd,omitempty"`
-	Cost               []EthernetCostCfg               `json:"cost-cfg,omitempty"`
-	Priority           []EthernetPriorityCfg           `json:"priority-cfg,omitempty"`
-	HelloInterval      []EthernetHelloIntervalCfg      `json:"hello-interval-cfg,omitempty"`
-	MtuIgnore          []EthernetMtuIgnoreCfg          `json:"mtu-ignore-cfg,omitempty"`
-	RetransmitInterval []EthernetRetransmitIntervalCfg `json:"retransmit-interval-cfg,omitempty"`
-	Disable            int                             `json:"disable,omitempty"`
-	TransmitDelay      []EthernetTransmitDelayCfg      `json:"transmit-delay-cfg,omitempty"`
-	NeighborPriority   []EthernetNeighborCfg           `json:"neighbor-cfg,omitempty"`
-	BroadcastType      []EthernetNetworkList           `json:"network-list,omitempty"`
-	DeadInterval       []EthernetDeadIntervalCfg       `json:"dead-interval-cfg,omitempty"`
-}
-type EthernetPrefixList struct {
-	NotAutonomous     int    `json:"not-autonomous,omitempty"`
-	ValidLifetime     int    `json:"valid-lifetime,omitempty"`
-	NotOnLink         int    `json:"not-on-link,omitempty"`
-	Prefix            string `json:"prefix,omitempty"`
-	PreferredLifetime int    `json:"preferred-lifetime,omitempty"`
-}
-type EthernetRouterAdver struct {
-	MaxInterval              int                  `json:"max-interval,omitempty"`
-	DefaultLifetime          int                  `json:"default-lifetime,omitempty"`
-	ReachableTime            int                  `json:"reachable-time,omitempty"`
-	OtherConfigAction        string               `json:"other-config-action,omitempty"`
-	FloatingIPDefaultVrid    string               `json:"floating-ip-default-vrid,omitempty"`
-	ManagedConfigAction      string               `json:"managed-config-action,omitempty"`
-	MinInterval              int                  `json:"min-interval,omitempty"`
-	RateLimit                int                  `json:"rate-limit,omitempty"`
-	AdverMtuDisable          int                  `json:"adver-mtu-disable,omitempty"`
-	NotAutonomous            []EthernetPrefixList `json:"prefix-list,omitempty"`
-	FloatingIP               string               `json:"floating-ip,omitempty"`
-	AdverVrid                int                  `json:"adver-vrid,omitempty"`
-	UseFloatingIPDefaultVrid int                  `json:"use-floating-ip-default-vrid,omitempty"`
-	Action                   string               `json:"action,omitempty"`
-	AdverVridDefault         int                  `json:"adver-vrid-default,omitempty"`
-	AdverMtu                 int                  `json:"adver-mtu,omitempty"`
-	RetransmitTimer          int                  `json:"retransmit-timer,omitempty"`
-	HopLimit                 int                  `json:"hop-limit,omitempty"`
-	UseFloatingIP            int                  `json:"use-floating-ip,omitempty"`
-}
-type EthernetIpv6 struct {
-	UUID        string                   `json:"uuid,omitempty"`
-	AddressType []EthernetAddressList    `json:"address-list,omitempty"`
-	Inside      int                      `json:"inside,omitempty"`
-	Ipv6Enable  int                      `json:"ipv6-enable,omitempty"`
-	State       EthernetRip2             `json:"rip,omitempty"`
-	Outside     int                      `json:"outside,omitempty"`
-	ClassList   EthernetStatefulFirewall `json:"stateful-firewall,omitempty"`
-	TTLIgnore   int                      `json:"ttl-ignore,omitempty"`
-	AreaIDAddr  EthernetRouter2          `json:"router,omitempty"`
-	Inbound     EthernetAccessListCfg    `json:"access-list-cfg,omitempty"`
-	Bfd         EthernetOspf3            `json:"ospf,omitempty"`
-	MaxInterval EthernetRouterAdver      `json:"router-adver,omitempty"`
-}
-type EthernetSamplingEnable struct {
-	Counters1 string `json:"counters1,omitempty"`
-}
-type EthernetLw4O6 struct {
-	Outside1 int    `json:"outside,omitempty"`
-	Inside   int    `json:"inside,omitempty"`
-	UUID     string `json:"uuid,omitempty"`
-}
-type EthernetIcmpRateLimit struct {
-	Lockup       int `json:"lockup,omitempty"`
-	LockupPeriod int `json:"lockup-period,omitempty"`
-	Normal       int `json:"normal,omitempty"`
-}
 type InterfaceEthernetInstance struct {
-	FecForcedOn             int                      `json:"fec-forced-on,omitempty"`
-	TrapSource              int                      `json:"trap-source,omitempty"`
-	AddressType             EthernetIP               `json:"ip,omitempty"`
-	Outside                 EthernetDdos             `json:"ddos,omitempty"`
-	L3VlanFwdDisable        int                      `json:"l3-vlan-fwd-disable,omitempty"`
-	ACLName                 EthernetAccessList       `json:"access-list,omitempty"`
-	Speed                   string                   `json:"speed,omitempty"`
-	SpeedForced40G          int                      `json:"speed-forced-40g,omitempty"`
-	LinkAggregation         EthernetLldp             `json:"lldp,omitempty"`
-	UUID                    string                   `json:"uuid,omitempty"`
-	Interval                EthernetBfd              `json:"bfd,omitempty"`
-	MediaTypeCopper         int                      `json:"media-type-copper,omitempty"`
-	Ifnum                   int                      `json:"ifnum,omitempty"`
-	RemoveVlanTag           int                      `json:"remove-vlan-tag,omitempty"`
-	MonitorVlan             []EthernetMonitorList    `json:"monitor-list,omitempty"`
-	CPUProcess              int                      `json:"cpu-process,omitempty"`
-	AutoNegEnable           int                      `json:"auto-neg-enable,omitempty"`
-	Inside                  EthernetMap              `json:"map,omitempty"`
-	TrafficDistributionMode string                   `json:"traffic-distribution-mode,omitempty"`
-	TrunkNumber             []EthernetTrunkGroupList `json:"trunk-group-list,omitempty"`
-	Nptv6                   EthernetNptv6            `json:"nptv6,omitempty"`
-	CPUProcessDir           string                   `json:"cpu-process-dir,omitempty"`
-	Priority                EthernetIsis2            `json:"isis,omitempty"`
-	Name                    string                   `json:"name,omitempty"`
-	Duplexity               string                   `json:"duplexity,omitempty"`
-	LockupPeriodV6          EthernetIcmpv6RateLimit  `json:"icmpv6-rate-limit,omitempty"`
-	UserTag                 string                   `json:"user-tag,omitempty"`
-	Mtu                     int                      `json:"mtu,omitempty"`
-	Ipv6Enable              EthernetIpv6             `json:"ipv6,omitempty"`
-	Counters1               []EthernetSamplingEnable `json:"sampling-enable,omitempty"`
-	LoadInterval            int                      `json:"load-interval,omitempty"`
-	Outside1                EthernetLw4O6            `json:"lw-4o6,omitempty"`
-	Action                  string                   `json:"action,omitempty"`
-	FecForcedOff            int                      `json:"fec-forced-off,omitempty"`
-	Lockup                  EthernetIcmpRateLimit    `json:"icmp-rate-limit,omitempty"`
-	FlowControl             int                      `json:"flow-control,omitempty"`
+	InterfaceEthernetInstanceAccessListAclID           InterfaceEthernetInstanceAccessList       `json:"access-list,omitempty"`
+	InterfaceEthernetInstanceAction                    string                                    `json:"action,omitempty"`
+	InterfaceEthernetInstanceAutoNegEnable             int                                       `json:"auto-neg-enable,omitempty"`
+	InterfaceEthernetInstanceBfdAuthentication         InterfaceEthernetInstanceBfd              `json:"bfd,omitempty"`
+	InterfaceEthernetInstanceCPUProcess                int                                       `json:"cpu-process,omitempty"`
+	InterfaceEthernetInstanceCPUProcessDir             string                                    `json:"cpu-process-dir,omitempty"`
+	InterfaceEthernetInstanceDdosOutside               InterfaceEthernetInstanceDdos             `json:"ddos,omitempty"`
+	InterfaceEthernetInstanceDuplexity                 string                                    `json:"duplexity,omitempty"`
+	InterfaceEthernetInstanceFecForcedOff              int                                       `json:"fec-forced-off,omitempty"`
+	InterfaceEthernetInstanceFecForcedOn               int                                       `json:"fec-forced-on,omitempty"`
+	InterfaceEthernetInstanceFlowControl               int                                       `json:"flow-control,omitempty"`
+	InterfaceEthernetInstanceIPDhcp                    InterfaceEthernetInstanceIP               `json:"ip,omitempty"`
+	InterfaceEthernetInstanceIcmpRateLimitNormal       InterfaceEthernetInstanceIcmpRateLimit    `json:"icmp-rate-limit,omitempty"`
+	InterfaceEthernetInstanceIcmpv6RateLimitNormalV6   InterfaceEthernetInstanceIcmpv6RateLimit  `json:"icmpv6-rate-limit,omitempty"`
+	InterfaceEthernetInstanceIfnum                     int                                       `json:"ifnum,omitempty"`
+	InterfaceEthernetInstanceIpgBitTime                int                                       `json:"ipg-bit-time,omitempty"`
+	InterfaceEthernetInstanceIpv6AddressList           InterfaceEthernetInstanceIpv6             `json:"ipv6,omitempty"`
+	InterfaceEthernetInstanceIsisAuthentication        InterfaceEthernetInstanceIsis             `json:"isis,omitempty"`
+	InterfaceEthernetInstanceL3VlanFwdDisable          int                                       `json:"l3-vlan-fwd-disable,omitempty"`
+	InterfaceEthernetInstanceLldpEnableCfg             InterfaceEthernetInstanceLldp             `json:"lldp,omitempty"`
+	InterfaceEthernetInstanceLoadInterval              int                                       `json:"load-interval,omitempty"`
+	InterfaceEthernetInstanceLw4O6Outside              InterfaceEthernetInstanceLw4O6            `json:"lw-4o6,omitempty"`
+	InterfaceEthernetInstanceMacLearning               string                                    `json:"mac-learning,omitempty"`
+	InterfaceEthernetInstanceMapInside                 InterfaceEthernetInstanceMap              `json:"map,omitempty"`
+	InterfaceEthernetInstanceMediaTypeCopper           int                                       `json:"media-type-copper,omitempty"`
+	InterfaceEthernetInstanceMonitorListMonitor        []InterfaceEthernetInstanceMonitorList    `json:"monitor-list,omitempty"`
+	InterfaceEthernetInstanceMtu                       int                                       `json:"mtu,omitempty"`
+	InterfaceEthernetInstanceName                      string                                    `json:"name,omitempty"`
+	InterfaceEthernetInstanceNptv6DomainList           InterfaceEthernetInstanceNptv6            `json:"nptv6,omitempty"`
+	InterfaceEthernetInstancePacketCaptureTemplate     string                                    `json:"packet-capture-template,omitempty"`
+	InterfaceEthernetInstancePingSweepDetection        string                                    `json:"ping-sweep-detection,omitempty"`
+	InterfaceEthernetInstancePortBreakout              string                                    `json:"port-breakout,omitempty"`
+	InterfaceEthernetInstancePortScanDetection         string                                    `json:"port-scan-detection,omitempty"`
+	InterfaceEthernetInstanceRemoveVlanTag             int                                       `json:"remove-vlan-tag,omitempty"`
+	InterfaceEthernetInstanceSamplingEnableCounters1   []InterfaceEthernetInstanceSamplingEnable `json:"sampling-enable,omitempty"`
+	InterfaceEthernetInstanceSpanningTreeAutoEdge      InterfaceEthernetInstanceSpanningTree     `json:"spanning-tree,omitempty"`
+	InterfaceEthernetInstanceSpeed                     string                                    `json:"speed,omitempty"`
+	InterfaceEthernetInstanceSpeedForced10G            int                                       `json:"speed-forced-10g,omitempty"`
+	InterfaceEthernetInstanceSpeedForced1G             int                                       `json:"speed-forced-1g,omitempty"`
+	InterfaceEthernetInstanceSpeedForced40G            int                                       `json:"speed-forced-40g,omitempty"`
+	InterfaceEthernetInstanceTrafficDistributionMode   string                                    `json:"traffic-distribution-mode,omitempty"`
+	InterfaceEthernetInstanceTrapSource                int                                       `json:"trap-source,omitempty"`
+	InterfaceEthernetInstanceTrunkGroupListTrunkNumber []InterfaceEthernetInstanceTrunkGroupList `json:"trunk-group-list,omitempty"`
+	InterfaceEthernetInstanceUUID                      string                                    `json:"uuid,omitempty"`
+	InterfaceEthernetInstanceUpdateL2Info              int                                       `json:"update-l2-info,omitempty"`
+	InterfaceEthernetInstanceUserTag                   string                                    `json:"user-tag,omitempty"`
+	InterfaceEthernetInstanceVirtualWire               int                                       `json:"virtual-wire,omitempty"`
+	InterfaceEthernetInstanceVlanLearning              string                                    `json:"vlan-learning,omitempty"`
+}
+
+type InterfaceEthernetInstanceAccessList struct {
+	InterfaceEthernetInstanceAccessListAclID   int    `json:"acl-id,omitempty"`
+	InterfaceEthernetInstanceAccessListAclName string `json:"acl-name,omitempty"`
+}
+
+type InterfaceEthernetInstanceBfd struct {
+	InterfaceEthernetInstanceBfdAuthenticationKeyID InterfaceEthernetInstanceBfdAuthentication `json:"authentication,omitempty"`
+	InterfaceEthernetInstanceBfdDemand              int                                        `json:"demand,omitempty"`
+	InterfaceEthernetInstanceBfdEcho                int                                        `json:"echo,omitempty"`
+	InterfaceEthernetInstanceBfdIntervalCfgInterval InterfaceEthernetInstanceBfdIntervalCfg    `json:"interval-cfg,omitempty"`
+	InterfaceEthernetInstanceBfdUUID                string                                     `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceDdos struct {
+	InterfaceEthernetInstanceDdosInside  int    `json:"inside,omitempty"`
+	InterfaceEthernetInstanceDdosOutside int    `json:"outside,omitempty"`
+	InterfaceEthernetInstanceDdosUUID    string `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIP struct {
+	InterfaceEthernetInstanceIPAddressListIpv6Addr            []InterfaceEthernetInstanceIPAddressList       `json:"address-list,omitempty"`
+	InterfaceEthernetInstanceIPAllowPromiscuousVip            int                                            `json:"allow-promiscuous-vip,omitempty"`
+	InterfaceEthernetInstanceIPCacheSpoofingPort              int                                            `json:"cache-spoofing-port,omitempty"`
+	InterfaceEthernetInstanceIPClient                         int                                            `json:"client,omitempty"`
+	InterfaceEthernetInstanceIPDhcp                           int                                            `json:"dhcp,omitempty"`
+	InterfaceEthernetInstanceIPGenerateMembershipQuery        int                                            `json:"generate-membership-query,omitempty"`
+	InterfaceEthernetInstanceIPHelperAddressListHelperAddress []InterfaceEthernetInstanceIPHelperAddressList `json:"helper-address-list,omitempty"`
+	InterfaceEthernetInstanceIPInside                         int                                            `json:"inside,omitempty"`
+	InterfaceEthernetInstanceIPMaxRespTime                    int                                            `json:"max-resp-time,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobal                 InterfaceEthernetInstanceIPOspf                `json:"ospf,omitempty"`
+	InterfaceEthernetInstanceIPOutside                        int                                            `json:"outside,omitempty"`
+	InterfaceEthernetInstanceIPQueryInterval                  int                                            `json:"query-interval,omitempty"`
+	InterfaceEthernetInstanceIPRipAuthentication              InterfaceEthernetInstanceIPRip                 `json:"rip,omitempty"`
+	InterfaceEthernetInstanceIPRouterIsis                     InterfaceEthernetInstanceIPRouter              `json:"router,omitempty"`
+	InterfaceEthernetInstanceIPServer                         int                                            `json:"server,omitempty"`
+	InterfaceEthernetInstanceIPSlbPartitionRedirect           int                                            `json:"slb-partition-redirect,omitempty"`
+	InterfaceEthernetInstanceIPStatefulFirewallInside         InterfaceEthernetInstanceIPStatefulFirewall    `json:"stateful-firewall,omitempty"`
+	InterfaceEthernetInstanceIPSynCookie                      int                                            `json:"syn-cookie,omitempty"`
+	InterfaceEthernetInstanceIPTTLIgnore                      int                                            `json:"ttl-ignore,omitempty"`
+	InterfaceEthernetInstanceIPUUID                           string                                         `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIcmpRateLimit struct {
+	InterfaceEthernetInstanceIcmpRateLimitLockup       int `json:"lockup,omitempty"`
+	InterfaceEthernetInstanceIcmpRateLimitLockupPeriod int `json:"lockup-period,omitempty"`
+	InterfaceEthernetInstanceIcmpRateLimitNormal       int `json:"normal,omitempty"`
+}
+
+type InterfaceEthernetInstanceIcmpv6RateLimit struct {
+	InterfaceEthernetInstanceIcmpv6RateLimitLockupPeriodV6 int `json:"lockup-period-v6,omitempty"`
+	InterfaceEthernetInstanceIcmpv6RateLimitLockupV6       int `json:"lockup-v6,omitempty"`
+	InterfaceEthernetInstanceIcmpv6RateLimitNormalV6       int `json:"normal-v6,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6 struct {
+	InterfaceEthernetInstanceIpv6AccessListCfgV6AclName InterfaceEthernetInstanceIpv6AccessListCfg    `json:"access-list-cfg,omitempty"`
+	InterfaceEthernetInstanceIpv6AddressListIpv6Addr    []InterfaceEthernetInstanceIpv6AddressList    `json:"address-list,omitempty"`
+	InterfaceEthernetInstanceIpv6Inside                 int                                           `json:"inside,omitempty"`
+	InterfaceEthernetInstanceIpv6Ipv6Enable             int                                           `json:"ipv6-enable,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfNetworkList        InterfaceEthernetInstanceIpv6Ospf             `json:"ospf,omitempty"`
+	InterfaceEthernetInstanceIpv6Outside                int                                           `json:"outside,omitempty"`
+	InterfaceEthernetInstanceIpv6RipSplitHorizonCfg     InterfaceEthernetInstanceIpv6Rip              `json:"rip,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterRipng            InterfaceEthernetInstanceIpv6Router           `json:"router,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverAction      InterfaceEthernetInstanceIpv6RouterAdver      `json:"router-adver,omitempty"`
+	InterfaceEthernetInstanceIpv6StatefulFirewallInside InterfaceEthernetInstanceIpv6StatefulFirewall `json:"stateful-firewall,omitempty"`
+	InterfaceEthernetInstanceIpv6TTLIgnore              int                                           `json:"ttl-ignore,omitempty"`
+	InterfaceEthernetInstanceIpv6UUID                   string                                        `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsis struct {
+	InterfaceEthernetInstanceIsisAuthenticationSendOnlyList                   InterfaceEthernetInstanceIsisAuthentication             `json:"authentication,omitempty"`
+	InterfaceEthernetInstanceIsisBfdCfgBfd                                    InterfaceEthernetInstanceIsisBfdCfg                     `json:"bfd-cfg,omitempty"`
+	InterfaceEthernetInstanceIsisCircuitType                                  string                                                  `json:"circuit-type,omitempty"`
+	InterfaceEthernetInstanceIsisCsnpIntervalListCsnpInterval                 []InterfaceEthernetInstanceIsisCsnpIntervalList         `json:"csnp-interval-list,omitempty"`
+	InterfaceEthernetInstanceIsisHelloIntervalListHelloInterval               []InterfaceEthernetInstanceIsisHelloIntervalList        `json:"hello-interval-list,omitempty"`
+	InterfaceEthernetInstanceIsisHelloIntervalMinimalListHelloIntervalMinimal []InterfaceEthernetInstanceIsisHelloIntervalMinimalList `json:"hello-interval-minimal-list,omitempty"`
+	InterfaceEthernetInstanceIsisHelloMultiplierListHelloMultiplier           []InterfaceEthernetInstanceIsisHelloMultiplierList      `json:"hello-multiplier-list,omitempty"`
+	InterfaceEthernetInstanceIsisLspInterval                                  int                                                     `json:"lsp-interval,omitempty"`
+	InterfaceEthernetInstanceIsisMeshGroupValue                               InterfaceEthernetInstanceIsisMeshGroup                  `json:"mesh-group,omitempty"`
+	InterfaceEthernetInstanceIsisMetricListMetric                             []InterfaceEthernetInstanceIsisMetricList               `json:"metric-list,omitempty"`
+	InterfaceEthernetInstanceIsisNetwork                                      string                                                  `json:"network,omitempty"`
+	InterfaceEthernetInstanceIsisPadding                                      int                                                     `json:"padding,omitempty"`
+	InterfaceEthernetInstanceIsisPasswordListPassword                         []InterfaceEthernetInstanceIsisPasswordList             `json:"password-list,omitempty"`
+	InterfaceEthernetInstanceIsisPriorityListPriority                         []InterfaceEthernetInstanceIsisPriorityList             `json:"priority-list,omitempty"`
+	InterfaceEthernetInstanceIsisRetransmitInterval                           int                                                     `json:"retransmit-interval,omitempty"`
+	InterfaceEthernetInstanceIsisUUID                                         string                                                  `json:"uuid,omitempty"`
+	InterfaceEthernetInstanceIsisWideMetricListWideMetric                     []InterfaceEthernetInstanceIsisWideMetricList           `json:"wide-metric-list,omitempty"`
+}
+
+type InterfaceEthernetInstanceLldp struct {
+	InterfaceEthernetInstanceLldpEnableCfgRtEnable           InterfaceEthernetInstanceLldpEnableCfg       `json:"enable-cfg,omitempty"`
+	InterfaceEthernetInstanceLldpNotificationCfgNotification InterfaceEthernetInstanceLldpNotificationCfg `json:"notification-cfg,omitempty"`
+	InterfaceEthernetInstanceLldpTxDot1CfgTxDot1Tlvs         InterfaceEthernetInstanceLldpTxDot1Cfg       `json:"tx-dot1-cfg,omitempty"`
+	InterfaceEthernetInstanceLldpTxTlvsCfgTxTlvs             InterfaceEthernetInstanceLldpTxTlvsCfg       `json:"tx-tlvs-cfg,omitempty"`
+	InterfaceEthernetInstanceLldpUUID                        string                                       `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceLw4O6 struct {
+	InterfaceEthernetInstanceLw4O6Inside  int    `json:"inside,omitempty"`
+	InterfaceEthernetInstanceLw4O6Outside int    `json:"outside,omitempty"`
+	InterfaceEthernetInstanceLw4O6UUID    string `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceMap struct {
+	InterfaceEthernetInstanceMapInside      int    `json:"inside,omitempty"`
+	InterfaceEthernetInstanceMapMapTInside  int    `json:"map-t-inside,omitempty"`
+	InterfaceEthernetInstanceMapMapTOutside int    `json:"map-t-outside,omitempty"`
+	InterfaceEthernetInstanceMapOutside     int    `json:"outside,omitempty"`
+	InterfaceEthernetInstanceMapUUID        string `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceMonitorList struct {
+	InterfaceEthernetInstanceMonitorListMirrorIndex int    `json:"mirror-index,omitempty"`
+	InterfaceEthernetInstanceMonitorListMonitor     string `json:"monitor,omitempty"`
+	InterfaceEthernetInstanceMonitorListMonitorVlan int    `json:"monitor-vlan,omitempty"`
+}
+
+type InterfaceEthernetInstanceNptv6 struct {
+	InterfaceEthernetInstanceNptv6DomainListDomainName []InterfaceEthernetInstanceNptv6DomainList `json:"domain-list,omitempty"`
+}
+
+type InterfaceEthernetInstanceSamplingEnable struct {
+	InterfaceEthernetInstanceSamplingEnableCounters1 string `json:"counters1,omitempty"`
+}
+
+type InterfaceEthernetInstanceSpanningTree struct {
+	InterfaceEthernetInstanceSpanningTreeAdminEdge                 int                                                 `json:"admin-edge,omitempty"`
+	InterfaceEthernetInstanceSpanningTreeAutoEdge                  int                                                 `json:"auto-edge,omitempty"`
+	InterfaceEthernetInstanceSpanningTreeInstanceListInstanceStart []InterfaceEthernetInstanceSpanningTreeInstanceList `json:"instance-list,omitempty"`
+	InterfaceEthernetInstanceSpanningTreePathCost                  int                                                 `json:"path-cost,omitempty"`
+	InterfaceEthernetInstanceSpanningTreeUUID                      string                                              `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceTrunkGroupList struct {
+	InterfaceEthernetInstanceTrunkGroupListAdminKey           int                                                   `json:"admin-key,omitempty"`
+	InterfaceEthernetInstanceTrunkGroupListMode               string                                                `json:"mode,omitempty"`
+	InterfaceEthernetInstanceTrunkGroupListPortPriority       int                                                   `json:"port-priority,omitempty"`
+	InterfaceEthernetInstanceTrunkGroupListTimeout            string                                                `json:"timeout,omitempty"`
+	InterfaceEthernetInstanceTrunkGroupListTrunkNumber        int                                                   `json:"trunk-number,omitempty"`
+	InterfaceEthernetInstanceTrunkGroupListType               string                                                `json:"type,omitempty"`
+	InterfaceEthernetInstanceTrunkGroupListUUID               string                                                `json:"uuid,omitempty"`
+	InterfaceEthernetInstanceTrunkGroupListUdldTimeoutCfgFast InterfaceEthernetInstanceTrunkGroupListUdldTimeoutCfg `json:"udld-timeout-cfg,omitempty"`
+	InterfaceEthernetInstanceTrunkGroupListUserTag            string                                                `json:"user-tag,omitempty"`
+}
+
+type InterfaceEthernetInstanceBfdAuthentication struct {
+	InterfaceEthernetInstanceBfdAuthenticationKeyID    int    `json:"key-id,omitempty"`
+	InterfaceEthernetInstanceBfdAuthenticationMethod   string `json:"method,omitempty"`
+	InterfaceEthernetInstanceBfdAuthenticationPassword string `json:"password,omitempty"`
+}
+
+type InterfaceEthernetInstanceBfdIntervalCfg struct {
+	InterfaceEthernetInstanceBfdIntervalCfgInterval   int `json:"interval,omitempty"`
+	InterfaceEthernetInstanceBfdIntervalCfgMinRx      int `json:"min-rx,omitempty"`
+	InterfaceEthernetInstanceBfdIntervalCfgMultiplier int `json:"multiplier,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPAddressList struct {
+	InterfaceEthernetInstanceIPAddressListAddressType string `json:"address-type,omitempty"`
+	InterfaceEthernetInstanceIPAddressListIpv6Addr    string `json:"ipv6-addr,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPHelperAddressList struct {
+	InterfaceEthernetInstanceIPHelperAddressListHelperAddress string `json:"helper-address,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPOspf struct {
+	InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationCfg InterfaceEthernetInstanceIPOspfOspfGlobal   `json:"ospf-global,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListIPAddr            []InterfaceEthernetInstanceIPOspfOspfIPList `json:"ospf-ip-list,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPRip struct {
+	InterfaceEthernetInstanceIPRipAuthenticationStr    InterfaceEthernetInstanceIPRipAuthentication  `json:"authentication,omitempty"`
+	InterfaceEthernetInstanceIPRipReceiveCfgReceive    InterfaceEthernetInstanceIPRipReceiveCfg      `json:"receive-cfg,omitempty"`
+	InterfaceEthernetInstanceIPRipReceivePacket        int                                           `json:"receive-packet,omitempty"`
+	InterfaceEthernetInstanceIPRipSendCfgSend          InterfaceEthernetInstanceIPRipSendCfg         `json:"send-cfg,omitempty"`
+	InterfaceEthernetInstanceIPRipSendPacket           int                                           `json:"send-packet,omitempty"`
+	InterfaceEthernetInstanceIPRipSplitHorizonCfgState InterfaceEthernetInstanceIPRipSplitHorizonCfg `json:"split-horizon-cfg,omitempty"`
+	InterfaceEthernetInstanceIPRipUUID                 string                                        `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPRouter struct {
+	InterfaceEthernetInstanceIPRouterIsisTag InterfaceEthernetInstanceIPRouterIsis `json:"isis,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPStatefulFirewall struct {
+	InterfaceEthernetInstanceIPStatefulFirewallAccessList int    `json:"access-list,omitempty"`
+	InterfaceEthernetInstanceIPStatefulFirewallAclID      int    `json:"acl-id,omitempty"`
+	InterfaceEthernetInstanceIPStatefulFirewallClassList  string `json:"class-list,omitempty"`
+	InterfaceEthernetInstanceIPStatefulFirewallInside     int    `json:"inside,omitempty"`
+	InterfaceEthernetInstanceIPStatefulFirewallOutside    int    `json:"outside,omitempty"`
+	InterfaceEthernetInstanceIPStatefulFirewallUUID       string `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6AccessListCfg struct {
+	InterfaceEthernetInstanceIpv6AccessListCfgInbound   int    `json:"inbound,omitempty"`
+	InterfaceEthernetInstanceIpv6AccessListCfgV6AclName string `json:"v6-acl-name,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6AddressList struct {
+	InterfaceEthernetInstanceIpv6AddressListAddressType string `json:"address-type,omitempty"`
+	InterfaceEthernetInstanceIpv6AddressListIpv6Addr    string `json:"ipv6-addr,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6Ospf struct {
+	InterfaceEthernetInstanceIpv6OspfBfd                                     int                                                      `json:"bfd,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfCostCfgCost                             []InterfaceEthernetInstanceIpv6OspfCostCfg               `json:"cost-cfg,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfDeadIntervalCfgDeadInterval             []InterfaceEthernetInstanceIpv6OspfDeadIntervalCfg       `json:"dead-interval-cfg,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfDisable                                 int                                                      `json:"disable,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfHelloIntervalCfgHelloInterval           []InterfaceEthernetInstanceIpv6OspfHelloIntervalCfg      `json:"hello-interval-cfg,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfgMtuIgnore                   []InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfg          `json:"mtu-ignore-cfg,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfNeighborCfgNeighbor                     []InterfaceEthernetInstanceIpv6OspfNeighborCfg           `json:"neighbor-cfg,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfNetworkListBroadcastType                []InterfaceEthernetInstanceIpv6OspfNetworkList           `json:"network-list,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfPriorityCfgPriority                     []InterfaceEthernetInstanceIpv6OspfPriorityCfg           `json:"priority-cfg,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfgRetransmitInterval []InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfg `json:"retransmit-interval-cfg,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfTransmitDelayCfgTransmitDelay           []InterfaceEthernetInstanceIpv6OspfTransmitDelayCfg      `json:"transmit-delay-cfg,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfUUID                                    string                                                   `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6Rip struct {
+	InterfaceEthernetInstanceIpv6RipSplitHorizonCfgState InterfaceEthernetInstanceIpv6RipSplitHorizonCfg `json:"split-horizon-cfg,omitempty"`
+	InterfaceEthernetInstanceIpv6RipUUID                 string                                          `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6Router struct {
+	InterfaceEthernetInstanceIpv6RouterIsisTag      InterfaceEthernetInstanceIpv6RouterIsis  `json:"isis,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterOspfAreaList InterfaceEthernetInstanceIpv6RouterOspf  `json:"ospf,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterRipngRip     InterfaceEthernetInstanceIpv6RouterRipng `json:"ripng,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6RouterAdver struct {
+	InterfaceEthernetInstanceIpv6RouterAdverAction                   string                                               `json:"action,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverAdverMtu                 int                                                  `json:"adver-mtu,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverAdverMtuDisable          int                                                  `json:"adver-mtu-disable,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverAdverVrid                int                                                  `json:"adver-vrid,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverAdverVridDefault         int                                                  `json:"adver-vrid-default,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverDefaultLifetime          int                                                  `json:"default-lifetime,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverFloatingIP               string                                               `json:"floating-ip,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverFloatingIPDefaultVrid    string                                               `json:"floating-ip-default-vrid,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverHopLimit                 int                                                  `json:"hop-limit,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverManagedConfigAction      string                                               `json:"managed-config-action,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverMaxInterval              int                                                  `json:"max-interval,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverMinInterval              int                                                  `json:"min-interval,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverOtherConfigAction        string                                               `json:"other-config-action,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverPrefixListPrefix         []InterfaceEthernetInstanceIpv6RouterAdverPrefixList `json:"prefix-list,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverRateLimit                int                                                  `json:"rate-limit,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverReachableTime            int                                                  `json:"reachable-time,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverRetransmitTimer          int                                                  `json:"retransmit-timer,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverUseFloatingIP            int                                                  `json:"use-floating-ip,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverUseFloatingIPDefaultVrid int                                                  `json:"use-floating-ip-default-vrid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6StatefulFirewall struct {
+	InterfaceEthernetInstanceIpv6StatefulFirewallAccessList int    `json:"access-list,omitempty"`
+	InterfaceEthernetInstanceIpv6StatefulFirewallAclName    string `json:"acl-name,omitempty"`
+	InterfaceEthernetInstanceIpv6StatefulFirewallClassList  string `json:"class-list,omitempty"`
+	InterfaceEthernetInstanceIpv6StatefulFirewallInside     int    `json:"inside,omitempty"`
+	InterfaceEthernetInstanceIpv6StatefulFirewallOutside    int    `json:"outside,omitempty"`
+	InterfaceEthernetInstanceIpv6StatefulFirewallUUID       string `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisAuthentication struct {
+	InterfaceEthernetInstanceIsisAuthenticationKeyChainListKeyChain []InterfaceEthernetInstanceIsisAuthenticationKeyChainList `json:"key-chain-list,omitempty"`
+	InterfaceEthernetInstanceIsisAuthenticationModeListMode         []InterfaceEthernetInstanceIsisAuthenticationModeList     `json:"mode-list,omitempty"`
+	InterfaceEthernetInstanceIsisAuthenticationSendOnlyListSendOnly []InterfaceEthernetInstanceIsisAuthenticationSendOnlyList `json:"send-only-list,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisBfdCfg struct {
+	InterfaceEthernetInstanceIsisBfdCfgBfd     int `json:"bfd,omitempty"`
+	InterfaceEthernetInstanceIsisBfdCfgDisable int `json:"disable,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisCsnpIntervalList struct {
+	InterfaceEthernetInstanceIsisCsnpIntervalListCsnpInterval int    `json:"csnp-interval,omitempty"`
+	InterfaceEthernetInstanceIsisCsnpIntervalListLevel        string `json:"level,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisHelloIntervalList struct {
+	InterfaceEthernetInstanceIsisHelloIntervalListHelloInterval int    `json:"hello-interval,omitempty"`
+	InterfaceEthernetInstanceIsisHelloIntervalListLevel         string `json:"level,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisHelloIntervalMinimalList struct {
+	InterfaceEthernetInstanceIsisHelloIntervalMinimalListHelloIntervalMinimal int    `json:"hello-interval-minimal,omitempty"`
+	InterfaceEthernetInstanceIsisHelloIntervalMinimalListLevel                string `json:"level,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisHelloMultiplierList struct {
+	InterfaceEthernetInstanceIsisHelloMultiplierListHelloMultiplier int    `json:"hello-multiplier,omitempty"`
+	InterfaceEthernetInstanceIsisHelloMultiplierListLevel           string `json:"level,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisMeshGroup struct {
+	InterfaceEthernetInstanceIsisMeshGroupBlocked int `json:"blocked,omitempty"`
+	InterfaceEthernetInstanceIsisMeshGroupValue   int `json:"value,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisMetricList struct {
+	InterfaceEthernetInstanceIsisMetricListLevel  string `json:"level,omitempty"`
+	InterfaceEthernetInstanceIsisMetricListMetric int    `json:"metric,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisPasswordList struct {
+	InterfaceEthernetInstanceIsisPasswordListLevel    string `json:"level,omitempty"`
+	InterfaceEthernetInstanceIsisPasswordListPassword string `json:"password,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisPriorityList struct {
+	InterfaceEthernetInstanceIsisPriorityListLevel    string `json:"level,omitempty"`
+	InterfaceEthernetInstanceIsisPriorityListPriority int    `json:"priority,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisWideMetricList struct {
+	InterfaceEthernetInstanceIsisWideMetricListLevel      string `json:"level,omitempty"`
+	InterfaceEthernetInstanceIsisWideMetricListWideMetric int    `json:"wide-metric,omitempty"`
+}
+
+type InterfaceEthernetInstanceLldpEnableCfg struct {
+	InterfaceEthernetInstanceLldpEnableCfgRtEnable int `json:"rt-enable,omitempty"`
+	InterfaceEthernetInstanceLldpEnableCfgRx       int `json:"rx,omitempty"`
+	InterfaceEthernetInstanceLldpEnableCfgTx       int `json:"tx,omitempty"`
+}
+
+type InterfaceEthernetInstanceLldpNotificationCfg struct {
+	InterfaceEthernetInstanceLldpNotificationCfgNotifEnable  int `json:"notif-enable,omitempty"`
+	InterfaceEthernetInstanceLldpNotificationCfgNotification int `json:"notification,omitempty"`
+}
+
+type InterfaceEthernetInstanceLldpTxDot1Cfg struct {
+	InterfaceEthernetInstanceLldpTxDot1CfgLinkAggregation int `json:"link-aggregation,omitempty"`
+	InterfaceEthernetInstanceLldpTxDot1CfgTxDot1Tlvs      int `json:"tx-dot1-tlvs,omitempty"`
+	InterfaceEthernetInstanceLldpTxDot1CfgVlan            int `json:"vlan,omitempty"`
+}
+
+type InterfaceEthernetInstanceLldpTxTlvsCfg struct {
+	InterfaceEthernetInstanceLldpTxTlvsCfgExclude            int `json:"exclude,omitempty"`
+	InterfaceEthernetInstanceLldpTxTlvsCfgManagementAddress  int `json:"management-address,omitempty"`
+	InterfaceEthernetInstanceLldpTxTlvsCfgPortDescription    int `json:"port-description,omitempty"`
+	InterfaceEthernetInstanceLldpTxTlvsCfgSystemCapabilities int `json:"system-capabilities,omitempty"`
+	InterfaceEthernetInstanceLldpTxTlvsCfgSystemDescription  int `json:"system-description,omitempty"`
+	InterfaceEthernetInstanceLldpTxTlvsCfgSystemName         int `json:"system-name,omitempty"`
+	InterfaceEthernetInstanceLldpTxTlvsCfgTxTlvs             int `json:"tx-tlvs,omitempty"`
+}
+
+type InterfaceEthernetInstanceNptv6DomainList struct {
+	InterfaceEthernetInstanceNptv6DomainListBindType   string `json:"bind-type,omitempty"`
+	InterfaceEthernetInstanceNptv6DomainListDomainName string `json:"domain-name,omitempty"`
+	InterfaceEthernetInstanceNptv6DomainListUUID       string `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceSpanningTreeInstanceList struct {
+	InterfaceEthernetInstanceSpanningTreeInstanceListInstanceStart int `json:"instance-start,omitempty"`
+	InterfaceEthernetInstanceSpanningTreeInstanceListMstpPathCost  int `json:"mstp-path-cost,omitempty"`
+}
+
+type InterfaceEthernetInstanceTrunkGroupListUdldTimeoutCfg struct {
+	InterfaceEthernetInstanceTrunkGroupListUdldTimeoutCfgFast int `json:"fast,omitempty"`
+	InterfaceEthernetInstanceTrunkGroupListUdldTimeoutCfgSlow int `json:"slow,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPOspfOspfGlobal struct {
+	InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationCfgAuthentication  InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationCfg  `json:"authentication-cfg,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationKey                string                                                      `json:"authentication-key,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalBfdCfgBfd                        InterfaceEthernetInstanceIPOspfOspfGlobalBfdCfg             `json:"bfd-cfg,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalCost                             int                                                         `json:"cost,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalDatabaseFilterCfgDatabaseFilter  InterfaceEthernetInstanceIPOspfOspfGlobalDatabaseFilterCfg  `json:"database-filter-cfg,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalDeadInterval                     int                                                         `json:"dead-interval,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalDisable                          string                                                      `json:"disable,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalHelloInterval                    int                                                         `json:"hello-interval,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfgMessageDigestKey []InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfg `json:"message-digest-cfg,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalMtu                              int                                                         `json:"mtu,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalMtuIgnore                        int                                                         `json:"mtu-ignore,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalNetworkBroadcast                 InterfaceEthernetInstanceIPOspfOspfGlobalNetwork            `json:"network,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalPriority                         int                                                         `json:"priority,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalRetransmitInterval               int                                                         `json:"retransmit-interval,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalTransmitDelay                    int                                                         `json:"transmit-delay,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalUUID                             string                                                      `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPOspfOspfIPList struct {
+	InterfaceEthernetInstanceIPOspfOspfIPListAuthentication                   int                                                         `json:"authentication,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListAuthenticationKey                string                                                      `json:"authentication-key,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListCost                             int                                                         `json:"cost,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListDatabaseFilter                   string                                                      `json:"database-filter,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListDeadInterval                     int                                                         `json:"dead-interval,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListHelloInterval                    int                                                         `json:"hello-interval,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListIPAddr                           string                                                      `json:"ip-addr,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfgMessageDigestKey []InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfg `json:"message-digest-cfg,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListMtuIgnore                        int                                                         `json:"mtu-ignore,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListOut                              int                                                         `json:"out,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListPriority                         int                                                         `json:"priority,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListRetransmitInterval               int                                                         `json:"retransmit-interval,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListTransmitDelay                    int                                                         `json:"transmit-delay,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListUUID                             string                                                      `json:"uuid,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListValue                            string                                                      `json:"value,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPRipAuthentication struct {
+	InterfaceEthernetInstanceIPRipAuthenticationKeyChainKeyChain InterfaceEthernetInstanceIPRipAuthenticationKeyChain `json:"key-chain,omitempty"`
+	InterfaceEthernetInstanceIPRipAuthenticationModeMode         InterfaceEthernetInstanceIPRipAuthenticationMode     `json:"mode,omitempty"`
+	InterfaceEthernetInstanceIPRipAuthenticationStrString        InterfaceEthernetInstanceIPRipAuthenticationStr      `json:"str,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPRipReceiveCfg struct {
+	InterfaceEthernetInstanceIPRipReceiveCfgReceive int    `json:"receive,omitempty"`
+	InterfaceEthernetInstanceIPRipReceiveCfgVersion string `json:"version,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPRipSendCfg struct {
+	InterfaceEthernetInstanceIPRipSendCfgSend    int    `json:"send,omitempty"`
+	InterfaceEthernetInstanceIPRipSendCfgVersion string `json:"version,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPRipSplitHorizonCfg struct {
+	InterfaceEthernetInstanceIPRipSplitHorizonCfgState string `json:"state,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPRouterIsis struct {
+	InterfaceEthernetInstanceIPRouterIsisTag  string `json:"tag,omitempty"`
+	InterfaceEthernetInstanceIPRouterIsisUUID string `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6OspfCostCfg struct {
+	InterfaceEthernetInstanceIpv6OspfCostCfgCost       int `json:"cost,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfCostCfgInstanceID int `json:"instance-id,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6OspfDeadIntervalCfg struct {
+	InterfaceEthernetInstanceIpv6OspfDeadIntervalCfgDeadInterval int `json:"dead-interval,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfDeadIntervalCfgInstanceID   int `json:"instance-id,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6OspfHelloIntervalCfg struct {
+	InterfaceEthernetInstanceIpv6OspfHelloIntervalCfgHelloInterval int `json:"hello-interval,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfHelloIntervalCfgInstanceID    int `json:"instance-id,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfg struct {
+	InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfgInstanceID int `json:"instance-id,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfMtuIgnoreCfgMtuIgnore  int `json:"mtu-ignore,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6OspfNeighborCfg struct {
+	InterfaceEthernetInstanceIpv6OspfNeighborCfgNeigInst             int    `json:"neig-inst,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfNeighborCfgNeighbor             string `json:"neighbor,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfNeighborCfgNeighborCost         int    `json:"neighbor-cost,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfNeighborCfgNeighborPollInterval int    `json:"neighbor-poll-interval,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfNeighborCfgNeighborPriority     int    `json:"neighbor-priority,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6OspfNetworkList struct {
+	InterfaceEthernetInstanceIpv6OspfNetworkListBroadcastType     string `json:"broadcast-type,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfNetworkListNetworkInstanceID int    `json:"network-instance-id,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfNetworkListP2MpNbma          int    `json:"p2mp-nbma,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6OspfPriorityCfg struct {
+	InterfaceEthernetInstanceIpv6OspfPriorityCfgInstanceID int `json:"instance-id,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfPriorityCfgPriority   int `json:"priority,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfg struct {
+	InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfgInstanceID         int `json:"instance-id,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfRetransmitIntervalCfgRetransmitInterval int `json:"retransmit-interval,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6OspfTransmitDelayCfg struct {
+	InterfaceEthernetInstanceIpv6OspfTransmitDelayCfgInstanceID    int `json:"instance-id,omitempty"`
+	InterfaceEthernetInstanceIpv6OspfTransmitDelayCfgTransmitDelay int `json:"transmit-delay,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6RipSplitHorizonCfg struct {
+	InterfaceEthernetInstanceIpv6RipSplitHorizonCfgState string `json:"state,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6RouterIsis struct {
+	InterfaceEthernetInstanceIpv6RouterIsisTag  string `json:"tag,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterIsisUUID string `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6RouterOspf struct {
+	InterfaceEthernetInstanceIpv6RouterOspfAreaListAreaIDNum []InterfaceEthernetInstanceIpv6RouterOspfAreaList `json:"area-list,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterOspfUUID              string                                            `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6RouterRipng struct {
+	InterfaceEthernetInstanceIpv6RouterRipngRip  int    `json:"rip,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterRipngUUID string `json:"uuid,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6RouterAdverPrefixList struct {
+	InterfaceEthernetInstanceIpv6RouterAdverPrefixListNotAutonomous     int    `json:"not-autonomous,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverPrefixListNotOnLink         int    `json:"not-on-link,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverPrefixListPreferredLifetime int    `json:"preferred-lifetime,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverPrefixListPrefix            string `json:"prefix,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterAdverPrefixListValidLifetime     int    `json:"valid-lifetime,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisAuthenticationKeyChainList struct {
+	InterfaceEthernetInstanceIsisAuthenticationKeyChainListKeyChain string `json:"key-chain,omitempty"`
+	InterfaceEthernetInstanceIsisAuthenticationKeyChainListLevel    string `json:"level,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisAuthenticationModeList struct {
+	InterfaceEthernetInstanceIsisAuthenticationModeListLevel string `json:"level,omitempty"`
+	InterfaceEthernetInstanceIsisAuthenticationModeListMode  string `json:"mode,omitempty"`
+}
+
+type InterfaceEthernetInstanceIsisAuthenticationSendOnlyList struct {
+	InterfaceEthernetInstanceIsisAuthenticationSendOnlyListLevel    string `json:"level,omitempty"`
+	InterfaceEthernetInstanceIsisAuthenticationSendOnlyListSendOnly int    `json:"send-only,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationCfg struct {
+	InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationCfgAuthentication int    `json:"authentication,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalAuthenticationCfgValue          string `json:"value,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPOspfOspfGlobalBfdCfg struct {
+	InterfaceEthernetInstanceIPOspfOspfGlobalBfdCfgBfd     int `json:"bfd,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalBfdCfgDisable int `json:"disable,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPOspfOspfGlobalDatabaseFilterCfg struct {
+	InterfaceEthernetInstanceIPOspfOspfGlobalDatabaseFilterCfgDatabaseFilter string `json:"database-filter,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalDatabaseFilterCfgOut            int    `json:"out,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfg struct {
+	InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfgMd5Value         string `json:"md5-value,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalMessageDigestCfgMessageDigestKey int    `json:"message-digest-key,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPOspfOspfGlobalNetwork struct {
+	InterfaceEthernetInstanceIPOspfOspfGlobalNetworkBroadcast         int `json:"broadcast,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalNetworkNonBroadcast      int `json:"non-broadcast,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalNetworkP2MpNbma          int `json:"p2mp-nbma,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalNetworkPointToMultipoint int `json:"point-to-multipoint,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfGlobalNetworkPointToPoint      int `json:"point-to-point,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfg struct {
+	InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfgMd5Value         string `json:"md5-value,omitempty"`
+	InterfaceEthernetInstanceIPOspfOspfIPListMessageDigestCfgMessageDigestKey int    `json:"message-digest-key,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPRipAuthenticationKeyChain struct {
+	InterfaceEthernetInstanceIPRipAuthenticationKeyChainKeyChain string `json:"key-chain,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPRipAuthenticationMode struct {
+	InterfaceEthernetInstanceIPRipAuthenticationModeMode string `json:"mode,omitempty"`
+}
+
+type InterfaceEthernetInstanceIPRipAuthenticationStr struct {
+	InterfaceEthernetInstanceIPRipAuthenticationStrString string `json:"string,omitempty"`
+}
+
+type InterfaceEthernetInstanceIpv6RouterOspfAreaList struct {
+	InterfaceEthernetInstanceIpv6RouterOspfAreaListAreaIDAddr string `json:"area-id-addr,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterOspfAreaListAreaIDNum  int    `json:"area-id-num,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterOspfAreaListInstanceID int    `json:"instance-id,omitempty"`
+	InterfaceEthernetInstanceIpv6RouterOspfAreaListTag        string `json:"tag,omitempty"`
 }
 
 func PostInterfaceEthernet(id string, inst InterfaceEthernet, host string) error {
@@ -520,6 +640,7 @@ func PostInterfaceEthernet(id string, inst InterfaceEthernet, host string) error
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/interface/ethernet", bytes.NewReader(payloadBytes), headers)
@@ -527,16 +648,15 @@ func PostInterfaceEthernet(id string, inst InterfaceEthernet, host string) error
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceEthernet
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] PostInterfaceEthernet REQ RES..........................", m)
+			logger.Println("[INFO] Post REQ RES..........................", m)
 			err := check_api_status("PostInterfaceEthernet", data)
 			if err != nil {
 				return err
@@ -547,7 +667,7 @@ func PostInterfaceEthernet(id string, inst InterfaceEthernet, host string) error
 	return err
 }
 
-func GetInterfaceEthernet(id string, name string, host string) (*InterfaceEthernet, error) {
+func GetInterfaceEthernet(id string, name1 string, host string) (*InterfaceEthernet, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -557,21 +677,20 @@ func GetInterfaceEthernet(id string, name string, host string) (*InterfaceEthern
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside GetInterfaceEthernet")
 
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/interface/ethernet/"+name, nil, headers)
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/interface/ethernet/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceEthernet
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GetInterfaceEthernet REQ RES..........................", m)
+			logger.Println("[INFO] Get REQ RES..........................", m)
 			err := check_api_status("GetInterfaceEthernet", data)
 			if err != nil {
 				return nil, err
@@ -582,7 +701,7 @@ func GetInterfaceEthernet(id string, name string, host string) (*InterfaceEthern
 
 }
 
-func PutInterfaceEthernet(id string, name string, inst InterfaceEthernet, host string) error {
+func PutInterfaceEthernet(id string, name1 string, inst InterfaceEthernet, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -595,23 +714,23 @@ func PutInterfaceEthernet(id string, name string, inst InterfaceEthernet, host s
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/interface/ethernet/"+name, bytes.NewReader(payloadBytes), headers)
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/interface/ethernet/"+name1, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceEthernet
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] PutInterfaceEthernet REQ RES..........................", m)
+			logger.Println("[INFO] Put REQ RES..........................", m)
 			err := check_api_status("PutInterfaceEthernet", data)
 			if err != nil {
 				return err
@@ -622,7 +741,7 @@ func PutInterfaceEthernet(id string, name string, inst InterfaceEthernet, host s
 	return err
 }
 
-func DeleteInterfaceEthernet(id string, name string, host string) error {
+func DeleteInterfaceEthernet(id string, name1 string, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -632,23 +751,26 @@ func DeleteInterfaceEthernet(id string, name string, host string) error {
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside DeleteInterfaceEthernet")
 
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/interface/ethernet/"+name, nil, headers)
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/interface/ethernet/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceEthernet
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] Delete REQ RES..........................", m)
+			err := check_api_status("DeleteInterfaceEthernet", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-	return nil
+	return err
 }
