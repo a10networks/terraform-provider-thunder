@@ -627,7 +627,7 @@ type InterfaceEthernetInstanceIpv6RouterOspfAreaList struct {
 	InterfaceEthernetInstanceIpv6RouterOspfAreaListTag        string `json:"tag,omitempty"`
 }
 
-func PostInterfaceEthernet(id string, inst InterfaceEthernet, host string) error {
+func PostInterfaceEthernetObject(id string, inst InterfaceEthernet, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -644,6 +644,46 @@ func PostInterfaceEthernet(id string, inst InterfaceEthernet, host string) error
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/interface/ethernet", bytes.NewReader(payloadBytes), headers)
+
+	if err != nil {
+		logger.Println("The HTTP request failed with error ", err)
+		return err
+	} else {
+		data, _ := ioutil.ReadAll(resp.Body)
+		var m InterfaceEthernet
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
+			return err
+		} else {
+			logger.Println("[INFO] Post REQ RES..........................", m)
+			err := check_api_status("PostInterfaceEthernet", data)
+			if err != nil {
+				return err
+			}
+
+		}
+	}
+	return err
+}
+
+func PostInterfaceEthernetInstance(id string, ifnum string, inst InterfaceEthernet, host string) error {
+
+	logger := util.GetLoggerInstance()
+
+	var headers = make(map[string]string)
+	headers["Accept"] = "application/json"
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = id
+	logger.Println("[INFO] Inside PostInterfaceEthernet")
+	payloadBytes, err := json.Marshal(inst)
+	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
+	if err != nil {
+		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
+	}
+
+	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/interface/ethernet/"+ifnum, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)

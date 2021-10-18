@@ -11,6 +11,7 @@ import (
 	go_thunder "github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/pkg/errors"
 )
 
 func resourceInterfaceEthernet() *schema.Resource {
@@ -2154,13 +2155,18 @@ func resourceInterfaceEthernetCreate(ctx context.Context, d *schema.ResourceData
 		data := dataToInterfaceEthernet(d)
 		logger.Println("[INFO] received formatted data from method data to InterfaceEthernet --")
 		d.SetId(strconv.Itoa(name1))
-		err := go_thunder.PostInterfaceEthernet(client.Token, data, client.Host)
+		err := go_thunder.PostInterfaceEthernetObject(client.Token, data, client.Host)
 		if err != nil {
-			return diag.FromErr(err)
+			logger.Println("Ethernet Object Axapi through error ---> " + string(err.Error()))
+			logger.Println("checking for Ethernet Instance AxAPI")
+			err1 := go_thunder.PostInterfaceEthernetInstance(client.Token, strconv.Itoa(name1), data, client.Host)
+			if err1 != nil {
+				err := errors.New("Ethernet object error -->" + string(err.Error()) + "\n Trying Ethernet instance error -->" + string(err1.Error()))
+				return diag.FromErr(err)
+			}
+			return nil
 		}
-
 		return resourceInterfaceEthernetRead(ctx, d, meta)
-
 	}
 	return diags
 }
