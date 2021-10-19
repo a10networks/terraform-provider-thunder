@@ -100,7 +100,7 @@ func resourceInterfaceEthernetTrunkGroupCreate(ctx context.Context, d *schema.Re
 		name := d.Get("trunk_number").(int)
 		data := dataToInterfaceEthernetTrunkGroup(d)
 		logger.Println("[INFO] received V from method data to InterfaceEthernetTrunkGroup --")
-		d.SetId(strconv.Itoa(name) + "," + strconv.Itoa(idNum))
+		d.SetId(strconv.Itoa(idNum) + "," + strconv.Itoa(name))
 		err := go_thunder.PostInterfaceEthernetTrunkGroup(client.Token, idNum, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
@@ -121,8 +121,8 @@ func resourceInterfaceEthernetTrunkGroupRead(ctx context.Context, d *schema.Reso
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
-		name := id[0]
-		idNum := id[1]
+		name := id[1]
+		idNum := id[0]
 		logger.Println("[INFO] Fetching service Read" + name)
 		data, err := go_thunder.GetInterfaceEthernetTrunkGroup(client.Token, idNum, name, client.Host)
 		if err != nil {
@@ -150,7 +150,7 @@ func resourceInterfaceEthernetTrunkGroupUpdate(ctx context.Context, d *schema.Re
 		name := d.Get("trunk_number").(int)
 		data := dataToInterfaceEthernetTrunkGroup(d)
 		logger.Println("[INFO] received V from method data to InterfaceEthernetTrunkGroup ")
-		d.SetId("strconv.Itoa(name)")
+		d.SetId(strconv.Itoa(idNum) + "," + strconv.Itoa(name))
 		err := go_thunder.PutInterfaceEthernetTrunkGroup(client.Token, idNum, name, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
@@ -170,8 +170,8 @@ func resourceInterfaceEthernetTrunkGroupDelete(ctx context.Context, d *schema.Re
 
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
-		name := id[0]
-		idNum := id[1]
+		name := id[1]
+		idNum := id[0]
 		logger.Println("[INFO] Deleting instance (Inside resourceInterfaceEthernetTrunkGroupDelete) " + name)
 		err := go_thunder.DeleteInterfaceEthernetTrunkGroup(client.Token, idNum, name, client.Host)
 		if err != nil {

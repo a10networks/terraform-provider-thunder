@@ -7,26 +7,27 @@ import (
 	"util"
 )
 
-type PrefixList struct {
-	UUID PrefixListInstance `json:"prefix-list,omitempty"`
+type IpPrefixList struct {
+	IPPrefixListInstanceName IPPrefixListInstance `json:"prefix-list,omitempty"`
 }
 
-type Rules struct {
-	Le          int    `json:"le,omitempty"`
-	Description string `json:"description,omitempty"`
-	Seq         int    `json:"seq,omitempty"`
-	Ipaddr      string `json:"ipaddr,omitempty"`
-	Ge          int    `json:"ge,omitempty"`
-	Action      string `json:"action,omitempty"`
-	Any         int    `json:"any,omitempty"`
-}
-type PrefixListInstance struct {
-	Le   []Rules `json:"rules,omitempty"`
-	Name string  `json:"name,omitempty"`
-	UUID string  `json:"uuid,omitempty"`
+type IPPrefixListInstance struct {
+	IPPrefixListInstanceName     string                      `json:"name,omitempty"`
+	IPPrefixListInstanceRulesSeq []IPPrefixListInstanceRules `json:"rules,omitempty"`
+	IPPrefixListInstanceUUID     string                      `json:"uuid,omitempty"`
 }
 
-func PostIpPrefixList(id string, inst PrefixList, host string) error {
+type IPPrefixListInstanceRules struct {
+	IPPrefixListInstanceRulesAction      string `json:"action,omitempty"`
+	IPPrefixListInstanceRulesAny         int    `json:"any,omitempty"`
+	IPPrefixListInstanceRulesDescription string `json:"description,omitempty"`
+	IPPrefixListInstanceRulesGe          int    `json:"ge,omitempty"`
+	IPPrefixListInstanceRulesIpaddr      string `json:"ipaddr,omitempty"`
+	IPPrefixListInstanceRulesLe          int    `json:"le,omitempty"`
+	IPPrefixListInstanceRulesSeq         int    `json:"seq,omitempty"`
+}
+
+func PostIpPrefixList(id string, inst IpPrefixList, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -39,6 +40,7 @@ func PostIpPrefixList(id string, inst PrefixList, host string) error {
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/ip/prefix-list", bytes.NewReader(payloadBytes), headers)
@@ -46,16 +48,15 @@ func PostIpPrefixList(id string, inst PrefixList, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m PrefixList
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m IpPrefixList
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] PostIpPrefixList REQ RES..........................", m)
+			logger.Println("[INFO] Post REQ RES..........................", m)
 			err := check_api_status("PostIpPrefixList", data)
 			if err != nil {
 				return err
@@ -66,7 +67,7 @@ func PostIpPrefixList(id string, inst PrefixList, host string) error {
 	return err
 }
 
-func GetIpPrefixList(id string, name string, host string) (*PrefixList, error) {
+func GetIpPrefixList(id string, name1 string, host string) (*IpPrefixList, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -76,21 +77,20 @@ func GetIpPrefixList(id string, name string, host string) (*PrefixList, error) {
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside GetIpPrefixList")
 
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/ip/prefix-list/", nil, headers)
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/ip/prefix-list/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m PrefixList
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		var m IpPrefixList
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GetIpPrefixList REQ RES..........................", m)
+			logger.Println("[INFO] Get REQ RES..........................", m)
 			err := check_api_status("GetIpPrefixList", data)
 			if err != nil {
 				return nil, err
@@ -99,4 +99,78 @@ func GetIpPrefixList(id string, name string, host string) (*PrefixList, error) {
 		}
 	}
 
+}
+
+func PutIpPrefixList(id string, name1 string, inst IpPrefixList, host string) error {
+
+	logger := util.GetLoggerInstance()
+
+	var headers = make(map[string]string)
+	headers["Accept"] = "application/json"
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = id
+	logger.Println("[INFO] Inside PutIpPrefixList")
+	payloadBytes, err := json.Marshal(inst)
+	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
+	if err != nil {
+		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
+	}
+
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/ip/prefix-list/"+name1, bytes.NewReader(payloadBytes), headers)
+
+	if err != nil {
+		logger.Println("The HTTP request failed with error ", err)
+		return err
+	} else {
+		data, _ := ioutil.ReadAll(resp.Body)
+		var m IpPrefixList
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
+			return err
+		} else {
+			logger.Println("[INFO] Put REQ RES..........................", m)
+			err := check_api_status("PutIpPrefixList", data)
+			if err != nil {
+				return err
+			}
+
+		}
+	}
+	return err
+}
+
+func DeleteIpPrefixList(id string, name1 string, host string) error {
+
+	logger := util.GetLoggerInstance()
+
+	var headers = make(map[string]string)
+	headers["Accept"] = "application/json"
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = id
+	logger.Println("[INFO] Inside DeleteIpPrefixList")
+
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/ip/prefix-list/"+name1, nil, headers)
+
+	if err != nil {
+		logger.Println("The HTTP request failed with error ", err)
+		return err
+	} else {
+		data, _ := ioutil.ReadAll(resp.Body)
+		var m IpPrefixList
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
+			return err
+		} else {
+			logger.Println("[INFO] Delete REQ RES..........................", m)
+			err := check_api_status("DeleteIpPrefixList", data)
+			if err != nil {
+				return err
+			}
+
+		}
+	}
+	return err
 }

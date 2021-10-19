@@ -89,22 +89,22 @@ func resourceFileSslKeyCreate(ctx context.Context, d *schema.ResourceData, meta 
 
 func resourceFileSslKeyRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
-	client := meta.(Thunder)
+	//client := meta.(Thunder)
 	logger.Println("[INFO] Reading FileSslKey (Inside resourceFileSslKeyRead)")
 
 	var diags diag.Diagnostics
-	if client.Host != "" {
-		logger.Println("[INFO] Fetching service Read")
-		data, err := go_thunder.GetFileSslKey(client.Token, client.Host)
-		if err != nil {
-			return diag.FromErr(err)
-		}
-		if data == nil {
-			logger.Println("[INFO] No data found ")
-			return nil
-		}
-		return diags
-	}
+	// if client.Host != "" {
+	// 	logger.Println("[INFO] Fetching service Read")
+	// 	data, err := go_thunder.GetFileSslKey(client.Token, client.Host)
+	// 	if err != nil {
+	// 		return diag.FromErr(err)
+	// 	}
+	// 	if data == nil {
+	// 		logger.Println("[INFO] No data found ")
+	// 		return nil
+	// 	}
+	// 	return diags
+	// }
 	return diags
 }
 
