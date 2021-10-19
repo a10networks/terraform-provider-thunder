@@ -4,11 +4,11 @@ package thunder
 
 import (
 	"context"
-	"util"
-
-	go_thunder "github.com/go_thunder/thunder"
+	"fmt"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"util"
 )
 
 func resourceSystem() *schema.Resource {
@@ -79,6 +79,11 @@ func resourceSystem() *schema.Resource {
 				Description: "",
 			},
 			"dynamic_service_dns_socket_pool": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"system_chassis_port_split_enable": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -244,6 +249,52 @@ func resourceSystem() *schema.Resource {
 					},
 				},
 			},
+			"probe_network_devices": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{},
+				},
+			},
+			"management_interface_mode": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"dedicated": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"non_dedicated": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"set_tcp_syn_per_sec": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"tcp_syn_value": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
 			"add_port": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -299,6 +350,11 @@ func resourceSystem() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"enable": {
 							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
 							Optional:    true,
 							Description: "",
 						},
@@ -381,6 +437,44 @@ func resourceSystem() *schema.Resource {
 				},
 			},
 			"link_monitor": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"enable": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"disable": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"lro": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"enable": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"disable": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"tso": {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
@@ -910,6 +1004,25 @@ func resourceSystem() *schema.Resource {
 								},
 							},
 						},
+						"link_down_on_restart": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"enable": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"uuid": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
 					},
 				},
 			},
@@ -996,6 +1109,11 @@ func resourceSystem() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
+						"class_list_entry_count": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
 						"max_aflex_authz_collection_number": {
 							Type:        schema.TypeInt,
 							Optional:    true,
@@ -1017,6 +1135,16 @@ func resourceSystem() *schema.Resource {
 							Description: "",
 						},
 						"ram_cache_memory_limit": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"waf_template_count": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"auth_session_count": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -2095,6 +2223,48 @@ func resourceSystem() *schema.Resource {
 					},
 				},
 			},
+			"table_integrity": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"table": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"audit_action": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"auto_sync_action": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"sampling_enable": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"counters1": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			"ipsec": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -2112,6 +2282,11 @@ func resourceSystem() *schema.Resource {
 							Description: "",
 						},
 						"crypto_mem": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"qat": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -2252,6 +2427,16 @@ func resourceSystem() *schema.Resource {
 								},
 							},
 						},
+						"tcp": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"udp": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
 						"uuid": {
 							Type:        schema.TypeString,
 							Optional:    true,
@@ -2378,6 +2563,63 @@ func resourceSystem() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"enable": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"ssl_scv_verify_host": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"disable": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"ssl_scv_verify_crl_sign": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"enable": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"ssl_set_compatible_cipher": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"disable": {
 							Type:        schema.TypeInt,
 							Optional:    true,
 							Description: "",
@@ -2700,6 +2942,25 @@ func resourceSystem() *schema.Resource {
 					},
 				},
 			},
+			"high_memory_l4_session": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"enable": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
 			"trunk_hw_hash": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -2834,6 +3095,11 @@ func resourceSystem() *schema.Resource {
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"enable_shell_privileges": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
 						"uuid": {
 							Type:        schema.TypeString,
 							Optional:    true,
@@ -2862,6 +3128,25 @@ func resourceSystem() *schema.Resource {
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"shm_logging": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"enable": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
 						"uuid": {
 							Type:        schema.TypeString,
 							Optional:    true,
@@ -3081,6 +3366,11 @@ func resourceSystem() *schema.Resource {
 										Description: "",
 									},
 									"attribute_name": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"custom_attribute_name": {
 										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
@@ -3376,6 +3666,20 @@ func resourceSystem() *schema.Resource {
 					},
 				},
 			},
+			"tcp_syn_per_sec": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
 			"ip_threat_list": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -3528,6 +3832,70 @@ func resourceSystem() *schema.Resource {
 								},
 							},
 						},
+						"ipv4_internet_host_list": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"class_list_cfg": {
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"class_list": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+												"ip_threat_action_tmpl": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+									"uuid": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"ipv6_internet_host_list": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"class_list_cfg": {
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"class_list": {
+													Type:        schema.TypeString,
+													Optional:    true,
+													Description: "",
+												},
+												"ip_threat_action_tmpl": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
+									"uuid": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
 					},
 				},
 			},
@@ -3602,6 +3970,266 @@ func resourceSystem() *schema.Resource {
 							Description: "",
 						},
 						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"mfa_management": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"enable": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"mfa_validation_type": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"ca_cert": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"mfa_cert_store": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"cert_host": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"protocol": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"cert_store_path": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"username": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"passwd_string": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"mfa_auth": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"username": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"second_factor": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"q_in_q": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"inner_tpid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"outer_tpid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"enable_all_ports": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"port_count": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"port_count_kernel": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"port_count_hm": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"port_count_logging": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"port_count_alg": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"health_check_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"l2hm_hc_name": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"method_l2bfd": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"l2bfd_tx_interval": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"l2bfd_rx_interval": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"l2bfd_multiplier": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"user_tag": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
+			},
+			"path_list": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"l2hm_path_name": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"l2hm_vlan": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"l2hm_setup_test_api": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"ifpair_eth_start": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"ifpair_eth_end": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"ifpair_trunk_start": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"ifpair_trunk_end": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"l2hm_attach": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"user_tag": {
 							Type:        schema.TypeString,
 							Optional:    true,
 							Description: "",
@@ -3965,6 +4593,33 @@ func resourceSystem() *schema.Resource {
 					},
 				},
 			},
+			"job_offload": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"sampling_enable": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"counters1": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			"dns": {
 				Type:     schema.TypeList,
 				Optional: true,
@@ -4188,7 +4843,6 @@ func resourceSystemCreate(ctx context.Context, d *schema.ResourceData, meta inte
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		logger.Println("[INFO] Creating System (Inside resourceSystemCreate) ")
 
@@ -4209,10 +4863,9 @@ func resourceSystemCreate(ctx context.Context, d *schema.ResourceData, meta inte
 func resourceSystemRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading System (Inside resourceSystemRead)")
 
+	var diags diag.Diagnostics
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetSystem(client.Token, client.Host)
@@ -4225,7 +4878,7 @@ func resourceSystemRead(ctx context.Context, d *schema.ResourceData, meta interf
 		}
 		return diags
 	}
-	return nil
+	return diags
 }
 
 func resourceSystemUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
@@ -4240,1825 +4893,1729 @@ func resourceSystemDelete(ctx context.Context, d *schema.ResourceData, meta inte
 func dataToSystem(d *schema.ResourceData) go_thunder.System {
 	var vc go_thunder.System
 	var c go_thunder.SystemInstance
-	c.AnomalyLog = d.Get("anomaly_log").(int)
-	c.AttackLog = d.Get("attack_log").(int)
-	c.DdosAttack = d.Get("ddos_attack").(int)
-	c.DdosLog = d.Get("ddos_log").(int)
-	c.SockstressDisable = d.Get("sockstress_disable").(int)
-	c.PromiscuousMode = d.Get("promiscuous_mode").(int)
-	c.Glid = d.Get("glid").(int)
-	c.ModuleCtrlCPU = d.Get("module_ctrl_cpu").(string)
-	c.SrcIPHashEnable = d.Get("src_ip_hash_enable").(int)
-	c.ClassListHitcountEnable = d.Get("class_list_hitcount_enable").(int)
-	c.GeoDbHitcountEnable = d.Get("geo_db_hitcount_enable").(int)
-	c.DomainListHitcountEnable = d.Get("domain_list_hitcount_enable").(int)
-	c.DynamicServiceDNSSocketPool = d.Get("dynamic_service_dns_socket_pool").(int)
-	/*
-		var obj1 go_thunder.TimeoutValue
-		prefix1 := "timeout_value.0."
-		obj1.Ftp = d.Get(prefix1 + "ftp").(int)
-		obj1.Scp = d.Get(prefix1 + "scp").(int)
-		obj1.Sftp = d.Get(prefix1 + "sftp").(int)
-		obj1.Tftp = d.Get(prefix1 + "tftp").(int)
-		obj1.HTTP = d.Get(prefix1 + "http").(int)
-		obj1.HTTPS = d.Get(prefix1 + "https").(int)
+	c.SystemInstanceAnomalyLog = d.Get("anomaly_log").(int)
+	c.SystemInstanceAttackLog = d.Get("attack_log").(int)
+	c.SystemInstanceDdosAttack = d.Get("ddos_attack").(int)
+	c.SystemInstanceDdosLog = d.Get("ddos_log").(int)
+	c.SystemInstanceSockstressDisable = d.Get("sockstress_disable").(int)
+	c.SystemInstancePromiscuousMode = d.Get("promiscuous_mode").(int)
+	c.SystemInstanceGlid = d.Get("glid").(int)
+	c.SystemInstanceModuleCtrlCPU = d.Get("module_ctrl_cpu").(string)
+	c.SystemInstanceSrcIPHashEnable = d.Get("src_ip_hash_enable").(int)
+	c.SystemInstanceClassListHitcountEnable = d.Get("class_list_hitcount_enable").(int)
+	c.SystemInstanceGeoDbHitcountEnable = d.Get("geo_db_hitcount_enable").(int)
+	c.SystemInstanceDomainListHitcountEnable = d.Get("domain_list_hitcount_enable").(int)
+	c.SystemInstanceDynamicServiceDNSSocketPool = d.Get("dynamic_service_dns_socket_pool").(int)
+	c.SystemInstanceSystemChassisPortSplitEnable = d.Get("system_chassis_port_split_enable").(int)
 
-		c.Ftp = obj1
+	var obj1 go_thunder.SystemInstanceTimeoutValue
+	prefix1 := "timeout_value.0."
+	obj1.SystemInstanceTimeoutValueFtp = d.Get(prefix1 + "ftp").(int)
+	obj1.SystemInstanceTimeoutValueScp = d.Get(prefix1 + "scp").(int)
+	obj1.SystemInstanceTimeoutValueSftp = d.Get(prefix1 + "sftp").(int)
+	obj1.SystemInstanceTimeoutValueTftp = d.Get(prefix1 + "tftp").(int)
+	obj1.SystemInstanceTimeoutValueHTTP = d.Get(prefix1 + "http").(int)
+	obj1.SystemInstanceTimeoutValueHTTPS = d.Get(prefix1 + "https").(int)
 
-		// var obj2 go_thunder.Bandwidth
-		// prefix2 := "bandwidth.0."
+	c.SystemInstanceTimeoutValueFtp = obj1
 
-		// SamplingEnableCount := d.Get(prefix2 + "sampling_enable.#").(int)
-		// obj2.Counters1 = make([]go_thunder.SystemSamplingEnable, 0, SamplingEnableCount)
+	var obj2 go_thunder.SystemInstanceBandwidth
+	prefix2 := "bandwidth.0."
 
-		// for i := 0; i < SamplingEnableCount; i++ {
-		// var obj2_1 go_thunder.SystemSamplingEnable
-		// prefix2_1 := fmt.Sprintf(prefix2 + "sampling_enable.%d.",i)
-		// obj2_1.Counters1 = d.Get(prefix2_1+"counters1").(string)
-		// obj2.Counters1 = append(obj2.Counters1, obj2_1)
-		// }
+	SystemInstanceBandwidthSamplingEnableCount := d.Get(prefix2 + "sampling_enable.#").(int)
+	obj2.SystemInstanceBandwidthSamplingEnableCounters1 = make([]go_thunder.SystemInstanceBandwidthSamplingEnable, 0, SystemInstanceBandwidthSamplingEnableCount)
 
-		//c.SystemSamplingEnable = obj2
+	for i := 0; i < SystemInstanceBandwidthSamplingEnableCount; i++ {
+		var obj2_1 go_thunder.SystemInstanceBandwidthSamplingEnable
+		prefix2_1 := prefix2 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj2_1.SystemInstanceBandwidthSamplingEnableCounters1 = d.Get(prefix2_1 + "counters1").(string)
+		obj2.SystemInstanceBandwidthSamplingEnableCounters1 = append(obj2.SystemInstanceBandwidthSamplingEnableCounters1, obj2_1)
+	}
 
-		// var obj3 go_thunder.CounterLibAccounting
-		// prefix := "counter_lib_accounting.0."
+	c.SystemInstanceBandwidthUUID = obj2
 
-		// c. = obj3
+	var obj3 go_thunder.SystemInstanceMgmtPort
+	prefix3 := "mgmt_port.0."
+	obj3.SystemInstanceMgmtPortPortIndex = d.Get(prefix3 + "port_index").(int)
+	obj3.SystemInstanceMgmtPortMacAddress = d.Get(prefix3 + "mac_address").(string)
+	obj3.SystemInstanceMgmtPortPciAddress = d.Get(prefix3 + "pci_address").(string)
 
-		// var obj4 go_thunder.ControlCpu
-		// prefix := "control_cpu.0."
+	c.SystemInstanceMgmtPortPortIndex = obj3
 
-		// c. = obj4
+	var obj4 go_thunder.SystemInstanceSharedPollMode
+	prefix4 := "shared_poll_mode.0."
+	obj4.SystemInstanceSharedPollModeEnable = d.Get(prefix4 + "enable").(int)
+	obj4.SystemInstanceSharedPollModeDisable = d.Get(prefix4 + "disable").(int)
 
-		// var obj5 go_thunder.DataCpu
-		// prefix := "data_cpu.0."
+	c.SystemInstanceSharedPollModeEnable = obj4
 
-		// c. = obj5
+	var obj6 go_thunder.SystemInstanceManagementInterfaceMode
+	prefix6 := "management_interface_mode.0."
+	obj6.SystemInstanceManagementInterfaceModeDedicated = d.Get(prefix6 + "dedicated").(int)
+	obj6.SystemInstanceManagementInterfaceModeNonDedicated = d.Get(prefix6 + "non_dedicated").(int)
 
-		var obj6 go_thunder.MgmtPort
-		prefix6 := "mgmt_port.0."
-		obj6.PortIndex = d.Get(prefix6 + "port_index").(int)
-		obj6.MacAddress = d.Get(prefix6 + "mac_address").(string)
-		obj6.PciAddress = d.Get(prefix6 + "pci_address").(string)
+	c.SystemInstanceManagementInterfaceModeDedicated = obj6
 
-		c.PortIndex = obj6
+	var obj7 go_thunder.SystemInstanceSetTCPSynPerSec
+	prefix7 := "set_tcp_syn_per_sec.0."
+	obj7.SystemInstanceSetTCPSynPerSecTCPSynValue = d.Get(prefix7 + "tcp_syn_value").(int)
 
-		var obj7 go_thunder.CPUHyperThread2
-		prefix7 := "shared_poll_mode.0."
-		obj7.Enable2 = d.Get(prefix7 + "enable").(int)
-		obj7.Disable2 = d.Get(prefix7 + "disable").(int)
+	c.SystemInstanceSetTCPSynPerSecTCPSynValue = obj7
 
-		c.Enable = obj7
+	var obj8 go_thunder.SystemInstanceAddPort
+	prefix8 := "add_port.0."
+	obj8.SystemInstanceAddPortPortIndex = d.Get(prefix8 + "port_index").(int)
 
-		var obj8 go_thunder.AddPort
-		prefix8 := "add_port.0."
-		obj8.PortIndex = d.Get(prefix8 + "port_index").(int)
+	c.SystemInstanceAddPortPortIndex = obj8
 
-		c.PortIndex = obj8
+	var obj9 go_thunder.SystemInstanceDelPort
+	prefix9 := "del_port.0."
+	obj9.SystemInstanceDelPortPortIndex = d.Get(prefix9 + "port_index").(int)
 
-		var obj9 go_thunder.AddPort1
-		prefix9 := "del_port.0."
-		obj9.PortIndex1 = d.Get(prefix9 + "port_index").(int)
+	c.SystemInstanceDelPortPortIndex = obj9
 
-		c.PortIndex = obj9
+	var obj10 go_thunder.SystemInstanceModifyPort
+	prefix10 := "modify_port.0."
+	obj10.SystemInstanceModifyPortPortIndex = d.Get(prefix10 + "port_index").(int)
+	obj10.SystemInstanceModifyPortPortNumber = d.Get(prefix10 + "port_number").(int)
 
-		var obj10 go_thunder.ModifyPort
-		prefix10 := "modify_port.0."
-		obj10.PortIndex = d.Get(prefix10 + "port_index").(int)
-		obj10.PortNumber = d.Get(prefix10 + "port_number").(int)
+	c.SystemInstanceModifyPortPortIndex = obj10
 
-		c.PortIndex = obj10
+	var obj11 go_thunder.SystemInstanceTLS13Mgmt
+	prefix11 := "tls_1_3_mgmt.0."
+	obj11.SystemInstanceTLS13MgmtEnable = d.Get(prefix11 + "enable").(int)
 
-		var obj11 go_thunder.DeepHrxq2
-		prefix11 := "tls_1_3_mgmt.0."
-		obj11.DeepHrxq2Enable2 = d.Get(prefix11 + "enable").(int)
+	c.SystemInstanceTLS13MgmtEnable = obj11
 
-		c.Enable = obj11
+	var obj12 go_thunder.SystemInstanceMultiQueueSupport
+	prefix12 := "multi_queue_support.0."
+	obj12.SystemInstanceMultiQueueSupportEnable = d.Get(prefix12 + "enable").(int)
 
-		var obj12 go_thunder.DeepHrxq1
-		prefix12 := "multi_queue_support.0."
-		obj12.DeepHrxq1Enable1 = d.Get(prefix12 + "enable").(int)
+	c.SystemInstanceMultiQueueSupportEnable = obj12
 
-		c.Enable = obj12
+	var obj13 go_thunder.SystemInstanceAddCPUCore
+	prefix13 := "add_cpu_core.0."
+	obj13.SystemInstanceAddCPUCoreCoreIndex = d.Get(prefix13 + "core_index").(int)
 
-		var obj13 go_thunder.AddCpuCore
-		prefix13 := "add_cpu_core.0."
-		obj13.CoreIndex = d.Get(prefix13 + "core_index").(int)
+	c.SystemInstanceAddCPUCoreCoreIndex = obj13
 
-		c.CoreIndex = obj13
+	var obj14 go_thunder.SystemInstanceDeleteCPUCore
+	prefix14 := "delete_cpu_core.0."
+	obj14.SystemInstanceDeleteCPUCoreCoreIndex = d.Get(prefix14 + "core_index").(int)
 
-		var obj14 go_thunder.AddCPUCore1
-		prefix14 := "delete_cpu_core.0."
-		obj14.CoreIndex1 = d.Get(prefix14 + "core_index").(int)
+	c.SystemInstanceDeleteCPUCoreCoreIndex = obj14
 
-		c.CoreIndex = obj14
+	var obj15 go_thunder.SystemInstanceCPUHyperThread
+	prefix15 := "cpu_hyper_thread.0."
+	obj15.SystemInstanceCPUHyperThreadEnable = d.Get(prefix15 + "enable").(int)
+	obj15.SystemInstanceCPUHyperThreadDisable = d.Get(prefix15 + "disable").(int)
 
-		var obj15 go_thunder.CpuHyperThread
-		prefix15 := "cpu_hyper_thread.0."
-		obj15.Enable = d.Get(prefix15 + "enable").(int)
-		obj15.Disable = d.Get(prefix15 + "disable").(int)
+	c.SystemInstanceCPUHyperThreadEnable = obj15
 
-		c.Enable = obj15
+	var obj16 go_thunder.SystemInstanceIoCPU
+	prefix16 := "io_cpu.0."
+	obj16.SystemInstanceIoCPUMaxCores = d.Get(prefix16 + "max_cores").(int)
 
-		var obj16 go_thunder.IoCpu
-		prefix16 := "io_cpu.0."
-		obj16.MaxCores = d.Get(prefix16 + "max_cores").(int)
+	c.SystemInstanceIoCPUMaxCores = obj16
 
-		c.MaxCores = obj16
+	var obj17 go_thunder.SystemInstanceLinkMonitor
+	prefix17 := "link_monitor.0."
+	obj17.SystemInstanceLinkMonitorEnable = d.Get(prefix17 + "enable").(int)
+	obj17.SystemInstanceLinkMonitorDisable = d.Get(prefix17 + "disable").(int)
 
-		var obj17 go_thunder.CPUHyperThread1
-		prefix17 := "link_monitor.0."
-		obj17.Enable1 = d.Get(prefix17 + "enable").(int)
-		obj17.Disable1 = d.Get(prefix17 + "disable").(int)
+	c.SystemInstanceLinkMonitorEnable = obj17
 
-		c.Enable = obj17
+	var obj18 go_thunder.SystemInstanceLro
+	prefix18 := "lro.0."
+	obj18.SystemInstanceLroEnable = d.Get(prefix18 + "enable").(int)
+	obj18.SystemInstanceLroDisable = d.Get(prefix18 + "disable").(int)
 
-		// var obj18 go_thunder.PortList
-		// prefix := "port_list.0."
+	c.SystemInstanceLroEnable = obj18
 
-		// c. = obj18
+	var obj19 go_thunder.SystemInstanceTso
+	prefix19 := "tso.0."
+	obj19.SystemInstanceTsoEnable = d.Get(prefix19 + "enable").(int)
+	obj19.SystemInstanceTsoDisable = d.Get(prefix19 + "disable").(int)
 
-		// var obj19 go_thunder.PortInfo
-		// prefix := "port_info.0."
+	c.SystemInstanceTsoEnable = obj19
 
-		// c. = obj19
+	var obj20 go_thunder.SystemInstanceSetRxtxDescSize
+	prefix20 := "set_rxtx_desc_size.0."
+	obj20.SystemInstanceSetRxtxDescSizePortIndex = d.Get(prefix20 + "port_index").(int)
+	obj20.SystemInstanceSetRxtxDescSizeRxdSize = d.Get(prefix20 + "rxd_size").(int)
+	obj20.SystemInstanceSetRxtxDescSizeTxdSize = d.Get(prefix20 + "txd_size").(int)
 
-		// var obj20 go_thunder.InusePortList
-		// prefix := "inuse_port_list.0."
+	c.SystemInstanceSetRxtxDescSizePortIndex = obj20
 
-		// c. = obj20
+	var obj21 go_thunder.SystemInstanceSetRxtxQueue
+	prefix21 := "set_rxtx_queue.0."
+	obj21.SystemInstanceSetRxtxQueuePortIndex = d.Get(prefix21 + "port_index").(int)
+	obj21.SystemInstanceSetRxtxQueueRxqSize = d.Get(prefix21 + "rxq_size").(int)
+	obj21.SystemInstanceSetRxtxQueueTxqSize = d.Get(prefix21 + "txq_size").(int)
 
-		// var obj21 go_thunder.CpuList
-		// prefix := "cpu_list.0."
+	c.SystemInstanceSetRxtxQueuePortIndex = obj21
 
-		// c. = obj21
+	var obj22 go_thunder.SystemInstanceTemplate
+	prefix22 := "template.0."
+	obj22.SystemInstanceTemplateTemplatePolicy = d.Get(prefix22 + "template_policy").(string)
 
-		// var obj22 go_thunder.CpuMap
-		// prefix := "cpu_map.0."
+	c.SystemInstanceTemplateTemplatePolicy = obj22
 
-		// c. = obj22
+	var obj23 go_thunder.SystemInstanceTemplateBind
+	prefix23 := "template_bind.0."
 
-		// var obj23 go_thunder.InuseCpuList
-		// prefix := "inuse_cpu_list.0."
+	SystemInstanceTemplateBindMonitorListCount := d.Get(prefix23 + "monitor_list.#").(int)
+	obj23.SystemInstanceTemplateBindMonitorListID = make([]go_thunder.SystemInstanceTemplateBindMonitorList, 0, SystemInstanceTemplateBindMonitorListCount)
 
-		// c. = obj23
+	for i := 0; i < SystemInstanceTemplateBindMonitorListCount; i++ {
+		var obj23_1 go_thunder.SystemInstanceTemplateBindMonitorList
+		prefix23_1 := prefix23 + fmt.Sprintf("monitor_list.%d.", i)
+		obj23_1.SystemInstanceTemplateBindMonitorListID = d.Get(prefix23_1 + "id").(int)
 
-		var obj24 go_thunder.SetRxtxDescSize
-		prefix24 := "set_rxtx_desc_size.0."
-		obj24.PortIndex = d.Get(prefix24 + "port_index").(int)
-		obj24.RxdSize = d.Get(prefix24 + "rxd_size").(int)
-		obj24.TxdSize = d.Get(prefix24 + "txd_size").(int)
+		SystemInstanceTemplateBindMonitorListClearCfgCount := d.Get(prefix23_1 + "clear_cfg.#").(int)
+		obj23_1.SystemInstanceTemplateBindMonitorListClearCfgSessions = make([]go_thunder.SystemInstanceTemplateBindMonitorListClearCfg, 0, SystemInstanceTemplateBindMonitorListClearCfgCount)
 
-		c.PortIndex = obj24
-
-		var obj25 go_thunder.SetRxtxQueue
-		prefix25 := "set_rxtx_queue.0."
-		obj25.PortIndex = d.Get(prefix25 + "port_index").(int)
-		obj25.RxqSize = d.Get(prefix25 + "rxq_size").(int)
-		obj25.TxqSize = d.Get(prefix25 + "txq_size").(int)
-
-		c.PortIndex = obj25
-
-		var obj26 go_thunder.SystemTemplate
-		prefix26 := "template.0."
-		obj26.TemplatePolicy = d.Get(prefix26 + "template_policy").(string)
-
-		c.TemplatePolicy = obj26
-
-		var obj27 go_thunder.TemplateBind
-		prefix27 := "template_bind.0."
-
-		MonitorListCount := d.Get(prefix27 + "monitor_list.#").(int)
-		obj27.Id = make([]go_thunder.MonitorList, 0, MonitorListCount)
-
-		for i := 0; i < MonitorListCount; i++ {
-			var obj27_1 go_thunder.MonitorList
-			prefix27_1 := fmt.Sprintf(prefix27+"monitor_list.%d.", i)
-			obj27_1.Id = d.Get(prefix27_1 + "id").(int)
-
-			ClearCfgCount := d.Get(prefix27_1 + "clear_cfg.#").(int)
-			obj27_1.Sessions = make([]go_thunder.ClearCfg, 0, ClearCfgCount)
-
-			for i := 0; i < ClearCfgCount; i++ {
-				var obj27_1_1 go_thunder.ClearCfg
-				prefix27_1_1 := fmt.Sprintf(prefix27_1+"clear_cfg.%d.", i)
-				obj27_1_1.Sessions = d.Get(prefix27_1_1 + "sessions").(string)
-				obj27_1_1.ClearAllSequence = d.Get(prefix27_1_1 + "clear_all_sequence").(int)
-				obj27_1_1.ClearSequence = d.Get(prefix27_1_1 + "clear_sequence").(int)
-				obj27_1_1.Sessions = append(obj27_1.Sessions, obj27_1_1)
-			}
-
-			LinkDisableCfgCount := d.Get(prefix27_1 + "link_disable_cfg.#").(int)
-			obj27_1.Diseth = make([]go_thunder.SystemLinkDisableCfg, 0, LinkDisableCfgCount)
-
-			for i := 0; i < LinkDisableCfgCount; i++ {
-				var obj27_1_2 go_thunder.SystemLinkDisableCfg
-				prefix27_1_2 := fmt.Sprintf(prefix27_1_2+"link_disable_cfg.%d.", i)
-				obj27_1_2.Diseth = d.Get(prefix27_1_2 + "diseth").(int)
-				obj27_1_2.DisSequence = d.Get(prefix27_1_2 + "dis_sequence").(int)
-				obj27_1.Diseth = append(obj27_1.Diseth, obj27_1_2)
-			}
-
-			LinkEnableCfgCount := d.Get(prefix27_1 + "link_enable_cfg.#").(int)
-			obj27_1.Enaeth = make([]go_thunder.SystemLinkEnableCfg, 0, LinkEnableCfgCount)
-
-			for i := 0; i < LinkEnableCfgCount; i++ {
-				var obj27_1_3 go_thunder.SystemLinkEnableCfg
-				prefix27_1_3 := fmt.Sprintf(prefix27_1_3+"link_enable_cfg.%d.", i)
-				obj27_1_3.Enaeth = d.Get(prefix27_1_3 + "enaeth").(int)
-				obj27_1_3.EnaSequence = d.Get(prefix27_1_3 + "ena_sequence").(int)
-				obj27_1.Enaeth = append(obj27_1.Enaeth, obj27_1_3)
-			}
-
-			obj27_1.MonitorRelation = d.Get(prefix27_1 + "monitor_relation").(string)
-
-			LinkUpCfgCount := d.Get(prefix27_1 + "link_up_cfg.#").(int)
-			obj27_1.LinkupEthernet1 = make([]go_thunder.SystemLinkUpCfg, 0, LinkUpCfgCount)
-
-			for i := 0; i < LinkUpCfgCount; i++ {
-				var obj27_1_4 go_thunder.SystemLinkUpCfg
-				prefix27_1_4 := fmt.Sprintf(prefix27_1+"link_up_cfg.%d.", i)
-				obj27_1_4.LinkupEthernet1 = d.Get(prefix27_1_4 + "linkup_ethernet1").(int)
-				obj27_1_4.LinkUpSequence1 = d.Get(prefix27_1_4 + "link_up_sequence1").(int)
-				obj27_1_4.LinkupEthernet2 = d.Get(prefix27_1_4 + "linkup_ethernet2").(int)
-				obj27_1_4.LinkUpSequence2 = d.Get(prefix27_1_4 + "link_up_sequence2").(int)
-				obj27_1_4.LinkupEthernet3 = d.Get(prefix27_1_4 + "linkup_ethernet3").(int)
-				obj27_1_4.LinkUpSequence3 = d.Get(prefix27_1_4 + "link_up_sequence3").(int)
-				obj27_1.LinkupEthernet1 = append(obj27_1.LinkupEthernet1, obj27_1_4)
-			}
-
-			LinkDownCfgCount := d.Get(prefix27_1 + "link_down_cfg.#").(int)
-			obj27_1.LinkdownEthernet1 = make([]go_thunder.SystemLinkDownCfg, 0, LinkDownCfgCount)
-
-			for i := 0; i < LinkDownCfgCount; i++ {
-				var obj27_1_5 go_thunder.SystemLinkDownCfg
-				prefix27_1_5 := fmt.Sprintf(prefix27_1+"link_down_cfg.%d.", i)
-				obj27_1_5.LinkdownEthernet1 = d.Get(prefix27_1_5 + "linkdown_ethernet1").(int)
-				obj27_1_5.LinkDownSequence1 = d.Get(prefix27_1_5 + "link_down_sequence1").(int)
-				obj27_1_5.LinkdownEthernet2 = d.Get(prefix27_1_5 + "linkdown_ethernet2").(int)
-				obj27_1_5.LinkDownSequence2 = d.Get(prefix27_1_5 + "link_down_sequence2").(int)
-				obj27_1_5.LinkdownEthernet3 = d.Get(prefix27_1_5 + "linkdown_ethernet3").(int)
-				obj27_1_5.LinkDownSequence3 = d.Get(prefix27_1_5 + "link_down_sequence3").(int)
-				obj27_1.LinkdownEthernet1 = append(obj27_1.LinkdownEthernet1, obj27_1_5)
-			}
-
-			obj27_1.UserTag = d.Get(prefix27_1 + "user_tag").(string)
-			obj27.Id = append(obj27.Id, obj27_1)
+		for i := 0; i < SystemInstanceTemplateBindMonitorListClearCfgCount; i++ {
+			var obj23_1_1 go_thunder.SystemInstanceTemplateBindMonitorListClearCfg
+			prefix23_1_1 := prefix23_1 + fmt.Sprintf("clear_cfg.%d.", i)
+			obj23_1_1.SystemInstanceTemplateBindMonitorListClearCfgSessions = d.Get(prefix23_1_1 + "sessions").(string)
+			obj23_1_1.SystemInstanceTemplateBindMonitorListClearCfgClearAllSequence = d.Get(prefix23_1_1 + "clear_all_sequence").(int)
+			obj23_1_1.SystemInstanceTemplateBindMonitorListClearCfgClearSequence = d.Get(prefix23_1_1 + "clear_sequence").(int)
+			obj23_1.SystemInstanceTemplateBindMonitorListClearCfgSessions = append(obj23_1.SystemInstanceTemplateBindMonitorListClearCfgSessions, obj23_1_1)
 		}
 
-		c.MonitorList = obj27
+		SystemInstanceTemplateBindMonitorListLinkDisableCfgCount := d.Get(prefix23_1 + "link_disable_cfg.#").(int)
+		obj23_1.SystemInstanceTemplateBindMonitorListLinkDisableCfgDiseth = make([]go_thunder.SystemInstanceTemplateBindMonitorListLinkDisableCfg, 0, SystemInstanceTemplateBindMonitorListLinkDisableCfgCount)
 
-		var obj28 go_thunder.MonTemplate
-		prefix28 := "mon_template.0."
-
-		MonitorListCount = d.Get(prefix28 + "monitor_list.#").(int)
-		obj28.Id = make([]go_thunder.MonitorList, 0, MonitorListCount)
-
-		for i := 0; i < MonitorListCount; i++ {
-			var obj28_1 go_thunder.MonitorList
-			prefix28_1 := fmt.Sprintf(prefix28+"monitor_list.%d.", i)
-			obj28_1.Id = d.Get(prefix28_1 + "id").(int)
-
-			ClearCfgCount := d.Get(prefix28_1 + "clear_cfg.#").(int)
-			obj28_1.Sessions = make([]go_thunder.SystemClearCfg, 0, ClearCfgCount)
-
-			for i := 0; i < ClearCfgCount; i++ {
-				var obj28_1_1 go_thunder.SystemClearCfg
-				prefix28_1_1 := fmt.Sprintf(prefix28_1_1+"clear_cfg.%d.", i)
-				obj28_1_1.Sessions = d.Get(prefix28_1_1 + "sessions").(string)
-				obj28_1_1.ClearAllSequence = d.Get(prefix28_1_1 + "clear_all_sequence").(int)
-				obj28_1_1.ClearSequence = d.Get(prefix28_1_1 + "clear_sequence").(int)
-				obj28_1.Sessions = append(obj28_1.Sessions, obj28_1_1)
-			}
-
-			LinkDisableCfgCount := d.Get(prefix28_1 + "link_disable_cfg.#").(int)
-			obj28_1.Diseth = make([]go_thunder.SystemLinkDisableCfg, 0, LinkDisableCfgCount)
-
-			for i := 0; i < LinkDisableCfgCount; i++ {
-				var obj28_1_2 go_thunder.SystemLinkDisableCfg
-				prefix28_1_2 := fmt.Sprintf(prefix28_1_2+"link_disable_cfg.%d.", i)
-				obj28_1_2.Diseth = d.Get(prefix28_1_2 + "diseth").(int)
-				obj28_1_2.DisSequence = d.Get(prefix28_1_2 + "dis_sequence").(int)
-				obj28_1.Diseth = append(obj28_1.Diseth, obj28_1_2)
-			}
-
-			LinkEnableCfgCount := d.Get(prefix28_1 + "link_enable_cfg.#").(int)
-			obj28_1.Enaeth = make([]go_thunder.SystemLinkEnableCfg, 0, LinkEnableCfgCount)
-
-			for i := 0; i < LinkEnableCfgCount; i++ {
-				var obj28_1_3 go_thunder.SystemLinkEnableCfg
-				prefix28_1_3 := fmt.Sprintf(prefix28_1+"link_enable_cfg.%d.", i)
-				obj28_1_3.Enaeth = d.Get(prefix28_1_3 + "enaeth").(int)
-				obj28_1_3.EnaSequence = d.Get(prefix28_1_3 + "ena_sequence").(int)
-				obj28_1.Enaeth = append(obj28_1.Enaeth, obj28_1_3)
-			}
-
-			obj28_1.MonitorRelation = d.Get(prefix28_1 + "monitor_relation").(string)
-
-			LinkUpCfgCount := d.Get(prefix28_1 + "link_up_cfg.#").(int)
-			obj28_1.LinkupEthernet1 = make([]go_thunder.SystemLinkUpCfg, 0, LinkUpCfgCount)
-
-			for i := 0; i < LinkUpCfgCount; i++ {
-				var obj28_1_4 go_thunder.SystemLinkUpCfg
-				prefix28_1_4 := fmt.Sprintf(prefix28_1+"link_up_cfg.%d.", i)
-				obj28_1_4.LinkupEthernet1 = d.Get(prefix28_1_4 + "linkup_ethernet1").(int)
-				obj28_1_4.LinkUpSequence1 = d.Get(prefix28_1_4 + "link_up_sequence1").(int)
-				obj28_1_4.LinkupEthernet2 = d.Get(prefix28_1_4 + "linkup_ethernet2").(int)
-				obj28_1_4.LinkUpSequence2 = d.Get(prefix28_1_4 + "link_up_sequence2").(int)
-				obj28_1_4.LinkupEthernet3 = d.Get(prefix28_1_4 + "linkup_ethernet3").(int)
-				obj28_1_4.LinkUpSequence3 = d.Get(prefix28_1_4 + "link_up_sequence3").(int)
-				obj28_1.LinkupEthernet1 = append(obj1.LinkupEthernet1, obj28_1_4)
-			}
-
-			LinkDownCfgCount := d.Get(prefix28_1 + "link_down_cfg.#").(int)
-			obj28_1.LinkdownEthernet1 = make([]go_thunder.SystemLinkDownCfg, 0, LinkDownCfgCount)
-
-			for i := 0; i < LinkDownCfgCount; i++ {
-				var obj28_1_5 go_thunder.SystemLinkDownCfg
-				prefix28_1_5 := fmt.Sprintf(prefix28_1+"link_down_cfg.%d.", i)
-				obj28_1_5.LinkdownEthernet1 = d.Get(prefix28_1_5 + "linkdown_ethernet1").(int)
-				obj28_1_5.LinkDownSequence1 = d.Get(prefix28_1_5 + "link_down_sequence1").(int)
-				obj28_1_5.LinkdownEthernet2 = d.Get(prefix28_1_5 + "linkdown_ethernet2").(int)
-				obj28_1_5.LinkDownSequence2 = d.Get(prefix28_1_5 + "link_down_sequence2").(int)
-				obj28_1_5.LinkdownEthernet3 = d.Get(prefix28_1_5 + "linkdown_ethernet3").(int)
-				obj28_1_5.LinkDownSequence3 = d.Get(prefix28_1_5 + "link_down_sequence3").(int)
-				obj28_1.LinkdownEthernet1 = append(obj28_1.LinkdownEthernet1, obj28_1_5)
-			}
-
-			obj28_1.UserTag = d.Get(prefix28_1 + "user_tag").(string)
-			obj28.Id = append(obj28.Id, obj28_1)
+		for i := 0; i < SystemInstanceTemplateBindMonitorListLinkDisableCfgCount; i++ {
+			var obj23_1_2 go_thunder.SystemInstanceTemplateBindMonitorListLinkDisableCfg
+			prefix23_1_2 := prefix23_1 + fmt.Sprintf("link_disable_cfg.%d.", i)
+			obj23_1_2.SystemInstanceTemplateBindMonitorListLinkDisableCfgDiseth = d.Get(prefix23_1_2 + "diseth").(int)
+			obj23_1_2.SystemInstanceTemplateBindMonitorListLinkDisableCfgDisSequence = d.Get(prefix23_1_2 + "dis_sequence").(int)
+			obj23_1.SystemInstanceTemplateBindMonitorListLinkDisableCfgDiseth = append(obj23_1.SystemInstanceTemplateBindMonitorListLinkDisableCfgDiseth, obj23_1_2)
 		}
 
-		var obj28_2 go_thunder.LinkBlockAsDown
-		prefix28_2 := prefix28 + "link_block_as_down.0."
-		obj28_2.Enable = d.Get(prefix28_2 + "enable").(int)
+		SystemInstanceTemplateBindMonitorListLinkEnableCfgCount := d.Get(prefix23_1 + "link_enable_cfg.#").(int)
+		obj23_1.SystemInstanceTemplateBindMonitorListLinkEnableCfgEnaeth = make([]go_thunder.SystemInstanceTemplateBindMonitorListLinkEnableCfg, 0, SystemInstanceTemplateBindMonitorListLinkEnableCfgCount)
 
-		obj28.Enable = obj28_2
-
-		c.MonitorList = obj28
-
-		var obj29 go_thunder.Memory
-		prefix29 := "memory.0."
-
-		SamplingEnableCount := d.Get(prefix29 + "sampling_enable.#").(int)
-		obj29.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
-
-		for i := 0; i < SamplingEnableCount; i++ {
-			var obj29_1 go_thunder.SamplingEnable
-			prefix29_1 := fmt.Sprintf(prefix29_1+"sampling_enable.%d.", i)
-			obj29_1.Counters1 = d.Get(prefix29_1 + "counters1").(string)
-			obj29.Counters1 = append(obj29.Counters1, obj29_1)
+		for i := 0; i < SystemInstanceTemplateBindMonitorListLinkEnableCfgCount; i++ {
+			var obj23_1_3 go_thunder.SystemInstanceTemplateBindMonitorListLinkEnableCfg
+			prefix23_1_3 := prefix23_1 + fmt.Sprintf("link_enable_cfg.%d.", i)
+			obj23_1_3.SystemInstanceTemplateBindMonitorListLinkEnableCfgEnaeth = d.Get(prefix23_1_3 + "enaeth").(int)
+			obj23_1_3.SystemInstanceTemplateBindMonitorListLinkEnableCfgEnaSequence = d.Get(prefix23_1_3 + "ena_sequence").(int)
+			obj23_1.SystemInstanceTemplateBindMonitorListLinkEnableCfgEnaeth = append(obj23_1.SystemInstanceTemplateBindMonitorListLinkEnableCfgEnaeth, obj23_1_3)
 		}
 
-		c.SamplingEnable = obj29
-
-		var obj30 go_thunder.SystemResourceUsage
-		prefix30 := "resource_usage.0."
-		obj30.SslContextMemory = d.Get(prefix30 + "ssl_context_memory").(int)
-		obj30.SslDmaMemory = d.Get(prefix30 + "ssl_dma_memory").(int)
-		obj30.NatPoolAddrCount = d.Get(prefix30 + "nat_pool_addr_count").(int)
-		obj30.L4SessionCount = d.Get(prefix30 + "l4_session_count").(int)
-		obj30.AuthPortalHtmlFileSize = d.Get(prefix30 + "auth_portal_html_file_size").(int)
-		obj30.AuthPortalImageFileSize = d.Get(prefix30 + "auth_portal_image_file_size").(int)
-		obj30.MaxAflexFileSize = d.Get(prefix30 + "max_aflex_file_size").(int)
-		obj30.AflexTableEntryCount = d.Get(prefix30 + "aflex_table_entry_count").(int)
-		obj30.ClassListIpv6AddrCount = d.Get(prefix30 + "class_list_ipv6_addr_count").(int)
-		obj30.ClassListAcEntryCount = d.Get(prefix30 + "class_list_ac_entry_count").(int)
-		obj30.MaxAflexAuthzCollectionNumber = d.Get(prefix30 + "max_aflex_authz_collection_number").(int)
-		obj30.RadiusTableSize = d.Get(prefix30 + "radius_table_size").(int)
-		obj30.AuthzPolicyNumber = d.Get(prefix30 + "authz_policy_number").(int)
-		obj30.IpsecSaNumber = d.Get(prefix30 + "ipsec_sa_number").(int)
-		obj30.RamCacheMemoryLimit = d.Get(prefix30 + "ram_cache_memory_limit").(int)
-
-		var obj1 go_thunder.Visibility
-		prefix30_1 := prefix30 + "visibility.0."
-		obj30_1.MonitoredEntityCount = d.Get(prefix30_1 + "monitored_entity_count").(int)
-
-		obj30.MonitoredEntityCount = obj30_1
-
-		c.SslContextMemory = obj30
-
-		var obj31 go_thunder.LinkCapability
-		prefix31 := "link_capability.0."
-		obj31.Enable1 = d.Get(prefix31 + "enable").(int)
-
-		c.Enable = obj31
-
-		var obj32 go_thunder.ResourceAccounting
-		prefix32 := "resource_accounting.0."
-
-		TemplateListCount := d.Get(prefix32 + "template_list.#").(int)
-		obj32.Name = make([]go_thunder.TemplateList, 0, TemplateListCount)
-
-		for i := 0; i < TemplateListCount; i++ {
-			var obj32_1 go_thunder.TemplateList
-			prefix32_1 := fmt.Sprintf(prefix32+"template_list.%d.", i)
-			obj32_1.Name = d.Get(prefix32 + "name").(string)
-			obj32_1.UserTag = d.Get(prefix32 + "user_tag").(string)
-
-			var obj32_1_1 go_thunder.AppResources
-			prefix32_1_1 := prefix32_1 + "app_resources.0."
-
-			var obj32_1_1_1 go_thunder.GslbDeviceCfg
-			prefix32_1_1_1 := prefix32_1_1 + "gslb_device_cfg.0."
-			obj32_1_1_1.GslbDeviceMax = d.Get(prefix32_1_1_1 + "gslb_device_max").(int)
-			obj32_1_1_1.GslbDeviceMinGuarantee = d.Get(prefix32_1_1_1 + "gslb_device_min_guarantee").(int)
-
-			obj32_1_1.GslbDeviceMax = obj32_1_1_1
-
-			var obj32_1_1_2 go_thunder.GslbGeoLocationCfg
-			prefix32_1_1_2 := prefix32_1_1 + "gslb_geo_location_cfg.0."
-			obj32_1_1_2.GslbGeoLocationMax = d.Get(prefix32_1_1_2 + "gslb_geo_location_max").(int)
-			obj32_1_1_2.GslbGeoLocationMinGuarantee = d.Get(prefix32_1_1_2 + "gslb_geo_location_min_guarantee").(int)
-
-			obj1.GslbGeoLocationMax = obj32_1_1_2
-
-			var obj32_1_1_3 go_thunder.GslbIpListCfg
-			prefix32_1_1_3 := prefix32_1_1 + "gslb_ip_list_cfg.0."
-			obj32_1_1_3.GslbIpListMax = d.Get(prefix32_1_1_3 + "gslb_ip_list_max").(int)
-			obj32_1_1_3.GslbIpListMinGuarantee = d.Get(prefix32_1_1_3 + "gslb_ip_list_min_guarantee").(int)
-
-			obj32_1_1.GslbIpListMax = obj32_1_1_3
-
-			var obj32_1_1_4 go_thunder.GslbPolicyCfg
-			prefix32_1_1_4 := prefix32_1_1 + "gslb_policy_cfg.0."
-			obj32_1_1_4.GslbPolicyMax = d.Get(prefix32_1_1_4 + "gslb_policy_max").(int)
-			obj32_1_1_4.GslbPolicyMinGuarantee = d.Get(prefix32_1_1_4 + "gslb_policy_min_guarantee").(int)
-
-			obj32_1_1.GslbPolicyMax = obj32_1_1_4
-
-			var obj32_1_1_5 go_thunder.GslbServiceCfg
-			prefix32_1_1_5 := prefix32_1_1 + "gslb_service_cfg.0."
-			obj32_1_1_5.GslbServiceMax = d.Get(prefix32_1_1_5 + "gslb_service_max").(int)
-			obj32_1_1_5.GslbServiceMinGuarantee = d.Get(prefix32_1_1_5 + "gslb_service_min_guarantee").(int)
-
-			obj32_1_1.GslbServiceMax = obj32_1_1_5
-
-			var obj32_1_1_6 go_thunder.GslbServiceIpCfg
-			prefix32_1_1_6 := prefix32_1_1 + "gslb_service_ip_cfg.0."
-			obj32_1_1_6.GslbServiceIpMax = d.Get(prefix32_1_1_6 + "gslb_service_ip_max").(int)
-			obj32_1_1_6.GslbServiceIpMinGuarantee = d.Get(prefix32_1_1_6 + "gslb_service_ip_min_guarantee").(int)
-
-			obj32_1_1.GslbServiceIpMax = obj32_1_1_6
-
-			var obj32_1_1_7 go_thunder.GslbServicePortCfg
-			prefix32_1_1_7 := prefix32_1_1 + "gslb_service_port_cfg.0."
-			obj32_1_1_7.GslbServicePortMax = d.Get(prefix32_1_1_7 + "gslb_service_port_max").(int)
-			obj32_1_1_7.GslbServicePortMinGuarantee = d.Get(prefix32_1_1_7 + "gslb_service_port_min_guarantee").(int)
-
-			obj32_1_1.GslbServicePortMax = obj32_1_1_7
-
-			var obj32_1_1_8 go_thunder.GslbSiteCfg
-			prefix32_1_1_8 := prefix32_1_1 + "gslb_site_cfg.0."
-			obj32_1_1_8.GslbSiteMax = d.Get(prefix32_1_1_8 + "gslb_site_max").(int)
-			obj32_1_1_8.GslbSiteMinGuarantee = d.Get(prefix32_1_1_8 + "gslb_site_min_guarantee").(int)
-
-			obj32_1_1.GslbSiteMax = obj32_1_1_8
-
-			var obj32_1_1_9 go_thunder.GslbSvcGroupCfg
-			prefix32_1_1_9 := prefix32_1_1 + "gslb_svc_group_cfg.0."
-			obj32_1_1_9.GslbSvcGroupMax = d.Get(prefix32_1_1_9 + "gslb_svc_group_max").(int)
-			obj32_1_1_9.GslbSvcGroupMinGuarantee = d.Get(prefix32_1_1_9 + "gslb_svc_group_min_guarantee").(int)
-
-			obj32_1_1.GslbSvcGroupMax = obj32_1_1_9
-
-			var obj32_1_1_10 go_thunder.GslbTemplateCfg
-			prefix32_1_1_10 := prefix32_1_1 + "gslb_template_cfg.0."
-			obj32_1_1_10.GslbTemplateMax = d.Get(prefix32_1_1_10 + "gslb_template_max").(int)
-			obj32_1_1_10.GslbTemplateMinGuarantee = d.Get(prefix32_1_1_10 + "gslb_template_min_guarantee").(int)
-
-			obj32_1_1.GslbTemplateMax = obj32_1_1_10
-
-			var obj32_1_1_11 go_thunder.GslbZoneCfg
-			prefix32_1_1_11 := prefix32_1_1 + "gslb_zone_cfg.0."
-			obj32_1_1_11.GslbZoneMax = d.Get(obj32_1_1_11 + "gslb_zone_max").(int)
-			obj32_1_1_11.GslbZoneMinGuarantee = d.Get(obj32_1_1_11 + "gslb_zone_min_guarantee").(int)
-
-			obj32_1_1.GslbZoneMax = obj32_1_1_11
-
-			var obj32_1_1_12 go_thunder.HealthMonitorCfg
-			prefix32_1_1_12 := prefix32_1_1 + "health_monitor_cfg.0."
-			obj32_1_1_12.HealthMonitorMax = d.Get(prefix32_1_1_12 + "health_monitor_max").(int)
-			obj32_1_1_12.HealthMonitorMinGuarantee = d.Get(prefix32_1_1_12 + "health_monitor_min_guarantee").(int)
-
-			obj32_1_1.HealthMonitorMax = obj32_1_1_12
-
-			var obj32_1_1_13 go_thunder.RealPortCfg
-			prefix32_1_1_13 := prefix32_1_1 + "real_port_cfg.0."
-			obj32_1_1_13.RealPortMax = d.Get(prefix32_1_1_13 + "real_port_max").(int)
-			obj32_1_1_13.RealPortMinGuarantee = d.Get(prefix32_1_1_13 + "real_port_min_guarantee").(int)
-
-			obj32_1_1.RealPortMax = obj32_1_1_13
-
-			var obj32_1_1_14 go_thunder.RealServerCfg
-			prefix32_1_1_14 := prefix32_1_1 + "real_server_cfg.0."
-			obj32_1_1_14.RealServerMax = d.Get(prefix32_1_1_14 + "real_server_max").(int)
-			obj32_1_1_14.RealServerMinGuarantee = d.Get(prefix32_1_1_14 + "real_server_min_guarantee").(int)
-
-			obj32_1_1.RealServerMax = obj32_1_1_14
-
-			var obj32_1_1_15 go_thunder.ServiceGroupCfg
-			prefix32_1_1_15 := prefix32_1_1 + "service_group_cfg.0."
-			obj32_1_1_15.ServiceGroupMax = d.Get(prefix32_1_1_15 + "service_group_max").(int)
-			obj32_1_1_15.ServiceGroupMinGuarantee = d.Get(prefix32_1_1_15 + "service_group_min_guarantee").(int)
-
-			obj32_1_1.ServiceGroupMax = obj32_1_1_15
-
-			var obj32_1_1_16 go_thunder.VirtualServerCfg
-			prefix32_1_1_16 := prefix32_1_1 + "virtual_server_cfg.0."
-			obj32_1_1_16.VirtualServerMax = d.Get(prefix32_1_1_16 + "virtual_server_max").(int)
-			obj32_1_1_16.VirtualServerMinGuarantee = d.Get(prefix32_1_1_16 + "virtual_server_min_guarantee").(int)
-
-			obj32_1_1.VirtualServerMax = obj32_1_1_16
-
-			var obj32_1_1_17 go_thunder.VirtualPortCfg
-			prefix32_1_1_17 := prefix32_1_1 + "virtual_port_cfg.0."
-			obj32_1_1_17.VirtualPortMax = d.Get(prefix32_1_1_17 + "virtual_port_max").(int)
-			obj32_1_1_17.VirtualPortMinGuarantee = d.Get(prefix32_1_1_17 + "virtual_port_min_guarantee").(int)
-
-			obj32_1_1.VirtualPortMax = obj32_1_1_17
-
-			var obj32_1_1_18 go_thunder.CacheTemplateCfg
-			prefix32_1_1_18 := prefix32_1_1 + "cache_template_cfg.0."
-			obj32_1_1_18.CacheTemplateMax = d.Get(prefix32_1_1_18 + "cache_template_max").(int)
-			obj32_1_1_18.CacheTemplateMinGuarantee = d.Get(prefix32_1_1_18 + "cache_template_min_guarantee").(int)
-
-			obj32_1_1.CacheTemplateMax = obj32_1_1_18
-
-			var obj32_1_1_19 go_thunder.ClientSslTemplateCfg
-			prefix32_1_1_19 := prefix32_1_1 + "client_ssl_template_cfg.0."
-			obj32_1_1_19.ClientSslTemplateMax = d.Get(prefix32_1_1_19 + "client_ssl_template_max").(int)
-			obj32_1_1_19.ClientSslTemplateMinGuarantee = d.Get(prefix32_1_1_19 + "client_ssl_template_min_guarantee").(int)
-
-			obj32_1_1.ClientSslTemplateMax = obj32_1_1_19
-
-			var obj32_1_1_20 go_thunder.ConnReuseTemplateCfg
-			prefix32_1_1_19 := prefix32_1_1 + "conn_reuse_template_cfg.0."
-			obj32_1_1_20.ConnReuseTemplateMax = d.Get(prefix32_1_1_19 + "conn_reuse_template_max").(int)
-			obj32_1_1_20.ConnReuseTemplateMinGuarantee = d.Get(prefix32_1_1_19 + "conn_reuse_template_min_guarantee").(int)
-
-			obj32_1_1.ConnReuseTemplateMax = obj32_1_1_20
-
-			var obj32_1_1_21 go_thunder.FastTcpTemplateCfg
-			prefix32_1_1_21 := prefix32_1_1 + "fast_tcp_template_cfg.0."
-			obj32_1_1_21.FastTcpTemplateMax = d.Get(prefix32_1_1_21 + "fast_tcp_template_max").(int)
-			obj32_1_1_21.FastTcpTemplateMinGuarantee = d.Get(prefix32_1_1_21 + "fast_tcp_template_min_guarantee").(int)
-
-			obj32_1_1.FastTcpTemplateMax = obj32_1_1_21
-
-			var obj32_1_1_22 go_thunder.FastUdpTemplateCfg
-			prefix32_1_1_22 := prefix32_1_1 + "fast_udp_template_cfg.0."
-			obj32_1_1_22.FastUdpTemplateMax = d.Get(prefix32_1_1_22 + "fast_udp_template_max").(int)
-			obj32_1_1_22.FastUdpTemplateMinGuarantee = d.Get(prefix32_1_1_22 + "fast_udp_template_min_guarantee").(int)
-
-			obj32_1_1.FastUdpTemplateMax = obj32_1_1_22
-
-			var obj32_1_1_23 go_thunder.FixTemplateCfg
-			prefix32_1_1_23 := prefix32_1_1 + "fix_template_cfg.0."
-			obj32_1_1_23.FixTemplateMax = d.Get(prefix32_1_1_23 + "fix_template_max").(int)
-			obj32_1_1_23.FixTemplateMinGuarantee = d.Get(prefix32_1_1_23 + "fix_template_min_guarantee").(int)
-
-			obj32_1_1.FixTemplateMax = obj32_1_1_23
-
-			var obj32_1_1_24 go_thunder.HttpTemplateCfg
-			prefix32_1_1_24 := prefix32_1_1 + "http_template_cfg.0."
-			obj32_1_1_24.HttpTemplateMax = d.Get(prefix32_1_1_24 + "http_template_max").(int)
-			obj32_1_1_24.HttpTemplateMinGuarantee = d.Get(prefix32_1_1_24 + "http_template_min_guarantee").(int)
-
-			obj32_1_1.HttpTemplateMax = obj32_1_1_24
-
-			var obj32_1_1_25 go_thunder.LinkCostTemplateCfg
-			prefix32_1_1_25 := prefix32_1_1 + "link_cost_template_cfg.0."
-			obj32_1_1_25.LinkCostTemplateMax = d.Get(prefix32_1_1_25 + "link_cost_template_max").(int)
-			obj32_1_1_25.LinkCostTemplateMinGuarantee = d.Get(prefix32_1_1_25 + "link_cost_template_min_guarantee").(int)
-
-			obj32_1_1.LinkCostTemplateMax = obj32_1_1_25
-
-			var obj32_1_1_26 go_thunder.PersistCookieTemplateCfg
-			prefix32_1_1_26 := prefix32_1_1 + "persist_cookie_template_cfg.0."
-			obj32_1_1_26.PersistCookieTemplateMax = d.Get(prefix32_1_1_26 + "persist_cookie_template_max").(int)
-			obj32_1_1_26.PersistCookieTemplateMinGuarantee = d.Get(prefix32_1_1_26 + "persist_cookie_template_min_guarantee").(int)
-
-			obj32_1_1.PersistCookieTemplateMax = obj32_1_1_26
-
-			var obj32_1_1_27 go_thunder.PersistSrcipTemplateCfg
-			prefix32_1_1_27 := prefix32_1_1 + "persist_srcip_template_cfg.0."
-			obj32_1_1_27.PersistSrcipTemplateMax = d.Get(prefix32_1_1_27 + "persist_srcip_template_max").(int)
-			obj32_1_1_27.PersistSrcipTemplateMinGuarantee = d.Get(prefix32_1_1_27 + "persist_srcip_template_min_guarantee").(int)
-
-			obj32_1_1.PersistSrcipTemplateMax = obj32_1_1_27
-
-			var obj32_1_1_28 go_thunder.ServerSslTemplateCfg
-			prefix32_1_1_28 := prefix32_1_1 + "server_ssl_template_cfg.0."
-			obj32_1_1_28.ServerSslTemplateMax = d.Get(prefix32_1_1_28 + "server_ssl_template_max").(int)
-			obj32_1_1_28.ServerSslTemplateMinGuarantee = d.Get(prefix32_1_1_28 + "server_ssl_template_min_guarantee").(int)
-
-			obj32_1_1.ServerSslTemplateMax = obj32_1_1_28
-
-			var obj32_1_1_29 go_thunder.ProxyTemplateCfg
-			prefix32_1_1_29 := prefix32_1_1 + "proxy_template_cfg.0."
-			obj32_1_1_29.ProxyTemplateMax = d.Get(prefix32_1_1_29 + "proxy_template_max").(int)
-			obj32_1_1_29.ProxyTemplateMinGuarantee = d.Get(prefix32_1_1_29 + "proxy_template_min_guarantee").(int)
-
-			obj32_1_1.ProxyTemplateMax = obj32_1_1_29
-
-			var obj32_1_1_30 go_thunder.StreamTemplateCfg
-			prefix32_1_1_30 := prefix32_1_1 + "stream_template_cfg.0."
-			obj32_1_1_30.StreamTemplateMax = d.Get(prefix32_1_1_30 + "stream_template_max").(int)
-			obj32_1_1_30.StreamTemplateMinGuarantee = d.Get(prefix32_1_1_30 + "stream_template_min_guarantee").(int)
-
-			obj32_1_1.StreamTemplateMax = obj32_1_1_30
-
-			obj32_1_1.Threshold = d.Get(prefix32_1_1 + "threshold").(int)
-
-			obj32_1.GslbDeviceCfg = obj32_1_1
-
-			var obj32_1_2 go_thunder.NetworkResources
-			prefix32_1_2 := prefix32_1 + "network_resources.0."
-
-			var obj32_1_2_1 go_thunder.StaticIpv4RouteCfg
-			prefix32_1_2_1 := prefix32_1_2 + "static_ipv4_route_cfg.0."
-			obj32_1_2_1.StaticIpv4RouteMax = d.Get(prefix32_1_2_1 + "static_ipv4_route_max").(int)
-			obj32_1_2_1.StaticIpv4RouteMinGuarantee = d.Get(prefix32_1_2_1 + "static_ipv4_route_min_guarantee").(int)
-
-			obj32_1_2.StaticIpv4RouteMax = obj32_1_2_1
-
-			var obj32_1_2_2 go_thunder.StaticIpv6RouteCfg
-			prefix32_1_2_2 := prefix32_1_2 + "static_ipv6_route_cfg.0."
-			obj32_1_2_2.StaticIpv6RouteMax = d.Get(prefix32_1_2_2 + "static_ipv6_route_max").(int)
-			obj32_1_2_2.StaticIpv6RouteMinGuarantee = d.Get(prefix32_1_2_2 + "static_ipv6_route_min_guarantee").(int)
-
-			obj32_1_2.StaticIpv6RouteMax = obj32_1_2_2
-
-			var obj32_1_2_3 go_thunder.Ipv4AclLineCfg
-			prefix32_1_2_3 := prefix32_1_2 + "ipv4_acl_line_cfg.0."
-			obj32_1_2_3.Ipv4AclLineMax = d.Get(prefix32_1_2_3 + "ipv4_acl_line_max").(int)
-			obj32_1_2_3.Ipv4AclLineMinGuarantee = d.Get(prefix32_1_2_3 + "ipv4_acl_line_min_guarantee").(int)
-
-			obj32_1_2.Ipv4AclLineMax = obj32_1_2_3
-
-			var obj32_1_2_4 go_thunder.Ipv6AclLineCfg
-			prefix32_1_2_4 := prefix32_1_2 + "ipv6_acl_line_cfg.0."
-			obj32_1_2_4.Ipv6AclLineMax = d.Get(prefix32_1_2_4 + "ipv6_acl_line_max").(int)
-			obj32_1_2_4.Ipv6AclLineMinGuarantee = d.Get(prefix32_1_2_4 + "ipv6_acl_line_min_guarantee").(int)
-
-			obj32_1_2.Ipv6AclLineMax = obj32_1_2_4
-
-			var obj32_1_2_5 go_thunder.StaticArpCfg
-			prefix32_1_2_5 := prefix32_1_2 + "static_arp_cfg.0."
-			obj32_1_2_5.StaticArpMax = d.Get(prefix32_1_2_5 + "static_arp_max").(int)
-			obj32_1_2_5.StaticArpMinGuarantee = d.Get(prefix32_1_2_5 + "static_arp_min_guarantee").(int)
-
-			obj32_1_2.StaticArpMax = obj32_1_2_5
-
-			var obj32_1_2_6 go_thunder.StaticNeighborCfg
-			prefix32_1_2_6 := prefix32_1_2 + "static_neighbor_cfg.0."
-			obj32_1_2_6.StaticNeighborMax = d.Get(prefix32_1_2_6 + "static_neighbor_max").(int)
-			obj32_1_2_6.StaticNeighborMinGuarantee = d.Get(prefix32_1_2_6 + "static_neighbor_min_guarantee").(int)
-
-			obj32_1_2_6.StaticNeighborMax = obj32_1_2_6
-
-			var obj32_1_2_7 go_thunder.StaticMacCfg
-			prefix32_1_2_7 := prefix32_1_2 + "static_mac_cfg.0."
-			obj32_1_2_7.StaticMacMax = d.Get(prefix32_1_2_7 + "static_mac_max").(int)
-			obj32_1_2_7.StaticMacMinGuarantee = d.Get(prefix32_1_2_7 + "static_mac_min_guarantee").(int)
-
-			obj32_1_2.StaticMacMax = obj32_1_2_7
-
-			var obj32_1_2_8 go_thunder.ObjectGroupCfg
-			prefix32_1_2_8 := prefix32_1_2 + "object_group_cfg.0."
-			obj32_1_2_8.ObjectGroupMax = d.Get(prefix32_1_2_8 + "object_group_max").(int)
-			obj32_1_2_8.ObjectGroupMinGuarantee = d.Get(prefix32_1_2_8 + "object_group_min_guarantee").(int)
-
-			obj32_1_2.ObjectGroupMax = obj32_1_2_8
-
-			var obj32_1_2_9 go_thunder.ObjectGroupClauseCfg
-			prefix32_1_2_9 := prefix32_1_2 + "object_group_clause_cfg.0."
-			obj32_1_2_9.ObjectGroupClauseMax = d.Get(prefix32_1_2_9 + "object_group_clause_max").(int)
-			obj32_1_2_9.ObjectGroupClauseMinGuarantee = d.Get(prefix32_1_2_9 + "object_group_clause_min_guarantee").(int)
-
-			obj32_1_2.ObjectGroupClauseMax = obj32_1_2_9
-
-			obj32_1_2.Threshold = d.Get(prefix32_1_2 + "threshold").(int)
-
-			obj32_1.StaticIpv4RouteCfg = obj32_1_2
-
-			var obj32_1_3 go_thunder.SystemResources
-			prefix32_1_3 := prefix32_1 + "system_resources.0."
-
-			var obj32_1_3_1 go_thunder.BwLimitCfg
-			prefix32_1_3_1 := prefix32_1_3 + "bw_limit_cfg.0."
-			obj32_1_3_1.BwLimitMax = d.Get(prefix32_1_3_1 + "bw_limit_max").(int)
-			obj32_1_3_1.BwLimitWatermarkDisable = d.Get(prefix32_1_3_1 + "bw_limit_watermark_disable").(int)
-
-			obj32_1_3.BwLimitMax = obj32_1_3_1
-
-			var obj32_1_3_2 go_thunder.ConcurrentSessionLimitCfg
-			prefix32_1_3_2 := prefix32_1_3 + "concurrent_session_limit_cfg.0."
-			obj32_1_3_2.ConcurrentSessionLimitMax = d.Get(prefix32_1_3_2 + "concurrent_session_limit_max").(int)
-
-			obj32_1_3.ConcurrentSessionLimitMax = obj32_1_3_2
-
-			var obj32_1_3_3 go_thunder.L4SessionLimitCfg
-			prefix32_1_3_3 := prefix32_1_3 + "l4_session_limit_cfg.0."
-			obj32_1_3_3.L4SessionLimitMax = d.Get(prefix32_1_3_3 + "l4_session_limit_max").(string)
-			obj32_1_3_3.L4SessionLimitMinGuarantee = d.Get(prefix32_1_3_3 + "l4_session_limit_min_guarantee").(string)
-
-			obj32_1_3.L4SessionLimitMax = obj32_1_3_3
-
-			var obj32_1_3_4 go_thunder.L4cpsLimitCfg
-			prefix32_1_3_4 := prefix32_1_3 + "l4cps_limit_cfg.0."
-			obj32_1_3_4.L4cpsLimitMax = d.Get(prefix32_1_3_4 + "l4cps_limit_max").(int)
-
-			obj32_1_3.L4cpsLimitMax = obj32_1_3_4
-
-			var obj32_1_3_5 go_thunder.L7cpsLimitCfg
-			prefix32_1_3_5 := prefix32_1_3 + "l7cps_limit_cfg.0."
-			obj32_1_3_5.L7cpsLimitMax = d.Get(prefix32_1_3_5 + "l7cps_limit_max").(int)
-
-			obj32_1_3.L7cpsLimitMax = obj32_1_3_5
-
-			var obj32_1_3_6 go_thunder.NatcpsLimitCfg
-			prefix32_1_3_6 := prefix32_1_3 + "natcps_limit_cfg.0."
-			obj32_1_3_6.NatcpsLimitMax = d.Get(prefix32_1_3_6 + "natcps_limit_max").(int)
-
-			obj32_1_3.NatcpsLimitMax = obj32_1_3_6
-
-			var obj32_1_3_7 go_thunder.FwcpsLimitCfg
-			prefix32_1_3_7 := prefix32_1_3 + "fwcps_limit_cfg.0."
-			obj32_1_3_7.FwcpsLimitMax = d.Get(prefix32_1_3_7 + "fwcps_limit_max").(int)
-
-			obj32_1_3.FwcpsLimitMax = obj32_1_3_7
-
-			var obj32_1_3_8 go_thunder.SslThroughputLimitCfg
-			prefix32_1_3_8 := prefix32_1_3 + "ssl_throughput_limit_cfg.0."
-			obj32_1_3_8.SslThroughputLimitMax = d.Get(prefix32_1_3_8 + "ssl_throughput_limit_max").(int)
-			obj32_1_3_8.SslThroughputLimitWatermarkDisable = d.Get(prefix32_1_3_8 + "ssl_throughput_limit_watermark_disable").(int)
-
-			obj32_1_3.SslThroughputLimitMax = obj32_1_3_8
-
-			var obj32_1_3_9 go_thunder.SslcpsLimitCfg
-			prefix32_1_3_9 := prefix32_1_3 + "sslcps_limit_cfg.0."
-			obj32_1_3_9.SslcpsLimitMax = d.Get(prefix32_1_3_9 + "sslcps_limit_max").(int)
-
-			obj32_1_3.SslcpsLimitMax = obj32_1_3_9
-
-			obj32_1_3.Threshold = d.Get(prefix32_1_3 + "threshold").(int)
-
-			obj32_1.BwLimitCfg = obj32_1_3
-
-			obj32.Name = append(obj32.Name, obj32_1)
+		obj23_1.SystemInstanceTemplateBindMonitorListMonitorRelation = d.Get(prefix23_1 + "monitor_relation").(string)
+
+		SystemInstanceTemplateBindMonitorListLinkUpCfgCount := d.Get(prefix23_1 + "link_up_cfg.#").(int)
+		obj23_1.SystemInstanceTemplateBindMonitorListLinkUpCfgLinkupEthernet1 = make([]go_thunder.SystemInstanceTemplateBindMonitorListLinkUpCfg, 0, SystemInstanceTemplateBindMonitorListLinkUpCfgCount)
+
+		for i := 0; i < SystemInstanceTemplateBindMonitorListLinkUpCfgCount; i++ {
+			var obj23_1_4 go_thunder.SystemInstanceTemplateBindMonitorListLinkUpCfg
+			prefix23_1_4 := prefix23_1 + fmt.Sprintf("link_up_cfg.%d.", i)
+			obj23_1_4.SystemInstanceTemplateBindMonitorListLinkUpCfgLinkupEthernet1 = d.Get(prefix23_1_4 + "linkup_ethernet1").(int)
+			obj23_1_4.SystemInstanceTemplateBindMonitorListLinkUpCfgLinkUpSequence1 = d.Get(prefix23_1_4 + "link_up_sequence1").(int)
+			obj23_1_4.SystemInstanceTemplateBindMonitorListLinkUpCfgLinkupEthernet2 = d.Get(prefix23_1_4 + "linkup_ethernet2").(int)
+			obj23_1_4.SystemInstanceTemplateBindMonitorListLinkUpCfgLinkUpSequence2 = d.Get(prefix23_1_4 + "link_up_sequence2").(int)
+			obj23_1_4.SystemInstanceTemplateBindMonitorListLinkUpCfgLinkupEthernet3 = d.Get(prefix23_1_4 + "linkup_ethernet3").(int)
+			obj23_1_4.SystemInstanceTemplateBindMonitorListLinkUpCfgLinkUpSequence3 = d.Get(prefix23_1_4 + "link_up_sequence3").(int)
+			obj23_1.SystemInstanceTemplateBindMonitorListLinkUpCfgLinkupEthernet1 = append(obj23_1.SystemInstanceTemplateBindMonitorListLinkUpCfgLinkupEthernet1, obj23_1_4)
 		}
 
-		c.TemplateList = obj32
+		SystemInstanceTemplateBindMonitorListLinkDownCfgCount := d.Get(prefix23_1 + "link_down_cfg.#").(int)
+		obj23_1.SystemInstanceTemplateBindMonitorListLinkDownCfgLinkdownEthernet1 = make([]go_thunder.SystemInstanceTemplateBindMonitorListLinkDownCfg, 0, SystemInstanceTemplateBindMonitorListLinkDownCfgCount)
+
+		for i := 0; i < SystemInstanceTemplateBindMonitorListLinkDownCfgCount; i++ {
+			var obj23_1_5 go_thunder.SystemInstanceTemplateBindMonitorListLinkDownCfg
+			prefix23_1_5 := prefix23_1 + fmt.Sprintf("link_down_cfg.%d.", i)
+			obj23_1_5.SystemInstanceTemplateBindMonitorListLinkDownCfgLinkdownEthernet1 = d.Get(prefix23_1_5 + "linkdown_ethernet1").(int)
+			obj23_1_5.SystemInstanceTemplateBindMonitorListLinkDownCfgLinkDownSequence1 = d.Get(prefix23_1_5 + "link_down_sequence1").(int)
+			obj23_1_5.SystemInstanceTemplateBindMonitorListLinkDownCfgLinkdownEthernet2 = d.Get(prefix23_1_5 + "linkdown_ethernet2").(int)
+			obj23_1_5.SystemInstanceTemplateBindMonitorListLinkDownCfgLinkDownSequence2 = d.Get(prefix23_1_5 + "link_down_sequence2").(int)
+			obj23_1_5.SystemInstanceTemplateBindMonitorListLinkDownCfgLinkdownEthernet3 = d.Get(prefix23_1_5 + "linkdown_ethernet3").(int)
+			obj23_1_5.SystemInstanceTemplateBindMonitorListLinkDownCfgLinkDownSequence3 = d.Get(prefix23_1_5 + "link_down_sequence3").(int)
+			obj23_1.SystemInstanceTemplateBindMonitorListLinkDownCfgLinkdownEthernet1 = append(obj23_1.SystemInstanceTemplateBindMonitorListLinkDownCfgLinkdownEthernet1, obj23_1_5)
+		}
+
+		obj23_1.SystemInstanceTemplateBindMonitorListUserTag = d.Get(prefix23_1 + "user_tag").(string)
+		obj23.SystemInstanceTemplateBindMonitorListID = append(obj23.SystemInstanceTemplateBindMonitorListID, obj23_1)
+	}
+
+	c.SystemInstanceTemplateBindMonitorList = obj23
+
+	var obj24 go_thunder.SystemInstanceMonTemplate
+	prefix24 := "mon_template.0."
+
+	SystemInstanceMonTemplateMonitorListCount := d.Get(prefix24 + "monitor_list.#").(int)
+	obj24.SystemInstanceMonTemplateMonitorListID = make([]go_thunder.SystemInstanceMonTemplateMonitorList, 0, SystemInstanceMonTemplateMonitorListCount)
+
+	for i := 0; i < SystemInstanceMonTemplateMonitorListCount; i++ {
+		var obj24_1 go_thunder.SystemInstanceMonTemplateMonitorList
+		prefix24_1 := prefix24 + fmt.Sprintf("monitor_list.%d.", i)
+		obj24_1.SystemInstanceMonTemplateMonitorListID = d.Get(prefix24_1 + "id").(int)
+
+		SystemInstanceMonTemplateMonitorListClearCfgCount := d.Get(prefix24_1 + "clear_cfg.#").(int)
+		obj24_1.SystemInstanceMonTemplateMonitorListClearCfgSessions = make([]go_thunder.SystemInstanceMonTemplateMonitorListClearCfg, 0, SystemInstanceMonTemplateMonitorListClearCfgCount)
+
+		for i := 0; i < SystemInstanceMonTemplateMonitorListClearCfgCount; i++ {
+			var obj24_1_1 go_thunder.SystemInstanceMonTemplateMonitorListClearCfg
+			prefix24_1_1 := prefix24_1 + fmt.Sprintf("clear_cfg.%d.", i)
+			obj24_1_1.SystemInstanceMonTemplateMonitorListClearCfgSessions = d.Get(prefix24_1_1 + "sessions").(string)
+			obj24_1_1.SystemInstanceMonTemplateMonitorListClearCfgClearAllSequence = d.Get(prefix24_1_1 + "clear_all_sequence").(int)
+			obj24_1_1.SystemInstanceMonTemplateMonitorListClearCfgClearSequence = d.Get(prefix24_1_1 + "clear_sequence").(int)
+			obj24_1.SystemInstanceMonTemplateMonitorListClearCfgSessions = append(obj24_1.SystemInstanceMonTemplateMonitorListClearCfgSessions, obj24_1_1)
+		}
+
+		SystemInstanceMonTemplateMonitorListLinkDisableCfgCount := d.Get(prefix24_1 + "link_disable_cfg.#").(int)
+		obj24_1.SystemInstanceMonTemplateMonitorListLinkDisableCfgDiseth = make([]go_thunder.SystemInstanceMonTemplateMonitorListLinkDisableCfg, 0, SystemInstanceMonTemplateMonitorListLinkDisableCfgCount)
+
+		for i := 0; i < SystemInstanceMonTemplateMonitorListLinkDisableCfgCount; i++ {
+			var obj24_1_2 go_thunder.SystemInstanceMonTemplateMonitorListLinkDisableCfg
+			prefix24_1_2 := prefix24_1 + fmt.Sprintf("link_disable_cfg.%d.", i)
+			obj24_1_2.SystemInstanceMonTemplateMonitorListLinkDisableCfgDiseth = d.Get(prefix24_1_2 + "diseth").(int)
+			obj24_1_2.SystemInstanceMonTemplateMonitorListLinkDisableCfgDisSequence = d.Get(prefix24_1_2 + "dis_sequence").(int)
+			obj24_1.SystemInstanceMonTemplateMonitorListLinkDisableCfgDiseth = append(obj24_1.SystemInstanceMonTemplateMonitorListLinkDisableCfgDiseth, obj24_1_2)
+		}
+
+		SystemInstanceMonTemplateMonitorListLinkEnableCfgCount := d.Get(prefix24_1 + "link_enable_cfg.#").(int)
+		obj24_1.SystemInstanceMonTemplateMonitorListLinkEnableCfgEnaeth = make([]go_thunder.SystemInstanceMonTemplateMonitorListLinkEnableCfg, 0, SystemInstanceMonTemplateMonitorListLinkEnableCfgCount)
+
+		for i := 0; i < SystemInstanceMonTemplateMonitorListLinkEnableCfgCount; i++ {
+			var obj24_1_3 go_thunder.SystemInstanceMonTemplateMonitorListLinkEnableCfg
+			prefix24_1_3 := prefix24_1 + fmt.Sprintf("link_enable_cfg.%d.", i)
+			obj24_1_3.SystemInstanceMonTemplateMonitorListLinkEnableCfgEnaeth = d.Get(prefix24_1_3 + "enaeth").(int)
+			obj24_1_3.SystemInstanceMonTemplateMonitorListLinkEnableCfgEnaSequence = d.Get(prefix24_1_3 + "ena_sequence").(int)
+			obj24_1.SystemInstanceMonTemplateMonitorListLinkEnableCfgEnaeth = append(obj24_1.SystemInstanceMonTemplateMonitorListLinkEnableCfgEnaeth, obj24_1_3)
+		}
+
+		obj24_1.SystemInstanceMonTemplateMonitorListMonitorRelation = d.Get(prefix24_1 + "monitor_relation").(string)
+
+		SystemInstanceMonTemplateMonitorListLinkUpCfgCount := d.Get(prefix24_1 + "link_up_cfg.#").(int)
+		obj24_1.SystemInstanceMonTemplateMonitorListLinkUpCfgLinkupEthernet1 = make([]go_thunder.SystemInstanceMonTemplateMonitorListLinkUpCfg, 0, SystemInstanceMonTemplateMonitorListLinkUpCfgCount)
+
+		for i := 0; i < SystemInstanceMonTemplateMonitorListLinkUpCfgCount; i++ {
+			var obj24_1_4 go_thunder.SystemInstanceMonTemplateMonitorListLinkUpCfg
+			prefix24_1_4 := prefix24_1 + fmt.Sprintf("link_up_cfg.%d.", i)
+			obj24_1_4.SystemInstanceMonTemplateMonitorListLinkUpCfgLinkupEthernet1 = d.Get(prefix24_1_4 + "linkup_ethernet1").(int)
+			obj24_1_4.SystemInstanceMonTemplateMonitorListLinkUpCfgLinkUpSequence1 = d.Get(prefix24_1_4 + "link_up_sequence1").(int)
+			obj24_1_4.SystemInstanceMonTemplateMonitorListLinkUpCfgLinkupEthernet2 = d.Get(prefix24_1_4 + "linkup_ethernet2").(int)
+			obj24_1_4.SystemInstanceMonTemplateMonitorListLinkUpCfgLinkUpSequence2 = d.Get(prefix24_1_4 + "link_up_sequence2").(int)
+			obj24_1_4.SystemInstanceMonTemplateMonitorListLinkUpCfgLinkupEthernet3 = d.Get(prefix24_1_4 + "linkup_ethernet3").(int)
+			obj24_1_4.SystemInstanceMonTemplateMonitorListLinkUpCfgLinkUpSequence3 = d.Get(prefix24_1_4 + "link_up_sequence3").(int)
+			obj24_1.SystemInstanceMonTemplateMonitorListLinkUpCfgLinkupEthernet1 = append(obj24_1.SystemInstanceMonTemplateMonitorListLinkUpCfgLinkupEthernet1, obj24_1_4)
+		}
+
+		SystemInstanceMonTemplateMonitorListLinkDownCfgCount := d.Get(prefix24_1 + "link_down_cfg.#").(int)
+		obj24_1.SystemInstanceMonTemplateMonitorListLinkDownCfgLinkdownEthernet1 = make([]go_thunder.SystemInstanceMonTemplateMonitorListLinkDownCfg, 0, SystemInstanceMonTemplateMonitorListLinkDownCfgCount)
+
+		for i := 0; i < SystemInstanceMonTemplateMonitorListLinkDownCfgCount; i++ {
+			var obj24_1_5 go_thunder.SystemInstanceMonTemplateMonitorListLinkDownCfg
+			prefix24_1_5 := prefix24_1 + fmt.Sprintf("link_down_cfg.%d.", i)
+			obj24_1_5.SystemInstanceMonTemplateMonitorListLinkDownCfgLinkdownEthernet1 = d.Get(prefix24_1_5 + "linkdown_ethernet1").(int)
+			obj24_1_5.SystemInstanceMonTemplateMonitorListLinkDownCfgLinkDownSequence1 = d.Get(prefix24_1_5 + "link_down_sequence1").(int)
+			obj24_1_5.SystemInstanceMonTemplateMonitorListLinkDownCfgLinkdownEthernet2 = d.Get(prefix24_1_5 + "linkdown_ethernet2").(int)
+			obj24_1_5.SystemInstanceMonTemplateMonitorListLinkDownCfgLinkDownSequence2 = d.Get(prefix24_1_5 + "link_down_sequence2").(int)
+			obj24_1_5.SystemInstanceMonTemplateMonitorListLinkDownCfgLinkdownEthernet3 = d.Get(prefix24_1_5 + "linkdown_ethernet3").(int)
+			obj24_1_5.SystemInstanceMonTemplateMonitorListLinkDownCfgLinkDownSequence3 = d.Get(prefix24_1_5 + "link_down_sequence3").(int)
+			obj24_1.SystemInstanceMonTemplateMonitorListLinkDownCfgLinkdownEthernet1 = append(obj24_1.SystemInstanceMonTemplateMonitorListLinkDownCfgLinkdownEthernet1, obj24_1_5)
+		}
+
+		obj24_1.SystemInstanceMonTemplateMonitorListUserTag = d.Get(prefix24_1 + "user_tag").(string)
+		obj24.SystemInstanceMonTemplateMonitorListID = append(obj24.SystemInstanceMonTemplateMonitorListID, obj24_1)
+	}
+
+	var obj24_2 go_thunder.SystemInstanceMonTemplateLinkBlockAsDown
+	prefix24_2 := prefix24 + "link_block_as_down.0."
+	obj24_2.SystemInstanceMonTemplateLinkBlockAsDownEnable = d.Get(prefix24_2 + "enable").(int)
+
+	obj24.SystemInstanceMonTemplateLinkBlockAsDownEnable = obj24_2
 
-		/*
-		   var obj33 go_thunder.Trunk
-		   prefix33 := "trunk.0."
+	var obj24_3 go_thunder.SystemInstanceMonTemplateLinkDownOnRestart
+	prefix24_3 := prefix24 + "link_down_on_restart.0."
+	obj24_3.SystemInstanceMonTemplateLinkDownOnRestartEnable = d.Get(prefix24_3 + "enable").(int)
 
-		   var obj33_1 go_thunder.LoadBalance
-		   prefix33_1 :=prefix33 + "load_balance.0."
-		   obj33_1.UseL3 = d.Get(prefix33_1+"use_l3").(int)
-		   obj33_1.UseL4 = d.Get(prefix33_1+"use_l4").(int)
+	obj24.SystemInstanceMonTemplateLinkDownOnRestartEnable = obj24_3
+
+	c.SystemInstanceMonTemplateMonitorList = obj24
 
-		   obj33.UseL3 = obj33_1
+	var obj25 go_thunder.SystemInstanceMemory
+	prefix25 := "memory.0."
 
+	SystemInstanceMemorySamplingEnableCount := d.Get(prefix25 + "sampling_enable.#").(int)
+	obj25.SystemInstanceMemorySamplingEnableCounters1 = make([]go_thunder.SystemInstanceMemorySamplingEnable, 0, SystemInstanceMemorySamplingEnableCount)
 
-		   c.LoadBalance = obj33
+	for i := 0; i < SystemInstanceMemorySamplingEnableCount; i++ {
+		var obj25_1 go_thunder.SystemInstanceMemorySamplingEnable
+		prefix25_1 := prefix25 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj25_1.SystemInstanceMemorySamplingEnableCounters1 = d.Get(prefix25_1 + "counters1").(string)
+		obj25.SystemInstanceMemorySamplingEnableCounters1 = append(obj25.SystemInstanceMemorySamplingEnableCounters1, obj25_1)
+	}
 
+	c.SystemInstanceMemoryUUID = obj25
 
-		   var obj34 go_thunder.Ports
-		   prefix34 := "ports.0."
-		   obj34.LinkDetectionInterval = d.Get(prefix34+"link_detection_interval").(int)
+	var obj26 go_thunder.SystemInstanceResourceUsage
+	prefix26 := "resource_usage.0."
+	obj26.SystemInstanceResourceUsageSslContextMemory = d.Get(prefix26 + "ssl_context_memory").(int)
+	obj26.SystemInstanceResourceUsageSslDmaMemory = d.Get(prefix26 + "ssl_dma_memory").(int)
+	obj26.SystemInstanceResourceUsageNatPoolAddrCount = d.Get(prefix26 + "nat_pool_addr_count").(int)
+	obj26.SystemInstanceResourceUsageL4SessionCount = d.Get(prefix26 + "l4_session_count").(int)
+	obj26.SystemInstanceResourceUsageAuthPortalHTMLFileSize = d.Get(prefix26 + "auth_portal_html_file_size").(int)
+	obj26.SystemInstanceResourceUsageAuthPortalImageFileSize = d.Get(prefix26 + "auth_portal_image_file_size").(int)
+	obj26.SystemInstanceResourceUsageMaxAflexFileSize = d.Get(prefix26 + "max_aflex_file_size").(int)
+	obj26.SystemInstanceResourceUsageAflexTableEntryCount = d.Get(prefix26 + "aflex_table_entry_count").(int)
+	obj26.SystemInstanceResourceUsageClassListIpv6AddrCount = d.Get(prefix26 + "class_list_ipv6_addr_count").(int)
+	obj26.SystemInstanceResourceUsageClassListAcEntryCount = d.Get(prefix26 + "class_list_ac_entry_count").(int)
+	obj26.SystemInstanceResourceUsageClassListEntryCount = d.Get(prefix26 + "class_list_entry_count").(int)
+	obj26.SystemInstanceResourceUsageMaxAflexAuthzCollectionNumber = d.Get(prefix26 + "max_aflex_authz_collection_number").(int)
+	obj26.SystemInstanceResourceUsageRadiusTableSize = d.Get(prefix26 + "radius_table_size").(int)
+	obj26.SystemInstanceResourceUsageAuthzPolicyNumber = d.Get(prefix26 + "authz_policy_number").(int)
+	obj26.SystemInstanceResourceUsageIpsecSaNumber = d.Get(prefix26 + "ipsec_sa_number").(int)
+	obj26.SystemInstanceResourceUsageRAMCacheMemoryLimit = d.Get(prefix26 + "ram_cache_memory_limit").(int)
+	obj26.SystemInstanceResourceUsageWafTemplateCount = d.Get(prefix26 + "waf_template_count").(int)
+	obj26.SystemInstanceResourceUsageAuthSessionCount = d.Get(prefix26 + "auth_session_count").(int)
 
-		   c.LinkDetectionInterval = obj34
+	var obj26_1 go_thunder.SystemInstanceResourceUsageVisibility
+	prefix26_1 := prefix26 + "visibility.0."
+	obj26_1.SystemInstanceResourceUsageVisibilityMonitoredEntityCount = d.Get(prefix26_1 + "monitored_entity_count").(int)
 
+	obj26.SystemInstanceResourceUsageVisibilityMonitoredEntityCount = obj26_1
 
-		   var obj35 go_thunder.Ipsec
-		   prefix35 := "ipsec.0."
-		   obj35.PacketRoundRobin = d.Get(prefix35+"packet_round_robin").(int)
-		   obj35.CryptoCore = d.Get(prefix35+"crypto_core").(int)
-		   obj35.CryptoMem = d.Get(prefix35+"crypto_mem").(int)
+	c.SystemInstanceResourceUsageSslContextMemory = obj26
 
-		   var obj35_1 go_thunder.FpgaDecrypt
-		   prefix35_1 := prefix35 + "fpga_decrypt.0."
-		   obj35_1.Action = d.Get(prefix35_1 +"action").(string)
+	var obj27 go_thunder.SystemInstanceLinkCapability
+	prefix27 := "link_capability.0."
+	obj27.SystemInstanceLinkCapabilityEnable = d.Get(prefix27 + "enable").(int)
 
-		   obj35.Action = obj35_1
+	c.SystemInstanceLinkCapabilityEnable = obj27
 
+	var obj28 go_thunder.SystemInstanceResourceAccounting
+	prefix28 := "resource_accounting.0."
 
-		   c.PacketRoundRobin = obj35
+	SystemInstanceResourceAccountingTemplateListCount := d.Get(prefix28 + "template_list.#").(int)
+	obj28.SystemInstanceResourceAccountingTemplateListName = make([]go_thunder.SystemInstanceResourceAccountingTemplateList, 0, SystemInstanceResourceAccountingTemplateListCount)
 
+	for i := 0; i < SystemInstanceResourceAccountingTemplateListCount; i++ {
+		var obj28_1 go_thunder.SystemInstanceResourceAccountingTemplateList
+		prefix28_1 := prefix28 + fmt.Sprintf("template_list.%d.", i)
+		obj28_1.SystemInstanceResourceAccountingTemplateListName = d.Get(prefix28_1 + "name").(string)
+		obj28_1.SystemInstanceResourceAccountingTemplateListUserTag = d.Get(prefix28_1 + "user_tag").(string)
 
-		   var obj36 go_thunder.SpeProfile
-		   prefix36 := "spe_profile.0."
-		   obj36.Action = d.Get(prefix36+"action").(string)
+		var obj28_1_1 go_thunder.SystemInstanceResourceAccountingTemplateListAppResources
+		prefix28_1_1 := prefix28_1 + "app_resources.0."
 
-		   c.Action = obj36
+		var obj28_1_1_1 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesGslbDeviceCfg
+		prefix28_1_1_1 := prefix28_1_1 + "gslb_device_cfg.0."
+		obj28_1_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbDeviceCfgGslbDeviceMax = d.Get(prefix28_1_1_1 + "gslb_device_max").(int)
+		obj28_1_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbDeviceCfgGslbDeviceMinGuarantee = d.Get(prefix28_1_1_1 + "gslb_device_min_guarantee").(int)
 
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbDeviceCfgGslbDeviceMax = obj28_1_1_1
 
-		   var obj37 go_thunder.SpeStatus
-		   prefix := "spe_status.0."
+		var obj28_1_1_2 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesGslbGeoLocationCfg
+		prefix28_1_1_2 := prefix28_1_1 + "gslb_geo_location_cfg.0."
+		obj28_1_1_2.SystemInstanceResourceAccountingTemplateListAppResourcesGslbGeoLocationCfgGslbGeoLocationMax = d.Get(prefix28_1_1_2 + "gslb_geo_location_max").(int)
+		obj28_1_1_2.SystemInstanceResourceAccountingTemplateListAppResourcesGslbGeoLocationCfgGslbGeoLocationMinGuarantee = d.Get(prefix28_1_1_2 + "gslb_geo_location_min_guarantee").(int)
 
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbGeoLocationCfgGslbGeoLocationMax = obj28_1_1_2
 
-		   c. = obj37
+		var obj28_1_1_3 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesGslbIPListCfg
+		prefix28_1_1_3 := prefix28_1_1 + "gslb_ip_list_cfg.0."
+		obj28_1_1_3.SystemInstanceResourceAccountingTemplateListAppResourcesGslbIPListCfgGslbIPListMax = d.Get(prefix28_1_1_3 + "gslb_ip_list_max").(int)
+		obj28_1_1_3.SystemInstanceResourceAccountingTemplateListAppResourcesGslbIPListCfgGslbIPListMinGuarantee = d.Get(prefix28_1_1_3 + "gslb_ip_list_min_guarantee").(int)
 
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbIPListCfgGslbIPListMax = obj28_1_1_3
 
-		   var obj38 go_thunder.SslStatus
-		   prefix := "ssl_status.0."
+		var obj28_1_1_4 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesGslbPolicyCfg
+		prefix28_1_1_4 := prefix28_1_1 + "gslb_policy_cfg.0."
+		obj28_1_1_4.SystemInstanceResourceAccountingTemplateListAppResourcesGslbPolicyCfgGslbPolicyMax = d.Get(prefix28_1_1_4 + "gslb_policy_max").(int)
+		obj28_1_1_4.SystemInstanceResourceAccountingTemplateListAppResourcesGslbPolicyCfgGslbPolicyMinGuarantee = d.Get(prefix28_1_1_4 + "gslb_policy_min_guarantee").(int)
 
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbPolicyCfgGslbPolicyMax = obj28_1_1_4
 
-		   c. = obj38
+		var obj28_1_1_5 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesGslbServiceCfg
+		prefix28_1_1_5 := prefix28_1_1 + "gslb_service_cfg.0."
+		obj28_1_1_5.SystemInstanceResourceAccountingTemplateListAppResourcesGslbServiceCfgGslbServiceMax = d.Get(prefix28_1_1_5 + "gslb_service_max").(int)
+		obj28_1_1_5.SystemInstanceResourceAccountingTemplateListAppResourcesGslbServiceCfgGslbServiceMinGuarantee = d.Get(prefix28_1_1_5 + "gslb_service_min_guarantee").(int)
 
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbServiceCfgGslbServiceMax = obj28_1_1_5
 
-		   var obj39 go_thunder.DeepHrxq
-		   prefix := "deep_hrxq.0."
-		   obj39.Enable = d.Get(prefix+"enable").(int)
+		var obj28_1_1_6 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesGslbServiceIPCfg
+		prefix28_1_1_6 := prefix28_1_1 + "gslb_service_ip_cfg.0."
+		obj28_1_1_6.SystemInstanceResourceAccountingTemplateListAppResourcesGslbServiceIPCfgGslbServiceIPMax = d.Get(prefix28_1_1_6 + "gslb_service_ip_max").(int)
+		obj28_1_1_6.SystemInstanceResourceAccountingTemplateListAppResourcesGslbServiceIPCfgGslbServiceIPMinGuarantee = d.Get(prefix28_1_1_6 + "gslb_service_ip_min_guarantee").(int)
 
-		   c.Enable = obj39
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbServiceIPCfgGslbServiceIPMax = obj28_1_1_6
 
+		var obj28_1_1_7 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesGslbServicePortCfg
+		prefix28_1_1_7 := prefix28_1_1 + "gslb_service_port_cfg.0."
+		obj28_1_1_7.SystemInstanceResourceAccountingTemplateListAppResourcesGslbServicePortCfgGslbServicePortMax = d.Get(prefix28_1_1_7 + "gslb_service_port_max").(int)
+		obj28_1_1_7.SystemInstanceResourceAccountingTemplateListAppResourcesGslbServicePortCfgGslbServicePortMinGuarantee = d.Get(prefix28_1_1_7 + "gslb_service_port_min_guarantee").(int)
 
-		   var obj40 go_thunder.HrxqStatus
-		   prefix := "hrxq_status.0."
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbServicePortCfgGslbServicePortMax = obj28_1_1_7
 
+		var obj28_1_1_8 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesGslbSiteCfg
+		prefix28_1_1_8 := prefix28_1_1 + "gslb_site_cfg.0."
+		obj28_1_1_8.SystemInstanceResourceAccountingTemplateListAppResourcesGslbSiteCfgGslbSiteMax = d.Get(prefix28_1_1_8 + "gslb_site_max").(int)
+		obj28_1_1_8.SystemInstanceResourceAccountingTemplateListAppResourcesGslbSiteCfgGslbSiteMinGuarantee = d.Get(prefix28_1_1_8 + "gslb_site_min_guarantee").(int)
 
-		   c. = obj40
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbSiteCfgGslbSiteMax = obj28_1_1_8
 
+		var obj28_1_1_9 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesGslbSvcGroupCfg
+		prefix28_1_1_9 := prefix28_1_1 + "gslb_svc_group_cfg.0."
+		obj28_1_1_9.SystemInstanceResourceAccountingTemplateListAppResourcesGslbSvcGroupCfgGslbSvcGroupMax = d.Get(prefix28_1_1_9 + "gslb_svc_group_max").(int)
+		obj28_1_1_9.SystemInstanceResourceAccountingTemplateListAppResourcesGslbSvcGroupCfgGslbSvcGroupMinGuarantee = d.Get(prefix28_1_1_9 + "gslb_svc_group_min_guarantee").(int)
 
-		   var obj41 go_thunder.CpuLoadSharing
-		   prefix := "cpu_load_sharing.0."
-		   obj41.Disable = d.Get(prefix+"disable").(int)
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbSvcGroupCfgGslbSvcGroupMax = obj28_1_1_9
 
-		   var obj1 go_thunder.PacketsPerSecond
-		   prefix := "packets_per_second.0."
-		   obj1.Min = d.Get(prefix+"min").(int)
+		var obj28_1_1_10 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesGslbTemplateCfg
+		prefix28_1_1_10 := prefix28_1_1 + "gslb_template_cfg.0."
+		obj28_1_1_10.SystemInstanceResourceAccountingTemplateListAppResourcesGslbTemplateCfgGslbTemplateMax = d.Get(prefix28_1_1_10 + "gslb_template_max").(int)
+		obj28_1_1_10.SystemInstanceResourceAccountingTemplateListAppResourcesGslbTemplateCfgGslbTemplateMinGuarantee = d.Get(prefix28_1_1_10 + "gslb_template_min_guarantee").(int)
 
-		   obj41.Min = obj1
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbTemplateCfgGslbTemplateMax = obj28_1_1_10
 
+		var obj28_1_1_11 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesGslbZoneCfg
+		prefix28_1_1_11 := prefix28_1_1 + "gslb_zone_cfg.0."
+		obj28_1_1_11.SystemInstanceResourceAccountingTemplateListAppResourcesGslbZoneCfgGslbZoneMax = d.Get(prefix28_1_1_11 + "gslb_zone_max").(int)
+		obj28_1_1_11.SystemInstanceResourceAccountingTemplateListAppResourcesGslbZoneCfgGslbZoneMinGuarantee = d.Get(prefix28_1_1_11 + "gslb_zone_min_guarantee").(int)
 
-		   var obj2 go_thunder.CpuUsage
-		   prefix := "cpu_usage.0."
-		   obj2.Low = d.Get(prefix+"low").(int)
-		   obj2.High = d.Get(prefix+"high").(int)
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbZoneCfgGslbZoneMax = obj28_1_1_11
 
-		   obj41.Low = obj2
+		var obj28_1_1_12 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesHealthMonitorCfg
+		prefix28_1_1_12 := prefix28_1_1 + "health_monitor_cfg.0."
+		obj28_1_1_12.SystemInstanceResourceAccountingTemplateListAppResourcesHealthMonitorCfgHealthMonitorMax = d.Get(prefix28_1_1_12 + "health_monitor_max").(int)
+		obj28_1_1_12.SystemInstanceResourceAccountingTemplateListAppResourcesHealthMonitorCfgHealthMonitorMinGuarantee = d.Get(prefix28_1_1_12 + "health_monitor_min_guarantee").(int)
 
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesHealthMonitorCfgHealthMonitorMax = obj28_1_1_12
 
-		   c.Disable = obj41
+		var obj28_1_1_13 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesRealPortCfg
+		prefix28_1_1_13 := prefix28_1_1 + "real_port_cfg.0."
+		obj28_1_1_13.SystemInstanceResourceAccountingTemplateListAppResourcesRealPortCfgRealPortMax = d.Get(prefix28_1_1_13 + "real_port_max").(int)
+		obj28_1_1_13.SystemInstanceResourceAccountingTemplateListAppResourcesRealPortCfgRealPortMinGuarantee = d.Get(prefix28_1_1_13 + "real_port_min_guarantee").(int)
 
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesRealPortCfgRealPortMax = obj28_1_1_13
 
-		   var obj42 go_thunder.PerVlanLimit
-		   prefix := "per_vlan_limit.0."
-		   obj42.Bcast = d.Get(prefix+"bcast").(int)
-		   obj42.Ipmcast = d.Get(prefix+"ipmcast").(int)
-		   obj42.Mcast = d.Get(prefix+"mcast").(int)
-		   obj42.UnknownUcast = d.Get(prefix+"unknown_ucast").(int)
+		var obj28_1_1_14 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesRealServerCfg
+		prefix28_1_1_14 := prefix28_1_1 + "real_server_cfg.0."
+		obj28_1_1_14.SystemInstanceResourceAccountingTemplateListAppResourcesRealServerCfgRealServerMax = d.Get(prefix28_1_1_14 + "real_server_max").(int)
+		obj28_1_1_14.SystemInstanceResourceAccountingTemplateListAppResourcesRealServerCfgRealServerMinGuarantee = d.Get(prefix28_1_1_14 + "real_server_min_guarantee").(int)
 
-		   c.Bcast = obj42
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesRealServerCfgRealServerMax = obj28_1_1_14
 
+		var obj28_1_1_15 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesServiceGroupCfg
+		prefix28_1_1_15 := prefix28_1_1 + "service_group_cfg.0."
+		obj28_1_1_15.SystemInstanceResourceAccountingTemplateListAppResourcesServiceGroupCfgServiceGroupMax = d.Get(prefix28_1_1_15 + "service_group_max").(int)
+		obj28_1_1_15.SystemInstanceResourceAccountingTemplateListAppResourcesServiceGroupCfgServiceGroupMinGuarantee = d.Get(prefix28_1_1_15 + "service_group_min_guarantee").(int)
 
-		   var obj43 go_thunder.AllVlanLimit
-		   prefix := "all_vlan_limit.0."
-		   obj43.Bcast = d.Get(prefix+"bcast").(int)
-		   obj43.Ipmcast = d.Get(prefix+"ipmcast").(int)
-		   obj43.Mcast = d.Get(prefix+"mcast").(int)
-		   obj43.UnknownUcast = d.Get(prefix+"unknown_ucast").(int)
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesServiceGroupCfgServiceGroupMax = obj28_1_1_15
 
-		   c.Bcast = obj43
+		var obj28_1_1_16 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesVirtualServerCfg
+		prefix28_1_1_16 := prefix28_1_1 + "virtual_server_cfg.0."
+		obj28_1_1_16.SystemInstanceResourceAccountingTemplateListAppResourcesVirtualServerCfgVirtualServerMax = d.Get(prefix28_1_1_16 + "virtual_server_max").(int)
+		obj28_1_1_16.SystemInstanceResourceAccountingTemplateListAppResourcesVirtualServerCfgVirtualServerMinGuarantee = d.Get(prefix28_1_1_16 + "virtual_server_min_guarantee").(int)
 
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesVirtualServerCfgVirtualServerMax = obj28_1_1_16
 
-		   var obj44 go_thunder.VeMacScheme
-		   prefix := "ve_mac_scheme.0."
-		   obj44.VeMacSchemeVal = d.Get(prefix+"ve_mac_scheme_val").(string)
+		var obj28_1_1_17 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesVirtualPortCfg
+		prefix28_1_1_17 := prefix28_1_1 + "virtual_port_cfg.0."
+		obj28_1_1_17.SystemInstanceResourceAccountingTemplateListAppResourcesVirtualPortCfgVirtualPortMax = d.Get(prefix28_1_1_17 + "virtual_port_max").(int)
+		obj28_1_1_17.SystemInstanceResourceAccountingTemplateListAppResourcesVirtualPortCfgVirtualPortMinGuarantee = d.Get(prefix28_1_1_17 + "virtual_port_min_guarantee").(int)
 
-		   c.VeMacSchemeVal = obj44
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesVirtualPortCfgVirtualPortMax = obj28_1_1_17
 
+		var obj28_1_1_18 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesCacheTemplateCfg
+		prefix28_1_1_18 := prefix28_1_1 + "cache_template_cfg.0."
+		obj28_1_1_18.SystemInstanceResourceAccountingTemplateListAppResourcesCacheTemplateCfgCacheTemplateMax = d.Get(prefix28_1_1_18 + "cache_template_max").(int)
+		obj28_1_1_18.SystemInstanceResourceAccountingTemplateListAppResourcesCacheTemplateCfgCacheTemplateMinGuarantee = d.Get(prefix28_1_1_18 + "cache_template_min_guarantee").(int)
 
-		   var obj45 go_thunder.SessionReclaimLimit
-		   prefix := "session_reclaim_limit.0."
-		   obj45.NscanLimit = d.Get(prefix+"nscan_limit").(int)
-		   obj45.ScanFreq = d.Get(prefix+"scan_freq").(int)
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesCacheTemplateCfgCacheTemplateMax = obj28_1_1_18
 
-		   c.NscanLimit = obj45
+		var obj28_1_1_19 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesClientSslTemplateCfg
+		prefix28_1_1_19 := prefix28_1_1 + "client_ssl_template_cfg.0."
+		obj28_1_1_19.SystemInstanceResourceAccountingTemplateListAppResourcesClientSslTemplateCfgClientSslTemplateMax = d.Get(prefix28_1_1_19 + "client_ssl_template_max").(int)
+		obj28_1_1_19.SystemInstanceResourceAccountingTemplateListAppResourcesClientSslTemplateCfgClientSslTemplateMinGuarantee = d.Get(prefix28_1_1_19 + "client_ssl_template_min_guarantee").(int)
 
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesClientSslTemplateCfgClientSslTemplateMax = obj28_1_1_19
 
-		   var obj46 go_thunder.SslScv
-		   prefix := "ssl_scv.0."
-		   obj46.Enable = d.Get(prefix+"enable").(int)
+		var obj28_1_1_20 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesConnReuseTemplateCfg
+		prefix28_1_1_20 := prefix28_1_1 + "conn_reuse_template_cfg.0."
+		obj28_1_1_20.SystemInstanceResourceAccountingTemplateListAppResourcesConnReuseTemplateCfgConnReuseTemplateMax = d.Get(prefix28_1_1_20 + "conn_reuse_template_max").(int)
+		obj28_1_1_20.SystemInstanceResourceAccountingTemplateListAppResourcesConnReuseTemplateCfgConnReuseTemplateMinGuarantee = d.Get(prefix28_1_1_20 + "conn_reuse_template_min_guarantee").(int)
 
-		   c.Enable = obj46
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesConnReuseTemplateCfgConnReuseTemplateMax = obj28_1_1_20
 
+		var obj28_1_1_21 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesFastTCPTemplateCfg
+		prefix28_1_1_21 := prefix28_1_1 + "fast_tcp_template_cfg.0."
+		obj28_1_1_21.SystemInstanceResourceAccountingTemplateListAppResourcesFastTCPTemplateCfgFastTCPTemplateMax = d.Get(prefix28_1_1_21 + "fast_tcp_template_max").(int)
+		obj28_1_1_21.SystemInstanceResourceAccountingTemplateListAppResourcesFastTCPTemplateCfgFastTCPTemplateMinGuarantee = d.Get(prefix28_1_1_21 + "fast_tcp_template_min_guarantee").(int)
 
-		   var obj47 go_thunder.Hardware
-		   prefix := "hardware.0."
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesFastTCPTemplateCfgFastTCPTemplateMax = obj28_1_1_21
 
+		var obj28_1_1_22 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesFastUDPTemplateCfg
+		prefix28_1_1_22 := prefix28_1_1 + "fast_udp_template_cfg.0."
+		obj28_1_1_22.SystemInstanceResourceAccountingTemplateListAppResourcesFastUDPTemplateCfgFastUDPTemplateMax = d.Get(prefix28_1_1_22 + "fast_udp_template_max").(int)
+		obj28_1_1_22.SystemInstanceResourceAccountingTemplateListAppResourcesFastUDPTemplateCfgFastUDPTemplateMinGuarantee = d.Get(prefix28_1_1_22 + "fast_udp_template_min_guarantee").(int)
 
-		   c. = obj47
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesFastUDPTemplateCfgFastUDPTemplateMax = obj28_1_1_22
 
+		var obj28_1_1_23 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesFixTemplateCfg
+		prefix28_1_1_23 := prefix28_1_1 + "fix_template_cfg.0."
+		obj28_1_1_23.SystemInstanceResourceAccountingTemplateListAppResourcesFixTemplateCfgFixTemplateMax = d.Get(prefix28_1_1_23 + "fix_template_max").(int)
+		obj28_1_1_23.SystemInstanceResourceAccountingTemplateListAppResourcesFixTemplateCfgFixTemplateMinGuarantee = d.Get(prefix28_1_1_23 + "fix_template_min_guarantee").(int)
 
-		   var obj48 go_thunder.Platformtype
-		   prefix := "platformtype.0."
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesFixTemplateCfgFixTemplateMax = obj28_1_1_23
 
+		var obj28_1_1_24 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesHTTPTemplateCfg
+		prefix28_1_1_24 := prefix28_1_1 + "http_template_cfg.0."
+		obj28_1_1_24.SystemInstanceResourceAccountingTemplateListAppResourcesHTTPTemplateCfgHTTPTemplateMax = d.Get(prefix28_1_1_24 + "http_template_max").(int)
+		obj28_1_1_24.SystemInstanceResourceAccountingTemplateListAppResourcesHTTPTemplateCfgHTTPTemplateMinGuarantee = d.Get(prefix28_1_1_24 + "http_template_min_guarantee").(int)
 
-		   c. = obj48
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesHTTPTemplateCfgHTTPTemplateMax = obj28_1_1_24
 
+		var obj28_1_1_25 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesLinkCostTemplateCfg
+		prefix28_1_1_25 := prefix28_1_1 + "link_cost_template_cfg.0."
+		obj28_1_1_25.SystemInstanceResourceAccountingTemplateListAppResourcesLinkCostTemplateCfgLinkCostTemplateMax = d.Get(prefix28_1_1_25 + "link_cost_template_max").(int)
+		obj28_1_1_25.SystemInstanceResourceAccountingTemplateListAppResourcesLinkCostTemplateCfgLinkCostTemplateMinGuarantee = d.Get(prefix28_1_1_25 + "link_cost_template_min_guarantee").(int)
 
-		   var obj49 go_thunder.Reboot
-		   prefix := "reboot.0."
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesLinkCostTemplateCfgLinkCostTemplateMax = obj28_1_1_25
 
+		var obj28_1_1_26 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesPersistCookieTemplateCfg
+		prefix28_1_1_26 := prefix28_1_1 + "persist_cookie_template_cfg.0."
+		obj28_1_1_26.SystemInstanceResourceAccountingTemplateListAppResourcesPersistCookieTemplateCfgPersistCookieTemplateMax = d.Get(prefix28_1_1_26 + "persist_cookie_template_max").(int)
+		obj28_1_1_26.SystemInstanceResourceAccountingTemplateListAppResourcesPersistCookieTemplateCfgPersistCookieTemplateMinGuarantee = d.Get(prefix28_1_1_26 + "persist_cookie_template_min_guarantee").(int)
 
-		   c. = obj49
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesPersistCookieTemplateCfgPersistCookieTemplateMax = obj28_1_1_26
 
+		var obj28_1_1_27 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesPersistSrcipTemplateCfg
+		prefix28_1_1_27 := prefix28_1_1 + "persist_srcip_template_cfg.0."
+		obj28_1_1_27.SystemInstanceResourceAccountingTemplateListAppResourcesPersistSrcipTemplateCfgPersistSrcipTemplateMax = d.Get(prefix28_1_1_27 + "persist_srcip_template_max").(int)
+		obj28_1_1_27.SystemInstanceResourceAccountingTemplateListAppResourcesPersistSrcipTemplateCfgPersistSrcipTemplateMinGuarantee = d.Get(prefix28_1_1_27 + "persist_srcip_template_min_guarantee").(int)
 
-		   var obj50 go_thunder.Shutdown
-		   prefix := "shutdown.0."
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesPersistSrcipTemplateCfgPersistSrcipTemplateMax = obj28_1_1_27
 
+		var obj28_1_1_28 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesServerSslTemplateCfg
+		prefix28_1_1_28 := prefix28_1_1 + "server_ssl_template_cfg.0."
+		obj28_1_1_28.SystemInstanceResourceAccountingTemplateListAppResourcesServerSslTemplateCfgServerSslTemplateMax = d.Get(prefix28_1_1_28 + "server_ssl_template_max").(int)
+		obj28_1_1_28.SystemInstanceResourceAccountingTemplateListAppResourcesServerSslTemplateCfgServerSslTemplateMinGuarantee = d.Get(prefix28_1_1_28 + "server_ssl_template_min_guarantee").(int)
 
-		   c. = obj50
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesServerSslTemplateCfgServerSslTemplateMax = obj28_1_1_28
 
+		var obj28_1_1_29 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesProxyTemplateCfg
+		prefix28_1_1_29 := prefix28_1_1 + "proxy_template_cfg.0."
+		obj28_1_1_29.SystemInstanceResourceAccountingTemplateListAppResourcesProxyTemplateCfgProxyTemplateMax = d.Get(prefix28_1_1_29 + "proxy_template_max").(int)
+		obj28_1_1_29.SystemInstanceResourceAccountingTemplateListAppResourcesProxyTemplateCfgProxyTemplateMinGuarantee = d.Get(prefix28_1_1_29 + "proxy_template_min_guarantee").(int)
 
-		   var obj51 go_thunder.Environment
-		   prefix := "environment.0."
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesProxyTemplateCfgProxyTemplateMax = obj28_1_1_29
 
+		var obj28_1_1_30 go_thunder.SystemInstanceResourceAccountingTemplateListAppResourcesStreamTemplateCfg
+		prefix28_1_1_30 := prefix28_1_1 + "stream_template_cfg.0."
+		obj28_1_1_30.SystemInstanceResourceAccountingTemplateListAppResourcesStreamTemplateCfgStreamTemplateMax = d.Get(prefix28_1_1_30 + "stream_template_max").(int)
+		obj28_1_1_30.SystemInstanceResourceAccountingTemplateListAppResourcesStreamTemplateCfgStreamTemplateMinGuarantee = d.Get(prefix28_1_1_30 + "stream_template_min_guarantee").(int)
 
-		   c. = obj51
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesStreamTemplateCfgStreamTemplateMax = obj28_1_1_30
 
+		obj28_1_1.SystemInstanceResourceAccountingTemplateListAppResourcesThreshold = d.Get(prefix28_1_1 + "threshold").(int)
 
-		   var obj52 go_thunder.HardwareForward
-		   prefix := "hardware_forward.0."
+		obj28_1.SystemInstanceResourceAccountingTemplateListAppResourcesGslbDeviceCfg = obj28_1_1
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj52.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+		var obj28_1_2 go_thunder.SystemInstanceResourceAccountingTemplateListNetworkResources
+		prefix28_1_2 := prefix28_1 + "network_resources.0."
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj52.Counters1 = append(obj52.Counters1, obj1)
-		   }
+		var obj28_1_2_1 go_thunder.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticIpv4RouteCfg
+		prefix28_1_2_1 := prefix28_1_2 + "static_ipv4_route_cfg.0."
+		obj28_1_2_1.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticIpv4RouteCfgStaticIpv4RouteMax = d.Get(prefix28_1_2_1 + "static_ipv4_route_max").(int)
+		obj28_1_2_1.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticIpv4RouteCfgStaticIpv4RouteMinGuarantee = d.Get(prefix28_1_2_1 + "static_ipv4_route_min_guarantee").(int)
 
+		obj28_1_2.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticIpv4RouteCfgStaticIpv4RouteMax = obj28_1_2_1
 
-		   var obj2 go_thunder.Slb
-		   prefix := "slb.0."
+		var obj28_1_2_2 go_thunder.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticIpv6RouteCfg
+		prefix28_1_2_2 := prefix28_1_2 + "static_ipv6_route_cfg.0."
+		obj28_1_2_2.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticIpv6RouteCfgStaticIpv6RouteMax = d.Get(prefix28_1_2_2 + "static_ipv6_route_max").(int)
+		obj28_1_2_2.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticIpv6RouteCfgStaticIpv6RouteMinGuarantee = d.Get(prefix28_1_2_2 + "static_ipv6_route_min_guarantee").(int)
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj2.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+		obj28_1_2.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticIpv6RouteCfgStaticIpv6RouteMax = obj28_1_2_2
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj2.Counters1 = append(obj2.Counters1, obj1)
-		   }
+		var obj28_1_2_3 go_thunder.SystemInstanceResourceAccountingTemplateListNetworkResourcesIpv4AclLineCfg
+		prefix28_1_2_3 := prefix28_1_2 + "ipv4_acl_line_cfg.0."
+		obj28_1_2_3.SystemInstanceResourceAccountingTemplateListNetworkResourcesIpv4AclLineCfgIpv4AclLineMax = d.Get(prefix28_1_2_3 + "ipv4_acl_line_max").(int)
+		obj28_1_2_3.SystemInstanceResourceAccountingTemplateListNetworkResourcesIpv4AclLineCfgIpv4AclLineMinGuarantee = d.Get(prefix28_1_2_3 + "ipv4_acl_line_min_guarantee").(int)
 
+		obj28_1_2.SystemInstanceResourceAccountingTemplateListNetworkResourcesIpv4AclLineCfgIpv4AclLineMax = obj28_1_2_3
 
-		   obj52. = obj2
+		var obj28_1_2_4 go_thunder.SystemInstanceResourceAccountingTemplateListNetworkResourcesIpv6AclLineCfg
+		prefix28_1_2_4 := prefix28_1_2 + "ipv6_acl_line_cfg.0."
+		obj28_1_2_4.SystemInstanceResourceAccountingTemplateListNetworkResourcesIpv6AclLineCfgIpv6AclLineMax = d.Get(prefix28_1_2_4 + "ipv6_acl_line_max").(int)
+		obj28_1_2_4.SystemInstanceResourceAccountingTemplateListNetworkResourcesIpv6AclLineCfgIpv6AclLineMinGuarantee = d.Get(prefix28_1_2_4 + "ipv6_acl_line_min_guarantee").(int)
 
+		obj28_1_2.SystemInstanceResourceAccountingTemplateListNetworkResourcesIpv6AclLineCfgIpv6AclLineMax = obj28_1_2_4
 
-		   c.SamplingEnable = obj52
+		var obj28_1_2_5 go_thunder.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticArpCfg
+		prefix28_1_2_5 := prefix28_1_2 + "static_arp_cfg.0."
+		obj28_1_2_5.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticArpCfgStaticArpMax = d.Get(prefix28_1_2_5 + "static_arp_max").(int)
+		obj28_1_2_5.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticArpCfgStaticArpMinGuarantee = d.Get(prefix28_1_2_5 + "static_arp_min_guarantee").(int)
 
+		obj28_1_2.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticArpCfgStaticArpMax = obj28_1_2_5
 
-		   var obj53 go_thunder.Throughput
-		   prefix := "throughput.0."
+		var obj28_1_2_6 go_thunder.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticNeighborCfg
+		prefix28_1_2_6 := prefix28_1_2 + "static_neighbor_cfg.0."
+		obj28_1_2_6.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticNeighborCfgStaticNeighborMax = d.Get(prefix28_1_2_6 + "static_neighbor_max").(int)
+		obj28_1_2_6.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticNeighborCfgStaticNeighborMinGuarantee = d.Get(prefix28_1_2_6 + "static_neighbor_min_guarantee").(int)
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj53.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+		obj28_1_2.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticNeighborCfgStaticNeighborMax = obj28_1_2_6
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj53.Counters1 = append(obj53.Counters1, obj1)
-		   }
+		var obj28_1_2_7 go_thunder.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticMacCfg
+		prefix28_1_2_7 := prefix28_1_2 + "static_mac_cfg.0."
+		obj28_1_2_7.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticMacCfgStaticMacMax = d.Get(prefix28_1_2_7 + "static_mac_max").(int)
+		obj28_1_2_7.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticMacCfgStaticMacMinGuarantee = d.Get(prefix28_1_2_7 + "static_mac_min_guarantee").(int)
 
+		obj28_1_2.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticMacCfgStaticMacMax = obj28_1_2_7
 
-		   c.SamplingEnable = obj53
+		var obj28_1_2_8 go_thunder.SystemInstanceResourceAccountingTemplateListNetworkResourcesObjectGroupCfg
+		prefix28_1_2_8 := prefix28_1_2 + "object_group_cfg.0."
+		obj28_1_2_8.SystemInstanceResourceAccountingTemplateListNetworkResourcesObjectGroupCfgObjectGroupMax = d.Get(prefix28_1_2_8 + "object_group_max").(int)
+		obj28_1_2_8.SystemInstanceResourceAccountingTemplateListNetworkResourcesObjectGroupCfgObjectGroupMinGuarantee = d.Get(prefix28_1_2_8 + "object_group_min_guarantee").(int)
 
+		obj28_1_2.SystemInstanceResourceAccountingTemplateListNetworkResourcesObjectGroupCfgObjectGroupMax = obj28_1_2_8
 
-		   var obj54 go_thunder.Ipmi
-		   prefix := "ipmi.0."
-		   obj54.Reset = d.Get(prefix+"reset").(int)
+		var obj28_1_2_9 go_thunder.SystemInstanceResourceAccountingTemplateListNetworkResourcesObjectGroupClauseCfg
+		prefix28_1_2_9 := prefix28_1_2 + "object_group_clause_cfg.0."
+		obj28_1_2_9.SystemInstanceResourceAccountingTemplateListNetworkResourcesObjectGroupClauseCfgObjectGroupClauseMax = d.Get(prefix28_1_2_9 + "object_group_clause_max").(int)
+		obj28_1_2_9.SystemInstanceResourceAccountingTemplateListNetworkResourcesObjectGroupClauseCfgObjectGroupClauseMinGuarantee = d.Get(prefix28_1_2_9 + "object_group_clause_min_guarantee").(int)
 
-		   var obj1 go_thunder.Ip
-		   prefix := "ip.0."
-		   obj1.Ipv4Address = d.Get(prefix+"ipv4_address").(string)
-		   obj1.Ipv4Netmask = d.Get(prefix+"ipv4_netmask").(string)
-		   obj1.DefaultGateway = d.Get(prefix+"default_gateway").(string)
+		obj28_1_2.SystemInstanceResourceAccountingTemplateListNetworkResourcesObjectGroupClauseCfgObjectGroupClauseMax = obj28_1_2_9
 
-		   obj54.Ipv4Address = obj1
+		obj28_1_2.SystemInstanceResourceAccountingTemplateListNetworkResourcesThreshold = d.Get(prefix28_1_2 + "threshold").(int)
 
+		obj28_1.SystemInstanceResourceAccountingTemplateListNetworkResourcesStaticIpv4RouteCfg = obj28_1_2
 
-		   var obj2 go_thunder.Ipsrc
-		   prefix := "ipsrc.0."
-		   obj2.Dhcp = d.Get(prefix+"dhcp").(int)
-		   obj2.Static = d.Get(prefix+"static").(int)
+		var obj28_1_3 go_thunder.SystemInstanceResourceAccountingTemplateListSystemResources
+		prefix28_1_3 := prefix28_1 + "system_resources.0."
 
-		   obj54.Dhcp = obj2
+		var obj28_1_3_1 go_thunder.SystemInstanceResourceAccountingTemplateListSystemResourcesBwLimitCfg
+		prefix28_1_3_1 := prefix28_1_3 + "bw_limit_cfg.0."
+		obj28_1_3_1.SystemInstanceResourceAccountingTemplateListSystemResourcesBwLimitCfgBwLimitMax = d.Get(prefix28_1_3_1 + "bw_limit_max").(int)
+		obj28_1_3_1.SystemInstanceResourceAccountingTemplateListSystemResourcesBwLimitCfgBwLimitWatermarkDisable = d.Get(prefix28_1_3_1 + "bw_limit_watermark_disable").(int)
 
+		obj28_1_3.SystemInstanceResourceAccountingTemplateListSystemResourcesBwLimitCfgBwLimitMax = obj28_1_3_1
 
-		   var obj3 go_thunder.User
-		   prefix := "user.0."
-		   obj3.Add = d.Get(prefix+"add").(string)
-		   obj3.Password = d.Get(prefix+"password").(string)
-		   obj3.Administrator = d.Get(prefix+"administrator").(int)
-		   obj3.Callback = d.Get(prefix+"callback").(int)
-		   obj3.Operator = d.Get(prefix+"operator").(int)
-		   obj3.User = d.Get(prefix+"user").(int)
-		   obj3.Disable = d.Get(prefix+"disable").(string)
-		   obj3.Privilege = d.Get(prefix+"privilege").(string)
-		   obj3.Setname = d.Get(prefix+"setname").(string)
-		   obj3.Newname = d.Get(prefix+"newname").(string)
-		   obj3.Setpass = d.Get(prefix+"setpass").(string)
-		   obj3.Newpass = d.Get(prefix+"newpass").(string)
+		var obj28_1_3_2 go_thunder.SystemInstanceResourceAccountingTemplateListSystemResourcesConcurrentSessionLimitCfg
+		prefix28_1_3_2 := prefix28_1_3 + "concurrent_session_limit_cfg.0."
+		obj28_1_3_2.SystemInstanceResourceAccountingTemplateListSystemResourcesConcurrentSessionLimitCfgConcurrentSessionLimitMax = d.Get(prefix28_1_3_2 + "concurrent_session_limit_max").(int)
 
-		   obj54.Add = obj3
+		obj28_1_3.SystemInstanceResourceAccountingTemplateListSystemResourcesConcurrentSessionLimitCfgConcurrentSessionLimitMax = obj28_1_3_2
 
+		var obj28_1_3_3 go_thunder.SystemInstanceResourceAccountingTemplateListSystemResourcesL4SessionLimitCfg
+		prefix28_1_3_3 := prefix28_1_3 + "l4_session_limit_cfg.0."
+		obj28_1_3_3.SystemInstanceResourceAccountingTemplateListSystemResourcesL4SessionLimitCfgL4SessionLimitMax = d.Get(prefix28_1_3_3 + "l4_session_limit_max").(string)
+		obj28_1_3_3.SystemInstanceResourceAccountingTemplateListSystemResourcesL4SessionLimitCfgL4SessionLimitMinGuarantee = d.Get(prefix28_1_3_3 + "l4_session_limit_min_guarantee").(string)
 
-		   var obj4 go_thunder.Tool
-		   prefix := "tool.0."
-		   obj4.Cmd = d.Get(prefix+"cmd").(string)
+		obj28_1_3.SystemInstanceResourceAccountingTemplateListSystemResourcesL4SessionLimitCfgL4SessionLimitMax = obj28_1_3_3
 
-		   obj54.Cmd = obj4
+		var obj28_1_3_4 go_thunder.SystemInstanceResourceAccountingTemplateListSystemResourcesL4CpsLimitCfg
+		prefix28_1_3_4 := prefix28_1_3 + "l4cps_limit_cfg.0."
+		obj28_1_3_4.SystemInstanceResourceAccountingTemplateListSystemResourcesL4CpsLimitCfgL4CpsLimitMax = d.Get(prefix28_1_3_4 + "l4cps_limit_max").(int)
 
+		obj28_1_3.SystemInstanceResourceAccountingTemplateListSystemResourcesL4CpsLimitCfgL4CpsLimitMax = obj28_1_3_4
 
-		   c.Reset = obj54
+		var obj28_1_3_5 go_thunder.SystemInstanceResourceAccountingTemplateListSystemResourcesL7CpsLimitCfg
+		prefix28_1_3_5 := prefix28_1_3 + "l7cps_limit_cfg.0."
+		obj28_1_3_5.SystemInstanceResourceAccountingTemplateListSystemResourcesL7CpsLimitCfgL7CpsLimitMax = d.Get(prefix28_1_3_5 + "l7cps_limit_max").(int)
 
+		obj28_1_3.SystemInstanceResourceAccountingTemplateListSystemResourcesL7CpsLimitCfgL7CpsLimitMax = obj28_1_3_5
 
-		   var obj55 go_thunder.QueuingBuffer
-		   prefix := "queuing_buffer.0."
-		   obj55.Enable = d.Get(prefix+"enable").(int)
+		var obj28_1_3_6 go_thunder.SystemInstanceResourceAccountingTemplateListSystemResourcesNatcpsLimitCfg
+		prefix28_1_3_6 := prefix28_1_3 + "natcps_limit_cfg.0."
+		obj28_1_3_6.SystemInstanceResourceAccountingTemplateListSystemResourcesNatcpsLimitCfgNatcpsLimitMax = d.Get(prefix28_1_3_6 + "natcps_limit_max").(int)
 
-		   c.Enable = obj55
+		obj28_1_3.SystemInstanceResourceAccountingTemplateListSystemResourcesNatcpsLimitCfgNatcpsLimitMax = obj28_1_3_6
 
+		var obj28_1_3_7 go_thunder.SystemInstanceResourceAccountingTemplateListSystemResourcesFwcpsLimitCfg
+		prefix28_1_3_7 := prefix28_1_3 + "fwcps_limit_cfg.0."
+		obj28_1_3_7.SystemInstanceResourceAccountingTemplateListSystemResourcesFwcpsLimitCfgFwcpsLimitMax = d.Get(prefix28_1_3_7 + "fwcps_limit_max").(int)
 
-		   var obj56 go_thunder.TrunkHwHash
-		   prefix := "trunk_hw_hash.0."
-		   obj56.Mode = d.Get(prefix+"mode").(int)
+		obj28_1_3.SystemInstanceResourceAccountingTemplateListSystemResourcesFwcpsLimitCfgFwcpsLimitMax = obj28_1_3_7
 
-		   c.Mode = obj56
+		var obj28_1_3_8 go_thunder.SystemInstanceResourceAccountingTemplateListSystemResourcesSslThroughputLimitCfg
+		prefix28_1_3_8 := prefix28_1_3 + "ssl_throughput_limit_cfg.0."
+		obj28_1_3_8.SystemInstanceResourceAccountingTemplateListSystemResourcesSslThroughputLimitCfgSslThroughputLimitMax = d.Get(prefix28_1_3_8 + "ssl_throughput_limit_max").(int)
+		obj28_1_3_8.SystemInstanceResourceAccountingTemplateListSystemResourcesSslThroughputLimitCfgSslThroughputLimitWatermarkDisable = d.Get(prefix28_1_3_8 + "ssl_throughput_limit_watermark_disable").(int)
 
+		obj28_1_3.SystemInstanceResourceAccountingTemplateListSystemResourcesSslThroughputLimitCfgSslThroughputLimitMax = obj28_1_3_8
 
-		   var obj57 go_thunder.TrunkXauiHwHash
-		   prefix := "trunk_xaui_hw_hash.0."
-		   obj57.Mode = d.Get(prefix+"mode").(int)
+		var obj28_1_3_9 go_thunder.SystemInstanceResourceAccountingTemplateListSystemResourcesSslcpsLimitCfg
+		prefix28_1_3_9 := prefix28_1_3 + "sslcps_limit_cfg.0."
+		obj28_1_3_9.SystemInstanceResourceAccountingTemplateListSystemResourcesSslcpsLimitCfgSslcpsLimitMax = d.Get(prefix28_1_3_9 + "sslcps_limit_max").(int)
 
-		   c.Mode = obj57
+		obj28_1_3.SystemInstanceResourceAccountingTemplateListSystemResourcesSslcpsLimitCfgSslcpsLimitMax = obj28_1_3_9
 
+		obj28_1_3.SystemInstanceResourceAccountingTemplateListSystemResourcesThreshold = d.Get(prefix28_1_3 + "threshold").(int)
 
-		   var obj58 go_thunder.UpgradeStatus
-		   prefix := "upgrade_status.0."
+		obj28_1.SystemInstanceResourceAccountingTemplateListSystemResourcesBwLimitCfg = obj28_1_3
 
+		obj28.SystemInstanceResourceAccountingTemplateListName = append(obj28.SystemInstanceResourceAccountingTemplateListName, obj28_1)
+	}
 
-		   c. = obj58
+	c.SystemInstanceResourceAccountingUUID = obj28
 
+	var obj29 go_thunder.SystemInstanceTrunk
+	prefix29 := "trunk.0."
 
-		   var obj59 go_thunder.GuestFile
-		   prefix := "guest_file.0."
+	var obj29_1 go_thunder.SystemInstanceTrunkLoadBalance
+	prefix29_1 := prefix29 + "load_balance.0."
+	obj29_1.SystemInstanceTrunkLoadBalanceUseL3 = d.Get(prefix29_1 + "use_l3").(int)
+	obj29_1.SystemInstanceTrunkLoadBalanceUseL4 = d.Get(prefix29_1 + "use_l4").(int)
 
+	obj29.SystemInstanceTrunkLoadBalanceUseL3 = obj29_1
 
-		   c. = obj59
+	c.SystemInstanceTrunkLoadBalance = obj29
 
+	var obj30 go_thunder.SystemInstancePorts
+	prefix30 := "ports.0."
+	obj30.SystemInstancePortsLinkDetectionInterval = d.Get(prefix30 + "link_detection_interval").(int)
 
-		   var obj60 go_thunder.CmUpdateFileNameRef
-		   prefix := "cm_update_file_name_ref.0."
-		   obj60.Source_name = d.Get(prefix+"source_name").(string)
-		   obj60.Dest_name = d.Get(prefix+"dest_name").(string)
-		   obj60.Id = d.Get(prefix+"id").(int)
+	c.SystemInstancePortsLinkDetectionInterval = obj30
 
-		   c.Source_name = obj60
+	var obj31 go_thunder.SystemInstanceTableIntegrity
+	prefix31 := "table_integrity.0."
+	obj31.SystemInstanceTableIntegrityTable = d.Get(prefix31 + "table").(string)
+	obj31.SystemInstanceTableIntegrityAuditAction = d.Get(prefix31 + "audit_action").(string)
+	obj31.SystemInstanceTableIntegrityAutoSyncAction = d.Get(prefix31 + "auto_sync_action").(string)
 
+	SystemInstanceTableIntegritySamplingEnableCount := d.Get(prefix31 + "sampling_enable.#").(int)
+	obj31.SystemInstanceTableIntegritySamplingEnableCounters1 = make([]go_thunder.SystemInstanceTableIntegritySamplingEnable, 0, SystemInstanceTableIntegritySamplingEnableCount)
 
-		   var obj61 go_thunder.Core
-		   prefix := "core.0."
+	for i := 0; i < SystemInstanceTableIntegritySamplingEnableCount; i++ {
+		var obj31_1 go_thunder.SystemInstanceTableIntegritySamplingEnable
+		prefix31_1 := prefix31 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj31_1.SystemInstanceTableIntegritySamplingEnableCounters1 = d.Get(prefix31_1 + "counters1").(string)
+		obj31.SystemInstanceTableIntegritySamplingEnableCounters1 = append(obj31.SystemInstanceTableIntegritySamplingEnableCounters1, obj31_1)
+	}
 
+	c.SystemInstanceTableIntegrityTable = obj31
 
-		   c. = obj61
+	var obj32 go_thunder.SystemInstanceIpsec
+	prefix32 := "ipsec.0."
+	obj32.SystemInstanceIpsecPacketRoundRobin = d.Get(prefix32 + "packet_round_robin").(int)
+	obj32.SystemInstanceIpsecCryptoCore = d.Get(prefix32 + "crypto_core").(int)
+	obj32.SystemInstanceIpsecCryptoMem = d.Get(prefix32 + "crypto_mem").(int)
+	obj32.SystemInstanceIpsecQAT = d.Get(prefix32 + "qat").(int)
 
+	var obj32_1 go_thunder.SystemInstanceIpsecFpgaDecrypt
+	prefix32_1 := prefix32 + "fpga_decrypt.0."
+	obj32_1.SystemInstanceIpsecFpgaDecryptAction = d.Get(prefix32_1 + "action").(string)
 
-		   var obj62 go_thunder.AppsGlobal
-		   prefix := "apps_global.0."
-		   obj62.LogSessionOnEstablished = d.Get(prefix+"log_session_on_established").(int)
-		   obj62.MslTime = d.Get(prefix+"msl_time").(int)
+	obj32.SystemInstanceIpsecFpgaDecryptAction = obj32_1
 
-		   c.LogSessionOnEstablished = obj62
+	c.SystemInstanceIpsecPacketRoundRobin = obj32
 
+	var obj33 go_thunder.SystemInstanceSpeProfile
+	prefix33 := "spe_profile.0."
+	obj33.SystemInstanceSpeProfileAction = d.Get(prefix33 + "action").(string)
 
-		   var obj63 go_thunder.ShellPrivileges
-		   prefix := "shell_privileges.0."
+	c.SystemInstanceSpeProfileAction = obj33
 
+	var obj34 go_thunder.SystemInstanceDeepHrxq
+	prefix34 := "deep_hrxq.0."
+	obj34.SystemInstanceDeepHrxqEnable = d.Get(prefix34 + "enable").(int)
 
-		   c. = obj63
+	c.SystemInstanceDeepHrxqEnable = obj34
 
+	var obj35 go_thunder.SystemInstanceCPULoadSharing
+	prefix35 := "cpu_load_sharing.0."
+	obj35.SystemInstanceCPULoadSharingDisable = d.Get(prefix35 + "disable").(int)
 
-		   var obj64 go_thunder.CosqStats
-		   prefix := "cosq_stats.0."
+	var obj35_1 go_thunder.SystemInstanceCPULoadSharingPacketsPerSecond
+	prefix35_1 := prefix35 + "packets_per_second.0."
+	obj35_1.SystemInstanceCPULoadSharingPacketsPerSecondMin = d.Get(prefix35_1 + "min").(int)
 
+	obj35.SystemInstanceCPULoadSharingPacketsPerSecondMin = obj35_1
 
-		   c. = obj64
+	var obj35_2 go_thunder.SystemInstanceCPULoadSharingCPUUsage
+	prefix35_2 := prefix35 + "cpu_usage.0."
+	obj35_2.SystemInstanceCPULoadSharingCPUUsageLow = d.Get(prefix35_2 + "low").(int)
+	obj35_2.SystemInstanceCPULoadSharingCPUUsageHigh = d.Get(prefix35_2 + "high").(int)
 
+	obj35.SystemInstanceCPULoadSharingCPUUsageLow = obj35_2
 
-		   var obj65 go_thunder.CosqShow
-		   prefix := "cosq_show.0."
+	obj35.SystemInstanceCPULoadSharingTCP = d.Get(prefix35 + "tcp").(int)
+	obj35.SystemInstanceCPULoadSharingUDP = d.Get(prefix35 + "udp").(int)
 
+	c.SystemInstanceCPULoadSharingDisable = obj35
 
-		   c. = obj65
+	var obj36 go_thunder.SystemInstancePerVlanLimit
+	prefix36 := "per_vlan_limit.0."
+	obj36.SystemInstancePerVlanLimitBcast = d.Get(prefix36 + "bcast").(int)
+	obj36.SystemInstancePerVlanLimitIpmcast = d.Get(prefix36 + "ipmcast").(int)
+	obj36.SystemInstancePerVlanLimitMcast = d.Get(prefix36 + "mcast").(int)
+	obj36.SystemInstancePerVlanLimitUnknownUcast = d.Get(prefix36 + "unknown_ucast").(int)
 
+	c.SystemInstancePerVlanLimitBcast = obj36
 
-		   var obj66 go_thunder.Fw
-		   prefix := "fw.0."
-		   obj66.ApplicationMempool = d.Get(prefix+"application_mempool").(int)
-		   obj66.ApplicationFlow = d.Get(prefix+"application_flow").(int)
-		   obj66.BasicDpiEnable = d.Get(prefix+"basic_dpi_enable").(int)
+	var obj37 go_thunder.SystemInstanceAllVlanLimit
+	prefix37 := "all_vlan_limit.0."
+	obj37.SystemInstanceAllVlanLimitBcast = d.Get(prefix37 + "bcast").(int)
+	obj37.SystemInstanceAllVlanLimitIpmcast = d.Get(prefix37 + "ipmcast").(int)
+	obj37.SystemInstanceAllVlanLimitMcast = d.Get(prefix37 + "mcast").(int)
+	obj37.SystemInstanceAllVlanLimitUnknownUcast = d.Get(prefix37 + "unknown_ucast").(int)
 
-		   c.ApplicationMempool = obj66
+	c.SystemInstanceAllVlanLimitBcast = obj37
 
+	var obj38 go_thunder.SystemInstanceVeMacScheme
+	prefix38 := "ve_mac_scheme.0."
+	obj38.SystemInstanceVeMacSchemeVeMacSchemeVal = d.Get(prefix38 + "ve_mac_scheme_val").(string)
 
-		   var obj67 go_thunder.PasswordPolicy
-		   prefix := "password_policy.0."
-		   obj67.Complexity = d.Get(prefix+"complexity").(string)
-		   obj67.Aging = d.Get(prefix+"aging").(string)
-		   obj67.History = d.Get(prefix+"history").(string)
-		   obj67.MinPswdLen = d.Get(prefix+"min_pswd_len").(int)
+	c.SystemInstanceVeMacSchemeVeMacSchemeVal = obj38
 
-		   c.Complexity = obj67
+	var obj39 go_thunder.SystemInstanceSessionReclaimLimit
+	prefix39 := "session_reclaim_limit.0."
+	obj39.SystemInstanceSessionReclaimLimitNscanLimit = d.Get(prefix39 + "nscan_limit").(int)
+	obj39.SystemInstanceSessionReclaimLimitScanFreq = d.Get(prefix39 + "scan_freq").(int)
 
+	c.SystemInstanceSessionReclaimLimitNscanLimit = obj39
 
-		   var obj68 go_thunder.Radius
-		   prefix := "radius.0."
+	var obj40 go_thunder.SystemInstanceSslScv
+	prefix40 := "ssl_scv.0."
+	obj40.SystemInstanceSslScvEnable = d.Get(prefix40 + "enable").(int)
 
-		   var obj1 go_thunder.Server
-		   prefix := "server.0."
-		   obj1.ListenPort = d.Get(prefix+"listen_port").(int)
+	c.SystemInstanceSslScvEnable = obj40
 
-		   var obj1 go_thunder.Remote
-		   prefix := "remote.0."
+	var obj41 go_thunder.SystemInstanceSslScvVerifyHost
+	prefix41 := "ssl_scv_verify_host.0."
+	obj41.SystemInstanceSslScvVerifyHostDisable = d.Get(prefix41 + "disable").(int)
 
-		   IpListCount := d.Get("ip_list.#").(int)
-		   obj1.IpListName = make([]go_thunder.IpList, 0, IpListCount)
+	c.SystemInstanceSslScvVerifyHostDisable = obj41
 
-		   for i := 0; i < IpListCount; i++ {
-		   var obj1 go_thunder.IpList
-		   prefix := fmt.Sprintf("ip_list.%d.",i)
-		   obj1.IpListName = d.Get(prefix+"ip_list_name").(string)
-		   obj1.IpListSecret = d.Get(prefix+"ip_list_secret").(int)
-		   obj1.IpListSecretString = d.Get(prefix+"ip_list_secret_string").(string)
-		   obj1.IpListName = append(obj1.IpListName, obj1)
-		   }
+	var obj42 go_thunder.SystemInstanceSslScvVerifyCrlSign
+	prefix42 := "ssl_scv_verify_crl_sign.0."
+	obj42.SystemInstanceSslScvVerifyCrlSignEnable = d.Get(prefix42 + "enable").(int)
 
+	c.SystemInstanceSslScvVerifyCrlSignEnable = obj42
 
-		   obj1.IpList = obj1
+	var obj43 go_thunder.SystemInstanceSslSetCompatibleCipher
+	prefix43 := "ssl_set_compatible_cipher.0."
+	obj43.SystemInstanceSslSetCompatibleCipherDisable = d.Get(prefix43 + "disable").(int)
 
-		   obj1.Secret = d.Get(prefix+"secret").(int)
-		   obj1.SecretString = d.Get(prefix+"secret_string").(string)
-		   obj1.Vrid = d.Get(prefix+"vrid").(int)
+	c.SystemInstanceSslSetCompatibleCipherDisable = obj43
 
-		   AttributeCount := d.Get("attribute.#").(int)
-		   obj1.AttributeValue = make([]go_thunder.Attribute, 0, AttributeCount)
+	var obj44 go_thunder.SystemInstanceHardwareForward
+	prefix44 := "hardware_forward.0."
 
-		   for i := 0; i < AttributeCount; i++ {
-		   var obj2 go_thunder.Attribute
-		   prefix := fmt.Sprintf("attribute.%d.",i)
-		   obj2.AttributeValue = d.Get(prefix+"attribute_value").(string)
-		   obj2.PrefixLength = d.Get(prefix+"prefix_length").(string)
-		   obj2.PrefixVendor = d.Get(prefix+"prefix_vendor").(int)
-		   obj2.PrefixNumber = d.Get(prefix+"prefix_number").(int)
-		   obj2.Name = d.Get(prefix+"name").(string)
-		   obj2.Value = d.Get(prefix+"value").(string)
-		   obj2.CustomVendor = d.Get(prefix+"custom_vendor").(int)
-		   obj2.CustomNumber = d.Get(prefix+"custom_number").(int)
-		   obj2.Vendor = d.Get(prefix+"vendor").(int)
-		   obj2.Number = d.Get(prefix+"number").(int)
-		   obj1.AttributeValue = append(obj1.AttributeValue, obj2)
-		   }
+	SystemInstanceHardwareForwardSamplingEnableCount := d.Get(prefix44 + "sampling_enable.#").(int)
+	obj44.SystemInstanceHardwareForwardSamplingEnableCounters1 = make([]go_thunder.SystemInstanceHardwareForwardSamplingEnable, 0, SystemInstanceHardwareForwardSamplingEnableCount)
 
-		   obj1.DisableReply = d.Get(prefix+"disable_reply").(int)
-		   obj1.AccountingStart = d.Get(prefix+"accounting_start").(string)
-		   obj1.AccountingStop = d.Get(prefix+"accounting_stop").(string)
-		   obj1.AccountingInterimUpdate = d.Get(prefix+"accounting_interim_update").(string)
-		   obj1.AccountingOn = d.Get(prefix+"accounting_on").(string)
-		   obj1.AttributeName = d.Get(prefix+"attribute_name").(string)
+	for i := 0; i < SystemInstanceHardwareForwardSamplingEnableCount; i++ {
+		var obj44_1 go_thunder.SystemInstanceHardwareForwardSamplingEnable
+		prefix44_1 := prefix44 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj44_1.SystemInstanceHardwareForwardSamplingEnableCounters1 = d.Get(prefix44_1 + "counters1").(string)
+		obj44.SystemInstanceHardwareForwardSamplingEnableCounters1 = append(obj44.SystemInstanceHardwareForwardSamplingEnableCounters1, obj44_1)
+	}
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj1.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	var obj44_2 go_thunder.SystemInstanceHardwareForwardSlb
+	prefix44_2 := prefix44 + "slb.0."
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj3 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj3.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj1.Counters1 = append(obj1.Counters1, obj3)
-		   }
+	SystemInstanceHardwareForwardSlbSamplingEnableCount := d.Get(prefix44_2 + "sampling_enable.#").(int)
+	obj44_2.SystemInstanceHardwareForwardSlbSamplingEnableCounters1 = make([]go_thunder.SystemInstanceHardwareForwardSlbSamplingEnable, 0, SystemInstanceHardwareForwardSlbSamplingEnableCount)
 
+	for i := 0; i < SystemInstanceHardwareForwardSlbSamplingEnableCount; i++ {
+		var obj44_2_1 go_thunder.SystemInstanceHardwareForwardSlbSamplingEnable
+		prefix44_2_1 := prefix44_2 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj44_2_1.SystemInstanceHardwareForwardSlbSamplingEnableCounters1 = d.Get(prefix44_2_1 + "counters1").(string)
+		obj44_2.SystemInstanceHardwareForwardSlbSamplingEnableCounters1 = append(obj44_2.SystemInstanceHardwareForwardSlbSamplingEnableCounters1, obj44_2_1)
+	}
 
-		   obj68.ListenPort = obj1
+	obj44.SystemInstanceHardwareForwardSlbUUID = obj44_2
 
+	c.SystemInstanceHardwareForwardUUID = obj44
 
-		   c.Server = obj68
+	var obj45 go_thunder.SystemInstanceThroughput
+	prefix45 := "throughput.0."
 
+	SystemInstanceThroughputSamplingEnableCount := d.Get(prefix45 + "sampling_enable.#").(int)
+	obj45.SystemInstanceThroughputSamplingEnableCounters1 = make([]go_thunder.SystemInstanceThroughputSamplingEnable, 0, SystemInstanceThroughputSamplingEnableCount)
 
-		   GeolocListListCount := d.Get("geoloc_list_list.#").(int)
-		   c.Name = make([]go_thunder.GeolocListList, 0, GeolocListListCount)
+	for i := 0; i < SystemInstanceThroughputSamplingEnableCount; i++ {
+		var obj45_1 go_thunder.SystemInstanceThroughputSamplingEnable
+		prefix45_1 := prefix45 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj45_1.SystemInstanceThroughputSamplingEnableCounters1 = d.Get(prefix45_1 + "counters1").(string)
+		obj45.SystemInstanceThroughputSamplingEnableCounters1 = append(obj45.SystemInstanceThroughputSamplingEnableCounters1, obj45_1)
+	}
 
-		   for i := 0; i < GeolocListListCount; i++ {
-		   var obj69 go_thunder.GeolocListList
-		   prefix := fmt.Sprintf("geoloc_list_list.%d.",i)
-		   obj69.Name = d.Get(prefix+"name").(string)
-		   obj69.Shared = d.Get(prefix+"shared").(int)
+	c.SystemInstanceThroughputUUID = obj45
 
-		   IncludeGeolocNameListCount := d.Get("include_geoloc_name_list.#").(int)
-		   obj69.IncludeGeolocNameVal = make([]go_thunder.IncludeGeolocNameList, 0, IncludeGeolocNameListCount)
+	var obj46 go_thunder.SystemInstanceIpmi
+	prefix46 := "ipmi.0."
+	obj46.SystemInstanceIpmiReset = d.Get(prefix46 + "reset").(int)
 
-		   for i := 0; i < IncludeGeolocNameListCount; i++ {
-		   var obj1 go_thunder.IncludeGeolocNameList
-		   prefix := fmt.Sprintf("include_geoloc_name_list.%d.",i)
-		   obj1.IncludeGeolocNameVal = d.Get(prefix+"include_geoloc_name_val").(string)
-		   obj69.IncludeGeolocNameVal = append(obj69.IncludeGeolocNameVal, obj1)
-		   }
+	var obj46_1 go_thunder.SystemInstanceIpmiIP
+	prefix46_1 := prefix46 + "ip.0."
+	obj46_1.SystemInstanceIpmiIPIpv4Address = d.Get(prefix46_1 + "ipv4_address").(string)
+	obj46_1.SystemInstanceIpmiIPIpv4Netmask = d.Get(prefix46_1 + "ipv4_netmask").(string)
+	obj46_1.SystemInstanceIpmiIPDefaultGateway = d.Get(prefix46_1 + "default_gateway").(string)
 
+	obj46.SystemInstanceIpmiIPIpv4Address = obj46_1
 
-		   ExcludeGeolocNameListCount := d.Get("exclude_geoloc_name_list.#").(int)
-		   obj69.ExcludeGeolocNameVal = make([]go_thunder.ExcludeGeolocNameList, 0, ExcludeGeolocNameListCount)
+	var obj46_2 go_thunder.SystemInstanceIpmiIpsrc
+	prefix46_2 := prefix46 + "ipsrc.0."
+	obj46_2.SystemInstanceIpmiIpsrcDhcp = d.Get(prefix46_2 + "dhcp").(int)
+	obj46_2.SystemInstanceIpmiIpsrcStatic = d.Get(prefix46_2 + "static").(int)
 
-		   for i := 0; i < ExcludeGeolocNameListCount; i++ {
-		   var obj2 go_thunder.ExcludeGeolocNameList
-		   prefix := fmt.Sprintf("exclude_geoloc_name_list.%d.",i)
-		   obj2.ExcludeGeolocNameVal = d.Get(prefix+"exclude_geoloc_name_val").(string)
-		   obj69.ExcludeGeolocNameVal = append(obj69.ExcludeGeolocNameVal, obj2)
-		   }
+	obj46.SystemInstanceIpmiIpsrcDhcp = obj46_2
 
-		   obj69.UserTag = d.Get(prefix+"user_tag").(string)
+	var obj46_3 go_thunder.SystemInstanceIpmiUser
+	prefix46_3 := prefix46 + "user.0."
+	obj46_3.SystemInstanceIpmiUserAdd = d.Get(prefix46_3 + "add").(string)
+	obj46_3.SystemInstanceIpmiUserPassword = d.Get(prefix46_3 + "password").(string)
+	obj46_3.SystemInstanceIpmiUserAdministrator = d.Get(prefix46_3 + "administrator").(int)
+	obj46_3.SystemInstanceIpmiUserCallback = d.Get(prefix46_3 + "callback").(int)
+	obj46_3.SystemInstanceIpmiUserOperator = d.Get(prefix46_3 + "operator").(int)
+	obj46_3.SystemInstanceIpmiUserUser = d.Get(prefix46_3 + "user").(int)
+	obj46_3.SystemInstanceIpmiUserDisable = d.Get(prefix46_3 + "disable").(string)
+	obj46_3.SystemInstanceIpmiUserPrivilege = d.Get(prefix46_3 + "privilege").(string)
+	obj46_3.SystemInstanceIpmiUserSetname = d.Get(prefix46_3 + "setname").(string)
+	obj46_3.SystemInstanceIpmiUserNewname = d.Get(prefix46_3 + "newname").(string)
+	obj46_3.SystemInstanceIpmiUserSetpass = d.Get(prefix46_3 + "setpass").(string)
+	obj46_3.SystemInstanceIpmiUserNewpass = d.Get(prefix46_3 + "newpass").(string)
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj69.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	obj46.SystemInstanceIpmiUserAdd = obj46_3
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj3 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj3.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj69.Counters1 = append(obj69.Counters1, obj3)
-		   }
+	var obj46_4 go_thunder.SystemInstanceIpmiTool
+	prefix46_4 := prefix46 + "tool.0."
+	obj46_4.SystemInstanceIpmiToolCmd = d.Get(prefix46_4 + "cmd").(string)
 
-		   c.Name = append(c.Name, obj69)
-		   }
+	obj46.SystemInstanceIpmiToolCmd = obj46_4
 
+	c.SystemInstanceIpmiReset = obj46
 
-		   var obj70 go_thunder.GeolocNameHelper
-		   prefix := "geoloc_name_helper.0."
+	var obj47 go_thunder.SystemInstanceQueuingBuffer
+	prefix47 := "queuing_buffer.0."
+	obj47.SystemInstanceQueuingBufferEnable = d.Get(prefix47 + "enable").(int)
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj70.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	c.SystemInstanceQueuingBufferEnable = obj47
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj70.Counters1 = append(obj70.Counters1, obj1)
-		   }
+	var obj48 go_thunder.SystemInstanceHighMemoryL4Session
+	prefix48 := "high_memory_l4_session.0."
+	obj48.SystemInstanceHighMemoryL4SessionEnable = d.Get(prefix48 + "enable").(int)
 
+	c.SystemInstanceHighMemoryL4SessionEnable = obj48
 
-		   c.SamplingEnable = obj70
+	var obj49 go_thunder.SystemInstanceTrunkHwHash
+	prefix49 := "trunk_hw_hash.0."
+	obj49.SystemInstanceTrunkHwHashMode = d.Get(prefix49 + "mode").(int)
 
+	c.SystemInstanceTrunkHwHashMode = obj49
 
-		   var obj71 go_thunder.GeolocationFile
-		   prefix := "geolocation_file.0."
+	var obj50 go_thunder.SystemInstanceTrunkXauiHwHash
+	prefix50 := "trunk_xaui_hw_hash.0."
+	obj50.SystemInstanceTrunkXauiHwHashMode = d.Get(prefix50 + "mode").(int)
 
-		   var obj1 go_thunder.ErrorInfo
-		   prefix := "error_info.0."
+	c.SystemInstanceTrunkXauiHwHashMode = obj50
 
+	var obj51 go_thunder.SystemInstanceCmUpdateFileNameRef
+	prefix51 := "cm_update_file_name_ref.0."
+	obj51.SystemInstanceCmUpdateFileNameRefSourceName = d.Get(prefix51 + "source_name").(string)
+	obj51.SystemInstanceCmUpdateFileNameRefDestName = d.Get(prefix51 + "dest_name").(string)
+	obj51.SystemInstanceCmUpdateFileNameRefID = d.Get(prefix51 + "id").(int)
 
-		   obj71. = obj1
+	c.SystemInstanceCmUpdateFileNameRefSourceName = obj51
 
+	var obj52 go_thunder.SystemInstanceAppsGlobal
+	prefix52 := "apps_global.0."
+	obj52.SystemInstanceAppsGlobalLogSessionOnEstablished = d.Get(prefix52 + "log_session_on_established").(int)
+	obj52.SystemInstanceAppsGlobalMslTime = d.Get(prefix52 + "msl_time").(int)
 
-		   c.ErrorInfo = obj71
+	c.SystemInstanceAppsGlobalLogSessionOnEstablished = obj52
 
+	var obj53 go_thunder.SystemInstanceShellPrivileges
+	prefix53 := "shell_privileges.0."
+	obj53.SystemInstanceShellPrivilegesEnableShellPrivileges = d.Get(prefix53 + "enable_shell_privileges").(int)
 
-		   var obj72 go_thunder.Geoloc
-		   prefix := "geoloc.0."
+	c.SystemInstanceShellPrivilegesEnableShellPrivileges = obj53
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj72.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	var obj54 go_thunder.SystemInstanceShmLogging
+	prefix54 := "shm_logging.0."
+	obj54.SystemInstanceShmLoggingEnable = d.Get(prefix54 + "enable").(int)
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj72.Counters1 = append(obj72.Counters1, obj1)
-		   }
+	c.SystemInstanceShmLoggingEnable = obj54
 
+	var obj55 go_thunder.SystemInstanceFw
+	prefix55 := "fw.0."
+	obj55.SystemInstanceFwApplicationMempool = d.Get(prefix55 + "application_mempool").(int)
+	obj55.SystemInstanceFwApplicationFlow = d.Get(prefix55 + "application_flow").(int)
+	obj55.SystemInstanceFwBasicDpiEnable = d.Get(prefix55 + "basic_dpi_enable").(int)
 
-		   c.SamplingEnable = obj72
+	c.SystemInstanceFwApplicationMempool = obj55
 
+	var obj56 go_thunder.SystemInstancePasswordPolicy
+	prefix56 := "password_policy.0."
+	obj56.SystemInstancePasswordPolicyComplexity = d.Get(prefix56 + "complexity").(string)
+	obj56.SystemInstancePasswordPolicyAging = d.Get(prefix56 + "aging").(string)
+	obj56.SystemInstancePasswordPolicyHistory = d.Get(prefix56 + "history").(string)
+	obj56.SystemInstancePasswordPolicyMinPswdLen = d.Get(prefix56 + "min_pswd_len").(int)
 
-		   var obj73 go_thunder.GeoLocation
-		   prefix := "geo_location.0."
-		   obj73.GeoLocationIana = d.Get(prefix+"geo_location_iana").(int)
-		   obj73.GeoLocationGeolite2City = d.Get(prefix+"geo_location_geolite2_city").(int)
-		   obj73.Geolite2CityIncludeIpv6 = d.Get(prefix+"geolite2_city_include_ipv6").(int)
-		   obj73.GeoLocationGeolite2Country = d.Get(prefix+"geo_location_geolite2_country").(int)
-		   obj73.Geolite2CountryIncludeIpv6 = d.Get(prefix+"geolite2_country_include_ipv6").(int)
+	c.SystemInstancePasswordPolicyComplexity = obj56
 
-		   GeolocLoadFileListCount := d.Get("geoloc_load_file_list.#").(int)
-		   obj73.GeoLocationLoadFilename = make([]go_thunder.GeolocLoadFileList, 0, GeolocLoadFileListCount)
+	var obj57 go_thunder.SystemInstanceRadius
+	prefix57 := "radius.0."
 
-		   for i := 0; i < GeolocLoadFileListCount; i++ {
-		   var obj1 go_thunder.GeolocLoadFileList
-		   prefix := fmt.Sprintf("geoloc_load_file_list.%d.",i)
-		   obj1.GeoLocationLoadFilename = d.Get(prefix+"geo_location_load_filename").(string)
-		   obj1.TemplateName = d.Get(prefix+"template_name").(string)
-		   obj73.GeoLocationLoadFilename = append(obj73.GeoLocationLoadFilename, obj1)
-		   }
+	var obj57_1 go_thunder.SystemInstanceRadiusServer
+	prefix57_1 := prefix57 + "server.0."
+	obj57_1.SystemInstanceRadiusServerListenPort = d.Get(prefix57_1 + "listen_port").(int)
 
+	var obj57_1_1 go_thunder.SystemInstanceRadiusServerRemote
+	prefix57_1_1 := prefix57_1 + "remote.0."
 
-		   EntryListCount := d.Get("entry_list.#").(int)
-		   obj73.GeoLocnObjName = make([]go_thunder.EntryList, 0, EntryListCount)
+	SystemInstanceRadiusServerRemoteIPListCount := d.Get(prefix57_1_1 + "ip_list.#").(int)
+	obj57_1_1.SystemInstanceRadiusServerRemoteIPListIPListName = make([]go_thunder.SystemInstanceRadiusServerRemoteIPList, 0, SystemInstanceRadiusServerRemoteIPListCount)
 
-		   for i := 0; i < EntryListCount; i++ {
-		   var obj2 go_thunder.EntryList
-		   prefix := fmt.Sprintf("entry_list.%d.",i)
-		   obj2.GeoLocnObjName = d.Get(prefix+"geo_locn_obj_name").(string)
+	for i := 0; i < SystemInstanceRadiusServerRemoteIPListCount; i++ {
+		var obj57_1_1_1 go_thunder.SystemInstanceRadiusServerRemoteIPList
+		prefix57_1_1_1 := prefix57_1_1 + fmt.Sprintf("ip_list.%d.", i)
+		obj57_1_1_1.SystemInstanceRadiusServerRemoteIPListIPListName = d.Get(prefix57_1_1_1 + "ip_list_name").(string)
+		obj57_1_1_1.SystemInstanceRadiusServerRemoteIPListIPListSecret = d.Get(prefix57_1_1_1 + "ip_list_secret").(int)
+		obj57_1_1_1.SystemInstanceRadiusServerRemoteIPListIPListSecretString = d.Get(prefix57_1_1_1 + "ip_list_secret_string").(string)
+		obj57_1_1.SystemInstanceRadiusServerRemoteIPListIPListName = append(obj57_1_1.SystemInstanceRadiusServerRemoteIPListIPListName, obj57_1_1_1)
+	}
 
-		   GeoLocnMultipleAddressesCount := d.Get("geo_locn_multiple_addresses.#").(int)
-		   obj2.FirstIpAddress = make([]go_thunder.GeoLocnMultipleAddresses, 0, GeoLocnMultipleAddressesCount)
+	obj57_1.SystemInstanceRadiusServerRemoteIPList = obj57_1_1
 
-		   for i := 0; i < GeoLocnMultipleAddressesCount; i++ {
-		   var obj1 go_thunder.GeoLocnMultipleAddresses
-		   prefix := fmt.Sprintf("geo_locn_multiple_addresses.%d.",i)
-		   obj1.FirstIpAddress = d.Get(prefix+"first_ip_address").(string)
-		   obj1.GeolIpv4Mask = d.Get(prefix+"geol_ipv4_mask").(string)
-		   obj1.IpAddr2 = d.Get(prefix+"ip_addr2").(string)
-		   obj1.FirstIpv6Address = d.Get(prefix+"first_ipv6_address").(string)
-		   obj1.GeolIpv6Mask = d.Get(prefix+"geol_ipv6_mask").(int)
-		   obj1.Ipv6Addr2 = d.Get(prefix+"ipv6_addr2").(string)
-		   obj2.FirstIpAddress = append(obj2.FirstIpAddress, obj1)
-		   }
+	obj57_1.SystemInstanceRadiusServerSecret = d.Get(prefix57_1 + "secret").(int)
+	obj57_1.SystemInstanceRadiusServerSecretString = d.Get(prefix57_1 + "secret_string").(string)
+	obj57_1.SystemInstanceRadiusServerVrid = d.Get(prefix57_1 + "vrid").(int)
 
-		   obj2.UserTag = d.Get(prefix+"user_tag").(string)
-		   obj73.GeoLocnObjName = append(obj73.GeoLocnObjName, obj2)
-		   }
+	SystemInstanceRadiusServerAttributeCount := d.Get(prefix57_1 + "attribute.#").(int)
+	obj57_1.SystemInstanceRadiusServerAttributeAttributeValue = make([]go_thunder.SystemInstanceRadiusServerAttribute, 0, SystemInstanceRadiusServerAttributeCount)
 
+	for i := 0; i < SystemInstanceRadiusServerAttributeCount; i++ {
+		var obj57_1_2 go_thunder.SystemInstanceRadiusServerAttribute
+		prefix57_1_2 := prefix57_1 + fmt.Sprintf("attribute.%d.", i)
+		obj57_1_2.SystemInstanceRadiusServerAttributeAttributeValue = d.Get(prefix57_1_2 + "attribute_value").(string)
+		obj57_1_2.SystemInstanceRadiusServerAttributePrefixLength = d.Get(prefix57_1_2 + "prefix_length").(string)
+		obj57_1_2.SystemInstanceRadiusServerAttributePrefixVendor = d.Get(prefix57_1_2 + "prefix_vendor").(int)
+		obj57_1_2.SystemInstanceRadiusServerAttributePrefixNumber = d.Get(prefix57_1_2 + "prefix_number").(int)
+		obj57_1_2.SystemInstanceRadiusServerAttributeName = d.Get(prefix57_1_2 + "name").(string)
+		obj57_1_2.SystemInstanceRadiusServerAttributeValue = d.Get(prefix57_1_2 + "value").(string)
+		obj57_1_2.SystemInstanceRadiusServerAttributeCustomVendor = d.Get(prefix57_1_2 + "custom_vendor").(int)
+		obj57_1_2.SystemInstanceRadiusServerAttributeCustomNumber = d.Get(prefix57_1_2 + "custom_number").(int)
+		obj57_1_2.SystemInstanceRadiusServerAttributeVendor = d.Get(prefix57_1_2 + "vendor").(int)
+		obj57_1_2.SystemInstanceRadiusServerAttributeNumber = d.Get(prefix57_1_2 + "number").(int)
+		obj57_1.SystemInstanceRadiusServerAttributeAttributeValue = append(obj57_1.SystemInstanceRadiusServerAttributeAttributeValue, obj57_1_2)
+	}
 
-		   c.GeoLocationIana = obj73
+	obj57_1.SystemInstanceRadiusServerDisableReply = d.Get(prefix57_1 + "disable_reply").(int)
+	obj57_1.SystemInstanceRadiusServerAccountingStart = d.Get(prefix57_1 + "accounting_start").(string)
+	obj57_1.SystemInstanceRadiusServerAccountingStop = d.Get(prefix57_1 + "accounting_stop").(string)
+	obj57_1.SystemInstanceRadiusServerAccountingInterimUpdate = d.Get(prefix57_1 + "accounting_interim_update").(string)
+	obj57_1.SystemInstanceRadiusServerAccountingOn = d.Get(prefix57_1 + "accounting_on").(string)
+	obj57_1.SystemInstanceRadiusServerAttributeName = d.Get(prefix57_1 + "attribute_name").(string)
+	obj57_1.SystemInstanceRadiusServerCustomAttributeName = d.Get(prefix57_1 + "custom_attribute_name").(string)
 
+	SystemInstanceRadiusServerSamplingEnableCount := d.Get(prefix57_1 + "sampling_enable.#").(int)
+	obj57_1.SystemInstanceRadiusServerSamplingEnableCounters1 = make([]go_thunder.SystemInstanceRadiusServerSamplingEnable, 0, SystemInstanceRadiusServerSamplingEnableCount)
 
-		   var obj74 go_thunder.IpThreatList
-		   prefix := "ip_threat_list.0."
+	for i := 0; i < SystemInstanceRadiusServerSamplingEnableCount; i++ {
+		var obj57_1_3 go_thunder.SystemInstanceRadiusServerSamplingEnable
+		prefix57_1_3 := prefix57_1 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj57_1_3.SystemInstanceRadiusServerSamplingEnableCounters1 = d.Get(prefix57_1_3 + "counters1").(string)
+		obj57_1.SystemInstanceRadiusServerSamplingEnableCounters1 = append(obj57_1.SystemInstanceRadiusServerSamplingEnableCounters1, obj57_1_3)
+	}
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj74.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	obj57.SystemInstanceRadiusServerListenPort = obj57_1
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj74.Counters1 = append(obj74.Counters1, obj1)
-		   }
+	c.SystemInstanceRadiusServer = obj57
 
+	SystemInstanceGeolocListListCount := d.Get("geoloc_list_list.#").(int)
+	c.SystemInstanceGeolocListListName = make([]go_thunder.SystemInstanceGeolocListList, 0, SystemInstanceGeolocListListCount)
 
-		   var obj2 go_thunder.Ipv4SourceList
-		   prefix := "ipv4_source_list.0."
+	for i := 0; i < SystemInstanceGeolocListListCount; i++ {
+		var obj58 go_thunder.SystemInstanceGeolocListList
+		prefix58 := fmt.Sprintf("geoloc_list_list.%d.", i)
+		obj58.SystemInstanceGeolocListListName = d.Get(prefix58 + "name").(string)
+		obj58.SystemInstanceGeolocListListShared = d.Get(prefix58 + "shared").(int)
 
-		   ClassListCfgCount := d.Get("class_list_cfg.#").(int)
-		   obj2.ClassList = make([]go_thunder.ClassListCfg, 0, ClassListCfgCount)
+		SystemInstanceGeolocListListIncludeGeolocNameListCount := d.Get(prefix58 + "include_geoloc_name_list.#").(int)
+		obj58.SystemInstanceGeolocListListIncludeGeolocNameListIncludeGeolocNameVal = make([]go_thunder.SystemInstanceGeolocListListIncludeGeolocNameList, 0, SystemInstanceGeolocListListIncludeGeolocNameListCount)
 
-		   for i := 0; i < ClassListCfgCount; i++ {
-		   var obj1 go_thunder.ClassListCfg
-		   prefix := fmt.Sprintf("class_list_cfg.%d.",i)
-		   obj1.ClassList = d.Get(prefix+"class_list").(string)
-		   obj1.IpThreatActionTmpl = d.Get(prefix+"ip_threat_action_tmpl").(int)
-		   obj2.ClassList = append(obj2.ClassList, obj1)
-		   }
+		for i := 0; i < SystemInstanceGeolocListListIncludeGeolocNameListCount; i++ {
+			var obj58_1 go_thunder.SystemInstanceGeolocListListIncludeGeolocNameList
+			prefix58_1 := prefix58 + fmt.Sprintf("include_geoloc_name_list.%d.", i)
+			obj58_1.SystemInstanceGeolocListListIncludeGeolocNameListIncludeGeolocNameVal = d.Get(prefix58_1 + "include_geoloc_name_val").(string)
+			obj58.SystemInstanceGeolocListListIncludeGeolocNameListIncludeGeolocNameVal = append(obj58.SystemInstanceGeolocListListIncludeGeolocNameListIncludeGeolocNameVal, obj58_1)
+		}
 
+		SystemInstanceGeolocListListExcludeGeolocNameListCount := d.Get(prefix58 + "exclude_geoloc_name_list.#").(int)
+		obj58.SystemInstanceGeolocListListExcludeGeolocNameListExcludeGeolocNameVal = make([]go_thunder.SystemInstanceGeolocListListExcludeGeolocNameList, 0, SystemInstanceGeolocListListExcludeGeolocNameListCount)
 
-		   obj74.ClassListCfg = obj2
+		for i := 0; i < SystemInstanceGeolocListListExcludeGeolocNameListCount; i++ {
+			var obj58_2 go_thunder.SystemInstanceGeolocListListExcludeGeolocNameList
+			prefix58_2 := prefix58 + fmt.Sprintf("exclude_geoloc_name_list.%d.", i)
+			obj58_2.SystemInstanceGeolocListListExcludeGeolocNameListExcludeGeolocNameVal = d.Get(prefix58_2 + "exclude_geoloc_name_val").(string)
+			obj58.SystemInstanceGeolocListListExcludeGeolocNameListExcludeGeolocNameVal = append(obj58.SystemInstanceGeolocListListExcludeGeolocNameListExcludeGeolocNameVal, obj58_2)
+		}
 
+		obj58.SystemInstanceGeolocListListUserTag = d.Get(prefix58 + "user_tag").(string)
 
-		   var obj3 go_thunder.Ipv4DestList
-		   prefix := "ipv4_dest_list.0."
+		SystemInstanceGeolocListListSamplingEnableCount := d.Get(prefix58 + "sampling_enable.#").(int)
+		obj58.SystemInstanceGeolocListListSamplingEnableCounters1 = make([]go_thunder.SystemInstanceGeolocListListSamplingEnable, 0, SystemInstanceGeolocListListSamplingEnableCount)
 
-		   ClassListCfgCount := d.Get("class_list_cfg.#").(int)
-		   obj3.ClassList = make([]go_thunder.ClassListCfg, 0, ClassListCfgCount)
+		for i := 0; i < SystemInstanceGeolocListListSamplingEnableCount; i++ {
+			var obj58_3 go_thunder.SystemInstanceGeolocListListSamplingEnable
+			prefix58_3 := prefix58 + fmt.Sprintf("sampling_enable.%d.", i)
+			obj58_3.SystemInstanceGeolocListListSamplingEnableCounters1 = d.Get(prefix58_3 + "counters1").(string)
+			obj58.SystemInstanceGeolocListListSamplingEnableCounters1 = append(obj58.SystemInstanceGeolocListListSamplingEnableCounters1, obj58_3)
+		}
 
-		   for i := 0; i < ClassListCfgCount; i++ {
-		   var obj1 go_thunder.ClassListCfg
-		   prefix := fmt.Sprintf("class_list_cfg.%d.",i)
-		   obj1.ClassList = d.Get(prefix+"class_list").(string)
-		   obj1.IpThreatActionTmpl = d.Get(prefix+"ip_threat_action_tmpl").(int)
-		   obj3.ClassList = append(obj3.ClassList, obj1)
-		   }
+		c.SystemInstanceGeolocListListName = append(c.SystemInstanceGeolocListListName, obj58)
+	}
 
+	var obj59 go_thunder.SystemInstanceGeolocNameHelper
+	prefix59 := "geoloc_name_helper.0."
 
-		   obj74.ClassListCfg = obj3
+	SystemInstanceGeolocNameHelperSamplingEnableCount := d.Get(prefix59 + "sampling_enable.#").(int)
+	obj59.SystemInstanceGeolocNameHelperSamplingEnableCounters1 = make([]go_thunder.SystemInstanceGeolocNameHelperSamplingEnable, 0, SystemInstanceGeolocNameHelperSamplingEnableCount)
 
+	for i := 0; i < SystemInstanceGeolocNameHelperSamplingEnableCount; i++ {
+		var obj59_1 go_thunder.SystemInstanceGeolocNameHelperSamplingEnable
+		prefix59_1 := prefix59 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj59_1.SystemInstanceGeolocNameHelperSamplingEnableCounters1 = d.Get(prefix59_1 + "counters1").(string)
+		obj59.SystemInstanceGeolocNameHelperSamplingEnableCounters1 = append(obj59.SystemInstanceGeolocNameHelperSamplingEnableCounters1, obj59_1)
+	}
 
-		   var obj4 go_thunder.Ipv6SourceList
-		   prefix := "ipv6_source_list.0."
+	c.SystemInstanceGeolocNameHelperUUID = obj59
 
-		   ClassListCfgCount := d.Get("class_list_cfg.#").(int)
-		   obj4.ClassList = make([]go_thunder.ClassListCfg, 0, ClassListCfgCount)
+	var obj61 go_thunder.SystemInstanceGeoloc
+	prefix61 := "geoloc.0."
 
-		   for i := 0; i < ClassListCfgCount; i++ {
-		   var obj1 go_thunder.ClassListCfg
-		   prefix := fmt.Sprintf("class_list_cfg.%d.",i)
-		   obj1.ClassList = d.Get(prefix+"class_list").(string)
-		   obj1.IpThreatActionTmpl = d.Get(prefix+"ip_threat_action_tmpl").(int)
-		   obj4.ClassList = append(obj4.ClassList, obj1)
-		   }
+	SystemInstanceGeolocSamplingEnableCount := d.Get(prefix61 + "sampling_enable.#").(int)
+	obj61.SystemInstanceGeolocSamplingEnableCounters1 = make([]go_thunder.SystemInstanceGeolocSamplingEnable, 0, SystemInstanceGeolocSamplingEnableCount)
 
+	for i := 0; i < SystemInstanceGeolocSamplingEnableCount; i++ {
+		var obj61_1 go_thunder.SystemInstanceGeolocSamplingEnable
+		prefix61_1 := prefix61 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj61_1.SystemInstanceGeolocSamplingEnableCounters1 = d.Get(prefix61_1 + "counters1").(string)
+		obj61.SystemInstanceGeolocSamplingEnableCounters1 = append(obj61.SystemInstanceGeolocSamplingEnableCounters1, obj61_1)
+	}
 
-		   obj74.ClassListCfg = obj4
+	c.SystemInstanceGeolocUUID = obj61
 
+	var obj62 go_thunder.SystemInstanceGeoLocation
+	prefix62 := "geo_location.0."
+	obj62.SystemInstanceGeoLocationGeoLocationIana = d.Get(prefix62 + "geo_location_iana").(int)
+	obj62.SystemInstanceGeoLocationGeoLocationGeolite2City = d.Get(prefix62 + "geo_location_geolite2_city").(int)
+	obj62.SystemInstanceGeoLocationGeolite2CityIncludeIpv6 = d.Get(prefix62 + "geolite2_city_include_ipv6").(int)
+	obj62.SystemInstanceGeoLocationGeoLocationGeolite2Country = d.Get(prefix62 + "geo_location_geolite2_country").(int)
+	obj62.SystemInstanceGeoLocationGeolite2CountryIncludeIpv6 = d.Get(prefix62 + "geolite2_country_include_ipv6").(int)
 
-		   var obj5 go_thunder.Ipv6DestList
-		   prefix := "ipv6_dest_list.0."
+	SystemInstanceGeoLocationGeolocLoadFileListCount := d.Get(prefix62 + "geoloc_load_file_list.#").(int)
+	obj62.SystemInstanceGeoLocationGeolocLoadFileListGeoLocationLoadFilename = make([]go_thunder.SystemInstanceGeoLocationGeolocLoadFileList, 0, SystemInstanceGeoLocationGeolocLoadFileListCount)
 
-		   ClassListCfgCount := d.Get("class_list_cfg.#").(int)
-		   obj5.ClassList = make([]go_thunder.ClassListCfg, 0, ClassListCfgCount)
+	for i := 0; i < SystemInstanceGeoLocationGeolocLoadFileListCount; i++ {
+		var obj62_1 go_thunder.SystemInstanceGeoLocationGeolocLoadFileList
+		prefix62_1 := prefix62 + fmt.Sprintf("geoloc_load_file_list.%d.", i)
+		obj62_1.SystemInstanceGeoLocationGeolocLoadFileListGeoLocationLoadFilename = d.Get(prefix62_1 + "geo_location_load_filename").(string)
+		obj62_1.SystemInstanceGeoLocationGeolocLoadFileListTemplateName = d.Get(prefix62_1 + "template_name").(string)
+		obj62.SystemInstanceGeoLocationGeolocLoadFileListGeoLocationLoadFilename = append(obj62.SystemInstanceGeoLocationGeolocLoadFileListGeoLocationLoadFilename, obj62_1)
+	}
 
-		   for i := 0; i < ClassListCfgCount; i++ {
-		   var obj1 go_thunder.ClassListCfg
-		   prefix := fmt.Sprintf("class_list_cfg.%d.",i)
-		   obj1.ClassList = d.Get(prefix+"class_list").(string)
-		   obj1.IpThreatActionTmpl = d.Get(prefix+"ip_threat_action_tmpl").(int)
-		   obj5.ClassList = append(obj5.ClassList, obj1)
-		   }
+	SystemInstanceGeoLocationEntryListCount := d.Get(prefix62 + "entry_list.#").(int)
+	obj62.SystemInstanceGeoLocationEntryListGeoLocnObjName = make([]go_thunder.SystemInstanceGeoLocationEntryList, 0, SystemInstanceGeoLocationEntryListCount)
 
+	for i := 0; i < SystemInstanceGeoLocationEntryListCount; i++ {
+		var obj62_2 go_thunder.SystemInstanceGeoLocationEntryList
+		prefix62_2 := prefix62 + fmt.Sprintf("entry_list.%d.", i)
+		obj62_2.SystemInstanceGeoLocationEntryListGeoLocnObjName = d.Get(prefix62_2 + "geo_locn_obj_name").(string)
 
-		   obj74.ClassListCfg = obj5
+		SystemInstanceGeoLocationEntryListGeoLocnMultipleAddressesCount := d.Get(prefix62_2 + "geo_locn_multiple_addresses.#").(int)
+		obj62_2.SystemInstanceGeoLocationEntryListGeoLocnMultipleAddressesFirstIPAddress = make([]go_thunder.SystemInstanceGeoLocationEntryListGeoLocnMultipleAddresses, 0, SystemInstanceGeoLocationEntryListGeoLocnMultipleAddressesCount)
 
+		for i := 0; i < SystemInstanceGeoLocationEntryListGeoLocnMultipleAddressesCount; i++ {
+			var obj62_2_1 go_thunder.SystemInstanceGeoLocationEntryListGeoLocnMultipleAddresses
+			prefix62_2_1 := prefix62_2 + fmt.Sprintf("geo_locn_multiple_addresses.%d.", i)
+			obj62_2_1.SystemInstanceGeoLocationEntryListGeoLocnMultipleAddressesFirstIPAddress = d.Get(prefix62_2_1 + "first_ip_address").(string)
+			obj62_2_1.SystemInstanceGeoLocationEntryListGeoLocnMultipleAddressesGeolIpv4Mask = d.Get(prefix62_2_1 + "geol_ipv4_mask").(string)
+			obj62_2_1.SystemInstanceGeoLocationEntryListGeoLocnMultipleAddressesIPAddr2 = d.Get(prefix62_2_1 + "ip_addr2").(string)
+			obj62_2_1.SystemInstanceGeoLocationEntryListGeoLocnMultipleAddressesFirstIpv6Address = d.Get(prefix62_2_1 + "first_ipv6_address").(string)
+			obj62_2_1.SystemInstanceGeoLocationEntryListGeoLocnMultipleAddressesGeolIpv6Mask = d.Get(prefix62_2_1 + "geol_ipv6_mask").(int)
+			obj62_2_1.SystemInstanceGeoLocationEntryListGeoLocnMultipleAddressesIpv6Addr2 = d.Get(prefix62_2_1 + "ipv6_addr2").(string)
+			obj62_2.SystemInstanceGeoLocationEntryListGeoLocnMultipleAddressesFirstIPAddress = append(obj62_2.SystemInstanceGeoLocationEntryListGeoLocnMultipleAddressesFirstIPAddress, obj62_2_1)
+		}
 
-		   c.SamplingEnable = obj74
+		obj62_2.SystemInstanceGeoLocationEntryListUserTag = d.Get(prefix62_2 + "user_tag").(string)
+		obj62.SystemInstanceGeoLocationEntryListGeoLocnObjName = append(obj62.SystemInstanceGeoLocationEntryListGeoLocnObjName, obj62_2)
+	}
 
+	c.SystemInstanceGeoLocationGeoLocationIana = obj62
 
-		   var obj75 go_thunder.FpgaDrop
-		   prefix := "fpga_drop.0."
+	var obj63 go_thunder.SystemInstanceIPThreatList
+	prefix63 := "ip_threat_list.0."
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj75.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	SystemInstanceIPThreatListSamplingEnableCount := d.Get(prefix63 + "sampling_enable.#").(int)
+	obj63.SystemInstanceIPThreatListSamplingEnableCounters1 = make([]go_thunder.SystemInstanceIPThreatListSamplingEnable, 0, SystemInstanceIPThreatListSamplingEnableCount)
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj75.Counters1 = append(obj75.Counters1, obj1)
-		   }
+	for i := 0; i < SystemInstanceIPThreatListSamplingEnableCount; i++ {
+		var obj63_1 go_thunder.SystemInstanceIPThreatListSamplingEnable
+		prefix63_1 := prefix63 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj63_1.SystemInstanceIPThreatListSamplingEnableCounters1 = d.Get(prefix63_1 + "counters1").(string)
+		obj63.SystemInstanceIPThreatListSamplingEnableCounters1 = append(obj63.SystemInstanceIPThreatListSamplingEnableCounters1, obj63_1)
+	}
 
+	var obj63_2 go_thunder.SystemInstanceIPThreatListIpv4SourceList
+	prefix63_2 := prefix63 + "ipv4_source_list.0."
 
-		   c.SamplingEnable = obj75
+	SystemInstanceIPThreatListIpv4SourceListClassListCfgCount := d.Get(prefix63_2 + "class_list_cfg.#").(int)
+	obj63_2.SystemInstanceIPThreatListIpv4SourceListClassListCfgClassList = make([]go_thunder.SystemInstanceIPThreatListIpv4SourceListClassListCfg, 0, SystemInstanceIPThreatListIpv4SourceListClassListCfgCount)
 
+	for i := 0; i < SystemInstanceIPThreatListIpv4SourceListClassListCfgCount; i++ {
+		var obj63_2_1 go_thunder.SystemInstanceIPThreatListIpv4SourceListClassListCfg
+		prefix63_2_1 := prefix63_2 + fmt.Sprintf("class_list_cfg.%d.", i)
+		obj63_2_1.SystemInstanceIPThreatListIpv4SourceListClassListCfgClassList = d.Get(prefix63_2_1 + "class_list").(string)
+		obj63_2_1.SystemInstanceIPThreatListIpv4SourceListClassListCfgIPThreatActionTmpl = d.Get(prefix63_2_1 + "ip_threat_action_tmpl").(int)
+		obj63_2.SystemInstanceIPThreatListIpv4SourceListClassListCfgClassList = append(obj63_2.SystemInstanceIPThreatListIpv4SourceListClassListCfgClassList, obj63_2_1)
+	}
 
-		   var obj76 go_thunder.DpdkStats
-		   prefix := "dpdk_stats.0."
+	obj63.SystemInstanceIPThreatListIpv4SourceListClassListCfg = obj63_2
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj76.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	var obj63_3 go_thunder.SystemInstanceIPThreatListIpv4DestList
+	prefix63_3 := prefix63 + "ipv4_dest_list.0."
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj76.Counters1 = append(obj76.Counters1, obj1)
-		   }
+	SystemInstanceIPThreatListIpv4DestListClassListCfgCount := d.Get(prefix63_3 + "class_list_cfg.#").(int)
+	obj63_3.SystemInstanceIPThreatListIpv4DestListClassListCfgClassList = make([]go_thunder.SystemInstanceIPThreatListIpv4DestListClassListCfg, 0, SystemInstanceIPThreatListIpv4DestListClassListCfgCount)
 
+	for i := 0; i < SystemInstanceIPThreatListIpv4DestListClassListCfgCount; i++ {
+		var obj63_3_1 go_thunder.SystemInstanceIPThreatListIpv4DestListClassListCfg
+		prefix63_3_1 := prefix63_3 + fmt.Sprintf("class_list_cfg.%d.", i)
+		obj63_3_1.SystemInstanceIPThreatListIpv4DestListClassListCfgClassList = d.Get(prefix63_3_1 + "class_list").(string)
+		obj63_3_1.SystemInstanceIPThreatListIpv4DestListClassListCfgIPThreatActionTmpl = d.Get(prefix63_3_1 + "ip_threat_action_tmpl").(int)
+		obj63_3.SystemInstanceIPThreatListIpv4DestListClassListCfgClassList = append(obj63_3.SystemInstanceIPThreatListIpv4DestListClassListCfgClassList, obj63_3_1)
+	}
 
-		   c.SamplingEnable = obj76
+	obj63.SystemInstanceIPThreatListIpv4DestListClassListCfg = obj63_3
 
+	var obj63_4 go_thunder.SystemInstanceIPThreatListIpv6SourceList
+	prefix63_4 := prefix63 + "ipv6_source_list.0."
 
-		   var obj77 go_thunder.FpgaCoreCrc
-		   prefix := "fpga_core_crc.0."
-		   obj77.MonitorDisable = d.Get(prefix+"monitor_disable").(int)
-		   obj77.RebootEnable = d.Get(prefix+"reboot_enable").(int)
+	SystemInstanceIPThreatListIpv6SourceListClassListCfgCount := d.Get(prefix63_4 + "class_list_cfg.#").(int)
+	obj63_4.SystemInstanceIPThreatListIpv6SourceListClassListCfgClassList = make([]go_thunder.SystemInstanceIPThreatListIpv6SourceListClassListCfg, 0, SystemInstanceIPThreatListIpv6SourceListClassListCfgCount)
 
-		   c.MonitorDisable = obj77
+	for i := 0; i < SystemInstanceIPThreatListIpv6SourceListClassListCfgCount; i++ {
+		var obj63_4_1 go_thunder.SystemInstanceIPThreatListIpv6SourceListClassListCfg
+		prefix63_4_1 := prefix63_4 + fmt.Sprintf("class_list_cfg.%d.", i)
+		obj63_4_1.SystemInstanceIPThreatListIpv6SourceListClassListCfgClassList = d.Get(prefix63_4_1 + "class_list").(string)
+		obj63_4_1.SystemInstanceIPThreatListIpv6SourceListClassListCfgIPThreatActionTmpl = d.Get(prefix63_4_1 + "ip_threat_action_tmpl").(int)
+		obj63_4.SystemInstanceIPThreatListIpv6SourceListClassListCfgClassList = append(obj63_4.SystemInstanceIPThreatListIpv6SourceListClassListCfgClassList, obj63_4_1)
+	}
 
+	obj63.SystemInstanceIPThreatListIpv6SourceListClassListCfg = obj63_4
 
-		   var obj78 go_thunder.PsuInfo
-		   prefix := "psu_info.0."
+	var obj63_5 go_thunder.SystemInstanceIPThreatListIpv6DestList
+	prefix63_5 := prefix63 + "ipv6_dest_list.0."
 
+	SystemInstanceIPThreatListIpv6DestListClassListCfgCount := d.Get(prefix63_5 + "class_list_cfg.#").(int)
+	obj63_5.SystemInstanceIPThreatListIpv6DestListClassListCfgClassList = make([]go_thunder.SystemInstanceIPThreatListIpv6DestListClassListCfg, 0, SystemInstanceIPThreatListIpv6DestListClassListCfgCount)
 
-		   c. = obj78
+	for i := 0; i < SystemInstanceIPThreatListIpv6DestListClassListCfgCount; i++ {
+		var obj63_5_1 go_thunder.SystemInstanceIPThreatListIpv6DestListClassListCfg
+		prefix63_5_1 := prefix63_5 + fmt.Sprintf("class_list_cfg.%d.", i)
+		obj63_5_1.SystemInstanceIPThreatListIpv6DestListClassListCfgClassList = d.Get(prefix63_5_1 + "class_list").(string)
+		obj63_5_1.SystemInstanceIPThreatListIpv6DestListClassListCfgIPThreatActionTmpl = d.Get(prefix63_5_1 + "ip_threat_action_tmpl").(int)
+		obj63_5.SystemInstanceIPThreatListIpv6DestListClassListCfgClassList = append(obj63_5.SystemInstanceIPThreatListIpv6DestListClassListCfgClassList, obj63_5_1)
+	}
 
+	obj63.SystemInstanceIPThreatListIpv6DestListClassListCfg = obj63_5
 
-		   var obj79 go_thunder.GuiImageList
-		   prefix := "gui_image_list.0."
+	var obj63_6 go_thunder.SystemInstanceIPThreatListIpv4InternetHostList
+	prefix63_6 := prefix63 + "ipv4_internet_host_list.0."
 
+	SystemInstanceIPThreatListIpv4InternetHostListClassListCfgCount := d.Get(prefix63_6 + "class_list_cfg.#").(int)
+	obj63_6.SystemInstanceIPThreatListIpv4InternetHostListClassListCfgClassList = make([]go_thunder.SystemInstanceIPThreatListIpv4InternetHostListClassListCfg, 0, SystemInstanceIPThreatListIpv4InternetHostListClassListCfgCount)
 
-		   c. = obj79
+	for i := 0; i < SystemInstanceIPThreatListIpv4InternetHostListClassListCfgCount; i++ {
+		var obj63_6_1 go_thunder.SystemInstanceIPThreatListIpv4InternetHostListClassListCfg
+		prefix63_6_1 := prefix63_6 + fmt.Sprintf("class_list_cfg.%d.", i)
+		obj63_6_1.SystemInstanceIPThreatListIpv4InternetHostListClassListCfgClassList = d.Get(prefix63_6_1 + "class_list").(string)
+		obj63_6_1.SystemInstanceIPThreatListIpv4InternetHostListClassListCfgIPThreatActionTmpl = d.Get(prefix63_6_1 + "ip_threat_action_tmpl").(int)
+		obj63_6.SystemInstanceIPThreatListIpv4InternetHostListClassListCfgClassList = append(obj63_6.SystemInstanceIPThreatListIpv4InternetHostListClassListCfgClassList, obj63_6_1)
+	}
 
+	obj63.SystemInstanceIPThreatListIpv4InternetHostListClassListCfg = obj63_6
 
-		   var obj80 go_thunder.SyslogTimeMsec
-		   prefix := "syslog_time_msec.0."
-		   obj80.EnableFlag = d.Get(prefix+"enable_flag").(int)
+	var obj63_7 go_thunder.SystemInstanceIPThreatListIpv6InternetHostList
+	prefix63_7 := prefix63 + "ipv6_internet_host_list.0."
 
-		   c.EnableFlag = obj80
+	SystemInstanceIPThreatListIpv6InternetHostListClassListCfgCount := d.Get(prefix63_7 + "class_list_cfg.#").(int)
+	obj63_7.SystemInstanceIPThreatListIpv6InternetHostListClassListCfgClassList = make([]go_thunder.SystemInstanceIPThreatListIpv6InternetHostListClassListCfg, 0, SystemInstanceIPThreatListIpv6InternetHostListClassListCfgCount)
 
+	for i := 0; i < SystemInstanceIPThreatListIpv6InternetHostListClassListCfgCount; i++ {
+		var obj63_7_1 go_thunder.SystemInstanceIPThreatListIpv6InternetHostListClassListCfg
+		prefix63_7_1 := prefix63_7 + fmt.Sprintf("class_list_cfg.%d.", i)
+		obj63_7_1.SystemInstanceIPThreatListIpv6InternetHostListClassListCfgClassList = d.Get(prefix63_7_1 + "class_list").(string)
+		obj63_7_1.SystemInstanceIPThreatListIpv6InternetHostListClassListCfgIPThreatActionTmpl = d.Get(prefix63_7_1 + "ip_threat_action_tmpl").(int)
+		obj63_7.SystemInstanceIPThreatListIpv6InternetHostListClassListCfgClassList = append(obj63_7.SystemInstanceIPThreatListIpv6InternetHostListClassListCfgClassList, obj63_7_1)
+	}
 
-		   var obj81 go_thunder.IpmiService
-		   prefix := "ipmi_service.0."
-		   obj81.Disable = d.Get(prefix+"disable").(int)
+	obj63.SystemInstanceIPThreatListIpv6InternetHostListClassListCfg = obj63_7
 
-		   c.Disable = obj81
+	c.SystemInstanceIPThreatListUUID = obj63
 
+	var obj64 go_thunder.SystemInstanceFpgaDrop
+	prefix64 := "fpga_drop.0."
 
-		   var obj82 go_thunder.AppPerformance
-		   prefix := "app_performance.0."
+	SystemInstanceFpgaDropSamplingEnableCount := d.Get(prefix64 + "sampling_enable.#").(int)
+	obj64.SystemInstanceFpgaDropSamplingEnableCounters1 = make([]go_thunder.SystemInstanceFpgaDropSamplingEnable, 0, SystemInstanceFpgaDropSamplingEnableCount)
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj82.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	for i := 0; i < SystemInstanceFpgaDropSamplingEnableCount; i++ {
+		var obj64_1 go_thunder.SystemInstanceFpgaDropSamplingEnable
+		prefix64_1 := prefix64 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj64_1.SystemInstanceFpgaDropSamplingEnableCounters1 = d.Get(prefix64_1 + "counters1").(string)
+		obj64.SystemInstanceFpgaDropSamplingEnableCounters1 = append(obj64.SystemInstanceFpgaDropSamplingEnableCounters1, obj64_1)
+	}
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj82.Counters1 = append(obj82.Counters1, obj1)
-		   }
+	c.SystemInstanceFpgaDropUUID = obj64
 
+	var obj65 go_thunder.SystemInstanceDpdkStats
+	prefix65 := "dpdk_stats.0."
 
-		   c.SamplingEnable = obj82
+	SystemInstanceDpdkStatsSamplingEnableCount := d.Get(prefix65 + "sampling_enable.#").(int)
+	obj65.SystemInstanceDpdkStatsSamplingEnableCounters1 = make([]go_thunder.SystemInstanceDpdkStatsSamplingEnable, 0, SystemInstanceDpdkStatsSamplingEnableCount)
 
+	for i := 0; i < SystemInstanceDpdkStatsSamplingEnableCount; i++ {
+		var obj65_1 go_thunder.SystemInstanceDpdkStatsSamplingEnable
+		prefix65_1 := prefix65 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj65_1.SystemInstanceDpdkStatsSamplingEnableCounters1 = d.Get(prefix65_1 + "counters1").(string)
+		obj65.SystemInstanceDpdkStatsSamplingEnableCounters1 = append(obj65.SystemInstanceDpdkStatsSamplingEnableCounters1, obj65_1)
+	}
 
-		   var obj83 go_thunder.SslReqQ
-		   prefix := "ssl_req_q.0."
+	c.SystemInstanceDpdkStatsUUID = obj65
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj83.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	var obj66 go_thunder.SystemInstanceFpgaCoreCrc
+	prefix66 := "fpga_core_crc.0."
+	obj66.SystemInstanceFpgaCoreCrcMonitorDisable = d.Get(prefix66 + "monitor_disable").(int)
+	obj66.SystemInstanceFpgaCoreCrcRebootEnable = d.Get(prefix66 + "reboot_enable").(int)
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj83.Counters1 = append(obj83.Counters1, obj1)
-		   }
+	c.SystemInstanceFpgaCoreCrcMonitorDisable = obj66
 
+	var obj67 go_thunder.SystemInstanceMfaManagement
+	prefix67 := "mfa_management.0."
+	obj67.SystemInstanceMfaManagementEnable = d.Get(prefix67 + "enable").(int)
 
-		   c.SamplingEnable = obj83
+	c.SystemInstanceMfaManagementEnable = obj67
 
+	var obj68 go_thunder.SystemInstanceMfaValidationType
+	prefix68 := "mfa_validation_type.0."
+	obj68.SystemInstanceMfaValidationTypeCaCert = d.Get(prefix68 + "ca_cert").(string)
 
-		   var obj84 go_thunder.Tcp
-		   prefix := "tcp.0."
+	c.SystemInstanceMfaValidationTypeCaCert = obj68
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj84.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	var obj69 go_thunder.SystemInstanceMfaCertStore
+	prefix69 := "mfa_cert_store.0."
+	obj69.SystemInstanceMfaCertStoreCertHost = d.Get(prefix69 + "cert_host").(string)
+	obj69.SystemInstanceMfaCertStoreProtocol = d.Get(prefix69 + "protocol").(string)
+	obj69.SystemInstanceMfaCertStoreCertStorePath = d.Get(prefix69 + "cert_store_path").(string)
+	obj69.SystemInstanceMfaCertStoreUsername = d.Get(prefix69 + "username").(string)
+	obj69.SystemInstanceMfaCertStorePasswdString = d.Get(prefix69 + "passwd_string").(string)
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj84.Counters1 = append(obj84.Counters1, obj1)
-		   }
+	c.SystemInstanceMfaCertStoreCertHost = obj69
 
+	var obj70 go_thunder.SystemInstanceMfaAuth
+	prefix70 := "mfa_auth.0."
+	obj70.SystemInstanceMfaAuthUsername = d.Get(prefix70 + "username").(string)
+	obj70.SystemInstanceMfaAuthSecondFactor = d.Get(prefix70 + "second_factor").(string)
 
-		   var obj2 go_thunder.RateLimitResetUnknownConn
-		   prefix := "rate_limit_reset_unknown_conn.0."
-		   obj2.PktRateForResetUnknownConn = d.Get(prefix+"pkt_rate_for_reset_unknown_conn").(int)
-		   obj2.LogForResetUnknownConn = d.Get(prefix+"log_for_reset_unknown_conn").(int)
+	c.SystemInstanceMfaAuthUsername = obj70
 
-		   obj84.PktRateForResetUnknownConn = obj2
+	var obj71 go_thunder.SystemInstanceQInQ
+	prefix71 := "q_in_q.0."
+	obj71.SystemInstanceQInQInnerTpid = d.Get(prefix71 + "inner_tpid").(string)
+	obj71.SystemInstanceQInQOuterTpid = d.Get(prefix71 + "outer_tpid").(string)
+	obj71.SystemInstanceQInQEnableAllPorts = d.Get(prefix71 + "enable_all_ports").(int)
 
+	c.SystemInstanceQInQInnerTpid = obj71
 
-		   c.SamplingEnable = obj84
+	var obj72 go_thunder.SystemInstancePortCount
+	prefix72 := "port_count.0."
+	obj72.SystemInstancePortCountPortCountKernel = d.Get(prefix72 + "port_count_kernel").(int)
+	obj72.SystemInstancePortCountPortCountHm = d.Get(prefix72 + "port_count_hm").(int)
+	obj72.SystemInstancePortCountPortCountLogging = d.Get(prefix72 + "port_count_logging").(int)
+	obj72.SystemInstancePortCountPortCountAlg = d.Get(prefix72 + "port_count_alg").(int)
 
+	c.SystemInstancePortCountPortCountKernel = obj72
 
-		   var obj85 go_thunder.Icmp
-		   prefix := "icmp.0."
+	SystemInstanceHealthCheckListCount := d.Get("health_check_list.#").(int)
+	c.SystemInstanceHealthCheckListL2HmHcName = make([]go_thunder.SystemInstanceHealthCheckList, 0, SystemInstanceHealthCheckListCount)
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj85.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	for i := 0; i < SystemInstanceHealthCheckListCount; i++ {
+		var obj73 go_thunder.SystemInstanceHealthCheckList
+		prefix73 := fmt.Sprintf("health_check_list.%d.", i)
+		obj73.SystemInstanceHealthCheckListL2HmHcName = d.Get(prefix73 + "l2hm_hc_name").(string)
+		obj73.SystemInstanceHealthCheckListMethodL2Bfd = d.Get(prefix73 + "method_l2bfd").(int)
+		obj73.SystemInstanceHealthCheckListL2BfdTxInterval = d.Get(prefix73 + "l2bfd_tx_interval").(int)
+		obj73.SystemInstanceHealthCheckListL2BfdRxInterval = d.Get(prefix73 + "l2bfd_rx_interval").(int)
+		obj73.SystemInstanceHealthCheckListL2BfdMultiplier = d.Get(prefix73 + "l2bfd_multiplier").(int)
+		obj73.SystemInstanceHealthCheckListUserTag = d.Get(prefix73 + "user_tag").(string)
+		c.SystemInstanceHealthCheckListL2HmHcName = append(c.SystemInstanceHealthCheckListL2HmHcName, obj73)
+	}
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj85.Counters1 = append(obj85.Counters1, obj1)
-		   }
+	SystemInstancePathListCount := d.Get("path_list.#").(int)
+	c.SystemInstancePathListL2HmPathName = make([]go_thunder.SystemInstancePathList, 0, SystemInstancePathListCount)
 
+	for i := 0; i < SystemInstancePathListCount; i++ {
+		var obj74 go_thunder.SystemInstancePathList
+		prefix74 := fmt.Sprintf("path_list.%d.", i)
+		obj74.SystemInstancePathListL2HmPathName = d.Get(prefix74 + "l2hm_path_name").(string)
+		obj74.SystemInstancePathListL2HmVlan = d.Get(prefix74 + "l2hm_vlan").(int)
+		obj74.SystemInstancePathListL2HmSetupTestAPI = d.Get(prefix74 + "l2hm_setup_test_api").(int)
+		obj74.SystemInstancePathListIfpairEthStart = d.Get(prefix74 + "ifpair_eth_start").(int)
+		obj74.SystemInstancePathListIfpairEthEnd = d.Get(prefix74 + "ifpair_eth_end").(int)
+		obj74.SystemInstancePathListIfpairTrunkStart = d.Get(prefix74 + "ifpair_trunk_start").(int)
+		obj74.SystemInstancePathListIfpairTrunkEnd = d.Get(prefix74 + "ifpair_trunk_end").(int)
+		obj74.SystemInstancePathListL2HmAttach = d.Get(prefix74 + "l2hm_attach").(string)
+		obj74.SystemInstancePathListUserTag = d.Get(prefix74 + "user_tag").(string)
+		c.SystemInstancePathListL2HmPathName = append(c.SystemInstancePathListL2HmPathName, obj74)
+	}
 
-		   c.SamplingEnable = obj85
+	var obj75 go_thunder.SystemInstanceSyslogTimeMsec
+	prefix75 := "syslog_time_msec.0."
+	obj75.SystemInstanceSyslogTimeMsecEnableFlag = d.Get(prefix75 + "enable_flag").(int)
 
+	c.SystemInstanceSyslogTimeMsecEnableFlag = obj75
 
-		   var obj86 go_thunder.Icmp6
-		   prefix := "icmp6.0."
+	var obj76 go_thunder.SystemInstanceIpmiService
+	prefix76 := "ipmi_service.0."
+	obj76.SystemInstanceIpmiServiceDisable = d.Get(prefix76 + "disable").(int)
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj86.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	c.SystemInstanceIpmiServiceDisable = obj76
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj86.Counters1 = append(obj86.Counters1, obj1)
-		   }
+	var obj77 go_thunder.SystemInstanceAppPerformance
+	prefix77 := "app_performance.0."
 
+	SystemInstanceAppPerformanceSamplingEnableCount := d.Get(prefix77 + "sampling_enable.#").(int)
+	obj77.SystemInstanceAppPerformanceSamplingEnableCounters1 = make([]go_thunder.SystemInstanceAppPerformanceSamplingEnable, 0, SystemInstanceAppPerformanceSamplingEnableCount)
 
-		   c.SamplingEnable = obj86
+	for i := 0; i < SystemInstanceAppPerformanceSamplingEnableCount; i++ {
+		var obj77_1 go_thunder.SystemInstanceAppPerformanceSamplingEnable
+		prefix77_1 := prefix77 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj77_1.SystemInstanceAppPerformanceSamplingEnableCounters1 = d.Get(prefix77_1 + "counters1").(string)
+		obj77.SystemInstanceAppPerformanceSamplingEnableCounters1 = append(obj77.SystemInstanceAppPerformanceSamplingEnableCounters1, obj77_1)
+	}
 
+	c.SystemInstanceAppPerformanceUUID = obj77
 
-		   var obj87 go_thunder.IpStats
-		   prefix := "ip_stats.0."
+	var obj78 go_thunder.SystemInstanceSslReqQ
+	prefix78 := "ssl_req_q.0."
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj87.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	SystemInstanceSslReqQSamplingEnableCount := d.Get(prefix78 + "sampling_enable.#").(int)
+	obj78.SystemInstanceSslReqQSamplingEnableCounters1 = make([]go_thunder.SystemInstanceSslReqQSamplingEnable, 0, SystemInstanceSslReqQSamplingEnableCount)
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj87.Counters1 = append(obj87.Counters1, obj1)
-		   }
+	for i := 0; i < SystemInstanceSslReqQSamplingEnableCount; i++ {
+		var obj78_1 go_thunder.SystemInstanceSslReqQSamplingEnable
+		prefix78_1 := prefix78 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj78_1.SystemInstanceSslReqQSamplingEnableCounters1 = d.Get(prefix78_1 + "counters1").(string)
+		obj78.SystemInstanceSslReqQSamplingEnableCounters1 = append(obj78.SystemInstanceSslReqQSamplingEnableCounters1, obj78_1)
+	}
 
+	c.SystemInstanceSslReqQUUID = obj78
 
-		   c.SamplingEnable = obj87
+	var obj79 go_thunder.SystemInstanceTCP
+	prefix79 := "tcp.0."
 
+	SystemInstanceTCPSamplingEnableCount := d.Get(prefix79 + "sampling_enable.#").(int)
+	obj79.SystemInstanceTCPSamplingEnableCounters1 = make([]go_thunder.SystemInstanceTCPSamplingEnable, 0, SystemInstanceTCPSamplingEnableCount)
 
-		   var obj88 go_thunder.Ip6Stats
-		   prefix := "ip6_stats.0."
+	for i := 0; i < SystemInstanceTCPSamplingEnableCount; i++ {
+		var obj79_1 go_thunder.SystemInstanceTCPSamplingEnable
+		prefix79_1 := prefix79 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj79_1.SystemInstanceTCPSamplingEnableCounters1 = d.Get(prefix79_1 + "counters1").(string)
+		obj79.SystemInstanceTCPSamplingEnableCounters1 = append(obj79.SystemInstanceTCPSamplingEnableCounters1, obj79_1)
+	}
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj88.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	var obj79_2 go_thunder.SystemInstanceTCPRateLimitResetUnknownConn
+	prefix79_2 := prefix79 + "rate_limit_reset_unknown_conn.0."
+	obj79_2.SystemInstanceTCPRateLimitResetUnknownConnPktRateForResetUnknownConn = d.Get(prefix79_2 + "pkt_rate_for_reset_unknown_conn").(int)
+	obj79_2.SystemInstanceTCPRateLimitResetUnknownConnLogForResetUnknownConn = d.Get(prefix79_2 + "log_for_reset_unknown_conn").(int)
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj88.Counters1 = append(obj88.Counters1, obj1)
-		   }
+	obj79.SystemInstanceTCPRateLimitResetUnknownConnPktRateForResetUnknownConn = obj79_2
 
+	c.SystemInstanceTCPUUID = obj79
 
-		   c.SamplingEnable = obj88
+	var obj80 go_thunder.SystemInstanceIcmp
+	prefix80 := "icmp.0."
 
+	SystemInstanceIcmpSamplingEnableCount := d.Get(prefix80 + "sampling_enable.#").(int)
+	obj80.SystemInstanceIcmpSamplingEnableCounters1 = make([]go_thunder.SystemInstanceIcmpSamplingEnable, 0, SystemInstanceIcmpSamplingEnableCount)
 
-		   var obj89 go_thunder.DomainListInfo
-		   prefix := "domain_list_info.0."
+	for i := 0; i < SystemInstanceIcmpSamplingEnableCount; i++ {
+		var obj80_1 go_thunder.SystemInstanceIcmpSamplingEnable
+		prefix80_1 := prefix80 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj80_1.SystemInstanceIcmpSamplingEnableCounters1 = d.Get(prefix80_1 + "counters1").(string)
+		obj80.SystemInstanceIcmpSamplingEnableCounters1 = append(obj80.SystemInstanceIcmpSamplingEnableCounters1, obj80_1)
+	}
 
+	c.SystemInstanceIcmpUUID = obj80
 
-		   c. = obj89
+	var obj81 go_thunder.SystemInstanceIcmp6
+	prefix81 := "icmp6.0."
 
+	SystemInstanceIcmp6SamplingEnableCount := d.Get(prefix81 + "sampling_enable.#").(int)
+	obj81.SystemInstanceIcmp6SamplingEnableCounters1 = make([]go_thunder.SystemInstanceIcmp6SamplingEnable, 0, SystemInstanceIcmp6SamplingEnableCount)
 
-		   var obj90 go_thunder.IpDnsCache
-		   prefix := "ip_dns_cache.0."
+	for i := 0; i < SystemInstanceIcmp6SamplingEnableCount; i++ {
+		var obj81_1 go_thunder.SystemInstanceIcmp6SamplingEnable
+		prefix81_1 := prefix81 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj81_1.SystemInstanceIcmp6SamplingEnableCounters1 = d.Get(prefix81_1 + "counters1").(string)
+		obj81.SystemInstanceIcmp6SamplingEnableCounters1 = append(obj81.SystemInstanceIcmp6SamplingEnableCounters1, obj81_1)
+	}
 
+	c.SystemInstanceIcmp6UUID = obj81
 
-		   c. = obj90
+	var obj82 go_thunder.SystemInstanceIPStats
+	prefix82 := "ip_stats.0."
 
+	SystemInstanceIPStatsSamplingEnableCount := d.Get(prefix82 + "sampling_enable.#").(int)
+	obj82.SystemInstanceIPStatsSamplingEnableCounters1 = make([]go_thunder.SystemInstanceIPStatsSamplingEnable, 0, SystemInstanceIPStatsSamplingEnableCount)
 
-		   var obj91 go_thunder.Bfd
-		   prefix := "bfd.0."
+	for i := 0; i < SystemInstanceIPStatsSamplingEnableCount; i++ {
+		var obj82_1 go_thunder.SystemInstanceIPStatsSamplingEnable
+		prefix82_1 := prefix82 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj82_1.SystemInstanceIPStatsSamplingEnableCounters1 = d.Get(prefix82_1 + "counters1").(string)
+		obj82.SystemInstanceIPStatsSamplingEnableCounters1 = append(obj82.SystemInstanceIPStatsSamplingEnableCounters1, obj82_1)
+	}
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj91.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	c.SystemInstanceIPStatsUUID = obj82
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj91.Counters1 = append(obj91.Counters1, obj1)
-		   }
+	var obj83 go_thunder.SystemInstanceIP6Stats
+	prefix83 := "ip6_stats.0."
 
+	SystemInstanceIP6StatsSamplingEnableCount := d.Get(prefix83 + "sampling_enable.#").(int)
+	obj83.SystemInstanceIP6StatsSamplingEnableCounters1 = make([]go_thunder.SystemInstanceIP6StatsSamplingEnable, 0, SystemInstanceIP6StatsSamplingEnableCount)
 
-		   c.SamplingEnable = obj91
+	for i := 0; i < SystemInstanceIP6StatsSamplingEnableCount; i++ {
+		var obj83_1 go_thunder.SystemInstanceIP6StatsSamplingEnable
+		prefix83_1 := prefix83 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj83_1.SystemInstanceIP6StatsSamplingEnableCounters1 = d.Get(prefix83_1 + "counters1").(string)
+		obj83.SystemInstanceIP6StatsSamplingEnableCounters1 = append(obj83.SystemInstanceIP6StatsSamplingEnableCounters1, obj83_1)
+	}
 
+	c.SystemInstanceIP6StatsUUID = obj83
 
-		   var obj92 go_thunder.IcmpRate
-		   prefix := "icmp_rate.0."
+	var obj84 go_thunder.SystemInstanceBfd
+	prefix84 := "bfd.0."
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj92.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	SystemInstanceBfdSamplingEnableCount := d.Get(prefix84 + "sampling_enable.#").(int)
+	obj84.SystemInstanceBfdSamplingEnableCounters1 = make([]go_thunder.SystemInstanceBfdSamplingEnable, 0, SystemInstanceBfdSamplingEnableCount)
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj92.Counters1 = append(obj92.Counters1, obj1)
-		   }
+	for i := 0; i < SystemInstanceBfdSamplingEnableCount; i++ {
+		var obj84_1 go_thunder.SystemInstanceBfdSamplingEnable
+		prefix84_1 := prefix84 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj84_1.SystemInstanceBfdSamplingEnableCounters1 = d.Get(prefix84_1 + "counters1").(string)
+		obj84.SystemInstanceBfdSamplingEnableCounters1 = append(obj84.SystemInstanceBfdSamplingEnableCounters1, obj84_1)
+	}
 
+	c.SystemInstanceBfdUUID = obj84
 
-		   c.SamplingEnable = obj92
+	var obj85 go_thunder.SystemInstanceIcmpRate
+	prefix85 := "icmp_rate.0."
 
+	SystemInstanceIcmpRateSamplingEnableCount := d.Get(prefix85 + "sampling_enable.#").(int)
+	obj85.SystemInstanceIcmpRateSamplingEnableCounters1 = make([]go_thunder.SystemInstanceIcmpRateSamplingEnable, 0, SystemInstanceIcmpRateSamplingEnableCount)
 
-		   var obj93 go_thunder.Dns
-		   prefix := "dns.0."
+	for i := 0; i < SystemInstanceIcmpRateSamplingEnableCount; i++ {
+		var obj85_1 go_thunder.SystemInstanceIcmpRateSamplingEnable
+		prefix85_1 := prefix85 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj85_1.SystemInstanceIcmpRateSamplingEnableCounters1 = d.Get(prefix85_1 + "counters1").(string)
+		obj85.SystemInstanceIcmpRateSamplingEnableCounters1 = append(obj85.SystemInstanceIcmpRateSamplingEnableCounters1, obj85_1)
+	}
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj93.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	c.SystemInstanceIcmpRateUUID = obj85
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj93.Counters1 = append(obj93.Counters1, obj1)
-		   }
+	var obj86 go_thunder.SystemInstanceJobOffload
+	prefix86 := "job_offload.0."
 
+	SystemInstanceJobOffloadSamplingEnableCount := d.Get(prefix86 + "sampling_enable.#").(int)
+	obj86.SystemInstanceJobOffloadSamplingEnableCounters1 = make([]go_thunder.SystemInstanceJobOffloadSamplingEnable, 0, SystemInstanceJobOffloadSamplingEnableCount)
 
-		   c.SamplingEnable = obj93
+	for i := 0; i < SystemInstanceJobOffloadSamplingEnableCount; i++ {
+		var obj86_1 go_thunder.SystemInstanceJobOffloadSamplingEnable
+		prefix86_1 := prefix86 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj86_1.SystemInstanceJobOffloadSamplingEnableCounters1 = d.Get(prefix86_1 + "counters1").(string)
+		obj86.SystemInstanceJobOffloadSamplingEnableCounters1 = append(obj86.SystemInstanceJobOffloadSamplingEnableCounters1, obj86_1)
+	}
 
+	c.SystemInstanceJobOffloadUUID = obj86
 
-		   var obj94 go_thunder.DnsCache
-		   prefix := "dns_cache.0."
+	var obj87 go_thunder.SystemInstanceDNS
+	prefix87 := "dns.0."
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj94.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	SystemInstanceDNSSamplingEnableCount := d.Get(prefix87 + "sampling_enable.#").(int)
+	obj87.SystemInstanceDNSSamplingEnableCounters1 = make([]go_thunder.SystemInstanceDNSSamplingEnable, 0, SystemInstanceDNSSamplingEnableCount)
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj94.Counters1 = append(obj94.Counters1, obj1)
-		   }
+	for i := 0; i < SystemInstanceDNSSamplingEnableCount; i++ {
+		var obj87_1 go_thunder.SystemInstanceDNSSamplingEnable
+		prefix87_1 := prefix87 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj87_1.SystemInstanceDNSSamplingEnableCounters1 = d.Get(prefix87_1 + "counters1").(string)
+		obj87.SystemInstanceDNSSamplingEnableCounters1 = append(obj87.SystemInstanceDNSSamplingEnableCounters1, obj87_1)
+	}
 
+	c.SystemInstanceDNSUUID = obj87
 
-		   c.SamplingEnable = obj94
+	var obj88 go_thunder.SystemInstanceDNSCache
+	prefix88 := "dns_cache.0."
 
+	SystemInstanceDNSCacheSamplingEnableCount := d.Get(prefix88 + "sampling_enable.#").(int)
+	obj88.SystemInstanceDNSCacheSamplingEnableCounters1 = make([]go_thunder.SystemInstanceDNSCacheSamplingEnable, 0, SystemInstanceDNSCacheSamplingEnableCount)
 
-		   var obj95 go_thunder.Session
-		   prefix := "session.0."
+	for i := 0; i < SystemInstanceDNSCacheSamplingEnableCount; i++ {
+		var obj88_1 go_thunder.SystemInstanceDNSCacheSamplingEnable
+		prefix88_1 := prefix88 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj88_1.SystemInstanceDNSCacheSamplingEnableCounters1 = d.Get(prefix88_1 + "counters1").(string)
+		obj88.SystemInstanceDNSCacheSamplingEnableCounters1 = append(obj88.SystemInstanceDNSCacheSamplingEnableCounters1, obj88_1)
+	}
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj95.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	c.SystemInstanceDNSCacheUUID = obj88
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj95.Counters1 = append(obj95.Counters1, obj1)
-		   }
+	var obj89 go_thunder.SystemInstanceSession
+	prefix89 := "session.0."
 
+	SystemInstanceSessionSamplingEnableCount := d.Get(prefix89 + "sampling_enable.#").(int)
+	obj89.SystemInstanceSessionSamplingEnableCounters1 = make([]go_thunder.SystemInstanceSessionSamplingEnable, 0, SystemInstanceSessionSamplingEnableCount)
 
-		   c.SamplingEnable = obj95
+	for i := 0; i < SystemInstanceSessionSamplingEnableCount; i++ {
+		var obj89_1 go_thunder.SystemInstanceSessionSamplingEnable
+		prefix89_1 := prefix89 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj89_1.SystemInstanceSessionSamplingEnableCounters1 = d.Get(prefix89_1 + "counters1").(string)
+		obj89.SystemInstanceSessionSamplingEnableCounters1 = append(obj89.SystemInstanceSessionSamplingEnableCounters1, obj89_1)
+	}
 
+	c.SystemInstanceSessionUUID = obj89
 
-		   var obj96 go_thunder.NdiscRa
-		   prefix := "ndisc_ra.0."
+	var obj90 go_thunder.SystemInstanceNdiscRa
+	prefix90 := "ndisc_ra.0."
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj96.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	SystemInstanceNdiscRaSamplingEnableCount := d.Get(prefix90 + "sampling_enable.#").(int)
+	obj90.SystemInstanceNdiscRaSamplingEnableCounters1 = make([]go_thunder.SystemInstanceNdiscRaSamplingEnable, 0, SystemInstanceNdiscRaSamplingEnableCount)
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj96.Counters1 = append(obj96.Counters1, obj1)
-		   }
+	for i := 0; i < SystemInstanceNdiscRaSamplingEnableCount; i++ {
+		var obj90_1 go_thunder.SystemInstanceNdiscRaSamplingEnable
+		prefix90_1 := prefix90 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj90_1.SystemInstanceNdiscRaSamplingEnableCounters1 = d.Get(prefix90_1 + "counters1").(string)
+		obj90.SystemInstanceNdiscRaSamplingEnableCounters1 = append(obj90.SystemInstanceNdiscRaSamplingEnableCounters1, obj90_1)
+	}
 
+	c.SystemInstanceNdiscRaUUID = obj90
 
-		   c.SamplingEnable = obj96
+	var obj91 go_thunder.SystemInstanceTCPStats
+	prefix91 := "tcp_stats.0."
 
+	SystemInstanceTCPStatsSamplingEnableCount := d.Get(prefix91 + "sampling_enable.#").(int)
+	obj91.SystemInstanceTCPStatsSamplingEnableCounters1 = make([]go_thunder.SystemInstanceTCPStatsSamplingEnable, 0, SystemInstanceTCPStatsSamplingEnableCount)
 
-		   var obj97 go_thunder.TcpStats
-		   prefix := "tcp_stats.0."
+	for i := 0; i < SystemInstanceTCPStatsSamplingEnableCount; i++ {
+		var obj91_1 go_thunder.SystemInstanceTCPStatsSamplingEnable
+		prefix91_1 := prefix91 + fmt.Sprintf("sampling_enable.%d.", i)
+		obj91_1.SystemInstanceTCPStatsSamplingEnableCounters1 = d.Get(prefix91_1 + "counters1").(string)
+		obj91.SystemInstanceTCPStatsSamplingEnableCounters1 = append(obj91.SystemInstanceTCPStatsSamplingEnableCounters1, obj91_1)
+	}
 
-		   SamplingEnableCount := d.Get("sampling_enable.#").(int)
-		   obj97.Counters1 = make([]go_thunder.SamplingEnable, 0, SamplingEnableCount)
+	c.SystemInstanceTCPStatsUUID = obj91
 
-		   for i := 0; i < SamplingEnableCount; i++ {
-		   var obj1 go_thunder.SamplingEnable
-		   prefix := fmt.Sprintf("sampling_enable.%d.",i)
-		   obj1.Counters1 = d.Get(prefix+"counters1").(string)
-		   obj97.Counters1 = append(obj97.Counters1, obj1)
-		   }
-
-
-		   c.SamplingEnable = obj97
-
-
-		   var obj98 go_thunder.TelemetryLog
-		   prefix := "telemetry_log.0."
-
-		   var obj1 go_thunder.TopKSourceList
-		   prefix := "top_k_source_list.0."
-
-
-		   obj98.Uuid = obj1
-
-
-		   var obj2 go_thunder.TopKAppSvcList
-		   prefix := "top_k_app_svc_list.0."
-
-
-		   obj98.Uuid = obj2
-
-
-		   var obj3 go_thunder.DeviceStatus
-		   prefix := "device_status.0."
-
-
-		   obj98.Uuid = obj3
-
-
-		   var obj4 go_thunder.Environment
-		   prefix := "environment.0."
-
-
-		   obj98.Uuid = obj4
-
-
-		   var obj5 go_thunder.PartitionMetrics
-		   prefix := "partition_metrics.0."
-
-
-		   obj98.Uuid = obj5
-
-
-		   c.TopKSourceList = obj98
-
-	*/
-	vc.AnomalyLog = c
+	vc.SystemInstanceAnomalyLog = c
 	return vc
 }

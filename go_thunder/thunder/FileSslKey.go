@@ -99,36 +99,36 @@ func PostFileSslKey(id string, inst FileSslKey, host string, FileHandleLocal str
 	return err
 }
 
-func GetFileSslKey(id string, host string) (*FileSslKey, error) {
+// func GetFileSslKey(id string, host string) (*FileSslKey, error) {
 
-	logger := util.GetLoggerInstance()
+// 	logger := util.GetLoggerInstance()
 
-	var headers = make(map[string]string)
-	headers["Accept"] = "application/json"
-	headers["Content-Type"] = "application/json"
-	headers["Authorization"] = id
-	logger.Println("[INFO] Inside GetFileSslKey")
+// 	var headers = make(map[string]string)
+// 	headers["Accept"] = "application/json"
+// 	headers["Content-Type"] = "application/json"
+// 	headers["Authorization"] = id
+// 	logger.Println("[INFO] Inside GetFileSslKey")
 
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/file/ssl-key", nil, headers)
+// 	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/file/ssl-key", nil, headers)
 
-	if err != nil {
-		logger.Println("The HTTP request failed with error ", err)
-		return nil, err
-	} else {
-		data, _ := ioutil.ReadAll(resp.Body)
-		var m FileSslKey
-		err := json.Unmarshal(data, &m)
-		if err != nil {
-			logger.Println("Unmarshal error ", err)
-			return nil, err
-		} else {
-			logger.Println("[INFO] Get REQ RES..........................", m)
-			err := check_api_status("GetFileSslKey", data)
-			if err != nil {
-				return nil, err
-			}
-			return &m, nil
-		}
-	}
+// 	if err != nil {
+// 		logger.Println("The HTTP request failed with error ", err)
+// 		return nil, err
+// 	} else {
+// 		data, _ := ioutil.ReadAll(resp.Body)
+// 		var m FileSslKey
+// 		err := json.Unmarshal(data, &m)
+// 		if err != nil {
+// 			logger.Println("Unmarshal error ", err)
+// 			return nil, err
+// 		} else {
+// 			logger.Println("[INFO] Get REQ RES..........................", m)
+// 			err := check_api_status("GetFileSslKey", data)
+// 			if err != nil {
+// 				return nil, err
+// 			}
+// 			return &m, nil
+// 		}
+// 	}
 
-}
+// }

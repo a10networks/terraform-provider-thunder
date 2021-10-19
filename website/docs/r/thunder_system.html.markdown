@@ -14,11 +14,10 @@ description: |-
 
 ```hcl
 provider "thunder" {
-    address  = "${var.address}"
-    username = "${var.username}"  
-    password = "${var.mypassword}"
+  address  = var.address
+  username = var.username
+  password = var.password
 }
-
 
 
 resource "thunder_system" "resourceSystemTest" {
@@ -35,6 +34,7 @@ class_list_hitcount_enable = 0
 geo_db_hitcount_enable = 0
 domain_list_hitcount_enable = 0
 dynamic_service_dns_socket_pool = 0
+system_chassis_port_split_enable = 0
 uuid = "string"
 timeout_value {  
  	ftp =  0 
@@ -69,6 +69,16 @@ shared_poll_mode {
  	enable =  0 
 	disable =  0 
 	}
+probe_network_devices {  
+ 	}
+management_interface_mode {  
+ 	dedicated =  0 
+	non_dedicated =  0 
+	}
+set_tcp_syn_per_sec {  
+ 	tcp_syn_value =  0 
+	uuid =  "string" 
+	}
 add_port {  
  	port_index =  0 
 	}
@@ -81,6 +91,7 @@ modify_port {
 	}
 tls_1_3_mgmt {  
  	enable =  0 
+	uuid =  "string" 
 	}
 multi_queue_support {  
  	enable =  0 
@@ -99,6 +110,14 @@ io_cpu {
  	max_cores =  0 
 	}
 link_monitor {  
+ 	enable =  0 
+	disable =  0 
+	}
+lro {  
+ 	enable =  0 
+	disable =  0 
+	}
+tso {  
  	enable =  0 
 	disable =  0 
 	}
@@ -211,6 +230,10 @@ link_block_as_down {
  	enable =  0 
 	uuid =  "string" 
 	}
+link_down_on_restart {  
+ 	enable =  0 
+	uuid =  "string" 
+	}
 	}
 memory {  
  	uuid =  "string" 
@@ -229,11 +252,14 @@ resource_usage {
 	aflex_table_entry_count =  0 
 	class_list_ipv6_addr_count =  0 
 	class_list_ac_entry_count =  0 
+	class_list_entry_count =  0 
 	max_aflex_authz_collection_number =  0 
 	radius_table_size =  0 
 	authz_policy_number =  0 
 	ipsec_sa_number =  0 
 	ram_cache_memory_limit =  0 
+	waf_template_count =  0 
+	auth_session_count =  0 
 	uuid =  "string" 
 visibility {  
  	monitored_entity_count =  0 
@@ -461,10 +487,20 @@ ports {
  	link_detection_interval =  0 
 	uuid =  "string" 
 	}
+table_integrity {  
+ 	table =  "string" 
+	audit_action =  "string" 
+	auto_sync_action =  "string" 
+	uuid =  "string" 
+sampling-enable {   
+	counters1 =  "string" 
+	}
+	}
 ipsec {  
  	packet_round_robin =  0 
 	crypto_core =  0 
 	crypto_mem =  0 
+	qat =  0 
 	uuid =  "string" 
 fpga_decrypt {  
  	action =  "string" 
@@ -494,6 +530,8 @@ cpu_usage {
  	low =  0 
 	high =  0 
 	}
+	tcp =  0 
+	udp =  0 
 	uuid =  "string" 
 	}
 per_vlan_limit {  
@@ -521,6 +559,18 @@ session_reclaim_limit {
 	}
 ssl_scv {  
  	enable =  0 
+	uuid =  "string" 
+	}
+ssl_scv_verify_host {  
+ 	disable =  0 
+	uuid =  "string" 
+	}
+ssl_scv_verify_crl_sign {  
+ 	enable =  0 
+	uuid =  "string" 
+	}
+ssl_set_compatible_cipher {  
+ 	disable =  0 
 	uuid =  "string" 
 	}
 hardware {  
@@ -589,6 +639,10 @@ queuing_buffer {
  	enable =  0 
 	uuid =  "string" 
 	}
+high_memory_l4_session {  
+ 	enable =  0 
+	uuid =  "string" 
+	}
 trunk_hw_hash {  
  	mode =  0 
 	uuid =  "string" 
@@ -617,13 +671,18 @@ apps_global {
 	uuid =  "string" 
 	}
 shell_privileges {  
- 	uuid =  "string" 
+ 	enable_shell_privileges =  0 
+	uuid =  "string" 
 	}
 cosq_stats {  
  	uuid =  "string" 
 	}
 cosq_show {  
  	uuid =  "string" 
+	}
+shm_logging {  
+ 	enable =  0 
+	uuid =  "string" 
 	}
 fw {  
  	application_mempool =  0 
@@ -669,6 +728,7 @@ attribute {
 	accounting_interim_update =  "string" 
 	accounting_on =  "string" 
 	attribute_name =  "string" 
+	custom_attribute_name =  "string" 
 	uuid =  "string" 
 sampling-enable {   
 	counters1 =  "string" 
@@ -733,6 +793,9 @@ geo-locn-multiple-addresses {
 	user_tag =  "string" 
 	}
 	}
+tcp_syn_per_sec {  
+ 	uuid =  "string" 
+	}
 ip_threat_list {  
  	uuid =  "string" 
 sampling-enable {   
@@ -766,6 +829,20 @@ ipv6_dest_list {
 	}
 	uuid =  "string" 
 	}
+ipv4_internet_host_list {  
+ class-list-cfg {   
+	class_list =  "string" 
+	ip_threat_action_tmpl =  0 
+	}
+	uuid =  "string" 
+	}
+ipv6_internet_host_list {  
+ class-list-cfg {   
+	class_list =  "string" 
+	ip_threat_action_tmpl =  0 
+	}
+	uuid =  "string" 
+	}
 	}
 fpga_drop {  
  	uuid =  "string" 
@@ -783,6 +860,60 @@ fpga_core_crc {
  	monitor_disable =  0 
 	reboot_enable =  0 
 	uuid =  "string" 
+	}
+mfa_management {  
+ 	enable =  0 
+	uuid =  "string" 
+	}
+mfa_validation_type {  
+ 	ca_cert =  "string" 
+	uuid =  "string" 
+	}
+mfa_cert_store {  
+ 	cert_host =  "string" 
+	protocol =  "string" 
+	cert_store_path =  "string" 
+	username =  "string" 
+	passwd_string =  "string" 
+	uuid =  "string" 
+	}
+mfa_auth {  
+ 	username =  "string" 
+	second_factor =  "string" 
+	}
+q_in_q {  
+ 	inner_tpid =  "string" 
+	outer_tpid =  "string" 
+	enable_all_ports =  0 
+	uuid =  "string" 
+	}
+port_count {  
+ 	port_count_kernel =  0 
+	port_count_hm =  0 
+	port_count_logging =  0 
+	port_count_alg =  0 
+	uuid =  "string" 
+	}
+health-check-list {   
+	l2hm_hc_name =  "string" 
+	method_l2bfd =  0 
+	l2bfd_tx_interval =  0 
+	l2bfd_rx_interval =  0 
+	l2bfd_multiplier =  0 
+	uuid =  "string" 
+	user_tag =  "string" 
+	}
+path-list {   
+	l2hm_path_name =  "string" 
+	l2hm_vlan =  0 
+	l2hm_setup_test_api =  0 
+	ifpair_eth_start =  0 
+	ifpair_eth_end =  0 
+	ifpair_trunk_start =  0 
+	ifpair_trunk_end =  0 
+	l2hm_attach =  "string" 
+	uuid =  "string" 
+	user_tag =  "string" 
 	}
 psu_info {  
  	uuid =  "string" 
@@ -862,6 +993,12 @@ sampling-enable {
 	counters1 =  "string" 
 	}
 	}
+job_offload {  
+ 	uuid =  "string" 
+sampling-enable {   
+	counters1 =  "string" 
+	}
+	}
 dns {  
  	uuid =  "string" 
 sampling-enable {   
@@ -930,6 +1067,7 @@ partition_metrics {
 * `geo-db-hitcount-enable` - Enable Geolocation database hit count
 * `domain-list-hitcount-enable` - Enable class list hit count
 * `dynamic-service-dns-socket-pool` - Enable socket pool for dynamic-service DNS
+* `system-chassis-port-split-enable` - Enable port split for the chassis
 * `uuid` - uuid of the object
 * `ftp` - set timeout to stop ftp transfer in seconds, 0 is no limit
 * `scp` - set timeout to stop scp transfer in seconds, 0 is no limit
@@ -937,12 +1075,15 @@ partition_metrics {
 * `tftp` - set timeout to stop tftp transfer in seconds, 0 is no limit
 * `http` - set timeout to stop http transfer in seconds, 0 is no limit
 * `https` - set timeout to stop https transfer in seconds, 0 is no limit
-* `counters1` - 'all': all; 'connattempt': Connect initiated; 'connects': Connect established; 'drops': Connect dropped; 'conndrops': Embryonic connect dropped; 'closed': Connect closed; 'segstimed': Segs to get RTT; 'rttupdated': Update RTT; 'delack': Delayed acks sent; 'timeoutdrop': Conn dropped in rxmt timeout; 'rexmttimeo': Retransmit timeout; 'persisttimeo': Persist timeout; 'keeptimeo': Keepalive timeout; 'keepprobe': Keepalive probe sent; 'keepdrops': Connect dropped in keepalive; 'sndtotal': Total packet sent; 'sndpack': Data packet sent; 'sndbyte': Data bytes sent; 'sndrexmitpack': Data packet retransmit; 'sndrexmitbyte': Data byte retransmit; 'sndrexmitbad': Unnecessary packet retransmit; 'sndacks': Ack packet sent; 'sndprobe': Window probe sent; 'sndurg': URG packet sent; 'sndwinup': Window update packet sent; 'sndctrl': SYN|FIN|RST packet sent; 'sndrst': RST packet sent; 'sndfin': FIN packet sent; 'sndsyn': SYN packet sent; 'rcvtotal': Total packet received; 'rcvpack': Packet received; 'rcvbyte': Bytes received; 'rcvbadoff': Packet received with bad offset; 'rcvmemdrop': Packet dropped for lack of memory; 'rcvduppack': Duplicate packet received; 'rcvdupbyte': Duplicate bytes received; 'rcvpartduppack': Packet with some duplicate data; 'rcvpartdupbyte': Dup. bytes in part-dup. packets; 'rcvoopack': Out-of-order packet received; 'rcvoobyte': Out-of-order bytes received; 'rcvpackafterwin': Packets with data after window; 'rcvbyteafterwin': Bytes rcvd after window; 'rcvwinprobe': Rcvd window probe packet; 'rcvdupack': Rcvd duplicate acks; 'rcvacktoomuch': Rcvd acks for unsent data; 'rcvackpack': Rcvd ack packets; 'rcvackbyte': Bytes acked by rcvd acks; 'rcvwinupd': Rcvd window update packets; 'pawsdrop': Segments dropped due to PAWS; 'predack': Hdr predict for acks; 'preddat': Hdr predict for data pkts; 'persistdrop': Timeout in persist state; 'badrst': Ignored RST; 'finwait2_drops': Drop FIN_WAIT_2 connection after time limit; 'sack_recovery_episode': SACK recovery episodes; 'sack_rexmits': SACK rexmit segments; 'sack_rexmit_bytes': SACK rexmit bytes; 'sack_rcv_blocks': SACK received; 'sack_send_blocks': SACK sent; 'sndcack': Challenge ACK sent; 'cacklim': Challenge ACK limited; 'reassmemdrop': Packet dropped during reassembly; 'reasstimeout': Reassembly Time Out; 'cc_idle': Congestion control window set do to idle; 'cc_reduce': Congestion control window reduced by event; 'rcvdsack': Rcvd DSACK packets; 'a2brcvwnd': ATCP to BTCP receive window; 'a2bsackpresent': ATCP to BTCP SACK options present; 'a2bdupack': ATCP to BTCP Dup/OO ACK; 'a2brxdata': ATCP to BTCP Rxmitted data; 'a2btcpoptions': ATCP to BTCP unsupported TCP options; 'a2boodata': ATCP to BTCP oo data received; 'a2bpartialack': ATCP to BTCP partial ack received; 'a2bfsmtransition': ATCP to BTCP state machine transition; 'a2btransitionnum': ATCP to BTCP total transitions; 'b2atransitionnum': ATCP to BTCP total transitions; 'bad_iochan': IO Channel Modified; 'atcpforward': Adaptive TCP forward; 'atcpsent': Adaptive TCP sent; 'atcprexmitsadrop': Adaptive TCP transmit SA drops; 'atcpsendbackack': Adaptive TCP sendback ACK; 'atcprexmit': Adaptive TCP retransmits; 'atcpbuffallocfail': Adaptive TCP buffer allocation fails; 'a2bappbuffering': Transition to full stack on when application buffers too much data; 'atcpsendfail': Adaptive TCP sent fails; 'earlyrexmit': Early Retransmission sent; 'mburstlim': Maxburst limited tx; 'a2bsndwnd': ATCP to BTCP send window;
+* `counters1` - 'all': all; 'connattempt': Connect initiated; 'connects': Connect established; 'drops': Connect dropped; 'conndrops': Embryonic connect dropped; 'closed': Connect closed; 'segstimed': Segs to get RTT; 'rttupdated': Update RTT; 'delack': Delayed acks sent; 'timeoutdrop': Conn dropped in rxmt timeout; 'rexmttimeo': Retransmit timeout; 'persisttimeo': Persist timeout; 'keeptimeo': Keepalive timeout; 'keepprobe': Keepalive probe sent; 'keepdrops': Connect dropped in keepalive; 'sndtotal': Total packet sent; 'sndpack': Data packet sent; 'sndbyte': Data bytes sent; 'sndrexmitpack': Data packet retransmit; 'sndrexmitbyte': Data byte retransmit; 'sndrexmitbad': Unnecessary packet retransmit; 'sndacks': Ack packet sent; 'sndprobe': Window probe sent; 'sndurg': URG packet sent; 'sndwinup': Window update packet sent; 'sndctrl': SYN|FIN|RST packet sent; 'sndrst': RST packet sent; 'sndfin': FIN packet sent; 'sndsyn': SYN packet sent; 'rcvtotal': Total packet received; 'rcvpack': Packet received; 'rcvbyte': Bytes received; 'rcvbadoff': Packet received with bad offset; 'rcvmemdrop': Packet dropped for lack of memory; 'rcvduppack': Duplicate packet received; 'rcvdupbyte': Duplicate bytes received; 'rcvpartduppack': Packet with some duplicate data; 'rcvpartdupbyte': Dup. bytes in part-dup. packets; 'rcvoopack': Out-of-order packet received; 'rcvoobyte': Out-of-order bytes received; 'rcvpackafterwin': Packets with data after window; 'rcvbyteafterwin': Bytes rcvd after window; 'rcvwinprobe': Rcvd window probe packet; 'rcvdupack': Rcvd duplicate acks; 'rcvacktoomuch': Rcvd acks for unsent data; 'rcvackpack': Rcvd ack packets; 'rcvackbyte': Bytes acked by rcvd acks; 'rcvwinupd': Rcvd window update packets; 'pawsdrop': Segments dropped due to PAWS; 'predack': Hdr predict for acks; 'preddat': Hdr predict for data pkts; 'persistdrop': Timeout in persist state; 'badrst': Ignored RST; 'finwait2_drops': Drop FIN_WAIT_2 connection after time limit; 'sack_recovery_episode': SACK recovery episodes; 'sack_rexmits': SACK rexmit segments; 'sack_rexmit_bytes': SACK rexmit bytes; 'sack_rcv_blocks': SACK received; 'sack_send_blocks': SACK sent; 'sndcack': Challenge ACK sent; 'cacklim': Challenge ACK limited; 'reassmemdrop': Packet dropped during reassembly; 'reasstimeout': Reassembly Time Out; 'cc_idle': Congestion control window set do to idle; 'cc_reduce': Congestion control window reduced by event; 'rcvdsack': Rcvd DSACK packets; 'a2brcvwnd': ATCP to BTCP receive window; 'a2bsackpresent': ATCP to BTCP SACK options present; 'a2bdupack': ATCP to BTCP Dup/OO ACK; 'a2brxdata': ATCP to BTCP Rxmitted data; 'a2btcpoptions': ATCP to BTCP unsupported TCP options; 'a2boodata': ATCP to BTCP oo data received; 'a2bpartialack': ATCP to BTCP partial ack received; 'a2bfsmtransition': ATCP to BTCP state machine transition; 'a2btransitionnum': ATCP to BTCP total transitions; 'b2atransitionnum': ATCP to BTCP total transitions; 'bad_iochan': IO Channel Modified; 'atcpforward': Adaptive TCP forward; 'atcpsent': Adaptive TCP sent; 'atcprexmitsadrop': Adaptive TCP transmit SA drops; 'atcpsendbackack': Adaptive TCP sendback ACK; 'atcprexmit': Adaptive TCP retransmits; 'atcpbuffallocfail': Adaptive TCP buffer allocation fails; 'a2bappbuffering': Transition to full stack on when application buffers too much data; 'atcpsendfail': Adaptive TCP sent fails; 'earlyrexmit': Early Retransmission sent; 'mburstlim': Maxburst limited tx; 'a2bsndwnd': ATCP to BTCP send window; 'proxyheaderv1': Proxy header v1; 'proxyheaderv2': Proxy header v2;
 * `port-index` - port index to be configured (Specify port index)
 * `mac-address` - mac-address to be configured as mgmt port
 * `pci-address` - pci-address to be configured as mgmt port
-* `enable` - Enable/Disable micro-burst traffic support
+* `enable` - Enable 2FA for management plane
 * `disable` - Disable IPMI on platform
+* `dedicated` - Set management interface in dedicated mode
+* `non-dedicated` - Set management interface in non-dedicated mode
+* `tcp-syn-value` - Configure Tcp SYN's per sec, default 70
 * `port-number` - port number to be configured (Specify port number)
 * `core-index` - core index to be deleted (Specify core index)
 * `max-cores` - max number of IO cores (Specify number of cores)
@@ -983,11 +1124,14 @@ partition_metrics {
 * `aflex-table-entry-count` - Total aFleX table entry in the system (Total aFlex entry in the system)
 * `class-list-ipv6-addr-count` - Total IPv6 addresses for class-list
 * `class-list-ac-entry-count` - Total entries for AC class-list
+* `class-list-entry-count` - Total entries for class-list
 * `max-aflex-authz-collection-number` - Specify the maximum number of collections supported by aFleX authorization
 * `radius-table-size` - Total configurable CGNV6 RADIUS Table entries
 * `authz-policy-number` - Specify the maximum number of authorization policies
 * `ipsec-sa-number` - Specify the maximum number of IPsec SA
 * `ram-cache-memory-limit` - Specify the maximum memory used by ram cache
+* `waf-template-count` - Total configurable WAF Templates in the System
+* `auth-session-count` - Total auth sessions in the system
 * `monitored-entity-count` - Total number of monitored entities for visibility
 * `name` - Specify name of Geolocation list
 * `gslb-device-max` - Enter the number of gslb-device allowed (gslb-device count (default is max-value))
@@ -1084,13 +1228,19 @@ partition_metrics {
 * `use-l3` - Layer-3 Header based load balancing
 * `use-l4` - Layer-3/4 Header based load balancing
 * `link-detection-interval` - Link detection interval in msecs
+* `table` - 'all': All tables;
+* `audit-action` - 'enable': Enable table integrity audit; 'disable': Disable table integrity audit;
+* `auto-sync-action` - 'enable': Enable auto-sync; 'disable': Disable auto-sync;
 * `packet-round-robin` - Enable packet round robin for IPsec packets
 * `crypto-core` - Crypto cores assigned for IPsec processing
 * `crypto-mem` - Crypto memory percentage assigned for IPsec processing (rounded to increments of 10)
+* `qat` - HW assisted QAT SSL module
 * `action` - 'ipv4-only': Enable IPv4 HW forward entries only; 'ipv6-only': Enable IPv6 HW forward entries only; 'ipv4-ipv6': Enable Both IPv4/IPv6 HW forward entries (shared);
 * `min` - Minimum packets-per-second threshold (per CPU) before redistribution will take effect (Minimum packets-per-second threshold (per CPU) before redistribution will take effect (default: 100000))
 * `low` - CPU usage threshold (percentage) that will restore the normal packet distribution (default: 60)
 * `high` - CPU usage threshold (percentage) that will trigger the redistribution (default: 75)
+* `tcp` - Disallow redistribution of new TCP sessions
+* `udp` - Disallow redistribution of new UDP sessions
 * `bcast` - broadcast packets (per second limit)
 * `ipmcast` - IP multicast packets (per second limit)
 * `mcast` - multicast packets (per second limit)
@@ -1121,6 +1271,7 @@ partition_metrics {
 * `dest_name` - bind dest name
 * `log-session-on-established` - Send TCP session creation log on completion of 3-way handshake
 * `msl-time` - Configure maximum session life, default is 2 seconds (1-40 seconds, default is 2 seconds)
+* `enable-shell-privileges` - enable the shell privileges for a given customer
 * `application-mempool` - Enable application memory pool
 * `application-flow` - Number of flows
 * `basic-dpi-enable` - Enable basic dpi
@@ -1137,7 +1288,7 @@ partition_metrics {
 * `secret-string` - The RADIUS secret
 * `encrypted` - Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED secret string)
 * `vrid` - Join a VRRP-A failover group
-* `attribute-value` - 'inside-ipv6-prefix': Framed IPv6 Prefix; 'inside-ip': Inside IP address; 'inside-ipv6': Inside IPv6 address; 'imei': International Mobile Equipment Identity (IMEI); 'imsi': International Mobile Subscriber Identity (IMSI); 'msisdn': Mobile Subscriber Integrated Services Digital Network-Number (MSISDN); 'custom1': Customized attribute 1; 'custom2': Customized attribute 2; 'custom3': Customized attribute 3;
+* `attribute-value` - 'inside-ipv6-prefix': Framed IPv6 Prefix; 'inside-ip': Inside IP address; 'inside-ipv6': Inside IPv6 address; 'imei': International Mobile Equipment Identity (IMEI); 'imsi': International Mobile Subscriber Identity (IMSI); 'msisdn': Mobile Subscriber Integrated Services Digital Network-Number (MSISDN); 'custom1': Customized attribute 1; 'custom2': Customized attribute 2; 'custom3': Customized attribute 3; 'custom4': Customized attribute 4; 'custom5': Customized attribute 5; 'custom6': Customized attribute 6;
 * `prefix-length` - '32': Prefix length 32; '48': Prefix length 48; '64': Prefix length 64; '80': Prefix length 80; '96': Prefix length 96; '112': Prefix length 112;
 * `prefix-vendor` - RADIUS vendor attribute information (RADIUS vendor ID)
 * `prefix-number` - RADIUS attribute number
@@ -1151,7 +1302,8 @@ partition_metrics {
 * `accounting-stop` - 'ignore': Ignore; 'delete-entry': Delete the entry (default); 'delete-entry-and-sessions': Delete the entry and data sessions associated(CGN only);
 * `accounting-interim-update` - 'ignore': Ignore (default); 'append-entry': Append the AVPs to existing entry; 'replace-entry': Replace the AVPs of existing entry;
 * `accounting-on` - 'ignore': Ignore (default); 'delete-entries-using-attribute': Delete entries matching attribute in RADIUS Table;
-* `attribute-name` - 'msisdn': Clear using MSISDN; 'imei': Clear using IMEI; 'imsi': Clear using IMSI; 'custom1': Clear using CUSTOM1 attribute configured; 'custom2': Clear using CUSTOM2 attribute configured; 'custom3': Clear using CUSTOM3 attribute configured;
+* `attribute-name` - 'msisdn': Clear using MSISDN; 'imei': Clear using IMEI; 'imsi': Clear using IMSI; 'custom1': Clear using CUSTOM1 attribute configured; 'custom2': Clear using CUSTOM2 attribute configured; 'custom3': Clear using CUSTOM3 attribute configured; 'custom4': Clear using CUSTOM4 attribute configured; 'custom5': Clear using CUSTOM5 attribute configured; 'custom6': Clear using CUSTOM6 attribute configured;
+* `custom-attribute-name` - Clear using customized attribute
 * `shared` - Enable sharing with other partitions
 * `include-geoloc-name-val` - Geolocation name to add
 * `exclude-geoloc-name-val` - Geolocation name to exclude
@@ -1173,5 +1325,32 @@ partition_metrics {
 * `ip-threat-action-tmpl` - Bind ip-threat-action Template (ip-threat-action Template number)
 * `monitor-disable` - Disable FPGA Core CRC error monitoring and act on it
 * `reboot-enable` - Enable system reboot if system encounters FPGA Core CRC error
+* `ca-cert` - Configure CA Certificate
+* `cert-host` - Configure certificate store host
+* `protocol` - 'tftp': Use tftp for connection; 'ftp': Use ftp for connection; 'scp': Use scp for connection; 'http': Use http for connection; 'https': Use https for connection; 'sftp': Use sftp for connection;
+* `cert-store-path` - Configure certificate store path
+* `username` - Username for MFA validation
+* `passwd-string` - Certificate store host password
+* `second-factor` - Input second factor paramter
+* `inner-tpid` - TPID for inner VLAN (Inner TPID, 16 bit hex value, default is 8100)
+* `outer-tpid` - TPID for outer VLAN (Outer TPID, 16 bit hex value, default is 8100)
+* `enable-all-ports` - Enable 802.1QinQ on all physical ports
+* `port-count-kernel` - Total Ports to be allocated for kernel.
+* `port-count-hm` - Total Ports to be allocated for hm.
+* `port-count-logging` - Total Ports to be allocated for logging.
+* `port-count-alg` - Total Ports to be allocated for alg types.
+* `l2hm-hc-name` - Monitor Name
+* `method-l2bfd` - Method is l2bfd
+* `l2bfd-tx-interval` - Transmit interval between BFD packets
+* `l2bfd-rx-interval` - Minimum receive interval capability (Milliseconds (default: 800))
+* `l2bfd-multiplier` - Multiplier value used to compute holddown (value used to multiply the interval (default: 4))
+* `l2hm-path-name` - Monitor Name
+* `l2hm-vlan` - VLAN id
+* `l2hm-setup-test-api` - Test-API Interface (Ethernet Interface)
+* `ifpair-eth-start` - Ethernet port (Interface number)
+* `ifpair-eth-end` - Ethernet port
+* `ifpair-trunk-start` - Trunk groups
+* `ifpair-trunk-end` - Trunk Group
+* `l2hm-attach` - Monitor Name
 * `log-for-reset-unknown-conn` - Log when rate exceed
 
