@@ -4,11 +4,12 @@ package thunder
 
 import (
 	"context"
-	"github.com/go_thunder/thunder"
+	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
-	"util"
 )
 
 func resourceFileSslCert() *schema.Resource {
@@ -83,11 +84,22 @@ func resourceFileSslCertCreate(ctx context.Context, d *schema.ResourceData, meta
 
 		data := dataToFileSslCert(d)
 		FileHandleLocal := d.Get("file_local_path").(string)
+		action_import := d.Get("action").(string)
+		logger.Println("action_import = " + action_import)
 		logger.Println("[INFO] received formatted data from method data to FileSslCert --")
 		d.SetId("1")
-		err := go_thunder.PostFileSslCert(client.Token, data, client.Host, FileHandleLocal)
-		if err != nil {
-			return diag.FromErr(err)
+		if action_import == "import" {
+			logger.Println(action_import + " for ssl_cert")
+			err := go_thunder.PostFileSslCertImport(client.Token, data, client.Host, FileHandleLocal)
+			if err != nil {
+				return diag.FromErr(err)
+			}
+		} else {
+			logger.Println(action_import + " for ssl_cert")
+			err := go_thunder.PostFileSslCert(client.Token, data, client.Host)
+			if err != nil {
+				return diag.FromErr(err)
+			}
 		}
 
 		//return resourceFileSslCertRead(ctx, d, meta)
