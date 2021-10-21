@@ -146,7 +146,7 @@ func ProviderTest() *schema.Provider {
 			"thunder_interface_ethernet_lldp":               resourceInterfaceEthernetLLDP(),
 			"thunder_interface_ve_bfd":                      resourceInterfaceVeBFD(),
 			"thunder_interface_ethernet_trunk_group":        resourceInterfaceEthernetTrunkGroup(),
-			"thunder_interface_ve_ip":                       resourceInterfaceVeIP(),
+			"thunder_interface_ve_ip":                       resourceInterfaceVeIp(),
 			"thunder_interface_ve_ipv6":                     resourceInterfaceVeIPv6(),
 			"thunder_interface_ethernet":                    resourceInterfaceEthernet(),
 			"thunder_interface_ve":                          resourceInterfaceVE(),
@@ -280,6 +280,8 @@ func ProviderTest() *schema.Provider {
 			"thunder_slb_template_client_ssl":                 resourceSlbTemplateClientSsl(),
 			"thunder_interface_ethernet_ip":                   resourceInterfaceEthernetIp(),
 			"thunder_slb_template_server_ssl":                 resourceSlbTemplateServerSsl(),
+			"thunder_ip_access_list":                          resourceIpAccessList(),
+			"thunder_file_csr":                                resourceFileCsr(),
 		},
 
 		ConfigureFunc: providerConfigureTest,
