@@ -14,11 +14,10 @@ description: |-
 
 ```hcl
 provider "thunder" {
-    address  = "${var.address}"
-    username = "${var.username}"  
-    password = "${var.password}"
+  address  = var.address
+  username = var.username
+  password = var.password
 }
-
 
 
 resource "thunder_system_ve_mac_scheme" "resourceSystemVeMacSchemeTest" {
