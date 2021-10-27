@@ -5,10 +5,11 @@ package thunder
 import (
 	"context"
 	"fmt"
-	"github.com/go_thunder/thunder"
+	"util"
+
+	go_thunder "github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"util"
 )
 
 func resourceSlbTemplateHttp() *schema.Resource {
@@ -376,7 +377,7 @@ func resourceSlbTemplateHttp() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"100_cont_wait_for_req_complete": {
+			"cont_100_wait_for_req_complete": {
 				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
@@ -722,7 +723,7 @@ func dataToSlbTemplateHttp(d *schema.ResourceData) go_thunder.SlbTemplateHttp {
 
 	c.SlbTemplateHTTPInstanceTerm11ClientHdrConnClose = d.Get("term_11client_hdr_conn_close").(int)
 	c.SlbTemplateHTTPInstancePersistOn401 = d.Get("persist_on_401").(int)
-	c.SlbTemplateHTTPInstanceNum100ContWaitForReqComplete = d.Get("100_cont_wait_for_req_complete").(int)
+	c.SlbTemplateHTTPInstanceNum100ContWaitForReqComplete = d.Get("cont_100_wait_for_req_complete").(int)
 	c.SlbTemplateHTTPInstanceUrlHashPersist = d.Get("url_hash_persist").(int)
 	c.SlbTemplateHTTPInstanceUrlHashOffset = d.Get("url_hash_offset").(int)
 	c.SlbTemplateHTTPInstanceUrlHashFirst = d.Get("url_hash_first").(int)

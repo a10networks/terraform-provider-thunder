@@ -8,12 +8,12 @@ import (
 )
 
 type SystemVeMacScheme struct {
-	VeMacSchemeVal SystemVeMacSchemeInstance `json:"ve-mac-scheme,omitempty"`
+	SystemVeMacSchemeInstanceVeMacSchemeVal SystemVeMacSchemeInstance `json:"ve-mac-scheme,omitempty"`
 }
 
 type SystemVeMacSchemeInstance struct {
-	UUID           string `json:"uuid,omitempty"`
-	VeMacSchemeVal string `json:"ve-mac-scheme-val,omitempty"`
+	SystemVeMacSchemeInstanceUUID           string `json:"uuid,omitempty"`
+	SystemVeMacSchemeInstanceVeMacSchemeVal string `json:"ve-mac-scheme-val,omitempty"`
 }
 
 func PostSystemVeMacScheme(id string, inst SystemVeMacScheme, host string) error {
@@ -29,6 +29,7 @@ func PostSystemVeMacScheme(id string, inst SystemVeMacScheme, host string) error
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/system/ve-mac-scheme", bytes.NewReader(payloadBytes), headers)
@@ -36,14 +37,13 @@ func PostSystemVeMacScheme(id string, inst SystemVeMacScheme, host string) error
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SystemVeMacScheme
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
 			err := check_api_status("PostSystemVeMacScheme", data)
@@ -71,12 +71,11 @@ func GetSystemVeMacScheme(id string, host string) (*SystemVeMacScheme, error) {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m SystemVeMacScheme
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {

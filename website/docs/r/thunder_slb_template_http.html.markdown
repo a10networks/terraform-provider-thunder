@@ -97,7 +97,7 @@ template {
 	}
 term_11client_hdr_conn_close = 0
 persist_on_401 = 0
-100_cont_wait_for_req_complete = 0
+cont_100_wait_for_req_complete = 0
 url_hash_persist = 0
 url_hash_offset = 0
 url_hash_first = 0

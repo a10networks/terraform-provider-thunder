@@ -4,11 +4,10 @@ package thunder
 
 import (
 	"context"
-	"util"
-
-	go_thunder "github.com/go_thunder/thunder"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"util"
 )
 
 func resourceSystemVeMacScheme() *schema.Resource {
@@ -37,7 +36,6 @@ func resourceSystemVeMacSchemeCreate(ctx context.Context, d *schema.ResourceData
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		logger.Println("[INFO] Creating SystemVeMacScheme (Inside resourceSystemVeMacSchemeCreate) ")
 
@@ -58,10 +56,9 @@ func resourceSystemVeMacSchemeCreate(ctx context.Context, d *schema.ResourceData
 func resourceSystemVeMacSchemeRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading SystemVeMacScheme (Inside resourceSystemVeMacSchemeRead)")
 
+	var diags diag.Diagnostics
 	if client.Host != "" {
 		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetSystemVeMacScheme(client.Token, client.Host)
@@ -74,7 +71,7 @@ func resourceSystemVeMacSchemeRead(ctx context.Context, d *schema.ResourceData, 
 		}
 		return diags
 	}
-	return nil
+	return diags
 }
 
 func resourceSystemVeMacSchemeUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
@@ -89,8 +86,8 @@ func resourceSystemVeMacSchemeDelete(ctx context.Context, d *schema.ResourceData
 func dataToSystemVeMacScheme(d *schema.ResourceData) go_thunder.SystemVeMacScheme {
 	var vc go_thunder.SystemVeMacScheme
 	var c go_thunder.SystemVeMacSchemeInstance
-	c.VeMacSchemeVal = d.Get("ve_mac_scheme_val").(string)
+	c.SystemVeMacSchemeInstanceVeMacSchemeVal = d.Get("ve_mac_scheme_val").(string)
 
-	vc.VeMacSchemeVal = c
+	vc.SystemVeMacSchemeInstanceVeMacSchemeVal = c
 	return vc
 }
