@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"github.com/clarketm/json" // "encoding/json"
 	"io/ioutil"
+	"net/url"
 	"util"
 )
 
@@ -154,8 +155,8 @@ func GetServiceGroup(id string, name1 string, host string) (*ServiceGroup, error
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside GetServiceGroup")
-
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/service-group/"+name1, nil, headers)
+	nameEncode := url.QueryEscape(name1)
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/service-group/"+nameEncode, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
@@ -194,8 +195,8 @@ func PutServiceGroup(id string, name1 string, inst ServiceGroup, host string) er
 		logger.Println("[INFO] Marshalling failed with error ", err)
 		return err
 	}
-
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/service-group/"+name1, bytes.NewReader(payloadBytes), headers)
+	nameEncode := url.QueryEscape(name1)
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/service-group/"+nameEncode, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
@@ -228,8 +229,8 @@ func DeleteServiceGroup(id string, name1 string, host string) error {
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside DeleteServiceGroup")
-
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/service-group/"+name1, nil, headers)
+	nameEncode := url.QueryEscape(name1)
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/service-group/"+nameEncode, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
