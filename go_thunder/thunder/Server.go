@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"github.com/clarketm/json" // "encoding/json"
 	"io/ioutil"
+	"net/url"
 	"util"
 )
 
@@ -150,8 +151,8 @@ func GetServer(id string, name1 string, host string) (*Server, error) {
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside GetServer")
-
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/server/"+name1, nil, headers)
+	nameEncode := url.QueryEscape(name1)
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/slb/server/"+nameEncode, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
@@ -190,8 +191,8 @@ func PutServer(id string, name1 string, inst Server, host string) error {
 		logger.Println("[INFO] Marshalling failed with error ", err)
 		return err
 	}
-
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/server/"+name1, bytes.NewReader(payloadBytes), headers)
+	nameEncode := url.QueryEscape(name1)
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/slb/server/"+nameEncode, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
@@ -224,8 +225,8 @@ func DeleteServer(id string, name1 string, host string) error {
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside DeleteServer")
-
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/server/"+name1, nil, headers)
+	nameEncode := url.QueryEscape(name1)
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/slb/server/"+nameEncode, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
