@@ -8,37 +8,42 @@ import (
 )
 
 type FwServer struct {
-	UUID FwServerInstance `json:"server-instance,omitempty"`
+	FwServerInstanceName FwServerInstance `json:"server,omitempty"`
 }
 
 type FwServerInstance struct {
-	Action             string                   `json:"action,omitempty"`
-	FqdnName           string                   `json:"fqdn-name,omitempty"`
-	HealthCheck        string                   `json:"health-check,omitempty"`
-	HealthCheckDisable int                      `json:"health-check-disable,omitempty"`
-	Host               string                   `json:"host,omitempty"`
-	Name               string                   `json:"name,omitempty"`
-	Protocol           []FwServerPortList       `json:"port-list,omitempty"`
-	ResolveAs          string                   `json:"resolve-as,omitempty"`
-	Counters1          []FwServerSamplingEnable `json:"sampling-enable,omitempty"`
-	ServerIpv6Addr     string                   `json:"server-ipv6-addr,omitempty"`
-	UUID               string                   `json:"uuid,omitempty"`
-	UserTag            string                   `json:"user-tag,omitempty"`
+	FwServerInstanceAction                  string                           `json:"action,omitempty"`
+	FwServerInstanceFqdnName                string                           `json:"fqdn-name,omitempty"`
+	FwServerInstanceHealthCheck             string                           `json:"health-check,omitempty"`
+	FwServerInstanceHealthCheckDisable      int                              `json:"health-check-disable,omitempty"`
+	FwServerInstanceHost                    string                           `json:"host,omitempty"`
+	FwServerInstanceName                    string                           `json:"name,omitempty"`
+	FwServerInstancePortListPortNumber      []FwServerInstancePortList       `json:"port-list,omitempty"`
+	FwServerInstanceResolveAs               string                           `json:"resolve-as,omitempty"`
+	FwServerInstanceSamplingEnableCounters1 []FwServerInstanceSamplingEnable `json:"sampling-enable,omitempty"`
+	FwServerInstanceServerIpv6Addr          string                           `json:"server-ipv6-addr,omitempty"`
+	FwServerInstanceUUID                    string                           `json:"uuid,omitempty"`
+	FwServerInstanceUserTag                 string                           `json:"user-tag,omitempty"`
 }
 
-type FwServerPortList struct {
-	Action             string                   `json:"action,omitempty"`
-	HealthCheck        string                   `json:"health-check,omitempty"`
-	HealthCheckDisable int                      `json:"health-check-disable,omitempty"`
-	PortNumber         int                      `json:"port-number,omitempty"`
-	Protocol           string                   `json:"protocol,omitempty"`
-	Counters1          []FwServerSamplingEnable `json:"sampling-enable,omitempty"`
-	UUID               string                   `json:"uuid,omitempty"`
-	UserTag            string                   `json:"user-tag,omitempty"`
+type FwServerInstancePortList struct {
+	FwServerInstancePortListAction                  string                                   `json:"action,omitempty"`
+	FwServerInstancePortListHealthCheck             string                                   `json:"health-check,omitempty"`
+	FwServerInstancePortListHealthCheckDisable      int                                      `json:"health-check-disable,omitempty"`
+	FwServerInstancePortListPacketCaptureTemplate   string                                   `json:"packet-capture-template,omitempty"`
+	FwServerInstancePortListPortNumber              int                                      `json:"port-number,omitempty"`
+	FwServerInstancePortListProtocol                string                                   `json:"protocol,omitempty"`
+	FwServerInstancePortListSamplingEnableCounters1 []FwServerInstancePortListSamplingEnable `json:"sampling-enable,omitempty"`
+	FwServerInstancePortListUUID                    string                                   `json:"uuid,omitempty"`
+	FwServerInstancePortListUserTag                 string                                   `json:"user-tag,omitempty"`
 }
 
-type FwServerSamplingEnable struct {
-	Counters1 string `json:"counters1,omitempty"`
+type FwServerInstanceSamplingEnable struct {
+	FwServerInstanceSamplingEnableCounters1 string `json:"counters1,omitempty"`
+}
+
+type FwServerInstancePortListSamplingEnable struct {
+	FwServerInstancePortListSamplingEnableCounters1 string `json:"counters1,omitempty"`
 }
 
 func PostFwServer(id string, inst FwServer, host string) error {
@@ -54,6 +59,7 @@ func PostFwServer(id string, inst FwServer, host string) error {
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/fw/server", bytes.NewReader(payloadBytes), headers)
@@ -61,16 +67,15 @@ func PostFwServer(id string, inst FwServer, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwServer
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] POST REQ RES..........................", m)
+			logger.Println("[INFO] Post REQ RES..........................", m)
 			err := check_api_status("PostFwServer", data)
 			if err != nil {
 				return err
@@ -81,7 +86,7 @@ func PostFwServer(id string, inst FwServer, host string) error {
 	return err
 }
 
-func GetFwServer(id string, name string, host string) (*FwServer, error) {
+func GetFwServer(id string, name1 string, host string) (*FwServer, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -91,21 +96,20 @@ func GetFwServer(id string, name string, host string) (*FwServer, error) {
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside GetFwServer")
 
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/fw/server/"+name, nil, headers)
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/fw/server/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwServer
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] Get REQ RES..........................", m)
 			err := check_api_status("GetFwServer", data)
 			if err != nil {
 				return nil, err
@@ -116,7 +120,7 @@ func GetFwServer(id string, name string, host string) (*FwServer, error) {
 
 }
 
-func PutFwServer(id string, name string, inst FwServer, host string) error {
+func PutFwServer(id string, name1 string, inst FwServer, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -129,23 +133,23 @@ func PutFwServer(id string, name string, inst FwServer, host string) error {
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/fw/server/"+name, bytes.NewReader(payloadBytes), headers)
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/fw/server/"+name1, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwServer
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] PUT REQ RES..........................", m)
+			logger.Println("[INFO] Put REQ RES..........................", m)
 			err := check_api_status("PutFwServer", data)
 			if err != nil {
 				return err
@@ -156,7 +160,7 @@ func PutFwServer(id string, name string, inst FwServer, host string) error {
 	return err
 }
 
-func DeleteFwServer(id string, name string, host string) error {
+func DeleteFwServer(id string, name1 string, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -166,23 +170,26 @@ func DeleteFwServer(id string, name string, host string) error {
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside DeleteFwServer")
 
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/fw/server/"+name, nil, headers)
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/fw/server/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwServer
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] Delete REQ RES..........................", m)
+			err := check_api_status("DeleteFwServer", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-	return nil
+	return err
 }

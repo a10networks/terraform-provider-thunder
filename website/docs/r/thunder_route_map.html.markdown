@@ -14,9 +14,9 @@ description: |-
 
 ```hcl
 provider "thunder" {
-  address  = "129.213.82.65"
-  username = "admin"
-  password = "admin"
+  address  = var.address
+  username = var.username
+  password = var.password
 }
 
 
@@ -168,8 +168,8 @@ aggregator {
 	}
 as_path {  
  	prepend =  "string" 
-	num =  0 
-	num2 =  0 
+	num =  "string" 
+	num2 =  "string" 
 	}
 	atomic_aggregate =  0 
 comm_list {  

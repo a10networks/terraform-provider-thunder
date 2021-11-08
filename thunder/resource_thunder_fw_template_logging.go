@@ -5,11 +5,10 @@ package thunder
 import (
 	"context"
 	"fmt"
-	"util"
-
-	go_thunder "github.com/go_thunder/thunder"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"util"
 )
 
 func resourceFwTemplateLogging() *schema.Resource {
@@ -19,99 +18,23 @@ func resourceFwTemplateLogging() *schema.Resource {
 		ReadContext:   resourceFwTemplateLoggingRead,
 		DeleteContext: resourceFwTemplateLoggingDelete,
 		Schema: map[string]*schema.Schema{
-			"include_http": {
-				Type:     schema.TypeList,
-				Optional: true,
-				MaxItems: 1,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"header_cfg": {
-							Type:     schema.TypeList,
-							Optional: true,
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"custom_max_length": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"http_header": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-									"max_length": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "",
-									},
-									"custom_header_name": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "",
-									},
-								},
-							},
-						},
-						"request_number": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"file_extension": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"method": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"l4_session_info": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-					},
-				},
-			},
-			"merged_style": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
 			"name": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
-			"source_address": {
-				Type:     schema.TypeList,
-				Optional: true,
-				MaxItems: 1,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"ip": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"uuid": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-						"ipv6": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "",
-						},
-					},
-				},
-			},
-			"format": {
+			"resolution": {
 				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"include_dest_fqdn": {
+				Type:        schema.TypeInt,
+				Optional:    true,
+				Description: "",
+			},
+			"merged_style": {
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -129,27 +52,35 @@ func resourceFwTemplateLogging() *schema.Resource {
 					},
 				},
 			},
-			"severity": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"include_dest_fqdn": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"facility": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
 			"include_radius_attribute": {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"attr_cfg": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"attr": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"attr_event": {
+										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+								},
+							},
+						},
+						"no_quote": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
 						"framed_ipv6_prefix": {
 							Type:        schema.TypeInt,
 							Optional:    true,
@@ -170,28 +101,62 @@ func resourceFwTemplateLogging() *schema.Resource {
 							Optional:    true,
 							Description: "",
 						},
-						"no_quote": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "",
-						},
-						"attr_cfg": {
+					},
+				},
+			},
+			"include_http": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"header_cfg": {
 							Type:     schema.TypeList,
 							Optional: true,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"attr_event": {
+									"http_header": {
 										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
 									},
-									"attr": {
+									"max_length": {
+										Type:        schema.TypeInt,
+										Optional:    true,
+										Description: "",
+									},
+									"custom_header_name": {
 										Type:        schema.TypeString,
+										Optional:    true,
+										Description: "",
+									},
+									"custom_max_length": {
+										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
 									},
 								},
 							},
+						},
+						"l4_session_info": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"method": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"request_number": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
+						},
+						"file_extension": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "",
 						},
 					},
 				},
@@ -208,12 +173,30 @@ func resourceFwTemplateLogging() *schema.Resource {
 							MaxItems: 1,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
+									"dest_port": {
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"dest_port_number": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+												"include_byte_count": {
+													Type:        schema.TypeInt,
+													Optional:    true,
+													Description: "",
+												},
+											},
+										},
+									},
 									"log_every_http_request": {
 										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
 									},
-									"disable_sequence_check": {
+									"max_url_len": {
 										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
@@ -223,25 +206,7 @@ func resourceFwTemplateLogging() *schema.Resource {
 										Optional:    true,
 										Description: "",
 									},
-									"dest_port": {
-										Type:     schema.TypeList,
-										Optional: true,
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"include_byte_count": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-												"dest_port_number": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "",
-												},
-											},
-										},
-									},
-									"max_url_len": {
+									"disable_sequence_check": {
 										Type:        schema.TypeInt,
 										Optional:    true,
 										Description: "",
@@ -252,7 +217,27 @@ func resourceFwTemplateLogging() *schema.Resource {
 					},
 				},
 			},
+			"facility": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"severity": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"format": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
 			"service_group": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
+			"uuid": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
@@ -262,15 +247,29 @@ func resourceFwTemplateLogging() *schema.Resource {
 				Optional:    true,
 				Description: "",
 			},
-			"resolution": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"uuid": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
+			"source_address": {
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"ip": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"ipv6": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+						"uuid": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "",
+						},
+					},
+				},
 			},
 		},
 	}
@@ -281,13 +280,12 @@ func resourceFwTemplateLoggingCreate(ctx context.Context, d *schema.ResourceData
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwTemplateLogging (Inside resourceFwTemplateLoggingCreate) ")
-		name := d.Get("name").(string)
+		name1 := d.Get("name").(string)
 		data := dataToFwTemplateLogging(d)
 		logger.Println("[INFO] received formatted data from method data to FwTemplateLogging --")
-		d.SetId(name)
+		d.SetId(name1)
 		err := go_thunder.PostFwTemplateLogging(client.Token, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
@@ -302,136 +300,162 @@ func resourceFwTemplateLoggingCreate(ctx context.Context, d *schema.ResourceData
 func resourceFwTemplateLoggingRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwTemplateLogging (Inside resourceFwTemplateLoggingRead)")
 
+	var diags diag.Diagnostics
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Fetching service Read" + name)
-		data, err := go_thunder.GetFwTemplateLogging(client.Token, name, client.Host)
+		name1 := d.Id()
+		logger.Println("[INFO] Fetching service Read" + name1)
+		data, err := go_thunder.GetFwTemplateLogging(client.Token, name1, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
 		if data == nil {
-			logger.Println("[INFO] No data found " + name)
-			d.SetId("")
+			logger.Println("[INFO] No data found " + name1)
 			return nil
 		}
 		return diags
 	}
-	return nil
+	return diags
 }
 
 func resourceFwTemplateLoggingUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	logger := util.GetLoggerInstance()
+	client := meta.(Thunder)
 
-	return resourceFwTemplateLoggingRead(ctx, d, meta)
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		name1 := d.Id()
+		logger.Println("[INFO] Modifying FwTemplateLogging   (Inside resourceFwTemplateLoggingUpdate) ")
+		data := dataToFwTemplateLogging(d)
+		logger.Println("[INFO] received formatted data from method data to FwTemplateLogging ")
+		err := go_thunder.PutFwTemplateLogging(client.Token, name1, data, client.Host)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+
+		return resourceFwTemplateLoggingRead(ctx, d, meta)
+
+	}
+	return diags
 }
 
 func resourceFwTemplateLoggingDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	logger := util.GetLoggerInstance()
+	client := meta.(Thunder)
 
-	return resourceFwTemplateLoggingRead(ctx, d, meta)
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		name1 := d.Id()
+		logger.Println("[INFO] Deleting instance (Inside resourceFwTemplateLoggingDelete) " + name1)
+		err := go_thunder.DeleteFwTemplateLogging(client.Token, name1, client.Host)
+		if err != nil {
+			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
+			return diags
+		}
+		return nil
+	}
+	return diags
 }
+
 func dataToFwTemplateLogging(d *schema.ResourceData) go_thunder.FwTemplateLogging {
 	var vc go_thunder.FwTemplateLogging
 	var c go_thunder.FwTemplateLoggingInstance
+	c.FwTemplateLoggingInstanceName = d.Get("name").(string)
+	c.FwTemplateLoggingInstanceResolution = d.Get("resolution").(string)
+	c.FwTemplateLoggingInstanceIncludeDestFqdn = d.Get("include_dest_fqdn").(int)
+	c.FwTemplateLoggingInstanceMergedStyle = d.Get("merged_style").(int)
 
-	var obj1 go_thunder.FwTemplateLoggingIncludeHTTP
-	prefix := "include_http.0."
+	var obj1 go_thunder.FwTemplateLoggingInstanceLog
+	prefix1 := "log.0."
+	obj1.FwTemplateLoggingInstanceLogHTTPRequests = d.Get(prefix1 + "http_requests").(string)
 
-	HeaderCfgCount := d.Get(prefix + "header_cfg.#").(int)
-	obj1.CustomMaxLength = make([]go_thunder.FwTemplateLoggingHeaderCfg, 0, HeaderCfgCount)
+	c.FwTemplateLoggingInstanceLogHTTPRequests = obj1
 
-	for i := 0; i < HeaderCfgCount; i++ {
-		var obj1_1 go_thunder.FwTemplateLoggingHeaderCfg
-		prefix1 := prefix + fmt.Sprintf("header_cfg.%d.", i)
-		obj1_1.CustomMaxLength = d.Get(prefix1 + "custom_max_length").(int)
-		obj1_1.HTTPHeader = d.Get(prefix1 + "http_header").(string)
-		obj1_1.MaxLength = d.Get(prefix1 + "max_length").(int)
-		obj1_1.CustomHeaderName = d.Get(prefix1 + "custom_header_name").(string)
-		obj1.CustomMaxLength = append(obj1.CustomMaxLength, obj1_1)
+	var obj2 go_thunder.FwTemplateLoggingInstanceIncludeRadiusAttribute
+	prefix2 := "include_radius_attribute.0."
+
+	FwTemplateLoggingInstanceIncludeRadiusAttributeAttrCfgCount := d.Get(prefix2 + "attr_cfg.#").(int)
+	obj2.FwTemplateLoggingInstanceIncludeRadiusAttributeAttrCfgAttr = make([]go_thunder.FwTemplateLoggingInstanceIncludeRadiusAttributeAttrCfg, 0, FwTemplateLoggingInstanceIncludeRadiusAttributeAttrCfgCount)
+
+	for i := 0; i < FwTemplateLoggingInstanceIncludeRadiusAttributeAttrCfgCount; i++ {
+		var obj2_1 go_thunder.FwTemplateLoggingInstanceIncludeRadiusAttributeAttrCfg
+		prefix2_1 := prefix2 + fmt.Sprintf("attr_cfg.%d.", i)
+		obj2_1.FwTemplateLoggingInstanceIncludeRadiusAttributeAttrCfgAttr = d.Get(prefix2_1 + "attr").(string)
+		obj2_1.FwTemplateLoggingInstanceIncludeRadiusAttributeAttrCfgAttrEvent = d.Get(prefix2_1 + "attr_event").(string)
+		obj2.FwTemplateLoggingInstanceIncludeRadiusAttributeAttrCfgAttr = append(obj2.FwTemplateLoggingInstanceIncludeRadiusAttributeAttrCfgAttr, obj2_1)
 	}
 
-	obj1.RequestNumber = d.Get(prefix + "request_number").(int)
-	obj1.FileExtension = d.Get(prefix + "file_extension").(int)
-	obj1.Method = d.Get(prefix + "method").(int)
-	obj1.L4SessionInfo = d.Get(prefix + "l4_session_info").(int)
+	obj2.FwTemplateLoggingInstanceIncludeRadiusAttributeNoQuote = d.Get(prefix2 + "no_quote").(int)
+	obj2.FwTemplateLoggingInstanceIncludeRadiusAttributeFramedIpv6Prefix = d.Get(prefix2 + "framed_ipv6_prefix").(int)
+	obj2.FwTemplateLoggingInstanceIncludeRadiusAttributePrefixLength = d.Get(prefix2 + "prefix_length").(string)
+	obj2.FwTemplateLoggingInstanceIncludeRadiusAttributeInsertIfNotExisting = d.Get(prefix2 + "insert_if_not_existing").(int)
+	obj2.FwTemplateLoggingInstanceIncludeRadiusAttributeZeroInCustomAttr = d.Get(prefix2 + "zero_in_custom_attr").(int)
 
-	c.FileExtension = obj1
+	c.FwTemplateLoggingInstanceIncludeRadiusAttributeAttrCfg = obj2
 
-	c.MergedStyle = d.Get("merged_style").(int)
-	c.Name = d.Get("name").(string)
+	var obj3 go_thunder.FwTemplateLoggingInstanceIncludeHTTP
+	prefix3 := "include_http.0."
 
-	var obj1_2 go_thunder.FwTemplateLoggingSourceAddress
-	prefix2 := "source_address.0."
-	obj1_2.IP = d.Get(prefix2 + "ip").(string)
-	obj1_2.Ipv6 = d.Get(prefix2 + "ipv6").(string)
+	FwTemplateLoggingInstanceIncludeHTTPHeaderCfgCount := d.Get(prefix3 + "header_cfg.#").(int)
+	obj3.FwTemplateLoggingInstanceIncludeHTTPHeaderCfgHTTPHeader = make([]go_thunder.FwTemplateLoggingInstanceIncludeHTTPHeaderCfg, 0, FwTemplateLoggingInstanceIncludeHTTPHeaderCfgCount)
 
-	c.IP = obj1_2
-
-	c.Format = d.Get("format").(string)
-
-	var obj1_3 go_thunder.FwTemplateLoggingLog
-	prefix3 := "log.0."
-	obj1_3.HTTPRequests = d.Get(prefix3 + "http_requests").(string)
-
-	c.HTTPRequests = obj1_3
-
-	c.Severity = d.Get("severity").(string)
-	c.IncludeDestFqdn = d.Get("include_dest_fqdn").(int)
-	c.Facility = d.Get("facility").(string)
-
-	var obj1_4 go_thunder.FwTemplateLoggingIncludeRadiusAttribute
-	prefix4 := "include_radius_attribute.0."
-	obj1_4.FramedIpv6Prefix = d.Get(prefix4 + "framed_ipv6_prefix").(int)
-	obj1_4.PrefixLength = d.Get(prefix4 + "prefix_length").(string)
-	obj1_4.InsertIfNotExisting = d.Get(prefix4 + "insert_if_not_existing").(int)
-	obj1_4.ZeroInCustomAttr = d.Get(prefix4 + "zero_in_custom_attr").(int)
-	obj1_4.NoQuote = d.Get(prefix4 + "no_quote").(int)
-
-	AttrCfgCount := d.Get(prefix4 + "attr_cfg.#").(int)
-	obj1_4.AttrEvent = make([]go_thunder.FwTemplateLoggingAttrCfg, 0, AttrCfgCount)
-
-	for i := 0; i < AttrCfgCount; i++ {
-		var obj1_4_1 go_thunder.FwTemplateLoggingAttrCfg
-		prefix4_1 := prefix4 + fmt.Sprintf("attr_cfg.%d.", i)
-		obj1_4_1.AttrEvent = d.Get(prefix4_1 + "attr_event").(string)
-		obj1_4_1.Attr = d.Get(prefix4_1 + "attr").(string)
-		obj1_4.AttrEvent = append(obj1_4.AttrEvent, obj1_4_1)
+	for i := 0; i < FwTemplateLoggingInstanceIncludeHTTPHeaderCfgCount; i++ {
+		var obj3_1 go_thunder.FwTemplateLoggingInstanceIncludeHTTPHeaderCfg
+		prefix3_1 := prefix3 + fmt.Sprintf("header_cfg.%d.", i)
+		obj3_1.FwTemplateLoggingInstanceIncludeHTTPHeaderCfgHTTPHeader = d.Get(prefix3_1 + "http_header").(string)
+		obj3_1.FwTemplateLoggingInstanceIncludeHTTPHeaderCfgMaxLength = d.Get(prefix3_1 + "max_length").(int)
+		obj3_1.FwTemplateLoggingInstanceIncludeHTTPHeaderCfgCustomHeaderName = d.Get(prefix3_1 + "custom_header_name").(string)
+		obj3_1.FwTemplateLoggingInstanceIncludeHTTPHeaderCfgCustomMaxLength = d.Get(prefix3_1 + "custom_max_length").(int)
+		obj3.FwTemplateLoggingInstanceIncludeHTTPHeaderCfgHTTPHeader = append(obj3.FwTemplateLoggingInstanceIncludeHTTPHeaderCfgHTTPHeader, obj3_1)
 	}
 
-	c.FramedIpv6Prefix = obj1_4
+	obj3.FwTemplateLoggingInstanceIncludeHTTPL4SessionInfo = d.Get(prefix3 + "l4_session_info").(int)
+	obj3.FwTemplateLoggingInstanceIncludeHTTPMethod = d.Get(prefix3 + "method").(int)
+	obj3.FwTemplateLoggingInstanceIncludeHTTPRequestNumber = d.Get(prefix3 + "request_number").(int)
+	obj3.FwTemplateLoggingInstanceIncludeHTTPFileExtension = d.Get(prefix3 + "file_extension").(int)
 
-	var obj1_5 go_thunder.FwTemplateLoggingRule
-	prefix5 := "rule.0."
+	c.FwTemplateLoggingInstanceIncludeHTTPHeaderCfg = obj3
 
-	var obj1_5_1 go_thunder.FwTemplateLoggingRuleHTTPRequests
-	prefix5_1 := prefix5 + "rule_http_requests.0."
-	obj1_5_1.LogEveryHTTPRequest = d.Get(prefix5_1 + "log_every_http_request").(int)
-	obj1_5_1.DisableSequenceCheck = d.Get(prefix5_1 + "disable_sequence_check").(int)
-	obj1_5_1.IncludeAllHeaders = d.Get(prefix5_1 + "include_all_headers").(int)
+	var obj4 go_thunder.FwTemplateLoggingInstanceRule
+	prefix4 := "rule.0."
 
-	DestPortCount := d.Get(prefix5_1 + "dest_port.#").(int)
-	obj1_5_1.IncludeByteCount = make([]go_thunder.FwTemplateLoggingDestPort, 0, DestPortCount)
+	var obj4_1 go_thunder.FwTemplateLoggingInstanceRuleRuleHTTPRequests
+	prefix4_1 := prefix4 + "rule_http_requests.0."
 
-	for i := 0; i < DestPortCount; i++ {
-		var obj1_5_1_1 go_thunder.FwTemplateLoggingDestPort
-		prefix5_1_1 := prefix5_1 + fmt.Sprintf("dest_port.%d.", i)
-		obj1_5_1_1.IncludeByteCount = d.Get(prefix5_1_1 + "include_byte_count").(int)
-		obj1_5_1_1.DestPortNumber = d.Get(prefix5_1_1 + "dest_port_number").(int)
-		obj1_5_1.IncludeByteCount = append(obj1_5_1.IncludeByteCount, obj1_5_1_1)
+	FwTemplateLoggingInstanceRuleRuleHTTPRequestsDestPortCount := d.Get(prefix4_1 + "dest_port.#").(int)
+	obj4_1.FwTemplateLoggingInstanceRuleRuleHTTPRequestsDestPortDestPortNumber = make([]go_thunder.FwTemplateLoggingInstanceRuleRuleHTTPRequestsDestPort, 0, FwTemplateLoggingInstanceRuleRuleHTTPRequestsDestPortCount)
+
+	for i := 0; i < FwTemplateLoggingInstanceRuleRuleHTTPRequestsDestPortCount; i++ {
+		var obj4_1_1 go_thunder.FwTemplateLoggingInstanceRuleRuleHTTPRequestsDestPort
+		prefix4_1_1 := prefix4_1 + fmt.Sprintf("dest_port.%d.", i)
+		obj4_1_1.FwTemplateLoggingInstanceRuleRuleHTTPRequestsDestPortDestPortNumber = d.Get(prefix4_1_1 + "dest_port_number").(int)
+		obj4_1_1.FwTemplateLoggingInstanceRuleRuleHTTPRequestsDestPortIncludeByteCount = d.Get(prefix4_1_1 + "include_byte_count").(int)
+		obj4_1.FwTemplateLoggingInstanceRuleRuleHTTPRequestsDestPortDestPortNumber = append(obj4_1.FwTemplateLoggingInstanceRuleRuleHTTPRequestsDestPortDestPortNumber, obj4_1_1)
 	}
 
-	obj1_5_1.MaxURLLen = d.Get(prefix5_1 + "max_url_len").(int)
+	obj4_1.FwTemplateLoggingInstanceRuleRuleHTTPRequestsLogEveryHTTPRequest = d.Get(prefix4_1 + "log_every_http_request").(int)
+	obj4_1.FwTemplateLoggingInstanceRuleRuleHTTPRequestsMaxURLLen = d.Get(prefix4_1 + "max_url_len").(int)
+	obj4_1.FwTemplateLoggingInstanceRuleRuleHTTPRequestsIncludeAllHeaders = d.Get(prefix4_1 + "include_all_headers").(int)
+	obj4_1.FwTemplateLoggingInstanceRuleRuleHTTPRequestsDisableSequenceCheck = d.Get(prefix4_1 + "disable_sequence_check").(int)
 
-	obj1_5.IncludeByteCount = obj1_5_1
+	obj4.FwTemplateLoggingInstanceRuleRuleHTTPRequestsDestPort = obj4_1
 
-	c.IncludeByteCount = obj1_5
+	c.FwTemplateLoggingInstanceRuleRuleHTTPRequests = obj4
 
-	c.ServiceGroup = d.Get("service_group").(string)
-	c.UserTag = d.Get("user_tag").(string)
-	c.Resolution = d.Get("resolution").(string)
+	c.FwTemplateLoggingInstanceFacility = d.Get("facility").(string)
+	c.FwTemplateLoggingInstanceSeverity = d.Get("severity").(string)
+	c.FwTemplateLoggingInstanceFormat = d.Get("format").(string)
+	c.FwTemplateLoggingInstanceServiceGroup = d.Get("service_group").(string)
+	c.FwTemplateLoggingInstanceUserTag = d.Get("user_tag").(string)
 
-	vc.UUID = c
+	var obj5 go_thunder.FwTemplateLoggingInstanceSourceAddress
+	prefix5 := "source_address.0."
+	obj5.FwTemplateLoggingInstanceSourceAddressIP = d.Get(prefix5 + "ip").(string)
+	obj5.FwTemplateLoggingInstanceSourceAddressIpv6 = d.Get(prefix5 + "ipv6").(string)
+
+	c.FwTemplateLoggingInstanceSourceAddressIP = obj5
+
+	vc.FwTemplateLoggingInstanceName = c
 	return vc
 }

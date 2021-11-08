@@ -3,7 +3,7 @@ layout: "thunder"
 page_title: "thunder: thunder_fw_urpf"
 sidebar_current: "docs-thunder-resource-fw-urpf"
 description: |-
-	Provides details about thunder fw urpf resource for A10
+    Provides details about thunder fw urpf resource for A10
 ---
 
 # thunder\_fw\_urpf
@@ -14,18 +14,23 @@ description: |-
 
 ```hcl
 provider "thunder" {
-  address  = "192.0.2.65"
-  username = "admin"
-  password = "admin"
+  address  = var.address
+  username = var.username
+  password = var.password
 }
 
-resource "thunder_fw_urpf" "FwTest" {
-	status = "strict" 
+
+resource "thunder_fw_urpf" "resourceFwUrpfTest" {
+	status = "string"
+uuid = "string"
+ 
 }
+
 ```
 
 ## Argument Reference
 
-* `status` - ‘disabled’: Disable urpf (Default: disabled); ‘strict’: Perform Strict Check; ‘loose’: Perform Loose Check;
+* `urpf` - Unicast Reverse Path Forwarding (Default: loose)
+* `status` - 'loose': Perform loose check; 'strict': Perform strict check; 'disable': Disable check;
 * `uuid` - uuid of the object
 

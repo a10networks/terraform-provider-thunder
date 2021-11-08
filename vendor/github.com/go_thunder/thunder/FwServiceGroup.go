@@ -8,29 +8,36 @@ import (
 )
 
 type FwServiceGroup struct {
-	UUID FwServiceGroupInstance `json:"service-group-instance,omitempty"`
+	FwServiceGroupInstanceName FwServiceGroupInstance `json:"service-group,omitempty"`
 }
 
 type FwServiceGroupInstance struct {
-	HealthCheck string                    `json:"health-check,omitempty"`
-	Port        []FwServiceMemberList     `json:"member-list,omitempty"`
-	Name        string                    `json:"name,omitempty"`
-	Protocol    string                    `json:"protocol,omitempty"`
-	Counters1   []FwServiceSamplingEnable `json:"sampling-enable,omitempty"`
-	UUID        string                    `json:"uuid,omitempty"`
-	UserTag     string                    `json:"user-tag,omitempty"`
+	FwServiceGroupInstanceHealthCheck                    string                                 `json:"health-check,omitempty"`
+	FwServiceGroupInstanceMemberListPort                 []FwServiceGroupInstanceMemberList     `json:"member-list,omitempty"`
+	FwServiceGroupInstanceName                           string                                 `json:"name,omitempty"`
+	FwServiceGroupInstancePacketCaptureTemplate          string                                 `json:"packet-capture-template,omitempty"`
+	FwServiceGroupInstanceProtocol                       string                                 `json:"protocol,omitempty"`
+	FwServiceGroupInstanceSamplingEnableCounters1        []FwServiceGroupInstanceSamplingEnable `json:"sampling-enable,omitempty"`
+	FwServiceGroupInstanceTrafficReplicationMirrorIPRepl int                                    `json:"traffic-replication-mirror-ip-repl,omitempty"`
+	FwServiceGroupInstanceUUID                           string                                 `json:"uuid,omitempty"`
+	FwServiceGroupInstanceUserTag                        string                                 `json:"user-tag,omitempty"`
 }
 
-type FwServiceMemberList struct {
-	Name      string                    `json:"name,omitempty"`
-	Port      int                       `json:"port,omitempty"`
-	Counters1 []FwServiceSamplingEnable `json:"sampling-enable,omitempty"`
-	UUID      string                    `json:"uuid,omitempty"`
-	UserTag   string                    `json:"user-tag,omitempty"`
+type FwServiceGroupInstanceMemberList struct {
+	FwServiceGroupInstanceMemberListName                    string                                           `json:"name,omitempty"`
+	FwServiceGroupInstanceMemberListPacketCaptureTemplate   string                                           `json:"packet-capture-template,omitempty"`
+	FwServiceGroupInstanceMemberListPort                    int                                              `json:"port,omitempty"`
+	FwServiceGroupInstanceMemberListSamplingEnableCounters1 []FwServiceGroupInstanceMemberListSamplingEnable `json:"sampling-enable,omitempty"`
+	FwServiceGroupInstanceMemberListUUID                    string                                           `json:"uuid,omitempty"`
+	FwServiceGroupInstanceMemberListUserTag                 string                                           `json:"user-tag,omitempty"`
 }
 
-type FwServiceSamplingEnable struct {
-	Counters1 string `json:"counters1,omitempty"`
+type FwServiceGroupInstanceSamplingEnable struct {
+	FwServiceGroupInstanceSamplingEnableCounters1 string `json:"counters1,omitempty"`
+}
+
+type FwServiceGroupInstanceMemberListSamplingEnable struct {
+	FwServiceGroupInstanceMemberListSamplingEnableCounters1 string `json:"counters1,omitempty"`
 }
 
 func PostFwServiceGroup(id string, inst FwServiceGroup, host string) error {
@@ -46,6 +53,7 @@ func PostFwServiceGroup(id string, inst FwServiceGroup, host string) error {
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/fw/service-group", bytes.NewReader(payloadBytes), headers)
@@ -53,16 +61,15 @@ func PostFwServiceGroup(id string, inst FwServiceGroup, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwServiceGroup
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] PostFwServiceGroup REQ RES..........................", m)
+			logger.Println("[INFO] Post REQ RES..........................", m)
 			err := check_api_status("PostFwServiceGroup", data)
 			if err != nil {
 				return err
@@ -73,7 +80,7 @@ func PostFwServiceGroup(id string, inst FwServiceGroup, host string) error {
 	return err
 }
 
-func GetFwServiceGroup(id string, name string, host string) (*FwServiceGroup, error) {
+func GetFwServiceGroup(id string, name1 string, host string) (*FwServiceGroup, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -83,21 +90,20 @@ func GetFwServiceGroup(id string, name string, host string) (*FwServiceGroup, er
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside GetFwServiceGroup")
 
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/fw/service-group/"+name, nil, headers)
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/fw/service-group/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwServiceGroup
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] Get REQ RES..........................", m)
 			err := check_api_status("GetFwServiceGroup", data)
 			if err != nil {
 				return nil, err
@@ -108,7 +114,7 @@ func GetFwServiceGroup(id string, name string, host string) (*FwServiceGroup, er
 
 }
 
-func PutFwServiceGroup(id string, name string, inst FwServiceGroup, host string) error {
+func PutFwServiceGroup(id string, name1 string, inst FwServiceGroup, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -121,23 +127,23 @@ func PutFwServiceGroup(id string, name string, inst FwServiceGroup, host string)
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/fw/service-group/"+name, bytes.NewReader(payloadBytes), headers)
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/fw/service-group/"+name1, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwServiceGroup
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
-			logger.Println("[INFO] PUT REQ RES..........................", m)
+			logger.Println("[INFO] Put REQ RES..........................", m)
 			err := check_api_status("PutFwServiceGroup", data)
 			if err != nil {
 				return err
@@ -148,7 +154,7 @@ func PutFwServiceGroup(id string, name string, inst FwServiceGroup, host string)
 	return err
 }
 
-func DeleteFwServiceGroup(id string, name string, host string) error {
+func DeleteFwServiceGroup(id string, name1 string, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -158,23 +164,26 @@ func DeleteFwServiceGroup(id string, name string, host string) error {
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside DeleteFwServiceGroup")
 
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/fw/service-group/"+name, nil, headers)
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/fw/service-group/"+name1, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m FwServiceGroup
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
-			logger.Println("[INFO] GET REQ RES..........................", m)
+			logger.Println("[INFO] Delete REQ RES..........................", m)
+			err := check_api_status("DeleteFwServiceGroup", data)
+			if err != nil {
+				return err
+			}
 
 		}
 	}
-	return nil
+	return err
 }

@@ -3,7 +3,7 @@ layout: "thunder"
 page_title: "thunder: thunder_fw_server"
 sidebar_current: "docs-thunder-resource-fw-server"
 description: |-
-	Provides details about thunder fw server resource for A10
+    Provides details about thunder fw server resource for A10
 ---
 
 # thunder\_fw\_server
@@ -14,55 +14,59 @@ description: |-
 
 ```hcl
 provider "thunder" {
-  address  = "192.0.2.65"
-  username = "admin"
-  password = "admin"
+  address  = var.address
+  username = var.username
+  password = var.password
 }
 
-resource "thunder_fw_server" "Fw_Server_Test" {
 
-health_check_disable = 0
-port-list {   
-        health_check_disable =  0 
-        protocol =  "string" 
-        uuid =  "string" 
-        user_tag =  "string" 
-sampling-enable {   
-        counters1 =  "string" 
-        }
-        port_number =  0 
-        action =  "string" 
-        health_check =  "string" 
-        }
-uuid = "string"
+resource "thunder_fw_server" "resourceFwServerTest" {
+	name = "string"
+server_ipv6_addr = "string"
+host = "string"
 fqdn_name = "string"
 resolve_as = "string"
-sampling-enable {   
-        counters1 =  "string" 
-        }
-user_tag = "string"
-host = "string"
 action = "string"
-server_ipv6_addr = "string"
 health_check = "string"
-name = "string"
+health_check_disable = 0
+uuid = "string"
+user_tag = "string"
+sampling-enable {   
+	counters1 =  "string" 
+	}
+port-list {   
+	port_number =  0 
+	protocol =  "string" 
+	action =  "string" 
+	health_check =  "string" 
+	health_check_disable =  0 
+	uuid =  "string" 
+	user_tag =  "string" 
+sampling-enable {   
+	counters1 =  "string" 
+	}
+	packet_capture_template =  "string" 
+	}
  
 }
+
 ```
 
 ## Argument Reference
 
-* `action` - ‘enable’: enable; ‘disable’: disable;
-* `fqdn_name` - Server hostname
-* `health_check` - Health Check (Monitor Name)
-* `health_check_disable` - Disable health check
-* `host` - IP Address
+* `server` - Firewall logging Server
 * `name` - Server Name
-* `resolve_as` - ‘resolve-to-ipv4’: Use A Query only to resolve FQDN; ‘resolve-to-ipv6’: Use AAAA Query only to resolve FQDN; ‘resolve-to-ipv4-and-ipv6’: Use A as well as AAAA Query to resolve FQDN;
-* `server_ipv6_addr` - IPV6 address
-* `user_tag` - Customized tag
+* `server-ipv6-addr` - IPV6 address
+* `host` - IP Address
+* `fqdn-name` - Server hostname
+* `resolve-as` - 'resolve-to-ipv4': Use A Query only to resolve FQDN; 'resolve-to-ipv6': Use AAAA Query only to resolve FQDN; 'resolve-to-ipv4-and-ipv6': Use A as well as AAAA Query to resolve FQDN;
+* `action` - 'enable': enable; 'disable': disable;
+* `health-check` - Health Check (Monitor Name)
+* `health-check-disable` - Disable health check
 * `uuid` - uuid of the object
-* `port_number` - Port Number
-* `protocol` - ‘tcp’: TCP Port; ‘udp’: UDP Port;
-* `counters1` - ‘all’: all; ‘curr-conn’: Current connections; ‘total-conn’: Total connections; ‘fwd-pkt’: Forward packets; ‘rev-pkt’: Reverse Packets; ‘peak-conn’: Peak connections;
+* `user-tag` - Customized tag
+* `counters1` - 'all': all; 'curr_conn': Current connections; 'curr_req': Current requests; 'total_req': Total requests; 'total_req_succ': Total request success; 'total_fwd_bytes': Forward bytes; 'total_fwd_pkts': Forward packets; 'total_rev_bytes': Reverse bytes; 'total_rev_pkts': Reverse packets; 'total_conn': Total connections; 'last_total_conn': Last total connections; 'peak_conn': Peak connections; 'es_resp_200': Response status 200; 'es_resp_300': Response status 300; 'es_resp_400': Response status 400; 'es_resp_500': Response status 500; 'es_resp_other': Response status other; 'es_req_count': Total proxy request; 'es_resp_count': Total proxy Response; 'es_resp_invalid_http': Total non-http response; 'total_rev_pkts_inspected': Total reverse packets inspected; 'total_rev_pkts_inspected_good_status_code': Total reverse packets with good status code inspected; 'response_time': Response time; 'fastest_rsp_time': Fastest response time; 'slowest_rsp_time': Slowest response time;
+* `port-number` - Port Number
+* `protocol` - 'tcp': TCP Port; 'udp': UDP Port;
+* `packet-capture-template` - Name of the packet capture template to be bind with this object
 

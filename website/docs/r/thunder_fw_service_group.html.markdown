@@ -3,7 +3,7 @@ layout: "thunder"
 page_title: "thunder: thunder_fw_service_group"
 sidebar_current: "docs-thunder-resource-fw-service-group"
 description: |-
-	Provides details about thunder fw service group resource for A10
+    Provides details about thunder fw service group resource for A10
 ---
 
 # thunder\_fw\_service\_group
@@ -14,41 +14,48 @@ description: |-
 
 ```hcl
 provider "thunder" {
-  address  = "192.0.2.65"
-  username = "admin"
-  password = "admin"
+  address  = var.address
+  username = var.username
+  password = var.password
 }
 
-resource "thunder_fw_service_group" "Fw_Service_Group_Test" {
+
+resource "thunder_fw_service_group" "resourceFwServiceGroupTest" {
+	name = "string"
 protocol = "string"
+health_check = "string"
+traffic_replication_mirror_ip_repl = 0
 uuid = "string"
 user_tag = "string"
-traffic_replication_mirror_ip_repl = 0
 sampling-enable {   
-        counters1 =  "string" 
-        }
+	counters1 =  "string" 
+	}
+packet_capture_template = "string"
 member-list {   
-        port =  0 
+	name =  "string" 
+	port =  0 
+	uuid =  "string" 
+	user_tag =  "string" 
 sampling-enable {   
-        counters1 =  "string" 
-        }
-        uuid =  "string" 
-        user_tag =  "string" 
-        name =  "string" 
-        }
-health_check = "string"
-name = "string"
+	counters1 =  "string" 
+	}
+	packet_capture_template =  "string" 
+	}
  
 }
+
 ```
 
 ## Argument Reference
 
-* `health_check` - Health Check (Monitor Name)
+* `service-group` - Service Group
 * `name` - Member name
-* `protocol` - ‘tcp’: TCP LB service; ‘udp’: UDP LB service;
-* `user_tag` - Customized tag
+* `protocol` - 'tcp': TCP LB service; 'udp': UDP LB service;
+* `health-check` - Health Check (Monitor Name)
+* `traffic-replication-mirror-ip-repl` - Replaces IP with server-IP
 * `uuid` - uuid of the object
-* `counters1` - ‘all’: all; ‘curr_conn’: Current connections; ‘total_fwd_bytes’: Total forward bytes; ‘total_fwd_pkts’: Total forward packets; ‘total_rev_bytes’: Total reverse bytes; ‘total_rev_pkts’: Total reverse packets; ‘total_conn’: Total connections; ‘total_rev_pkts_inspected’: Total reverse packets inspected; ‘total_rev_pkts_inspected_status_code_2xx’: Total reverse packets inspected status code 2xx; ‘total_rev_pkts_inspected_status_code_non_5xx’: Total reverse packets inspected status code non 5xx; ‘curr_req’: Current requests; ‘total_req’: Total requests; ‘total_req_succ’: Total requests success; ‘peak_conn’: Peak connections; ‘response_time’: Response time; ‘fastest_rsp_time’: Fastest response time; ‘slowest_rsp_time’: Slowest response time;
+* `user-tag` - Customized tag
+* `counters1` - 'all': all; 'curr_conn': Current connections; 'total_fwd_bytes': Total forward bytes; 'total_fwd_pkts': Total forward packets; 'total_rev_bytes': Total reverse bytes; 'total_rev_pkts': Total reverse packets; 'total_conn': Total connections; 'total_rev_pkts_inspected': Total reverse packets inspected; 'total_rev_pkts_inspected_status_code_2xx': Total reverse packets inspected status code 2xx; 'total_rev_pkts_inspected_status_code_non_5xx': Total reverse packets inspected status code non 5xx; 'curr_req': Current requests; 'total_req': Total requests; 'total_req_succ': Total requests success; 'peak_conn': Peak connections; 'response_time': Response time; 'fastest_rsp_time': Fastest response time; 'slowest_rsp_time': Slowest response time; 'curr_ssl_conn': Current SSL connections; 'total_ssl_conn': Total SSL connections; 'curr_conn_overflow': Current connection counter overflow count; 'state_flaps': State flaps count;
+* `packet-capture-template` - Name of the packet capture template to be bind with this object
 * `port` - Port number
 

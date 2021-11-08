@@ -4,12 +4,10 @@ package thunder
 
 import (
 	"context"
-	"strconv"
-	"util"
-
-	go_thunder "github.com/go_thunder/thunder"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"util"
 )
 
 func resourceFwUrpf() *schema.Resource {
@@ -38,13 +36,12 @@ func resourceFwUrpfCreate(ctx context.Context, d *schema.ResourceData, meta inte
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwUrpf (Inside resourceFwUrpfCreate) ")
 
 		data := dataToFwUrpf(d)
 		logger.Println("[INFO] received formatted data from method data to FwUrpf --")
-		d.SetId(strconv.Itoa('1'))
+		d.SetId("1")
 		err := go_thunder.PostFwUrpf(client.Token, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
@@ -59,25 +56,22 @@ func resourceFwUrpfCreate(ctx context.Context, d *schema.ResourceData, meta inte
 func resourceFwUrpfRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwUrpf (Inside resourceFwUrpfRead)")
 
+	var diags diag.Diagnostics
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Fetching service Read" + name)
+		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetFwUrpf(client.Token, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
 		if data == nil {
-			logger.Println("[INFO] No data found " + name)
-			d.SetId("")
+			logger.Println("[INFO] No data found ")
 			return nil
 		}
 		return diags
 	}
-	return nil
+	return diags
 }
 
 func resourceFwUrpfUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
@@ -92,8 +86,8 @@ func resourceFwUrpfDelete(ctx context.Context, d *schema.ResourceData, meta inte
 func dataToFwUrpf(d *schema.ResourceData) go_thunder.FwUrpf {
 	var vc go_thunder.FwUrpf
 	var c go_thunder.FwUrpfInstance
-	c.Status = d.Get("status").(string)
+	c.FwUrpfInstanceStatus = d.Get("status").(string)
 
-	vc.Status = c
+	vc.FwUrpfInstanceStatus = c
 	return vc
 }

@@ -8,288 +8,304 @@ import (
 )
 
 type RouteMap struct {
-	Tag RouteMapInstance `json:"route-map,omitempty"`
+	RouteMapInstanceTag RouteMapInstance `json:"route-map,omitempty"`
 }
 
 type RouteMapInstance struct {
-	Action       string        `json:"action,omitempty"`
-	Name         RouteMapMatch `json:"match,omitempty"`
-	Sequence     int           `json:"sequence,omitempty"`
-	AggregatorAs RouteMapSet   `json:"set,omitempty"`
-	Tag          string        `json:"tag,omitempty"`
-	UUID         string        `json:"uuid,omitempty"`
-	UserTag      string        `json:"user-tag,omitempty"`
+	RouteMapInstanceAction      string                `json:"action,omitempty"`
+	RouteMapInstanceMatchAsPath RouteMapInstanceMatch `json:"match,omitempty"`
+	RouteMapInstanceSequence    int                   `json:"sequence,omitempty"`
+	RouteMapInstanceSetIP       RouteMapInstanceSet   `json:"set,omitempty"`
+	RouteMapInstanceTag         string                `json:"tag,omitempty"`
+	RouteMapInstanceUUID        string                `json:"uuid,omitempty"`
+	RouteMapInstanceUserTag     string                `json:"user-tag,omitempty"`
 }
 
-type RouteMapMatch struct {
-	Name              RouteMapAsPath1         `json:"as-path,omitempty"`
-	NameCfg           RouteMapCommunity       `json:"community,omitempty"`
-	ExtcommunityLName RouteMapExtcommunity    `json:"extcommunity,omitempty"`
-	GroupID           RouteMapGroup           `json:"group,omitempty"`
-	Address           RouteMapIp1             `json:"ip,omitempty"`
-	Ethernet          RouteMapInterface       `json:"interface,omitempty"`
-	Address1          RouteMapIpv6            `json:"ipv6,omitempty"`
-	Val               RouteMapLocalPreference `json:"local-preference,omitempty"`
-	Value             RouteMapMetricMap       `json:"metric,omitempty"`
-	Egp               RouteMapOrigin          `json:"origin,omitempty"`
-	ValueExternal     RouteMapRouteType       `json:"route-type,omitempty"`
-	ClusterID         RouteMapScaleout        `json:"scaleout,omitempty"`
-	ValueTag          RouteMapTag             `json:"tag,omitempty"`
-	UUID              string                  `json:"uuid,omitempty"`
+type RouteMapInstanceMatch struct {
+	RouteMapInstanceMatchAsPathName                    RouteMapInstanceMatchAsPath          `json:"as-path,omitempty"`
+	RouteMapInstanceMatchCommunityNameCfg              RouteMapInstanceMatchCommunity       `json:"community,omitempty"`
+	RouteMapInstanceMatchExtcommunityExtcommunityLName RouteMapInstanceMatchExtcommunity    `json:"extcommunity,omitempty"`
+	RouteMapInstanceMatchGroupGroupID                  RouteMapInstanceMatchGroup           `json:"group,omitempty"`
+	RouteMapInstanceMatchIPAddress                     RouteMapInstanceMatchIP              `json:"ip,omitempty"`
+	RouteMapInstanceMatchInterfaceEthernet             RouteMapInstanceMatchInterface       `json:"interface,omitempty"`
+	RouteMapInstanceMatchIpv6Address1                  RouteMapInstanceMatchIpv6            `json:"ipv6,omitempty"`
+	RouteMapInstanceMatchLocalPreferenceVal            RouteMapInstanceMatchLocalPreference `json:"local-preference,omitempty"`
+	RouteMapInstanceMatchMetricValue                   RouteMapInstanceMatchMetric          `json:"metric,omitempty"`
+	RouteMapInstanceMatchOriginEgp                     RouteMapInstanceMatchOrigin          `json:"origin,omitempty"`
+	RouteMapInstanceMatchRouteTypeExternal             RouteMapInstanceMatchRouteType       `json:"route-type,omitempty"`
+	RouteMapInstanceMatchScaleoutClusterID             RouteMapInstanceMatchScaleout        `json:"scaleout,omitempty"`
+	RouteMapInstanceMatchTagValue                      RouteMapInstanceMatchTag             `json:"tag,omitempty"`
+	RouteMapInstanceMatchUUID                          string                               `json:"uuid,omitempty"`
 }
 
-type RouteMapSet struct {
-	AggregatorAs            RouteMapAggregator      `json:"aggregator,omitempty"`
-	Prepend                 RouteMapAsPath          `json:"as-path,omitempty"`
-	AtomicAggregate         int                     `json:"atomic-aggregate,omitempty"`
-	VStd                    RouteMapCommList        `json:"comm-list,omitempty"`
-	Community               string                  `json:"community,omitempty"`
-	Dampening               RouteMapDampeningCfg    `json:"dampening-cfg,omitempty"`
-	ClassListName           RouteMapDdos            `json:"ddos,omitempty"`
-	ValueRt                 RouteMapExtcommunity1   `json:"extcommunity,omitempty"`
-	Address                 RouteMapIp2             `json:"ip,omitempty"`
-	RouteMapNextHop1Address RouteMapIpv62           `json:"ipv6,omitempty"`
-	ValueLevel1             RouteMapLevel           `json:"level,omitempty"`
-	Val                     RouteMapLocalPreference `json:"local-preference,omitempty"`
-	ValueLevel2             RouteMapMetric          `json:"metric,omitempty"`
-	ValueLevel3             RouteMapMetricType      `json:"metric-type,omitempty"`
-	Egp                     RouteMapOrigin          `json:"origin,omitempty"`
-	OriginatorIP            RouteMapOriginatorID    `json:"originator-id,omitempty"`
-	ValueTag                RouteMapTag             `json:"tag,omitempty"`
-	UUID                    string                  `json:"uuid,omitempty"`
-	WeightVal               RouteMapWeight          `json:"weight,omitempty"`
+type RouteMapInstanceSet struct {
+	RouteMapInstanceSetAggregatorAggregatorAs   RouteMapInstanceSetAggregator      `json:"aggregator,omitempty"`
+	RouteMapInstanceSetAsPathPrepend            RouteMapInstanceSetAsPath          `json:"as-path,omitempty"`
+	RouteMapInstanceSetAtomicAggregate          int                                `json:"atomic-aggregate,omitempty"`
+	RouteMapInstanceSetCommListVStd             RouteMapInstanceSetCommList        `json:"comm-list,omitempty"`
+	RouteMapInstanceSetCommunity                string                             `json:"community,omitempty"`
+	RouteMapInstanceSetDampeningCfgDampening    RouteMapInstanceSetDampeningCfg    `json:"dampening-cfg,omitempty"`
+	RouteMapInstanceSetDdosClassListName        RouteMapInstanceSetDdos            `json:"ddos,omitempty"`
+	RouteMapInstanceSetExtcommunityRt           RouteMapInstanceSetExtcommunity    `json:"extcommunity,omitempty"`
+	RouteMapInstanceSetIPNextHop                RouteMapInstanceSetIP              `json:"ip,omitempty"`
+	RouteMapInstanceSetIpv6NextHop1             RouteMapInstanceSetIpv6            `json:"ipv6,omitempty"`
+	RouteMapInstanceSetLevelValue               RouteMapInstanceSetLevel           `json:"level,omitempty"`
+	RouteMapInstanceSetLocalPreferenceVal       RouteMapInstanceSetLocalPreference `json:"local-preference,omitempty"`
+	RouteMapInstanceSetMetricValue              RouteMapInstanceSetMetric          `json:"metric,omitempty"`
+	RouteMapInstanceSetMetricTypeValue          RouteMapInstanceSetMetricType      `json:"metric-type,omitempty"`
+	RouteMapInstanceSetOriginEgp                RouteMapInstanceSetOrigin          `json:"origin,omitempty"`
+	RouteMapInstanceSetOriginatorIDOriginatorIP RouteMapInstanceSetOriginatorID    `json:"originator-id,omitempty"`
+	RouteMapInstanceSetTagValue                 RouteMapInstanceSetTag             `json:"tag,omitempty"`
+	RouteMapInstanceSetUUID                     string                             `json:"uuid,omitempty"`
+	RouteMapInstanceSetWeightWeightVal          RouteMapInstanceSetWeight          `json:"weight,omitempty"`
 }
 
-type RouteMapAsPath1 struct {
-	Name string `json:"name,omitempty"`
+type RouteMapInstanceMatchAsPath struct {
+	RouteMapInstanceMatchAsPathName string `json:"name,omitempty"`
 }
 
-type RouteMapPrefixList struct {
-	Name string `json:"name,omitempty"`
+type RouteMapInstanceMatchCommunity struct {
+	RouteMapInstanceMatchCommunityNameCfgName RouteMapInstanceMatchCommunityNameCfg `json:"name-cfg,omitempty"`
 }
 
-type RouteMapTag struct {
-	ValueTag int `json:"value,omitempty"`
+type RouteMapInstanceMatchExtcommunity struct {
+	RouteMapInstanceMatchExtcommunityExtcommunityLNameName RouteMapInstanceMatchExtcommunityExtcommunityLName `json:"extcommunity-l-name,omitempty"`
 }
 
-type RouteMapMetricType struct {
-	ValueLevel3 string `json:"value,omitempty"`
+type RouteMapInstanceMatchGroup struct {
+	RouteMapInstanceMatchGroupGroupID int    `json:"group-id,omitempty"`
+	RouteMapInstanceMatchGroupHaState string `json:"ha-state,omitempty"`
 }
 
-type RouteMapCommunity struct {
-	Name RouteMapNameCfg `json:"name-cfg,omitempty"`
+type RouteMapInstanceMatchIP struct {
+	RouteMapInstanceMatchIPAddressAcl1 RouteMapInstanceMatchIPAddress `json:"address,omitempty"`
+	RouteMapInstanceMatchIPNextHopAcl1 RouteMapInstanceMatchIPNextHop `json:"next-hop,omitempty"`
+	RouteMapInstanceMatchIPPeerAcl1    RouteMapInstanceMatchIPPeer    `json:"peer,omitempty"`
+	RouteMapInstanceMatchIPRibExact    RouteMapInstanceMatchIPRib     `json:"rib,omitempty"`
 }
 
-type RouteMapExtcommunityLName struct {
-	ExtcommunityLName string `json:"name,omitempty"`
-	ExactMatch        int    `json:"exact-match,omitempty"`
+type RouteMapInstanceMatchInterface struct {
+	RouteMapInstanceMatchInterfaceEthernet int `json:"ethernet,omitempty"`
+	RouteMapInstanceMatchInterfaceLoopback int `json:"loopback,omitempty"`
+	RouteMapInstanceMatchInterfaceTrunk    int `json:"trunk,omitempty"`
+	RouteMapInstanceMatchInterfaceTunnel   int `json:"tunnel,omitempty"`
+	RouteMapInstanceMatchInterfaceVe       int `json:"ve,omitempty"`
 }
 
-type RouteMapExtcommunity struct {
-	ExtcommunityLName RouteMapExtcommunityLName `json:"extcommunity-l-name,omitempty"`
+type RouteMapInstanceMatchIpv6 struct {
+	RouteMapInstanceMatchIpv6Address1Name           RouteMapInstanceMatchIpv6Address1 `json:"address-1,omitempty"`
+	RouteMapInstanceMatchIpv6NextHop1NextHopAclName RouteMapInstanceMatchIpv6NextHop1 `json:"next-hop-1,omitempty"`
+	RouteMapInstanceMatchIpv6Peer1Acl1              RouteMapInstanceMatchIpv6Peer1    `json:"peer-1,omitempty"`
+	RouteMapInstanceMatchIpv6RibExact               RouteMapInstanceMatchIpv6Rib      `json:"rib,omitempty"`
 }
 
-type RouteMapGroup struct {
-	GroupID int    `json:"group-id,omitempty"`
-	HaState string `json:"ha-state,omitempty"`
+type RouteMapInstanceMatchLocalPreference struct {
+	RouteMapInstanceMatchLocalPreferenceVal int `json:"val,omitempty"`
 }
 
-type RouteMapIp1 struct {
-	Acl1  RouteMapAddress   `json:"address,omitempty"`
-	Acl2  RouteMapNextHopIp `json:"next-hop,omitempty"`
-	Name  RouteMapPeer      `json:"peer,omitempty"`
-	Exact RouteMapRib       `json:"rib,omitempty"`
+type RouteMapInstanceMatchMetric struct {
+	RouteMapInstanceMatchMetricValue int `json:"value,omitempty"`
 }
 
-type RouteMapInterface struct {
-	Ethernet int `json:"ethernet,omitempty"`
-	Loopback int `json:"loopback,omitempty"`
-	Trunk    int `json:"trunk,omitempty"`
-	Tunnel   int `json:"tunnel,omitempty"`
-	Ve       int `json:"ve,omitempty"`
+type RouteMapInstanceMatchOrigin struct {
+	RouteMapInstanceMatchOriginEgp        int `json:"egp,omitempty"`
+	RouteMapInstanceMatchOriginIgp        int `json:"igp,omitempty"`
+	RouteMapInstanceMatchOriginIncomplete int `json:"incomplete,omitempty"`
 }
 
-type RouteMapIpv6 struct {
-	Name           RouteMapAddress1    `json:"address-1,omitempty"`
-	NextHopAclName RouteMapNextHopIpv6 `json:"next-hop-1,omitempty"`
-	Acl1           RouteMapPeer        `json:"peer-1,omitempty"`
-	Exact          RouteMapRib         `json:"rib,omitempty"`
+type RouteMapInstanceMatchRouteType struct {
+	RouteMapInstanceMatchRouteTypeExternalValue RouteMapInstanceMatchRouteTypeExternal `json:"external,omitempty"`
 }
 
-type RouteMapLocalPreference struct {
-	Val int `json:"val,omitempty"`
+type RouteMapInstanceMatchScaleout struct {
+	RouteMapInstanceMatchScaleoutClusterID        int    `json:"cluster-id,omitempty"`
+	RouteMapInstanceMatchScaleoutOperationalState string `json:"operational-state,omitempty"`
 }
 
-type RouteMapExternal struct {
-	ValueExternal string `json:"value,omitempty"`
+type RouteMapInstanceMatchTag struct {
+	RouteMapInstanceMatchTagValue int `json:"value,omitempty"`
 }
 
-type RouteMapMetricMap struct {
-	Value int `json:"value,omitempty"`
+type RouteMapInstanceSetAggregator struct {
+	RouteMapInstanceSetAggregatorAggregatorAsAsn RouteMapInstanceSetAggregatorAggregatorAs `json:"aggregator-as,omitempty"`
 }
 
-type RouteMapMetric struct {
-	Value       string `json:"value,omitempty"`
-	ValueMetric string `json:"value,omitempty"`
-	ValueLevel2 string `json:"value,omitempty"`
+type RouteMapInstanceSetAsPath struct {
+	RouteMapInstanceSetAsPathNum     string `json:"num,omitempty"`
+	RouteMapInstanceSetAsPathNum2    string `json:"num2,omitempty"`
+	RouteMapInstanceSetAsPathPrepend string `json:"prepend,omitempty"`
 }
 
-type RouteMapOrigin struct {
-	Egp        int `json:"egp,omitempty"`
-	Igp        int `json:"igp,omitempty"`
-	Incomplete int `json:"incomplete,omitempty"`
+type RouteMapInstanceSetCommList struct {
+	RouteMapInstanceSetCommListDelete     int    `json:"delete,omitempty"`
+	RouteMapInstanceSetCommListName       string `json:"name,omitempty"`
+	RouteMapInstanceSetCommListNameDelete int    `json:"name-delete,omitempty"`
+	RouteMapInstanceSetCommListVExp       int    `json:"v-exp,omitempty"`
+	RouteMapInstanceSetCommListVExpDelete int    `json:"v-exp-delete,omitempty"`
+	RouteMapInstanceSetCommListVStd       int    `json:"v-std,omitempty"`
 }
 
-type RouteMapRouteType struct {
-	ValueExternal RouteMapExternal `json:"external,omitempty"`
+type RouteMapInstanceSetDampeningCfg struct {
+	RouteMapInstanceSetDampeningCfgDampening           int `json:"dampening,omitempty"`
+	RouteMapInstanceSetDampeningCfgDampeningHalfTime   int `json:"dampening-half-time,omitempty"`
+	RouteMapInstanceSetDampeningCfgDampeningMaxSupress int `json:"dampening-max-supress,omitempty"`
+	RouteMapInstanceSetDampeningCfgDampeningPenalty    int `json:"dampening-penalty,omitempty"`
+	RouteMapInstanceSetDampeningCfgDampeningReuse      int `json:"dampening-reuse,omitempty"`
+	RouteMapInstanceSetDampeningCfgDampeningSupress    int `json:"dampening-supress,omitempty"`
 }
 
-type RouteMapScaleout struct {
-	ClusterID        int    `json:"cluster-id,omitempty"`
-	OperationalState string `json:"operational-state,omitempty"`
+type RouteMapInstanceSetDdos struct {
+	RouteMapInstanceSetDdosClassListCid  int    `json:"class-list-cid,omitempty"`
+	RouteMapInstanceSetDdosClassListName string `json:"class-list-name,omitempty"`
+	RouteMapInstanceSetDdosZone          string `json:"zone,omitempty"`
 }
 
-type RouteMapAggregator struct {
-	Asn RouteMapAggregatorAs `json:"aggregator-as,omitempty"`
+type RouteMapInstanceSetExtcommunity struct {
+	RouteMapInstanceSetExtcommunityRtValue  RouteMapInstanceSetExtcommunityRt  `json:"rt,omitempty"`
+	RouteMapInstanceSetExtcommunitySooValue RouteMapInstanceSetExtcommunitySoo `json:"soo,omitempty"`
 }
 
-type RouteMapAsPath struct {
-	Num     int    `json:"num,omitempty"`
-	Num2    int    `json:"num2,omitempty"`
-	Prepend string `json:"prepend,omitempty"`
+type RouteMapInstanceSetIP struct {
+	RouteMapInstanceSetIPNextHopAddress RouteMapInstanceSetIPNextHop `json:"next-hop,omitempty"`
 }
 
-type RouteMapCommList struct {
-	Delete     int    `json:"delete,omitempty"`
-	Name       string `json:"name,omitempty"`
-	NameDelete int    `json:"name-delete,omitempty"`
-	VExp       int    `json:"v-exp,omitempty"`
-	VExpDelete int    `json:"v-exp-delete,omitempty"`
-	VStd       int    `json:"v-std,omitempty"`
+type RouteMapInstanceSetIpv6 struct {
+	RouteMapInstanceSetIpv6NextHop1Address RouteMapInstanceSetIpv6NextHop1 `json:"next-hop-1,omitempty"`
 }
 
-type RouteMapDampeningCfg struct {
-	Dampening           int `json:"dampening,omitempty"`
-	DampeningHalfTime   int `json:"dampening-half-time,omitempty"`
-	DampeningMaxSupress int `json:"dampening-max-supress,omitempty"`
-	DampeningPenalty    int `json:"dampening-penalty,omitempty"`
-	DampeningReuse      int `json:"dampening-reuse,omitempty"`
-	DampeningSupress    int `json:"dampening-supress,omitempty"`
+type RouteMapInstanceSetLevel struct {
+	RouteMapInstanceSetLevelValue string `json:"value,omitempty"`
 }
 
-type RouteMapDdos struct {
-	ClassListCid  int    `json:"class-list-cid,omitempty"`
-	ClassListName string `json:"class-list-name,omitempty"`
-	Zone          string `json:"zone,omitempty"`
+type RouteMapInstanceSetLocalPreference struct {
+	RouteMapInstanceSetLocalPreferenceVal int `json:"val,omitempty"`
 }
 
-type RouteMapRt struct {
-	ValueRt string `json:"value,omitempty"`
+type RouteMapInstanceSetMetric struct {
+	RouteMapInstanceSetMetricValue string `json:"value,omitempty"`
 }
 
-type RouteMapSoo struct {
-	ValueSoo string `json:"value,omitempty"`
+type RouteMapInstanceSetMetricType struct {
+	RouteMapInstanceSetMetricTypeValue string `json:"value,omitempty"`
 }
 
-type RouteMapExtcommunity1 struct {
-	ValueRt  RouteMapRt  `json:"rt,omitempty"`
-	ValueSoo RouteMapSoo `json:"soo,omitempty"`
+type RouteMapInstanceSetOrigin struct {
+	RouteMapInstanceSetOriginEgp        int `json:"egp,omitempty"`
+	RouteMapInstanceSetOriginIgp        int `json:"igp,omitempty"`
+	RouteMapInstanceSetOriginIncomplete int `json:"incomplete,omitempty"`
 }
 
-type RouteMapIp2 struct {
-	Address RouteMapNextHopSetIp `json:"next-hop,omitempty"`
+type RouteMapInstanceSetOriginatorID struct {
+	RouteMapInstanceSetOriginatorIDOriginatorIP string `json:"originator-ip,omitempty"`
 }
 
-type RouteMapIpv62 struct {
-	RouteMapNextHop1Address RouteMapNextHop1 `json:"next-hop-1,omitempty"`
+type RouteMapInstanceSetTag struct {
+	RouteMapInstanceSetTagValue int `json:"value,omitempty"`
 }
 
-type RouteMapLevel struct {
-	ValueLevel1 string `json:"value,omitempty"`
-	ValueLevel2 string `json:"value,omitempty"`
-	ValueLevel3 string `json:"value,omitempty"`
+type RouteMapInstanceSetWeight struct {
+	RouteMapInstanceSetWeightWeightVal int `json:"weight-val,omitempty"`
 }
 
-type RouteMapOriginatorID struct {
-	OriginatorIP string `json:"originator-ip,omitempty"`
+type RouteMapInstanceMatchCommunityNameCfg struct {
+	RouteMapInstanceMatchCommunityNameCfgExactMatch int    `json:"exact-match,omitempty"`
+	RouteMapInstanceMatchCommunityNameCfgName       string `json:"name,omitempty"`
 }
 
-type RouteMapWeight struct {
-	WeightVal int `json:"weight-val,omitempty"`
+type RouteMapInstanceMatchExtcommunityExtcommunityLName struct {
+	RouteMapInstanceMatchExtcommunityExtcommunityLNameExactMatch int    `json:"exact-match,omitempty"`
+	RouteMapInstanceMatchExtcommunityExtcommunityLNameName       string `json:"name,omitempty"`
 }
 
-type RouteMapNameCfg struct {
-	ExactMatch int    `json:"exact-match,omitempty"`
-	Name       string `json:"name,omitempty"`
+type RouteMapInstanceMatchIPAddress struct {
+	RouteMapInstanceMatchIPAddressAcl1           int                                      `json:"acl1,omitempty"`
+	RouteMapInstanceMatchIPAddressAcl2           int                                      `json:"acl2,omitempty"`
+	RouteMapInstanceMatchIPAddressName           string                                   `json:"name,omitempty"`
+	RouteMapInstanceMatchIPAddressPrefixListName RouteMapInstanceMatchIPAddressPrefixList `json:"prefix-list,omitempty"`
 }
 
-type RouteMapAddress struct {
-	Acl1                int                `json:"acl1,omitempty"`
-	Acl2                int                `json:"acl2,omitempty"`
-	RouteMapAddressName string             `json:"name,omitempty"`
-	Name                RouteMapPrefixList `json:"prefix-list,omitempty"`
+type RouteMapInstanceMatchIPNextHop struct {
+	RouteMapInstanceMatchIPNextHopAcl1            int                                       `json:"acl1,omitempty"`
+	RouteMapInstanceMatchIPNextHopAcl2            int                                       `json:"acl2,omitempty"`
+	RouteMapInstanceMatchIPNextHopName            string                                    `json:"name,omitempty"`
+	RouteMapInstanceMatchIPNextHopPrefixList1Name RouteMapInstanceMatchIPNextHopPrefixList1 `json:"prefix-list-1,omitempty"`
 }
 
-type RouteMapPrefixList1 struct {
-	Name string `json:"name,omitempty"`
+type RouteMapInstanceMatchIPPeer struct {
+	RouteMapInstanceMatchIPPeerAcl1 int    `json:"acl1,omitempty"`
+	RouteMapInstanceMatchIPPeerAcl2 int    `json:"acl2,omitempty"`
+	RouteMapInstanceMatchIPPeerName string `json:"name,omitempty"`
 }
 
-type RouteMapNextHopIp struct {
-	Acl1                  int                 `json:"acl1,omitempty"`
-	Acl2                  int                 `json:"acl2,omitempty"`
-	RouteMapNextHopIpName string              `json:"name,omitempty"`
-	Name                  RouteMapPrefixList1 `json:"prefix-list-1,omitempty"`
+type RouteMapInstanceMatchIPRib struct {
+	RouteMapInstanceMatchIPRibExact       string `json:"exact,omitempty"`
+	RouteMapInstanceMatchIPRibReachable   string `json:"reachable,omitempty"`
+	RouteMapInstanceMatchIPRibUnreachable string `json:"unreachable,omitempty"`
 }
 
-type RouteMapPeer struct {
-	Acl1 int    `json:"acl1,omitempty"`
-	Acl2 int    `json:"acl2,omitempty"`
-	Name string `json:"name,omitempty"`
+type RouteMapInstanceMatchIpv6Address1 struct {
+	RouteMapInstanceMatchIpv6Address1Name            string                                       `json:"name,omitempty"`
+	RouteMapInstanceMatchIpv6Address1PrefixList2Name RouteMapInstanceMatchIpv6Address1PrefixList2 `json:"prefix-list-2,omitempty"`
 }
 
-type RouteMapRib struct {
-	Exact       string `json:"exact,omitempty"`
-	Reachable   string `json:"reachable,omitempty"`
-	Unreachable string `json:"unreachable,omitempty"`
+type RouteMapInstanceMatchIpv6NextHop1 struct {
+	RouteMapInstanceMatchIpv6NextHop1NextHopAclName string `json:"next-hop-acl-name,omitempty"`
+	RouteMapInstanceMatchIpv6NextHop1PrefixListName string `json:"prefix-list-name,omitempty"`
+	RouteMapInstanceMatchIpv6NextHop1V6Addr         string `json:"v6-addr,omitempty"`
 }
 
-type RouteMapPrefixList2 struct {
-	Name string `json:"name,omitempty"`
+type RouteMapInstanceMatchIpv6Peer1 struct {
+	RouteMapInstanceMatchIpv6Peer1Acl1 int    `json:"acl1,omitempty"`
+	RouteMapInstanceMatchIpv6Peer1Acl2 int    `json:"acl2,omitempty"`
+	RouteMapInstanceMatchIpv6Peer1Name string `json:"name,omitempty"`
 }
 
-type RouteMapPeer1 struct {
-	Acl1 int    `json:"acl1,omitempty"`
-	Acl2 int    `json:"acl2,omitempty"`
-	Name string `json:"name,omitempty"`
+type RouteMapInstanceMatchIpv6Rib struct {
+	RouteMapInstanceMatchIpv6RibExact       string `json:"exact,omitempty"`
+	RouteMapInstanceMatchIpv6RibReachable   string `json:"reachable,omitempty"`
+	RouteMapInstanceMatchIpv6RibUnreachable string `json:"unreachable,omitempty"`
 }
 
-type RouteMapAddress1 struct {
-	RouteMapAddress1Name string              `json:"name,omitempty"`
-	Name                 RouteMapPrefixList2 `json:"prefix-list-2,omitempty"`
+type RouteMapInstanceMatchRouteTypeExternal struct {
+	RouteMapInstanceMatchRouteTypeExternalValue string `json:"value,omitempty"`
 }
 
-type RouteMapNextHopIpv6 struct {
-	NextHopAclName string `json:"next-hop-acl-name,omitempty"`
-	PrefixListName string `json:"prefix-list-name,omitempty"`
-	V6Addr         string `json:"v6-addr,omitempty"`
+type RouteMapInstanceSetAggregatorAggregatorAs struct {
+	RouteMapInstanceSetAggregatorAggregatorAsAsn int    `json:"asn,omitempty"`
+	RouteMapInstanceSetAggregatorAggregatorAsIP  string `json:"ip,omitempty"`
 }
 
-type RouteMapAggregatorAs struct {
-	Asn int    `json:"asn,omitempty"`
-	IP  string `json:"ip,omitempty"`
+type RouteMapInstanceSetExtcommunityRt struct {
+	RouteMapInstanceSetExtcommunityRtValue string `json:"value,omitempty"`
 }
 
-type RouteMapNextHopSetIp struct {
-	Address string `json:"address,omitempty"`
+type RouteMapInstanceSetExtcommunitySoo struct {
+	RouteMapInstanceSetExtcommunitySooValue string `json:"value,omitempty"`
 }
 
-type RouteMapNextHop1 struct {
-	RouteMapNextHop1Address string        `json:"address,omitempty"`
-	Address                 RouteMapLocal `json:"local,omitempty"`
+type RouteMapInstanceSetIPNextHop struct {
+	RouteMapInstanceSetIPNextHopAddress string `json:"address,omitempty"`
 }
 
-type RouteMapLocal struct {
-	Address string `json:"address,omitempty"`
+type RouteMapInstanceSetIpv6NextHop1 struct {
+	RouteMapInstanceSetIpv6NextHop1Address      string                               `json:"address,omitempty"`
+	RouteMapInstanceSetIpv6NextHop1LocalAddress RouteMapInstanceSetIpv6NextHop1Local `json:"local,omitempty"`
+}
+
+type RouteMapInstanceMatchIPAddressPrefixList struct {
+	RouteMapInstanceMatchIPAddressPrefixListName string `json:"name,omitempty"`
+}
+
+type RouteMapInstanceMatchIPNextHopPrefixList1 struct {
+	RouteMapInstanceMatchIPNextHopPrefixList1Name string `json:"name,omitempty"`
+}
+
+type RouteMapInstanceMatchIpv6Address1PrefixList2 struct {
+	RouteMapInstanceMatchIpv6Address1PrefixList2Name string `json:"name,omitempty"`
+}
+
+type RouteMapInstanceSetIpv6NextHop1Local struct {
+	RouteMapInstanceSetIpv6NextHop1LocalAddress string `json:"address,omitempty"`
 }
 
 func PostRouteMap(id string, inst RouteMap, host string) error {
@@ -305,6 +321,7 @@ func PostRouteMap(id string, inst RouteMap, host string) error {
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/route-map", bytes.NewReader(payloadBytes), headers)
@@ -312,14 +329,13 @@ func PostRouteMap(id string, inst RouteMap, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouteMap
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
 			err := check_api_status("PostRouteMap", data)
@@ -347,12 +363,11 @@ func GetRouteMap(id string, name1 string, name2 string, name3 string, host strin
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouteMap
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
@@ -380,6 +395,7 @@ func PutRouteMap(id string, name1 string, name2 string, name3 string, inst Route
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/route-map/"+name1+"+"+name2+"+"+name3, bytes.NewReader(payloadBytes), headers)
@@ -387,14 +403,13 @@ func PutRouteMap(id string, name1 string, name2 string, name3 string, inst Route
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouteMap
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
 			err := check_api_status("PutRouteMap", data)
@@ -422,12 +437,11 @@ func DeleteRouteMap(id string, name1 string, name2 string, name3 string, host st
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouteMap
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
@@ -439,5 +453,5 @@ func DeleteRouteMap(id string, name1 string, name2 string, name3 string, host st
 
 		}
 	}
-	return nil
+	return err
 }
