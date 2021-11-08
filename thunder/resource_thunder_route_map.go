@@ -4,7 +4,7 @@ package thunder
 
 import (
 	"context"
-	go_thunder "github.com/go_thunder/thunder"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"strconv"
@@ -641,7 +641,6 @@ func resourceRouteMap() *schema.Resource {
 							MaxItems: 1,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-
 									"value": {
 										Type:        schema.TypeString,
 										Optional:    true,
@@ -718,12 +717,12 @@ func resourceRouteMap() *schema.Resource {
 										Description: "",
 									},
 									"num": {
-										Type:        schema.TypeInt,
+										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
 									},
 									"num2": {
-										Type:        schema.TypeInt,
+										Type:        schema.TypeString,
 										Optional:    true,
 										Description: "",
 									},
@@ -929,16 +928,6 @@ func resourceRouteMap() *schema.Resource {
 					},
 				},
 			},
-			"as_number": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"process_id": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
 		},
 	}
 }
@@ -948,12 +937,11 @@ func resourceRouteMapCreate(ctx context.Context, d *schema.ResourceData, meta in
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RouteMap (Inside resourceRouteMapCreate) ")
+		name2 := d.Get("action").(string)
 		name1 := d.Get("tag").(string)
 		name3 := d.Get("sequence").(int)
-		name2 := d.Get("action").(string)
 		data := dataToRouteMap(d)
 		logger.Println("[INFO] received formatted data from method data to RouteMap --")
 		d.SetId(name1 + "," + name2 + "," + strconv.Itoa(name3))
@@ -971,10 +959,9 @@ func resourceRouteMapCreate(ctx context.Context, d *schema.ResourceData, meta in
 func resourceRouteMapRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading RouteMap (Inside resourceRouteMapRead)")
 
+	var diags diag.Diagnostics
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
 		name1 := id[0]
@@ -991,7 +978,7 @@ func resourceRouteMapRead(ctx context.Context, d *schema.ResourceData, meta inte
 		}
 		return diags
 	}
-	return nil
+	return diags
 }
 
 func resourceRouteMapUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
@@ -999,7 +986,6 @@ func resourceRouteMapUpdate(ctx context.Context, d *schema.ResourceData, meta in
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
 		name1 := id[0]
@@ -1024,7 +1010,6 @@ func resourceRouteMapDelete(ctx context.Context, d *schema.ResourceData, meta in
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		id := strings.Split(d.Id(), ",")
 		name1 := id[0]
@@ -1034,7 +1019,7 @@ func resourceRouteMapDelete(ctx context.Context, d *schema.ResourceData, meta in
 		err := go_thunder.DeleteRouteMap(client.Token, name1, name2, name3, client.Host)
 		if err != nil {
 			logger.Printf("[ERROR] Unable to Delete resource instance  (%s) (%v)", name1, err)
-			return diag.FromErr(err)
+			return diags
 		}
 		return nil
 	}
@@ -1044,353 +1029,351 @@ func resourceRouteMapDelete(ctx context.Context, d *schema.ResourceData, meta in
 func dataToRouteMap(d *schema.ResourceData) go_thunder.RouteMap {
 	var vc go_thunder.RouteMap
 	var c go_thunder.RouteMapInstance
-	c.Tag = d.Get("tag").(string)
-	c.Action = d.Get("action").(string)
-	c.Sequence = d.Get("sequence").(int)
-	c.UserTag = d.Get("user_tag").(string)
+	c.RouteMapInstanceTag = d.Get("tag").(string)
+	c.RouteMapInstanceAction = d.Get("action").(string)
+	c.RouteMapInstanceSequence = d.Get("sequence").(int)
+	c.RouteMapInstanceUserTag = d.Get("user_tag").(string)
 
-	var obj1 go_thunder.RouteMapMatch
+	var obj1 go_thunder.RouteMapInstanceMatch
 	prefix1 := "match.0."
 
-	var obj1_1 go_thunder.RouteMapAsPath1
+	var obj1_1 go_thunder.RouteMapInstanceMatchAsPath
 	prefix1_1 := prefix1 + "as_path.0."
-	obj1_1.Name = d.Get(prefix1_1 + "name").(string)
+	obj1_1.RouteMapInstanceMatchAsPathName = d.Get(prefix1_1 + "name").(string)
 
-	obj1.Name = obj1_1
+	obj1.RouteMapInstanceMatchAsPathName = obj1_1
 
-	var obj1_2 go_thunder.RouteMapCommunity
+	var obj1_2 go_thunder.RouteMapInstanceMatchCommunity
 	prefix1_2 := prefix1 + "community.0."
 
-	var obj1_2_1 go_thunder.RouteMapNameCfg
+	var obj1_2_1 go_thunder.RouteMapInstanceMatchCommunityNameCfg
 	prefix1_2_1 := prefix1_2 + "name_cfg.0."
-	obj1_2_1.Name = d.Get(prefix1_2_1 + "name").(string)
-	obj1_2_1.ExactMatch = d.Get(prefix1_2_1 + "exact_match").(int)
+	obj1_2_1.RouteMapInstanceMatchCommunityNameCfgName = d.Get(prefix1_2_1 + "name").(string)
+	obj1_2_1.RouteMapInstanceMatchCommunityNameCfgExactMatch = d.Get(prefix1_2_1 + "exact_match").(int)
 
-	obj1_2.Name = obj1_2_1
+	obj1_2.RouteMapInstanceMatchCommunityNameCfgName = obj1_2_1
 
-	obj1.NameCfg = obj1_2
+	obj1.RouteMapInstanceMatchCommunityNameCfg = obj1_2
 
-	var obj1_3 go_thunder.RouteMapExtcommunity
+	var obj1_3 go_thunder.RouteMapInstanceMatchExtcommunity
 	prefix1_3 := prefix1 + "extcommunity.0."
 
-	var obj1_3_1 go_thunder.RouteMapExtcommunityLName
+	var obj1_3_1 go_thunder.RouteMapInstanceMatchExtcommunityExtcommunityLName
 	prefix1_3_1 := prefix1_3 + "extcommunity_l_name.0."
-	obj1_3_1.ExtcommunityLName = d.Get(prefix1_3_1 + "name").(string)
-	obj1_3_1.ExactMatch = d.Get(prefix1_3_1 + "exact_match").(int)
+	obj1_3_1.RouteMapInstanceMatchExtcommunityExtcommunityLNameName = d.Get(prefix1_3_1 + "name").(string)
+	obj1_3_1.RouteMapInstanceMatchExtcommunityExtcommunityLNameExactMatch = d.Get(prefix1_3_1 + "exact_match").(int)
 
-	obj1_3.ExtcommunityLName = obj1_3_1
+	obj1_3.RouteMapInstanceMatchExtcommunityExtcommunityLNameName = obj1_3_1
 
-	obj1.ExtcommunityLName = obj1_3
+	obj1.RouteMapInstanceMatchExtcommunityExtcommunityLName = obj1_3
 
-	var obj1_4 go_thunder.RouteMapGroup
+	var obj1_4 go_thunder.RouteMapInstanceMatchGroup
 	prefix1_4 := prefix1 + "group.0."
-	obj1_4.GroupID = d.Get(prefix1_4 + "group_id").(int)
-	obj1_4.HaState = d.Get(prefix1_4 + "ha_state").(string)
+	obj1_4.RouteMapInstanceMatchGroupGroupID = d.Get(prefix1_4 + "group_id").(int)
+	obj1_4.RouteMapInstanceMatchGroupHaState = d.Get(prefix1_4 + "ha_state").(string)
 
-	obj1.GroupID = obj1_4
+	obj1.RouteMapInstanceMatchGroupGroupID = obj1_4
 
-	var obj1_5 go_thunder.RouteMapScaleout
+	var obj1_5 go_thunder.RouteMapInstanceMatchScaleout
 	prefix1_5 := prefix1 + "scaleout.0."
-	obj1_5.ClusterID = d.Get(prefix1_5 + "cluster_id").(int)
-	obj1_5.OperationalState = d.Get(prefix1_5 + "operational_state").(string)
+	obj1_5.RouteMapInstanceMatchScaleoutClusterID = d.Get(prefix1_5 + "cluster_id").(int)
+	obj1_5.RouteMapInstanceMatchScaleoutOperationalState = d.Get(prefix1_5 + "operational_state").(string)
 
-	obj1.ClusterID = obj1_5
+	obj1.RouteMapInstanceMatchScaleoutClusterID = obj1_5
 
-	var obj1_6 go_thunder.RouteMapInterface
+	var obj1_6 go_thunder.RouteMapInstanceMatchInterface
 	prefix1_6 := prefix1 + "interface.0."
-	obj1_6.Ethernet = d.Get(prefix1_6 + "ethernet").(int)
-	obj1_6.Loopback = d.Get(prefix1_6 + "loopback").(int)
-	obj1_6.Trunk = d.Get(prefix1_6 + "trunk").(int)
-	obj1_6.Ve = d.Get(prefix1_6 + "ve").(int)
-	obj1_6.Tunnel = d.Get(prefix1_6 + "tunnel").(int)
+	obj1_6.RouteMapInstanceMatchInterfaceEthernet = d.Get(prefix1_6 + "ethernet").(int)
+	obj1_6.RouteMapInstanceMatchInterfaceLoopback = d.Get(prefix1_6 + "loopback").(int)
+	obj1_6.RouteMapInstanceMatchInterfaceTrunk = d.Get(prefix1_6 + "trunk").(int)
+	obj1_6.RouteMapInstanceMatchInterfaceVe = d.Get(prefix1_6 + "ve").(int)
+	obj1_6.RouteMapInstanceMatchInterfaceTunnel = d.Get(prefix1_6 + "tunnel").(int)
 
-	obj1.Ethernet = obj1_6
+	obj1.RouteMapInstanceMatchInterfaceEthernet = obj1_6
 
-	var obj1_7 go_thunder.RouteMapLocalPreference
+	var obj1_7 go_thunder.RouteMapInstanceMatchLocalPreference
 	prefix1_7 := prefix1 + "local_preference.0."
-	obj1_7.Val = d.Get(prefix1_7 + "val").(int)
+	obj1_7.RouteMapInstanceMatchLocalPreferenceVal = d.Get(prefix1_7 + "val").(int)
 
-	obj1.Val = obj1_7
+	obj1.RouteMapInstanceMatchLocalPreferenceVal = obj1_7
 
-	var obj1_8 go_thunder.RouteMapOrigin
+	var obj1_8 go_thunder.RouteMapInstanceMatchOrigin
 	prefix1_8 := prefix1 + "origin.0."
-	obj1_8.Egp = d.Get(prefix1_8 + "egp").(int)
-	obj1_8.Igp = d.Get(prefix1_8 + "igp").(int)
-	obj1_8.Incomplete = d.Get(prefix1_8 + "incomplete").(int)
+	obj1_8.RouteMapInstanceMatchOriginEgp = d.Get(prefix1_8 + "egp").(int)
+	obj1_8.RouteMapInstanceMatchOriginIgp = d.Get(prefix1_8 + "igp").(int)
+	obj1_8.RouteMapInstanceMatchOriginIncomplete = d.Get(prefix1_8 + "incomplete").(int)
 
-	obj1.Egp = obj1_8
+	obj1.RouteMapInstanceMatchOriginEgp = obj1_8
 
-	var obj1_9 go_thunder.RouteMapIp1
+	var obj1_9 go_thunder.RouteMapInstanceMatchIP
 	prefix1_9 := prefix1 + "ip.0."
 
-	var obj1_9_1 go_thunder.RouteMapAddress
+	var obj1_9_1 go_thunder.RouteMapInstanceMatchIPAddress
 	prefix1_9_1 := prefix1_9 + "address.0."
-	obj1_9_1.Acl1 = d.Get(prefix1_9_1 + "acl1").(int)
-	obj1_9_1.Acl2 = d.Get(prefix1_9_1 + "acl2").(int)
-	obj1_9_1.RouteMapAddressName = d.Get(prefix1_9_1 + "name").(string)
+	obj1_9_1.RouteMapInstanceMatchIPAddressAcl1 = d.Get(prefix1_9_1 + "acl1").(int)
+	obj1_9_1.RouteMapInstanceMatchIPAddressAcl2 = d.Get(prefix1_9_1 + "acl2").(int)
+	obj1_9_1.RouteMapInstanceMatchIPAddressName = d.Get(prefix1_9_1 + "name").(string)
 
-	var obj1_9_1_1 go_thunder.RouteMapPrefixList
+	var obj1_9_1_1 go_thunder.RouteMapInstanceMatchIPAddressPrefixList
 	prefix1_9_1_1 := prefix1_9_1 + "prefix_list.0."
-	obj1_9_1_1.Name = d.Get(prefix1_9_1_1 + "name").(string)
+	obj1_9_1_1.RouteMapInstanceMatchIPAddressPrefixListName = d.Get(prefix1_9_1_1 + "name").(string)
 
-	obj1_9_1.Name = obj1_9_1_1
+	obj1_9_1.RouteMapInstanceMatchIPAddressPrefixListName = obj1_9_1_1
 
-	obj1_9.Acl1 = obj1_9_1
+	obj1_9.RouteMapInstanceMatchIPAddressAcl1 = obj1_9_1
 
-	var obj1_9_2 go_thunder.RouteMapNextHopIp
+	var obj1_9_2 go_thunder.RouteMapInstanceMatchIPNextHop
 	prefix1_9_2 := prefix1_9 + "next_hop.0."
-	obj1_9_2.Acl1 = d.Get(prefix1_9_2 + "acl1").(int)
-	obj1_9_2.Acl2 = d.Get(prefix1_9_2 + "acl2").(int)
-	obj1_9_2.RouteMapNextHopIpName = d.Get(prefix1_9_2 + "name").(string)
+	obj1_9_2.RouteMapInstanceMatchIPNextHopAcl1 = d.Get(prefix1_9_2 + "acl1").(int)
+	obj1_9_2.RouteMapInstanceMatchIPNextHopAcl2 = d.Get(prefix1_9_2 + "acl2").(int)
+	obj1_9_2.RouteMapInstanceMatchIPNextHopName = d.Get(prefix1_9_2 + "name").(string)
 
-	var obj1_9_2_1 go_thunder.RouteMapPrefixList1
+	var obj1_9_2_1 go_thunder.RouteMapInstanceMatchIPNextHopPrefixList1
 	prefix1_9_2_1 := prefix1_9_2 + "prefix_list_1.0."
-	obj1_9_2_1.Name = d.Get(prefix1_9_2_1 + "name").(string)
+	obj1_9_2_1.RouteMapInstanceMatchIPNextHopPrefixList1Name = d.Get(prefix1_9_2_1 + "name").(string)
 
-	obj1_9_2.Name = obj1_9_2_1
+	obj1_9_2.RouteMapInstanceMatchIPNextHopPrefixList1Name = obj1_9_2_1
 
-	obj1_9.Acl2 = obj1_9_2
+	obj1_9.RouteMapInstanceMatchIPNextHopAcl1 = obj1_9_2
 
-	var obj1_9_3 go_thunder.RouteMapPeer
+	var obj1_9_3 go_thunder.RouteMapInstanceMatchIPPeer
 	prefix1_9_3 := prefix1_9 + "peer.0."
-	obj1_9_3.Acl1 = d.Get(prefix1_9_3 + "acl1").(int)
-	obj1_9_3.Acl2 = d.Get(prefix1_9_3 + "acl2").(int)
-	obj1_9_3.Name = d.Get(prefix1_9_3 + "name").(string)
+	obj1_9_3.RouteMapInstanceMatchIPPeerAcl1 = d.Get(prefix1_9_3 + "acl1").(int)
+	obj1_9_3.RouteMapInstanceMatchIPPeerAcl2 = d.Get(prefix1_9_3 + "acl2").(int)
+	obj1_9_3.RouteMapInstanceMatchIPPeerName = d.Get(prefix1_9_3 + "name").(string)
 
-	obj1_9.Name = obj1_9_3
+	obj1_9.RouteMapInstanceMatchIPPeerAcl1 = obj1_9_3
 
-	var obj1_9_4 go_thunder.RouteMapRib
+	var obj1_9_4 go_thunder.RouteMapInstanceMatchIPRib
 	prefix1_9_4 := prefix1_9 + "rib.0."
-	obj1_9_4.Exact = d.Get(prefix1_9_4 + "exact").(string)
-	obj1_9_4.Reachable = d.Get(prefix1_9_4 + "reachable").(string)
-	obj1_9_4.Unreachable = d.Get(prefix1_9_4 + "unreachable").(string)
+	obj1_9_4.RouteMapInstanceMatchIPRibExact = d.Get(prefix1_9_4 + "exact").(string)
+	obj1_9_4.RouteMapInstanceMatchIPRibReachable = d.Get(prefix1_9_4 + "reachable").(string)
+	obj1_9_4.RouteMapInstanceMatchIPRibUnreachable = d.Get(prefix1_9_4 + "unreachable").(string)
 
-	obj1_9.Exact = obj1_9_4
+	obj1_9.RouteMapInstanceMatchIPRibExact = obj1_9_4
 
-	obj1.Address = obj1_9
+	obj1.RouteMapInstanceMatchIPAddress = obj1_9
 
-	var obj1_10 go_thunder.RouteMapIpv6
+	var obj1_10 go_thunder.RouteMapInstanceMatchIpv6
 	prefix1_10 := prefix1 + "ipv6.0."
 
-	var obj1_10_1 go_thunder.RouteMapAddress1
+	var obj1_10_1 go_thunder.RouteMapInstanceMatchIpv6Address1
 	prefix1_10_1 := prefix1_10 + "address_1.0."
-	obj1_10_1.RouteMapAddress1Name = d.Get(prefix1_10_1 + "name").(string)
+	obj1_10_1.RouteMapInstanceMatchIpv6Address1Name = d.Get(prefix1_10_1 + "name").(string)
 
-	var obj1_10_1_1 go_thunder.RouteMapPrefixList2
+	var obj1_10_1_1 go_thunder.RouteMapInstanceMatchIpv6Address1PrefixList2
 	prefix1_10_1_1 := prefix1_10_1 + "prefix_list_2.0."
-	obj1_10_1_1.Name = d.Get(prefix1_10_1_1 + "name").(string)
+	obj1_10_1_1.RouteMapInstanceMatchIpv6Address1PrefixList2Name = d.Get(prefix1_10_1_1 + "name").(string)
 
-	obj1_10_1.Name = obj1_10_1_1
+	obj1_10_1.RouteMapInstanceMatchIpv6Address1PrefixList2Name = obj1_10_1_1
 
-	obj1_10.Name = obj1_10_1
+	obj1_10.RouteMapInstanceMatchIpv6Address1Name = obj1_10_1
 
-	var obj1_10_2 go_thunder.RouteMapNextHopIpv6
+	var obj1_10_2 go_thunder.RouteMapInstanceMatchIpv6NextHop1
 	prefix1_10_2 := prefix1_10 + "next_hop_1.0."
-	obj1_10_2.NextHopAclName = d.Get(prefix1_10_2 + "next_hop_acl_name").(string)
-	obj1_10_2.V6Addr = d.Get(prefix1_10_2 + "v6_addr").(string)
-	obj1_10_2.PrefixListName = d.Get(prefix1_10_2 + "prefix_list_name").(string)
+	obj1_10_2.RouteMapInstanceMatchIpv6NextHop1NextHopAclName = d.Get(prefix1_10_2 + "next_hop_acl_name").(string)
+	obj1_10_2.RouteMapInstanceMatchIpv6NextHop1V6Addr = d.Get(prefix1_10_2 + "v6_addr").(string)
+	obj1_10_2.RouteMapInstanceMatchIpv6NextHop1PrefixListName = d.Get(prefix1_10_2 + "prefix_list_name").(string)
 
-	obj1_10.NextHopAclName = obj1_10_2
+	obj1_10.RouteMapInstanceMatchIpv6NextHop1NextHopAclName = obj1_10_2
 
-	var obj1_10_3 go_thunder.RouteMapPeer
+	var obj1_10_3 go_thunder.RouteMapInstanceMatchIpv6Peer1
 	prefix1_10_3 := prefix1_10 + "peer_1.0."
-	obj1_10_3.Acl1 = d.Get(prefix1_10_3 + "acl1").(int)
-	obj1_10_3.Acl2 = d.Get(prefix1_10_3 + "acl2").(int)
-	obj1_10_3.Name = d.Get(prefix1_10_3 + "name").(string)
+	obj1_10_3.RouteMapInstanceMatchIpv6Peer1Acl1 = d.Get(prefix1_10_3 + "acl1").(int)
+	obj1_10_3.RouteMapInstanceMatchIpv6Peer1Acl2 = d.Get(prefix1_10_3 + "acl2").(int)
+	obj1_10_3.RouteMapInstanceMatchIpv6Peer1Name = d.Get(prefix1_10_3 + "name").(string)
 
-	obj1_10.Acl1 = obj1_10_3
+	obj1_10.RouteMapInstanceMatchIpv6Peer1Acl1 = obj1_10_3
 
-	var obj1_10_4 go_thunder.RouteMapRib
+	var obj1_10_4 go_thunder.RouteMapInstanceMatchIpv6Rib
 	prefix1_10_4 := prefix1_10 + "rib.0."
-	obj1_10_4.Exact = d.Get(prefix1_10_4 + "exact").(string)
-	obj1_10_4.Reachable = d.Get(prefix1_10_4 + "reachable").(string)
-	obj1_10_4.Unreachable = d.Get(prefix1_10_4 + "unreachable").(string)
+	obj1_10_4.RouteMapInstanceMatchIpv6RibExact = d.Get(prefix1_10_4 + "exact").(string)
+	obj1_10_4.RouteMapInstanceMatchIpv6RibReachable = d.Get(prefix1_10_4 + "reachable").(string)
+	obj1_10_4.RouteMapInstanceMatchIpv6RibUnreachable = d.Get(prefix1_10_4 + "unreachable").(string)
 
-	obj1_10.Exact = obj1_10_4
+	obj1_10.RouteMapInstanceMatchIpv6RibExact = obj1_10_4
 
-	obj1.Address1 = obj1_10
+	obj1.RouteMapInstanceMatchIpv6Address1 = obj1_10
 
-	var obj1_11 go_thunder.RouteMapMetricMap
+	var obj1_11 go_thunder.RouteMapInstanceMatchMetric
 	prefix1_11 := prefix1 + "metric.0."
-	obj1_11.Value = d.Get(prefix1_11 + "value").(int)
+	obj1_11.RouteMapInstanceMatchMetricValue = d.Get(prefix1_11 + "value").(int)
 
-	obj1.Value = obj1_11
+	obj1.RouteMapInstanceMatchMetricValue = obj1_11
 
-	var obj1_12 go_thunder.RouteMapRouteType
+	var obj1_12 go_thunder.RouteMapInstanceMatchRouteType
 	prefix1_12 := prefix1 + "route_type.0."
 
-	var obj1_12_1 go_thunder.RouteMapExternal
+	var obj1_12_1 go_thunder.RouteMapInstanceMatchRouteTypeExternal
 	prefix1_12_1 := prefix1_12 + "external.0."
-	obj1_12_1.ValueExternal = d.Get(prefix1_12_1 + "value").(string)
+	obj1_12_1.RouteMapInstanceMatchRouteTypeExternalValue = d.Get(prefix1_12_1 + "value").(string)
 
-	obj1_12.ValueExternal = obj1_12_1
+	obj1_12.RouteMapInstanceMatchRouteTypeExternalValue = obj1_12_1
 
-	obj1.ValueExternal = obj1_12
+	obj1.RouteMapInstanceMatchRouteTypeExternal = obj1_12
 
-	var obj1_13 go_thunder.RouteMapTag
+	var obj1_13 go_thunder.RouteMapInstanceMatchTag
 	prefix1_13 := prefix1 + "tag.0."
-	obj1_13.ValueTag = d.Get(prefix1_13 + "value").(int)
+	obj1_13.RouteMapInstanceMatchTagValue = d.Get(prefix1_13 + "value").(int)
 
-	obj1.ValueTag = obj1_13
+	obj1.RouteMapInstanceMatchTagValue = obj1_13
 
-	c.Name = obj1
+	c.RouteMapInstanceMatchAsPath = obj1
 
-	var obj2 go_thunder.RouteMapSet
+	var obj2 go_thunder.RouteMapInstanceSet
 	prefix2 := "set.0."
 
-	var obj2_1 go_thunder.RouteMapIp2
+	var obj2_1 go_thunder.RouteMapInstanceSetIP
 	prefix2_1 := prefix2 + "ip.0."
 
-	var obj2_1_1 go_thunder.RouteMapNextHopSetIp
+	var obj2_1_1 go_thunder.RouteMapInstanceSetIPNextHop
 	prefix2_1_1 := prefix2_1 + "next_hop.0."
-	obj2_1_1.Address = d.Get(prefix2_1_1 + "address").(string)
+	obj2_1_1.RouteMapInstanceSetIPNextHopAddress = d.Get(prefix2_1_1 + "address").(string)
 
-	obj2_1.Address = obj2_1_1
+	obj2_1.RouteMapInstanceSetIPNextHopAddress = obj2_1_1
 
-	obj2.Address = obj2_1
+	obj2.RouteMapInstanceSetIPNextHop = obj2_1
 
-	var obj2_2 go_thunder.RouteMapDdos
+	var obj2_2 go_thunder.RouteMapInstanceSetDdos
 	prefix2_2 := prefix2 + "ddos.0."
-	obj2_2.ClassListName = d.Get(prefix2_2 + "class_list_name").(string)
-	obj2_2.ClassListCid = d.Get(prefix2_2 + "class_list_cid").(int)
-	obj2_2.Zone = d.Get(prefix2_2 + "zone").(string)
+	obj2_2.RouteMapInstanceSetDdosClassListName = d.Get(prefix2_2 + "class_list_name").(string)
+	obj2_2.RouteMapInstanceSetDdosClassListCid = d.Get(prefix2_2 + "class_list_cid").(int)
+	obj2_2.RouteMapInstanceSetDdosZone = d.Get(prefix2_2 + "zone").(string)
 
-	obj2.ClassListName = obj2_2
+	obj2.RouteMapInstanceSetDdosClassListName = obj2_2
 
-	var obj2_3 go_thunder.RouteMapIpv62
+	var obj2_3 go_thunder.RouteMapInstanceSetIpv6
 	prefix2_3 := prefix2 + "ipv6.0."
 
-	var obj2_3_1 go_thunder.RouteMapNextHop1
+	var obj2_3_1 go_thunder.RouteMapInstanceSetIpv6NextHop1
 	prefix2_3_1 := prefix2_3 + "next_hop_1.0."
-	obj2_3_1.RouteMapNextHop1Address = d.Get(prefix2_3_1 + "address").(string)
+	obj2_3_1.RouteMapInstanceSetIpv6NextHop1Address = d.Get(prefix2_3_1 + "address").(string)
 
-	var obj2_3_1_1 go_thunder.RouteMapLocal
+	var obj2_3_1_1 go_thunder.RouteMapInstanceSetIpv6NextHop1Local
 	prefix2_3_1_1 := prefix2_3_1 + "local.0."
-	obj2_3_1_1.Address = d.Get(prefix2_3_1_1 + "address").(string)
+	obj2_3_1_1.RouteMapInstanceSetIpv6NextHop1LocalAddress = d.Get(prefix2_3_1_1 + "address").(string)
 
-	obj2_3_1.Address = obj2_3_1_1
+	obj2_3_1.RouteMapInstanceSetIpv6NextHop1LocalAddress = obj2_3_1_1
 
-	obj2_3.RouteMapNextHop1Address = obj2_3_1
+	obj2_3.RouteMapInstanceSetIpv6NextHop1Address = obj2_3_1
 
-	obj2.RouteMapNextHop1Address = obj2_3
+	obj2.RouteMapInstanceSetIpv6NextHop1 = obj2_3
 
-	var obj2_4 go_thunder.RouteMapLevel
+	var obj2_4 go_thunder.RouteMapInstanceSetLevel
 	prefix2_4 := prefix2 + "level.0."
-	obj2_4.ValueLevel1 = d.Get(prefix2_4 + "value").(string)
+	obj2_4.RouteMapInstanceSetLevelValue = d.Get(prefix2_4 + "value").(string)
 
-	obj2.ValueLevel1 = obj2_4
+	obj2.RouteMapInstanceSetLevelValue = obj2_4
 
-	var obj2_5 go_thunder.RouteMapMetric
+	var obj2_5 go_thunder.RouteMapInstanceSetMetric
 	prefix2_5 := prefix2 + "metric.0."
-	obj2_5.Value = d.Get(prefix2_5 + "value").(string)
-	obj2_5.ValueMetric = d.Get(prefix2_5 + "value").(string)
-	obj2_5.ValueLevel2 = d.Get(prefix2_5 + "value").(string)
+	obj2_5.RouteMapInstanceSetMetricValue = d.Get(prefix2_5 + "value").(string)
 
-	obj2.ValueLevel2 = obj2_5
+	obj2.RouteMapInstanceSetMetricValue = obj2_5
 
-	var obj2_6 go_thunder.RouteMapMetricType
+	var obj2_6 go_thunder.RouteMapInstanceSetMetricType
 	prefix2_6 := prefix2 + "metric_type.0."
-	obj2_6.ValueLevel3 = d.Get(prefix2_6 + "value").(string)
+	obj2_6.RouteMapInstanceSetMetricTypeValue = d.Get(prefix2_6 + "value").(string)
 
-	obj2.ValueLevel3 = obj2_6
+	obj2.RouteMapInstanceSetMetricTypeValue = obj2_6
 
-	var obj2_7 go_thunder.RouteMapTag
+	var obj2_7 go_thunder.RouteMapInstanceSetTag
 	prefix2_7 := prefix2 + "tag.0."
-	obj2_7.ValueTag = d.Get(prefix2_7 + "value").(int)
+	obj2_7.RouteMapInstanceSetTagValue = d.Get(prefix2_7 + "value").(int)
 
-	obj2.ValueTag = obj2_7
+	obj2.RouteMapInstanceSetTagValue = obj2_7
 
-	var obj2_8 go_thunder.RouteMapAggregator
+	var obj2_8 go_thunder.RouteMapInstanceSetAggregator
 	prefix2_8 := prefix2 + "aggregator.0."
 
-	var obj2_8_1 go_thunder.RouteMapAggregatorAs
+	var obj2_8_1 go_thunder.RouteMapInstanceSetAggregatorAggregatorAs
 	prefix2_8_1 := prefix2_8 + "aggregator_as.0."
-	obj2_8_1.Asn = d.Get(prefix2_8_1 + "asn").(int)
-	obj2_8_1.IP = d.Get(prefix2_8_1 + "ip").(string)
+	obj2_8_1.RouteMapInstanceSetAggregatorAggregatorAsAsn = d.Get(prefix2_8_1 + "asn").(int)
+	obj2_8_1.RouteMapInstanceSetAggregatorAggregatorAsIP = d.Get(prefix2_8_1 + "ip").(string)
 
-	obj2_8.Asn = obj2_8_1
+	obj2_8.RouteMapInstanceSetAggregatorAggregatorAsAsn = obj2_8_1
 
-	obj2.AggregatorAs = obj2_8
+	obj2.RouteMapInstanceSetAggregatorAggregatorAs = obj2_8
 
-	var obj2_9 go_thunder.RouteMapAsPath
+	var obj2_9 go_thunder.RouteMapInstanceSetAsPath
 	prefix2_9 := prefix2 + "as_path.0."
-	obj2_9.Prepend = d.Get(prefix2_9 + "prepend").(string)
-	obj2_9.Num = d.Get(prefix2_9 + "num").(int)
-	obj2_9.Num2 = d.Get(prefix2_9 + "num2").(int)
+	obj2_9.RouteMapInstanceSetAsPathPrepend = d.Get(prefix2_9 + "prepend").(string)
+	obj2_9.RouteMapInstanceSetAsPathNum = d.Get(prefix2_9 + "num").(string)
+	obj2_9.RouteMapInstanceSetAsPathNum2 = d.Get(prefix2_9 + "num2").(string)
 
-	obj2.Prepend = obj2_9
+	obj2.RouteMapInstanceSetAsPathPrepend = obj2_9
 
-	obj2.AtomicAggregate = d.Get(prefix2 + "atomic_aggregate").(int)
+	obj2.RouteMapInstanceSetAtomicAggregate = d.Get(prefix2 + "atomic_aggregate").(int)
 
-	var obj2_10 go_thunder.RouteMapCommList
+	var obj2_10 go_thunder.RouteMapInstanceSetCommList
 	prefix2_10 := prefix2 + "comm_list.0."
-	obj2_10.VStd = d.Get(prefix2_10 + "v_std").(int)
-	obj2_10.Delete = d.Get(prefix2_10 + "delete").(int)
-	obj2_10.VExp = d.Get(prefix2_10 + "v_exp").(int)
-	obj2_10.VExpDelete = d.Get(prefix2_10 + "v_exp_delete").(int)
-	obj2_10.Name = d.Get(prefix2_10 + "name").(string)
-	obj2_10.NameDelete = d.Get(prefix2_10 + "name_delete").(int)
+	obj2_10.RouteMapInstanceSetCommListVStd = d.Get(prefix2_10 + "v_std").(int)
+	obj2_10.RouteMapInstanceSetCommListDelete = d.Get(prefix2_10 + "delete").(int)
+	obj2_10.RouteMapInstanceSetCommListVExp = d.Get(prefix2_10 + "v_exp").(int)
+	obj2_10.RouteMapInstanceSetCommListVExpDelete = d.Get(prefix2_10 + "v_exp_delete").(int)
+	obj2_10.RouteMapInstanceSetCommListName = d.Get(prefix2_10 + "name").(string)
+	obj2_10.RouteMapInstanceSetCommListNameDelete = d.Get(prefix2_10 + "name_delete").(int)
 
-	obj2.VStd = obj2_10
+	obj2.RouteMapInstanceSetCommListVStd = obj2_10
 
-	obj2.Community = d.Get(prefix2 + "community").(string)
+	obj2.RouteMapInstanceSetCommunity = d.Get(prefix2 + "community").(string)
 
-	var obj2_11 go_thunder.RouteMapDampeningCfg
+	var obj2_11 go_thunder.RouteMapInstanceSetDampeningCfg
 	prefix2_11 := prefix2 + "dampening_cfg.0."
-	obj2_11.Dampening = d.Get(prefix2_11 + "dampening").(int)
-	obj2_11.DampeningHalfTime = d.Get(prefix2_11 + "dampening_half_time").(int)
-	obj2_11.DampeningReuse = d.Get(prefix2_11 + "dampening_reuse").(int)
-	obj2_11.DampeningSupress = d.Get(prefix2_11 + "dampening_supress").(int)
-	obj2_11.DampeningMaxSupress = d.Get(prefix2_11 + "dampening_max_supress").(int)
-	obj2_11.DampeningPenalty = d.Get(prefix2_11 + "dampening_penalty").(int)
+	obj2_11.RouteMapInstanceSetDampeningCfgDampening = d.Get(prefix2_11 + "dampening").(int)
+	obj2_11.RouteMapInstanceSetDampeningCfgDampeningHalfTime = d.Get(prefix2_11 + "dampening_half_time").(int)
+	obj2_11.RouteMapInstanceSetDampeningCfgDampeningReuse = d.Get(prefix2_11 + "dampening_reuse").(int)
+	obj2_11.RouteMapInstanceSetDampeningCfgDampeningSupress = d.Get(prefix2_11 + "dampening_supress").(int)
+	obj2_11.RouteMapInstanceSetDampeningCfgDampeningMaxSupress = d.Get(prefix2_11 + "dampening_max_supress").(int)
+	obj2_11.RouteMapInstanceSetDampeningCfgDampeningPenalty = d.Get(prefix2_11 + "dampening_penalty").(int)
 
-	obj2.Dampening = obj2_11
+	obj2.RouteMapInstanceSetDampeningCfgDampening = obj2_11
 
-	var obj2_12 go_thunder.RouteMapExtcommunity1
+	var obj2_12 go_thunder.RouteMapInstanceSetExtcommunity
 	prefix2_12 := prefix2 + "extcommunity.0."
 
-	var obj2_12_1 go_thunder.RouteMapRt
+	var obj2_12_1 go_thunder.RouteMapInstanceSetExtcommunityRt
 	prefix2_12_1 := prefix2_12 + "rt.0."
-	obj2_12_1.ValueRt = d.Get(prefix2_12_1 + "value").(string)
+	obj2_12_1.RouteMapInstanceSetExtcommunityRtValue = d.Get(prefix2_12_1 + "value").(string)
 
-	obj2_12.ValueRt = obj2_12_1
+	obj2_12.RouteMapInstanceSetExtcommunityRtValue = obj2_12_1
 
-	var obj2_12_2 go_thunder.RouteMapSoo
+	var obj2_12_2 go_thunder.RouteMapInstanceSetExtcommunitySoo
 	prefix2_12_2 := prefix2_12 + "soo.0."
-	obj2_12_2.ValueSoo = d.Get(prefix2_12_2 + "value").(string)
+	obj2_12_2.RouteMapInstanceSetExtcommunitySooValue = d.Get(prefix2_12_2 + "value").(string)
 
-	obj2_12.ValueSoo = obj2_12_2
+	obj2_12.RouteMapInstanceSetExtcommunitySooValue = obj2_12_2
 
-	obj2.ValueRt = obj2_12
+	obj2.RouteMapInstanceSetExtcommunityRt = obj2_12
 
-	var obj2_13 go_thunder.RouteMapLocalPreference
+	var obj2_13 go_thunder.RouteMapInstanceSetLocalPreference
 	prefix2_13 := prefix2 + "local_preference.0."
-	obj2_13.Val = d.Get(prefix2_13 + "val").(int)
+	obj2_13.RouteMapInstanceSetLocalPreferenceVal = d.Get(prefix2_13 + "val").(int)
 
-	obj2.Val = obj2_13
+	obj2.RouteMapInstanceSetLocalPreferenceVal = obj2_13
 
-	var obj2_14 go_thunder.RouteMapOriginatorID
+	var obj2_14 go_thunder.RouteMapInstanceSetOriginatorID
 	prefix2_14 := prefix2 + "originator_id.0."
-	obj2_14.OriginatorIP = d.Get(prefix2_14 + "originator_ip").(string)
+	obj2_14.RouteMapInstanceSetOriginatorIDOriginatorIP = d.Get(prefix2_14 + "originator_ip").(string)
 
-	obj2.OriginatorIP = obj2_14
+	obj2.RouteMapInstanceSetOriginatorIDOriginatorIP = obj2_14
 
-	var obj2_15 go_thunder.RouteMapWeight
+	var obj2_15 go_thunder.RouteMapInstanceSetWeight
 	prefix2_15 := prefix2 + "weight.0."
-	obj2_15.WeightVal = d.Get(prefix2_15 + "weight_val").(int)
+	obj2_15.RouteMapInstanceSetWeightWeightVal = d.Get(prefix2_15 + "weight_val").(int)
 
-	obj2.WeightVal = obj2_15
+	obj2.RouteMapInstanceSetWeightWeightVal = obj2_15
 
-	var obj2_16 go_thunder.RouteMapOrigin
+	var obj2_16 go_thunder.RouteMapInstanceSetOrigin
 	prefix2_16 := prefix2 + "origin.0."
-	obj2_16.Egp = d.Get(prefix2_16 + "egp").(int)
-	obj2_16.Igp = d.Get(prefix2_16 + "igp").(int)
-	obj2_16.Incomplete = d.Get(prefix2_16 + "incomplete").(int)
+	obj2_16.RouteMapInstanceSetOriginEgp = d.Get(prefix2_16 + "egp").(int)
+	obj2_16.RouteMapInstanceSetOriginIgp = d.Get(prefix2_16 + "igp").(int)
+	obj2_16.RouteMapInstanceSetOriginIncomplete = d.Get(prefix2_16 + "incomplete").(int)
 
-	obj2.Egp = obj2_16
+	obj2.RouteMapInstanceSetOriginEgp = obj2_16
 
-	c.AggregatorAs = obj2
+	c.RouteMapInstanceSetIP = obj2
 
-	vc.Tag = c
+	vc.RouteMapInstanceTag = c
 	return vc
 }

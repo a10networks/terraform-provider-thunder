@@ -3,7 +3,7 @@ layout: "thunder"
 page_title: "thunder: thunder_fw_active_rule_set"
 sidebar_current: "docs-thunder-resource-fw-active-rule-set"
 description: |-
-	Provides details about thunder fw active rule set resource for A10
+    Provides details about thunder fw active rule set resource for A10
 ---
 
 # thunder\_fw\_active\_rule\_set
@@ -14,15 +14,16 @@ description: |-
 
 ```hcl
 provider "thunder" {
-    address  = "${var.address}"
-    username = "${var.username}"  
-    password = "${var.password}"
+  address  = var.address
+  username = var.username
+  password = var.password
 }
 
-resource "thunder_fw_active_rule_set" "Fw_Active_Rule_Set_Test" {
+
+resource "thunder_fw_active_rule_set" "resourceFwActiveRuleSetTest" {
+	name = "string"
 session_aging = "string"
 override_nat_aging = 0
-name = "string"
 uuid = "string"
  
 }
@@ -31,7 +32,9 @@ uuid = "string"
 
 ## Argument Reference
 
+* `active-rule-set` - Active firewall policy
 * `name` - Rule set name
-* `override_nat_aging` - Override NAT idle-timeout
-* `session_aging` - Session Aging Template
+* `session-aging` - Session Aging Template
+* `override-nat-aging` - Override NAT idle-timeout
 * `uuid` - uuid of the object
+

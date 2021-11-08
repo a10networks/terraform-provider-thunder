@@ -3,7 +3,7 @@ layout: "thunder"
 page_title: "thunder: thunder_fw_local_log"
 sidebar_current: "docs-thunder-resource-fw-local-log"
 description: |-
-	Provides details about thunder fw local log resource for A10
+    Provides details about thunder fw local log resource for A10
 ---
 
 # thunder\_fw\_local\_log
@@ -14,19 +14,23 @@ description: |-
 
 ```hcl
 provider "thunder" {
-    address  = "${var.address}"
-    username = "${var.username}"  
-    password = "${var.password}"
+  address  = var.address
+  username = var.username
+  password = var.password
 }
 
-resource "thunder_fw_local_log" "Fw_Local_Log_Test" {
-local_logging = 0
+
+resource "thunder_fw_local_log" "resourceFwLocalLogTest" {
+	local_logging = 0
 uuid = "string"
  
 }
+
 ```
 
 ## Argument Reference
 
-* `local_logging` - Enable local logging
+* `local-log` - Enable local-log for Application Firewall
+* `local-logging` - Enable local logging
 * `uuid` - uuid of the object
+

@@ -4,12 +4,10 @@ package thunder
 
 import (
 	"context"
-	"strconv"
-	"util"
-
-	go_thunder "github.com/go_thunder/thunder"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"util"
 )
 
 func resourceFwActiveRuleSet() *schema.Resource {
@@ -19,6 +17,11 @@ func resourceFwActiveRuleSet() *schema.Resource {
 		ReadContext:   resourceFwActiveRuleSetRead,
 		DeleteContext: resourceFwActiveRuleSetDelete,
 		Schema: map[string]*schema.Schema{
+			"name": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: "",
+			},
 			"session_aging": {
 				Type:        schema.TypeString,
 				Optional:    true,
@@ -26,11 +29,6 @@ func resourceFwActiveRuleSet() *schema.Resource {
 			},
 			"override_nat_aging": {
 				Type:        schema.TypeInt,
-				Optional:    true,
-				Description: "",
-			},
-			"name": {
-				Type:        schema.TypeString,
 				Optional:    true,
 				Description: "",
 			},
@@ -48,13 +46,12 @@ func resourceFwActiveRuleSetCreate(ctx context.Context, d *schema.ResourceData, 
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		logger.Println("[INFO] Creating FwActiveRuleSet (Inside resourceFwActiveRuleSetCreate) ")
 
 		data := dataToFwActiveRuleSet(d)
 		logger.Println("[INFO] received formatted data from method data to FwActiveRuleSet --")
-		d.SetId(strconv.Itoa('1'))
+		d.SetId("1")
 		err := go_thunder.PostFwActiveRuleSet(client.Token, data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
@@ -69,25 +66,22 @@ func resourceFwActiveRuleSetCreate(ctx context.Context, d *schema.ResourceData, 
 func resourceFwActiveRuleSetRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading FwActiveRuleSet (Inside resourceFwActiveRuleSetRead)")
 
+	var diags diag.Diagnostics
 	if client.Host != "" {
-		name := d.Id()
-		logger.Println("[INFO] Fetching service Read" + name)
+		logger.Println("[INFO] Fetching service Read")
 		data, err := go_thunder.GetFwActiveRuleSet(client.Token, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
 		if data == nil {
-			logger.Println("[INFO] No data found " + name)
-			d.SetId("")
+			logger.Println("[INFO] No data found ")
 			return nil
 		}
 		return diags
 	}
-	return nil
+	return diags
 }
 
 func resourceFwActiveRuleSetUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
@@ -102,10 +96,10 @@ func resourceFwActiveRuleSetDelete(ctx context.Context, d *schema.ResourceData, 
 func dataToFwActiveRuleSet(d *schema.ResourceData) go_thunder.FwActiveRuleSet {
 	var vc go_thunder.FwActiveRuleSet
 	var c go_thunder.FwActiveRuleSetInstance
-	c.SessionAging = d.Get("session_aging").(string)
-	c.OverrideNatAging = d.Get("override_nat_aging").(int)
-	c.Name = d.Get("name").(string)
+	c.FwActiveRuleSetInstanceName = d.Get("name").(string)
+	c.FwActiveRuleSetInstanceSessionAging = d.Get("session_aging").(string)
+	c.FwActiveRuleSetInstanceOverrideNatAging = d.Get("override_nat_aging").(int)
 
-	vc.SessionAging = c
+	vc.FwActiveRuleSetInstanceName = c
 	return vc
 }
