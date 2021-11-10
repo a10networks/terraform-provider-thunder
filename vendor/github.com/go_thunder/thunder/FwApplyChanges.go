@@ -8,7 +8,7 @@ import (
 )
 
 type FwApplyChanges struct {
-	Forced FwApplyChangesInstance `json:"apply-changes-instance,omitempty"`
+	Forced FwApplyChangesInstance `json:"apply-changes,omitempty"`
 }
 
 type FwApplyChangesInstance struct {

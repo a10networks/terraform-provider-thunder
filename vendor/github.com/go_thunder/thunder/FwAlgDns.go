@@ -8,7 +8,7 @@ import (
 )
 
 type FwAlgDns struct {
-	DefaultPortDisable FwAlgDNSInstance `json:"dns-instance,omitempty"`
+	DefaultPortDisable FwAlgDNSInstance `json:"dns,omitempty"`
 }
 
 type FwAlgDNSInstance struct {

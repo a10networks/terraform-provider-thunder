@@ -44,3 +44,18 @@ dst_file = "string"
 * `dst-file` - destination file name for copy and rename action
 * `file_local_path` - local directory path for pki ssl-cert to upload
 
+## Proceure to create object to import
+
+1.)	Move certificate file into directory named “cert”
+2.)	Move key file into directory named “key”
+3.)	Compress these two directories together into one of the following formats:
+".tar.gz","tgz", "tar", "bz2", "zip", "rar"
+4.)	Create the following resource in tf file:
+resource "thunder_file_ssl_cert_key" "KeyFile" {
+  file             = "mycertkey"
+  action           = "import"
+  file_handle      = "certkey.tar"
+  file_local_path  = "Full path to certkey.tar"
+}
+
+

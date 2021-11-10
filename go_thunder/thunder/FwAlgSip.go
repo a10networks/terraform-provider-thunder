@@ -8,7 +8,7 @@ import (
 )
 
 type FwAlgSip struct {
-	DefaultPortDisable FwAlgSipInstance `json:"sip-instance,omitempty"`
+	DefaultPortDisable FwAlgSipInstance `json:"sip,omitempty"`
 }
 
 type FwAlgSipInstance struct {

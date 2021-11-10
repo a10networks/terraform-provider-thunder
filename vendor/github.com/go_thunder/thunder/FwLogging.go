@@ -8,7 +8,7 @@ import (
 )
 
 type FwLogging struct {
-	SamplingEnable FwLoggingInstance `json:"logging-instance,omitempty"`
+	SamplingEnable FwLoggingInstance `json:"logging,omitempty"`
 }
 
 type FwLoggingInstance struct {

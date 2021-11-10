@@ -8,7 +8,7 @@ import (
 )
 
 type FwTopKRules struct {
-	UUID FwTopKRulesInstance `json:"top-k-rules-instance,omitempty"`
+	UUID FwTopKRulesInstance `json:"top-k-rules,omitempty"`
 }
 
 type FwTopKRulesInstance struct {

@@ -8,7 +8,7 @@ import (
 )
 
 type FwClearSessionFilter struct {
-	Status FwClearSessionFilterInstance `json:"clear-session-filter-instance,omitempty"`
+	Status FwClearSessionFilterInstance `json:"clear-session-filter,omitempty"`
 }
 
 type FwClearSessionFilterInstance struct {

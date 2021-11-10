@@ -8,7 +8,7 @@ import (
 )
 
 type FwTcpMssClamp struct {
-	MssSubtract FwTcpMssClampInstance `json:"mss-clamp-instance,omitempty"`
+	MssSubtract FwTcpMssClampInstance `json:"mss-clamp,omitempty"`
 }
 
 type FwTcpMssClampInstance struct {

@@ -8,7 +8,7 @@ import (
 )
 
 type FwAlgPptp struct {
-	DefaultPortDisable FwAlgPptpInstance `json:"pptp-instance,omitempty"`
+	DefaultPortDisable FwAlgPptpInstance `json:"pptp,omitempty"`
 }
 
 type FwAlgPptpInstance struct {

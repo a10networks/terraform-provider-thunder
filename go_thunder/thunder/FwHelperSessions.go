@@ -8,7 +8,7 @@ import (
 )
 
 type FwHelperSessions struct {
-	IdleTimeout FwHelperSessionsInstance `json:"helper-sessions-instance,omitempty"`
+	IdleTimeout FwHelperSessionsInstance `json:"helper-sessions,omitempty"`
 }
 
 type FwHelperSessionsInstance struct {

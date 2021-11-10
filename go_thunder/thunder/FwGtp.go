@@ -8,7 +8,7 @@ import (
 )
 
 type FwGtp struct {
-	SamplingEnable FwGtpInstance `json:"gtp-instance,omitempty"`
+	SamplingEnable FwGtpInstance `json:"gtp,omitempty"`
 }
 
 type FwGtpInstance struct {

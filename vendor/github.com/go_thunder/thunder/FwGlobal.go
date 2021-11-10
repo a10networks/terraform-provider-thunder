@@ -8,7 +8,7 @@ import (
 )
 
 type FwGlobal struct {
-	AlgProcessing FwGlobalInstance `json:"global-instance,omitempty"`
+	AlgProcessing FwGlobalInstance `json:"global,omitempty"`
 }
 
 type FwGlobalInstance struct {

@@ -8,7 +8,7 @@ import (
 )
 
 type FwTcpWindowCheck struct {
-	Status FwTCPWindowCheckInstance `json:"tcp-window-check-instance,omitempty"`
+	Status FwTCPWindowCheckInstance `json:"tcp-window-check,omitempty"`
 }
 
 type FwTCPWindowCheckInstance struct {

@@ -8,7 +8,7 @@ import (
 )
 
 type FwVrid struct {
-	Vrid FwVridInstance `json:"vrid-instance,omitempty"`
+	Vrid FwVridInstance `json:"vrid,omitempty"`
 }
 
 type FwVridInstance struct {

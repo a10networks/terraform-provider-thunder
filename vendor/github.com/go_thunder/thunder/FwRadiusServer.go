@@ -8,7 +8,7 @@ import (
 )
 
 type FwRadiusServer struct {
-	AccountingStart FwRadiusServerInstance `json:"server-instance,omitempty"`
+	AccountingStart FwRadiusServerInstance `json:"server,omitempty"`
 }
 
 type FwRadiusServerInstance struct {

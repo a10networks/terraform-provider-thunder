@@ -69,11 +69,23 @@ func resourceFileSslCertKeyCreate(ctx context.Context, d *schema.ResourceData, m
 
 		data := dataToFileSslCertKey(d)
 		FileHandleLocal := d.Get("file_local_path").(string)
+		action_import := d.Get("action").(string)
+		logger.Println("action_import = " + action_import)
 		logger.Println("[INFO] received formatted data from method data to FileSslCertKey --")
 		d.SetId("1")
-		err := go_thunder.PostFileSslCertKey(client.Token, data, client.Host, FileHandleLocal)
-		if err != nil {
-			return diag.FromErr(err)
+
+		if action_import == "import" {
+			logger.Println(action_import + " for ssl_cert_key")
+			err := go_thunder.PostFileSslCertKeyImport(client.Token, data, client.Host, FileHandleLocal)
+			if err != nil {
+				return diag.FromErr(err)
+			}
+		} else {
+			logger.Println(action_import + " for ssl_cert")
+			err := go_thunder.PostFileSslCertKey(client.Token, data, client.Host)
+			if err != nil {
+				return diag.FromErr(err)
+			}
 		}
 		return diags
 		//return resourceFileSslCertKeyRead(ctx, d, meta)
@@ -104,12 +116,14 @@ func resourceFileSslCertKeyRead(ctx context.Context, d *schema.ResourceData, met
 }
 
 func resourceFileSslCertKeyUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-
-	return resourceFileSslCertKeyRead(ctx, d, meta)
+	logger := util.GetLoggerInstance()
+	logger.Println("[INFO] modifying certs and keys are not supported by this reource (AxAPI) instead creating new")
+	return resourceFileSslCertKeyCreate(ctx, d, meta)
 }
 
 func resourceFileSslCertKeyDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-
+	logger := util.GetLoggerInstance()
+	logger.Println("[INFO] deleting certs and keys are not supported by this reource (AxAPI)")
 	return resourceFileSslCertKeyRead(ctx, d, meta)
 }
 func dataToFileSslCertKey(d *schema.ResourceData) go_thunder.FileSslCertKey {
