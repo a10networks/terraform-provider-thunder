@@ -8,7 +8,7 @@ import (
 )
 
 type FwStatus struct {
-	UUID FwStatusInstance `json:"status-instance,omitempty"`
+	UUID FwStatusInstance `json:"status,omitempty"`
 }
 
 type FwStatusInstance struct {

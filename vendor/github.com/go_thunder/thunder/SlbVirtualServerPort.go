@@ -8,7 +8,7 @@ import (
 )
 
 type SlbVirtualServerPort struct {
-	HaConnMirror SlbVirtualServerPortInstance `json:"port-instance,omitempty"`
+	HaConnMirror SlbVirtualServerPortInstance `json:"port,omitempty"`
 }
 
 type SlbVirtualServerPortInstance struct {

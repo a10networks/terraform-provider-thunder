@@ -305,6 +305,7 @@ func Provider() *schema.Provider {
 			"thunder_system_ve_mac_scheme":                    resourceSystemVeMacScheme(),
 			"thunder_rule_set":                                resourceRuleSet(),
 			"thunder_class_list":                              resourceClassList(),
+			"thunder_slb_template_dns_class_list":             resourceSlbTemplateDnsClassList(),
 		},
 
 		ConfigureContextFunc: providerConfigure,

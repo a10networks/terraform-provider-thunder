@@ -8,7 +8,7 @@ import (
 )
 
 type FwTcpRstCloseImmediate struct {
-	Status FwTCPRstCloseImmediateInstance `json:"tcp-rst-close-immediate-instance,omitempty"`
+	Status FwTCPRstCloseImmediateInstance `json:"tcp-rst-close-immediate,omitempty"`
 }
 
 type FwTCPRstCloseImmediateInstance struct {

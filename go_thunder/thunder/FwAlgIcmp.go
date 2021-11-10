@@ -8,7 +8,7 @@ import (
 )
 
 type FwAlgIcmp struct {
-	Disable FwAlgIcmpInstance `json:"icmp-instance,omitempty"`
+	Disable FwAlgIcmpInstance `json:"icmp,omitempty"`
 }
 
 type FwAlgIcmpInstance struct {

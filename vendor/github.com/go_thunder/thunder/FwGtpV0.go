@@ -8,7 +8,7 @@ import (
 )
 
 type FwGtpV0 struct {
-	UUID FwGtpV0Instance `json:"gtp-v0-instance,omitempty"`
+	UUID FwGtpV0Instance `json:"gtp-v0,omitempty"`
 }
 
 type FwGtpV0Instance struct {

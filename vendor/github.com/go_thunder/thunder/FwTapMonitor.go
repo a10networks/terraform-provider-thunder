@@ -8,7 +8,7 @@ import (
 )
 
 type FwTapMonitor struct {
-	Status FwTapMonitorInstance `json:"tap-monitor-instance,omitempty"`
+	Status FwTapMonitorInstance `json:"tap-monitor,omitempty"`
 }
 
 type FwTapMonitorInstance struct {

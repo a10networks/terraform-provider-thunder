@@ -8,7 +8,7 @@ import (
 )
 
 type FwFullConeSession struct {
-	UUID FwFullConeSessionInstance `json:"full-cone-session-instance,omitempty"`
+	UUID FwFullConeSessionInstance `json:"full-cone-session,omitempty"`
 }
 
 type FwFullConeSessionInstance struct {

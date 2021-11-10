@@ -8,7 +8,7 @@ import (
 )
 
 type FwResourceUsage struct {
-	UUID FwResourceUsageInstance `json:"resource-usage-instance,omitempty"`
+	UUID FwResourceUsageInstance `json:"resource-usage,omitempty"`
 }
 
 type FwResourceUsageInstance struct {

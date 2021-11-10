@@ -74,11 +74,23 @@ func resourceFileSslKeyCreate(ctx context.Context, d *schema.ResourceData, meta 
 
 		data := dataToFileSslKey(d)
 		FileHandleLocal := d.Get("file_local_path").(string)
+		action_import := d.Get("action").(string)
+		logger.Println("action_import = " + action_import)
 		logger.Println("[INFO] received formatted data from method data to FileSslKey --")
 		d.SetId("1")
-		err := go_thunder.PostFileSslKey(client.Token, data, client.Host, FileHandleLocal)
-		if err != nil {
-			return diag.FromErr(err)
+
+		if action_import == "import" {
+			logger.Println(action_import + " for ssl_cert")
+			err := go_thunder.PostFileSslKeyImport(client.Token, data, client.Host, FileHandleLocal)
+			if err != nil {
+				return diag.FromErr(err)
+			}
+		} else {
+			logger.Println(action_import + " for ssl_cert")
+			err := go_thunder.PostFileSslKey(client.Token, data, client.Host)
+			if err != nil {
+				return diag.FromErr(err)
+			}
 		}
 
 		return resourceFileSslKeyRead(ctx, d, meta)

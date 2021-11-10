@@ -8,7 +8,7 @@ import (
 )
 
 type FwTcpResetOnError struct {
-	Enable FwTcpResetOnErrorInstance `json:"reset-on-error-instance,omitempty"`
+	Enable FwTcpResetOnErrorInstance `json:"reset-on-error,omitempty"`
 }
 
 type FwTcpResetOnErrorInstance struct {

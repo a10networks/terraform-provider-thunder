@@ -29,7 +29,7 @@ type FileSslKeyInstance struct {
 	FileSslKeyInstanceUUID       string `json:"uuid,omitempty"`
 }
 
-func PostFileSslKey(id string, inst FileSslKey, host string, FileHandleLocal string) error {
+func PostFileSslKeyImport(id string, inst FileSslKey, host string, FileHandleLocal string) error {
 
 	logger := util.GetLoggerInstance()
 	method := "POST"
@@ -96,6 +96,46 @@ func PostFileSslKey(id string, inst FileSslKey, host string, FileHandleLocal str
 		return err
 	}
 
+	return err
+}
+
+func PostFileSslKey(id string, inst FileSslKey, host string) error {
+
+	logger := util.GetLoggerInstance()
+
+	var headers = make(map[string]string)
+	headers["Accept"] = "application/json"
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = id
+	logger.Println("[INFO] Inside PostFileSslKey")
+	payloadBytes, err := json.Marshal(inst)
+	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
+	if err != nil {
+		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
+	}
+
+	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/file/ssl-key", bytes.NewReader(payloadBytes), headers)
+
+	if err != nil {
+		logger.Println("The HTTP request failed with error ", err)
+		return err
+	} else {
+		data, _ := ioutil.ReadAll(resp.Body)
+		var m FileSslKey
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
+			return err
+		} else {
+			logger.Println("[INFO] Post REQ RES..........................", m)
+			err := check_api_status("PostFileSslKey", data)
+			if err != nil {
+				return err
+			}
+
+		}
+	}
 	return err
 }
 

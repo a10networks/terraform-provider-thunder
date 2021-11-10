@@ -8,7 +8,7 @@ import (
 )
 
 type FwGtpInGtpFiltering struct {
-	GtpInGtpValue FwGtpInGtpFilteringInstance `json:"gtp-in-gtp-filtering-instance,omitempty"`
+	GtpInGtpValue FwGtpInGtpFilteringInstance `json:"gtp-in-gtp-filtering,omitempty"`
 }
 
 type FwGtpInGtpFilteringInstance struct {

@@ -8,7 +8,7 @@ import (
 )
 
 type FwLimitEntry struct {
-	UUID FwLimitEntryInstance `json:"limit-entry-instance,omitempty"`
+	UUID FwLimitEntryInstance `json:"limit-entry,omitempty"`
 }
 
 type FwLimitEntryInstance struct {

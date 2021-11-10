@@ -28,7 +28,7 @@ type FileSslCertKeyInstance struct {
 	FileSslCertKeyInstanceSize       int    `json:"size,omitempty"`
 }
 
-func PostFileSslCertKey(id string, inst FileSslCertKey, host string, FileHandleLocal string) error {
+func PostFileSslCertKeyImport(id string, inst FileSslCertKey, host string, FileHandleLocal string) error {
 
 	logger := util.GetLoggerInstance()
 	method := "POST"
@@ -90,7 +90,7 @@ func PostFileSslCertKey(id string, inst FileSslCertKey, host string, FileHandleL
 	}
 	//logger.Println(string(data))
 
-	err = check_api_status("PostFileSslCertKey", data)
+	err = check_api_status("PostFileSslCertKeyImport", data)
 	if err != nil {
 		return err
 	}
@@ -103,6 +103,46 @@ func PostFileSslCertKey(id string, inst FileSslCertKey, host string, FileHandleL
 	// 	return err
 	// }
 
+	return err
+}
+
+func PostFileSslCertKey(id string, inst FileSslCertKey, host string) error {
+
+	logger := util.GetLoggerInstance()
+
+	var headers = make(map[string]string)
+	headers["Accept"] = "application/json"
+	headers["Content-Type"] = "application/json"
+	headers["Authorization"] = id
+	logger.Println("[INFO] Inside PostFileSslCertKey")
+	payloadBytes, err := json.Marshal(inst)
+	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
+	if err != nil {
+		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
+	}
+
+	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/file/ssl-cert-key", bytes.NewReader(payloadBytes), headers)
+
+	if err != nil {
+		logger.Println("The HTTP request failed with error ", err)
+		return err
+	} else {
+		data, _ := ioutil.ReadAll(resp.Body)
+		var m FileSslCertKey
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
+			return err
+		} else {
+			logger.Println("[INFO] Post REQ RES..........................", m)
+			err := check_api_status("PostFileSslCertKey", data)
+			if err != nil {
+				return err
+			}
+
+		}
+	}
 	return err
 }
 
@@ -127,7 +167,7 @@ func GetFileSslCertKey(id string, host string) (*FileSslCertKey, error) {
 		err := json.Unmarshal(data, &m)
 		if err != nil {
 			logger.Println("Unmarshal error ", err)
-			return nil, err
+			return nil, nil
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
 			err := check_api_status("GetFileSslCertKey", data)

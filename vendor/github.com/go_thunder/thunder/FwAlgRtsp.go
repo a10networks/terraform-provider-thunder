@@ -8,7 +8,7 @@ import (
 )
 
 type FwAlgRtsp struct {
-	DefaultPortDisable FwAlgRtspInstance `json:"rtsp-instance,omitempty"`
+	DefaultPortDisable FwAlgRtspInstance `json:"rtsp,omitempty"`
 }
 
 type FwAlgRtspInstance struct {

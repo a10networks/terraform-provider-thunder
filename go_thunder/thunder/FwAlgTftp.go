@@ -8,7 +8,7 @@ import (
 )
 
 type FwAlgTftp struct {
-	DefaultPortDisable FwAlgTftpInstance `json:"tftp-instance,omitempty"`
+	DefaultPortDisable FwAlgTftpInstance `json:"tftp,omitempty"`
 }
 
 type FwAlgTftpInstance struct {
