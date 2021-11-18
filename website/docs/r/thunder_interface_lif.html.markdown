@@ -14,9 +14,9 @@ description: |-
 
 ```hcl
 provider "thunder" {
-    address  = var.address
-    username = var.username  
-    password = var.password
+  address  = var.address
+  username = var.username
+  password = var.password
 }
 
 
