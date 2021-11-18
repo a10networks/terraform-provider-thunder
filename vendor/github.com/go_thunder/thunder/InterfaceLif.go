@@ -8,377 +8,398 @@ import (
 )
 
 type InterfaceLif struct {
-	Ifname InterfaceLifInstance `json:"lif,omitempty"`
+	InterfaceLifInstanceIfname InterfaceLifInstance `json:"lif,omitempty"`
 }
 
 type InterfaceLifInstance struct {
-	AclID          InterfaceAccessList       `json:"access-list,omitempty"`
-	Action         string                    `json:"action,omitempty"`
-	Authentication InterfaceBfd              `json:"bfd,omitempty"`
-	Dhcp           InterfaceIP               `json:"ip,omitempty"`
-	Ifname         string                    `json:"ifname,omitempty"`
-	AddressList    InterfaceIpv6             `json:"ipv6,omitempty"`
-	SendOnlyList   InterfaceIsis             `json:"isis,omitempty"`
-	Mtu            int                       `json:"mtu,omitempty"`
-	Name           string                    `json:"name,omitempty"`
-	Counters1      []InterfaceSamplingEnable `json:"sampling-enable,omitempty"`
-	UUID           string                    `json:"uuid,omitempty"`
-	UserTag        string                    `json:"user-tag,omitempty"`
+	InterfaceLifInstanceAccessListAclID         InterfaceLifInstanceAccessList       `json:"access-list,omitempty"`
+	InterfaceLifInstanceAction                  string                               `json:"action,omitempty"`
+	InterfaceLifInstanceBfdAuthentication       InterfaceLifInstanceBfd              `json:"bfd,omitempty"`
+	InterfaceLifInstanceIPDhcp                  InterfaceLifInstanceIP               `json:"ip,omitempty"`
+	InterfaceLifInstanceIfname                  string                               `json:"ifname,omitempty"`
+	InterfaceLifInstanceIpv6AddressList         InterfaceLifInstanceIpv6             `json:"ipv6,omitempty"`
+	InterfaceLifInstanceIsisAuthentication      InterfaceLifInstanceIsis             `json:"isis,omitempty"`
+	InterfaceLifInstanceMtu                     int                                  `json:"mtu,omitempty"`
+	InterfaceLifInstanceName                    string                               `json:"name,omitempty"`
+	InterfaceLifInstanceSamplingEnableCounters1 []InterfaceLifInstanceSamplingEnable `json:"sampling-enable,omitempty"`
+	InterfaceLifInstanceUUID                    string                               `json:"uuid,omitempty"`
+	InterfaceLifInstanceUserTag                 string                               `json:"user-tag,omitempty"`
 }
 
-type InterfaceAccessList struct {
-	AclID   int    `json:"acl-id,omitempty"`
-	AclName string `json:"acl-name,omitempty"`
+type InterfaceLifInstanceAccessList struct {
+	InterfaceLifInstanceAccessListAclID   int    `json:"acl-id,omitempty"`
+	InterfaceLifInstanceAccessListAclName string `json:"acl-name,omitempty"`
 }
 
-type InterfaceBfd struct {
-	KeyID    InterfaceAuthentication `json:"authentication,omitempty"`
-	Demand   int                     `json:"demand,omitempty"`
-	Echo     int                     `json:"echo,omitempty"`
-	Interval InterfaceIntervalCfg    `json:"interval-cfg,omitempty"`
-	UUID     string                  `json:"uuid,omitempty"`
+type InterfaceLifInstanceBfd struct {
+	InterfaceLifInstanceBfdAuthenticationKeyID InterfaceLifInstanceBfdAuthentication `json:"authentication,omitempty"`
+	InterfaceLifInstanceBfdDemand              int                                   `json:"demand,omitempty"`
+	InterfaceLifInstanceBfdEcho                int                                   `json:"echo,omitempty"`
+	InterfaceLifInstanceBfdIntervalCfgInterval InterfaceLifInstanceBfdIntervalCfg    `json:"interval-cfg,omitempty"`
+	InterfaceLifInstanceBfdUUID                string                                `json:"uuid,omitempty"`
 }
 
-type InterfaceIP struct {
-	Ipv6Addr                []InterfaceLifIPAddressList `json:"address-list,omitempty"`
-	AllowPromiscuousVip     int                         `json:"allow-promiscuous-vip,omitempty"`
-	CacheSpoofingPort       int                         `json:"cache-spoofing-port,omitempty"`
-	Dhcp                    int                         `json:"dhcp,omitempty"`
-	GenerateMembershipQuery int                         `json:"generate-membership-query,omitempty"`
-	Inside                  int                         `json:"inside,omitempty"`
-	MaxRespTime             int                         `json:"max-resp-time,omitempty"`
-	OspfGlobal              InterfaceLifIpOspf          `json:"ospf,omitempty"`
-	Outside                 int                         `json:"outside,omitempty"`
-	QueryInterval           int                         `json:"query-interval,omitempty"`
-	Authentication          InterfaceRip                `json:"rip,omitempty"`
-	Isis                    InterfaceLifIPRouter        `json:"router,omitempty"`
-	UUID                    string                      `json:"uuid,omitempty"`
+type InterfaceLifInstanceIP struct {
+	InterfaceLifInstanceIPAddressListIpv6Addr     []InterfaceLifInstanceIPAddressList `json:"address-list,omitempty"`
+	InterfaceLifInstanceIPAllowPromiscuousVip     int                                 `json:"allow-promiscuous-vip,omitempty"`
+	InterfaceLifInstanceIPCacheSpoofingPort       int                                 `json:"cache-spoofing-port,omitempty"`
+	InterfaceLifInstanceIPDhcp                    int                                 `json:"dhcp,omitempty"`
+	InterfaceLifInstanceIPGenerateMembershipQuery int                                 `json:"generate-membership-query,omitempty"`
+	InterfaceLifInstanceIPInside                  int                                 `json:"inside,omitempty"`
+	InterfaceLifInstanceIPMaxRespTime             int                                 `json:"max-resp-time,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobal          InterfaceLifInstanceIPOspf          `json:"ospf,omitempty"`
+	InterfaceLifInstanceIPOutside                 int                                 `json:"outside,omitempty"`
+	InterfaceLifInstanceIPQueryInterval           int                                 `json:"query-interval,omitempty"`
+	InterfaceLifInstanceIPRipAuthentication       InterfaceLifInstanceIPRip           `json:"rip,omitempty"`
+	InterfaceLifInstanceIPRouterIsis              InterfaceLifInstanceIPRouter        `json:"router,omitempty"`
+	InterfaceLifInstanceIPUUID                    string                              `json:"uuid,omitempty"`
 }
 
-type InterfaceIpv6 struct {
-	Ipv6Addr    []InterfaceLifIPAddressList `json:"address-list,omitempty"`
-	Inside      int                         `json:"inside,omitempty"`
-	Ipv6Enable  int                         `json:"ipv6-enable,omitempty"`
-	NetworkList InterfaceOspf               `json:"ospf,omitempty"`
-	Outside     int                         `json:"outside,omitempty"`
-	Ripng       InterfaceRouter             `json:"router,omitempty"`
-	UUID        string                      `json:"uuid,omitempty"`
+type InterfaceLifInstanceIpv6 struct {
+	InterfaceLifInstanceIpv6AddressListIpv6Addr []InterfaceLifInstanceIpv6AddressList `json:"address-list,omitempty"`
+	InterfaceLifInstanceIpv6Inside              int                                   `json:"inside,omitempty"`
+	InterfaceLifInstanceIpv6Ipv6Enable          int                                   `json:"ipv6-enable,omitempty"`
+	InterfaceLifInstanceIpv6OspfNetworkList     InterfaceLifInstanceIpv6Ospf          `json:"ospf,omitempty"`
+	InterfaceLifInstanceIpv6Outside             int                                   `json:"outside,omitempty"`
+	InterfaceLifInstanceIpv6RouterRipng         InterfaceLifInstanceIpv6Router        `json:"router,omitempty"`
+	InterfaceLifInstanceIpv6UUID                string                                `json:"uuid,omitempty"`
 }
 
-type InterfaceIsis struct {
-	SendOnlyList         InterfaceLifIsisAuthentication      `json:"authentication,omitempty"`
-	Bfd                  InterfaceBfdCfg                     `json:"bfd-cfg,omitempty"`
-	CircuitType          string                              `json:"circuit-type,omitempty"`
-	CsnpInterval         []InterfaceCsnpIntervalList         `json:"csnp-interval-list,omitempty"`
-	HelloInterval        []InterfaceHelloIntervalList        `json:"hello-interval-list,omitempty"`
-	HelloIntervalMinimal []InterfaceHelloIntervalMinimalList `json:"hello-interval-minimal-list,omitempty"`
-	HelloMultiplier      []InterfaceHelloMultiplierList      `json:"hello-multiplier-list,omitempty"`
-	LspInterval          int                                 `json:"lsp-interval,omitempty"`
-	Value                InterfaceMeshGroup                  `json:"mesh-group,omitempty"`
-	Metric               []InterfaceMetricList               `json:"metric-list,omitempty"`
-	Network              string                              `json:"network,omitempty"`
-	Padding              int                                 `json:"padding,omitempty"`
-	Password             []InterfacePasswordList             `json:"password-list,omitempty"`
-	Priority             []InterfacePriorityList             `json:"priority-list,omitempty"`
-	RetransmitInterval   int                                 `json:"retransmit-interval,omitempty"`
-	UUID                 string                              `json:"uuid,omitempty"`
-	WideMetric           []InterfaceWideMetricList           `json:"wide-metric-list,omitempty"`
+type InterfaceLifInstanceIsis struct {
+	InterfaceLifInstanceIsisAuthenticationSendOnlyList                   InterfaceLifInstanceIsisAuthentication             `json:"authentication,omitempty"`
+	InterfaceLifInstanceIsisBfdCfgBfd                                    InterfaceLifInstanceIsisBfdCfg                     `json:"bfd-cfg,omitempty"`
+	InterfaceLifInstanceIsisCircuitType                                  string                                             `json:"circuit-type,omitempty"`
+	InterfaceLifInstanceIsisCsnpIntervalListCsnpInterval                 []InterfaceLifInstanceIsisCsnpIntervalList         `json:"csnp-interval-list,omitempty"`
+	InterfaceLifInstanceIsisHelloIntervalListHelloInterval               []InterfaceLifInstanceIsisHelloIntervalList        `json:"hello-interval-list,omitempty"`
+	InterfaceLifInstanceIsisHelloIntervalMinimalListHelloIntervalMinimal []InterfaceLifInstanceIsisHelloIntervalMinimalList `json:"hello-interval-minimal-list,omitempty"`
+	InterfaceLifInstanceIsisHelloMultiplierListHelloMultiplier           []InterfaceLifInstanceIsisHelloMultiplierList      `json:"hello-multiplier-list,omitempty"`
+	InterfaceLifInstanceIsisLspInterval                                  int                                                `json:"lsp-interval,omitempty"`
+	InterfaceLifInstanceIsisMeshGroupValue                               InterfaceLifInstanceIsisMeshGroup                  `json:"mesh-group,omitempty"`
+	InterfaceLifInstanceIsisMetricListMetric                             []InterfaceLifInstanceIsisMetricList               `json:"metric-list,omitempty"`
+	InterfaceLifInstanceIsisNetwork                                      string                                             `json:"network,omitempty"`
+	InterfaceLifInstanceIsisPadding                                      int                                                `json:"padding,omitempty"`
+	InterfaceLifInstanceIsisPasswordListPassword                         []InterfaceLifInstanceIsisPasswordList             `json:"password-list,omitempty"`
+	InterfaceLifInstanceIsisPriorityListPriority                         []InterfaceLifInstanceIsisPriorityList             `json:"priority-list,omitempty"`
+	InterfaceLifInstanceIsisRetransmitInterval                           int                                                `json:"retransmit-interval,omitempty"`
+	InterfaceLifInstanceIsisUUID                                         string                                             `json:"uuid,omitempty"`
+	InterfaceLifInstanceIsisWideMetricListWideMetric                     []InterfaceLifInstanceIsisWideMetricList           `json:"wide-metric-list,omitempty"`
 }
 
-type InterfaceSamplingEnable struct {
-	Counters1 string `json:"counters1,omitempty"`
+type InterfaceLifInstanceSamplingEnable struct {
+	InterfaceLifInstanceSamplingEnableCounters1 string `json:"counters1,omitempty"`
 }
 
-type InterfaceAuthentication struct {
-	KeyID    int    `json:"key-id,omitempty"`
-	Method   string `json:"method,omitempty"`
-	Password string `json:"password,omitempty"`
+type InterfaceLifInstanceBfdAuthentication struct {
+	InterfaceLifInstanceBfdAuthenticationKeyID    int    `json:"key-id,omitempty"`
+	InterfaceLifInstanceBfdAuthenticationMethod   string `json:"method,omitempty"`
+	InterfaceLifInstanceBfdAuthenticationPassword string `json:"password,omitempty"`
 }
 
-type InterfaceIntervalCfg struct {
-	Interval   int `json:"interval,omitempty"`
-	MinRx      int `json:"min-rx,omitempty"`
-	Multiplier int `json:"multiplier,omitempty"`
+type InterfaceLifInstanceBfdIntervalCfg struct {
+	InterfaceLifInstanceBfdIntervalCfgInterval   int `json:"interval,omitempty"`
+	InterfaceLifInstanceBfdIntervalCfgMinRx      int `json:"min-rx,omitempty"`
+	InterfaceLifInstanceBfdIntervalCfgMultiplier int `json:"multiplier,omitempty"`
 }
 
-type InterfaceLifIPAddressList struct {
-	Anycast   int    `json:"anycast,omitempty"`
-	Ipv6Addr  string `json:"ipv6-addr,omitempty"`
-	LinkLocal int    `json:"link-local,omitempty"`
+type InterfaceLifInstanceIPAddressList struct {
+	InterfaceLifInstanceIPAddressListAnycast   int    `json:"anycast,omitempty"`
+	InterfaceLifInstanceIPAddressListIpv6Addr  string `json:"ipv6-addr,omitempty"`
+	InterfaceLifInstanceIPAddressListLinkLocal int    `json:"link-local,omitempty"`
 }
 
-type InterfaceLifIpOspf struct {
-	AuthenticationCfg InterfaceOspfGlobal   `json:"ospf-global,omitempty"`
-	IPAddr            []InterfaceOspfIPList `json:"ospf-ip-list,omitempty"`
+type InterfaceLifInstanceIPOspf struct {
+	InterfaceLifInstanceIPOspfOspfGlobalAuthenticationCfg InterfaceLifInstanceIPOspfOspfGlobal   `json:"ospf-global,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListIPAddr            []InterfaceLifInstanceIPOspfOspfIPList `json:"ospf-ip-list,omitempty"`
 }
 
-type InterfaceRip struct {
-	Str           InterfaceLifIpripAuthentication `json:"authentication,omitempty"`
-	Receive       InterfaceReceiveCfg             `json:"receive-cfg,omitempty"`
-	ReceivePacket int                             `json:"receive-packet,omitempty"`
-	Send          InterfaceSendCfg                `json:"send-cfg,omitempty"`
-	SendPacket    int                             `json:"send-packet,omitempty"`
-	State         InterfaceSplitHorizonCfg        `json:"split-horizon-cfg,omitempty"`
-	UUID          string                          `json:"uuid,omitempty"`
+type InterfaceLifInstanceIPRip struct {
+	InterfaceLifInstanceIPRipAuthenticationStr    InterfaceLifInstanceIPRipAuthentication  `json:"authentication,omitempty"`
+	InterfaceLifInstanceIPRipReceiveCfgReceive    InterfaceLifInstanceIPRipReceiveCfg      `json:"receive-cfg,omitempty"`
+	InterfaceLifInstanceIPRipReceivePacket        int                                      `json:"receive-packet,omitempty"`
+	InterfaceLifInstanceIPRipSendCfgSend          InterfaceLifInstanceIPRipSendCfg         `json:"send-cfg,omitempty"`
+	InterfaceLifInstanceIPRipSendPacket           int                                      `json:"send-packet,omitempty"`
+	InterfaceLifInstanceIPRipSplitHorizonCfgState InterfaceLifInstanceIPRipSplitHorizonCfg `json:"split-horizon-cfg,omitempty"`
+	InterfaceLifInstanceIPRipUUID                 string                                   `json:"uuid,omitempty"`
 }
 
-type InterfaceLifIPRouter struct {
-	Tag InterfaceLifIPRipIsis `json:"isis,omitempty"`
+type InterfaceLifInstanceIPRouter struct {
+	InterfaceLifInstanceIPRouterIsisTag InterfaceLifInstanceIPRouterIsis `json:"isis,omitempty"`
 }
 
-type InterfaceOspf struct {
-	Bfd                int                              `json:"bfd,omitempty"`
-	Cost               []InterfaceCostCfg               `json:"cost-cfg,omitempty"`
-	DeadInterval       []InterfaceDeadIntervalCfg       `json:"dead-interval-cfg,omitempty"`
-	Disable            int                              `json:"disable,omitempty"`
-	HelloInterval      []InterfaceHelloIntervalCfg      `json:"hello-interval-cfg,omitempty"`
-	MtuIgnore          []InterfaceMtuIgnoreCfg          `json:"mtu-ignore-cfg,omitempty"`
-	Neighbor           []InterfaceNeighborCfg           `json:"neighbor-cfg,omitempty"`
-	BroadcastType      []InterfaceNetworkList           `json:"network-list,omitempty"`
-	Priority           []InterfacePriorityCfg           `json:"priority-cfg,omitempty"`
-	RetransmitInterval []InterfaceRetransmitIntervalCfg `json:"retransmit-interval-cfg,omitempty"`
-	TransmitDelay      []InterfaceTransmitDelayCfg      `json:"transmit-delay-cfg,omitempty"`
-	UUID               string                           `json:"uuid,omitempty"`
+type InterfaceLifInstanceIpv6AddressList struct {
+	InterfaceLifInstanceIpv6AddressListAnycast   int    `json:"anycast,omitempty"`
+	InterfaceLifInstanceIpv6AddressListIpv6Addr  string `json:"ipv6-addr,omitempty"`
+	InterfaceLifInstanceIpv6AddressListLinkLocal int    `json:"link-local,omitempty"`
 }
 
-type InterfaceRouter struct {
-	Tag      InterfaceLifIPRipIsis      `json:"isis,omitempty"`
-	AreaList InterfaceLifIpv6RouterOspf `json:"ospf,omitempty"`
-	Rip      InterfaceRipng             `json:"ripng,omitempty"`
+type InterfaceLifInstanceIpv6Ospf struct {
+	InterfaceLifInstanceIpv6OspfBfd                                     int                                                 `json:"bfd,omitempty"`
+	InterfaceLifInstanceIpv6OspfCostCfgCost                             []InterfaceLifInstanceIpv6OspfCostCfg               `json:"cost-cfg,omitempty"`
+	InterfaceLifInstanceIpv6OspfDeadIntervalCfgDeadInterval             []InterfaceLifInstanceIpv6OspfDeadIntervalCfg       `json:"dead-interval-cfg,omitempty"`
+	InterfaceLifInstanceIpv6OspfDisable                                 int                                                 `json:"disable,omitempty"`
+	InterfaceLifInstanceIpv6OspfHelloIntervalCfgHelloInterval           []InterfaceLifInstanceIpv6OspfHelloIntervalCfg      `json:"hello-interval-cfg,omitempty"`
+	InterfaceLifInstanceIpv6OspfMtuIgnoreCfgMtuIgnore                   []InterfaceLifInstanceIpv6OspfMtuIgnoreCfg          `json:"mtu-ignore-cfg,omitempty"`
+	InterfaceLifInstanceIpv6OspfNeighborCfgNeighbor                     []InterfaceLifInstanceIpv6OspfNeighborCfg           `json:"neighbor-cfg,omitempty"`
+	InterfaceLifInstanceIpv6OspfNetworkListBroadcastType                []InterfaceLifInstanceIpv6OspfNetworkList           `json:"network-list,omitempty"`
+	InterfaceLifInstanceIpv6OspfPriorityCfgPriority                     []InterfaceLifInstanceIpv6OspfPriorityCfg           `json:"priority-cfg,omitempty"`
+	InterfaceLifInstanceIpv6OspfRetransmitIntervalCfgRetransmitInterval []InterfaceLifInstanceIpv6OspfRetransmitIntervalCfg `json:"retransmit-interval-cfg,omitempty"`
+	InterfaceLifInstanceIpv6OspfTransmitDelayCfgTransmitDelay           []InterfaceLifInstanceIpv6OspfTransmitDelayCfg      `json:"transmit-delay-cfg,omitempty"`
+	InterfaceLifInstanceIpv6OspfUUID                                    string                                              `json:"uuid,omitempty"`
 }
 
-type InterfaceLifIsisAuthentication struct {
-	KeyChain []InterfaceKeyChainList `json:"key-chain-list,omitempty"`
-	Mode     []InterfaceModeList     `json:"mode-list,omitempty"`
-	SendOnly []InterfaceSendOnlyList `json:"send-only-list,omitempty"`
+type InterfaceLifInstanceIpv6Router struct {
+	InterfaceLifInstanceIpv6RouterIsisTag      InterfaceLifInstanceIpv6RouterIsis  `json:"isis,omitempty"`
+	InterfaceLifInstanceIpv6RouterOspfAreaList InterfaceLifInstanceIpv6RouterOspf  `json:"ospf,omitempty"`
+	InterfaceLifInstanceIpv6RouterRipngRip     InterfaceLifInstanceIpv6RouterRipng `json:"ripng,omitempty"`
 }
 
-type InterfaceBfdCfg struct {
-	Bfd     int `json:"bfd,omitempty"`
-	Disable int `json:"disable,omitempty"`
+type InterfaceLifInstanceIsisAuthentication struct {
+	InterfaceLifInstanceIsisAuthenticationKeyChainListKeyChain []InterfaceLifInstanceIsisAuthenticationKeyChainList `json:"key-chain-list,omitempty"`
+	InterfaceLifInstanceIsisAuthenticationModeListMode         []InterfaceLifInstanceIsisAuthenticationModeList     `json:"mode-list,omitempty"`
+	InterfaceLifInstanceIsisAuthenticationSendOnlyListSendOnly []InterfaceLifInstanceIsisAuthenticationSendOnlyList `json:"send-only-list,omitempty"`
 }
 
-type InterfaceCsnpIntervalList struct {
-	CsnpInterval int    `json:"csnp-interval,omitempty"`
-	Level        string `json:"level,omitempty"`
+type InterfaceLifInstanceIsisBfdCfg struct {
+	InterfaceLifInstanceIsisBfdCfgBfd     int `json:"bfd,omitempty"`
+	InterfaceLifInstanceIsisBfdCfgDisable int `json:"disable,omitempty"`
 }
 
-type InterfaceHelloIntervalList struct {
-	HelloInterval int    `json:"hello-interval,omitempty"`
-	Level         string `json:"level,omitempty"`
+type InterfaceLifInstanceIsisCsnpIntervalList struct {
+	InterfaceLifInstanceIsisCsnpIntervalListCsnpInterval int    `json:"csnp-interval,omitempty"`
+	InterfaceLifInstanceIsisCsnpIntervalListLevel        string `json:"level,omitempty"`
 }
 
-type InterfaceHelloIntervalMinimalList struct {
-	HelloIntervalMinimal int    `json:"hello-interval-minimal,omitempty"`
-	Level                string `json:"level,omitempty"`
+type InterfaceLifInstanceIsisHelloIntervalList struct {
+	InterfaceLifInstanceIsisHelloIntervalListHelloInterval int    `json:"hello-interval,omitempty"`
+	InterfaceLifInstanceIsisHelloIntervalListLevel         string `json:"level,omitempty"`
 }
 
-type InterfaceHelloMultiplierList struct {
-	HelloMultiplier int    `json:"hello-multiplier,omitempty"`
-	Level           string `json:"level,omitempty"`
+type InterfaceLifInstanceIsisHelloIntervalMinimalList struct {
+	InterfaceLifInstanceIsisHelloIntervalMinimalListHelloIntervalMinimal int    `json:"hello-interval-minimal,omitempty"`
+	InterfaceLifInstanceIsisHelloIntervalMinimalListLevel                string `json:"level,omitempty"`
 }
 
-type InterfaceMeshGroup struct {
-	Blocked int `json:"blocked,omitempty"`
-	Value   int `json:"value,omitempty"`
+type InterfaceLifInstanceIsisHelloMultiplierList struct {
+	InterfaceLifInstanceIsisHelloMultiplierListHelloMultiplier int    `json:"hello-multiplier,omitempty"`
+	InterfaceLifInstanceIsisHelloMultiplierListLevel           string `json:"level,omitempty"`
 }
 
-type InterfaceMetricList struct {
-	Level  string `json:"level,omitempty"`
-	Metric int    `json:"metric,omitempty"`
+type InterfaceLifInstanceIsisMeshGroup struct {
+	InterfaceLifInstanceIsisMeshGroupBlocked int `json:"blocked,omitempty"`
+	InterfaceLifInstanceIsisMeshGroupValue   int `json:"value,omitempty"`
 }
 
-type InterfacePasswordList struct {
-	Level    string `json:"level,omitempty"`
-	Password string `json:"password,omitempty"`
+type InterfaceLifInstanceIsisMetricList struct {
+	InterfaceLifInstanceIsisMetricListLevel  string `json:"level,omitempty"`
+	InterfaceLifInstanceIsisMetricListMetric int    `json:"metric,omitempty"`
 }
 
-type InterfacePriorityList struct {
-	Level    string `json:"level,omitempty"`
-	Priority int    `json:"priority,omitempty"`
+type InterfaceLifInstanceIsisPasswordList struct {
+	InterfaceLifInstanceIsisPasswordListLevel    string `json:"level,omitempty"`
+	InterfaceLifInstanceIsisPasswordListPassword string `json:"password,omitempty"`
 }
 
-type InterfaceWideMetricList struct {
-	Level      string `json:"level,omitempty"`
-	WideMetric int    `json:"wide-metric,omitempty"`
+type InterfaceLifInstanceIsisPriorityList struct {
+	InterfaceLifInstanceIsisPriorityListLevel    string `json:"level,omitempty"`
+	InterfaceLifInstanceIsisPriorityListPriority int    `json:"priority,omitempty"`
 }
 
-type InterfaceOspfGlobal struct {
-	Authentication     InterfaceAuthenticationCfg  `json:"authentication-cfg,omitempty"`
-	AuthenticationKey  string                      `json:"authentication-key,omitempty"`
-	Bfd                InterfaceBfdCfg             `json:"bfd-cfg,omitempty"`
-	Cost               int                         `json:"cost,omitempty"`
-	DatabaseFilter     InterfaceDatabaseFilterCfg  `json:"database-filter-cfg,omitempty"`
-	DeadInterval       int                         `json:"dead-interval,omitempty"`
-	Disable            string                      `json:"disable,omitempty"`
-	HelloInterval      int                         `json:"hello-interval,omitempty"`
-	MessageDigestKey   []InterfaceMessageDigestCfg `json:"message-digest-cfg,omitempty"`
-	Mtu                int                         `json:"mtu,omitempty"`
-	MtuIgnore          int                         `json:"mtu-ignore,omitempty"`
-	Broadcast          InterfaceNetwork            `json:"network,omitempty"`
-	Priority           int                         `json:"priority,omitempty"`
-	RetransmitInterval int                         `json:"retransmit-interval,omitempty"`
-	TransmitDelay      int                         `json:"transmit-delay,omitempty"`
-	UUID               string                      `json:"uuid,omitempty"`
+type InterfaceLifInstanceIsisWideMetricList struct {
+	InterfaceLifInstanceIsisWideMetricListLevel      string `json:"level,omitempty"`
+	InterfaceLifInstanceIsisWideMetricListWideMetric int    `json:"wide-metric,omitempty"`
 }
 
-type InterfaceOspfIPList struct {
-	Authentication     int                         `json:"authentication,omitempty"`
-	AuthenticationKey  string                      `json:"authentication-key,omitempty"`
-	Cost               int                         `json:"cost,omitempty"`
-	DatabaseFilter     string                      `json:"database-filter,omitempty"`
-	DeadInterval       int                         `json:"dead-interval,omitempty"`
-	HelloInterval      int                         `json:"hello-interval,omitempty"`
-	IPAddr             string                      `json:"ip-addr,omitempty"`
-	MessageDigestKey   []InterfaceMessageDigestCfg `json:"message-digest-cfg,omitempty"`
-	MtuIgnore          int                         `json:"mtu-ignore,omitempty"`
-	Out                int                         `json:"out,omitempty"`
-	Priority           int                         `json:"priority,omitempty"`
-	RetransmitInterval int                         `json:"retransmit-interval,omitempty"`
-	TransmitDelay      int                         `json:"transmit-delay,omitempty"`
-	UUID               string                      `json:"uuid,omitempty"`
-	Value              string                      `json:"value,omitempty"`
+type InterfaceLifInstanceIPOspfOspfGlobal struct {
+	InterfaceLifInstanceIPOspfOspfGlobalAuthenticationCfgAuthentication  InterfaceLifInstanceIPOspfOspfGlobalAuthenticationCfg  `json:"authentication-cfg,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalAuthenticationKey                string                                                 `json:"authentication-key,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalBfdCfgBfd                        InterfaceLifInstanceIPOspfOspfGlobalBfdCfg             `json:"bfd-cfg,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalCost                             int                                                    `json:"cost,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalDatabaseFilterCfgDatabaseFilter  InterfaceLifInstanceIPOspfOspfGlobalDatabaseFilterCfg  `json:"database-filter-cfg,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalDeadInterval                     int                                                    `json:"dead-interval,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalDisable                          string                                                 `json:"disable,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalHelloInterval                    int                                                    `json:"hello-interval,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalMessageDigestCfgMessageDigestKey []InterfaceLifInstanceIPOspfOspfGlobalMessageDigestCfg `json:"message-digest-cfg,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalMtu                              int                                                    `json:"mtu,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalMtuIgnore                        int                                                    `json:"mtu-ignore,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalNetworkBroadcast                 InterfaceLifInstanceIPOspfOspfGlobalNetwork            `json:"network,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalPriority                         int                                                    `json:"priority,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalRetransmitInterval               int                                                    `json:"retransmit-interval,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalTransmitDelay                    int                                                    `json:"transmit-delay,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalUUID                             string                                                 `json:"uuid,omitempty"`
 }
 
-type InterfaceLifIpripAuthentication struct {
-	KeyChain InterfaceKeyChain `json:"key-chain,omitempty"`
-	Mode     InterfaceMode     `json:"mode,omitempty"`
-	String   InterfaceStr      `json:"str,omitempty"`
+type InterfaceLifInstanceIPOspfOspfIPList struct {
+	InterfaceLifInstanceIPOspfOspfIPListAuthentication                   int                                                    `json:"authentication,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListAuthenticationKey                string                                                 `json:"authentication-key,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListCost                             int                                                    `json:"cost,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListDatabaseFilter                   string                                                 `json:"database-filter,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListDeadInterval                     int                                                    `json:"dead-interval,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListHelloInterval                    int                                                    `json:"hello-interval,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListIPAddr                           string                                                 `json:"ip-addr,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListMessageDigestCfgMessageDigestKey []InterfaceLifInstanceIPOspfOspfIPListMessageDigestCfg `json:"message-digest-cfg,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListMtuIgnore                        int                                                    `json:"mtu-ignore,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListOut                              int                                                    `json:"out,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListPriority                         int                                                    `json:"priority,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListRetransmitInterval               int                                                    `json:"retransmit-interval,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListTransmitDelay                    int                                                    `json:"transmit-delay,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListUUID                             string                                                 `json:"uuid,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListValue                            string                                                 `json:"value,omitempty"`
 }
 
-type InterfaceReceiveCfg struct {
-	Receive int    `json:"receive,omitempty"`
-	Version string `json:"version,omitempty"`
+type InterfaceLifInstanceIPRipAuthentication struct {
+	InterfaceLifInstanceIPRipAuthenticationKeyChainKeyChain InterfaceLifInstanceIPRipAuthenticationKeyChain `json:"key-chain,omitempty"`
+	InterfaceLifInstanceIPRipAuthenticationModeMode         InterfaceLifInstanceIPRipAuthenticationMode     `json:"mode,omitempty"`
+	InterfaceLifInstanceIPRipAuthenticationStrString        InterfaceLifInstanceIPRipAuthenticationStr      `json:"str,omitempty"`
 }
 
-type InterfaceSendCfg struct {
-	Send    int    `json:"send,omitempty"`
-	Version string `json:"version,omitempty"`
+type InterfaceLifInstanceIPRipReceiveCfg struct {
+	InterfaceLifInstanceIPRipReceiveCfgReceive int    `json:"receive,omitempty"`
+	InterfaceLifInstanceIPRipReceiveCfgVersion string `json:"version,omitempty"`
 }
 
-type InterfaceSplitHorizonCfg struct {
-	State string `json:"state,omitempty"`
+type InterfaceLifInstanceIPRipSendCfg struct {
+	InterfaceLifInstanceIPRipSendCfgSend    int    `json:"send,omitempty"`
+	InterfaceLifInstanceIPRipSendCfgVersion string `json:"version,omitempty"`
 }
 
-type InterfaceLifIPRipIsis struct {
-	Tag  string `json:"tag,omitempty"`
-	UUID string `json:"uuid,omitempty"`
+type InterfaceLifInstanceIPRipSplitHorizonCfg struct {
+	InterfaceLifInstanceIPRipSplitHorizonCfgState string `json:"state,omitempty"`
 }
 
-type InterfaceCostCfg struct {
-	Cost       int `json:"cost,omitempty"`
-	InstanceID int `json:"instance-id,omitempty"`
+type InterfaceLifInstanceIPRouterIsis struct {
+	InterfaceLifInstanceIPRouterIsisTag  string `json:"tag,omitempty"`
+	InterfaceLifInstanceIPRouterIsisUUID string `json:"uuid,omitempty"`
 }
 
-type InterfaceDeadIntervalCfg struct {
-	DeadInterval int `json:"dead-interval,omitempty"`
-	InstanceID   int `json:"instance-id,omitempty"`
+type InterfaceLifInstanceIpv6OspfCostCfg struct {
+	InterfaceLifInstanceIpv6OspfCostCfgCost       int `json:"cost,omitempty"`
+	InterfaceLifInstanceIpv6OspfCostCfgInstanceID int `json:"instance-id,omitempty"`
 }
 
-type InterfaceHelloIntervalCfg struct {
-	HelloInterval int `json:"hello-interval,omitempty"`
-	InstanceID    int `json:"instance-id,omitempty"`
+type InterfaceLifInstanceIpv6OspfDeadIntervalCfg struct {
+	InterfaceLifInstanceIpv6OspfDeadIntervalCfgDeadInterval int `json:"dead-interval,omitempty"`
+	InterfaceLifInstanceIpv6OspfDeadIntervalCfgInstanceID   int `json:"instance-id,omitempty"`
 }
 
-type InterfaceMtuIgnoreCfg struct {
-	InstanceID int `json:"instance-id,omitempty"`
-	MtuIgnore  int `json:"mtu-ignore,omitempty"`
+type InterfaceLifInstanceIpv6OspfHelloIntervalCfg struct {
+	InterfaceLifInstanceIpv6OspfHelloIntervalCfgHelloInterval int `json:"hello-interval,omitempty"`
+	InterfaceLifInstanceIpv6OspfHelloIntervalCfgInstanceID    int `json:"instance-id,omitempty"`
 }
 
-type InterfaceNeighborCfg struct {
-	NeigInst             int    `json:"neig-inst,omitempty"`
-	Neighbor             string `json:"neighbor,omitempty"`
-	NeighborCost         int    `json:"neighbor-cost,omitempty"`
-	NeighborPollInterval int    `json:"neighbor-poll-interval,omitempty"`
-	NeighborPriority     int    `json:"neighbor-priority,omitempty"`
+type InterfaceLifInstanceIpv6OspfMtuIgnoreCfg struct {
+	InterfaceLifInstanceIpv6OspfMtuIgnoreCfgInstanceID int `json:"instance-id,omitempty"`
+	InterfaceLifInstanceIpv6OspfMtuIgnoreCfgMtuIgnore  int `json:"mtu-ignore,omitempty"`
 }
 
-type InterfaceNetworkList struct {
-	BroadcastType     string `json:"broadcast-type,omitempty"`
-	NetworkInstanceID int    `json:"network-instance-id,omitempty"`
-	P2MpNbma          int    `json:"p2mp-nbma,omitempty"`
+type InterfaceLifInstanceIpv6OspfNeighborCfg struct {
+	InterfaceLifInstanceIpv6OspfNeighborCfgNeigInst             int    `json:"neig-inst,omitempty"`
+	InterfaceLifInstanceIpv6OspfNeighborCfgNeighbor             string `json:"neighbor,omitempty"`
+	InterfaceLifInstanceIpv6OspfNeighborCfgNeighborCost         int    `json:"neighbor-cost,omitempty"`
+	InterfaceLifInstanceIpv6OspfNeighborCfgNeighborPollInterval int    `json:"neighbor-poll-interval,omitempty"`
+	InterfaceLifInstanceIpv6OspfNeighborCfgNeighborPriority     int    `json:"neighbor-priority,omitempty"`
 }
 
-type InterfacePriorityCfg struct {
-	InstanceID int `json:"instance-id,omitempty"`
-	Priority   int `json:"priority,omitempty"`
+type InterfaceLifInstanceIpv6OspfNetworkList struct {
+	InterfaceLifInstanceIpv6OspfNetworkListBroadcastType     string `json:"broadcast-type,omitempty"`
+	InterfaceLifInstanceIpv6OspfNetworkListNetworkInstanceID int    `json:"network-instance-id,omitempty"`
+	InterfaceLifInstanceIpv6OspfNetworkListP2MpNbma          int    `json:"p2mp-nbma,omitempty"`
 }
 
-type InterfaceRetransmitIntervalCfg struct {
-	InstanceID         int `json:"instance-id,omitempty"`
-	RetransmitInterval int `json:"retransmit-interval,omitempty"`
+type InterfaceLifInstanceIpv6OspfPriorityCfg struct {
+	InterfaceLifInstanceIpv6OspfPriorityCfgInstanceID int `json:"instance-id,omitempty"`
+	InterfaceLifInstanceIpv6OspfPriorityCfgPriority   int `json:"priority,omitempty"`
 }
 
-type InterfaceTransmitDelayCfg struct {
-	InstanceID    int `json:"instance-id,omitempty"`
-	TransmitDelay int `json:"transmit-delay,omitempty"`
+type InterfaceLifInstanceIpv6OspfRetransmitIntervalCfg struct {
+	InterfaceLifInstanceIpv6OspfRetransmitIntervalCfgInstanceID         int `json:"instance-id,omitempty"`
+	InterfaceLifInstanceIpv6OspfRetransmitIntervalCfgRetransmitInterval int `json:"retransmit-interval,omitempty"`
 }
 
-type InterfaceLifIpv6RouterOspf struct {
-	AreaIDNum []InterfaceAreaList `json:"area-list,omitempty"`
-	UUID      string              `json:"uuid,omitempty"`
+type InterfaceLifInstanceIpv6OspfTransmitDelayCfg struct {
+	InterfaceLifInstanceIpv6OspfTransmitDelayCfgInstanceID    int `json:"instance-id,omitempty"`
+	InterfaceLifInstanceIpv6OspfTransmitDelayCfgTransmitDelay int `json:"transmit-delay,omitempty"`
 }
 
-type InterfaceRipng struct {
-	Rip  int    `json:"rip,omitempty"`
-	UUID string `json:"uuid,omitempty"`
+type InterfaceLifInstanceIpv6RouterIsis struct {
+	InterfaceLifInstanceIpv6RouterIsisTag  string `json:"tag,omitempty"`
+	InterfaceLifInstanceIpv6RouterIsisUUID string `json:"uuid,omitempty"`
 }
 
-type InterfaceKeyChainList struct {
-	KeyChain string `json:"key-chain,omitempty"`
-	Level    string `json:"level,omitempty"`
+type InterfaceLifInstanceIpv6RouterOspf struct {
+	InterfaceLifInstanceIpv6RouterOspfAreaListAreaIDNum []InterfaceLifInstanceIpv6RouterOspfAreaList `json:"area-list,omitempty"`
+	InterfaceLifInstanceIpv6RouterOspfUUID              string                                       `json:"uuid,omitempty"`
 }
 
-type InterfaceModeList struct {
-	Level string `json:"level,omitempty"`
-	Mode  string `json:"mode,omitempty"`
+type InterfaceLifInstanceIpv6RouterRipng struct {
+	InterfaceLifInstanceIpv6RouterRipngRip  int    `json:"rip,omitempty"`
+	InterfaceLifInstanceIpv6RouterRipngUUID string `json:"uuid,omitempty"`
 }
 
-type InterfaceSendOnlyList struct {
-	Level    string `json:"level,omitempty"`
-	SendOnly int    `json:"send-only,omitempty"`
+type InterfaceLifInstanceIsisAuthenticationKeyChainList struct {
+	InterfaceLifInstanceIsisAuthenticationKeyChainListKeyChain string `json:"key-chain,omitempty"`
+	InterfaceLifInstanceIsisAuthenticationKeyChainListLevel    string `json:"level,omitempty"`
 }
 
-type InterfaceAuthenticationCfg struct {
-	Authentication int    `json:"authentication,omitempty"`
-	Value          string `json:"value,omitempty"`
+type InterfaceLifInstanceIsisAuthenticationModeList struct {
+	InterfaceLifInstanceIsisAuthenticationModeListLevel string `json:"level,omitempty"`
+	InterfaceLifInstanceIsisAuthenticationModeListMode  string `json:"mode,omitempty"`
 }
 
-type InterfaceDatabaseFilterCfg struct {
-	DatabaseFilter string `json:"database-filter,omitempty"`
-	Out            int    `json:"out,omitempty"`
+type InterfaceLifInstanceIsisAuthenticationSendOnlyList struct {
+	InterfaceLifInstanceIsisAuthenticationSendOnlyListLevel    string `json:"level,omitempty"`
+	InterfaceLifInstanceIsisAuthenticationSendOnlyListSendOnly int    `json:"send-only,omitempty"`
 }
 
-type InterfaceMessageDigestCfg struct {
-	Md5Value         string `json:"md5-value,omitempty"`
-	MessageDigestKey int    `json:"message-digest-key,omitempty"`
+type InterfaceLifInstanceIPOspfOspfGlobalAuthenticationCfg struct {
+	InterfaceLifInstanceIPOspfOspfGlobalAuthenticationCfgAuthentication int    `json:"authentication,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalAuthenticationCfgValue          string `json:"value,omitempty"`
 }
 
-type InterfaceNetwork struct {
-	Broadcast         int `json:"broadcast,omitempty"`
-	NonBroadcast      int `json:"non-broadcast,omitempty"`
-	P2MpNbma          int `json:"p2mp-nbma,omitempty"`
-	PointToMultipoint int `json:"point-to-multipoint,omitempty"`
-	PointToPoint      int `json:"point-to-point,omitempty"`
+type InterfaceLifInstanceIPOspfOspfGlobalBfdCfg struct {
+	InterfaceLifInstanceIPOspfOspfGlobalBfdCfgBfd     int `json:"bfd,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalBfdCfgDisable int `json:"disable,omitempty"`
 }
 
-type InterfaceKeyChain struct {
-	KeyChain string `json:"key-chain,omitempty"`
+type InterfaceLifInstanceIPOspfOspfGlobalDatabaseFilterCfg struct {
+	InterfaceLifInstanceIPOspfOspfGlobalDatabaseFilterCfgDatabaseFilter string `json:"database-filter,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalDatabaseFilterCfgOut            int    `json:"out,omitempty"`
 }
 
-type InterfaceMode struct {
-	Mode string `json:"mode,omitempty"`
+type InterfaceLifInstanceIPOspfOspfGlobalMessageDigestCfg struct {
+	InterfaceLifInstanceIPOspfOspfGlobalMessageDigestCfgMd5Value         string `json:"md5-value,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalMessageDigestCfgMessageDigestKey int    `json:"message-digest-key,omitempty"`
 }
 
-type InterfaceStr struct {
-	String string `json:"string,omitempty"`
+type InterfaceLifInstanceIPOspfOspfGlobalNetwork struct {
+	InterfaceLifInstanceIPOspfOspfGlobalNetworkBroadcast         int `json:"broadcast,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalNetworkNonBroadcast      int `json:"non-broadcast,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalNetworkP2MpNbma          int `json:"p2mp-nbma,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalNetworkPointToMultipoint int `json:"point-to-multipoint,omitempty"`
+	InterfaceLifInstanceIPOspfOspfGlobalNetworkPointToPoint      int `json:"point-to-point,omitempty"`
 }
 
-type InterfaceAreaList struct {
-	AreaIDAddr string `json:"area-id-addr,omitempty"`
-	AreaIDNum  int    `json:"area-id-num,omitempty"`
-	InstanceID int    `json:"instance-id,omitempty"`
-	Tag        string `json:"tag,omitempty"`
+type InterfaceLifInstanceIPOspfOspfIPListMessageDigestCfg struct {
+	InterfaceLifInstanceIPOspfOspfIPListMessageDigestCfgMd5Value         string `json:"md5-value,omitempty"`
+	InterfaceLifInstanceIPOspfOspfIPListMessageDigestCfgMessageDigestKey int    `json:"message-digest-key,omitempty"`
+}
+
+type InterfaceLifInstanceIPRipAuthenticationKeyChain struct {
+	InterfaceLifInstanceIPRipAuthenticationKeyChainKeyChain string `json:"key-chain,omitempty"`
+}
+
+type InterfaceLifInstanceIPRipAuthenticationMode struct {
+	InterfaceLifInstanceIPRipAuthenticationModeMode string `json:"mode,omitempty"`
+}
+
+type InterfaceLifInstanceIPRipAuthenticationStr struct {
+	InterfaceLifInstanceIPRipAuthenticationStrString string `json:"string,omitempty"`
+}
+
+type InterfaceLifInstanceIpv6RouterOspfAreaList struct {
+	InterfaceLifInstanceIpv6RouterOspfAreaListAreaIDAddr string `json:"area-id-addr,omitempty"`
+	InterfaceLifInstanceIpv6RouterOspfAreaListAreaIDNum  int    `json:"area-id-num,omitempty"`
+	InterfaceLifInstanceIpv6RouterOspfAreaListInstanceID int    `json:"instance-id,omitempty"`
+	InterfaceLifInstanceIpv6RouterOspfAreaListTag        string `json:"tag,omitempty"`
 }
 
 func PostInterfaceLif(id string, inst InterfaceLif, host string) error {
@@ -394,6 +415,7 @@ func PostInterfaceLif(id string, inst InterfaceLif, host string) error {
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/interface/lif", bytes.NewReader(payloadBytes), headers)
@@ -401,14 +423,13 @@ func PostInterfaceLif(id string, inst InterfaceLif, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceLif
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
 			err := check_api_status("PostInterfaceLif", data)
@@ -436,12 +457,11 @@ func GetInterfaceLif(id string, name1 string, host string) (*InterfaceLif, error
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceLif
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
@@ -469,6 +489,7 @@ func PutInterfaceLif(id string, name1 string, inst InterfaceLif, host string) er
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/interface/lif/"+name1, bytes.NewReader(payloadBytes), headers)
@@ -476,14 +497,13 @@ func PutInterfaceLif(id string, name1 string, inst InterfaceLif, host string) er
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceLif
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
 			logger.Println("[INFO] Put REQ RES..........................", m)
 			err := check_api_status("PutInterfaceLif", data)
@@ -511,12 +531,11 @@ func DeleteInterfaceLif(id string, name1 string, host string) error {
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m InterfaceLif
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
@@ -528,5 +547,5 @@ func DeleteInterfaceLif(id string, name1 string, host string) error {
 
 		}
 	}
-	return nil
+	return err
 }
