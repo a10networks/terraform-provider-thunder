@@ -14,9 +14,9 @@ description: |-
 
 ```hcl
 provider "thunder" {
-  address  = "129.213.82.65"
-  username = "admin"
-  password = "admin"
+  address  = var.address
+  username = var.username
+  password = var.password
 }
 
 
@@ -65,32 +65,15 @@ neighbor {
 	activate =  0 
 	allowas_in =  0 
 	allowas_in_count =  0 
-	prefix_list_direction =  "string" 
-	default_originate =  0 
-	route_map =  "string" 
-distribute-lists {   
-	distribute_list =  "string" 
-	distribute_list_direction =  "string" 
-	}
-neighbor-filter-lists {   
-	filter_list =  "string" 
-	filter_list_direction =  "string" 
-	}
 	maximum_prefix =  0 
 	maximum_prefix_thres =  0 
 	next_hop_self =  0 
-neighbor-prefix-lists {   
-	nbr_prefix_list =  "string" 
-	nbr_prefix_list_direction =  "string" 
-	}
 	remove_private_as =  0 
 neighbor-route-map-lists {   
 	nbr_route_map =  "string" 
 	nbr_rmap_direction =  "string" 
 	}
-	send_community_val =  "string" 
 	inbound =  0 
-	unsuppress_map =  "string" 
 	weight =  0 
 	uuid =  "string" 
 	}
@@ -114,6 +97,7 @@ neighbor-filter-lists {
 	}
 	maximum_prefix =  0 
 	maximum_prefix_thres =  0 
+	restart_min =  0 
 	next_hop_self =  0 
 neighbor-prefix-lists {   
 	nbr_prefix_list =  "string" 
@@ -150,6 +134,7 @@ neighbor-filter-lists {
 	}
 	maximum_prefix =  0 
 	maximum_prefix_thres =  0 
+	restart_min =  0 
 	next_hop_self =  0 
 neighbor-prefix-lists {   
 	nbr_prefix_list =  "string" 
@@ -278,27 +263,28 @@ only_not_flagged_cfg {
 * `activate` - Enable the Address Family for this Neighbor
 * `allowas-in` - Accept as-path with my AS present in it
 * `allowas-in-count` - Number of occurrences of AS number
+* `maximum-prefix` - Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
+* `maximum-prefix-thres` - threshold-value, 1 to 100 percent
+* `next-hop-self` - Disable the next hop calculation for this neighbor
+* `remove-private-as` - Remove private AS number from outbound updates
+* `nbr-route-map` - Apply route map to neighbor (Name of route map)
+* `nbr-rmap-direction` - 'in': in; 'out': out;
+* `inbound` - Allow inbound soft reconfiguration for this neighbor
+* `weight` - Set default weight for routes from this neighbor
+* `neighbor-ipv4` - Neighbor address
+* `peer-group-name` - Configure peer-group (peer-group name)
 * `prefix-list-direction` - 'both': both; 'receive': receive; 'send': send;
+* `graceful-restart` - enable graceful-restart helper for this neighbor
 * `default-originate` - Originate default route to this neighbor
 * `distribute-list` - Filter updates to/from this neighbor (IP standard/extended/named access list)
 * `distribute-list-direction` - 'in': in; 'out': out;
 * `filter-list` - Establish BGP filters (AS path access-list name)
 * `filter-list-direction` - 'in': in; 'out': out;
-* `maximum-prefix` - Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
-* `maximum-prefix-thres` - threshold-value, 1 to 100 percent
-* `next-hop-self` - Disable the next hop calculation for this neighbor
+* `restart-min` - restart value, 1 to 1440 minutes
 * `nbr-prefix-list` - Filter updates to/from this neighbor (Name of a prefix list)
 * `nbr-prefix-list-direction` - 'in': in; 'out': out;
-* `remove-private-as` - Remove private AS number from outbound updates
-* `nbr-route-map` - Apply route map to neighbor (Name of route map)
-* `nbr-rmap-direction` - 'in': in; 'out': out;
 * `send-community-val` - 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
-* `inbound` - Allow inbound soft reconfiguration for this neighbor
 * `unsuppress-map` - Route-map to selectively unsuppress suppressed routes (Name of route map)
-* `weight` - Set default weight for routes from this neighbor
-* `neighbor-ipv4` - Neighbor address
-* `peer-group-name` - Configure peer-group (peer-group name)
-* `graceful-restart` - enable graceful-restart helper for this neighbor
 * `neighbor-ipv6` - Neighbor IPv6 address
 * `ethernet` - Ethernet interface number
 * `ve` - Virtual ethernet interface number

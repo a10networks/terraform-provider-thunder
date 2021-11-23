@@ -4,12 +4,11 @@ package thunder
 
 import (
 	"context"
-	"strconv"
-	"util"
-
-	go_thunder "github.com/go_thunder/thunder"
+	"github.com/go_thunder/thunder"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"strconv"
+	"util"
 )
 
 func resourceRouterBgpAddressFamilyIpv6Redistribute() *schema.Resource {
@@ -300,22 +299,7 @@ func resourceRouterBgpAddressFamilyIpv6Redistribute() *schema.Resource {
 				Description: "",
 			},
 			"as_number": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"process_id": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"action": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "",
-			},
-			"sequence": {
-				Type:        schema.TypeString,
+				Type:        schema.TypeInt,
 				Optional:    true,
 				Description: "",
 			},
@@ -328,15 +312,13 @@ func resourceRouterBgpAddressFamilyIpv6RedistributeCreate(ctx context.Context, d
 	client := meta.(Thunder)
 
 	var diags diag.Diagnostics
-
 	if client.Host != "" {
 		logger.Println("[INFO] Creating RouterBgpAddressFamilyIpv6Redistribute (Inside resourceRouterBgpAddressFamilyIpv6RedistributeCreate) ")
 		name1 := d.Get("as_number").(int)
-		name := strconv.Itoa(name1)
 		data := dataToRouterBgpAddressFamilyIpv6Redistribute(d)
 		logger.Println("[INFO] received formatted data from method data to RouterBgpAddressFamilyIpv6Redistribute --")
 		d.SetId(strconv.Itoa(name1))
-		err := go_thunder.PostRouterBgpAddressFamilyIpv6Redistribute(client.Token, name, data, client.Host)
+		err := go_thunder.PostRouterBgpAddressFamilyIpv6Redistribute(client.Token, strconv.Itoa(name1), data, client.Host)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -350,10 +332,9 @@ func resourceRouterBgpAddressFamilyIpv6RedistributeCreate(ctx context.Context, d
 func resourceRouterBgpAddressFamilyIpv6RedistributeRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	logger := util.GetLoggerInstance()
 	client := meta.(Thunder)
-
-	var diags diag.Diagnostics
 	logger.Println("[INFO] Reading RouterBgpAddressFamilyIpv6Redistribute (Inside resourceRouterBgpAddressFamilyIpv6RedistributeRead)")
 
+	var diags diag.Diagnostics
 	if client.Host != "" {
 		name1 := d.Id()
 		logger.Println("[INFO] Fetching service Read" + name1)
@@ -367,7 +348,7 @@ func resourceRouterBgpAddressFamilyIpv6RedistributeRead(ctx context.Context, d *
 		}
 		return diags
 	}
-	return nil
+	return diags
 }
 
 func resourceRouterBgpAddressFamilyIpv6RedistributeUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
@@ -383,109 +364,109 @@ func dataToRouterBgpAddressFamilyIpv6Redistribute(d *schema.ResourceData) go_thu
 	var vc go_thunder.RouterBgpAddressFamilyIpv6Redistribute
 	var c go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstance
 
-	var obj1 go_thunder.RouterBgpAddressFamilyIpv6RedistributeConnectedCfg
+	var obj1 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceConnectedCfg
 	prefix1 := "connected_cfg.0."
-	obj1.Connected = d.Get(prefix1 + "connected").(int)
-	obj1.RouteMap = d.Get(prefix1 + "route_map").(string)
+	obj1.RouterBgpAddressFamilyIpv6RedistributeInstanceConnectedCfgConnected = d.Get(prefix1 + "connected").(int)
+	obj1.RouterBgpAddressFamilyIpv6RedistributeInstanceConnectedCfgRouteMap = d.Get(prefix1 + "route_map").(string)
 
-	c.Connected = obj1
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceConnectedCfgConnected = obj1
 
-	var obj2 go_thunder.RouterBgpAddressFamilyIpv6RedistributeFloatingIPCfg
+	var obj2 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceFloatingIPCfg
 	prefix2 := "floating_ip_cfg.0."
-	obj2.FloatingIP = d.Get(prefix2 + "floating_ip").(int)
-	obj2.RouteMap = d.Get(prefix2 + "route_map").(string)
+	obj2.RouterBgpAddressFamilyIpv6RedistributeInstanceFloatingIPCfgFloatingIP = d.Get(prefix2 + "floating_ip").(int)
+	obj2.RouterBgpAddressFamilyIpv6RedistributeInstanceFloatingIPCfgRouteMap = d.Get(prefix2 + "route_map").(string)
 
-	c.FloatingIP = obj2
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceFloatingIPCfgFloatingIP = obj2
 
-	var obj3 go_thunder.RouterBgpAddressFamilyIpv6RedistributeNat64Cfg
+	var obj3 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceNat64Cfg
 	prefix3 := "nat64_cfg.0."
-	obj3.Nat64 = d.Get(prefix3 + "nat64").(int)
-	obj3.RouteMap = d.Get(prefix3 + "route_map").(string)
+	obj3.RouterBgpAddressFamilyIpv6RedistributeInstanceNat64CfgNat64 = d.Get(prefix3 + "nat64").(int)
+	obj3.RouterBgpAddressFamilyIpv6RedistributeInstanceNat64CfgRouteMap = d.Get(prefix3 + "route_map").(string)
 
-	c.Nat64 = obj3
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceNat64CfgNat64 = obj3
 
-	var obj4 go_thunder.RouterBgpAddressFamilyIpv6RedistributeNatMapCfg
+	var obj4 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceNatMapCfg
 	prefix4 := "nat_map_cfg.0."
-	obj4.NatMap = d.Get(prefix4 + "nat_map").(int)
-	obj4.RouteMap = d.Get(prefix4 + "route_map").(string)
+	obj4.RouterBgpAddressFamilyIpv6RedistributeInstanceNatMapCfgNatMap = d.Get(prefix4 + "nat_map").(int)
+	obj4.RouterBgpAddressFamilyIpv6RedistributeInstanceNatMapCfgRouteMap = d.Get(prefix4 + "route_map").(string)
 
-	c.NatMap = obj4
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceNatMapCfgNatMap = obj4
 
-	var obj5 go_thunder.RouterBgpAddressFamilyIpv6RedistributeLw4O6Cfg
+	var obj5 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceLw4O6Cfg
 	prefix5 := "lw4o6_cfg.0."
-	obj5.Lw4O6 = d.Get(prefix5 + "lw4o6").(int)
-	obj5.RouteMap = d.Get(prefix5 + "route_map").(string)
+	obj5.RouterBgpAddressFamilyIpv6RedistributeInstanceLw4O6CfgLw4O6 = d.Get(prefix5 + "lw4o6").(int)
+	obj5.RouterBgpAddressFamilyIpv6RedistributeInstanceLw4O6CfgRouteMap = d.Get(prefix5 + "route_map").(string)
 
-	c.Lw4O6 = obj5
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceLw4O6CfgLw4O6 = obj5
 
-	var obj6 go_thunder.RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg
+	var obj6 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceStaticNatCfg
 	prefix6 := "static_nat_cfg.0."
-	obj6.StaticNat = d.Get(prefix6 + "static_nat").(int)
-	obj6.RouteMap = d.Get(prefix6 + "route_map").(string)
+	obj6.RouterBgpAddressFamilyIpv6RedistributeInstanceStaticNatCfgStaticNat = d.Get(prefix6 + "static_nat").(int)
+	obj6.RouterBgpAddressFamilyIpv6RedistributeInstanceStaticNatCfgRouteMap = d.Get(prefix6 + "route_map").(string)
 
-	c.StaticNat = obj6
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceStaticNatCfgStaticNat = obj6
 
-	var obj7 go_thunder.RouterBgpAddressFamilyIpv6RedistributeIPNatCfg
+	var obj7 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatCfg
 	prefix7 := "ip_nat_cfg.0."
-	obj7.IPNat = d.Get(prefix7 + "ip_nat").(int)
-	obj7.RouteMap = d.Get(prefix7 + "route_map").(string)
+	obj7.RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatCfgIPNat = d.Get(prefix7 + "ip_nat").(int)
+	obj7.RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatCfgRouteMap = d.Get(prefix7 + "route_map").(string)
 
-	c.IPNat = obj7
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatCfgIPNat = obj7
 
-	var obj8 go_thunder.RouterBgpAddressFamilyIpv6RedistributeIPNatListCfg
+	var obj8 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatListCfg
 	prefix8 := "ip_nat_list_cfg.0."
-	obj8.IPNatList = d.Get(prefix8 + "ip_nat_list").(int)
-	obj8.RouteMap = d.Get(prefix8 + "route_map").(string)
+	obj8.RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatListCfgIPNatList = d.Get(prefix8 + "ip_nat_list").(int)
+	obj8.RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatListCfgRouteMap = d.Get(prefix8 + "route_map").(string)
 
-	c.IPNatList = obj8
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatListCfgIPNatList = obj8
 
-	var obj9 go_thunder.RouterBgpAddressFamilyIpv6RedistributeIsisCfg
+	var obj9 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceIsisCfg
 	prefix9 := "isis_cfg.0."
-	obj9.Isis = d.Get(prefix9 + "isis").(int)
-	obj9.RouteMap = d.Get(prefix9 + "route_map").(string)
+	obj9.RouterBgpAddressFamilyIpv6RedistributeInstanceIsisCfgIsis = d.Get(prefix9 + "isis").(int)
+	obj9.RouterBgpAddressFamilyIpv6RedistributeInstanceIsisCfgRouteMap = d.Get(prefix9 + "route_map").(string)
 
-	c.Isis = obj9
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceIsisCfgIsis = obj9
 
-	var obj10 go_thunder.RouterBgpAddressFamilyIpv6RedistributeOspfCfg
+	var obj10 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceOspfCfg
 	prefix10 := "ospf_cfg.0."
-	obj10.Ospf = d.Get(prefix10 + "ospf").(int)
-	obj10.RouteMap = d.Get(prefix10 + "route_map").(string)
+	obj10.RouterBgpAddressFamilyIpv6RedistributeInstanceOspfCfgOspf = d.Get(prefix10 + "ospf").(int)
+	obj10.RouterBgpAddressFamilyIpv6RedistributeInstanceOspfCfgRouteMap = d.Get(prefix10 + "route_map").(string)
 
-	c.Ospf = obj10
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceOspfCfgOspf = obj10
 
-	var obj11 go_thunder.RouterBgpAddressFamilyIpv6RedistributeRipCfg
+	var obj11 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceRipCfg
 	prefix11 := "rip_cfg.0."
-	obj11.Rip = d.Get(prefix11 + "rip").(int)
-	obj11.RouteMap = d.Get(prefix11 + "route_map").(string)
+	obj11.RouterBgpAddressFamilyIpv6RedistributeInstanceRipCfgRip = d.Get(prefix11 + "rip").(int)
+	obj11.RouterBgpAddressFamilyIpv6RedistributeInstanceRipCfgRouteMap = d.Get(prefix11 + "route_map").(string)
 
-	c.Rip = obj11
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceRipCfgRip = obj11
 
-	var obj12 go_thunder.RouterBgpAddressFamilyIpv6RedistributeStaticCfg
+	var obj12 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceStaticCfg
 	prefix12 := "static_cfg.0."
-	obj12.Static = d.Get(prefix12 + "static").(int)
-	obj12.RouteMap = d.Get(prefix12 + "route_map").(string)
+	obj12.RouterBgpAddressFamilyIpv6RedistributeInstanceStaticCfgStatic = d.Get(prefix12 + "static").(int)
+	obj12.RouterBgpAddressFamilyIpv6RedistributeInstanceStaticCfgRouteMap = d.Get(prefix12 + "route_map").(string)
 
-	c.Static = obj12
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceStaticCfgStatic = obj12
 
-	var obj13 go_thunder.RouterBgpAddressFamilyIpv6RedistributeVip
+	var obj13 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceVip
 	prefix13 := "vip.0."
 
-	var obj13_1 go_thunder.RouterBgpAddressFamilyIpv6RedistributeOnlyFlaggedCfg
+	var obj13_1 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyFlaggedCfg
 	prefix13_1 := prefix13 + "only_flagged_cfg.0."
-	obj13_1.OnlyFlagged = d.Get(prefix13_1 + "only_flagged").(int)
-	obj13_1.RouteMap = d.Get(prefix13_1 + "route_map").(string)
+	obj13_1.RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyFlaggedCfgOnlyFlagged = d.Get(prefix13_1 + "only_flagged").(int)
+	obj13_1.RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyFlaggedCfgRouteMap = d.Get(prefix13_1 + "route_map").(string)
 
-	obj13.OnlyFlagged = obj13_1
+	obj13.RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyFlaggedCfgOnlyFlagged = obj13_1
 
-	var obj13_2 go_thunder.RouterBgpAddressFamilyIpv6RedistributeOnlyNotFlaggedCfg
+	var obj13_2 go_thunder.RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyNotFlaggedCfg
 	prefix13_2 := prefix13 + "only_not_flagged_cfg.0."
-	obj13_2.OnlyNotFlagged = d.Get(prefix13_2 + "only_not_flagged").(int)
-	obj13_2.RouteMap = d.Get(prefix13_2 + "route_map").(string)
+	obj13_2.RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyNotFlaggedCfgOnlyNotFlagged = d.Get(prefix13_2 + "only_not_flagged").(int)
+	obj13_2.RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyNotFlaggedCfgRouteMap = d.Get(prefix13_2 + "route_map").(string)
 
-	obj13.OnlyNotFlagged = obj13_2
+	obj13.RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyNotFlaggedCfgOnlyNotFlagged = obj13_2
 
-	c.OnlyFlaggedCfg = obj13
+	c.RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyFlaggedCfg = obj13
 
-	vc.ConnectedCfg = c
+	vc.RouterBgpAddressFamilyIpv6RedistributeInstanceConnectedCfg = c
 	return vc
 }

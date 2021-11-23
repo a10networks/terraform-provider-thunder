@@ -8,99 +8,99 @@ import (
 )
 
 type RouterBgpAddressFamilyIpv6Redistribute struct {
-	ConnectedCfg RouterBgpAddressFamilyIpv6RedistributeInstance `json:"redistribute,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceConnectedCfg RouterBgpAddressFamilyIpv6RedistributeInstance `json:"redistribute,omitempty"`
 }
 
 type RouterBgpAddressFamilyIpv6RedistributeInstance struct {
-	Connected      RouterBgpAddressFamilyIpv6RedistributeConnectedCfg  `json:"connected-cfg,omitempty"`
-	FloatingIP     RouterBgpAddressFamilyIpv6RedistributeFloatingIPCfg `json:"floating-ip-cfg,omitempty"`
-	IPNat          RouterBgpAddressFamilyIpv6RedistributeIPNatCfg      `json:"ip-nat-cfg,omitempty"`
-	IPNatList      RouterBgpAddressFamilyIpv6RedistributeIPNatListCfg  `json:"ip-nat-list-cfg,omitempty"`
-	Isis           RouterBgpAddressFamilyIpv6RedistributeIsisCfg       `json:"isis-cfg,omitempty"`
-	Lw4O6          RouterBgpAddressFamilyIpv6RedistributeLw4O6Cfg      `json:"lw4o6-cfg,omitempty"`
-	Nat64          RouterBgpAddressFamilyIpv6RedistributeNat64Cfg      `json:"nat64-cfg,omitempty"`
-	NatMap         RouterBgpAddressFamilyIpv6RedistributeNatMapCfg     `json:"nat-map-cfg,omitempty"`
-	Ospf           RouterBgpAddressFamilyIpv6RedistributeOspfCfg       `json:"ospf-cfg,omitempty"`
-	Rip            RouterBgpAddressFamilyIpv6RedistributeRipCfg        `json:"rip-cfg,omitempty"`
-	Static         RouterBgpAddressFamilyIpv6RedistributeStaticCfg     `json:"static-cfg,omitempty"`
-	StaticNat      RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg  `json:"static-nat-cfg,omitempty"`
-	UUID           string                                              `json:"uuid,omitempty"`
-	OnlyFlaggedCfg RouterBgpAddressFamilyIpv6RedistributeVip           `json:"vip,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceConnectedCfgConnected   RouterBgpAddressFamilyIpv6RedistributeInstanceConnectedCfg  `json:"connected-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceFloatingIPCfgFloatingIP RouterBgpAddressFamilyIpv6RedistributeInstanceFloatingIPCfg `json:"floating-ip-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatCfgIPNat           RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatCfg      `json:"ip-nat-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatListCfgIPNatList   RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatListCfg  `json:"ip-nat-list-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceIsisCfgIsis             RouterBgpAddressFamilyIpv6RedistributeInstanceIsisCfg       `json:"isis-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceLw4O6CfgLw4O6           RouterBgpAddressFamilyIpv6RedistributeInstanceLw4O6Cfg      `json:"lw4o6-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceNat64CfgNat64           RouterBgpAddressFamilyIpv6RedistributeInstanceNat64Cfg      `json:"nat64-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceNatMapCfgNatMap         RouterBgpAddressFamilyIpv6RedistributeInstanceNatMapCfg     `json:"nat-map-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceOspfCfgOspf             RouterBgpAddressFamilyIpv6RedistributeInstanceOspfCfg       `json:"ospf-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceRipCfgRip               RouterBgpAddressFamilyIpv6RedistributeInstanceRipCfg        `json:"rip-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceStaticCfgStatic         RouterBgpAddressFamilyIpv6RedistributeInstanceStaticCfg     `json:"static-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceStaticNatCfgStaticNat   RouterBgpAddressFamilyIpv6RedistributeInstanceStaticNatCfg  `json:"static-nat-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceUUID                    string                                                      `json:"uuid,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyFlaggedCfg       RouterBgpAddressFamilyIpv6RedistributeInstanceVip           `json:"vip,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeConnectedCfg struct {
-	Connected int    `json:"connected,omitempty"`
-	RouteMap  string `json:"route-map,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceConnectedCfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceConnectedCfgConnected int    `json:"connected,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceConnectedCfgRouteMap  string `json:"route-map,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeFloatingIPCfg struct {
-	FloatingIP int    `json:"floating-ip,omitempty"`
-	RouteMap   string `json:"route-map,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceFloatingIPCfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceFloatingIPCfgFloatingIP int    `json:"floating-ip,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceFloatingIPCfgRouteMap   string `json:"route-map,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeIPNatCfg struct {
-	IPNat    int    `json:"ip-nat,omitempty"`
-	RouteMap string `json:"route-map,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatCfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatCfgIPNat    int    `json:"ip-nat,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatCfgRouteMap string `json:"route-map,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeIPNatListCfg struct {
-	IPNatList int    `json:"ip-nat-list,omitempty"`
-	RouteMap  string `json:"route-map,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatListCfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatListCfgIPNatList int    `json:"ip-nat-list,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceIPNatListCfgRouteMap  string `json:"route-map,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeIsisCfg struct {
-	Isis     int    `json:"isis,omitempty"`
-	RouteMap string `json:"route-map,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceIsisCfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceIsisCfgIsis     int    `json:"isis,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceIsisCfgRouteMap string `json:"route-map,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeLw4O6Cfg struct {
-	Lw4O6    int    `json:"lw4o6,omitempty"`
-	RouteMap string `json:"route-map,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceLw4O6Cfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceLw4O6CfgLw4O6    int    `json:"lw4o6,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceLw4O6CfgRouteMap string `json:"route-map,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeNat64Cfg struct {
-	Nat64    int    `json:"nat64,omitempty"`
-	RouteMap string `json:"route-map,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceNat64Cfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceNat64CfgNat64    int    `json:"nat64,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceNat64CfgRouteMap string `json:"route-map,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeNatMapCfg struct {
-	NatMap   int    `json:"nat-map,omitempty"`
-	RouteMap string `json:"route-map,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceNatMapCfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceNatMapCfgNatMap   int    `json:"nat-map,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceNatMapCfgRouteMap string `json:"route-map,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeOspfCfg struct {
-	Ospf     int    `json:"ospf,omitempty"`
-	RouteMap string `json:"route-map,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceOspfCfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceOspfCfgOspf     int    `json:"ospf,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceOspfCfgRouteMap string `json:"route-map,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeRipCfg struct {
-	Rip      int    `json:"rip,omitempty"`
-	RouteMap string `json:"route-map,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceRipCfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceRipCfgRip      int    `json:"rip,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceRipCfgRouteMap string `json:"route-map,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeStaticCfg struct {
-	RouteMap string `json:"route-map,omitempty"`
-	Static   int    `json:"static,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceStaticCfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceStaticCfgRouteMap string `json:"route-map,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceStaticCfgStatic   int    `json:"static,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg struct {
-	RouteMap  string `json:"route-map,omitempty"`
-	StaticNat int    `json:"static-nat,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceStaticNatCfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceStaticNatCfgRouteMap  string `json:"route-map,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceStaticNatCfgStaticNat int    `json:"static-nat,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeVip struct {
-	OnlyFlagged    RouterBgpAddressFamilyIpv6RedistributeOnlyFlaggedCfg    `json:"only-flagged-cfg,omitempty"`
-	OnlyNotFlagged RouterBgpAddressFamilyIpv6RedistributeOnlyNotFlaggedCfg `json:"only-not-flagged-cfg,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceVip struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyFlaggedCfgOnlyFlagged       RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyFlaggedCfg    `json:"only-flagged-cfg,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyNotFlaggedCfgOnlyNotFlagged RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyNotFlaggedCfg `json:"only-not-flagged-cfg,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeOnlyFlaggedCfg struct {
-	OnlyFlagged int    `json:"only-flagged,omitempty"`
-	RouteMap    string `json:"route-map,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyFlaggedCfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyFlaggedCfgOnlyFlagged int    `json:"only-flagged,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyFlaggedCfgRouteMap    string `json:"route-map,omitempty"`
 }
 
-type RouterBgpAddressFamilyIpv6RedistributeOnlyNotFlaggedCfg struct {
-	OnlyNotFlagged int    `json:"only-not-flagged,omitempty"`
-	RouteMap       string `json:"route-map,omitempty"`
+type RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyNotFlaggedCfg struct {
+	RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyNotFlaggedCfgOnlyNotFlagged int    `json:"only-not-flagged,omitempty"`
+	RouterBgpAddressFamilyIpv6RedistributeInstanceVipOnlyNotFlaggedCfgRouteMap       string `json:"route-map,omitempty"`
 }
 
 func PostRouterBgpAddressFamilyIpv6Redistribute(id string, name1 string, inst RouterBgpAddressFamilyIpv6Redistribute, host string) error {
@@ -116,6 +116,7 @@ func PostRouterBgpAddressFamilyIpv6Redistribute(id string, name1 string, inst Ro
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
+		return err
 	}
 
 	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/router/bgp/"+name1+"/address-family/ipv6/redistribute", bytes.NewReader(payloadBytes), headers)
@@ -123,14 +124,13 @@ func PostRouterBgpAddressFamilyIpv6Redistribute(id string, name1 string, inst Ro
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterBgpAddressFamilyIpv6Redistribute
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
-
+			return err
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
 			err := check_api_status("PostRouterBgpAddressFamilyIpv6Redistribute", data)
@@ -158,12 +158,11 @@ func GetRouterBgpAddressFamilyIpv6Redistribute(id string, name1 string, host str
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
-
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
 		var m RouterBgpAddressFamilyIpv6Redistribute
-		erro := json.Unmarshal(data, &m)
-		if erro != nil {
+		err := json.Unmarshal(data, &m)
+		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
