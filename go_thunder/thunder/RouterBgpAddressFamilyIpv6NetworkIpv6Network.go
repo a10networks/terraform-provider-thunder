@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"github.com/clarketm/json" // "encoding/json"
 	"io/ioutil"
+	"net/url"
 	"util"
 )
 
@@ -34,8 +35,8 @@ func PostRouterBgpAddressFamilyIpv6NetworkIpv6Network(id string, name1 string, i
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
 	}
-
-	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/router/bgp/"+name1+"/address-family/ipv6/network/ipv6-network", bytes.NewReader(payloadBytes), headers)
+	nameEncode := url.QueryEscape(name1)
+	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/router/bgp/"+nameEncode+"/address-family/ipv6/network/ipv6-network", bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
@@ -69,8 +70,9 @@ func GetRouterBgpAddressFamilyIpv6NetworkIpv6Network(id string, name1 string, na
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside GetRouterBgpAddressFamilyIpv6NetworkIpv6Network")
-
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/router/bgp/"+name1+"/address-family/ipv6/network/ipv6-network/"+name2, nil, headers)
+	nameEncode1 := url.QueryEscape(name1)
+	nameEncode2 := url.QueryEscape(name2)
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/router/bgp/"+nameEncode1+"/address-family/ipv6/network/ipv6-network/"+nameEncode2, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
@@ -109,8 +111,9 @@ func PutRouterBgpAddressFamilyIpv6NetworkIpv6Network(id string, name1 string, na
 	if err != nil {
 		logger.Println("[INFO] Marshalling failed with error ", err)
 	}
-
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/router/bgp/"+name1+"/address-family/ipv6/network/ipv6-network/"+name2, bytes.NewReader(payloadBytes), headers)
+	nameEncode1 := url.QueryEscape(name1)
+	nameEncode2 := url.QueryEscape(name2)
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/router/bgp/"+nameEncode1+"/address-family/ipv6/network/ipv6-network/"+nameEncode2, bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
@@ -145,7 +148,10 @@ func DeleteRouterBgpAddressFamilyIpv6NetworkIpv6Network(id string, name1 string,
 	headers["Authorization"] = id
 	logger.Println("[INFO] Inside DeleteRouterBgpAddressFamilyIpv6NetworkIpv6Network")
 
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/router/bgp/"+name1+"/address-family/ipv6/network/ipv6-network/"+name2, nil, headers)
+	nameEncode1 := url.QueryEscape(name1)
+	nameEncode2 := url.QueryEscape(name2)
+
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/router/bgp/"+nameEncode1+"/address-family/ipv6/network/ipv6-network/"+nameEncode2, nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
