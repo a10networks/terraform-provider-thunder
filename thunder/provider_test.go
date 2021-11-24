@@ -285,6 +285,7 @@ func ProviderTest() *schema.Provider {
 			"thunder_rule_set":                                resourceRuleSet(),
 			"thunder_class_list":                              resourceClassList(),
 			"thunder_slb_template_dns_class_list":             resourceSlbTemplateDnsClassList(),
+			"thunder_health_monitor":                          resourceHealthMonitor(),
 		},
 
 		ConfigureFunc: providerConfigureTest,
