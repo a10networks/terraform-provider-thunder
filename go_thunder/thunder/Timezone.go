@@ -7,27 +7,21 @@ import (
 	"util"
 )
 
-type Banner struct {
-	BannerInstanceExecBannerCfg BannerInstance `json:"banner,omitempty"`
+type Timezone struct {
+	TimezoneInstanceTimezoneIndexCfg TimezoneInstance `json:"timezone,omitempty"`
 }
 
-type BannerInstance struct {
-	BannerInstanceExecBannerCfgExec   BannerInstanceExecBannerCfg  `json:"exec-banner-cfg,omitempty"`
-	BannerInstanceLoginBannerCfgLogin BannerInstanceLoginBannerCfg `json:"login-banner-cfg,omitempty"`
-	BannerInstanceUUID                string                       `json:"uuid,omitempty"`
+type TimezoneInstance struct {
+	TimezoneInstanceTimezoneIndexCfgTimezoneIndex TimezoneInstanceTimezoneIndexCfg `json:"timezone-index-cfg,omitempty"`
+	TimezoneInstanceUUID                          string                           `json:"uuid,omitempty"`
 }
 
-type BannerInstanceExecBannerCfg struct {
-	BannerInstanceExecBannerCfgExec       int    `json:"exec,omitempty"`
-	BannerInstanceExecBannerCfgExecBanner string `json:"exec-banner,omitempty"`
+type TimezoneInstanceTimezoneIndexCfg struct {
+	TimezoneInstanceTimezoneIndexCfgNodst         int    `json:"nodst,omitempty"`
+	TimezoneInstanceTimezoneIndexCfgTimezoneIndex string `json:"timezone-index,omitempty"`
 }
 
-type BannerInstanceLoginBannerCfg struct {
-	BannerInstanceLoginBannerCfgLogin       int    `json:"login,omitempty"`
-	BannerInstanceLoginBannerCfgLoginBanner string `json:"login-banner,omitempty"`
-}
-
-func PostBanner(id string, inst Banner, host string) error {
+func PostTimezone(id string, inst Timezone, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -35,7 +29,7 @@ func PostBanner(id string, inst Banner, host string) error {
 	headers["Accept"] = "application/json"
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
-	logger.Println("[INFO] Inside PostBanner")
+	logger.Println("[INFO] Inside PostTimezone")
 	payloadBytes, err := json.Marshal(inst)
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
@@ -43,21 +37,21 @@ func PostBanner(id string, inst Banner, host string) error {
 		return err
 	}
 
-	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/banner", bytes.NewReader(payloadBytes), headers)
+	resp, err := DoHttp("POST", "https://"+host+"/axapi/v3/timezone", bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m Banner
+		var m Timezone
 		err := json.Unmarshal(data, &m)
 		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
 			logger.Println("[INFO] Post REQ RES..........................", m)
-			err := check_api_status("PostBanner", data)
+			err := check_api_status("PostTimezone", data)
 			if err != nil {
 				return err
 			}
@@ -67,7 +61,7 @@ func PostBanner(id string, inst Banner, host string) error {
 	return err
 }
 
-func PutBanner(id string, inst Banner, host string) error {
+func PutTimezone(id string, inst Timezone, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -75,7 +69,7 @@ func PutBanner(id string, inst Banner, host string) error {
 	headers["Accept"] = "application/json"
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
-	logger.Println("[INFO] Inside PutBanner")
+	logger.Println("[INFO] Inside PutTimezone")
 	payloadBytes, err := json.Marshal(inst)
 	logger.Println("[INFO] input payload bytes - " + string((payloadBytes)))
 	if err != nil {
@@ -83,21 +77,21 @@ func PutBanner(id string, inst Banner, host string) error {
 		return err
 	}
 
-	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/banner", bytes.NewReader(payloadBytes), headers)
+	resp, err := DoHttp("PUT", "https://"+host+"/axapi/v3/timezone", bytes.NewReader(payloadBytes), headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m Banner
+		var m Timezone
 		err := json.Unmarshal(data, &m)
 		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
-			logger.Println("[INFO] Put REQ RES..........................", m)
-			err := check_api_status("PutBanner", data)
+			logger.Println("[INFO] PUT REQ RES..........................", m)
+			err := check_api_status("PutTimezone", data)
 			if err != nil {
 				return err
 			}
@@ -107,7 +101,7 @@ func PutBanner(id string, inst Banner, host string) error {
 	return err
 }
 
-func GetBanner(id string, host string) (*Banner, error) {
+func GetTimezone(id string, host string) (*Timezone, error) {
 
 	logger := util.GetLoggerInstance()
 
@@ -115,23 +109,23 @@ func GetBanner(id string, host string) (*Banner, error) {
 	headers["Accept"] = "application/json"
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
-	logger.Println("[INFO] Inside GetBanner")
+	logger.Println("[INFO] Inside GetTimezone")
 
-	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/banner", nil, headers)
+	resp, err := DoHttp("GET", "https://"+host+"/axapi/v3/timezone", nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return nil, err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m Banner
+		var m Timezone
 		err := json.Unmarshal(data, &m)
 		if err != nil {
 			logger.Println("Unmarshal error ", err)
 			return nil, err
 		} else {
 			logger.Println("[INFO] Get REQ RES..........................", m)
-			err := check_api_status("GetBanner", data)
+			err := check_api_status("GetTimezone", data)
 			if err != nil {
 				return nil, err
 			}
@@ -141,7 +135,7 @@ func GetBanner(id string, host string) (*Banner, error) {
 
 }
 
-func DeleteBanner(id string, host string) error {
+func DeleteTimezone(id string, host string) error {
 
 	logger := util.GetLoggerInstance()
 
@@ -149,16 +143,16 @@ func DeleteBanner(id string, host string) error {
 	headers["Accept"] = "application/json"
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = id
-	logger.Println("[INFO] Inside DeleteBanner")
+	logger.Println("[INFO] Inside DeleteTimezone")
 
-	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/banner", nil, headers)
+	resp, err := DoHttp("DELETE", "https://"+host+"/axapi/v3/timezone", nil, headers)
 
 	if err != nil {
 		logger.Println("The HTTP request failed with error ", err)
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		var m Banner
+		var m Timezone
 		err := json.Unmarshal(data, &m)
 		if err != nil {
 			logger.Println("Unmarshal error ", err)

@@ -114,7 +114,7 @@ func resourceBannerUpdate(ctx context.Context, d *schema.ResourceData, meta inte
 
 	var diags diag.Diagnostics
 	if client.Host != "" {
-		logger.Println("[INFO] Creating Banner (Inside resourceBannerCreate) ")
+		logger.Println("[INFO] Updating Banner (Inside resourceBannerCreate) ")
 
 		data := dataToBanner(d)
 		logger.Println("[INFO] received formatted data from method data to Banner --")

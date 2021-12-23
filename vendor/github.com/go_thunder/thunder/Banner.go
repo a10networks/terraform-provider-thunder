@@ -164,7 +164,7 @@ func DeleteBanner(id string, host string) error {
 			logger.Println("Unmarshal error ", err)
 			return err
 		} else {
-			logger.Println("[INFO] Get REQ RES..........................", m)
+			logger.Println("[INFO] GET REQ RES..........................", m)
 		}
 	}
 	return nil
