@@ -307,6 +307,7 @@ func Provider() *schema.Provider {
 			"thunder_class_list":                              resourceClassList(),
 			"thunder_slb_template_dns_class_list":             resourceSlbTemplateDnsClassList(),
 			"thunder_health_monitor":                          resourceHealthMonitor(),
+			"thunder_banner":                                  resourceBanner(),
 		},
 
 		ConfigureContextFunc: providerConfigure,
