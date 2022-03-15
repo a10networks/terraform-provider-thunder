@@ -1,0 +1,142 @@
+---
+subcategory: ""
+page_title: "Usage of file_class_list and file_class_list_convert - Thunder Provider"
+description: |-
+    Usage of file_class_list and file_class_list_convert.
+---
+ 
+# Usage of file_class_list and file_class_list_convert
+
+In this provdier, we can use resources `thunder_file_class_list` and `thunder_file_class_list_convert` to do the operation of thunder CLI commands `import class-list` and `import class-list-convert`.
+The imported file will be stored as a file-type class-list. You can check those files by
+
+```
+TH9049#sh class-list 
+Name                                                             Type                     IP       Subnet   DNS      String   Location
+AC_1                                                             ac                       0        0        0        2        file    
+DNS_1                                                            dns                      0        0        2        0        file    
+IPV4_1                                                           ipv4                     0        1        0        0        file    
+IPV6_1                                                           ipv6                     0        1        0        0        file    
+STR_1                                                            string                   0        0        0        2        file    
+STR_CI_1                                                         string-case-insensitive  0        0        0        3        file    
+Total: 6
+```
+
+# Example of Class-List Files
+
+## AC Type
+
+### A10 Format
+For `thunder_file_class_list`
+```
+class-list AC_1 ac file
+
+; AC (Total: 4)
+contains AXYZ
+ends-with B
+equals CD
+starts-with Efg
+```
+
+### Common Format
+For `thunder_file_class_list_convert`
+```
+contains AXYZ
+ends-with B
+equals CD
+starts-with Efg
+```
+
+## IPv4 Type
+
+### A10 Format
+For `thunder_file_class_list`
+```
+class-list "IPV4_1" ipv4 file
+; IPv4
+
+; IP subnet (Total: 1)
+1.2.0.0/15
+```
+
+### Common Format
+For `thunder_file_class_list_convert`
+```
+1.2.0.0/15
+```
+
+## IPv6 Type
+
+### A10 Format
+For `thunder_file_class_list`
+```
+class-list "IPV6_1" ipv6 file
+; IPv6
+
+; IP subnet (Total: 1)
+a:b:c::/64
+```
+
+### Common Format
+For `thunder_file_class_list_convert`
+```
+1.2.0.0/15
+```
+
+## String Type
+
+### A10 Format
+For `thunder_file_class_list`
+```
+class-list "STR_1" string file
+
+; String (Total: 2)
+str text-example
+str pattern
+```
+
+### Common Format
+For `thunder_file_class_list_convert`
+```
+str text-example
+str pattern
+```
+
+## String-Case-Insensitive Type
+
+### A10 Format
+For `thunder_file_class_list`
+```
+class-list "STR_CI_1" string-case-insensitive file
+
+; String (Total: 3)
+str KKJ
+str PATTERN
+str TEXT-3
+```
+
+### Common Format
+For `thunder_file_class_list_convert`
+```
+str KKJ
+str PATTERN
+str TEXT-3
+```
+
+## DNS Type
+
+### A10 Format
+For `thunder_file_class_list`
+```
+class-list "DNS_1" dns file
+
+; DNS domain (Total: 3)
+dns contains test-string
+dns starts-with ddd
+dns ends-with case-end
+```
+
+### Common Format
+`thunder_file_class_list_convert` does not support DNS type.
+
+{{ tffile "examples/guides/usage-of-file-class-list-and-file-class-list-convert.tf" }}

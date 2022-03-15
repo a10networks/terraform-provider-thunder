@@ -68,6 +68,7 @@ github.com/aws/aws-sdk-go/service/sts/stsiface
 # github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d
 github.com/bgentry/go-netrc/netrc
 # github.com/clarketm/json v1.15.7
+## explicit
 github.com/clarketm/json
 # github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
@@ -77,6 +78,7 @@ github.com/fatih/color
 ## explicit
 github.com/go_thunder/thunder
 # github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e
+## explicit
 github.com/golang/groupcache/lru
 # github.com/golang/protobuf v1.4.2
 github.com/golang/protobuf/internal/gengogrpc
