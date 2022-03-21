@@ -1,3 +1,6 @@
+## 1.0.0
+- Add resources for core ADC features
+
 ## 0.4.0 (Unreleased)
 FEATURES:
 - Added new 35 reources for firewall module.

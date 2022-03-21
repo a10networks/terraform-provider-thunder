@@ -15,7 +15,7 @@ type SlbTemplatePersistCookieInstance struct {
 	SlbTemplatePersistCookieInstanceCookieName         string `json:"cookie-name,omitempty"`
 	SlbTemplatePersistCookieInstanceDomain             string `json:"domain,omitempty"`
 	SlbTemplatePersistCookieInstanceDontHonorConnRules int    `json:"dont-honor-conn-rules,omitempty"`
-	SlbTemplatePersistCookieInstanceEncryptLevel       int    `json:"encrypt-level,omitempty"`
+	SlbTemplatePersistCookieInstanceEncryptLevel       int    `json:"encrypt-level"`
 	SlbTemplatePersistCookieInstanceExpire             int    `json:"expire,omitempty"`
 	SlbTemplatePersistCookieInstanceHttponly           int    `json:"httponly,omitempty"`
 	SlbTemplatePersistCookieInstanceInsertAlways       int    `json:"insert-always,omitempty"`

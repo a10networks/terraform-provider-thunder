@@ -1,12 +1,10 @@
 package thunder
 
 import (
-	"crypto/tls"
-	"errors"
 	"fmt"
-	"log"
-	"net/http"
-	"strings"
+	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
+	endpnt "github.com/a10networks/terraform-provider-thunder/thunder/axapi/endpoint"
+	"github.com/clarketm/json"
 )
 
 type Thunder struct {
@@ -14,54 +12,73 @@ type Thunder struct {
 	User      string
 	Password  string
 	Token     string
-	Transport *http.Transport
+	Partition string
+	log	  *axapi.ThunderLog
 }
 
-type APIRequest struct {
-	Method      string
-	URL         string
-	Body        string
-	ContentType string
+type Credentials struct {
+	Inst struct {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	} `json:"credentials"`
 }
 
-type RequestError struct {
-	Code       int      `json:"code,omitempty"`
-	Message    string   `json:"message,omitempty"`
-	ErrorStack []string `json:"errorStack,omitempty"`
+type AuthResponse struct {
+	Inst struct {
+		Signature   string `json:"signature"`
+		Description string `json:"description"`
+	} `json:"authresponse"`
 }
 
-func (r *RequestError) Error() error {
-	if r.Message != "" {
-		return errors.New(r.Message)
+func (t *Thunder) getAuthToken(endpoint string) error {
+	c := Credentials{}
+	c.Inst.Username = t.User
+	c.Inst.Password = t.Password
+	payloadBytes, err := json.Marshal(c)
+	if err != nil {
+		return fmt.Errorf("Failed to create auth payload")
 	}
 
+	var headers = axapi.GenRequestHeaderNoToken()
+	_, axapiResp, err := axapi.SendPost(t.Host, endpoint, payloadBytes, headers, t.log)
+	if err == nil {
+		var m AuthResponse
+		err2 := json.Unmarshal(axapiResp, &m)
+		if err2 != nil {
+			t.log.Println("Failed to unmarshal auth response")
+			return err2
+		}
+		t.Token = "A10 " + m.Inst.Signature
+	}
+	return err
+}
+
+func (t *Thunder) Connect() error {
+	t.log = axapi.CreateLogger(t.Partition)
+	if t.Host == "" || t.User == "" || t.Password == "" {
+		t.log.Println("Failed to connect THUNDER device: no required arguments")
+		return fmt.Errorf("THUNDER provider requires address, username and password")
+	}
+	t.log.Println("Connect to THUNDER device: host="+t.Host+", partition="+t.Partition, "user="+t.User)
+	err := t.getAuthToken("auth")
+	if err != nil {
+		t.log.Printf("Failed to creating New Token Session %s ", err)
+		return fmt.Errorf("Failed to creating New Token Session %s ", err)
+	}
+	t.log.Println("Connected")
 	return nil
 }
 
-func NewSession(host, user, passwd string) Thunder {
-	var url string
-	if !strings.HasPrefix(host, "http") {
-		url = fmt.Sprintf("https://%s", host)
-	} else {
-		url = host
+func (t *Thunder) callPartition() error {
+	if t.Partition != "shared" {
+		p := endpnt.ActivePartition{}
+		p.Inst.ChangeTo = t.Partition
+		err := p.ChangeTo(t.Token, t.Host, t.log)
+		if err != nil {
+			t.log.Println("Fail to switch patition: " + t.Partition)
+			return err
+		}
 	}
-
-	return Thunder{
-		Host:     url,
-		User:     user,
-		Password: passwd,
-		Transport: &http.Transport{
-			TLSClientConfig: &tls.Config{
-				InsecureSkipVerify: true,
-			},
-		},
-	}
-}
-
-func NewTokenSession(host string, user string, passwd string) (b Thunder, err error) {
-	log.Println("[INFO] TOKEN")
-	b.Host = host
-	var err1 error
-	b.Token, err1 = getAuthHeader(host, user, passwd, "/axapi/v3/auth")
-	return b, err1
+	t.log.Println("current partition: " + t.Partition)
+	return nil
 }
