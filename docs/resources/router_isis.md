@@ -64,66 +64,69 @@ resource "thunder_router_isis" "test02" {
 
 ### Required
 
-- **tag** (String) ISO routing area tag
+- `tag` (String) ISO routing area tag
 
 ### Optional
 
-- **address_family** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family))
-- **adjacency_check** (Number) Check ISIS neighbor protocol support
-- **area_password_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--area_password_cfg))
-- **authentication** (Block List, Max: 1) (see [below for nested schema](#nestedblock--authentication))
-- **bfd** (String) 'all-interfaces': Enable BFD on all interfaces;
-- **default_information** (String) 'originate': Distribute a default route;
-- **distance_list** (Block List) (see [below for nested schema](#nestedblock--distance_list))
-- **domain_password_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--domain_password_cfg))
-- **ha_standby_extra_cost** (Block List) (see [below for nested schema](#nestedblock--ha_standby_extra_cost))
-- **id** (String) The ID of this resource.
-- **ignore_lsp_errors** (Number) Ignore LSPs with bad checksums
-- **is_type** (String) 'level-1': Act as a station router only; 'level-1-2': Act as both a station router and an area router; 'level-2-only': Act as an area router only;
-- **log_adjacency_changes_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--log_adjacency_changes_cfg))
-- **lsp_gen_interval_list** (Block List) (see [below for nested schema](#nestedblock--lsp_gen_interval_list))
-- **lsp_refresh_interval** (Number) Set LSP refresh interval (LSP refresh time in seconds)
-- **max_lsp_lifetime** (Number) Set maximum LSP lifetime (Maximum LSP lifetime in seconds)
-- **metric_style_list** (Block List) (see [below for nested schema](#nestedblock--metric_style_list))
-- **net_list** (Block List) (see [below for nested schema](#nestedblock--net_list))
-- **passive_interface_list** (Block List) (see [below for nested schema](#nestedblock--passive_interface_list))
-- **protocol_list** (Block List) (see [below for nested schema](#nestedblock--protocol_list))
-- **redistribute** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute))
-- **set_overload_bit_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--set_overload_bit_cfg))
-- **spf_interval_exp_list** (Block List) (see [below for nested schema](#nestedblock--spf_interval_exp_list))
-- **summary_address_list** (Block List) (see [below for nested schema](#nestedblock--summary_address_list))
-- **user_tag** (String) Customized tag
-- **uuid** (String) uuid of the object
+- `address_family` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family))
+- `adjacency_check` (Number) Check ISIS neighbor protocol support
+- `area_password_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--area_password_cfg))
+- `authentication` (Block List, Max: 1) (see [below for nested schema](#nestedblock--authentication))
+- `bfd` (String) 'all-interfaces': Enable BFD on all interfaces;
+- `default_information` (String) 'originate': Distribute a default route;
+- `distance_list` (Block List) (see [below for nested schema](#nestedblock--distance_list))
+- `domain_password_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--domain_password_cfg))
+- `ha_standby_extra_cost` (Block List) (see [below for nested schema](#nestedblock--ha_standby_extra_cost))
+- `ignore_lsp_errors` (Number) Ignore LSPs with bad checksums
+- `is_type` (String) 'level-1': Act as a station router only; 'level-1-2': Act as both a station router and an area router; 'level-2-only': Act as an area router only;
+- `log_adjacency_changes_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--log_adjacency_changes_cfg))
+- `lsp_gen_interval_list` (Block List) (see [below for nested schema](#nestedblock--lsp_gen_interval_list))
+- `lsp_refresh_interval` (Number) Set LSP refresh interval (LSP refresh time in seconds)
+- `max_lsp_lifetime` (Number) Set maximum LSP lifetime (Maximum LSP lifetime in seconds)
+- `metric_style_list` (Block List) (see [below for nested schema](#nestedblock--metric_style_list))
+- `net_list` (Block List) (see [below for nested schema](#nestedblock--net_list))
+- `passive_interface_list` (Block List) (see [below for nested schema](#nestedblock--passive_interface_list))
+- `protocol_list` (Block List) (see [below for nested schema](#nestedblock--protocol_list))
+- `redistribute` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute))
+- `set_overload_bit_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--set_overload_bit_cfg))
+- `spf_interval_exp_list` (Block List) (see [below for nested schema](#nestedblock--spf_interval_exp_list))
+- `summary_address_list` (Block List) (see [below for nested schema](#nestedblock--summary_address_list))
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--address_family"></a>
 ### Nested Schema for `address_family`
 
 Optional:
 
-- **ipv6** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6))
+- `ipv6` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6))
 
 <a id="nestedblock--address_family--ipv6"></a>
 ### Nested Schema for `address_family.ipv6`
 
 Optional:
 
-- **adjacency_check** (Number) Check ISIS neighbor protocol support
-- **default_information** (String) 'originate': Distribute a default route;
-- **distance** (Number) ISIS Administrative Distance (Distance value)
-- **multi_topology_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--multi_topology_cfg))
-- **redistribute** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute))
-- **summary_prefix_list** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--summary_prefix_list))
-- **uuid** (String) uuid of the object
+- `adjacency_check` (Number) Check ISIS neighbor protocol support
+- `default_information` (String) 'originate': Distribute a default route;
+- `distance` (Number) ISIS Administrative Distance (Distance value)
+- `multi_topology_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--multi_topology_cfg))
+- `redistribute` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute))
+- `summary_prefix_list` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--summary_prefix_list))
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--address_family--ipv6--multi_topology_cfg"></a>
 ### Nested Schema for `address_family.ipv6.multi_topology_cfg`
 
 Optional:
 
-- **level** (String) 'level-1': Level-1 only; 'level-1-2': Level-1-2; 'level-2': Level-2 only;
-- **level_transition** (Number) Accept and generate both IS-IS IPv6 and Multi-topology IPV6 TLVs
-- **multi_topology** (Number) Enable multi-topology mode
-- **transition** (Number) Accept and generate both IS-IS IPv6 and Multi-topology IPV6 TLVs
+- `level` (String) 'level-1': Level-1 only; 'level-1-2': Level-1-2; 'level-2': Level-2 only;
+- `level_transition` (Number) Accept and generate both IS-IS IPv6 and Multi-topology IPV6 TLVs
+- `multi_topology` (Number) Enable multi-topology mode
+- `transition` (Number) Accept and generate both IS-IS IPv6 and Multi-topology IPV6 TLVs
 
 
 <a id="nestedblock--address_family--ipv6--redistribute"></a>
@@ -131,64 +134,64 @@ Optional:
 
 Optional:
 
-- **isis** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--isis))
-- **redist_list** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--redist_list))
-- **uuid** (String) uuid of the object
-- **vip_list** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--vip_list))
+- `isis` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--isis))
+- `redist_list` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--redist_list))
+- `uuid` (String) uuid of the object
+- `vip_list` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--vip_list))
 
 <a id="nestedblock--address_family--ipv6--redistribute--isis"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip_list`
+### Nested Schema for `address_family.ipv6.redistribute.isis`
 
 Optional:
 
-- **level_1_from** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--vip_list--level_1_from))
-- **level_2_from** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--vip_list--level_2_from))
+- `level_1_from` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--isis--level_1_from))
+- `level_2_from` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--isis--level_2_from))
 
-<a id="nestedblock--address_family--ipv6--redistribute--vip_list--level_1_from"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip_list.level_1_from`
-
-Optional:
-
-- **into_1** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--vip_list--level_1_from--into_1))
-
-<a id="nestedblock--address_family--ipv6--redistribute--vip_list--level_1_from--into_1"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip_list.level_1_from.into_1`
+<a id="nestedblock--address_family--ipv6--redistribute--isis--level_1_from"></a>
+### Nested Schema for `address_family.ipv6.redistribute.isis.level_1_from`
 
 Optional:
 
-- **distribute_list** (String) Select routes (Access-list name)
-- **level_2** (Number) Inter-area routes into level-2
+- `into_1` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--isis--level_1_from--into_1))
 
-
-
-<a id="nestedblock--address_family--ipv6--redistribute--vip_list--level_2_from"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip_list.level_2_from`
+<a id="nestedblock--address_family--ipv6--redistribute--isis--level_1_from--into_1"></a>
+### Nested Schema for `address_family.ipv6.redistribute.isis.level_1_from.into_1`
 
 Optional:
 
-- **into_2** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--vip_list--level_2_from--into_2))
+- `distribute_list` (String) Select routes (Access-list name)
+- `level_2` (Number) Inter-area routes into level-2
 
-<a id="nestedblock--address_family--ipv6--redistribute--vip_list--level_2_from--into_2"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip_list.level_2_from.into_2`
+
+
+<a id="nestedblock--address_family--ipv6--redistribute--isis--level_2_from"></a>
+### Nested Schema for `address_family.ipv6.redistribute.isis.level_2_from`
 
 Optional:
 
-- **distribute_list** (String) Select routes (Access-list name)
-- **level_1** (Number) Inter-area routes into level-2
+- `into_2` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--isis--level_2_from--into_2))
+
+<a id="nestedblock--address_family--ipv6--redistribute--isis--level_2_from--into_2"></a>
+### Nested Schema for `address_family.ipv6.redistribute.isis.level_2_from.into_2`
+
+Optional:
+
+- `distribute_list` (String) Select routes (Access-list name)
+- `level_1` (Number) Inter-area routes into level-2
 
 
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--redist_list"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip_list`
+### Nested Schema for `address_family.ipv6.redistribute.redist_list`
 
 Optional:
 
-- **level** (String) 'level-1': IS-IS level-1 routes only; 'level-1-2': IS-IS level-1 and level-2 routes; 'level-2': IS-IS level-2 routes only;
-- **metric** (Number) Metric for redistributed routes (IS-IS default metric)
-- **metric_type** (String) 'external': Set IS-IS External metric type; 'internal': Set IS-IS Internal metric type;
-- **route_map** (String) Route map reference (Pointer to route-map entries)
-- **type** (String) 'bgp': Border Gateway Protocol (BGP); 'connected': Connected; 'floating-ip': Floating IP; 'ip-nat-list': IP NAT list; 'ip-nat': IP NAT; 'lw4o6': LW4O6 Prefix; 'nat-map': NAT MAP Prefix; 'static-nat': Static NAT; 'nat64': NAT64 Prefix; 'ospf': Open Shortest Path First (OSPF); 'rip': Routing Information Protocol (RIP); 'static': Static routes;
+- `level` (String) 'level-1': IS-IS level-1 routes only; 'level-1-2': IS-IS level-1 and level-2 routes; 'level-2': IS-IS level-2 routes only;
+- `metric` (Number) Metric for redistributed routes (IS-IS default metric)
+- `metric_type` (String) 'external': Set IS-IS External metric type; 'internal': Set IS-IS Internal metric type;
+- `route_map` (String) Route map reference (Pointer to route-map entries)
+- `type` (String) 'bgp': Border Gateway Protocol (BGP); 'connected': Connected; 'floating-ip': Floating IP; 'ip-nat-list': IP NAT list; 'ip-nat': IP NAT; 'lw4o6': LW4O6 Prefix; 'nat-map': NAT MAP Prefix; 'static-nat': Static NAT; 'nat64': NAT64 Prefix; 'ospf': Open Shortest Path First (OSPF); 'rip': Routing Information Protocol (RIP); 'static': Static routes;
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--vip_list"></a>
@@ -196,11 +199,11 @@ Optional:
 
 Optional:
 
-- **vip_level** (String) 'level-1': IS-IS level-1 routes only; 'level-1-2': IS-IS level-1 and level-2 routes; 'level-2': IS-IS level-2 routes only;
-- **vip_metric** (Number) Metric for redistributed routes (IS-IS default metric)
-- **vip_metric_type** (String) 'external': Set IS-IS External metric type; 'internal': Set IS-IS Internal metric type;
-- **vip_route_map** (String) Route map reference (Pointer to route-map entries)
-- **vip_type** (String) 'only-flagged': Selected Virtual IP (VIP); 'only-not-flagged': Only not flagged;
+- `vip_level` (String) 'level-1': IS-IS level-1 routes only; 'level-1-2': IS-IS level-1 and level-2 routes; 'level-2': IS-IS level-2 routes only;
+- `vip_metric` (Number) Metric for redistributed routes (IS-IS default metric)
+- `vip_metric_type` (String) 'external': Set IS-IS External metric type; 'internal': Set IS-IS Internal metric type;
+- `vip_route_map` (String) Route map reference (Pointer to route-map entries)
+- `vip_type` (String) 'only-flagged': Selected Virtual IP (VIP); 'only-not-flagged': Only not flagged;
 
 
 
@@ -209,8 +212,8 @@ Optional:
 
 Optional:
 
-- **level** (String) 'level-1': Summarize into level-1 area; 'level-1-2': Summarize into both area and sub-domain; 'level-2': Summarize into level-2 sub-domain;
-- **prefix** (String) IPv6 prefix
+- `level` (String) 'level-1': Summarize into level-1 area; 'level-1-2': Summarize into both area and sub-domain; 'level-2': Summarize into level-2 sub-domain;
+- `prefix` (String) IPv6 prefix
 
 
 
@@ -220,15 +223,15 @@ Optional:
 
 Optional:
 
-- **authenticate** (Block List, Max: 1) (see [below for nested schema](#nestedblock--area_password_cfg--authenticate))
-- **password** (String) Configure the authentication password for an area (Area password)
+- `authenticate` (Block List, Max: 1) (see [below for nested schema](#nestedblock--area_password_cfg--authenticate))
+- `password` (String) Configure the authentication password for an area (Area password)
 
 <a id="nestedblock--area_password_cfg--authenticate"></a>
 ### Nested Schema for `area_password_cfg.authenticate`
 
 Optional:
 
-- **snp** (String) 'send-only': Send but do not check PDUs on receiving; 'validate': Send and check PDUs on receiving;
+- `snp` (String) 'send-only': Send but do not check PDUs on receiving; 'validate': Send and check PDUs on receiving;
 
 
 
@@ -237,17 +240,17 @@ Optional:
 
 Optional:
 
-- **key_chain_list** (Block List) (see [below for nested schema](#nestedblock--authentication--key_chain_list))
-- **mode_list** (Block List) (see [below for nested schema](#nestedblock--authentication--mode_list))
-- **send_only_list** (Block List) (see [below for nested schema](#nestedblock--authentication--send_only_list))
+- `key_chain_list` (Block List) (see [below for nested schema](#nestedblock--authentication--key_chain_list))
+- `mode_list` (Block List) (see [below for nested schema](#nestedblock--authentication--mode_list))
+- `send_only_list` (Block List) (see [below for nested schema](#nestedblock--authentication--send_only_list))
 
 <a id="nestedblock--authentication--key_chain_list"></a>
 ### Nested Schema for `authentication.key_chain_list`
 
 Optional:
 
-- **key_chain** (String) Authentication key-chain (Name of key-chain)
-- **level** (String) 'level-1': Specify authentication key-chain for level-1 PDUs; 'level-2': Specify authentication key-chain for level-2 PDUs;
+- `key_chain` (String) Authentication key-chain (Name of key-chain)
+- `level` (String) 'level-1': Specify authentication key-chain for level-1 PDUs; 'level-2': Specify authentication key-chain for level-2 PDUs;
 
 
 <a id="nestedblock--authentication--mode_list"></a>
@@ -255,8 +258,8 @@ Optional:
 
 Optional:
 
-- **level** (String) 'level-1': Specify authentication mode for level-1 PDUs; 'level-2': Specify authentication mode for level-2 PDUs;
-- **mode** (String) 'md5': Authentication mode;
+- `level` (String) 'level-1': Specify authentication mode for level-1 PDUs; 'level-2': Specify authentication mode for level-2 PDUs;
+- `mode` (String) 'md5': Authentication mode;
 
 
 <a id="nestedblock--authentication--send_only_list"></a>
@@ -264,8 +267,8 @@ Optional:
 
 Optional:
 
-- **level** (String) 'level-1': Specify authentication send-only for level-1 PDUs; 'level-2': Specify authentication send-only for level-2 PDUs;
-- **send_only** (Number) Authentication send-only
+- `level` (String) 'level-1': Specify authentication send-only for level-1 PDUs; 'level-2': Specify authentication send-only for level-2 PDUs;
+- `send_only` (Number) Authentication send-only
 
 
 
@@ -274,9 +277,9 @@ Optional:
 
 Optional:
 
-- **acl** (String) Access list name
-- **distance** (Number) ISIS Administrative Distance (Distance value)
-- **system_id** (String) System-ID in XXXX.XXXX.XXXX
+- `acl` (String) Access list name
+- `distance` (Number) ISIS Administrative Distance (Distance value)
+- `system_id` (String) System-ID in XXXX.XXXX.XXXX
 
 
 <a id="nestedblock--domain_password_cfg"></a>
@@ -284,15 +287,15 @@ Optional:
 
 Optional:
 
-- **authenticate** (Block List, Max: 1) (see [below for nested schema](#nestedblock--domain_password_cfg--authenticate))
-- **password** (String) Set the authentication password for a routing domain (Routing domain password)
+- `authenticate` (Block List, Max: 1) (see [below for nested schema](#nestedblock--domain_password_cfg--authenticate))
+- `password` (String) Set the authentication password for a routing domain (Routing domain password)
 
 <a id="nestedblock--domain_password_cfg--authenticate"></a>
 ### Nested Schema for `domain_password_cfg.authenticate`
 
 Optional:
 
-- **snp** (String) 'send-only': Send but do not check PDUs on receiving; 'validate': Send and check PDUs on receiving;
+- `snp` (String) 'send-only': Send but do not check PDUs on receiving; 'validate': Send and check PDUs on receiving;
 
 
 
@@ -301,8 +304,8 @@ Optional:
 
 Optional:
 
-- **extra_cost** (Number) The extra cost value
-- **group** (Number) Group (Group ID)
+- `extra_cost` (Number) The extra cost value
+- `group` (Number) Group (Group ID)
 
 
 <a id="nestedblock--log_adjacency_changes_cfg"></a>
@@ -310,7 +313,7 @@ Optional:
 
 Optional:
 
-- **state** (String) 'detail': Log changes in adjacency state; 'disable': Disable logging;
+- `state` (String) 'detail': Log changes in adjacency state; 'disable': Disable logging;
 
 
 <a id="nestedblock--lsp_gen_interval_list"></a>
@@ -318,8 +321,8 @@ Optional:
 
 Optional:
 
-- **interval** (Number) Minimum interval in seconds
-- **level** (String) 'level-1': Set interval for level 1 only; 'level-2': Set interval for level 2 only;
+- `interval` (Number) Minimum interval in seconds
+- `level` (String) 'level-1': Set interval for level 1 only; 'level-2': Set interval for level 2 only;
 
 
 <a id="nestedblock--metric_style_list"></a>
@@ -327,8 +330,8 @@ Optional:
 
 Optional:
 
-- **level** (String) 'level-1': Level-1 only; 'level-1-2': Level-1-2; 'level-2': Level-2 only;
-- **type** (String) 'narrow': Use old style of TLVs with narrow metric; 'wide': Use new style of TLVs to carry wider metric; 'transition': Send and accept both styles of TLVs during transition; 'narrow-transition': Send old style of TLVs with narrow metric with accepting both styles of TLVs; 'wide-transition': Send new style of TLVs to carry wider metric with accepting both styles of TLVs;
+- `level` (String) 'level-1': Level-1 only; 'level-1-2': Level-1-2; 'level-2': Level-2 only;
+- `type` (String) 'narrow': Use old style of TLVs with narrow metric; 'wide': Use new style of TLVs to carry wider metric; 'transition': Send and accept both styles of TLVs during transition; 'narrow-transition': Send old style of TLVs with narrow metric with accepting both styles of TLVs; 'wide-transition': Send new style of TLVs to carry wider metric with accepting both styles of TLVs;
 
 
 <a id="nestedblock--net_list"></a>
@@ -336,7 +339,7 @@ Optional:
 
 Optional:
 
-- **net** (String) A Network Entity Title for this process (XX.XXXX. ... .XXXX.XX  Network entity title (NET))
+- `net` (String) A Network Entity Title for this process (XX.XXXX. ... .XXXX.XX  Network entity title (NET))
 
 
 <a id="nestedblock--passive_interface_list"></a>
@@ -344,12 +347,12 @@ Optional:
 
 Optional:
 
-- **ethernet** (Number) Ethernet interface (Port number)
-- **lif** (Number) Logical interface (Lif interface number)
-- **loopback** (Number) Loopback interface (Port number)
-- **trunk** (Number) Trunk interface (Trunk interface number)
-- **tunnel** (Number) Tunnel interface (Tunnel interface number)
-- **ve** (Number) Virtual ethernet interface (Virtual ethernet interface number)
+- `ethernet` (Number) Ethernet interface (Port number)
+- `lif` (Number) Logical interface (Lif interface number)
+- `loopback` (Number) Loopback interface (Port number)
+- `trunk` (Number) Trunk interface (Trunk interface number)
+- `tunnel` (Number) Tunnel interface (Tunnel interface number)
+- `ve` (Number) Virtual ethernet interface (Virtual ethernet interface number)
 
 
 <a id="nestedblock--protocol_list"></a>
@@ -357,7 +360,7 @@ Optional:
 
 Optional:
 
-- **protocol_topology** (Number) Protocol Topology
+- `protocol_topology` (Number) Protocol Topology
 
 
 <a id="nestedblock--redistribute"></a>
@@ -365,33 +368,33 @@ Optional:
 
 Optional:
 
-- **isis** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--isis))
-- **redist_list** (Block List) (see [below for nested schema](#nestedblock--redistribute--redist_list))
-- **uuid** (String) uuid of the object
-- **vip_list** (Block List) (see [below for nested schema](#nestedblock--redistribute--vip_list))
+- `isis` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--isis))
+- `redist_list` (Block List) (see [below for nested schema](#nestedblock--redistribute--redist_list))
+- `uuid` (String) uuid of the object
+- `vip_list` (Block List) (see [below for nested schema](#nestedblock--redistribute--vip_list))
 
 <a id="nestedblock--redistribute--isis"></a>
 ### Nested Schema for `redistribute.isis`
 
 Optional:
 
-- **level_1_from** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--isis--level_1_from))
-- **level_2_from** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--isis--level_2_from))
+- `level_1_from` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--isis--level_1_from))
+- `level_2_from` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--isis--level_2_from))
 
 <a id="nestedblock--redistribute--isis--level_1_from"></a>
 ### Nested Schema for `redistribute.isis.level_1_from`
 
 Optional:
 
-- **into_1** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--isis--level_1_from--into_1))
+- `into_1` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--isis--level_1_from--into_1))
 
 <a id="nestedblock--redistribute--isis--level_1_from--into_1"></a>
 ### Nested Schema for `redistribute.isis.level_1_from.into_1`
 
 Optional:
 
-- **distribute_list** (String) Select routes (Access-list name)
-- **level_2** (Number) Inter-area routes into level-2
+- `distribute_list` (String) Select routes (Access-list name)
+- `level_2` (Number) Inter-area routes into level-2
 
 
 
@@ -400,15 +403,15 @@ Optional:
 
 Optional:
 
-- **into_2** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--isis--level_2_from--into_2))
+- `into_2` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--isis--level_2_from--into_2))
 
 <a id="nestedblock--redistribute--isis--level_2_from--into_2"></a>
 ### Nested Schema for `redistribute.isis.level_2_from.into_2`
 
 Optional:
 
-- **distribute_list** (String) Select routes (Access-list name)
-- **level_1** (Number) Inter-area routes into level-2
+- `distribute_list` (String) Select routes (Access-list name)
+- `level_1` (Number) Inter-area routes into level-2
 
 
 
@@ -418,11 +421,11 @@ Optional:
 
 Optional:
 
-- **level** (String) 'level-1': IS-IS level-1 routes only; 'level-1-2': IS-IS level-1 and level-2 routes; 'level-2': IS-IS level-2 routes only;
-- **metric** (Number) Metric for redistributed routes (IS-IS default metric)
-- **metric_type** (String) 'external': Set IS-IS External metric type; 'internal': Set IS-IS Internal metric type;
-- **route_map** (String) Route map reference (Pointer to route-map entries)
-- **type** (String) 'bgp': Border Gateway Protocol (BGP); 'connected': Connected; 'floating-ip': Floating IP; 'ip-nat-list': IP NAT list; 'ip-nat': IP NAT; 'lw4o6': LW4O6 Prefix; 'nat-map': NAT MAP Prefix; 'static-nat': Static NAT; 'ospf': Open Shortest Path First (OSPF); 'rip': Routing Information Protocol (RIP); 'static': Static routes;
+- `level` (String) 'level-1': IS-IS level-1 routes only; 'level-1-2': IS-IS level-1 and level-2 routes; 'level-2': IS-IS level-2 routes only;
+- `metric` (Number) Metric for redistributed routes (IS-IS default metric)
+- `metric_type` (String) 'external': Set IS-IS External metric type; 'internal': Set IS-IS Internal metric type;
+- `route_map` (String) Route map reference (Pointer to route-map entries)
+- `type` (String) 'bgp': Border Gateway Protocol (BGP); 'connected': Connected; 'floating-ip': Floating IP; 'ip-nat-list': IP NAT list; 'ip-nat': IP NAT; 'lw4o6': LW4O6 Prefix; 'nat-map': NAT MAP Prefix; 'static-nat': Static NAT; 'ospf': Open Shortest Path First (OSPF); 'rip': Routing Information Protocol (RIP); 'static': Static routes;
 
 
 <a id="nestedblock--redistribute--vip_list"></a>
@@ -430,11 +433,11 @@ Optional:
 
 Optional:
 
-- **vip_level** (String) 'level-1': IS-IS level-1 routes only; 'level-1-2': IS-IS level-1 and level-2 routes; 'level-2': IS-IS level-2 routes only;
-- **vip_metric** (Number) Metric for redistributed routes (IS-IS default metric)
-- **vip_metric_type** (String) 'external': Set IS-IS External metric type; 'internal': Set IS-IS Internal metric type;
-- **vip_route_map** (String) Route map reference (Pointer to route-map entries)
-- **vip_type** (String) 'only-flagged': Selected Virtual IP (VIP); 'only-not-flagged': Only not flagged;
+- `vip_level` (String) 'level-1': IS-IS level-1 routes only; 'level-1-2': IS-IS level-1 and level-2 routes; 'level-2': IS-IS level-2 routes only;
+- `vip_metric` (Number) Metric for redistributed routes (IS-IS default metric)
+- `vip_metric_type` (String) 'external': Set IS-IS External metric type; 'internal': Set IS-IS Internal metric type;
+- `vip_route_map` (String) Route map reference (Pointer to route-map entries)
+- `vip_type` (String) 'only-flagged': Selected Virtual IP (VIP); 'only-not-flagged': Only not flagged;
 
 
 
@@ -443,17 +446,17 @@ Optional:
 
 Optional:
 
-- **on_startup** (Block List, Max: 1) (see [below for nested schema](#nestedblock--set_overload_bit_cfg--on_startup))
-- **set_overload_bit** (Number) Signal other touers not to use us in SPF
-- **suppress_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--set_overload_bit_cfg--suppress_cfg))
+- `on_startup` (Block List, Max: 1) (see [below for nested schema](#nestedblock--set_overload_bit_cfg--on_startup))
+- `set_overload_bit` (Number) Signal other touers not to use us in SPF
+- `suppress_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--set_overload_bit_cfg--suppress_cfg))
 
 <a id="nestedblock--set_overload_bit_cfg--on_startup"></a>
 ### Nested Schema for `set_overload_bit_cfg.on_startup`
 
 Optional:
 
-- **delay** (Number) Time in seconds to advertise ourself as overloaded after reboot
-- **wait_for_bgp** (Number) Let BGP decide when to unset the overload bit
+- `delay` (Number) Time in seconds to advertise ourself as overloaded after reboot
+- `wait_for_bgp` (Number) Let BGP decide when to unset the overload bit
 
 
 <a id="nestedblock--set_overload_bit_cfg--suppress_cfg"></a>
@@ -461,8 +464,8 @@ Optional:
 
 Optional:
 
-- **external** (Number) If overload-bit set, don't advertise IP prefixes learned from other protocols
-- **interlevel** (Number) If overload-bit set, don't advertise IP prefixes learned from another ISIS level
+- `external` (Number) If overload-bit set, don't advertise IP prefixes learned from other protocols
+- `interlevel` (Number) If overload-bit set, don't advertise IP prefixes learned from another ISIS level
 
 
 
@@ -471,9 +474,9 @@ Optional:
 
 Optional:
 
-- **level** (String) 'level-1': Set interval for level 1 only; 'level-2': Set interval for level 2 only;
-- **max** (Number) Maximum Delay between receiving a change to SPF calculation in milliseconds
-- **min** (Number) Minimum Delay between receiving a change to SPF calculation in milliseconds
+- `level` (String) 'level-1': Set interval for level 1 only; 'level-2': Set interval for level 2 only;
+- `max` (Number) Maximum Delay between receiving a change to SPF calculation in milliseconds
+- `min` (Number) Minimum Delay between receiving a change to SPF calculation in milliseconds
 
 
 <a id="nestedblock--summary_address_list"></a>
@@ -481,7 +484,7 @@ Optional:
 
 Optional:
 
-- **level** (String) 'level-1': Summarize into level-1 area; 'level-1-2': Summarize into both area and sub-domain; 'level-2': Summarize into level-2 sub-domain;
-- **prefix** (String) IP network prefix
+- `level` (String) 'level-1': Summarize into level-1 area; 'level-1-2': Summarize into both area and sub-domain; 'level-2': Summarize into level-2 sub-domain;
+- `prefix` (String) IP network prefix
 
 

@@ -17,14 +17,17 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **keep_alive_conn** (Number)
-- **limit_per_server** (Number)
-- **name** (String)
-- **num_conn_per_port** (Number)
-- **preopen** (Number)
-- **timeout** (Number)
-- **user_tag** (String)
-- **uuid** (String)
+- `keep_alive_conn` (Number)
+- `limit_per_server` (Number)
+- `name` (String)
+- `num_conn_per_port` (Number)
+- `preopen` (Number)
+- `timeout` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

@@ -17,24 +17,27 @@ description: |-
 
 ### Optional
 
-- **admin_key** (Number)
-- **id** (String) The ID of this resource.
-- **ifnum** (Number)
-- **mode** (String)
-- **port_priority** (Number)
-- **timeout** (String)
-- **trunk_number** (Number)
-- **type** (String)
-- **udld_timeout_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--udld_timeout_cfg))
-- **user_tag** (String)
-- **uuid** (String)
+- `admin_key` (Number)
+- `ifnum` (Number)
+- `mode` (String)
+- `port_priority` (Number)
+- `timeout` (String)
+- `trunk_number` (Number)
+- `type` (String)
+- `udld_timeout_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--udld_timeout_cfg))
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--udld_timeout_cfg"></a>
 ### Nested Schema for `udld_timeout_cfg`
 
 Optional:
 
-- **fast** (Number)
-- **slow** (Number)
+- `fast` (Number)
+- `slow` (Number)
 
 

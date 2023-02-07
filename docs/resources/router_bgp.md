@@ -62,58 +62,61 @@ resource "thunder_router_bgp" "bgp2" {
 
 ### Required
 
-- **as_number** (Number) AS number
+- `as_number` (Number) AS number
 
 ### Optional
 
-- **address_family** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family))
-- **aggregate_address_list** (Block List) (see [below for nested schema](#nestedblock--aggregate_address_list))
-- **auto_summary** (Number) Enable automatic network number summarization
-- **bgp** (Block List, Max: 1) (see [below for nested schema](#nestedblock--bgp))
-- **distance_list** (Block List) (see [below for nested schema](#nestedblock--distance_list))
-- **id** (String) The ID of this resource.
-- **maximum_paths_value** (Number) Supported BGP multipath numbers
-- **neighbor** (Block List, Max: 1) (see [below for nested schema](#nestedblock--neighbor))
-- **network** (Block List, Max: 1) (see [below for nested schema](#nestedblock--network))
-- **originate** (Number) Distribute a default route
-- **redistribute** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute))
-- **synchronization** (Number) Perform IGP synchronization
-- **timers** (Block List, Max: 1) (see [below for nested schema](#nestedblock--timers))
-- **user_tag** (String) Customized tag
-- **uuid** (String) uuid of the object
+- `address_family` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family))
+- `aggregate_address_list` (Block List) (see [below for nested schema](#nestedblock--aggregate_address_list))
+- `auto_summary` (Number) Enable automatic network number summarization
+- `bgp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--bgp))
+- `distance_list` (Block List) (see [below for nested schema](#nestedblock--distance_list))
+- `maximum_paths_value` (Number) Supported BGP multipath numbers
+- `neighbor` (Block List, Max: 1) (see [below for nested schema](#nestedblock--neighbor))
+- `network` (Block List, Max: 1) (see [below for nested schema](#nestedblock--network))
+- `originate` (Number) Distribute a default route
+- `redistribute` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute))
+- `synchronization` (Number) Perform IGP synchronization
+- `timers` (Block List, Max: 1) (see [below for nested schema](#nestedblock--timers))
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--address_family"></a>
 ### Nested Schema for `address_family`
 
 Optional:
 
-- **ipv6** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6))
+- `ipv6` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6))
 
 <a id="nestedblock--address_family--ipv6"></a>
 ### Nested Schema for `address_family.ipv6`
 
 Optional:
 
-- **aggregate_address_list** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--aggregate_address_list))
-- **auto_summary** (Number) Enable automatic network number summarization
-- **bgp** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--bgp))
-- **distance** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--distance))
-- **maximum_paths_value** (Number) Supported BGP multipath numbers
-- **neighbor** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor))
-- **network** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--network))
-- **originate** (Number) Distribute an IPv6 default route
-- **redistribute** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute))
-- **synchronization** (Number) Perform IGP synchronization
-- **uuid** (String) uuid of the object
+- `aggregate_address_list` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--aggregate_address_list))
+- `auto_summary` (Number) Enable automatic network number summarization
+- `bgp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--bgp))
+- `distance` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--distance))
+- `maximum_paths_value` (Number) Supported BGP multipath numbers
+- `neighbor` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor))
+- `network` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--network))
+- `originate` (Number) Distribute an IPv6 default route
+- `redistribute` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute))
+- `synchronization` (Number) Perform IGP synchronization
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--address_family--ipv6--aggregate_address_list"></a>
 ### Nested Schema for `address_family.ipv6.aggregate_address_list`
 
 Optional:
 
-- **aggregate_address** (String) Configure BGP aggregate entries (Aggregate IPv6 prefix)
-- **as_set** (Number) Generate AS set path information
-- **summary_only** (Number) Filter more specific routes from updates
+- `aggregate_address` (String) Configure BGP aggregate entries (Aggregate IPv6 prefix)
+- `as_set` (Number) Generate AS set path information
+- `summary_only` (Number) Filter more specific routes from updates
 
 
 <a id="nestedblock--address_family--ipv6--bgp"></a>
@@ -121,13 +124,13 @@ Optional:
 
 Optional:
 
-- **dampening** (Number) Enable route-flap dampening
-- **dampening_half** (Number) Reachability Half-life time for the penalty(minutes)
-- **dampening_max_supress** (Number) Maximum duration to suppress a stable route(minutes)
-- **dampening_start_reuse** (Number) Value to start reusing a route
-- **dampening_start_supress** (Number) Value to start suppressing a route
-- **dampening_unreachability** (Number) Un-reachability Half-life time for the penalty(minutes)
-- **route_map** (String) Route-map to specify criteria for dampening (Route-map name)
+- `dampening` (Number) Enable route-flap dampening
+- `dampening_half` (Number) Reachability Half-life time for the penalty(minutes)
+- `dampening_max_supress` (Number) Maximum duration to suppress a stable route(minutes)
+- `dampening_start_reuse` (Number) Value to start reusing a route
+- `dampening_start_supress` (Number) Value to start suppressing a route
+- `dampening_unreachability` (Number) Un-reachability Half-life time for the penalty(minutes)
+- `route_map` (String) Route-map to specify criteria for dampening (Route-map name)
 
 
 <a id="nestedblock--address_family--ipv6--distance"></a>
@@ -135,9 +138,9 @@ Optional:
 
 Optional:
 
-- **distance_ext** (Number) Distance for routes external to the AS
-- **distance_int** (Number) Distance for routes internal to the AS
-- **distance_local** (Number) Distance for local routes
+- `distance_ext` (Number) Distance for routes external to the AS
+- `distance_int` (Number) Distance for routes internal to the AS
+- `distance_local` (Number) Distance for local routes
 
 
 <a id="nestedblock--address_family--ipv6--neighbor"></a>
@@ -145,241 +148,241 @@ Optional:
 
 Optional:
 
-- **ethernet_neighbor_ipv6_list** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ethernet_neighbor_ipv6_list))
-- **ipv4_neighbor_list** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ipv4_neighbor_list))
-- **ipv6_neighbor_list** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ipv6_neighbor_list))
-- **peer_group_neighbor_list** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--peer_group_neighbor_list))
-- **trunk_neighbor_ipv6_list** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--trunk_neighbor_ipv6_list))
-- **ve_neighbor_ipv6_list** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list))
+- `ethernet_neighbor_ipv6_list` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ethernet_neighbor_ipv6_list))
+- `ipv4_neighbor_list` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ipv4_neighbor_list))
+- `ipv6_neighbor_list` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ipv6_neighbor_list))
+- `peer_group_neighbor_list` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--peer_group_neighbor_list))
+- `trunk_neighbor_ipv6_list` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--trunk_neighbor_ipv6_list))
+- `ve_neighbor_ipv6_list` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list))
 
 <a id="nestedblock--address_family--ipv6--neighbor--ethernet_neighbor_ipv6_list"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list`
+### Nested Schema for `address_family.ipv6.neighbor.ethernet_neighbor_ipv6_list`
 
 Required:
 
-- **ethernet** (Number) Ethernet interface number
+- `ethernet` (Number) Ethernet interface number
 
 Optional:
 
-- **peer_group_name** (String)
-- **uuid** (String) uuid of the object
+- `peer_group_name` (String)
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--address_family--ipv6--neighbor--ipv4_neighbor_list"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list`
+### Nested Schema for `address_family.ipv6.neighbor.ipv4_neighbor_list`
 
 Required:
 
-- **neighbor_ipv4** (String) Neighbor address
+- `neighbor_ipv4` (String) Neighbor address
 
 Optional:
 
-- **activate** (Number) Enable the Address Family for this Neighbor
-- **allowas_in** (Number) Accept as-path with my AS present in it
-- **allowas_in_count** (Number) Number of occurrences of AS number
-- **default_originate** (Number) Originate default route to this neighbor
-- **distribute_lists** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--distribute_lists))
-- **graceful_restart** (Number) enable graceful-restart helper for this neighbor
-- **inbound** (Number) Allow inbound soft reconfiguration for this neighbor
-- **maximum_prefix** (Number) Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
-- **maximum_prefix_thres** (Number) threshold-value, 1 to 100 percent
-- **neighbor_filter_lists** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_filter_lists))
-- **neighbor_prefix_lists** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_prefix_lists))
-- **neighbor_route_map_lists** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_route_map_lists))
-- **next_hop_self** (Number) Disable the next hop calculation for this neighbor
-- **peer_group_name** (String) Configure peer-group (peer-group name)
-- **prefix_list_direction** (String) 'both': both; 'receive': receive; 'send': send;
-- **remove_private_as** (Number) Remove private AS number from outbound updates
-- **restart_min** (Number) restart value, 1 to 1440 minutes
-- **route_map** (String) Route-map to specify criteria to originate default (route-map name)
-- **send_community_val** (String) 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
-- **unsuppress_map** (String) Route-map to selectively unsuppress suppressed routes (Name of route map)
-- **uuid** (String) uuid of the object
-- **weight** (Number) Set default weight for routes from this neighbor
+- `activate` (Number) Enable the Address Family for this Neighbor
+- `allowas_in` (Number) Accept as-path with my AS present in it
+- `allowas_in_count` (Number) Number of occurrences of AS number
+- `default_originate` (Number) Originate default route to this neighbor
+- `distribute_lists` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ipv4_neighbor_list--distribute_lists))
+- `graceful_restart` (Number) enable graceful-restart helper for this neighbor
+- `inbound` (Number) Allow inbound soft reconfiguration for this neighbor
+- `maximum_prefix` (Number) Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
+- `maximum_prefix_thres` (Number) threshold-value, 1 to 100 percent
+- `neighbor_filter_lists` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ipv4_neighbor_list--neighbor_filter_lists))
+- `neighbor_prefix_lists` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ipv4_neighbor_list--neighbor_prefix_lists))
+- `neighbor_route_map_lists` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ipv4_neighbor_list--neighbor_route_map_lists))
+- `next_hop_self` (Number) Disable the next hop calculation for this neighbor
+- `peer_group_name` (String) Configure peer-group (peer-group name)
+- `prefix_list_direction` (String) 'both': both; 'receive': receive; 'send': send;
+- `remove_private_as` (Number) Remove private AS number from outbound updates
+- `restart_min` (Number) restart value, 1 to 1440 minutes
+- `route_map` (String) Route-map to specify criteria to originate default (route-map name)
+- `send_community_val` (String) 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
+- `unsuppress_map` (String) Route-map to selectively unsuppress suppressed routes (Name of route map)
+- `uuid` (String) uuid of the object
+- `weight` (Number) Set default weight for routes from this neighbor
 
-<a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--distribute_lists"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list.distribute_lists`
-
-Optional:
-
-- **distribute_list** (String) Filter updates to/from this neighbor (IP standard/extended/named access list)
-- **distribute_list_direction** (String) 'in': in; 'out': out;
-
-
-<a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_filter_lists"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list.neighbor_filter_lists`
+<a id="nestedblock--address_family--ipv6--neighbor--ipv4_neighbor_list--distribute_lists"></a>
+### Nested Schema for `address_family.ipv6.neighbor.ipv4_neighbor_list.distribute_lists`
 
 Optional:
 
-- **filter_list** (String) Establish BGP filters (AS path access-list name)
-- **filter_list_direction** (String) 'in': in; 'out': out;
+- `distribute_list` (String) Filter updates to/from this neighbor (IP standard/extended/named access list)
+- `distribute_list_direction` (String) 'in': in; 'out': out;
 
 
-<a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_prefix_lists"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list.neighbor_prefix_lists`
-
-Optional:
-
-- **nbr_prefix_list** (String) Filter updates to/from this neighbor (Name of a prefix list)
-- **nbr_prefix_list_direction** (String) 'in': in; 'out': out;
-
-
-<a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_route_map_lists"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list.neighbor_route_map_lists`
+<a id="nestedblock--address_family--ipv6--neighbor--ipv4_neighbor_list--neighbor_filter_lists"></a>
+### Nested Schema for `address_family.ipv6.neighbor.ipv4_neighbor_list.neighbor_filter_lists`
 
 Optional:
 
-- **nbr_rmap_direction** (String) 'in': in; 'out': out;
-- **nbr_route_map** (String) Apply route map to neighbor (Name of route map)
+- `filter_list` (String) Establish BGP filters (AS path access-list name)
+- `filter_list_direction` (String) 'in': in; 'out': out;
+
+
+<a id="nestedblock--address_family--ipv6--neighbor--ipv4_neighbor_list--neighbor_prefix_lists"></a>
+### Nested Schema for `address_family.ipv6.neighbor.ipv4_neighbor_list.neighbor_prefix_lists`
+
+Optional:
+
+- `nbr_prefix_list` (String) Filter updates to/from this neighbor (Name of a prefix list)
+- `nbr_prefix_list_direction` (String) 'in': in; 'out': out;
+
+
+<a id="nestedblock--address_family--ipv6--neighbor--ipv4_neighbor_list--neighbor_route_map_lists"></a>
+### Nested Schema for `address_family.ipv6.neighbor.ipv4_neighbor_list.neighbor_route_map_lists`
+
+Optional:
+
+- `nbr_rmap_direction` (String) 'in': in; 'out': out;
+- `nbr_route_map` (String) Apply route map to neighbor (Name of route map)
 
 
 
 <a id="nestedblock--address_family--ipv6--neighbor--ipv6_neighbor_list"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list`
+### Nested Schema for `address_family.ipv6.neighbor.ipv6_neighbor_list`
 
 Required:
 
-- **neighbor_ipv6** (String) Neighbor IPv6 address
+- `neighbor_ipv6` (String) Neighbor IPv6 address
 
 Optional:
 
-- **activate** (Number) Enable the Address Family for this Neighbor
-- **allowas_in** (Number) Accept as-path with my AS present in it
-- **allowas_in_count** (Number) Number of occurrences of AS number
-- **default_originate** (Number) Originate default route to this neighbor
-- **distribute_lists** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--distribute_lists))
-- **graceful_restart** (Number) enable graceful-restart helper for this neighbor
-- **inbound** (Number) Allow inbound soft reconfiguration for this neighbor
-- **maximum_prefix** (Number) Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
-- **maximum_prefix_thres** (Number) threshold-value, 1 to 100 percent
-- **neighbor_filter_lists** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_filter_lists))
-- **neighbor_prefix_lists** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_prefix_lists))
-- **neighbor_route_map_lists** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_route_map_lists))
-- **next_hop_self** (Number) Disable the next hop calculation for this neighbor
-- **peer_group_name** (String) Configure peer-group (peer-group name)
-- **prefix_list_direction** (String) 'both': both; 'receive': receive; 'send': send;
-- **remove_private_as** (Number) Remove private AS number from outbound updates
-- **restart_min** (Number) restart value, 1 to 1440 minutes
-- **route_map** (String) Route-map to specify criteria to originate default (route-map name)
-- **send_community_val** (String) 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
-- **unsuppress_map** (String) Route-map to selectively unsuppress suppressed routes (Name of route map)
-- **uuid** (String) uuid of the object
-- **weight** (Number) Set default weight for routes from this neighbor
+- `activate` (Number) Enable the Address Family for this Neighbor
+- `allowas_in` (Number) Accept as-path with my AS present in it
+- `allowas_in_count` (Number) Number of occurrences of AS number
+- `default_originate` (Number) Originate default route to this neighbor
+- `distribute_lists` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ipv6_neighbor_list--distribute_lists))
+- `graceful_restart` (Number) enable graceful-restart helper for this neighbor
+- `inbound` (Number) Allow inbound soft reconfiguration for this neighbor
+- `maximum_prefix` (Number) Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
+- `maximum_prefix_thres` (Number) threshold-value, 1 to 100 percent
+- `neighbor_filter_lists` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ipv6_neighbor_list--neighbor_filter_lists))
+- `neighbor_prefix_lists` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ipv6_neighbor_list--neighbor_prefix_lists))
+- `neighbor_route_map_lists` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ipv6_neighbor_list--neighbor_route_map_lists))
+- `next_hop_self` (Number) Disable the next hop calculation for this neighbor
+- `peer_group_name` (String) Configure peer-group (peer-group name)
+- `prefix_list_direction` (String) 'both': both; 'receive': receive; 'send': send;
+- `remove_private_as` (Number) Remove private AS number from outbound updates
+- `restart_min` (Number) restart value, 1 to 1440 minutes
+- `route_map` (String) Route-map to specify criteria to originate default (route-map name)
+- `send_community_val` (String) 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
+- `unsuppress_map` (String) Route-map to selectively unsuppress suppressed routes (Name of route map)
+- `uuid` (String) uuid of the object
+- `weight` (Number) Set default weight for routes from this neighbor
 
-<a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--distribute_lists"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list.distribute_lists`
-
-Optional:
-
-- **distribute_list** (String) Filter updates to/from this neighbor (IP standard/extended/named access list)
-- **distribute_list_direction** (String) 'in': in; 'out': out;
-
-
-<a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_filter_lists"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list.neighbor_filter_lists`
+<a id="nestedblock--address_family--ipv6--neighbor--ipv6_neighbor_list--distribute_lists"></a>
+### Nested Schema for `address_family.ipv6.neighbor.ipv6_neighbor_list.distribute_lists`
 
 Optional:
 
-- **filter_list** (String) Establish BGP filters (AS path access-list name)
-- **filter_list_direction** (String) 'in': in; 'out': out;
+- `distribute_list` (String) Filter updates to/from this neighbor (IP standard/extended/named access list)
+- `distribute_list_direction` (String) 'in': in; 'out': out;
 
 
-<a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_prefix_lists"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list.neighbor_prefix_lists`
-
-Optional:
-
-- **nbr_prefix_list** (String) Filter updates to/from this neighbor (Name of a prefix list)
-- **nbr_prefix_list_direction** (String) 'in': in; 'out': out;
-
-
-<a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_route_map_lists"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list.neighbor_route_map_lists`
+<a id="nestedblock--address_family--ipv6--neighbor--ipv6_neighbor_list--neighbor_filter_lists"></a>
+### Nested Schema for `address_family.ipv6.neighbor.ipv6_neighbor_list.neighbor_filter_lists`
 
 Optional:
 
-- **nbr_rmap_direction** (String) 'in': in; 'out': out;
-- **nbr_route_map** (String) Apply route map to neighbor (Name of route map)
+- `filter_list` (String) Establish BGP filters (AS path access-list name)
+- `filter_list_direction` (String) 'in': in; 'out': out;
+
+
+<a id="nestedblock--address_family--ipv6--neighbor--ipv6_neighbor_list--neighbor_prefix_lists"></a>
+### Nested Schema for `address_family.ipv6.neighbor.ipv6_neighbor_list.neighbor_prefix_lists`
+
+Optional:
+
+- `nbr_prefix_list` (String) Filter updates to/from this neighbor (Name of a prefix list)
+- `nbr_prefix_list_direction` (String) 'in': in; 'out': out;
+
+
+<a id="nestedblock--address_family--ipv6--neighbor--ipv6_neighbor_list--neighbor_route_map_lists"></a>
+### Nested Schema for `address_family.ipv6.neighbor.ipv6_neighbor_list.neighbor_route_map_lists`
+
+Optional:
+
+- `nbr_rmap_direction` (String) 'in': in; 'out': out;
+- `nbr_route_map` (String) Apply route map to neighbor (Name of route map)
 
 
 
 <a id="nestedblock--address_family--ipv6--neighbor--peer_group_neighbor_list"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list`
+### Nested Schema for `address_family.ipv6.neighbor.peer_group_neighbor_list`
 
 Required:
 
-- **peer_group** (String) Neighbor tag
+- `peer_group` (String) Neighbor tag
 
 Optional:
 
-- **activate** (Number) Enable the Address Family for this Neighbor
-- **allowas_in** (Number) Accept as-path with my AS present in it
-- **allowas_in_count** (Number) Number of occurrences of AS number
-- **default_originate** (Number) Originate default route to this neighbor
-- **distribute_lists** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--distribute_lists))
-- **inbound** (Number) Allow inbound soft reconfiguration for this neighbor
-- **maximum_prefix** (Number) Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
-- **maximum_prefix_thres** (Number) threshold-value, 1 to 100 percent
-- **neighbor_filter_lists** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_filter_lists))
-- **neighbor_prefix_lists** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_prefix_lists))
-- **neighbor_route_map_lists** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_route_map_lists))
-- **next_hop_self** (Number) Disable the next hop calculation for this neighbor
-- **prefix_list_direction** (String) 'both': both; 'receive': receive; 'send': send;
-- **remove_private_as** (Number) Remove private AS number from outbound updates
-- **route_map** (String) Route-map to specify criteria to originate default (route-map name)
-- **send_community_val** (String) 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
-- **unsuppress_map** (String) Route-map to selectively unsuppress suppressed routes (Name of route map)
-- **uuid** (String) uuid of the object
-- **weight** (Number) Set default weight for routes from this neighbor
+- `activate` (Number) Enable the Address Family for this Neighbor
+- `allowas_in` (Number) Accept as-path with my AS present in it
+- `allowas_in_count` (Number) Number of occurrences of AS number
+- `default_originate` (Number) Originate default route to this neighbor
+- `distribute_lists` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--peer_group_neighbor_list--distribute_lists))
+- `inbound` (Number) Allow inbound soft reconfiguration for this neighbor
+- `maximum_prefix` (Number) Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
+- `maximum_prefix_thres` (Number) threshold-value, 1 to 100 percent
+- `neighbor_filter_lists` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--peer_group_neighbor_list--neighbor_filter_lists))
+- `neighbor_prefix_lists` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--peer_group_neighbor_list--neighbor_prefix_lists))
+- `neighbor_route_map_lists` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--neighbor--peer_group_neighbor_list--neighbor_route_map_lists))
+- `next_hop_self` (Number) Disable the next hop calculation for this neighbor
+- `prefix_list_direction` (String) 'both': both; 'receive': receive; 'send': send;
+- `remove_private_as` (Number) Remove private AS number from outbound updates
+- `route_map` (String) Route-map to specify criteria to originate default (route-map name)
+- `send_community_val` (String) 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
+- `unsuppress_map` (String) Route-map to selectively unsuppress suppressed routes (Name of route map)
+- `uuid` (String) uuid of the object
+- `weight` (Number) Set default weight for routes from this neighbor
 
-<a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--distribute_lists"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list.distribute_lists`
-
-Optional:
-
-- **distribute_list** (String) Filter updates to/from this neighbor (IP standard/extended/named access list)
-- **distribute_list_direction** (String) 'in': in; 'out': out;
-
-
-<a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_filter_lists"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list.neighbor_filter_lists`
+<a id="nestedblock--address_family--ipv6--neighbor--peer_group_neighbor_list--distribute_lists"></a>
+### Nested Schema for `address_family.ipv6.neighbor.peer_group_neighbor_list.distribute_lists`
 
 Optional:
 
-- **filter_list** (String) Establish BGP filters (AS path access-list name)
-- **filter_list_direction** (String) 'in': in; 'out': out;
+- `distribute_list` (String) Filter updates to/from this neighbor (IP standard/extended/named access list)
+- `distribute_list_direction` (String) 'in': in; 'out': out;
 
 
-<a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_prefix_lists"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list.neighbor_prefix_lists`
-
-Optional:
-
-- **nbr_prefix_list** (String) Filter updates to/from this neighbor (Name of a prefix list)
-- **nbr_prefix_list_direction** (String) 'in': in; 'out': out;
-
-
-<a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list--neighbor_route_map_lists"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list.neighbor_route_map_lists`
+<a id="nestedblock--address_family--ipv6--neighbor--peer_group_neighbor_list--neighbor_filter_lists"></a>
+### Nested Schema for `address_family.ipv6.neighbor.peer_group_neighbor_list.neighbor_filter_lists`
 
 Optional:
 
-- **nbr_rmap_direction** (String) 'in': in; 'out': out;
-- **nbr_route_map** (String) Apply route map to neighbor (Name of route map)
+- `filter_list` (String) Establish BGP filters (AS path access-list name)
+- `filter_list_direction` (String) 'in': in; 'out': out;
+
+
+<a id="nestedblock--address_family--ipv6--neighbor--peer_group_neighbor_list--neighbor_prefix_lists"></a>
+### Nested Schema for `address_family.ipv6.neighbor.peer_group_neighbor_list.neighbor_prefix_lists`
+
+Optional:
+
+- `nbr_prefix_list` (String) Filter updates to/from this neighbor (Name of a prefix list)
+- `nbr_prefix_list_direction` (String) 'in': in; 'out': out;
+
+
+<a id="nestedblock--address_family--ipv6--neighbor--peer_group_neighbor_list--neighbor_route_map_lists"></a>
+### Nested Schema for `address_family.ipv6.neighbor.peer_group_neighbor_list.neighbor_route_map_lists`
+
+Optional:
+
+- `nbr_rmap_direction` (String) 'in': in; 'out': out;
+- `nbr_route_map` (String) Apply route map to neighbor (Name of route map)
 
 
 
 <a id="nestedblock--address_family--ipv6--neighbor--trunk_neighbor_ipv6_list"></a>
-### Nested Schema for `address_family.ipv6.neighbor.ve_neighbor_ipv6_list`
+### Nested Schema for `address_family.ipv6.neighbor.trunk_neighbor_ipv6_list`
 
 Required:
 
-- **trunk** (Number) Trunk interface number
+- `trunk` (Number) Trunk interface number
 
 Optional:
 
-- **peer_group_name** (String)
-- **uuid** (String) uuid of the object
+- `peer_group_name` (String)
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--address_family--ipv6--neighbor--ve_neighbor_ipv6_list"></a>
@@ -387,12 +390,12 @@ Optional:
 
 Required:
 
-- **ve** (Number) Virtual ethernet interface number
+- `ve` (Number) Virtual ethernet interface number
 
 Optional:
 
-- **peer_group_name** (String)
-- **uuid** (String) uuid of the object
+- `peer_group_name` (String)
+- `uuid` (String) uuid of the object
 
 
 
@@ -401,23 +404,23 @@ Optional:
 
 Optional:
 
-- **ipv6_network_list** (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--network--ipv6_network_list))
-- **synchronization** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--network--synchronization))
+- `ipv6_network_list` (Block List) (see [below for nested schema](#nestedblock--address_family--ipv6--network--ipv6_network_list))
+- `synchronization` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--network--synchronization))
 
 <a id="nestedblock--address_family--ipv6--network--ipv6_network_list"></a>
-### Nested Schema for `address_family.ipv6.network.synchronization`
+### Nested Schema for `address_family.ipv6.network.ipv6_network_list`
 
 Required:
 
-- **network_ipv6** (String) Specify a network to announce via BGP
+- `network_ipv6` (String) Specify a network to announce via BGP
 
 Optional:
 
-- **backdoor** (Number) Specify a BGP backdoor route
-- **comm_value** (String) community value in the format 1-4294967295|AA:NN|internet|local-AS|no-advertise|no-export
-- **description** (String) Network specific description (Up to 80 characters describing this network)
-- **route_map** (String) Route-map to modify the attributes (Name of the route map)
-- **uuid** (String) uuid of the object
+- `backdoor` (Number) Specify a BGP backdoor route
+- `comm_value` (String) community value in the format 1-4294967295|AA:NN|internet|local-AS|no-advertise|no-export
+- `description` (String) Network specific description (Up to 80 characters describing this network)
+- `route_map` (String) Route-map to modify the attributes (Name of the route map)
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--address_family--ipv6--network--synchronization"></a>
@@ -425,8 +428,8 @@ Optional:
 
 Optional:
 
-- **network_synchronization** (Number) Perform IGP synchronization
-- **uuid** (String) uuid of the object
+- `network_synchronization` (Number) Perform IGP synchronization
+- `uuid` (String) uuid of the object
 
 
 
@@ -435,127 +438,127 @@ Optional:
 
 Optional:
 
-- **connected_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--connected_cfg))
-- **floating_ip_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--floating_ip_cfg))
-- **ip_nat_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--ip_nat_cfg))
-- **ip_nat_list_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--ip_nat_list_cfg))
-- **isis_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--isis_cfg))
-- **lw4o6_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--lw4o6_cfg))
-- **nat64_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--nat64_cfg))
-- **nat_map_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--nat_map_cfg))
-- **ospf_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--ospf_cfg))
-- **rip_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--rip_cfg))
-- **static_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--static_cfg))
-- **static_nat_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--static_nat_cfg))
-- **uuid** (String) uuid of the object
-- **vip** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--vip))
+- `connected_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--connected_cfg))
+- `floating_ip_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--floating_ip_cfg))
+- `ip_nat_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--ip_nat_cfg))
+- `ip_nat_list_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--ip_nat_list_cfg))
+- `isis_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--isis_cfg))
+- `lw4o6_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--lw4o6_cfg))
+- `nat64_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--nat64_cfg))
+- `nat_map_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--nat_map_cfg))
+- `ospf_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--ospf_cfg))
+- `rip_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--rip_cfg))
+- `static_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--static_cfg))
+- `static_nat_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--static_nat_cfg))
+- `uuid` (String) uuid of the object
+- `vip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--vip))
 
 <a id="nestedblock--address_family--ipv6--redistribute--connected_cfg"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip`
+### Nested Schema for `address_family.ipv6.redistribute.connected_cfg`
 
 Optional:
 
-- **connected** (Number) Connected
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `connected` (Number) Connected
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--floating_ip_cfg"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip`
+### Nested Schema for `address_family.ipv6.redistribute.floating_ip_cfg`
 
 Optional:
 
-- **floating_ip** (Number) Floating IP
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `floating_ip` (Number) Floating IP
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--ip_nat_cfg"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip`
+### Nested Schema for `address_family.ipv6.redistribute.ip_nat_cfg`
 
 Optional:
 
-- **ip_nat** (Number) IP NAT
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `ip_nat` (Number) IP NAT
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--ip_nat_list_cfg"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip`
+### Nested Schema for `address_family.ipv6.redistribute.ip_nat_list_cfg`
 
 Optional:
 
-- **ip_nat_list** (Number) IP NAT list
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `ip_nat_list` (Number) IP NAT list
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--isis_cfg"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip`
+### Nested Schema for `address_family.ipv6.redistribute.isis_cfg`
 
 Optional:
 
-- **isis** (Number) ISO IS-IS
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `isis` (Number) ISO IS-IS
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--lw4o6_cfg"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip`
+### Nested Schema for `address_family.ipv6.redistribute.lw4o6_cfg`
 
 Optional:
 
-- **lw4o6** (Number) LW4O6 Prefix
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `lw4o6` (Number) LW4O6 Prefix
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--nat64_cfg"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip`
+### Nested Schema for `address_family.ipv6.redistribute.nat64_cfg`
 
 Optional:
 
-- **nat64** (Number) NAT64 Prefix
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `nat64` (Number) NAT64 Prefix
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--nat_map_cfg"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip`
+### Nested Schema for `address_family.ipv6.redistribute.nat_map_cfg`
 
 Optional:
 
-- **nat_map** (Number) NAT MAP Prefix
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `nat_map` (Number) NAT MAP Prefix
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--ospf_cfg"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip`
+### Nested Schema for `address_family.ipv6.redistribute.ospf_cfg`
 
 Optional:
 
-- **ospf** (Number) Open Shortest Path First (OSPF)
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `ospf` (Number) Open Shortest Path First (OSPF)
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--rip_cfg"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip`
+### Nested Schema for `address_family.ipv6.redistribute.rip_cfg`
 
 Optional:
 
-- **rip** (Number) Routing Information Protocol (RIP)
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `rip` (Number) Routing Information Protocol (RIP)
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--static_cfg"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip`
+### Nested Schema for `address_family.ipv6.redistribute.static_cfg`
 
 Optional:
 
-- **route_map** (String) Route map reference (Pointer to route-map entries)
-- **static** (Number) Static routes
+- `route_map` (String) Route map reference (Pointer to route-map entries)
+- `static` (Number) Static routes
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--static_nat_cfg"></a>
-### Nested Schema for `address_family.ipv6.redistribute.vip`
+### Nested Schema for `address_family.ipv6.redistribute.static_nat_cfg`
 
 Optional:
 
-- **route_map** (String) Route map reference (Pointer to route-map entries)
-- **static_nat** (Number) Static NAT Prefix
+- `route_map` (String) Route map reference (Pointer to route-map entries)
+- `static_nat` (Number) Static NAT Prefix
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--vip"></a>
@@ -563,16 +566,16 @@ Optional:
 
 Optional:
 
-- **only_flagged_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--vip--only_flagged_cfg))
-- **only_not_flagged_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--vip--only_not_flagged_cfg))
+- `only_flagged_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--vip--only_flagged_cfg))
+- `only_not_flagged_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--address_family--ipv6--redistribute--vip--only_not_flagged_cfg))
 
 <a id="nestedblock--address_family--ipv6--redistribute--vip--only_flagged_cfg"></a>
 ### Nested Schema for `address_family.ipv6.redistribute.vip.only_flagged_cfg`
 
 Optional:
 
-- **only_flagged** (Number) Selected Virtual IP (VIP)
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `only_flagged` (Number) Selected Virtual IP (VIP)
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--address_family--ipv6--redistribute--vip--only_not_flagged_cfg"></a>
@@ -580,8 +583,8 @@ Optional:
 
 Optional:
 
-- **only_not_flagged** (Number) Only not flagged
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `only_not_flagged` (Number) Only not flagged
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 
@@ -593,9 +596,9 @@ Optional:
 
 Optional:
 
-- **aggregate_address** (String) Configure BGP aggregate entries (Aggregate prefix)
-- **as_set** (Number) Generate AS set path information
-- **summary_only** (Number) Filter more specific routes from updates
+- `aggregate_address` (String) Configure BGP aggregate entries (Aggregate prefix)
+- `as_set` (Number) Generate AS set path information
+- `summary_only` (Number) Filter more specific routes from updates
 
 
 <a id="nestedblock--bgp"></a>
@@ -603,32 +606,32 @@ Optional:
 
 Optional:
 
-- **always_compare_med** (Number) Allow comparing MED from different neighbors
-- **bestpath_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--bgp--bestpath_cfg))
-- **bgp_restart_time** (Number) BGP Peer Graceful Restart time in seconds (default 90)
-- **bgp_stalepath_time** (Number) BGP Graceful Restart Stalepath retention time in seconds (default 360)
-- **dampening_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--bgp--dampening_cfg))
-- **deterministic_med** (Number) Pick the best-MED path among paths advertised from the neighboring AS
-- **enforce_first_as** (Number) Enforce the first AS for EBGP routes
-- **fast_external_failover** (Number) Immediately reset session if a link to a directly connected external peer goes down
-- **graceful_restart** (Number) Configure BGP BGP Graceful Restart
-- **local_preference_value** (Number) Configure default local preference value
-- **log_neighbor_changes** (Number) Log neighbor up/down and reset reason
-- **nexthop_trigger_count** (Number) BGP nexthop-tracking status (count)
-- **override_validation** (Number) override router-id validation
-- **router_id** (String) Override current router identifier (peers will reset) (Manually configured router identifier)
-- **scan_time** (Number) Configure background scan interval (Scan interval (sec) [Default:60 Disable:0])
+- `always_compare_med` (Number) Allow comparing MED from different neighbors
+- `bestpath_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--bgp--bestpath_cfg))
+- `bgp_restart_time` (Number) BGP Peer Graceful Restart time in seconds (default 90)
+- `bgp_stalepath_time` (Number) BGP Graceful Restart Stalepath retention time in seconds (default 360)
+- `dampening_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--bgp--dampening_cfg))
+- `deterministic_med` (Number) Pick the best-MED path among paths advertised from the neighboring AS
+- `enforce_first_as` (Number) Enforce the first AS for EBGP routes
+- `fast_external_failover` (Number) Immediately reset session if a link to a directly connected external peer goes down
+- `graceful_restart` (Number) Configure BGP BGP Graceful Restart
+- `local_preference_value` (Number) Configure default local preference value
+- `log_neighbor_changes` (Number) Log neighbor up/down and reset reason
+- `nexthop_trigger_count` (Number) BGP nexthop-tracking status (count)
+- `override_validation` (Number) override router-id validation
+- `router_id` (String) Override current router identifier (peers will reset) (Manually configured router identifier)
+- `scan_time` (Number) Configure background scan interval (Scan interval (sec) [Default:60 Disable:0])
 
 <a id="nestedblock--bgp--bestpath_cfg"></a>
 ### Nested Schema for `bgp.bestpath_cfg`
 
 Optional:
 
-- **compare_routerid** (Number) Compare router-id for identical EBGP paths
-- **ignore** (Number) Ignore as-path length in selecting a route
-- **missing_as_worst** (Number) Treat missing MED as the least preferred one
-- **remove_recv_med** (Number) To remove rcvd MED attribute
-- **remove_send_med** (Number) To remove send MED attribute
+- `compare_routerid` (Number) Compare router-id for identical EBGP paths
+- `ignore` (Number) Ignore as-path length in selecting a route
+- `missing_as_worst` (Number) Treat missing MED as the least preferred one
+- `remove_recv_med` (Number) To remove rcvd MED attribute
+- `remove_send_med` (Number) To remove send MED attribute
 
 
 <a id="nestedblock--bgp--dampening_cfg"></a>
@@ -636,13 +639,13 @@ Optional:
 
 Optional:
 
-- **dampening** (Number) Enable route-flap dampening
-- **dampening_half_time** (Number) Reachability Half-life time for the penalty(minutes)
-- **dampening_max_supress** (Number) Maximum duration to suppress a stable route(minutes)
-- **dampening_penalty** (Number) Un-reachability Half-life time for the penalty(minutes)
-- **dampening_reuse** (Number) Value to start reusing a route
-- **dampening_supress** (Number) Value to start suppressing a route
-- **route_map** (String) Route-map to specify criteria for dampening (Route-map name)
+- `dampening` (Number) Enable route-flap dampening
+- `dampening_half_time` (Number) Reachability Half-life time for the penalty(minutes)
+- `dampening_max_supress` (Number) Maximum duration to suppress a stable route(minutes)
+- `dampening_penalty` (Number) Un-reachability Half-life time for the penalty(minutes)
+- `dampening_reuse` (Number) Value to start reusing a route
+- `dampening_supress` (Number) Value to start suppressing a route
+- `route_map` (String) Route-map to specify criteria for dampening (Route-map name)
 
 
 
@@ -651,12 +654,12 @@ Optional:
 
 Optional:
 
-- **acl_str** (String) Access list name
-- **admin_distance** (Number) Define an administrative distance
-- **ext_routes_dist** (Number) Distance for routes external to the AS
-- **int_routes_dist** (Number) Distance for routes internal to the AS
-- **local_routes_dist** (Number) Distance for local routes
-- **src_prefix** (String) IP source prefix
+- `acl_str` (String) Access list name
+- `admin_distance` (Number) Define an administrative distance
+- `ext_routes_dist` (Number) Distance for routes external to the AS
+- `int_routes_dist` (Number) Distance for routes internal to the AS
+- `local_routes_dist` (Number) Distance for local routes
+- `src_prefix` (String) IP source prefix
 
 
 <a id="nestedblock--neighbor"></a>
@@ -664,25 +667,25 @@ Optional:
 
 Optional:
 
-- **ethernet_neighbor_list** (Block List) (see [below for nested schema](#nestedblock--neighbor--ethernet_neighbor_list))
-- **ipv4_neighbor_list** (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv4_neighbor_list))
-- **ipv6_neighbor_list** (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv6_neighbor_list))
-- **peer_group_neighbor_list** (Block List) (see [below for nested schema](#nestedblock--neighbor--peer_group_neighbor_list))
-- **trunk_neighbor_list** (Block List) (see [below for nested schema](#nestedblock--neighbor--trunk_neighbor_list))
-- **ve_neighbor_list** (Block List) (see [below for nested schema](#nestedblock--neighbor--ve_neighbor_list))
+- `ethernet_neighbor_list` (Block List) (see [below for nested schema](#nestedblock--neighbor--ethernet_neighbor_list))
+- `ipv4_neighbor_list` (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv4_neighbor_list))
+- `ipv6_neighbor_list` (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv6_neighbor_list))
+- `peer_group_neighbor_list` (Block List) (see [below for nested schema](#nestedblock--neighbor--peer_group_neighbor_list))
+- `trunk_neighbor_list` (Block List) (see [below for nested schema](#nestedblock--neighbor--trunk_neighbor_list))
+- `ve_neighbor_list` (Block List) (see [below for nested schema](#nestedblock--neighbor--ve_neighbor_list))
 
 <a id="nestedblock--neighbor--ethernet_neighbor_list"></a>
 ### Nested Schema for `neighbor.ethernet_neighbor_list`
 
 Required:
 
-- **ethernet** (Number) Ethernet interface number
+- `ethernet` (Number) Ethernet interface number
 
 Optional:
 
-- **peer_group_name** (String)
-- **unnumbered** (Number)
-- **uuid** (String) uuid of the object
+- `peer_group_name` (String)
+- `unnumbered` (Number)
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--neighbor--ipv4_neighbor_list"></a>
@@ -690,74 +693,74 @@ Optional:
 
 Required:
 
-- **neighbor_ipv4** (String) Neighbor address
+- `neighbor_ipv4` (String) Neighbor address
 
 Optional:
 
-- **acos_application_only** (Number) Send BGP update to ACOS application
-- **activate** (Number) Enable the Address Family for this Neighbor
-- **advertisement_interval** (Number) Minimum interval between sending BGP routing updates (time in seconds)
-- **allowas_in** (Number) Accept as-path with my AS present in it
-- **allowas_in_count** (Number) Number of occurrences of AS number
-- **as_origination_interval** (Number) Minimum interval between sending AS-origination routing updates (time in seconds)
-- **bfd** (Number) Bidirectional Forwarding Detection (BFD)
-- **bfd_value** (String) Key String
-- **collide_established** (Number) Include Neighbor in Established State for Collision Detection
-- **connect** (Number) BGP connect timer
-- **default_originate** (Number) Originate default route to this neighbor
-- **description** (String) Neighbor specific description (Up to 80 characters describing this neighbor)
-- **disallow_infinite_holdtime** (Number) BGP per neighbor disallow-infinite-holdtime
-- **distribute_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv4_neighbor_list--distribute_lists))
-- **dont_capability_negotiate** (Number) Do not perform capability negotiation
-- **dynamic** (Number) Advertise dynamic capability to this neighbor
-- **ebgp_multihop** (Number) Allow EBGP neighbors not on directly connected networks
-- **ebgp_multihop_hop_count** (Number) maximum hop count
-- **enforce_multihop** (Number) Enforce EBGP neighbors to perform multihop
-- **ethernet** (Number) Ethernet interface (Port number)
-- **graceful_restart** (Number) enable graceful-restart helper for this neighbor
-- **inbound** (Number) Allow inbound soft reconfiguration for this neighbor
-- **key_id** (Number) Key ID
-- **key_type** (String) 'md5': md5; 'meticulous-md5': meticulous-md5; 'meticulous-sha1': meticulous-sha1; 'sha1': sha1; 'simple': simple;  (Keyed MD5/Meticulous Keyed MD5/Meticulous Keyed SHA1/Keyed SHA1/Simple Password)
-- **lif** (String) Logical interface (Lif interface name)
-- **loopback** (Number) Loopback interface (Port number)
-- **maximum_prefix** (Number) Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
-- **maximum_prefix_thres** (Number) threshold-value, 1 to 100 percent
-- **multihop** (Number) Enable multihop
-- **nbr_remote_as** (Number) Specify AS number of BGP neighbor
-- **neighbor_filter_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv4_neighbor_list--neighbor_filter_lists))
-- **neighbor_prefix_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv4_neighbor_list--neighbor_prefix_lists))
-- **neighbor_route_map_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv4_neighbor_list--neighbor_route_map_lists))
-- **next_hop_self** (Number) Disable the next hop calculation for this neighbor
-- **override_capability** (Number) Override capability negotiation result
-- **pass_value** (String) Key String
-- **passive** (Number) Don't send open messages to this neighbor
-- **peer_group_name** (String) Configure peer-group (peer-group name)
-- **prefix_list_direction** (String) 'both': both; 'receive': receive; 'send': send;
-- **remove_private_as** (Number) Remove private AS number from outbound updates
-- **restart_min** (Number) restart value, 1 to 1440 minutes
-- **route_map** (String) Route-map to specify criteria to originate default (route-map name)
-- **route_refresh** (Number) Advertise route-refresh capability to this neighbor
-- **send_community_val** (String) 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
-- **shutdown** (Number) Administratively shut down this neighbor
-- **strict_capability_match** (Number) Strict capability negotiation match
-- **timers_holdtime** (Number) Holdtime
-- **timers_keepalive** (Number) Keepalive interval
-- **trunk** (Number) Trunk interface (Trunk interface number)
-- **tunnel** (Number) Tunnel interface (Tunnel interface number)
-- **unsuppress_map** (String) Route-map to selectively unsuppress suppressed routes (Name of route map)
-- **update_source_ip** (String) IP address
-- **update_source_ipv6** (String) IPv6 address
-- **uuid** (String) uuid of the object
-- **ve** (Number) Virtual ethernet interface (Virtual ethernet interface number)
-- **weight** (Number) Set default weight for routes from this neighbor
+- `acos_application_only` (Number) Send BGP update to ACOS application
+- `activate` (Number) Enable the Address Family for this Neighbor
+- `advertisement_interval` (Number) Minimum interval between sending BGP routing updates (time in seconds)
+- `allowas_in` (Number) Accept as-path with my AS present in it
+- `allowas_in_count` (Number) Number of occurrences of AS number
+- `as_origination_interval` (Number) Minimum interval between sending AS-origination routing updates (time in seconds)
+- `bfd` (Number) Bidirectional Forwarding Detection (BFD)
+- `bfd_value` (String) Key String
+- `collide_established` (Number) Include Neighbor in Established State for Collision Detection
+- `connect` (Number) BGP connect timer
+- `default_originate` (Number) Originate default route to this neighbor
+- `description` (String) Neighbor specific description (Up to 80 characters describing this neighbor)
+- `disallow_infinite_holdtime` (Number) BGP per neighbor disallow-infinite-holdtime
+- `distribute_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv4_neighbor_list--distribute_lists))
+- `dont_capability_negotiate` (Number) Do not perform capability negotiation
+- `dynamic` (Number) Advertise dynamic capability to this neighbor
+- `ebgp_multihop` (Number) Allow EBGP neighbors not on directly connected networks
+- `ebgp_multihop_hop_count` (Number) maximum hop count
+- `enforce_multihop` (Number) Enforce EBGP neighbors to perform multihop
+- `ethernet` (Number) Ethernet interface (Port number)
+- `graceful_restart` (Number) enable graceful-restart helper for this neighbor
+- `inbound` (Number) Allow inbound soft reconfiguration for this neighbor
+- `key_id` (Number) Key ID
+- `key_type` (String) 'md5': md5; 'meticulous-md5': meticulous-md5; 'meticulous-sha1': meticulous-sha1; 'sha1': sha1; 'simple': simple;  (Keyed MD5/Meticulous Keyed MD5/Meticulous Keyed SHA1/Keyed SHA1/Simple Password)
+- `lif` (String) Logical interface (Lif interface name)
+- `loopback` (Number) Loopback interface (Port number)
+- `maximum_prefix` (Number) Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
+- `maximum_prefix_thres` (Number) threshold-value, 1 to 100 percent
+- `multihop` (Number) Enable multihop
+- `nbr_remote_as` (Number) Specify AS number of BGP neighbor
+- `neighbor_filter_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv4_neighbor_list--neighbor_filter_lists))
+- `neighbor_prefix_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv4_neighbor_list--neighbor_prefix_lists))
+- `neighbor_route_map_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv4_neighbor_list--neighbor_route_map_lists))
+- `next_hop_self` (Number) Disable the next hop calculation for this neighbor
+- `override_capability` (Number) Override capability negotiation result
+- `pass_value` (String) Key String
+- `passive` (Number) Don't send open messages to this neighbor
+- `peer_group_name` (String) Configure peer-group (peer-group name)
+- `prefix_list_direction` (String) 'both': both; 'receive': receive; 'send': send;
+- `remove_private_as` (Number) Remove private AS number from outbound updates
+- `restart_min` (Number) restart value, 1 to 1440 minutes
+- `route_map` (String) Route-map to specify criteria to originate default (route-map name)
+- `route_refresh` (Number) Advertise route-refresh capability to this neighbor
+- `send_community_val` (String) 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
+- `shutdown` (Number) Administratively shut down this neighbor
+- `strict_capability_match` (Number) Strict capability negotiation match
+- `timers_holdtime` (Number) Holdtime
+- `timers_keepalive` (Number) Keepalive interval
+- `trunk` (Number) Trunk interface (Trunk interface number)
+- `tunnel` (Number) Tunnel interface (Tunnel interface number)
+- `unsuppress_map` (String) Route-map to selectively unsuppress suppressed routes (Name of route map)
+- `update_source_ip` (String) IP address
+- `update_source_ipv6` (String) IPv6 address
+- `uuid` (String) uuid of the object
+- `ve` (Number) Virtual ethernet interface (Virtual ethernet interface number)
+- `weight` (Number) Set default weight for routes from this neighbor
 
 <a id="nestedblock--neighbor--ipv4_neighbor_list--distribute_lists"></a>
 ### Nested Schema for `neighbor.ipv4_neighbor_list.distribute_lists`
 
 Optional:
 
-- **distribute_list** (String) Filter updates to/from this neighbor (IP standard/extended/named access list)
-- **distribute_list_direction** (String) 'in': in; 'out': out;
+- `distribute_list` (String) Filter updates to/from this neighbor (IP standard/extended/named access list)
+- `distribute_list_direction` (String) 'in': in; 'out': out;
 
 
 <a id="nestedblock--neighbor--ipv4_neighbor_list--neighbor_filter_lists"></a>
@@ -765,8 +768,8 @@ Optional:
 
 Optional:
 
-- **filter_list** (String) Establish BGP filters (AS path access-list name)
-- **filter_list_direction** (String) 'in': in; 'out': out;
+- `filter_list` (String) Establish BGP filters (AS path access-list name)
+- `filter_list_direction` (String) 'in': in; 'out': out;
 
 
 <a id="nestedblock--neighbor--ipv4_neighbor_list--neighbor_prefix_lists"></a>
@@ -774,8 +777,8 @@ Optional:
 
 Optional:
 
-- **nbr_prefix_list** (String) Filter updates to/from this neighbor (Name of a prefix list)
-- **nbr_prefix_list_direction** (String) 'in': in; 'out': out;
+- `nbr_prefix_list` (String) Filter updates to/from this neighbor (Name of a prefix list)
+- `nbr_prefix_list_direction` (String) 'in': in; 'out': out;
 
 
 <a id="nestedblock--neighbor--ipv4_neighbor_list--neighbor_route_map_lists"></a>
@@ -783,8 +786,8 @@ Optional:
 
 Optional:
 
-- **nbr_rmap_direction** (String) 'in': in; 'out': out;
-- **nbr_route_map** (String) Apply route map to neighbor (Name of route map)
+- `nbr_rmap_direction` (String) 'in': in; 'out': out;
+- `nbr_route_map` (String) Apply route map to neighbor (Name of route map)
 
 
 
@@ -793,75 +796,75 @@ Optional:
 
 Required:
 
-- **neighbor_ipv6** (String) Neighbor IPv6 address
+- `neighbor_ipv6` (String) Neighbor IPv6 address
 
 Optional:
 
-- **acos_application_only** (Number) Send BGP update to ACOS application
-- **activate** (Number) Enable the Address Family for this Neighbor
-- **advertisement_interval** (Number) Minimum interval between sending BGP routing updates (time in seconds)
-- **allowas_in** (Number) Accept as-path with my AS present in it
-- **allowas_in_count** (Number) Number of occurrences of AS number
-- **as_origination_interval** (Number) Minimum interval between sending AS-origination routing updates (time in seconds)
-- **bfd** (Number) Bidirectional Forwarding Detection (BFD)
-- **bfd_value** (String) Key String
-- **collide_established** (Number) Include Neighbor in Established State for Collision Detection
-- **connect** (Number) BGP connect timer
-- **default_originate** (Number) Originate default route to this neighbor
-- **description** (String) Neighbor specific description (Up to 80 characters describing this neighbor)
-- **disallow_infinite_holdtime** (Number) BGP per neighbor disallow-infinite-holdtime
-- **distribute_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv6_neighbor_list--distribute_lists))
-- **dont_capability_negotiate** (Number) Do not perform capability negotiation
-- **dynamic** (Number) Advertise dynamic capability to this neighbor
-- **ebgp_multihop** (Number) Allow EBGP neighbors not on directly connected networks
-- **ebgp_multihop_hop_count** (Number) maximum hop count
-- **enforce_multihop** (Number) Enforce EBGP neighbors to perform multihop
-- **ethernet** (Number) Ethernet interface (Port number)
-- **extended_nexthop** (Number) Advertise extended-nexthop capability to this neighbor
-- **graceful_restart** (Number) enable graceful-restart helper for this neighbor
-- **inbound** (Number) Allow inbound soft reconfiguration for this neighbor
-- **key_id** (Number) Key ID
-- **key_type** (String) 'md5': md5; 'meticulous-md5': meticulous-md5; 'meticulous-sha1': meticulous-sha1; 'sha1': sha1; 'simple': simple;  (Keyed MD5/Meticulous Keyed MD5/Meticulous Keyed SHA1/Keyed SHA1/Simple Password)
-- **lif** (String) Logical interface (Lif interface name)
-- **loopback** (Number) Loopback interface (Port number)
-- **maximum_prefix** (Number) Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
-- **maximum_prefix_thres** (Number) threshold-value, 1 to 100 percent
-- **multihop** (Number) Enable multihop
-- **nbr_remote_as** (Number) Specify AS number of BGP neighbor
-- **neighbor_filter_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv6_neighbor_list--neighbor_filter_lists))
-- **neighbor_prefix_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv6_neighbor_list--neighbor_prefix_lists))
-- **neighbor_route_map_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv6_neighbor_list--neighbor_route_map_lists))
-- **next_hop_self** (Number) Disable the next hop calculation for this neighbor
-- **override_capability** (Number) Override capability negotiation result
-- **pass_value** (String) Key String
-- **passive** (Number) Don't send open messages to this neighbor
-- **peer_group_name** (String) Configure peer-group (peer-group name)
-- **prefix_list_direction** (String) 'both': both; 'receive': receive; 'send': send;
-- **remove_private_as** (Number) Remove private AS number from outbound updates
-- **restart_min** (Number) restart value, 1 to 1440 minutes
-- **route_map** (String) Route-map to specify criteria to originate default (route-map name)
-- **route_refresh** (Number) Advertise route-refresh capability to this neighbor
-- **send_community_val** (String) 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
-- **shutdown** (Number) Administratively shut down this neighbor
-- **strict_capability_match** (Number) Strict capability negotiation match
-- **timers_holdtime** (Number) Holdtime
-- **timers_keepalive** (Number) Keepalive interval
-- **trunk** (Number) Trunk interface (Trunk interface number)
-- **tunnel** (Number) Tunnel interface (Tunnel interface number)
-- **unsuppress_map** (String) Route-map to selectively unsuppress suppressed routes (Name of route map)
-- **update_source_ip** (String) IP address
-- **update_source_ipv6** (String) IPv6 address
-- **uuid** (String) uuid of the object
-- **ve** (Number) Virtual ethernet interface (Virtual ethernet interface number)
-- **weight** (Number) Set default weight for routes from this neighbor
+- `acos_application_only` (Number) Send BGP update to ACOS application
+- `activate` (Number) Enable the Address Family for this Neighbor
+- `advertisement_interval` (Number) Minimum interval between sending BGP routing updates (time in seconds)
+- `allowas_in` (Number) Accept as-path with my AS present in it
+- `allowas_in_count` (Number) Number of occurrences of AS number
+- `as_origination_interval` (Number) Minimum interval between sending AS-origination routing updates (time in seconds)
+- `bfd` (Number) Bidirectional Forwarding Detection (BFD)
+- `bfd_value` (String) Key String
+- `collide_established` (Number) Include Neighbor in Established State for Collision Detection
+- `connect` (Number) BGP connect timer
+- `default_originate` (Number) Originate default route to this neighbor
+- `description` (String) Neighbor specific description (Up to 80 characters describing this neighbor)
+- `disallow_infinite_holdtime` (Number) BGP per neighbor disallow-infinite-holdtime
+- `distribute_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv6_neighbor_list--distribute_lists))
+- `dont_capability_negotiate` (Number) Do not perform capability negotiation
+- `dynamic` (Number) Advertise dynamic capability to this neighbor
+- `ebgp_multihop` (Number) Allow EBGP neighbors not on directly connected networks
+- `ebgp_multihop_hop_count` (Number) maximum hop count
+- `enforce_multihop` (Number) Enforce EBGP neighbors to perform multihop
+- `ethernet` (Number) Ethernet interface (Port number)
+- `extended_nexthop` (Number) Advertise extended-nexthop capability to this neighbor
+- `graceful_restart` (Number) enable graceful-restart helper for this neighbor
+- `inbound` (Number) Allow inbound soft reconfiguration for this neighbor
+- `key_id` (Number) Key ID
+- `key_type` (String) 'md5': md5; 'meticulous-md5': meticulous-md5; 'meticulous-sha1': meticulous-sha1; 'sha1': sha1; 'simple': simple;  (Keyed MD5/Meticulous Keyed MD5/Meticulous Keyed SHA1/Keyed SHA1/Simple Password)
+- `lif` (String) Logical interface (Lif interface name)
+- `loopback` (Number) Loopback interface (Port number)
+- `maximum_prefix` (Number) Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
+- `maximum_prefix_thres` (Number) threshold-value, 1 to 100 percent
+- `multihop` (Number) Enable multihop
+- `nbr_remote_as` (Number) Specify AS number of BGP neighbor
+- `neighbor_filter_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv6_neighbor_list--neighbor_filter_lists))
+- `neighbor_prefix_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv6_neighbor_list--neighbor_prefix_lists))
+- `neighbor_route_map_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor--ipv6_neighbor_list--neighbor_route_map_lists))
+- `next_hop_self` (Number) Disable the next hop calculation for this neighbor
+- `override_capability` (Number) Override capability negotiation result
+- `pass_value` (String) Key String
+- `passive` (Number) Don't send open messages to this neighbor
+- `peer_group_name` (String) Configure peer-group (peer-group name)
+- `prefix_list_direction` (String) 'both': both; 'receive': receive; 'send': send;
+- `remove_private_as` (Number) Remove private AS number from outbound updates
+- `restart_min` (Number) restart value, 1 to 1440 minutes
+- `route_map` (String) Route-map to specify criteria to originate default (route-map name)
+- `route_refresh` (Number) Advertise route-refresh capability to this neighbor
+- `send_community_val` (String) 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
+- `shutdown` (Number) Administratively shut down this neighbor
+- `strict_capability_match` (Number) Strict capability negotiation match
+- `timers_holdtime` (Number) Holdtime
+- `timers_keepalive` (Number) Keepalive interval
+- `trunk` (Number) Trunk interface (Trunk interface number)
+- `tunnel` (Number) Tunnel interface (Tunnel interface number)
+- `unsuppress_map` (String) Route-map to selectively unsuppress suppressed routes (Name of route map)
+- `update_source_ip` (String) IP address
+- `update_source_ipv6` (String) IPv6 address
+- `uuid` (String) uuid of the object
+- `ve` (Number) Virtual ethernet interface (Virtual ethernet interface number)
+- `weight` (Number) Set default weight for routes from this neighbor
 
 <a id="nestedblock--neighbor--ipv6_neighbor_list--distribute_lists"></a>
 ### Nested Schema for `neighbor.ipv6_neighbor_list.distribute_lists`
 
 Optional:
 
-- **distribute_list** (String) Filter updates to/from this neighbor (IP standard/extended/named access list)
-- **distribute_list_direction** (String) 'in': in; 'out': out;
+- `distribute_list` (String) Filter updates to/from this neighbor (IP standard/extended/named access list)
+- `distribute_list_direction` (String) 'in': in; 'out': out;
 
 
 <a id="nestedblock--neighbor--ipv6_neighbor_list--neighbor_filter_lists"></a>
@@ -869,8 +872,8 @@ Optional:
 
 Optional:
 
-- **filter_list** (String) Establish BGP filters (AS path access-list name)
-- **filter_list_direction** (String) 'in': in; 'out': out;
+- `filter_list` (String) Establish BGP filters (AS path access-list name)
+- `filter_list_direction` (String) 'in': in; 'out': out;
 
 
 <a id="nestedblock--neighbor--ipv6_neighbor_list--neighbor_prefix_lists"></a>
@@ -878,8 +881,8 @@ Optional:
 
 Optional:
 
-- **nbr_prefix_list** (String) Filter updates to/from this neighbor (Name of a prefix list)
-- **nbr_prefix_list_direction** (String) 'in': in; 'out': out;
+- `nbr_prefix_list` (String) Filter updates to/from this neighbor (Name of a prefix list)
+- `nbr_prefix_list_direction` (String) 'in': in; 'out': out;
 
 
 <a id="nestedblock--neighbor--ipv6_neighbor_list--neighbor_route_map_lists"></a>
@@ -887,8 +890,8 @@ Optional:
 
 Optional:
 
-- **nbr_rmap_direction** (String) 'in': in; 'out': out;
-- **nbr_route_map** (String) Apply route map to neighbor (Name of route map)
+- `nbr_rmap_direction` (String) 'in': in; 'out': out;
+- `nbr_route_map` (String) Apply route map to neighbor (Name of route map)
 
 
 
@@ -897,69 +900,69 @@ Optional:
 
 Required:
 
-- **peer_group** (String) Neighbor tag
+- `peer_group` (String) Neighbor tag
 
 Optional:
 
-- **activate** (Number) Enable the Address Family for this Neighbor
-- **advertisement_interval** (Number) Minimum interval between sending BGP routing updates (time in seconds)
-- **allowas_in** (Number) Accept as-path with my AS present in it
-- **allowas_in_count** (Number) Number of occurrences of AS number
-- **as_origination_interval** (Number) Minimum interval between sending AS-origination routing updates (time in seconds)
-- **bfd** (Number) Bidirectional Forwarding Detection (BFD)
-- **collide_established** (Number) Include Neighbor in Established State for Collision Detection
-- **connect** (Number) BGP connect timer
-- **default_originate** (Number) Originate default route to this neighbor
-- **description** (String) Neighbor specific description (Up to 80 characters describing this neighbor)
-- **disallow_infinite_holdtime** (Number) BGP per neighbor disallow-infinite-holdtime
-- **distribute_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor--peer_group_neighbor_list--distribute_lists))
-- **dont_capability_negotiate** (Number) Do not perform capability negotiation
-- **dynamic** (Number) Advertise dynamic capability to this neighbor
-- **ebgp_multihop** (Number) Allow EBGP neighbors not on directly connected networks
-- **ebgp_multihop_hop_count** (Number) maximum hop count
-- **enforce_multihop** (Number) Enforce EBGP neighbors to perform multihop
-- **ethernet** (Number) Ethernet interface (Port number)
-- **extended_nexthop** (Number) Advertise extended-nexthop capability to this neighbor
-- **inbound** (Number) Allow inbound soft reconfiguration for this neighbor
-- **lif** (String) Logical interface (Lif interface name)
-- **loopback** (Number) Loopback interface (Port number)
-- **maximum_prefix** (Number) Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
-- **maximum_prefix_thres** (Number) threshold-value, 1 to 100 percent
-- **multihop** (Number) Enable multihop
-- **neighbor_filter_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor--peer_group_neighbor_list--neighbor_filter_lists))
-- **neighbor_prefix_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor--peer_group_neighbor_list--neighbor_prefix_lists))
-- **neighbor_route_map_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor--peer_group_neighbor_list--neighbor_route_map_lists))
-- **next_hop_self** (Number) Disable the next hop calculation for this neighbor
-- **override_capability** (Number) Override capability negotiation result
-- **pass_value** (String) Key String
-- **passive** (Number) Don't send open messages to this neighbor
-- **peer_group_key** (Number) Configure peer-group
-- **peer_group_remote_as** (Number) Specify AS number of BGP neighbor
-- **prefix_list_direction** (String) 'both': both; 'receive': receive; 'send': send;
-- **remove_private_as** (Number) Remove private AS number from outbound updates
-- **route_map** (String) Route-map to specify criteria to originate default (route-map name)
-- **route_refresh** (Number) Advertise route-refresh capability to this neighbor
-- **send_community_val** (String) 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
-- **shutdown** (Number) Administratively shut down this neighbor
-- **strict_capability_match** (Number) Strict capability negotiation match
-- **timers_holdtime** (Number) Holdtime
-- **timers_keepalive** (Number) Keepalive interval
-- **trunk** (Number) Trunk interface (Trunk interface number)
-- **tunnel** (Number) Tunnel interface (Tunnel interface number)
-- **unsuppress_map** (String) Route-map to selectively unsuppress suppressed routes (Name of route map)
-- **update_source_ip** (String) IP address
-- **update_source_ipv6** (String) IPv6 address
-- **uuid** (String) uuid of the object
-- **ve** (Number) Virtual ethernet interface (Virtual ethernet interface number)
-- **weight** (Number) Set default weight for routes from this neighbor
+- `activate` (Number) Enable the Address Family for this Neighbor
+- `advertisement_interval` (Number) Minimum interval between sending BGP routing updates (time in seconds)
+- `allowas_in` (Number) Accept as-path with my AS present in it
+- `allowas_in_count` (Number) Number of occurrences of AS number
+- `as_origination_interval` (Number) Minimum interval between sending AS-origination routing updates (time in seconds)
+- `bfd` (Number) Bidirectional Forwarding Detection (BFD)
+- `collide_established` (Number) Include Neighbor in Established State for Collision Detection
+- `connect` (Number) BGP connect timer
+- `default_originate` (Number) Originate default route to this neighbor
+- `description` (String) Neighbor specific description (Up to 80 characters describing this neighbor)
+- `disallow_infinite_holdtime` (Number) BGP per neighbor disallow-infinite-holdtime
+- `distribute_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor--peer_group_neighbor_list--distribute_lists))
+- `dont_capability_negotiate` (Number) Do not perform capability negotiation
+- `dynamic` (Number) Advertise dynamic capability to this neighbor
+- `ebgp_multihop` (Number) Allow EBGP neighbors not on directly connected networks
+- `ebgp_multihop_hop_count` (Number) maximum hop count
+- `enforce_multihop` (Number) Enforce EBGP neighbors to perform multihop
+- `ethernet` (Number) Ethernet interface (Port number)
+- `extended_nexthop` (Number) Advertise extended-nexthop capability to this neighbor
+- `inbound` (Number) Allow inbound soft reconfiguration for this neighbor
+- `lif` (String) Logical interface (Lif interface name)
+- `loopback` (Number) Loopback interface (Port number)
+- `maximum_prefix` (Number) Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))
+- `maximum_prefix_thres` (Number) threshold-value, 1 to 100 percent
+- `multihop` (Number) Enable multihop
+- `neighbor_filter_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor--peer_group_neighbor_list--neighbor_filter_lists))
+- `neighbor_prefix_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor--peer_group_neighbor_list--neighbor_prefix_lists))
+- `neighbor_route_map_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor--peer_group_neighbor_list--neighbor_route_map_lists))
+- `next_hop_self` (Number) Disable the next hop calculation for this neighbor
+- `override_capability` (Number) Override capability negotiation result
+- `pass_value` (String) Key String
+- `passive` (Number) Don't send open messages to this neighbor
+- `peer_group_key` (Number) Configure peer-group
+- `peer_group_remote_as` (Number) Specify AS number of BGP neighbor
+- `prefix_list_direction` (String) 'both': both; 'receive': receive; 'send': send;
+- `remove_private_as` (Number) Remove private AS number from outbound updates
+- `route_map` (String) Route-map to specify criteria to originate default (route-map name)
+- `route_refresh` (Number) Advertise route-refresh capability to this neighbor
+- `send_community_val` (String) 'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;
+- `shutdown` (Number) Administratively shut down this neighbor
+- `strict_capability_match` (Number) Strict capability negotiation match
+- `timers_holdtime` (Number) Holdtime
+- `timers_keepalive` (Number) Keepalive interval
+- `trunk` (Number) Trunk interface (Trunk interface number)
+- `tunnel` (Number) Tunnel interface (Tunnel interface number)
+- `unsuppress_map` (String) Route-map to selectively unsuppress suppressed routes (Name of route map)
+- `update_source_ip` (String) IP address
+- `update_source_ipv6` (String) IPv6 address
+- `uuid` (String) uuid of the object
+- `ve` (Number) Virtual ethernet interface (Virtual ethernet interface number)
+- `weight` (Number) Set default weight for routes from this neighbor
 
 <a id="nestedblock--neighbor--peer_group_neighbor_list--distribute_lists"></a>
 ### Nested Schema for `neighbor.peer_group_neighbor_list.distribute_lists`
 
 Optional:
 
-- **distribute_list** (String) Filter updates to/from this neighbor (IP standard/extended/named access list)
-- **distribute_list_direction** (String) 'in': in; 'out': out;
+- `distribute_list` (String) Filter updates to/from this neighbor (IP standard/extended/named access list)
+- `distribute_list_direction` (String) 'in': in; 'out': out;
 
 
 <a id="nestedblock--neighbor--peer_group_neighbor_list--neighbor_filter_lists"></a>
@@ -967,8 +970,8 @@ Optional:
 
 Optional:
 
-- **filter_list** (String) Establish BGP filters (AS path access-list name)
-- **filter_list_direction** (String) 'in': in; 'out': out;
+- `filter_list` (String) Establish BGP filters (AS path access-list name)
+- `filter_list_direction` (String) 'in': in; 'out': out;
 
 
 <a id="nestedblock--neighbor--peer_group_neighbor_list--neighbor_prefix_lists"></a>
@@ -976,8 +979,8 @@ Optional:
 
 Optional:
 
-- **nbr_prefix_list** (String) Filter updates to/from this neighbor (Name of a prefix list)
-- **nbr_prefix_list_direction** (String) 'in': in; 'out': out;
+- `nbr_prefix_list` (String) Filter updates to/from this neighbor (Name of a prefix list)
+- `nbr_prefix_list_direction` (String) 'in': in; 'out': out;
 
 
 <a id="nestedblock--neighbor--peer_group_neighbor_list--neighbor_route_map_lists"></a>
@@ -985,8 +988,8 @@ Optional:
 
 Optional:
 
-- **nbr_rmap_direction** (String) 'in': in; 'out': out;
-- **nbr_route_map** (String) Apply route map to neighbor (Name of route map)
+- `nbr_rmap_direction` (String) 'in': in; 'out': out;
+- `nbr_route_map` (String) Apply route map to neighbor (Name of route map)
 
 
 
@@ -995,13 +998,13 @@ Optional:
 
 Required:
 
-- **trunk** (Number) Trunk interface number
+- `trunk` (Number) Trunk interface number
 
 Optional:
 
-- **peer_group_name** (String)
-- **unnumbered** (Number)
-- **uuid** (String) uuid of the object
+- `peer_group_name` (String)
+- `unnumbered` (Number)
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--neighbor--ve_neighbor_list"></a>
@@ -1009,13 +1012,13 @@ Optional:
 
 Required:
 
-- **ve** (Number) Virtual ethernet interface number
+- `ve` (Number) Virtual ethernet interface number
 
 Optional:
 
-- **peer_group_name** (String)
-- **unnumbered** (Number)
-- **uuid** (String) uuid of the object
+- `peer_group_name` (String)
+- `unnumbered` (Number)
+- `uuid` (String) uuid of the object
 
 
 
@@ -1024,23 +1027,23 @@ Optional:
 
 Optional:
 
-- **ip_cidr_list** (Block List) (see [below for nested schema](#nestedblock--network--ip_cidr_list))
-- **synchronization** (Block List, Max: 1) (see [below for nested schema](#nestedblock--network--synchronization))
+- `ip_cidr_list` (Block List) (see [below for nested schema](#nestedblock--network--ip_cidr_list))
+- `synchronization` (Block List, Max: 1) (see [below for nested schema](#nestedblock--network--synchronization))
 
 <a id="nestedblock--network--ip_cidr_list"></a>
 ### Nested Schema for `network.ip_cidr_list`
 
 Required:
 
-- **network_ipv4_cidr** (String) Specify network mask
+- `network_ipv4_cidr` (String) Specify network mask
 
 Optional:
 
-- **backdoor** (Number) Specify a BGP backdoor route
-- **comm_value** (String) community value in the format 1-4294967295|AA:NN|internet|local-AS|no-advertise|no-export
-- **description** (String) Network specific description (Up to 80 characters describing this network)
-- **route_map** (String) Route-map to modify the attributes (Name of the route map)
-- **uuid** (String) uuid of the object
+- `backdoor` (Number) Specify a BGP backdoor route
+- `comm_value` (String) community value in the format 1-4294967295|AA:NN|internet|local-AS|no-advertise|no-export
+- `description` (String) Network specific description (Up to 80 characters describing this network)
+- `route_map` (String) Route-map to modify the attributes (Name of the route map)
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--network--synchronization"></a>
@@ -1048,8 +1051,8 @@ Optional:
 
 Optional:
 
-- **network_synchronization** (Number) Perform IGP synchronization
-- **uuid** (String) uuid of the object
+- `network_synchronization` (Number) Perform IGP synchronization
+- `uuid` (String) uuid of the object
 
 
 
@@ -1058,27 +1061,27 @@ Optional:
 
 Optional:
 
-- **connected_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--connected_cfg))
-- **floating_ip_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--floating_ip_cfg))
-- **ip_nat_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--ip_nat_cfg))
-- **ip_nat_list_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--ip_nat_list_cfg))
-- **isis_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--isis_cfg))
-- **lw4o6_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--lw4o6_cfg))
-- **nat_map_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--nat_map_cfg))
-- **ospf_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--ospf_cfg))
-- **rip_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--rip_cfg))
-- **static_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--static_cfg))
-- **static_nat_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--static_nat_cfg))
-- **uuid** (String) uuid of the object
-- **vip** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--vip))
+- `connected_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--connected_cfg))
+- `floating_ip_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--floating_ip_cfg))
+- `ip_nat_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--ip_nat_cfg))
+- `ip_nat_list_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--ip_nat_list_cfg))
+- `isis_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--isis_cfg))
+- `lw4o6_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--lw4o6_cfg))
+- `nat_map_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--nat_map_cfg))
+- `ospf_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--ospf_cfg))
+- `rip_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--rip_cfg))
+- `static_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--static_cfg))
+- `static_nat_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--static_nat_cfg))
+- `uuid` (String) uuid of the object
+- `vip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--vip))
 
 <a id="nestedblock--redistribute--connected_cfg"></a>
 ### Nested Schema for `redistribute.connected_cfg`
 
 Optional:
 
-- **connected** (Number) Connected
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `connected` (Number) Connected
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--redistribute--floating_ip_cfg"></a>
@@ -1086,8 +1089,8 @@ Optional:
 
 Optional:
 
-- **floating_ip** (Number) Floating IP
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `floating_ip` (Number) Floating IP
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--redistribute--ip_nat_cfg"></a>
@@ -1095,8 +1098,8 @@ Optional:
 
 Optional:
 
-- **ip_nat** (Number) IP NAT
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `ip_nat` (Number) IP NAT
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--redistribute--ip_nat_list_cfg"></a>
@@ -1104,8 +1107,8 @@ Optional:
 
 Optional:
 
-- **ip_nat_list** (Number) IP NAT list
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `ip_nat_list` (Number) IP NAT list
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--redistribute--isis_cfg"></a>
@@ -1113,8 +1116,8 @@ Optional:
 
 Optional:
 
-- **isis** (Number) ISO IS-IS
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `isis` (Number) ISO IS-IS
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--redistribute--lw4o6_cfg"></a>
@@ -1122,8 +1125,8 @@ Optional:
 
 Optional:
 
-- **lw4o6** (Number) LW4O6 Prefix
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `lw4o6` (Number) LW4O6 Prefix
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--redistribute--nat_map_cfg"></a>
@@ -1131,8 +1134,8 @@ Optional:
 
 Optional:
 
-- **nat_map** (Number) NAT MAP Prefix
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `nat_map` (Number) NAT MAP Prefix
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--redistribute--ospf_cfg"></a>
@@ -1140,8 +1143,8 @@ Optional:
 
 Optional:
 
-- **ospf** (Number) Open Shortest Path First (OSPF)
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `ospf` (Number) Open Shortest Path First (OSPF)
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--redistribute--rip_cfg"></a>
@@ -1149,8 +1152,8 @@ Optional:
 
 Optional:
 
-- **rip** (Number) Routing Information Protocol (RIP)
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `rip` (Number) Routing Information Protocol (RIP)
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--redistribute--static_cfg"></a>
@@ -1158,8 +1161,8 @@ Optional:
 
 Optional:
 
-- **route_map** (String) Route map reference (Pointer to route-map entries)
-- **static** (Number) Static routes
+- `route_map` (String) Route map reference (Pointer to route-map entries)
+- `static` (Number) Static routes
 
 
 <a id="nestedblock--redistribute--static_nat_cfg"></a>
@@ -1167,8 +1170,8 @@ Optional:
 
 Optional:
 
-- **route_map** (String) Route map reference (Pointer to route-map entries)
-- **static_nat** (Number) Static NAT Prefix
+- `route_map` (String) Route map reference (Pointer to route-map entries)
+- `static_nat` (Number) Static NAT Prefix
 
 
 <a id="nestedblock--redistribute--vip"></a>
@@ -1176,16 +1179,16 @@ Optional:
 
 Optional:
 
-- **only_flagged_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--vip--only_flagged_cfg))
-- **only_not_flagged_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--vip--only_not_flagged_cfg))
+- `only_flagged_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--vip--only_flagged_cfg))
+- `only_not_flagged_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redistribute--vip--only_not_flagged_cfg))
 
 <a id="nestedblock--redistribute--vip--only_flagged_cfg"></a>
 ### Nested Schema for `redistribute.vip.only_flagged_cfg`
 
 Optional:
 
-- **only_flagged** (Number) Selected Virtual IP (VIP)
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `only_flagged` (Number) Selected Virtual IP (VIP)
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 <a id="nestedblock--redistribute--vip--only_not_flagged_cfg"></a>
@@ -1193,8 +1196,8 @@ Optional:
 
 Optional:
 
-- **only_not_flagged** (Number) Only not flagged
-- **route_map** (String) Route map reference (Pointer to route-map entries)
+- `only_not_flagged` (Number) Only not flagged
+- `route_map` (String) Route map reference (Pointer to route-map entries)
 
 
 
@@ -1204,7 +1207,7 @@ Optional:
 
 Optional:
 
-- **bgp_holdtime** (Number) Holdtime
-- **bgp_keepalive** (Number) Keepalive interval
+- `bgp_holdtime` (Number) Holdtime
+- `bgp_keepalive` (Number) Keepalive interval
 
 

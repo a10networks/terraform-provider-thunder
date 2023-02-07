@@ -17,27 +17,30 @@ description: |-
 
 ### Optional
 
-- **app** (Block List, Max: 1) (see [below for nested schema](#nestedblock--app))
-- **application** (Block List, Max: 1) (see [below for nested schema](#nestedblock--application))
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **packet_capture_template** (String)
-- **remark** (String)
-- **rule_list** (Block List) (see [below for nested schema](#nestedblock--rule_list))
-- **rules_by_zone** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rules_by_zone))
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **session_statistic** (String)
-- **tag** (Block List, Max: 1) (see [below for nested schema](#nestedblock--tag))
-- **track_app_rule_list** (Block List, Max: 1) (see [below for nested schema](#nestedblock--track_app_rule_list))
-- **user_tag** (String)
-- **uuid** (String)
+- `app` (Block List, Max: 1) (see [below for nested schema](#nestedblock--app))
+- `application` (Block List, Max: 1) (see [below for nested schema](#nestedblock--application))
+- `name` (String)
+- `packet_capture_template` (String)
+- `remark` (String)
+- `rule_list` (Block List) (see [below for nested schema](#nestedblock--rule_list))
+- `rules_by_zone` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rules_by_zone))
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `session_statistic` (String)
+- `tag` (Block List, Max: 1) (see [below for nested schema](#nestedblock--tag))
+- `track_app_rule_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--track_app_rule_list))
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--app"></a>
 ### Nested Schema for `app`
 
 Optional:
 
-- **uuid** (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--application"></a>
@@ -45,7 +48,7 @@ Optional:
 
 Optional:
 
-- **uuid** (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--rule_list"></a>
@@ -53,89 +56,89 @@ Optional:
 
 Optional:
 
-- **action** (String)
-- **action_group** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rule_list--action_group))
-- **app_list** (Block List) (see [below for nested schema](#nestedblock--rule_list--app_list))
-- **application_any** (String)
-- **cgnv6_fixed_nat_log** (Number)
-- **cgnv6_log** (Number)
-- **cgnv6_lsn_lid** (Number)
-- **cgnv6_lsn_log** (Number)
-- **cgnv6_policy** (String)
-- **dest_list** (Block List) (see [below for nested schema](#nestedblock--rule_list--dest_list))
-- **dscp_list** (Block List) (see [below for nested schema](#nestedblock--rule_list--dscp_list))
-- **dst_class_list** (String)
-- **dst_domain_list** (String)
-- **dst_geoloc_list** (String)
-- **dst_geoloc_list_shared** (Number)
-- **dst_geoloc_name** (String)
-- **dst_ipv4_any** (String)
-- **dst_ipv6_any** (String)
-- **dst_threat_list** (String)
-- **dst_zone** (String)
-- **dst_zone_any** (String)
-- **forward_listen_on_port** (Number)
-- **forward_log** (Number)
-- **fw_log** (Number)
-- **fwlog** (Number)
-- **gtp_template** (String)
-- **idle_timeout** (Number)
-- **ip_version** (String)
-- **lid** (Number)
-- **lidlog** (Number)
-- **listen_on_port** (Number)
-- **listen_on_port_lid** (Number)
-- **listen_on_port_lidlog** (Number)
-- **log** (Number)
-- **move_rule** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rule_list--move_rule))
-- **name** (String)
-- **packet_capture_template** (String)
-- **policy** (String)
-- **remark** (String)
-- **reset_lid** (Number)
-- **reset_lidlog** (Number)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--rule_list--sampling_enable))
-- **service_any** (String)
-- **service_list** (Block List) (see [below for nested schema](#nestedblock--rule_list--service_list))
-- **source_list** (Block List) (see [below for nested schema](#nestedblock--rule_list--source_list))
-- **src_class_list** (String)
-- **src_geoloc_list** (String)
-- **src_geoloc_list_shared** (Number)
-- **src_geoloc_name** (String)
-- **src_ipv4_any** (String)
-- **src_ipv6_any** (String)
-- **src_threat_list** (String)
-- **src_zone** (String)
-- **src_zone_any** (String)
-- **status** (String)
-- **track_application** (Number)
-- **user_tag** (String)
-- **uuid** (String)
-- **vpn_ipsec_name** (String)
+- `action` (String)
+- `action_group` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rule_list--action_group))
+- `app_list` (Block List) (see [below for nested schema](#nestedblock--rule_list--app_list))
+- `application_any` (String)
+- `cgnv6_fixed_nat_log` (Number)
+- `cgnv6_log` (Number)
+- `cgnv6_lsn_lid` (Number)
+- `cgnv6_lsn_log` (Number)
+- `cgnv6_policy` (String)
+- `dest_list` (Block List) (see [below for nested schema](#nestedblock--rule_list--dest_list))
+- `dscp_list` (Block List) (see [below for nested schema](#nestedblock--rule_list--dscp_list))
+- `dst_class_list` (String)
+- `dst_domain_list` (String)
+- `dst_geoloc_list` (String)
+- `dst_geoloc_list_shared` (Number)
+- `dst_geoloc_name` (String)
+- `dst_ipv4_any` (String)
+- `dst_ipv6_any` (String)
+- `dst_threat_list` (String)
+- `dst_zone` (String)
+- `dst_zone_any` (String)
+- `forward_listen_on_port` (Number)
+- `forward_log` (Number)
+- `fw_log` (Number)
+- `fwlog` (Number)
+- `gtp_template` (String)
+- `idle_timeout` (Number)
+- `ip_version` (String)
+- `lid` (Number)
+- `lidlog` (Number)
+- `listen_on_port` (Number)
+- `listen_on_port_lid` (Number)
+- `listen_on_port_lidlog` (Number)
+- `log` (Number)
+- `move_rule` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rule_list--move_rule))
+- `name` (String)
+- `packet_capture_template` (String)
+- `policy` (String)
+- `remark` (String)
+- `reset_lid` (Number)
+- `reset_lidlog` (Number)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--rule_list--sampling_enable))
+- `service_any` (String)
+- `service_list` (Block List) (see [below for nested schema](#nestedblock--rule_list--service_list))
+- `source_list` (Block List) (see [below for nested schema](#nestedblock--rule_list--source_list))
+- `src_class_list` (String)
+- `src_geoloc_list` (String)
+- `src_geoloc_list_shared` (Number)
+- `src_geoloc_name` (String)
+- `src_ipv4_any` (String)
+- `src_ipv6_any` (String)
+- `src_threat_list` (String)
+- `src_zone` (String)
+- `src_zone_any` (String)
+- `status` (String)
+- `track_application` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+- `vpn_ipsec_name` (String)
 
 <a id="nestedblock--rule_list--action_group"></a>
 ### Nested Schema for `rule_list.action_group`
 
 Optional:
 
-- **cgnv6** (Number)
-- **cgnv6_lsn_lid** (Number)
-- **cgnv6_policy** (String)
-- **deny_log** (Number)
-- **dscp_number** (Number)
-- **dscp_value** (String)
-- **forward** (Number)
-- **ipsec** (Number)
-- **listen_on_port** (Number)
-- **permit_limit_policy** (Number)
-- **permit_log** (Number)
-- **permit_respond_to_user_mac** (Number)
-- **reset_log** (Number)
-- **reset_respond_to_user_mac** (Number)
-- **set_dscp** (Number)
-- **type** (String)
-- **uuid** (String)
-- **vpn_ipsec_name** (String)
+- `cgnv6` (Number)
+- `cgnv6_lsn_lid` (Number)
+- `cgnv6_policy` (String)
+- `deny_log` (Number)
+- `dscp_number` (Number)
+- `dscp_value` (String)
+- `forward` (Number)
+- `ipsec` (Number)
+- `listen_on_port` (Number)
+- `permit_limit_policy` (Number)
+- `permit_log` (Number)
+- `permit_respond_to_user_mac` (Number)
+- `reset_log` (Number)
+- `reset_respond_to_user_mac` (Number)
+- `set_dscp` (Number)
+- `type` (String)
+- `uuid` (String)
+- `vpn_ipsec_name` (String)
 
 
 <a id="nestedblock--rule_list--app_list"></a>
@@ -143,9 +146,9 @@ Optional:
 
 Optional:
 
-- **obj_grp_application** (String)
-- **protocol** (String)
-- **protocol_tag** (String)
+- `obj_grp_application` (String)
+- `protocol` (String)
+- `protocol_tag` (String)
 
 
 <a id="nestedblock--rule_list--dest_list"></a>
@@ -153,12 +156,12 @@ Optional:
 
 Optional:
 
-- **dst_ip_subnet** (String)
-- **dst_ipv6_subnet** (String)
-- **dst_obj_grp_network** (String)
-- **dst_obj_network** (String)
-- **dst_slb_server** (String)
-- **dst_slb_vserver** (String)
+- `dst_ip_subnet` (String)
+- `dst_ipv6_subnet` (String)
+- `dst_obj_grp_network` (String)
+- `dst_obj_network` (String)
+- `dst_slb_server` (String)
+- `dst_slb_vserver` (String)
 
 
 <a id="nestedblock--rule_list--dscp_list"></a>
@@ -166,9 +169,9 @@ Optional:
 
 Optional:
 
-- **dscp_range_end** (Number)
-- **dscp_range_start** (Number)
-- **dscp_value** (String)
+- `dscp_range_end` (Number)
+- `dscp_range_start` (Number)
+- `dscp_value` (String)
 
 
 <a id="nestedblock--rule_list--move_rule"></a>
@@ -176,8 +179,8 @@ Optional:
 
 Optional:
 
-- **location** (String)
-- **target_rule** (String)
+- `location` (String)
+- `target_rule` (String)
 
 
 <a id="nestedblock--rule_list--sampling_enable"></a>
@@ -185,7 +188,7 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 
 <a id="nestedblock--rule_list--service_list"></a>
@@ -193,31 +196,31 @@ Optional:
 
 Optional:
 
-- **alg** (String)
-- **eq_dst_port** (Number)
-- **eq_src_port** (Number)
-- **gt_dst_port** (Number)
-- **gt_src_port** (Number)
-- **icmp** (Number)
-- **icmp_code** (Number)
-- **icmp_type** (Number)
-- **icmpv6** (Number)
-- **icmpv6_code** (Number)
-- **icmpv6_type** (Number)
-- **lt_dst_port** (Number)
-- **lt_src_port** (Number)
-- **obj_grp_service** (String)
-- **port_num_end_dst** (Number)
-- **port_num_end_src** (Number)
-- **proto_id** (Number)
-- **protocols** (String)
-- **range_dst_port** (Number)
-- **range_src_port** (Number)
-- **sctp_template** (String)
-- **special_code** (String)
-- **special_type** (String)
-- **special_v6_code** (String)
-- **special_v6_type** (String)
+- `alg` (String)
+- `eq_dst_port` (Number)
+- `eq_src_port` (Number)
+- `gt_dst_port` (Number)
+- `gt_src_port` (Number)
+- `icmp` (Number)
+- `icmp_code` (Number)
+- `icmp_type` (Number)
+- `icmpv6` (Number)
+- `icmpv6_code` (Number)
+- `icmpv6_type` (Number)
+- `lt_dst_port` (Number)
+- `lt_src_port` (Number)
+- `obj_grp_service` (String)
+- `port_num_end_dst` (Number)
+- `port_num_end_src` (Number)
+- `proto_id` (Number)
+- `protocols` (String)
+- `range_dst_port` (Number)
+- `range_src_port` (Number)
+- `sctp_template` (String)
+- `special_code` (String)
+- `special_type` (String)
+- `special_v6_code` (String)
+- `special_v6_type` (String)
 
 
 <a id="nestedblock--rule_list--source_list"></a>
@@ -225,11 +228,11 @@ Optional:
 
 Optional:
 
-- **src_ip_subnet** (String)
-- **src_ipv6_subnet** (String)
-- **src_obj_grp_network** (String)
-- **src_obj_network** (String)
-- **src_slb_server** (String)
+- `src_ip_subnet` (String)
+- `src_ipv6_subnet` (String)
+- `src_obj_grp_network` (String)
+- `src_obj_network` (String)
+- `src_slb_server` (String)
 
 
 
@@ -238,15 +241,15 @@ Optional:
 
 Optional:
 
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--rules_by_zone--sampling_enable))
-- **uuid** (String)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--rules_by_zone--sampling_enable))
+- `uuid` (String)
 
 <a id="nestedblock--rules_by_zone--sampling_enable"></a>
 ### Nested Schema for `rules_by_zone.sampling_enable`
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 
 
@@ -255,7 +258,7 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 
 <a id="nestedblock--tag"></a>
@@ -263,7 +266,7 @@ Optional:
 
 Optional:
 
-- **uuid** (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--track_app_rule_list"></a>
@@ -271,6 +274,6 @@ Optional:
 
 Optional:
 
-- **uuid** (String)
+- `uuid` (String)
 
 

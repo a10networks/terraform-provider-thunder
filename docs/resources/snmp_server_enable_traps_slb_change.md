@@ -17,17 +17,20 @@ description: |-
 
 ### Optional
 
-- **all** (Number)
-- **connection_resource_event** (Number)
-- **id** (String) The ID of this resource.
-- **resource_usage_warning** (Number)
-- **server** (Number)
-- **server_port** (Number)
-- **ssl_cert_change** (Number)
-- **ssl_cert_expire** (Number)
-- **system_threshold** (Number)
-- **uuid** (String)
-- **vip** (Number)
-- **vip_port** (Number)
+- `all` (Number)
+- `connection_resource_event` (Number)
+- `resource_usage_warning` (Number)
+- `server` (Number)
+- `server_port` (Number)
+- `ssl_cert_change` (Number)
+- `ssl_cert_expire` (Number)
+- `system_threshold` (Number)
+- `uuid` (String)
+- `vip` (Number)
+- `vip_port` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

@@ -17,10 +17,13 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **override_nat_aging** (Number)
-- **session_aging** (String)
-- **uuid** (String)
+- `name` (String)
+- `override_nat_aging` (Number)
+- `session_aging` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

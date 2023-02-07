@@ -17,14 +17,17 @@ description: |-
 
 ### Optional
 
-- **exceed_action** (Number)
-- **id** (String) The ID of this resource.
-- **limit** (Number)
-- **limit_period** (String)
-- **lock_out** (Number)
-- **log** (Number)
-- **protocol** (String)
-- **shared** (Number)
-- **uuid** (String)
+- `exceed_action` (Number)
+- `limit` (Number)
+- `limit_period` (String)
+- `lock_out` (Number)
+- `log` (Number)
+- `protocol` (String)
+- `shared` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

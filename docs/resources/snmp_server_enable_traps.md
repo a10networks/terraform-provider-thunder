@@ -17,34 +17,37 @@ description: |-
 
 ### Optional
 
-- **all** (Number) Enable all SNMP traps
-- **gslb** (Block List, Max: 1) (see [below for nested schema](#nestedblock--gslb))
-- **id** (String) The ID of this resource.
-- **lldp** (Number) Enable lldp traps [shared partition only]
-- **lsn** (Block List, Max: 1) (see [below for nested schema](#nestedblock--lsn))
-- **network** (Block List, Max: 1) (see [below for nested schema](#nestedblock--network))
-- **routing** (Block List, Max: 1) (see [below for nested schema](#nestedblock--routing))
-- **scaleout** (Block List, Max: 1) (see [below for nested schema](#nestedblock--scaleout))
-- **slb** (Block List, Max: 1) (see [below for nested schema](#nestedblock--slb))
-- **slb_change** (Block List, Max: 1) (see [below for nested schema](#nestedblock--slb_change))
-- **snmp** (Block List, Max: 1) (see [below for nested schema](#nestedblock--snmp))
-- **ssl** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl))
-- **system** (Block List, Max: 1) (see [below for nested schema](#nestedblock--system))
-- **uuid** (String) uuid of the object
-- **vcs** (Block List, Max: 1) (see [below for nested schema](#nestedblock--vcs))
-- **vrrp_a** (Block List, Max: 1) (see [below for nested schema](#nestedblock--vrrp_a))
+- `all` (Number) Enable all SNMP traps
+- `gslb` (Block List, Max: 1) (see [below for nested schema](#nestedblock--gslb))
+- `lldp` (Number) Enable lldp traps [shared partition only]
+- `lsn` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lsn))
+- `network` (Block List, Max: 1) (see [below for nested schema](#nestedblock--network))
+- `routing` (Block List, Max: 1) (see [below for nested schema](#nestedblock--routing))
+- `scaleout` (Block List, Max: 1) (see [below for nested schema](#nestedblock--scaleout))
+- `slb` (Block List, Max: 1) (see [below for nested schema](#nestedblock--slb))
+- `slb_change` (Block List, Max: 1) (see [below for nested schema](#nestedblock--slb_change))
+- `snmp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--snmp))
+- `ssl` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl))
+- `system` (Block List, Max: 1) (see [below for nested schema](#nestedblock--system))
+- `uuid` (String) uuid of the object
+- `vcs` (Block List, Max: 1) (see [below for nested schema](#nestedblock--vcs))
+- `vrrp_a` (Block List, Max: 1) (see [below for nested schema](#nestedblock--vrrp_a))
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--gslb"></a>
 ### Nested Schema for `gslb`
 
 Optional:
 
-- **all** (Number) Enable all GSLB traps
-- **group** (Number) Enable GSLB group related traps [shared partition only]
-- **service_ip** (Number) Enable GSLB service-ip related traps [shared partition only]
-- **site** (Number) Enable GSLB site related traps [shared partition only]
-- **uuid** (String) uuid of the object
-- **zone** (Number) Enable GSLB zone related traps [shared partition only]
+- `all` (Number) Enable all GSLB traps
+- `group` (Number) Enable GSLB group related traps [shared partition only]
+- `service_ip` (Number) Enable GSLB service-ip related traps [shared partition only]
+- `site` (Number) Enable GSLB site related traps [shared partition only]
+- `uuid` (String) uuid of the object
+- `zone` (Number) Enable GSLB zone related traps [shared partition only]
 
 
 <a id="nestedblock--lsn"></a>
@@ -52,14 +55,14 @@ Optional:
 
 Optional:
 
-- **all** (Number) Enable all LSN group traps
-- **fixed_nat_port_mapping_file_change** (Number) Enable LSN trap when fixed nat port mapping file change
-- **max_ipport_threshold** (Number) Maximum threshold
-- **max_port_threshold** (Number) Maximum threshold
-- **per_ip_port_usage_threshold** (Number) Enable LSN trap when IP total port usage reaches the threshold (default 64512)
-- **total_port_usage_threshold** (Number) Enable LSN trap when NAT total port usage reaches the threshold (default 655350000)
-- **traffic_exceeded** (Number) Enable LSN trap when NAT pool reaches the threshold
-- **uuid** (String) uuid of the object
+- `all` (Number) Enable all LSN group traps
+- `fixed_nat_port_mapping_file_change` (Number) Enable LSN trap when fixed nat port mapping file change
+- `max_ipport_threshold` (Number) Maximum threshold
+- `max_port_threshold` (Number) Maximum threshold
+- `per_ip_port_usage_threshold` (Number) Enable LSN trap when IP total port usage reaches the threshold (default 64512)
+- `total_port_usage_threshold` (Number) Enable LSN trap when NAT total port usage reaches the threshold (default 655350000)
+- `traffic_exceeded` (Number) Enable LSN trap when NAT pool reaches the threshold
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--network"></a>
@@ -67,8 +70,8 @@ Optional:
 
 Optional:
 
-- **trunk_port_threshold** (Number) Enable network trunk-port-threshold trap [shared partition only]
-- **uuid** (String) uuid of the object
+- `trunk_port_threshold` (Number) Enable network trunk-port-threshold trap [shared partition only]
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--routing"></a>
@@ -76,18 +79,18 @@ Optional:
 
 Optional:
 
-- **bgp** (Block List, Max: 1) (see [below for nested schema](#nestedblock--routing--bgp))
-- **isis** (Block List, Max: 1) (see [below for nested schema](#nestedblock--routing--isis))
-- **ospf** (Block List, Max: 1) (see [below for nested schema](#nestedblock--routing--ospf))
+- `bgp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--routing--bgp))
+- `isis` (Block List, Max: 1) (see [below for nested schema](#nestedblock--routing--isis))
+- `ospf` (Block List, Max: 1) (see [below for nested schema](#nestedblock--routing--ospf))
 
 <a id="nestedblock--routing--bgp"></a>
 ### Nested Schema for `routing.bgp`
 
 Optional:
 
-- **bgpbackwardtransnotification** (Number) Enable bgpBackwardTransNotification traps [shared partition only]
-- **bgpestablishednotification** (Number) Enable bgpEstablishedNotification traps [shared partition only]
-- **uuid** (String) uuid of the object
+- `bgpbackwardtransnotification` (Number) Enable bgpBackwardTransNotification traps [shared partition only]
+- `bgpestablishednotification` (Number) Enable bgpEstablishedNotification traps [shared partition only]
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--routing--isis"></a>
@@ -95,24 +98,24 @@ Optional:
 
 Optional:
 
-- **isisadjacencychange** (Number) Enable isisAdjacencyChange traps [shared partition only]
-- **isisareamismatch** (Number) Enable isisAreaMismatch traps [shared partition only]
-- **isisattempttoexceedmaxsequence** (Number) Enable isisAttemptToExceedMaxSequence traps [shared partition only]
-- **isisauthenticationfailure** (Number) Enable isisAuthenticationFailure traps [shared partition only]
-- **isisauthenticationtypefailure** (Number) Enable isisAuthenticationTypeFailure traps [shared partition only]
-- **isiscorruptedlspdetected** (Number) Enable isisCorruptedLSPDetected traps [shared partition only]
-- **isisdatabaseoverload** (Number) Enable isisDatabaseOverload traps [shared partition only]
-- **isisidlenmismatch** (Number) Enable isisIDLenMismatch traps [shared partition only]
-- **isislsptoolargetopropagate** (Number) Enable isisLSPTooLargeToPropagate traps [shared partition only]
-- **isismanualaddressdrops** (Number) Enable isisManualAddressDrops traps [shared partition only]
-- **isismaxareaaddressesmismatch** (Number) Enable isisMaxAreaAddressesMismatch traps [shared partition only]
-- **isisoriginatinglspbuffersizemismatch** (Number) Enable isisOriginatingLSPBufferSizeMismatch traps [shared partition only]
-- **isisownlsppurge** (Number) Enable isisOwnLSPPurge traps [shared partition only]
-- **isisprotocolssupportedmismatch** (Number) Enable isisProtocolsSupportedMismatch traps [shared partition only]
-- **isisrejectedadjacency** (Number) Enable isisRejectedAdjacency traps [shared partition only]
-- **isissequencenumberskip** (Number) Enable isisSequenceNumberSkip traps [shared partition only]
-- **isisversionskew** (Number) Enable isisVersionSkew traps [shared partition only]
-- **uuid** (String) uuid of the object
+- `isisadjacencychange` (Number) Enable isisAdjacencyChange traps [shared partition only]
+- `isisareamismatch` (Number) Enable isisAreaMismatch traps [shared partition only]
+- `isisattempttoexceedmaxsequence` (Number) Enable isisAttemptToExceedMaxSequence traps [shared partition only]
+- `isisauthenticationfailure` (Number) Enable isisAuthenticationFailure traps [shared partition only]
+- `isisauthenticationtypefailure` (Number) Enable isisAuthenticationTypeFailure traps [shared partition only]
+- `isiscorruptedlspdetected` (Number) Enable isisCorruptedLSPDetected traps [shared partition only]
+- `isisdatabaseoverload` (Number) Enable isisDatabaseOverload traps [shared partition only]
+- `isisidlenmismatch` (Number) Enable isisIDLenMismatch traps [shared partition only]
+- `isislsptoolargetopropagate` (Number) Enable isisLSPTooLargeToPropagate traps [shared partition only]
+- `isismanualaddressdrops` (Number) Enable isisManualAddressDrops traps [shared partition only]
+- `isismaxareaaddressesmismatch` (Number) Enable isisMaxAreaAddressesMismatch traps [shared partition only]
+- `isisoriginatinglspbuffersizemismatch` (Number) Enable isisOriginatingLSPBufferSizeMismatch traps [shared partition only]
+- `isisownlsppurge` (Number) Enable isisOwnLSPPurge traps [shared partition only]
+- `isisprotocolssupportedmismatch` (Number) Enable isisProtocolsSupportedMismatch traps [shared partition only]
+- `isisrejectedadjacency` (Number) Enable isisRejectedAdjacency traps [shared partition only]
+- `isissequencenumberskip` (Number) Enable isisSequenceNumberSkip traps [shared partition only]
+- `isisversionskew` (Number) Enable isisVersionSkew traps [shared partition only]
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--routing--ospf"></a>
@@ -120,23 +123,23 @@ Optional:
 
 Optional:
 
-- **ospfifauthfailure** (Number) Enable ospfIfAuthFailure traps [shared partition only]
-- **ospfifconfigerror** (Number) Enable ospfIfConfigError traps [shared partition only]
-- **ospfifrxbadpacket** (Number) Enable ospfIfRxBadPacket traps [shared partition only]
-- **ospfifstatechange** (Number) Enable ospfIfStateChange traps [shared partition only]
-- **ospflsdbapproachingoverflow** (Number) Enable ospfLsdbApproachingOverflow traps [shared partition only]
-- **ospflsdboverflow** (Number) Enable ospfLsdbOverflow traps [shared partition only]
-- **ospfmaxagelsa** (Number) Enable ospfMaxAgeLsa traps [shared partition only]
-- **ospfnbrstatechange** (Number) Enable ospfNbrStateChange traps [shared partition only]
-- **ospforiginatelsa** (Number) Enable ospfOriginateLsa traps [shared partition only]
-- **ospftxretransmit** (Number) Enable ospfTxRetransmit traps [shared partition only]
-- **ospfvirtifauthfailure** (Number) Enable ospfVirtIfAuthFailure traps [shared partition only]
-- **ospfvirtifconfigerror** (Number) Enable ospfVirtIfConfigError traps [shared partition only]
-- **ospfvirtifrxbadpacket** (Number) Enable ospfVirtIfRxBadPacket traps [shared partition only]
-- **ospfvirtifstatechange** (Number) Enable ospfVirtIfStateChange traps [shared partition only]
-- **ospfvirtiftxretransmit** (Number) Enable ospfVirtIfTxRetransmit traps [shared partition only]
-- **ospfvirtnbrstatechange** (Number) Enable ospfVirtNbrStateChange traps [shared partition only]
-- **uuid** (String) uuid of the object
+- `ospfifauthfailure` (Number) Enable ospfIfAuthFailure traps [shared partition only]
+- `ospfifconfigerror` (Number) Enable ospfIfConfigError traps [shared partition only]
+- `ospfifrxbadpacket` (Number) Enable ospfIfRxBadPacket traps [shared partition only]
+- `ospfifstatechange` (Number) Enable ospfIfStateChange traps [shared partition only]
+- `ospflsdbapproachingoverflow` (Number) Enable ospfLsdbApproachingOverflow traps [shared partition only]
+- `ospflsdboverflow` (Number) Enable ospfLsdbOverflow traps [shared partition only]
+- `ospfmaxagelsa` (Number) Enable ospfMaxAgeLsa traps [shared partition only]
+- `ospfnbrstatechange` (Number) Enable ospfNbrStateChange traps [shared partition only]
+- `ospforiginatelsa` (Number) Enable ospfOriginateLsa traps [shared partition only]
+- `ospftxretransmit` (Number) Enable ospfTxRetransmit traps [shared partition only]
+- `ospfvirtifauthfailure` (Number) Enable ospfVirtIfAuthFailure traps [shared partition only]
+- `ospfvirtifconfigerror` (Number) Enable ospfVirtIfConfigError traps [shared partition only]
+- `ospfvirtifrxbadpacket` (Number) Enable ospfVirtIfRxBadPacket traps [shared partition only]
+- `ospfvirtifstatechange` (Number) Enable ospfVirtIfStateChange traps [shared partition only]
+- `ospfvirtiftxretransmit` (Number) Enable ospfVirtIfTxRetransmit traps [shared partition only]
+- `ospfvirtnbrstatechange` (Number) Enable ospfVirtNbrStateChange traps [shared partition only]
+- `uuid` (String) uuid of the object
 
 
 
@@ -145,30 +148,30 @@ Optional:
 
 Optional:
 
-- **infrastructure** (Block List, Max: 1) (see [below for nested schema](#nestedblock--scaleout--infrastructure))
+- `infrastructure` (Block List, Max: 1) (see [below for nested schema](#nestedblock--scaleout--infrastructure))
 
 <a id="nestedblock--scaleout--infrastructure"></a>
 ### Nested Schema for `scaleout.infrastructure`
 
 Optional:
 
-- **all** (Number) Enable all infra traps
-- **cluster** (Block List, Max: 1) (see [below for nested schema](#nestedblock--scaleout--infrastructure--cluster))
-- **master_node** (Block List, Max: 1) (see [below for nested schema](#nestedblock--scaleout--infrastructure--master_node))
-- **service_node** (Block List, Max: 1) (see [below for nested schema](#nestedblock--scaleout--infrastructure--service_node))
-- **test_send_all_traps** (Number) Send all infra traps
-- **uuid** (String) uuid of the object
+- `all` (Number) Enable all infra traps
+- `cluster` (Block List, Max: 1) (see [below for nested schema](#nestedblock--scaleout--infrastructure--cluster))
+- `master_node` (Block List, Max: 1) (see [below for nested schema](#nestedblock--scaleout--infrastructure--master_node))
+- `service_node` (Block List, Max: 1) (see [below for nested schema](#nestedblock--scaleout--infrastructure--service_node))
+- `test_send_all_traps` (Number) Send all infra traps
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--scaleout--infrastructure--cluster"></a>
 ### Nested Schema for `scaleout.infrastructure.cluster`
 
 Optional:
 
-- **election** (Number) Enable election status trap [shared partition only]
-- **master_calling_re_election** (Number) Enable re-election trap [shared partition only]
-- **node_status** (Number) Enable active node status trap [shared partition only]
-- **single_node_mode** (Number) Enable single node status trap [shared partition only]
-- **uuid** (String) uuid of the object
+- `election` (Number) Enable election status trap [shared partition only]
+- `master_calling_re_election` (Number) Enable re-election trap [shared partition only]
+- `node_status` (Number) Enable active node status trap [shared partition only]
+- `single_node_mode` (Number) Enable single node status trap [shared partition only]
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--scaleout--infrastructure--master_node"></a>
@@ -176,9 +179,9 @@ Optional:
 
 Optional:
 
-- **traffic_map_distribution** (Number) Enable Traffic-map distribution trap [shared partition only]
-- **uuid** (String) uuid of the object
-- **vserver_traffic_map_update** (Number) Enable VServer Traffic-map trap [shared partition only]
+- `traffic_map_distribution` (Number) Enable Traffic-map distribution trap [shared partition only]
+- `uuid` (String) uuid of the object
+- `vserver_traffic_map_update` (Number) Enable VServer Traffic-map trap [shared partition only]
 
 
 <a id="nestedblock--scaleout--infrastructure--service_node"></a>
@@ -186,10 +189,10 @@ Optional:
 
 Optional:
 
-- **local_device_disabled** (Number) Enable local device disabled trap [shared partition only]
-- **service_master** (Number) Enable service-master trap [shared partition only]
-- **traffic_map_update** (Number) Enable traffic map update trap [shared partition only]
-- **uuid** (String) uuid of the object
+- `local_device_disabled` (Number) Enable local device disabled trap [shared partition only]
+- `service_master` (Number) Enable service-master trap [shared partition only]
+- `traffic_map_update` (Number) Enable traffic map update trap [shared partition only]
+- `uuid` (String) uuid of the object
 
 
 
@@ -199,35 +202,35 @@ Optional:
 
 Optional:
 
-- **all** (Number) Enable all SLB traps
-- **application_buffer_limit** (Number) Enable application buffer reach limit trap [shared partition only]
-- **bw_rate_limit_exceed** (Number) Enable SLB server/port bandwidth rate limit exceed trap [shared partition only]
-- **bw_rate_limit_resume** (Number) Enable SLB server/port bandwidth rate limit resume trap [shared partition only]
-- **gateway_down** (Number) Enable SLB server gateway down trap [shared partition only]
-- **gateway_up** (Number) Enable SLB server gateway up trap [shared partition only]
-- **server_conn_limit** (Number) Enable SLB server connection limit trap [shared partition only]
-- **server_conn_resume** (Number) Enable SLB server connection resume trap [shared partition only]
-- **server_disabled** (Number) Enable SLB server-disabled trap [shared partition only]
-- **server_down** (Number) Enable SLB server-down trap [shared partition only]
-- **server_selection_failure** (Number) Enable SLB server selection failure trap [shared partition only]
-- **server_up** (Number) Enable slb server up trap [shared partition only]
-- **service_conn_limit** (Number) Enable SLB service connection limit trap [shared partition only]
-- **service_conn_resume** (Number) Enable SLB service connection resume trap [shared partition only]
-- **service_down** (Number) Enable SLB service-down trap [shared partition only]
-- **service_group_down** (Number) Enable SLB service-group-down trap [shared partition only]
-- **service_group_member_down** (Number) Enable SLB service-group-member-down trap [shared partition only]
-- **service_group_member_up** (Number) Enable SLB service-group-member-up trap [shared partition only]
-- **service_group_up** (Number) Enable SLB service-group-up trap [shared partition only]
-- **service_up** (Number) Enable SLB service-up trap [shared partition only]
-- **uuid** (String) uuid of the object
-- **vip_connlimit** (Number) Enable the virtual server reach conn-limit trap [shared partition only]
-- **vip_connratelimit** (Number) Enable the virtual server reach conn-rate-limit trap [shared partition only]
-- **vip_down** (Number) Enable SLB virtual server down trap [shared partition only]
-- **vip_port_connlimit** (Number) Enable the virtual port reach conn-limit trap [shared partition only]
-- **vip_port_connratelimit** (Number) Enable the virtual port reach conn-rate-limit trap [shared partition only]
-- **vip_port_down** (Number) Enable SLB virtual port down trap [shared partition only]
-- **vip_port_up** (Number) Enable SLB virtual port up trap [shared partition only]
-- **vip_up** (Number) Enable SLB virtual server up trap [shared partition only]
+- `all` (Number) Enable all SLB traps
+- `application_buffer_limit` (Number) Enable application buffer reach limit trap [shared partition only]
+- `bw_rate_limit_exceed` (Number) Enable SLB server/port bandwidth rate limit exceed trap [shared partition only]
+- `bw_rate_limit_resume` (Number) Enable SLB server/port bandwidth rate limit resume trap [shared partition only]
+- `gateway_down` (Number) Enable SLB server gateway down trap [shared partition only]
+- `gateway_up` (Number) Enable SLB server gateway up trap [shared partition only]
+- `server_conn_limit` (Number) Enable SLB server connection limit trap [shared partition only]
+- `server_conn_resume` (Number) Enable SLB server connection resume trap [shared partition only]
+- `server_disabled` (Number) Enable SLB server-disabled trap [shared partition only]
+- `server_down` (Number) Enable SLB server-down trap [shared partition only]
+- `server_selection_failure` (Number) Enable SLB server selection failure trap [shared partition only]
+- `server_up` (Number) Enable slb server up trap [shared partition only]
+- `service_conn_limit` (Number) Enable SLB service connection limit trap [shared partition only]
+- `service_conn_resume` (Number) Enable SLB service connection resume trap [shared partition only]
+- `service_down` (Number) Enable SLB service-down trap [shared partition only]
+- `service_group_down` (Number) Enable SLB service-group-down trap [shared partition only]
+- `service_group_member_down` (Number) Enable SLB service-group-member-down trap [shared partition only]
+- `service_group_member_up` (Number) Enable SLB service-group-member-up trap [shared partition only]
+- `service_group_up` (Number) Enable SLB service-group-up trap [shared partition only]
+- `service_up` (Number) Enable SLB service-up trap [shared partition only]
+- `uuid` (String) uuid of the object
+- `vip_connlimit` (Number) Enable the virtual server reach conn-limit trap [shared partition only]
+- `vip_connratelimit` (Number) Enable the virtual server reach conn-rate-limit trap [shared partition only]
+- `vip_down` (Number) Enable SLB virtual server down trap [shared partition only]
+- `vip_port_connlimit` (Number) Enable the virtual port reach conn-limit trap [shared partition only]
+- `vip_port_connratelimit` (Number) Enable the virtual port reach conn-rate-limit trap [shared partition only]
+- `vip_port_down` (Number) Enable SLB virtual port down trap [shared partition only]
+- `vip_port_up` (Number) Enable SLB virtual port up trap [shared partition only]
+- `vip_up` (Number) Enable SLB virtual server up trap [shared partition only]
 
 
 <a id="nestedblock--slb_change"></a>
@@ -235,17 +238,17 @@ Optional:
 
 Optional:
 
-- **all** (Number) Enable all system group traps
-- **connection_resource_event** (Number) Enable system connection resource event trap [shared partition only]
-- **resource_usage_warning** (Number) Enable partition resource usage warning trap [shared partition only]
-- **server** (Number) Enable slb server create/delete trap [shared partition only]
-- **server_port** (Number) Enable slb server port create/delete trap [shared partition only]
-- **ssl_cert_change** (Number) Enable SSL certificate change trap [shared partition only]
-- **ssl_cert_expire** (Number) Enable SSL certificate expiring trap [shared partition only]
-- **system_threshold** (Number) Enable slb system threshold trap [shared partition only]
-- **uuid** (String) uuid of the object
-- **vip** (Number) Enable slb vip create/delete trap [shared partition only]
-- **vip_port** (Number) Enable slb vip-port create/delete trap [shared partition only]
+- `all` (Number) Enable all system group traps
+- `connection_resource_event` (Number) Enable system connection resource event trap [shared partition only]
+- `resource_usage_warning` (Number) Enable partition resource usage warning trap [shared partition only]
+- `server` (Number) Enable slb server create/delete trap [shared partition only]
+- `server_port` (Number) Enable slb server port create/delete trap [shared partition only]
+- `ssl_cert_change` (Number) Enable SSL certificate change trap [shared partition only]
+- `ssl_cert_expire` (Number) Enable SSL certificate expiring trap [shared partition only]
+- `system_threshold` (Number) Enable slb system threshold trap [shared partition only]
+- `uuid` (String) uuid of the object
+- `vip` (Number) Enable slb vip create/delete trap [shared partition only]
+- `vip_port` (Number) Enable slb vip-port create/delete trap [shared partition only]
 
 
 <a id="nestedblock--snmp"></a>
@@ -253,10 +256,10 @@ Optional:
 
 Optional:
 
-- **all** (Number) Enable all SNMP group traps
-- **linkdown** (Number) Enable SNMP link-down trap [shared partition only]
-- **linkup** (Number) Enable SNMP link-up trap [shared partition only]
-- **uuid** (String) uuid of the object
+- `all` (Number) Enable all SNMP group traps
+- `linkdown` (Number) Enable SNMP link-down trap [shared partition only]
+- `linkup` (Number) Enable SNMP link-up trap [shared partition only]
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--ssl"></a>
@@ -264,8 +267,8 @@ Optional:
 
 Optional:
 
-- **server_certificate_error** (Number) Enable SSL server certificate error trap [shared partition only]
-- **uuid** (String) uuid of the object
+- `server_certificate_error` (Number) Enable SSL server certificate error trap [shared partition only]
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--system"></a>
@@ -273,27 +276,27 @@ Optional:
 
 Optional:
 
-- **all** (Number) Enable all system group traps [shared partition only]
-- **control_cpu_high** (Number) Enable control CPU usage high trap [shared partition only]
-- **data_cpu_high** (Number) Enable data CPU usage high trap [shared partition only]
-- **fan** (Number) Enable system fan trap [shared partition only]
-- **file_sys_read_only** (Number) Enable file system read-only trap [shared partition only]
-- **high_disk_use** (Number) Enable system high disk usage trap [shared partition only]
-- **high_memory_use** (Number) Enable system high memory usage trap [shared partition only]
-- **high_temp** (Number) Enable system high temperature trap [shared partition only]
-- **license_management** (Number) Enable system license management traps [shared partition only]
-- **low_temp** (Number) Enable system low temperature trap [shared partition only]
-- **packet_drop** (Number) Enable system packet dropped trap [shared partition only]
-- **power** (Number) Enable system power supply trap [shared partition only]
-- **pri_disk** (Number) Enable system primary hard disk trap [shared partition only]
-- **restart** (Number) Enable system restart trap [shared partition only]
-- **sec_disk** (Number) Enable system secondary hard disk trap [shared partition only]
-- **shutdown** (Number) Enable system shutdown trap [shared partition only]
-- **smp_resource_event** (Number) Enable system smp resource event trap [shared partition only]
-- **start** (Number) Enable system start trap [shared partition only]
-- **syslog_severity_one** (Number) Enable system syslog severity one messages trap [shared partition only]
-- **tacacs_server_up_down** (Number) Enable system TACACS monitor server up/down trap [shared partition only]
-- **uuid** (String) uuid of the object
+- `all` (Number) Enable all system group traps [shared partition only]
+- `control_cpu_high` (Number) Enable control CPU usage high trap [shared partition only]
+- `data_cpu_high` (Number) Enable data CPU usage high trap [shared partition only]
+- `fan` (Number) Enable system fan trap [shared partition only]
+- `file_sys_read_only` (Number) Enable file system read-only trap [shared partition only]
+- `high_disk_use` (Number) Enable system high disk usage trap [shared partition only]
+- `high_memory_use` (Number) Enable system high memory usage trap [shared partition only]
+- `high_temp` (Number) Enable system high temperature trap [shared partition only]
+- `license_management` (Number) Enable system license management traps [shared partition only]
+- `low_temp` (Number) Enable system low temperature trap [shared partition only]
+- `packet_drop` (Number) Enable system packet dropped trap [shared partition only]
+- `power` (Number) Enable system power supply trap [shared partition only]
+- `pri_disk` (Number) Enable system primary hard disk trap [shared partition only]
+- `restart` (Number) Enable system restart trap [shared partition only]
+- `sec_disk` (Number) Enable system secondary hard disk trap [shared partition only]
+- `shutdown` (Number) Enable system shutdown trap [shared partition only]
+- `smp_resource_event` (Number) Enable system smp resource event trap [shared partition only]
+- `start` (Number) Enable system start trap [shared partition only]
+- `syslog_severity_one` (Number) Enable system syslog severity one messages trap [shared partition only]
+- `tacacs_server_up_down` (Number) Enable system TACACS monitor server up/down trap [shared partition only]
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--vcs"></a>
@@ -301,8 +304,8 @@ Optional:
 
 Optional:
 
-- **state_change** (Number) Enable VCS state change trap [shared partition only]
-- **uuid** (String) uuid of the object
+- `state_change` (Number) Enable VCS state change trap [shared partition only]
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--vrrp_a"></a>
@@ -310,9 +313,9 @@ Optional:
 
 Optional:
 
-- **active** (Number) Enable VRRP-A active trap [shared partition only]
-- **all** (Number) Enable all VRRP-A group traps
-- **standby** (Number) Enable VRRP-A standby trap [shared partition only]
-- **uuid** (String) uuid of the object
+- `active` (Number) Enable VRRP-A active trap [shared partition only]
+- `all` (Number) Enable all VRRP-A group traps
+- `standby` (Number) Enable VRRP-A standby trap [shared partition only]
+- `uuid` (String) uuid of the object
 
 

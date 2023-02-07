@@ -17,21 +17,24 @@ description: |-
 
 ### Optional
 
-- **csv_name** (String)
-- **delim_char** (String)
-- **delim_num** (Number)
-- **id** (String) The ID of this resource.
-- **ipv6_enable** (Number)
-- **multiple_fields** (Block List) (see [below for nested schema](#nestedblock--multiple_fields))
-- **user_tag** (String)
-- **uuid** (String)
+- `csv_name` (String)
+- `delim_char` (String)
+- `delim_num` (Number)
+- `ipv6_enable` (Number)
+- `multiple_fields` (Block List) (see [below for nested schema](#nestedblock--multiple_fields))
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--multiple_fields"></a>
 ### Nested Schema for `multiple_fields`
 
 Optional:
 
-- **csv_type** (String)
-- **field** (Number)
+- `csv_type` (String)
+- `field` (Number)
 
 

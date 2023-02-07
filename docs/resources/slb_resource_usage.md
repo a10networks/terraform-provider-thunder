@@ -17,26 +17,29 @@ description: |-
 
 ### Optional
 
-- **cache_template_count** (Number)
-- **client_ssl_template_count** (Number)
-- **conn_reuse_template_count** (Number)
-- **fast_tcp_template_count** (Number)
-- **fast_udp_template_count** (Number)
-- **health_monitor_count** (Number)
-- **http_template_count** (Number)
-- **id** (String) The ID of this resource.
-- **nat_pool_addr_count** (Number)
-- **pbslb_subnet_count** (Number)
-- **persist_cookie_template_count** (Number)
-- **persist_srcip_template_count** (Number)
-- **proxy_template_count** (Number)
-- **real_port_count** (Number)
-- **real_server_count** (Number)
-- **server_ssl_template_count** (Number)
-- **service_group_count** (Number)
-- **slb_threshold_res_usage_percent** (Number)
-- **stream_template_count** (Number)
-- **virtual_port_count** (Number)
-- **virtual_server_count** (Number)
+- `cache_template_count` (Number)
+- `client_ssl_template_count` (Number)
+- `conn_reuse_template_count` (Number)
+- `fast_tcp_template_count` (Number)
+- `fast_udp_template_count` (Number)
+- `health_monitor_count` (Number)
+- `http_template_count` (Number)
+- `nat_pool_addr_count` (Number)
+- `pbslb_subnet_count` (Number)
+- `persist_cookie_template_count` (Number)
+- `persist_srcip_template_count` (Number)
+- `proxy_template_count` (Number)
+- `real_port_count` (Number)
+- `real_server_count` (Number)
+- `server_ssl_template_count` (Number)
+- `service_group_count` (Number)
+- `slb_threshold_res_usage_percent` (Number)
+- `stream_template_count` (Number)
+- `virtual_port_count` (Number)
+- `virtual_server_count` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

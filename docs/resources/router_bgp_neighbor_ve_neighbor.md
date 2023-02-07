@@ -17,12 +17,15 @@ description: |-
 
 ### Optional
 
-- **as_number** (Number)
-- **id** (String) The ID of this resource.
-- **peer_group_name** (String)
-- **process_id** (String)
-- **unnumbered** (Number)
-- **uuid** (String)
-- **ve** (Number)
+- `as_number` (Number)
+- `peer_group_name` (String)
+- `process_id` (String)
+- `unnumbered` (Number)
+- `uuid` (String)
+- `ve` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

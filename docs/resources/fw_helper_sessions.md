@@ -17,10 +17,13 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **idle_timeout** (Number)
-- **limit** (Number)
-- **mode** (String)
-- **uuid** (String)
+- `idle_timeout` (Number)
+- `limit` (Number)
+- `mode` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

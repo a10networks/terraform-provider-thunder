@@ -17,10 +17,13 @@ description: |-
 
 ### Optional
 
-- **active** (Number)
-- **all** (Number)
-- **id** (String) The ID of this resource.
-- **standby** (Number)
-- **uuid** (String)
+- `active` (Number)
+- `all` (Number)
+- `standby` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

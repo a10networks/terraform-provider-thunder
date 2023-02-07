@@ -17,21 +17,24 @@ description: |-
 
 ### Required
 
-- **pool_name** (String) Specify pool name or pool group
+- `pool_name` (String) Specify pool name or pool group
 
 ### Optional
 
-- **end_address** (String) Configure end IP address of NAT pool
-- **ethernet** (Number) Ethernet interface
-- **gateway** (String) Configure gateway IP
-- **id** (String) The ID of this resource.
-- **ip_rr** (Number) Use IP address round-robin behavior
-- **netmask** (String) Configure mask for pool
-- **port_overload** (Number) Nat Pool Port overload
-- **scaleout_device_id** (Number) Configure Scaleout device id to which this NAT pool is to be bound (Specify Scaleout device id)
-- **start_address** (String) Configure start IP address of NAT pool
-- **use_if_ip** (Number) Use Interface IP
-- **uuid** (String) uuid of the object
-- **vrid** (Number) Configure VRRP-A vrid (Specify ha VRRP-A vrid)
+- `end_address` (String) Configure end IP address of NAT pool
+- `ethernet` (Number) Ethernet interface
+- `gateway` (String) Configure gateway IP
+- `ip_rr` (Number) Use IP address round-robin behavior
+- `netmask` (String) Configure mask for pool
+- `port_overload` (Number) Nat Pool Port overload
+- `scaleout_device_id` (Number) Configure Scaleout device id to which this NAT pool is to be bound (Specify Scaleout device id)
+- `start_address` (String) Configure start IP address of NAT pool
+- `use_if_ip` (Number) Use Interface IP
+- `uuid` (String) uuid of the object
+- `vrid` (Number) Configure VRRP-A vrid (Specify ha VRRP-A vrid)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

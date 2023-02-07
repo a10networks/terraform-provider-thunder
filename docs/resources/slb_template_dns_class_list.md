@@ -17,36 +17,39 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **lid_list** (Block List) (see [below for nested schema](#nestedblock--lid_list))
-- **name** (String)
-- **uuid** (String)
+- `lid_list` (Block List) (see [below for nested schema](#nestedblock--lid_list))
+- `name` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--lid_list"></a>
 ### Nested Schema for `lid_list`
 
 Optional:
 
-- **action_value** (String)
-- **conn_rate_limit** (Number)
-- **dns** (Block List, Max: 1) (see [below for nested schema](#nestedblock--lid_list--dns))
-- **lidnum** (Number)
-- **lockout** (Number)
-- **log** (Number)
-- **log_interval** (Number)
-- **over_limit_action** (Number)
-- **per** (Number)
-- **user_tag** (String)
-- **uuid** (String)
+- `action_value` (String)
+- `conn_rate_limit` (Number)
+- `dns` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lid_list--dns))
+- `lidnum` (Number)
+- `lockout` (Number)
+- `log` (Number)
+- `log_interval` (Number)
+- `over_limit_action` (Number)
+- `per` (Number)
+- `user_tag` (String)
+- `uuid` (String)
 
 <a id="nestedblock--lid_list--dns"></a>
 ### Nested Schema for `lid_list.dns`
 
 Optional:
 
-- **cache_action** (String)
-- **honor_server_response_ttl** (Number)
-- **ttl** (Number)
-- **weight** (Number)
+- `cache_action` (String)
+- `honor_server_response_ttl` (Number)
+- `ttl` (Number)
+- `weight` (Number)
 
 

@@ -17,18 +17,21 @@ description: |-
 
 ### Optional
 
-- **dns_server** (Block List) (see [below for nested schema](#nestedblock--dns_server))
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `dns_server` (Block List) (see [below for nested schema](#nestedblock--dns_server))
+- `name` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--dns_server"></a>
 ### Nested Schema for `dns_server`
 
 Optional:
 
-- **ipv4_dns_server** (String)
-- **ipv6_dns_server** (String)
+- `ipv4_dns_server` (String)
+- `ipv6_dns_server` (String)
 
 

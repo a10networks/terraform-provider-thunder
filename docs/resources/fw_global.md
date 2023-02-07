@@ -17,25 +17,28 @@ description: |-
 
 ### Optional
 
-- **alg_processing** (String)
-- **disable_app_list** (Block List) (see [below for nested schema](#nestedblock--disable_app_list))
-- **disable_ip_fw_sessions** (Number)
-- **extended_matching** (String)
-- **id** (String) The ID of this resource.
-- **listen_on_port_timeout** (Number)
-- **natip_ddos_protection** (String)
-- **permit_default_action** (String)
-- **respond_to_user_mac** (Number)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **uuid** (String)
+- `alg_processing` (String)
+- `disable_app_list` (Block List) (see [below for nested schema](#nestedblock--disable_app_list))
+- `disable_ip_fw_sessions` (Number)
+- `extended_matching` (String)
+- `listen_on_port_timeout` (Number)
+- `natip_ddos_protection` (String)
+- `permit_default_action` (String)
+- `respond_to_user_mac` (Number)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--disable_app_list"></a>
 ### Nested Schema for `disable_app_list`
 
 Optional:
 
-- **disable_application_category** (String)
-- **disable_application_protocol** (String)
+- `disable_application_category` (String)
+- `disable_application_protocol` (String)
 
 
 <a id="nestedblock--sampling_enable"></a>
@@ -43,6 +46,6 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 

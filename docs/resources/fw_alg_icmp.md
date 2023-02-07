@@ -17,8 +17,11 @@ description: |-
 
 ### Optional
 
-- **disable** (String)
-- **id** (String) The ID of this resource.
-- **uuid** (String)
+- `disable` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

@@ -17,13 +17,16 @@ description: |-
 
 ### Optional
 
-- **clientid_hash_first** (Number)
-- **clientid_hash_last** (Number)
-- **clientid_hash_offset** (Number)
-- **clientid_hash_persist** (Number)
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `clientid_hash_first` (Number)
+- `clientid_hash_last` (Number)
+- `clientid_hash_offset` (Number)
+- `clientid_hash_persist` (Number)
+- `name` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

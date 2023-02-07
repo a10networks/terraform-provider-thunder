@@ -17,21 +17,24 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **insert_client_ip** (Number)
-- **logging** (String)
-- **name** (String)
-- **tag_switching** (Block List) (see [below for nested schema](#nestedblock--tag_switching))
-- **user_tag** (String)
-- **uuid** (String)
+- `insert_client_ip` (Number)
+- `logging` (String)
+- `name` (String)
+- `tag_switching` (Block List) (see [below for nested schema](#nestedblock--tag_switching))
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--tag_switching"></a>
 ### Nested Schema for `tag_switching`
 
 Optional:
 
-- **equals** (String)
-- **service_group** (String)
-- **switching_type** (String)
+- `equals` (String)
+- `service_group` (String)
+- `switching_type` (String)
 
 

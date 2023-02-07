@@ -17,23 +17,26 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **ip_dest_addr** (String)
-- **ip_mask** (String)
-- **ip_nexthop_ipv4** (Block List) (see [below for nested schema](#nestedblock--ip_nexthop_ipv4))
-- **ip_nexthop_lif** (Block List) (see [below for nested schema](#nestedblock--ip_nexthop_lif))
-- **ip_nexthop_partition** (Block List) (see [below for nested schema](#nestedblock--ip_nexthop_partition))
-- **ip_nexthop_tunnel** (Block List) (see [below for nested schema](#nestedblock--ip_nexthop_tunnel))
-- **uuid** (String)
+- `ip_dest_addr` (String)
+- `ip_mask` (String)
+- `ip_nexthop_ipv4` (Block List) (see [below for nested schema](#nestedblock--ip_nexthop_ipv4))
+- `ip_nexthop_lif` (Block List) (see [below for nested schema](#nestedblock--ip_nexthop_lif))
+- `ip_nexthop_partition` (Block List) (see [below for nested schema](#nestedblock--ip_nexthop_partition))
+- `ip_nexthop_tunnel` (Block List) (see [below for nested schema](#nestedblock--ip_nexthop_tunnel))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--ip_nexthop_ipv4"></a>
 ### Nested Schema for `ip_nexthop_ipv4`
 
 Optional:
 
-- **description_nexthop_ip** (String)
-- **distance_nexthop_ip** (Number)
-- **ip_next_hop** (String)
+- `description_nexthop_ip` (String)
+- `distance_nexthop_ip` (Number)
+- `ip_next_hop` (String)
 
 
 <a id="nestedblock--ip_nexthop_lif"></a>
@@ -41,8 +44,8 @@ Optional:
 
 Optional:
 
-- **description_nexthop_lif** (String)
-- **lif** (Number)
+- `description_nexthop_lif` (String)
+- `lif` (Number)
 
 
 <a id="nestedblock--ip_nexthop_partition"></a>
@@ -50,10 +53,10 @@ Optional:
 
 Optional:
 
-- **description_nexthop_partition** (String)
-- **description_partition_vrid** (String)
-- **partition_name** (String)
-- **vrid_num_in_partition** (Number)
+- `description_nexthop_partition` (String)
+- `description_partition_vrid` (String)
+- `partition_name` (String)
+- `vrid_num_in_partition` (Number)
 
 
 <a id="nestedblock--ip_nexthop_tunnel"></a>
@@ -61,9 +64,9 @@ Optional:
 
 Optional:
 
-- **description_nexthop_tunnel** (String)
-- **distance_nexthop_tunnel** (Number)
-- **ip_next_hop_tunnel** (String)
-- **tunnel** (Number)
+- `description_nexthop_tunnel` (String)
+- `distance_nexthop_tunnel` (Number)
+- `ip_next_hop_tunnel` (String)
+- `tunnel` (Number)
 
 

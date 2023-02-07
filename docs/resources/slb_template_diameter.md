@@ -17,40 +17,43 @@ description: |-
 
 ### Optional
 
-- **avp_code** (Number)
-- **avp_list** (Block List) (see [below for nested schema](#nestedblock--avp_list))
-- **avp_string** (String)
-- **customize_cea** (Number)
-- **dwr_time** (Number)
-- **dwr_up_retry** (Number)
-- **forward_to_latest_server** (Number)
-- **forward_unknown_session_id** (Number)
-- **id** (String) The ID of this resource.
-- **idle_timeout** (Number)
-- **load_balance_on_session_id** (Number)
-- **message_code_list** (Block List) (see [below for nested schema](#nestedblock--message_code_list))
-- **multiple_origin_host** (Number)
-- **name** (String)
-- **origin_host** (Block List, Max: 1) (see [below for nested schema](#nestedblock--origin_host))
-- **origin_realm** (String)
-- **product_name** (String)
-- **service_group_name** (String)
-- **session_age** (Number)
-- **terminate_on_cca_t** (Number)
-- **user_tag** (String)
-- **uuid** (String)
-- **vendor_id** (Number)
+- `avp_code` (Number)
+- `avp_list` (Block List) (see [below for nested schema](#nestedblock--avp_list))
+- `avp_string` (String)
+- `customize_cea` (Number)
+- `dwr_time` (Number)
+- `dwr_up_retry` (Number)
+- `forward_to_latest_server` (Number)
+- `forward_unknown_session_id` (Number)
+- `idle_timeout` (Number)
+- `load_balance_on_session_id` (Number)
+- `message_code_list` (Block List) (see [below for nested schema](#nestedblock--message_code_list))
+- `multiple_origin_host` (Number)
+- `name` (String)
+- `origin_host` (Block List, Max: 1) (see [below for nested schema](#nestedblock--origin_host))
+- `origin_realm` (String)
+- `product_name` (String)
+- `service_group_name` (String)
+- `session_age` (Number)
+- `terminate_on_cca_t` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+- `vendor_id` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--avp_list"></a>
 ### Nested Schema for `avp_list`
 
 Optional:
 
-- **avp** (Number)
-- **int32** (Number)
-- **int64** (Number)
-- **mandatory** (Number)
-- **string** (String)
+- `avp` (Number)
+- `int32` (Number)
+- `int64` (Number)
+- `mandatory` (Number)
+- `string` (String)
 
 
 <a id="nestedblock--message_code_list"></a>
@@ -58,7 +61,7 @@ Optional:
 
 Optional:
 
-- **message_code** (Number)
+- `message_code` (Number)
 
 
 <a id="nestedblock--origin_host"></a>
@@ -66,7 +69,7 @@ Optional:
 
 Optional:
 
-- **origin_host_name** (String)
-- **uuid** (String)
+- `origin_host_name` (String)
+- `uuid` (String)
 
 

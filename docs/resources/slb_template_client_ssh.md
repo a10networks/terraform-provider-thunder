@@ -17,13 +17,16 @@ description: |-
 
 ### Optional
 
-- **encrypted** (String)
-- **forward_proxy_enable** (Number)
-- **forward_proxy_hostkey** (String)
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **passphrase** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `encrypted` (String)
+- `forward_proxy_enable` (Number)
+- `forward_proxy_hostkey` (String)
+- `name` (String)
+- `passphrase` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

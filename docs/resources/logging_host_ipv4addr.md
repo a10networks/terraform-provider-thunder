@@ -17,15 +17,18 @@ description: |-
 
 ### Required
 
-- **host_ipv4** (String) Set syslog host ip address
+- `host_ipv4` (String) Set syslog host ip address
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **over_tls** (Number) Enable remote logging over TLS session
-- **port** (Number) Set remote syslog port number
-- **tcp** (Number) Use TCP as transport protocol
-- **use_mgmt_port** (Number) Use management port for connections
-- **uuid** (String) uuid of the object
+- `over_tls` (Number) Enable remote logging over TLS session
+- `port` (Number) Set remote syslog port number
+- `tcp` (Number) Use TCP as transport protocol
+- `use_mgmt_port` (Number) Use management port for connections
+- `uuid` (String) uuid of the object
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

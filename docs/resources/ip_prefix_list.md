@@ -17,22 +17,25 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **rules** (Block List) (see [below for nested schema](#nestedblock--rules))
-- **uuid** (String)
+- `name` (String)
+- `rules` (Block List) (see [below for nested schema](#nestedblock--rules))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--rules"></a>
 ### Nested Schema for `rules`
 
 Optional:
 
-- **action** (String)
-- **any** (Number)
-- **description** (String)
-- **ge** (Number)
-- **ipaddr** (String)
-- **le** (Number)
-- **seq** (Number)
+- `action` (String)
+- `any` (Number)
+- `description` (String)
+- `ge` (Number)
+- `ipaddr` (String)
+- `le` (Number)
+- `seq` (Number)
 
 

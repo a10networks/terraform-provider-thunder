@@ -17,16 +17,19 @@ description: |-
 
 ### Required
 
-- **name** (String) DNS Logging Template Name
+- `name` (String) DNS Logging Template Name
 
 ### Optional
 
-- **disable** (Number) Disable DNS Logging template
-- **dns_logging_protocol** (String) 'both': Log DNS over tcp and udp; 'tcp': Log DNS over tcp; 'udp': Log DNS over udp;
-- **dns_logging_request_section** (String) 'all': Log DNS header and question section; 'header': Log DNS header information; 'question': Log DNS question section;
-- **dns_logging_type** (String) 'query': DNS Query Logging;
-- **id** (String) The ID of this resource.
-- **user_tag** (String) Customized tag
-- **uuid** (String) uuid of the object
+- `disable` (Number) Disable DNS Logging template
+- `dns_logging_protocol` (String) 'both': Log DNS over tcp and udp; 'tcp': Log DNS over tcp; 'udp': Log DNS over udp;
+- `dns_logging_request_section` (String) 'all': Log DNS header and question section; 'header': Log DNS header information; 'question': Log DNS question section;
+- `dns_logging_type` (String) 'query': DNS Query Logging;
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

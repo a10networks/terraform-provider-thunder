@@ -17,27 +17,30 @@ description: |-
 
 ### Optional
 
-- **access_list** (Block List, Max: 1) (see [below for nested schema](#nestedblock--access_list))
-- **action** (String)
-- **broadcast_rate_limit** (Block List, Max: 1) (see [below for nested schema](#nestedblock--broadcast_rate_limit))
-- **duplexity** (String)
-- **flow_control** (Number)
-- **id** (String) The ID of this resource.
-- **ip** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip))
-- **ipv6** (Block List) (see [below for nested schema](#nestedblock--ipv6))
-- **lldp** (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp))
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **secondary_ip** (Block List, Max: 1) (see [below for nested schema](#nestedblock--secondary_ip))
-- **speed** (String)
-- **uuid** (String)
+- `access_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--access_list))
+- `action` (String)
+- `broadcast_rate_limit` (Block List, Max: 1) (see [below for nested schema](#nestedblock--broadcast_rate_limit))
+- `duplexity` (String)
+- `flow_control` (Number)
+- `ip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip))
+- `ipv6` (Block List) (see [below for nested schema](#nestedblock--ipv6))
+- `lldp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp))
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `secondary_ip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--secondary_ip))
+- `speed` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--access_list"></a>
 ### Nested Schema for `access_list`
 
 Optional:
 
-- **acl_id** (Number)
-- **acl_name** (String)
+- `acl_id` (Number)
+- `acl_name` (String)
 
 
 <a id="nestedblock--broadcast_rate_limit"></a>
@@ -45,8 +48,8 @@ Optional:
 
 Optional:
 
-- **bcast_rate_limit_enable** (Number)
-- **rate** (Number)
+- `bcast_rate_limit_enable` (Number)
+- `rate` (Number)
 
 
 <a id="nestedblock--ip"></a>
@@ -54,11 +57,11 @@ Optional:
 
 Optional:
 
-- **control_apps_use_mgmt_port** (Number)
-- **default_gateway** (String)
-- **dhcp** (Number)
-- **ipv4_address** (String)
-- **ipv4_netmask** (String)
+- `control_apps_use_mgmt_port` (Number)
+- `default_gateway` (String)
+- `dhcp` (Number)
+- `ipv4_address` (String)
+- `ipv4_netmask` (String)
 
 
 <a id="nestedblock--ipv6"></a>
@@ -66,11 +69,11 @@ Optional:
 
 Optional:
 
-- **address_type** (String)
-- **default_ipv6_gateway** (String)
-- **inbound** (Number)
-- **ipv6_addr** (String)
-- **v6_acl_name** (String)
+- `address_type` (String)
+- `default_ipv6_gateway` (String)
+- `inbound` (Number)
+- `ipv6_addr` (String)
+- `v6_acl_name` (String)
 
 
 <a id="nestedblock--lldp"></a>
@@ -78,20 +81,20 @@ Optional:
 
 Optional:
 
-- **enable_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp--enable_cfg))
-- **notification_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp--notification_cfg))
-- **tx_dot1_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp--tx_dot1_cfg))
-- **tx_tlvs_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp--tx_tlvs_cfg))
-- **uuid** (String)
+- `enable_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp--enable_cfg))
+- `notification_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp--notification_cfg))
+- `tx_dot1_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp--tx_dot1_cfg))
+- `tx_tlvs_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp--tx_tlvs_cfg))
+- `uuid` (String)
 
 <a id="nestedblock--lldp--enable_cfg"></a>
 ### Nested Schema for `lldp.enable_cfg`
 
 Optional:
 
-- **rt_enable** (Number)
-- **rx** (Number)
-- **tx** (Number)
+- `rt_enable` (Number)
+- `rx` (Number)
+- `tx` (Number)
 
 
 <a id="nestedblock--lldp--notification_cfg"></a>
@@ -99,8 +102,8 @@ Optional:
 
 Optional:
 
-- **notif_enable** (Number)
-- **notification** (Number)
+- `notif_enable` (Number)
+- `notification` (Number)
 
 
 <a id="nestedblock--lldp--tx_dot1_cfg"></a>
@@ -108,9 +111,9 @@ Optional:
 
 Optional:
 
-- **link_aggregation** (Number)
-- **tx_dot1_tlvs** (Number)
-- **vlan** (Number)
+- `link_aggregation` (Number)
+- `tx_dot1_tlvs` (Number)
+- `vlan` (Number)
 
 
 <a id="nestedblock--lldp--tx_tlvs_cfg"></a>
@@ -118,13 +121,13 @@ Optional:
 
 Optional:
 
-- **exclude** (Number)
-- **management_address** (Number)
-- **port_description** (Number)
-- **system_capabilities** (Number)
-- **system_description** (Number)
-- **system_name** (Number)
-- **tx_tlvs** (Number)
+- `exclude` (Number)
+- `management_address` (Number)
+- `port_description` (Number)
+- `system_capabilities` (Number)
+- `system_description` (Number)
+- `system_name` (Number)
+- `tx_tlvs` (Number)
 
 
 
@@ -133,7 +136,7 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 
 <a id="nestedblock--secondary_ip"></a>
@@ -141,11 +144,11 @@ Optional:
 
 Optional:
 
-- **control_apps_use_mgmt_port** (Number)
-- **default_gateway** (String)
-- **dhcp** (Number)
-- **ipv4_address** (String)
-- **ipv4_netmask** (String)
-- **secondary_ip** (Number)
+- `control_apps_use_mgmt_port` (Number)
+- `default_gateway` (String)
+- `dhcp` (Number)
+- `ipv4_address` (String)
+- `ipv4_netmask` (String)
+- `secondary_ip` (Number)
 
 

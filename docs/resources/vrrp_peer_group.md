@@ -17,24 +17,27 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **peer** (Block List, Max: 1) (see [below for nested schema](#nestedblock--peer))
-- **uuid** (String)
+- `peer` (Block List, Max: 1) (see [below for nested schema](#nestedblock--peer))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--peer"></a>
 ### Nested Schema for `peer`
 
 Optional:
 
-- **ip_peer_address_cfg** (Block List) (see [below for nested schema](#nestedblock--peer--ip_peer_address_cfg))
-- **ipv6_peer_address_cfg** (Block List) (see [below for nested schema](#nestedblock--peer--ipv6_peer_address_cfg))
+- `ip_peer_address_cfg` (Block List) (see [below for nested schema](#nestedblock--peer--ip_peer_address_cfg))
+- `ipv6_peer_address_cfg` (Block List) (see [below for nested schema](#nestedblock--peer--ipv6_peer_address_cfg))
 
 <a id="nestedblock--peer--ip_peer_address_cfg"></a>
 ### Nested Schema for `peer.ip_peer_address_cfg`
 
 Optional:
 
-- **ip_peer_address** (String)
+- `ip_peer_address` (String)
 
 
 <a id="nestedblock--peer--ipv6_peer_address_cfg"></a>
@@ -42,6 +45,6 @@ Optional:
 
 Optional:
 
-- **ipv6_peer_address** (String)
+- `ipv6_peer_address` (String)
 
 

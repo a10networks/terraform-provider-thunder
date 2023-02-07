@@ -17,8 +17,11 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **server_certificate_error** (Number)
-- **uuid** (String)
+- `server_certificate_error` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

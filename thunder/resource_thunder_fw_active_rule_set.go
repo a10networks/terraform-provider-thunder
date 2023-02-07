@@ -13,7 +13,7 @@ import (
 func resourceFwActiveRuleSet() *schema.Resource {
 	return &schema.Resource{
 		CreateContext: resourceFwActiveRuleSetCreate,
-		UpdateContext: resourceFwActiveRuleSetUpdate,
+		UpdateContext: resourceFwActiveRuleSetCreate,
 		ReadContext:   resourceFwActiveRuleSetRead,
 		DeleteContext: resourceFwActiveRuleSetDelete,
 		Schema: map[string]*schema.Schema{

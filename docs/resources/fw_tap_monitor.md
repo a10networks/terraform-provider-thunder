@@ -17,17 +17,20 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **status** (String)
-- **tap_port_cfg** (Block List) (see [below for nested schema](#nestedblock--tap_port_cfg))
-- **uuid** (String)
+- `status` (String)
+- `tap_port_cfg` (Block List) (see [below for nested schema](#nestedblock--tap_port_cfg))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--tap_port_cfg"></a>
 ### Nested Schema for `tap_port_cfg`
 
 Optional:
 
-- **tap_eth** (Number)
-- **tap_vlan** (Number)
+- `tap_eth` (Number)
+- `tap_vlan` (Number)
 
 

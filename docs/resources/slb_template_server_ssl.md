@@ -17,49 +17,52 @@ description: |-
 
 ### Optional
 
-- **alert_type** (String)
-- **ca_certs** (Block List) (see [below for nested schema](#nestedblock--ca_certs))
-- **certificate** (Block List, Max: 1) (see [below for nested schema](#nestedblock--certificate))
-- **cipher_template** (String)
-- **cipher_without_prio_list** (Block List) (see [below for nested schema](#nestedblock--cipher_without_prio_list))
-- **close_notify** (Number)
-- **crl_certs** (Block List) (see [below for nested schema](#nestedblock--crl_certs))
-- **dgversion** (Number)
-- **dh_type** (String)
-- **early_data** (Number)
-- **ec_list** (Block List) (see [below for nested schema](#nestedblock--ec_list))
-- **enable_ssli_ftp_alg** (Number)
-- **enable_tls_alert_logging** (Number)
-- **forward_proxy_enable** (Number)
-- **handshake_logging_enable** (Number)
-- **id** (String) The ID of this resource.
-- **ifnum** (String)
-- **name** (String)
-- **ocsp_stapling** (Number)
-- **renegotiation_disable** (Number)
-- **server_certificate_error** (Block List) (see [below for nested schema](#nestedblock--server_certificate_error))
-- **server_name** (String)
-- **session_cache_size** (Number)
-- **session_cache_timeout** (Number)
-- **session_ticket_enable** (Number)
-- **shared_partition_cipher_template** (Number)
-- **ssli_logging** (Number)
-- **sslilogging** (String)
-- **template_cipher_shared** (String)
-- **use_client_sni** (Number)
-- **user_tag** (String)
-- **uuid** (String)
-- **version** (Number)
+- `alert_type` (String)
+- `ca_certs` (Block List) (see [below for nested schema](#nestedblock--ca_certs))
+- `certificate` (Block List, Max: 1) (see [below for nested schema](#nestedblock--certificate))
+- `cipher_template` (String)
+- `cipher_without_prio_list` (Block List) (see [below for nested schema](#nestedblock--cipher_without_prio_list))
+- `close_notify` (Number)
+- `crl_certs` (Block List) (see [below for nested schema](#nestedblock--crl_certs))
+- `dgversion` (Number)
+- `dh_type` (String)
+- `early_data` (Number)
+- `ec_list` (Block List) (see [below for nested schema](#nestedblock--ec_list))
+- `enable_ssli_ftp_alg` (Number)
+- `enable_tls_alert_logging` (Number)
+- `forward_proxy_enable` (Number)
+- `handshake_logging_enable` (Number)
+- `ifnum` (String)
+- `name` (String)
+- `ocsp_stapling` (Number)
+- `renegotiation_disable` (Number)
+- `server_certificate_error` (Block List) (see [below for nested schema](#nestedblock--server_certificate_error))
+- `server_name` (String)
+- `session_cache_size` (Number)
+- `session_cache_timeout` (Number)
+- `session_ticket_enable` (Number)
+- `shared_partition_cipher_template` (Number)
+- `ssli_logging` (Number)
+- `sslilogging` (String)
+- `template_cipher_shared` (String)
+- `use_client_sni` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+- `version` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--ca_certs"></a>
 ### Nested Schema for `ca_certs`
 
 Optional:
 
-- **ca_cert** (String)
-- **ca_cert_partition_shared** (Number)
-- **server_ocsp_sg** (String)
-- **server_ocsp_srvr** (String)
+- `ca_cert` (String)
+- `ca_cert_partition_shared` (Number)
+- `server_ocsp_sg` (String)
+- `server_ocsp_srvr` (String)
 
 
 <a id="nestedblock--certificate"></a>
@@ -67,11 +70,11 @@ Optional:
 
 Optional:
 
-- **cert** (String)
-- **key** (String)
-- **passphrase** (String)
-- **shared** (Number)
-- **uuid** (String)
+- `cert` (String)
+- `key` (String)
+- `passphrase` (String)
+- `shared` (Number)
+- `uuid` (String)
 
 
 <a id="nestedblock--cipher_without_prio_list"></a>
@@ -79,7 +82,7 @@ Optional:
 
 Optional:
 
-- **cipher_wo_prio** (String)
+- `cipher_wo_prio` (String)
 
 
 <a id="nestedblock--crl_certs"></a>
@@ -87,8 +90,8 @@ Optional:
 
 Optional:
 
-- **crl** (String)
-- **crl_partition_shared** (Number)
+- `crl` (String)
+- `crl_partition_shared` (Number)
 
 
 <a id="nestedblock--ec_list"></a>
@@ -96,7 +99,7 @@ Optional:
 
 Optional:
 
-- **ec** (String)
+- `ec` (String)
 
 
 <a id="nestedblock--server_certificate_error"></a>
@@ -104,6 +107,6 @@ Optional:
 
 Optional:
 
-- **error_type** (String)
+- `error_type` (String)
 
 

@@ -17,22 +17,25 @@ description: |-
 
 ### Required
 
-- **common_name** (String) Common name
-- **country** (String) Country
-- **name** (String) Local file name
+- `common_name` (String) Common name
+- `country` (String) Country
+- `name` (String) Local file name
 
 ### Optional
 
-- **cert_type** (String) Certificate type
-- **digest** (String) Digest type
-- **division** (String) Division
-- **email** (String) Email address
-- **id** (String) The ID of this resource.
-- **key_size** (String) Key size
-- **locality** (String) Locality
-- **organization** (String) Organization
-- **secured** (Number) Mark key as non-exportable
-- **state_province** (String) State province
-- **valid_days** (Number) Valid days
+- `cert_type` (String) Certificate type
+- `digest` (String) Digest type
+- `division` (String) Division
+- `email` (String) Email address
+- `key_size` (String) Key size
+- `locality` (String) Locality
+- `organization` (String) Organization
+- `secured` (Number) Mark key as non-exportable
+- `state_province` (String) State province
+- `valid_days` (Number) Valid days
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

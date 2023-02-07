@@ -13,7 +13,7 @@ import (
 func resourceFwUrpf() *schema.Resource {
 	return &schema.Resource{
 		CreateContext: resourceFwUrpfCreate,
-		UpdateContext: resourceFwUrpfUpdate,
+		UpdateContext: resourceFwUrpfCreate,
 		ReadContext:   resourceFwUrpfRead,
 		DeleteContext: resourceFwUrpfDelete,
 		Schema: map[string]*schema.Schema{

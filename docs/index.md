@@ -25,10 +25,10 @@ provider "thunder" {
 
 ### Required
 
-- **address** (String) Domain name/IP of the THUNDER
-- **password** (String) The user's password
-- **username** (String) Username with API access to the THUNDER
+- `address` (String) Domain name/IP of the THUNDER
+- `password` (String) The user's password
+- `username` (String) Username with API access to the THUNDER
 
 ### Optional
 
-- **partition** (String) partition name
+- `partition` (String) partition name

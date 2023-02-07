@@ -50,17 +50,20 @@ resource "thunder_file_bw_list" "L3V_BWLIST_1" {
 
 ### Required
 
-- **host** (String) Remote site (IP or domain name)
-- **name** (String) Local file name
-- **path** (String) Remote path
-- **protocol** (String) Transfer protocol
+- `host` (String) Remote site (IP or domain name)
+- `name` (String) Local file name
+- `path` (String) Remote path
+- `protocol` (String) Transfer protocol
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **overwrite** (Number) Overwrite existing file
-- **password** (String) Password for the remote site
-- **use_mgmt_port** (Number) Use management port as source port
-- **username** (String) Username for the remote site
+- `overwrite` (Number) Overwrite existing file
+- `password` (String) Password for the remote site
+- `use_mgmt_port` (Number) Use management port as source port
+- `username` (String) Username for the remote site
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

@@ -17,10 +17,13 @@ description: |-
 
 ### Optional
 
-- **destination** (String)
-- **id** (String) The ID of this resource.
-- **partition** (String)
-- **profile** (String)
-- **specified_partition** (String)
+- `destination` (String)
+- `partition` (String)
+- `profile` (String)
+- `specified_partition` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

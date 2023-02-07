@@ -17,37 +17,40 @@ description: |-
 
 ### Optional
 
-- **action** (String)
-- **allowed_http_methods** (String)
-- **bypass_ip_cfg** (Block List) (see [below for nested schema](#nestedblock--bypass_ip_cfg))
-- **cylance** (Number)
-- **disable_http_server_reset** (Number)
-- **fail_close** (Number)
-- **id** (String) The ID of this resource.
-- **include_protocol_in_uri** (Number)
-- **log_only_allowed_method** (Number)
-- **logging** (String)
-- **min_payload_size** (Number)
-- **name** (String)
-- **preview** (Number)
-- **server_ssl** (String)
-- **service_group** (String)
-- **service_url** (String)
-- **shared_partition_persist_source_ip_template** (Number)
-- **shared_partition_tcp_proxy_template** (Number)
-- **source_ip** (String)
-- **tcp_proxy** (String)
-- **template_persist_source_ip_shared** (String)
-- **template_tcp_proxy_shared** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `action` (String)
+- `allowed_http_methods` (String)
+- `bypass_ip_cfg` (Block List) (see [below for nested schema](#nestedblock--bypass_ip_cfg))
+- `cylance` (Number)
+- `disable_http_server_reset` (Number)
+- `fail_close` (Number)
+- `include_protocol_in_uri` (Number)
+- `log_only_allowed_method` (Number)
+- `logging` (String)
+- `min_payload_size` (Number)
+- `name` (String)
+- `preview` (Number)
+- `server_ssl` (String)
+- `service_group` (String)
+- `service_url` (String)
+- `shared_partition_persist_source_ip_template` (Number)
+- `shared_partition_tcp_proxy_template` (Number)
+- `source_ip` (String)
+- `tcp_proxy` (String)
+- `template_persist_source_ip_shared` (String)
+- `template_tcp_proxy_shared` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--bypass_ip_cfg"></a>
 ### Nested Schema for `bypass_ip_cfg`
 
 Optional:
 
-- **bypass_ip** (String)
-- **mask** (String)
+- `bypass_ip` (String)
+- `mask` (String)
 
 

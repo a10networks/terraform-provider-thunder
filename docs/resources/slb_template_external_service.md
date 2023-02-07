@@ -17,31 +17,34 @@ description: |-
 
 ### Optional
 
-- **action** (String)
-- **bypass_ip_cfg** (Block List) (see [below for nested schema](#nestedblock--bypass_ip_cfg))
-- **failure_action** (String)
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **request_header_forward_list** (Block List) (see [below for nested schema](#nestedblock--request_header_forward_list))
-- **service_group** (String)
-- **shared_partition_persist_source_ip_template** (Number)
-- **shared_partition_tcp_proxy_template** (Number)
-- **source_ip** (String)
-- **tcp_proxy** (String)
-- **template_persist_source_ip_shared** (String)
-- **template_tcp_proxy_shared** (String)
-- **timeout** (Number)
-- **type** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `action` (String)
+- `bypass_ip_cfg` (Block List) (see [below for nested schema](#nestedblock--bypass_ip_cfg))
+- `failure_action` (String)
+- `name` (String)
+- `request_header_forward_list` (Block List) (see [below for nested schema](#nestedblock--request_header_forward_list))
+- `service_group` (String)
+- `shared_partition_persist_source_ip_template` (Number)
+- `shared_partition_tcp_proxy_template` (Number)
+- `source_ip` (String)
+- `tcp_proxy` (String)
+- `template_persist_source_ip_shared` (String)
+- `template_tcp_proxy_shared` (String)
+- `timeout` (Number)
+- `type` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--bypass_ip_cfg"></a>
 ### Nested Schema for `bypass_ip_cfg`
 
 Optional:
 
-- **bypass_ip** (String)
-- **mask** (String)
+- `bypass_ip` (String)
+- `mask` (String)
 
 
 <a id="nestedblock--request_header_forward_list"></a>
@@ -49,6 +52,6 @@ Optional:
 
 Optional:
 
-- **request_header_forward** (String)
+- `request_header_forward` (String)
 
 

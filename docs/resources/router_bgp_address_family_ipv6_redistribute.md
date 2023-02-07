@@ -17,30 +17,33 @@ description: |-
 
 ### Optional
 
-- **as_number** (Number)
-- **connected_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--connected_cfg))
-- **floating_ip_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--floating_ip_cfg))
-- **id** (String) The ID of this resource.
-- **ip_nat_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_nat_cfg))
-- **ip_nat_list_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_nat_list_cfg))
-- **isis_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--isis_cfg))
-- **lw4o6_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--lw4o6_cfg))
-- **nat64_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--nat64_cfg))
-- **nat_map_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--nat_map_cfg))
-- **ospf_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf_cfg))
-- **rip_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip_cfg))
-- **static_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--static_cfg))
-- **static_nat_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--static_nat_cfg))
-- **uuid** (String)
-- **vip** (Block List, Max: 1) (see [below for nested schema](#nestedblock--vip))
+- `as_number` (Number)
+- `connected_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--connected_cfg))
+- `floating_ip_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--floating_ip_cfg))
+- `ip_nat_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_nat_cfg))
+- `ip_nat_list_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_nat_list_cfg))
+- `isis_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--isis_cfg))
+- `lw4o6_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lw4o6_cfg))
+- `nat64_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--nat64_cfg))
+- `nat_map_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--nat_map_cfg))
+- `ospf_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf_cfg))
+- `rip_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip_cfg))
+- `static_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--static_cfg))
+- `static_nat_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--static_nat_cfg))
+- `uuid` (String)
+- `vip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--vip))
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--connected_cfg"></a>
 ### Nested Schema for `connected_cfg`
 
 Optional:
 
-- **connected** (Number)
-- **route_map** (String)
+- `connected` (Number)
+- `route_map` (String)
 
 
 <a id="nestedblock--floating_ip_cfg"></a>
@@ -48,8 +51,8 @@ Optional:
 
 Optional:
 
-- **floating_ip** (Number)
-- **route_map** (String)
+- `floating_ip` (Number)
+- `route_map` (String)
 
 
 <a id="nestedblock--ip_nat_cfg"></a>
@@ -57,8 +60,8 @@ Optional:
 
 Optional:
 
-- **ip_nat** (Number)
-- **route_map** (String)
+- `ip_nat` (Number)
+- `route_map` (String)
 
 
 <a id="nestedblock--ip_nat_list_cfg"></a>
@@ -66,8 +69,8 @@ Optional:
 
 Optional:
 
-- **ip_nat_list** (Number)
-- **route_map** (String)
+- `ip_nat_list` (Number)
+- `route_map` (String)
 
 
 <a id="nestedblock--isis_cfg"></a>
@@ -75,8 +78,8 @@ Optional:
 
 Optional:
 
-- **isis** (Number)
-- **route_map** (String)
+- `isis` (Number)
+- `route_map` (String)
 
 
 <a id="nestedblock--lw4o6_cfg"></a>
@@ -84,8 +87,8 @@ Optional:
 
 Optional:
 
-- **lw4o6** (Number)
-- **route_map** (String)
+- `lw4o6` (Number)
+- `route_map` (String)
 
 
 <a id="nestedblock--nat64_cfg"></a>
@@ -93,8 +96,8 @@ Optional:
 
 Optional:
 
-- **nat64** (Number)
-- **route_map** (String)
+- `nat64` (Number)
+- `route_map` (String)
 
 
 <a id="nestedblock--nat_map_cfg"></a>
@@ -102,8 +105,8 @@ Optional:
 
 Optional:
 
-- **nat_map** (Number)
-- **route_map** (String)
+- `nat_map` (Number)
+- `route_map` (String)
 
 
 <a id="nestedblock--ospf_cfg"></a>
@@ -111,8 +114,8 @@ Optional:
 
 Optional:
 
-- **ospf** (Number)
-- **route_map** (String)
+- `ospf` (Number)
+- `route_map` (String)
 
 
 <a id="nestedblock--rip_cfg"></a>
@@ -120,8 +123,8 @@ Optional:
 
 Optional:
 
-- **rip** (Number)
-- **route_map** (String)
+- `rip` (Number)
+- `route_map` (String)
 
 
 <a id="nestedblock--static_cfg"></a>
@@ -129,8 +132,8 @@ Optional:
 
 Optional:
 
-- **route_map** (String)
-- **static** (Number)
+- `route_map` (String)
+- `static` (Number)
 
 
 <a id="nestedblock--static_nat_cfg"></a>
@@ -138,8 +141,8 @@ Optional:
 
 Optional:
 
-- **route_map** (String)
-- **static_nat** (Number)
+- `route_map` (String)
+- `static_nat` (Number)
 
 
 <a id="nestedblock--vip"></a>
@@ -147,16 +150,16 @@ Optional:
 
 Optional:
 
-- **only_flagged_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--vip--only_flagged_cfg))
-- **only_not_flagged_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--vip--only_not_flagged_cfg))
+- `only_flagged_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--vip--only_flagged_cfg))
+- `only_not_flagged_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--vip--only_not_flagged_cfg))
 
 <a id="nestedblock--vip--only_flagged_cfg"></a>
 ### Nested Schema for `vip.only_flagged_cfg`
 
 Optional:
 
-- **only_flagged** (Number)
-- **route_map** (String)
+- `only_flagged` (Number)
+- `route_map` (String)
 
 
 <a id="nestedblock--vip--only_not_flagged_cfg"></a>
@@ -164,7 +167,7 @@ Optional:
 
 Optional:
 
-- **only_not_flagged** (Number)
-- **route_map** (String)
+- `only_not_flagged` (Number)
+- `route_map` (String)
 
 

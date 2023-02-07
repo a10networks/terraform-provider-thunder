@@ -1,3 +1,25 @@
+# A10 Networks Terraform Provider Release v1.1.0.
+
+Welcome to GitHub repository for A10’s Registered Terraform Provider for vThunder.
+
+## What is vThunder Terraform Provider?
+
+This collection of sample terraform resources [tf scripts] along with examples will help you get started with ACOS-vThunder AXAPI/v3 cofiguration.
+Terraform scripts simplifies appliying cofiguration on vThunder. You can configure or de-configure vthunder settings. 
+
+## A10’s vThunder Support Information
+
+Below listed A10’s vThunder vADC (Application Delivery Controller) are tested and supported.
+- 64-bit Advanced Core OS (ACOS) version 5.2.1-p5, build 114.
+- 64-bit Advanced Core OS (ACOS) version 5.2.1-p6, build 74.
+
+## Release Logs Information
+
+- Extended Support for GSLB AXAPIs
+- Extended Support for Geo-Location AXAPIs
+- Extended Support for Password Change AXAPIs
+- Defect Fixtures
+
 # Terraform Provider Thunder
 
 A [Terraform](https://www.terraform.io) provider for A10 Thunder.

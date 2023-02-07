@@ -17,11 +17,14 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **mask** (String)
-- **oid** (String)
-- **type** (String)
-- **uuid** (String)
-- **viewname** (String)
+- `mask` (String)
+- `oid` (String)
+- `type` (String)
+- `uuid` (String)
+- `viewname` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

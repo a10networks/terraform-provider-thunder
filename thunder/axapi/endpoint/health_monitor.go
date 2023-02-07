@@ -23,10 +23,10 @@ type HealthMonitor struct {
 		Retry                      int                 `json:"retry"`
 		SampleThreshold            int                 `json:"sample-threshold" dval:"50"`
 		SslCiphers                 string              `json:"ssl-ciphers" dval:"DEFAULT"`
-		SslDgversion               int                 `json:"ssl-dgversion" dval:"31"`
+		SslDgversion               int                 `json:"ssl-dgversion" dval:"-1"` //ssl-dgversion is mandatory when ssl-version is configured
 		SslTicket                  int                 `json:"ssl-ticket"`
 		SslTicketLifetime          int                 `json:"ssl-ticket-lifetime"`
-		SslVersion                 int                 `json:"ssl-version" dval:"34"`
+		SslVersion                 int                 `json:"ssl-version" dval:"-1"`
 		StatusCode                 string              `json:"status-code"`
 		StrictRetryOnServerErrResp int                 `json:"strict-retry-on-server-err-resp"`
 		Threshold                  int                 `json:"threshold" dval:"75"`

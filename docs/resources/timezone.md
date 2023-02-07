@@ -17,16 +17,19 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **timezone_index_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--timezone_index_cfg))
-- **uuid** (String)
+- `timezone_index_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--timezone_index_cfg))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--timezone_index_cfg"></a>
 ### Nested Schema for `timezone_index_cfg`
 
 Optional:
 
-- **nodst** (Number)
-- **timezone_index** (String)
+- `nodst` (Number)
+- `timezone_index` (String)
 
 

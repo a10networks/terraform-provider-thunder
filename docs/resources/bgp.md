@@ -17,21 +17,24 @@ description: |-
 
 ### Optional
 
-- **action** (String)
-- **as_number** (String)
-- **extended_asn_cap** (Number)
-- **id** (String) The ID of this resource.
-- **nexthop_trigger** (Block List, Max: 1) (see [below for nested schema](#nestedblock--nexthop_trigger))
-- **process_id** (String)
-- **sequence** (String)
-- **uuid** (String)
+- `action` (String)
+- `as_number` (String)
+- `extended_asn_cap` (Number)
+- `nexthop_trigger` (Block List, Max: 1) (see [below for nested schema](#nestedblock--nexthop_trigger))
+- `process_id` (String)
+- `sequence` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--nexthop_trigger"></a>
 ### Nested Schema for `nexthop_trigger`
 
 Optional:
 
-- **delay** (Number)
-- **enable** (Number)
+- `delay` (Number)
+- `enable` (Number)
 
 

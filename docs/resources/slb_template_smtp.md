@@ -17,28 +17,31 @@ description: |-
 
 ### Optional
 
-- **client_domain_switching** (Block List) (see [below for nested schema](#nestedblock--client_domain_switching))
-- **client_starttls_type** (String)
-- **command_disable** (Block List) (see [below for nested schema](#nestedblock--command_disable))
-- **error_code_to_client** (Number)
-- **id** (String) The ID of this resource.
-- **lf_to_crlf** (Number)
-- **name** (String)
-- **server_domain** (String)
-- **server_starttls_type** (String)
-- **service_ready_msg** (String)
-- **template** (Block List, Max: 1) (see [below for nested schema](#nestedblock--template))
-- **user_tag** (String)
-- **uuid** (String)
+- `client_domain_switching` (Block List) (see [below for nested schema](#nestedblock--client_domain_switching))
+- `client_starttls_type` (String)
+- `command_disable` (Block List) (see [below for nested schema](#nestedblock--command_disable))
+- `error_code_to_client` (Number)
+- `lf_to_crlf` (Number)
+- `name` (String)
+- `server_domain` (String)
+- `server_starttls_type` (String)
+- `service_ready_msg` (String)
+- `template` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template))
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--client_domain_switching"></a>
 ### Nested Schema for `client_domain_switching`
 
 Optional:
 
-- **match_string** (String)
-- **service_group** (String)
-- **switching_type** (String)
+- `match_string` (String)
+- `service_group` (String)
+- `switching_type` (String)
 
 
 <a id="nestedblock--command_disable"></a>
@@ -46,7 +49,7 @@ Optional:
 
 Optional:
 
-- **disable_type** (String)
+- `disable_type` (String)
 
 
 <a id="nestedblock--template"></a>
@@ -54,6 +57,6 @@ Optional:
 
 Optional:
 
-- **logging** (String)
+- `logging` (String)
 
 

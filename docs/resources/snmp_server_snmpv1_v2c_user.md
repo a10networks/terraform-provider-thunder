@@ -17,41 +17,44 @@ description: |-
 
 ### Optional
 
-- **encrypted** (String)
-- **id** (String) The ID of this resource.
-- **oid_list** (Block List) (see [below for nested schema](#nestedblock--oid_list))
-- **passwd** (String)
-- **remote** (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote))
-- **user** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `encrypted` (String)
+- `oid_list` (Block List) (see [below for nested schema](#nestedblock--oid_list))
+- `passwd` (String)
+- `remote` (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote))
+- `user` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--oid_list"></a>
 ### Nested Schema for `oid_list`
 
 Optional:
 
-- **oid_val** (String)
-- **remote** (Block List, Max: 1) (see [below for nested schema](#nestedblock--oid_list--remote))
-- **user_tag** (String)
-- **uuid** (String)
+- `oid_val` (String)
+- `remote` (Block List, Max: 1) (see [below for nested schema](#nestedblock--oid_list--remote))
+- `user_tag` (String)
+- `uuid` (String)
 
 <a id="nestedblock--oid_list--remote"></a>
 ### Nested Schema for `oid_list.remote`
 
 Optional:
 
-- **host_list** (Block List) (see [below for nested schema](#nestedblock--oid_list--remote--host_list))
-- **ipv4_list** (Block List) (see [below for nested schema](#nestedblock--oid_list--remote--ipv4_list))
-- **ipv6_list** (Block List) (see [below for nested schema](#nestedblock--oid_list--remote--ipv6_list))
+- `host_list` (Block List) (see [below for nested schema](#nestedblock--oid_list--remote--host_list))
+- `ipv4_list` (Block List) (see [below for nested schema](#nestedblock--oid_list--remote--ipv4_list))
+- `ipv6_list` (Block List) (see [below for nested schema](#nestedblock--oid_list--remote--ipv6_list))
 
 <a id="nestedblock--oid_list--remote--host_list"></a>
 ### Nested Schema for `oid_list.remote.host_list`
 
 Optional:
 
-- **dns_host** (String)
-- **ipv4_mask** (String)
+- `dns_host` (String)
+- `ipv4_mask` (String)
 
 
 <a id="nestedblock--oid_list--remote--ipv4_list"></a>
@@ -59,8 +62,8 @@ Optional:
 
 Optional:
 
-- **ipv4_host** (String)
-- **ipv4_mask** (String)
+- `ipv4_host` (String)
+- `ipv4_mask` (String)
 
 
 <a id="nestedblock--oid_list--remote--ipv6_list"></a>
@@ -68,8 +71,8 @@ Optional:
 
 Optional:
 
-- **ipv6_host** (String)
-- **ipv6_mask** (Number)
+- `ipv6_host` (String)
+- `ipv6_mask` (Number)
 
 
 
@@ -79,17 +82,17 @@ Optional:
 
 Optional:
 
-- **host_list** (Block List) (see [below for nested schema](#nestedblock--remote--host_list))
-- **ipv4_list** (Block List) (see [below for nested schema](#nestedblock--remote--ipv4_list))
-- **ipv6_list** (Block List) (see [below for nested schema](#nestedblock--remote--ipv6_list))
+- `host_list` (Block List) (see [below for nested schema](#nestedblock--remote--host_list))
+- `ipv4_list` (Block List) (see [below for nested schema](#nestedblock--remote--ipv4_list))
+- `ipv6_list` (Block List) (see [below for nested schema](#nestedblock--remote--ipv6_list))
 
 <a id="nestedblock--remote--host_list"></a>
 ### Nested Schema for `remote.host_list`
 
 Optional:
 
-- **dns_host** (String)
-- **ipv4_mask** (String)
+- `dns_host` (String)
+- `ipv4_mask` (String)
 
 
 <a id="nestedblock--remote--ipv4_list"></a>
@@ -97,8 +100,8 @@ Optional:
 
 Optional:
 
-- **ipv4_host** (String)
-- **ipv4_mask** (String)
+- `ipv4_host` (String)
+- `ipv4_mask` (String)
 
 
 <a id="nestedblock--remote--ipv6_list"></a>
@@ -106,7 +109,7 @@ Optional:
 
 Optional:
 
-- **ipv6_host** (String)
-- **ipv6_mask** (Number)
+- `ipv6_host` (String)
+- `ipv6_mask` (Number)
 
 

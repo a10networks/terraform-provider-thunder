@@ -17,11 +17,14 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **min** (Number)
-- **mss_clamp_type** (String)
-- **mss_subtract** (Number)
-- **mss_value** (Number)
-- **uuid** (String)
+- `min` (Number)
+- `mss_clamp_type` (String)
+- `mss_subtract` (Number)
+- `mss_value` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

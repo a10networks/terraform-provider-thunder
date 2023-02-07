@@ -17,74 +17,77 @@ description: |-
 
 ### Optional
 
-- **bypass_sg** (String)
-- **client_ip_hdr_replace** (Number)
-- **client_port_hdr_replace** (Number)
-- **compression_auto_disable_on_high_cpu** (Number)
-- **compression_content_type** (Block List) (see [below for nested schema](#nestedblock--compression_content_type))
-- **compression_enable** (Number)
-- **compression_exclude_content_type** (Block List) (see [below for nested schema](#nestedblock--compression_exclude_content_type))
-- **compression_exclude_uri** (Block List) (see [below for nested schema](#nestedblock--compression_exclude_uri))
-- **compression_keep_accept_encoding** (Number)
-- **compression_keep_accept_encoding_enable** (Number)
-- **compression_level** (Number)
-- **compression_minimum_content_length** (Number)
-- **cont_100_wait_for_req_complete** (Number)
-- **cookie_format** (String)
-- **cookie_samesite** (String)
-- **default_charset** (String)
-- **failover_url** (String)
-- **frame_limit** (Number)
-- **host_switching** (Block List) (see [below for nested schema](#nestedblock--host_switching))
-- **id** (String) The ID of this resource.
-- **insert_client_ip** (Number)
-- **insert_client_ip_header_name** (String)
-- **insert_client_port** (Number)
-- **insert_client_port_header_name** (String)
-- **keep_client_alive** (Number)
-- **log_retry** (Number)
-- **max_concurrent_streams** (Number)
-- **name** (String)
-- **non_http_bypass** (Number)
-- **persist_on_401** (Number)
-- **prefix** (String)
-- **rd_port** (Number)
-- **rd_resp_code** (String)
-- **rd_secure** (Number)
-- **rd_simple_loc** (String)
-- **redirect** (Number)
-- **redirect_rewrite** (Block List, Max: 1) (see [below for nested schema](#nestedblock--redirect_rewrite))
-- **req_hdr_wait_time** (Number)
-- **req_hdr_wait_time_val** (Number)
-- **request_header_erase_list** (Block List) (see [below for nested schema](#nestedblock--request_header_erase_list))
-- **request_header_insert_list** (Block List) (see [below for nested schema](#nestedblock--request_header_insert_list))
-- **request_line_case_insensitive** (Number)
-- **request_timeout** (Number)
-- **response_content_replace_list** (Block List) (see [below for nested schema](#nestedblock--response_content_replace_list))
-- **response_header_erase_list** (Block List) (see [below for nested schema](#nestedblock--response_header_erase_list))
-- **response_header_insert_list** (Block List) (see [below for nested schema](#nestedblock--response_header_insert_list))
-- **retry_on_5xx** (Number)
-- **retry_on_5xx_per_req** (Number)
-- **retry_on_5xx_per_req_val** (Number)
-- **retry_on_5xx_val** (Number)
-- **strict_transaction_switch** (Number)
-- **template** (Block List, Max: 1) (see [below for nested schema](#nestedblock--template))
-- **term_11client_hdr_conn_close** (Number)
-- **url_hash_first** (Number)
-- **url_hash_last** (Number)
-- **url_hash_offset** (Number)
-- **url_hash_persist** (Number)
-- **url_switching** (Block List) (see [below for nested schema](#nestedblock--url_switching))
-- **use_server_status** (Number)
-- **user_tag** (String)
-- **uuid** (String)
+- `bypass_sg` (String)
+- `client_ip_hdr_replace` (Number)
+- `client_port_hdr_replace` (Number)
+- `compression_auto_disable_on_high_cpu` (Number)
+- `compression_content_type` (Block List) (see [below for nested schema](#nestedblock--compression_content_type))
+- `compression_enable` (Number)
+- `compression_exclude_content_type` (Block List) (see [below for nested schema](#nestedblock--compression_exclude_content_type))
+- `compression_exclude_uri` (Block List) (see [below for nested schema](#nestedblock--compression_exclude_uri))
+- `compression_keep_accept_encoding` (Number)
+- `compression_keep_accept_encoding_enable` (Number)
+- `compression_level` (Number)
+- `compression_minimum_content_length` (Number)
+- `cont_100_wait_for_req_complete` (Number)
+- `cookie_format` (String)
+- `cookie_samesite` (String)
+- `default_charset` (String)
+- `failover_url` (String)
+- `frame_limit` (Number)
+- `host_switching` (Block List) (see [below for nested schema](#nestedblock--host_switching))
+- `insert_client_ip` (Number)
+- `insert_client_ip_header_name` (String)
+- `insert_client_port` (Number)
+- `insert_client_port_header_name` (String)
+- `keep_client_alive` (Number)
+- `log_retry` (Number)
+- `max_concurrent_streams` (Number)
+- `name` (String)
+- `non_http_bypass` (Number)
+- `persist_on_401` (Number)
+- `prefix` (String)
+- `rd_port` (Number)
+- `rd_resp_code` (String)
+- `rd_secure` (Number)
+- `rd_simple_loc` (String)
+- `redirect` (Number)
+- `redirect_rewrite` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redirect_rewrite))
+- `req_hdr_wait_time` (Number)
+- `req_hdr_wait_time_val` (Number)
+- `request_header_erase_list` (Block List) (see [below for nested schema](#nestedblock--request_header_erase_list))
+- `request_header_insert_list` (Block List) (see [below for nested schema](#nestedblock--request_header_insert_list))
+- `request_line_case_insensitive` (Number)
+- `request_timeout` (Number)
+- `response_content_replace_list` (Block List) (see [below for nested schema](#nestedblock--response_content_replace_list))
+- `response_header_erase_list` (Block List) (see [below for nested schema](#nestedblock--response_header_erase_list))
+- `response_header_insert_list` (Block List) (see [below for nested schema](#nestedblock--response_header_insert_list))
+- `retry_on_5xx` (Number)
+- `retry_on_5xx_per_req` (Number)
+- `retry_on_5xx_per_req_val` (Number)
+- `retry_on_5xx_val` (Number)
+- `strict_transaction_switch` (Number)
+- `template` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template))
+- `term_11client_hdr_conn_close` (Number)
+- `url_hash_first` (Number)
+- `url_hash_last` (Number)
+- `url_hash_offset` (Number)
+- `url_hash_persist` (Number)
+- `url_switching` (Block List) (see [below for nested schema](#nestedblock--url_switching))
+- `use_server_status` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--compression_content_type"></a>
 ### Nested Schema for `compression_content_type`
 
 Optional:
 
-- **content_type** (String)
+- `content_type` (String)
 
 
 <a id="nestedblock--compression_exclude_content_type"></a>
@@ -92,7 +95,7 @@ Optional:
 
 Optional:
 
-- **exclude_content_type** (String)
+- `exclude_content_type` (String)
 
 
 <a id="nestedblock--compression_exclude_uri"></a>
@@ -100,7 +103,7 @@ Optional:
 
 Optional:
 
-- **exclude_uri** (String)
+- `exclude_uri` (String)
 
 
 <a id="nestedblock--host_switching"></a>
@@ -108,9 +111,9 @@ Optional:
 
 Optional:
 
-- **host_match_string** (String)
-- **host_service_group** (String)
-- **host_switching_type** (String)
+- `host_match_string` (String)
+- `host_service_group` (String)
+- `host_switching_type` (String)
 
 
 <a id="nestedblock--redirect_rewrite"></a>
@@ -118,17 +121,17 @@ Optional:
 
 Optional:
 
-- **match_list** (Block List) (see [below for nested schema](#nestedblock--redirect_rewrite--match_list))
-- **redirect_secure** (Number)
-- **redirect_secure_port** (Number)
+- `match_list` (Block List) (see [below for nested schema](#nestedblock--redirect_rewrite--match_list))
+- `redirect_secure` (Number)
+- `redirect_secure_port` (Number)
 
 <a id="nestedblock--redirect_rewrite--match_list"></a>
 ### Nested Schema for `redirect_rewrite.match_list`
 
 Optional:
 
-- **redirect_match** (String)
-- **rewrite_to** (String)
+- `redirect_match` (String)
+- `rewrite_to` (String)
 
 
 
@@ -137,7 +140,7 @@ Optional:
 
 Optional:
 
-- **request_header_erase** (String)
+- `request_header_erase` (String)
 
 
 <a id="nestedblock--request_header_insert_list"></a>
@@ -145,8 +148,8 @@ Optional:
 
 Optional:
 
-- **request_header_insert** (String)
-- **request_header_insert_type** (String)
+- `request_header_insert` (String)
+- `request_header_insert_type` (String)
 
 
 <a id="nestedblock--response_content_replace_list"></a>
@@ -154,8 +157,8 @@ Optional:
 
 Optional:
 
-- **response_content_replace** (String)
-- **response_new_string** (String)
+- `response_content_replace` (String)
+- `response_new_string` (String)
 
 
 <a id="nestedblock--response_header_erase_list"></a>
@@ -163,7 +166,7 @@ Optional:
 
 Optional:
 
-- **response_header_erase** (String)
+- `response_header_erase` (String)
 
 
 <a id="nestedblock--response_header_insert_list"></a>
@@ -171,8 +174,8 @@ Optional:
 
 Optional:
 
-- **response_header_insert** (String)
-- **response_header_insert_type** (String)
+- `response_header_insert` (String)
+- `response_header_insert_type` (String)
 
 
 <a id="nestedblock--template"></a>
@@ -180,16 +183,19 @@ Optional:
 
 Optional:
 
-- **logging** (String)
+- `logging` (String)
 
 
 <a id="nestedblock--url_switching"></a>
 ### Nested Schema for `url_switching`
 
+Required:
+
+- `url_switching_type` (String)
+
 Optional:
 
-- **url_match_string** (String)
-- **url_service_group** (String)
-- **url_switching_type** (String)
+- `url_match_string` (String)
+- `url_service_group` (String)
 
 

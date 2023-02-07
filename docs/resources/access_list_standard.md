@@ -17,24 +17,27 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **std** (Number)
-- **stdrules** (Block List) (see [below for nested schema](#nestedblock--stdrules))
-- **uuid** (String)
+- `std` (Number)
+- `stdrules` (Block List) (see [below for nested schema](#nestedblock--stdrules))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--stdrules"></a>
 ### Nested Schema for `stdrules`
 
 Optional:
 
-- **action** (String)
-- **any** (Number)
-- **host** (String)
-- **log** (Number)
-- **rev_subnet_mask** (String)
-- **seq_num** (Number)
-- **std_remark** (String)
-- **subnet** (String)
-- **transparent_session_only** (Number)
+- `action` (String)
+- `any` (Number)
+- `host` (String)
+- `log` (Number)
+- `rev_subnet_mask` (String)
+- `seq_num` (Number)
+- `std_remark` (String)
+- `subnet` (String)
+- `transparent_session_only` (Number)
 
 

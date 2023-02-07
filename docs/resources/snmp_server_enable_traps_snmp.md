@@ -17,10 +17,13 @@ description: |-
 
 ### Optional
 
-- **all** (Number)
-- **id** (String) The ID of this resource.
-- **linkdown** (Number)
-- **linkup** (Number)
-- **uuid** (String)
+- `all` (Number)
+- `linkdown` (Number)
+- `linkup` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

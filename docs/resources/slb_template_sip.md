@@ -17,47 +17,50 @@ description: |-
 
 ### Optional
 
-- **acl_id** (Number)
-- **acl_name_value** (String)
-- **alg_dest_nat** (Number)
-- **alg_source_nat** (Number)
-- **call_id_persist_disable** (Number)
-- **client_keep_alive** (Number)
-- **client_request_header** (Block List) (see [below for nested schema](#nestedblock--client_request_header))
-- **client_response_header** (Block List) (see [below for nested schema](#nestedblock--client_response_header))
-- **dialog_aware** (Number)
-- **drop_when_client_fail** (Number)
-- **drop_when_server_fail** (Number)
-- **exclude_translation** (Block List) (see [below for nested schema](#nestedblock--exclude_translation))
-- **failed_client_selection** (Number)
-- **failed_client_selection_message** (String)
-- **failed_server_selection** (Number)
-- **failed_server_selection_message** (String)
-- **id** (String) The ID of this resource.
-- **insert_client_ip** (Number)
-- **interval** (Number)
-- **keep_server_ip_if_match_acl** (Number)
-- **name** (String)
-- **pstn_gw** (String)
-- **server_keep_alive** (Number)
-- **server_request_header** (Block List) (see [below for nested schema](#nestedblock--server_request_header))
-- **server_response_header** (Block List) (see [below for nested schema](#nestedblock--server_response_header))
-- **server_selection_per_request** (Number)
-- **service_group** (String)
-- **smp_call_id_rtp_session** (Number)
-- **timeout** (Number)
-- **user_tag** (String)
-- **uuid** (String)
+- `acl_id` (Number)
+- `acl_name_value` (String)
+- `alg_dest_nat` (Number)
+- `alg_source_nat` (Number)
+- `call_id_persist_disable` (Number)
+- `client_keep_alive` (Number)
+- `client_request_header` (Block List) (see [below for nested schema](#nestedblock--client_request_header))
+- `client_response_header` (Block List) (see [below for nested schema](#nestedblock--client_response_header))
+- `dialog_aware` (Number)
+- `drop_when_client_fail` (Number)
+- `drop_when_server_fail` (Number)
+- `exclude_translation` (Block List) (see [below for nested schema](#nestedblock--exclude_translation))
+- `failed_client_selection` (Number)
+- `failed_client_selection_message` (String)
+- `failed_server_selection` (Number)
+- `failed_server_selection_message` (String)
+- `insert_client_ip` (Number)
+- `interval` (Number)
+- `keep_server_ip_if_match_acl` (Number)
+- `name` (String)
+- `pstn_gw` (String)
+- `server_keep_alive` (Number)
+- `server_request_header` (Block List) (see [below for nested schema](#nestedblock--server_request_header))
+- `server_response_header` (Block List) (see [below for nested schema](#nestedblock--server_response_header))
+- `server_selection_per_request` (Number)
+- `service_group` (String)
+- `smp_call_id_rtp_session` (Number)
+- `timeout` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--client_request_header"></a>
 ### Nested Schema for `client_request_header`
 
 Optional:
 
-- **client_request_erase_all** (Number)
-- **client_request_header_erase** (String)
-- **client_request_header_insert** (String)
-- **insert_condition_client_request** (String)
+- `client_request_erase_all` (Number)
+- `client_request_header_erase` (String)
+- `client_request_header_insert` (String)
+- `insert_condition_client_request` (String)
 
 
 <a id="nestedblock--client_response_header"></a>
@@ -65,10 +68,10 @@ Optional:
 
 Optional:
 
-- **client_response_erase_all** (Number)
-- **client_response_header_erase** (String)
-- **client_response_header_insert** (String)
-- **insert_condition_client_response** (String)
+- `client_response_erase_all` (Number)
+- `client_response_header_erase` (String)
+- `client_response_header_insert` (String)
+- `insert_condition_client_response` (String)
 
 
 <a id="nestedblock--exclude_translation"></a>
@@ -76,8 +79,8 @@ Optional:
 
 Optional:
 
-- **header_string** (String)
-- **translation_value** (String)
+- `header_string` (String)
+- `translation_value` (String)
 
 
 <a id="nestedblock--server_request_header"></a>
@@ -85,10 +88,10 @@ Optional:
 
 Optional:
 
-- **insert_condition_server_request** (String)
-- **server_request_erase_all** (Number)
-- **server_request_header_erase** (String)
-- **server_request_header_insert** (String)
+- `insert_condition_server_request` (String)
+- `server_request_erase_all` (Number)
+- `server_request_header_erase` (String)
+- `server_request_header_insert` (String)
 
 
 <a id="nestedblock--server_response_header"></a>
@@ -96,9 +99,9 @@ Optional:
 
 Optional:
 
-- **insert_condition_server_response** (String)
-- **server_response_erase_all** (Number)
-- **server_response_header_erase** (String)
-- **server_response_header_insert** (String)
+- `insert_condition_server_response` (String)
+- `server_response_erase_all` (Number)
+- `server_response_header_erase` (String)
+- `server_response_header_insert` (String)
 
 

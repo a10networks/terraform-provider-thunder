@@ -17,43 +17,46 @@ description: |-
 
 ### Optional
 
-- **facility** (String)
-- **format** (String)
-- **id** (String) The ID of this resource.
-- **include_dest_fqdn** (Number)
-- **include_http** (Block List, Max: 1) (see [below for nested schema](#nestedblock--include_http))
-- **include_radius_attribute** (Block List, Max: 1) (see [below for nested schema](#nestedblock--include_radius_attribute))
-- **log** (Block List, Max: 1) (see [below for nested schema](#nestedblock--log))
-- **merged_style** (Number)
-- **name** (String)
-- **resolution** (String)
-- **rule** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rule))
-- **service_group** (String)
-- **severity** (String)
-- **source_address** (Block List, Max: 1) (see [below for nested schema](#nestedblock--source_address))
-- **user_tag** (String)
-- **uuid** (String)
+- `facility` (String)
+- `format` (String)
+- `include_dest_fqdn` (Number)
+- `include_http` (Block List, Max: 1) (see [below for nested schema](#nestedblock--include_http))
+- `include_radius_attribute` (Block List, Max: 1) (see [below for nested schema](#nestedblock--include_radius_attribute))
+- `log` (Block List, Max: 1) (see [below for nested schema](#nestedblock--log))
+- `merged_style` (Number)
+- `name` (String)
+- `resolution` (String)
+- `rule` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rule))
+- `service_group` (String)
+- `severity` (String)
+- `source_address` (Block List, Max: 1) (see [below for nested schema](#nestedblock--source_address))
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--include_http"></a>
 ### Nested Schema for `include_http`
 
 Optional:
 
-- **file_extension** (Number)
-- **header_cfg** (Block List) (see [below for nested schema](#nestedblock--include_http--header_cfg))
-- **l4_session_info** (Number)
-- **method** (Number)
-- **request_number** (Number)
+- `file_extension` (Number)
+- `header_cfg` (Block List) (see [below for nested schema](#nestedblock--include_http--header_cfg))
+- `l4_session_info` (Number)
+- `method` (Number)
+- `request_number` (Number)
 
 <a id="nestedblock--include_http--header_cfg"></a>
 ### Nested Schema for `include_http.header_cfg`
 
 Optional:
 
-- **custom_header_name** (String)
-- **custom_max_length** (Number)
-- **http_header** (String)
-- **max_length** (Number)
+- `custom_header_name` (String)
+- `custom_max_length` (Number)
+- `http_header` (String)
+- `max_length` (Number)
 
 
 
@@ -62,20 +65,20 @@ Optional:
 
 Optional:
 
-- **attr_cfg** (Block List) (see [below for nested schema](#nestedblock--include_radius_attribute--attr_cfg))
-- **framed_ipv6_prefix** (Number)
-- **insert_if_not_existing** (Number)
-- **no_quote** (Number)
-- **prefix_length** (String)
-- **zero_in_custom_attr** (Number)
+- `attr_cfg` (Block List) (see [below for nested schema](#nestedblock--include_radius_attribute--attr_cfg))
+- `framed_ipv6_prefix` (Number)
+- `insert_if_not_existing` (Number)
+- `no_quote` (Number)
+- `prefix_length` (String)
+- `zero_in_custom_attr` (Number)
 
 <a id="nestedblock--include_radius_attribute--attr_cfg"></a>
 ### Nested Schema for `include_radius_attribute.attr_cfg`
 
 Optional:
 
-- **attr** (String)
-- **attr_event** (String)
+- `attr` (String)
+- `attr_event` (String)
 
 
 
@@ -84,7 +87,7 @@ Optional:
 
 Optional:
 
-- **http_requests** (String)
+- `http_requests` (String)
 
 
 <a id="nestedblock--rule"></a>
@@ -92,26 +95,26 @@ Optional:
 
 Optional:
 
-- **rule_http_requests** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rule--rule_http_requests))
+- `rule_http_requests` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rule--rule_http_requests))
 
 <a id="nestedblock--rule--rule_http_requests"></a>
 ### Nested Schema for `rule.rule_http_requests`
 
 Optional:
 
-- **dest_port** (Block List) (see [below for nested schema](#nestedblock--rule--rule_http_requests--dest_port))
-- **disable_sequence_check** (Number)
-- **include_all_headers** (Number)
-- **log_every_http_request** (Number)
-- **max_url_len** (Number)
+- `dest_port` (Block List) (see [below for nested schema](#nestedblock--rule--rule_http_requests--dest_port))
+- `disable_sequence_check` (Number)
+- `include_all_headers` (Number)
+- `log_every_http_request` (Number)
+- `max_url_len` (Number)
 
 <a id="nestedblock--rule--rule_http_requests--dest_port"></a>
 ### Nested Schema for `rule.rule_http_requests.dest_port`
 
 Optional:
 
-- **dest_port_number** (Number)
-- **include_byte_count** (Number)
+- `dest_port_number` (Number)
+- `include_byte_count` (Number)
 
 
 
@@ -121,8 +124,8 @@ Optional:
 
 Optional:
 
-- **ip** (String)
-- **ipv6** (String)
-- **uuid** (String)
+- `ip` (String)
+- `ipv6` (String)
+- `uuid` (String)
 
 

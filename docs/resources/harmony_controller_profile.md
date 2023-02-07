@@ -17,23 +17,26 @@ description: |-
 
 ### Optional
 
-- **action** (String)
-- **availability_zone** (String)
-- **host** (String)
-- **id** (String) The ID of this resource.
-- **port** (Number)
-- **provider2** (String)
-- **region** (String)
-- **secret_value** (String)
-- **thunder_mgmt_ip** (Block List, Max: 1) (see [below for nested schema](#nestedblock--thunder_mgmt_ip))
-- **use_mgmt_port** (Number)
-- **user_name** (String)
+- `action` (String)
+- `availability_zone` (String)
+- `host` (String)
+- `port` (Number)
+- `provider2` (String)
+- `region` (String)
+- `secret_value` (String)
+- `thunder_mgmt_ip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--thunder_mgmt_ip))
+- `use_mgmt_port` (Number)
+- `user_name` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--thunder_mgmt_ip"></a>
 ### Nested Schema for `thunder_mgmt_ip`
 
 Optional:
 
-- **ip_address** (String)
+- `ip_address` (String)
 
 

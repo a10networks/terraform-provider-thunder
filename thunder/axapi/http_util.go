@@ -3,15 +3,23 @@ package axapi
 import (
 	"bytes"
 	"crypto/tls"
+	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/clarketm/json"
+	"io"
 	"io/ioutil"
+	"mime/multipart"
 	"net"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
+)
+
+const (
+	jsonName = "json"
+	fileName = "file"
+	blobName = "blob"
 )
 
 func GenRequestHeaderNoToken() map[string]string {
@@ -154,4 +162,81 @@ func GenUrlForDownload(protocol string, host string, path string, username strin
 	}
 	url += path
 	return url
+}
+
+func getAPIRequest(method string, host string, token map[string]string, path string, requestBody []byte, logger *ThunderLog) *http.Request {
+	var req *http.Request
+	var err error
+	url := "https://" + host + "/axapi/v3/" + path
+	if requestBody != nil {
+		req, err = http.NewRequest(method, url, bytes.NewBuffer(requestBody))
+	} else {
+		req, err = http.NewRequest(method, url, nil)
+	}
+	if err != nil {
+		logger.Println("Failed to create new request, error = %v", err)
+		return nil
+	}
+
+	req.Header.Add("Host", host)
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Accept", "application/json")
+	req.Header.Add("Cache-Control", "no-cache")
+	req.Header.Add("Pragma", "no-cache")
+	req.Header.Add("Authorization", token["Authorization"])
+	return req
+}
+
+func CallMultipartAPI(method string, host string, token map[string]string, path string, rpns map[string]string, rfcs map[string][]byte, logger *ThunderLog) (resp *http.Response, err error) {
+	defer func() {
+		io.Copy(ioutil.Discard, resp.Body)
+		resp.Body.Close()
+	}()
+	buf := new(bytes.Buffer)
+	w := multipart.NewWriter(buf)
+	for rpn, rfn := range rpns {
+		ff, err := w.CreateFormFile(rpn, rfn)
+		if err != nil {
+			logger.Println("Failed to create multipart form field for %v", rpn)
+			return nil, err
+		}
+		ff.Write(rfcs[rfn])
+	}
+	w.Close()
+
+	req := getAPIRequest(method, host, token, path, buf.Bytes(), logger)
+	if req == nil {
+		return nil, fmt.Errorf("ACOS aXAPI call to %v failed", path)
+	}
+
+	req.Header.Set("Content-Type", w.FormDataContentType())
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr, Timeout: 30 * time.Second}
+
+	resp, err = client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("ACOS aXAPI call to %v failed, error = %v", path, err)
+	}
+
+	return resp, err
+}
+
+func NormalizeMultipartObject(method, path, file string, fContent []byte, obj interface{}, token map[string]string, host string, logger *ThunderLog) (*http.Response, error) {
+	rpns := make(map[string]string)
+	rfcs := make(map[string][]byte)
+	jsonBlob, err := json.Marshal(obj)
+
+	if err != nil {
+		logger.Println("MulitpartObject : Failed to marshal")
+		return nil, err
+	}
+
+	rpns[jsonName] = blobName
+	rfcs[blobName] = jsonBlob
+	rpns[fileName] = file
+	rfcs[file] = fContent
+
+	return CallMultipartAPI(method, host, token, path, rpns, rfcs, logger)
 }

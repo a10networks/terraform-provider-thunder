@@ -53,16 +53,19 @@ resource "thunder_router_bgp_network_ip_cidr" "t02" {
 
 ### Required
 
-- **as_number** (String) BGP AS number
-- **network_ipv4_cidr** (String) Specify network mask
+- `as_number` (String) BGP AS number
+- `network_ipv4_cidr` (String) Specify network mask
 
 ### Optional
 
-- **backdoor** (Number) Specify a BGP backdoor route
-- **comm_value** (String) community value in the format 1-4294967295|AA:NN|internet|local-AS|no-advertise|no-export
-- **description** (String) Network specific description (Up to 80 characters describing this network)
-- **id** (String) The ID of this resource.
-- **route_map** (String) Route-map to modify the attributes (Name of the route map)
-- **uuid** (String) uuid of the object
+- `backdoor` (Number) Specify a BGP backdoor route
+- `comm_value` (String) community value in the format 1-4294967295|AA:NN|internet|local-AS|no-advertise|no-export
+- `description` (String) Network specific description (Up to 80 characters describing this network)
+- `route_map` (String) Route-map to modify the attributes (Name of the route map)
+- `uuid` (String) uuid of the object
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

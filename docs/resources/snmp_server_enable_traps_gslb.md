@@ -17,12 +17,15 @@ description: |-
 
 ### Optional
 
-- **all** (Number)
-- **group** (Number)
-- **id** (String) The ID of this resource.
-- **service_ip** (Number)
-- **site** (Number)
-- **uuid** (String)
-- **zone** (Number)
+- `all` (Number)
+- `group` (Number)
+- `service_ip` (Number)
+- `site` (Number)
+- `uuid` (String)
+- `zone` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

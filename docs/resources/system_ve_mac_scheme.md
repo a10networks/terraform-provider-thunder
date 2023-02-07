@@ -17,8 +17,11 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **uuid** (String) uuid of the object
-- **ve_mac_scheme_val** (String) 'hash-based': Hash-based using the VE number; 'round-robin': Round Robin scheme; 'system-mac': Use system MAC address;
+- `uuid` (String) uuid of the object
+- `ve_mac_scheme_val` (String) 'hash-based': Hash-based using the VE number; 'round-robin': Round Robin scheme; 'system-mac': Use system MAC address;
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

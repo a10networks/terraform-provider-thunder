@@ -17,22 +17,25 @@ description: |-
 
 ### Optional
 
-- **buff** (Number)
-- **cpu_threshold** (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_threshold))
-- **id** (String) The ID of this resource.
-- **max_packets_per_reassembly** (Number)
-- **max_reassembly_sessions** (Number)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **timeout** (Number)
-- **uuid** (String)
+- `buff` (Number)
+- `cpu_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_threshold))
+- `max_packets_per_reassembly` (Number)
+- `max_reassembly_sessions` (Number)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `timeout` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--cpu_threshold"></a>
 ### Nested Schema for `cpu_threshold`
 
 Optional:
 
-- **high** (Number)
-- **low** (Number)
+- `high` (Number)
+- `low` (Number)
 
 
 <a id="nestedblock--sampling_enable"></a>
@@ -40,6 +43,6 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 

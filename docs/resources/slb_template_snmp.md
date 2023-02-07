@@ -17,25 +17,28 @@ description: |-
 
 ### Optional
 
-- **auth_key** (String)
-- **auth_proto** (String)
-- **community** (String)
-- **context_engine_id** (String)
-- **context_name** (String)
-- **host** (String)
-- **id** (String) The ID of this resource.
-- **interface** (Number)
-- **interval** (Number)
-- **oid** (String)
-- **port** (Number)
-- **priv_key** (String)
-- **priv_proto** (String)
-- **security_engine_id** (String)
-- **security_level** (String)
-- **snmp_name** (String)
-- **user_tag** (String)
-- **username** (String)
-- **uuid** (String)
-- **version** (String)
+- `auth_key` (String)
+- `auth_proto` (String)
+- `community` (String)
+- `context_engine_id` (String)
+- `context_name` (String)
+- `host` (String)
+- `interface` (Number)
+- `interval` (Number)
+- `oid` (String)
+- `port` (Number)
+- `priv_key` (String)
+- `priv_proto` (String)
+- `security_engine_id` (String)
+- `security_level` (String)
+- `snmp_name` (String)
+- `user_tag` (String)
+- `username` (String)
+- `uuid` (String)
+- `version` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

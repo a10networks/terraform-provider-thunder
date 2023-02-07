@@ -17,9 +17,12 @@ description: |-
 
 ### Optional
 
-- **bgp_backward_trans_notification** (Number)
-- **bgp_established_notification** (Number)
-- **id** (String) The ID of this resource.
-- **uuid** (String)
+- `bgp_backward_trans_notification` (Number)
+- `bgp_established_notification` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

@@ -17,13 +17,16 @@ description: |-
 
 ### Optional
 
-- **audit_facility** (String) 'local0': Local use; 'local1': Local use; 'local2': Local use; 'local3': Local use; 'local4': Local use; 'local5': Local use; 'local6': Local use; 'local7': Local use;  (Configure the facility of auditlog)
-- **host4** (String) Configure the auditlog host
-- **host6** (String) Configure the auditlog host
-- **id** (String) The ID of this resource.
-- **partition_name** (String) Select partition name for logging
-- **port** (Number) Set remote audit log port number(Default 514)
-- **shared** (Number) Select shared partition
-- **uuid** (String) uuid of the object
+- `audit_facility` (String) 'local0': Local use; 'local1': Local use; 'local2': Local use; 'local3': Local use; 'local4': Local use; 'local5': Local use; 'local6': Local use; 'local7': Local use;  (Configure the facility of auditlog)
+- `host4` (String) Configure the auditlog host
+- `host6` (String) Configure the auditlog host
+- `partition_name` (String) Select partition name for logging
+- `port` (Number) Set remote audit log port number(Default 514)
+- `shared` (Number) Select shared partition
+- `uuid` (String) uuid of the object
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

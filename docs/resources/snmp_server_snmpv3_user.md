@@ -17,16 +17,19 @@ description: |-
 
 ### Optional
 
-- **auth_val** (String)
-- **encpasswd** (String)
-- **group** (String)
-- **id** (String) The ID of this resource.
-- **passwd** (String)
-- **priv** (String)
-- **priv_pw_encrypted** (String)
-- **pw_encrypted** (String)
-- **username** (String)
-- **uuid** (String)
-- **v3** (String)
+- `auth_val` (String)
+- `encpasswd` (String)
+- `group` (String)
+- `passwd` (String)
+- `priv` (String)
+- `priv_pw_encrypted` (String)
+- `pw_encrypted` (String)
+- `username` (String)
+- `uuid` (String)
+- `v3` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

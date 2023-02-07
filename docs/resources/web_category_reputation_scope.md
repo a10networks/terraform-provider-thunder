@@ -17,25 +17,28 @@ description: |-
 
 ### Optional
 
-- **greater_than** (Block List, Max: 1) (see [below for nested schema](#nestedblock--greater_than))
-- **id** (String) The ID of this resource.
-- **less_than** (Block List, Max: 1) (see [below for nested schema](#nestedblock--less_than))
-- **name** (String)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **user_tag** (String)
-- **uuid** (String)
+- `greater_than` (Block List, Max: 1) (see [below for nested schema](#nestedblock--greater_than))
+- `less_than` (Block List, Max: 1) (see [below for nested schema](#nestedblock--less_than))
+- `name` (String)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--greater_than"></a>
 ### Nested Schema for `greater_than`
 
 Optional:
 
-- **greater_low_risk** (Number)
-- **greater_malicious** (Number)
-- **greater_moderate_risk** (Number)
-- **greater_suspicious** (Number)
-- **greater_threshold** (Number)
-- **greater_trustworthy** (Number)
+- `greater_low_risk` (Number)
+- `greater_malicious` (Number)
+- `greater_moderate_risk` (Number)
+- `greater_suspicious` (Number)
+- `greater_threshold` (Number)
+- `greater_trustworthy` (Number)
 
 
 <a id="nestedblock--less_than"></a>
@@ -43,12 +46,12 @@ Optional:
 
 Optional:
 
-- **less_low_risk** (Number)
-- **less_malicious** (Number)
-- **less_moderate_risk** (Number)
-- **less_suspicious** (Number)
-- **less_threshold** (Number)
-- **less_trustworthy** (Number)
+- `less_low_risk` (Number)
+- `less_malicious` (Number)
+- `less_moderate_risk` (Number)
+- `less_suspicious` (Number)
+- `less_threshold` (Number)
+- `less_trustworthy` (Number)
 
 
 <a id="nestedblock--sampling_enable"></a>
@@ -56,6 +59,6 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 

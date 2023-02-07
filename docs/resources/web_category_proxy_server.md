@@ -17,15 +17,18 @@ description: |-
 
 ### Optional
 
-- **auth_type** (String)
-- **domain** (String)
-- **http_port** (Number)
-- **https_port** (Number)
-- **id** (String) The ID of this resource.
-- **password** (Number)
-- **proxy_host** (String)
-- **secret_string** (String)
-- **username** (String)
-- **uuid** (String)
+- `auth_type` (String)
+- `domain` (String)
+- `http_port` (Number)
+- `https_port` (Number)
+- `password` (Number)
+- `proxy_host` (String)
+- `secret_string` (String)
+- `username` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

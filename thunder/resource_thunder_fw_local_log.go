@@ -13,7 +13,7 @@ import (
 func resourceFwLocalLog() *schema.Resource {
 	return &schema.Resource{
 		CreateContext: resourceFwLocalLogCreate,
-		UpdateContext: resourceFwLocalLogUpdate,
+		UpdateContext: resourceFwLocalLogCreate,
 		ReadContext:   resourceFwLocalLogRead,
 		DeleteContext: resourceFwLocalLogDelete,
 		Schema: map[string]*schema.Schema{

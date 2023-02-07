@@ -17,29 +17,32 @@ description: |-
 
 ### Optional
 
-- **address_list** (Block List) (see [below for nested schema](#nestedblock--address_list))
-- **id** (String) The ID of this resource.
-- **ifnum** (Number)
-- **inbound** (Number)
-- **inside** (Number)
-- **ipv6_enable** (Number)
-- **ospf** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf))
-- **outside** (Number)
-- **rip** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip))
-- **router** (Block List, Max: 1) (see [below for nested schema](#nestedblock--router))
-- **router_adver** (Block List, Max: 1) (see [below for nested schema](#nestedblock--router_adver))
-- **stateful_firewall** (Block List, Max: 1) (see [below for nested schema](#nestedblock--stateful_firewall))
-- **ttl_ignore** (Number)
-- **uuid** (String)
-- **v6_acl_name** (String)
+- `address_list` (Block List) (see [below for nested schema](#nestedblock--address_list))
+- `ifnum` (Number)
+- `inbound` (Number)
+- `inside` (Number)
+- `ipv6_enable` (Number)
+- `ospf` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf))
+- `outside` (Number)
+- `rip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip))
+- `router` (Block List, Max: 1) (see [below for nested schema](#nestedblock--router))
+- `router_adver` (Block List, Max: 1) (see [below for nested schema](#nestedblock--router_adver))
+- `stateful_firewall` (Block List, Max: 1) (see [below for nested schema](#nestedblock--stateful_firewall))
+- `ttl_ignore` (Number)
+- `uuid` (String)
+- `v6_acl_name` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--address_list"></a>
 ### Nested Schema for `address_list`
 
 Optional:
 
-- **address_type** (String)
-- **ipv6_addr** (String)
+- `address_type` (String)
+- `ipv6_addr` (String)
 
 
 <a id="nestedblock--ospf"></a>
@@ -47,26 +50,26 @@ Optional:
 
 Optional:
 
-- **bfd** (Number)
-- **cost_cfg** (Block List) (see [below for nested schema](#nestedblock--ospf--cost_cfg))
-- **dead_interval_cfg** (Block List) (see [below for nested schema](#nestedblock--ospf--dead_interval_cfg))
-- **disable** (Number)
-- **hello_interval_cfg** (Block List) (see [below for nested schema](#nestedblock--ospf--hello_interval_cfg))
-- **mtu_ignore_cfg** (Block List) (see [below for nested schema](#nestedblock--ospf--mtu_ignore_cfg))
-- **neighbor_cfg** (Block List) (see [below for nested schema](#nestedblock--ospf--neighbor_cfg))
-- **network_list** (Block List) (see [below for nested schema](#nestedblock--ospf--network_list))
-- **priority_cfg** (Block List) (see [below for nested schema](#nestedblock--ospf--priority_cfg))
-- **retransmit_interval_cfg** (Block List) (see [below for nested schema](#nestedblock--ospf--retransmit_interval_cfg))
-- **transmit_delay_cfg** (Block List) (see [below for nested schema](#nestedblock--ospf--transmit_delay_cfg))
-- **uuid** (String)
+- `bfd` (Number)
+- `cost_cfg` (Block List) (see [below for nested schema](#nestedblock--ospf--cost_cfg))
+- `dead_interval_cfg` (Block List) (see [below for nested schema](#nestedblock--ospf--dead_interval_cfg))
+- `disable` (Number)
+- `hello_interval_cfg` (Block List) (see [below for nested schema](#nestedblock--ospf--hello_interval_cfg))
+- `mtu_ignore_cfg` (Block List) (see [below for nested schema](#nestedblock--ospf--mtu_ignore_cfg))
+- `neighbor_cfg` (Block List) (see [below for nested schema](#nestedblock--ospf--neighbor_cfg))
+- `network_list` (Block List) (see [below for nested schema](#nestedblock--ospf--network_list))
+- `priority_cfg` (Block List) (see [below for nested schema](#nestedblock--ospf--priority_cfg))
+- `retransmit_interval_cfg` (Block List) (see [below for nested schema](#nestedblock--ospf--retransmit_interval_cfg))
+- `transmit_delay_cfg` (Block List) (see [below for nested schema](#nestedblock--ospf--transmit_delay_cfg))
+- `uuid` (String)
 
 <a id="nestedblock--ospf--cost_cfg"></a>
 ### Nested Schema for `ospf.cost_cfg`
 
 Optional:
 
-- **cost** (Number)
-- **instance_id** (Number)
+- `cost` (Number)
+- `instance_id` (Number)
 
 
 <a id="nestedblock--ospf--dead_interval_cfg"></a>
@@ -74,8 +77,8 @@ Optional:
 
 Optional:
 
-- **dead_interval** (Number)
-- **instance_id** (Number)
+- `dead_interval` (Number)
+- `instance_id` (Number)
 
 
 <a id="nestedblock--ospf--hello_interval_cfg"></a>
@@ -83,8 +86,8 @@ Optional:
 
 Optional:
 
-- **hello_interval** (Number)
-- **instance_id** (Number)
+- `hello_interval` (Number)
+- `instance_id` (Number)
 
 
 <a id="nestedblock--ospf--mtu_ignore_cfg"></a>
@@ -92,8 +95,8 @@ Optional:
 
 Optional:
 
-- **instance_id** (Number)
-- **mtu_ignore** (Number)
+- `instance_id` (Number)
+- `mtu_ignore` (Number)
 
 
 <a id="nestedblock--ospf--neighbor_cfg"></a>
@@ -101,11 +104,11 @@ Optional:
 
 Optional:
 
-- **neig_inst** (Number)
-- **neighbor** (String)
-- **neighbor_cost** (Number)
-- **neighbor_poll_interval** (Number)
-- **neighbor_priority** (Number)
+- `neig_inst` (Number)
+- `neighbor` (String)
+- `neighbor_cost` (Number)
+- `neighbor_poll_interval` (Number)
+- `neighbor_priority` (Number)
 
 
 <a id="nestedblock--ospf--network_list"></a>
@@ -113,9 +116,9 @@ Optional:
 
 Optional:
 
-- **broadcast_type** (String)
-- **network_instance_id** (Number)
-- **p2mp_nbma** (Number)
+- `broadcast_type` (String)
+- `network_instance_id` (Number)
+- `p2mp_nbma` (Number)
 
 
 <a id="nestedblock--ospf--priority_cfg"></a>
@@ -123,8 +126,8 @@ Optional:
 
 Optional:
 
-- **instance_id** (Number)
-- **priority** (Number)
+- `instance_id` (Number)
+- `priority` (Number)
 
 
 <a id="nestedblock--ospf--retransmit_interval_cfg"></a>
@@ -132,8 +135,8 @@ Optional:
 
 Optional:
 
-- **instance_id** (Number)
-- **retransmit_interval** (Number)
+- `instance_id` (Number)
+- `retransmit_interval` (Number)
 
 
 <a id="nestedblock--ospf--transmit_delay_cfg"></a>
@@ -141,8 +144,8 @@ Optional:
 
 Optional:
 
-- **instance_id** (Number)
-- **transmit_delay** (Number)
+- `instance_id` (Number)
+- `transmit_delay` (Number)
 
 
 
@@ -151,15 +154,15 @@ Optional:
 
 Optional:
 
-- **split_horizon_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--split_horizon_cfg))
-- **uuid** (String)
+- `split_horizon_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--split_horizon_cfg))
+- `uuid` (String)
 
 <a id="nestedblock--rip--split_horizon_cfg"></a>
 ### Nested Schema for `rip.split_horizon_cfg`
 
 Optional:
 
-- **state** (String)
+- `state` (String)
 
 
 
@@ -168,17 +171,17 @@ Optional:
 
 Optional:
 
-- **isis** (Block List, Max: 1) (see [below for nested schema](#nestedblock--router--isis))
-- **ospf** (Block List, Max: 1) (see [below for nested schema](#nestedblock--router--ospf))
-- **ripng** (Block List, Max: 1) (see [below for nested schema](#nestedblock--router--ripng))
+- `isis` (Block List, Max: 1) (see [below for nested schema](#nestedblock--router--isis))
+- `ospf` (Block List, Max: 1) (see [below for nested schema](#nestedblock--router--ospf))
+- `ripng` (Block List, Max: 1) (see [below for nested schema](#nestedblock--router--ripng))
 
 <a id="nestedblock--router--isis"></a>
 ### Nested Schema for `router.isis`
 
 Optional:
 
-- **tag** (String)
-- **uuid** (String)
+- `tag` (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--router--ospf"></a>
@@ -186,18 +189,18 @@ Optional:
 
 Optional:
 
-- **area_list** (Block List) (see [below for nested schema](#nestedblock--router--ospf--area_list))
-- **uuid** (String)
+- `area_list` (Block List) (see [below for nested schema](#nestedblock--router--ospf--area_list))
+- `uuid` (String)
 
 <a id="nestedblock--router--ospf--area_list"></a>
 ### Nested Schema for `router.ospf.area_list`
 
 Optional:
 
-- **area_id_addr** (String)
-- **area_id_num** (Number)
-- **instance_id** (Number)
-- **tag** (String)
+- `area_id_addr` (String)
+- `area_id_num` (Number)
+- `instance_id` (Number)
+- `tag` (String)
 
 
 
@@ -206,8 +209,8 @@ Optional:
 
 Optional:
 
-- **rip** (Number)
-- **uuid** (String)
+- `rip` (Number)
+- `uuid` (String)
 
 
 
@@ -216,36 +219,36 @@ Optional:
 
 Optional:
 
-- **action** (String)
-- **adver_mtu** (Number)
-- **adver_mtu_disable** (Number)
-- **adver_vrid** (Number)
-- **adver_vrid_default** (Number)
-- **default_lifetime** (Number)
-- **floating_ip** (String)
-- **floating_ip_default_vrid** (String)
-- **hop_limit** (Number)
-- **managed_config_action** (String)
-- **max_interval** (Number)
-- **min_interval** (Number)
-- **other_config_action** (String)
-- **prefix_list** (Block List) (see [below for nested schema](#nestedblock--router_adver--prefix_list))
-- **rate_limit** (Number)
-- **reachable_time** (Number)
-- **retransmit_timer** (Number)
-- **use_floating_ip** (Number)
-- **use_floating_ip_default_vrid** (Number)
+- `action` (String)
+- `adver_mtu` (Number)
+- `adver_mtu_disable` (Number)
+- `adver_vrid` (Number)
+- `adver_vrid_default` (Number)
+- `default_lifetime` (Number)
+- `floating_ip` (String)
+- `floating_ip_default_vrid` (String)
+- `hop_limit` (Number)
+- `managed_config_action` (String)
+- `max_interval` (Number)
+- `min_interval` (Number)
+- `other_config_action` (String)
+- `prefix_list` (Block List) (see [below for nested schema](#nestedblock--router_adver--prefix_list))
+- `rate_limit` (Number)
+- `reachable_time` (Number)
+- `retransmit_timer` (Number)
+- `use_floating_ip` (Number)
+- `use_floating_ip_default_vrid` (Number)
 
 <a id="nestedblock--router_adver--prefix_list"></a>
 ### Nested Schema for `router_adver.prefix_list`
 
 Optional:
 
-- **not_autonomous** (Number)
-- **not_on_link** (Number)
-- **preferred_lifetime** (Number)
-- **prefix** (String)
-- **valid_lifetime** (Number)
+- `not_autonomous` (Number)
+- `not_on_link` (Number)
+- `preferred_lifetime` (Number)
+- `prefix` (String)
+- `valid_lifetime` (Number)
 
 
 
@@ -254,11 +257,11 @@ Optional:
 
 Optional:
 
-- **access_list** (Number)
-- **acl_name** (String)
-- **class_list** (String)
-- **inside** (Number)
-- **outside** (Number)
-- **uuid** (String)
+- `access_list` (Number)
+- `acl_name` (String)
+- `class_list` (String)
+- `inside` (Number)
+- `outside` (Number)
+- `uuid` (String)
 
 

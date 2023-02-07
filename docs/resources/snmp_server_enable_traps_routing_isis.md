@@ -17,24 +17,27 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **isis_adjacency_change** (Number)
-- **isis_area_mismatch** (Number)
-- **isis_attempt_to_exceed_max_sequence** (Number)
-- **isis_authentication_failure** (Number)
-- **isis_authentication_type_failure** (Number)
-- **isis_corrupted_lsp_detected** (Number)
-- **isis_database_overload** (Number)
-- **isis_id_len_mismatch** (Number)
-- **isis_lsp_too_large_to_propagate** (Number)
-- **isis_manual_address_drops** (Number)
-- **isis_max_area_addresses_mismatch** (Number)
-- **isis_originating_lsp_buffer_size_mismatch** (Number)
-- **isis_own_lsp_purge** (Number)
-- **isis_protocols_supported_mismatch** (Number)
-- **isis_rejected_adjacency** (Number)
-- **isis_sequence_number_skip** (Number)
-- **isis_version_skew** (Number)
-- **uuid** (String)
+- `isis_adjacency_change` (Number)
+- `isis_area_mismatch` (Number)
+- `isis_attempt_to_exceed_max_sequence` (Number)
+- `isis_authentication_failure` (Number)
+- `isis_authentication_type_failure` (Number)
+- `isis_corrupted_lsp_detected` (Number)
+- `isis_database_overload` (Number)
+- `isis_id_len_mismatch` (Number)
+- `isis_lsp_too_large_to_propagate` (Number)
+- `isis_manual_address_drops` (Number)
+- `isis_max_area_addresses_mismatch` (Number)
+- `isis_originating_lsp_buffer_size_mismatch` (Number)
+- `isis_own_lsp_purge` (Number)
+- `isis_protocols_supported_mismatch` (Number)
+- `isis_rejected_adjacency` (Number)
+- `isis_sequence_number_skip` (Number)
+- `isis_version_skew` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

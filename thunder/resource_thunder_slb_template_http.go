@@ -414,7 +414,7 @@ func resourceSlbTemplateHttp() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"url_switching_type": {
 							Type:        schema.TypeString,
-							Optional:    true,
+							Required:    true,
 							Description: "",
 						},
 						"url_match_string": {

@@ -17,28 +17,31 @@ description: |-
 
 ### Optional
 
-- **conn_limit** (Number)
-- **conn_limit_no_logging** (Number)
-- **conn_limit_reset** (Number)
-- **conn_rate_limit** (Number)
-- **conn_rate_limit_no_logging** (Number)
-- **conn_rate_limit_reset** (Number)
-- **disable_when_all_ports_down** (Number)
-- **disable_when_any_port_down** (Number)
-- **icmp_lockup** (Number)
-- **icmp_lockup_period** (Number)
-- **icmp_rate_limit** (Number)
-- **icmpv6_lockup** (Number)
-- **icmpv6_lockup_period** (Number)
-- **icmpv6_rate_limit** (Number)
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **rate_interval** (String)
-- **subnet_gratuitous_arp** (Number)
-- **tcp_stack_tfo_active_conn_limit** (Number)
-- **tcp_stack_tfo_backoff_time** (Number)
-- **tcp_stack_tfo_cookie_time_limit** (Number)
-- **user_tag** (String)
-- **uuid** (String)
+- `conn_limit` (Number)
+- `conn_limit_no_logging` (Number)
+- `conn_limit_reset` (Number)
+- `conn_rate_limit` (Number)
+- `conn_rate_limit_no_logging` (Number)
+- `conn_rate_limit_reset` (Number)
+- `disable_when_all_ports_down` (Number)
+- `disable_when_any_port_down` (Number)
+- `icmp_lockup` (Number)
+- `icmp_lockup_period` (Number)
+- `icmp_rate_limit` (Number)
+- `icmpv6_lockup` (Number)
+- `icmpv6_lockup_period` (Number)
+- `icmpv6_rate_limit` (Number)
+- `name` (String)
+- `rate_interval` (String)
+- `subnet_gratuitous_arp` (Number)
+- `tcp_stack_tfo_active_conn_limit` (Number)
+- `tcp_stack_tfo_backoff_time` (Number)
+- `tcp_stack_tfo_cookie_time_limit` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

@@ -17,7 +17,10 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **pool** (String)
+- `pool` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

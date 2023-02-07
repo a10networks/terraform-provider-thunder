@@ -17,30 +17,33 @@ description: |-
 
 ### Required
 
-- **name** (String) Specify name of the class list
+- `name` (String) Specify name of the class list
 
 ### Optional
 
-- **ac_list** (Block List) (see [below for nested schema](#nestedblock--ac_list))
-- **dns** (Block List) (see [below for nested schema](#nestedblock--dns))
-- **file** (Number) Create/Edit a class-list stored as a file
-- **id** (String) The ID of this resource.
-- **ipv4_list** (Block List) (see [below for nested schema](#nestedblock--ipv4_list))
-- **ipv6_list** (Block List) (see [below for nested schema](#nestedblock--ipv6_list))
-- **str_list** (Block List) (see [below for nested schema](#nestedblock--str_list))
-- **type** (String) 'ac': Make class-list type Aho-Corasick; 'dns': Make class-list type DNS; 'ipv4': Make class-list type IPv4; 'ipv6': Make class-list type IPv6; 'string': Make class-list type String; 'string-case-insensitive': Make class-list type String-case-insensitive. Case insensitive is applied to key string;
-- **user_tag** (String) Customized tag
-- **uuid** (String) uuid of the object
+- `ac_list` (Block List) (see [below for nested schema](#nestedblock--ac_list))
+- `dns` (Block List) (see [below for nested schema](#nestedblock--dns))
+- `file` (Number) Create/Edit a class-list stored as a file
+- `ipv4_list` (Block List) (see [below for nested schema](#nestedblock--ipv4_list))
+- `ipv6_list` (Block List) (see [below for nested schema](#nestedblock--ipv6_list))
+- `str_list` (Block List) (see [below for nested schema](#nestedblock--str_list))
+- `type` (String) 'ac': Make class-list type Aho-Corasick; 'dns': Make class-list type DNS; 'ipv4': Make class-list type IPv4; 'ipv6': Make class-list type IPv6; 'string': Make class-list type String; 'string-case-insensitive': Make class-list type String-case-insensitive. Case insensitive is applied to key string;
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--ac_list"></a>
 ### Nested Schema for `ac_list`
 
 Optional:
 
-- **ac_key_string** (String) Specify key string
-- **ac_match_type** (String) 'contains': String contains another string; 'ends-with': String ends with another string; 'equals': String equals another string; 'starts-with': String starts with another string;
-- **ac_value** (String) Specify value string
-- **gtp_rate_limit_policy_str** (String) GTP Rate Limit Template Name
+- `ac_key_string` (String) Specify key string
+- `ac_match_type` (String) 'contains': String contains another string; 'ends-with': String ends with another string; 'equals': String equals another string; 'starts-with': String starts with another string;
+- `ac_value` (String) Specify value string
+- `gtp_rate_limit_policy_str` (String) GTP Rate Limit Template Name
 
 
 <a id="nestedblock--dns"></a>
@@ -48,12 +51,12 @@ Optional:
 
 Optional:
 
-- **dns_glid** (Number) Use global Limit ID (Specify global LID index)
-- **dns_glid_shared** (Number) Use global Limit ID
-- **dns_lid** (Number) Use Limit ID defined in template (Specify LID index)
-- **dns_match_string** (String) Domain name
-- **dns_match_type** (String) 'contains': Domain contains another string; 'ends-with': Domain ends with another string; 'starts-with': Domain starts-with another string;
-- **shared_partition_dns_glid** (Number) Reference a glid from shared partition
+- `dns_glid` (Number) Use global Limit ID (Specify global LID index)
+- `dns_glid_shared` (Number) Use global Limit ID
+- `dns_lid` (Number) Use Limit ID defined in template (Specify LID index)
+- `dns_match_string` (String) Domain name
+- `dns_match_type` (String) 'contains': Domain contains another string; 'ends-with': Domain ends with another string; 'starts-with': Domain starts-with another string;
+- `shared_partition_dns_glid` (Number) Reference a glid from shared partition
 
 
 <a id="nestedblock--ipv4_list"></a>
@@ -61,15 +64,15 @@ Optional:
 
 Optional:
 
-- **age** (Number) Specify age in minutes
-- **glid** (Number) Use global Limit ID (Specify global LID index)
-- **glid_shared** (Number) Use global Limit ID
-- **gtp_rate_limit_policy_v4** (String) GTP Rate Limit Template Name
-- **ipv4addr** (String) Specify IP address
-- **lid** (Number) Use Limit ID defined in template (Specify LID index)
-- **lsn_lid** (Number) LSN Limit ID (LID index)
-- **lsn_radius_profile** (Number) LSN RADIUS Profile Index
-- **shared_partition_glid** (Number) Reference a glid from shared partition
+- `age` (Number) Specify age in minutes
+- `glid` (Number) Use global Limit ID (Specify global LID index)
+- `glid_shared` (Number) Use global Limit ID
+- `gtp_rate_limit_policy_v4` (String) GTP Rate Limit Template Name
+- `ipv4addr` (String) Specify IP address
+- `lid` (Number) Use Limit ID defined in template (Specify LID index)
+- `lsn_lid` (Number) LSN Limit ID (LID index)
+- `lsn_radius_profile` (Number) LSN RADIUS Profile Index
+- `shared_partition_glid` (Number) Reference a glid from shared partition
 
 
 <a id="nestedblock--ipv6_list"></a>
@@ -77,15 +80,15 @@ Optional:
 
 Optional:
 
-- **gtp_rate_limit_policy_v6** (String) GTP Rate Limit Template Name
-- **ipv6_addr** (String) Specify IPv6 host or subnet
-- **shared_partition_v6_glid** (Number) Reference a glid from shared partition
-- **v6_age** (Number) Specify age in minutes
-- **v6_glid** (Number) Use global Limit ID (Specify global LID index)
-- **v6_glid_shared** (Number) Use global Limit ID
-- **v6_lid** (Number) Use Limit ID defined in template (Specify LID index)
-- **v6_lsn_lid** (Number) LSN Limit ID (LID index)
-- **v6_lsn_radius_profile** (Number) LSN RADIUS Profile Index
+- `gtp_rate_limit_policy_v6` (String) GTP Rate Limit Template Name
+- `ipv6_addr` (String) Specify IPv6 host or subnet
+- `shared_partition_v6_glid` (Number) Reference a glid from shared partition
+- `v6_age` (Number) Specify age in minutes
+- `v6_glid` (Number) Use global Limit ID (Specify global LID index)
+- `v6_glid_shared` (Number) Use global Limit ID
+- `v6_lid` (Number) Use Limit ID defined in template (Specify LID index)
+- `v6_lsn_lid` (Number) LSN Limit ID (LID index)
+- `v6_lsn_radius_profile` (Number) LSN RADIUS Profile Index
 
 
 <a id="nestedblock--str_list"></a>
@@ -93,13 +96,13 @@ Optional:
 
 Optional:
 
-- **shared_partition_str_glid** (Number) Reference a glid from shared partition
-- **str** (String) Specify key string
-- **str_glid** (Number) Global LID index
-- **str_glid_dummy** (Number) Use global Limit ID
-- **str_glid_shared** (Number) Use global Limit ID
-- **str_lid** (Number) LID index
-- **str_lid_dummy** (Number) Use Limit ID defined in template
-- **value_str** (String) Specify value string
+- `shared_partition_str_glid` (Number) Reference a glid from shared partition
+- `str` (String) Specify key string
+- `str_glid` (Number) Global LID index
+- `str_glid_dummy` (Number) Use global Limit ID
+- `str_glid_shared` (Number) Use global Limit ID
+- `str_lid` (Number) LID index
+- `str_lid_dummy` (Number) Use Limit ID defined in template
+- `value_str` (String) Specify value string
 
 

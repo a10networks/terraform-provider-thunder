@@ -17,27 +17,30 @@ description: |-
 
 ### Optional
 
-- **cookie_name** (String)
-- **domain** (String)
-- **dont_honor_conn_rules** (Number)
-- **encrypt_level** (Number)
-- **expire** (Number)
-- **httponly** (Number)
-- **id** (String) The ID of this resource.
-- **insert_always** (Number)
-- **match_type** (Number)
-- **name** (String)
-- **pass_phrase** (String)
-- **pass_thru** (Number)
-- **path** (String)
-- **prefix** (String)
-- **samesite** (String)
-- **scan_all_members** (Number)
-- **secure** (Number)
-- **server** (Number)
-- **server_service_group** (Number)
-- **service_group** (Number)
-- **user_tag** (String)
-- **uuid** (String)
+- `cookie_name` (String)
+- `domain` (String)
+- `dont_honor_conn_rules` (Number)
+- `encrypt_level` (Number)
+- `expire` (Number)
+- `httponly` (Number)
+- `insert_always` (Number)
+- `match_type` (Number)
+- `name` (String)
+- `pass_phrase` (String)
+- `pass_thru` (Number)
+- `path` (String)
+- `prefix` (String)
+- `samesite` (String)
+- `scan_all_members` (Number)
+- `secure` (Number)
+- `server` (Number)
+- `server_service_group` (Number)
+- `service_group` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

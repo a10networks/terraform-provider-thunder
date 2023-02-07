@@ -17,22 +17,25 @@ description: |-
 
 ### Optional
 
-- **enable_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--enable_cfg))
-- **id** (String) The ID of this resource.
-- **ifnum** (Number)
-- **notification_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--notification_cfg))
-- **tx_dot1_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--tx_dot1_cfg))
-- **tx_tlvs_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--tx_tlvs_cfg))
-- **uuid** (String)
+- `enable_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--enable_cfg))
+- `ifnum` (Number)
+- `notification_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--notification_cfg))
+- `tx_dot1_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--tx_dot1_cfg))
+- `tx_tlvs_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--tx_tlvs_cfg))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--enable_cfg"></a>
 ### Nested Schema for `enable_cfg`
 
 Optional:
 
-- **rt_enable** (Number)
-- **rx** (Number)
-- **tx** (Number)
+- `rt_enable` (Number)
+- `rx` (Number)
+- `tx` (Number)
 
 
 <a id="nestedblock--notification_cfg"></a>
@@ -40,8 +43,8 @@ Optional:
 
 Optional:
 
-- **notif_enable** (Number)
-- **notification** (Number)
+- `notif_enable` (Number)
+- `notification` (Number)
 
 
 <a id="nestedblock--tx_dot1_cfg"></a>
@@ -49,9 +52,9 @@ Optional:
 
 Optional:
 
-- **link_aggregation** (Number)
-- **tx_dot1_tlvs** (Number)
-- **vlan** (Number)
+- `link_aggregation` (Number)
+- `tx_dot1_tlvs` (Number)
+- `vlan` (Number)
 
 
 <a id="nestedblock--tx_tlvs_cfg"></a>
@@ -59,12 +62,12 @@ Optional:
 
 Optional:
 
-- **exclude** (Number)
-- **management_address** (Number)
-- **port_description** (Number)
-- **system_capabilities** (Number)
-- **system_description** (Number)
-- **system_name** (Number)
-- **tx_tlvs** (Number)
+- `exclude` (Number)
+- `management_address` (Number)
+- `port_description` (Number)
+- `system_capabilities` (Number)
+- `system_description` (Number)
+- `system_name` (Number)
+- `tx_tlvs` (Number)
 
 

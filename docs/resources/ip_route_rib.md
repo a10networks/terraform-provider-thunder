@@ -17,29 +17,29 @@ description: |-
 
 ### Required
 
-- **ip_dest_addr** (String) Destination prefix
-- **ip_mask** (String) Destination prefix mask
+- `ip_dest_addr` (String) Destination prefix
+- `ip_mask` (String) Destination prefix mask
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **ip_nexthop_ipv4** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_nexthop_ipv4))
-- **ip_nexthop_lif** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_nexthop_lif))
-- **ip_nexthop_partition** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_nexthop_partition))
-- **ip_nexthop_tunnel** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_nexthop_tunnel))
+- `ip_nexthop_ipv4` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_nexthop_ipv4))
+- `ip_nexthop_lif` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_nexthop_lif))
+- `ip_nexthop_partition` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_nexthop_partition))
+- `ip_nexthop_tunnel` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_nexthop_tunnel))
 
 ### Read-Only
 
-- **uuid** (String) uuid of the object
+- `id` (String) The ID of this resource.
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--ip_nexthop_ipv4"></a>
 ### Nested Schema for `ip_nexthop_ipv4`
 
 Optional:
 
-- **description_nexthop_ip** (String) Description for static route
-- **distance_nexthop_ip** (Number) Distance value for this route
-- **ip_next_hop** (String) Forwarding router's address
+- `description_nexthop_ip` (String) Description for static route
+- `distance_nexthop_ip` (Number) Distance value for this route
+- `ip_next_hop` (String) Forwarding router's address
 
 
 <a id="nestedblock--ip_nexthop_lif"></a>
@@ -47,8 +47,8 @@ Optional:
 
 Optional:
 
-- **description_nexthop_lif** (String) Description for static route
-- **lif** (String) LIF Interface (Logical tunnel interface name)
+- `description_nexthop_lif` (String) Description for static route
+- `lif` (String) LIF Interface (Logical tunnel interface name)
 
 
 <a id="nestedblock--ip_nexthop_partition"></a>
@@ -56,10 +56,10 @@ Optional:
 
 Optional:
 
-- **description_nexthop_partition** (String) Description for static route
-- **description_partition_vrid** (String) Description for static route
-- **partition_name** (String) Name of network partition
-- **vrid_num_in_partition** (Number) Specify ha VRRP_A vrid
+- `description_nexthop_partition` (String) Description for static route
+- `description_partition_vrid` (String) Description for static route
+- `partition_name` (String) Name of network partition
+- `vrid_num_in_partition` (Number) Specify ha VRRP_A vrid
 
 
 <a id="nestedblock--ip_nexthop_tunnel"></a>
@@ -67,9 +67,9 @@ Optional:
 
 Optional:
 
-- **description_nexthop_tunnel** (String) Description for static route
-- **distance_nexthop_tunnel** (Number) Distance value for this route
-- **ip_next_hop_tunnel** (String) Forwarding router's address
-- **tunnel** (Number) Tunnel interface (Tunnel interface number)
+- `description_nexthop_tunnel` (String) Description for static route
+- `distance_nexthop_tunnel` (Number) Distance value for this route
+- `ip_next_hop_tunnel` (String) Forwarding router's address
+- `tunnel` (Number) Tunnel interface (Tunnel interface number)
 
 

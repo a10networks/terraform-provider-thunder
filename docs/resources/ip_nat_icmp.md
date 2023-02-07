@@ -17,9 +17,12 @@ description: |-
 
 ### Optional
 
-- **always_source_nat_errors** (Number)
-- **id** (String) The ID of this resource.
-- **respond_to_ping** (Number)
-- **uuid** (String)
+- `always_source_nat_errors` (Number)
+- `respond_to_ping` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

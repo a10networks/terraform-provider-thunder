@@ -17,19 +17,22 @@ description: |-
 
 ### Optional
 
-- **age** (Number)
-- **avp** (String)
-- **disable_clear_session** (Number)
-- **id** (String) The ID of this resource.
-- **idle_timeout** (Number)
-- **immediate** (Number)
-- **name** (String)
-- **qos** (Number)
-- **radius_lb_method_hash_type** (String)
-- **re_select_if_server_down** (Number)
-- **short** (Number)
-- **stateless_conn_timeout** (Number)
-- **user_tag** (String)
-- **uuid** (String)
+- `age` (Number)
+- `avp` (String)
+- `disable_clear_session` (Number)
+- `idle_timeout` (Number)
+- `immediate` (Number)
+- `name` (String)
+- `qos` (Number)
+- `radius_lb_method_hash_type` (String)
+- `re_select_if_server_down` (Number)
+- `short` (Number)
+- `stateless_conn_timeout` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

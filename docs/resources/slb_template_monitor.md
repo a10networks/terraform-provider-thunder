@@ -17,25 +17,28 @@ description: |-
 
 ### Optional
 
-- **clear_cfg** (Block List) (see [below for nested schema](#nestedblock--clear_cfg))
-- **id** (String) The ID of this resource.
-- **id2** (Number)
-- **link_disable_cfg** (Block List) (see [below for nested schema](#nestedblock--link_disable_cfg))
-- **link_down_cfg** (Block List) (see [below for nested schema](#nestedblock--link_down_cfg))
-- **link_enable_cfg** (Block List) (see [below for nested schema](#nestedblock--link_enable_cfg))
-- **link_up_cfg** (Block List) (see [below for nested schema](#nestedblock--link_up_cfg))
-- **monitor_relation** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `clear_cfg` (Block List) (see [below for nested schema](#nestedblock--clear_cfg))
+- `id2` (Number)
+- `link_disable_cfg` (Block List) (see [below for nested schema](#nestedblock--link_disable_cfg))
+- `link_down_cfg` (Block List) (see [below for nested schema](#nestedblock--link_down_cfg))
+- `link_enable_cfg` (Block List) (see [below for nested schema](#nestedblock--link_enable_cfg))
+- `link_up_cfg` (Block List) (see [below for nested schema](#nestedblock--link_up_cfg))
+- `monitor_relation` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--clear_cfg"></a>
 ### Nested Schema for `clear_cfg`
 
 Optional:
 
-- **clear_all_sequence** (Number)
-- **clear_sequence** (Number)
-- **sessions** (String)
+- `clear_all_sequence` (Number)
+- `clear_sequence` (Number)
+- `sessions` (String)
 
 
 <a id="nestedblock--link_disable_cfg"></a>
@@ -43,8 +46,8 @@ Optional:
 
 Optional:
 
-- **dis_sequence** (Number)
-- **diseth** (Number)
+- `dis_sequence` (Number)
+- `diseth` (Number)
 
 
 <a id="nestedblock--link_down_cfg"></a>
@@ -52,12 +55,12 @@ Optional:
 
 Optional:
 
-- **link_down_sequence1** (Number)
-- **link_down_sequence2** (Number)
-- **link_down_sequence3** (Number)
-- **linkdown_ethernet1** (Number)
-- **linkdown_ethernet2** (Number)
-- **linkdown_ethernet3** (Number)
+- `link_down_sequence1` (Number)
+- `link_down_sequence2` (Number)
+- `link_down_sequence3` (Number)
+- `linkdown_ethernet1` (Number)
+- `linkdown_ethernet2` (Number)
+- `linkdown_ethernet3` (Number)
 
 
 <a id="nestedblock--link_enable_cfg"></a>
@@ -65,8 +68,8 @@ Optional:
 
 Optional:
 
-- **ena_sequence** (Number)
-- **enaeth** (Number)
+- `ena_sequence` (Number)
+- `enaeth` (Number)
 
 
 <a id="nestedblock--link_up_cfg"></a>
@@ -74,11 +77,11 @@ Optional:
 
 Optional:
 
-- **link_up_sequence1** (Number)
-- **link_up_sequence2** (Number)
-- **link_up_sequence3** (Number)
-- **linkup_ethernet1** (Number)
-- **linkup_ethernet2** (Number)
-- **linkup_ethernet3** (Number)
+- `link_up_sequence1` (Number)
+- `link_up_sequence2` (Number)
+- `link_up_sequence3` (Number)
+- `linkup_ethernet1` (Number)
+- `linkup_ethernet2` (Number)
+- `linkup_ethernet3` (Number)
 
 

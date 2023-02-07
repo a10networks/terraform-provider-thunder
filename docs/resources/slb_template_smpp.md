@@ -17,15 +17,18 @@ description: |-
 
 ### Optional
 
-- **client_enquire_link** (Number)
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **password** (String)
-- **server_enquire_link** (Number)
-- **server_enquire_link_val** (Number)
-- **server_selection_per_request** (Number)
-- **user** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `client_enquire_link` (Number)
+- `name` (String)
+- `password` (String)
+- `server_enquire_link` (Number)
+- `server_enquire_link_val` (Number)
+- `server_selection_per_request` (Number)
+- `user` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

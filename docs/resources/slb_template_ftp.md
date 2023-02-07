@@ -17,13 +17,16 @@ description: |-
 
 ### Optional
 
-- **active_mode_port** (Number)
-- **active_mode_port_val** (Number)
-- **any** (Number)
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **to** (Number)
-- **user_tag** (String)
-- **uuid** (String)
+- `active_mode_port` (Number)
+- `active_mode_port_val` (Number)
+- `any` (Number)
+- `name` (String)
+- `to` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

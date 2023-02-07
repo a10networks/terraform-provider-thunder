@@ -17,48 +17,51 @@ description: |-
 
 ### Required
 
-- **port_number** (Number) Port Number
-- **protocol** (String) 'tcp': TCP Port; 'udp': UDP Port;
-- **server_name** (String) Server Name
+- `port_number` (Number) Port Number
+- `protocol` (String) 'tcp': TCP Port; 'udp': UDP Port;
+- `server_name` (String) Server Name
 
 ### Optional
 
-- **action** (String) 'enable': enable; 'disable': disable; 'disable-with-health-check': disable port, but health check work;
-- **alternate_port** (Block List) (see [below for nested schema](#nestedblock--alternate_port))
-- **auth_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--auth_cfg))
-- **conn_limit** (Number) Connection Limit
-- **conn_resume** (Number) Connection Resume
-- **extended_stats** (Number) Enable extended statistics on real server port
-- **follow_port_protocol** (String) 'tcp': TCP Port; 'udp': UDP Port;
-- **health_check** (String) Health Check (Monitor Name)
-- **health_check_disable** (Number) Disable health check
-- **health_check_follow_port** (Number) Specify which port to follow for health status (Port Number)
-- **id** (String) The ID of this resource.
-- **no_logging** (Number) Do not log connection over limit event
-- **no_ssl** (Number) No SSL
-- **packet_capture_template** (String) Name of the packet capture template to be bind with this object
-- **range** (Number) Port range (Port range value - used for vip-to-rport-mapping and vport-rport range mapping)
-- **rport_health_check_shared** (String) Health Check (Monitor Name)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **shared_partition_port_template** (Number) Reference a port template from shared partition
-- **shared_rport_health_check** (Number) Reference a health-check from shared partition
-- **stats_data_action** (String) 'stats-data-enable': Enable statistical data collection for real server port; 'stats-data-disable': Disable statistical data collection for real server port;
-- **support_http2** (Number) Starting HTTP/2 with Prior Knowledge
-- **template_port** (String) Port template (Port template name)
-- **template_port_shared** (String) Port Template Name
-- **template_server_ssl** (String) Server side SSL template (Server side SSL Name)
-- **user_tag** (String) Customized tag
-- **uuid** (String) uuid of the object
-- **weight** (Number) Port Weight (Connection Weight)
+- `action` (String) 'enable': enable; 'disable': disable; 'disable-with-health-check': disable port, but health check work;
+- `alternate_port` (Block List) (see [below for nested schema](#nestedblock--alternate_port))
+- `auth_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--auth_cfg))
+- `conn_limit` (Number) Connection Limit
+- `conn_resume` (Number) Connection Resume
+- `extended_stats` (Number) Enable extended statistics on real server port
+- `follow_port_protocol` (String) 'tcp': TCP Port; 'udp': UDP Port;
+- `health_check` (String) Health Check (Monitor Name)
+- `health_check_disable` (Number) Disable health check
+- `health_check_follow_port` (Number) Specify which port to follow for health status (Port Number)
+- `no_logging` (Number) Do not log connection over limit event
+- `no_ssl` (Number) No SSL
+- `packet_capture_template` (String) Name of the packet capture template to be bind with this object
+- `range` (Number) Port range (Port range value - used for vip-to-rport-mapping and vport-rport range mapping)
+- `rport_health_check_shared` (String) Health Check (Monitor Name)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `shared_partition_port_template` (Number) Reference a port template from shared partition
+- `shared_rport_health_check` (Number) Reference a health-check from shared partition
+- `stats_data_action` (String) 'stats-data-enable': Enable statistical data collection for real server port; 'stats-data-disable': Disable statistical data collection for real server port;
+- `support_http2` (Number) Starting HTTP/2 with Prior Knowledge
+- `template_port` (String) Port template (Port template name)
+- `template_port_shared` (String) Port Template Name
+- `template_server_ssl` (String) Server side SSL template (Server side SSL Name)
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+- `weight` (Number) Port Weight (Connection Weight)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--alternate_port"></a>
 ### Nested Schema for `alternate_port`
 
 Optional:
 
-- **alternate** (Number) Alternate Server Number
-- **alternate_name** (String) Alternate Name
-- **alternate_server_port** (Number) Port (Alternate Server Port Value)
+- `alternate` (Number) Alternate Server Number
+- `alternate_name` (String) Alternate Name
+- `alternate_server_port` (Number) Port (Alternate Server Port Value)
 
 
 <a id="nestedblock--auth_cfg"></a>
@@ -66,7 +69,7 @@ Optional:
 
 Optional:
 
-- **service_principal_name** (String) Service Principal Name (Kerberos principal name)
+- `service_principal_name` (String) Service Principal Name (Kerberos principal name)
 
 
 <a id="nestedblock--sampling_enable"></a>
@@ -74,6 +77,6 @@ Optional:
 
 Optional:
 
-- **counters1** (String) 'all': all; 'curr_req': Current requests; 'total_req': Total Requests; 'total_req_succ': Total requests succ; 'total_fwd_bytes': Bytes processed in forward direction; 'total_fwd_pkts': Packets processed in forward direction; 'total_rev_bytes': Bytes processed in reverse direction; 'total_rev_pkts': Packets processed in reverse direction; 'total_conn': Total connections; 'last_total_conn': Last total connections; 'peak_conn': Peak connections; 'es_resp_200': Response status 200; 'es_resp_300': Response status 300; 'es_resp_400': Response status 400; 'es_resp_500': Response status 500; 'es_resp_other': Response status other; 'es_req_count': Total proxy requests; 'es_resp_count': Total proxy response; 'es_resp_invalid_http': Total non-http response; 'total_rev_pkts_inspected': Total reverse packets inspected; 'total_rev_pkts_inspected_good_status_code': Total reverse packets with good status code inspected; 'response_time': Response time; 'fastest_rsp_time': Fastest response time; 'slowest_rsp_time': Slowest response time; 'curr_ssl_conn': Current SSL connections; 'total_ssl_conn': Total SSL connections; 'resp-count': Total Response Count; 'resp-1xx': Response status 1xx; 'resp-2xx': Response status 2xx; 'resp-3xx': Response status 3xx; 'resp-4xx': Response status 4xx; 'resp-5xx': Response status 5xx; 'resp-other': Response status Other; 'resp-latency': Time to First Response Byte; 'curr_pconn': Current persistent connections;
+- `counters1` (String) 'all': all; 'curr_req': Current requests; 'total_req': Total Requests; 'total_req_succ': Total requests succ; 'total_fwd_bytes': Bytes processed in forward direction; 'total_fwd_pkts': Packets processed in forward direction; 'total_rev_bytes': Bytes processed in reverse direction; 'total_rev_pkts': Packets processed in reverse direction; 'total_conn': Total connections; 'last_total_conn': Last total connections; 'peak_conn': Peak connections; 'es_resp_200': Response status 200; 'es_resp_300': Response status 300; 'es_resp_400': Response status 400; 'es_resp_500': Response status 500; 'es_resp_other': Response status other; 'es_req_count': Total proxy requests; 'es_resp_count': Total proxy response; 'es_resp_invalid_http': Total non-http response; 'total_rev_pkts_inspected': Total reverse packets inspected; 'total_rev_pkts_inspected_good_status_code': Total reverse packets with good status code inspected; 'response_time': Response time; 'fastest_rsp_time': Fastest response time; 'slowest_rsp_time': Slowest response time; 'curr_ssl_conn': Current SSL connections; 'total_ssl_conn': Total SSL connections; 'resp-count': Total Response Count; 'resp-1xx': Response status 1xx; 'resp-2xx': Response status 2xx; 'resp-3xx': Response status 3xx; 'resp-4xx': Response status 4xx; 'resp-5xx': Response status 5xx; 'resp-other': Response status Other; 'resp-latency': Time to First Response Byte; 'curr_pconn': Current persistent connections;
 
 

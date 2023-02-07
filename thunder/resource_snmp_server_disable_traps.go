@@ -20,27 +20,22 @@ func resourceSnmpServerDisableTraps() *schema.Resource {
 			"all": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable all traps on this partition",
 				ValidateFunc: validation.IntBetween(0, 1),
-				ExactlyOneOf: []string{"all", "gslb", "slb", "slb_change", "snmp", "vrrp_a"},
 			},
 			"gslb": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable all gslb traps on this partition",
 				ValidateFunc: validation.IntBetween(0, 1),
-				ExactlyOneOf: []string{"all", "gslb", "slb", "slb_change", "snmp", "vrrp_a"},
 			},
 			"slb": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable all slb traps on this partition",
 				ValidateFunc: validation.IntBetween(0, 1),
-				ExactlyOneOf: []string{"all", "gslb", "slb", "slb_change", "snmp", "vrrp_a"},
 			},
 			"slb_change": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable all slb-change traps on this partition",
 				ValidateFunc: validation.IntBetween(0, 1),
-				ExactlyOneOf: []string{"all", "gslb", "slb", "slb_change", "snmp", "vrrp_a"},
 			},
 			"snmp": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable all snmp traps on this partition",
 				ValidateFunc: validation.IntBetween(0, 1),
-				ExactlyOneOf: []string{"all", "gslb", "slb", "slb_change", "snmp", "vrrp_a"},
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -48,7 +43,6 @@ func resourceSnmpServerDisableTraps() *schema.Resource {
 			"vrrp_a": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable all vrrp-a on this partition",
 				ValidateFunc: validation.IntBetween(0, 1),
-				ExactlyOneOf: []string{"all", "gslb", "slb", "slb_change", "snmp", "vrrp_a"},
 			},
 		},
 	}

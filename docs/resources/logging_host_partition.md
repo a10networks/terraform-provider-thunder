@@ -17,9 +17,12 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **partition_name** (String) Select partition name for logging
-- **shared** (Number) Select shared partition
-- **uuid** (String) uuid of the object
+- `partition_name` (String) Select partition name for logging
+- `shared` (Number) Select shared partition
+- `uuid` (String) uuid of the object
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

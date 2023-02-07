@@ -17,14 +17,17 @@ description: |-
 
 ### Optional
 
-- **alg_type** (String)
-- **asc_key** (String)
-- **encrypted** (String)
-- **hex_encrypted** (String)
-- **hex_key** (String)
-- **id** (String) The ID of this resource.
-- **key** (Number)
-- **key_type** (String)
-- **uuid** (String)
+- `alg_type` (String)
+- `asc_key` (String)
+- `encrypted` (String)
+- `hex_encrypted` (String)
+- `hex_key` (String)
+- `key` (Number)
+- `key_type` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

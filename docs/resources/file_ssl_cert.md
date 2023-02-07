@@ -17,20 +17,23 @@ description: |-
 
 ### Required
 
-- **host** (String) Remote site (IP or domain name)
-- **name** (String) Local file name
-- **path** (String) Remote path
-- **protocol** (String) Transfer protocol
+- `host` (String) Remote site (IP or domain name)
+- `name` (String) Local file name
+- `path` (String) Remote path
+- `protocol` (String) Transfer protocol
 
 ### Optional
 
-- **certificate_type** (String) Certificate format
-- **id** (String) The ID of this resource.
-- **overwrite** (Number) Overwrite existing file
-- **password** (String) Password for the remote site
-- **pfx_password** (String) Password for pfx format
-- **secured** (Number) Mark key as non-exportable (for pfx format)
-- **use_mgmt_port** (Number) Use management port as source port
-- **username** (String) Username for the remote site
+- `certificate_type` (String) Certificate format
+- `overwrite` (Number) Overwrite existing file
+- `password` (String) Password for the remote site
+- `pfx_password` (String) Password for pfx format
+- `secured` (Number) Mark key as non-exportable (for pfx format)
+- `use_mgmt_port` (Number) Use management port as source port
+- `username` (String) Username for the remote site
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

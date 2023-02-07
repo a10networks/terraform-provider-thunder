@@ -17,13 +17,16 @@ description: |-
 
 ### Optional
 
-- **gateway_mac** (String)
-- **id** (String) The ID of this resource.
-- **ip_dscp_preserve** (Number)
-- **nvgre_disable_flow_id** (Number)
-- **nvgre_key_mode_lower24** (Number)
-- **tcp_mss_adjust_disable** (Number)
-- **uuid** (String)
-- **vxlan_dest_port** (Number)
+- `gateway_mac` (String)
+- `ip_dscp_preserve` (Number)
+- `nvgre_disable_flow_id` (Number)
+- `nvgre_key_mode_lower24` (Number)
+- `tcp_mss_adjust_disable` (Number)
+- `uuid` (String)
+- `vxlan_dest_port` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

@@ -17,14 +17,17 @@ description: |-
 
 ### Optional
 
-- **all** (Number)
-- **fixed_nat_port_mapping_file_change** (Number)
-- **id** (String) The ID of this resource.
-- **max_ipport_threshold** (Number)
-- **max_port_threshold** (Number)
-- **per_ip_port_usage_threshold** (Number)
-- **total_port_usage_threshold** (Number)
-- **traffic_exceeded** (Number)
-- **uuid** (String)
+- `all` (Number)
+- `fixed_nat_port_mapping_file_change` (Number)
+- `max_ipport_threshold` (Number)
+- `max_port_threshold` (Number)
+- `per_ip_port_usage_threshold` (Number)
+- `total_port_usage_threshold` (Number)
+- `traffic_exceeded` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

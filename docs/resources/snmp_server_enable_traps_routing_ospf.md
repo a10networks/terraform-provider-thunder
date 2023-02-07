@@ -17,23 +17,26 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **ospf_if_auth_failure** (Number)
-- **ospf_if_config_error** (Number)
-- **ospf_if_rx_bad_packet** (Number)
-- **ospf_if_state_change** (Number)
-- **ospf_lsdb_approaching_overflow** (Number)
-- **ospf_lsdb_overflow** (Number)
-- **ospf_max_age_lsa** (Number)
-- **ospf_nbr_state_change** (Number)
-- **ospf_originate_lsa** (Number)
-- **ospf_tx_retransmit** (Number)
-- **ospf_virt_if_auth_failure** (Number)
-- **ospf_virt_if_config_error** (Number)
-- **ospf_virt_if_rx_bad_packet** (Number)
-- **ospf_virt_if_state_change** (Number)
-- **ospf_virt_if_tx_retransmit** (Number)
-- **ospf_virt_nbr_state_change** (Number)
-- **uuid** (String)
+- `ospf_if_auth_failure` (Number)
+- `ospf_if_config_error` (Number)
+- `ospf_if_rx_bad_packet` (Number)
+- `ospf_if_state_change` (Number)
+- `ospf_lsdb_approaching_overflow` (Number)
+- `ospf_lsdb_overflow` (Number)
+- `ospf_max_age_lsa` (Number)
+- `ospf_nbr_state_change` (Number)
+- `ospf_originate_lsa` (Number)
+- `ospf_tx_retransmit` (Number)
+- `ospf_virt_if_auth_failure` (Number)
+- `ospf_virt_if_config_error` (Number)
+- `ospf_virt_if_rx_bad_packet` (Number)
+- `ospf_virt_if_state_change` (Number)
+- `ospf_virt_if_tx_retransmit` (Number)
+- `ospf_virt_nbr_state_change` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

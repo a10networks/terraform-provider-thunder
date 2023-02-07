@@ -17,18 +17,21 @@ description: |-
 
 ### Optional
 
-- **exec_banner_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--exec_banner_cfg))
-- **id** (String) The ID of this resource.
-- **login_banner_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--login_banner_cfg))
-- **uuid** (String)
+- `exec_banner_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--exec_banner_cfg))
+- `login_banner_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--login_banner_cfg))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--exec_banner_cfg"></a>
 ### Nested Schema for `exec_banner_cfg`
 
 Optional:
 
-- **exec** (Number)
-- **exec_banner** (String)
+- `exec` (Number)
+- `exec_banner` (String)
 
 
 <a id="nestedblock--login_banner_cfg"></a>
@@ -36,7 +39,7 @@ Optional:
 
 Optional:
 
-- **login** (Number)
-- **login_banner** (String)
+- `login` (Number)
+- `login_banner` (String)
 
 

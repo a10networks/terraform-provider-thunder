@@ -17,14 +17,17 @@ description: |-
 
 ### Required
 
-- **buff_thresh** (Number) Set buffer threshold
+- `buff_thresh` (Number) Set buffer threshold
 
 ### Optional
 
-- **buff_thresh_hw_buff** (Number) Set hardware buffer threshold
-- **buff_thresh_relieve_thresh** (Number) Relieve threshold
-- **buff_thresh_sys_buff_high** (Number) Set high water mark of system buffer
-- **buff_thresh_sys_buff_low** (Number) Set low water mark of system buffer
-- **id** (String) The ID of this resource.
+- `buff_thresh_hw_buff` (Number) Set hardware buffer threshold
+- `buff_thresh_relieve_thresh` (Number) Relieve threshold
+- `buff_thresh_sys_buff_high` (Number) Set high water mark of system buffer
+- `buff_thresh_sys_buff_low` (Number) Set low water mark of system buffer
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

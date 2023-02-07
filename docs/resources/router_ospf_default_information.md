@@ -17,14 +17,17 @@ description: |-
 
 ### Optional
 
-- **always** (Number)
-- **as_number** (String)
-- **id** (String) The ID of this resource.
-- **metric** (Number)
-- **metric_type** (Number)
-- **originate** (Number)
-- **process_id** (String)
-- **route_map** (String)
-- **uuid** (String)
+- `always` (Number)
+- `as_number` (String)
+- `metric` (Number)
+- `metric_type` (Number)
+- `originate` (Number)
+- `process_id` (String)
+- `route_map` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

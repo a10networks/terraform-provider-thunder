@@ -17,33 +17,36 @@ description: |-
 
 ### Optional
 
-- **accept_reload_req** (Number)
-- **age** (Number)
-- **default_policy_nocache** (Number)
-- **disable_insert_age** (Number)
-- **disable_insert_via** (Number)
-- **id** (String) The ID of this resource.
-- **local_uri_policy** (Block List) (see [below for nested schema](#nestedblock--local_uri_policy))
-- **logging** (String)
-- **max_cache_size** (Number)
-- **max_content_size** (Number)
-- **min_content_size** (Number)
-- **name** (String)
-- **packet_capture_template** (String)
-- **remove_cookies** (Number)
-- **replacement_policy** (String)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **uri_policy** (Block List) (see [below for nested schema](#nestedblock--uri_policy))
-- **user_tag** (String)
-- **uuid** (String)
-- **verify_host** (Number)
+- `accept_reload_req` (Number)
+- `age` (Number)
+- `default_policy_nocache` (Number)
+- `disable_insert_age` (Number)
+- `disable_insert_via` (Number)
+- `local_uri_policy` (Block List) (see [below for nested schema](#nestedblock--local_uri_policy))
+- `logging` (String)
+- `max_cache_size` (Number)
+- `max_content_size` (Number)
+- `min_content_size` (Number)
+- `name` (String)
+- `packet_capture_template` (String)
+- `remove_cookies` (Number)
+- `replacement_policy` (String)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `uri_policy` (Block List) (see [below for nested schema](#nestedblock--uri_policy))
+- `user_tag` (String)
+- `uuid` (String)
+- `verify_host` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--local_uri_policy"></a>
 ### Nested Schema for `local_uri_policy`
 
 Optional:
 
-- **local_uri** (String)
+- `local_uri` (String)
 
 
 <a id="nestedblock--sampling_enable"></a>
@@ -51,7 +54,7 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 
 <a id="nestedblock--uri_policy"></a>
@@ -59,9 +62,9 @@ Optional:
 
 Optional:
 
-- **cache_action** (String)
-- **cache_value** (Number)
-- **invalidate** (String)
-- **uri** (String)
+- `cache_action` (String)
+- `cache_value` (Number)
+- `invalidate` (String)
+- `uri` (String)
 
 

@@ -17,91 +17,94 @@ description: |-
 
 ### Optional
 
-- **backup_server_event_log** (Number)
-- **conn_rate** (Number)
-- **conn_rate_duration** (Number)
-- **conn_rate_grace_period** (Number)
-- **conn_rate_log** (Number)
-- **conn_rate_revert_duration** (Number)
-- **conn_revert_rate** (Number)
-- **extended_stats** (Number)
-- **health_check** (String)
-- **health_check_disable** (Number)
-- **id** (String) The ID of this resource.
-- **l4_session_revert_duration** (Number)
-- **l4_session_usage** (Number)
-- **l4_session_usage_duration** (Number)
-- **l4_session_usage_grace_period** (Number)
-- **l4_session_usage_log** (Number)
-- **l4_session_usage_revert_rate** (Number)
-- **lb_method** (String)
-- **lc_method** (String)
-- **lclb_method** (String)
-- **link_probe_template** (String)
-- **llb_method** (String)
-- **member_list** (Block List) (see [below for nested schema](#nestedblock--member_list))
-- **min_active_member** (Number)
-- **min_active_member_action** (String)
-- **name** (String)
-- **persist_scoring** (String)
-- **priorities** (Block List) (see [below for nested schema](#nestedblock--priorities))
-- **priority_affinity** (Number)
-- **protocol** (String)
-- **pseudo_round_robin** (Number)
-- **report_delay** (Number)
-- **reset** (Block List, Max: 1) (see [below for nested schema](#nestedblock--reset))
-- **reset_on_server_selection_fail** (Number)
-- **reset_priority_affinity** (Number)
-- **rpt_ext_server** (Number)
-- **sample_rsp_time** (Number)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **shared_partition_policy_template** (Number)
-- **shared_partition_svcgrp_health_check** (Number)
-- **stateless_auto_switch** (Number)
-- **stateless_lb_method** (String)
-- **stateless_lb_method2** (String)
-- **stats_data_action** (String)
-- **strict_select** (Number)
-- **svcgrp_health_check_shared** (String)
-- **template_policy** (String)
-- **template_policy_shared** (String)
-- **template_port** (String)
-- **template_server** (String)
-- **top_fastest** (Number)
-- **top_slowest** (Number)
-- **traffic_replication_mirror** (Number)
-- **traffic_replication_mirror_da_repl** (Number)
-- **traffic_replication_mirror_ip_repl** (Number)
-- **traffic_replication_mirror_sa_da_repl** (Number)
-- **traffic_replication_mirror_sa_repl** (Number)
-- **user_tag** (String)
-- **uuid** (String)
+- `backup_server_event_log` (Number)
+- `conn_rate` (Number)
+- `conn_rate_duration` (Number)
+- `conn_rate_grace_period` (Number)
+- `conn_rate_log` (Number)
+- `conn_rate_revert_duration` (Number)
+- `conn_revert_rate` (Number)
+- `extended_stats` (Number)
+- `health_check` (String)
+- `health_check_disable` (Number)
+- `l4_session_revert_duration` (Number)
+- `l4_session_usage` (Number)
+- `l4_session_usage_duration` (Number)
+- `l4_session_usage_grace_period` (Number)
+- `l4_session_usage_log` (Number)
+- `l4_session_usage_revert_rate` (Number)
+- `lb_method` (String)
+- `lc_method` (String)
+- `lclb_method` (String)
+- `link_probe_template` (String)
+- `llb_method` (String)
+- `member_list` (Block List) (see [below for nested schema](#nestedblock--member_list))
+- `min_active_member` (Number)
+- `min_active_member_action` (String)
+- `name` (String)
+- `persist_scoring` (String)
+- `priorities` (Block List) (see [below for nested schema](#nestedblock--priorities))
+- `priority_affinity` (Number)
+- `protocol` (String)
+- `pseudo_round_robin` (Number)
+- `report_delay` (Number)
+- `reset` (Block List, Max: 1) (see [below for nested schema](#nestedblock--reset))
+- `reset_on_server_selection_fail` (Number)
+- `reset_priority_affinity` (Number)
+- `rpt_ext_server` (Number)
+- `sample_rsp_time` (Number)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `shared_partition_policy_template` (Number)
+- `shared_partition_svcgrp_health_check` (Number)
+- `stateless_auto_switch` (Number)
+- `stateless_lb_method` (String)
+- `stateless_lb_method2` (String)
+- `stats_data_action` (String)
+- `strict_select` (Number)
+- `svcgrp_health_check_shared` (String)
+- `template_policy` (String)
+- `template_policy_shared` (String)
+- `template_port` (String)
+- `template_server` (String)
+- `top_fastest` (Number)
+- `top_slowest` (Number)
+- `traffic_replication_mirror` (Number)
+- `traffic_replication_mirror_da_repl` (Number)
+- `traffic_replication_mirror_ip_repl` (Number)
+- `traffic_replication_mirror_sa_da_repl` (Number)
+- `traffic_replication_mirror_sa_repl` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--member_list"></a>
 ### Nested Schema for `member_list`
 
 Optional:
 
-- **fqdn_name** (String)
-- **host** (String)
-- **member_priority** (Number)
-- **member_state** (String)
-- **member_stats_data_disable** (Number)
-- **member_template** (String)
-- **name** (String)
-- **port** (Number)
-- **resolve_as** (String)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--member_list--sampling_enable))
-- **server_ipv6_addr** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `fqdn_name` (String)
+- `host` (String)
+- `member_priority` (Number)
+- `member_state` (String)
+- `member_stats_data_disable` (Number)
+- `member_template` (String)
+- `name` (String)
+- `port` (Number)
+- `resolve_as` (String)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--member_list--sampling_enable))
+- `server_ipv6_addr` (String)
+- `user_tag` (String)
+- `uuid` (String)
 
 <a id="nestedblock--member_list--sampling_enable"></a>
 ### Nested Schema for `member_list.sampling_enable`
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 
 
@@ -110,8 +113,8 @@ Optional:
 
 Optional:
 
-- **priority** (Number)
-- **priority_action** (String)
+- `priority` (Number)
+- `priority_action` (String)
 
 
 <a id="nestedblock--reset"></a>
@@ -119,7 +122,7 @@ Optional:
 
 Optional:
 
-- **auto_switch** (Number)
+- `auto_switch` (Number)
 
 
 <a id="nestedblock--sampling_enable"></a>
@@ -127,6 +130,6 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 

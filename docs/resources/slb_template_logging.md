@@ -17,23 +17,26 @@ description: |-
 
 ### Optional
 
-- **auto** (String)
-- **format** (String)
-- **id** (String) The ID of this resource.
-- **keep_end** (Number)
-- **keep_start** (Number)
-- **local_logging** (Number)
-- **mask** (String)
-- **name** (String)
-- **pcre_mask** (String)
-- **pool** (String)
-- **pool_shared** (String)
-- **service_group** (String)
-- **shared_partition_pool** (Number)
-- **shared_partition_tcp_proxy_template** (Number)
-- **tcp_proxy** (String)
-- **template_tcp_proxy_shared** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `auto` (String)
+- `format` (String)
+- `keep_end` (Number)
+- `keep_start` (Number)
+- `local_logging` (Number)
+- `mask` (String)
+- `name` (String)
+- `pcre_mask` (String)
+- `pool` (String)
+- `pool_shared` (String)
+- `service_group` (String)
+- `shared_partition_pool` (Number)
+- `shared_partition_tcp_proxy_template` (Number)
+- `tcp_proxy` (String)
+- `template_tcp_proxy_shared` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

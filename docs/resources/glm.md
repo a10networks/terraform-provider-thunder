@@ -17,30 +17,33 @@ description: |-
 
 ### Optional
 
-- **allocate_bandwidth** (Number)
-- **appliance_name** (String)
-- **burst** (Number)
-- **enable_requests** (Number)
-- **enterprise** (String)
-- **id** (String) The ID of this resource.
-- **interval** (Number)
-- **port** (Number)
-- **proxy_server** (Block List, Max: 1) (see [below for nested schema](#nestedblock--proxy_server))
-- **token** (String)
-- **use_mgmt_port** (Number)
-- **uuid** (String)
+- `allocate_bandwidth` (Number)
+- `appliance_name` (String)
+- `burst` (Number)
+- `enable_requests` (Number)
+- `enterprise` (String)
+- `interval` (Number)
+- `port` (Number)
+- `proxy_server` (Block List, Max: 1) (see [below for nested schema](#nestedblock--proxy_server))
+- `token` (String)
+- `use_mgmt_port` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--proxy_server"></a>
 ### Nested Schema for `proxy_server`
 
 Optional:
 
-- **encrypted** (String)
-- **host** (String)
-- **password** (Number)
-- **port** (Number)
-- **secret_string** (String)
-- **username** (String)
-- **uuid** (String)
+- `encrypted` (String)
+- `host` (String)
+- `password` (Number)
+- `port` (Number)
+- `secret_string` (String)
+- `username` (String)
+- `uuid` (String)
 
 

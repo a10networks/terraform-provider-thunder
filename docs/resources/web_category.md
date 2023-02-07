@@ -17,38 +17,41 @@ description: |-
 
 ### Optional
 
-- **bypassed_urls** (Block List, Max: 1) (see [below for nested schema](#nestedblock--bypassed_urls))
-- **category_list_list** (Block List) (see [below for nested schema](#nestedblock--category_list_list))
-- **cloud_query_cache_size** (Number)
-- **cloud_query_disable** (Number)
-- **database_server** (String)
-- **db_update_time** (String)
-- **enable** (Number)
-- **id** (String) The ID of this resource.
-- **intercepted_urls** (Block List, Max: 1) (see [below for nested schema](#nestedblock--intercepted_urls))
-- **license** (Block List, Max: 1) (see [below for nested schema](#nestedblock--license))
-- **port** (Number)
-- **proxy_server** (Block List, Max: 1) (see [below for nested schema](#nestedblock--proxy_server))
-- **remote_syslog_enable** (Number)
-- **reputation_scope_list** (Block List) (see [below for nested schema](#nestedblock--reputation_scope_list))
-- **rtu_cache_size** (Number)
-- **rtu_update_disable** (Number)
-- **rtu_update_interval** (Number)
-- **server** (String)
-- **server_timeout** (Number)
-- **ssl_port** (Number)
-- **statistics** (Block List, Max: 1) (see [below for nested schema](#nestedblock--statistics))
-- **url** (Block List, Max: 1) (see [below for nested schema](#nestedblock--url))
-- **use_mgmt_port** (Number)
-- **uuid** (String)
-- **web_reputation** (Block List, Max: 1) (see [below for nested schema](#nestedblock--web_reputation))
+- `bypassed_urls` (Block List, Max: 1) (see [below for nested schema](#nestedblock--bypassed_urls))
+- `category_list_list` (Block List) (see [below for nested schema](#nestedblock--category_list_list))
+- `cloud_query_cache_size` (Number)
+- `cloud_query_disable` (Number)
+- `database_server` (String)
+- `db_update_time` (String)
+- `enable` (Number)
+- `intercepted_urls` (Block List, Max: 1) (see [below for nested schema](#nestedblock--intercepted_urls))
+- `license` (Block List, Max: 1) (see [below for nested schema](#nestedblock--license))
+- `port` (Number)
+- `proxy_server` (Block List, Max: 1) (see [below for nested schema](#nestedblock--proxy_server))
+- `remote_syslog_enable` (Number)
+- `reputation_scope_list` (Block List) (see [below for nested schema](#nestedblock--reputation_scope_list))
+- `rtu_cache_size` (Number)
+- `rtu_update_disable` (Number)
+- `rtu_update_interval` (Number)
+- `server` (String)
+- `server_timeout` (Number)
+- `ssl_port` (Number)
+- `statistics` (Block List, Max: 1) (see [below for nested schema](#nestedblock--statistics))
+- `url` (Block List, Max: 1) (see [below for nested schema](#nestedblock--url))
+- `use_mgmt_port` (Number)
+- `uuid` (String)
+- `web_reputation` (Block List, Max: 1) (see [below for nested schema](#nestedblock--web_reputation))
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--bypassed_urls"></a>
 ### Nested Schema for `bypassed_urls`
 
 Optional:
 
-- **uuid** (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--category_list_list"></a>
@@ -56,101 +59,101 @@ Optional:
 
 Optional:
 
-- **abortion** (Number)
-- **adult_and_pornography** (Number)
-- **alcohol_and_tobacco** (Number)
-- **auctions** (Number)
-- **bot_nets** (Number)
-- **business_and_economy** (Number)
-- **cdns** (Number)
-- **cheating** (Number)
-- **computer_and_internet_info** (Number)
-- **computer_and_internet_security** (Number)
-- **confirmed_spam_sources** (Number)
-- **cult_and_occult** (Number)
-- **dating** (Number)
-- **dead_sites** (Number)
-- **drugs** (Number)
-- **dynamic_comment** (Number)
-- **educational_institutions** (Number)
-- **entertainment_and_arts** (Number)
-- **fashion_and_beauty** (Number)
-- **financial_services** (Number)
-- **food_and_dining** (Number)
-- **gambling** (Number)
-- **games** (Number)
-- **government** (Number)
-- **gross** (Number)
-- **hacking** (Number)
-- **hate_and_racism** (Number)
-- **health_and_medicine** (Number)
-- **home_and_garden** (Number)
-- **hunting_and_fishing** (Number)
-- **illegal** (Number)
-- **image_and_video_search** (Number)
-- **internet_communications** (Number)
-- **internet_portals** (Number)
-- **job_search** (Number)
-- **keyloggers_and_monitoring** (Number)
-- **kids** (Number)
-- **legal** (Number)
-- **local_information** (Number)
-- **malware_sites** (Number)
-- **marijuana** (Number)
-- **military** (Number)
-- **motor_vehicles** (Number)
-- **music** (Number)
-- **name** (String)
-- **news_and_media** (Number)
-- **nudity** (Number)
-- **online_greeting_cards** (Number)
-- **open_http_proxies** (Number)
-- **parked_domains** (Number)
-- **pay_to_surf** (Number)
-- **peer_to_peer** (Number)
-- **personal_sites_and_blogs** (Number)
-- **personal_storage** (Number)
-- **philosophy_and_politics** (Number)
-- **phishing_and_other_fraud** (Number)
-- **private_ip_addresses** (Number)
-- **proxy_avoid_and_anonymizers** (Number)
-- **questionable** (Number)
-- **real_estate** (Number)
-- **recreation_and_hobbies** (Number)
-- **reference_and_research** (Number)
-- **religion** (Number)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--category_list_list--sampling_enable))
-- **search_engines** (Number)
-- **sex_education** (Number)
-- **shareware_and_freeware** (Number)
-- **shopping** (Number)
-- **social_network** (Number)
-- **society** (Number)
-- **spam_urls** (Number)
-- **sports** (Number)
-- **spyware_and_adware** (Number)
-- **stock_advice_and_tools** (Number)
-- **streaming_media** (Number)
-- **swimsuits_and_intimate_apparel** (Number)
-- **training_and_tools** (Number)
-- **translation** (Number)
-- **travel** (Number)
-- **uncategorized** (Number)
-- **unconfirmed_spam_sources** (Number)
-- **user_tag** (String)
-- **uuid** (String)
-- **violence** (Number)
-- **weapons** (Number)
-- **web_advertisements** (Number)
-- **web_based_email** (Number)
-- **web_hosting_sites** (Number)
+- `abortion` (Number)
+- `adult_and_pornography` (Number)
+- `alcohol_and_tobacco` (Number)
+- `auctions` (Number)
+- `bot_nets` (Number)
+- `business_and_economy` (Number)
+- `cdns` (Number)
+- `cheating` (Number)
+- `computer_and_internet_info` (Number)
+- `computer_and_internet_security` (Number)
+- `confirmed_spam_sources` (Number)
+- `cult_and_occult` (Number)
+- `dating` (Number)
+- `dead_sites` (Number)
+- `drugs` (Number)
+- `dynamic_comment` (Number)
+- `educational_institutions` (Number)
+- `entertainment_and_arts` (Number)
+- `fashion_and_beauty` (Number)
+- `financial_services` (Number)
+- `food_and_dining` (Number)
+- `gambling` (Number)
+- `games` (Number)
+- `government` (Number)
+- `gross` (Number)
+- `hacking` (Number)
+- `hate_and_racism` (Number)
+- `health_and_medicine` (Number)
+- `home_and_garden` (Number)
+- `hunting_and_fishing` (Number)
+- `illegal` (Number)
+- `image_and_video_search` (Number)
+- `internet_communications` (Number)
+- `internet_portals` (Number)
+- `job_search` (Number)
+- `keyloggers_and_monitoring` (Number)
+- `kids` (Number)
+- `legal` (Number)
+- `local_information` (Number)
+- `malware_sites` (Number)
+- `marijuana` (Number)
+- `military` (Number)
+- `motor_vehicles` (Number)
+- `music` (Number)
+- `name` (String)
+- `news_and_media` (Number)
+- `nudity` (Number)
+- `online_greeting_cards` (Number)
+- `open_http_proxies` (Number)
+- `parked_domains` (Number)
+- `pay_to_surf` (Number)
+- `peer_to_peer` (Number)
+- `personal_sites_and_blogs` (Number)
+- `personal_storage` (Number)
+- `philosophy_and_politics` (Number)
+- `phishing_and_other_fraud` (Number)
+- `private_ip_addresses` (Number)
+- `proxy_avoid_and_anonymizers` (Number)
+- `questionable` (Number)
+- `real_estate` (Number)
+- `recreation_and_hobbies` (Number)
+- `reference_and_research` (Number)
+- `religion` (Number)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--category_list_list--sampling_enable))
+- `search_engines` (Number)
+- `sex_education` (Number)
+- `shareware_and_freeware` (Number)
+- `shopping` (Number)
+- `social_network` (Number)
+- `society` (Number)
+- `spam_urls` (Number)
+- `sports` (Number)
+- `spyware_and_adware` (Number)
+- `stock_advice_and_tools` (Number)
+- `streaming_media` (Number)
+- `swimsuits_and_intimate_apparel` (Number)
+- `training_and_tools` (Number)
+- `translation` (Number)
+- `travel` (Number)
+- `uncategorized` (Number)
+- `unconfirmed_spam_sources` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+- `violence` (Number)
+- `weapons` (Number)
+- `web_advertisements` (Number)
+- `web_based_email` (Number)
+- `web_hosting_sites` (Number)
 
 <a id="nestedblock--category_list_list--sampling_enable"></a>
 ### Nested Schema for `category_list_list.sampling_enable`
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 
 
@@ -159,7 +162,7 @@ Optional:
 
 Optional:
 
-- **uuid** (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--license"></a>
@@ -167,7 +170,7 @@ Optional:
 
 Optional:
 
-- **uuid** (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--proxy_server"></a>
@@ -175,15 +178,15 @@ Optional:
 
 Optional:
 
-- **auth_type** (String)
-- **domain** (String)
-- **http_port** (Number)
-- **https_port** (Number)
-- **password** (Number)
-- **proxy_host** (String)
-- **secret_string** (String)
-- **username** (String)
-- **uuid** (String)
+- `auth_type` (String)
+- `domain` (String)
+- `http_port` (Number)
+- `https_port` (Number)
+- `password` (Number)
+- `proxy_host` (String)
+- `secret_string` (String)
+- `username` (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--reputation_scope_list"></a>
@@ -191,24 +194,24 @@ Optional:
 
 Optional:
 
-- **greater_than** (Block List, Max: 1) (see [below for nested schema](#nestedblock--reputation_scope_list--greater_than))
-- **less_than** (Block List, Max: 1) (see [below for nested schema](#nestedblock--reputation_scope_list--less_than))
-- **name** (String)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--reputation_scope_list--sampling_enable))
-- **user_tag** (String)
-- **uuid** (String)
+- `greater_than` (Block List, Max: 1) (see [below for nested schema](#nestedblock--reputation_scope_list--greater_than))
+- `less_than` (Block List, Max: 1) (see [below for nested schema](#nestedblock--reputation_scope_list--less_than))
+- `name` (String)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--reputation_scope_list--sampling_enable))
+- `user_tag` (String)
+- `uuid` (String)
 
 <a id="nestedblock--reputation_scope_list--greater_than"></a>
 ### Nested Schema for `reputation_scope_list.greater_than`
 
 Optional:
 
-- **greater_low_risk** (Number)
-- **greater_malicious** (Number)
-- **greater_moderate_risk** (Number)
-- **greater_suspicious** (Number)
-- **greater_threshold** (Number)
-- **greater_trustworthy** (Number)
+- `greater_low_risk` (Number)
+- `greater_malicious` (Number)
+- `greater_moderate_risk` (Number)
+- `greater_suspicious` (Number)
+- `greater_threshold` (Number)
+- `greater_trustworthy` (Number)
 
 
 <a id="nestedblock--reputation_scope_list--less_than"></a>
@@ -216,12 +219,12 @@ Optional:
 
 Optional:
 
-- **less_low_risk** (Number)
-- **less_malicious** (Number)
-- **less_moderate_risk** (Number)
-- **less_suspicious** (Number)
-- **less_threshold** (Number)
-- **less_trustworthy** (Number)
+- `less_low_risk` (Number)
+- `less_malicious` (Number)
+- `less_moderate_risk` (Number)
+- `less_suspicious` (Number)
+- `less_threshold` (Number)
+- `less_trustworthy` (Number)
 
 
 <a id="nestedblock--reputation_scope_list--sampling_enable"></a>
@@ -229,7 +232,7 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 
 
@@ -238,15 +241,15 @@ Optional:
 
 Optional:
 
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--statistics--sampling_enable))
-- **uuid** (String)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--statistics--sampling_enable))
+- `uuid` (String)
 
 <a id="nestedblock--statistics--sampling_enable"></a>
 ### Nested Schema for `statistics.sampling_enable`
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 
 
@@ -255,7 +258,7 @@ Optional:
 
 Optional:
 
-- **uuid** (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--web_reputation"></a>
@@ -263,17 +266,17 @@ Optional:
 
 Optional:
 
-- **bypassed_urls** (Block List, Max: 1) (see [below for nested schema](#nestedblock--web_reputation--bypassed_urls))
-- **intercepted_urls** (Block List, Max: 1) (see [below for nested schema](#nestedblock--web_reputation--intercepted_urls))
-- **url** (Block List, Max: 1) (see [below for nested schema](#nestedblock--web_reputation--url))
-- **uuid** (String)
+- `bypassed_urls` (Block List, Max: 1) (see [below for nested schema](#nestedblock--web_reputation--bypassed_urls))
+- `intercepted_urls` (Block List, Max: 1) (see [below for nested schema](#nestedblock--web_reputation--intercepted_urls))
+- `url` (Block List, Max: 1) (see [below for nested schema](#nestedblock--web_reputation--url))
+- `uuid` (String)
 
 <a id="nestedblock--web_reputation--bypassed_urls"></a>
 ### Nested Schema for `web_reputation.bypassed_urls`
 
 Optional:
 
-- **uuid** (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--web_reputation--intercepted_urls"></a>
@@ -281,7 +284,7 @@ Optional:
 
 Optional:
 
-- **uuid** (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--web_reputation--url"></a>
@@ -289,6 +292,6 @@ Optional:
 
 Optional:
 
-- **uuid** (String)
+- `uuid` (String)
 
 

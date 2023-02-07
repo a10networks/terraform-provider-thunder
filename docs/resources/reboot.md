@@ -17,19 +17,22 @@ description: |-
 
 ### Optional
 
-- **all** (Number)
-- **at** (Number)
-- **cancel** (Number)
-- **day_of_month** (Number)
-- **day_of_month_2** (Number)
-- **device** (Number)
-- **id** (String) The ID of this resource.
-- **in** (String)
-- **month** (String)
-- **month_2** (String)
-- **reason** (String)
-- **reason_2** (String)
-- **reason_3** (String)
-- **time** (String)
+- `all` (Number)
+- `at` (Number)
+- `cancel` (Number)
+- `day_of_month` (Number)
+- `day_of_month_2` (Number)
+- `device` (Number)
+- `in` (String)
+- `month` (String)
+- `month_2` (String)
+- `reason` (String)
+- `reason_2` (String)
+- `reason_3` (String)
+- `time` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

@@ -17,48 +17,51 @@ description: |-
 
 ### Optional
 
-- **action** (String)
-- **alternate_server** (Block List) (see [below for nested schema](#nestedblock--alternate_server))
-- **conn_limit** (Number)
-- **conn_resume** (Number)
-- **ethernet** (Number)
-- **extended_stats** (Number)
-- **external_ip** (String)
-- **fqdn_name** (String)
-- **health_check** (String)
-- **health_check_disable** (Number)
-- **health_check_shared** (String)
-- **host** (String)
-- **id** (String) The ID of this resource.
-- **ipv6** (String)
-- **l2_health_check_path** (String)
-- **name** (String)
-- **no_logging** (Number)
-- **port_list** (Block List) (see [below for nested schema](#nestedblock--port_list))
-- **resolve_as** (String)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **server_ipv6_addr** (String)
-- **shared_partition_health_check** (Number)
-- **shared_partition_server_template** (Number)
-- **slow_start** (Number)
-- **spoofing_cache** (Number)
-- **stats_data_action** (String)
-- **template_link_cost** (String)
-- **template_server** (String)
-- **template_server_shared** (String)
-- **trunk** (Number)
-- **use_aam_server** (Number)
-- **user_tag** (String)
-- **uuid** (String)
-- **weight** (Number)
+- `action` (String)
+- `alternate_server` (Block List) (see [below for nested schema](#nestedblock--alternate_server))
+- `conn_limit` (Number)
+- `conn_resume` (Number)
+- `ethernet` (Number)
+- `extended_stats` (Number)
+- `external_ip` (String)
+- `fqdn_name` (String)
+- `health_check` (String)
+- `health_check_disable` (Number)
+- `health_check_shared` (String)
+- `host` (String)
+- `ipv6` (String)
+- `l2_health_check_path` (String)
+- `name` (String)
+- `no_logging` (Number)
+- `port_list` (Block List) (see [below for nested schema](#nestedblock--port_list))
+- `resolve_as` (String)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `server_ipv6_addr` (String)
+- `shared_partition_health_check` (Number)
+- `shared_partition_server_template` (Number)
+- `slow_start` (Number)
+- `spoofing_cache` (Number)
+- `stats_data_action` (String)
+- `template_link_cost` (String)
+- `template_server` (String)
+- `template_server_shared` (String)
+- `trunk` (Number)
+- `use_aam_server` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+- `weight` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--alternate_server"></a>
 ### Nested Schema for `alternate_server`
 
 Optional:
 
-- **alternate** (Number)
-- **alternate_name** (String)
+- `alternate` (Number)
+- `alternate_name` (String)
 
 
 <a id="nestedblock--port_list"></a>
@@ -66,43 +69,43 @@ Optional:
 
 Optional:
 
-- **action** (String)
-- **alternate_port** (Block List) (see [below for nested schema](#nestedblock--port_list--alternate_port))
-- **auth_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_list--auth_cfg))
-- **conn_limit** (Number)
-- **conn_resume** (Number)
-- **extended_stats** (Number)
-- **follow_port_protocol** (String)
-- **health_check** (String)
-- **health_check_disable** (Number)
-- **health_check_follow_port** (Number)
-- **no_logging** (Number)
-- **no_ssl** (Number)
-- **packet_capture_template** (String)
-- **port_number** (Number)
-- **protocol** (String)
-- **range** (Number)
-- **rport_health_check_shared** (String)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--port_list--sampling_enable))
-- **shared_partition_port_template** (Number)
-- **shared_rport_health_check** (Number)
-- **stats_data_action** (String)
-- **support_http2** (Number)
-- **template_port** (String)
-- **template_port_shared** (String)
-- **template_server_ssl** (String)
-- **user_tag** (String)
-- **uuid** (String)
-- **weight** (Number)
+- `action` (String)
+- `alternate_port` (Block List) (see [below for nested schema](#nestedblock--port_list--alternate_port))
+- `auth_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_list--auth_cfg))
+- `conn_limit` (Number)
+- `conn_resume` (Number)
+- `extended_stats` (Number)
+- `follow_port_protocol` (String)
+- `health_check` (String)
+- `health_check_disable` (Number)
+- `health_check_follow_port` (Number)
+- `no_logging` (Number)
+- `no_ssl` (Number)
+- `packet_capture_template` (String)
+- `port_number` (Number)
+- `protocol` (String)
+- `range` (Number)
+- `rport_health_check_shared` (String)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--port_list--sampling_enable))
+- `shared_partition_port_template` (Number)
+- `shared_rport_health_check` (Number)
+- `stats_data_action` (String)
+- `support_http2` (Number)
+- `template_port` (String)
+- `template_port_shared` (String)
+- `template_server_ssl` (String)
+- `user_tag` (String)
+- `uuid` (String)
+- `weight` (Number)
 
 <a id="nestedblock--port_list--alternate_port"></a>
 ### Nested Schema for `port_list.alternate_port`
 
 Optional:
 
-- **alternate** (Number)
-- **alternate_name** (String)
-- **alternate_server_port** (Number)
+- `alternate` (Number)
+- `alternate_name` (String)
+- `alternate_server_port` (Number)
 
 
 <a id="nestedblock--port_list--auth_cfg"></a>
@@ -110,7 +113,7 @@ Optional:
 
 Optional:
 
-- **service_principal_name** (String)
+- `service_principal_name` (String)
 
 
 <a id="nestedblock--port_list--sampling_enable"></a>
@@ -118,7 +121,7 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 
 
@@ -127,6 +130,6 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 

@@ -17,27 +17,30 @@ description: |-
 
 ### Optional
 
-- **alive_if_active** (Number)
-- **del_session_on_server_down** (Number)
-- **disable** (Number)
-- **down** (Number)
-- **force_delete_timeout** (Number)
-- **force_delete_timeout_100ms** (Number)
-- **half_close_idle_timeout** (Number)
-- **half_open_idle_timeout** (Number)
-- **id** (String) The ID of this resource.
-- **idle_timeout** (Number)
-- **initial_window_size** (Number)
-- **insert_client_ip** (Number)
-- **lan_fast_ack** (Number)
-- **logging** (String)
-- **name** (String)
-- **qos** (Number)
-- **re_select_if_server_down** (Number)
-- **reset_follow_fin** (Number)
-- **reset_fwd** (Number)
-- **reset_rev** (Number)
-- **user_tag** (String)
-- **uuid** (String)
+- `alive_if_active` (Number)
+- `del_session_on_server_down` (Number)
+- `disable` (Number)
+- `down` (Number)
+- `force_delete_timeout` (Number)
+- `force_delete_timeout_100ms` (Number)
+- `half_close_idle_timeout` (Number)
+- `half_open_idle_timeout` (Number)
+- `idle_timeout` (Number)
+- `initial_window_size` (Number)
+- `insert_client_ip` (Number)
+- `lan_fast_ack` (Number)
+- `logging` (String)
+- `name` (String)
+- `qos` (Number)
+- `re_select_if_server_down` (Number)
+- `reset_follow_fin` (Number)
+- `reset_fwd` (Number)
+- `reset_rev` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

@@ -16,5 +16,6 @@ resource "thunder_health_monitor" "common" {
             radius_username = "radius"
         }
     }
+    ssl_version = 33
     name = "tf_test"
 }

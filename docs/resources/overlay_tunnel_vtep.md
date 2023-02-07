@@ -17,28 +17,31 @@ description: |-
 
 ### Optional
 
-- **encap** (String)
-- **host_list** (Block List) (see [below for nested schema](#nestedblock--host_list))
-- **id** (String) The ID of this resource.
-- **id1** (Number)
-- **local_ip_address** (Block List, Max: 1) (see [below for nested schema](#nestedblock--local_ip_address))
-- **local_ipv6_address** (Block List, Max: 1) (see [below for nested schema](#nestedblock--local_ipv6_address))
-- **remote_ip_address_list** (Block List) (see [below for nested schema](#nestedblock--remote_ip_address_list))
-- **remote_ipv6_address_list** (Block List) (see [below for nested schema](#nestedblock--remote_ipv6_address_list))
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **user_tag** (String)
-- **uuid** (String)
+- `encap` (String)
+- `host_list` (Block List) (see [below for nested schema](#nestedblock--host_list))
+- `id1` (Number)
+- `local_ip_address` (Block List, Max: 1) (see [below for nested schema](#nestedblock--local_ip_address))
+- `local_ipv6_address` (Block List, Max: 1) (see [below for nested schema](#nestedblock--local_ipv6_address))
+- `remote_ip_address_list` (Block List) (see [below for nested schema](#nestedblock--remote_ip_address_list))
+- `remote_ipv6_address_list` (Block List) (see [below for nested schema](#nestedblock--remote_ipv6_address_list))
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--host_list"></a>
 ### Nested Schema for `host_list`
 
 Optional:
 
-- **ip_addr** (String)
-- **overlay_mac_addr** (String)
-- **remote_vtep** (String)
-- **uuid** (String)
-- **vni** (Number)
+- `ip_addr` (String)
+- `overlay_mac_addr` (String)
+- `remote_vtep` (String)
+- `uuid` (String)
+- `vni` (Number)
 
 
 <a id="nestedblock--local_ip_address"></a>
@@ -46,17 +49,17 @@ Optional:
 
 Optional:
 
-- **ip_address** (String)
-- **uuid** (String)
-- **vni_list** (Block List) (see [below for nested schema](#nestedblock--local_ip_address--vni_list))
+- `ip_address` (String)
+- `uuid` (String)
+- `vni_list` (Block List) (see [below for nested schema](#nestedblock--local_ip_address--vni_list))
 
 <a id="nestedblock--local_ip_address--vni_list"></a>
 ### Nested Schema for `local_ip_address.vni_list`
 
 Optional:
 
-- **segment** (Number)
-- **uuid** (String)
+- `segment` (Number)
+- `uuid` (String)
 
 
 
@@ -65,8 +68,8 @@ Optional:
 
 Optional:
 
-- **ipv6_address** (String)
-- **uuid** (String)
+- `ipv6_address` (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--remote_ip_address_list"></a>
@@ -74,23 +77,23 @@ Optional:
 
 Optional:
 
-- **encap** (String)
-- **gre_keepalive** (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote_ip_address_list--gre_keepalive))
-- **ip_address** (String)
-- **use_gre_key** (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote_ip_address_list--use_gre_key))
-- **use_lif** (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote_ip_address_list--use_lif))
-- **user_tag** (String)
-- **uuid** (String)
-- **vni_list** (Block List) (see [below for nested schema](#nestedblock--remote_ip_address_list--vni_list))
+- `encap` (String)
+- `gre_keepalive` (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote_ip_address_list--gre_keepalive))
+- `ip_address` (String)
+- `use_gre_key` (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote_ip_address_list--use_gre_key))
+- `use_lif` (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote_ip_address_list--use_lif))
+- `user_tag` (String)
+- `uuid` (String)
+- `vni_list` (Block List) (see [below for nested schema](#nestedblock--remote_ip_address_list--vni_list))
 
 <a id="nestedblock--remote_ip_address_list--gre_keepalive"></a>
 ### Nested Schema for `remote_ip_address_list.gre_keepalive`
 
 Optional:
 
-- **retry_count** (Number)
-- **retry_time** (Number)
-- **uuid** (String)
+- `retry_count` (Number)
+- `retry_time` (Number)
+- `uuid` (String)
 
 
 <a id="nestedblock--remote_ip_address_list--use_gre_key"></a>
@@ -98,8 +101,8 @@ Optional:
 
 Optional:
 
-- **gre_key** (Number)
-- **uuid** (String)
+- `gre_key` (Number)
+- `uuid` (String)
 
 
 <a id="nestedblock--remote_ip_address_list--use_lif"></a>
@@ -107,9 +110,9 @@ Optional:
 
 Optional:
 
-- **lif** (String)
-- **partition** (String)
-- **uuid** (String)
+- `lif` (String)
+- `partition` (String)
+- `uuid` (String)
 
 
 <a id="nestedblock--remote_ip_address_list--vni_list"></a>
@@ -117,8 +120,8 @@ Optional:
 
 Optional:
 
-- **segment** (Number)
-- **uuid** (String)
+- `segment` (Number)
+- `uuid` (String)
 
 
 
@@ -127,19 +130,19 @@ Optional:
 
 Optional:
 
-- **ipv6_address** (String)
-- **use_lif** (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote_ipv6_address_list--use_lif))
-- **user_tag** (String)
-- **uuid** (String)
+- `ipv6_address` (String)
+- `use_lif` (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote_ipv6_address_list--use_lif))
+- `user_tag` (String)
+- `uuid` (String)
 
 <a id="nestedblock--remote_ipv6_address_list--use_lif"></a>
 ### Nested Schema for `remote_ipv6_address_list.use_lif`
 
 Optional:
 
-- **lif** (String)
-- **partition** (String)
-- **uuid** (String)
+- `lif` (String)
+- `partition` (String)
+- `uuid` (String)
 
 
 
@@ -148,6 +151,6 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 

@@ -17,41 +17,44 @@ description: |-
 
 ### Optional
 
-- **action** (String)
-- **fqdn_name** (String)
-- **health_check** (String)
-- **health_check_disable** (Number)
-- **host** (String)
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **port_list** (Block List) (see [below for nested schema](#nestedblock--port_list))
-- **resolve_as** (String)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **server_ipv6_addr** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `action` (String)
+- `fqdn_name` (String)
+- `health_check` (String)
+- `health_check_disable` (Number)
+- `host` (String)
+- `name` (String)
+- `port_list` (Block List) (see [below for nested schema](#nestedblock--port_list))
+- `resolve_as` (String)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `server_ipv6_addr` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--port_list"></a>
 ### Nested Schema for `port_list`
 
 Optional:
 
-- **action** (String)
-- **health_check** (String)
-- **health_check_disable** (Number)
-- **packet_capture_template** (String)
-- **port_number** (Number)
-- **protocol** (String)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--port_list--sampling_enable))
-- **user_tag** (String)
-- **uuid** (String)
+- `action` (String)
+- `health_check` (String)
+- `health_check_disable` (Number)
+- `packet_capture_template` (String)
+- `port_number` (Number)
+- `protocol` (String)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--port_list--sampling_enable))
+- `user_tag` (String)
+- `uuid` (String)
 
 <a id="nestedblock--port_list--sampling_enable"></a>
 ### Nested Schema for `port_list.sampling_enable`
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 
 
@@ -60,6 +63,6 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 

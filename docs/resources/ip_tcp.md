@@ -17,15 +17,18 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **syn_cookie** (Block List, Max: 1) (see [below for nested schema](#nestedblock--syn_cookie))
-- **uuid** (String)
+- `syn_cookie` (Block List, Max: 1) (see [below for nested schema](#nestedblock--syn_cookie))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--syn_cookie"></a>
 ### Nested Schema for `syn_cookie`
 
 Optional:
 
-- **threshold** (Number)
+- `threshold` (Number)
 
 

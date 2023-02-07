@@ -17,8 +17,11 @@ description: |-
 
 ### Optional
 
-- **gtpv0_value** (String)
-- **id** (String) The ID of this resource.
-- **uuid** (String)
+- `gtpv0_value` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

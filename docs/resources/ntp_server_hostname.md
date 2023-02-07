@@ -17,11 +17,14 @@ description: |-
 
 ### Optional
 
-- **action** (String)
-- **host_servername** (String)
-- **id** (String) The ID of this resource.
-- **key** (Number)
-- **prefer** (Number)
-- **uuid** (String)
+- `action` (String)
+- `host_servername` (String)
+- `key` (Number)
+- `prefer` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

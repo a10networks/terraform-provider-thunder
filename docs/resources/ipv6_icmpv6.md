@@ -17,9 +17,12 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **redirect** (Number)
-- **unreachable** (Number)
-- **uuid** (String)
+- `redirect` (Number)
+- `unreachable` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

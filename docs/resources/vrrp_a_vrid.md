@@ -63,58 +63,61 @@ resource "thunder_vrrp_a_vrid" "test_l3v_a" {
 
 ### Required
 
-- **vrid_val** (Number) Specify ha VRRP-A vrid
+- `vrid_val` (Number) Specify ha VRRP-A vrid
 
 ### Optional
 
-- **blade_parameters** (Block List, Max: 1) (see [below for nested schema](#nestedblock--blade_parameters))
-- **floating_ip** (Block List, Max: 1) (see [below for nested schema](#nestedblock--floating_ip))
-- **follow** (Block List, Max: 1) (see [below for nested schema](#nestedblock--follow))
-- **id** (String) The ID of this resource.
-- **pair_follow** (Block List, Max: 1) (see [below for nested schema](#nestedblock--pair_follow))
-- **preempt_mode** (Block List, Max: 1) (see [below for nested schema](#nestedblock--preempt_mode))
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **user_tag** (String) Customized tag
-- **uuid** (String) uuid of the object
+- `blade_parameters` (Block List, Max: 1) (see [below for nested schema](#nestedblock--blade_parameters))
+- `floating_ip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--floating_ip))
+- `follow` (Block List, Max: 1) (see [below for nested schema](#nestedblock--follow))
+- `pair_follow` (Block List, Max: 1) (see [below for nested schema](#nestedblock--pair_follow))
+- `preempt_mode` (Block List, Max: 1) (see [below for nested schema](#nestedblock--preempt_mode))
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--blade_parameters"></a>
 ### Nested Schema for `blade_parameters`
 
 Optional:
 
-- **fail_over_policy_template** (String) Apply a fail over policy template (VRRP-A fail over policy template name)
-- **priority** (Number) VRRP-A priorty (Priority, default is 150)
-- **tracking_options** (Block List, Max: 1) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options))
-- **uuid** (String) uuid of the object
+- `fail_over_policy_template` (String) Apply a fail over policy template (VRRP-A fail over policy template name)
+- `priority` (Number) VRRP-A priorty (Priority, default is 150)
+- `tracking_options` (Block List, Max: 1) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options))
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--blade_parameters--tracking_options"></a>
 ### Nested Schema for `blade_parameters.tracking_options`
 
 Optional:
 
-- **bgp** (Block List, Max: 1) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--bgp))
-- **gateway** (Block List, Max: 1) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--gateway))
-- **interface** (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--interface))
-- **route** (Block List, Max: 1) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--route))
-- **trunk_cfg** (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--trunk_cfg))
-- **uuid** (String) uuid of the object
-- **vlan_cfg** (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--vlan_cfg))
+- `bgp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--bgp))
+- `gateway` (Block List, Max: 1) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--gateway))
+- `interface` (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--interface))
+- `route` (Block List, Max: 1) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--route))
+- `trunk_cfg` (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--trunk_cfg))
+- `uuid` (String) uuid of the object
+- `vlan_cfg` (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--vlan_cfg))
 
 <a id="nestedblock--blade_parameters--tracking_options--bgp"></a>
 ### Nested Schema for `blade_parameters.tracking_options.bgp`
 
 Optional:
 
-- **bgp_ipv4_address_cfg** (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--bgp--bgp_ipv4_address_cfg))
-- **bgp_ipv6_address_cfg** (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--bgp--bgp_ipv6_address_cfg))
+- `bgp_ipv4_address_cfg` (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--bgp--bgp_ipv4_address_cfg))
+- `bgp_ipv6_address_cfg` (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--bgp--bgp_ipv6_address_cfg))
 
 <a id="nestedblock--blade_parameters--tracking_options--bgp--bgp_ipv4_address_cfg"></a>
-### Nested Schema for `blade_parameters.tracking_options.bgp.bgp_ipv6_address_cfg`
+### Nested Schema for `blade_parameters.tracking_options.bgp.bgp_ipv4_address_cfg`
 
 Optional:
 
-- **bgp_ipv4_address** (String) bgp IP Address
-- **priority_cost** (Number) The amount the priority will decrease
+- `bgp_ipv4_address` (String) bgp IP Address
+- `priority_cost` (Number) The amount the priority will decrease
 
 
 <a id="nestedblock--blade_parameters--tracking_options--bgp--bgp_ipv6_address_cfg"></a>
@@ -122,8 +125,8 @@ Optional:
 
 Optional:
 
-- **bgp_ipv6_address** (String) IPV6 address
-- **priority_cost** (Number) The amount the priority will decrease
+- `bgp_ipv6_address` (String) IPV6 address
+- `priority_cost` (Number) The amount the priority will decrease
 
 
 
@@ -132,20 +135,20 @@ Optional:
 
 Optional:
 
-- **ipv4_gateway_list** (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--gateway--ipv4_gateway_list))
-- **ipv6_gateway_list** (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--gateway--ipv6_gateway_list))
+- `ipv4_gateway_list` (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--gateway--ipv4_gateway_list))
+- `ipv6_gateway_list` (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--gateway--ipv6_gateway_list))
 
 <a id="nestedblock--blade_parameters--tracking_options--gateway--ipv4_gateway_list"></a>
-### Nested Schema for `blade_parameters.tracking_options.gateway.ipv6_gateway_list`
+### Nested Schema for `blade_parameters.tracking_options.gateway.ipv4_gateway_list`
 
 Required:
 
-- **ip_address** (String) IP Address
+- `ip_address` (String) IP Address
 
 Optional:
 
-- **priority_cost** (Number) The amount the priority will decrease
-- **uuid** (String) uuid of the object
+- `priority_cost` (Number) The amount the priority will decrease
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--blade_parameters--tracking_options--gateway--ipv6_gateway_list"></a>
@@ -153,12 +156,12 @@ Optional:
 
 Required:
 
-- **ipv6_address** (String) IPV6 address
+- `ipv6_address` (String) IPV6 address
 
 Optional:
 
-- **priority_cost** (Number) The amount the priority will decrease
-- **uuid** (String) uuid of the object
+- `priority_cost` (Number) The amount the priority will decrease
+- `uuid` (String) uuid of the object
 
 
 
@@ -167,8 +170,8 @@ Optional:
 
 Optional:
 
-- **ethernet** (Number) Ethernet Interface (Ethernet interface number)
-- **priority_cost** (Number) The amount the priority will decrease
+- `ethernet` (Number) Ethernet Interface (Ethernet interface number)
+- `priority_cost` (Number) The amount the priority will decrease
 
 
 <a id="nestedblock--blade_parameters--tracking_options--route"></a>
@@ -176,20 +179,20 @@ Optional:
 
 Optional:
 
-- **ip_destination_cfg** (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--route--ip_destination_cfg))
-- **ipv6_destination_cfg** (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--route--ipv6_destination_cfg))
+- `ip_destination_cfg` (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--route--ip_destination_cfg))
+- `ipv6_destination_cfg` (Block List) (see [below for nested schema](#nestedblock--blade_parameters--tracking_options--route--ipv6_destination_cfg))
 
 <a id="nestedblock--blade_parameters--tracking_options--route--ip_destination_cfg"></a>
-### Nested Schema for `blade_parameters.tracking_options.route.ipv6_destination_cfg`
+### Nested Schema for `blade_parameters.tracking_options.route.ip_destination_cfg`
 
 Optional:
 
-- **distance** (Number) Route's administrative distance (default: match any)
-- **gateway** (String) Match the route's gateway (next-hop) (default: match any)
-- **ip_destination** (String) Destination prefix
-- **mask** (String) Destination prefix mask
-- **priority_cost** (Number) The amount the priority will decrease if the route is missing (The amount the priority will decrease if the route is not present)
-- **protocol** (String) 'any': Match any routing protocol (default); 'static': Match only static routes (added by user); 'dynamic': Match routes added by dynamic routing protocols (e.g. OSPF);
+- `distance` (Number) Route's administrative distance (default: match any)
+- `gateway` (String) Match the route's gateway (next-hop) (default: match any)
+- `ip_destination` (String) Destination prefix
+- `mask` (String) Destination prefix mask
+- `priority_cost` (Number) The amount the priority will decrease if the route is missing (The amount the priority will decrease if the route is not present)
+- `protocol` (String) 'any': Match any routing protocol (default); 'static': Match only static routes (added by user); 'dynamic': Match routes added by dynamic routing protocols (e.g. OSPF);
 
 
 <a id="nestedblock--blade_parameters--tracking_options--route--ipv6_destination_cfg"></a>
@@ -197,11 +200,11 @@ Optional:
 
 Optional:
 
-- **distance** (Number) Route's administrative distance (default: match any)
-- **gatewayv6** (String) Match the route's gateway (next-hop) (default: match any)
-- **ipv6_destination** (String) IPv6 Destination Prefix
-- **priority_cost** (Number) The amount the priority will decrease if the route is missing (The amount the priority will decrease if the route is not present)
-- **protocol** (String) 'any': Match any routing protocol (default); 'static': Match only static routes (added by user); 'dynamic': Match routes added by dynamic routing protocols (e.g. OSPF);
+- `distance` (Number) Route's administrative distance (default: match any)
+- `gatewayv6` (String) Match the route's gateway (next-hop) (default: match any)
+- `ipv6_destination` (String) IPv6 Destination Prefix
+- `priority_cost` (Number) The amount the priority will decrease if the route is missing (The amount the priority will decrease if the route is not present)
+- `protocol` (String) 'any': Match any routing protocol (default); 'static': Match only static routes (added by user); 'dynamic': Match routes added by dynamic routing protocols (e.g. OSPF);
 
 
 
@@ -210,9 +213,9 @@ Optional:
 
 Optional:
 
-- **per_port_pri** (Number) per port priority
-- **priority_cost** (Number) The amount the priority will decrease
-- **trunk** (Number) trunk tracking (Trunk Number)
+- `per_port_pri` (Number) per port priority
+- `priority_cost` (Number) The amount the priority will decrease
+- `trunk` (Number) trunk tracking (Trunk Number)
 
 
 <a id="nestedblock--blade_parameters--tracking_options--vlan_cfg"></a>
@@ -220,9 +223,9 @@ Optional:
 
 Optional:
 
-- **priority_cost** (Number) The amount the priority will decrease
-- **timeout** (Number)
-- **vlan** (Number) VLAN tracking (VLAN id)
+- `priority_cost` (Number) The amount the priority will decrease
+- `timeout` (Number)
+- `vlan` (Number) VLAN tracking (VLAN id)
 
 
 
@@ -232,17 +235,17 @@ Optional:
 
 Optional:
 
-- **ip_address_cfg** (Block List) (see [below for nested schema](#nestedblock--floating_ip--ip_address_cfg))
-- **ip_address_part_cfg** (Block List) (see [below for nested schema](#nestedblock--floating_ip--ip_address_part_cfg))
-- **ipv6_address_cfg** (Block List) (see [below for nested schema](#nestedblock--floating_ip--ipv6_address_cfg))
-- **ipv6_address_part_cfg** (Block List) (see [below for nested schema](#nestedblock--floating_ip--ipv6_address_part_cfg))
+- `ip_address_cfg` (Block List) (see [below for nested schema](#nestedblock--floating_ip--ip_address_cfg))
+- `ip_address_part_cfg` (Block List) (see [below for nested schema](#nestedblock--floating_ip--ip_address_part_cfg))
+- `ipv6_address_cfg` (Block List) (see [below for nested schema](#nestedblock--floating_ip--ipv6_address_cfg))
+- `ipv6_address_part_cfg` (Block List) (see [below for nested schema](#nestedblock--floating_ip--ipv6_address_part_cfg))
 
 <a id="nestedblock--floating_ip--ip_address_cfg"></a>
 ### Nested Schema for `floating_ip.ip_address_cfg`
 
 Optional:
 
-- **ip_address** (String) IP Address [shared partition only]
+- `ip_address` (String) IP Address [shared partition only]
 
 
 <a id="nestedblock--floating_ip--ip_address_part_cfg"></a>
@@ -250,7 +253,7 @@ Optional:
 
 Optional:
 
-- **ip_address_partition** (String) IP Address [private partition only]
+- `ip_address_partition` (String) IP Address [private partition only]
 
 
 <a id="nestedblock--floating_ip--ipv6_address_cfg"></a>
@@ -258,10 +261,10 @@ Optional:
 
 Optional:
 
-- **ethernet** (Number) Ethernet (for link-local address only)
-- **ipv6_address** (String) IPV6 address [shared partition only]
-- **trunk** (Number) Trunk interface (for link-local address only)
-- **ve** (Number) VE interface (for link-local address only)
+- `ethernet` (Number) Ethernet (for link-local address only)
+- `ipv6_address` (String) IPV6 address [shared partition only]
+- `trunk` (Number) Trunk interface (for link-local address only)
+- `ve` (Number) VE interface (for link-local address only)
 
 
 <a id="nestedblock--floating_ip--ipv6_address_part_cfg"></a>
@@ -269,10 +272,10 @@ Optional:
 
 Optional:
 
-- **ethernet** (Number) Ethernet (for link-local address only)
-- **ipv6_address_partition** (String) IPV6 address [private partition only]
-- **trunk** (Number) Trunk interface (for link-local address only)
-- **ve** (Number) VE interface (for link-local address only)
+- `ethernet` (Number) Ethernet (for link-local address only)
+- `ipv6_address_partition` (String) IPV6 address [private partition only]
+- `trunk` (Number) Trunk interface (for link-local address only)
+- `ve` (Number) VE interface (for link-local address only)
 
 
 
@@ -281,7 +284,7 @@ Optional:
 
 Optional:
 
-- **vrid_lead** (String) Define a VRRP-A VRID leader
+- `vrid_lead` (String) Define a VRRP-A VRID leader
 
 
 <a id="nestedblock--pair_follow"></a>
@@ -289,8 +292,8 @@ Optional:
 
 Optional:
 
-- **pair_follow** (Number) Follow other VRRP-A vrid
-- **vrid_lead** (String) Define a VRRP-A VRID leader
+- `pair_follow` (Number) Follow other VRRP-A vrid
+- `vrid_lead` (String) Define a VRRP-A VRID leader
 
 
 <a id="nestedblock--preempt_mode"></a>
@@ -298,8 +301,8 @@ Optional:
 
 Optional:
 
-- **disable** (Number) disable preemption
-- **threshold** (Number) preemption threshold (preemption threshhold (0-255), default 0)
+- `disable` (Number) disable preemption
+- `threshold` (Number) preemption threshold (preemption threshhold (0-255), default 0)
 
 
 <a id="nestedblock--sampling_enable"></a>
@@ -307,6 +310,6 @@ Optional:
 
 Optional:
 
-- **counters1** (String) 'all': all; 'associated_vip_count': Number of vips associated to vrid; 'associated_vport_count': Number of vports associated to vrid; 'associated_natpool_count': Number of nat pools associated to vrid;
+- `counters1` (String) 'all': all; 'associated_vip_count': Number of vips associated to vrid; 'associated_vport_count': Number of vports associated to vrid; 'associated_natpool_count': Number of nat pools associated to vrid;
 
 

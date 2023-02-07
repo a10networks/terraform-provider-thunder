@@ -17,10 +17,13 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **type** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `name` (String)
+- `type` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

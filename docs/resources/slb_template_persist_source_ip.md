@@ -17,22 +17,25 @@ description: |-
 
 ### Optional
 
-- **dont_honor_conn_rules** (Number)
-- **enforce_higher_priority** (Number)
-- **hash_persist** (Number)
-- **id** (String) The ID of this resource.
-- **incl_dst_ip** (Number)
-- **incl_sport** (Number)
-- **match_type** (Number)
-- **name** (String)
-- **netmask** (String)
-- **netmask6** (Number)
-- **primary_port** (Number)
-- **scan_all_members** (Number)
-- **server** (Number)
-- **service_group** (Number)
-- **timeout** (Number)
-- **user_tag** (String)
-- **uuid** (String)
+- `dont_honor_conn_rules` (Number)
+- `enforce_higher_priority` (Number)
+- `hash_persist` (Number)
+- `incl_dst_ip` (Number)
+- `incl_sport` (Number)
+- `match_type` (Number)
+- `name` (String)
+- `netmask` (String)
+- `netmask6` (Number)
+- `primary_port` (Number)
+- `scan_all_members` (Number)
+- `server` (Number)
+- `service_group` (Number)
+- `timeout` (Number)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

@@ -17,20 +17,23 @@ description: |-
 
 ### Optional
 
-- **before** (Number)
-- **exception** (Block List, Max: 1) (see [below for nested schema](#nestedblock--exception))
-- **expire_address1** (String)
-- **id** (String) The ID of this resource.
-- **interval_days** (Number)
-- **ssl_expire_email_address** (String)
-- **uuid** (String)
+- `before` (Number)
+- `exception` (Block List, Max: 1) (see [below for nested schema](#nestedblock--exception))
+- `expire_address1` (String)
+- `interval_days` (Number)
+- `ssl_expire_email_address` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--exception"></a>
 ### Nested Schema for `exception`
 
 Optional:
 
-- **action** (String)
-- **certificate_name** (String)
+- `action` (String)
+- `certificate_name` (String)
 
 

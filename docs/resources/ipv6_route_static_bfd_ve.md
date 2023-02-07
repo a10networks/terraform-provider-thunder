@@ -17,15 +17,18 @@ description: |-
 
 ### Required
 
-- **nexthop_ipv6_ll** (String) Nexthop IPv6 address (Link_local)
-- **ve_num** (Number) Virtual ethernet interface
+- `nexthop_ipv6_ll` (String) Nexthop IPv6 address (Link_local)
+- `ve_num` (Number) Virtual ethernet interface
 
 ### Optional
 
-- **action** (String) 'down': BFD down;  (BFD state)
-- **id** (String) The ID of this resource.
-- **template** (String) Configure tracking template (bind tracking template name)
-- **threshold** (Number) action triggering threshold
-- **uuid** (String) uuid of the object
+- `action` (String) 'down': BFD down;  (BFD state)
+- `template` (String) Configure tracking template (bind tracking template name)
+- `threshold` (Number) action triggering threshold
+- `uuid` (String) uuid of the object
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

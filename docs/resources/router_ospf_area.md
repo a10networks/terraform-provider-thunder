@@ -17,30 +17,33 @@ description: |-
 
 ### Required
 
-- **process_id** (Number) OSPF process ID
+- `process_id` (Number) OSPF process ID
 
 ### Optional
 
-- **area_ipv4** (String) OSPF area ID in IP address format
-- **area_num** (Number) OSPF area ID as a decimal value
-- **auth_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--auth_cfg))
-- **default_cost** (Number) Set the summary-default cost of a NSSA or stub area (Stub's advertised default summary cost)
-- **filter_lists** (Block List) (see [below for nested schema](#nestedblock--filter_lists))
-- **id** (String) The ID of this resource.
-- **nssa_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--nssa_cfg))
-- **range_list** (Block List) (see [below for nested schema](#nestedblock--range_list))
-- **shortcut** (String) 'default': Set default shortcutting behavior; 'disable': Disable shortcutting through the area; 'enable': Enable shortcutting through the area;
-- **stub_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--stub_cfg))
-- **uuid** (String) uuid of the object
-- **virtual_link_list** (Block List) (see [below for nested schema](#nestedblock--virtual_link_list))
+- `area_ipv4` (String) OSPF area ID in IP address format
+- `area_num` (Number) OSPF area ID as a decimal value
+- `auth_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--auth_cfg))
+- `default_cost` (Number) Set the summary-default cost of a NSSA or stub area (Stub's advertised default summary cost)
+- `filter_lists` (Block List) (see [below for nested schema](#nestedblock--filter_lists))
+- `nssa_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--nssa_cfg))
+- `range_list` (Block List) (see [below for nested schema](#nestedblock--range_list))
+- `shortcut` (String) 'default': Set default shortcutting behavior; 'disable': Disable shortcutting through the area; 'enable': Enable shortcutting through the area;
+- `stub_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--stub_cfg))
+- `uuid` (String) uuid of the object
+- `virtual_link_list` (Block List) (see [below for nested schema](#nestedblock--virtual_link_list))
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--auth_cfg"></a>
 ### Nested Schema for `auth_cfg`
 
 Optional:
 
-- **authentication** (Number) Enable authentication
-- **message_digest** (Number) Use message-digest authentication
+- `authentication` (Number) Enable authentication
+- `message_digest` (Number) Use message-digest authentication
 
 
 <a id="nestedblock--filter_lists"></a>
@@ -48,11 +51,11 @@ Optional:
 
 Optional:
 
-- **acl_direction** (String) 'in': Filter networks sent to this area; 'out': Filter networks sent from this area;
-- **acl_name** (String) Filter networks by access-list (Name of an access-list)
-- **filter_list** (Number) Filter networks between OSPF areas
-- **plist_direction** (String) 'in': Filter networks sent to this area; 'out': Filter networks sent from this area;
-- **plist_name** (String) Filter networks by prefix-list (Name of an IP prefix-list)
+- `acl_direction` (String) 'in': Filter networks sent to this area; 'out': Filter networks sent from this area;
+- `acl_name` (String) Filter networks by access-list (Name of an access-list)
+- `filter_list` (Number) Filter networks between OSPF areas
+- `plist_direction` (String) 'in': Filter networks sent to this area; 'out': Filter networks sent from this area;
+- `plist_name` (String) Filter networks by prefix-list (Name of an IP prefix-list)
 
 
 <a id="nestedblock--nssa_cfg"></a>
@@ -60,13 +63,13 @@ Optional:
 
 Optional:
 
-- **default_information_originate** (Number) Originate Type 7 default into NSSA area
-- **metric** (Number) OSPF default metric (OSPF metric)
-- **metric_type** (Number) OSPF metric type (OSPF metric type for default routes)
-- **no_redistribution** (Number) No redistribution into this NSSA area
-- **no_summary** (Number) Do not send summary LSA into NSSA
-- **nssa** (Number) Specify a NSSA area
-- **translator_role** (String) 'always': Translate always; 'candidate': Candidate for translator (default); 'never': Do not translate;
+- `default_information_originate` (Number) Originate Type 7 default into NSSA area
+- `metric` (Number) OSPF default metric (OSPF metric)
+- `metric_type` (Number) OSPF metric type (OSPF metric type for default routes)
+- `no_redistribution` (Number) No redistribution into this NSSA area
+- `no_summary` (Number) Do not send summary LSA into NSSA
+- `nssa` (Number) Specify a NSSA area
+- `translator_role` (String) 'always': Translate always; 'candidate': Candidate for translator (default); 'never': Do not translate;
 
 
 <a id="nestedblock--range_list"></a>
@@ -74,8 +77,8 @@ Optional:
 
 Optional:
 
-- **area_range_prefix** (String) Area range for IPv4 prefix
-- **option** (String) 'advertise': Advertise this range (default); 'not-advertise': DoNotAdvertise this range;
+- `area_range_prefix` (String) Area range for IPv4 prefix
+- `option` (String) 'advertise': Advertise this range (default); 'not-advertise': DoNotAdvertise this range;
 
 
 <a id="nestedblock--stub_cfg"></a>
@@ -83,8 +86,8 @@ Optional:
 
 Optional:
 
-- **no_summary** (Number) Do not inject inter-area routes into area
-- **stub** (Number) Configure OSPF area as stub
+- `no_summary` (Number) Do not inject inter-area routes into area
+- `stub` (Number) Configure OSPF area as stub
 
 
 <a id="nestedblock--virtual_link_list"></a>
@@ -92,16 +95,16 @@ Optional:
 
 Optional:
 
-- **authentication_key** (String) Set authentication key (Authentication key (8 chars))
-- **bfd** (Number) Bidirectional Forwarding Detection (BFD)
-- **dead_interval** (Number) Dead router detection time (Seconds)
-- **hello_interval** (Number) Hello packet interval (Seconds)
-- **md5** (String) Use MD5 algorithm (Authentication key (16 chars))
-- **message_digest_key** (Number) Set message digest key (Key ID)
-- **retransmit_interval** (Number) LSA retransmit interval (Seconds)
-- **transmit_delay** (Number) LSA transmission delay (Seconds)
-- **virtual_link_auth_type** (String) 'message-digest': Use message-digest authentication; 'null': Use null authentication;
-- **virtual_link_authentication** (Number) Enable authentication
-- **virtual_link_ip_addr** (String) ID (IP addr) associated with virtual link neighbor
+- `authentication_key` (String) Set authentication key (Authentication key (8 chars))
+- `bfd` (Number) Bidirectional Forwarding Detection (BFD)
+- `dead_interval` (Number) Dead router detection time (Seconds)
+- `hello_interval` (Number) Hello packet interval (Seconds)
+- `md5` (String) Use MD5 algorithm (Authentication key (16 chars))
+- `message_digest_key` (Number) Set message digest key (Key ID)
+- `retransmit_interval` (Number) LSA retransmit interval (Seconds)
+- `transmit_delay` (Number) LSA transmission delay (Seconds)
+- `virtual_link_auth_type` (String) 'message-digest': Use message-digest authentication; 'null': Use null authentication;
+- `virtual_link_authentication` (Number) Enable authentication
+- `virtual_link_ip_addr` (String) ID (IP addr) associated with virtual link neighbor
 
 

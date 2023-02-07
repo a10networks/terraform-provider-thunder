@@ -17,16 +17,19 @@ description: |-
 
 ### Optional
 
-- **action** (String)
-- **as_number** (Number)
-- **backdoor** (Number)
-- **comm_value** (String)
-- **description** (String)
-- **id** (String) The ID of this resource.
-- **network_ipv6** (String)
-- **process_id** (String)
-- **route_map** (String)
-- **sequence** (String)
-- **uuid** (String)
+- `action` (String)
+- `as_number` (Number)
+- `backdoor` (Number)
+- `comm_value` (String)
+- `description` (String)
+- `network_ipv6` (String)
+- `process_id` (String)
+- `route_map` (String)
+- `sequence` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

@@ -17,23 +17,26 @@ description: |-
 
 ### Optional
 
-- **authentication** (Block List, Max: 1) (see [below for nested schema](#nestedblock--authentication))
-- **demand** (Number)
-- **echo** (Number)
-- **id** (String) The ID of this resource.
-- **ifnum** (Number)
-- **interval_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--interval_cfg))
-- **uuid** (String)
+- `authentication` (Block List, Max: 1) (see [below for nested schema](#nestedblock--authentication))
+- `demand` (Number)
+- `echo` (Number)
+- `ifnum` (Number)
+- `interval_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--interval_cfg))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--authentication"></a>
 ### Nested Schema for `authentication`
 
 Optional:
 
-- **encrypted** (String)
-- **key_id** (Number)
-- **method** (String)
-- **password** (String)
+- `encrypted` (String)
+- `key_id` (Number)
+- `method` (String)
+- `password` (String)
 
 
 <a id="nestedblock--interval_cfg"></a>
@@ -41,8 +44,8 @@ Optional:
 
 Optional:
 
-- **interval** (Number)
-- **min_rx** (Number)
-- **multiplier** (Number)
+- `interval` (Number)
+- `min_rx` (Number)
+- `multiplier` (Number)
 
 

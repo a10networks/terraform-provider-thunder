@@ -17,10 +17,13 @@ description: |-
 
 ### Optional
 
-- **groupname** (String)
-- **id** (String) The ID of this resource.
-- **read** (String)
-- **uuid** (String)
-- **v3** (String)
+- `groupname` (String)
+- `read` (String)
+- `uuid` (String)
+- `v3` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

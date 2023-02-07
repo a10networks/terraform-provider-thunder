@@ -17,9 +17,12 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **ip_v4_addr** (String)
-- **ip_v6_addr** (String)
-- **uuid** (String)
+- `ip_v4_addr` (String)
+- `ip_v6_addr` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

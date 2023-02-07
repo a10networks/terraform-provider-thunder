@@ -17,8 +17,11 @@ description: |-
 
 ### Optional
 
-- **default_port_disable** (String)
-- **id** (String) The ID of this resource.
-- **uuid** (String)
+- `default_port_disable` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

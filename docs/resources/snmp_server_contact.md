@@ -17,8 +17,11 @@ description: |-
 
 ### Optional
 
-- **contact_name** (String)
-- **id** (String) The ID of this resource.
-- **uuid** (String)
+- `contact_name` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

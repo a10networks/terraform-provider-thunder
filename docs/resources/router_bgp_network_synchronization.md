@@ -17,12 +17,15 @@ description: |-
 
 ### Optional
 
-- **action** (String)
-- **as_number** (Number)
-- **id** (String) The ID of this resource.
-- **network_synchronization** (Number)
-- **process_id** (String)
-- **sequence** (String)
-- **uuid** (String)
+- `action` (String)
+- `as_number` (Number)
+- `network_synchronization` (Number)
+- `process_id` (String)
+- `sequence` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

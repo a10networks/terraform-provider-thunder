@@ -17,19 +17,22 @@ description: |-
 
 ### Optional
 
-- **calc_sha1** (Block List, Max: 1) (see [below for nested schema](#nestedblock--calc_sha1))
-- **class_list** (String)
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **server_version** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `calc_sha1` (Block List, Max: 1) (see [below for nested schema](#nestedblock--calc_sha1))
+- `class_list` (String)
+- `name` (String)
+- `server_version` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--calc_sha1"></a>
 ### Nested Schema for `calc_sha1`
 
 Optional:
 
-- **sha1_value** (String)
+- `sha1_value` (String)
 
 

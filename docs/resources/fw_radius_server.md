@@ -17,38 +17,41 @@ description: |-
 
 ### Optional
 
-- **accounting_interim_update** (String)
-- **accounting_on** (String)
-- **accounting_start** (String)
-- **accounting_stop** (String)
-- **attribute** (Block List) (see [below for nested schema](#nestedblock--attribute))
-- **attribute_name** (String)
-- **custom_attribute_name** (String)
-- **encrypted** (String)
-- **id** (String) The ID of this resource.
-- **listen_port** (Number)
-- **remote** (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote))
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **secret** (Number)
-- **secret_string** (String)
-- **uuid** (String)
-- **vrid** (Number)
+- `accounting_interim_update` (String)
+- `accounting_on` (String)
+- `accounting_start` (String)
+- `accounting_stop` (String)
+- `attribute` (Block List) (see [below for nested schema](#nestedblock--attribute))
+- `attribute_name` (String)
+- `custom_attribute_name` (String)
+- `encrypted` (String)
+- `listen_port` (Number)
+- `remote` (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote))
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `secret` (Number)
+- `secret_string` (String)
+- `uuid` (String)
+- `vrid` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--attribute"></a>
 ### Nested Schema for `attribute`
 
 Optional:
 
-- **attribute_value** (String)
-- **custom_number** (Number)
-- **custom_vendor** (Number)
-- **name** (String)
-- **number** (Number)
-- **prefix_length** (String)
-- **prefix_number** (Number)
-- **prefix_vendor** (Number)
-- **value** (String)
-- **vendor** (Number)
+- `attribute_value` (String)
+- `custom_number` (Number)
+- `custom_vendor` (Number)
+- `name` (String)
+- `number` (Number)
+- `prefix_length` (String)
+- `prefix_number` (Number)
+- `prefix_vendor` (Number)
+- `value` (String)
+- `vendor` (Number)
 
 
 <a id="nestedblock--remote"></a>
@@ -56,17 +59,17 @@ Optional:
 
 Optional:
 
-- **ip_list** (Block List) (see [below for nested schema](#nestedblock--remote--ip_list))
+- `ip_list` (Block List) (see [below for nested schema](#nestedblock--remote--ip_list))
 
 <a id="nestedblock--remote--ip_list"></a>
 ### Nested Schema for `remote.ip_list`
 
 Optional:
 
-- **ip_list_encrypted** (String)
-- **ip_list_name** (String)
-- **ip_list_secret** (Number)
-- **ip_list_secret_string** (String)
+- `ip_list_encrypted` (String)
+- `ip_list_name` (String)
+- `ip_list_secret` (Number)
+- `ip_list_secret_string` (String)
 
 
 
@@ -75,6 +78,6 @@ Optional:
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 

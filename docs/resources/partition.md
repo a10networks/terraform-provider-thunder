@@ -17,24 +17,27 @@ description: |-
 
 ### Optional
 
-- **application_type** (String)
-- **id** (String) The ID of this resource.
-- **id1** (Number)
-- **partition_name** (String)
-- **shared_vlan** (Block List, Max: 1) (see [below for nested schema](#nestedblock--shared_vlan))
-- **template** (Block List, Max: 1) (see [below for nested schema](#nestedblock--template))
-- **user_tag** (String)
-- **uuid** (String)
+- `application_type` (String)
+- `id1` (Number)
+- `partition_name` (String)
+- `shared_vlan` (Block List, Max: 1) (see [below for nested schema](#nestedblock--shared_vlan))
+- `template` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template))
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--shared_vlan"></a>
 ### Nested Schema for `shared_vlan`
 
 Optional:
 
-- **mgmt_floating_ip_address** (String)
-- **uuid** (String)
-- **vlan** (Number)
-- **vrid** (Number)
+- `mgmt_floating_ip_address` (String)
+- `uuid` (String)
+- `vlan` (Number)
+- `vrid` (Number)
 
 
 <a id="nestedblock--template"></a>
@@ -42,7 +45,7 @@ Optional:
 
 Optional:
 
-- **resource_accounting** (String)
-- **uuid** (String)
+- `resource_accounting` (String)
+- `uuid` (String)
 
 

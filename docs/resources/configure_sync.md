@@ -17,16 +17,19 @@ description: |-
 
 ### Optional
 
-- **address** (String)
-- **all_partitions** (Number)
-- **auto_authentication** (Number)
-- **id** (String) The ID of this resource.
-- **partition_name** (String)
-- **private_key** (String)
-- **pwd** (String)
-- **pwd_enc** (String)
-- **shared** (Number)
-- **type** (String)
-- **usr** (String)
+- `address` (String)
+- `all_partitions` (Number)
+- `auto_authentication` (Number)
+- `partition_name` (String)
+- `private_key` (String)
+- `pwd` (String)
+- `pwd_enc` (String)
+- `shared` (Number)
+- `type` (String)
+- `usr` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

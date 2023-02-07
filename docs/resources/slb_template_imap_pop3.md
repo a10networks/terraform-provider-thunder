@@ -17,11 +17,14 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **logindisabled** (Number)
-- **name** (String)
-- **starttls** (String)
-- **user_tag** (String)
-- **uuid** (String)
+- `logindisabled` (Number)
+- `name` (String)
+- `starttls` (String)
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

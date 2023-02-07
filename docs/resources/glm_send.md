@@ -17,7 +17,10 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **license_request** (Number)
+- `license_request` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

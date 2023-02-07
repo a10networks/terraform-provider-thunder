@@ -36,31 +36,34 @@ resource "thunder_vrrp_common" "test" {
 
 ### Optional
 
-- **action** (String) 'enable': enable vrrp-a; 'disable': disable vrrp-a; [shared partition only]
-- **arp_retry** (Number) Number of additional gratuitous ARPs sent out after HA failover (1-255, default is 4) [shared partition only]
-- **dead_timer** (Number) VRRP-A dead timer in terms of how many hello messages missed, default is 5 (2-255, default is 5) [shared partition only]
-- **device_id** (Number) Unique ID for each VRRP-A box (Device-id number) [shared partition only]
-- **disable_default_vrid** (Number) Disable default vrid [shared partition only]
-- **enable_sync_session_seq_number** (Number) enable monitoring sending and receiving sync packets with sequence number [shared partition only]
-- **forward_l4_packet_on_standby** (Number) Enables Layer 2/3 forwarding of Layer 4 traffic on the Standby ACOS device [shared partition only]
-- **get_ready_time** (Number) set get ready time after ax starting up (60-1200, in unit of 100millisec, default is 60) [shared partition only]
-- **hello_interval** (Number) VRRP-A Hello Interval (1-255, in unit of 100millisec, default is 2) [shared partition only]
-- **hostid_append_to_vrid** (Block List, Max: 1) (see [below for nested schema](#nestedblock--hostid_append_to_vrid))
-- **id** (String) The ID of this resource.
-- **inline_mode_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--inline_mode_cfg))
-- **preemption_delay** (Number) Delay before changing state from Active to Standby (1-255, in unit of 100millisec, default is 60) [shared partition only]
-- **restart_time** (Number) Time between restarting ports on standby system after transition [shared partition only]
-- **set_id** (Number) Set-ID for HA configuration (Set id from 1 to 15) [shared partition only]
-- **track_event_delay** (Number) Delay before changing state after up/down event (Units of 100 milliseconds (default 30)) [shared partition only]
-- **uuid** (String) uuid of the object
+- `action` (String) 'enable': enable vrrp-a; 'disable': disable vrrp-a; [shared partition only]
+- `arp_retry` (Number) Number of additional gratuitous ARPs sent out after HA failover (1-255, default is 4) [shared partition only]
+- `dead_timer` (Number) VRRP-A dead timer in terms of how many hello messages missed, default is 5 (2-255, default is 5) [shared partition only]
+- `device_id` (Number) Unique ID for each VRRP-A box (Device-id number) [shared partition only]
+- `disable_default_vrid` (Number) Disable default vrid [shared partition only]
+- `enable_sync_session_seq_number` (Number) enable monitoring sending and receiving sync packets with sequence number [shared partition only]
+- `forward_l4_packet_on_standby` (Number) Enables Layer 2/3 forwarding of Layer 4 traffic on the Standby ACOS device [shared partition only]
+- `get_ready_time` (Number) set get ready time after ax starting up (60-1200, in unit of 100millisec, default is 60) [shared partition only]
+- `hello_interval` (Number) VRRP-A Hello Interval (1-255, in unit of 100millisec, default is 2) [shared partition only]
+- `hostid_append_to_vrid` (Block List, Max: 1) (see [below for nested schema](#nestedblock--hostid_append_to_vrid))
+- `inline_mode_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--inline_mode_cfg))
+- `preemption_delay` (Number) Delay before changing state from Active to Standby (1-255, in unit of 100millisec, default is 60) [shared partition only]
+- `restart_time` (Number) Time between restarting ports on standby system after transition [shared partition only]
+- `set_id` (Number) Set-ID for HA configuration (Set id from 1 to 15) [shared partition only]
+- `track_event_delay` (Number) Delay before changing state after up/down event (Units of 100 milliseconds (default 30)) [shared partition only]
+- `uuid` (String) uuid of the object
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--hostid_append_to_vrid"></a>
 ### Nested Schema for `hostid_append_to_vrid`
 
 Optional:
 
-- **hostid_append_to_vrid_default** (Number) hostid append to vrid default [shared partition only]
-- **hostid_append_to_vrid_value** (Number) hostid append to vrid num [shared partition only]
+- `hostid_append_to_vrid_default` (Number) hostid append to vrid default [shared partition only]
+- `hostid_append_to_vrid_value` (Number) hostid append to vrid num [shared partition only]
 
 
 <a id="nestedblock--inline_mode_cfg"></a>
@@ -68,8 +71,8 @@ Optional:
 
 Optional:
 
-- **inline_mode** (Number) Enable Layer 2 Inline Hot Standby Mode [shared partition only]
-- **preferred_port** (Number) Preferred ethernet Port [shared partition only]
-- **preferred_trunk** (Number) Preferred trunk Port [shared partition only]
+- `inline_mode` (Number) Enable Layer 2 Inline Hot Standby Mode [shared partition only]
+- `preferred_port` (Number) Preferred ethernet Port [shared partition only]
+- `preferred_trunk` (Number) Preferred trunk Port [shared partition only]
 
 

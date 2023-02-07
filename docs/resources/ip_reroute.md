@@ -17,22 +17,25 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **suppress_protocols** (Block List, Max: 1) (see [below for nested schema](#nestedblock--suppress_protocols))
-- **uuid** (String)
+- `suppress_protocols` (Block List, Max: 1) (see [below for nested schema](#nestedblock--suppress_protocols))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--suppress_protocols"></a>
 ### Nested Schema for `suppress_protocols`
 
 Optional:
 
-- **connected** (Number)
-- **ebgp** (Number)
-- **ibgp** (Number)
-- **isis** (Number)
-- **ospf** (Number)
-- **rip** (Number)
-- **static** (Number)
-- **uuid** (String)
+- `connected` (Number)
+- `ebgp` (Number)
+- `ibgp` (Number)
+- `isis` (Number)
+- `ospf` (Number)
+- `rip` (Number)
+- `static` (Number)
+- `uuid` (String)
 
 

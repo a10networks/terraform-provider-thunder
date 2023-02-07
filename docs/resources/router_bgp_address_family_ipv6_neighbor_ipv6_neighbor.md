@@ -17,41 +17,44 @@ description: |-
 
 ### Optional
 
-- **action** (String)
-- **activate** (Number)
-- **allowas_in** (Number)
-- **allowas_in_count** (Number)
-- **as_number** (Number)
-- **default_originate** (Number)
-- **distribute_lists** (Block List) (see [below for nested schema](#nestedblock--distribute_lists))
-- **graceful_restart** (Number)
-- **id** (String) The ID of this resource.
-- **inbound** (Number)
-- **maximum_prefix** (Number)
-- **maximum_prefix_thres** (Number)
-- **neighbor_filter_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor_filter_lists))
-- **neighbor_ipv6** (String)
-- **neighbor_prefix_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor_prefix_lists))
-- **neighbor_route_map_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor_route_map_lists))
-- **next_hop_self** (Number)
-- **peer_group_name** (String)
-- **prefix_list_direction** (String)
-- **process_id** (String)
-- **remove_private_as** (Number)
-- **route_map** (String)
-- **send_community_val** (String)
-- **sequence** (String)
-- **unsuppress_map** (String)
-- **uuid** (String)
-- **weight** (Number)
+- `action` (String)
+- `activate` (Number)
+- `allowas_in` (Number)
+- `allowas_in_count` (Number)
+- `as_number` (Number)
+- `default_originate` (Number)
+- `distribute_lists` (Block List) (see [below for nested schema](#nestedblock--distribute_lists))
+- `graceful_restart` (Number)
+- `inbound` (Number)
+- `maximum_prefix` (Number)
+- `maximum_prefix_thres` (Number)
+- `neighbor_filter_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor_filter_lists))
+- `neighbor_ipv6` (String)
+- `neighbor_prefix_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor_prefix_lists))
+- `neighbor_route_map_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor_route_map_lists))
+- `next_hop_self` (Number)
+- `peer_group_name` (String)
+- `prefix_list_direction` (String)
+- `process_id` (String)
+- `remove_private_as` (Number)
+- `route_map` (String)
+- `send_community_val` (String)
+- `sequence` (String)
+- `unsuppress_map` (String)
+- `uuid` (String)
+- `weight` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--distribute_lists"></a>
 ### Nested Schema for `distribute_lists`
 
 Optional:
 
-- **distribute_list** (String)
-- **distribute_list_direction** (String)
+- `distribute_list` (String)
+- `distribute_list_direction` (String)
 
 
 <a id="nestedblock--neighbor_filter_lists"></a>
@@ -59,8 +62,8 @@ Optional:
 
 Optional:
 
-- **filter_list** (String)
-- **filter_list_direction** (String)
+- `filter_list` (String)
+- `filter_list_direction` (String)
 
 
 <a id="nestedblock--neighbor_prefix_lists"></a>
@@ -68,8 +71,8 @@ Optional:
 
 Optional:
 
-- **nbr_prefix_list** (String)
-- **nbr_prefix_list_direction** (String)
+- `nbr_prefix_list` (String)
+- `nbr_prefix_list_direction` (String)
 
 
 <a id="nestedblock--neighbor_route_map_lists"></a>
@@ -77,7 +80,7 @@ Optional:
 
 Optional:
 
-- **nbr_rmap_direction** (String)
-- **nbr_route_map** (String)
+- `nbr_rmap_direction` (String)
+- `nbr_route_map` (String)
 
 

@@ -17,27 +17,30 @@ description: |-
 
 ### Optional
 
-- **all** (Number)
-- **control_cpu_high** (Number)
-- **data_cpu_high** (Number)
-- **fan** (Number)
-- **file_sys_read_only** (Number)
-- **high_disk_use** (Number)
-- **high_memory_use** (Number)
-- **high_temp** (Number)
-- **id** (String) The ID of this resource.
-- **license_management** (Number)
-- **low_temp** (Number)
-- **packet_drop** (Number)
-- **power** (Number)
-- **pri_disk** (Number)
-- **restart** (Number)
-- **sec_disk** (Number)
-- **shutdown** (Number)
-- **smp_resource_event** (Number)
-- **start** (Number)
-- **syslog_severity_one** (Number)
-- **tacacs_server_up_down** (Number)
-- **uuid** (String)
+- `all` (Number)
+- `control_cpu_high` (Number)
+- `data_cpu_high` (Number)
+- `fan` (Number)
+- `file_sys_read_only` (Number)
+- `high_disk_use` (Number)
+- `high_memory_use` (Number)
+- `high_temp` (Number)
+- `license_management` (Number)
+- `low_temp` (Number)
+- `packet_drop` (Number)
+- `power` (Number)
+- `pri_disk` (Number)
+- `restart` (Number)
+- `sec_disk` (Number)
+- `shutdown` (Number)
+- `smp_resource_event` (Number)
+- `start` (Number)
+- `syslog_severity_one` (Number)
+- `tacacs_server_up_down` (Number)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

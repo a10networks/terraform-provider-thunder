@@ -17,72 +17,75 @@ description: |-
 
 ### Optional
 
-- **acos_application_only** (Number)
-- **activate** (Number)
-- **advertisement_interval** (Number)
-- **allowas_in** (Number)
-- **allowas_in_count** (Number)
-- **as_number** (Number)
-- **as_origination_interval** (Number)
-- **bfd** (Number)
-- **bfd_value** (String)
-- **collide_established** (Number)
-- **connect** (Number)
-- **default_originate** (Number)
-- **description** (String)
-- **disallow_infinite_holdtime** (Number)
-- **distribute_lists** (Block List) (see [below for nested schema](#nestedblock--distribute_lists))
-- **dont_capability_negotiate** (Number)
-- **dynamic** (Number)
-- **ebgp_multihop** (Number)
-- **ebgp_multihop_hop_count** (Number)
-- **enforce_multihop** (Number)
-- **ethernet** (Number)
-- **graceful_restart** (Number)
-- **id** (String) The ID of this resource.
-- **inbound** (Number)
-- **key_id** (Number)
-- **key_type** (String)
-- **lif** (Number)
-- **loopback** (Number)
-- **maximum_prefix** (Number)
-- **maximum_prefix_thres** (Number)
-- **multihop** (Number)
-- **nbr_remote_as** (Number)
-- **neighbor_filter_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor_filter_lists))
-- **neighbor_ipv4** (String)
-- **neighbor_prefix_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor_prefix_lists))
-- **neighbor_route_map_lists** (Block List) (see [below for nested schema](#nestedblock--neighbor_route_map_lists))
-- **next_hop_self** (Number)
-- **override_capability** (Number)
-- **pass_value** (String)
-- **passive** (Number)
-- **peer_group_name** (String)
-- **prefix_list_direction** (String)
-- **remove_private_as** (Number)
-- **route_map** (String)
-- **route_refresh** (Number)
-- **send_community_val** (String)
-- **shutdown** (Number)
-- **strict_capability_match** (Number)
-- **timers_holdtime** (Number)
-- **timers_keepalive** (Number)
-- **trunk** (Number)
-- **tunnel** (Number)
-- **unsuppress_map** (String)
-- **update_source_ip** (String)
-- **update_source_ipv6** (String)
-- **uuid** (String)
-- **ve** (Number)
-- **weight** (Number)
+- `acos_application_only` (Number)
+- `activate` (Number)
+- `advertisement_interval` (Number)
+- `allowas_in` (Number)
+- `allowas_in_count` (Number)
+- `as_number` (Number)
+- `as_origination_interval` (Number)
+- `bfd` (Number)
+- `bfd_value` (String)
+- `collide_established` (Number)
+- `connect` (Number)
+- `default_originate` (Number)
+- `description` (String)
+- `disallow_infinite_holdtime` (Number)
+- `distribute_lists` (Block List) (see [below for nested schema](#nestedblock--distribute_lists))
+- `dont_capability_negotiate` (Number)
+- `dynamic` (Number)
+- `ebgp_multihop` (Number)
+- `ebgp_multihop_hop_count` (Number)
+- `enforce_multihop` (Number)
+- `ethernet` (Number)
+- `graceful_restart` (Number)
+- `inbound` (Number)
+- `key_id` (Number)
+- `key_type` (String)
+- `lif` (Number)
+- `loopback` (Number)
+- `maximum_prefix` (Number)
+- `maximum_prefix_thres` (Number)
+- `multihop` (Number)
+- `nbr_remote_as` (Number)
+- `neighbor_filter_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor_filter_lists))
+- `neighbor_ipv4` (String)
+- `neighbor_prefix_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor_prefix_lists))
+- `neighbor_route_map_lists` (Block List) (see [below for nested schema](#nestedblock--neighbor_route_map_lists))
+- `next_hop_self` (Number)
+- `override_capability` (Number)
+- `pass_value` (String)
+- `passive` (Number)
+- `peer_group_name` (String)
+- `prefix_list_direction` (String)
+- `remove_private_as` (Number)
+- `route_map` (String)
+- `route_refresh` (Number)
+- `send_community_val` (String)
+- `shutdown` (Number)
+- `strict_capability_match` (Number)
+- `timers_holdtime` (Number)
+- `timers_keepalive` (Number)
+- `trunk` (Number)
+- `tunnel` (Number)
+- `unsuppress_map` (String)
+- `update_source_ip` (String)
+- `update_source_ipv6` (String)
+- `uuid` (String)
+- `ve` (Number)
+- `weight` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--distribute_lists"></a>
 ### Nested Schema for `distribute_lists`
 
 Optional:
 
-- **distribute_list** (String)
-- **distribute_list_direction** (String)
+- `distribute_list` (String)
+- `distribute_list_direction` (String)
 
 
 <a id="nestedblock--neighbor_filter_lists"></a>
@@ -90,8 +93,8 @@ Optional:
 
 Optional:
 
-- **filter_list** (String)
-- **filter_list_direction** (String)
+- `filter_list` (String)
+- `filter_list_direction` (String)
 
 
 <a id="nestedblock--neighbor_prefix_lists"></a>
@@ -99,8 +102,8 @@ Optional:
 
 Optional:
 
-- **nbr_prefix_list** (String)
-- **nbr_prefix_list_direction** (String)
+- `nbr_prefix_list` (String)
+- `nbr_prefix_list_direction` (String)
 
 
 <a id="nestedblock--neighbor_route_map_lists"></a>
@@ -108,7 +111,7 @@ Optional:
 
 Optional:
 
-- **nbr_rmap_direction** (String)
-- **nbr_route_map** (String)
+- `nbr_rmap_direction` (String)
+- `nbr_route_map` (String)
 
 

@@ -17,16 +17,19 @@ description: |-
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **pptp** (String)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **uuid** (String)
+- `pptp` (String)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--sampling_enable"></a>
 ### Nested Schema for `sampling_enable`
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 

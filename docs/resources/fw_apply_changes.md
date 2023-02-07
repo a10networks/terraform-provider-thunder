@@ -17,7 +17,10 @@ description: |-
 
 ### Optional
 
-- **forced** (Number)
-- **id** (String) The ID of this resource.
+- `forced` (Number)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 

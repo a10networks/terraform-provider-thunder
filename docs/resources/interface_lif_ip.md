@@ -17,29 +17,32 @@ description: |-
 
 ### Optional
 
-- **address_list** (Block List) (see [below for nested schema](#nestedblock--address_list))
-- **allow_promiscuous_vip** (Number)
-- **cache_spoofing_port** (Number)
-- **dhcp** (Number)
-- **generate_membership_query** (Number)
-- **id** (String) The ID of this resource.
-- **ifname** (String)
-- **inside** (Number)
-- **max_resp_time** (Number)
-- **ospf** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf))
-- **outside** (Number)
-- **query_interval** (Number)
-- **rip** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip))
-- **router** (Block List, Max: 1) (see [below for nested schema](#nestedblock--router))
-- **uuid** (String)
+- `address_list` (Block List) (see [below for nested schema](#nestedblock--address_list))
+- `allow_promiscuous_vip` (Number)
+- `cache_spoofing_port` (Number)
+- `dhcp` (Number)
+- `generate_membership_query` (Number)
+- `ifname` (String)
+- `inside` (Number)
+- `max_resp_time` (Number)
+- `ospf` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf))
+- `outside` (Number)
+- `query_interval` (Number)
+- `rip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip))
+- `router` (Block List, Max: 1) (see [below for nested schema](#nestedblock--router))
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--address_list"></a>
 ### Nested Schema for `address_list`
 
 Optional:
 
-- **ipv4_address** (String)
-- **ipv4_netmask** (String)
+- `ipv4_address` (String)
+- `ipv4_netmask` (String)
 
 
 <a id="nestedblock--ospf"></a>
@@ -47,38 +50,38 @@ Optional:
 
 Optional:
 
-- **ospf_global** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf--ospf_global))
-- **ospf_ip_list** (Block List) (see [below for nested schema](#nestedblock--ospf--ospf_ip_list))
+- `ospf_global` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf--ospf_global))
+- `ospf_ip_list` (Block List) (see [below for nested schema](#nestedblock--ospf--ospf_ip_list))
 
 <a id="nestedblock--ospf--ospf_global"></a>
 ### Nested Schema for `ospf.ospf_global`
 
 Optional:
 
-- **authentication_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf--ospf_global--authentication_cfg))
-- **authentication_key** (String)
-- **bfd_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf--ospf_global--bfd_cfg))
-- **cost** (Number)
-- **database_filter_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf--ospf_global--database_filter_cfg))
-- **dead_interval** (Number)
-- **disable** (String)
-- **hello_interval** (Number)
-- **message_digest_cfg** (Block List) (see [below for nested schema](#nestedblock--ospf--ospf_global--message_digest_cfg))
-- **mtu** (Number)
-- **mtu_ignore** (Number)
-- **network** (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf--ospf_global--network))
-- **priority** (Number)
-- **retransmit_interval** (Number)
-- **transmit_delay** (Number)
-- **uuid** (String)
+- `authentication_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf--ospf_global--authentication_cfg))
+- `authentication_key` (String)
+- `bfd_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf--ospf_global--bfd_cfg))
+- `cost` (Number)
+- `database_filter_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf--ospf_global--database_filter_cfg))
+- `dead_interval` (Number)
+- `disable` (String)
+- `hello_interval` (Number)
+- `message_digest_cfg` (Block List) (see [below for nested schema](#nestedblock--ospf--ospf_global--message_digest_cfg))
+- `mtu` (Number)
+- `mtu_ignore` (Number)
+- `network` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ospf--ospf_global--network))
+- `priority` (Number)
+- `retransmit_interval` (Number)
+- `transmit_delay` (Number)
+- `uuid` (String)
 
 <a id="nestedblock--ospf--ospf_global--authentication_cfg"></a>
 ### Nested Schema for `ospf.ospf_global.authentication_cfg`
 
 Optional:
 
-- **authentication** (Number)
-- **value** (String)
+- `authentication` (Number)
+- `value` (String)
 
 
 <a id="nestedblock--ospf--ospf_global--bfd_cfg"></a>
@@ -86,8 +89,8 @@ Optional:
 
 Optional:
 
-- **bfd** (Number)
-- **disable** (Number)
+- `bfd` (Number)
+- `disable` (Number)
 
 
 <a id="nestedblock--ospf--ospf_global--database_filter_cfg"></a>
@@ -95,8 +98,8 @@ Optional:
 
 Optional:
 
-- **database_filter** (String)
-- **out** (Number)
+- `database_filter` (String)
+- `out` (Number)
 
 
 <a id="nestedblock--ospf--ospf_global--message_digest_cfg"></a>
@@ -104,8 +107,8 @@ Optional:
 
 Optional:
 
-- **md5_value** (String)
-- **message_digest_key** (Number)
+- `md5_value` (String)
+- `message_digest_key` (Number)
 
 
 <a id="nestedblock--ospf--ospf_global--network"></a>
@@ -113,11 +116,11 @@ Optional:
 
 Optional:
 
-- **broadcast** (Number)
-- **non_broadcast** (Number)
-- **p2mp_nbma** (Number)
-- **point_to_multipoint** (Number)
-- **point_to_point** (Number)
+- `broadcast` (Number)
+- `non_broadcast` (Number)
+- `p2mp_nbma` (Number)
+- `point_to_multipoint` (Number)
+- `point_to_point` (Number)
 
 
 
@@ -126,29 +129,29 @@ Optional:
 
 Optional:
 
-- **authentication** (Number)
-- **authentication_key** (String)
-- **cost** (Number)
-- **database_filter** (String)
-- **dead_interval** (Number)
-- **hello_interval** (Number)
-- **ip_addr** (String)
-- **message_digest_cfg** (Block List) (see [below for nested schema](#nestedblock--ospf--ospf_ip_list--message_digest_cfg))
-- **mtu_ignore** (Number)
-- **out** (Number)
-- **priority** (Number)
-- **retransmit_interval** (Number)
-- **transmit_delay** (Number)
-- **uuid** (String)
-- **value** (String)
+- `authentication` (Number)
+- `authentication_key` (String)
+- `cost` (Number)
+- `database_filter` (String)
+- `dead_interval` (Number)
+- `hello_interval` (Number)
+- `ip_addr` (String)
+- `message_digest_cfg` (Block List) (see [below for nested schema](#nestedblock--ospf--ospf_ip_list--message_digest_cfg))
+- `mtu_ignore` (Number)
+- `out` (Number)
+- `priority` (Number)
+- `retransmit_interval` (Number)
+- `transmit_delay` (Number)
+- `uuid` (String)
+- `value` (String)
 
 <a id="nestedblock--ospf--ospf_ip_list--message_digest_cfg"></a>
 ### Nested Schema for `ospf.ospf_ip_list.message_digest_cfg`
 
 Optional:
 
-- **md5_value** (String)
-- **message_digest_key** (Number)
+- `md5_value` (String)
+- `message_digest_key` (Number)
 
 
 
@@ -158,29 +161,29 @@ Optional:
 
 Optional:
 
-- **authentication** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--authentication))
-- **receive_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--receive_cfg))
-- **receive_packet** (Number)
-- **send_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--send_cfg))
-- **send_packet** (Number)
-- **split_horizon_cfg** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--split_horizon_cfg))
-- **uuid** (String)
+- `authentication` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--authentication))
+- `receive_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--receive_cfg))
+- `receive_packet` (Number)
+- `send_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--send_cfg))
+- `send_packet` (Number)
+- `split_horizon_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--split_horizon_cfg))
+- `uuid` (String)
 
 <a id="nestedblock--rip--authentication"></a>
 ### Nested Schema for `rip.authentication`
 
 Optional:
 
-- **key_chain** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--authentication--key_chain))
-- **mode** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--authentication--mode))
-- **str** (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--authentication--str))
+- `key_chain` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--authentication--key_chain))
+- `mode` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--authentication--mode))
+- `str` (Block List, Max: 1) (see [below for nested schema](#nestedblock--rip--authentication--str))
 
 <a id="nestedblock--rip--authentication--key_chain"></a>
 ### Nested Schema for `rip.authentication.key_chain`
 
 Optional:
 
-- **key_chain** (String)
+- `key_chain` (String)
 
 
 <a id="nestedblock--rip--authentication--mode"></a>
@@ -188,7 +191,7 @@ Optional:
 
 Optional:
 
-- **mode** (String)
+- `mode` (String)
 
 
 <a id="nestedblock--rip--authentication--str"></a>
@@ -196,7 +199,7 @@ Optional:
 
 Optional:
 
-- **string** (String)
+- `string` (String)
 
 
 
@@ -205,8 +208,8 @@ Optional:
 
 Optional:
 
-- **receive** (Number)
-- **version** (String)
+- `receive` (Number)
+- `version` (String)
 
 
 <a id="nestedblock--rip--send_cfg"></a>
@@ -214,8 +217,8 @@ Optional:
 
 Optional:
 
-- **send** (Number)
-- **version** (String)
+- `send` (Number)
+- `version` (String)
 
 
 <a id="nestedblock--rip--split_horizon_cfg"></a>
@@ -223,7 +226,7 @@ Optional:
 
 Optional:
 
-- **state** (String)
+- `state` (String)
 
 
 
@@ -232,14 +235,14 @@ Optional:
 
 Optional:
 
-- **isis** (Block List, Max: 1) (see [below for nested schema](#nestedblock--router--isis))
+- `isis` (Block List, Max: 1) (see [below for nested schema](#nestedblock--router--isis))
 
 <a id="nestedblock--router--isis"></a>
 ### Nested Schema for `router.isis`
 
 Optional:
 
-- **tag** (String)
-- **uuid** (String)
+- `tag` (String)
+- `uuid` (String)
 
 

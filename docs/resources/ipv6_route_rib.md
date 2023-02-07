@@ -17,26 +17,29 @@ description: |-
 
 ### Required
 
-- **ipv6_address** (String) IPV6 address
+- `ipv6_address` (String) IPV6 address
 
 ### Optional
 
-- **id** (String) The ID of this resource.
-- **ipv6_nexthop_ipv6** (Block List) (see [below for nested schema](#nestedblock--ipv6_nexthop_ipv6))
-- **ipv6_nexthop_tunnel** (Block List) (see [below for nested schema](#nestedblock--ipv6_nexthop_tunnel))
-- **uuid** (String) uuid of the object
+- `ipv6_nexthop_ipv6` (Block List) (see [below for nested schema](#nestedblock--ipv6_nexthop_ipv6))
+- `ipv6_nexthop_tunnel` (Block List) (see [below for nested schema](#nestedblock--ipv6_nexthop_tunnel))
+- `uuid` (String) uuid of the object
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--ipv6_nexthop_ipv6"></a>
 ### Nested Schema for `ipv6_nexthop_ipv6`
 
 Optional:
 
-- **description** (String) Description for static route
-- **distance** (Number) Distance value for this route
-- **ethernet** (Number) Ethernet interface (Ethernet interface number)
-- **ipv6_nexthop** (String) Forwarding router's address
-- **trunk** (Number) Trunk interface (Trunk interface number)
-- **ve** (Number) Virtual Ethernet interface (Virtual Ethernet interface number)
+- `description` (String) Description for static route
+- `distance` (Number) Distance value for this route
+- `ethernet` (Number) Ethernet interface (Ethernet interface number)
+- `ipv6_nexthop` (String) Forwarding router's address
+- `trunk` (Number) Trunk interface (Trunk interface number)
+- `ve` (Number) Virtual Ethernet interface (Virtual Ethernet interface number)
 
 
 <a id="nestedblock--ipv6_nexthop_tunnel"></a>
@@ -44,9 +47,9 @@ Optional:
 
 Optional:
 
-- **description** (String) Description for static route
-- **distance_nexthop_tunnel** (Number) Distance value for this route
-- **ipv6_nexthop_tunnel_addr** (String) Forwarding router's address
-- **tunnel** (Number) Tunnel interface (Tunnel interface number)
+- `description` (String) Description for static route
+- `distance_nexthop_tunnel` (Number) Distance value for this route
+- `ipv6_nexthop_tunnel_addr` (String) Forwarding router's address
+- `tunnel` (Number) Tunnel interface (Tunnel interface number)
 
 

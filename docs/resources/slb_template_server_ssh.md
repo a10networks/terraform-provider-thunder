@@ -17,18 +17,21 @@ description: |-
 
 ### Optional
 
-- **forward_proxy_enable** (Number)
-- **id** (String) The ID of this resource.
-- **name** (String)
-- **sampling_enable** (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- **user_tag** (String)
-- **uuid** (String)
+- `forward_proxy_enable` (Number)
+- `name` (String)
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `user_tag` (String)
+- `uuid` (String)
+
+### Read-Only
+
+- `id` (String) The ID of this resource.
 
 <a id="nestedblock--sampling_enable"></a>
 ### Nested Schema for `sampling_enable`
 
 Optional:
 
-- **counters1** (String)
+- `counters1` (String)
 
 
