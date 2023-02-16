@@ -1,5 +1,4 @@
 *.tfstate
 *.backup
 *.log
-*.json
 *.project
