@@ -8,11 +8,11 @@ import (
 )
 
 type FwLocalLog struct {
-	FwLocalLogInstanceLocalLogging FwLocalLogInstance `json:"local-log"`
+	FwLocalLogInstanceLocalLogging FwLocalLogInstance `json:"local-log,omitempty"`
 }
 
 type FwLocalLogInstance struct {
-	FwLocalLogInstanceLocalLogging int    `json:"local-logging"`
+	FwLocalLogInstanceLocalLogging int    `json:"local-logging,omitempty"`
 	FwLocalLogInstanceUUID         string `json:"uuid,omitempty"`
 }
 
@@ -39,20 +39,18 @@ func PostFwLocalLog(id string, inst FwLocalLog, host string) error {
 		return err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		if len(data) != 0 {
-			var m FwLocalLog
-			err := json.Unmarshal(data, &m)
+		var m FwLocalLog
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
+			return err
+		} else {
+			logger.Println("[INFO] Post REQ RES..........................", m)
+			err := check_api_status("PostFwLocalLog", data)
 			if err != nil {
-				logger.Println("Unmarshal error ", err)
 				return err
-			} else {
-				logger.Println("[INFO] Post REQ RES..........................", m)
-				err := check_api_status("PostFwLocalLog", data)
-				if err != nil {
-					return err
-				}
-
 			}
+
 		}
 	}
 	return err
@@ -75,21 +73,19 @@ func GetFwLocalLog(id string, host string) (*FwLocalLog, error) {
 		return nil, err
 	} else {
 		data, _ := ioutil.ReadAll(resp.Body)
-		if len(data) != 0 {
-			var m FwLocalLog
-			err := json.Unmarshal(data, &m)
+		var m FwLocalLog
+		err := json.Unmarshal(data, &m)
+		if err != nil {
+			logger.Println("Unmarshal error ", err)
+			return nil, err
+		} else {
+			logger.Println("[INFO] Get REQ RES..........................", m)
+			err := check_api_status("GetFwLocalLog", data)
 			if err != nil {
-				logger.Println("Unmarshal error ", err)
 				return nil, err
-			} else {
-				logger.Println("[INFO] Get REQ RES..........................", m)
-				err := check_api_status("GetFwLocalLog", data)
-				if err != nil {
-					return nil, err
-				}
-				return &m, nil
 			}
+			return &m, nil
 		}
-		return nil, nil
 	}
+
 }

@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-//based on ACOS 5_2_1-P4_81
+// based on ACOS 6_0_0-P1_10
 type RouterBgpNetworkIpCidr struct {
 	Inst struct {
 		AsNumber	string //an object key which is outside of instance

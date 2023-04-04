@@ -4,11 +4,14 @@ page_title: "thunder_slb_template_dns Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
   thunder_slb_template_dns: DNS template
+  PLACEHOLDER
 ---
 
 # thunder_slb_template_dns (Resource)
 
 `thunder_slb_template_dns`: DNS template
+
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -91,20 +94,25 @@ resource "thunder_slb_template_dns" "t_dns_02" {
 
 - `add_padding_to_client` (String) 'block-length': Block-Length Padding; 'random-block-length': Random-Block-Length Padding;
 - `cache_record_serving_policy` (String) 'global': Follow global cofiguration (Default); 'no-change': No change in record order; 'round-robin': Round-robin;
+- `cache_ttl_adjustment_enable` (Number) enable the ttl adjustment for dns cache response
 - `class_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--class_list))
 - `default_policy` (String) 'nocache': Cache disable; 'cache': Cache enable;
 - `disable_dns_template` (Number) Disable DNS template
 - `disable_ra_cached_resp` (Number) Disable DNS recursive available flag in cached response
 - `disable_rpz_attach_soa` (Number) Disable attaching SOA due to RPZ
+- `dns64` (Block List, Max: 1) (see [below for nested schema](#nestedblock--dns64))
 - `dns_logging` (String) dns logging template (DNS Logging template name)
 - `dnssec_service_group` (String) Use different service group if DNSSEC DO bit set (Service Group Name)
 - `drop` (Number) Drop the malformed query
 - `enable_cache_sharing` (Number) Enable DNS cache sharing
 - `forward` (String) Forward to service group (Service group name)
+- `insert_ipv4` (Number) prefix-length to insert for IPv4
+- `insert_ipv6` (Number) prefix-length to insert for IPv6
 - `local_dns_resolution` (Block List, Max: 1) (see [below for nested schema](#nestedblock--local_dns_resolution))
 - `max_cache_entry_size` (Number) Define maximum cache entry size (Maximum cache entry size per VIP (default 1024))
 - `max_cache_size` (Number) Define maximum cache size (Maximum cache entry per VIP)
 - `max_query_length` (Number) Define Maximum DNS Query Length, default is unlimited (Specify Maximum Length)
+- `negative_dns_cache` (Block List, Max: 1) (see [below for nested schema](#nestedblock--negative_dns_cache))
 - `period` (Number) Period in minutes
 - `query_class_filter` (Block List, Max: 1) (see [below for nested schema](#nestedblock--query_class_filter))
 - `query_id_switch` (Number) Use DNS query ID to create sesion
@@ -112,7 +120,7 @@ resource "thunder_slb_template_dns" "t_dns_02" {
 - `recursive_dns_resolution` (Block List, Max: 1) (see [below for nested schema](#nestedblock--recursive_dns_resolution))
 - `redirect_to_tcp_port` (Number) Direct the client to retry with TCP for DNS UDP request
 - `remove_aa_flag` (Number) Make answers created from cache non-authoritative
-- `remove_edns_csubnet_to_server` (Number) Remove EDNS(0) client subnet from client queries
+- `remove_csubnet` (Number) Remove EDNS(0) client subnet from client queries
 - `remove_padding_to_server` (Number) Remove EDNS(0) padding to server
 - `response_rate_limiting` (Block List, Max: 1) (see [below for nested schema](#nestedblock--response_rate_limiting))
 - `rpz_list` (Block List) (see [below for nested schema](#nestedblock--rpz_list))
@@ -166,6 +174,21 @@ Optional:
 
 
 
+<a id="nestedblock--dns64"></a>
+### Nested Schema for `dns64`
+
+Optional:
+
+- `cache` (Number) Use a cached A-query response to provide AAAA query responses for the same hostname
+- `change_query` (Number) Always change incoming AAAA DNS Query to A
+- `enable` (Number) Enable DNS64 (Need to config this option before config any other dns64 options)
+- `parallel_query` (Number) Forward AAAA Query & generate A Query in parallel
+- `retry` (Number) Retry count, default is 3 (Retry Number)
+- `single_response_disable` (Number) Disable Single Response which is used to avoid ambiguity
+- `timeout` (Number) Timeout to send additional Queries, unit: second, default is 1
+- `uuid` (String) uuid of the object
+
+
 <a id="nestedblock--local_dns_resolution"></a>
 ### Nested Schema for `local_dns_resolution`
 
@@ -180,7 +203,7 @@ Optional:
 
 Optional:
 
-- `hostnames` (String) Hostnames class-list name (ac type)
+- `hostnames` (String) Hostnames class-list name (dns type)
 
 
 <a id="nestedblock--local_dns_resolution--local_resolver_cfg"></a>
@@ -190,6 +213,17 @@ Optional:
 
 - `local_resolver` (String) Local dns servers (address)
 
+
+
+<a id="nestedblock--negative_dns_cache"></a>
+### Nested Schema for `negative_dns_cache`
+
+Optional:
+
+- `bypass_query_threshold` (Number) the threshold bypass the query, default is 100
+- `enable_negative_dns_cache` (Number) Enable DNS negative cache (Need to turn-on the dns-cache for this feature)
+- `max_negative_cache_ttl` (Number) Max negative cache ttl, default is 2 hours
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--query_class_filter"></a>
@@ -235,23 +269,67 @@ Optional:
 
 Optional:
 
+- `csubnet_retry` (Number) retry when server REFUSED AX inserted EDNS(0) subnet, works only when insert-client-subnet is configured
+- `default_recursive` (Number) Default recursive mode, forward query to bound service-group if hostnames matched
+- `force_cname_resolution` (String) 'enabled': Force CNAME resolution always; 'disabled': Use answer record in CNAME response if it exists, else resolve;
 - `full_response` (Number) Serve all records (authority and additional) when applicable
+- `gateway_health_check` (Block List, Max: 1) (see [below for nested schema](#nestedblock--recursive_dns_resolution--gateway_health_check))
 - `host_list_cfg` (Block List) (see [below for nested schema](#nestedblock--recursive_dns_resolution--host_list_cfg))
 - `ipv4_nat_pool` (String) IPv4 Source NAT pool or pool group
 - `ipv6_nat_pool` (String) IPv6 Source NAT pool or pool group
-- `max_trials` (Number) Total number of times to try DNS query to server before closing client connection, default 0
+- `lookup_order` (Block List, Max: 1) (see [below for nested schema](#nestedblock--recursive_dns_resolution--lookup_order))
+- `max_trials` (Number) Total number of times to try DNS query to server before closing client connection, default 255
 - `ns_cache_lookup` (String) 'disabled': Disable NS Cache Lookup; 'enabled': Enable NS Cache Lookup;
+- `request_for_pending_resolution` (String) 'drop': Drop of the request during ongoing; 'respond-with-servfail': Respond with SERVFAIL of the request during ongoing; 'start-new-resolution': Start new resolution of the request during ongoing;
 - `retries_per_level` (Number) Number of DNS query retries at each server level before closing client connection, default 6
+- `udp_initial_interval` (Number) UDP DNS Retry Interval value 1-6, default is 5 sec (1-6, default is 5sec)
+- `udp_retry_interval` (Number) UDP DNS Retry Interval value 1-6, default is 1 sec (1-6 , default is 1 sec)
 - `use_client_qid` (Number) Use client side query id for recursive query
 - `use_service_group_response` (String) 'disabled': Start Recursive Resolver if Server response doesnt have final answer; 'enabled': Forward Backend Server response to client and dont start recursive resolver;
 - `uuid` (String) uuid of the object
+
+<a id="nestedblock--recursive_dns_resolution--gateway_health_check"></a>
+### Nested Schema for `recursive_dns_resolution.gateway_health_check`
+
+Optional:
+
+- `gwhc_ns_cache_lookup` (String) 'disabled': Disable NS Cache Lookup; 'enabled': Enable NS Cache Lookup;
+- `interval` (Number) Specify the health check interval, default is 10 sec (Interval value, in seconds (default 10))
+- `num_query_type` (Number) Other record type value
+- `query_name` (String) Specify the query name used in probe queries, default "a10networks.com"
+- `retry` (Number) Maximum number of DNS query retries at each server level before health check fails, default 6 (Retry count (default 6))
+- `retry_multi` (Number) Specify number of times that health check consecutively fails before declaring gateway DOWN, default 1 (retry-multi count (default 1))
+- `str_query_type` (String) 'A': Address record; 'AAAA': IPv6 Address record; 'CNAME': Canonical name record; 'MX': Mail exchange record; 'NS': Name server record; 'SRV': Service locator; 'PTR': PTR resource record; 'SOA': Start of authority record; 'TXT': Text record;
+- `timeout` (Number) Specify the health check timeout before retrying or finish, default is 5 sec (Timeout value, in seconds (default 5))
+- `up_retry` (Number) Specify number of times that health check consecutively passes before declaring gateway UP, default 1 (up-retry count (default 1))
+- `uuid` (String) uuid of the object
+
 
 <a id="nestedblock--recursive_dns_resolution--host_list_cfg"></a>
 ### Nested Schema for `recursive_dns_resolution.host_list_cfg`
 
 Optional:
 
-- `hostnames` (String) Hostnames class-list name (ac type)
+- `hostnames` (String) Hostnames class-list name (dns type), perform resolution while query name matched
+
+
+<a id="nestedblock--recursive_dns_resolution--lookup_order"></a>
+### Nested Schema for `recursive_dns_resolution.lookup_order`
+
+Optional:
+
+- `query_type` (Block List) (see [below for nested schema](#nestedblock--recursive_dns_resolution--lookup_order--query_type))
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--recursive_dns_resolution--lookup_order--query_type"></a>
+### Nested Schema for `recursive_dns_resolution.lookup_order.query_type`
+
+Optional:
+
+- `num_query_type` (Number) Other query type value
+- `order` (String) 'ipv4-precede-ipv6': Recursive lookup via IPv4 then IPv6; 'ipv6-precede-ipv4': Recursive lookup via IPv6 then IPv4;
+- `str_query_type` (String) 'A': Address record; 'AAAA': IPv6 Address record; 'CNAME': Canonical name record; 'MX': Mail exchange record; 'NS': Name server record; 'SRV': Service locator; 'PTR': PTR resource record; 'SOA': Start of authority record; 'TXT': Text record; 'ANY': All cached record;
+
 
 
 
@@ -263,9 +341,13 @@ Optional:
 - `action` (String) 'log-only': Only log rate-limiting, do not actually rate limit. Requires enable-log configuration; 'rate-limit': Rate-Limit based on configuration (Default); 'whitelist': Whitelist, disable rate-limiting;
 - `enable_log` (Number) Enable logging
 - `filter_response_rate` (Number) Maximum allowed request rate for the filter. This should match average traffic. (default 10 per seconds)
+- `match_subnet` (String) IP subnet mask (response rate by IP subnet mask)
+- `match_subnet_v6` (Number) IPV6 subnet mask (response rate by IPv6 subnet mask)
 - `response_rate` (Number) Responses exceeding this rate within the window will be dropped (default 5 per second)
 - `rrl_class_list_list` (Block List) (see [below for nested schema](#nestedblock--response_rate_limiting--rrl_class_list_list))
 - `slip_rate` (Number) Every n'th response that would be rate-limited will be let through instead
+- `src_ip_only` (Number)
+- `tc_rate` (Number) Every n'th response that would be rate-limited will respond with TC bit
 - `uuid` (String) uuid of the object
 - `window` (Number) Rate-Limiting Interval in Seconds (default is one)
 
@@ -293,8 +375,12 @@ Optional:
 
 - `lid_action` (String) 'log-only': Only log rate-limiting, do not actually rate limit. Requires enable-log configuration; 'rate-limit': Rate-Limit based on configuration (Default); 'whitelist': Whitelist, disable rate-limiting;
 - `lid_enable_log` (Number) Enable logging
+- `lid_match_subnet` (String) IP subnet mask (response rate by IP subnet mask)
+- `lid_match_subnet_v6` (Number) IPV6 subnet mask (response rate by IPv6 subnet mask)
 - `lid_response_rate` (Number) Responses exceeding this rate within the window will be dropped (default 5 per second)
 - `lid_slip_rate` (Number) Every n'th response that would be rate-limited will be let through instead
+- `lid_src_ip_only` (Number)
+- `lid_tc_rate` (Number) Every n'th response that would be rate-limited will respond with TC bit
 - `lid_window` (Number) Rate-Limiting Interval in Seconds (default is one)
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object

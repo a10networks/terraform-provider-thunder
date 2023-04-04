@@ -6,12 +6,13 @@ import (
 	"net/url"
 )
 
-//based on ACOS 5_2_1-P4_81
+// based on ACOS 6_0_0-P1_10
 type ClassList struct {
 	Inst struct {
 		AcList   []ClassListAcList   `json:"ac-list"`
 		Dns      []ClassListDns      `json:"dns"`
 		File     int                 `json:"file"`
+		GeoList  []ClassListGeoList  `json:"geo-list"`
 		Ipv4List []ClassListIpv4List `json:"ipv4-list"`
 		Ipv6List []ClassListIpv6List `json:"ipv6-list"`
 		Name     string              `json:"name"`
@@ -33,17 +34,22 @@ type ClassListDns struct {
 	DnsMatchType           string `json:"dns-match-type"`
 	DnsMatchString         string `json:"dns-match-string"`
 	DnsLid                 int    `json:"dns-lid"`
-	DnsGlid                int    `json:"dns-glid"`
+	DnsGlid                string `json:"dns-glid"`
 	SharedPartitionDnsGlid int    `json:"shared-partition-dns-glid"`
-	DnsGlidShared          int    `json:"dns-glid-shared"`
+	DnsGlidShared          string `json:"dns-glid-shared"`
+}
+
+type ClassListGeoList struct {
+	GeoLocation     string `json:"geo-location"`
+	GeoLocationIpv6 string `json:"geo-location-ipv6"`
 }
 
 type ClassListIpv4List struct {
 	Ipv4addr             string `json:"ipv4addr"`
 	Lid                  int    `json:"lid"`
-	Glid                 int    `json:"glid"`
+	Glid                 string `json:"glid"`
 	SharedPartitionGlid  int    `json:"shared-partition-glid"`
-	GlidShared           int    `json:"glid-shared"`
+	GlidShared           string `json:"glid-shared"`
 	LsnLid               int    `json:"lsn-lid"`
 	LsnRadiusProfile     int    `json:"lsn-radius-profile"`
 	GtpRateLimitPolicyV4 string `json:"gtp-rate-limit-policy-v4"`
@@ -53,9 +59,9 @@ type ClassListIpv4List struct {
 type ClassListIpv6List struct {
 	Ipv6Addr              string `json:"ipv6-addr"`
 	V6Lid                 int    `json:"v6-lid"`
-	V6Glid                int    `json:"v6-glid"`
+	V6Glid                string `json:"v6-glid"`
 	SharedPartitionV6Glid int    `json:"shared-partition-v6-glid"`
-	V6GlidShared          int    `json:"v6-glid-shared"`
+	V6GlidShared          string `json:"v6-glid-shared"`
 	V6LsnLid              int    `json:"v6-lsn-lid"`
 	V6LsnRadiusProfile    int    `json:"v6-lsn-radius-profile"`
 	GtpRateLimitPolicyV6  string `json:"gtp-rate-limit-policy-v6"`
@@ -67,9 +73,9 @@ type ClassListStrList struct {
 	StrLidDummy            int    `json:"str-lid-dummy"`
 	StrLid                 int    `json:"str-lid"`
 	StrGlidDummy           int    `json:"str-glid-dummy"`
-	StrGlid                int    `json:"str-glid"`
+	StrGlid                string `json:"str-glid"`
 	SharedPartitionStrGlid int    `json:"shared-partition-str-glid"`
-	StrGlidShared          int    `json:"str-glid-shared"`
+	StrGlidShared          string `json:"str-glid-shared"`
 	ValueStr               string `json:"value-str"`
 }
 

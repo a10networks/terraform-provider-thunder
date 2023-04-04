@@ -3,15 +3,14 @@ package endpoint
 import (
 	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
 	"github.com/clarketm/json"
-	"strconv"
 )
 
-//based on ACOS 5_2_1-P4_81
+// based on ACOS 6_0_0-P1_10
 type RouterBgp struct {
 	Inst struct {
 		AddressFamily        RouterBgpAddressFamily          `json:"address-family"`
 		AggregateAddressList []RouterBgpAggregateAddressList `json:"aggregate-address-list"`
-		AsNumber             int                             `json:"as-number"`
+		AsNumber             string                          `json:"as-number"`
 		AutoSummary          int                             `json:"auto-summary"`
 		Bgp                  RouterBgpBgp                    `json:"bgp"`
 		DistanceList         []RouterBgpDistanceList         `json:"distance-list"`
@@ -28,7 +27,9 @@ type RouterBgp struct {
 }
 
 type RouterBgpAddressFamily struct {
-	Ipv6 RouterBgpAddressFamilyIpv6 `json:"ipv6"`
+	Ipv6         RouterBgpAddressFamilyIpv6         `json:"ipv6"`
+	Ipv4Flowspec RouterBgpAddressFamilyIpv4Flowspec `json:"ipv4-flowspec"`
+	Ipv6Flowspec RouterBgpAddressFamilyIpv6Flowspec `json:"ipv6-flowspec"`
 }
 
 type RouterBgpAddressFamilyIpv6 struct {
@@ -69,12 +70,22 @@ type RouterBgpAddressFamilyIpv6AggregateAddressList struct {
 
 type RouterBgpAddressFamilyIpv6Network struct {
 	Synchronization RouterBgpAddressFamilyIpv6NetworkSynchronization   `json:"synchronization"`
+	Monitor         RouterBgpAddressFamilyIpv6NetworkMonitor           `json:"monitor"`
 	Ipv6NetworkList []RouterBgpAddressFamilyIpv6NetworkIpv6NetworkList `json:"ipv6-network-list"`
 }
 
 type RouterBgpAddressFamilyIpv6NetworkSynchronization struct {
 	NetworkSynchronization int    `json:"network-synchronization"`
 	Uuid                   string `json:"uuid"`
+}
+
+type RouterBgpAddressFamilyIpv6NetworkMonitor struct {
+	Default RouterBgpAddressFamilyIpv6NetworkMonitorDefault `json:"default"`
+}
+
+type RouterBgpAddressFamilyIpv6NetworkMonitorDefault struct {
+	NetworkMonitorDefault int    `json:"network-monitor-default"`
+	Uuid                  string `json:"uuid"`
 }
 
 type RouterBgpAddressFamilyIpv6NetworkIpv6NetworkList struct {
@@ -100,37 +111,14 @@ type RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborList struct {
 	Activate              int                                                                            `json:"activate"`
 	AllowasIn             int                                                                            `json:"allowas-in"`
 	AllowasInCount        int                                                                            `json:"allowas-in-count" dval:"3"`
-	PrefixListDirection   string                                                                         `json:"prefix-list-direction"`
-	DefaultOriginate      int                                                                            `json:"default-originate"`
-	RouteMap              string                                                                         `json:"route-map"`
-	DistributeLists       []RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListDistributeLists       `json:"distribute-lists"`
-	NeighborFilterLists   []RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborFilterLists   `json:"neighbor-filter-lists"`
 	MaximumPrefix         int                                                                            `json:"maximum-prefix"`
 	MaximumPrefixThres    int                                                                            `json:"maximum-prefix-thres"`
 	NextHopSelf           int                                                                            `json:"next-hop-self"`
-	NeighborPrefixLists   []RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborPrefixLists   `json:"neighbor-prefix-lists"`
 	RemovePrivateAs       int                                                                            `json:"remove-private-as"`
 	NeighborRouteMapLists []RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborRouteMapLists `json:"neighbor-route-map-lists"`
-	SendCommunityVal      string                                                                         `json:"send-community-val" dval:"both"`
 	Inbound               int                                                                            `json:"inbound"`
-	UnsuppressMap         string                                                                         `json:"unsuppress-map"`
 	Weight                int                                                                            `json:"weight"`
 	Uuid                  string                                                                         `json:"uuid"`
-}
-
-type RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListDistributeLists struct {
-	DistributeList          string `json:"distribute-list"`
-	DistributeListDirection string `json:"distribute-list-direction"`
-}
-
-type RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborFilterLists struct {
-	FilterList          string `json:"filter-list"`
-	FilterListDirection string `json:"filter-list-direction"`
-}
-
-type RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborPrefixLists struct {
-	NbrPrefixList          string `json:"nbr-prefix-list"`
-	NbrPrefixListDirection string `json:"nbr-prefix-list-direction"`
 }
 
 type RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborRouteMapLists struct {
@@ -340,6 +328,74 @@ type RouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg struct {
 	RouteMap       string `json:"route-map"`
 }
 
+type RouterBgpAddressFamilyIpv4Flowspec struct {
+	Uuid     string                                     `json:"uuid"`
+	Neighbor RouterBgpAddressFamilyIpv4FlowspecNeighbor `json:"neighbor"`
+}
+
+type RouterBgpAddressFamilyIpv4FlowspecNeighbor struct {
+	Ipv4NeighborList []RouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborList `json:"ipv4-neighbor-list"`
+	Ipv6NeighborList []RouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborList `json:"ipv6-neighbor-list"`
+}
+
+type RouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborList struct {
+	NeighborIpv4          string                                                                            `json:"neighbor-ipv4"`
+	Activate              int                                                                               `json:"activate"`
+	NeighborRouteMapLists []RouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborListNeighborRouteMapLists `json:"neighbor-route-map-lists"`
+	Uuid                  string                                                                            `json:"uuid"`
+}
+
+type RouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborListNeighborRouteMapLists struct {
+	NbrRouteMap      string `json:"nbr-route-map"`
+	NbrRmapDirection string `json:"nbr-rmap-direction"`
+}
+
+type RouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborList struct {
+	NeighborIpv6          string                                                                            `json:"neighbor-ipv6"`
+	Activate              int                                                                               `json:"activate"`
+	NeighborRouteMapLists []RouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborListNeighborRouteMapLists `json:"neighbor-route-map-lists"`
+	Uuid                  string                                                                            `json:"uuid"`
+}
+
+type RouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborListNeighborRouteMapLists struct {
+	NbrRouteMap      string `json:"nbr-route-map"`
+	NbrRmapDirection string `json:"nbr-rmap-direction"`
+}
+
+type RouterBgpAddressFamilyIpv6Flowspec struct {
+	Uuid     string                                     `json:"uuid"`
+	Neighbor RouterBgpAddressFamilyIpv6FlowspecNeighbor `json:"neighbor"`
+}
+
+type RouterBgpAddressFamilyIpv6FlowspecNeighbor struct {
+	Ipv4NeighborList []RouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborList `json:"ipv4-neighbor-list"`
+	Ipv6NeighborList []RouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborList `json:"ipv6-neighbor-list"`
+}
+
+type RouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborList struct {
+	NeighborIpv4          string                                                                            `json:"neighbor-ipv4"`
+	Activate              int                                                                               `json:"activate"`
+	NeighborRouteMapLists []RouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborListNeighborRouteMapLists `json:"neighbor-route-map-lists"`
+	Uuid                  string                                                                            `json:"uuid"`
+}
+
+type RouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborListNeighborRouteMapLists struct {
+	NbrRouteMap      string `json:"nbr-route-map"`
+	NbrRmapDirection string `json:"nbr-rmap-direction"`
+}
+
+type RouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborList struct {
+	NeighborIpv6          string                                                                            `json:"neighbor-ipv6"`
+	Activate              int                                                                               `json:"activate"`
+	NeighborRouteMapLists []RouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborListNeighborRouteMapLists `json:"neighbor-route-map-lists"`
+	Uuid                  string                                                                            `json:"uuid"`
+}
+
+type RouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborListNeighborRouteMapLists struct {
+	NbrRouteMap      string `json:"nbr-route-map"`
+	NbrRmapDirection string `json:"nbr-rmap-direction"`
+}
+
 type RouterBgpAggregateAddressList struct {
 	AggregateAddress string `json:"aggregate-address"`
 	AsSet            int    `json:"as-set"`
@@ -357,7 +413,6 @@ type RouterBgpBgp struct {
 	LogNeighborChanges   int                      `json:"log-neighbor-changes"`
 	NexthopTriggerCount  int                      `json:"nexthop-trigger-count"`
 	RouterId             string                   `json:"router-id"`
-	OverrideValidation   int                      `json:"override-validation"`
 	ScanTime             int                      `json:"scan-time" dval:"60"`
 	GracefulRestart      int                      `json:"graceful-restart"`
 	BgpRestartTime       int                      `json:"bgp-restart-time" dval:"90"`
@@ -401,74 +456,51 @@ type RouterBgpNeighbor struct {
 }
 
 type RouterBgpNeighborPeerGroupNeighborList struct {
-	PeerGroup                string                                                        `json:"peer-group"`
-	PeerGroupKey             int                                                           `json:"peer-group-key"`
-	PeerGroupRemoteAs        int                                                           `json:"peer-group-remote-as"`
-	Activate                 int                                                           `json:"activate" dval:"1"`
-	AdvertisementInterval    int                                                           `json:"advertisement-interval"`
-	AllowasIn                int                                                           `json:"allowas-in"`
-	AllowasInCount           int                                                           `json:"allowas-in-count" dval:"3"`
-	AsOriginationInterval    int                                                           `json:"as-origination-interval"`
-	Dynamic                  int                                                           `json:"dynamic"`
-	PrefixListDirection      string                                                        `json:"prefix-list-direction"`
-	RouteRefresh             int                                                           `json:"route-refresh" dval:"1"`
-	ExtendedNexthop          int                                                           `json:"extended-nexthop"`
-	CollideEstablished       int                                                           `json:"collide-established"`
-	DefaultOriginate         int                                                           `json:"default-originate"`
-	RouteMap                 string                                                        `json:"route-map"`
-	Description              string                                                        `json:"description"`
-	DisallowInfiniteHoldtime int                                                           `json:"disallow-infinite-holdtime"`
-	DistributeLists          []RouterBgpNeighborPeerGroupNeighborListDistributeLists       `json:"distribute-lists"`
-	DontCapabilityNegotiate  int                                                           `json:"dont-capability-negotiate"`
-	EbgpMultihop             int                                                           `json:"ebgp-multihop"`
-	EbgpMultihopHopCount     int                                                           `json:"ebgp-multihop-hop-count"`
-	EnforceMultihop          int                                                           `json:"enforce-multihop"`
-	Bfd                      int                                                           `json:"bfd"`
-	Multihop                 int                                                           `json:"multihop"`
-	NeighborFilterLists      []RouterBgpNeighborPeerGroupNeighborListNeighborFilterLists   `json:"neighbor-filter-lists"`
-	MaximumPrefix            int                                                           `json:"maximum-prefix"`
-	MaximumPrefixThres       int                                                           `json:"maximum-prefix-thres"`
-	NextHopSelf              int                                                           `json:"next-hop-self"`
-	OverrideCapability       int                                                           `json:"override-capability"`
-	PassValue                string                                                        `json:"pass-value"`
-	PassEncrypted            string                                                        `json:"pass-encrypted"`
-	Passive                  int                                                           `json:"passive"`
-	NeighborPrefixLists      []RouterBgpNeighborPeerGroupNeighborListNeighborPrefixLists   `json:"neighbor-prefix-lists"`
-	RemovePrivateAs          int                                                           `json:"remove-private-as"`
-	NeighborRouteMapLists    []RouterBgpNeighborPeerGroupNeighborListNeighborRouteMapLists `json:"neighbor-route-map-lists"`
-	SendCommunityVal         string                                                        `json:"send-community-val" dval:"both"`
-	Inbound                  int                                                           `json:"inbound"`
-	Shutdown                 int                                                           `json:"shutdown"`
-	StrictCapabilityMatch    int                                                           `json:"strict-capability-match"`
-	TimersKeepalive          int                                                           `json:"timers-keepalive" dval:"30"`
-	TimersHoldtime           int                                                           `json:"timers-holdtime" dval:"90"`
-	Connect                  int                                                           `json:"connect"`
-	UnsuppressMap            string                                                        `json:"unsuppress-map"`
-	UpdateSourceIp           string                                                        `json:"update-source-ip"`
-	UpdateSourceIpv6         string                                                        `json:"update-source-ipv6"`
-	Ethernet                 int                                                           `json:"ethernet"`
-	Loopback                 int                                                           `json:"loopback"`
-	Ve                       int                                                           `json:"ve"`
-	Trunk                    int                                                           `json:"trunk"`
-	Lif                      string                                                        `json:"lif"`
-	Tunnel                   int                                                           `json:"tunnel"`
-	Weight                   int                                                           `json:"weight"`
-	Uuid                     string                                                        `json:"uuid"`
-}
-
-type RouterBgpNeighborPeerGroupNeighborListDistributeLists struct {
-	DistributeList          string `json:"distribute-list"`
-	DistributeListDirection string `json:"distribute-list-direction"`
-}
-
-type RouterBgpNeighborPeerGroupNeighborListNeighborFilterLists struct {
-	FilterList          string `json:"filter-list"`
-	FilterListDirection string `json:"filter-list-direction"`
-}
-
-type RouterBgpNeighborPeerGroupNeighborListNeighborPrefixLists struct {
-	NbrPrefixList          string `json:"nbr-prefix-list"`
-	NbrPrefixListDirection string `json:"nbr-prefix-list-direction"`
+	PeerGroup               string                                                        `json:"peer-group"`
+	PeerGroupKey            int                                                           `json:"peer-group-key"`
+	PeerGroupRemoteAs       string                                                        `json:"peer-group-remote-as"`
+	Activate                int                                                           `json:"activate" dval:"1"`
+	AdvertisementInterval   int                                                           `json:"advertisement-interval"`
+	AllowasIn               int                                                           `json:"allowas-in"`
+	AllowasInCount          int                                                           `json:"allowas-in-count" dval:"3"`
+	AsOriginationInterval   int                                                           `json:"as-origination-interval"`
+	Dynamic                 int                                                           `json:"dynamic"`
+	RouteRefresh            int                                                           `json:"route-refresh" dval:"1"`
+	ExtendedNexthop         int                                                           `json:"extended-nexthop"`
+	CollideEstablished      int                                                           `json:"collide-established"`
+	DefaultOriginate        int                                                           `json:"default-originate"`
+	RouteMap                string                                                        `json:"route-map"`
+	Description             string                                                        `json:"description"`
+	DontCapabilityNegotiate int                                                           `json:"dont-capability-negotiate"`
+	EbgpMultihop            int                                                           `json:"ebgp-multihop"`
+	EbgpMultihopHopCount    int                                                           `json:"ebgp-multihop-hop-count"`
+	EnforceMultihop         int                                                           `json:"enforce-multihop"`
+	Bfd                     int                                                           `json:"bfd"`
+	Multihop                int                                                           `json:"multihop"`
+	MaximumPrefix           int                                                           `json:"maximum-prefix"`
+	MaximumPrefixThres      int                                                           `json:"maximum-prefix-thres"`
+	OverrideCapability      int                                                           `json:"override-capability"`
+	PassValue               string                                                        `json:"pass-value"`
+	PassEncrypted           string                                                        `json:"pass-encrypted"`
+	Passive                 int                                                           `json:"passive"`
+	RemovePrivateAs         int                                                           `json:"remove-private-as"`
+	NeighborRouteMapLists   []RouterBgpNeighborPeerGroupNeighborListNeighborRouteMapLists `json:"neighbor-route-map-lists"`
+	Inbound                 int                                                           `json:"inbound"`
+	Shutdown                int                                                           `json:"shutdown"`
+	StrictCapabilityMatch   int                                                           `json:"strict-capability-match"`
+	TimersKeepalive         int                                                           `json:"timers-keepalive" dval:"30"`
+	TimersHoldtime          int                                                           `json:"timers-holdtime" dval:"90"`
+	Connect                 int                                                           `json:"connect"`
+	UpdateSourceIp          string                                                        `json:"update-source-ip"`
+	UpdateSourceIpv6        string                                                        `json:"update-source-ipv6"`
+	Ethernet                int                                                           `json:"ethernet"`
+	Loopback                int                                                           `json:"loopback"`
+	Ve                      int                                                           `json:"ve"`
+	Trunk                   int                                                           `json:"trunk"`
+	Lif                     string                                                        `json:"lif"`
+	Tunnel                  int                                                           `json:"tunnel"`
+	Weight                  int                                                           `json:"weight"`
+	Uuid                    string                                                        `json:"uuid"`
 }
 
 type RouterBgpNeighborPeerGroupNeighborListNeighborRouteMapLists struct {
@@ -478,7 +510,7 @@ type RouterBgpNeighborPeerGroupNeighborListNeighborRouteMapLists struct {
 
 type RouterBgpNeighborIpv4NeighborList struct {
 	NeighborIpv4             string                                                   `json:"neighbor-ipv4"`
-	NbrRemoteAs              int                                                      `json:"nbr-remote-as"`
+	NbrRemoteAs              string                                                   `json:"nbr-remote-as"`
 	PeerGroupName            string                                                   `json:"peer-group-name"`
 	Activate                 int                                                      `json:"activate" dval:"1"`
 	AdvertisementInterval    int                                                      `json:"advertisement-interval"`
@@ -496,6 +528,7 @@ type RouterBgpNeighborIpv4NeighborList struct {
 	DisallowInfiniteHoldtime int                                                      `json:"disallow-infinite-holdtime"`
 	DistributeLists          []RouterBgpNeighborIpv4NeighborListDistributeLists       `json:"distribute-lists"`
 	AcosApplicationOnly      int                                                      `json:"acos-application-only"`
+	Telemetry                int                                                      `json:"telemetry"`
 	DontCapabilityNegotiate  int                                                      `json:"dont-capability-negotiate"`
 	EbgpMultihop             int                                                      `json:"ebgp-multihop"`
 	EbgpMultihopHopCount     int                                                      `json:"ebgp-multihop-hop-count"`
@@ -560,7 +593,7 @@ type RouterBgpNeighborIpv4NeighborListNeighborRouteMapLists struct {
 
 type RouterBgpNeighborIpv6NeighborList struct {
 	NeighborIpv6             string                                                   `json:"neighbor-ipv6"`
-	NbrRemoteAs              int                                                      `json:"nbr-remote-as"`
+	NbrRemoteAs              string                                                   `json:"nbr-remote-as"`
 	PeerGroupName            string                                                   `json:"peer-group-name"`
 	Activate                 int                                                      `json:"activate" dval:"1"`
 	AdvertisementInterval    int                                                      `json:"advertisement-interval"`
@@ -579,6 +612,7 @@ type RouterBgpNeighborIpv6NeighborList struct {
 	DisallowInfiniteHoldtime int                                                      `json:"disallow-infinite-holdtime"`
 	DistributeLists          []RouterBgpNeighborIpv6NeighborListDistributeLists       `json:"distribute-lists"`
 	AcosApplicationOnly      int                                                      `json:"acos-application-only"`
+	Telemetry                int                                                      `json:"telemetry"`
 	DontCapabilityNegotiate  int                                                      `json:"dont-capability-negotiate"`
 	EbgpMultihop             int                                                      `json:"ebgp-multihop"`
 	EbgpMultihopHopCount     int                                                      `json:"ebgp-multihop-hop-count"`
@@ -664,12 +698,22 @@ type RouterBgpNeighborTrunkNeighborList struct {
 
 type RouterBgpNetwork struct {
 	Synchronization RouterBgpNetworkSynchronization `json:"synchronization"`
+	Monitor         RouterBgpNetworkMonitor         `json:"monitor"`
 	IpCidrList      []RouterBgpNetworkIpCidrList    `json:"ip-cidr-list"`
 }
 
 type RouterBgpNetworkSynchronization struct {
 	NetworkSynchronization int    `json:"network-synchronization"`
 	Uuid                   string `json:"uuid"`
+}
+
+type RouterBgpNetworkMonitor struct {
+	Default RouterBgpNetworkMonitorDefault `json:"default"`
+}
+
+type RouterBgpNetworkMonitorDefault struct {
+	NetworkMonitorDefault int    `json:"network-monitor-default"`
+	Uuid                  string `json:"uuid"`
 }
 
 type RouterBgpNetworkIpCidrList struct {
@@ -773,7 +817,7 @@ type RouterBgpTimers struct {
 }
 
 func (p *RouterBgp) GetId() string {
-	return strconv.Itoa(p.Inst.AsNumber)
+	return p.Inst.AsNumber
 }
 
 func (p *RouterBgp) getPath() string {

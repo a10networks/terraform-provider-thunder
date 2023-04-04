@@ -4,11 +4,14 @@ page_title: "thunder_router_isis Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
   thunder_router_isis: Intermediate System - Intermediate System (IS-IS)
+  PLACEHOLDER
 ---
 
 # thunder_router_isis (Resource)
 
 `thunder_router_isis`: Intermediate System - Intermediate System (IS-IS)
+
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -348,7 +351,7 @@ Optional:
 Optional:
 
 - `ethernet` (Number) Ethernet interface (Port number)
-- `lif` (Number) Logical interface (Lif interface number)
+- `lif` (String) Logical interface (Lif interface name)
 - `loopback` (Number) Loopback interface (Port number)
 - `trunk` (Number) Trunk interface (Trunk interface number)
 - `tunnel` (Number) Tunnel interface (Tunnel interface number)

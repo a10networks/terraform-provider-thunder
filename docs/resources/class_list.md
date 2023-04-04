@@ -3,12 +3,15 @@
 page_title: "thunder_class_list Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  thunder_class_list configures classification list
+  thunder_class_list: Configure classification list
+  PLACEHOLDER
 ---
 
 # thunder_class_list (Resource)
 
-`thunder_class_list` configures classification list
+`thunder_class_list`: Configure classification list
+
+__PLACEHOLDER__
 
 
 
@@ -24,6 +27,7 @@ description: |-
 - `ac_list` (Block List) (see [below for nested schema](#nestedblock--ac_list))
 - `dns` (Block List) (see [below for nested schema](#nestedblock--dns))
 - `file` (Number) Create/Edit a class-list stored as a file
+- `geo_list` (Block List) (see [below for nested schema](#nestedblock--geo_list))
 - `ipv4_list` (Block List) (see [below for nested schema](#nestedblock--ipv4_list))
 - `ipv6_list` (Block List) (see [below for nested schema](#nestedblock--ipv6_list))
 - `str_list` (Block List) (see [below for nested schema](#nestedblock--str_list))
@@ -51,12 +55,21 @@ Optional:
 
 Optional:
 
-- `dns_glid` (Number) Use global Limit ID (Specify global LID index)
-- `dns_glid_shared` (Number) Use global Limit ID
+- `dns_glid` (String) Use global Limit ID (Specify global LID index)
+- `dns_glid_shared` (String) Use global Limit ID
 - `dns_lid` (Number) Use Limit ID defined in template (Specify LID index)
 - `dns_match_string` (String) Domain name
 - `dns_match_type` (String) 'contains': Domain contains another string; 'ends-with': Domain ends with another string; 'starts-with': Domain starts-with another string;
 - `shared_partition_dns_glid` (Number) Reference a glid from shared partition
+
+
+<a id="nestedblock--geo_list"></a>
+### Nested Schema for `geo_list`
+
+Optional:
+
+- `geo_location` (String) Specify geo-location
+- `geo_location_ipv6` (String) Specify IPv6 geo-location
 
 
 <a id="nestedblock--ipv4_list"></a>
@@ -65,8 +78,8 @@ Optional:
 Optional:
 
 - `age` (Number) Specify age in minutes
-- `glid` (Number) Use global Limit ID (Specify global LID index)
-- `glid_shared` (Number) Use global Limit ID
+- `glid` (String) Use global Limit ID (Specify global LID index)
+- `glid_shared` (String) Use global Limit ID
 - `gtp_rate_limit_policy_v4` (String) GTP Rate Limit Template Name
 - `ipv4addr` (String) Specify IP address
 - `lid` (Number) Use Limit ID defined in template (Specify LID index)
@@ -84,8 +97,8 @@ Optional:
 - `ipv6_addr` (String) Specify IPv6 host or subnet
 - `shared_partition_v6_glid` (Number) Reference a glid from shared partition
 - `v6_age` (Number) Specify age in minutes
-- `v6_glid` (Number) Use global Limit ID (Specify global LID index)
-- `v6_glid_shared` (Number) Use global Limit ID
+- `v6_glid` (String) Use global Limit ID (Specify global LID index)
+- `v6_glid_shared` (String) Use global Limit ID
 - `v6_lid` (Number) Use Limit ID defined in template (Specify LID index)
 - `v6_lsn_lid` (Number) LSN Limit ID (LID index)
 - `v6_lsn_radius_profile` (Number) LSN RADIUS Profile Index
@@ -98,9 +111,9 @@ Optional:
 
 - `shared_partition_str_glid` (Number) Reference a glid from shared partition
 - `str` (String) Specify key string
-- `str_glid` (Number) Global LID index
+- `str_glid` (String) Global LID index
 - `str_glid_dummy` (Number) Use global Limit ID
-- `str_glid_shared` (Number) Use global Limit ID
+- `str_glid_shared` (String) Use global Limit ID
 - `str_lid` (Number) LID index
 - `str_lid_dummy` (Number) Use Limit ID defined in template
 - `value_str` (String) Specify value string
