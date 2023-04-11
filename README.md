@@ -13,6 +13,16 @@ Terraform provider plugin will only configure vThunder via axapi, It will not in
 Below listed A10’s vThunder vADC (Application Delivery Controller) are tested and supported.
 - 64-bit Advanced Core OS (ACOS) version 6.0.0-p1, build 47.
 
+## TTP Support Metrix 
+
+| ACOS | [TTP 1.0.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.0.0) | [TTP 1.1.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.1.0) | [TTP 1.2.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.0) | 
+| :--------: | :-------: | :-------:  | :-------: | 
+| `5.2.1-p3-build 70` | `Yes` | `No`  | `No` | 
+| `5.2.1-p4-build 70` | `Yes` | `No`  | `No` | 
+| `5.2.1-p5-build 114`| `No`  | `Yes` | `No` | 
+| `5.2.1-p6-build 74` | `No`  | `Yes` | `No` | 
+| `6.0.0-p1-build 47` | `No`  | `No`  | `Yes`|
+
 ## Release Logs Information
 
 - Support for ACOS 6.0.0-p1 AXAPIs
