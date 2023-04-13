@@ -15,7 +15,7 @@ Below listed A10’s vThunder vADC (Application Delivery Controller) are tested 
 
 ## TTP Support Matrix 
 
-| ACOS | [TTP 1.0.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.0.0) | [TTP 1.1.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.1.0) | [TTP 1.2.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.0) | 
+| ACOS | [TTP 1.0.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.0.0) | [TTP 1.1.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.1.0) | [TTP 1.2.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.1) | 
 | :--------: | :-------: | :-------:  | :-------: | 
 | `5.2.1-p3-build 70` | `Yes` | `No`  | `No` | 
 | `5.2.1-p4-build 70` | `Yes` | `No`  | `No` | 
@@ -26,6 +26,7 @@ Below listed A10’s vThunder vADC (Application Delivery Controller) are tested 
 ## Release Logs Information
 
 - Support for ACOS 6.0.0-p1 AXAPIs
+- Fixed Change Optional to Required for partition, slb server, and slb service-group
 - Defect Fixtures
 
 # Terraform Provider Thunder
