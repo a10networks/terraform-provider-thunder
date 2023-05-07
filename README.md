@@ -1,4 +1,4 @@
-# A10 Networks Terraform Provider Release v1.2.0.
+# A10 Networks Terraform Provider Release v1.2.2.
 
 Welcome to GitHub repository for A10’s Registered Terraform Provider for vThunder.
 
@@ -12,20 +12,24 @@ Terraform provider plugin will only configure vThunder via axapi, It will not in
 
 Below listed A10’s vThunder vADC (Application Delivery Controller) are tested and supported.
 - 64-bit Advanced Core OS (ACOS) version 6.0.0-p1, build 47.
+- 64-bit Advanced Core OS (ACOS) version 6.0.0-p2, build 22.
 
 ## TTP Support Matrix 
 
-| ACOS | [TTP 1.0.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.0.0) | [TTP 1.1.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.1.0) | [TTP 1.2.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.1) | 
-| :--------: | :-------: | :-------:  | :-------: | 
-| `5.2.1-p3-build 70` | `Yes` | `No`  | `No` | 
-| `5.2.1-p4-build 70` | `Yes` | `No`  | `No` | 
-| `5.2.1-p5-build 114`| `No`  | `Yes` | `No` | 
-| `5.2.1-p6-build 74` | `No`  | `Yes` | `No` | 
-| `6.0.0-p1-build 47` | `No`  | `No`  | `Yes`|
+| ACOS | [TTP 1.0.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.0.0) | [TTP 1.1.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.1.0) | [TTP 1.2.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.1) | [TTP 1.2.2](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.2) | 
+| :--------: | :-------: | :-------:  | :-------: | :-------: | 
+| `5.2.1-p3-build 70` | `Yes` | `No`  | `No` | `No` |
+| `5.2.1-p4-build 70` | `Yes` | `No`  | `No` | `No` |
+| `5.2.1-p5-build 114`| `No`  | `Yes` | `No` | `No` |
+| `5.2.1-p6-build 74` | `No`  | `Yes` | `No` | `No` |
+| `6.0.0-p1-build 47` | `No`  | `No`  | `Yes`| `Yes` |
+| `6.0.0-p1-build 22` | `No`  | `No`  | `Yes`| `Yes` |
 
 ## Release Logs Information
 
+- Support for MAC M1 processors
 - Support for ACOS 6.0.0-p1 AXAPIs
+- Support for ACOS 6.0.0-p2 AXAPIs
 - Fixed Change Optional to Required for partition, slb server, and slb service-group
 - Defect Fixtures
 
