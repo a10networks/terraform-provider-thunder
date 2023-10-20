@@ -13,7 +13,7 @@ resource "thunder_health_monitor" "HealthTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccHealthMonitor_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

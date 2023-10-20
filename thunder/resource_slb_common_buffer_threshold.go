@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
-//AxAPI cannot handle "operation" and "configuration" fields at the same time. Break /axapi/v3/slb/common to 2 resources
+// AxAPI cannot handle "operation" and "configuration" fields at the same time. Break /axapi/v3/slb/common to 2 resources
 func resourceSlbCommonBufferThreshold() *schema.Resource {
 	return &schema.Resource{
 		CreateContext: resourceSlbCommonBufferThresholdCreate,

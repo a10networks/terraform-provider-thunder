@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-//based on ACOS 5_2_1-P4_81
+// based on ACOS 5_2_1-P4_81
 type SlbVirtualServerPort struct {
 	Inst struct {
 		AclList                                     []SlbVirtualServerPortAclList        `json:"acl-list"`

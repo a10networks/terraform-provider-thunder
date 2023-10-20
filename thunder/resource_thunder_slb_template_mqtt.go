@@ -150,7 +150,7 @@ func resourceMqttDelete(ctx context.Context, d *schema.ResourceData, meta interf
 	return nil
 }
 
-//utility method to instantiate mqtt structure
+// utility method to instantiate mqtt structure
 func dataToMqtt(name string, d *schema.ResourceData) go_thunder.Mqtt {
 	var s go_thunder.Mqtt
 

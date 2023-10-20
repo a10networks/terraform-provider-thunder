@@ -14,7 +14,7 @@ resource "thunder_slb_template_ssli" "ssli" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccTemplateSsli_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

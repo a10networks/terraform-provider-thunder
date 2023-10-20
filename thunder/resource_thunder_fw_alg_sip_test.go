@@ -12,7 +12,7 @@ resource "thunder_fw_alg_sip" "FwAlgTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwAlgSip_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

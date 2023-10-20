@@ -14,7 +14,7 @@ resource "thunder_slb_fix" "fix1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderFix_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

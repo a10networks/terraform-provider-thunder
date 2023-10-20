@@ -14,7 +14,7 @@ resource "thunder_slb_smpp" "slb_smpp1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbSmpp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

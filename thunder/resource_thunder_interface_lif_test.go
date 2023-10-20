@@ -14,7 +14,7 @@ user_tag = "mylif"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccInterfaceLif_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

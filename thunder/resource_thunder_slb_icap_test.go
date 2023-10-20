@@ -14,7 +14,7 @@ resource "thunder_slb_icap" "icap" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbIcap_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

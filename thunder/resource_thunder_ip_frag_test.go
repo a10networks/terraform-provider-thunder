@@ -22,7 +22,7 @@ resource "thunder_ip_frag" "frag" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpFrag_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

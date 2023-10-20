@@ -15,7 +15,7 @@ resource "thunder_slb_dns" "dns" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderDNS_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

@@ -14,7 +14,7 @@ resource "thunder_slb_imapproxy" "imapProxy" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbImapproxy_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

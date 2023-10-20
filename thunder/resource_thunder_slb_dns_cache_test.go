@@ -15,7 +15,7 @@ resource "thunder_slb_dns_cache" "dns_cache" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderDNSCache_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

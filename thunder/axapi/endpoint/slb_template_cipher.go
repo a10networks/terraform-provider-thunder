@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-//based on ACOS 5_2_1-P4_90
+// based on ACOS 5_2_1-P4_90
 type SlbTemplateCipher struct {
 	Inst struct {
 		CipherCfg   []SlbTemplateCipherCipherCfg   `json:"cipher-cfg"`

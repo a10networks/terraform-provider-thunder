@@ -20,7 +20,7 @@ resource "thunder_slb_template_fix" "template_fix" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplateFix_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

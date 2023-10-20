@@ -15,7 +15,7 @@ resource "thunder_slb_generic_proxy" "generic_proxy1" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderSlbGenericProxy_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

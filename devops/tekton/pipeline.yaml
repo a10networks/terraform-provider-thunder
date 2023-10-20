@@ -1,0 +1,53 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: terraform-pipeline
+spec:
+  params:
+    - name: REPO_URL
+      description: URL of the repository to clone
+      type: string
+      default: https://github.com/a10networks/terraform-provider-thunder.git
+    - name: REPO_PATH
+      description: Path where the repository will be cloned
+      type: string
+      default: /workspace/repo
+    - name: DIR_PATH
+      description: Path where the examples are present
+      type: string
+      default: examples/resources/thunder_gslb_group
+    - name: IP_ADDRESS
+      description: IP address of ACOS
+      type: string
+      default: 10.64.3.183
+    - name: USER_NAME
+      description: User name of ACOS
+      type: string
+      default: admin
+    - name: PASSWORD
+      description: Password of ACOS
+      type: string
+      default: a10
+    - name: PROVIDER_VERSION
+      description: Thunder provider version
+      type: string
+      default: 1.2.2
+  tasks:
+    - name: configure-acos-using-terraform
+      taskRef:
+        name: configure-acos-using-terraform
+      params:
+        - name: REPO_URL
+          value: $(params.REPO_URL)
+        - name: REPO_PATH
+          value: $(params.REPO_PATH)
+        - name: DIR_PATH
+          value: $(params.DIR_PATH)
+        - name: IP_ADDRESS
+          value: $(params.IP_ADDRESS)
+        - name: USER_NAME
+          value: $(params.USER_NAME)
+        - name: PASSWORD
+          value: $(params.PASSWORD)
+        - name: PROVIDER_VERSION
+          value: $(params.PROVIDER_VERSION)

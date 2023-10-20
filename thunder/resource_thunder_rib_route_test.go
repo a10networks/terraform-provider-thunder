@@ -25,7 +25,7 @@ distance_nexthop_ip=1
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderRibRoute_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
@@ -69,7 +69,7 @@ func TestAccThunderRibRoute_import(t *testing.T) {
 	})
 }
 
-//Unit test for utility method to create Route structure
+// Unit test for utility method to create Route structure
 func TestDataToRibRoute(t *testing.T) {
 
 	ip_dest_addr := "0.0.0.0"

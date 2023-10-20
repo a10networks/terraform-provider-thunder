@@ -14,7 +14,7 @@ resource "thunder_fw_service_group" "FwTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwServiceGroup_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

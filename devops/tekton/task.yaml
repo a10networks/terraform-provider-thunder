@@ -1,0 +1,111 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: configure-acos-using-terraform
+spec:
+  params:
+    - name: REPO_URL
+      description: URL of the repository to clone
+      type: string
+      default: https://github.com/a10networks/terraform-provider-thunder.git
+    - name: REPO_PATH
+      description: Path where the repository will be cloned
+      type: string
+      default: /workspace/repo
+    - name: DIR_PATH
+      description: Path wehere the examples are present
+      type: string
+      default: examples/resources/thunder_gslb_group
+    - name: IP_ADDRESS
+      description: Ip address of acos
+      type: string
+      default: 10.10.10.10
+    - name: USER_NAME
+      description: User name of acos
+      type: string
+      default: admin
+    - name: PASSWORD
+      description: Password of acos
+      type: string
+      default: a10
+    - name: PROVIDER_VERSION
+      description: Thunder provider version
+      type: string
+      default: 1.2.2
+
+  steps:
+    - name: clone-repository
+      image: bitnami/git
+      workingDir: $(params.REPO_PATH)
+      command:
+        - sh
+        - -c
+      args:
+        - |
+          git clone $(params.REPO_URL)
+
+
+    - name: create-files
+      image: ubuntu
+      workingDir: $(params.REPO_PATH)
+      command:
+        - sh
+        - -c
+      args:
+        - |
+          cd  terraform-provider-thunder/$(params.DIR_PATH)
+
+          echo ' variable "dut9049"' { >> variables.tf
+          echo '   description = "Thunder hostname/IP address"' >> variables.tf
+          echo   type        = string >> variables.tf
+          echo } >> variables.tf
+
+          echo ' variable "username"' { >> variables.tf
+          echo '     description = "Thunder username"' >> variables.tf
+          echo     type        = string >> variables.tf
+          echo } >> variables.tf
+
+          echo ' variable "password"' { >> variables.tf
+          echo '     description = "Thunder password"' >> variables.tf
+          echo     type        = string >> variables.tf
+          echo } >> variables.tf
+
+          echo ' dut9049 = "$(params.IP_ADDRESS)"' >> terraform.tfvars
+          echo ' username = "$(params.USER_NAME)"' >> terraform.tfvars
+          echo ' password = "$(params.PASSWORD)"' >> terraform.tfvars
+
+          echo terraform { >> provider.tf
+          echo     required_providers { >> provider.tf
+          echo         thunder = { >> provider.tf
+          echo '      source  = "a10networks/thunder"' >> provider.tf
+          echo '      version = "$(params.PROVIDER_VERSION)"' >> provider.tf
+          echo         } >> provider.tf
+          echo     } >> provider.tf
+          echo  } >> provider.tf
+
+
+    - name: install-and-configure
+      image: ubuntu
+      workingDir: $(params.REPO_PATH)
+      command:
+        - sh
+        - -c
+      args:
+        - |
+          cd  terraform-provider-thunder/$(params.DIR_PATH)
+
+          echo "Upgrade packages!!"
+
+          apt update
+          apt install -y git wget unzip
+
+          echo "Install terraform!!!!"
+          wget https://releases.hashicorp.com/terraform/1.5.2/terraform_1.5.2_linux_amd64.zip
+          unzip terraform_1.5.2_linux_amd64.zip
+          chmod +x terraform
+          mv terraform /usr/local/bin/
+
+          echo "Apply configurations"
+          terraform init
+          terraform plan
+          terraform apply --auto-approve

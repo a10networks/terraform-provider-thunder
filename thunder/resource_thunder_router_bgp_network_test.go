@@ -15,7 +15,7 @@ resource "thunder_router_bgp_network" "RouterBgpTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccRouterBgpNetwork_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

@@ -20,7 +20,7 @@ stdrules {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccAccessListStandard_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

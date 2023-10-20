@@ -16,7 +16,7 @@ resource "thunder_slb_template_client_ssh" "client_ssh1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccTemplateClientSSH_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

@@ -27,7 +27,7 @@ resource "thunder_slb_template_cache" "template_cache1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplateCache_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

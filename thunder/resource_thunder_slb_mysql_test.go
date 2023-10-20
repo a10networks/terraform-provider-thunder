@@ -14,7 +14,7 @@ resource "thunder_slb_mysql" "mysql" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbMysql_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

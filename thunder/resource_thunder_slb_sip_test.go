@@ -15,7 +15,7 @@ resource "thunder_slb_sip" "slb_sip1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbSip_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

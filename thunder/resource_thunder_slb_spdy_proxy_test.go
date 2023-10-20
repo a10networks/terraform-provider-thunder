@@ -15,7 +15,7 @@ resource "thunder_slb_spdy_proxy" "slb_spdy_proxy1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbSpdyProxy_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

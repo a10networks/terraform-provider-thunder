@@ -14,7 +14,7 @@ resource "thunder_slb_ssl_forward_proxy" "SSLForwardProxy" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbSSLForwardProxy_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

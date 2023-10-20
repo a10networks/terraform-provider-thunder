@@ -15,7 +15,7 @@ resource "thunder_slb_connection_reuse" "connection_reuse" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderConnectionReuse_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

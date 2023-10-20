@@ -7,10 +7,10 @@ import (
 	"strconv"
 )
 
-//based on ACOS 5_2_1-P4_81
+// based on ACOS 5_2_1-P4_81
 type SlbServerPort struct {
 	Inst struct {
-		ServerName                  string //outside key
+		ServerName                  string                        //outside key
 		Action                      string                        `json:"action" dval:"enable"`
 		AlternatePort               []SlbServerPortAlternatePort  `json:"alternate-port"`
 		AuthCfg                     SlbServerPortAuthCfg          `json:"auth-cfg"`

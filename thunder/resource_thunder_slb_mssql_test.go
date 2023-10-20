@@ -14,7 +14,7 @@ resource "thunder_slb_mssql" "mssql" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbMssql_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

@@ -12,7 +12,7 @@ resource "thunder_ip_dns_suffix" "testname" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpDnsSuffix_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

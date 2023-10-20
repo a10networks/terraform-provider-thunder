@@ -14,7 +14,7 @@ resource "thunder_slb_crl_srcip" "crl_srcip" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderCrlSrcip_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

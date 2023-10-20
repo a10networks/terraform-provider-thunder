@@ -17,7 +17,7 @@ allowas_in_count = 1
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccRouterBgpAddressFamilyIpv6NeighborIpv6Neighbor_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

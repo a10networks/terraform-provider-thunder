@@ -1,12 +1,12 @@
 package endpoint
 
 import (
-	"net/url"
 	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
 	"github.com/clarketm/json"
+	"net/url"
 )
 
-//based on ACOS 5_2_1-P4_81
+// based on ACOS 5_2_1-P4_81
 type SnmpServerHostIpv6Host struct {
 	Inst struct {
 		Ipv6Addr  string `json:"ipv6-addr"`

@@ -23,7 +23,7 @@ func resourceSlbVirtualServerPort() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"acl_id": {
 							Type: schema.TypeInt, Optional: true, Description: "ACL id VPORT",
-							ValidateFunc:  validation.IntBetween(1, 199),
+							ValidateFunc: validation.IntBetween(1, 199),
 						},
 						"acl_name": {
 							Type: schema.TypeString, Optional: true, Description: "Apply an access list name (Named Access List)",
@@ -39,7 +39,7 @@ func resourceSlbVirtualServerPort() *schema.Resource {
 						},
 						"acl_id_src_nat_pool": {
 							Type: schema.TypeString, Optional: true, Description: "Policy based Source NAT (NAT Pool or Pool Group)",
-							ValidateFunc:  validation.StringLenBetween(1, 63),
+							ValidateFunc: validation.StringLenBetween(1, 63),
 						},
 						"acl_id_seq_num": {
 							Type: schema.TypeInt, Optional: true, Description: "Specify ACL precedence (sequence-number)",
@@ -47,7 +47,7 @@ func resourceSlbVirtualServerPort() *schema.Resource {
 						},
 						"shared_partition_pool_id": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Policy based Source NAT from shared partition",
-							ValidateFunc:  validation.IntBetween(0, 1),
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"acl_id_src_nat_pool_shared": {
 							Type: schema.TypeString, Optional: true, Description: "Policy based Source NAT (NAT Pool or Pool Group)",
@@ -59,7 +59,7 @@ func resourceSlbVirtualServerPort() *schema.Resource {
 						},
 						"v_acl_id_src_nat_pool": {
 							Type: schema.TypeString, Optional: true, Description: "Policy based Source NAT (NAT Pool or Pool Group)",
-							ValidateFunc:  validation.StringLenBetween(1, 63),
+							ValidateFunc: validation.StringLenBetween(1, 63),
 						},
 						"v_acl_id_seq_num": {
 							Type: schema.TypeInt, Optional: true, Description: "Specify ACL precedence (sequence-number)",
@@ -67,7 +67,7 @@ func resourceSlbVirtualServerPort() *schema.Resource {
 						},
 						"v_shared_partition_pool_id": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Policy based Source NAT from shared partition",
-							ValidateFunc:  validation.IntBetween(0, 1),
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"v_acl_id_src_nat_pool_shared": {
 							Type: schema.TypeString, Optional: true, Description: "Policy based Source NAT (NAT Pool or Pool Group)",
@@ -79,7 +79,7 @@ func resourceSlbVirtualServerPort() *schema.Resource {
 						},
 						"acl_name_src_nat_pool": {
 							Type: schema.TypeString, Optional: true, Description: "Policy based Source NAT (NAT Pool or Pool Group)",
-							ValidateFunc:  validation.StringLenBetween(1, 63),
+							ValidateFunc: validation.StringLenBetween(1, 63),
 						},
 						"acl_name_seq_num": {
 							Type: schema.TypeInt, Optional: true, Description: "Specify ACL precedence (sequence-number)",
@@ -87,7 +87,7 @@ func resourceSlbVirtualServerPort() *schema.Resource {
 						},
 						"shared_partition_pool_name": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Policy based Source NAT from shared partition",
-							ValidateFunc:  validation.IntBetween(0, 1),
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"acl_name_src_nat_pool_shared": {
 							Type: schema.TypeString, Optional: true, Description: "Policy based Source NAT (NAT Pool or Pool Group)",
@@ -107,7 +107,7 @@ func resourceSlbVirtualServerPort() *schema.Resource {
 						},
 						"v_shared_partition_pool_name": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Policy based Source NAT from shared partition",
-							ValidateFunc:  validation.IntBetween(0, 1),
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"v_acl_name_src_nat_pool_shared": {
 							Type: schema.TypeString, Optional: true, Description: "Policy based Source NAT (NAT Pool or Pool Group)",

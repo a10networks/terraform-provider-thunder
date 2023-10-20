@@ -15,7 +15,7 @@ resource "thunder_slb_persist" "persist1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbpersist_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

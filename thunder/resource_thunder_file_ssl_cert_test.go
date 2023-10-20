@@ -16,7 +16,7 @@ resource "thunder_file_ssl_cert" "FileTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFileSslCert_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

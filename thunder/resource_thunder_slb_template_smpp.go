@@ -160,7 +160,7 @@ func resourceSmppDelete(ctx context.Context, d *schema.ResourceData, meta interf
 	return nil
 }
 
-//utility method to instantiate smpp structure
+// utility method to instantiate smpp structure
 func dataToSmpp(name string, d *schema.ResourceData) go_thunder.Smpp {
 	var s go_thunder.Smpp
 

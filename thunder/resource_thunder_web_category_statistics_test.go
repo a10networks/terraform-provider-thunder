@@ -15,7 +15,7 @@ resource "thunder_web_category_statistics" "WebCategoryTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccWebCategoryStatistics_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

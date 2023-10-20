@@ -14,7 +14,7 @@ resource "thunder_slb_health_gateway" "health_gateway1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderHealthGateway_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

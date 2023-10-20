@@ -8,15 +8,15 @@ import (
 )
 
 type SslCertKey struct {
-	Name            string
-	Protocol        string
-	Host            string
-	Path            string
-	Username        string
-	Password        string
-	UseMgmtPort     int
-	Overwrite       int
-	Secured         int
+	Name        string
+	Protocol    string
+	Host        string
+	Path        string
+	Username    string
+	Password    string
+	UseMgmtPort int
+	Overwrite   int
+	Secured     int
 }
 
 func (p *SslCertKey) GetId() string {

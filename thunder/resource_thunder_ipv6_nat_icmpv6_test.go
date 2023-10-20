@@ -12,7 +12,7 @@ resource "thunder_ipv6_nat_icmpv6" "natIcmpV6" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpv6NatIcmpv6_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

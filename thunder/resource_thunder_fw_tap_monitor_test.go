@@ -12,7 +12,7 @@ resource "thunder_fw_tap_monitor" "FwTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwTapMonitor_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

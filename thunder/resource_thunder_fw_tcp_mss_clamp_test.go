@@ -14,7 +14,7 @@ resource "thunder_fw_tcp_mss_clamp" "FwTcpTest" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwTcpMssClamp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

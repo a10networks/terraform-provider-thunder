@@ -14,7 +14,7 @@ resource "thunder_slb_ssl_cert_revoke" "SSLCertRevoke" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbSSLCertRevoke_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

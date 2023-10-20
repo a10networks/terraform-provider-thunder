@@ -9,15 +9,15 @@ import (
 
 func SerializeToJson(a interface{}) ([]byte, error) {
 	t1 := reflect.TypeOf(a)
-        var t reflect.Type
-        var v reflect.Value
-        if (t1.Kind() == reflect.Ptr) {
-                t = t1.Elem()
-                v = reflect.ValueOf(a).Elem()
-        } else {
-                t = t1
-                v = reflect.ValueOf(a)
-        }
+	var t reflect.Type
+	var v reflect.Value
+	if t1.Kind() == reflect.Ptr {
+		t = t1.Elem()
+		v = reflect.ValueOf(a).Elem()
+	} else {
+		t = t1
+		v = reflect.ValueOf(a)
+	}
 	if v.IsZero() {
 		return nil, nil
 	}

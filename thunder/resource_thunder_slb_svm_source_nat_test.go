@@ -12,7 +12,7 @@ resource "thunder_slb_svm_source_nat" "svm_source" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbSvmSourceNat_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

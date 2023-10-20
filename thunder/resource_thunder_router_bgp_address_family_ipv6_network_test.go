@@ -15,7 +15,7 @@ resource "thunder_router_bgp_address_family_ipv6_network" "RouterBgpAddressFamil
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccRouterBgpAddressFamilyIpv6Network_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

@@ -17,7 +17,7 @@ peer_group_key = 1
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccRouterBgpNeighborPeerGroupNeighbor_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

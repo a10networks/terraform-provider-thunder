@@ -18,7 +18,7 @@ del_session_on_server_down= 0
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderTcp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

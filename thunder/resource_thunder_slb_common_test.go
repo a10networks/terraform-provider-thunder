@@ -28,7 +28,7 @@ resource "thunder_slb_common" "common" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbCommon_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

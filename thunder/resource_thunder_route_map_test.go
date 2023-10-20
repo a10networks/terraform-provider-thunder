@@ -15,7 +15,7 @@ resource "thunder_route_map" "routemapetest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccRouteMap_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

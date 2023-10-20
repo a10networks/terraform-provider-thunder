@@ -14,7 +14,7 @@ all = 1
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSnmpServerEnableTrapsSlbChange_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

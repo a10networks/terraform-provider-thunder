@@ -16,7 +16,7 @@ resource "thunder_router_bgp_redistribute" "RouterBgpTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccRouterBgpRedistribute_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

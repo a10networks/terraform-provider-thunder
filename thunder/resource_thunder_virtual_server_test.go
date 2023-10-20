@@ -28,7 +28,7 @@ service_group="` + SG + `"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderVirtualServer_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
@@ -76,7 +76,7 @@ func TestAccThunderVirtualServer_import(t *testing.T) {
 	})
 }
 
-//Unit test for utility method to create Virtual Server structure
+// Unit test for utility method to create Virtual Server structure
 func TestDataToVs(t *testing.T) {
 
 	StatsDataAction := "enable"

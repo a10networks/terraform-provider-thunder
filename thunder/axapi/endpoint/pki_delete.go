@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-//based on ACOS 5_2_1-P3_70
+// based on ACOS 5_2_1-P3_70
 type PkiDelete struct {
 	Inst struct {
 		Ca         string `json:"ca,omitempty"`

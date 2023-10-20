@@ -20,7 +20,7 @@ resource "thunder_slb_player_id_global" "player_id" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbPlayerIdGlobal_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

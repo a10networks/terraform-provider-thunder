@@ -14,7 +14,7 @@ resource "thunder_slb_l4" "l4" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbL4_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

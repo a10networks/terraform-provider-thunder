@@ -5,10 +5,10 @@ import (
 	"github.com/clarketm/json"
 )
 
-//based on ACOS 5_2_1-P4_81
+// based on ACOS 5_2_1-P4_81
 type SnmpServerHostIpv4HostL3v struct {
 	Inst struct {
-		Ipv4Addr  string `json:"ipv4-addr"`
+		Ipv4Addr string `json:"ipv4-addr"`
 	} `json:"ipv4-host"`
 }
 

@@ -15,7 +15,7 @@ resource "thunder_slb_hw_compress" "hw_compress1" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderHwCompress_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

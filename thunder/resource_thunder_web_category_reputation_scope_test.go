@@ -14,7 +14,7 @@ user_tag = "a"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccWebCategoryReputationScope_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

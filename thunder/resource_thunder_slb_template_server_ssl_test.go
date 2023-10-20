@@ -19,7 +19,7 @@ resource "thunder_slb_template_server_ssl" "server_ssl" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplateServerSSL_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

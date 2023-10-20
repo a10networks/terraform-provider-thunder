@@ -14,7 +14,7 @@ resource "thunder_system" "Test" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSystem_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

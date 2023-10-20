@@ -20,7 +20,7 @@ resource "thunder_slb_template_external_service" "external_service" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplateExternalService_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

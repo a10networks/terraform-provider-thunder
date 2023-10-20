@@ -13,7 +13,7 @@ var TEST_VRRP_COMMON_RESOURCE = `
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderVrrpCommon_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

@@ -13,7 +13,7 @@ resource "thunder_bgp" "Test" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccBgp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

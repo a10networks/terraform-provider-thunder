@@ -492,19 +492,19 @@ func resourceInterfaceVe() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"broadcast": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify OSPF broadcast multi-access network",
-																ValidateFunc:  validation.IntBetween(0, 1),
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"non_broadcast": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify OSPF NBMA network",
-																ValidateFunc:  validation.IntBetween(0, 1),
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"point_to_point": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify OSPF point-to-point network",
-																ValidateFunc:  validation.IntBetween(0, 1),
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"point_to_multipoint": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify OSPF point-to-multipoint network",
-																ValidateFunc:  validation.IntBetween(0, 1),
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"p2mp_nbma": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify non-broadcast point-to-multipoint network",

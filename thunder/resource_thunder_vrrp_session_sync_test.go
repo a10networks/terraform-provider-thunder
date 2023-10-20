@@ -11,7 +11,7 @@ var TEST_VRRP_SESSION_SYNC_RESOURCE = `
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderVrrpSessionSync_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

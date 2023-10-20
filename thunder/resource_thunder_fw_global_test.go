@@ -12,7 +12,7 @@ resource "thunder_fw_global" "FwTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwGlobal_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

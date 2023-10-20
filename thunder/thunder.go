@@ -13,7 +13,7 @@ type Thunder struct {
 	Password  string
 	Token     string
 	Partition string
-	log	  *axapi.ThunderLog
+	log       *axapi.ThunderLog
 }
 
 type Credentials struct {

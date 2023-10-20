@@ -148,7 +148,7 @@ func resourceSlbCommon() *schema.Resource {
 									},
 									"ipd_udp": {
 										Type: schema.TypeInt, Optional: true, Default: 200, Description: "Configure packets-per-second threshold per UDP port (default: 200)",
-										ValidateFunc: validation.IntBetween(0, 65535), 
+										ValidateFunc: validation.IntBetween(0, 65535),
 									},
 								},
 							},

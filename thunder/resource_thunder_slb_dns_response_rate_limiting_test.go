@@ -14,7 +14,7 @@ resource "thunder_slb_dns_response_rate_limiting" "response_rate" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderSlbDNSResponseRateLimiting_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

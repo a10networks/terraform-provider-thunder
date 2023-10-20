@@ -13,7 +13,7 @@ resource "thunder_snmp_server_management_index" "SnmpServerTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSnmpServerManagementIndex_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

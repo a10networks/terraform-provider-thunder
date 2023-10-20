@@ -12,7 +12,7 @@ resource "thunder_ip_dns_secondary" "dnssecondary" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpDnsSecondary_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

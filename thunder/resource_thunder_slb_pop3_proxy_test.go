@@ -15,7 +15,7 @@ resource "thunder_slb_pop3_proxy" "pop3_proxy1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbPop3Proxy_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

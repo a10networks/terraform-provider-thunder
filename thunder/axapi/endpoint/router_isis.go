@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 6_0_0-P1_10
+// based on ACOS 5_2_1-P4_90
 type RouterIsis struct {
 	Inst struct {
 		AddressFamily          RouterIsisAddressFamily          `json:"address-family"`
@@ -178,12 +178,12 @@ type RouterIsisNetList struct {
 }
 
 type RouterIsisPassiveInterfaceList struct {
-	Ethernet int    `json:"ethernet"`
-	Loopback int    `json:"loopback"`
-	Trunk    int    `json:"trunk"`
-	Lif      string `json:"lif"`
-	Ve       int    `json:"ve"`
-	Tunnel   int    `json:"tunnel"`
+	Ethernet int `json:"ethernet"`
+	Loopback int `json:"loopback"`
+	Trunk    int `json:"trunk"`
+	Lif      int `json:"lif"`
+	Ve       int `json:"ve"`
+	Tunnel   int `json:"tunnel"`
 }
 
 type RouterIsisProtocolList struct {

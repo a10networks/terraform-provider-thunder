@@ -12,7 +12,7 @@ resource "thunder_fw_helper_sessions" "FwTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwHelperSessions_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

@@ -26,7 +26,7 @@ bgp {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccRouterBgpAddressFamily_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

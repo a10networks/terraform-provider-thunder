@@ -13,7 +13,7 @@ resource "thunder_web_category" "Test" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccWebCategory_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

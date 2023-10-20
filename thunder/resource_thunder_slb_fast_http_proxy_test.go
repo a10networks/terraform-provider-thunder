@@ -15,7 +15,7 @@ resource "thunder_slb_fast_http_proxy" "http_proxy" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderSlbFastHttpProxy_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

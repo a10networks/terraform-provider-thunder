@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-//based on ACOS 5_2_1-P4_90
+// based on ACOS 5_2_1-P4_90
 type InterfaceVe struct {
 	Inst struct {
 		AccessList         InterfaceVeAccessList       `json:"access-list"`

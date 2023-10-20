@@ -12,7 +12,7 @@ resource "thunder_fw_tcp_rst_close_immediate" "FwTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwTcpRstCloseImmediate_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

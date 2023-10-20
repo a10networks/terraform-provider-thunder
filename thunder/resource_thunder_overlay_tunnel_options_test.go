@@ -17,7 +17,7 @@ var TEST_OVERLAY_TUNNEL_OPTIONS_RESOURCE = `
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderOverlayTunnelOptions_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

@@ -25,7 +25,7 @@ resource "thunder_overlay_tunnel_vtep" "vtep"{
 	}
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderOverlayTunnelVtep_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

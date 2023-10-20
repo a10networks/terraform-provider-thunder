@@ -20,7 +20,7 @@ resource "thunder_ip_reroute" "reRoute" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpReroute_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

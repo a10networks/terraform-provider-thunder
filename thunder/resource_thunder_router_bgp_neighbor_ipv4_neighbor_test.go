@@ -17,7 +17,7 @@ nbr_remote_as = 2
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccRouterBgpNeighborIpv4Neighbor_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

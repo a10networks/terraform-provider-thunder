@@ -14,7 +14,7 @@ resource "thunder_slb_sport_rate_limit" "sport_rate1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbSportRateLimit_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

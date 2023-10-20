@@ -200,7 +200,7 @@ func resourceLoggingDelete(ctx context.Context, d *schema.ResourceData, meta int
 	return nil
 }
 
-//utility method to instantiate Logging structure
+// utility method to instantiate Logging structure
 func dataToLogging(name string, d *schema.ResourceData) go_thunder.Logging {
 	var s go_thunder.Logging
 

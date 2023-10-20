@@ -7,9 +7,11 @@ import (
 
 // based on ACOS 5_2_1-P6_74
 type SystemCpuDataCpuOper struct {
-	Inst struct {
-		Oper SystemCpuDataCpuOperOper `json:"oper"`
-	} `json:"oper"`
+	Oper SystemCpuDataCpuOperOper `json:"oper"`
+}
+
+type SystemCpuDataCpus struct {
+	DataSystemCpuDataCpu SystemCpuDataCpuOper `json:"data-cpu"`
 }
 
 type SystemCpuDataCpuOperOper struct {
@@ -36,48 +38,17 @@ func (p *SystemCpuDataCpuOper) getPath() string {
 	return "system-cpu/data-cpu/oper"
 }
 
-func (p *SystemCpuDataCpuOper) Post(authToken string, host string, logger *axapi.ThunderLog) error {
-	logger.Println("SystemCpuDataCpuOper::Post")
-	headers := axapi.GenRequestHeader(authToken)
-	payloadBytes, err := axapi.SerializeToJson(p)
-	if err != nil {
-		logger.Println("Failed to serialize struct as json", err)
-		return err
-	}
-	logger.Println("payload:", string(payloadBytes))
-	_, _, err = axapi.SendPost(host, p.getPath(), payloadBytes, headers, logger)
-	return err
-}
-
-func (p *SystemCpuDataCpuOper) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) error {
+func (p *SystemCpuDataCpuOper) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) (SystemCpuDataCpus, error) {
 	logger.Println("SystemCpuDataCpuOper::Get")
 	headers := axapi.GenRequestHeader(authToken)
 	_, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
+	var systemCpuData SystemCpuDataCpus
+
 	if err == nil {
-		err = json.Unmarshal(axResp, &p)
+		err = json.Unmarshal(axResp, &systemCpuData)
 		if err != nil {
 			logger.Println("json.Unmarshal() failed with error", err)
 		}
 	}
-	return err
-}
-
-func (p *SystemCpuDataCpuOper) Put(authToken string, host string, logger *axapi.ThunderLog) error {
-	logger.Println("SystemCpuDataCpuOper::Put")
-	headers := axapi.GenRequestHeader(authToken)
-	payloadBytes, err := axapi.SerializeToJson(p)
-	if err != nil {
-		logger.Println("Failed to serialize struct as json", err)
-		return err
-	}
-	logger.Println("payload: " + string(payloadBytes))
-	_, _, err = axapi.SendPut(host, p.getPath(), "", payloadBytes, headers, logger)
-	return err
-}
-
-func (p *SystemCpuDataCpuOper) Delete(authToken string, host string, instId string, logger *axapi.ThunderLog) error {
-	logger.Println("SystemCpuDataCpuOper::Delete")
-	headers := axapi.GenRequestHeader(authToken)
-	_, _, err := axapi.SendDelete(host, p.getPath(), "", nil, headers, logger)
-	return err
+	return systemCpuData, err
 }

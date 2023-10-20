@@ -22,7 +22,7 @@ resource "thunder_ip_prefix_list" "IpPrefixList" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpPrefixList_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

@@ -24,7 +24,7 @@ port=80
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderServiceGroup_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
@@ -68,7 +68,7 @@ func TestAccThunderServiceGroup_import(t *testing.T) {
 	})
 }
 
-//Unit test for utility method to create Service group structure
+// Unit test for utility method to create Service group structure
 func TestDataToSg(t *testing.T) {
 
 	ConnRate := 1

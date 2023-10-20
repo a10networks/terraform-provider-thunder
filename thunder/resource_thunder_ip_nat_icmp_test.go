@@ -13,7 +13,7 @@ resource "thunder_ip_nat_icmp" "NatIcmp" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpNatIcmp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

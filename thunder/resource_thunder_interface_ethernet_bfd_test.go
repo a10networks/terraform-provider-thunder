@@ -17,7 +17,7 @@ resource "thunder_interface_ethernet_bfd" "ethernetbfd" {
   }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccInterfaceEthernetBFD_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

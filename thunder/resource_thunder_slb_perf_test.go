@@ -14,7 +14,7 @@ resource "thunder_slb_perf" "perf1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbPerf_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

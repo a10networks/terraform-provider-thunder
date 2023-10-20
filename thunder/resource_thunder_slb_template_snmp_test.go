@@ -23,7 +23,7 @@ resource "thunder_slb_template_snmp" "snmp" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplateSNMP_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

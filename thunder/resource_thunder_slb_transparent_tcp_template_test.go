@@ -12,7 +12,7 @@ resource "thunder_slb_transparent_tcp_template" "tcp_template" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTransperentTcpTemplate_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

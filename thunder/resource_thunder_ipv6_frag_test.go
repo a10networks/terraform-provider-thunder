@@ -16,7 +16,7 @@ resource "thunder_ipv6_frag" "testname" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpv6Frag_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

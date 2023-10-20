@@ -12,7 +12,7 @@ resource "thunder_slb_transparent_acl_template" "acl_template" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTransparentAclTemplate_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

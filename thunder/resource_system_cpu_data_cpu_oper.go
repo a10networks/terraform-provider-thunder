@@ -9,11 +9,8 @@ import (
 
 func resourceSystemCpuDataCpuOper() *schema.Resource {
 	return &schema.Resource{
-		Description:   "`thunder_system_cpu_data_cpu_oper`: Operational Status for the object data-cpu\n\n__PLACEHOLDER__",
-		CreateContext: resourceSystemCpuDataCpuOperCreate,
-		UpdateContext: resourceSystemCpuDataCpuOperUpdate,
-		ReadContext:   resourceSystemCpuDataCpuOperRead,
-		DeleteContext: resourceSystemCpuDataCpuOperDelete,
+		Description: "`thunder_system_cpu_data_cpu_oper`: Operational Status for the object data-cpu\n\n__PLACEHOLDER__",
+		ReadContext: resourceSystemCpuDataCpuOperRead,
 		Schema: map[string]*schema.Schema{
 			"oper": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -60,23 +57,6 @@ func resourceSystemCpuDataCpuOper() *schema.Resource {
 	}
 }
 
-func resourceSystemCpuDataCpuOperCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceSystemCpuDataCpuOperCreate()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointSystemCpuDataCpuOper(d)
-		d.SetId(obj.GetId())
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
-		return resourceSystemCpuDataCpuOperRead(ctx, d, meta)
-	}
-	return diags
-}
-
 func resourceSystemCpuDataCpuOperRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -84,7 +64,10 @@ func resourceSystemCpuDataCpuOperRead(ctx context.Context, d *schema.ResourceDat
 	var diags diag.Diagnostics
 	if client.Host != "" {
 		obj := dataToEndpointSystemCpuDataCpuOper(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		items := setObjectSystemCpuDataCpuOperOper(res)
+		d.SetId(obj.GetId())
+		d.Set("oper", items)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -92,35 +75,30 @@ func resourceSystemCpuDataCpuOperRead(ctx context.Context, d *schema.ResourceDat
 	return diags
 }
 
-func resourceSystemCpuDataCpuOperUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceSystemCpuDataCpuOperUpdate()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointSystemCpuDataCpuOper(d)
-		err := obj.Put(client.Token, client.Host, logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
-		return resourceSystemCpuDataCpuOperRead(ctx, d, meta)
-	}
-	return diags
+func setObjectSystemCpuDataCpuOperOper(res edpt.SystemCpuDataCpus) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	in["number_of_cpu"] = res.DataSystemCpuDataCpu.Oper.NumberOfCpu
+	in["number_of_data_cpu"] = res.DataSystemCpuDataCpu.Oper.NumberOfDataCpu
+	in["cpu_usage"] = setSliceSystemCpuDataCpuOperOperCpuUsage(res.DataSystemCpuDataCpu.Oper.CpuUsage)
+	result = append(result, in)
+	return result
 }
 
-func resourceSystemCpuDataCpuOperDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceSystemCpuDataCpuOperDelete()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointSystemCpuDataCpuOper(d)
-		err := obj.Delete(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
+func setSliceSystemCpuDataCpuOperOperCpuUsage(d []edpt.SystemCpuDataCpuOperOperCpuUsage) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["cpu_id"] = item.CpuId
+		in["1_sec"] = item.Sec1
+		in["5_sec"] = item.Sec5
+		in["10_sec"] = item.Sec10
+		in["30_sec"] = item.Sec30
+		in["60_sec"] = item.Sec60
+		in["dcpu_str"] = item.DcpuStr
+		result = append(result, in)
 	}
-	return diags
+	return result
 }
 
 func getObjectSystemCpuDataCpuOperOper(d []interface{}) edpt.SystemCpuDataCpuOperOper {
@@ -155,6 +133,6 @@ func getSliceSystemCpuDataCpuOperOperCpuUsage(d []interface{}) []edpt.SystemCpuD
 
 func dataToEndpointSystemCpuDataCpuOper(d *schema.ResourceData) edpt.SystemCpuDataCpuOper {
 	var ret edpt.SystemCpuDataCpuOper
-	ret.Inst.Oper = getObjectSystemCpuDataCpuOperOper(d.Get("oper").([]interface{}))
+	ret.Oper = getObjectSystemCpuDataCpuOperOper(d.Get("oper").([]interface{}))
 	return ret
 }

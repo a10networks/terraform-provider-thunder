@@ -9,7 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
-//Not direct mapping to any axapi endpoint
+// Not direct mapping to any axapi endpoint
 func resourceFileBwList() *schema.Resource {
 	return &schema.Resource{
 		Description:   "`thunder_file_class_list`: Black-White List file\n\n",

@@ -13,7 +13,7 @@ resource "thunder_ip_route_static_bfd" "ipStaticBFD" {
 }  
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIPRouteStaticBfd_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

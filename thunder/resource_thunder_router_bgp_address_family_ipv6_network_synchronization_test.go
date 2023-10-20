@@ -13,7 +13,7 @@ resource "thunder_router_bgp_address_family_ipv6_network_synchronization" "Route
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccRouterBgpAddressFamilyIpv6NetworkSynchronization_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

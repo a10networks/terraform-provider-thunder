@@ -13,7 +13,7 @@ resource "thunder_ip_icmp" "ICMP" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpIcmp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

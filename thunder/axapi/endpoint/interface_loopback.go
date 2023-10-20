@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-//based on ACOS 5_2_1-P4_90
+// based on ACOS 5_2_1-P4_90
 type InterfaceLoopback struct {
 	Inst struct {
 		Ifnum      int                         `json:"ifnum" dval:"-1"`

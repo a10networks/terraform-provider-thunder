@@ -15,7 +15,7 @@ resource "thunder_slb_aflow" "aflow1" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderAflow_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

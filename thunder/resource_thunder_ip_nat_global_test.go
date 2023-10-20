@@ -12,7 +12,7 @@ resource "thunder_ip_nat_global" "IpNatGlobal" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpNatGlobal_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

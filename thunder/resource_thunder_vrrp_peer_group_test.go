@@ -18,7 +18,7 @@ var TEST_VRRP_PEER_GROUP_RESOURCE = `
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderVrrpPeerGroup_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

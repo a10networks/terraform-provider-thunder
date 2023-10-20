@@ -13,7 +13,7 @@ resource "thunder_snmp_server_location" "SnmpServerTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSnmpServerLocation_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

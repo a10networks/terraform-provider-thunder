@@ -16,7 +16,7 @@ resource "thunder_slb_template_dynamic_service" "dynamic_service" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplateDynamicService_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

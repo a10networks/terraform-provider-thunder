@@ -14,7 +14,7 @@ resource "thunder_fw_app" "FwTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwApp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

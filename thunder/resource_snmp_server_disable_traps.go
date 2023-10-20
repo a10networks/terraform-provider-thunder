@@ -1,8 +1,8 @@
 package thunder
 
 import (
-	"errors"
 	"context"
+	"errors"
 	edpt "github.com/a10networks/terraform-provider-thunder/thunder/axapi/endpoint"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -145,4 +145,3 @@ func runtimeCheckSnmpServerDisableTraps(th Thunder) error {
 	}
 	return nil
 }
-

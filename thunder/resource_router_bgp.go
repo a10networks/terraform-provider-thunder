@@ -2,14 +2,16 @@ package thunder
 
 import (
 	"context"
+	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
 	edpt "github.com/a10networks/terraform-provider-thunder/thunder/axapi/endpoint"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
 func resourceRouterBgp() *schema.Resource {
 	return &schema.Resource{
-		Description:   "`thunder_router_bgp`: Border Gateway Protocol (BGP)\n\n__PLACEHOLDER__",
+		Description:   "`thunder_router_bgp`: Border Gateway Protocol (BGP)\n\n",
 		CreateContext: resourceRouterBgpCreate,
 		UpdateContext: resourceRouterBgpUpdate,
 		ReadContext:   resourceRouterBgpRead,
@@ -29,24 +31,31 @@ func resourceRouterBgp() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"dampening": {
 													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable route-flap dampening",
+													ValidateFunc: validation.IntBetween(0, 1),
 												},
 												"dampening_half": {
 													Type: schema.TypeInt, Optional: true, Description: "Reachability Half-life time for the penalty(minutes)",
+													ValidateFunc: validation.IntBetween(1, 45),
 												},
 												"dampening_start_reuse": {
 													Type: schema.TypeInt, Optional: true, Description: "Value to start reusing a route",
+													ValidateFunc: validation.IntBetween(1, 20000),
 												},
 												"dampening_start_supress": {
 													Type: schema.TypeInt, Optional: true, Description: "Value to start suppressing a route",
+													ValidateFunc: validation.IntBetween(1, 20000),
 												},
 												"dampening_max_supress": {
 													Type: schema.TypeInt, Optional: true, Description: "Maximum duration to suppress a stable route(minutes)",
+													ValidateFunc: validation.IntBetween(1, 255),
 												},
 												"dampening_unreachability": {
 													Type: schema.TypeInt, Optional: true, Description: "Un-reachability Half-life time for the penalty(minutes)",
+													ValidateFunc: validation.IntBetween(1, 45),
 												},
 												"route_map": {
 													Type: schema.TypeString, Optional: true, Description: "Route-map to specify criteria for dampening (Route-map name)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
 												},
 											},
 										},
@@ -57,21 +66,26 @@ func resourceRouterBgp() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"distance_ext": {
 													Type: schema.TypeInt, Optional: true, Description: "Distance for routes external to the AS",
+													ValidateFunc: validation.IntBetween(1, 255),
 												},
 												"distance_int": {
 													Type: schema.TypeInt, Optional: true, Description: "Distance for routes internal to the AS",
+													ValidateFunc: validation.IntBetween(1, 255),
 												},
 												"distance_local": {
 													Type: schema.TypeInt, Optional: true, Description: "Distance for local routes",
+													ValidateFunc: validation.IntBetween(1, 255),
 												},
 											},
 										},
 									},
 									"maximum_paths_value": {
 										Type: schema.TypeInt, Optional: true, Default: 1, Description: "Supported BGP multipath numbers",
+										ValidateFunc: validation.IntBetween(1, 64),
 									},
 									"originate": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Distribute an IPv6 default route",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"aggregate_address_list": {
 										Type: schema.TypeList, Optional: true, Description: "",
@@ -79,21 +93,26 @@ func resourceRouterBgp() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"aggregate_address": {
 													Type: schema.TypeString, Optional: true, Description: "Configure BGP aggregate entries (Aggregate IPv6 prefix)",
+													ValidateFunc: axapi.IsIpv6AddressPlen,
 												},
 												"as_set": {
 													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Generate AS set path information",
+													ValidateFunc: validation.IntBetween(0, 1),
 												},
 												"summary_only": {
 													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Filter more specific routes from updates",
+													ValidateFunc: validation.IntBetween(0, 1),
 												},
 											},
 										},
 									},
 									"auto_summary": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic network number summarization",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"synchronization": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Perform IGP synchronization",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -108,29 +127,10 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"network_synchronization": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Perform IGP synchronization",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-															},
-														},
-													},
-												},
-												"monitor": {
-													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"default": {
-																Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-																Elem: &schema.Resource{
-																	Schema: map[string]*schema.Schema{
-																		"network_monitor_default": {
-																			Type: schema.TypeInt, Optional: true, Default: 0, Description: "default route monitoring",
-																		},
-																		"uuid": {
-																			Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-																		},
-																	},
-																},
 															},
 														},
 													},
@@ -141,18 +141,23 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"network_ipv6": {
 																Type: schema.TypeString, Required: true, Description: "Specify a network to announce via BGP",
+																ValidateFunc: axapi.IsIpv6AddressPlen,
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route-map to modify the attributes (Name of the route map)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"backdoor": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify a BGP backdoor route",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"description": {
 																Type: schema.TypeString, Optional: true, Description: "Network specific description (Up to 80 characters describing this network)",
+																ValidateFunc: validation.StringLenBetween(1, 80),
 															},
 															"comm_value": {
 																Type: schema.TypeString, Optional: true, Description: "community value in the format 1-4294967295|AA:NN|internet|local-AS|no-advertise|no-export",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -173,27 +178,91 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"peer_group": {
 																Type: schema.TypeString, Required: true, Description: "Neighbor tag",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"activate": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the Address Family for this Neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"allowas_in": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Accept as-path with my AS present in it",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"allowas_in_count": {
 																Type: schema.TypeInt, Optional: true, Default: 3, Description: "Number of occurrences of AS number",
+																ValidateFunc: validation.IntBetween(1, 10),
+															},
+															"prefix_list_direction": {
+																Type: schema.TypeString, Optional: true, Description: "'both': both; 'receive': receive; 'send': send;",
+																ValidateFunc: validation.StringInSlice([]string{"both", "receive", "send"}, false),
+															},
+															"default_originate": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Originate default route to this neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
+															},
+															"route_map": {
+																Type: schema.TypeString, Optional: true, Description: "Route-map to specify criteria to originate default (route-map name)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
+															},
+															"distribute_lists": {
+																Type: schema.TypeList, Optional: true, Description: "",
+																Elem: &schema.Resource{
+																	Schema: map[string]*schema.Schema{
+																		"distribute_list": {
+																			Type: schema.TypeString, Optional: true, Description: "Filter updates to/from this neighbor (IP standard/extended/named access list)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
+																		},
+																		"distribute_list_direction": {
+																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+																			ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
+																		},
+																	},
+																},
+															},
+															"neighbor_filter_lists": {
+																Type: schema.TypeList, Optional: true, Description: "",
+																Elem: &schema.Resource{
+																	Schema: map[string]*schema.Schema{
+																		"filter_list": {
+																			Type: schema.TypeString, Optional: true, Description: "Establish BGP filters (AS path access-list name)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
+																		},
+																		"filter_list_direction": {
+																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+																			ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
+																		},
+																	},
+																},
 															},
 															"maximum_prefix": {
 																Type: schema.TypeInt, Optional: true, Description: "Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))",
 															},
 															"maximum_prefix_thres": {
 																Type: schema.TypeInt, Optional: true, Description: "threshold-value, 1 to 100 percent",
+																ValidateFunc: validation.IntBetween(1, 100),
 															},
 															"next_hop_self": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable the next hop calculation for this neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
+															},
+															"neighbor_prefix_lists": {
+																Type: schema.TypeList, Optional: true, Description: "",
+																Elem: &schema.Resource{
+																	Schema: map[string]*schema.Schema{
+																		"nbr_prefix_list": {
+																			Type: schema.TypeString, Optional: true, Description: "Filter updates to/from this neighbor (Name of a prefix list)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
+																		},
+																		"nbr_prefix_list_direction": {
+																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+																			ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
+																		},
+																	},
+																},
 															},
 															"remove_private_as": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Remove private AS number from outbound updates",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"neighbor_route_map_lists": {
 																Type: schema.TypeList, Optional: true, Description: "",
@@ -201,18 +270,30 @@ func resourceRouterBgp() *schema.Resource {
 																	Schema: map[string]*schema.Schema{
 																		"nbr_route_map": {
 																			Type: schema.TypeString, Optional: true, Description: "Apply route map to neighbor (Name of route map)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
 																		},
 																		"nbr_rmap_direction": {
 																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+																			ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 																		},
 																	},
 																},
 															},
+															"send_community_val": {
+																Type: schema.TypeString, Optional: true, Default: "both", Description: "'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;",
+																ValidateFunc: validation.StringInSlice([]string{"both", "none", "standard", "extended"}, false),
+															},
 															"inbound": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow inbound soft reconfiguration for this neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
+															},
+															"unsuppress_map": {
+																Type: schema.TypeString, Optional: true, Description: "Route-map to selectively unsuppress suppressed routes (Name of route map)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"weight": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Set default weight for routes from this neighbor",
+																ValidateFunc: validation.IntBetween(0, 65535),
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -226,30 +307,39 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"neighbor_ipv4": {
 																Type: schema.TypeString, Required: true, Description: "Neighbor address",
+																ValidateFunc: validation.IsIPv4Address,
 															},
 															"peer_group_name": {
 																Type: schema.TypeString, Optional: true, Description: "Configure peer-group (peer-group name)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"activate": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the Address Family for this Neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"allowas_in": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Accept as-path with my AS present in it",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"allowas_in_count": {
 																Type: schema.TypeInt, Optional: true, Default: 3, Description: "Number of occurrences of AS number",
+																ValidateFunc: validation.IntBetween(1, 10),
 															},
 															"prefix_list_direction": {
 																Type: schema.TypeString, Optional: true, Description: "'both': both; 'receive': receive; 'send': send;",
+																ValidateFunc: validation.StringInSlice([]string{"both", "receive", "send"}, false),
 															},
 															"graceful_restart": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "enable graceful-restart helper for this neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"default_originate": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Originate default route to this neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route-map to specify criteria to originate default (route-map name)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"distribute_lists": {
 																Type: schema.TypeList, Optional: true, Description: "",
@@ -257,9 +347,11 @@ func resourceRouterBgp() *schema.Resource {
 																	Schema: map[string]*schema.Schema{
 																		"distribute_list": {
 																			Type: schema.TypeString, Optional: true, Description: "Filter updates to/from this neighbor (IP standard/extended/named access list)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
 																		},
 																		"distribute_list_direction": {
 																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+																			ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 																		},
 																	},
 																},
@@ -270,9 +362,11 @@ func resourceRouterBgp() *schema.Resource {
 																	Schema: map[string]*schema.Schema{
 																		"filter_list": {
 																			Type: schema.TypeString, Optional: true, Description: "Establish BGP filters (AS path access-list name)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
 																		},
 																		"filter_list_direction": {
 																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+																			ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 																		},
 																	},
 																},
@@ -282,12 +376,15 @@ func resourceRouterBgp() *schema.Resource {
 															},
 															"maximum_prefix_thres": {
 																Type: schema.TypeInt, Optional: true, Description: "threshold-value, 1 to 100 percent",
+																ValidateFunc: validation.IntBetween(1, 100),
 															},
 															"restart_min": {
 																Type: schema.TypeInt, Optional: true, Description: "restart value, 1 to 1440 minutes",
+																ValidateFunc: validation.IntBetween(1, 1440),
 															},
 															"next_hop_self": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable the next hop calculation for this neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"neighbor_prefix_lists": {
 																Type: schema.TypeList, Optional: true, Description: "",
@@ -295,15 +392,18 @@ func resourceRouterBgp() *schema.Resource {
 																	Schema: map[string]*schema.Schema{
 																		"nbr_prefix_list": {
 																			Type: schema.TypeString, Optional: true, Description: "Filter updates to/from this neighbor (Name of a prefix list)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
 																		},
 																		"nbr_prefix_list_direction": {
 																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+																			ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 																		},
 																	},
 																},
 															},
 															"remove_private_as": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Remove private AS number from outbound updates",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"neighbor_route_map_lists": {
 																Type: schema.TypeList, Optional: true, Description: "",
@@ -311,24 +411,30 @@ func resourceRouterBgp() *schema.Resource {
 																	Schema: map[string]*schema.Schema{
 																		"nbr_route_map": {
 																			Type: schema.TypeString, Optional: true, Description: "Apply route map to neighbor (Name of route map)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
 																		},
 																		"nbr_rmap_direction": {
 																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+																			ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 																		},
 																	},
 																},
 															},
 															"send_community_val": {
 																Type: schema.TypeString, Optional: true, Default: "both", Description: "'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;",
+																ValidateFunc: validation.StringInSlice([]string{"both", "none", "standard", "extended"}, false),
 															},
 															"inbound": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow inbound soft reconfiguration for this neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"unsuppress_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route-map to selectively unsuppress suppressed routes (Name of route map)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"weight": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Set default weight for routes from this neighbor",
+																ValidateFunc: validation.IntBetween(0, 65535),
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -342,30 +448,39 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"neighbor_ipv6": {
 																Type: schema.TypeString, Required: true, Description: "Neighbor IPv6 address",
+																ValidateFunc: validation.IsIPv6Address,
 															},
 															"peer_group_name": {
 																Type: schema.TypeString, Optional: true, Description: "Configure peer-group (peer-group name)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"activate": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the Address Family for this Neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"allowas_in": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Accept as-path with my AS present in it",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"allowas_in_count": {
 																Type: schema.TypeInt, Optional: true, Default: 3, Description: "Number of occurrences of AS number",
+																ValidateFunc: validation.IntBetween(1, 10),
 															},
 															"prefix_list_direction": {
 																Type: schema.TypeString, Optional: true, Description: "'both': both; 'receive': receive; 'send': send;",
+																ValidateFunc: validation.StringInSlice([]string{"both", "receive", "send"}, false),
 															},
 															"graceful_restart": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "enable graceful-restart helper for this neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"default_originate": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Originate default route to this neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route-map to specify criteria to originate default (route-map name)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"distribute_lists": {
 																Type: schema.TypeList, Optional: true, Description: "",
@@ -373,9 +488,11 @@ func resourceRouterBgp() *schema.Resource {
 																	Schema: map[string]*schema.Schema{
 																		"distribute_list": {
 																			Type: schema.TypeString, Optional: true, Description: "Filter updates to/from this neighbor (IP standard/extended/named access list)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
 																		},
 																		"distribute_list_direction": {
 																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+																			ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 																		},
 																	},
 																},
@@ -386,9 +503,11 @@ func resourceRouterBgp() *schema.Resource {
 																	Schema: map[string]*schema.Schema{
 																		"filter_list": {
 																			Type: schema.TypeString, Optional: true, Description: "Establish BGP filters (AS path access-list name)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
 																		},
 																		"filter_list_direction": {
 																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+																			ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 																		},
 																	},
 																},
@@ -398,12 +517,15 @@ func resourceRouterBgp() *schema.Resource {
 															},
 															"maximum_prefix_thres": {
 																Type: schema.TypeInt, Optional: true, Description: "threshold-value, 1 to 100 percent",
+																ValidateFunc: validation.IntBetween(1, 100),
 															},
 															"restart_min": {
 																Type: schema.TypeInt, Optional: true, Description: "restart value, 1 to 1440 minutes",
+																ValidateFunc: validation.IntBetween(1, 1440),
 															},
 															"next_hop_self": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable the next hop calculation for this neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"neighbor_prefix_lists": {
 																Type: schema.TypeList, Optional: true, Description: "",
@@ -411,15 +533,18 @@ func resourceRouterBgp() *schema.Resource {
 																	Schema: map[string]*schema.Schema{
 																		"nbr_prefix_list": {
 																			Type: schema.TypeString, Optional: true, Description: "Filter updates to/from this neighbor (Name of a prefix list)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
 																		},
 																		"nbr_prefix_list_direction": {
 																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+																			ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 																		},
 																	},
 																},
 															},
 															"remove_private_as": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Remove private AS number from outbound updates",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"neighbor_route_map_lists": {
 																Type: schema.TypeList, Optional: true, Description: "",
@@ -427,24 +552,30 @@ func resourceRouterBgp() *schema.Resource {
 																	Schema: map[string]*schema.Schema{
 																		"nbr_route_map": {
 																			Type: schema.TypeString, Optional: true, Description: "Apply route map to neighbor (Name of route map)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
 																		},
 																		"nbr_rmap_direction": {
 																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+																			ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 																		},
 																	},
 																},
 															},
 															"send_community_val": {
 																Type: schema.TypeString, Optional: true, Default: "both", Description: "'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;",
+																ValidateFunc: validation.StringInSlice([]string{"both", "none", "standard", "extended"}, false),
 															},
 															"inbound": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow inbound soft reconfiguration for this neighbor",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"unsuppress_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route-map to selectively unsuppress suppressed routes (Name of route map)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"weight": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Set default weight for routes from this neighbor",
+																ValidateFunc: validation.IntBetween(0, 65535),
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -458,9 +589,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"ethernet": {
 																Type: schema.TypeInt, Required: true, Description: "Ethernet interface number",
+																ValidateFunc: validation.IntAtLeast(1),
 															},
 															"peer_group_name": {
 																Type: schema.TypeString, Optional: true, Description: "",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -474,9 +607,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"ve": {
 																Type: schema.TypeInt, Required: true, Description: "Virtual ethernet interface number",
+																ValidateFunc: validation.IntAtLeast(1),
 															},
 															"peer_group_name": {
 																Type: schema.TypeString, Optional: true, Description: "",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -490,9 +625,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"trunk": {
 																Type: schema.TypeInt, Required: true, Description: "Trunk interface number",
+																ValidateFunc: validation.IntAtLeast(1),
 															},
 															"peer_group_name": {
 																Type: schema.TypeString, Optional: true, Description: "",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -513,9 +650,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"connected": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Connected",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 														},
 													},
@@ -526,9 +665,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"floating_ip": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Floating IP",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 														},
 													},
@@ -539,9 +680,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"nat64": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "NAT64 Prefix",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 														},
 													},
@@ -552,9 +695,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"nat_map": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "NAT MAP Prefix",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 														},
 													},
@@ -565,9 +710,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"lw4o6": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "LW4O6 Prefix",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 														},
 													},
@@ -578,9 +725,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"static_nat": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Static NAT Prefix",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 														},
 													},
@@ -591,9 +740,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"ip_nat": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "IP NAT",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 														},
 													},
@@ -604,9 +755,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"ip_nat_list": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "IP NAT list",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 														},
 													},
@@ -617,9 +770,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"isis": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "ISO IS-IS",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 														},
 													},
@@ -630,9 +785,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"ospf": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Open Shortest Path First (OSPF)",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 														},
 													},
@@ -643,9 +800,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"rip": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Routing Information Protocol (RIP)",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 														},
 													},
@@ -656,9 +815,11 @@ func resourceRouterBgp() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"static": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Static routes",
+																ValidateFunc: validation.IntBetween(0, 1),
 															},
 															"route_map": {
 																Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																ValidateFunc: validation.StringLenBetween(1, 128),
 															},
 														},
 													},
@@ -673,9 +834,11 @@ func resourceRouterBgp() *schema.Resource {
 																	Schema: map[string]*schema.Schema{
 																		"only_flagged": {
 																			Type: schema.TypeInt, Optional: true, Default: 0, Description: "Selected Virtual IP (VIP)",
+																			ValidateFunc: validation.IntBetween(0, 1),
 																		},
 																		"route_map": {
 																			Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
 																		},
 																	},
 																},
@@ -686,9 +849,11 @@ func resourceRouterBgp() *schema.Resource {
 																	Schema: map[string]*schema.Schema{
 																		"only_not_flagged": {
 																			Type: schema.TypeInt, Optional: true, Default: 0, Description: "Only not flagged",
+																			ValidateFunc: validation.IntBetween(0, 1),
 																		},
 																		"route_map": {
 																			Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+																			ValidateFunc: validation.StringLenBetween(1, 128),
 																		},
 																	},
 																},
@@ -705,156 +870,6 @@ func resourceRouterBgp() *schema.Resource {
 								},
 							},
 						},
-						"ipv4_flowspec": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-									"neighbor": {
-										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"ipv4_neighbor_list": {
-													Type: schema.TypeList, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"neighbor_ipv4": {
-																Type: schema.TypeString, Required: true, Description: "Neighbor address",
-															},
-															"activate": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the Address Family for this Neighbor",
-															},
-															"neighbor_route_map_lists": {
-																Type: schema.TypeList, Optional: true, Description: "",
-																Elem: &schema.Resource{
-																	Schema: map[string]*schema.Schema{
-																		"nbr_route_map": {
-																			Type: schema.TypeString, Optional: true, Description: "Apply route map to neighbor (Name of route map)",
-																		},
-																		"nbr_rmap_direction": {
-																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
-																		},
-																	},
-																},
-															},
-															"uuid": {
-																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-															},
-														},
-													},
-												},
-												"ipv6_neighbor_list": {
-													Type: schema.TypeList, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"neighbor_ipv6": {
-																Type: schema.TypeString, Required: true, Description: "Neighbor IPv6 address",
-															},
-															"activate": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the Address Family for this Neighbor",
-															},
-															"neighbor_route_map_lists": {
-																Type: schema.TypeList, Optional: true, Description: "",
-																Elem: &schema.Resource{
-																	Schema: map[string]*schema.Schema{
-																		"nbr_route_map": {
-																			Type: schema.TypeString, Optional: true, Description: "Apply route map to neighbor (Name of route map)",
-																		},
-																		"nbr_rmap_direction": {
-																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
-																		},
-																	},
-																},
-															},
-															"uuid": {
-																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-															},
-														},
-													},
-												},
-											},
-										},
-									},
-								},
-							},
-						},
-						"ipv6_flowspec": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-									"neighbor": {
-										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"ipv4_neighbor_list": {
-													Type: schema.TypeList, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"neighbor_ipv4": {
-																Type: schema.TypeString, Required: true, Description: "Neighbor address",
-															},
-															"activate": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the Address Family for this Neighbor",
-															},
-															"neighbor_route_map_lists": {
-																Type: schema.TypeList, Optional: true, Description: "",
-																Elem: &schema.Resource{
-																	Schema: map[string]*schema.Schema{
-																		"nbr_route_map": {
-																			Type: schema.TypeString, Optional: true, Description: "Apply route map to neighbor (Name of route map)",
-																		},
-																		"nbr_rmap_direction": {
-																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
-																		},
-																	},
-																},
-															},
-															"uuid": {
-																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-															},
-														},
-													},
-												},
-												"ipv6_neighbor_list": {
-													Type: schema.TypeList, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"neighbor_ipv6": {
-																Type: schema.TypeString, Required: true, Description: "Neighbor IPv6 address",
-															},
-															"activate": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the Address Family for this Neighbor",
-															},
-															"neighbor_route_map_lists": {
-																Type: schema.TypeList, Optional: true, Description: "",
-																Elem: &schema.Resource{
-																	Schema: map[string]*schema.Schema{
-																		"nbr_route_map": {
-																			Type: schema.TypeString, Optional: true, Description: "Apply route map to neighbor (Name of route map)",
-																		},
-																		"nbr_rmap_direction": {
-																			Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
-																		},
-																	},
-																},
-															},
-															"uuid": {
-																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-															},
-														},
-													},
-												},
-											},
-										},
-									},
-								},
-							},
-						},
 					},
 				},
 			},
@@ -864,21 +879,26 @@ func resourceRouterBgp() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"aggregate_address": {
 							Type: schema.TypeString, Optional: true, Description: "Configure BGP aggregate entries (Aggregate prefix)",
+							ValidateFunc: validation.IsCIDR,
 						},
 						"as_set": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Generate AS set path information",
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"summary_only": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Filter more specific routes from updates",
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 					},
 				},
 			},
 			"as_number": {
-				Type: schema.TypeString, Required: true, ForceNew: true, Description: "AS number",
+				Type: schema.TypeInt, Required: true, ForceNew: true, Description: "AS number",
+				ValidateFunc: validation.IntBetween(1, 4294967295),
 			},
 			"auto_summary": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic network number summarization",
+				ValidateFunc: validation.IntBetween(0, 1),
 			},
 			"bgp": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -886,6 +906,7 @@ func resourceRouterBgp() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"always_compare_med": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow comparing MED from different neighbors",
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"bestpath_cfg": {
 							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -893,18 +914,23 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"ignore": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Ignore as-path length in selecting a route",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"compare_routerid": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Compare router-id for identical EBGP paths",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"remove_recv_med": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "To remove rcvd MED attribute",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"remove_send_med": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "To remove send MED attribute",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"missing_as_worst": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Treat missing MED as the least preferred one",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 								},
 							},
@@ -915,60 +941,82 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"dampening": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable route-flap dampening",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"dampening_half_time": {
 										Type: schema.TypeInt, Optional: true, Description: "Reachability Half-life time for the penalty(minutes)",
+										ValidateFunc: validation.IntBetween(1, 45),
 									},
 									"dampening_reuse": {
 										Type: schema.TypeInt, Optional: true, Description: "Value to start reusing a route",
+										ValidateFunc: validation.IntBetween(1, 20000),
 									},
 									"dampening_supress": {
 										Type: schema.TypeInt, Optional: true, Description: "Value to start suppressing a route",
+										ValidateFunc: validation.IntBetween(1, 20000),
 									},
 									"dampening_max_supress": {
 										Type: schema.TypeInt, Optional: true, Description: "Maximum duration to suppress a stable route(minutes)",
+										ValidateFunc: validation.IntBetween(1, 255),
 									},
 									"dampening_penalty": {
 										Type: schema.TypeInt, Optional: true, Description: "Un-reachability Half-life time for the penalty(minutes)",
+										ValidateFunc: validation.IntBetween(1, 45),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route-map to specify criteria for dampening (Route-map name)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 								},
 							},
 						},
 						"local_preference_value": {
 							Type: schema.TypeInt, Optional: true, Default: 100, Description: "Configure default local preference value",
+							ValidateFunc: validation.IntBetween(0, 4294967295),
 						},
 						"deterministic_med": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Pick the best-MED path among paths advertised from the neighboring AS",
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"enforce_first_as": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enforce the first AS for EBGP routes",
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"fast_external_failover": {
 							Type: schema.TypeInt, Optional: true, Default: 1, Description: "Immediately reset session if a link to a directly connected external peer goes down",
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"log_neighbor_changes": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Log neighbor up/down and reset reason",
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"nexthop_trigger_count": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "BGP nexthop-tracking status (count)",
+							ValidateFunc: validation.IntBetween(0, 127),
 						},
 						"router_id": {
 							Type: schema.TypeString, Optional: true, Description: "Override current router identifier (peers will reset) (Manually configured router identifier)",
+							ValidateFunc: validation.IsIPv4Address,
+						},
+						"override_validation": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "override router-id validation",
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"scan_time": {
 							Type: schema.TypeInt, Optional: true, Default: 60, Description: "Configure background scan interval (Scan interval (sec) [Default:60 Disable:0])",
+							ValidateFunc: validation.IntBetween(0, 60),
 						},
 						"graceful_restart": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Configure BGP BGP Graceful Restart",
+							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"bgp_restart_time": {
 							Type: schema.TypeInt, Optional: true, Default: 90, Description: "BGP Peer Graceful Restart time in seconds (default 90)",
+							ValidateFunc: validation.IntBetween(1, 3600),
 						},
 						"bgp_stalepath_time": {
 							Type: schema.TypeInt, Optional: true, Default: 360, Description: "BGP Graceful Restart Stalepath retention time in seconds (default 360)",
+							ValidateFunc: validation.IntBetween(1, 3600),
 						},
 					},
 				},
@@ -979,27 +1027,34 @@ func resourceRouterBgp() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"admin_distance": {
 							Type: schema.TypeInt, Optional: true, Description: "Define an administrative distance",
+							ValidateFunc: validation.IntBetween(1, 255),
 						},
 						"src_prefix": {
 							Type: schema.TypeString, Optional: true, Description: "IP source prefix",
+							ValidateFunc: validation.IsCIDR,
 						},
 						"acl_str": {
 							Type: schema.TypeString, Optional: true, Description: "Access list name",
+							ValidateFunc: validation.StringLenBetween(1, 128),
 						},
 						"ext_routes_dist": {
 							Type: schema.TypeInt, Optional: true, Description: "Distance for routes external to the AS",
+							ValidateFunc: validation.IntBetween(1, 255),
 						},
 						"int_routes_dist": {
 							Type: schema.TypeInt, Optional: true, Description: "Distance for routes internal to the AS",
+							ValidateFunc: validation.IntBetween(1, 255),
 						},
 						"local_routes_dist": {
 							Type: schema.TypeInt, Optional: true, Description: "Distance for local routes",
+							ValidateFunc: validation.IntBetween(1, 255),
 						},
 					},
 				},
 			},
 			"maximum_paths_value": {
 				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Supported BGP multipath numbers",
+				ValidateFunc: validation.IntBetween(1, 64),
 			},
 			"neighbor": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -1011,84 +1066,167 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"peer_group": {
 										Type: schema.TypeString, Required: true, Description: "Neighbor tag",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"peer_group_key": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Configure peer-group",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"peer_group_remote_as": {
-										Type: schema.TypeString, Optional: true, Description: "Specify AS number of BGP neighbor",
+										Type: schema.TypeInt, Optional: true, Description: "Specify AS number of BGP neighbor",
+										ValidateFunc: validation.IntBetween(1, 4294967295),
 									},
 									"activate": {
 										Type: schema.TypeInt, Optional: true, Default: 1, Description: "Enable the Address Family for this Neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"advertisement_interval": {
 										Type: schema.TypeInt, Optional: true, Description: "Minimum interval between sending BGP routing updates (time in seconds)",
+										ValidateFunc: validation.IntBetween(1, 600),
 									},
 									"allowas_in": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Accept as-path with my AS present in it",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"allowas_in_count": {
 										Type: schema.TypeInt, Optional: true, Default: 3, Description: "Number of occurrences of AS number",
+										ValidateFunc: validation.IntBetween(1, 10),
 									},
 									"as_origination_interval": {
 										Type: schema.TypeInt, Optional: true, Description: "Minimum interval between sending AS-origination routing updates (time in seconds)",
+										ValidateFunc: validation.IntBetween(1, 600),
 									},
 									"dynamic": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Advertise dynamic capability to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
+									},
+									"prefix_list_direction": {
+										Type: schema.TypeString, Optional: true, Description: "'both': both; 'receive': receive; 'send': send;",
+										ValidateFunc: validation.StringInSlice([]string{"both", "receive", "send"}, false),
 									},
 									"route_refresh": {
 										Type: schema.TypeInt, Optional: true, Default: 1, Description: "Advertise route-refresh capability to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"extended_nexthop": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Advertise extended-nexthop capability to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"collide_established": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Include Neighbor in Established State for Collision Detection",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"default_originate": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Originate default route to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route-map to specify criteria to originate default (route-map name)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"description": {
 										Type: schema.TypeString, Optional: true, Description: "Neighbor specific description (Up to 80 characters describing this neighbor)",
+										ValidateFunc: validation.StringLenBetween(1, 80),
+									},
+									"disallow_infinite_holdtime": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "BGP per neighbor disallow-infinite-holdtime",
+										ValidateFunc: validation.IntBetween(0, 1),
+									},
+									"distribute_lists": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"distribute_list": {
+													Type: schema.TypeString, Optional: true, Description: "Filter updates to/from this neighbor (IP standard/extended/named access list)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
+												},
+												"distribute_list_direction": {
+													Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+													ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
+												},
+											},
+										},
 									},
 									"dont_capability_negotiate": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Do not perform capability negotiation",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"ebgp_multihop": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow EBGP neighbors not on directly connected networks",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"ebgp_multihop_hop_count": {
 										Type: schema.TypeInt, Optional: true, Description: "maximum hop count",
+										ValidateFunc: validation.IntBetween(1, 255),
 									},
 									"enforce_multihop": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enforce EBGP neighbors to perform multihop",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"bfd": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Bidirectional Forwarding Detection (BFD)",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"multihop": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable multihop",
+										ValidateFunc: validation.IntBetween(0, 1),
+									},
+									"neighbor_filter_lists": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"filter_list": {
+													Type: schema.TypeString, Optional: true, Description: "Establish BGP filters (AS path access-list name)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
+												},
+												"filter_list_direction": {
+													Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+													ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
+												},
+											},
+										},
 									},
 									"maximum_prefix": {
 										Type: schema.TypeInt, Optional: true, Description: "Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))",
 									},
 									"maximum_prefix_thres": {
 										Type: schema.TypeInt, Optional: true, Description: "threshold-value, 1 to 100 percent",
+										ValidateFunc: validation.IntBetween(1, 100),
+									},
+									"next_hop_self": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable the next hop calculation for this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"override_capability": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Override capability negotiation result",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"pass_value": {
 										Type: schema.TypeString, Optional: true, Description: "Key String",
 									},
+									//omit encrypted field: 'pass_encrypted'
 									"passive": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Don't send open messages to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
+									},
+									"neighbor_prefix_lists": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"nbr_prefix_list": {
+													Type: schema.TypeString, Optional: true, Description: "Filter updates to/from this neighbor (Name of a prefix list)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
+												},
+												"nbr_prefix_list_direction": {
+													Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+													ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
+												},
+											},
+										},
 									},
 									"remove_private_as": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Remove private AS number from outbound updates",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"neighbor_route_map_lists": {
 										Type: schema.TypeList, Optional: true, Description: "",
@@ -1096,57 +1234,82 @@ func resourceRouterBgp() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"nbr_route_map": {
 													Type: schema.TypeString, Optional: true, Description: "Apply route map to neighbor (Name of route map)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
 												},
 												"nbr_rmap_direction": {
 													Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+													ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 												},
 											},
 										},
 									},
+									"send_community_val": {
+										Type: schema.TypeString, Optional: true, Default: "both", Description: "'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;",
+										ValidateFunc: validation.StringInSlice([]string{"both", "none", "standard", "extended"}, false),
+									},
 									"inbound": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow inbound soft reconfiguration for this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"shutdown": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Administratively shut down this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"strict_capability_match": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Strict capability negotiation match",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"timers_keepalive": {
 										Type: schema.TypeInt, Optional: true, Default: 30, Description: "Keepalive interval",
+										ValidateFunc: validation.IntBetween(0, 65535),
 									},
 									"timers_holdtime": {
 										Type: schema.TypeInt, Optional: true, Default: 90, Description: "Holdtime",
+										ValidateFunc: validation.IntBetween(0, 65535),
 									},
 									"connect": {
 										Type: schema.TypeInt, Optional: true, Description: "BGP connect timer",
+										ValidateFunc: validation.IntBetween(1, 65535),
+									},
+									"unsuppress_map": {
+										Type: schema.TypeString, Optional: true, Description: "Route-map to selectively unsuppress suppressed routes (Name of route map)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"update_source_ip": {
 										Type: schema.TypeString, Optional: true, Description: "IP address",
+										ValidateFunc: validation.IsIPv4Address,
 									},
 									"update_source_ipv6": {
 										Type: schema.TypeString, Optional: true, Description: "IPv6 address",
+										ValidateFunc: validation.IsIPv6Address,
 									},
 									"ethernet": {
 										Type: schema.TypeInt, Optional: true, Description: "Ethernet interface (Port number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"loopback": {
 										Type: schema.TypeInt, Optional: true, Description: "Loopback interface (Port number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"ve": {
 										Type: schema.TypeInt, Optional: true, Description: "Virtual ethernet interface (Virtual ethernet interface number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"trunk": {
 										Type: schema.TypeInt, Optional: true, Description: "Trunk interface (Trunk interface number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"lif": {
 										Type: schema.TypeString, Optional: true, Description: "Logical interface (Lif interface name)",
+										ValidateFunc: validation.StringLenBetween(1, 15),
 									},
 									"tunnel": {
 										Type: schema.TypeInt, Optional: true, Description: "Tunnel interface (Tunnel interface number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"weight": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Set default weight for routes from this neighbor",
+										ValidateFunc: validation.IntBetween(0, 65535),
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -1160,54 +1323,71 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"neighbor_ipv4": {
 										Type: schema.TypeString, Required: true, Description: "Neighbor address",
+										ValidateFunc: validation.IsIPv4Address,
 									},
 									"nbr_remote_as": {
-										Type: schema.TypeString, Optional: true, Description: "Specify AS number of BGP neighbor",
+										Type: schema.TypeInt, Optional: true, Description: "Specify AS number of BGP neighbor",
+										ValidateFunc: validation.IntBetween(1, 4294967295),
 									},
 									"peer_group_name": {
 										Type: schema.TypeString, Optional: true, Description: "Configure peer-group (peer-group name)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"activate": {
 										Type: schema.TypeInt, Optional: true, Default: 1, Description: "Enable the Address Family for this Neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"advertisement_interval": {
 										Type: schema.TypeInt, Optional: true, Description: "Minimum interval between sending BGP routing updates (time in seconds)",
+										ValidateFunc: validation.IntBetween(1, 600),
 									},
 									"allowas_in": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Accept as-path with my AS present in it",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"allowas_in_count": {
 										Type: schema.TypeInt, Optional: true, Default: 3, Description: "Number of occurrences of AS number",
+										ValidateFunc: validation.IntBetween(1, 10),
 									},
 									"as_origination_interval": {
 										Type: schema.TypeInt, Optional: true, Description: "Minimum interval between sending AS-origination routing updates (time in seconds)",
+										ValidateFunc: validation.IntBetween(1, 600),
 									},
 									"dynamic": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Advertise dynamic capability to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"prefix_list_direction": {
 										Type: schema.TypeString, Optional: true, Description: "'both': both; 'receive': receive; 'send': send;",
+										ValidateFunc: validation.StringInSlice([]string{"both", "receive", "send"}, false),
 									},
 									"route_refresh": {
 										Type: schema.TypeInt, Optional: true, Default: 1, Description: "Advertise route-refresh capability to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"graceful_restart": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "enable graceful-restart helper for this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"collide_established": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Include Neighbor in Established State for Collision Detection",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"default_originate": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Originate default route to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route-map to specify criteria to originate default (route-map name)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"description": {
 										Type: schema.TypeString, Optional: true, Description: "Neighbor specific description (Up to 80 characters describing this neighbor)",
+										ValidateFunc: validation.StringLenBetween(1, 80),
 									},
 									"disallow_infinite_holdtime": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "BGP per neighbor disallow-infinite-holdtime",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"distribute_lists": {
 										Type: schema.TypeList, Optional: true, Description: "",
@@ -1215,55 +1395,66 @@ func resourceRouterBgp() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"distribute_list": {
 													Type: schema.TypeString, Optional: true, Description: "Filter updates to/from this neighbor (IP standard/extended/named access list)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
 												},
 												"distribute_list_direction": {
 													Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+													ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 												},
 											},
 										},
 									},
 									"acos_application_only": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Send BGP update to ACOS application",
-									},
-									"telemetry": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Send BGP update to telemetry db",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"dont_capability_negotiate": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Do not perform capability negotiation",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"ebgp_multihop": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow EBGP neighbors not on directly connected networks",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"ebgp_multihop_hop_count": {
 										Type: schema.TypeInt, Optional: true, Description: "maximum hop count",
+										ValidateFunc: validation.IntBetween(1, 255),
 									},
 									"enforce_multihop": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enforce EBGP neighbors to perform multihop",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"bfd": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Bidirectional Forwarding Detection (BFD)",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"multihop": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable multihop",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"key_id": {
 										Type: schema.TypeInt, Optional: true, Description: "Key ID",
+										ValidateFunc: validation.IntBetween(0, 255),
 									},
 									"key_type": {
 										Type: schema.TypeString, Optional: true, Description: "'md5': md5; 'meticulous-md5': meticulous-md5; 'meticulous-sha1': meticulous-sha1; 'sha1': sha1; 'simple': simple;  (Keyed MD5/Meticulous Keyed MD5/Meticulous Keyed SHA1/Keyed SHA1/Simple Password)",
+										ValidateFunc: validation.StringInSlice([]string{"md5", "meticulous-md5", "meticulous-sha1", "sha1", "simple"}, false),
 									},
 									"bfd_value": {
 										Type: schema.TypeString, Optional: true, Description: "Key String",
 									},
+									//omit encrypted field: 'bfd_encrypted'
 									"neighbor_filter_lists": {
 										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"filter_list": {
 													Type: schema.TypeString, Optional: true, Description: "Establish BGP filters (AS path access-list name)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
 												},
 												"filter_list_direction": {
 													Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+													ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 												},
 											},
 										},
@@ -1273,21 +1464,27 @@ func resourceRouterBgp() *schema.Resource {
 									},
 									"maximum_prefix_thres": {
 										Type: schema.TypeInt, Optional: true, Description: "threshold-value, 1 to 100 percent",
+										ValidateFunc: validation.IntBetween(1, 100),
 									},
 									"restart_min": {
 										Type: schema.TypeInt, Optional: true, Description: "restart value, 1 to 1440 minutes",
+										ValidateFunc: validation.IntBetween(1, 1440),
 									},
 									"next_hop_self": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable the next hop calculation for this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"override_capability": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Override capability negotiation result",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"pass_value": {
 										Type: schema.TypeString, Optional: true, Description: "Key String",
 									},
+									//omit encrypted field: 'pass_encrypted'
 									"passive": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Don't send open messages to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"neighbor_prefix_lists": {
 										Type: schema.TypeList, Optional: true, Description: "",
@@ -1295,15 +1492,18 @@ func resourceRouterBgp() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"nbr_prefix_list": {
 													Type: schema.TypeString, Optional: true, Description: "Filter updates to/from this neighbor (Name of a prefix list)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
 												},
 												"nbr_prefix_list_direction": {
 													Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+													ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 												},
 											},
 										},
 									},
 									"remove_private_as": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Remove private AS number from outbound updates",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"neighbor_route_map_lists": {
 										Type: schema.TypeList, Optional: true, Description: "",
@@ -1311,63 +1511,82 @@ func resourceRouterBgp() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"nbr_route_map": {
 													Type: schema.TypeString, Optional: true, Description: "Apply route map to neighbor (Name of route map)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
 												},
 												"nbr_rmap_direction": {
 													Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+													ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 												},
 											},
 										},
 									},
 									"send_community_val": {
 										Type: schema.TypeString, Optional: true, Default: "both", Description: "'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;",
+										ValidateFunc: validation.StringInSlice([]string{"both", "none", "standard", "extended"}, false),
 									},
 									"inbound": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow inbound soft reconfiguration for this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"shutdown": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Administratively shut down this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"strict_capability_match": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Strict capability negotiation match",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"timers_keepalive": {
 										Type: schema.TypeInt, Optional: true, Default: 30, Description: "Keepalive interval",
+										ValidateFunc: validation.IntBetween(0, 65535),
 									},
 									"timers_holdtime": {
 										Type: schema.TypeInt, Optional: true, Default: 90, Description: "Holdtime",
+										ValidateFunc: validation.IntBetween(0, 65535),
 									},
 									"connect": {
 										Type: schema.TypeInt, Optional: true, Description: "BGP connect timer",
+										ValidateFunc: validation.IntBetween(1, 65535),
 									},
 									"unsuppress_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route-map to selectively unsuppress suppressed routes (Name of route map)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"update_source_ip": {
 										Type: schema.TypeString, Optional: true, Description: "IP address",
+										ValidateFunc: validation.IsIPv4Address,
 									},
 									"update_source_ipv6": {
 										Type: schema.TypeString, Optional: true, Description: "IPv6 address",
+										ValidateFunc: validation.IsIPv6Address,
 									},
 									"ethernet": {
 										Type: schema.TypeInt, Optional: true, Description: "Ethernet interface (Port number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"loopback": {
 										Type: schema.TypeInt, Optional: true, Description: "Loopback interface (Port number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"ve": {
 										Type: schema.TypeInt, Optional: true, Description: "Virtual ethernet interface (Virtual ethernet interface number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"trunk": {
 										Type: schema.TypeInt, Optional: true, Description: "Trunk interface (Trunk interface number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"lif": {
 										Type: schema.TypeString, Optional: true, Description: "Logical interface (Lif interface name)",
+										ValidateFunc: validation.StringLenBetween(1, 15),
 									},
 									"tunnel": {
 										Type: schema.TypeInt, Optional: true, Description: "Tunnel interface (Tunnel interface number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"weight": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Set default weight for routes from this neighbor",
+										ValidateFunc: validation.IntBetween(0, 65535),
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -1381,57 +1600,75 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"neighbor_ipv6": {
 										Type: schema.TypeString, Required: true, Description: "Neighbor IPv6 address",
+										ValidateFunc: validation.IsIPv6Address,
 									},
 									"nbr_remote_as": {
-										Type: schema.TypeString, Optional: true, Description: "Specify AS number of BGP neighbor",
+										Type: schema.TypeInt, Optional: true, Description: "Specify AS number of BGP neighbor",
+										ValidateFunc: validation.IntBetween(1, 4294967295),
 									},
 									"peer_group_name": {
 										Type: schema.TypeString, Optional: true, Description: "Configure peer-group (peer-group name)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"activate": {
 										Type: schema.TypeInt, Optional: true, Default: 1, Description: "Enable the Address Family for this Neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"advertisement_interval": {
 										Type: schema.TypeInt, Optional: true, Description: "Minimum interval between sending BGP routing updates (time in seconds)",
+										ValidateFunc: validation.IntBetween(1, 600),
 									},
 									"allowas_in": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Accept as-path with my AS present in it",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"allowas_in_count": {
 										Type: schema.TypeInt, Optional: true, Default: 3, Description: "Number of occurrences of AS number",
+										ValidateFunc: validation.IntBetween(1, 10),
 									},
 									"as_origination_interval": {
 										Type: schema.TypeInt, Optional: true, Description: "Minimum interval between sending AS-origination routing updates (time in seconds)",
+										ValidateFunc: validation.IntBetween(1, 600),
 									},
 									"dynamic": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Advertise dynamic capability to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"prefix_list_direction": {
 										Type: schema.TypeString, Optional: true, Description: "'both': both; 'receive': receive; 'send': send;",
+										ValidateFunc: validation.StringInSlice([]string{"both", "receive", "send"}, false),
 									},
 									"route_refresh": {
 										Type: schema.TypeInt, Optional: true, Default: 1, Description: "Advertise route-refresh capability to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"graceful_restart": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "enable graceful-restart helper for this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"extended_nexthop": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Advertise extended-nexthop capability to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"collide_established": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Include Neighbor in Established State for Collision Detection",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"default_originate": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Originate default route to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route-map to specify criteria to originate default (route-map name)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"description": {
 										Type: schema.TypeString, Optional: true, Description: "Neighbor specific description (Up to 80 characters describing this neighbor)",
+										ValidateFunc: validation.StringLenBetween(1, 80),
 									},
 									"disallow_infinite_holdtime": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "BGP per neighbor disallow-infinite-holdtime",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"distribute_lists": {
 										Type: schema.TypeList, Optional: true, Description: "",
@@ -1439,55 +1676,66 @@ func resourceRouterBgp() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"distribute_list": {
 													Type: schema.TypeString, Optional: true, Description: "Filter updates to/from this neighbor (IP standard/extended/named access list)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
 												},
 												"distribute_list_direction": {
 													Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+													ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 												},
 											},
 										},
 									},
 									"acos_application_only": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Send BGP update to ACOS application",
-									},
-									"telemetry": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Send BGP update to telemetry db",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"dont_capability_negotiate": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Do not perform capability negotiation",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"ebgp_multihop": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow EBGP neighbors not on directly connected networks",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"ebgp_multihop_hop_count": {
 										Type: schema.TypeInt, Optional: true, Description: "maximum hop count",
+										ValidateFunc: validation.IntBetween(1, 255),
 									},
 									"enforce_multihop": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enforce EBGP neighbors to perform multihop",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"bfd": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Bidirectional Forwarding Detection (BFD)",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"multihop": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable multihop",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"key_id": {
 										Type: schema.TypeInt, Optional: true, Description: "Key ID",
+										ValidateFunc: validation.IntBetween(0, 255),
 									},
 									"key_type": {
 										Type: schema.TypeString, Optional: true, Description: "'md5': md5; 'meticulous-md5': meticulous-md5; 'meticulous-sha1': meticulous-sha1; 'sha1': sha1; 'simple': simple;  (Keyed MD5/Meticulous Keyed MD5/Meticulous Keyed SHA1/Keyed SHA1/Simple Password)",
+										ValidateFunc: validation.StringInSlice([]string{"md5", "meticulous-md5", "meticulous-sha1", "sha1", "simple"}, false),
 									},
 									"bfd_value": {
 										Type: schema.TypeString, Optional: true, Description: "Key String",
 									},
+									//omit encrypted field: 'bfd_encrypted'
 									"neighbor_filter_lists": {
 										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"filter_list": {
 													Type: schema.TypeString, Optional: true, Description: "Establish BGP filters (AS path access-list name)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
 												},
 												"filter_list_direction": {
 													Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+													ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 												},
 											},
 										},
@@ -1497,21 +1745,27 @@ func resourceRouterBgp() *schema.Resource {
 									},
 									"maximum_prefix_thres": {
 										Type: schema.TypeInt, Optional: true, Description: "threshold-value, 1 to 100 percent",
+										ValidateFunc: validation.IntBetween(1, 100),
 									},
 									"restart_min": {
 										Type: schema.TypeInt, Optional: true, Description: "restart value, 1 to 1440 minutes",
+										ValidateFunc: validation.IntBetween(1, 1440),
 									},
 									"next_hop_self": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable the next hop calculation for this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"override_capability": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Override capability negotiation result",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"pass_value": {
 										Type: schema.TypeString, Optional: true, Description: "Key String",
 									},
+									//omit encrypted field: 'pass_encrypted'
 									"passive": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Don't send open messages to this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"neighbor_prefix_lists": {
 										Type: schema.TypeList, Optional: true, Description: "",
@@ -1519,15 +1773,18 @@ func resourceRouterBgp() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"nbr_prefix_list": {
 													Type: schema.TypeString, Optional: true, Description: "Filter updates to/from this neighbor (Name of a prefix list)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
 												},
 												"nbr_prefix_list_direction": {
 													Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+													ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 												},
 											},
 										},
 									},
 									"remove_private_as": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Remove private AS number from outbound updates",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"neighbor_route_map_lists": {
 										Type: schema.TypeList, Optional: true, Description: "",
@@ -1535,63 +1792,82 @@ func resourceRouterBgp() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"nbr_route_map": {
 													Type: schema.TypeString, Optional: true, Description: "Apply route map to neighbor (Name of route map)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
 												},
 												"nbr_rmap_direction": {
 													Type: schema.TypeString, Optional: true, Description: "'in': in; 'out': out;",
+													ValidateFunc: validation.StringInSlice([]string{"in", "out"}, false),
 												},
 											},
 										},
 									},
 									"send_community_val": {
 										Type: schema.TypeString, Optional: true, Default: "both", Description: "'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;",
+										ValidateFunc: validation.StringInSlice([]string{"both", "none", "standard", "extended"}, false),
 									},
 									"inbound": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow inbound soft reconfiguration for this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"shutdown": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Administratively shut down this neighbor",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"strict_capability_match": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Strict capability negotiation match",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"timers_keepalive": {
 										Type: schema.TypeInt, Optional: true, Default: 30, Description: "Keepalive interval",
+										ValidateFunc: validation.IntBetween(0, 65535),
 									},
 									"timers_holdtime": {
 										Type: schema.TypeInt, Optional: true, Default: 90, Description: "Holdtime",
+										ValidateFunc: validation.IntBetween(0, 65535),
 									},
 									"connect": {
 										Type: schema.TypeInt, Optional: true, Description: "BGP connect timer",
+										ValidateFunc: validation.IntBetween(1, 65535),
 									},
 									"unsuppress_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route-map to selectively unsuppress suppressed routes (Name of route map)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"update_source_ip": {
 										Type: schema.TypeString, Optional: true, Description: "IP address",
+										ValidateFunc: validation.IsIPv4Address,
 									},
 									"update_source_ipv6": {
 										Type: schema.TypeString, Optional: true, Description: "IPv6 address",
+										ValidateFunc: validation.IsIPv6Address,
 									},
 									"ethernet": {
 										Type: schema.TypeInt, Optional: true, Description: "Ethernet interface (Port number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"loopback": {
 										Type: schema.TypeInt, Optional: true, Description: "Loopback interface (Port number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"ve": {
 										Type: schema.TypeInt, Optional: true, Description: "Virtual ethernet interface (Virtual ethernet interface number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"trunk": {
 										Type: schema.TypeInt, Optional: true, Description: "Trunk interface (Trunk interface number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"lif": {
 										Type: schema.TypeString, Optional: true, Description: "Logical interface (Lif interface name)",
+										ValidateFunc: validation.StringLenBetween(1, 15),
 									},
 									"tunnel": {
 										Type: schema.TypeInt, Optional: true, Description: "Tunnel interface (Tunnel interface number)",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"weight": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Set default weight for routes from this neighbor",
+										ValidateFunc: validation.IntBetween(0, 65535),
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -1605,12 +1881,15 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"ethernet": {
 										Type: schema.TypeInt, Required: true, Description: "Ethernet interface number",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"unnumbered": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"peer_group_name": {
 										Type: schema.TypeString, Optional: true, Description: "",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -1624,12 +1903,15 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"ve": {
 										Type: schema.TypeInt, Required: true, Description: "Virtual ethernet interface number",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"unnumbered": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"peer_group_name": {
 										Type: schema.TypeString, Optional: true, Description: "",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -1643,12 +1925,15 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"trunk": {
 										Type: schema.TypeInt, Required: true, Description: "Trunk interface number",
+										ValidateFunc: validation.IntAtLeast(1),
 									},
 									"unnumbered": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"peer_group_name": {
 										Type: schema.TypeString, Optional: true, Description: "",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -1669,29 +1954,10 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"network_synchronization": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Perform IGP synchronization",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
-						},
-						"monitor": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"default": {
-										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"network_monitor_default": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "default route monitoring",
-												},
-												"uuid": {
-													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-												},
-											},
-										},
 									},
 								},
 							},
@@ -1702,18 +1968,23 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"network_ipv4_cidr": {
 										Type: schema.TypeString, Required: true, Description: "Specify network mask",
+										ValidateFunc: validation.IsCIDR,
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route-map to modify the attributes (Name of the route map)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"backdoor": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify a BGP backdoor route",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"description": {
 										Type: schema.TypeString, Optional: true, Description: "Network specific description (Up to 80 characters describing this network)",
+										ValidateFunc: validation.StringLenBetween(1, 80),
 									},
 									"comm_value": {
 										Type: schema.TypeString, Optional: true, Description: "community value in the format 1-4294967295|AA:NN|internet|local-AS|no-advertise|no-export",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -1726,6 +1997,7 @@ func resourceRouterBgp() *schema.Resource {
 			},
 			"originate": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Distribute a default route",
+				ValidateFunc: validation.IntBetween(0, 1),
 			},
 			"redistribute": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -1737,9 +2009,11 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"connected": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Connected",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 								},
 							},
@@ -1750,9 +2024,11 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"floating_ip": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Floating IP",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 								},
 							},
@@ -1763,9 +2039,11 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"lw4o6": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "LW4O6 Prefix",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 								},
 							},
@@ -1776,9 +2054,11 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"static_nat": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Static NAT Prefix",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 								},
 							},
@@ -1789,9 +2069,11 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"ip_nat": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "IP NAT",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 								},
 							},
@@ -1802,9 +2084,11 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"ip_nat_list": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "IP NAT list",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 								},
 							},
@@ -1815,9 +2099,11 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"isis": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "ISO IS-IS",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 								},
 							},
@@ -1828,9 +2114,11 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"ospf": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Open Shortest Path First (OSPF)",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 								},
 							},
@@ -1841,9 +2129,11 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"rip": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Routing Information Protocol (RIP)",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 								},
 							},
@@ -1854,9 +2144,11 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"static": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Static routes",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 								},
 							},
@@ -1867,9 +2159,11 @@ func resourceRouterBgp() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"nat_map": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "NAT MAP Prefix",
+										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"route_map": {
 										Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+										ValidateFunc: validation.StringLenBetween(1, 128),
 									},
 								},
 							},
@@ -1884,9 +2178,11 @@ func resourceRouterBgp() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"only_flagged": {
 													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Selected Virtual IP (VIP)",
+													ValidateFunc: validation.IntBetween(0, 1),
 												},
 												"route_map": {
 													Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
 												},
 											},
 										},
@@ -1897,9 +2193,11 @@ func resourceRouterBgp() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"only_not_flagged": {
 													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Only not flagged",
+													ValidateFunc: validation.IntBetween(0, 1),
 												},
 												"route_map": {
 													Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+													ValidateFunc: validation.StringLenBetween(1, 128),
 												},
 											},
 										},
@@ -1915,6 +2213,7 @@ func resourceRouterBgp() *schema.Resource {
 			},
 			"synchronization": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Perform IGP synchronization",
+				ValidateFunc: validation.IntBetween(0, 1),
 			},
 			"timers": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -1922,15 +2221,18 @@ func resourceRouterBgp() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"bgp_keepalive": {
 							Type: schema.TypeInt, Optional: true, Default: 30, Description: "Keepalive interval",
+							ValidateFunc: validation.IntBetween(0, 65535),
 						},
 						"bgp_holdtime": {
 							Type: schema.TypeInt, Optional: true, Default: 90, Description: "Holdtime",
+							ValidateFunc: validation.IntBetween(0, 65535),
 						},
 					},
 				},
 			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
+				ValidateFunc: validation.StringLenBetween(1, 127),
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -2003,22 +2305,24 @@ func resourceRouterBgpDelete(ctx context.Context, d *schema.ResourceData, meta i
 }
 
 func getObjectRouterBgpAddressFamily(d []interface{}) edpt.RouterBgpAddressFamily {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamily
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Ipv6 = getObjectRouterBgpAddressFamilyIpv6(in["ipv6"].([]interface{}))
-		ret.Ipv4Flowspec = getObjectRouterBgpAddressFamilyIpv4Flowspec(in["ipv4_flowspec"].([]interface{}))
-		ret.Ipv6Flowspec = getObjectRouterBgpAddressFamilyIpv6Flowspec(in["ipv6_flowspec"].([]interface{}))
 	}
 	return ret
 }
 
 func getObjectRouterBgpAddressFamilyIpv6(d []interface{}) edpt.RouterBgpAddressFamilyIpv6 {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Bgp = getObjectRouterBgpAddressFamilyIpv6Bgp(in["bgp"].([]interface{}))
 		ret.Distance = getObjectRouterBgpAddressFamilyIpv6Distance(in["distance"].([]interface{}))
 		ret.MaximumPathsValue = in["maximum_paths_value"].(int)
@@ -2035,10 +2339,12 @@ func getObjectRouterBgpAddressFamilyIpv6(d []interface{}) edpt.RouterBgpAddressF
 }
 
 func getObjectRouterBgpAddressFamilyIpv6Bgp(d []interface{}) edpt.RouterBgpAddressFamilyIpv6Bgp {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6Bgp
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Dampening = in["dampening"].(int)
 		ret.DampeningHalf = in["dampening_half"].(int)
 		ret.DampeningStartReuse = in["dampening_start_reuse"].(int)
@@ -2051,10 +2357,12 @@ func getObjectRouterBgpAddressFamilyIpv6Bgp(d []interface{}) edpt.RouterBgpAddre
 }
 
 func getObjectRouterBgpAddressFamilyIpv6Distance(d []interface{}) edpt.RouterBgpAddressFamilyIpv6Distance {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6Distance
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.DistanceExt = in["distance_ext"].(int)
 		ret.DistanceInt = in["distance_int"].(int)
 		ret.DistanceLocal = in["distance_local"].(int)
@@ -2066,6 +2374,9 @@ func getSliceRouterBgpAddressFamilyIpv6AggregateAddressList(d []interface{}) []e
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6AggregateAddressList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6AggregateAddressList
 		oi.AggregateAddress = in["aggregate_address"].(string)
@@ -2077,44 +2388,26 @@ func getSliceRouterBgpAddressFamilyIpv6AggregateAddressList(d []interface{}) []e
 }
 
 func getObjectRouterBgpAddressFamilyIpv6Network(d []interface{}) edpt.RouterBgpAddressFamilyIpv6Network {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6Network
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Synchronization = getObjectRouterBgpAddressFamilyIpv6NetworkSynchronization(in["synchronization"].([]interface{}))
-		ret.Monitor = getObjectRouterBgpAddressFamilyIpv6NetworkMonitor(in["monitor"].([]interface{}))
 		ret.Ipv6NetworkList = getSliceRouterBgpAddressFamilyIpv6NetworkIpv6NetworkList(in["ipv6_network_list"].([]interface{}))
 	}
 	return ret
 }
 
 func getObjectRouterBgpAddressFamilyIpv6NetworkSynchronization(d []interface{}) edpt.RouterBgpAddressFamilyIpv6NetworkSynchronization {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6NetworkSynchronization
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.NetworkSynchronization = in["network_synchronization"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectRouterBgpAddressFamilyIpv6NetworkMonitor(d []interface{}) edpt.RouterBgpAddressFamilyIpv6NetworkMonitor {
-	count := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6NetworkMonitor
-	if count > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Default = getObjectRouterBgpAddressFamilyIpv6NetworkMonitorDefault(in["default"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectRouterBgpAddressFamilyIpv6NetworkMonitorDefault(d []interface{}) edpt.RouterBgpAddressFamilyIpv6NetworkMonitorDefault {
-	count := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6NetworkMonitorDefault
-	if count > 0 {
-		in := d[0].(map[string]interface{})
-		ret.NetworkMonitorDefault = in["network_monitor_default"].(int)
 		//omit uuid
 	}
 	return ret
@@ -2124,6 +2417,9 @@ func getSliceRouterBgpAddressFamilyIpv6NetworkIpv6NetworkList(d []interface{}) [
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NetworkIpv6NetworkList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NetworkIpv6NetworkList
 		oi.NetworkIpv6 = in["network_ipv6"].(string)
@@ -2138,10 +2434,12 @@ func getSliceRouterBgpAddressFamilyIpv6NetworkIpv6NetworkList(d []interface{}) [
 }
 
 func getObjectRouterBgpAddressFamilyIpv6Neighbor(d []interface{}) edpt.RouterBgpAddressFamilyIpv6Neighbor {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6Neighbor
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.PeerGroupNeighborList = getSliceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborList(in["peer_group_neighbor_list"].([]interface{}))
 		ret.Ipv4NeighborList = getSliceRouterBgpAddressFamilyIpv6NeighborIpv4NeighborList(in["ipv4_neighbor_list"].([]interface{}))
 		ret.Ipv6NeighborList = getSliceRouterBgpAddressFamilyIpv6NeighborIpv6NeighborList(in["ipv6_neighbor_list"].([]interface{}))
@@ -2156,20 +2454,79 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborList(d []interfa
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborList
 		oi.PeerGroup = in["peer_group"].(string)
 		oi.Activate = in["activate"].(int)
 		oi.AllowasIn = in["allowas_in"].(int)
 		oi.AllowasInCount = in["allowas_in_count"].(int)
+		oi.PrefixListDirection = in["prefix_list_direction"].(string)
+		oi.DefaultOriginate = in["default_originate"].(int)
+		oi.RouteMap = in["route_map"].(string)
+		oi.DistributeLists = getSliceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListDistributeLists(in["distribute_lists"].([]interface{}))
+		oi.NeighborFilterLists = getSliceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborFilterLists(in["neighbor_filter_lists"].([]interface{}))
 		oi.MaximumPrefix = in["maximum_prefix"].(int)
 		oi.MaximumPrefixThres = in["maximum_prefix_thres"].(int)
 		oi.NextHopSelf = in["next_hop_self"].(int)
+		oi.NeighborPrefixLists = getSliceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborPrefixLists(in["neighbor_prefix_lists"].([]interface{}))
 		oi.RemovePrivateAs = in["remove_private_as"].(int)
 		oi.NeighborRouteMapLists = getSliceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborRouteMapLists(in["neighbor_route_map_lists"].([]interface{}))
+		oi.SendCommunityVal = in["send_community_val"].(string)
 		oi.Inbound = in["inbound"].(int)
+		oi.UnsuppressMap = in["unsuppress_map"].(string)
 		oi.Weight = in["weight"].(int)
 		//omit uuid
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListDistributeLists(d []interface{}) []edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListDistributeLists {
+	count := len(d)
+	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListDistributeLists, 0, count)
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
+		var oi edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListDistributeLists
+		oi.DistributeList = in["distribute_list"].(string)
+		oi.DistributeListDirection = in["distribute_list_direction"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborFilterLists(d []interface{}) []edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborFilterLists {
+	count := len(d)
+	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborFilterLists, 0, count)
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
+		var oi edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborFilterLists
+		oi.FilterList = in["filter_list"].(string)
+		oi.FilterListDirection = in["filter_list_direction"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborPrefixLists(d []interface{}) []edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborPrefixLists {
+	count := len(d)
+	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborPrefixLists, 0, count)
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
+		var oi edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborPrefixLists
+		oi.NbrPrefixList = in["nbr_prefix_list"].(string)
+		oi.NbrPrefixListDirection = in["nbr_prefix_list_direction"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -2179,6 +2536,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborRout
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborRouteMapLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborPeerGroupNeighborListNeighborRouteMapLists
 		oi.NbrRouteMap = in["nbr_route_map"].(string)
@@ -2192,6 +2552,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborIpv4NeighborList(d []interface{})
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborIpv4NeighborList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborIpv4NeighborList
 		oi.NeighborIpv4 = in["neighbor_ipv4"].(string)
@@ -2226,6 +2589,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborIpv4NeighborListDistributeLists(d
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborIpv4NeighborListDistributeLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborIpv4NeighborListDistributeLists
 		oi.DistributeList = in["distribute_list"].(string)
@@ -2239,6 +2605,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborIpv4NeighborListNeighborFilterLis
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborIpv4NeighborListNeighborFilterLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborIpv4NeighborListNeighborFilterLists
 		oi.FilterList = in["filter_list"].(string)
@@ -2252,6 +2621,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborIpv4NeighborListNeighborPrefixLis
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborIpv4NeighborListNeighborPrefixLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborIpv4NeighborListNeighborPrefixLists
 		oi.NbrPrefixList = in["nbr_prefix_list"].(string)
@@ -2265,6 +2637,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborIpv4NeighborListNeighborRouteMapL
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborIpv4NeighborListNeighborRouteMapLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborIpv4NeighborListNeighborRouteMapLists
 		oi.NbrRouteMap = in["nbr_route_map"].(string)
@@ -2278,6 +2653,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborIpv6NeighborList(d []interface{})
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborIpv6NeighborList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborIpv6NeighborList
 		oi.NeighborIpv6 = in["neighbor_ipv6"].(string)
@@ -2312,6 +2690,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborIpv6NeighborListDistributeLists(d
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborIpv6NeighborListDistributeLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborIpv6NeighborListDistributeLists
 		oi.DistributeList = in["distribute_list"].(string)
@@ -2325,6 +2706,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborIpv6NeighborListNeighborFilterLis
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborIpv6NeighborListNeighborFilterLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborIpv6NeighborListNeighborFilterLists
 		oi.FilterList = in["filter_list"].(string)
@@ -2338,6 +2722,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborIpv6NeighborListNeighborPrefixLis
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborIpv6NeighborListNeighborPrefixLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborIpv6NeighborListNeighborPrefixLists
 		oi.NbrPrefixList = in["nbr_prefix_list"].(string)
@@ -2351,6 +2738,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborIpv6NeighborListNeighborRouteMapL
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborIpv6NeighborListNeighborRouteMapLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborIpv6NeighborListNeighborRouteMapLists
 		oi.NbrRouteMap = in["nbr_route_map"].(string)
@@ -2364,6 +2754,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborEthernetNeighborIpv6List(d []inte
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborEthernetNeighborIpv6List, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborEthernetNeighborIpv6List
 		oi.Ethernet = in["ethernet"].(int)
@@ -2378,6 +2771,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborVeNeighborIpv6List(d []interface{
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborVeNeighborIpv6List, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborVeNeighborIpv6List
 		oi.Ve = in["ve"].(int)
@@ -2392,6 +2788,9 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborTrunkNeighborIpv6List(d []interfa
 	count := len(d)
 	ret := make([]edpt.RouterBgpAddressFamilyIpv6NeighborTrunkNeighborIpv6List, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAddressFamilyIpv6NeighborTrunkNeighborIpv6List
 		oi.Trunk = in["trunk"].(int)
@@ -2403,10 +2802,12 @@ func getSliceRouterBgpAddressFamilyIpv6NeighborTrunkNeighborIpv6List(d []interfa
 }
 
 func getObjectRouterBgpAddressFamilyIpv6Redistribute(d []interface{}) edpt.RouterBgpAddressFamilyIpv6Redistribute {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6Redistribute
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.ConnectedCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeConnectedCfg(in["connected_cfg"].([]interface{}))
 		ret.FloatingIpCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg(in["floating_ip_cfg"].([]interface{}))
 		ret.Nat64Cfg = getObjectRouterBgpAddressFamilyIpv6RedistributeNat64Cfg(in["nat64_cfg"].([]interface{}))
@@ -2426,10 +2827,12 @@ func getObjectRouterBgpAddressFamilyIpv6Redistribute(d []interface{}) edpt.Route
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeConnectedCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeConnectedCfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeConnectedCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Connected = in["connected"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2437,10 +2840,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeConnectedCfg(d []interface{}
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.FloatingIp = in["floating_ip"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2448,10 +2853,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeFloatingIpCfg(d []interface{
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeNat64Cfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeNat64Cfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeNat64Cfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Nat64 = in["nat64"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2459,10 +2866,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeNat64Cfg(d []interface{}) ed
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeNatMapCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeNatMapCfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeNatMapCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.NatMap = in["nat_map"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2470,10 +2879,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeNatMapCfg(d []interface{}) e
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Lw4o6 = in["lw4o6"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2481,10 +2892,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeLw4o6Cfg(d []interface{}) ed
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeStaticNatCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeStaticNatCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.StaticNat = in["static_nat"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2492,10 +2905,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeStaticNatCfg(d []interface{}
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeIpNatCfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeIpNatCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.IpNat = in["ip_nat"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2503,10 +2918,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatCfg(d []interface{}) ed
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatListCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeIpNatListCfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeIpNatListCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.IpNatList = in["ip_nat_list"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2514,10 +2931,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeIpNatListCfg(d []interface{}
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeIsisCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeIsisCfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeIsisCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Isis = in["isis"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2525,10 +2944,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeIsisCfg(d []interface{}) edp
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeOspfCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeOspfCfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeOspfCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Ospf = in["ospf"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2536,10 +2957,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeOspfCfg(d []interface{}) edp
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeRipCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeRipCfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeRipCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Rip = in["rip"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2547,10 +2970,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeRipCfg(d []interface{}) edpt
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeStaticCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeStaticCfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeStaticCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Static = in["static"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2558,10 +2983,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeStaticCfg(d []interface{}) e
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeVip(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeVip {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeVip
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.OnlyFlaggedCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg(in["only_flagged_cfg"].([]interface{}))
 		ret.OnlyNotFlaggedCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg(in["only_not_flagged_cfg"].([]interface{}))
 	}
@@ -2569,10 +2996,12 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeVip(d []interface{}) edpt.Ro
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.OnlyFlagged = in["only_flagged"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -2580,168 +3009,14 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyFlaggedCfg(d []interf
 }
 
 func getObjectRouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg {
-	count := len(d)
 	var ret edpt.RouterBgpAddressFamilyIpv6RedistributeVipOnlyNotFlaggedCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.OnlyNotFlagged = in["only_not_flagged"].(int)
 		ret.RouteMap = in["route_map"].(string)
-	}
-	return ret
-}
-
-func getObjectRouterBgpAddressFamilyIpv4Flowspec(d []interface{}) edpt.RouterBgpAddressFamilyIpv4Flowspec {
-	count := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv4Flowspec
-	if count > 0 {
-		in := d[0].(map[string]interface{})
-		//omit uuid
-		ret.Neighbor = getObjectRouterBgpAddressFamilyIpv4FlowspecNeighbor(in["neighbor"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectRouterBgpAddressFamilyIpv4FlowspecNeighbor(d []interface{}) edpt.RouterBgpAddressFamilyIpv4FlowspecNeighbor {
-	count := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv4FlowspecNeighbor
-	if count > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Ipv4NeighborList = getSliceRouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborList(in["ipv4_neighbor_list"].([]interface{}))
-		ret.Ipv6NeighborList = getSliceRouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborList(in["ipv6_neighbor_list"].([]interface{}))
-	}
-	return ret
-}
-
-func getSliceRouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborList(d []interface{}) []edpt.RouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborList {
-	count := len(d)
-	ret := make([]edpt.RouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborList, 0, count)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.RouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborList
-		oi.NeighborIpv4 = in["neighbor_ipv4"].(string)
-		oi.Activate = in["activate"].(int)
-		oi.NeighborRouteMapLists = getSliceRouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborListNeighborRouteMapLists(in["neighbor_route_map_lists"].([]interface{}))
-		//omit uuid
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getSliceRouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborListNeighborRouteMapLists(d []interface{}) []edpt.RouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborListNeighborRouteMapLists {
-	count := len(d)
-	ret := make([]edpt.RouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborListNeighborRouteMapLists, 0, count)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.RouterBgpAddressFamilyIpv4FlowspecNeighborIpv4NeighborListNeighborRouteMapLists
-		oi.NbrRouteMap = in["nbr_route_map"].(string)
-		oi.NbrRmapDirection = in["nbr_rmap_direction"].(string)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getSliceRouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborList(d []interface{}) []edpt.RouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborList {
-	count := len(d)
-	ret := make([]edpt.RouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborList, 0, count)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.RouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborList
-		oi.NeighborIpv6 = in["neighbor_ipv6"].(string)
-		oi.Activate = in["activate"].(int)
-		oi.NeighborRouteMapLists = getSliceRouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborListNeighborRouteMapLists(in["neighbor_route_map_lists"].([]interface{}))
-		//omit uuid
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getSliceRouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborListNeighborRouteMapLists(d []interface{}) []edpt.RouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborListNeighborRouteMapLists {
-	count := len(d)
-	ret := make([]edpt.RouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborListNeighborRouteMapLists, 0, count)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.RouterBgpAddressFamilyIpv4FlowspecNeighborIpv6NeighborListNeighborRouteMapLists
-		oi.NbrRouteMap = in["nbr_route_map"].(string)
-		oi.NbrRmapDirection = in["nbr_rmap_direction"].(string)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getObjectRouterBgpAddressFamilyIpv6Flowspec(d []interface{}) edpt.RouterBgpAddressFamilyIpv6Flowspec {
-	count := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6Flowspec
-	if count > 0 {
-		in := d[0].(map[string]interface{})
-		//omit uuid
-		ret.Neighbor = getObjectRouterBgpAddressFamilyIpv6FlowspecNeighbor(in["neighbor"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectRouterBgpAddressFamilyIpv6FlowspecNeighbor(d []interface{}) edpt.RouterBgpAddressFamilyIpv6FlowspecNeighbor {
-	count := len(d)
-	var ret edpt.RouterBgpAddressFamilyIpv6FlowspecNeighbor
-	if count > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Ipv4NeighborList = getSliceRouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborList(in["ipv4_neighbor_list"].([]interface{}))
-		ret.Ipv6NeighborList = getSliceRouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborList(in["ipv6_neighbor_list"].([]interface{}))
-	}
-	return ret
-}
-
-func getSliceRouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborList(d []interface{}) []edpt.RouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborList {
-	count := len(d)
-	ret := make([]edpt.RouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborList, 0, count)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.RouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborList
-		oi.NeighborIpv4 = in["neighbor_ipv4"].(string)
-		oi.Activate = in["activate"].(int)
-		oi.NeighborRouteMapLists = getSliceRouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborListNeighborRouteMapLists(in["neighbor_route_map_lists"].([]interface{}))
-		//omit uuid
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getSliceRouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborListNeighborRouteMapLists(d []interface{}) []edpt.RouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborListNeighborRouteMapLists {
-	count := len(d)
-	ret := make([]edpt.RouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborListNeighborRouteMapLists, 0, count)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.RouterBgpAddressFamilyIpv6FlowspecNeighborIpv4NeighborListNeighborRouteMapLists
-		oi.NbrRouteMap = in["nbr_route_map"].(string)
-		oi.NbrRmapDirection = in["nbr_rmap_direction"].(string)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getSliceRouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborList(d []interface{}) []edpt.RouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborList {
-	count := len(d)
-	ret := make([]edpt.RouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborList, 0, count)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.RouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborList
-		oi.NeighborIpv6 = in["neighbor_ipv6"].(string)
-		oi.Activate = in["activate"].(int)
-		oi.NeighborRouteMapLists = getSliceRouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborListNeighborRouteMapLists(in["neighbor_route_map_lists"].([]interface{}))
-		//omit uuid
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getSliceRouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborListNeighborRouteMapLists(d []interface{}) []edpt.RouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborListNeighborRouteMapLists {
-	count := len(d)
-	ret := make([]edpt.RouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborListNeighborRouteMapLists, 0, count)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.RouterBgpAddressFamilyIpv6FlowspecNeighborIpv6NeighborListNeighborRouteMapLists
-		oi.NbrRouteMap = in["nbr_route_map"].(string)
-		oi.NbrRmapDirection = in["nbr_rmap_direction"].(string)
-		ret = append(ret, oi)
 	}
 	return ret
 }
@@ -2750,6 +3025,9 @@ func getSliceRouterBgpAggregateAddressList(d []interface{}) []edpt.RouterBgpAggr
 	count := len(d)
 	ret := make([]edpt.RouterBgpAggregateAddressList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpAggregateAddressList
 		oi.AggregateAddress = in["aggregate_address"].(string)
@@ -2761,10 +3039,12 @@ func getSliceRouterBgpAggregateAddressList(d []interface{}) []edpt.RouterBgpAggr
 }
 
 func getObjectRouterBgpBgp(d []interface{}) edpt.RouterBgpBgp {
-	count := len(d)
 	var ret edpt.RouterBgpBgp
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.AlwaysCompareMed = in["always_compare_med"].(int)
 		ret.BestpathCfg = getObjectRouterBgpBgpBestpathCfg(in["bestpath_cfg"].([]interface{}))
 		ret.DampeningCfg = getObjectRouterBgpBgpDampeningCfg(in["dampening_cfg"].([]interface{}))
@@ -2775,6 +3055,7 @@ func getObjectRouterBgpBgp(d []interface{}) edpt.RouterBgpBgp {
 		ret.LogNeighborChanges = in["log_neighbor_changes"].(int)
 		ret.NexthopTriggerCount = in["nexthop_trigger_count"].(int)
 		ret.RouterId = in["router_id"].(string)
+		ret.OverrideValidation = in["override_validation"].(int)
 		ret.ScanTime = in["scan_time"].(int)
 		ret.GracefulRestart = in["graceful_restart"].(int)
 		ret.BgpRestartTime = in["bgp_restart_time"].(int)
@@ -2784,10 +3065,12 @@ func getObjectRouterBgpBgp(d []interface{}) edpt.RouterBgpBgp {
 }
 
 func getObjectRouterBgpBgpBestpathCfg(d []interface{}) edpt.RouterBgpBgpBestpathCfg {
-	count := len(d)
 	var ret edpt.RouterBgpBgpBestpathCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Ignore = in["ignore"].(int)
 		ret.CompareRouterid = in["compare_routerid"].(int)
 		ret.RemoveRecvMed = in["remove_recv_med"].(int)
@@ -2798,10 +3081,12 @@ func getObjectRouterBgpBgpBestpathCfg(d []interface{}) edpt.RouterBgpBgpBestpath
 }
 
 func getObjectRouterBgpBgpDampeningCfg(d []interface{}) edpt.RouterBgpBgpDampeningCfg {
-	count := len(d)
 	var ret edpt.RouterBgpBgpDampeningCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Dampening = in["dampening"].(int)
 		ret.DampeningHalfTime = in["dampening_half_time"].(int)
 		ret.DampeningReuse = in["dampening_reuse"].(int)
@@ -2817,6 +3102,9 @@ func getSliceRouterBgpDistanceList(d []interface{}) []edpt.RouterBgpDistanceList
 	count := len(d)
 	ret := make([]edpt.RouterBgpDistanceList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpDistanceList
 		oi.AdminDistance = in["admin_distance"].(int)
@@ -2831,10 +3119,12 @@ func getSliceRouterBgpDistanceList(d []interface{}) []edpt.RouterBgpDistanceList
 }
 
 func getObjectRouterBgpNeighbor(d []interface{}) edpt.RouterBgpNeighbor {
-	count := len(d)
 	var ret edpt.RouterBgpNeighbor
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.PeerGroupNeighborList = getSliceRouterBgpNeighborPeerGroupNeighborList(in["peer_group_neighbor_list"].([]interface{}))
 		ret.Ipv4NeighborList = getSliceRouterBgpNeighborIpv4NeighborList(in["ipv4_neighbor_list"].([]interface{}))
 		ret.Ipv6NeighborList = getSliceRouterBgpNeighborIpv6NeighborList(in["ipv6_neighbor_list"].([]interface{}))
@@ -2849,43 +3139,54 @@ func getSliceRouterBgpNeighborPeerGroupNeighborList(d []interface{}) []edpt.Rout
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborPeerGroupNeighborList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborPeerGroupNeighborList
 		oi.PeerGroup = in["peer_group"].(string)
 		oi.PeerGroupKey = in["peer_group_key"].(int)
-		oi.PeerGroupRemoteAs = in["peer_group_remote_as"].(string)
+		oi.PeerGroupRemoteAs = in["peer_group_remote_as"].(int)
 		oi.Activate = in["activate"].(int)
 		oi.AdvertisementInterval = in["advertisement_interval"].(int)
 		oi.AllowasIn = in["allowas_in"].(int)
 		oi.AllowasInCount = in["allowas_in_count"].(int)
 		oi.AsOriginationInterval = in["as_origination_interval"].(int)
 		oi.Dynamic = in["dynamic"].(int)
+		oi.PrefixListDirection = in["prefix_list_direction"].(string)
 		oi.RouteRefresh = in["route_refresh"].(int)
 		oi.ExtendedNexthop = in["extended_nexthop"].(int)
 		oi.CollideEstablished = in["collide_established"].(int)
 		oi.DefaultOriginate = in["default_originate"].(int)
 		oi.RouteMap = in["route_map"].(string)
 		oi.Description = in["description"].(string)
+		oi.DisallowInfiniteHoldtime = in["disallow_infinite_holdtime"].(int)
+		oi.DistributeLists = getSliceRouterBgpNeighborPeerGroupNeighborListDistributeLists(in["distribute_lists"].([]interface{}))
 		oi.DontCapabilityNegotiate = in["dont_capability_negotiate"].(int)
 		oi.EbgpMultihop = in["ebgp_multihop"].(int)
 		oi.EbgpMultihopHopCount = in["ebgp_multihop_hop_count"].(int)
 		oi.EnforceMultihop = in["enforce_multihop"].(int)
 		oi.Bfd = in["bfd"].(int)
 		oi.Multihop = in["multihop"].(int)
+		oi.NeighborFilterLists = getSliceRouterBgpNeighborPeerGroupNeighborListNeighborFilterLists(in["neighbor_filter_lists"].([]interface{}))
 		oi.MaximumPrefix = in["maximum_prefix"].(int)
 		oi.MaximumPrefixThres = in["maximum_prefix_thres"].(int)
+		oi.NextHopSelf = in["next_hop_self"].(int)
 		oi.OverrideCapability = in["override_capability"].(int)
 		oi.PassValue = in["pass_value"].(string)
 		//omit pass_encrypted
 		oi.Passive = in["passive"].(int)
+		oi.NeighborPrefixLists = getSliceRouterBgpNeighborPeerGroupNeighborListNeighborPrefixLists(in["neighbor_prefix_lists"].([]interface{}))
 		oi.RemovePrivateAs = in["remove_private_as"].(int)
 		oi.NeighborRouteMapLists = getSliceRouterBgpNeighborPeerGroupNeighborListNeighborRouteMapLists(in["neighbor_route_map_lists"].([]interface{}))
+		oi.SendCommunityVal = in["send_community_val"].(string)
 		oi.Inbound = in["inbound"].(int)
 		oi.Shutdown = in["shutdown"].(int)
 		oi.StrictCapabilityMatch = in["strict_capability_match"].(int)
 		oi.TimersKeepalive = in["timers_keepalive"].(int)
 		oi.TimersHoldtime = in["timers_holdtime"].(int)
 		oi.Connect = in["connect"].(int)
+		oi.UnsuppressMap = in["unsuppress_map"].(string)
 		oi.UpdateSourceIp = in["update_source_ip"].(string)
 		oi.UpdateSourceIpv6 = in["update_source_ipv6"].(string)
 		oi.Ethernet = in["ethernet"].(int)
@@ -2901,10 +3202,61 @@ func getSliceRouterBgpNeighborPeerGroupNeighborList(d []interface{}) []edpt.Rout
 	return ret
 }
 
+func getSliceRouterBgpNeighborPeerGroupNeighborListDistributeLists(d []interface{}) []edpt.RouterBgpNeighborPeerGroupNeighborListDistributeLists {
+	count := len(d)
+	ret := make([]edpt.RouterBgpNeighborPeerGroupNeighborListDistributeLists, 0, count)
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
+		var oi edpt.RouterBgpNeighborPeerGroupNeighborListDistributeLists
+		oi.DistributeList = in["distribute_list"].(string)
+		oi.DistributeListDirection = in["distribute_list_direction"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceRouterBgpNeighborPeerGroupNeighborListNeighborFilterLists(d []interface{}) []edpt.RouterBgpNeighborPeerGroupNeighborListNeighborFilterLists {
+	count := len(d)
+	ret := make([]edpt.RouterBgpNeighborPeerGroupNeighborListNeighborFilterLists, 0, count)
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
+		var oi edpt.RouterBgpNeighborPeerGroupNeighborListNeighborFilterLists
+		oi.FilterList = in["filter_list"].(string)
+		oi.FilterListDirection = in["filter_list_direction"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceRouterBgpNeighborPeerGroupNeighborListNeighborPrefixLists(d []interface{}) []edpt.RouterBgpNeighborPeerGroupNeighborListNeighborPrefixLists {
+	count := len(d)
+	ret := make([]edpt.RouterBgpNeighborPeerGroupNeighborListNeighborPrefixLists, 0, count)
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
+		var oi edpt.RouterBgpNeighborPeerGroupNeighborListNeighborPrefixLists
+		oi.NbrPrefixList = in["nbr_prefix_list"].(string)
+		oi.NbrPrefixListDirection = in["nbr_prefix_list_direction"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func getSliceRouterBgpNeighborPeerGroupNeighborListNeighborRouteMapLists(d []interface{}) []edpt.RouterBgpNeighborPeerGroupNeighborListNeighborRouteMapLists {
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborPeerGroupNeighborListNeighborRouteMapLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborPeerGroupNeighborListNeighborRouteMapLists
 		oi.NbrRouteMap = in["nbr_route_map"].(string)
@@ -2918,10 +3270,13 @@ func getSliceRouterBgpNeighborIpv4NeighborList(d []interface{}) []edpt.RouterBgp
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborIpv4NeighborList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborIpv4NeighborList
 		oi.NeighborIpv4 = in["neighbor_ipv4"].(string)
-		oi.NbrRemoteAs = in["nbr_remote_as"].(string)
+		oi.NbrRemoteAs = in["nbr_remote_as"].(int)
 		oi.PeerGroupName = in["peer_group_name"].(string)
 		oi.Activate = in["activate"].(int)
 		oi.AdvertisementInterval = in["advertisement_interval"].(int)
@@ -2939,7 +3294,6 @@ func getSliceRouterBgpNeighborIpv4NeighborList(d []interface{}) []edpt.RouterBgp
 		oi.DisallowInfiniteHoldtime = in["disallow_infinite_holdtime"].(int)
 		oi.DistributeLists = getSliceRouterBgpNeighborIpv4NeighborListDistributeLists(in["distribute_lists"].([]interface{}))
 		oi.AcosApplicationOnly = in["acos_application_only"].(int)
-		oi.Telemetry = in["telemetry"].(int)
 		oi.DontCapabilityNegotiate = in["dont_capability_negotiate"].(int)
 		oi.EbgpMultihop = in["ebgp_multihop"].(int)
 		oi.EbgpMultihopHopCount = in["ebgp_multihop_hop_count"].(int)
@@ -2989,6 +3343,9 @@ func getSliceRouterBgpNeighborIpv4NeighborListDistributeLists(d []interface{}) [
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborIpv4NeighborListDistributeLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborIpv4NeighborListDistributeLists
 		oi.DistributeList = in["distribute_list"].(string)
@@ -3002,6 +3359,9 @@ func getSliceRouterBgpNeighborIpv4NeighborListNeighborFilterLists(d []interface{
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborIpv4NeighborListNeighborFilterLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborIpv4NeighborListNeighborFilterLists
 		oi.FilterList = in["filter_list"].(string)
@@ -3015,6 +3375,9 @@ func getSliceRouterBgpNeighborIpv4NeighborListNeighborPrefixLists(d []interface{
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborIpv4NeighborListNeighborPrefixLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborIpv4NeighborListNeighborPrefixLists
 		oi.NbrPrefixList = in["nbr_prefix_list"].(string)
@@ -3028,6 +3391,9 @@ func getSliceRouterBgpNeighborIpv4NeighborListNeighborRouteMapLists(d []interfac
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborIpv4NeighborListNeighborRouteMapLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborIpv4NeighborListNeighborRouteMapLists
 		oi.NbrRouteMap = in["nbr_route_map"].(string)
@@ -3041,10 +3407,13 @@ func getSliceRouterBgpNeighborIpv6NeighborList(d []interface{}) []edpt.RouterBgp
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborIpv6NeighborList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborIpv6NeighborList
 		oi.NeighborIpv6 = in["neighbor_ipv6"].(string)
-		oi.NbrRemoteAs = in["nbr_remote_as"].(string)
+		oi.NbrRemoteAs = in["nbr_remote_as"].(int)
 		oi.PeerGroupName = in["peer_group_name"].(string)
 		oi.Activate = in["activate"].(int)
 		oi.AdvertisementInterval = in["advertisement_interval"].(int)
@@ -3063,7 +3432,6 @@ func getSliceRouterBgpNeighborIpv6NeighborList(d []interface{}) []edpt.RouterBgp
 		oi.DisallowInfiniteHoldtime = in["disallow_infinite_holdtime"].(int)
 		oi.DistributeLists = getSliceRouterBgpNeighborIpv6NeighborListDistributeLists(in["distribute_lists"].([]interface{}))
 		oi.AcosApplicationOnly = in["acos_application_only"].(int)
-		oi.Telemetry = in["telemetry"].(int)
 		oi.DontCapabilityNegotiate = in["dont_capability_negotiate"].(int)
 		oi.EbgpMultihop = in["ebgp_multihop"].(int)
 		oi.EbgpMultihopHopCount = in["ebgp_multihop_hop_count"].(int)
@@ -3113,6 +3481,9 @@ func getSliceRouterBgpNeighborIpv6NeighborListDistributeLists(d []interface{}) [
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborIpv6NeighborListDistributeLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborIpv6NeighborListDistributeLists
 		oi.DistributeList = in["distribute_list"].(string)
@@ -3126,6 +3497,9 @@ func getSliceRouterBgpNeighborIpv6NeighborListNeighborFilterLists(d []interface{
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborIpv6NeighborListNeighborFilterLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborIpv6NeighborListNeighborFilterLists
 		oi.FilterList = in["filter_list"].(string)
@@ -3139,6 +3513,9 @@ func getSliceRouterBgpNeighborIpv6NeighborListNeighborPrefixLists(d []interface{
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborIpv6NeighborListNeighborPrefixLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborIpv6NeighborListNeighborPrefixLists
 		oi.NbrPrefixList = in["nbr_prefix_list"].(string)
@@ -3152,6 +3529,9 @@ func getSliceRouterBgpNeighborIpv6NeighborListNeighborRouteMapLists(d []interfac
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborIpv6NeighborListNeighborRouteMapLists, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborIpv6NeighborListNeighborRouteMapLists
 		oi.NbrRouteMap = in["nbr_route_map"].(string)
@@ -3165,6 +3545,9 @@ func getSliceRouterBgpNeighborEthernetNeighborList(d []interface{}) []edpt.Route
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborEthernetNeighborList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborEthernetNeighborList
 		oi.Ethernet = in["ethernet"].(int)
@@ -3180,6 +3563,9 @@ func getSliceRouterBgpNeighborVeNeighborList(d []interface{}) []edpt.RouterBgpNe
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborVeNeighborList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborVeNeighborList
 		oi.Ve = in["ve"].(int)
@@ -3195,6 +3581,9 @@ func getSliceRouterBgpNeighborTrunkNeighborList(d []interface{}) []edpt.RouterBg
 	count := len(d)
 	ret := make([]edpt.RouterBgpNeighborTrunkNeighborList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNeighborTrunkNeighborList
 		oi.Trunk = in["trunk"].(int)
@@ -3207,44 +3596,26 @@ func getSliceRouterBgpNeighborTrunkNeighborList(d []interface{}) []edpt.RouterBg
 }
 
 func getObjectRouterBgpNetwork(d []interface{}) edpt.RouterBgpNetwork {
-	count := len(d)
 	var ret edpt.RouterBgpNetwork
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Synchronization = getObjectRouterBgpNetworkSynchronization(in["synchronization"].([]interface{}))
-		ret.Monitor = getObjectRouterBgpNetworkMonitor(in["monitor"].([]interface{}))
 		ret.IpCidrList = getSliceRouterBgpNetworkIpCidrList(in["ip_cidr_list"].([]interface{}))
 	}
 	return ret
 }
 
 func getObjectRouterBgpNetworkSynchronization(d []interface{}) edpt.RouterBgpNetworkSynchronization {
-	count := len(d)
 	var ret edpt.RouterBgpNetworkSynchronization
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.NetworkSynchronization = in["network_synchronization"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectRouterBgpNetworkMonitor(d []interface{}) edpt.RouterBgpNetworkMonitor {
-	count := len(d)
-	var ret edpt.RouterBgpNetworkMonitor
-	if count > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Default = getObjectRouterBgpNetworkMonitorDefault(in["default"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectRouterBgpNetworkMonitorDefault(d []interface{}) edpt.RouterBgpNetworkMonitorDefault {
-	count := len(d)
-	var ret edpt.RouterBgpNetworkMonitorDefault
-	if count > 0 {
-		in := d[0].(map[string]interface{})
-		ret.NetworkMonitorDefault = in["network_monitor_default"].(int)
 		//omit uuid
 	}
 	return ret
@@ -3254,6 +3625,9 @@ func getSliceRouterBgpNetworkIpCidrList(d []interface{}) []edpt.RouterBgpNetwork
 	count := len(d)
 	ret := make([]edpt.RouterBgpNetworkIpCidrList, 0, count)
 	for _, item := range d {
+		if item == nil {
+			continue
+		}
 		in := item.(map[string]interface{})
 		var oi edpt.RouterBgpNetworkIpCidrList
 		oi.NetworkIpv4Cidr = in["network_ipv4_cidr"].(string)
@@ -3268,10 +3642,12 @@ func getSliceRouterBgpNetworkIpCidrList(d []interface{}) []edpt.RouterBgpNetwork
 }
 
 func getObjectRouterBgpRedistribute(d []interface{}) edpt.RouterBgpRedistribute {
-	count := len(d)
 	var ret edpt.RouterBgpRedistribute
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.ConnectedCfg = getObjectRouterBgpRedistributeConnectedCfg(in["connected_cfg"].([]interface{}))
 		ret.FloatingIpCfg = getObjectRouterBgpRedistributeFloatingIpCfg(in["floating_ip_cfg"].([]interface{}))
 		ret.Lw4o6Cfg = getObjectRouterBgpRedistributeLw4o6Cfg(in["lw4o6_cfg"].([]interface{}))
@@ -3290,10 +3666,12 @@ func getObjectRouterBgpRedistribute(d []interface{}) edpt.RouterBgpRedistribute 
 }
 
 func getObjectRouterBgpRedistributeConnectedCfg(d []interface{}) edpt.RouterBgpRedistributeConnectedCfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeConnectedCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Connected = in["connected"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3301,10 +3679,12 @@ func getObjectRouterBgpRedistributeConnectedCfg(d []interface{}) edpt.RouterBgpR
 }
 
 func getObjectRouterBgpRedistributeFloatingIpCfg(d []interface{}) edpt.RouterBgpRedistributeFloatingIpCfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeFloatingIpCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.FloatingIp = in["floating_ip"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3312,10 +3692,12 @@ func getObjectRouterBgpRedistributeFloatingIpCfg(d []interface{}) edpt.RouterBgp
 }
 
 func getObjectRouterBgpRedistributeLw4o6Cfg(d []interface{}) edpt.RouterBgpRedistributeLw4o6Cfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeLw4o6Cfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Lw4o6 = in["lw4o6"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3323,10 +3705,12 @@ func getObjectRouterBgpRedistributeLw4o6Cfg(d []interface{}) edpt.RouterBgpRedis
 }
 
 func getObjectRouterBgpRedistributeStaticNatCfg(d []interface{}) edpt.RouterBgpRedistributeStaticNatCfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeStaticNatCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.StaticNat = in["static_nat"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3334,10 +3718,12 @@ func getObjectRouterBgpRedistributeStaticNatCfg(d []interface{}) edpt.RouterBgpR
 }
 
 func getObjectRouterBgpRedistributeIpNatCfg(d []interface{}) edpt.RouterBgpRedistributeIpNatCfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeIpNatCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.IpNat = in["ip_nat"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3345,10 +3731,12 @@ func getObjectRouterBgpRedistributeIpNatCfg(d []interface{}) edpt.RouterBgpRedis
 }
 
 func getObjectRouterBgpRedistributeIpNatListCfg(d []interface{}) edpt.RouterBgpRedistributeIpNatListCfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeIpNatListCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.IpNatList = in["ip_nat_list"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3356,10 +3744,12 @@ func getObjectRouterBgpRedistributeIpNatListCfg(d []interface{}) edpt.RouterBgpR
 }
 
 func getObjectRouterBgpRedistributeIsisCfg(d []interface{}) edpt.RouterBgpRedistributeIsisCfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeIsisCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Isis = in["isis"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3367,10 +3757,12 @@ func getObjectRouterBgpRedistributeIsisCfg(d []interface{}) edpt.RouterBgpRedist
 }
 
 func getObjectRouterBgpRedistributeOspfCfg(d []interface{}) edpt.RouterBgpRedistributeOspfCfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeOspfCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Ospf = in["ospf"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3378,10 +3770,12 @@ func getObjectRouterBgpRedistributeOspfCfg(d []interface{}) edpt.RouterBgpRedist
 }
 
 func getObjectRouterBgpRedistributeRipCfg(d []interface{}) edpt.RouterBgpRedistributeRipCfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeRipCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Rip = in["rip"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3389,10 +3783,12 @@ func getObjectRouterBgpRedistributeRipCfg(d []interface{}) edpt.RouterBgpRedistr
 }
 
 func getObjectRouterBgpRedistributeStaticCfg(d []interface{}) edpt.RouterBgpRedistributeStaticCfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeStaticCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.Static = in["static"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3400,10 +3796,12 @@ func getObjectRouterBgpRedistributeStaticCfg(d []interface{}) edpt.RouterBgpRedi
 }
 
 func getObjectRouterBgpRedistributeNatMapCfg(d []interface{}) edpt.RouterBgpRedistributeNatMapCfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeNatMapCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.NatMap = in["nat_map"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3411,10 +3809,12 @@ func getObjectRouterBgpRedistributeNatMapCfg(d []interface{}) edpt.RouterBgpRedi
 }
 
 func getObjectRouterBgpRedistributeVip(d []interface{}) edpt.RouterBgpRedistributeVip {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeVip
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.OnlyFlaggedCfg = getObjectRouterBgpRedistributeVipOnlyFlaggedCfg(in["only_flagged_cfg"].([]interface{}))
 		ret.OnlyNotFlaggedCfg = getObjectRouterBgpRedistributeVipOnlyNotFlaggedCfg(in["only_not_flagged_cfg"].([]interface{}))
 	}
@@ -3422,10 +3822,12 @@ func getObjectRouterBgpRedistributeVip(d []interface{}) edpt.RouterBgpRedistribu
 }
 
 func getObjectRouterBgpRedistributeVipOnlyFlaggedCfg(d []interface{}) edpt.RouterBgpRedistributeVipOnlyFlaggedCfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeVipOnlyFlaggedCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.OnlyFlagged = in["only_flagged"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3433,10 +3835,12 @@ func getObjectRouterBgpRedistributeVipOnlyFlaggedCfg(d []interface{}) edpt.Route
 }
 
 func getObjectRouterBgpRedistributeVipOnlyNotFlaggedCfg(d []interface{}) edpt.RouterBgpRedistributeVipOnlyNotFlaggedCfg {
-	count := len(d)
 	var ret edpt.RouterBgpRedistributeVipOnlyNotFlaggedCfg
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.OnlyNotFlagged = in["only_not_flagged"].(int)
 		ret.RouteMap = in["route_map"].(string)
 	}
@@ -3444,10 +3848,12 @@ func getObjectRouterBgpRedistributeVipOnlyNotFlaggedCfg(d []interface{}) edpt.Ro
 }
 
 func getObjectRouterBgpTimers(d []interface{}) edpt.RouterBgpTimers {
-	count := len(d)
 	var ret edpt.RouterBgpTimers
-	if count > 0 {
-		in := d[0].(map[string]interface{})
+	for _, item := range d {
+		if item == nil {
+			continue
+		}
+		in := item.(map[string]interface{})
 		ret.BgpKeepalive = in["bgp_keepalive"].(int)
 		ret.BgpHoldtime = in["bgp_holdtime"].(int)
 	}
@@ -3458,7 +3864,7 @@ func dataToEndpointRouterBgp(d *schema.ResourceData) edpt.RouterBgp {
 	var ret edpt.RouterBgp
 	ret.Inst.AddressFamily = getObjectRouterBgpAddressFamily(d.Get("address_family").([]interface{}))
 	ret.Inst.AggregateAddressList = getSliceRouterBgpAggregateAddressList(d.Get("aggregate_address_list").([]interface{}))
-	ret.Inst.AsNumber = d.Get("as_number").(string)
+	ret.Inst.AsNumber = d.Get("as_number").(int)
 	ret.Inst.AutoSummary = d.Get("auto_summary").(int)
 	ret.Inst.Bgp = getObjectRouterBgpBgp(d.Get("bgp").([]interface{}))
 	ret.Inst.DistanceList = getSliceRouterBgpDistanceList(d.Get("distance_list").([]interface{}))

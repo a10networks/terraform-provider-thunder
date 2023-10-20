@@ -15,7 +15,7 @@ resource "thunder_slb_ftp_data" "ftp_data1" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderSlbFTPData_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

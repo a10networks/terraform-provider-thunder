@@ -15,7 +15,7 @@ resource "thunder_slb_template_http" "http" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplateHTTP_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

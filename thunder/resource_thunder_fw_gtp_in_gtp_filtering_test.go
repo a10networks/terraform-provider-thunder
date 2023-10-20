@@ -12,7 +12,7 @@ resource "thunder_fw_gtp_in_gtp_filtering" "FwTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwGtpInGtpFiltering_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

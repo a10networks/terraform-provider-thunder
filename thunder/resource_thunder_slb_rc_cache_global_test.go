@@ -15,7 +15,7 @@ resource "thunder_slb_rc_cache_global" "rc_cache1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbRcCacheGlobal_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

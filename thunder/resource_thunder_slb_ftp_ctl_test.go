@@ -15,7 +15,7 @@ resource "thunder_slb_ftp_ctl" "ftp_ctl1" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderFTPCtl_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

@@ -21,12 +21,12 @@ func resourceServiceGroup() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"name": {
 				Type:        schema.TypeString,
-				Required:    true,
+				Optional:    true,
 				Description: "",
 			},
 			"protocol": {
 				Type:        schema.TypeString,
-				Required:    true,
+				Optional:    true,
 				Description: "",
 			},
 			"template_port": {

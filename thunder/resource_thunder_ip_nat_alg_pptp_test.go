@@ -15,7 +15,7 @@ resource "thunder_ip_nat_alg_pptp" "pptp" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpNatAlgPptp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

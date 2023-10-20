@@ -29,7 +29,7 @@ var TEST_VRRP_VRID_RESOURCE = `
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderVrrpVrid_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

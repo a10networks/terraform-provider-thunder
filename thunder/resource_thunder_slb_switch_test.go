@@ -14,7 +14,7 @@ resource "thunder_slb_switch" "slb_switch1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbSwitch_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

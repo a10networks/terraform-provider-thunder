@@ -226,7 +226,7 @@ func resourceRibRouteDelete(ctx context.Context, d *schema.ResourceData, meta in
 	return nil
 }
 
-//Utility method to instantiate Rib Route structure
+// Utility method to instantiate Rib Route structure
 func dataToRibRoute(d *schema.ResourceData) go_thunder.Rib {
 
 	logger := util.GetLoggerInstance()

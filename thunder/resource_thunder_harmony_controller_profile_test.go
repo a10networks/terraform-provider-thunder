@@ -23,7 +23,7 @@ var TEST_PROFILE_RESOURCE = `
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderProfile_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

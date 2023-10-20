@@ -13,7 +13,7 @@ resource "thunder_snmp_server_contact" "SnmpServerTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSnmpServerContact_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

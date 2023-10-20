@@ -13,7 +13,7 @@ resource "thunder_snmp_server_enable_traps_system" "SnmpServerEnableTrapsTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSnmpServerEnableTrapsSystem_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

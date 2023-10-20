@@ -14,7 +14,7 @@ var TEST_GLM_RESOURCE = `
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderGlm_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

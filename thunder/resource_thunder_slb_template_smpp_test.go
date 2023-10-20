@@ -19,7 +19,7 @@ password = "pwd1"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccAccThunderSmpp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

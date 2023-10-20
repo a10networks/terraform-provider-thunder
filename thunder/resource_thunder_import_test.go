@@ -15,7 +15,7 @@ var TEST_IMPORT_RESOURCE = `
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderImport_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

@@ -20,7 +20,7 @@ login_banner_cfg {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccBanner_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

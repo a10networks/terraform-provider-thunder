@@ -17,7 +17,7 @@ user_tag = "tag1"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderUdp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

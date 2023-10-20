@@ -19,7 +19,7 @@ resource "thunder_slb_template_policy" "policy" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplatePolicy_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

@@ -15,7 +15,7 @@ description = "a"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccRouterBgpAddressFamilyIpv6NetworkIpv6Network_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

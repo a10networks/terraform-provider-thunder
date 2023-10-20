@@ -15,7 +15,7 @@ resource "thunder_slb_smtp" "slb_smtp1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbSmtp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

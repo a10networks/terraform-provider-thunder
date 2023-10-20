@@ -18,7 +18,7 @@ resource "thunder_slb_template_virtual_server" "virtual_server" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplateVirtualServer_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

@@ -13,7 +13,7 @@ resource "thunder_snmp_server_enable_traps_routing_bgp" "SnmpServerEnableTrapsRo
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSnmpServerEnableTrapsRoutingBgp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

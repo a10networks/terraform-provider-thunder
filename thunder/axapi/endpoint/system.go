@@ -5,157 +5,140 @@ import (
 	"github.com/clarketm/json"
 )
 
-// based on ACOS 6_0_0-P1_10
+// based on ACOS 5_2_1-P4_90
 type System struct {
 	Inst struct {
-		AddCpuCore                   SystemAddCpuCore              `json:"add-cpu-core"`
-		AddPort                      SystemAddPort                 `json:"add-port"`
-		AllVlanLimit                 SystemAllVlanLimit            `json:"all-vlan-limit"`
-		AnomalyLog                   int                           `json:"anomaly-log"`
-		AnomalyLogRateLimit          int                           `json:"anomaly-log-rate-limit"`
-		AppPerformance               SystemAppPerformance          `json:"app-performance"`
-		AppsGlobal                   SystemAppsGlobal              `json:"apps-global"`
-		AsicDebugDump                SystemAsicDebugDump           `json:"asic-debug-dump"`
-		AsicMmuFailSafe              SystemAsicMmuFailSafe         `json:"asic-mmu-fail-safe"`
-		AttackLog                    int                           `json:"attack-log"`
-		Bandwidth                    SystemBandwidth               `json:"bandwidth"`
-		Bfd                          SystemBfd                     `json:"bfd"`
-		ClassListHitcountEnable      int                           `json:"class-list-hitcount-enable" dval:"1"`
-		CliMonitorInterval           SystemCliMonitorInterval      `json:"cli-monitor-interval"`
-		CmUpdateFileNameRef          SystemCmUpdateFileNameRef     `json:"cm-update-file-name-ref"`
-		ControlCpu                   SystemControlCpu              `json:"control-cpu"`
-		Core                         SystemCore                    `json:"core"`
-		CosqShow                     SystemCosqShow                `json:"cosq-show"`
-		CosqStats                    SystemCosqStats               `json:"cosq-stats"`
-		CounterLibAccounting         SystemCounterLibAccounting    `json:"counter-lib-accounting"`
-		CpuHyperThread               SystemCpuHyperThread          `json:"cpu-hyper-thread"`
-		CpuList                      SystemCpuList                 `json:"cpu-list"`
-		CpuLoadSharing               SystemCpuLoadSharing          `json:"cpu-load-sharing"`
-		CpuMap                       SystemCpuMap                  `json:"cpu-map"`
-		CpuPacketPrioSupport         SystemCpuPacketPrioSupport    `json:"cpu-packet-prio-support"`
-		DataCpu                      SystemDataCpu                 `json:"data-cpu"`
-		DdosAttack                   int                           `json:"ddos-attack"`
-		DdosLog                      int                           `json:"ddos-log"`
-		DefaultMtu                   int                           `json:"default-mtu"`
-		DelPort                      SystemDelPort                 `json:"del-port"`
-		DeleteCpuCore                SystemDeleteCpuCore           `json:"delete-cpu-core"`
-		Dns                          SystemDns                     `json:"dns"`
-		DnsCache                     SystemDnsCache                `json:"dns-cache"`
-		DomainListHitcountEnable     int                           `json:"domain-list-hitcount-enable"`
-		DomainListInfo               SystemDomainListInfo          `json:"domain-list-info"`
-		DpdkStats                    SystemDpdkStats               `json:"dpdk-stats"`
-		DropLinuxClosedPortSyn       string                        `json:"drop-linux-closed-port-syn" dval:"enable"`
-		DynamicServiceDnsSocketPool  int                           `json:"dynamic-service-dns-socket-pool"`
-		Environment                  SystemEnvironment             `json:"environment"`
-		ExtOnlyLogging               SystemExtOnlyLogging          `json:"ext-only-logging"`
-		FpgaCoreCrc                  SystemFpgaCoreCrc             `json:"fpga-core-crc"`
-		FpgaDrop                     SystemFpgaDrop                `json:"fpga-drop"`
-		Fw                           SystemFw                      `json:"fw"`
-		GeoDbHitcountEnable          int                           `json:"geo-db-hitcount-enable"`
-		GeoLocation                  SystemGeoLocation             `json:"geo-location"`
-		Geoloc                       SystemGeoloc                  `json:"geoloc"`
-		GeolocListList               []SystemGeolocListList        `json:"geoloc-list-list"`
-		GeolocNameHelper             SystemGeolocNameHelper        `json:"geoloc-name-helper"`
-		GeolocationFile              SystemGeolocationFile         `json:"geolocation-file"`
-		Glid                         SystemGlid                    `json:"glid"`
-		GuestFile                    SystemGuestFile               `json:"guest-file"`
-		GuiImageList                 SystemGuiImageList            `json:"gui-image-list"`
-		Hardware                     SystemHardware                `json:"hardware"`
-		HardwareAccelerate           SystemHardwareAccelerate      `json:"hardware-accelerate"`
-		HealthCheckList              []SystemHealthCheckList       `json:"health-check-list"`
-		HighMemoryL4Session          SystemHighMemoryL4Session     `json:"high-memory-l4-session"`
-		HrxqStatus                   SystemHrxqStatus              `json:"hrxq-status"`
-		HwBlockingEnable             int                           `json:"hw-blocking-enable"`
-		Icmp                         SystemIcmp                    `json:"icmp"`
-		IcmpRate                     SystemIcmpRate                `json:"icmp-rate"`
-		Icmp6                        SystemIcmp6                   `json:"icmp6"`
-		InuseCpuList                 SystemInuseCpuList            `json:"inuse-cpu-list"`
-		InusePortList                SystemInusePortList           `json:"inuse-port-list"`
-		IoCpu                        SystemIoCpu                   `json:"io-cpu"`
-		IpDnsCache                   SystemIpDnsCache              `json:"ip-dns-cache"`
-		IpStats                      SystemIpStats                 `json:"ip-stats"`
-		IpThreatList                 SystemIpThreatList            `json:"ip-threat-list"`
-		Ip6Stats                     SystemIp6Stats                `json:"ip6-stats"`
-		Ipmi                         SystemIpmi                    `json:"ipmi"`
-		IpmiService                  SystemIpmiService             `json:"ipmi-service"`
-		Ipsec                        SystemIpsec                   `json:"ipsec"`
-		Ipv6PrefixLength             int                           `json:"ipv6-prefix-length" dval:"128"`
-		JobOffload                   SystemJobOffload              `json:"job-offload"`
-		LinkCapability               SystemLinkCapability          `json:"link-capability"`
-		LinkMonitor                  SystemLinkMonitor             `json:"link-monitor"`
-		Lro                          SystemLro                     `json:"lro"`
-		ManagementInterfaceMode      SystemManagementInterfaceMode `json:"management-interface-mode"`
-		Memory                       SystemMemory                  `json:"memory"`
-		MemoryBlockDebug             SystemMemoryBlockDebug        `json:"memory-block-debug"`
-		MfaAuth                      SystemMfaAuth                 `json:"mfa-auth"`
-		MfaCertStore                 SystemMfaCertStore            `json:"mfa-cert-store"`
-		MfaManagement                SystemMfaManagement           `json:"mfa-management"`
-		MfaValidationType            SystemMfaValidationType       `json:"mfa-validation-type"`
-		MgmtPort                     SystemMgmtPort                `json:"mgmt-port"`
-		ModifyPort                   SystemModifyPort              `json:"modify-port"`
-		ModuleCtrlCpu                string                        `json:"module-ctrl-cpu"`
-		MonTemplate                  SystemMonTemplate             `json:"mon-template"`
-		MultiQueueSupport            SystemMultiQueueSupport       `json:"multi-queue-support"`
-		NdiscRa                      SystemNdiscRa                 `json:"ndisc-ra"`
-		NsmA10lb                     SystemNsmA10lb                `json:"nsm-a10lb"`
-		PasswordPolicy               SystemPasswordPolicy          `json:"password-policy"`
-		PathList                     []SystemPathList              `json:"path-list"`
-		Pbslb                        SystemPbslb                   `json:"pbslb"`
-		PerVlanLimit                 SystemPerVlanLimit            `json:"per-vlan-limit"`
-		Platformtype                 SystemPlatformtype            `json:"platformtype"`
-		PortCount                    SystemPortCount               `json:"port-count"`
-		PortInfo                     SystemPortInfo                `json:"port-info"`
-		PortList                     SystemPortList                `json:"port-list"`
-		Ports                        SystemPorts                   `json:"ports"`
-		PowerOnSelfTest              SystemPowerOnSelfTest         `json:"power-on-self-test"`
-		ProbeNetworkDevices          SystemProbeNetworkDevices     `json:"probe-network-devices"`
-		PromiscuousMode              int                           `json:"promiscuous-mode"`
-		PsuInfo                      SystemPsuInfo                 `json:"psu-info"`
-		QInQ                         SystemQInQ                    `json:"q-in-q"`
-		QueuingBuffer                SystemQueuingBuffer           `json:"queuing-buffer"`
-		Radius                       SystemRadius                  `json:"radius"`
-		Reboot                       SystemReboot                  `json:"reboot"`
-		ResourceAccounting           SystemResourceAccounting      `json:"resource-accounting"`
-		ResourceUsage                SystemResourceUsage           `json:"resource-usage"`
-		Session                      SystemSession                 `json:"session"`
-		SessionReclaimLimit          SystemSessionReclaimLimit     `json:"session-reclaim-limit"`
-		SetRxtxDescSize              SystemSetRxtxDescSize         `json:"set-rxtx-desc-size"`
-		SetRxtxQueue                 SystemSetRxtxQueue            `json:"set-rxtx-queue"`
-		SetTcpSynPerSec              SystemSetTcpSynPerSec         `json:"set-tcp-syn-per-sec"`
-		SharedPollMode               SystemSharedPollMode          `json:"shared-poll-mode"`
-		ShellPrivileges              SystemShellPrivileges         `json:"shell-privileges"`
-		ShmLogging                   SystemShmLogging              `json:"shm-logging"`
-		Shutdown                     SystemShutdown                `json:"shutdown"`
-		SockstressDisable            int                           `json:"sockstress-disable"`
-		SpeProfile                   SystemSpeProfile              `json:"spe-profile"`
-		SpeStatus                    SystemSpeStatus               `json:"spe-status"`
-		SrcIpHashEnable              int                           `json:"src-ip-hash-enable"`
-		SslReqQ                      SystemSslReqQ                 `json:"ssl-req-q"`
-		SslScv                       SystemSslScv                  `json:"ssl-scv"`
-		SslScvVerifyCrlSign          SystemSslScvVerifyCrlSign     `json:"ssl-scv-verify-crl-sign"`
-		SslScvVerifyHost             SystemSslScvVerifyHost        `json:"ssl-scv-verify-host"`
-		SslSetCompatibleCipher       SystemSslSetCompatibleCipher  `json:"ssl-set-compatible-cipher"`
-		SslStatus                    SystemSslStatus               `json:"ssl-status"`
-		SyslogTimeMsec               SystemSyslogTimeMsec          `json:"syslog-time-msec"`
-		SystemChassisPortSplitEnable int                           `json:"system-chassis-port-split-enable"`
-		TableIntegrity               SystemTableIntegrity          `json:"table-integrity"`
-		Tcp                          SystemTcp                     `json:"tcp"`
-		TcpStats                     SystemTcpStats                `json:"tcp-stats"`
-		TcpSynPerSec                 SystemTcpSynPerSec            `json:"tcp-syn-per-sec"`
-		TelemetryLog                 SystemTelemetryLog            `json:"telemetry-log"`
-		Template                     SystemTemplate                `json:"template"`
-		TemplateBind                 SystemTemplateBind            `json:"template-bind"`
-		Throughput                   SystemThroughput              `json:"throughput"`
-		TimeoutValue                 SystemTimeoutValue            `json:"timeout-value"`
-		Tls13Mgmt                    SystemTls13Mgmt               `json:"tls-1-3-mgmt"`
-		Trunk                        SystemTrunk                   `json:"trunk"`
-		TrunkHwHash                  SystemTrunkHwHash             `json:"trunk-hw-hash"`
-		TrunkXauiHwHash              SystemTrunkXauiHwHash         `json:"trunk-xaui-hw-hash"`
-		Tso                          SystemTso                     `json:"tso"`
-		UpgradeStatus                SystemUpgradeStatus           `json:"upgrade-status"`
-		Uuid                         string                        `json:"uuid"`
-		VeMacScheme                  SystemSystemVeMacScheme       `json:"ve-mac-scheme"`
-		XauiDlbMode                  SystemXauiDlbMode             `json:"xaui-dlb-mode"`
+		AddCpuCore                  SystemAddCpuCore              `json:"add-cpu-core"`
+		AddPort                     SystemAddPort                 `json:"add-port"`
+		AllVlanLimit                SystemAllVlanLimit            `json:"all-vlan-limit"`
+		AnomalyLog                  int                           `json:"anomaly-log"`
+		AppPerformance              SystemAppPerformance          `json:"app-performance"`
+		AppsGlobal                  SystemAppsGlobal              `json:"apps-global"`
+		AsicDebugDump               SystemAsicDebugDump           `json:"asic-debug-dump"`
+		AttackLog                   int                           `json:"attack-log"`
+		Bandwidth                   SystemBandwidth               `json:"bandwidth"`
+		Bfd                         SystemBfd                     `json:"bfd"`
+		ClassListHitcountEnable     int                           `json:"class-list-hitcount-enable" dval:"1"`
+		CmUpdateFileNameRef         SystemCmUpdateFileNameRef     `json:"cm-update-file-name-ref"`
+		ControlCpu                  SystemControlCpu              `json:"control-cpu"`
+		Core                        SystemCore                    `json:"core"`
+		CosqShow                    SystemCosqShow                `json:"cosq-show"`
+		CosqStats                   SystemCosqStats               `json:"cosq-stats"`
+		CounterLibAccounting        SystemCounterLibAccounting    `json:"counter-lib-accounting"`
+		CpuHyperThread              SystemCpuHyperThread          `json:"cpu-hyper-thread"`
+		CpuList                     SystemCpuList                 `json:"cpu-list"`
+		CpuLoadSharing              SystemCpuLoadSharing          `json:"cpu-load-sharing"`
+		CpuMap                      SystemCpuMap                  `json:"cpu-map"`
+		DataCpu                     SystemDataCpu                 `json:"data-cpu"`
+		DdosAttack                  int                           `json:"ddos-attack"`
+		DdosLog                     int                           `json:"ddos-log"`
+		DeepHrxq                    SystemDeepHrxq                `json:"deep-hrxq"`
+		DelPort                     SystemDelPort                 `json:"del-port"`
+		DeleteCpuCore               SystemDeleteCpuCore           `json:"delete-cpu-core"`
+		Dns                         SystemDns                     `json:"dns"`
+		DnsCache                    SystemDnsCache                `json:"dns-cache"`
+		DomainListHitcountEnable    int                           `json:"domain-list-hitcount-enable"`
+		DomainListInfo              SystemDomainListInfo          `json:"domain-list-info"`
+		DpdkStats                   SystemDpdkStats               `json:"dpdk-stats"`
+		DynamicServiceDnsSocketPool int                           `json:"dynamic-service-dns-socket-pool"`
+		Environment                 SystemEnvironment             `json:"environment"`
+		FpgaCoreCrc                 SystemFpgaCoreCrc             `json:"fpga-core-crc"`
+		FpgaDrop                    SystemFpgaDrop                `json:"fpga-drop"`
+		Fw                          SystemFw                      `json:"fw"`
+		GeoDbHitcountEnable         int                           `json:"geo-db-hitcount-enable"`
+		GeoLocation                 SystemGeoLocation             `json:"geo-location"`
+		Geoloc                      SystemGeoloc                  `json:"geoloc"`
+		GeolocListList              []SystemGeolocListList        `json:"geoloc-list-list"`
+		GeolocNameHelper            SystemGeolocNameHelper        `json:"geoloc-name-helper"`
+		GeolocationFile             SystemGeolocationFile         `json:"geolocation-file"`
+		Glid                        int                           `json:"glid"`
+		GuestFile                   SystemGuestFile               `json:"guest-file"`
+		GuiImageList                SystemGuiImageList            `json:"gui-image-list"`
+		Hardware                    SystemHardware                `json:"hardware"`
+		HardwareForward             SystemHardwareForward         `json:"hardware-forward"`
+		HighMemoryL4Session         SystemHighMemoryL4Session     `json:"high-memory-l4-session"`
+		HrxqStatus                  SystemHrxqStatus              `json:"hrxq-status"`
+		Icmp                        SystemIcmp                    `json:"icmp"`
+		IcmpRate                    SystemIcmpRate                `json:"icmp-rate"`
+		Icmp6                       SystemIcmp6                   `json:"icmp6"`
+		InuseCpuList                SystemInuseCpuList            `json:"inuse-cpu-list"`
+		InusePortList               SystemInusePortList           `json:"inuse-port-list"`
+		IoCpu                       SystemIoCpu                   `json:"io-cpu"`
+		IpDnsCache                  SystemIpDnsCache              `json:"ip-dns-cache"`
+		IpStats                     SystemIpStats                 `json:"ip-stats"`
+		IpThreatList                SystemIpThreatList            `json:"ip-threat-list"`
+		Ip6Stats                    SystemIp6Stats                `json:"ip6-stats"`
+		Ipmi                        SystemIpmi                    `json:"ipmi"`
+		IpmiService                 SystemIpmiService             `json:"ipmi-service"`
+		Ipsec                       SystemIpsec                   `json:"ipsec"`
+		Ipv6PrefixLength            int                           `json:"ipv6-prefix-length" dval:"128"`
+		LinkCapability              SystemLinkCapability          `json:"link-capability"`
+		LinkMonitor                 SystemLinkMonitor             `json:"link-monitor"`
+		Lro                         SystemLro                     `json:"lro"`
+		ManagementInterfaceMode     SystemManagementInterfaceMode `json:"management-interface-mode"`
+		Memory                      SystemMemory                  `json:"memory"`
+		MfaAuth                     SystemMfaAuth                 `json:"mfa-auth"`
+		MfaCertStore                SystemMfaCertStore            `json:"mfa-cert-store"`
+		MfaManagement               SystemMfaManagement           `json:"mfa-management"`
+		MfaValidationType           SystemMfaValidationType       `json:"mfa-validation-type"`
+		MgmtPort                    SystemMgmtPort                `json:"mgmt-port"`
+		ModifyPort                  SystemModifyPort              `json:"modify-port"`
+		ModuleCtrlCpu               string                        `json:"module-ctrl-cpu"`
+		MonTemplate                 SystemMonTemplate             `json:"mon-template"`
+		MultiQueueSupport           SystemMultiQueueSupport       `json:"multi-queue-support"`
+		NdiscRa                     SystemNdiscRa                 `json:"ndisc-ra"`
+		NsmA10lb                    SystemNsmA10lb                `json:"nsm-a10lb"`
+		PasswordPolicy              SystemPasswordPolicy          `json:"password-policy"`
+		PerVlanLimit                SystemPerVlanLimit            `json:"per-vlan-limit"`
+		Platformtype                SystemPlatformtype            `json:"platformtype"`
+		PortInfo                    SystemPortInfo                `json:"port-info"`
+		PortList                    SystemPortList                `json:"port-list"`
+		Ports                       SystemPorts                   `json:"ports"`
+		ProbeNetworkDevices         SystemProbeNetworkDevices     `json:"probe-network-devices"`
+		PromiscuousMode             int                           `json:"promiscuous-mode"`
+		PsuInfo                     SystemPsuInfo                 `json:"psu-info"`
+		QInQ                        SystemQInQ                    `json:"q-in-q"`
+		QueuingBuffer               SystemQueuingBuffer           `json:"queuing-buffer"`
+		Radius                      SystemRadius                  `json:"radius"`
+		Reboot                      SystemReboot                  `json:"reboot"`
+		ResourceAccounting          SystemResourceAccounting      `json:"resource-accounting"`
+		ResourceUsage               SystemResourceUsage           `json:"resource-usage"`
+		Session                     SystemSession                 `json:"session"`
+		SessionReclaimLimit         SystemSessionReclaimLimit     `json:"session-reclaim-limit"`
+		SetRxtxDescSize             SystemSetRxtxDescSize         `json:"set-rxtx-desc-size"`
+		SetRxtxQueue                SystemSetRxtxQueue            `json:"set-rxtx-queue"`
+		SetTcpSynPerSec             SystemSetTcpSynPerSec         `json:"set-tcp-syn-per-sec"`
+		SharedPollMode              SystemSharedPollMode          `json:"shared-poll-mode"`
+		ShellPrivileges             SystemShellPrivileges         `json:"shell-privileges"`
+		ShmLogging                  SystemShmLogging              `json:"shm-logging"`
+		Shutdown                    SystemShutdown                `json:"shutdown"`
+		SockstressDisable           int                           `json:"sockstress-disable"`
+		SpeProfile                  SystemSpeProfile              `json:"spe-profile"`
+		SpeStatus                   SystemSpeStatus               `json:"spe-status"`
+		SrcIpHashEnable             int                           `json:"src-ip-hash-enable"`
+		SslReqQ                     SystemSslReqQ                 `json:"ssl-req-q"`
+		SslScv                      SystemSslScv                  `json:"ssl-scv"`
+		SslScvVerifyCrlSign         SystemSslScvVerifyCrlSign     `json:"ssl-scv-verify-crl-sign"`
+		SslScvVerifyHost            SystemSslScvVerifyHost        `json:"ssl-scv-verify-host"`
+		SslSetCompatibleCipher      SystemSslSetCompatibleCipher  `json:"ssl-set-compatible-cipher"`
+		SslStatus                   SystemSslStatus               `json:"ssl-status"`
+		SyslogTimeMsec              SystemSyslogTimeMsec          `json:"syslog-time-msec"`
+		TableIntegrity              SystemTableIntegrity          `json:"table-integrity"`
+		Tcp                         SystemTcp                     `json:"tcp"`
+		TcpStats                    SystemTcpStats                `json:"tcp-stats"`
+		TcpSynPerSec                SystemTcpSynPerSec            `json:"tcp-syn-per-sec"`
+		TelemetryLog                SystemTelemetryLog            `json:"telemetry-log"`
+		Template                    SystemTemplate                `json:"template"`
+		TemplateBind                SystemTemplateBind            `json:"template-bind"`
+		Throughput                  SystemThroughput              `json:"throughput"`
+		TimeoutValue                SystemTimeoutValue            `json:"timeout-value"`
+		Tls13Mgmt                   SystemTls13Mgmt               `json:"tls-1-3-mgmt"`
+		Trunk                       SystemTrunk                   `json:"trunk"`
+		TrunkHwHash                 SystemTrunkHwHash             `json:"trunk-hw-hash"`
+		TrunkXauiHwHash             SystemTrunkXauiHwHash         `json:"trunk-xaui-hw-hash"`
+		Tso                         SystemTso                     `json:"tso"`
+		UpgradeStatus               SystemUpgradeStatus           `json:"upgrade-status"`
+		Uuid                        string                        `json:"uuid"`
 	} `json:"system"`
 }
 
@@ -187,25 +170,12 @@ type SystemAppPerformanceSamplingEnable struct {
 type SystemAppsGlobal struct {
 	LogSessionOnEstablished int    `json:"log-session-on-established"`
 	MslTime                 int    `json:"msl-time" dval:"2"`
-	TimerWheelWalkLimit     int    `json:"timer-wheel-walk-limit" dval:"100"`
-	SessionsThreshold       int    `json:"sessions-threshold"`
-	CpsThreshold            int    `json:"cps-threshold"`
 	Uuid                    string `json:"uuid"`
 }
 
 type SystemAsicDebugDump struct {
 	Enable int    `json:"enable"`
 	Uuid   string `json:"uuid"`
-}
-
-type SystemAsicMmuFailSafe struct {
-	RecoveryThreshold int    `json:"recovery-threshold" dval:"2"`
-	MonitorInterval   int    `json:"monitor-interval" dval:"60"`
-	MonitorDisable    int    `json:"monitor-disable"`
-	RebootDisable     int    `json:"reboot-disable"`
-	InjectError       int    `json:"inject-error"`
-	TestPatternType   string `json:"test-pattern-type" dval:"lcb"`
-	Uuid              string `json:"uuid"`
 }
 
 type SystemBandwidth struct {
@@ -224,11 +194,6 @@ type SystemBfd struct {
 
 type SystemBfdSamplingEnable struct {
 	Counters1 string `json:"counters1"`
-}
-
-type SystemCliMonitorInterval struct {
-	Interval int    `json:"interval"`
-	Uuid     string `json:"uuid"`
 }
 
 type SystemCmUpdateFileNameRef struct {
@@ -272,7 +237,6 @@ type SystemCpuLoadSharing struct {
 	CpuUsage         SystemCpuLoadSharingCpuUsage         `json:"cpu-usage"`
 	Tcp              int                                  `json:"tcp"`
 	Udp              int                                  `json:"udp"`
-	Others           int                                  `json:"others"`
 	Uuid             string                               `json:"uuid"`
 }
 
@@ -289,13 +253,12 @@ type SystemCpuMap struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemCpuPacketPrioSupport struct {
-	Enable  int `json:"enable"`
-	Disable int `json:"disable"`
-}
-
 type SystemDataCpu struct {
 	Uuid string `json:"uuid"`
+}
+
+type SystemDeepHrxq struct {
+	Enable int `json:"enable"`
 }
 
 type SystemDelPort struct {
@@ -355,11 +318,6 @@ type SystemEnvironment struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemExtOnlyLogging struct {
-	Enable int    `json:"enable"`
-	Uuid   string `json:"uuid"`
-}
-
 type SystemFpgaCoreCrc struct {
 	MonitorDisable int    `json:"monitor-disable"`
 	RebootEnable   int    `json:"reboot-enable"`
@@ -384,9 +342,6 @@ type SystemFw struct {
 
 type SystemGeoLocation struct {
 	GeoLocationIana            int                                   `json:"geo-location-iana" dval:"1"`
-	GeoLocationIanaSystem      int                                   `json:"geo-location-iana-system"`
-	GeoLocationGeolite2Asn     int                                   `json:"geo-location-geolite2-asn"`
-	Geolite2AsnIncludeIpv6     int                                   `json:"geolite2-asn-include-ipv6"`
 	GeoLocationGeolite2City    int                                   `json:"geo-location-geolite2-city"`
 	Geolite2CityIncludeIpv6    int                                   `json:"geolite2-city-include-ipv6"`
 	GeoLocationGeolite2Country int                                   `json:"geo-location-geolite2-country"`
@@ -397,9 +352,8 @@ type SystemGeoLocation struct {
 }
 
 type SystemGeoLocationGeolocLoadFileList struct {
-	GeoLocationLoadFilename        string `json:"geo-location-load-filename"`
-	GeoLocationLoadFileIncludeIpv6 int    `json:"geo-location-load-file-include-ipv6"`
-	TemplateName                   string `json:"template-name"`
+	GeoLocationLoadFilename string `json:"geo-location-load-filename"`
+	TemplateName            string `json:"template-name"`
 }
 
 type SystemGeoLocationEntryList struct {
@@ -467,12 +421,6 @@ type SystemGeolocationFileErrorInfo struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemGlid struct {
-	GlidId    string `json:"glid-id"`
-	NonShared int    `json:"non-shared"`
-	Uuid      string `json:"uuid"`
-}
-
 type SystemGuestFile struct {
 	Uuid string `json:"uuid"`
 }
@@ -485,34 +433,23 @@ type SystemHardware struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemHardwareAccelerate struct {
-	SessionForwarding int                                      `json:"session-forwarding"`
-	Uuid              string                                   `json:"uuid"`
-	SamplingEnable    []SystemHardwareAccelerateSamplingEnable `json:"sampling-enable"`
-	Slb               SystemHardwareAccelerateSlb              `json:"slb"`
+type SystemHardwareForward struct {
+	Uuid           string                                `json:"uuid"`
+	SamplingEnable []SystemHardwareForwardSamplingEnable `json:"sampling-enable"`
+	Slb            SystemHardwareForwardSlb              `json:"slb"`
 }
 
-type SystemHardwareAccelerateSamplingEnable struct {
+type SystemHardwareForwardSamplingEnable struct {
 	Counters1 string `json:"counters1"`
 }
 
-type SystemHardwareAccelerateSlb struct {
-	Uuid           string                                      `json:"uuid"`
-	SamplingEnable []SystemHardwareAccelerateSlbSamplingEnable `json:"sampling-enable"`
+type SystemHardwareForwardSlb struct {
+	Uuid           string                                   `json:"uuid"`
+	SamplingEnable []SystemHardwareForwardSlbSamplingEnable `json:"sampling-enable"`
 }
 
-type SystemHardwareAccelerateSlbSamplingEnable struct {
+type SystemHardwareForwardSlbSamplingEnable struct {
 	Counters1 string `json:"counters1"`
-}
-
-type SystemHealthCheckList struct {
-	L2hmHcName      string `json:"l2hm-hc-name"`
-	MethodL2bfd     int    `json:"method-l2bfd"`
-	L2bfdTxInterval int    `json:"l2bfd-tx-interval"`
-	L2bfdRxInterval int    `json:"l2bfd-rx-interval"`
-	L2bfdMultiplier int    `json:"l2bfd-multiplier"`
-	Uuid            string `json:"uuid"`
-	UserTag         string `json:"user-tag"`
 }
 
 type SystemHighMemoryL4Session struct {
@@ -707,22 +644,12 @@ type SystemIpsec struct {
 	PacketRoundRobin int                    `json:"packet-round-robin"`
 	CryptoCore       int                    `json:"crypto-core"`
 	CryptoMem        int                    `json:"crypto-mem"`
-	Qat              int                    `json:"QAT"`
 	Uuid             string                 `json:"uuid"`
 	FpgaDecrypt      SystemIpsecFpgaDecrypt `json:"fpga-decrypt"`
 }
 
 type SystemIpsecFpgaDecrypt struct {
 	Action string `json:"action" dval:"disable"`
-}
-
-type SystemJobOffload struct {
-	Uuid           string                           `json:"uuid"`
-	SamplingEnable []SystemJobOffloadSamplingEnable `json:"sampling-enable"`
-}
-
-type SystemJobOffloadSamplingEnable struct {
-	Counters1 string `json:"counters1"`
 }
 
 type SystemLinkCapability struct {
@@ -752,16 +679,6 @@ type SystemMemory struct {
 
 type SystemMemorySamplingEnable struct {
 	Counters1 string `json:"counters1"`
-}
-
-type SystemMemoryBlockDebug struct {
-	AssertBlock  int    `json:"assert-block" dval:"16384"`
-	PktdumpBlock int    `json:"pktdump-block"`
-	FirstBlk     int    `json:"first-blk" dval:"2048"`
-	SecondBlk    int    `json:"second-blk" dval:"4096"`
-	ThirdBlk     int    `json:"third-blk" dval:"8192"`
-	FourthBlk    int    `json:"fourth-blk" dval:"16384"`
-	Uuid         string `json:"uuid"`
 }
 
 type SystemMfaAuth struct {
@@ -881,36 +798,11 @@ type SystemNsmA10lb struct {
 }
 
 type SystemPasswordPolicy struct {
-	Complexity                 string `json:"complexity"`
-	Aging                      string `json:"aging"`
-	History                    string `json:"history"`
-	MinPswdLen                 int    `json:"min-pswd-len"`
-	UsernameCheck              string `json:"username-check" dval:"disable"`
-	RepeatCharacterCheck       string `json:"repeat-character-check" dval:"disable"`
-	ForbidConsecutiveCharacter string `json:"forbid-consecutive-character" dval:"0"`
-	Uuid                       string `json:"uuid"`
-}
-
-type SystemPathList struct {
-	L2hmPathName     string `json:"l2hm-path-name"`
-	L2hmVlan         int    `json:"l2hm-vlan"`
-	L2hmSetupTestApi int    `json:"l2hm-setup-test-api"`
-	IfpairEthStart   int    `json:"ifpair-eth-start"`
-	IfpairEthEnd     int    `json:"ifpair-eth-end"`
-	IfpairTrunkStart int    `json:"ifpair-trunk-start"`
-	IfpairTrunkEnd   int    `json:"ifpair-trunk-end"`
-	L2hmAttach       string `json:"l2hm-attach"`
-	Uuid             string `json:"uuid"`
-	UserTag          string `json:"user-tag"`
-}
-
-type SystemPbslb struct {
-	Uuid           string                      `json:"uuid"`
-	SamplingEnable []SystemPbslbSamplingEnable `json:"sampling-enable"`
-}
-
-type SystemPbslbSamplingEnable struct {
-	Counters1 string `json:"counters1"`
+	Complexity string `json:"complexity"`
+	Aging      string `json:"aging"`
+	History    string `json:"history"`
+	MinPswdLen int    `json:"min-pswd-len"`
+	Uuid       string `json:"uuid"`
 }
 
 type SystemPerVlanLimit struct {
@@ -925,14 +817,6 @@ type SystemPlatformtype struct {
 	Uuid string `json:"uuid"`
 }
 
-type SystemPortCount struct {
-	PortCountKernel  int    `json:"port-count-kernel" dval:"18000"`
-	PortCountHm      int    `json:"port-count-hm" dval:"1024"`
-	PortCountLogging int    `json:"port-count-logging" dval:"4096"`
-	PortCountAlg     int    `json:"port-count-alg" dval:"6000"`
-	Uuid             string `json:"uuid"`
-}
-
 type SystemPortInfo struct {
 	Uuid string `json:"uuid"`
 }
@@ -944,10 +828,6 @@ type SystemPortList struct {
 type SystemPorts struct {
 	LinkDetectionInterval int    `json:"link-detection-interval" dval:"1000"`
 	Uuid                  string `json:"uuid"`
-}
-
-type SystemPowerOnSelfTest struct {
-	Uuid string `json:"uuid"`
 }
 
 type SystemProbeNetworkDevices struct {
@@ -1064,7 +944,6 @@ type SystemResourceAccountingTemplateListAppResources struct {
 	FixTemplateCfg           SystemResourceAccountingTemplateListAppResourcesFixTemplateCfg           `json:"fix-template-cfg"`
 	HttpTemplateCfg          SystemResourceAccountingTemplateListAppResourcesHttpTemplateCfg          `json:"http-template-cfg"`
 	LinkCostTemplateCfg      SystemResourceAccountingTemplateListAppResourcesLinkCostTemplateCfg      `json:"link-cost-template-cfg"`
-	PbslbEntryCfg            SystemResourceAccountingTemplateListAppResourcesPbslbEntryCfg            `json:"pbslb-entry-cfg"`
 	PersistCookieTemplateCfg SystemResourceAccountingTemplateListAppResourcesPersistCookieTemplateCfg `json:"persist-cookie-template-cfg"`
 	PersistSrcipTemplateCfg  SystemResourceAccountingTemplateListAppResourcesPersistSrcipTemplateCfg  `json:"persist-srcip-template-cfg"`
 	ServerSslTemplateCfg     SystemResourceAccountingTemplateListAppResourcesServerSslTemplateCfg     `json:"server-ssl-template-cfg"`
@@ -1197,11 +1076,6 @@ type SystemResourceAccountingTemplateListAppResourcesHttpTemplateCfg struct {
 type SystemResourceAccountingTemplateListAppResourcesLinkCostTemplateCfg struct {
 	LinkCostTemplateMax          int `json:"link-cost-template-max"`
 	LinkCostTemplateMinGuarantee int `json:"link-cost-template-min-guarantee"`
-}
-
-type SystemResourceAccountingTemplateListAppResourcesPbslbEntryCfg struct {
-	PbslbEntryMax          int `json:"pbslb-entry-max"`
-	PbslbEntryMinGuarantee int `json:"pbslb-entry-min-guarantee"`
 }
 
 type SystemResourceAccountingTemplateListAppResourcesPersistCookieTemplateCfg struct {
@@ -1358,6 +1232,7 @@ type SystemResourceUsage struct {
 	AuthzPolicyNumber             int                           `json:"authz-policy-number"`
 	IpsecSaNumber                 int                           `json:"ipsec-sa-number"`
 	RamCacheMemoryLimit           int                           `json:"ram-cache-memory-limit"`
+	WafTemplateCount              int                           `json:"waf-template-count"`
 	AuthSessionCount              int                           `json:"auth-session-count"`
 	Uuid                          string                        `json:"uuid"`
 	Visibility                    SystemResourceUsageVisibility `json:"visibility"`
@@ -1600,16 +1475,6 @@ type SystemTso struct {
 
 type SystemUpgradeStatus struct {
 	Uuid string `json:"uuid"`
-}
-
-type SystemSystemVeMacScheme struct {
-	VeMacSchemeVal string `json:"ve-mac-scheme-val" dval:"hash-based"`
-	Uuid           string `json:"uuid"`
-}
-
-type SystemXauiDlbMode struct {
-	Enable int    `json:"enable"`
-	Uuid   string `json:"uuid"`
 }
 
 func (p *System) GetId() string {

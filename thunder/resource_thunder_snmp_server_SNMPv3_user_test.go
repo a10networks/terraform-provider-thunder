@@ -19,7 +19,7 @@ encpasswd = "abcdefgh"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSnmpServerSNMPv3User_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

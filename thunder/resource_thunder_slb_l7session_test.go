@@ -14,7 +14,7 @@ resource "thunder_slb_l7session" "l7session" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbL7session_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

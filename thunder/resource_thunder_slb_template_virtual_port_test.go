@@ -37,7 +37,7 @@ resource "thunder_slb_template_virtual_port" "virtual_port" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplateVirtualPort_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

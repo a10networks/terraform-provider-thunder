@@ -23,7 +23,7 @@ func resourceRouterOspfArea() *schema.Resource {
 			},
 			"area_ipv4": {
 				Type: schema.TypeString, Optional: true, ForceNew: true, Description: "OSPF area ID in IP address format",
-				ValidateFunc: validation.IsIPv4Address,	ExactlyOneOf: []string{"area_ipv4", "area_num"},
+				ValidateFunc: validation.IsIPv4Address, ExactlyOneOf: []string{"area_ipv4", "area_num"},
 			},
 			"area_num": {
 				Type: schema.TypeInt, Optional: true, ForceNew: true, Description: "OSPF area ID as a decimal value",

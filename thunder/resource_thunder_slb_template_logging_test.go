@@ -14,7 +14,7 @@ local_logging= 1
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderLogging_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

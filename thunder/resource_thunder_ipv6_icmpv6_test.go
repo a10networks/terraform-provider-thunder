@@ -13,7 +13,7 @@ resource "thunder_ipv6_icmpv6" "testname" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpv6Icmpv6_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

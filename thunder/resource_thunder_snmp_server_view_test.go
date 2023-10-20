@@ -15,7 +15,7 @@ type = "included"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSnmpServerView_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

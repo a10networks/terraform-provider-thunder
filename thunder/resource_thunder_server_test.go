@@ -25,7 +25,7 @@ protocol="tcp"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderServer_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
@@ -71,7 +71,7 @@ func TestAccThunderServer_import(t *testing.T) {
 	})
 }
 
-//Unit test for utility method to create Server structure
+// Unit test for utility method to create Server structure
 func TestDataToServer(t *testing.T) {
 	HealthCheckDisable := 1
 	StatsDataAction := "enable"

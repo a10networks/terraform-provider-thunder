@@ -14,7 +14,7 @@ name="mqtt2"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderMqtt_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

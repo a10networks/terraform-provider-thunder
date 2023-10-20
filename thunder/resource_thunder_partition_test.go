@@ -14,7 +14,7 @@ resource "thunder_partition" "Test" {
  }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccPartition_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

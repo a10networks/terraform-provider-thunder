@@ -12,7 +12,7 @@ resource "thunder_fw_radius_server" "FwRadiusTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwRadiusServer_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

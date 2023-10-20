@@ -16,7 +16,7 @@ resource "thunder_slb_template_connection_reuse" "connection_reuse1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplateConnReuse_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

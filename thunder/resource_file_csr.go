@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
-//Not direct mapping to any axapi endpoint
+// Not direct mapping to any axapi endpoint
 func resourceFileCsr() *schema.Resource {
 	return &schema.Resource{
 		CreateContext: resourceFileCsrCreate,

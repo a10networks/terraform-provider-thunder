@@ -5,15 +5,15 @@ import (
 	"github.com/clarketm/json"
 )
 
-//AxAPI cannot handle "operation" and "configuration" fields at the same time. Break `/axapi/v3/slb/common` to 2 endpoints
-//based on ACOS 5_2_1-P4_70
+// AxAPI cannot handle "operation" and "configuration" fields at the same time. Break `/axapi/v3/slb/common` to 2 endpoints
+// based on ACOS 5_2_1-P4_70
 type SlbCommonBufferThreshold struct {
 	Inst struct {
-		BuffThresh                     int                              `json:"buff-thresh"`
-		BuffThreshHwBuff               int                              `json:"buff-thresh-hw-buff"`
-		BuffThreshRelieveThresh        int                              `json:"buff-thresh-relieve-thresh"`
-		BuffThreshSysBuffHigh          int                              `json:"buff-thresh-sys-buff-high"`
-		BuffThreshSysBuffLow           int                              `json:"buff-thresh-sys-buff-low"`
+		BuffThresh              int `json:"buff-thresh"`
+		BuffThreshHwBuff        int `json:"buff-thresh-hw-buff"`
+		BuffThreshRelieveThresh int `json:"buff-thresh-relieve-thresh"`
+		BuffThreshSysBuffHigh   int `json:"buff-thresh-sys-buff-high"`
+		BuffThreshSysBuffLow    int `json:"buff-thresh-sys-buff-low"`
 	} `json:"common"`
 }
 

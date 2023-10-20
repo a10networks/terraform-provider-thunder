@@ -14,7 +14,7 @@ user_tag="u1"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccVthuderHttpPolicy_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

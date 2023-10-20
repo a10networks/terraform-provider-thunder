@@ -16,7 +16,7 @@ resource "thunder_slb_ssl_expire_check" "SSLExpireCheck" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbSSLExpireCheck_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

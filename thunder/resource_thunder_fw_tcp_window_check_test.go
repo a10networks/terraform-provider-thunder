@@ -12,7 +12,7 @@ resource "thunder_fw_tcp_window_check" "FwTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwTcpWindowCheck_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

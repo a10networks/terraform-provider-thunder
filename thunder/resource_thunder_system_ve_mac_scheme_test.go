@@ -13,7 +13,7 @@ resource "thunder_system_ve_mac_scheme" "SystemTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSystemVeMacScheme_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

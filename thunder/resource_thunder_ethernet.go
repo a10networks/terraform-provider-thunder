@@ -180,7 +180,7 @@ func resourceEthernetDelete(ctx context.Context, d *schema.ResourceData, meta in
 	return nil
 }
 
-//Utility method for Ethernet structure instantiation
+// Utility method for Ethernet structure instantiation
 func dataToEthernet(d *schema.ResourceData) map[int]go_thunder.Ethernet {
 	var m = make(map[int]go_thunder.Ethernet)
 	ethCount := d.Get("ethernet_list.#").(int)

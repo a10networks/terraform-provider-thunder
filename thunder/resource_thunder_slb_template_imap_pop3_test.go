@@ -15,7 +15,7 @@ resource "thunder_slb_template_imap_pop3" "imap_pop3" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplateImapPOP_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

@@ -13,7 +13,7 @@ resource "thunder_fw_alg_pptp" "FwAlgTest" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwAlgPptp_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

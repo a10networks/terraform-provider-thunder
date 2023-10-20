@@ -12,7 +12,7 @@ resource "thunder_ip_dns_primary" "dnsPrimary" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccIpDnsPrimary_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

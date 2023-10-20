@@ -1,8 +1,8 @@
 package thunder
 
 import (
-	"errors"
 	"context"
+	"errors"
 	edpt "github.com/a10networks/terraform-provider-thunder/thunder/axapi/endpoint"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -148,17 +148,17 @@ func dataToEndpointSnmpServerHostIpv6Host(d *schema.ResourceData) edpt.SnmpServe
 }
 
 func runtimeCheckSnmpServerHostIpv6Host(d *schema.ResourceData) error {
-	snmp_version,flag := d.GetOk("version")
+	snmp_version, flag := d.GetOk("version")
 	if false == flag {
 		return errors.New("Need 'version' for SNMP server in shared partition")
 	}
 	if snmp_version == "v3" {
-		_,flag = d.GetOk("user")
+		_, flag = d.GetOk("user")
 		if false == flag {
 			return errors.New("Need 'user' for SNMPv3")
 		}
 	} else {
-		_,flag = d.GetOk("v1_v2c_comm")
+		_, flag = d.GetOk("v1_v2c_comm")
 		if false == flag {
 			return errors.New("Need 'v1_v2c_comm' for SNMPv1 or SNMPv2c")
 		}

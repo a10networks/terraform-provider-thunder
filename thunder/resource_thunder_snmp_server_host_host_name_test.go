@@ -15,7 +15,7 @@ v1_v2c_comm = "a"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSnmpServerHostHostName_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

@@ -15,7 +15,7 @@ resource "thunder_slb_ftp_proxy" "ftp_proxy1" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderFTPProxy_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

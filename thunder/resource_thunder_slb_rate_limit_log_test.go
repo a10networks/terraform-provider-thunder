@@ -15,7 +15,7 @@ resource "thunder_slb_rate_limit_log" "rate_limit_log" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbRateLimitLog_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

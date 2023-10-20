@@ -18,7 +18,7 @@ resource "thunder_interface_management" "InterfaceManagement" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccInterfaceManagement_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

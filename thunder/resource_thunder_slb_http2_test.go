@@ -15,7 +15,7 @@ resource "thunder_slb_http2" "http21" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderHTTP2_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

@@ -20,7 +20,7 @@ resource "thunder_slb_template_dns" "template_dns" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbTemplateDNS_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

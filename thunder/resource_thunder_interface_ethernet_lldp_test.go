@@ -17,7 +17,7 @@ resource "thunder_interface_ethernet_lldp" "ethernetlldp" {
   }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccInterfaceEthernetLLDP_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

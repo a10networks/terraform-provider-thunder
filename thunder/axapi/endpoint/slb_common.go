@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-//based on ACOS 5_2_1-P4_70
+// based on ACOS 5_2_1-P4_70
 type SlbCommon struct {
 	Inst struct {
 		AflexTableEntryAgingInterval   int                              `json:"aflex-table-entry-aging-interval" dval:"1"`

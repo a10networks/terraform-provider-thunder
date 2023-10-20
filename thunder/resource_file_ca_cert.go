@@ -9,7 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
-//Not direct mapping to any axapi endpoint
+// Not direct mapping to any axapi endpoint
 func resourceFileCaCert() *schema.Resource {
 	return &schema.Resource{
 		CreateContext: resourceFileCaCertCreate,
@@ -61,7 +61,6 @@ func resourceFileCaCert() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Mark as non-exportable (for pfx format)",
 				ValidateFunc: validation.IntBetween(0, 1),
 			},
-
 		},
 	}
 }

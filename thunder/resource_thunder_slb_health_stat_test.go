@@ -15,7 +15,7 @@ resource "thunder_slb_health_stat" "health_stat1" {
 
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccThunderHealthStat_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {

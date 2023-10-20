@@ -15,7 +15,7 @@ v3 = "auth"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSnmpServerGroup_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

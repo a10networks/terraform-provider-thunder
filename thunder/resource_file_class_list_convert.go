@@ -9,7 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
-//Not direct mapping to any axapi endpoint
+// Not direct mapping to any axapi endpoint
 func resourceFileClassListConvert() *schema.Resource {
 	return &schema.Resource{
 		Description:   "`thunder_file_class_list_convert`: Upload and convert a class list file to A10 format\n\n",

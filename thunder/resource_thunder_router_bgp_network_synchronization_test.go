@@ -13,7 +13,7 @@ resource "thunder_router_bgp_network_synchronization" "RouterBgpNetworkTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccRouterBgpNetworkSynchronization_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

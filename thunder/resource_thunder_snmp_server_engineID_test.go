@@ -13,7 +13,7 @@ resource "thunder_snmp_server_engine_id" "SnmpServerTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSnmpServerEngineID_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

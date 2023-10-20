@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-//based on ACOS 5_2_1-P4_90
+// based on ACOS 5_2_1-P4_90
 type SnmpServerEnableTraps struct {
 	Inst struct {
 		All       int                            `json:"all"`

@@ -16,7 +16,7 @@ resource "thunder_router_ospf_redistribute" "RouterOspfTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccRouterOspfRedistribute_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

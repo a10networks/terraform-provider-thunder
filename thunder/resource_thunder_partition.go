@@ -21,13 +21,13 @@ func resourcePartition() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"partition_name": {
 				Type:         schema.TypeString,
-				Required:     true,
+				Optional:     true,
 				Description:  "",
 				ValidateFunc: validation.StringLenBetween(0, 14),
 			},
 			"id1": {
 				Type:        schema.TypeInt,
-				Required:    true,
+				Optional:    true,
 				Description: "",
 			},
 			"application_type": {

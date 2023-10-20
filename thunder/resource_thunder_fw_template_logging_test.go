@@ -13,7 +13,7 @@ resource "thunder_fw_template_logging" "FwTemplateTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwTemplateLogging_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

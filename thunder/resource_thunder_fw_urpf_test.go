@@ -12,7 +12,7 @@ resource "thunder_fw_urpf" "FwTest" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccFwUrpf_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

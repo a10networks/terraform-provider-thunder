@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-//based on ACOS 5_2_1-P4_81
+// based on ACOS 5_2_1-P4_81
 type IpNatPool struct {
 	Inst struct {
 		EndAddress       string `json:"end-address"`

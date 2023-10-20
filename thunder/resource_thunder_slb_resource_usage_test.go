@@ -29,7 +29,7 @@ resource "thunder_slb_resource_usage" "resource_usage1" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbResourceUsage_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

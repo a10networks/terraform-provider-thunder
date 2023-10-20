@@ -18,7 +18,7 @@ a10_url = "/axapi/v3/timezone"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccTimezone_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

@@ -25,7 +25,7 @@ rules {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccAccessListExtended_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

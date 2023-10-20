@@ -17,7 +17,7 @@ asc_key = "a"
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccNtpAuthKey_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,

@@ -5,7 +5,7 @@ import (
 	"github.com/clarketm/json"
 )
 
-//based on ACOS 5_2_1-P4_81
+// based on ACOS 5_2_1-P4_81
 type VrrpACommon struct {
 	Inst struct {
 		Action                     string                        `json:"action" dval:"disable"`

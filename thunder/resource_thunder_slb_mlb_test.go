@@ -14,7 +14,7 @@ resource "thunder_slb_mlb" "mlb" {
 }
 `
 
-//Acceptance test
+// Acceptance test
 func TestAccSlbMlb_create(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		Providers: testAccProviders,
