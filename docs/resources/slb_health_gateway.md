@@ -3,12 +3,15 @@
 page_title: "thunder_slb_health_gateway Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_health_gateway: Configure gateway health-check
+  PLACEHOLDER
 ---
 
 # thunder_slb_health_gateway (Resource)
 
+`thunder_slb_health_gateway`: Configure gateway health-check
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_health_gateway" "health_gateway" {
   sampling_enable {
     counters1 = "all"
@@ -32,7 +34,7 @@ resource "thunder_slb_health_gateway" "health_gateway" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,6 @@ resource "thunder_slb_health_gateway" "health_gateway" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'total_sent': Number of Total health-check sent; 'total_retry_sent': Number of Total health-check retry sent; 'total_timeout': Number of Total health-check timeout;
 
 

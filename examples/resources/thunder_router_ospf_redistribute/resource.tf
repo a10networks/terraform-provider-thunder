@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_router_ospf_redistribute" "resourceRouterOspfRedistributeTest" {
+resource "thunder_router_ospf_redistribute" "thunder_router_ospf_redistribute" {
   process_id = 400
   redist_list {
     type        = "bgp"
@@ -13,7 +12,6 @@ resource "thunder_router_ospf_redistribute" "resourceRouterOspfRedistributeTest"
     route_map   = "MAP"
     tag         = 40
   }
-
   ip_nat             = 1
   metric_ip_nat      = 40
   metric_type_ip_nat = 1

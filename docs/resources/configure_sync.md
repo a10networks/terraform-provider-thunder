@@ -3,30 +3,33 @@
 page_title: "thunder_configure_sync Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_configure_sync: Sync operation
+  PLACEHOLDER
 ---
 
 # thunder_configure_sync (Resource)
 
+`thunder_configure_sync`: Sync operation
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  thunder  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource thunder_configure_sync "ConfigSync"{
-    type =  "running"
-    all_partitions =  0
-    shared =  1
-    partition_name =  "shared"
-    address =  "10.64.3.183"
-    auto_authentication =  1
-    usr =  "admin"
-    pwd =  "a10023"
+resource "thunder_configure_sync" "thunder_configure_sync" {
+  address             = "10.64.3.185"
+  all_partitions      = 1
+  auto_authentication = 1
+  private_key         = "87"
+  pwd                 = "a10"
+  shared              = 0
+  type                = "running"
+  usr                 = "admin"
 }
 ```
 
@@ -35,15 +38,14 @@ resource thunder_configure_sync "ConfigSync"{
 
 ### Optional
 
-- `address` (String)
-- `all_partitions` (Number)
-- `auto_authentication` (Number)
-- `partition_name` (String)
-- `private_key` (String)
+- `address` (String) Specify the destination ip address to sync
+- `all_partitions` (Number) All partition configurations
+- `auto_authentication` (Number) Authenticate with local username and password
+- `partition_name` (String) Partition name
+- `private_key` (String) Use private key for authentication
 - `pwd` (String)
-- `pwd_enc` (String)
-- `shared` (Number)
-- `type` (String)
+- `shared` (Number) Shared partition
+- `type` (String) 'running': Sync local running to peer's running configuration; 'all': Sync local running to peer's running configuration, and local startup to peer's startup configuration;
 - `usr` (String)
 
 ### Read-Only

@@ -3,12 +3,15 @@
 page_title: "thunder_logging_host_ipv6addr Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_logging_host_ipv6addr: ipv6 address of remote syslog server
+  PLACEHOLDER
 ---
 
 # thunder_logging_host_ipv6addr (Resource)
 
+`thunder_logging_host_ipv6addr`: ipv6 address of remote syslog server
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_logging_host_ipv6addr" "v6_1" {
   host_ipv6     = "fd01::11:2"
   use_mgmt_port = 1

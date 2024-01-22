@@ -21,28 +21,24 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_cloud_services_cloud_provider_azure_metrics" "test" {
-  action =  "enable"
-  client_id =  "enable"
-  secret_id =  "enable"
-  tenant_id =  "enable"
-  resource_id =  "enable"
-  location =  "enable"
-  cpu =  "enable"
-  memory =  "enable"
-  disk =  "enable"
-  throughput =  "enable"
-  interfaces =  "enable"
-  cps =  "enable"
-  tps =  "enable"
-  server_down_count =  "enable"
-  server_down_percentage =  "enable"
-  ssl_cert =  "enable"
-  server_error =  "enable"
-  sessions =  "enable"
-  packet_drop =  "enable"
-  packet_rate =  "enable"
+resource "thunder_cloud_services_cloud_provider_azure_metrics" "thunder_cloud_services_cloud_provider_azure_metrics" {
+  action                 = "disable"
+  active_partitions      = "86"
+  cps                    = "disable"
+  cpu                    = "disable"
+  disk                   = "disable"
+  interfaces             = "disable"
+  memory                 = "disable"
+  packet_drop            = "disable"
+  packet_rate            = "disable"
+  resource_id            = "252"
+  server_down_count      = "disable"
+  server_down_percentage = "disable"
+  server_error           = "disable"
+  sessions               = "disable"
+  ssl_cert               = "disable"
+  throughput             = "disable"
+  tps                    = "disable"
 }
 ```
 
@@ -51,24 +47,21 @@ resource "thunder_cloud_services_cloud_provider_azure_metrics" "test" {
 
 ### Optional
 
-- `action` (String) 'enable': Enable Azure Metrics Analytics; 'disable': Disable Azure Metrics Analytics(default);
-- `client_id` (String) Azure Metrics Analytics Client id
+- `action` (String) 'enable': Enable Azure Application Insights; 'disable': Disable Azure Application Insights (default);
+- `active_partitions` (String) Specifies the thunder active partition name separated by a comma for multiple values
 - `cps` (String) 'enable': Enable CPS Metrics; 'disable': Disable CPS Metrics;
 - `cpu` (String) 'enable': Enable CPU Metrics; 'disable': Disable CPU Metrics;
 - `disk` (String) 'enable': Enable Disk Metrics; 'disable': Disable Disk Metrics;
 - `interfaces` (String) 'enable': Enable Interfaces Metrics; 'disable': Disable Interfaces Metrics;
-- `location` (String) Azure Metrics Location
 - `memory` (String) 'enable': Enable Memory Metrics; 'disable': Disable Memory Metrics;
 - `packet_drop` (String) 'enable': Enable Packet Drop Metrics; 'disable': Disable Packet Drop Metrics;
 - `packet_rate` (String) 'enable': Enable Packet Rate Metrics; 'disable': Disable Packet Rate Metrics;
-- `resource_id` (String) Resource/Instance ID of vThunder VMSS
-- `secret_id` (String) Azure Log Analytics Secret id
+- `resource_id` (String) Specifies the Azure Application Insights resource ID or Instance Resource ID
 - `server_down_count` (String) 'enable': Enable Server Down Count Metrics; 'disable': Disable Server Down Count Metrics;
 - `server_down_percentage` (String) 'enable': Enable Server Down Percentage Metrics; 'disable': Disable Server Down Percentage Metrics;
 - `server_error` (String) 'enable': Enable Server Error Metrics; 'disable': Disable Server Error Metrics;
 - `sessions` (String) 'enable': Enable Sessions Metrics; 'disable': Disable Sessions Metrics;
 - `ssl_cert` (String) 'enable': Enable SSL Cert Metrics; 'disable': Disable SSL Cert Metrics;
-- `tenant_id` (String) Azure Metrics Tenant ID
 - `throughput` (String) 'enable': Enable Throughput Metrics; 'disable': Disable Throughput Metrics;
 - `tps` (String) 'enable': Enable TPS Metrics; 'disable': Disable TPS Metrics;
 - `uuid` (String) uuid of the object

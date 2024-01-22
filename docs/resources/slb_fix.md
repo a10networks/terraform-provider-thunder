@@ -3,12 +3,15 @@
 page_title: "thunder_slb_fix Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_fix: Configure FIX Proxy
+  PLACEHOLDER
 ---
 
 # thunder_slb_fix (Resource)
 
+`thunder_slb_fix`: Configure FIX Proxy
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_fix" "test_thunder_slb_fix" {
   sampling_enable {
     counters1 = "all"
@@ -32,7 +34,7 @@ resource "thunder_slb_fix" "test_thunder_slb_fix" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,6 @@ resource "thunder_slb_fix" "test_thunder_slb_fix" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'curr_proxy': Current proxy conns; 'total_proxy': Total proxy conns; 'svrsel_fail': Server selection failure; 'noroute': No route failure; 'snat_fail': Source NAT failure; 'client_err': Client fail; 'server_err': Server fail; 'insert_clientip': Insert client IP; 'default_switching': Default switching; 'sender_switching': Sender ID switching; 'target_switching': Target ID switching; 'client_tls_conn': Client TLS conn; 'server_tls_conn': Server TLS conn;
 
 

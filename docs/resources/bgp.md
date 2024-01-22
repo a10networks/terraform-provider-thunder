@@ -3,12 +3,15 @@
 page_title: "thunder_bgp Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_bgp: Border Gateway Protocol (BGP)
+  PLACEHOLDER
 ---
 
 # thunder_bgp (Resource)
 
+`thunder_bgp`: Border Gateway Protocol (BGP)
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_bgp" "BGP" {
   extended_asn_cap = 1
   nexthop_trigger {
@@ -33,24 +35,31 @@ resource "thunder_bgp" "BGP" {
 
 ### Optional
 
-- `action` (String)
-- `as_number` (String)
-- `extended_asn_cap` (Number)
+- `asdot` (Number) Enable ASDot notation
+- `asdot_plus` (Number) Enable ASDot+ notation
+- `disable_advertisement` (Block List, Max: 1) (see [below for nested schema](#nestedblock--disable_advertisement))
+- `extended_asn_cap` (Number) Enable the router to send 4-octet ASN capabilities
 - `nexthop_trigger` (Block List, Max: 1) (see [below for nested schema](#nestedblock--nexthop_trigger))
-- `process_id` (String)
-- `sequence` (String)
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
+
+<a id="nestedblock--disable_advertisement"></a>
+### Nested Schema for `disable_advertisement`
+
+Optional:
+
+- `on_boot` (Number) Upon boot-up
+
 
 <a id="nestedblock--nexthop_trigger"></a>
 ### Nested Schema for `nexthop_trigger`
 
 Optional:
 
-- `delay` (Number)
-- `enable` (Number)
+- `delay` (Number) Configure nexthop trigger delay time interval (Nexthop Trigger Delay time interval between 1 and 100)
+- `enable` (Number) Enable the nexthop tracking functionality
 
 

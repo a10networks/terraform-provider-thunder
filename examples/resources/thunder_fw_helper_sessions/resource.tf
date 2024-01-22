@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_helper_sessions" "test_thunder_fw_helper_sessions" {
   mode         = "disable"
   idle_timeout = 30

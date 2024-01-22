@@ -3,12 +3,15 @@
 page_title: "thunder_ipv6_route_rib Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ipv6_route_rib: Establish static routes
+  PLACEHOLDER
 ---
 
 # thunder_ipv6_route_rib (Resource)
 
+`thunder_ipv6_route_rib`: Establish static routes
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ipv6_route_rib" "rib_1" {
   ipv6_address = "1:2:3:4::/64"
   ipv6_nexthop_ipv6 {

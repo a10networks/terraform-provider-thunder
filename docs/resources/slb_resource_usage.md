@@ -3,12 +3,15 @@
 page_title: "thunder_slb_resource_usage Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_resource_usage: Configure SLB Resource Usage
+  PLACEHOLDER
 ---
 
 # thunder_slb_resource_usage (Resource)
 
+`thunder_slb_resource_usage`: Configure SLB Resource Usage
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_resource_usage" "Slb_Resource_Usage_Test" {
   slb_threshold_res_usage_percent = 60
   proxy_template_count            = 4096
@@ -48,26 +50,41 @@ resource "thunder_slb_resource_usage" "Slb_Resource_Usage_Test" {
 
 ### Optional
 
-- `cache_template_count` (Number)
-- `client_ssl_template_count` (Number)
-- `conn_reuse_template_count` (Number)
-- `fast_tcp_template_count` (Number)
-- `fast_udp_template_count` (Number)
-- `health_monitor_count` (Number)
-- `http_template_count` (Number)
-- `nat_pool_addr_count` (Number)
-- `pbslb_subnet_count` (Number)
-- `persist_cookie_template_count` (Number)
-- `persist_srcip_template_count` (Number)
-- `proxy_template_count` (Number)
-- `real_port_count` (Number)
-- `real_server_count` (Number)
-- `server_ssl_template_count` (Number)
-- `service_group_count` (Number)
-- `slb_threshold_res_usage_percent` (Number)
-- `stream_template_count` (Number)
-- `virtual_port_count` (Number)
-- `virtual_server_count` (Number)
+- `cache_template_count` (Number) Total configurable HTTP Cache Templates in the System
+- `client_ssl_template_count` (Number) Total configurable Client SSL Templates in the System
+- `conn_reuse_template_count` (Number) Total configurable Connection reuse Templates in the System
+- `fast_tcp_template_count` (Number) Total configurable Fast TCP Templates in the System
+- `fast_udp_template_count` (Number) Total configurable Fast UDP Templates in the System
+- `fix_template_count` (Number) Total configurable FIX Templates in the System
+- `gslb_device_count` (Number) Total GSLB devices in the System
+- `gslb_geo_location_count` (Number) Total GSLB geo-location in the System
+- `gslb_ip_list_count` (Number) Total GSLB ip-list in the System
+- `gslb_policy_count` (Number) Total GSLB policies in the System
+- `gslb_service_count` (Number) Total GSLB services in the System
+- `gslb_service_ip_count` (Number) Total GSLB service-ip in the System
+- `gslb_service_port_count` (Number) Total GSLB service-port in the System
+- `gslb_site_count` (Number) Total GSLB sites in the System
+- `gslb_svc_group_count` (Number) Total GSLB services in the System
+- `gslb_template_count` (Number) Total GSLB templates in the System
+- `gslb_zone_count` (Number) Total GSLB zones in the System
+- `health_monitor_count` (Number) Total Health Monitors in the System
+- `http_template_count` (Number) Total configurable HTTP Templates in the System
+- `link_cost_template_count` (Number) Total configurable Link-cost Templates in the System
+- `nat_pool_addr_count` (Number) Total configurable NAT Pool addresses in the System (deprecated)
+- `pbslb_entry_count` (Number) Total configurable pbslb entry in the System
+- `pbslb_subnet_count` (Number) Total PBSLB Subnets in the System
+- `persist_cookie_template_count` (Number) Total configurable Persistent cookie Templates in the System
+- `persist_srcip_template_count` (Number) Total configurable Source IP Persistent Templates in the System
+- `proxy_template_count` (Number) Total configurable Proxy Templates in the System
+- `real_port_count` (Number) Total Real Server Ports in the System
+- `real_server_count` (Number) Total Real Servers in the System
+- `server_ssl_template_count` (Number) Total configurable Server SSL Templates in the System
+- `service_group_count` (Number) Total Service Groups in the System
+- `slb_threshold_res_usage_percent` (Number) Enter the threshold as a percentage (Threshold in percentage(default is 0%))
+- `stream_template_count` (Number) Total configurable Streaming media in the System
+- `uuid` (String) uuid of the object
+- `virtual_port_count` (Number) Total Virtual Server Ports in the System
+- `virtual_server_count` (Number) Total Virtual Servers in the System
 
 ### Read-Only
 

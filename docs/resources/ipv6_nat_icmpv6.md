@@ -3,12 +3,15 @@
 page_title: "thunder_ipv6_nat_icmpv6 Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ipv6_nat_icmpv6: ICMPv6 configuration for IPv6 NAT
+  PLACEHOLDER
 ---
 
 # thunder_ipv6_nat_icmpv6 (Resource)
 
+`thunder_ipv6_nat_icmpv6`: ICMPv6 configuration for IPv6 NAT
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ipv6_nat_icmpv6" "natIcmpV6" {
   respond_to_ping = 1
 }
@@ -29,8 +31,8 @@ resource "thunder_ipv6_nat_icmpv6" "natIcmpV6" {
 
 ### Optional
 
-- `respond_to_ping` (Number)
-- `uuid` (String)
+- `respond_to_ping` (Number) Respond to ICMPv6 echo requests to NAT pool IPs (default: disabled)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_glm" "Glm_Test" {
+resource "thunder_glm" "thunder_glm" {
   use_mgmt_port = 1
   burst         = 0
   interval      = 1

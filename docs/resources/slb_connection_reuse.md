@@ -3,12 +3,15 @@
 page_title: "thunder_slb_connection_reuse Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_connection_reuse: Configure Connection Reuse
+  PLACEHOLDER
 ---
 
 # thunder_slb_connection_reuse (Resource)
 
+`thunder_slb_connection_reuse`: Configure Connection Reuse
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_connection_reuse" "test_thunder_slb_connection_reuse" {
   sampling_enable {
     counters1 = "all"
@@ -32,7 +34,7 @@ resource "thunder_slb_connection_reuse" "test_thunder_slb_connection_reuse" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,6 @@ resource "thunder_slb_connection_reuse" "test_thunder_slb_connection_reuse" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'current_open': Open persist; 'current_active': Active persist; 'nbind': Total bind; 'nunbind': Total unbind; 'nestab': Total established; 'ntermi': Total terminated; 'ntermi_err': Total terminated by err; 'delay_unbind': Delayed unbind; 'long_resp': Long resp; 'miss_resp': Missed resp; 'unbound_data_rcv': Unbound data rcvd; 'pause_conn': Pause request; 'pause_conn_fail': Pause request fail; 'resume_conn': Resume request; 'not_remove_from_rport': Not remove from list;
 
 

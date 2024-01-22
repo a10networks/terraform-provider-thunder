@@ -3,12 +3,15 @@
 page_title: "thunder_slb_template_client_ssl Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_template_client_ssl: Client SSL Template
+  PLACEHOLDER
 ---
 
 # thunder_slb_template_client_ssl (Resource)
 
+`thunder_slb_template_client_ssl`: Client SSL Template
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,437 +21,101 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
+resource "thunder_slb_template_client_ssl" "thunder_slb_template_client_ssl" {
 
-resource "thunder_slb_template_client_ssl" "client-ssl" {
-  name = "client-ssl-template"
-  certificate_list {
-    cert = "cert1"
-    key  = "cert1"
-  }
-
-  client_certificate      = "Require"
-  close_notify            = 1
-  disable_sslv3           = 1
-  auth_username           = "common-name subject-alt-name-email subject-alt-name-othername"
-  auth_username_attribute = "authattribute"
-  ca_certs {
-    ca_cert          = "ca1"
-    client_ocsp      = 1
-    client_ocsp_srvr = "OCSP1"
-  }
-  ocsp_stapling       = 1
-  ocspst_ca_cert      = "ca1"
-  ocspst_ocsp         = 1
-  ocspst_srvr         = "OCSP1"
-  ocspst_srvr_days    = 29
-  ocspst_srvr_timeout = 20
-
-  req_ca_lists {
-    client_certificate_request_ca = "ca1"
-  }
-
-  dh_type = "2048"
-  ec_list {
-    ec = "secp384r1"
-  }
+  name                = "temp1"
+  auth_username       = "common-name"
+  authorization       = 0
+  cert_revoke_action  = "bypass"
+  cert_unknown_action = "bypass"
+  close_notify        = 1
+  dh_type             = "1024"
+  disable_sslv3       = 1
+  early_data          = 1
   ec_list {
     ec = "secp256r1"
   }
+  enable_tls_alert_logging = 0
+  expire_hours             = 111
 
-  direct_client_server_auth = 1
-  early_data                = 1
-  no_anti_replay            = 1
-  enable_ssli_ftp_alg       = 23
-  enable_tls_alert_logging  = 1
-  alert_type                = "fatal"
-  local_logging             = 1
-  ssli_logging              = 1
-  sslilogging               = "disable"
-
-  crl_certs {
-    crl = "test_crl.crl"
-  }
-
-
-  forward_proxy_ca_cert  = "cert1"
-  forward_proxy_ca_key   = "cert1"
-  forward_proxy_alt_sign = 1
-  fp_alt_cert            = "cert1"
-  fp_alt_key             = "cert1"
-  fp_alt_chain_cert      = "cert1"
-  forward_proxy_trusted_ca_lists {
-    forward_proxy_trusted_ca = "ca1"
-  }
-
-  forward_proxy_decrypted_dscp          = 61
-  forward_proxy_decrypted_dscp_bypass   = 61
-  forward_proxy_verify_cert_fail_action = 1
-  verify_cert_fail_action               = "bypass"
-  forward_proxy_cert_revoke_action      = 1
-  cert_revoke_action                    = "bypass"
-  forward_proxy_no_shared_cipher_action = 1
-  no_shared_cipher_action               = "bypass"
-  forward_proxy_esni_action             = 1
-  fp_esni_action                        = "bypass"
-  forward_proxy_cert_unknown_action     = 1
-  cert_unknown_action                   = "bypass"
-  forward_proxy_block_message           = "fp_block_message"
-  cache_persistence_list_name           = "mySNI.txt"
-
-  fp_cert_ext_crldp          = "test2.com"
-  fp_cert_ext_aia_ca_issuers = "test1.com"
-  notbefore                  = 1
-  notbeforeday               = 30
-  notbeforemonth             = 6
-  notbeforeyear              = 2020
-  notafter                   = 1
-  notafterday                = 30
-  notaftermonth              = 6
-  notafteryear               = 2035
-
-  forward_proxy_ssl_version        = 31
-  forward_proxy_ocsp_disable       = 1
-  forward_proxy_crl_disable        = 1
-  forward_proxy_cert_cache_timeout = 2147483647
-  forward_proxy_cert_cache_limit   = 2147483647
-  forward_proxy_cert_expiry        = 1
-  expire_hours                     = 1
-  forward_proxy_enable             = 1
-
-  handshake_logging_enable         = 1
-  forward_proxy_selfsign_redir     = 1
-  forward_proxy_failsafe_disable   = 1
-  forward_proxy_log_disable        = 1
-  fp_cert_fetch_autonat            = "auto"
-  fp_cert_fetch_autonat_precedence = 1
-  forward_proxy_no_sni_action      = "intercept"
-  case_insensitive                 = 1
-
-  ad_group_list                       = "mySNI.txt"
-  exception_ad_group_list             = "mySNI.txt"
-  exception_user_name_list            = "mySNI.txt"
-  exception_sni_cl_name               = "mySNI.txt"
-  inspect_list_name                   = "mySNI.txt"
-  inspect_certificate_subject_cl_name = "mySNI.txt"
-  inspect_certificate_issuer_cl_name  = "mySNI.txt"
-  inspect_certificate_san_cl_name     = "mySNI.txt"
-  contains_list {
-
-    contains = "test1.com"
-
-  }
-  ends_with_list {
-
-    ends_with = "test2.com"
-
-  }
-  equals_list {
-
-    equals = "test3.com"
-
-  }
-  starts_with_list {
-    starts_with = "starts.com"
-  }
-
-  certificate_subject_starts_with_list {
-
-    certificate_subject_starts = "example.com"
-
-  }
-  certificate_issuer_contains_list {
-
-    certificate_issuer_contains = "example1.com"
-
-  }
-  bypass_cert_issuer_class_list_name   = "mySNI.txt"
-  exception_certificate_issuer_cl_name = "mySNI.txt"
-
-
-  certificate_issuer_ends_with_list {
-
-    certificate_issuer_ends_with = "example2.com"
-
-  }
-  certificate_issuer_equals_list {
-
-    certificate_issuer_equals = "example3.com"
-
-  }
-  certificate_issuer_starts_with_list {
-
-    certificate_issuer_starts = "example4.com"
-
-  }
-  certificate_san_contains_list {
-
-    certificate_san_contains = "test.com"
-
-  }
-  bypass_cert_san_multi_class_list {
-    bypass_cert_san_multi_class_list_name = "mySNI.txt"
-  }
-
-  exception_certificate_san_cl_name = "mySNI.txt"
-  certificate_san_ends_with_list {
-    certificate_san_ends_with = "test.com"
-  }
-
-  certificate_san_equals_list {
-    certificate_san_equals = "equal.com"
-  }
-
-  certificate_san_starts_with_list {
-    certificate_san_starts = "start.com"
-  }
-  certificate_san_contains_list {
-    certificate_san_contains = "test.com"
-  }
-  multi_class_list {
-    multi_clist_name = "mySNI.txt"
-  }
-  user_name_list               = "mySNI.txt"
-  client_auth_case_insensitive = 1
-  client_auth_contains_list {
-    client_auth_contains = "example.com"
-  }
-  client_auth_class_list = "mySNI.txt"
-
-  client_auth_ends_with_list {
-    client_auth_ends_with = "ends.com"
-  }
-
-  client_auth_equals_list {
-    client_auth_equals = "equal.com"
-  }
-
-  client_auth_starts_with_list {
-    client_auth_starts_with = "starts.com"
-  }
-
-  exception_web_category {
-    exception_uncategorized                  = 1
-    exception_real_estate                    = 1
-    exception_computer_and_internet_security = 1
-    exception_financial_services             = 1
-    exception_business_and_economy           = 1
-    exception_computer_and_internet_info     = 1
-    exception_auctions                       = 1
-    exception_shopping                       = 1
-    exception_cult_and_occult                = 1
-    exception_travel                         = 1
-    exception_drugs                          = 1
-    exception_adult_and_pornography          = 1
-    exception_home_and_garden                = 1
-    exception_military                       = 1
-    exception_social_network                 = 1
-    exception_dead_sites                     = 1
-    exception_stock_advice_and_tools         = 1
-    exception_training_and_tools             = 1
-    exception_dating                         = 1
-    exception_sex_education                  = 1
-    exception_religion                       = 1
-    exception_entertainment_and_arts         = 1
-    exception_personal_sites_and_blogs       = 1
-    exception_legal                          = 1
-    exception_local_information              = 1
-    exception_streaming_media                = 1
-    exception_job_search                     = 1
-    exception_gambling                       = 1
-    exception_translation                    = 1
-    exception_reference_and_research         = 1
-    exception_shareware_and_freeware         = 1
-    exception_peer_to_peer                   = 1
-    exception_marijuana                      = 1
-    exception_hacking                        = 1
-    exception_games                          = 1
-    exception_philosophy_and_politics        = 1
-    exception_weapons                        = 1
-    exception_pay_to_surf                    = 1
-    exception_hunting_and_fishing            = 1
-    exception_society                        = 1
-    exception_educational_institutions       = 1
-    exception_online_greeting_cards          = 1
-    exception_sports                         = 1
-    exception_swimsuits_and_intimate_apparel = 1
-    exception_questionable                   = 1
-    exception_kids                           = 1
-    exception_hate_and_racism                = 1
-    exception_personal_storage               = 1
-    exception_violence                       = 1
-    exception_keyloggers_and_monitoring      = 1
-    exception_search_engines                 = 1
-    exception_internet_portals               = 1
-    exception_web_advertisements             = 1
-    exception_cheating                       = 1
-    exception_gross                          = 1
-    exception_web_based_email                = 1
-    exception_malware_sites                  = 1
-    exception_phishing_and_other_fraud       = 1
-    exception_proxy_avoid_and_anonymizers    = 1
-    exception_spyware_and_adware             = 1
-    exception_music                          = 1
-    exception_government                     = 1
-    exception_nudity                         = 1
-    exception_news_and_media                 = 1
-    exception_illegal                        = 1
-    exception_cdns                           = 1
-    exception_internet_communications        = 1
-    exception_bot_nets                       = 1
-    exception_abortion                       = 1
-    exception_health_and_medicine            = 1
-    exception_spam_urls                      = 1
-    exception_parked_domains                 = 1
-    exception_alcohol_and_tobacco            = 1
-    exception_image_and_video_search         = 1
-    exception_fashion_and_beauty             = 1
-    exception_recreation_and_hobbies         = 1
-    exception_motor_vehicles                 = 1
-    exception_web_hosting_sites              = 1
-    exception_nudity_artistic                = 1
-    exception_illegal_pornography            = 1
-  }
-  require_web_category = 1
-  web_category {
-    uncategorized                  = 1
-    real_estate                    = 1
-    computer_and_internet_security = 1
-    financial_services             = 1
-    business_and_economy           = 1
-    computer_and_internet_info     = 1
-    auctions                       = 1
-    shopping                       = 1
-    cult_and_occult                = 1
-    travel                         = 1
-    drugs                          = 1
-    adult_and_pornography          = 1
-    home_and_garden                = 1
-    military                       = 1
-    social_network                 = 1
-    dead_sites                     = 1
-    stock_advice_and_tools         = 1
-    training_and_tools             = 1
-    dating                         = 1
-    sex_education                  = 1
-    religion                       = 1
-    entertainment_and_arts         = 1
-    personal_sites_and_blogs       = 1
-    legal                          = 1
-    local_information              = 1
-    streaming_media                = 1
-    job_search                     = 1
-    gambling                       = 1
-    translation                    = 1
-    reference_and_research         = 1
-    shareware_and_freeware         = 1
-    peer_to_peer                   = 1
-    marijuana                      = 1
-    hacking                        = 1
-    games                          = 1
-    philosophy_and_politics        = 1
-    weapons                        = 1
-    pay_to_surf                    = 1
-    hunting_and_fishing            = 1
-    society                        = 1
-    educational_institutions       = 1
-    online_greeting_cards          = 1
-    sports                         = 1
-    swimsuits_and_intimate_apparel = 1
-    questionable                   = 1
-    kids                           = 1
-    hate_and_racism                = 1
-    personal_storage               = 1
-    violence                       = 1
-    keyloggers_and_monitoring      = 1
-    search_engines                 = 1
-    internet_portals               = 1
-    web_advertisements             = 1
-    cheating                       = 1
-    gross                          = 1
-    web_based_email                = 1
-    malware_sites                  = 1
-    phishing_and_other_fraud       = 1
-    proxy_avoid_and_anonymizers    = 1
-    spyware_and_adware             = 1
-    music                          = 1
-    government                     = 1
-    nudity                         = 1
-    news_and_media                 = 1
-    illegal                        = 1
-    cdns                           = 1
-    internet_communications        = 1
-    bot_nets                       = 1
-    abortion                       = 1
-    health_and_medicine            = 1
-    spam_urls                      = 1
-    parked_domains                 = 1
-    alcohol_and_tobacco            = 1
-    image_and_video_search         = 1
-    fashion_and_beauty             = 1
-    recreation_and_hobbies         = 1
-    motor_vehicles                 = 1
-    web_hosting_sites              = 1
-    nudity_artistic                = 1
-    illegal_pornography            = 1
-  }
-  web_reputation {
-    bypass_low_risk = 1
-  }
-
+  forward_proxy_block_message            = "s912"
+  forward_proxy_cert_cache_limit         = 5288
+  forward_proxy_cert_cache_timeout       = 3610
+  forward_proxy_cert_expiry              = 1
   forward_proxy_cert_not_ready_action    = "bypass"
+  forward_proxy_cert_revoke_action       = 1
+  forward_proxy_cert_unknown_action      = 1
+  forward_proxy_crl_disable              = 1
+  forward_proxy_decrypted_dscp           = 32
+  forward_proxy_decrypted_dscp_bypass    = 61
+  forward_proxy_enable                   = 1
+  forward_proxy_esni_action              = 0
+  forward_proxy_failsafe_disable         = 1
+  forward_proxy_log_disable              = 1
+  forward_proxy_no_shared_cipher_action  = 1
+  forward_proxy_no_sni_action            = "intercept"
+  forward_proxy_ocsp_disable             = 1
   forward_proxy_require_sni_cert_matched = "no-match-action-inspect"
-  template_cipher                        = "cipher1"
-  server_name_auto_map                   = 1
-  sni_enable_log                         = 1
-  sni_bypass_missing_cert                = 1
-  sni_bypass_expired_cert                = 1
-  sni_bypass_explicit_list               = "mySNI.txt"
-  sni_bypass_enable_log                  = 1
-  session_cache_size                     = 10
-  session_cache_timeout                  = 30
-  session_ticket_disable                 = 1
-  renegotiation_disable                  = 1
-  sslv2_bypass_service_group             = "sg_https"
-  authorization                          = 1
-  auth_sg                                = "aam_service_group"
-  auth_sg_dn                             = 1
-  auth_sg_filter                         = "abc"
-  non_ssl_bypass_service_group           = "sg_https"
+  forward_proxy_selfsign_redir           = 1
+  forward_proxy_ssl_version              = 33
+  forward_proxy_verify_cert_fail_action  = 1
+  handshake_logging_enable               = 1
+  ja3_enable                             = 1
+  ja3_insert_http_header                 = "127"
+  ja3_reject_max_number_per_host         = 238
+  ja3_ttl                                = 453
+  local_logging                          = 1
   non_ssl_bypass_l4session               = 1
-  session_ticket_lifetime                = 2147483647
+  non_ssl_bypass_service_group           = "sg112"
+  renegotiation_disable                  = 1
+  server_name_auto_map                   = 1
+  session_cache_size                     = 121
+  session_cache_timeout                  = 23511
+  session_ticket_disable                 = 1
+  session_ticket_lifetime                = 235112
+  sni_bypass_enable_log                  = 1
+  sni_bypass_expired_cert                = 1
+  sni_bypass_missing_cert                = 1
+  sni_enable_log                         = 1
   ssl_false_start_disable                = 1
-  user_tag                               = "clientssl"
-  version                                = 33
-  dgversion                              = 30
+  ssli_logging                           = 1
+  sslilogging                            = "all"
+  sslv2_bypass_service_group             = "sg112"
+  user_tag                               = "120"
+  version                                = 0
 }
 ```
 
 <!-- schema generated by tfplugindocs -->
 ## Schema
 
+### Required
+
+- `name` (String) Client SSL Template Name
+
 ### Optional
 
-- `ad_group_list` (String)
-- `alert_type` (String)
-- `auth_sg` (String)
-- `auth_sg_dn` (Number)
-- `auth_sg_filter` (String)
-- `auth_username` (String)
-- `auth_username_attribute` (String)
-- `authen_name` (String)
-- `authorization` (Number)
-- `bypass_cert_issuer_class_list_name` (String)
+- `ad_group_list` (String) Forward proxy bypass if ad-group matches class-list
+- `alert_type` (String) 'fatal': Log fatal alerts;
+- `auth_sg` (String) Specify authorization LDAP service group
+- `auth_sg_dn` (Number) Use Subject DN as LDAP search base DN
+- `auth_sg_filter` (String) Specify LDAP search filter
+- `auth_username` (String) Specify the Username Field in the Client Certificate(If multi-fields are specificed, prior one has higher priority)
+- `auth_username_attribute` (String) Specify attribute name of username for client SSL authorization
+- `authen_name` (String) Specify authorization LDAP server name
+- `authorization` (Number) Specify LDAP server for client SSL authorizaiton
+- `bypass_cert_issuer_class_list_name` (String) Class List Name
 - `bypass_cert_issuer_multi_class_list` (Block List) (see [below for nested schema](#nestedblock--bypass_cert_issuer_multi_class_list))
-- `bypass_cert_san_class_list_name` (String)
+- `bypass_cert_san_class_list_name` (String) Class List Name
 - `bypass_cert_san_multi_class_list` (Block List) (see [below for nested schema](#nestedblock--bypass_cert_san_multi_class_list))
-- `bypass_cert_subject_class_list_name` (String)
+- `bypass_cert_subject_class_list_name` (String) Class List Name
 - `bypass_cert_subject_multi_class_list` (Block List) (see [below for nested schema](#nestedblock--bypass_cert_subject_multi_class_list))
 - `ca_certs` (Block List) (see [below for nested schema](#nestedblock--ca_certs))
-- `cache_persistence_list_name` (String)
-- `case_insensitive` (Number)
-- `central_cert_pin_list` (Number)
-- `cert_revoke_action` (String)
-- `cert_unknown_action` (String)
+- `cache_persistence_list_name` (String) Class List Name
+- `case_insensitive` (Number) Case insensitive forward proxy bypass
+- `central_cert_pin_list` (Number) Forward proxy bypass if SNI string is contained in central updated cert-pinning-candidate list
+- `cert_revoke_action` (String) 'bypass': bypass SSLi processing; 'continue': continue the connection; 'drop': close the connection; 'block': block the connection with a warning page;
+- `cert_unknown_action` (String) 'bypass': bypass SSLi processing; 'continue': continue the connection; 'drop': close the connection; 'block': block the connection with a warning page;
 - `certificate_issuer_contains_list` (Block List) (see [below for nested schema](#nestedblock--certificate_issuer_contains_list))
 - `certificate_issuer_ends_with_list` (Block List) (see [below for nested schema](#nestedblock--certificate_issuer_ends_with_list))
 - `certificate_issuer_equals_list` (Block List) (see [below for nested schema](#nestedblock--certificate_issuer_equals_list))
@@ -462,166 +129,166 @@ resource "thunder_slb_template_client_ssl" "client-ssl" {
 - `certificate_subject_ends_with_list` (Block List) (see [below for nested schema](#nestedblock--certificate_subject_ends_with_list))
 - `certificate_subject_equals_list` (Block List) (see [below for nested schema](#nestedblock--certificate_subject_equals_list))
 - `certificate_subject_starts_with_list` (Block List) (see [below for nested schema](#nestedblock--certificate_subject_starts_with_list))
-- `chain_cert` (String)
-- `chain_cert_shared_str` (String)
+- `chain_cert` (String) Chain Certificate Name
+- `chain_cert_shared_str` (String) Chain Certificate Name
 - `cipher_without_prio_list` (Block List) (see [below for nested schema](#nestedblock--cipher_without_prio_list))
-- `class_list_name` (String)
-- `client_auth_case_insensitive` (Number)
-- `client_auth_class_list` (String)
+- `class_list_name` (String) Class List Name
+- `client_auth_case_insensitive` (Number) Case insensitive forward proxy client auth bypass
+- `client_auth_class_list` (String) Forward proxy client auth bypass if SNI string matches class-list (Class List Name)
 - `client_auth_contains_list` (Block List) (see [below for nested schema](#nestedblock--client_auth_contains_list))
 - `client_auth_ends_with_list` (Block List) (see [below for nested schema](#nestedblock--client_auth_ends_with_list))
 - `client_auth_equals_list` (Block List) (see [below for nested schema](#nestedblock--client_auth_equals_list))
 - `client_auth_starts_with_list` (Block List) (see [below for nested schema](#nestedblock--client_auth_starts_with_list))
-- `client_certificate` (String)
+- `client_certificate` (String) 'Ignore': Don't request client certificate; 'Require': Require client certificate; 'Request': Request client certificate;
 - `client_ipv4_list` (Block List) (see [below for nested schema](#nestedblock--client_ipv4_list))
 - `client_ipv6_list` (Block List) (see [below for nested schema](#nestedblock--client_ipv6_list))
-- `close_notify` (Number)
+- `close_notify` (Number) Send close notification when terminate connection
 - `contains_list` (Block List) (see [below for nested schema](#nestedblock--contains_list))
 - `crl_certs` (Block List) (see [below for nested schema](#nestedblock--crl_certs))
-- `dgversion` (Number)
-- `dh_type` (String)
-- `direct_client_server_auth` (Number)
-- `disable_sslv3` (Number)
-- `early_data` (Number)
+- `dgversion` (Number) Lower TLS/SSL version can be downgraded
+- `dh_type` (String) '1024': 1024; '1024-dsa': 1024-dsa; '2048': 2048;
+- `direct_client_server_auth` (Number) Let backend server does SSL client authentication directly
+- `disable_sslv3` (Number) Reject Client requests for SSL version 3
+- `early_data` (Number) Enable TLS 1.3 early data (0-RTT)
 - `ec_list` (Block List) (see [below for nested schema](#nestedblock--ec_list))
-- `enable_ssli_ftp_alg` (Number)
-- `enable_tls_alert_logging` (Number)
+- `enable_ssli_ftp_alg` (Number) Enable SSLi FTP over TLS support at which port
+- `enable_tls_alert_logging` (Number) Enable TLS alert logging
 - `ends_with_list` (Block List) (see [below for nested schema](#nestedblock--ends_with_list))
 - `equals_list` (Block List) (see [below for nested schema](#nestedblock--equals_list))
-- `exception_ad_group_list` (String)
-- `exception_certificate_issuer_cl_name` (String)
-- `exception_certificate_san_cl_name` (String)
-- `exception_certificate_subject_cl_name` (String)
+- `exception_ad_group_list` (String) Exceptions to forward proxy bypass if ad-group matches class-list
+- `exception_certificate_issuer_cl_name` (String) Exceptions to forward-proxy-bypass
+- `exception_certificate_san_cl_name` (String) Exceptions to forward-proxy-bypass
+- `exception_certificate_subject_cl_name` (String) Exceptions to forward-proxy-bypass
 - `exception_client_ipv4_list` (Block List) (see [below for nested schema](#nestedblock--exception_client_ipv4_list))
 - `exception_client_ipv6_list` (Block List) (see [below for nested schema](#nestedblock--exception_client_ipv6_list))
 - `exception_server_ipv4_list` (Block List) (see [below for nested schema](#nestedblock--exception_server_ipv4_list))
 - `exception_server_ipv6_list` (Block List) (see [below for nested schema](#nestedblock--exception_server_ipv6_list))
-- `exception_sni_cl_name` (String)
-- `exception_user_name_list` (String)
+- `exception_sni_cl_name` (String) Exceptions to forward-proxy-bypass
+- `exception_user_name_list` (String) Exceptions to forward proxy bypass if user-name matches class-list
 - `exception_web_category` (Block List, Max: 1) (see [below for nested schema](#nestedblock--exception_web_category))
 - `exception_web_reputation` (Block List, Max: 1) (see [below for nested schema](#nestedblock--exception_web_reputation))
-- `expire_hours` (Number)
-- `forward_passphrase` (String)
-- `forward_proxy_alt_sign` (Number)
-- `forward_proxy_block_message` (String)
-- `forward_proxy_ca_cert` (String)
-- `forward_proxy_ca_key` (String)
-- `forward_proxy_cert_cache_limit` (Number)
-- `forward_proxy_cert_cache_timeout` (Number)
-- `forward_proxy_cert_expiry` (Number)
-- `forward_proxy_cert_not_ready_action` (String)
-- `forward_proxy_cert_revoke_action` (Number)
-- `forward_proxy_cert_unknown_action` (Number)
-- `forward_proxy_crl_disable` (Number)
-- `forward_proxy_decrypted_dscp` (Number)
-- `forward_proxy_decrypted_dscp_bypass` (Number)
-- `forward_proxy_enable` (Number)
-- `forward_proxy_esni_action` (Number)
-- `forward_proxy_failsafe_disable` (Number)
-- `forward_proxy_hash_persistence_interval` (Number)
-- `forward_proxy_log_disable` (Number)
-- `forward_proxy_no_shared_cipher_action` (Number)
-- `forward_proxy_no_sni_action` (String)
-- `forward_proxy_ocsp_disable` (Number)
-- `forward_proxy_require_sni_cert_matched` (String)
-- `forward_proxy_selfsign_redir` (Number)
-- `forward_proxy_ssl_version` (Number)
+- `expire_hours` (Number) Certificate lifetime in hours
+- `forward_passphrase` (String) Password Phrase
+- `forward_proxy_alt_sign` (Number) Forward proxy alternate signing cert and key
+- `forward_proxy_block_message` (String) Message to be included on the block page (Message, enclose in quotes if spaces are present)
+- `forward_proxy_ca_cert` (String) CA Certificate for forward proxy (SSL forward proxy CA Certificate Name)
+- `forward_proxy_ca_key` (String) CA Private Key for forward proxy (SSL forward proxy CA Key Name)
+- `forward_proxy_cert_cache_limit` (Number) Certificate cache size limit, default is 524288 (set to 0 for unlimited size)
+- `forward_proxy_cert_cache_timeout` (Number) Certificate cache timeout, default is 1 hour (seconds, set to 0 for never timeout)
+- `forward_proxy_cert_expiry` (Number) Adjust certificate expiry relative to the time when it is created on the device
+- `forward_proxy_cert_not_ready_action` (String) 'bypass': bypass the connection; 'reset': reset the connection; 'intercept': wait for cert and then inspect the connection;
+- `forward_proxy_cert_revoke_action` (Number) Action taken if a certificate is irreversibly revoked, bypass SSLi processing by default
+- `forward_proxy_cert_unknown_action` (Number) Action taken if a certificate revocation status is unknown, bypass SSLi processing by default
+- `forward_proxy_crl_disable` (Number) Disable Certificate Revocation List checking for forward proxy
+- `forward_proxy_decrypted_dscp` (Number) Apply a DSCP to decrypted and bypassed traffic (DSCP to apply to decrypted traffic)
+- `forward_proxy_decrypted_dscp_bypass` (Number) DSCP to apply to bypassed traffic
+- `forward_proxy_enable` (Number) Enable SSL forward proxy
+- `forward_proxy_esni_action` (Number) Action taken if receiving encrypted server name indication extension in client hello MSG, bypass the connection by default
+- `forward_proxy_failsafe_disable` (Number) Disable Failsafe for SSL forward proxy
+- `forward_proxy_hash_persistence_interval` (Number) Set the time interval to save the hash persistence certs (Interval value, in minutes)
+- `forward_proxy_log_disable` (Number) Disable SSL forward proxy logging
+- `forward_proxy_no_shared_cipher_action` (Number) Action taken if handshake fails due to no shared ciper, close the connection by default
+- `forward_proxy_no_sni_action` (String) 'intercept': intercept in no SNI case; 'bypass': bypass in no SNI case; 'reset': reset in no SNI case;
+- `forward_proxy_ocsp_disable` (Number) Disable ocsp-stapling for forward proxy
+- `forward_proxy_require_sni_cert_matched` (String) 'no-match-action-inspect': Inspected if not matched; 'no-match-action-drop': Dropped if not matched;
+- `forward_proxy_selfsign_redir` (Number) Redirect connections to pages with self signed certs to a warning page
+- `forward_proxy_ssl_version` (Number) TLS/SSL version, default is TLS1.2 (TLS/SSL version: 31-TLSv1.0, 32-TLSv1.1, 33-TLSv1.2 and 34-TLSv1.3)
 - `forward_proxy_trusted_ca_lists` (Block List) (see [below for nested schema](#nestedblock--forward_proxy_trusted_ca_lists))
-- `forward_proxy_verify_cert_fail_action` (Number)
-- `fp_alt_cert` (String)
-- `fp_alt_chain_cert` (String)
-- `fp_alt_key` (String)
-- `fp_alt_passphrase` (String)
-- `fp_alt_shared` (Number)
-- `fp_ca_certificate` (String)
-- `fp_ca_certificate_shared` (Number)
-- `fp_ca_chain_cert` (String)
-- `fp_ca_key` (String)
-- `fp_ca_key_passphrase` (String)
-- `fp_ca_key_shared` (Number)
-- `fp_ca_shared` (Number)
-- `fp_cert_ext_aia_ca_issuers` (String)
-- `fp_cert_ext_aia_ocsp` (String)
-- `fp_cert_ext_crldp` (String)
-- `fp_cert_fetch_autonat` (String)
-- `fp_cert_fetch_autonat_precedence` (Number)
-- `fp_cert_fetch_natpool_name` (String)
-- `fp_cert_fetch_natpool_name_shared` (String)
-- `fp_cert_fetch_natpool_precedence` (Number)
-- `fp_esni_action` (String)
-- `handshake_logging_enable` (Number)
-- `hsm_type` (String)
-- `inspect_certificate_issuer_cl_name` (String)
-- `inspect_certificate_san_cl_name` (String)
-- `inspect_certificate_subject_cl_name` (String)
-- `inspect_list_name` (String)
-- `ja3_enable` (Number)
-- `ja3_insert_http_header` (String)
-- `ja3_reject_class_list` (String)
-- `ja3_reject_max_number_per_host` (Number)
-- `ja3_ttl` (Number)
-- `ldap_base_dn_from_cert` (Number)
-- `ldap_search_filter` (String)
+- `forward_proxy_verify_cert_fail_action` (Number) Action taken if certificate verification fails, close the connection by default
+- `fp_alt_cert` (String) CA Certificate for forward proxy alternate signing (Certificate name)
+- `fp_alt_chain_cert` (String) Chain Certificate (Chain Certificate Name)
+- `fp_alt_key` (String) CA Private Key for forward proxy alternate signing (Key name)
+- `fp_alt_passphrase` (String) Password Phrase
+- `fp_alt_shared` (Number) Alternate CA Certificate and Private Key Partition Shared
+- `fp_ca_certificate` (String) CA Certificate for forward proxy (SSL forward proxy CA Certificate Name)
+- `fp_ca_certificate_shared` (Number) CA Private Key Partition Shared
+- `fp_ca_chain_cert` (String) Chain Certificate (Chain Certificate Name)
+- `fp_ca_key` (String) CA Private Key for forward proxy (SSL forward proxy CA Key Name)
+- `fp_ca_key_passphrase` (String) Password Phrase
+- `fp_ca_key_shared` (Number) CA Private Key Partition Shared
+- `fp_ca_shared` (Number) CA Certificate Partition Shared
+- `fp_cert_ext_aia_ca_issuers` (String) CA Issuers (Authority Information Access URI)
+- `fp_cert_ext_aia_ocsp` (String) OCSP (Authority Information Access URI)
+- `fp_cert_ext_crldp` (String) CRL Distribution Point (CRL Distribution Point URI)
+- `fp_cert_fetch_autonat` (String) 'auto': Configure auto NAT for server certificate fetching;
+- `fp_cert_fetch_autonat_precedence` (Number) Set this NAT pool as higher precedence than other source NAT like configued under template policy
+- `fp_cert_fetch_natpool_name` (String) Specify NAT pool or pool group
+- `fp_cert_fetch_natpool_name_shared` (String) Specify NAT pool or pool group
+- `fp_cert_fetch_natpool_precedence` (Number) Set this NAT pool as higher precedence than other source NAT like configued under template policy
+- `fp_esni_action` (String) 'bypass': bypass SSLi processing; 'drop': close the connection;
+- `handshake_logging_enable` (Number) Enable SSL handshake logging
+- `hsm_type` (String) 'thales-embed': Thales embed key; 'thales-hwcrhk': Thales hwcrhk Key;
+- `inspect_certificate_issuer_cl_name` (String) Forward proxy Inspect if Certificate issuer matches class-list
+- `inspect_certificate_san_cl_name` (String) Forward proxy Inspect if Certificate Subject Alternative Name matches class-list
+- `inspect_certificate_subject_cl_name` (String) Forward proxy Inspect if Certificate Subject matches class-list
+- `inspect_list_name` (String) Class List Name
+- `ja3_enable` (Number) Enable JA3 features
+- `ja3_insert_http_header` (String) Insert the JA3 hash into this request as a HTTP header (HTTP Header Name)
+- `ja3_reject_class_list` (String) Drop request if the JA3 hash matches this class-list (type string-case-insensitive) (Class-List Name)
+- `ja3_reject_max_number_per_host` (Number) Drop request if numbers of JA3 of this client address exceeded
+- `ja3_ttl` (Number) seconds to keep each JA3 record
+- `ldap_base_dn_from_cert` (Number) Use Subject DN as LDAP search base DN
+- `ldap_search_filter` (String) Specify LDAP search filter
 - `local_cert_pin_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--local_cert_pin_list))
-- `local_logging` (Number)
+- `local_logging` (Number) Enable local logging
 - `multi_class_list` (Block List) (see [below for nested schema](#nestedblock--multi_class_list))
-- `name` (String)
-- `no_anti_replay` (Number)
-- `no_shared_cipher_action` (String)
-- `non_ssl_bypass_l4session` (Number)
-- `non_ssl_bypass_service_group` (String)
-- `notafter` (Number)
-- `notafterday` (Number)
-- `notaftermonth` (Number)
-- `notafteryear` (Number)
-- `notbefore` (Number)
-- `notbeforeday` (Number)
-- `notbeforemonth` (Number)
-- `notbeforeyear` (Number)
-- `ocsp_stapling` (Number)
-- `ocspst_ca_cert` (String)
-- `ocspst_ocsp` (Number)
-- `ocspst_sg` (String)
-- `ocspst_sg_days` (Number)
-- `ocspst_sg_hours` (Number)
-- `ocspst_sg_minutes` (Number)
-- `ocspst_sg_timeout` (Number)
-- `ocspst_srvr` (String)
-- `ocspst_srvr_days` (Number)
-- `ocspst_srvr_hours` (Number)
-- `ocspst_srvr_minutes` (Number)
-- `ocspst_srvr_timeout` (Number)
-- `renegotiation_disable` (Number)
+- `no_anti_replay` (Number) Disable anti-replay protection for TLS 1.3 early data (0-RTT data)
+- `no_shared_cipher_action` (String) 'bypass': bypass SSLi processing; 'drop': close the connection;
+- `non_ssl_bypass_l4session` (Number) Handle the non-ssl session as L4 for performance optimization
+- `non_ssl_bypass_service_group` (String) Service Group for Bypass non-ssl traffic (Service Group Name)
+- `notafter` (Number) notAfter date
+- `notafterday` (Number) Day
+- `notaftermonth` (Number) Month
+- `notafteryear` (Number) Year
+- `notbefore` (Number) notBefore date
+- `notbeforeday` (Number) Day
+- `notbeforemonth` (Number) Month
+- `notbeforeyear` (Number) Year
+- `ocsp_stapling` (Number) Config OCSP stapling support
+- `ocspst_ca_cert` (String) CA certificate
+- `ocspst_ocsp` (Number) Specify OCSP Authentication
+- `ocspst_sg` (String) Specify authentication service group
+- `ocspst_sg_days` (Number) Specify update period, in days
+- `ocspst_sg_hours` (Number) Specify update period, in hours
+- `ocspst_sg_minutes` (Number) Specify update period, in minutes
+- `ocspst_sg_timeout` (Number) Specify retry timeout (Default is 30 mins)
+- `ocspst_srvr` (String) Specify OCSP authentication server
+- `ocspst_srvr_days` (Number) Specify update period, in days
+- `ocspst_srvr_hours` (Number) Specify update period, in hours
+- `ocspst_srvr_minutes` (Number) Specify update period, in minutes
+- `ocspst_srvr_timeout` (Number) Specify retry timeout (Default is 30 mins)
+- `renegotiation_disable` (Number) Disable SSL renegotiation
 - `req_ca_lists` (Block List) (see [below for nested schema](#nestedblock--req_ca_lists))
-- `require_web_category` (Number)
+- `require_web_category` (Number) Wait for web category to be resolved before taking bypass decision
 - `server_ipv4_list` (Block List) (see [below for nested schema](#nestedblock--server_ipv4_list))
 - `server_ipv6_list` (Block List) (see [below for nested schema](#nestedblock--server_ipv6_list))
-- `server_name_auto_map` (Number)
+- `server_name_auto_map` (Number) Enable automatic mapping of server name indication in Client hello extension
 - `server_name_list` (Block List) (see [below for nested schema](#nestedblock--server_name_list))
-- `session_cache_size` (Number)
-- `session_cache_timeout` (Number)
-- `session_ticket_disable` (Number)
-- `session_ticket_lifetime` (Number)
-- `shared_partition_cipher_template` (Number)
-- `shared_partition_pool` (Number)
-- `sni_bypass_enable_log` (Number)
-- `sni_bypass_expired_cert` (Number)
-- `sni_bypass_explicit_list` (String)
-- `sni_bypass_missing_cert` (Number)
-- `sni_enable_log` (Number)
-- `ssl_false_start_disable` (Number)
-- `ssli_logging` (Number)
-- `sslilogging` (String)
-- `sslv2_bypass_service_group` (String)
+- `session_cache_size` (Number) Session Cache Size (Maximum cache size. Default value 0 (Session ID reuse disabled))
+- `session_cache_timeout` (Number) Session Cache Timeout (Timeout value, in seconds. Default value 0 (Session cache timeout disabled))
+- `session_ticket_disable` (Number) Disable client side session ticket support
+- `session_ticket_lifetime` (Number) Session ticket lifetime in seconds from stateless session resumption (Lifetime value in seconds. Default value 0 (Session ticket lifetime is 7200 seconds))
+- `shared_partition_cipher_template` (Number) Reference a cipher template from shared partition
+- `shared_partition_pool` (Number) Reference a NAT pool or pool group from shared partition
+- `sni_bypass_enable_log` (Number) Enable logging when bypass event happens, disabled by default
+- `sni_bypass_expired_cert` (Number) Bypass when certificate expired
+- `sni_bypass_explicit_list` (String) Bypass when matched explicit bypass list (Specify class list name)
+- `sni_bypass_missing_cert` (Number) Bypass when missing cert/key
+- `sni_enable_log` (Number) Enable logging of sni-auto-map failures. Disable by default
+- `ssl_false_start_disable` (Number) disable SSL False Start
+- `ssli_inbound_enable` (Number) Enable inbound SSLi
+- `ssli_logging` (Number) SSLi logging level, default is error logging only
+- `sslilogging` (String) 'disable': Disable all logging; 'all': enable all logging(error, info);
+- `sslv2_bypass_service_group` (String) Service Group for Bypass SSLV2 (Service Group Name)
 - `starts_with_list` (Block List) (see [below for nested schema](#nestedblock--starts_with_list))
-- `template_cipher` (String)
-- `template_cipher_shared` (String)
-- `template_hsm` (String)
-- `user_name_list` (String)
-- `user_tag` (String)
-- `uuid` (String)
-- `verify_cert_fail_action` (String)
-- `version` (Number)
+- `template_cipher` (String) Cipher Template Name
+- `template_cipher_shared` (String) Cipher Template Name
+- `template_hsm` (String) HSM Template (HSM Template Name)
+- `user_name_list` (String) Forward proxy bypass if user-name matches class-list
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+- `verify_cert_fail_action` (String) 'bypass': bypass SSLi processing; 'continue': continue the connection; 'drop': close the connection; 'block': block the connection with a warning page;
+- `version` (Number) TLS/SSL version, default is the highest number supported (TLS/SSL version: 30-SSLv3.0, 31-TLSv1.0, 32-TLSv1.1, 33-TLSv1.2 and 34-TLSv1.3)
 - `web_category` (Block List, Max: 1) (see [below for nested schema](#nestedblock--web_category))
 - `web_reputation` (Block List, Max: 1) (see [below for nested schema](#nestedblock--web_reputation))
 
@@ -634,7 +301,7 @@ resource "thunder_slb_template_client_ssl" "client-ssl" {
 
 Optional:
 
-- `bypass_cert_issuer_multi_class_list_name` (String)
+- `bypass_cert_issuer_multi_class_list_name` (String) Class List Name
 
 
 <a id="nestedblock--bypass_cert_san_multi_class_list"></a>
@@ -642,7 +309,7 @@ Optional:
 
 Optional:
 
-- `bypass_cert_san_multi_class_list_name` (String)
+- `bypass_cert_san_multi_class_list_name` (String) Class List Name
 
 
 <a id="nestedblock--bypass_cert_subject_multi_class_list"></a>
@@ -650,7 +317,7 @@ Optional:
 
 Optional:
 
-- `bypass_cert_subject_multi_class_list_name` (String)
+- `bypass_cert_subject_multi_class_list_name` (String) Class List Name
 
 
 <a id="nestedblock--ca_certs"></a>
@@ -658,11 +325,11 @@ Optional:
 
 Optional:
 
-- `ca_cert` (String)
-- `ca_shared` (Number)
-- `client_ocsp` (Number)
-- `client_ocsp_sg` (String)
-- `client_ocsp_srvr` (String)
+- `ca_cert` (String) CA Certificate (CA Certificate Name)
+- `ca_shared` (Number) CA Certificate Partition Shared
+- `client_ocsp` (Number) Specify ocsp authentication server(s) for client certificate verification
+- `client_ocsp_sg` (String) Specify service-group (Service group name)
+- `client_ocsp_srvr` (String) Specify authentication server
 
 
 <a id="nestedblock--certificate_issuer_contains_list"></a>
@@ -670,7 +337,7 @@ Optional:
 
 Optional:
 
-- `certificate_issuer_contains` (String)
+- `certificate_issuer_contains` (String) Forward proxy bypass if Certificate  issuer contains another string (Certificate issuer)
 
 
 <a id="nestedblock--certificate_issuer_ends_with_list"></a>
@@ -678,7 +345,7 @@ Optional:
 
 Optional:
 
-- `certificate_issuer_ends_with` (String)
+- `certificate_issuer_ends_with` (String) Forward proxy bypass if Certificate issuer ends with another string
 
 
 <a id="nestedblock--certificate_issuer_equals_list"></a>
@@ -686,7 +353,7 @@ Optional:
 
 Optional:
 
-- `certificate_issuer_equals` (String)
+- `certificate_issuer_equals` (String) Forward proxy bypass if Certificate issuer equals another string
 
 
 <a id="nestedblock--certificate_issuer_starts_with_list"></a>
@@ -694,20 +361,23 @@ Optional:
 
 Optional:
 
-- `certificate_issuer_starts` (String)
+- `certificate_issuer_starts` (String) Forward proxy bypass if Certificate issuer starts with another string
 
 
 <a id="nestedblock--certificate_list"></a>
 ### Nested Schema for `certificate_list`
 
+Required:
+
+- `cert` (String) Certificate Name
+
 Optional:
 
-- `cert` (String)
-- `chain_cert` (String)
-- `key` (String)
-- `passphrase` (String)
-- `shared` (Number)
-- `uuid` (String)
+- `chain_cert` (String) Chain Certificate (Chain Certificate Name)
+- `key` (String) Server Private Key (Key Name)
+- `passphrase` (String) Password Phrase
+- `shared` (Number) Server Certificate and Key Partition Shared
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--certificate_san_contains_list"></a>
@@ -715,7 +385,7 @@ Optional:
 
 Optional:
 
-- `certificate_san_contains` (String)
+- `certificate_san_contains` (String) Forward proxy bypass if Certificate SAN contains another string
 
 
 <a id="nestedblock--certificate_san_ends_with_list"></a>
@@ -723,7 +393,7 @@ Optional:
 
 Optional:
 
-- `certificate_san_ends_with` (String)
+- `certificate_san_ends_with` (String) Forward proxy bypass if Certificate SAN ends with another string
 
 
 <a id="nestedblock--certificate_san_equals_list"></a>
@@ -731,7 +401,7 @@ Optional:
 
 Optional:
 
-- `certificate_san_equals` (String)
+- `certificate_san_equals` (String) Forward proxy bypass if Certificate SAN equals another string
 
 
 <a id="nestedblock--certificate_san_starts_with_list"></a>
@@ -739,7 +409,7 @@ Optional:
 
 Optional:
 
-- `certificate_san_starts` (String)
+- `certificate_san_starts` (String) Forward proxy bypass if Certificate SAN starts with another string
 
 
 <a id="nestedblock--certificate_subject_contains_list"></a>
@@ -747,7 +417,7 @@ Optional:
 
 Optional:
 
-- `certificate_subject_contains` (String)
+- `certificate_subject_contains` (String) Forward proxy bypass if Certificate Subject contains another string
 
 
 <a id="nestedblock--certificate_subject_ends_with_list"></a>
@@ -755,7 +425,7 @@ Optional:
 
 Optional:
 
-- `certificate_subject_ends_with` (String)
+- `certificate_subject_ends_with` (String) Forward proxy bypass if Certificate Subject ends with another string
 
 
 <a id="nestedblock--certificate_subject_equals_list"></a>
@@ -763,7 +433,7 @@ Optional:
 
 Optional:
 
-- `certificate_subject_equals` (String)
+- `certificate_subject_equals` (String) Forward proxy bypass if Certificate Subject equals another string
 
 
 <a id="nestedblock--certificate_subject_starts_with_list"></a>
@@ -771,7 +441,7 @@ Optional:
 
 Optional:
 
-- `certificate_subject_starts` (String)
+- `certificate_subject_starts` (String) Forward proxy bypass if Certificate Subject starts with another string
 
 
 <a id="nestedblock--cipher_without_prio_list"></a>
@@ -779,7 +449,7 @@ Optional:
 
 Optional:
 
-- `cipher_wo_prio` (String)
+- `cipher_wo_prio` (String) 'SSL3_RSA_DES_192_CBC3_SHA': TLS_RSA_WITH_3DES_EDE_CBC_SHA (0x000A); 'SSL3_RSA_RC4_128_MD5': TLS_RSA_WITH_RC4_128_MD5 (0x0004); 'SSL3_RSA_RC4_128_SHA': TLS_RSA_WITH_RC4_128_SHA (0x0005); 'TLS1_RSA_AES_128_SHA': TLS_RSA_WITH_AES_128_CBC_SHA (0x002F); 'TLS1_RSA_AES_256_SHA': TLS_RSA_WITH_AES_256_CBC_SHA (0x0035); 'TLS1_RSA_AES_128_SHA256': TLS_RSA_WITH_AES_128_CBC_SHA256 (0x003C); 'TLS1_RSA_AES_256_SHA256': TLS_RSA_WITH_AES_256_CBC_SHA256 (0x003D); 'TLS1_DHE_RSA_AES_128_GCM_SHA256': TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (0x009E); 'TLS1_DHE_RSA_AES_128_SHA': TLS_DHE_RSA_WITH_AES_128_CBC_SHA (0x0033); 'TLS1_DHE_RSA_AES_128_SHA256': TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (0x0067); 'TLS1_DHE_RSA_AES_256_GCM_SHA384': TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (0x009F); 'TLS1_DHE_RSA_AES_256_SHA': TLS_DHE_RSA_WITH_AES_256_CBC_SHA (0x0039); 'TLS1_DHE_RSA_AES_256_SHA256': TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (0x006B); 'TLS1_ECDHE_ECDSA_AES_128_GCM_SHA256': TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 (0xC02B); 'TLS1_ECDHE_ECDSA_AES_128_SHA': TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA (0xC009); 'TLS1_ECDHE_ECDSA_AES_128_SHA256': TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 (0xC023); 'TLS1_ECDHE_ECDSA_AES_256_GCM_SHA384': TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 (0xC02C); 'TLS1_ECDHE_ECDSA_AES_256_SHA': TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA (0xC00A); 'TLS1_ECDHE_RSA_AES_128_GCM_SHA256': TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (0xC02F); 'TLS1_ECDHE_RSA_AES_128_SHA': TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (0xC013); 'TLS1_ECDHE_RSA_AES_128_SHA256': TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (0xC027); 'TLS1_ECDHE_RSA_AES_256_GCM_SHA384': TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (0xC030); 'TLS1_ECDHE_RSA_AES_256_SHA': TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (0xC014); 'TLS1_RSA_AES_128_GCM_SHA256': TLS_RSA_WITH_AES_128_GCM_SHA256 (0x009C); 'TLS1_RSA_AES_256_GCM_SHA384': TLS_RSA_WITH_AES_256_GCM_SHA384 (0x009D); 'TLS1_ECDHE_RSA_AES_256_SHA384': TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (0xC028); 'TLS1_ECDHE_ECDSA_AES_256_SHA384': TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 (0xC024); 'TLS1_ECDHE_RSA_CHACHA20_POLY1305_SHA256': TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (0xCCA8); 'TLS1_ECDHE_ECDSA_CHACHA20_POLY1305_SHA256': TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 (0xCCA9); 'TLS1_DHE_RSA_CHACHA20_POLY1305_SHA256': TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (0xCCAA);
 
 
 <a id="nestedblock--client_auth_contains_list"></a>
@@ -787,7 +457,7 @@ Optional:
 
 Optional:
 
-- `client_auth_contains` (String)
+- `client_auth_contains` (String) Forward proxy bypass if SNI string contains another string
 
 
 <a id="nestedblock--client_auth_ends_with_list"></a>
@@ -795,7 +465,7 @@ Optional:
 
 Optional:
 
-- `client_auth_ends_with` (String)
+- `client_auth_ends_with` (String) Forward proxy bypass if SNI string ends with another string
 
 
 <a id="nestedblock--client_auth_equals_list"></a>
@@ -803,7 +473,7 @@ Optional:
 
 Optional:
 
-- `client_auth_equals` (String)
+- `client_auth_equals` (String) Forward proxy bypass if SNI string equals another string
 
 
 <a id="nestedblock--client_auth_starts_with_list"></a>
@@ -811,7 +481,7 @@ Optional:
 
 Optional:
 
-- `client_auth_starts_with` (String)
+- `client_auth_starts_with` (String) Forward proxy bypass if SNI string starts with another string
 
 
 <a id="nestedblock--client_ipv4_list"></a>
@@ -819,7 +489,7 @@ Optional:
 
 Optional:
 
-- `client_ipv4_list_name` (String)
+- `client_ipv4_list_name` (String) IPV4 client class-list name
 
 
 <a id="nestedblock--client_ipv6_list"></a>
@@ -827,7 +497,7 @@ Optional:
 
 Optional:
 
-- `client_ipv6_list_name` (String)
+- `client_ipv6_list_name` (String) IPV6 client class-list name
 
 
 <a id="nestedblock--contains_list"></a>
@@ -835,7 +505,7 @@ Optional:
 
 Optional:
 
-- `contains` (String)
+- `contains` (String) Forward proxy bypass if SNI string contains another string
 
 
 <a id="nestedblock--crl_certs"></a>
@@ -843,8 +513,8 @@ Optional:
 
 Optional:
 
-- `crl` (String)
-- `crl_shared` (Number)
+- `crl` (String) Certificate Revocation Lists (Certificate Revocation Lists file name)
+- `crl_shared` (Number) Certificate Revocation Lists Partition Shared
 
 
 <a id="nestedblock--ec_list"></a>
@@ -852,7 +522,7 @@ Optional:
 
 Optional:
 
-- `ec` (String)
+- `ec` (String) 'secp256r1': X9_62_prime256v1; 'secp384r1': secp384r1;
 
 
 <a id="nestedblock--ends_with_list"></a>
@@ -860,7 +530,7 @@ Optional:
 
 Optional:
 
-- `ends_with` (String)
+- `ends_with` (String) Forward proxy bypass if SNI string ends with another string
 
 
 <a id="nestedblock--equals_list"></a>
@@ -868,7 +538,7 @@ Optional:
 
 Optional:
 
-- `equals` (String)
+- `equals` (String) Forward proxy bypass if SNI string equals another string
 
 
 <a id="nestedblock--exception_client_ipv4_list"></a>
@@ -876,7 +546,7 @@ Optional:
 
 Optional:
 
-- `exception_client_ipv4_list_name` (String)
+- `exception_client_ipv4_list_name` (String) IPV4 exception client class-list name
 
 
 <a id="nestedblock--exception_client_ipv6_list"></a>
@@ -884,7 +554,7 @@ Optional:
 
 Optional:
 
-- `exception_client_ipv6_list_name` (String)
+- `exception_client_ipv6_list_name` (String) IPV6 exception client class-list name
 
 
 <a id="nestedblock--exception_server_ipv4_list"></a>
@@ -892,7 +562,7 @@ Optional:
 
 Optional:
 
-- `exception_server_ipv4_list_name` (String)
+- `exception_server_ipv4_list_name` (String) IPV4 exception server class-list name
 
 
 <a id="nestedblock--exception_server_ipv6_list"></a>
@@ -900,7 +570,7 @@ Optional:
 
 Optional:
 
-- `exception_server_ipv6_list_name` (String)
+- `exception_server_ipv6_list_name` (String) IPV6 exception server class-list name
 
 
 <a id="nestedblock--exception_web_category"></a>
@@ -908,92 +578,87 @@ Optional:
 
 Optional:
 
-- `exception_abortion` (Number)
-- `exception_adult_and_pornography` (Number)
-- `exception_alcohol_and_tobacco` (Number)
-- `exception_auctions` (Number)
-- `exception_bot_nets` (Number)
-- `exception_business_and_economy` (Number)
-- `exception_cdns` (Number)
-- `exception_cheating` (Number)
-- `exception_computer_and_internet_info` (Number)
-- `exception_computer_and_internet_security` (Number)
-- `exception_confirmed_spam_sources` (Number)
-- `exception_cult_and_occult` (Number)
-- `exception_dating` (Number)
-- `exception_dead_sites` (Number)
-- `exception_drugs` (Number)
-- `exception_dynamic_comment` (Number)
-- `exception_educational_institutions` (Number)
-- `exception_entertainment_and_arts` (Number)
-- `exception_fashion_and_beauty` (Number)
-- `exception_financial_services` (Number)
-- `exception_food_and_dining` (Number)
-- `exception_gambling` (Number)
-- `exception_games` (Number)
-- `exception_government` (Number)
-- `exception_gross` (Number)
-- `exception_hacking` (Number)
-- `exception_hate_and_racism` (Number)
-- `exception_health_and_medicine` (Number)
-- `exception_home_and_garden` (Number)
-- `exception_hunting_and_fishing` (Number)
-- `exception_illegal` (Number)
-- `exception_illegal_pornography` (Number)
-- `exception_image_and_video_search` (Number)
-- `exception_internet_communications` (Number)
-- `exception_internet_portals` (Number)
-- `exception_job_search` (Number)
-- `exception_keyloggers_and_monitoring` (Number)
-- `exception_kids` (Number)
-- `exception_legal` (Number)
-- `exception_local_information` (Number)
-- `exception_malware_sites` (Number)
-- `exception_marijuana` (Number)
-- `exception_military` (Number)
-- `exception_motor_vehicles` (Number)
-- `exception_music` (Number)
-- `exception_news_and_media` (Number)
-- `exception_nudity` (Number)
-- `exception_nudity_artistic` (Number)
-- `exception_online_greeting_cards` (Number)
-- `exception_open_http_proxies` (Number)
-- `exception_parked_domains` (Number)
-- `exception_pay_to_surf` (Number)
-- `exception_peer_to_peer` (Number)
-- `exception_personal_sites_and_blogs` (Number)
-- `exception_personal_storage` (Number)
-- `exception_philosophy_and_politics` (Number)
-- `exception_phishing_and_other_fraud` (Number)
-- `exception_private_ip_addresses` (Number)
-- `exception_proxy_avoid_and_anonymizers` (Number)
-- `exception_questionable` (Number)
-- `exception_real_estate` (Number)
-- `exception_recreation_and_hobbies` (Number)
-- `exception_reference_and_research` (Number)
-- `exception_religion` (Number)
-- `exception_search_engines` (Number)
-- `exception_sex_education` (Number)
-- `exception_shareware_and_freeware` (Number)
-- `exception_shopping` (Number)
-- `exception_social_network` (Number)
-- `exception_society` (Number)
-- `exception_spam_urls` (Number)
-- `exception_sports` (Number)
-- `exception_spyware_and_adware` (Number)
-- `exception_stock_advice_and_tools` (Number)
-- `exception_streaming_media` (Number)
-- `exception_swimsuits_and_intimate_apparel` (Number)
-- `exception_training_and_tools` (Number)
-- `exception_translation` (Number)
-- `exception_travel` (Number)
-- `exception_uncategorized` (Number)
-- `exception_unconfirmed_spam_sources` (Number)
-- `exception_violence` (Number)
-- `exception_weapons` (Number)
-- `exception_web_advertisements` (Number)
-- `exception_web_based_email` (Number)
-- `exception_web_hosting_sites` (Number)
+- `exception_abortion` (Number) Category Abortion
+- `exception_adult_and_pornography` (Number) Category Adult and Pornography
+- `exception_alcohol_and_tobacco` (Number) Category Alcohol and Tobacco
+- `exception_auctions` (Number) Category Auctions
+- `exception_bot_nets` (Number) Category Bot Nets
+- `exception_business_and_economy` (Number) Category Business and Economy
+- `exception_cdns` (Number) Category CDNs
+- `exception_cheating` (Number) Category Cheating
+- `exception_computer_and_internet_info` (Number) Category Computer and Internet Info
+- `exception_computer_and_internet_security` (Number) Category Computer and Internet Security
+- `exception_cult_and_occult` (Number) Category Cult and Occult
+- `exception_dating` (Number) Category Dating
+- `exception_dead_sites` (Number) Category Dead Sites (db Ops only)
+- `exception_drugs` (Number) Category Abused Drugs
+- `exception_dynamically_generated_content` (Number) Dynamically Generated Content
+- `exception_educational_institutions` (Number) Category Educational Institutions
+- `exception_entertainment_and_arts` (Number) Category Entertainment and Arts
+- `exception_fashion_and_beauty` (Number) Category Fashion and Beauty
+- `exception_financial_services` (Number) Category Financial Services
+- `exception_gambling` (Number) Category Gambling
+- `exception_games` (Number) Category Games
+- `exception_government` (Number) Category Government
+- `exception_gross` (Number) Category Gross
+- `exception_hacking` (Number) Category Hacking
+- `exception_hate_and_racism` (Number) Category Hate and Racism
+- `exception_health_and_medicine` (Number) Category Health and Medicine
+- `exception_home_and_garden` (Number) Category Home and Garden
+- `exception_hunting_and_fishing` (Number) Category Hunting and Fishing
+- `exception_illegal` (Number) Category Illegal
+- `exception_illegal_pornography` (Number) Category Illegal join Adult and Pornography
+- `exception_image_and_video_search` (Number) Category Image and Video Search
+- `exception_internet_communications` (Number) Category Internet Communications
+- `exception_internet_portals` (Number) Category Internet Portals
+- `exception_job_search` (Number) Category Job Search
+- `exception_keyloggers_and_monitoring` (Number) Category Keyloggers and Monitoring
+- `exception_kids` (Number) Category Kids
+- `exception_legal` (Number) Category Legal
+- `exception_local_information` (Number) Category Local Information
+- `exception_malware_sites` (Number) Category Malware Sites
+- `exception_marijuana` (Number) Category Marijuana
+- `exception_military` (Number) Category Military
+- `exception_motor_vehicles` (Number) Category Motor Vehicles
+- `exception_music` (Number) Category Music
+- `exception_news_and_media` (Number) Category News and Media
+- `exception_nudity` (Number) Category Nudity
+- `exception_nudity_artistic` (Number) Category Nudity join Entertainment and Arts
+- `exception_online_greeting_cards` (Number) Category Online Greeting cards
+- `exception_parked_domains` (Number) Category Parked Domains
+- `exception_pay_to_surf` (Number) Category Pay to Surf
+- `exception_peer_to_peer` (Number) Category Peer to Peer
+- `exception_personal_sites_and_blogs` (Number) Category Personal sites and Blogs
+- `exception_personal_storage` (Number) Category Personal Storage
+- `exception_philosophy_and_politics` (Number) Category Philosophy and Political Advocacy
+- `exception_phishing_and_other_fraud` (Number) Category Phishing and Other Frauds
+- `exception_proxy_avoid_and_anonymizers` (Number) Category Proxy Avoid and Anonymizers
+- `exception_questionable` (Number) Category Questionable
+- `exception_real_estate` (Number) Category Real Estate
+- `exception_recreation_and_hobbies` (Number) Category Recreation and Hobbies
+- `exception_reference_and_research` (Number) Category Reference and Research
+- `exception_religion` (Number) Category Religion
+- `exception_search_engines` (Number) Category Search Engines
+- `exception_sex_education` (Number) Category Sex Education
+- `exception_shareware_and_freeware` (Number) Category Shareware and Freeware
+- `exception_shopping` (Number) Category Shopping
+- `exception_social_network` (Number) Category Social Network
+- `exception_society` (Number) Category Society
+- `exception_spam_urls` (Number) Category SPAM URLs
+- `exception_sports` (Number) Category Sports
+- `exception_spyware_and_adware` (Number) Category Spyware and Adware
+- `exception_stock_advice_and_tools` (Number) Category Stock Advice and Tools
+- `exception_streaming_media` (Number) Category Streaming Media
+- `exception_swimsuits_and_intimate_apparel` (Number) Category Swimsuits and Intimate Apparel
+- `exception_training_and_tools` (Number) Category Training and Tools
+- `exception_translation` (Number) Category Translation
+- `exception_travel` (Number) Category Travel
+- `exception_uncategorized` (Number) Uncategorized URLs
+- `exception_violence` (Number) Category Violence
+- `exception_weapons` (Number) Category Weapons
+- `exception_web_advertisements` (Number) Category Web Advertisements
+- `exception_web_based_email` (Number) Category Web based email
+- `exception_web_hosting_sites` (Number) Category Web Hosting Sites
 
 
 <a id="nestedblock--exception_web_reputation"></a>
@@ -1001,12 +666,12 @@ Optional:
 
 Optional:
 
-- `exception_low_risk` (Number)
-- `exception_malicious` (Number)
-- `exception_moderate_risk` (Number)
-- `exception_suspicious` (Number)
-- `exception_threshold` (Number)
-- `exception_trustworthy` (Number)
+- `exception_low_risk` (Number) Intercept when reputation score is less than or equal to 80
+- `exception_malicious` (Number) Intercept when reputation score is less than or equal to 20
+- `exception_moderate_risk` (Number) Intercept when reputation score is less than or equal to 60
+- `exception_suspicious` (Number) Intercept when reputation score is less than or equal to 40
+- `exception_threshold` (Number) Intercept when reputation score is less than or equal to a customized value (1-100)
+- `exception_trustworthy` (Number) Intercept when reputation score is less than or equal to 100
 
 
 <a id="nestedblock--forward_proxy_trusted_ca_lists"></a>
@@ -1014,8 +679,8 @@ Optional:
 
 Optional:
 
-- `forward_proxy_trusted_ca` (String)
-- `fp_trusted_ca_shared` (Number)
+- `forward_proxy_trusted_ca` (String) Forward proxy trusted CA file (CA file name)
+- `fp_trusted_ca_shared` (Number) Trusted CA Certificate Partition Shared
 
 
 <a id="nestedblock--local_cert_pin_list"></a>
@@ -1023,7 +688,7 @@ Optional:
 
 Optional:
 
-- `local_cert_pin_list_bypass_fail_count` (Number)
+- `local_cert_pin_list_bypass_fail_count` (Number) Set the connection fail count as bypass criteria (Bypass when connection failure count is greater than the criteria (1-65536))
 
 
 <a id="nestedblock--multi_class_list"></a>
@@ -1031,7 +696,7 @@ Optional:
 
 Optional:
 
-- `multi_clist_name` (String)
+- `multi_clist_name` (String) Class List Name
 
 
 <a id="nestedblock--req_ca_lists"></a>
@@ -1039,8 +704,8 @@ Optional:
 
 Optional:
 
-- `client_cert_req_ca_shared` (Number)
-- `client_certificate_request_ca` (String)
+- `client_cert_req_ca_shared` (Number) CA Certificate Partition Shared
+- `client_certificate_request_ca` (String) Send CA lists in certificate request (CA Certificate Name)
 
 
 <a id="nestedblock--server_ipv4_list"></a>
@@ -1048,7 +713,7 @@ Optional:
 
 Optional:
 
-- `server_ipv4_list_name` (String)
+- `server_ipv4_list_name` (String) IPV4 server class-list name
 
 
 <a id="nestedblock--server_ipv6_list"></a>
@@ -1056,7 +721,7 @@ Optional:
 
 Optional:
 
-- `server_ipv6_list_name` (String)
+- `server_ipv6_list_name` (String) IPV6 server class-list name
 
 
 <a id="nestedblock--server_name_list"></a>
@@ -1064,20 +729,28 @@ Optional:
 
 Optional:
 
-- `server_cert` (String)
-- `server_cert_regex` (String)
-- `server_chain` (String)
-- `server_chain_regex` (String)
-- `server_key` (String)
-- `server_key_regex` (String)
-- `server_name` (String)
-- `server_name_alternate` (Number)
-- `server_name_regex` (String)
-- `server_name_regex_alternate` (Number)
-- `server_passphrase` (String)
-- `server_passphrase_regex` (String)
-- `server_shared` (Number)
-- `server_shared_regex` (Number)
+- `server_cert` (String) Server Certificate associated to SNI (Server Certificate Name)
+- `server_cert_regex` (String) Server Certificate associated to SNI regex (Server Certificate Name)
+- `server_chain` (String) Server Certificate Chain associated to SNI (Server Certificate Chain Name)
+- `server_chain_regex` (String) Server Certificate Chain associated to SNI regex (Server Certificate Chain Name)
+- `server_key` (String) Server Private Key associated to SNI (Server Private Key Name)
+- `server_key_regex` (String) Server Private Key associated to SNI regex (Server Private Key Name)
+- `server_name` (String) Server name indication in Client hello extension (Server name String)
+- `server_name_alternate` (Number) Specific the second certifcate
+- `server_name_regex` (String) Server name indication in Client hello extension with regular expression (Server name String with regex)
+- `server_name_regex_alternate` (Number) Specific the second certifcate
+- `server_passphrase` (String) help Password Phrase
+- `server_passphrase_regex` (String) help Password Phrase
+- `server_shared` (Number) Server Name Partition Shared
+- `server_shared_regex` (Number) Server Name Partition Shared
+- `sni_regex_shared_partition_client_ssl_template` (Number) Reference a Client SSL template from shared partition
+- `sni_regex_template` (Number) Template associated to SNI regex
+- `sni_regex_template_client_ssl` (String) Client SSL Template Name
+- `sni_regex_template_client_ssl_shared_name` (String) Client SSL Template Name
+- `sni_shared_partition_client_ssl_template` (Number) Reference a Client SSL template from shared partition
+- `sni_template` (Number) Template associated to SNI
+- `sni_template_client_ssl` (String) Client SSL Template Name
+- `sni_template_client_ssl_shared_name` (String) Client SSL Template Name
 
 
 <a id="nestedblock--starts_with_list"></a>
@@ -1085,7 +758,7 @@ Optional:
 
 Optional:
 
-- `starts_with` (String)
+- `starts_with` (String) Forward proxy bypass if SNI string starts with another string
 
 
 <a id="nestedblock--web_category"></a>
@@ -1093,92 +766,87 @@ Optional:
 
 Optional:
 
-- `abortion` (Number)
-- `adult_and_pornography` (Number)
-- `alcohol_and_tobacco` (Number)
-- `auctions` (Number)
-- `bot_nets` (Number)
-- `business_and_economy` (Number)
-- `cdns` (Number)
-- `cheating` (Number)
-- `computer_and_internet_info` (Number)
-- `computer_and_internet_security` (Number)
-- `confirmed_spam_sources` (Number)
-- `cult_and_occult` (Number)
-- `dating` (Number)
-- `dead_sites` (Number)
-- `drugs` (Number)
-- `dynamic_comment` (Number)
-- `educational_institutions` (Number)
-- `entertainment_and_arts` (Number)
-- `fashion_and_beauty` (Number)
-- `financial_services` (Number)
-- `food_and_dining` (Number)
-- `gambling` (Number)
-- `games` (Number)
-- `government` (Number)
-- `gross` (Number)
-- `hacking` (Number)
-- `hate_and_racism` (Number)
-- `health_and_medicine` (Number)
-- `home_and_garden` (Number)
-- `hunting_and_fishing` (Number)
-- `illegal` (Number)
-- `illegal_pornography` (Number)
-- `image_and_video_search` (Number)
-- `internet_communications` (Number)
-- `internet_portals` (Number)
-- `job_search` (Number)
-- `keyloggers_and_monitoring` (Number)
-- `kids` (Number)
-- `legal` (Number)
-- `local_information` (Number)
-- `malware_sites` (Number)
-- `marijuana` (Number)
-- `military` (Number)
-- `motor_vehicles` (Number)
-- `music` (Number)
-- `news_and_media` (Number)
-- `nudity` (Number)
-- `nudity_artistic` (Number)
-- `online_greeting_cards` (Number)
-- `open_http_proxies` (Number)
-- `parked_domains` (Number)
-- `pay_to_surf` (Number)
-- `peer_to_peer` (Number)
-- `personal_sites_and_blogs` (Number)
-- `personal_storage` (Number)
-- `philosophy_and_politics` (Number)
-- `phishing_and_other_fraud` (Number)
-- `private_ip_addresses` (Number)
-- `proxy_avoid_and_anonymizers` (Number)
-- `questionable` (Number)
-- `real_estate` (Number)
-- `recreation_and_hobbies` (Number)
-- `reference_and_research` (Number)
-- `religion` (Number)
-- `search_engines` (Number)
-- `sex_education` (Number)
-- `shareware_and_freeware` (Number)
-- `shopping` (Number)
-- `social_network` (Number)
-- `society` (Number)
-- `spam_urls` (Number)
-- `sports` (Number)
-- `spyware_and_adware` (Number)
-- `stock_advice_and_tools` (Number)
-- `streaming_media` (Number)
-- `swimsuits_and_intimate_apparel` (Number)
-- `training_and_tools` (Number)
-- `translation` (Number)
-- `travel` (Number)
-- `uncategorized` (Number)
-- `unconfirmed_spam_sources` (Number)
-- `violence` (Number)
-- `weapons` (Number)
-- `web_advertisements` (Number)
-- `web_based_email` (Number)
-- `web_hosting_sites` (Number)
+- `abortion` (Number) Category Abortion
+- `adult_and_pornography` (Number) Category Adult and Pornography
+- `alcohol_and_tobacco` (Number) Category Alcohol and Tobacco
+- `auctions` (Number) Category Auctions
+- `bot_nets` (Number) Category Bot Nets
+- `business_and_economy` (Number) Category Business and Economy
+- `cdns` (Number) Category CDNs
+- `cheating` (Number) Category Cheating
+- `computer_and_internet_info` (Number) Category Computer and Internet Info
+- `computer_and_internet_security` (Number) Category Computer and Internet Security
+- `cult_and_occult` (Number) Category Cult and Occult
+- `dating` (Number) Category Dating
+- `dead_sites` (Number) Category Dead Sites (db Ops only)
+- `drugs` (Number) Category Abused Drugs
+- `dynamically_generated_content` (Number) Dynamically Generated Content
+- `educational_institutions` (Number) Category Educational Institutions
+- `entertainment_and_arts` (Number) Category Entertainment and Arts
+- `fashion_and_beauty` (Number) Category Fashion and Beauty
+- `financial_services` (Number) Category Financial Services
+- `gambling` (Number) Category Gambling
+- `games` (Number) Category Games
+- `government` (Number) Category Government
+- `gross` (Number) Category Gross
+- `hacking` (Number) Category Hacking
+- `hate_and_racism` (Number) Category Hate and Racism
+- `health_and_medicine` (Number) Category Health and Medicine
+- `home_and_garden` (Number) Category Home and Garden
+- `hunting_and_fishing` (Number) Category Hunting and Fishing
+- `illegal` (Number) Category Illegal
+- `illegal_pornography` (Number) Category Illegal join Adult and Pornography
+- `image_and_video_search` (Number) Category Image and Video Search
+- `internet_communications` (Number) Category Internet Communications
+- `internet_portals` (Number) Category Internet Portals
+- `job_search` (Number) Category Job Search
+- `keyloggers_and_monitoring` (Number) Category Keyloggers and Monitoring
+- `kids` (Number) Category Kids
+- `legal` (Number) Category Legal
+- `local_information` (Number) Category Local Information
+- `malware_sites` (Number) Category Malware Sites
+- `marijuana` (Number) Category Marijuana
+- `military` (Number) Category Military
+- `motor_vehicles` (Number) Category Motor Vehicles
+- `music` (Number) Category Music
+- `news_and_media` (Number) Category News and Media
+- `nudity` (Number) Category Nudity
+- `nudity_artistic` (Number) Category Nudity join Entertainment and Arts
+- `online_greeting_cards` (Number) Category Online Greeting cards
+- `parked_domains` (Number) Category Parked Domains
+- `pay_to_surf` (Number) Category Pay to Surf
+- `peer_to_peer` (Number) Category Peer to Peer
+- `personal_sites_and_blogs` (Number) Category Personal sites and Blogs
+- `personal_storage` (Number) Category Personal Storage
+- `philosophy_and_politics` (Number) Category Philosophy and Political Advocacy
+- `phishing_and_other_fraud` (Number) Category Phishing and Other Frauds
+- `proxy_avoid_and_anonymizers` (Number) Category Proxy Avoid and Anonymizers
+- `questionable` (Number) Category Questionable
+- `real_estate` (Number) Category Real Estate
+- `recreation_and_hobbies` (Number) Category Recreation and Hobbies
+- `reference_and_research` (Number) Category Reference and Research
+- `religion` (Number) Category Religion
+- `search_engines` (Number) Category Search Engines
+- `sex_education` (Number) Category Sex Education
+- `shareware_and_freeware` (Number) Category Shareware and Freeware
+- `shopping` (Number) Category Shopping
+- `social_network` (Number) Category Social Network
+- `society` (Number) Category Society
+- `spam_urls` (Number) Category SPAM URLs
+- `sports` (Number) Category Sports
+- `spyware_and_adware` (Number) Category Spyware and Adware
+- `stock_advice_and_tools` (Number) Category Stock Advice and Tools
+- `streaming_media` (Number) Category Streaming Media
+- `swimsuits_and_intimate_apparel` (Number) Category Swimsuits and Intimate Apparel
+- `training_and_tools` (Number) Category Training and Tools
+- `translation` (Number) Category Translation
+- `travel` (Number) Category Travel
+- `uncategorized` (Number) Uncategorized URLs
+- `violence` (Number) Category Violence
+- `weapons` (Number) Category Weapons
+- `web_advertisements` (Number) Category Web Advertisements
+- `web_based_email` (Number) Category Web based email
+- `web_hosting_sites` (Number) Category Web Hosting Sites
 
 
 <a id="nestedblock--web_reputation"></a>
@@ -1186,11 +854,11 @@ Optional:
 
 Optional:
 
-- `bypass_low_risk` (Number)
-- `bypass_malicious` (Number)
-- `bypass_moderate_risk` (Number)
-- `bypass_suspicious` (Number)
-- `bypass_threshold` (Number)
-- `bypass_trustworthy` (Number)
+- `bypass_low_risk` (Number) Bypass when reputation score is greater than or equal to 61
+- `bypass_malicious` (Number) Bypass when reputation score is greater than or equal to 1
+- `bypass_moderate_risk` (Number) Bypass when reputation score is greater than or equal to 41
+- `bypass_suspicious` (Number) Bypass when reputation score is greater than or equal to 21
+- `bypass_threshold` (Number) Bypass when reputation score is greater than or equal to the customized score (1-100)
+- `bypass_trustworthy` (Number) Bypass when reputation score is greater than or equal to 81
 
 

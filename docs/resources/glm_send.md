@@ -3,24 +3,27 @@
 page_title: "thunder_glm_send Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_glm_send: Trigger GLM Connect
+  PLACEHOLDER
 ---
 
 # thunder_glm_send (Resource)
 
+`thunder_glm_send`: Trigger GLM Connect
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_glm_send"  "GlmSend"  {
-    license_request = 1
-      
+resource "thunder_glm_send" "thunder_glm_send" {
+  ha_status       = 1
+  license_request = 1
 }
 ```
 
@@ -29,7 +32,8 @@ resource  "thunder_glm_send"  "GlmSend"  {
 
 ### Optional
 
-- `license_request` (Number)
+- `ha_status` (Number) Send a ELM HA status request
+- `license_request` (Number) Immediately send a single GLM license request
 
 ### Read-Only
 

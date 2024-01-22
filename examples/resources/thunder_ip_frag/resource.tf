@@ -3,12 +3,10 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_ip_frag" "frag" {
+resource "thunder_ip_frag" "thunder_ip_frag" {
   buff                       = 200000
   max_packets_per_reassembly = 10
   max_reassembly_sessions    = 1
-  eassembly_sessions         = 1
   sampling_enable {
     counters1 = "all"
   }

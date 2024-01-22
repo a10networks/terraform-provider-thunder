@@ -3,12 +3,15 @@
 page_title: "thunder_interface_ethernet Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_interface_ethernet: Ethernet interface
+  PLACEHOLDER
 ---
 
 # thunder_interface_ethernet (Resource)
 
+`thunder_interface_ethernet`: Ethernet interface
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,341 +21,416 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_interface_ethernet" "IntEthernet" {
-  ifnum                = 3
-  action               = "enable"
-  name                 = "int"
-  mtu                  = 1500
-  l3_vlan_fwd_disable  = 1
-  load_interval        = 10
-  ping_sweep_detection = "enable"
-  port_scan_detection  = "enable"
-
-  icmp_rate_limit {
-    lockup        = 800
-    lockup_period = 1000
-    normal        = 600
-  }
-
-  icmpv6_rate_limit {
-    lockup_v6        = 600
-    lockup_period_v6 = 1000
-    normal_v6        = 200
-  }
+resource "thunder_interface_ethernet" "thunder_interface_ethernet" {
   access_list {
-    acl_id = thunder_access_list_standard.resourceAccessListStandardTest.std
+    acl_id = 155
   }
-  sampling_enable {
-    counters1 = "all"
-  }
-  map {
-    inside        = 1
-    outside       = 0
-    map_t_inside  = 0
-    map_t_outside = 0
-  }
-  lw_4o6 {
-    inside  = 1
-    outside = 0
-  }
-
+  action          = "disable"
+  auto_neg_enable = 0
   bfd {
     authentication {
-      key_id   = 5
+      key_id   = 114
       method   = "md5"
-      password = "bfd"
+      password = "6"
     }
     echo   = 0
     demand = 0
     interval_cfg {
-      interval   = 200
-      min_rx     = 200
-      multiplier = 3
+      interval   = 494
+      min_rx     = 363
+      multiplier = 32
     }
   }
-
-  isis {
-    bfd_cfg {
-      bfd     = 1
-      disable = 0
-    }
-    circuit_type        = "level-1"
-    padding             = 1
-    lsp_interval        = 43
-    network             = "broadcast"
-    retransmit_interval = 30
-    csnp_interval_list {
-      csnp_interval = 20
-      level         = "level-1"
-    }
-    priority_list {
-      priority = 100
-    }
-    hello_interval_minimal_list {
-      hello_interval_minimal = 1
-      level                  = "level-1"
-    }
-
-    mesh_group {
-      blocked = 0
-    }
-
-    wide_metric_list {
-      wide_metric = 64
-      level       = "level-1"
-    }
-    metric_list {
-      metric = 30
-      level  = "level-1"
-    }
-    hello_multiplier_list {
-      hello_multiplier = 2
-      level            = "level-1"
-    }
-    authentication {
-      send_only_list {
-        level     = "level-1"
-        send_only = 1
-      }
-      key_chain_list {
-        key_chain = "md5"
-        level     = "level-1"
-      }
-      mode_list {
-        level = "level-1"
-        mode  = "md5"
-      }
-
-    }
-
+  cpu_process     = 0
+  cpu_process_dir = "primary"
+  ddos {
+    outside = 0
+    inside  = 0
   }
-  ipv6 {
-    address_list {
-      ipv6_addr    = "3000::1/64"
-      address_type = "anycast"
-    }
-    router_adver {
-      action                = "enable"
-      hop_limit             = 230
-      max_interval          = 500
-      min_interval          = 100
-      default_lifetime      = 1700
-      rate_limit            = 100000
-      reachable_time        = 1
-      retransmit_timer      = 1
-      adver_mtu_disable     = 1
-      managed_config_action = "enable"
-      other_config_action   = "disable"
-      adver_vrid_default    = 0
-
-      prefix_list {
-        prefix             = "1:1:2:2:3::1/64"
-        not_on_link        = 0
-        not_autonomous     = 0
-        preferred_lifetime = 0
-        valid_lifetime     = 0
-      }
-
-    }
-
-    router {
-
-      ripng {
-        rip = 1
-      }
-      ospf {
-        area_list {
-          area_id_addr = "10.10.10.0"
-          area_id_num  = 3
-          tag          = "V3"
-          instance_id  = 11
-        }
-      }
-
-    }
-    rip {
-      split_horizon_cfg {
-        state = "enable"
-      }
-    }
-
-    ospf {
-      bfd     = 0
-      disable = 0
-      cost_cfg {
-        cost        = 120
-        instance_id = 50
-      }
-      hello_interval_cfg {
-        hello_interval = 15
-        instance_id    = 50
-      }
-      priority_cfg {
-        priority = 150
-      }
-      mtu_ignore_cfg {
-        instance_id = 50
-        mtu_ignore  = 1
-      }
-      retransmit_interval_cfg {
-        retransmit_interval = 100
-        instance_id         = 50
-      }
-      neighbor_cfg {
-        neig_inst              = 20
-        neighbor               = "6565::1"
-        neighbor_cost          = 200
-        neighbor_priority      = 150
-        neighbor_poll_interval = 4567
-      }
-      network_list {
-        broadcast_type      = "broadcast"
-        network_instance_id = 50
-        p2mp_nbma           = 0
-      }
-      transmit_delay_cfg {
-        instance_id    = 50
-        transmit_delay = 40
-      }
-      dead_interval_cfg {
-        dead_interval = 60
-        instance_id   = 50
-      }
-    }
+  duplexity                  = "auto"
+  fec_forced_off             = 0
+  flow_control               = 0
+  gaming_protocol_compliance = 0
+  icmp_rate_limit {
+    normal        = 17778
+    lockup        = 60272
+    lockup_period = 1279
   }
-  lldp {
-    notification_cfg {
-      notif_enable = 1
-      notification = 1
-    }
-    enable_cfg {
-      tx        = 1
-      rx        = 1
-      rt_enable = 1
-    }
-    tx_dot1_cfg {
-      link_aggregation = 1
-      vlan             = 1
-      tx_dot1_tlvs     = 1
-    }
-    tx_tlvs_cfg {
-      tx_tlvs             = 1
-      port_description    = 1
-      exclude             = 1
-      management_address  = 1
-      system_name         = 1
-      system_capabilities = 1
-      system_description  = 1
-    }
+  icmpv6_rate_limit {
+    normal_v6        = 763
+    lockup_v6        = 27440
+    lockup_period_v6 = 15322
   }
+  ifnum = ifnum
   ip {
-    allow_promiscuous_vip     = 1
-    syn_cookie                = 1
-    cache_spoofing_port       = 1
-    ttl_ignore                = 1
-    server                    = 1
-    inside                    = 1
-    outside                   = 0
-    client                    = 0
-    generate_membership_query = 1
-    slb_partition_redirect    = 1
-    helper_address_list {
-      helper_address = "6.6.6.6"
-    }
+    dhcp = 0
     address_list {
-      ipv4_address = "2.2.2.2"
-      ipv4_netmask = "255.255.0.0"
     }
-
+    allow_promiscuous_vip = 0
+    cache_spoofing_port   = 0
+    helper_address_list {
+      helper_address = "10.10.10.10"
+    }
+    inside                    = 0
+    outside                   = 0
+    ttl_ignore                = 0
+    syn_cookie                = 0
+    slb_partition_redirect    = 0
+    generate_membership_query = 0
+    query_interval            = 125
+    max_resp_time             = 100
+    client                    = 0
+    unnumbered                = 0
+    stateful_firewall {
+      inside      = 0
+      class_list  = "63"
+      outside     = 0
+      access_list = 0
+      acl_id      = 106
+    }
     router {
       isis {
-        tag = "isis"
+        tag = "79"
       }
     }
     rip {
       authentication {
-
+        str {
+          string = "8"
+        }
         mode {
-          mode = "md5"
+          mode = "text"
         }
         key_chain {
-          key_chain = "ripat"
         }
       }
       send_packet    = 1
       receive_packet = 1
-      receive_cfg {
-        receive = 1
-        version = 2
-      }
       send_cfg {
-        send    = 1
-        version = 2
+        send    = 0
+        version = "1"
+      }
+      receive_cfg {
+        receive = 0
+        version = "1"
       }
       split_horizon_cfg {
-        state = "enable"
+        state = "poisoned"
       }
     }
-
     ospf {
+      ospf_global {
+        authentication_cfg {
+          authentication = 0
+        }
+        authentication_key = "2"
+        bfd_cfg {
+          bfd     = 0
+          disable = 0
+        }
+        cost = 42828
+        database_filter_cfg {
+          database_filter = "all"
+          out             = 0
+        }
+        dead_interval  = 40
+        disable        = "all"
+        hello_interval = 10
+        message_digest_cfg {
+          message_digest_key = 158
+          md5 {
+            md5_value = "13"
+          }
+        }
+        mtu        = 48727
+        mtu_ignore = 0
+        network {
+          broadcast = 0
+          p2mp_nbma = 0
+        }
+        priority            = 1
+        retransmit_interval = 5
+        transmit_delay      = 1
+      }
       ospf_ip_list {
-        ip_addr            = "33.5.4.4"
-        authentication     = 1
-        value              = "null"
-        authentication_key = "oppsf"
-        cost               = 500
+        ip_addr            = "10.10.10.10"
+        authentication     = 0
+        authentication_key = "8"
+        cost               = 60186
         database_filter    = "all"
-        out                = 1
+        out                = 0
         dead_interval      = 40
         hello_interval     = 10
         message_digest_cfg {
-          message_digest_key = 4
-          md5_value          = "md5"
-
+          message_digest_key = 210
+          md5_value          = "15"
         }
         mtu_ignore          = 0
-        priority            = 120
-        retransmit_interval = 50
-        transmit_delay      = 100
-      }
-      ospf_global {
-        cost                = 100
-        mtu_ignore          = 1
-        retransmit_interval = 50
-        dead_interval       = 80
-        hello_interval      = 10
-        priority            = 140
-        network {
-          broadcast           = 1
-          non_broadcast       = 0
-          point_to_point      = 0
-          point_to_multipoint = 0
-          p2mp_nbma           = 0
-
-        }
-        mtu            = 1400
-        transmit_delay = 70
-        disable        = "all"
-        message_digest_cfg {
-          message_digest_key = 5
-          md5_value          = "md5"
-        }
-        authentication_cfg {
-          value          = "null"
-          authentication = 1
-        }
-        database_filter_cfg {
-          database_filter = "all"
-          out             = 1
-        }
-        bfd_cfg {
-          bfd     = 1
-          disable = 0
-        }
+        priority            = 1
+        retransmit_interval = 5
+        transmit_delay      = 1
       }
     }
   }
+  ipg_bit_time = 96
+  ipv6 {
+    address_list {
+      address_type = "anycast"
+    }
+    inside      = 0
+    outside     = 0
+    ipv6_enable = 0
+    ttl_ignore  = 0
+    access_list_cfg {
+      v6_acl_name = "2"
+      inbound     = 0
+    }
+    router_adver {
+      action            = "disable"
+      hop_limit         = 255
+      max_interval      = 600
+      min_interval      = 200
+      default_lifetime  = 1800
+      rate_limit        = 100000
+      reachable_time    = 0
+      retransmit_timer  = 0
+      adver_mtu_disable = 1
+      prefix_list {
+        prefix             = "2001:db8:3333:4444:5555:6666:7777:8888"
+        not_autonomous     = 0
+        not_on_link        = 0
+        preferred_lifetime = 604800
+        valid_lifetime     = 2592000
+      }
+      managed_config_action        = "disable"
+      other_config_action          = "disable"
+      adver_vrid                   = 16
+      use_floating_ip              = 0
+      floating_ip                  = "2001:db8:3333:4444:5555:6666:7777:8888"
+      use_floating_ip_default_vrid = 0
+      floating_ip_default_vrid     = "2001:db8:3333:4444:5555:6666:7777:8888"
+    }
+    stateful_firewall {
+      inside      = 0
+      class_list  = "53"
+      outside     = 0
+      access_list = 0
+    }
+    router {
+      ripng {
+        rip = 0
+      }
+      ospf {
+        area_list {
+          area_id_num  = 3393471670
+          area_id_addr = "10.10.10.10"
+          tag          = "38"
+          instance_id  = 0
+        }
+      }
+      isis {
+        tag = "123"
+      }
+    }
+    rip {
+      split_horizon_cfg {
+        state = "poisoned"
+      }
+    }
+    ospf {
+      network_list {
+        broadcast_type      = "broadcast"
+        p2mp_nbma           = 0
+        network_instance_id = 0
+      }
+      bfd     = 0
+      disable = 0
+      cost_cfg {
+        cost        = 8965
+        instance_id = 0
+      }
+      dead_interval_cfg {
+        dead_interval = 40
+        instance_id   = 0
+      }
+      hello_interval_cfg {
+        hello_interval = 10
+        instance_id    = 0
+      }
+      mtu_ignore_cfg {
+        mtu_ignore  = 0
+        instance_id = 0
+      }
+      neighbor_cfg {
+        neighbor               = "2001:db8:3333:4444:5555:6666:7777:8888"
+        neig_inst              = 0
+        neighbor_cost          = 60182
+        neighbor_poll_interval = 2819677845
+        neighbor_priority      = 196
+      }
+      priority_cfg {
+        priority    = 1
+        instance_id = 0
+      }
+      retransmit_interval_cfg {
+        retransmit_interval = 5
+        instance_id         = 0
+      }
+      transmit_delay_cfg {
+        transmit_delay = 1
+        instance_id    = 0
+      }
+    }
+  }
+  isis {
+    authentication {
+      send_only_list {
+        send_only = 0
+        level     = "level-1"
+      }
+      mode_list {
+        mode  = "md5"
+        level = "level-1"
+      }
+      key_chain_list {
+        key_chain = "64"
+        level     = "level-1"
+      }
+    }
+    bfd_cfg {
+      bfd     = 0
+      disable = 0
+    }
+    circuit_type = "level-1-2"
+    csnp_interval_list {
+      csnp_interval = 10
+      level         = "level-1"
+    }
+    padding = 1
+    hello_interval_list {
+      hello_interval = 10
+      level          = "level-1"
+    }
+    hello_interval_minimal_list {
+      hello_interval_minimal = 0
+      level                  = "level-1"
+    }
+    hello_multiplier_list {
+      hello_multiplier = 3
+      level            = "level-1"
+    }
+    lsp_interval = 33
+    mesh_group {
+      blocked = 0
+    }
+    metric_list {
+      metric = 10
+      level  = "level-1"
+    }
+    network = "broadcast"
+    password_list {
+      password = "155"
+      level    = "level-1"
+    }
+    priority_list {
+      priority = 64
+      level    = "level-1"
+    }
+    retransmit_interval = 5
+    wide_metric_list {
+      wide_metric = 10
+      level       = "level-1"
+    }
+  }
+  l3_vlan_fwd_disable = 0
+  lldp {
+    enable_cfg {
+      rt_enable = 0
+      rx        = 0
+      tx        = 0
+    }
+    notification_cfg {
+      notification = 0
+      notif_enable = 0
+    }
+    tx_dot1_cfg {
+      tx_dot1_tlvs     = 0
+      link_aggregation = 0
+      vlan             = 0
+    }
+    tx_tlvs_cfg {
+      tx_tlvs             = 0
+      exclude             = 0
+      management_address  = 0
+      port_description    = 0
+      system_capabilities = 0
+      system_description  = 0
+      system_name         = 0
+    }
+  }
+  load_interval = 300
+  lw_4o6 {
+    outside = 0
+    inside  = 0
+  }
+  mac_learning = "enable"
+  map {
+    inside        = 0
+    outside       = 0
+    map_t_inside  = 0
+    map_t_outside = 0
+  }
+  media_type_copper = 0
+  monitor_list {
+    monitor      = "input"
+    mirror_index = 2
+    monitor_vlan = 3828
+  }
+  mtu = mtu
+  nptv6 {
+    domain_list {
+      domain_name = "51"
+      bind_type   = "inside"
+    }
+  }
+  packet_capture_template = "107"
+  ping_sweep_detection    = "disable"
+  port_breakout           = "4x10G"
+  port_scan_detection     = "disable"
+  remove_vlan_tag         = 0
+  sampling_enable {
+    counters1 = "all"
+  }
+  spanning_tree {
+    auto_edge  = 1
+    admin_edge = 0
+    instance_list {
+      instance_start = 696
+      mstp_path_cost = 198552
+    }
+    path_cost = 159265
+  }
+  speed                     = "auto"
+  speed_forced_10g          = 0
+  speed_forced_40g          = 0
+  traffic_distribution_mode = "sip"
+  trap_source               = 0
+  trunk_group_list {
+    trunk_number  = 3250
+    type          = "static"
+    admin_key     = 11775
+    port_priority = 64388
+    udld_timeout_cfg {
+      slow = 25
+    }
+    mode     = "active"
+    timeout  = "long"
+    user_tag = "121"
+  }
+  update_l2_info = 0
+  user_tag       = "29"
+  virtual_wire   = 0
+  vlan_learning  = "enable"
 }
 ```
 
@@ -361,57 +439,58 @@ resource "thunder_interface_ethernet" "IntEthernet" {
 
 ### Required
 
-- `ifnum` (Number)
+- `ifnum` (Number) Ethernet interface number
 
 ### Optional
 
 - `access_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--access_list))
-- `action` (String)
-- `auto_neg_enable` (Number)
+- `action` (String) 'enable': Enable; 'disable': Disable;
+- `auto_neg_enable` (Number) enable auto-negotiation
 - `bfd` (Block List, Max: 1) (see [below for nested schema](#nestedblock--bfd))
-- `cpu_process` (Number)
-- `cpu_process_dir` (String)
+- `cpu_process` (Number) All Packets to this port are processed by CPU
+- `cpu_process_dir` (String) 'primary': Primary board; 'blade': blade board; 'hash-dip': Hash based on the Destination IP; 'hash-sip': Hash based on the Source IP; 'hash-dmac': Hash based on the Destination MAC; 'hash-smac': Hash based on the Source MAC;
 - `ddos` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ddos))
-- `duplexity` (String)
-- `fec_forced_off` (Number)
-- `fec_forced_on` (Number)
-- `flow_control` (Number)
+- `duplexity` (String) 'Full': Full; 'Half': Half; 'auto': auto;
+- `fec_forced_off` (Number) turn off the FEC
+- `fec_forced_on` (Number) turn on the FEC
+- `flow_control` (Number) Enable 802.3x flow control on full duplex port
+- `gaming_protocol_compliance` (Number) Enable Gaming Protocol Compliance Check
 - `icmp_rate_limit` (Block List, Max: 1) (see [below for nested schema](#nestedblock--icmp_rate_limit))
 - `icmpv6_rate_limit` (Block List, Max: 1) (see [below for nested schema](#nestedblock--icmpv6_rate_limit))
 - `ip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip))
-- `ipg_bit_time` (Number)
+- `ipg_bit_time` (Number) Set Inter-packet-gap interval in bit timing, default is 96
 - `ipv6` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6))
 - `isis` (Block List, Max: 1) (see [below for nested schema](#nestedblock--isis))
 - `l3_vlan_fwd_disable` (Number)
 - `lldp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp))
-- `load_interval` (Number)
+- `load_interval` (Number) Configure Load Interval (Seconds (5-300, Multiple of 5), default 300)
 - `lw_4o6` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lw_4o6))
-- `mac_learning` (String)
+- `mac_learning` (String) 'enable': Enable MAC learning; 'disable': Disable MAC learning; 'dmac-only': Enable destination MAC learning only;
 - `map` (Block List, Max: 1) (see [below for nested schema](#nestedblock--map))
-- `media_type_copper` (Number)
+- `media_type_copper` (Number) Set the media type to copper
 - `monitor_list` (Block List) (see [below for nested schema](#nestedblock--monitor_list))
-- `mtu` (Number)
-- `name` (String)
+- `mtu` (Number) Interface mtu (Interface MTU, default 1 (min MTU is 1280 for IPv6))
+- `name` (String) Name for the interface
 - `nptv6` (Block List, Max: 1) (see [below for nested schema](#nestedblock--nptv6))
-- `packet_capture_template` (String)
-- `ping_sweep_detection` (String)
-- `port_breakout` (String)
-- `port_scan_detection` (String)
-- `remove_vlan_tag` (Number)
+- `packet_capture_template` (String) Name of the packet capture template to be bind with this object
+- `ping_sweep_detection` (String) 'enable': Enabl ping sweep detection; 'disable': Disable ping sweep detection(default);
+- `port_breakout` (String) '4x10G': Breakout 100G/40G ports into 4x10G ports; '4x25G': Breakout 100G ports into 4x25G ports; '2x50G': Breakout 100G ports into 2x50G ports;
+- `port_scan_detection` (String) 'enable': Enable port scan detection; 'disable': Disable port scan detection(default);
+- `remove_vlan_tag` (Number) Remove the vlan tag for egressing packets
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
 - `spanning_tree` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spanning_tree))
-- `speed` (String)
-- `speed_forced_10g` (Number)
-- `speed_forced_1g` (Number)
-- `speed_forced_40g` (Number)
-- `traffic_distribution_mode` (String)
-- `trap_source` (Number)
+- `speed` (String) '10': 10; '100': 100; '1000': 1000; 'auto': auto;
+- `speed_forced_10g` (Number) force the speed to be 10G on 25G link
+- `speed_forced_1g` (Number) force the speed to be 1G on 25G link
+- `speed_forced_40g` (Number) force the speed to be 40G on 100G link
+- `traffic_distribution_mode` (String) 'sip': sip; 'dip': dip; 'primary': primary; 'blade': blade; 'l4-src-port': l4-src-port; 'l4-dst-port': l4-dst-port;
+- `trap_source` (Number) The trap source
 - `trunk_group_list` (Block List) (see [below for nested schema](#nestedblock--trunk_group_list))
-- `update_l2_info` (Number)
-- `user_tag` (String)
-- `uuid` (String)
-- `virtual_wire` (Number)
-- `vlan_learning` (String)
+- `update_l2_info` (Number) Update and use received L2 information
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+- `virtual_wire` (Number) Mark ethernet as a virtual wire interface
+- `vlan_learning` (String) 'enable': Enable VLAN learning; 'disable': Disable VLAN learning;
 
 ### Read-Only
 
@@ -422,8 +501,8 @@ resource "thunder_interface_ethernet" "IntEthernet" {
 
 Optional:
 
-- `acl_id` (Number)
-- `acl_name` (String)
+- `acl_id` (Number) ACL id
+- `acl_name` (String) Apply an access list (Named Access List)
 
 
 <a id="nestedblock--bfd"></a>
@@ -432,19 +511,19 @@ Optional:
 Optional:
 
 - `authentication` (Block List, Max: 1) (see [below for nested schema](#nestedblock--bfd--authentication))
-- `demand` (Number)
-- `echo` (Number)
+- `demand` (Number) Demand mode
+- `echo` (Number) Enable BFD Echo
 - `interval_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--bfd--interval_cfg))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--bfd--authentication"></a>
 ### Nested Schema for `bfd.authentication`
 
 Optional:
 
-- `key_id` (Number)
-- `method` (String)
-- `password` (String)
+- `key_id` (Number) Key ID
+- `method` (String) 'md5': Keyed MD5; 'meticulous-md5': Meticulous Keyed MD5; 'meticulous-sha1': Meticulous Keyed SHA1; 'sha1': Keyed SHA1; 'simple': Simple Password;
+- `password` (String) Key String
 
 
 <a id="nestedblock--bfd--interval_cfg"></a>
@@ -452,9 +531,9 @@ Optional:
 
 Optional:
 
-- `interval` (Number)
-- `min_rx` (Number)
-- `multiplier` (Number)
+- `interval` (Number) Transmit interval between BFD packets (Milliseconds)
+- `min_rx` (Number) Minimum receive interval capability (Milliseconds)
+- `multiplier` (Number) Multiplier value used to compute holddown (value used to multiply the interval)
 
 
 
@@ -463,9 +542,9 @@ Optional:
 
 Optional:
 
-- `inside` (Number)
-- `outside` (Number)
-- `uuid` (String)
+- `inside` (Number) DDoS inside (trusted) interface
+- `outside` (Number) DDoS outside (untrusted) interface
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--icmp_rate_limit"></a>
@@ -473,9 +552,9 @@ Optional:
 
 Optional:
 
-- `lockup` (Number)
-- `lockup_period` (Number)
-- `normal` (Number)
+- `lockup` (Number) Enter lockup state when ICMP rate exceeds lockup rate limit (Maximum rate limit. If exceeds this limit, drop all ICMP packet for a time period)
+- `lockup_period` (Number) Lockup period (second)
+- `normal` (Number) Normal rate limit. If exceeds this limit, drop the ICMP packet that goes over the limit
 
 
 <a id="nestedblock--icmpv6_rate_limit"></a>
@@ -483,9 +562,9 @@ Optional:
 
 Optional:
 
-- `lockup_period_v6` (Number)
-- `lockup_v6` (Number)
-- `normal_v6` (Number)
+- `lockup_period_v6` (Number) Lockup period (second)
+- `lockup_v6` (Number) Enter lockup state when ICMP rate exceeds lockup rate limit (Maximum rate limit. If exceeds this limit, drop all ICMP packet for a time period)
+- `normal_v6` (Number) Normal rate limit. If exceeds this limit, drop the ICMP packet that goes over the limit
 
 
 <a id="nestedblock--ip"></a>
@@ -494,33 +573,34 @@ Optional:
 Optional:
 
 - `address_list` (Block List) (see [below for nested schema](#nestedblock--ip--address_list))
-- `allow_promiscuous_vip` (Number)
-- `cache_spoofing_port` (Number)
-- `client` (Number)
-- `dhcp` (Number)
-- `generate_membership_query` (Number)
+- `allow_promiscuous_vip` (Number) Allow traffic to be associated with promiscuous VIP
+- `cache_spoofing_port` (Number) This interface connects to spoofing cache
+- `client` (Number) Client facing interface for IPv4/v6 traffic
+- `dhcp` (Number) Use DHCP to configure IP address
+- `generate_membership_query` (Number) Enable Membership Query
 - `helper_address_list` (Block List) (see [below for nested schema](#nestedblock--ip--helper_address_list))
-- `inside` (Number)
-- `max_resp_time` (Number)
+- `inside` (Number) Configure interface as inside
+- `max_resp_time` (Number) Maximum Response Time (Max Response Time (Default is 100))
 - `ospf` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--ospf))
-- `outside` (Number)
-- `query_interval` (Number)
+- `outside` (Number) Configure interface as outside
+- `query_interval` (Number) 1 - 255 (Default is 125)
 - `rip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--rip))
 - `router` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--router))
-- `server` (Number)
-- `slb_partition_redirect` (Number)
+- `server` (Number) Server facing interface for IPv4/v6 traffic
+- `slb_partition_redirect` (Number) Redirect SLB traffic across partition
 - `stateful_firewall` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--stateful_firewall))
-- `syn_cookie` (Number)
-- `ttl_ignore` (Number)
-- `uuid` (String)
+- `syn_cookie` (Number) Configure Enable SYN-cookie on the interface
+- `ttl_ignore` (Number) Ignore TTL decrement for a received packet before sending out
+- `unnumbered` (Number) Set the interface as unnumbered
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--ip--address_list"></a>
 ### Nested Schema for `ip.address_list`
 
 Optional:
 
-- `ipv4_address` (String)
-- `ipv4_netmask` (String)
+- `ipv4_address` (String) IP address
+- `ipv4_netmask` (String) IP subnet mask
 
 
 <a id="nestedblock--ip--helper_address_list"></a>
@@ -528,7 +608,7 @@ Optional:
 
 Optional:
 
-- `helper_address` (String)
+- `helper_address` (String) Helper address for DHCP packets (IP address)
 
 
 <a id="nestedblock--ip--ospf"></a>
@@ -545,29 +625,29 @@ Optional:
 Optional:
 
 - `authentication_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--ospf--ospf_global--authentication_cfg))
-- `authentication_key` (String)
+- `authentication_key` (String) Authentication password (key) (The OSPF password (key))
 - `bfd_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--ospf--ospf_global--bfd_cfg))
-- `cost` (Number)
+- `cost` (Number) Interface cost
 - `database_filter_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--ospf--ospf_global--database_filter_cfg))
-- `dead_interval` (Number)
-- `disable` (String)
-- `hello_interval` (Number)
+- `dead_interval` (Number) Interval after which a neighbor is declared dead (Seconds)
+- `disable` (String) 'all': All functionality;
+- `hello_interval` (Number) Time between HELLO packets (Seconds)
 - `message_digest_cfg` (Block List) (see [below for nested schema](#nestedblock--ip--ospf--ospf_global--message_digest_cfg))
-- `mtu` (Number)
-- `mtu_ignore` (Number)
+- `mtu` (Number) OSPF interface MTU (MTU size)
+- `mtu_ignore` (Number) Ignores the MTU in DBD packets
 - `network` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--ospf--ospf_global--network))
-- `priority` (Number)
-- `retransmit_interval` (Number)
-- `transmit_delay` (Number)
-- `uuid` (String)
+- `priority` (Number) Router priority
+- `retransmit_interval` (Number) Time between retransmitting lost link state advertisements (Seconds)
+- `transmit_delay` (Number) Link state transmit delay (Seconds)
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--ip--ospf--ospf_global--authentication_cfg"></a>
 ### Nested Schema for `ip.ospf.ospf_global.authentication_cfg`
 
 Optional:
 
-- `authentication` (Number)
-- `value` (String)
+- `authentication` (Number) Enable authentication
+- `value` (String) 'message-digest': Use message-digest authentication; 'null': Use no authentication;
 
 
 <a id="nestedblock--ip--ospf--ospf_global--bfd_cfg"></a>
@@ -575,8 +655,8 @@ Optional:
 
 Optional:
 
-- `bfd` (Number)
-- `disable` (Number)
+- `bfd` (Number) Bidirectional Forwarding Detection (BFD)
+- `disable` (Number) Disable BFD
 
 
 <a id="nestedblock--ip--ospf--ospf_global--database_filter_cfg"></a>
@@ -584,8 +664,8 @@ Optional:
 
 Optional:
 
-- `database_filter` (String)
-- `out` (Number)
+- `database_filter` (String) 'all': Filter all LSA;
+- `out` (Number) Outgoing LSA
 
 
 <a id="nestedblock--ip--ospf--ospf_global--message_digest_cfg"></a>
@@ -593,8 +673,16 @@ Optional:
 
 Optional:
 
-- `md5_value` (String)
-- `message_digest_key` (Number)
+- `md5` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--ospf--ospf_global--message_digest_cfg--md5))
+- `message_digest_key` (Number) Message digest authentication password (key) (Key id)
+
+<a id="nestedblock--ip--ospf--ospf_global--message_digest_cfg--md5"></a>
+### Nested Schema for `ip.ospf.ospf_global.message_digest_cfg.md5`
+
+Optional:
+
+- `md5_value` (String) The OSPF password (1-16)
+
 
 
 <a id="nestedblock--ip--ospf--ospf_global--network"></a>
@@ -602,42 +690,45 @@ Optional:
 
 Optional:
 
-- `broadcast` (Number)
-- `non_broadcast` (Number)
-- `p2mp_nbma` (Number)
-- `point_to_multipoint` (Number)
-- `point_to_point` (Number)
+- `broadcast` (Number) Specify OSPF broadcast multi-access network
+- `non_broadcast` (Number) Specify OSPF NBMA network
+- `p2mp_nbma` (Number) Specify non-broadcast point-to-multipoint network
+- `point_to_multipoint` (Number) Specify OSPF point-to-multipoint network
+- `point_to_point` (Number) Specify OSPF point-to-point network
 
 
 
 <a id="nestedblock--ip--ospf--ospf_ip_list"></a>
 ### Nested Schema for `ip.ospf.ospf_ip_list`
 
+Required:
+
+- `ip_addr` (String) Address of interface
+
 Optional:
 
-- `authentication` (Number)
-- `authentication_key` (String)
-- `cost` (Number)
-- `database_filter` (String)
-- `dead_interval` (Number)
-- `hello_interval` (Number)
-- `ip_addr` (String)
+- `authentication` (Number) Enable authentication
+- `authentication_key` (String) Authentication password (key) (The OSPF password (key))
+- `cost` (Number) Interface cost
+- `database_filter` (String) 'all': Filter all LSA;
+- `dead_interval` (Number) Interval after which a neighbor is declared dead (Seconds)
+- `hello_interval` (Number) Time between HELLO packets (Seconds)
 - `message_digest_cfg` (Block List) (see [below for nested schema](#nestedblock--ip--ospf--ospf_ip_list--message_digest_cfg))
-- `mtu_ignore` (Number)
-- `out` (Number)
-- `priority` (Number)
-- `retransmit_interval` (Number)
-- `transmit_delay` (Number)
-- `uuid` (String)
-- `value` (String)
+- `mtu_ignore` (Number) Ignores the MTU in DBD packets
+- `out` (Number) Outgoing LSA
+- `priority` (Number) Router priority
+- `retransmit_interval` (Number) Time between retransmitting lost link state advertisements (Seconds)
+- `transmit_delay` (Number) Link state transmit delay (Seconds)
+- `uuid` (String) uuid of the object
+- `value` (String) 'message-digest': Use message-digest authentication; 'null': Use no authentication;
 
 <a id="nestedblock--ip--ospf--ospf_ip_list--message_digest_cfg"></a>
 ### Nested Schema for `ip.ospf.ospf_ip_list.message_digest_cfg`
 
 Optional:
 
-- `md5_value` (String)
-- `message_digest_key` (Number)
+- `md5_value` (String) The OSPF password (1-16)
+- `message_digest_key` (Number) Message digest authentication password (key) (Key id)
 
 
 
@@ -649,11 +740,11 @@ Optional:
 
 - `authentication` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--rip--authentication))
 - `receive_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--rip--receive_cfg))
-- `receive_packet` (Number)
+- `receive_packet` (Number) Enable receiving packet through the specified interface
 - `send_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--rip--send_cfg))
-- `send_packet` (Number)
+- `send_packet` (Number) Enable sending packets through the specified interface
 - `split_horizon_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip--rip--split_horizon_cfg))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--ip--rip--authentication"></a>
 ### Nested Schema for `ip.rip.authentication`
@@ -669,7 +760,7 @@ Optional:
 
 Optional:
 
-- `key_chain` (String)
+- `key_chain` (String) Authentication key-chain (Name of key-chain)
 
 
 <a id="nestedblock--ip--rip--authentication--mode"></a>
@@ -677,7 +768,7 @@ Optional:
 
 Optional:
 
-- `mode` (String)
+- `mode` (String) 'md5': Keyed message digest; 'text': Clear text authentication;
 
 
 <a id="nestedblock--ip--rip--authentication--str"></a>
@@ -685,7 +776,7 @@ Optional:
 
 Optional:
 
-- `string` (String)
+- `string` (String) The RIP authentication string
 
 
 
@@ -694,8 +785,8 @@ Optional:
 
 Optional:
 
-- `receive` (Number)
-- `version` (String)
+- `receive` (Number) Advertisement reception
+- `version` (String) '1': RIP version 1; '2': RIP version 2; '1-2': RIP version 1 & 2;
 
 
 <a id="nestedblock--ip--rip--send_cfg"></a>
@@ -703,8 +794,8 @@ Optional:
 
 Optional:
 
-- `send` (Number)
-- `version` (String)
+- `send` (Number) Advertisement transmission
+- `version` (String) '1': RIP version 1; '2': RIP version 2; '1-compatible': RIPv1-compatible; '1-2': RIP version 1 & 2;
 
 
 <a id="nestedblock--ip--rip--split_horizon_cfg"></a>
@@ -712,7 +803,7 @@ Optional:
 
 Optional:
 
-- `state` (String)
+- `state` (String) 'poisoned': Perform split horizon with poisoned reverse; 'disable': Disable split horizon; 'enable': Perform split horizon without poisoned reverse;
 
 
 
@@ -728,8 +819,8 @@ Optional:
 
 Optional:
 
-- `tag` (String)
-- `uuid` (String)
+- `tag` (String) ISO routing area tag
+- `uuid` (String) uuid of the object
 
 
 
@@ -738,12 +829,12 @@ Optional:
 
 Optional:
 
-- `access_list` (Number)
-- `acl_id` (Number)
-- `class_list` (String)
-- `inside` (Number)
-- `outside` (Number)
-- `uuid` (String)
+- `access_list` (Number) Access-list for traffic from the outside
+- `acl_id` (Number) ACL id
+- `class_list` (String) Class List (Class List Name)
+- `inside` (Number) Inside (private) interface for stateful firewall
+- `outside` (Number) Outside (public) interface for stateful firewall
+- `uuid` (String) uuid of the object
 
 
 
@@ -754,24 +845,24 @@ Optional:
 
 - `access_list_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6--access_list_cfg))
 - `address_list` (Block List) (see [below for nested schema](#nestedblock--ipv6--address_list))
-- `inside` (Number)
-- `ipv6_enable` (Number)
+- `inside` (Number) Configure interface as inside
+- `ipv6_enable` (Number) Enable IPv6 processing
 - `ospf` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6--ospf))
-- `outside` (Number)
+- `outside` (Number) Configure interface as outside
 - `rip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6--rip))
 - `router` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6--router))
 - `router_adver` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6--router_adver))
 - `stateful_firewall` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6--stateful_firewall))
-- `ttl_ignore` (Number)
-- `uuid` (String)
+- `ttl_ignore` (Number) Ignore TTL decrement for a received packet before sending out
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--ipv6--access_list_cfg"></a>
 ### Nested Schema for `ipv6.access_list_cfg`
 
 Optional:
 
-- `inbound` (Number)
-- `v6_acl_name` (String)
+- `inbound` (Number) ACL applied on incoming packets to this interface
+- `v6_acl_name` (String) Apply ACL rules to incoming packets on this interface (Named Access List)
 
 
 <a id="nestedblock--ipv6--address_list"></a>
@@ -779,8 +870,8 @@ Optional:
 
 Optional:
 
-- `address_type` (String)
-- `ipv6_addr` (String)
+- `address_type` (String) 'anycast': Configure an IPv6 anycast address; 'link-local': Configure an IPv6 link local address;
+- `ipv6_addr` (String) Set the IPv6 address of an interface
 
 
 <a id="nestedblock--ipv6--ospf"></a>
@@ -788,10 +879,10 @@ Optional:
 
 Optional:
 
-- `bfd` (Number)
+- `bfd` (Number) Bidirectional Forwarding Detection (BFD)
 - `cost_cfg` (Block List) (see [below for nested schema](#nestedblock--ipv6--ospf--cost_cfg))
 - `dead_interval_cfg` (Block List) (see [below for nested schema](#nestedblock--ipv6--ospf--dead_interval_cfg))
-- `disable` (Number)
+- `disable` (Number) Disable BFD
 - `hello_interval_cfg` (Block List) (see [below for nested schema](#nestedblock--ipv6--ospf--hello_interval_cfg))
 - `mtu_ignore_cfg` (Block List) (see [below for nested schema](#nestedblock--ipv6--ospf--mtu_ignore_cfg))
 - `neighbor_cfg` (Block List) (see [below for nested schema](#nestedblock--ipv6--ospf--neighbor_cfg))
@@ -799,15 +890,15 @@ Optional:
 - `priority_cfg` (Block List) (see [below for nested schema](#nestedblock--ipv6--ospf--priority_cfg))
 - `retransmit_interval_cfg` (Block List) (see [below for nested schema](#nestedblock--ipv6--ospf--retransmit_interval_cfg))
 - `transmit_delay_cfg` (Block List) (see [below for nested schema](#nestedblock--ipv6--ospf--transmit_delay_cfg))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--ipv6--ospf--cost_cfg"></a>
 ### Nested Schema for `ipv6.ospf.cost_cfg`
 
 Optional:
 
-- `cost` (Number)
-- `instance_id` (Number)
+- `cost` (Number) Interface cost
+- `instance_id` (Number) Specify the interface instance ID
 
 
 <a id="nestedblock--ipv6--ospf--dead_interval_cfg"></a>
@@ -815,8 +906,8 @@ Optional:
 
 Optional:
 
-- `dead_interval` (Number)
-- `instance_id` (Number)
+- `dead_interval` (Number) Interval after which a neighbor is declared dead (Seconds)
+- `instance_id` (Number) Specify the interface instance ID
 
 
 <a id="nestedblock--ipv6--ospf--hello_interval_cfg"></a>
@@ -824,8 +915,8 @@ Optional:
 
 Optional:
 
-- `hello_interval` (Number)
-- `instance_id` (Number)
+- `hello_interval` (Number) Time between HELLO packets (Seconds)
+- `instance_id` (Number) Specify the interface instance ID
 
 
 <a id="nestedblock--ipv6--ospf--mtu_ignore_cfg"></a>
@@ -833,8 +924,8 @@ Optional:
 
 Optional:
 
-- `instance_id` (Number)
-- `mtu_ignore` (Number)
+- `instance_id` (Number) Specify the interface instance ID
+- `mtu_ignore` (Number) Ignores the MTU in DBD packets
 
 
 <a id="nestedblock--ipv6--ospf--neighbor_cfg"></a>
@@ -842,11 +933,11 @@ Optional:
 
 Optional:
 
-- `neig_inst` (Number)
-- `neighbor` (String)
-- `neighbor_cost` (Number)
-- `neighbor_poll_interval` (Number)
-- `neighbor_priority` (Number)
+- `neig_inst` (Number) Specify the interface instance ID
+- `neighbor` (String) OSPFv3 neighbor (Neighbor IPv6 address)
+- `neighbor_cost` (Number) OSPF cost for point-to-multipoint neighbor (metric)
+- `neighbor_poll_interval` (Number) OSPF dead-router polling interval (Seconds)
+- `neighbor_priority` (Number) OSPF priority of non-broadcast neighbor
 
 
 <a id="nestedblock--ipv6--ospf--network_list"></a>
@@ -854,9 +945,9 @@ Optional:
 
 Optional:
 
-- `broadcast_type` (String)
-- `network_instance_id` (Number)
-- `p2mp_nbma` (Number)
+- `broadcast_type` (String) 'broadcast': Specify OSPF broadcast multi-access network; 'non-broadcast': Specify OSPF NBMA network; 'point-to-point': Specify OSPF point-to-point network; 'point-to-multipoint': Specify OSPF point-to-multipoint network;
+- `network_instance_id` (Number) Specify the interface instance ID
+- `p2mp_nbma` (Number) Specify non-broadcast point-to-multipoint network
 
 
 <a id="nestedblock--ipv6--ospf--priority_cfg"></a>
@@ -864,8 +955,8 @@ Optional:
 
 Optional:
 
-- `instance_id` (Number)
-- `priority` (Number)
+- `instance_id` (Number) Specify the interface instance ID
+- `priority` (Number) Router priority
 
 
 <a id="nestedblock--ipv6--ospf--retransmit_interval_cfg"></a>
@@ -873,8 +964,8 @@ Optional:
 
 Optional:
 
-- `instance_id` (Number)
-- `retransmit_interval` (Number)
+- `instance_id` (Number) Specify the interface instance ID
+- `retransmit_interval` (Number) Time between retransmitting lost link state advertisements (Seconds)
 
 
 <a id="nestedblock--ipv6--ospf--transmit_delay_cfg"></a>
@@ -882,8 +973,8 @@ Optional:
 
 Optional:
 
-- `instance_id` (Number)
-- `transmit_delay` (Number)
+- `instance_id` (Number) Specify the interface instance ID
+- `transmit_delay` (Number) Link state transmit delay (Seconds)
 
 
 
@@ -893,14 +984,14 @@ Optional:
 Optional:
 
 - `split_horizon_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6--rip--split_horizon_cfg))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--ipv6--rip--split_horizon_cfg"></a>
 ### Nested Schema for `ipv6.rip.split_horizon_cfg`
 
 Optional:
 
-- `state` (String)
+- `state` (String) 'poisoned': Perform split horizon with poisoned reverse; 'disable': Disable split horizon; 'enable': Perform split horizon without poisoned reverse;
 
 
 
@@ -918,8 +1009,8 @@ Optional:
 
 Optional:
 
-- `tag` (String)
-- `uuid` (String)
+- `tag` (String) ISO routing area tag
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--ipv6--router--ospf"></a>
@@ -928,17 +1019,17 @@ Optional:
 Optional:
 
 - `area_list` (Block List) (see [below for nested schema](#nestedblock--ipv6--router--ospf--area_list))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--ipv6--router--ospf--area_list"></a>
 ### Nested Schema for `ipv6.router.ospf.area_list`
 
 Optional:
 
-- `area_id_addr` (String)
-- `area_id_num` (Number)
-- `instance_id` (Number)
-- `tag` (String)
+- `area_id_addr` (String) OSPF area ID in IP address format
+- `area_id_num` (Number) OSPF area ID as a decimal value
+- `instance_id` (Number) Set the interface instance ID
+- `tag` (String) Set the OSPFv3 process tag
 
 
 
@@ -947,8 +1038,8 @@ Optional:
 
 Optional:
 
-- `rip` (Number)
-- `uuid` (String)
+- `rip` (Number) RIP Routing for IPv6
+- `uuid` (String) uuid of the object
 
 
 
@@ -957,36 +1048,36 @@ Optional:
 
 Optional:
 
-- `action` (String)
-- `adver_mtu` (Number)
-- `adver_mtu_disable` (Number)
-- `adver_vrid` (Number)
-- `adver_vrid_default` (Number)
-- `default_lifetime` (Number)
-- `floating_ip` (String)
-- `floating_ip_default_vrid` (String)
-- `hop_limit` (Number)
-- `managed_config_action` (String)
-- `max_interval` (Number)
-- `min_interval` (Number)
-- `other_config_action` (String)
+- `action` (String) 'enable': Enable Router Advertisements on this interface; 'disable': Disable Router Advertisements on this interface;
+- `adver_mtu` (Number) Set Router Advertisement MTU Option
+- `adver_mtu_disable` (Number) Disable Router Advertisement MTU Option
+- `adver_vrid` (Number) Specify ha VRRP-A vrid
+- `adver_vrid_default` (Number) Default VRRP-A vrid
+- `default_lifetime` (Number) Set Router Advertisement Default Lifetime (default: 1800) (Default Lifetime (seconds))
+- `floating_ip` (String) Use a floating IP as the source address for Router advertisements
+- `floating_ip_default_vrid` (String) Use a floating IP as the source address for Router advertisements
+- `hop_limit` (Number) Set Router Advertisement Hop Limit (default: 255)
+- `managed_config_action` (String) 'enable': Enable the Managed Address Configuration flag; 'disable': Disable the Managed Address Configuration flag (default);
+- `max_interval` (Number) Set Router Advertisement Max Interval (default: 600) (Max Router Advertisement Interval (seconds))
+- `min_interval` (Number) Set Router Advertisement Min Interval (default: 200) (Min Router Advertisement Interval (seconds))
+- `other_config_action` (String) 'enable': Enable the Other Stateful Configuration flag; 'disable': Disable the Other Stateful Configuration flag (default);
 - `prefix_list` (Block List) (see [below for nested schema](#nestedblock--ipv6--router_adver--prefix_list))
-- `rate_limit` (Number)
-- `reachable_time` (Number)
-- `retransmit_timer` (Number)
-- `use_floating_ip` (Number)
-- `use_floating_ip_default_vrid` (Number)
+- `rate_limit` (Number) Rate Limit the processing of incoming Router Solicitations (Max Number of Router Solicitations to process per second)
+- `reachable_time` (Number) Set Router Advertisement Reachable ime (default: 0) (Reachable Time (milliseconds))
+- `retransmit_timer` (Number) Set Router Advertisement Retransmit Timer (default: 0)
+- `use_floating_ip` (Number) Use a floating IP as the source address for Router advertisements
+- `use_floating_ip_default_vrid` (Number) Use a floating IP as the source address for Router advertisements
 
 <a id="nestedblock--ipv6--router_adver--prefix_list"></a>
 ### Nested Schema for `ipv6.router_adver.prefix_list`
 
 Optional:
 
-- `not_autonomous` (Number)
-- `not_on_link` (Number)
-- `preferred_lifetime` (Number)
-- `prefix` (String)
-- `valid_lifetime` (Number)
+- `not_autonomous` (Number) Specify that the Prefix is not usable for autoconfiguration (default:autonomous)
+- `not_on_link` (Number) Specify that the Prefix is not On-Link (default: on-link)
+- `preferred_lifetime` (Number) Specify Prefix Preferred Lifetime (default:604800) (Prefix Advertised Preferred Lifetime (default: 604800))
+- `prefix` (String) Set Router Advertisement On-Link Prefix (IPv6 On-Link Prefix)
+- `valid_lifetime` (Number) Specify Valid Lifetime (default:2592000) (Prefix Advertised Valid Lifetime (default: 2592000))
 
 
 
@@ -995,12 +1086,12 @@ Optional:
 
 Optional:
 
-- `access_list` (Number)
-- `acl_name` (String)
-- `class_list` (String)
-- `inside` (Number)
-- `outside` (Number)
-- `uuid` (String)
+- `access_list` (Number) Access-list for traffic from the outside
+- `acl_name` (String) Access-list Name
+- `class_list` (String) Class List (Class List Name)
+- `inside` (Number) Inside (private) interface for stateful firewall
+- `outside` (Number) Outside (public) interface for stateful firewall
+- `uuid` (String) uuid of the object
 
 
 
@@ -1011,20 +1102,20 @@ Optional:
 
 - `authentication` (Block List, Max: 1) (see [below for nested schema](#nestedblock--isis--authentication))
 - `bfd_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--isis--bfd_cfg))
-- `circuit_type` (String)
+- `circuit_type` (String) 'level-1': Level-1 only adjacencies are formed; 'level-1-2': Level-1-2 adjacencies are formed; 'level-2-only': Level-2 only adjacencies are formed;
 - `csnp_interval_list` (Block List) (see [below for nested schema](#nestedblock--isis--csnp_interval_list))
 - `hello_interval_list` (Block List) (see [below for nested schema](#nestedblock--isis--hello_interval_list))
 - `hello_interval_minimal_list` (Block List) (see [below for nested schema](#nestedblock--isis--hello_interval_minimal_list))
 - `hello_multiplier_list` (Block List) (see [below for nested schema](#nestedblock--isis--hello_multiplier_list))
-- `lsp_interval` (Number)
+- `lsp_interval` (Number) Set LSP transmission interval (LSP transmission interval (milliseconds))
 - `mesh_group` (Block List, Max: 1) (see [below for nested schema](#nestedblock--isis--mesh_group))
 - `metric_list` (Block List) (see [below for nested schema](#nestedblock--isis--metric_list))
-- `network` (String)
-- `padding` (Number)
+- `network` (String) 'broadcast': Specify IS-IS broadcast multi-access network; 'point-to-point': Specify IS-IS point-to-point network;
+- `padding` (Number) Add padding to IS-IS hello packets
 - `password_list` (Block List) (see [below for nested schema](#nestedblock--isis--password_list))
 - `priority_list` (Block List) (see [below for nested schema](#nestedblock--isis--priority_list))
-- `retransmit_interval` (Number)
-- `uuid` (String)
+- `retransmit_interval` (Number) Set per-LSP retransmission interval (Interval between retransmissions of the same LSP (seconds))
+- `uuid` (String) uuid of the object
 - `wide_metric_list` (Block List) (see [below for nested schema](#nestedblock--isis--wide_metric_list))
 
 <a id="nestedblock--isis--authentication"></a>
@@ -1041,8 +1132,8 @@ Optional:
 
 Optional:
 
-- `key_chain` (String)
-- `level` (String)
+- `key_chain` (String) Authentication key-chain (Name of key-chain)
+- `level` (String) 'level-1': Specify authentication key-chain for level-1 PDUs; 'level-2': Specify authentication key-chain for level-2 PDUs;
 
 
 <a id="nestedblock--isis--authentication--mode_list"></a>
@@ -1050,8 +1141,8 @@ Optional:
 
 Optional:
 
-- `level` (String)
-- `mode` (String)
+- `level` (String) 'level-1': Specify authentication mode for level-1 PDUs; 'level-2': Specify authentication mode for level-2 PDUs;
+- `mode` (String) 'md5': Keyed message digest;
 
 
 <a id="nestedblock--isis--authentication--send_only_list"></a>
@@ -1059,8 +1150,8 @@ Optional:
 
 Optional:
 
-- `level` (String)
-- `send_only` (Number)
+- `level` (String) 'level-1': Specify authentication send-only for level-1 PDUs; 'level-2': Specify authentication send-only for level-2 PDUs;
+- `send_only` (Number) Authentication send-only
 
 
 
@@ -1069,8 +1160,8 @@ Optional:
 
 Optional:
 
-- `bfd` (Number)
-- `disable` (Number)
+- `bfd` (Number) Bidirectional Forwarding Detection (BFD)
+- `disable` (Number) Disable BFD
 
 
 <a id="nestedblock--isis--csnp_interval_list"></a>
@@ -1078,8 +1169,8 @@ Optional:
 
 Optional:
 
-- `csnp_interval` (Number)
-- `level` (String)
+- `csnp_interval` (Number) Set CSNP interval in seconds (CSNP interval value)
+- `level` (String) 'level-1': Speficy interval for level-1 CSNPs; 'level-2': Specify interval for level-2 CSNPs;
 
 
 <a id="nestedblock--isis--hello_interval_list"></a>
@@ -1087,8 +1178,8 @@ Optional:
 
 Optional:
 
-- `hello_interval` (Number)
-- `level` (String)
+- `hello_interval` (Number) Set Hello interval in seconds (Hello interval value)
+- `level` (String) 'level-1': Specify hello-interval for level-1 IIHs; 'level-2': Specify hello-interval for level-2 IIHs;
 
 
 <a id="nestedblock--isis--hello_interval_minimal_list"></a>
@@ -1096,8 +1187,8 @@ Optional:
 
 Optional:
 
-- `hello_interval_minimal` (Number)
-- `level` (String)
+- `hello_interval_minimal` (Number) Set Hello holdtime 1 second, interval depends on multiplier
+- `level` (String) 'level-1': Specify hello-interval for level-1 IIHs; 'level-2': Specify hello-interval for level-2 IIHs;
 
 
 <a id="nestedblock--isis--hello_multiplier_list"></a>
@@ -1105,8 +1196,8 @@ Optional:
 
 Optional:
 
-- `hello_multiplier` (Number)
-- `level` (String)
+- `hello_multiplier` (Number) Set multiplier for Hello holding time (Hello multiplier value)
+- `level` (String) 'level-1': Specify hello multiplier for level-1 IIHs; 'level-2': Specify hello multiplier for level-2 IIHs;
 
 
 <a id="nestedblock--isis--mesh_group"></a>
@@ -1114,8 +1205,8 @@ Optional:
 
 Optional:
 
-- `blocked` (Number)
-- `value` (Number)
+- `blocked` (Number) Block LSPs on this interface
+- `value` (Number) Mesh group number
 
 
 <a id="nestedblock--isis--metric_list"></a>
@@ -1123,8 +1214,8 @@ Optional:
 
 Optional:
 
-- `level` (String)
-- `metric` (Number)
+- `level` (String) 'level-1': Apply metric to level-1 links; 'level-2': Apply metric to level-2 links;
+- `metric` (Number) Configure the metric for interface (Default metric)
 
 
 <a id="nestedblock--isis--password_list"></a>
@@ -1132,8 +1223,8 @@ Optional:
 
 Optional:
 
-- `level` (String)
-- `password` (String)
+- `level` (String) 'level-1': Specify password for level-1 PDUs; 'level-2': Specify password for level-2 PDUs;
+- `password` (String) Configure the authentication password for interface
 
 
 <a id="nestedblock--isis--priority_list"></a>
@@ -1141,8 +1232,8 @@ Optional:
 
 Optional:
 
-- `level` (String)
-- `priority` (Number)
+- `level` (String) 'level-1': Specify priority for level-1 routing; 'level-2': Specify priority for level-2 routing;
+- `priority` (Number) Set priority for Designated Router election (Priority value)
 
 
 <a id="nestedblock--isis--wide_metric_list"></a>
@@ -1150,8 +1241,8 @@ Optional:
 
 Optional:
 
-- `level` (String)
-- `wide_metric` (Number)
+- `level` (String) 'level-1': Apply metric to level-1 links; 'level-2': Apply metric to level-2 links;
+- `wide_metric` (Number) Configure the wide metric for interface
 
 
 
@@ -1164,16 +1255,16 @@ Optional:
 - `notification_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp--notification_cfg))
 - `tx_dot1_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp--tx_dot1_cfg))
 - `tx_tlvs_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lldp--tx_tlvs_cfg))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--lldp--enable_cfg"></a>
 ### Nested Schema for `lldp.enable_cfg`
 
 Optional:
 
-- `rt_enable` (Number)
-- `rx` (Number)
-- `tx` (Number)
+- `rt_enable` (Number) Interface lldp enable/disable
+- `rx` (Number) Enable lldp rx
+- `tx` (Number) Enable lldp tx
 
 
 <a id="nestedblock--lldp--notification_cfg"></a>
@@ -1181,8 +1272,8 @@ Optional:
 
 Optional:
 
-- `notif_enable` (Number)
-- `notification` (Number)
+- `notif_enable` (Number) Interface lldp notification enable
+- `notification` (Number) Interface lldp notification configuration
 
 
 <a id="nestedblock--lldp--tx_dot1_cfg"></a>
@@ -1190,9 +1281,9 @@ Optional:
 
 Optional:
 
-- `link_aggregation` (Number)
-- `tx_dot1_tlvs` (Number)
-- `vlan` (Number)
+- `link_aggregation` (Number) Interface link aggregation information
+- `tx_dot1_tlvs` (Number) Interface lldp tx IEEE 802.1 Organizationally specific TLVs configuration
+- `vlan` (Number) Interface vlan information
 
 
 <a id="nestedblock--lldp--tx_tlvs_cfg"></a>
@@ -1200,13 +1291,13 @@ Optional:
 
 Optional:
 
-- `exclude` (Number)
-- `management_address` (Number)
-- `port_description` (Number)
-- `system_capabilities` (Number)
-- `system_description` (Number)
-- `system_name` (Number)
-- `tx_tlvs` (Number)
+- `exclude` (Number) Configure which TLVs excluded. All basic TLVs will be included by default
+- `management_address` (Number) Interface lldp management address
+- `port_description` (Number) Interface lldp port description
+- `system_capabilities` (Number) Interface lldp system capabilities
+- `system_description` (Number) Interface lldp system description
+- `system_name` (Number) Interface lldp system name
+- `tx_tlvs` (Number) Interface lldp tx TLVs configuration
 
 
 
@@ -1215,9 +1306,9 @@ Optional:
 
 Optional:
 
-- `inside` (Number)
-- `outside` (Number)
-- `uuid` (String)
+- `inside` (Number) Configure LW-4over6 outside interface
+- `outside` (Number) Configure LW-4over6 inside interface
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--map"></a>
@@ -1225,11 +1316,11 @@ Optional:
 
 Optional:
 
-- `inside` (Number)
-- `map_t_inside` (Number)
-- `map_t_outside` (Number)
-- `outside` (Number)
-- `uuid` (String)
+- `inside` (Number) Configure MAP inside interface (connected to MAP domains)
+- `map_t_inside` (Number) Configure MAP inside interface (connected to MAP domains)
+- `map_t_outside` (Number) Configure MAP outside interface
+- `outside` (Number) Configure MAP outside interface
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--monitor_list"></a>
@@ -1237,9 +1328,9 @@ Optional:
 
 Optional:
 
-- `mirror_index` (Number)
-- `monitor` (String)
-- `monitor_vlan` (Number)
+- `mirror_index` (Number) Mirror index
+- `monitor` (String) 'input': Incoming packets; 'output': Outgoing packets; 'both': Both incoming and outgoing packets;
+- `monitor_vlan` (Number) VLAN number
 
 
 <a id="nestedblock--nptv6"></a>
@@ -1252,11 +1343,14 @@ Optional:
 <a id="nestedblock--nptv6--domain_list"></a>
 ### Nested Schema for `nptv6.domain_list`
 
+Required:
+
+- `bind_type` (String) 'inside': This interface is connected to NPTv6 inside networks; 'outside': This interface is connected to NPTv6 outside networks;
+- `domain_name` (String) NPTv6 domain name
+
 Optional:
 
-- `bind_type` (String)
-- `domain_name` (String)
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 
 
@@ -1265,7 +1359,7 @@ Optional:
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'packets_input': Input packets; 'bytes_input': Input bytes; 'received_broadcasts': Received broadcasts; 'received_multicasts': Received multicasts; 'received_unicasts': Received unicasts; 'input_errors': Input errors; 'crc': CRC; 'frame': Frames; 'runts': Runts; 'giants': Giants; 'packets_output': Output packets; 'bytes_output': Output bytes; 'transmitted_broadcasts': Transmitted broadcasts; 'transmitted_multicasts': Transmitted multicasts; 'transmitted_unicasts': Transmitted unicasts; 'output_errors': Output errors; 'collisions': Collisions; 'giants_output': Output Giants; 'rate_pkt_sent': Packet sent rate packets/sec; 'rate_byte_sent': Byte sent rate bits/sec; 'rate_pkt_rcvd': Packet received rate packets/sec; 'rate_byte_rcvd': Byte received rate bits/sec; 'load_interval': Load Interval; 'drops': Drops; 'input_utilization': Input Utilization; 'output_utilization': Output Utilization;
 
 
 <a id="nestedblock--spanning_tree"></a>
@@ -1273,43 +1367,46 @@ Optional:
 
 Optional:
 
-- `admin_edge` (Number)
-- `auto_edge` (Number)
+- `admin_edge` (Number) Enable admin-edge
+- `auto_edge` (Number) Enable auto-edge
 - `instance_list` (Block List) (see [below for nested schema](#nestedblock--spanning_tree--instance_list))
-- `path_cost` (Number)
-- `uuid` (String)
+- `path_cost` (Number) Path cost (Limit)
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--spanning_tree--instance_list"></a>
 ### Nested Schema for `spanning_tree.instance_list`
 
 Optional:
 
-- `instance_start` (Number)
-- `mstp_path_cost` (Number)
+- `instance_start` (Number) Instance ID
+- `mstp_path_cost` (Number) Path cost (Limit)
 
 
 
 <a id="nestedblock--trunk_group_list"></a>
 ### Nested Schema for `trunk_group_list`
 
+Required:
+
+- `trunk_number` (Number) Trunk Number
+
 Optional:
 
-- `admin_key` (Number)
-- `mode` (String)
-- `port_priority` (Number)
-- `timeout` (String)
-- `trunk_number` (Number)
-- `type` (String)
+- `admin_key` (Number) LACP admin key (Admin key value)
+- `mode` (String) 'active': enable initiation of LACP negotiation on a port(default); 'passive': disable initiation of LACP negotiation on a port;
+- `port_priority` (Number) Set LACP priority for a port (LACP port priority)
+- `timeout` (String) 'long': Set LACP long timeout (default); 'short': Set LACP short timeout;
+- `type` (String) 'static': Static (default); 'lacp': lacp; 'lacp-udld': lacp-udld;
 - `udld_timeout_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--trunk_group_list--udld_timeout_cfg))
-- `user_tag` (String)
-- `uuid` (String)
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
 
 <a id="nestedblock--trunk_group_list--udld_timeout_cfg"></a>
 ### Nested Schema for `trunk_group_list.udld_timeout_cfg`
 
 Optional:
 
-- `fast` (Number)
-- `slow` (Number)
+- `fast` (Number) fast timeout in unit of milli-seconds(default 1000)
+- `slow` (Number) slow timeout in unit of seconds
 
 

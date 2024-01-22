@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_router_bgp_address_family_ipv6_neighbor_ethernet_neighbor_ipv6" "BgpAddressFamilyIpv6NeigEthNeiIpv6Test" {
   ethernet        = 3
   peer_group_name = "A12"

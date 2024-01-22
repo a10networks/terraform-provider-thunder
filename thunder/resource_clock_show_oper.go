@@ -11,6 +11,7 @@ func resourceClockShowOper() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_clock_show_oper`: Operational Status for the object show\n\n__PLACEHOLDER__",
 		ReadContext: resourceClockShowOperRead,
+
 		Schema: map[string]*schema.Schema{
 			"oper": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -49,9 +50,10 @@ func resourceClockShowOperRead(ctx context.Context, d *schema.ResourceData, meta
 	if client.Host != "" {
 		obj := dataToEndpointClockShowOper(d)
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		opers := setObjectClockShowOperOper(res)
 		d.SetId(obj.GetId())
-		d.Set("oper", opers)
+		logger.Println(res)
+		ClockShowOperOper := setObjectClockShowOperOper(res)
+		d.Set("oper", ClockShowOperOper)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -59,23 +61,24 @@ func resourceClockShowOperRead(ctx context.Context, d *schema.ResourceData, meta
 	return diags
 }
 
-func setObjectClockShowOperOper(res edpt.ClockShoww) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["source_type"] = res.DataClockShow.Oper.SourceType
-	in["time"] = res.DataClockShow.Oper.Time
-	in["timezone"] = res.DataClockShow.Oper.Timezone
-	in["offset"] = res.DataClockShow.Oper.Offset
-	in["day"] = res.DataClockShow.Oper.Day
-	in["date"] = res.DataClockShow.Oper.Date
-	result = append(result, in)
-	return result
+func setObjectClockShowOperOper(ret edpt.DataClockShowOper) []interface{} {
+	return []interface{}{
+		map[string]interface{}{
+			"source_type": ret.DtClockShowOper.Oper.SourceType,
+			"time":        ret.DtClockShowOper.Oper.Time,
+			"timezone":    ret.DtClockShowOper.Oper.Timezone,
+			"offset":      ret.DtClockShowOper.Oper.Offset,
+			"day":         ret.DtClockShowOper.Oper.Day,
+			"date":        ret.DtClockShowOper.Oper.Date,
+		},
+	}
 }
 
 func getObjectClockShowOperOper(d []interface{}) edpt.ClockShowOperOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.ClockShowOperOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SourceType = in["source_type"].(int)
 		ret.Time = in["time"].(string)
@@ -89,6 +92,7 @@ func getObjectClockShowOperOper(d []interface{}) edpt.ClockShowOperOper {
 
 func dataToEndpointClockShowOper(d *schema.ResourceData) edpt.ClockShowOper {
 	var ret edpt.ClockShowOper
+
 	ret.Oper = getObjectClockShowOperOper(d.Get("oper").([]interface{}))
 	return ret
 }

@@ -3,12 +3,15 @@
 page_title: "thunder_slb_rate_limit_log Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_rate_limit_log: Configure rate limit logging
+  PLACEHOLDER
 ---
 
 # thunder_slb_rate_limit_log (Resource)
 
+`thunder_slb_rate_limit_log`: Configure rate limit logging
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_rate_limit_log" "test_thunder_slb_rate_limit_log" {
+resource "thunder_slb_rate_limit_log" "thunder_slb_rate_limit_log" {
   sampling_enable {
     counters1 = "all"
   }
@@ -32,6 +34,7 @@ resource "thunder_slb_rate_limit_log" "test_thunder_slb_rate_limit_log" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -42,6 +45,6 @@ resource "thunder_slb_rate_limit_log" "test_thunder_slb_rate_limit_log" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'total_log_times': Total log times; 'total_log_msg': Total log messages; 'local_log_msg': Local log messages; 'remote_log_msg': Remote log messages; 'local_log_rate': Local rate (per sec); 'remote_log_rate': Remote rate (per sec); 'msg_too_big': Log message too big; 'buff_alloc_fail': Buffer alloc fail; 'no_route': No route; 'buff_send_fail': Buffer send fail; 'alloc_conn': Log-session alloc; 'free_conn': Log-session free; 'conn_alloc_fail': Log-session alloc fail; 'no_repeat_msg': No repeat message; 'local_log_dropped': Local log dropped due to rate-limit;
 
 

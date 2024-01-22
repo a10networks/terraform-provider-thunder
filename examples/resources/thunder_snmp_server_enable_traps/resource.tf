@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_snmp_server_enable_traps" "Snmp_Server_Enable_Traps_Test" {
   lldp = 1
   all  = 1
@@ -42,8 +41,7 @@ resource "thunder_snmp_server_enable_traps" "Snmp_Server_Enable_Traps_Test" {
   }
   routing {
     bgp {
-      bgpestablishednotification = 1
-
+      bgpestablishednotification   = 1
       bgpbackwardtransnotification = 1
     }
     isis {
@@ -60,7 +58,6 @@ resource "thunder_snmp_server_enable_traps" "Snmp_Server_Enable_Traps_Test" {
       ospfvirtnbrstatechange      = 1
       ospflsdbapproachingoverflow = 1
       ospfifauthfailure           = 1
-
     }
   }
   gslb {

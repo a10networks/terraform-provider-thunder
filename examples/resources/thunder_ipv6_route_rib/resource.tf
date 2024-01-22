@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ipv6_route_rib" "rib_1" {
   ipv6_address = "1:2:3:4::/64"
   ipv6_nexthop_ipv6 {

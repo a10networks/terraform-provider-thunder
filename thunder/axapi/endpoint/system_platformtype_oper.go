@@ -1,0 +1,51 @@
+
+
+package endpoint
+import (
+    "github.com/a10networks/terraform-provider-thunder/thunder/axapi"
+    "github.com/clarketm/json"
+)
+
+//based on ACOS 6_0_2_P1-37
+type SystemPlatformtypeOper struct {
+    
+    Oper SystemPlatformtypeOperOper `json:"oper"`
+
+}
+type DataSystemPlatformtypeOper struct {
+    DtSystemPlatformtypeOper SystemPlatformtypeOper `json:"platformtype"`
+}
+
+
+type SystemPlatformtypeOperOper struct {
+    PlatformType string `json:"platform-type"`
+    PlatformInfo string `json:"platform-info"`
+    PlatformId int `json:"platform-id"`
+    PlatformAxv int `json:"platform-axv"`
+    PlatformDpdk int `json:"platform-dpdk"`
+    PlatformLxc int `json:"platform-lxc"`
+}
+
+func (p *SystemPlatformtypeOper) GetId() string{
+    return "1"
+}
+
+func (p *SystemPlatformtypeOper) getPath() string{
+    return "system/platformtype/oper"
+}
+
+func (p *SystemPlatformtypeOper) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) (DataSystemPlatformtypeOper,error) {
+logger.Println("SystemPlatformtypeOper::Get")
+    headers := axapi.GenRequestHeader(authToken)
+    _, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
+    var payload DataSystemPlatformtypeOper
+    if err == nil {
+        if len(axResp) > 0{
+        err = json.Unmarshal(axResp, &p)
+        }
+        if err != nil {
+            logger.Println("json.Unmarshal() failed with error", err)
+        }
+    }
+    return payload,err
+}

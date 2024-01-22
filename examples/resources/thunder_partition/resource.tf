@@ -3,10 +3,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_partition" "partition" {
-  user_tag         = "tag1"
-  partition_name   = "part8"
-  application_type = "adc"
-  id1              = 8
+resource "thunder_partition" "thunder_partition" {
+  partition_name = "test"
+  id1            = 4
+  user_tag       = "test_partition"
 }

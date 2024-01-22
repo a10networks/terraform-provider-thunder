@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_web_category_proxy_server" "resourceWebCategoryProxyServerTest" {
+resource "thunder_web_category_proxy_server" "thunderWebCategoryProxyServerTest" {
   proxy_host    = "192.168.50.10"
   http_port     = 80
   https_port    = 443

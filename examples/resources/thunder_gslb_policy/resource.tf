@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_gslb_policy" "thunder_gslb_policy_test" {
+resource "thunder_gslb_policy" "thunder_gslb_policy" {
   name                           = "a10"
   health_check_preference_enable = 1
   health_preference_top          = 1

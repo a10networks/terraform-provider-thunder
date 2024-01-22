@@ -3,12 +3,15 @@
 page_title: "thunder_slb_dns_response_rate_limiting Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_dns_response_rate_limiting: Configure DNS Response-Rate-Limiting
+  PLACEHOLDER
 ---
 
 # thunder_slb_dns_response_rate_limiting (Resource)
 
+`thunder_slb_dns_response_rate_limiting`: Configure DNS Response-Rate-Limiting
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_dns_response_rate_limiting" "test_thunder_slb_dns_response_rate_limiting" {
   sampling_enable {
     counters1 = "all"
@@ -32,7 +34,7 @@ resource "thunder_slb_dns_response_rate_limiting" "test_thunder_slb_dns_response
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,6 @@ resource "thunder_slb_dns_response_rate_limiting" "test_thunder_slb_dns_response
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'curr_entries': Current Entry Count; 'total_created': Total Entry Created; 'total_inserted': Total Entry Inserted; 'total_withdrew': Total Entry Withdrew; 'total_ready_to_free': Total Entry Ready To Free; 'total_freed': Total Entry Freed; 'total_logs': Total Logs; 'total_overflow_entry_hits': Total Overflow Entry Hits; 'total_refill': Total Refills; 'total_credit_exceeded': Total Credit Exceeded; 'other_thread_refill': Other Thread Refilling; 'err_entry_create_failed': Entry Creation Failure; 'err_entry_create_oom': Entry Creation Out of Memory; 'err_entry_ext_create_oom': Entry Extension Creation Out of Memory; 'err_entry_insert_failed': Entry Insert Failed; 'err_vport_fail_match': Failed to Match Vport;
 
 

@@ -3,9 +3,9 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
+resource "thunder_snmp_server_group" "thunder_snmp_server_group" {
 
-resource "thunder_snmp_server_group" "resourceSnmpServerGroupTest" {
-  read      = "a10"
-  groupname = "a"
-  v3        = "auth"
+  groupname = "test-group"
+  read      = "test-view"
+  v3        = "noauth"
 }

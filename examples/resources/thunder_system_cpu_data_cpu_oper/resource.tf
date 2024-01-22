@@ -3,10 +3,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-data "thunder_system_cpu_data_cpu_oper" "test"{
+data "thunder_system_cpu_data_cpu_oper" "thunder_system_cpu_data_cpu_oper" {
 }
-
-output "testing" {
-  value = ["${data.thunder_system_cpu_data_cpu_oper.test}"]
+output "get_system_cpu_data_cpu_oper" {
+  value = ["${data.thunder_system_cpu_data_cpu_oper.thunder_system_cpu_data_cpu_oper}"]
 }

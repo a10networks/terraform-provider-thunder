@@ -3,43 +3,49 @@
 page_title: "thunder_snmp_server_enable_traps_system Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_enable_traps_system: Enable system group traps
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_enable_traps_system (Resource)
 
+`thunder_snmp_server_enable_traps_system`: Enable system group traps
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_system"   "SnMPServerEnableTrapsSystem"  {
-    all= 1
-    control_cpu_high= 1
-    data_cpu_high= 0
-    fan= 0
-    file_sys_read_only= 0
-    high_disk_use= 0
-    high_memory_use= 0
-    high_temp= 1
-    low_temp= 0
-    license_management= 0
-    packet_drop= 0
-    power= 0
-    pri_disk= 0
-    restart= 0
-    sec_disk= 0
-    shutdown= 1
-    smp_resource_event= 0
-    syslog_severity_one= 0
-    tacacs_server_up_down= 0
-    start= 0
-  
+resource "thunder_snmp_server_enable_traps_system" "thunder_snmp_server_enable_traps_system" {
+  all = 0
+  apps_global {
+    sessions_threshold = 0
+    cps_threshold      = 0
+  }
+  control_cpu_high      = 0
+  data_cpu_high         = 0
+  fan                   = 0
+  file_sys_read_only    = 0
+  high_disk_use         = 0
+  high_memory_use       = 0
+  high_temp             = 0
+  license_management    = 0
+  low_temp              = 0
+  packet_drop           = 0
+  power                 = 0
+  pri_disk              = 0
+  restart               = 0
+  sec_disk              = 0
+  shutdown              = 0
+  smp_resource_event    = 0
+  start                 = 0
+  syslog_severity_one   = 0
+  tacacs_server_up_down = 0
 }
 ```
 
@@ -48,30 +54,40 @@ resource  "thunder_snmp_server_enable_traps_system"   "SnMPServerEnableTrapsSyst
 
 ### Optional
 
-- `all` (Number)
-- `control_cpu_high` (Number)
-- `data_cpu_high` (Number)
-- `fan` (Number)
-- `file_sys_read_only` (Number)
-- `high_disk_use` (Number)
-- `high_memory_use` (Number)
-- `high_temp` (Number)
-- `license_management` (Number)
-- `low_temp` (Number)
-- `packet_drop` (Number)
-- `power` (Number)
-- `pri_disk` (Number)
-- `restart` (Number)
-- `sec_disk` (Number)
-- `shutdown` (Number)
-- `smp_resource_event` (Number)
-- `start` (Number)
-- `syslog_severity_one` (Number)
-- `tacacs_server_up_down` (Number)
-- `uuid` (String)
+- `all` (Number) Enable all system group traps
+- `apps_global` (Block List, Max: 1) (see [below for nested schema](#nestedblock--apps_global))
+- `control_cpu_high` (Number) Enable control CPU usage high trap
+- `data_cpu_high` (Number) Enable data CPU usage high trap
+- `fan` (Number) Enable system fan trap
+- `file_sys_read_only` (Number) Enable file system read-only trap
+- `high_disk_use` (Number) Enable system high disk usage trap
+- `high_memory_use` (Number) Enable system high memory usage trap
+- `high_temp` (Number) Enable system high temperature trap
+- `license_management` (Number) Enable system license management traps
+- `low_temp` (Number) Enable system low temperature trap
+- `packet_drop` (Number) Enable system packet dropped trap
+- `power` (Number) Enable system power supply trap
+- `pri_disk` (Number) Enable system primary hard disk trap
+- `restart` (Number) Enable system restart trap
+- `sec_disk` (Number) Enable system secondary hard disk trap
+- `shutdown` (Number) Enable system shutdown trap
+- `smp_resource_event` (Number) Enable system smp resource event trap
+- `start` (Number) Enable system start trap
+- `syslog_severity_one` (Number) Enable system syslog severity one messages trap
+- `tacacs_server_up_down` (Number) Enable system TACACS monitor server up/down trap
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
+
+<a id="nestedblock--apps_global"></a>
+### Nested Schema for `apps_global`
+
+Optional:
+
+- `cps_threshold` (Number) Enable CPS trap
+- `sessions_threshold` (Number) Enable sessions threshold trap
+- `uuid` (String) uuid of the object
 
 

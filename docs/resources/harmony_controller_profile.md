@@ -3,12 +3,15 @@
 page_title: "thunder_harmony_controller_profile Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_harmony_controller_profile: Harmony controller profile
+  PLACEHOLDER
 ---
 
 # thunder_harmony_controller_profile (Resource)
 
+`thunder_harmony_controller_profile`: Harmony controller profile
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,20 +21,10 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_harmony_controller_profile" "profile" {
-  host              = "192.0.2.65"
-  port              = 8443
-  user_name         = "terraform@a10networks.com"
-  secret_value      = "admin123"
-  provider2         = "root"
-  action            = "register"
-  use_mgmt_port     = 1
-  region            = "US/WEST"
-  availability_zone = "DC-1"
-  thunder_mgmt_ip {
-    ip_address = "192.0.2.65"
-  }
+resource "thunder_harmony_controller_profile" "thunder_harmony_controller_profile" {
+  host          = "10.10.1.11"
+  port          = 31234
+  use_mgmt_port = 1
 }
 ```
 
@@ -40,26 +33,55 @@ resource "thunder_harmony_controller_profile" "profile" {
 
 ### Optional
 
-- `action` (String)
-- `availability_zone` (String)
-- `host` (String)
-- `port` (Number)
-- `provider2` (String)
-- `region` (String)
-- `secret_value` (String)
+- `action` (String) 'register': Register the device to the controller; 'deregister': Deregister the device from controller;
+- `analytics` (String) 'all': Export all the analytics information. This is the default value.; 'system': Export only system level policy for device management.; 'disable': Disable all the exports from the device.;
+- `auto_restart_action` (String) 'enable': enable auto analytics bus restart, default behavior is enable; 'disable': disable auto analytics bus restart;
+- `availability_zone` (String) availablity zone of the thunder-device
+- `cluster_id` (String) id for the cluster in harmony controller, typically an uuid
+- `cluster_name` (String) name of cluster in harmony controller that this device is a member of
+- `host` (String) Set harmony controller host address
+- `host_ipv6` (String) IPV6 address or FQDN for the host
+- `interval` (Number) auto analytics bus restart time interval in mins, default is 3 mins
+- `port` (Number) Set port for remote Harmony Controller
+- `provider1` (String) provider for the harmony-controller
+- `re_sync` (Block List, Max: 1) (see [below for nested schema](#nestedblock--re_sync))
+- `region` (String) region of the thunder-device
+- `secret_value` (String) Specify the password for the user
 - `thunder_mgmt_ip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--thunder_mgmt_ip))
-- `use_mgmt_port` (Number)
-- `user_name` (String)
+- `tunnel` (Block List, Max: 1) (see [below for nested schema](#nestedblock--tunnel))
+- `use_mgmt_port` (Number) Use management port for connections
+- `user_name` (String) user-name for the tenant
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
+
+<a id="nestedblock--re_sync"></a>
+### Nested Schema for `re_sync`
+
+Optional:
+
+- `analytics_bus` (Number) re-sync analtyics bus connections
+- `schema_registry` (Number) re-sync the schema registry
+
 
 <a id="nestedblock--thunder_mgmt_ip"></a>
 ### Nested Schema for `thunder_mgmt_ip`
 
 Optional:
 
-- `ip_address` (String)
+- `ip_address` (String) IP address (IPv4 address)
+- `ipv6_addr` (String) IPV6 address for the host
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--tunnel"></a>
+### Nested Schema for `tunnel`
+
+Optional:
+
+- `action` (String) 'enable': Tunnel Enable; 'disable': Tunnel Disable;
+- `uuid` (String) uuid of the object
 
 

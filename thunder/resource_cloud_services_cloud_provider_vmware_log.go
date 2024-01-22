@@ -14,20 +14,23 @@ func resourceCloudServicesCloudProviderVmwareLog() *schema.Resource {
 		UpdateContext: resourceCloudServicesCloudProviderVmwareLogUpdate,
 		ReadContext:   resourceCloudServicesCloudProviderVmwareLogRead,
 		DeleteContext: resourceCloudServicesCloudProviderVmwareLogDelete,
+
 		Schema: map[string]*schema.Schema{
 			"action": {
-				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable VMware Log Analytics; 'disable': Disable VMware Log Analytics(default);",
+				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable VMware vRealize Log Insight; 'disable': Disable VMware vRealize Log Insight (default);",
+			},
+			"active_partitions": {
+				Type: schema.TypeString, Optional: true, Description: "Specifies the thunder active partition name separated by a comma for multiple values",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
 			"vrli_host": {
-				Type: schema.TypeString, Optional: true, Description: "VMware Log Analytics vrli-host",
+				Type: schema.TypeString, Optional: true, Description: "Specifies the VMware vRLI host IP address",
 			},
 		},
 	}
 }
-
 func resourceCloudServicesCloudProviderVmwareLogCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -41,21 +44,6 @@ func resourceCloudServicesCloudProviderVmwareLogCreate(ctx context.Context, d *s
 			return diag.FromErr(err)
 		}
 		return resourceCloudServicesCloudProviderVmwareLogRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceCloudServicesCloudProviderVmwareLogRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceCloudServicesCloudProviderVmwareLogRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointCloudServicesCloudProviderVmwareLog(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -75,7 +63,6 @@ func resourceCloudServicesCloudProviderVmwareLogUpdate(ctx context.Context, d *s
 	}
 	return diags
 }
-
 func resourceCloudServicesCloudProviderVmwareLogDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -91,9 +78,25 @@ func resourceCloudServicesCloudProviderVmwareLogDelete(ctx context.Context, d *s
 	return diags
 }
 
+func resourceCloudServicesCloudProviderVmwareLogRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceCloudServicesCloudProviderVmwareLogRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointCloudServicesCloudProviderVmwareLog(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
 func dataToEndpointCloudServicesCloudProviderVmwareLog(d *schema.ResourceData) edpt.CloudServicesCloudProviderVmwareLog {
 	var ret edpt.CloudServicesCloudProviderVmwareLog
 	ret.Inst.Action = d.Get("action").(string)
+	ret.Inst.ActivePartitions = d.Get("active_partitions").(string)
 	//omit uuid
 	ret.Inst.VrliHost = d.Get("vrli_host").(string)
 	return ret

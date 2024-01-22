@@ -4,11 +4,14 @@ page_title: "thunder_slb_server_port Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
   thunder_slb_server_port: Real Server Port
+  PLACEHOLDER
 ---
 
 # thunder_slb_server_port (Resource)
 
 `thunder_slb_server_port`: Real Server Port
+
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,36 +21,26 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_server_port" "Slb_Server_Port_Test" {
-  server_name       = thunder_server.resourceServerTest.name
+
+  name              = "test-server1"
   protocol          = "tcp"
   weight            = 10
   stats_data_action = "stats-data-disable"
-  template_port     = "incedo"
-  conn_limit        = 1
+  template_port     = "default"
+  conn_limit        = 23241
   support_http2     = 1
   sampling_enable {
     counters1 = "all"
   }
-  no_ssl              = 1
-  template_server_ssl = "a10networks"
-  alternate_port {
-    alternate_name        = "rs1-a1"
-    alternate             = 1
-    alternate_server_port = 80
-  }
-  port_number    = 800
-  extended_stats = 1
-  conn_resume    = 1
-  user_tag       = "test123"
-  range          = 200
-  auth_cfg {
-    service_principal_name = "string1234"
-  }
-  action       = "disable-with-health-check"
-  no_logging   = 1
-  health_check = "test"
+  no_ssl               = 1
+  port_number          = 800
+  extended_stats       = 1
+  conn_resume          = 2551
+  user_tag             = "test123"
+  range                = 201
+  health_check_disable = 0
+  health_check         = "ping"
 }
 ```
 
@@ -56,9 +49,9 @@ resource "thunder_slb_server_port" "Slb_Server_Port_Test" {
 
 ### Required
 
+- `name` (String) Name
 - `port_number` (Number) Port Number
 - `protocol` (String) 'tcp': TCP Port; 'udp': UDP Port;
-- `server_name` (String) Server Name
 
 ### Optional
 
@@ -74,6 +67,7 @@ resource "thunder_slb_server_port" "Slb_Server_Port_Test" {
 - `health_check_follow_port` (Number) Specify which port to follow for health status (Port Number)
 - `no_logging` (Number) Do not log connection over limit event
 - `no_ssl` (Number) No SSL
+- `only` (Number) Force using HTTP/2 with Prior Knowledge all the time
 - `packet_capture_template` (String) Name of the packet capture template to be bind with this object
 - `range` (Number) Port range (Port range value - used for vip-to-rport-mapping and vport-rport range mapping)
 - `rport_health_check_shared` (String) Health Check (Monitor Name)

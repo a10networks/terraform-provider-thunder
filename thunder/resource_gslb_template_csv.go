@@ -5,7 +5,6 @@ import (
 	edpt "github.com/a10networks/terraform-provider-thunder/thunder/axapi/endpoint"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
 func resourceGslbTemplateCsv() *schema.Resource {
@@ -15,24 +14,19 @@ func resourceGslbTemplateCsv() *schema.Resource {
 		UpdateContext: resourceGslbTemplateCsvUpdate,
 		ReadContext:   resourceGslbTemplateCsvRead,
 		DeleteContext: resourceGslbTemplateCsvDelete,
+
 		Schema: map[string]*schema.Schema{
 			"csv_name": {
-				Type: schema.TypeString, Required: true, ForceNew: true, Description: "Specify name of csv template",
-				ValidateFunc: validation.StringLenBetween(1, 63),
+				Type: schema.TypeString, Required: true, Description: "Specify name of csv template",
 			},
 			"delim_char": {
 				Type: schema.TypeString, Optional: true, Default: ",", Description: "enter a delimiter character, default \",\"",
-				ValidateFunc:  validation.StringLenBetween(1, 1),
-				ConflictsWith: []string{"delim_num"},
 			},
 			"delim_num": {
 				Type: schema.TypeInt, Optional: true, Default: 44, Description: "enter a delimiter number, default 44 (\",\")",
-				ValidateFunc:  validation.IntBetween(0, 255),
-				ConflictsWith: []string{"delim_char"},
 			},
 			"ipv6_enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Support IPv6 IP ranges",
-				ValidateFunc: validation.IntBetween(0, 1),
 			},
 			"multiple_fields": {
 				Type: schema.TypeList, Optional: true, Description: "",
@@ -40,18 +34,15 @@ func resourceGslbTemplateCsv() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"field": {
 							Type: schema.TypeInt, Optional: true, Description: "Field index number (Index of Field)",
-							ValidateFunc: validation.IntBetween(1, 64),
 						},
 						"csv_type": {
 							Type: schema.TypeString, Optional: true, Description: "'ip-from': Beginning address of IP range or subnet; 'ip-to-mask': Ending address of IP range or Mask; 'continent': Continent; 'country': Country; 'state': State or province; 'city': City;",
-							ValidateFunc: validation.StringInSlice([]string{"ip-from", "ip-to-mask", "continent", "country", "state", "city"}, false),
 						},
 					},
 				},
 			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
-				ValidateFunc: validation.StringLenBetween(1, 127),
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -59,7 +50,6 @@ func resourceGslbTemplateCsv() *schema.Resource {
 		},
 	}
 }
-
 func resourceGslbTemplateCsvCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -73,21 +63,6 @@ func resourceGslbTemplateCsvCreate(ctx context.Context, d *schema.ResourceData, 
 			return diag.FromErr(err)
 		}
 		return resourceGslbTemplateCsvRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceGslbTemplateCsvRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceGslbTemplateCsvRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointGslbTemplateCsv(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -107,7 +82,6 @@ func resourceGslbTemplateCsvUpdate(ctx context.Context, d *schema.ResourceData, 
 	}
 	return diags
 }
-
 func resourceGslbTemplateCsvDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -123,9 +97,25 @@ func resourceGslbTemplateCsvDelete(ctx context.Context, d *schema.ResourceData, 
 	return diags
 }
 
+func resourceGslbTemplateCsvRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceGslbTemplateCsvRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointGslbTemplateCsv(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
 func getSliceGslbTemplateCsvMultipleFields(d []interface{}) []edpt.GslbTemplateCsvMultipleFields {
-	count := len(d)
-	ret := make([]edpt.GslbTemplateCsvMultipleFields, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbTemplateCsvMultipleFields, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbTemplateCsvMultipleFields

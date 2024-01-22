@@ -1,28 +1,25 @@
-
-
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_routing_isis"   "SnMPServerEnableTrapsRoutingIsis"  {
-    
-    isis_adjacency_change= 1
-    isis_area_mismatch= 1
-    isis_attempt_to_exceed_max_sequence= 1
-    isis_authentication_failure= 1
-    isis_authentication_type_failure= 1
-    isis_corrupted_lsp_detected= 1
-    isis_database_overload= 1
-    isis_id_len_mismatch= 1
-    isis_lsp_too_large_to_propagate= 0
-    isis_manual_address_drops= 1
-    isis_max_area_addresses_mismatch= 1
-    isis_originating_lsp_buffer_size_mismatch= 0
-    isis_own_lsp_purge= 0
-    isis_protocols_supported_mismatch= 0
-    isis_rejected_adjacency= 0
-    isis_sequence_number_skip= 0
-    isis_version_skew= 0
-   
+resource "thunder_snmp_server_enable_traps_routing_isis" "thunder_snmp_server_enable_traps_routing_isis" {
+  isisadjacencychange                  = 0
+  isisareamismatch                     = 0
+  isisattempttoexceedmaxsequence       = 0
+  isisauthenticationfailure            = 0
+  isisauthenticationtypefailure        = 0
+  isiscorruptedlspdetected             = 0
+  isisdatabaseoverload                 = 0
+  isisidlenmismatch                    = 0
+  isislsperrordetected                 = 0
+  isislsptoolargetopropagate           = 0
+  isismanualaddressdrops               = 0
+  isismaxareaaddressesmismatch         = 0
+  isisoriginatinglspbuffersizemismatch = 0
+  isisownlsppurge                      = 0
+  isisprotocolssupportedmismatch       = 0
+  isisrejectedadjacency                = 0
+  isissequencenumberskip               = 0
+  isisversionskew                      = 0
 }

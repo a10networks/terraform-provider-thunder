@@ -3,12 +3,15 @@
 page_title: "thunder_slb_player_id_global Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_player_id_global: Player-id global commands
+  PLACEHOLDER
 ---
 
 # thunder_slb_player_id_global (Resource)
 
+`thunder_slb_player_id_global`: Player-id global commands
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,14 +21,13 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_player_id_global" "test_thunder_slb_player_id_global" {
-  min_expiration          = 300
-  pkt_activity_expiration = 234
-  enable_64bit_player_id  = 1
-  abs_max_expiration      = 200
-  force_passive           = 1
-  enforcement_timer       = 20
+resource "thunder_slb_player_id_global" "thunder_slb_player_id_global" {
+  abs_max_expiration      = 10
+  enable_64bit_player_id  = 0
+  enforcement_timer       = 480
+  force_passive           = 0
+  min_expiration          = 1
+  pkt_activity_expiration = 5
   sampling_enable {
     counters1 = "all"
   }
@@ -37,13 +39,14 @@ resource "thunder_slb_player_id_global" "test_thunder_slb_player_id_global" {
 
 ### Optional
 
-- `abs_max_expiration` (Number)
-- `enable_64bit_player_id` (Number)
-- `enforcement_timer` (Number)
-- `force_passive` (Number)
-- `min_expiration` (Number)
-- `pkt_activity_expiration` (Number)
+- `abs_max_expiration` (Number) Absolute max record expiration value (default 10 minutes) (Absolute max record expiration time in minutes, default 10)
+- `enable_64bit_player_id` (Number) Enable 64 bit player id check. Default is 32 bit
+- `enforcement_timer` (Number) Time to playerid enforcement after bootup (default 480 seconds) (Time to playerid enforcement in seconds, default 480)
+- `force_passive` (Number) Forces the device to be in passive mode (Only stats and no packet drops)
+- `min_expiration` (Number) Minimum record expiration value (default 1 min) (Min record expiration time in minutes, default 1)
+- `pkt_activity_expiration` (Number) Packet activity record expiration value (default 5 minutes) (Packet activity record expiration time in minutes, default 5)
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -54,6 +57,6 @@ resource "thunder_slb_player_id_global" "test_thunder_slb_player_id_global" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'total_playerids_created': Playerid records created; 'total_playerids_deleted': Playerid records deleted; 'total_abs_max_age_outs': Playerid records max time aged out; 'total_pkt_activity_age_outs': Playerid records idle timeout; 'total_invalid_playerid_pkts': Invalid playerid packets; 'total_invalid_playerid_drops': Invalid playerid packet drops; 'total_valid_playerid_pkts': Valid playerid packets;
 
 

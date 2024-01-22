@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_server" "server1" {
   name                       = "server1"
   slow_start                 = 1

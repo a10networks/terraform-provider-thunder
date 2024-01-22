@@ -3,12 +3,15 @@
 page_title: "thunder_glm Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_glm: Set GLM Connection values
+  PLACEHOLDER
 ---
 
 # thunder_glm (Resource)
 
+`thunder_glm`: Set GLM Connection values
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_glm" "Glm_Test" {
+resource "thunder_glm" "thunder_glm" {
   use_mgmt_port = 1
   burst         = 0
   interval      = 1
@@ -44,33 +46,92 @@ resource "thunder_glm" "Glm_Test" {
 
 ### Optional
 
-- `allocate_bandwidth` (Number)
-- `appliance_name` (String)
-- `burst` (Number)
-- `enable_requests` (Number)
-- `enterprise` (String)
-- `interval` (Number)
-- `port` (Number)
+- `allocate_bandwidth` (Number) Enter the requested bandwidth in Mbps for Capacity Pool
+- `appliance_name` (String) Helpful identifier for this appliance
+- `burst` (Number) Enable Burst License
+- `check_expiration` (Number)
+- `create_license_request` (Block List, Max: 1) (see [below for nested schema](#nestedblock--create_license_request))
+- `enable_requests` (Number) Turn on periodic GLM license requests (default license retrieval interval is every 24 hours)
+- `enterprise` (String) Enter the ELM hostname, IP or [IPV6]
+- `enterprise_ha_host_list` (Block List) (see [below for nested schema](#nestedblock--enterprise_ha_host_list))
+- `enterprise_request_type` (String) 'fqdn': TLS verified with FQDN; 'self-signed': TLS verified with self signed certificate(Default); 'self-signed-pull-cert': Request and use self signed certificate;
+- `host` (String)
+- `interval` (Number) GLM license request interval (in hours)
+- `new_license` (Block List, Max: 1) (see [below for nested schema](#nestedblock--new_license))
+- `port` (Number) License request port (default 443)
 - `proxy_server` (Block List, Max: 1) (see [below for nested schema](#nestedblock--proxy_server))
-- `token` (String)
-- `use_mgmt_port` (Number)
-- `uuid` (String)
+- `send` (Block List, Max: 1) (see [below for nested schema](#nestedblock--send))
+- `thunder_capacity_license` (Number)
+- `token` (String) License entitlement token
+- `use_mgmt_port` (Number) Use management port to connect to GLM
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
+
+<a id="nestedblock--create_license_request"></a>
+### Nested Schema for `create_license_request`
+
+Optional:
+
+- `create_license_request` (Number) Create a GLM trial or license request
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--enterprise_ha_host_list"></a>
+### Nested Schema for `enterprise_ha_host_list`
+
+Required:
+
+- `host_entry` (String) Enter the ELM hostname, IP or [IPV6]
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--new_license"></a>
+### Nested Schema for `new_license`
+
+Optional:
+
+- `account_name` (String) Account Name
+- `country` (String) Country
+- `existing_org` (Number) Use existing account with organization ID
+- `existing_user` (Number) Use an existing account with email and password
+- `first_name` (String) First Name
+- `glm_email` (String) GLM email
+- `glm_password` (String) GLM password
+- `last_name` (String) Last Name
+- `name` (String) License name (Configure license name)
+- `new_email` (String) GLM email
+- `new_password` (String) GLM password
+- `new_user` (Number) Create a new account
+- `org_id` (Number) GLM organization id
+- `phone` (String) Phone
+- `type` (String) 'webroot': webroot; 'webroot_trial': webroot_trial; 'webroot_ti': webroot_ti; 'webroot_ti_trial': webroot_ti_trial; 'qosmos': qosmos; 'qosmos_trial': qosmos_trial; 'ipsec_vpn': ipsec_vpn;
+
 
 <a id="nestedblock--proxy_server"></a>
 ### Nested Schema for `proxy_server`
 
 Optional:
 
-- `encrypted` (String)
-- `host` (String)
-- `password` (Number)
-- `port` (Number)
-- `secret_string` (String)
-- `username` (String)
-- `uuid` (String)
+- `host` (String) Proxy server hostname or IP address
+- `password` (Number) Password for proxy authentication
+- `port` (Number) Proxy server port
+- `secret_string` (String) password value
+- `username` (String) Username for proxy authentication
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--send"></a>
+### Nested Schema for `send`
+
+Optional:
+
+- `ha_status` (Number) Send a ELM HA status request
+- `license_request` (Number) Immediately send a single GLM license request
 
 

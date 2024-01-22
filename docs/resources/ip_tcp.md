@@ -3,12 +3,15 @@
 page_title: "thunder_ip_tcp Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ip_tcp: Global TCP parameters
+  PLACEHOLDER
 ---
 
 # thunder_ip_tcp (Resource)
 
+`thunder_ip_tcp`: Global TCP parameters
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ip_tcp" "Iptcp" {
   syn_cookie {
     threshold = 32
@@ -32,7 +34,7 @@ resource "thunder_ip_tcp" "Iptcp" {
 ### Optional
 
 - `syn_cookie` (Block List, Max: 1) (see [below for nested schema](#nestedblock--syn_cookie))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,7 @@ resource "thunder_ip_tcp" "Iptcp" {
 
 Optional:
 
-- `threshold` (Number)
+- `sack_enable` (Number) Enable HW Syn-Cookie SACK support
+- `threshold` (Number) SYN cookie expire threshold (seconds (default is 4))
 
 

@@ -10,10 +10,8 @@ import (
 func resourceSystemMemoryOper() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_system_memory_oper`: Operational Status for the object memory\n\n__PLACEHOLDER__",
-		// CreateContext: resourceSystemMemoryOperCreate,
-		// UpdateContext: resourceSystemMemoryOperUpdate,
 		ReadContext: resourceSystemMemoryOperRead,
-		// DeleteContext: resourceSystemMemoryOperDelete,
+
 		Schema: map[string]*schema.Schema{
 			"oper": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -150,10 +148,10 @@ func resourceSystemMemoryOperRead(ctx context.Context, d *schema.ResourceData, m
 	if client.Host != "" {
 		obj := dataToEndpointSystemMemoryOper(d)
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		items := setObjectSystemMemoryOperOper(res)
 		d.SetId(obj.GetId())
-		d.Set("oper", items)
-
+		logger.Println(res)
+		SystemMemoryOperOper := setObjectSystemMemoryOperOper(res)
+		d.Set("oper", SystemMemoryOperOper)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -161,26 +159,26 @@ func resourceSystemMemoryOperRead(ctx context.Context, d *schema.ResourceData, m
 	return diags
 }
 
-func setObjectSystemMemoryOperOper(res edpt.SystemMemoryy) []interface{} {
+func setObjectSystemMemoryOperOper(ret edpt.DataSystemMemoryOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"total":                res.DataSystemMemory.Oper.Total,
-			"system_memory":        setSliceSystemMemoryOperOperSystemMemory(res.DataSystemMemory.Oper.SystemMemory),
-			"system_memory_counts": res.DataSystemMemory.Oper.SystemMemoryCounts,
-			"aflex_memory":         setSliceSystemMemoryOperOperAflexMemory(res.DataSystemMemory.Oper.AflexMemory),
-			"aflex_memory_counts":  res.DataSystemMemory.Oper.AflexMemoryCounts,
-			"ssl_memory":           setSliceSystemMemoryOperOperSslMemory(res.DataSystemMemory.Oper.SslMemory),
-			"ssl_memory_counts":    res.DataSystemMemory.Oper.SslMemoryCounts,
-			"n2_memory":            setSliceSystemMemoryOperOperN2Memory(res.DataSystemMemory.Oper.N2Memory),
-			"n2_memory_counts":     res.DataSystemMemory.Oper.N2MemoryCounts,
-			"tcp_memory":           setSliceSystemMemoryOperOperTcpMemory(res.DataSystemMemory.Oper.TcpMemory),
-			"tcp_memory_counts":    res.DataSystemMemory.Oper.TcpMemoryCounts,
-			"usage":                res.DataSystemMemory.Oper.Usage,
-			"used":                 res.DataSystemMemory.Oper.Used,
-			"free":                 res.DataSystemMemory.Oper.Free,
-			"shared":               res.DataSystemMemory.Oper.Shared,
-			"buffers":              res.DataSystemMemory.Oper.Buffers,
-			"cached":               res.DataSystemMemory.Oper.Cached,
+			"total":                ret.DtSystemMemoryOper.Oper.Total,
+			"system_memory":        setSliceSystemMemoryOperOperSystemMemory(ret.DtSystemMemoryOper.Oper.SystemMemory),
+			"system_memory_counts": ret.DtSystemMemoryOper.Oper.SystemMemoryCounts,
+			"aflex_memory":         setSliceSystemMemoryOperOperAflexMemory(ret.DtSystemMemoryOper.Oper.AflexMemory),
+			"aflex_memory_counts":  ret.DtSystemMemoryOper.Oper.AflexMemoryCounts,
+			"ssl_memory":           setSliceSystemMemoryOperOperSslMemory(ret.DtSystemMemoryOper.Oper.SslMemory),
+			"ssl_memory_counts":    ret.DtSystemMemoryOper.Oper.SslMemoryCounts,
+			"n2_memory":            setSliceSystemMemoryOperOperN2Memory(ret.DtSystemMemoryOper.Oper.N2Memory),
+			"n2_memory_counts":     ret.DtSystemMemoryOper.Oper.N2MemoryCounts,
+			"tcp_memory":           setSliceSystemMemoryOperOperTcpMemory(ret.DtSystemMemoryOper.Oper.TcpMemory),
+			"tcp_memory_counts":    ret.DtSystemMemoryOper.Oper.TcpMemoryCounts,
+			"usage":                ret.DtSystemMemoryOper.Oper.Usage,
+			"used":                 ret.DtSystemMemoryOper.Oper.Used,
+			"free":                 ret.DtSystemMemoryOper.Oper.Free,
+			"shared":               ret.DtSystemMemoryOper.Oper.Shared,
+			"buffers":              ret.DtSystemMemoryOper.Oper.Buffers,
+			"cached":               ret.DtSystemMemoryOper.Oper.Cached,
 		},
 	}
 }
@@ -246,9 +244,10 @@ func setSliceSystemMemoryOperOperTcpMemory(d []edpt.SystemMemoryOperOperTcpMemor
 }
 
 func getObjectSystemMemoryOperOper(d []interface{}) edpt.SystemMemoryOperOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SystemMemoryOperOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Total = in["total"].(int)
 		ret.SystemMemory = getSliceSystemMemoryOperOperSystemMemory(in["system_memory"].([]interface{}))
@@ -272,8 +271,9 @@ func getObjectSystemMemoryOperOper(d []interface{}) edpt.SystemMemoryOperOper {
 }
 
 func getSliceSystemMemoryOperOperSystemMemory(d []interface{}) []edpt.SystemMemoryOperOperSystemMemory {
-	count := len(d)
-	ret := make([]edpt.SystemMemoryOperOperSystemMemory, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SystemMemoryOperOperSystemMemory, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SystemMemoryOperOperSystemMemory
@@ -286,8 +286,9 @@ func getSliceSystemMemoryOperOperSystemMemory(d []interface{}) []edpt.SystemMemo
 }
 
 func getSliceSystemMemoryOperOperAflexMemory(d []interface{}) []edpt.SystemMemoryOperOperAflexMemory {
-	count := len(d)
-	ret := make([]edpt.SystemMemoryOperOperAflexMemory, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SystemMemoryOperOperAflexMemory, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SystemMemoryOperOperAflexMemory
@@ -300,8 +301,9 @@ func getSliceSystemMemoryOperOperAflexMemory(d []interface{}) []edpt.SystemMemor
 }
 
 func getSliceSystemMemoryOperOperSslMemory(d []interface{}) []edpt.SystemMemoryOperOperSslMemory {
-	count := len(d)
-	ret := make([]edpt.SystemMemoryOperOperSslMemory, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SystemMemoryOperOperSslMemory, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SystemMemoryOperOperSslMemory
@@ -314,8 +316,9 @@ func getSliceSystemMemoryOperOperSslMemory(d []interface{}) []edpt.SystemMemoryO
 }
 
 func getSliceSystemMemoryOperOperN2Memory(d []interface{}) []edpt.SystemMemoryOperOperN2Memory {
-	count := len(d)
-	ret := make([]edpt.SystemMemoryOperOperN2Memory, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SystemMemoryOperOperN2Memory, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SystemMemoryOperOperN2Memory
@@ -328,8 +331,9 @@ func getSliceSystemMemoryOperOperN2Memory(d []interface{}) []edpt.SystemMemoryOp
 }
 
 func getSliceSystemMemoryOperOperTcpMemory(d []interface{}) []edpt.SystemMemoryOperOperTcpMemory {
-	count := len(d)
-	ret := make([]edpt.SystemMemoryOperOperTcpMemory, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SystemMemoryOperOperTcpMemory, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SystemMemoryOperOperTcpMemory
@@ -343,6 +347,7 @@ func getSliceSystemMemoryOperOperTcpMemory(d []interface{}) []edpt.SystemMemoryO
 
 func dataToEndpointSystemMemoryOper(d *schema.ResourceData) edpt.SystemMemoryOper {
 	var ret edpt.SystemMemoryOper
+
 	ret.Oper = getObjectSystemMemoryOperOper(d.Get("oper").([]interface{}))
 	return ret
 }

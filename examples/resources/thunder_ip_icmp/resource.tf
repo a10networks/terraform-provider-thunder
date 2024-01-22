@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_ip_icmp" "ICMP" {
+resource "thunder_ip_icmp" "thunder_ip_icmp" {
   redirect    = 1
   unreachable = 1
 }

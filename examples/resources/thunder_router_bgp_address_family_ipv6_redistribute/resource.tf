@@ -3,9 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-
-resource "thunder_router_bgp_address_family_ipv6_redistribute" "AFIpv6RedistributeTest" {
+resource "thunder_router_bgp_address_family_ipv6_redistribute" "thunder_router_bgp_address_family_ipv6_redistribute" {
 
   as_number = "300"
   connected_cfg {

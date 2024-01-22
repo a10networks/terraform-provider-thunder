@@ -3,12 +3,15 @@
 page_title: "thunder_snmp_server_location Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_location: Text for mib object sysLocation
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_location (Resource)
 
+`thunder_snmp_server_location`: Text for mib object sysLocation
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,9 +21,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_snmp_server_location" "resourceSnmpServerLocationTest" {
-  loc = "location_testing"
+resource "thunder_snmp_server_location" "thunder_snmp_server_location" {
+  loc = "230"
 }
 ```
 
@@ -29,8 +31,8 @@ resource "thunder_snmp_server_location" "resourceSnmpServerLocationTest" {
 
 ### Optional
 
-- `loc` (String)
-- `uuid` (String)
+- `loc` (String) The physical location of this node
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

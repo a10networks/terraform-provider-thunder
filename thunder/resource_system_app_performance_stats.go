@@ -11,6 +11,7 @@ func resourceSystemAppPerformanceStats() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_system_app_performance_stats`: Statistics for the object app-performance\n\n__PLACEHOLDER__",
 		ReadContext: resourceSystemAppPerformanceStatsRead,
+
 		Schema: map[string]*schema.Schema{
 			"stats": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -69,11 +70,11 @@ func resourceSystemAppPerformanceStatsRead(ctx context.Context, d *schema.Resour
 	var diags diag.Diagnostics
 	if client.Host != "" {
 		obj := dataToEndpointSystemAppPerformanceStats(d)
-		res, err := obj.Get(client.Token, client.Host, logger)
-		items := setObjectSystemAppPerformanceStatsStats(res)
+		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
 		d.SetId(obj.GetId())
-		d.Set("stats", items)
-
+		logger.Println(res)
+		SystemAppPerformanceStatsStats := setObjectSystemAppPerformanceStatsStats(res)
+		d.Set("stats", SystemAppPerformanceStatsStats)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -81,30 +82,31 @@ func resourceSystemAppPerformanceStatsRead(ctx context.Context, d *schema.Resour
 	return diags
 }
 
-func setObjectSystemAppPerformanceStatsStats(res edpt.SystemAppPerformancee) []interface{} {
+func setObjectSystemAppPerformanceStatsStats(ret edpt.DataSystemAppPerformanceStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"total_throughput_bits_per_sec": res.AppPerformance.Stats.TotalThroughputBitsPerSec,
-			"l4_conns_per_sec":              res.AppPerformance.Stats.L4ConnsPerSec,
-			"l7_conns_per_sec":              res.AppPerformance.Stats.L7ConnsPerSec,
-			"l7_trans_per_sec":              res.AppPerformance.Stats.L7TransPerSec,
-			"ssl_conns_per_sec":             res.AppPerformance.Stats.SslConnsPerSec,
-			"ip_nat_conns_per_sec":          res.AppPerformance.Stats.IpNatConnsPerSec,
-			"total_new_conns_per_sec":       res.AppPerformance.Stats.TotalNewConnsPerSec,
-			"total_curr_conns":              res.AppPerformance.Stats.TotalCurrConns,
-			"l4_bandwidth":                  res.AppPerformance.Stats.L4Bandwidth,
-			"l7_bandwidth":                  res.AppPerformance.Stats.L7Bandwidth,
-			"serv_ssl_conns_per_sec":        res.AppPerformance.Stats.ServSslConnsPerSec,
-			"fw_conns_per_sec":              res.AppPerformance.Stats.FwConnsPerSec,
-			"gifw_conns_per_sec":            res.AppPerformance.Stats.GifwConnsPerSec,
+			"total_throughput_bits_per_sec": ret.DtSystemAppPerformanceStats.Stats.TotalThroughputBitsPerSec,
+			"l4_conns_per_sec":              ret.DtSystemAppPerformanceStats.Stats.L4ConnsPerSec,
+			"l7_conns_per_sec":              ret.DtSystemAppPerformanceStats.Stats.L7ConnsPerSec,
+			"l7_trans_per_sec":              ret.DtSystemAppPerformanceStats.Stats.L7TransPerSec,
+			"ssl_conns_per_sec":             ret.DtSystemAppPerformanceStats.Stats.SslConnsPerSec,
+			"ip_nat_conns_per_sec":          ret.DtSystemAppPerformanceStats.Stats.IpNatConnsPerSec,
+			"total_new_conns_per_sec":       ret.DtSystemAppPerformanceStats.Stats.TotalNewConnsPerSec,
+			"total_curr_conns":              ret.DtSystemAppPerformanceStats.Stats.TotalCurrConns,
+			"l4_bandwidth":                  ret.DtSystemAppPerformanceStats.Stats.L4Bandwidth,
+			"l7_bandwidth":                  ret.DtSystemAppPerformanceStats.Stats.L7Bandwidth,
+			"serv_ssl_conns_per_sec":        ret.DtSystemAppPerformanceStats.Stats.ServSslConnsPerSec,
+			"fw_conns_per_sec":              ret.DtSystemAppPerformanceStats.Stats.FwConnsPerSec,
+			"gifw_conns_per_sec":            ret.DtSystemAppPerformanceStats.Stats.GifwConnsPerSec,
 		},
 	}
 }
 
 func getObjectSystemAppPerformanceStatsStats(d []interface{}) edpt.SystemAppPerformanceStatsStats {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SystemAppPerformanceStatsStats
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TotalThroughputBitsPerSec = in["total_throughput_bits_per_sec"].(int)
 		ret.L4ConnsPerSec = in["l4_conns_per_sec"].(int)
@@ -125,6 +127,7 @@ func getObjectSystemAppPerformanceStatsStats(d []interface{}) edpt.SystemAppPerf
 
 func dataToEndpointSystemAppPerformanceStats(d *schema.ResourceData) edpt.SystemAppPerformanceStats {
 	var ret edpt.SystemAppPerformanceStats
+
 	ret.Stats = getObjectSystemAppPerformanceStatsStats(d.Get("stats").([]interface{}))
 	return ret
 }

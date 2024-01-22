@@ -3,12 +3,15 @@
 page_title: "thunder_fw_alg_ftp Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_alg_ftp: Change Firewall FTP ALG Settings
+  PLACEHOLDER
 ---
 
 # thunder_fw_alg_ftp (Resource)
 
+`thunder_fw_alg_ftp`: Change Firewall FTP ALG Settings
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_alg_ftp" "test_thunder_fw_alg_ftp" {
   default_port_disable = "default-port-disable"
   sampling_enable {
@@ -32,9 +34,9 @@ resource "thunder_fw_alg_ftp" "test_thunder_fw_alg_ftp" {
 
 ### Optional
 
-- `default_port_disable` (String)
+- `default_port_disable` (String) 'default-port-disable': Disable FTP ALG default port 21;
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -45,6 +47,6 @@ resource "thunder_fw_alg_ftp" "test_thunder_fw_alg_ftp" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'client-port-request': PORT Requests From Client; 'client-eprt-request': EPRT Requests From Client; 'server-pasv-reply': PASV Replies From Server; 'server-epsv-reply': EPSV Replies From Server; 'port-retransmits': PORT Retransmits; 'pasv-retransmits': PASV Retransmits; 'smp-app-type-mismatch': SMP App Type Mismatch; 'retransmit-sanity-check-failure': Retransmit Sanity Check Failure; 'smp-conn-alloc-failure': SMP Helper Conn Alloc Failure; 'port-helper-created': PORT Helper Created; 'pasv-helper-created': PASV Helper Created; 'port-helper-acquire-in-del-q': PORT Helper Acquire In Del Queue; 'port-helper-acquire-already-used': PORT Helper Acquire Already Used; 'pasv-helper-acquire-in-del-q': PASV Helper Acquire In Del Queue; 'pasv-helper-acquire-already-used': PASV Helper Acquire Already Used; 'port-helper-freed-used': PORT Helper Freed Used; 'port-helper-freed-unused': PORT Helper Freed Unused; 'pasv-helper-freed-used': PASV Helper Freed Used; 'pasv-helper-freed-unused': PASV Helper Freed Unused;
 
 

@@ -3,12 +3,15 @@
 page_title: "thunder_fw_urpf Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_urpf: Unicast Reverse Path Forwarding (Default: loose)
+  PLACEHOLDER
 ---
 
 # thunder_fw_urpf (Resource)
 
+`thunder_fw_urpf`: Unicast Reverse Path Forwarding (Default: loose)
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_urpf" "test_thunder_fw_urpf" {
   status = "strict"
 }
@@ -29,8 +31,8 @@ resource "thunder_fw_urpf" "test_thunder_fw_urpf" {
 
 ### Optional
 
-- `status` (String)
-- `uuid` (String)
+- `status` (String) 'loose': Perform loose check; 'strict': Perform strict check; 'disable': Disable check;
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

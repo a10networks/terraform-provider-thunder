@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ipv6_nat_pool" "A" {
   pool_name     = "K"
   start_address = "a::1"

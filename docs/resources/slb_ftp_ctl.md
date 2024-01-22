@@ -3,12 +3,15 @@
 page_title: "thunder_slb_ftp_ctl Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_ftp_ctl: Configure FTP
+  PLACEHOLDER
 ---
 
 # thunder_slb_ftp_ctl (Resource)
 
+`thunder_slb_ftp_ctl`: Configure FTP
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_ftp_ctl" "test_thunder_slb_ftp_ctl" {
   sampling_enable {
     counters1 = "all"
@@ -32,7 +34,7 @@ resource "thunder_slb_ftp_ctl" "test_thunder_slb_ftp_ctl" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,6 @@ resource "thunder_slb_ftp_ctl" "test_thunder_slb_ftp_ctl" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'sessions_num': Total Control Sessions; 'alg_pkts_num': Total ALG packets; 'alg_pkts_xmitted_num': ALG packets rexmitted; 'alg_port_helper_created': Total PORT helper sessions; 'alg_pasv_helper_created': Total PASV helper sessions; 'alg_port_helper_freed_unused': PORT helper freed unused; 'alg_pasv_helper_freed_unused': PASV helper freed unused; 'alg_port_helper_nat_free': PORT helper NAT free;
 
 

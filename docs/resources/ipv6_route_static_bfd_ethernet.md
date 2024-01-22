@@ -3,12 +3,15 @@
 page_title: "thunder_ipv6_route_static_bfd_ethernet Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ipv6_route_static_bfd_ethernet: Ethernet interface
+  PLACEHOLDER
 ---
 
 # thunder_ipv6_route_static_bfd_ethernet (Resource)
 
+`thunder_ipv6_route_static_bfd_ethernet`: Ethernet interface
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ipv6_route_static_bfd_ethernet" "eth_1" {
   eth_num         = 2
   nexthop_ipv6_ll = "fe80:1:2:3::4"
@@ -34,7 +36,7 @@ resource "thunder_ipv6_route_static_bfd_ethernet" "eth_1" {
 ### Required
 
 - `eth_num` (Number) Ethernet (not a member of vlan or trunk)
-- `nexthop_ipv6_ll` (String) Nexthop IPv6 address (Link_local)
+- `nexthop_ipv6_ll` (String) Nexthop IPv6 address (Link-local)
 
 ### Optional
 

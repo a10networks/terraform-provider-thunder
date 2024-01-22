@@ -2,73 +2,62 @@ package thunder
 
 import (
 	"context"
-	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
 	edpt "github.com/a10networks/terraform-provider-thunder/thunder/axapi/endpoint"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
 func resourceIpNatPool() *schema.Resource {
 	return &schema.Resource{
+		Description:   "`thunder_ip_nat_pool`: Configure IP pool name\n\n__PLACEHOLDER__",
 		CreateContext: resourceIpNatPoolCreate,
 		UpdateContext: resourceIpNatPoolUpdate,
 		ReadContext:   resourceIpNatPoolRead,
 		DeleteContext: resourceIpNatPoolDelete,
+
 		Schema: map[string]*schema.Schema{
+			"chunk_sharing": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Share NAT pool chunk across CPUs",
+			},
 			"end_address": {
-				Type: schema.TypeString, ForceNew: true, Optional: true, Description: "Configure end IP address of NAT pool",
-				ValidateFunc: validation.IsIPv4Address,
+				Type: schema.TypeString, Optional: true, Description: "Configure end IP address of NAT pool",
 			},
 			"ethernet": {
 				Type: schema.TypeInt, Optional: true, Description: "Ethernet interface",
-				ValidateFunc: validation.IntAtLeast(1),
 			},
 			"gateway": {
-				Type: schema.TypeString, ForceNew: true, Optional: true, Description: "Configure gateway IP",
-				ValidateFunc: validation.IsIPv4Address,
+				Type: schema.TypeString, Optional: true, Description: "Configure gateway IP",
 			},
 			"ip_rr": {
-				Type: schema.TypeInt, ForceNew: true, Optional: true, Default: 0, Description: "Use IP address round-robin behavior",
-				ValidateFunc: validation.IntBetween(0, 1),
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use IP address round-robin behavior",
 			},
 			"netmask": {
-				Type: schema.TypeString, ForceNew: true, Optional: true, Description: "Configure mask for pool",
-				ValidateFunc: axapi.IsIpv4NetmaskBrief,
+				Type: schema.TypeString, Optional: true, Description: "Configure mask for pool",
 			},
 			"pool_name": {
-				Type: schema.TypeString, Required: true, ForceNew: true, Description: "Specify pool name or pool group",
-				ValidateFunc: validation.StringLenBetween(1, 63),
+				Type: schema.TypeString, Required: true, Description: "Specify pool name or pool group",
 			},
 			"port_overload": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Nat Pool Port overload",
-				ValidateFunc: validation.IntBetween(0, 1),
 			},
 			"scaleout_device_id": {
-				Type: schema.TypeInt, ForceNew: true, Optional: true, Description: "Configure Scaleout device id to which this NAT pool is to be bound (Specify Scaleout device id)",
-				ValidateFunc: validation.IntBetween(1, 16),
+				Type: schema.TypeInt, Optional: true, Description: "Configure Scaleout device id to which this NAT pool is to be bound (Specify Scaleout device id)",
 			},
 			"start_address": {
-				Type: schema.TypeString, ForceNew: true, Optional: true, Description: "Configure start IP address of NAT pool",
-				ValidateFunc:  validation.IsIPv4Address,
-				ConflictsWith: []string{"use_if_ip"},
+				Type: schema.TypeString, Optional: true, Description: "Configure start IP address of NAT pool",
 			},
 			"use_if_ip": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use Interface IP",
-				ValidateFunc:  validation.IntBetween(0, 1),
-				ConflictsWith: []string{"start_address"},
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
 			"vrid": {
-				Type: schema.TypeInt, ForceNew: true, Optional: true, Description: "Configure VRRP-A vrid (Specify ha VRRP-A vrid)",
-				ValidateFunc: validation.IntBetween(1, 31),
+				Type: schema.TypeInt, Optional: true, Description: "Configure VRRP-A vrid (Specify ha VRRP-A vrid)",
 			},
 		},
 	}
 }
-
 func resourceIpNatPoolCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -82,21 +71,6 @@ func resourceIpNatPoolCreate(ctx context.Context, d *schema.ResourceData, meta i
 			return diag.FromErr(err)
 		}
 		return resourceIpNatPoolRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceIpNatPoolRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceIpNatPoolRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := edpt.IpNatPool{}
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -116,15 +90,29 @@ func resourceIpNatPoolUpdate(ctx context.Context, d *schema.ResourceData, meta i
 	}
 	return diags
 }
-
 func resourceIpNatPoolDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
 	logger.Println("resourceIpNatPoolDelete()")
 	var diags diag.Diagnostics
 	if client.Host != "" {
-		obj := edpt.IpNatPool{}
+		obj := dataToEndpointIpNatPool(d)
 		err := obj.Delete(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
+func resourceIpNatPoolRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceIpNatPoolRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointIpNatPool(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -134,6 +122,7 @@ func resourceIpNatPoolDelete(ctx context.Context, d *schema.ResourceData, meta i
 
 func dataToEndpointIpNatPool(d *schema.ResourceData) edpt.IpNatPool {
 	var ret edpt.IpNatPool
+	ret.Inst.ChunkSharing = d.Get("chunk_sharing").(int)
 	ret.Inst.EndAddress = d.Get("end_address").(string)
 	ret.Inst.Ethernet = d.Get("ethernet").(int)
 	ret.Inst.Gateway = d.Get("gateway").(string)

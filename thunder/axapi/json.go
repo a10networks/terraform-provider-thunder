@@ -30,6 +30,9 @@ func SerializeToJson(a interface{}) ([]byte, error) {
 		if len(jstag) == 0 { //not a json field. omit it
 			continue
 		}
+		if jstag == "-" {
+            continue // Skip fields with "-" tag
+        }
 		dValue := tField.Tag.Get("dval")
 		omitFlag := false
 		vKind := vField.Kind()

@@ -3,27 +3,28 @@
 page_title: "thunder_snmp_server_enable_traps_vrrp_a Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_enable_traps_vrrp_a: Enable VRRP-A group traps
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_enable_traps_vrrp_a (Resource)
 
+`thunder_snmp_server_enable_traps_vrrp_a`: Enable VRRP-A group traps
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_vrrp_a"   "SnMPServerEnableTrapsVrrpA"  {
-
-    all = 1
-    active = 1
-    standby = 1
-   
+resource "thunder_snmp_server_enable_traps_vrrp_a" "thunder_snmp_server_enable_traps_vrrp_a" {
+  active  = 0
+  all     = 0
+  standby = 0
 }
 ```
 
@@ -32,10 +33,10 @@ resource  "thunder_snmp_server_enable_traps_vrrp_a"   "SnMPServerEnableTrapsVrrp
 
 ### Optional
 
-- `active` (Number)
-- `all` (Number)
-- `standby` (Number)
-- `uuid` (String)
+- `active` (Number) Enable VRRP-A active trap
+- `all` (Number) Enable all VRRP-A group traps
+- `standby` (Number) Enable VRRP-A standby trap
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

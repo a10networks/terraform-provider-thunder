@@ -3,12 +3,15 @@
 page_title: "thunder_slb_health_stat Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_health_stat: Configure health monitor
+  PLACEHOLDER
 ---
 
 # thunder_slb_health_stat (Resource)
 
+`thunder_slb_health_stat`: Configure health monitor
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_health_stat" "test_thunder_slb_health_stat" {
   sampling_enable {
     counters1 = "all"
@@ -32,7 +34,7 @@ resource "thunder_slb_health_stat" "test_thunder_slb_health_stat" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,6 @@ resource "thunder_slb_health_stat" "test_thunder_slb_health_stat" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'num_burst': Number of burst; 'max_jiffie': Maximum number of jiffies; 'min_jiffie': Minimum number of jiffies; 'avg_jiffie': Average number of jiffies; 'open_socket': Number of open sockets; 'open_socket_failed': Number of failed open sockets; 'close_socket': Number of closed sockets; 'connect_failed': Number of failed connections; 'send_packet': Number of packets sent; 'send_packet_failed': Number of packet send failures; 'recv_packet': Number of received packets; 'recv_packet_failed': Number of failed packet receives; 'retry_times': Retry times; 'timeout': Timouet value; 'unexpected_error': Number of unexpected errors; 'conn_imdt_succ': Number of connection immediete success; 'sock_close_before_17': Number of sockets closed before l7; 'sock_close_without_notify': Number of sockets closed without notify; 'curr_health_rate': Current health rate; 'ext_health_rate': External health rate; 'ext_health_rate_val': External health rate value; 'total_number': Total number; 'status_up': Number of status ups; 'status_down': Number of status downs; 'status_unkn': Number of status unknowns; 'status_other': Number of other status; 'running_time': Running time; 'config_health_rate': Config health rate; 'ssl_post_handshake_packet': Number of ssl post handshake packets before client sends request; 'timeout_with_packet': Number of pin timeouts while socket has packets;
 
 

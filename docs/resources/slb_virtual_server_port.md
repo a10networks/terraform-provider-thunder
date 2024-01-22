@@ -21,74 +21,13 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
+resource "thunder_slb_virtual_server_port" "thunder_slb_virtual_server_port" {
 
-resource "thunder_slb_virtual_server_port" "Slb_Virtual_Server_Port_Test" {
-  name             = thunder_virtual_server.resourceSlbVirtualServerTest.name
-  port_number      = 300
-  ha_conn_mirror   = 1
-  protocol         = "tcp"
-  precedence       = 0
-  port_translation = 0
-  acl_list {
-    acl_id              = "50"
-    acl_id_src_nat_pool = "SNAT-Pool1"
-    acl_id_seq_num      = 20
-  }
-  use_default_if_no_server                         = 0
-  cpu_compute                                      = 1
-  template_tcp                                     = "TCPTemp"
-  substitute_source_mac                            = 1
-  shared_partition_dynamic_service_template        = 0
-  shared_partition_connection_reuse_template       = 0
-  when_down                                        = 1
-  shared_partition_persist_destination_ip_template = 0
-  shared_partition_external_service_template       = 0
-  persist_type                                     = "src-dst-ip-swap-persist"
-  shared_partition_http_policy_template            = 0
-  use_rcv_hop_for_resp                             = 1
-  ignore_global                                    = 1
-  req_fail                                         = 0
-  no_dest_nat                                      = 0
-  user_tag                                         = "Virtualport"
-  sampling_enable {
-    counters1 = "all"
-  }
-  memory_compute                       = 1
-  template_policy                      = "Policy"
-  reset_on_server_selection_fail       = 1
-  ipinip                               = 1
-  no_auto_up_on_aflex                  = 1
-  rate                                 = 4000
-  gslb_enable                          = 0
-  service_group                        = "sg1"
-  syn_cookie                           = 1
-  alternate_port                       = 0
-  alternate_port_number                = 30
-  rtp_sip_call_id_match                = 1
-  serv_sel_fail                        = 1
-  action                               = "enable"
-  shared_partition_client_ssl_template = 0
-  no_logging                           = 1
-  shared_partition_fix_template        = 0
-  template_persist_source_ip           = "SRCPersist"
-  template_virtual_port                = "80"
-  conn_limit                           = 30000
-  snat_on_vip                          = 1
-  shared_partition_dblb_template       = 0
-  shared_partition_http_template       = 0
-  force_routing_mode                   = 1
-  alt_protocol1                        = "http"
-  message_switching                    = 1
-  use_alternate_port                   = 1
-  eth_fwd                              = 1
-  extended_stats                       = 1
-  skip_rev_hash                        = 1
-  clientip_sticky_nat                  = 1
-  secs                                 = 10
-  shared_partition_imap_pop3_template  = 0
-  eth_rev                              = 2
-  stats_data_action                    = "stats-data-disable"
-  def_selection_if_pref_failed         = "def-selection-if-pref-failed-disable"
+  name              = "test"
+  protocol          = "tcp"
+  port_number       = 343
+  stats_data_action = "stats-data-disable"
+  extended_stats    = 1
 }
 ```
 
@@ -98,7 +37,7 @@ resource "thunder_slb_virtual_server_port" "Slb_Virtual_Server_Port_Test" {
 ### Required
 
 - `port_number` (Number) Port
-- `protocol` (String) 'tcp': TCP LB service; 'udp': UDP Port; 'others': for no tcp/udp protocol, do IP load balancing; 'diameter': diameter port; 'dns-tcp': DNS service over TCP; 'dns-udp': DNS service over UDP; 'fast-http': Fast HTTP Port; 'fix': FIX Port; 'ftp': File Transfer Protocol Port; 'ftp-proxy': ftp proxy port; 'http': HTTP Port; 'https': HTTPS port; 'imap': imap proxy port; 'mlb': Message based load balancing; 'mms': Microsoft Multimedia Service Port; 'mysql': mssql port; 'mssql': mssql; 'pop3': pop3 proxy port; 'radius': RADIUS Port; 'rtsp': Real Time Streaming Protocol Port; 'sip': Session initiation protocol over UDP; 'sip-tcp': Session initiation protocol over TCP; 'sips': Session initiation protocol over TLS; 'smpp-tcp': SMPP service over TCP; 'spdy': spdy port; 'spdys': spdys port; 'smtp': SMTP Port; 'mqtt': MQTT Port; 'mqtts': MQTTS Port; 'ssl-proxy': Generic SSL proxy; 'ssli': SSL insight; 'ssh': SSH Port; 'tcp-proxy': Generic TCP proxy; 'tftp': TFTP Port; 'fast-fix': Fast FIX port;
+- `protocol` (String) 'tcp': TCP LB service; 'udp': UDP Port; 'others': for no tcp/udp protocol, do IP load balancing; 'diameter': diameter port; 'dns-tcp': DNS service over TCP; 'dns-udp': DNS service over UDP; 'fast-http': Fast HTTP Port; 'fix': FIX Port; 'ftp': File Transfer Protocol Port; 'ftp-proxy': ftp proxy port; 'http': HTTP Port; 'https': HTTPS port; 'imap': imap proxy port; 'mlb': Message based load balancing; 'mms': Microsoft Multimedia Service Port; 'mysql': mssql port; 'mssql': mssql; 'pop3': pop3 proxy port; 'radius': RADIUS Port; 'rtsp': Real Time Streaming Protocol Port; 'sip': Session initiation protocol over UDP; 'sip-tcp': Session initiation protocol over TCP; 'sips': Session initiation protocol over TLS; 'smpp-tcp': SMPP service over TCP; 'spdy': spdy port; 'spdys': spdys port; 'smtp': SMTP Port; 'mqtt': MQTT Port; 'mqtts': MQTTS Port; 'ssl-proxy': Generic SSL proxy; 'ssli': SSL insight; 'ssh': SSH Port; 'tcp-proxy': Generic TCP proxy; 'tftp': TFTP Port; 'fast-fix': Fast FIX port; 'http-over-quic': HTTP3-over-quic port;
 
 ### Optional
 
@@ -124,6 +63,7 @@ resource "thunder_slb_virtual_server_port" "Slb_Virtual_Server_Port_Test" {
 - `eth_rev` (Number) Ethernet interface number
 - `expand` (Number) expand syn-cookie with timestamp and wscale
 - `extended_stats` (Number) Enable extended statistics on virtual port
+- `fast_path` (String) 'force': Force fast path in SLB processing; 'disable': Disable fast path in SLB processing;
 - `force_routing_mode` (Number) Force routing mode
 - `gslb_enable` (Number) Enable Global Server Load Balancing
 - `gtp_session_lb` (Number) Enable GTP Session Load Balancing
@@ -138,6 +78,7 @@ resource "thunder_slb_virtual_server_port" "Slb_Virtual_Server_Port_Test" {
 - `memory_compute` (Number) enable dynamic memory compute on virtual port
 - `message_switching` (Number) Message switching
 - `name` (String) SLB Virtual Service Name
+- `ng_waf` (Number) Next-gen WAF
 - `no_auto_up_on_aflex` (Number) Don't automatically mark vport up when aFleX is bound
 - `no_dest_nat` (Number) Disable destination NAT, this option only supports in wildcard VIP or when a connection is operated in SSLi + EP mode
 - `no_logging` (Number) Do not log connection over limit event
@@ -163,8 +104,6 @@ resource "thunder_slb_virtual_server_port" "Slb_Virtual_Server_Port_Test" {
 - `resolve_web_cat_list` (String) Web Category List name
 - `rtp_sip_call_id_match` (Number) rtp traffic try to match the real server of sip smp call-id session
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `scaleout_bucket_count` (Number) Number of traffic buckets
-- `scaleout_device_group` (Number) Device group id
 - `secs` (Number) Specify the interval in seconds
 - `serv_sel_fail` (Number) Use alternate virtual port when server selection failure
 - `server_group` (String) Bind a use-rcv-hop-for-resp Server Group to this Virtual Server (Server Group Name)
@@ -188,6 +127,7 @@ resource "thunder_slb_virtual_server_port" "Slb_Virtual_Server_Port_Test" {
 - `shared_partition_persist_ssl_sid_template` (Number) Reference a persist SSL SID template from shared partition
 - `shared_partition_policy_template` (Number) Reference a policy template from shared partition
 - `shared_partition_pool` (Number) Specify NAT pool or pool group from shared partition
+- `shared_partition_quic_template` (Number) Reference a QUIC template from shared partition
 - `shared_partition_server_ssl_template` (Number) Reference a SSL Server template from shared partition
 - `shared_partition_smpp_template` (Number) Reference a smpp template from shared partition
 - `shared_partition_smtp_template` (Number) Reference a SMTP template from shared partition
@@ -195,6 +135,7 @@ resource "thunder_slb_virtual_server_port" "Slb_Virtual_Server_Port_Test" {
 - `shared_partition_tcp_proxy_template` (Number) Reference a TCP Proxy template from shared partition
 - `shared_partition_udp` (Number) Reference a UDP template from shared partition
 - `shared_partition_virtual_port_template` (Number) Reference a Virtual Port template from shared partition
+- `showtech_print_extended_stats` (Number) Enable print extended stats in showtech
 - `skip_rev_hash` (Number) Skip rev tuple hash insertion
 - `snat_on_vip` (Number) Enable source NAT traffic against VIP
 - `stats_data_action` (String) 'stats-data-enable': Enable statistical data collection for virtual port; 'stats-data-disable': Disable statistical data collection for virtual port;
@@ -240,6 +181,10 @@ resource "thunder_slb_virtual_server_port" "Slb_Virtual_Server_Port_Test" {
 - `template_persist_ssl_sid_shared` (String) SSL SID Persistence Template Name
 - `template_policy` (String) Policy Template (Policy template name)
 - `template_policy_shared` (String) Policy Template Name
+- `template_quic` (String) QUIC Template Name
+- `template_quic_client` (String) QUIC Config Client (QUIC Config name)
+- `template_quic_server` (String) QUIC Config Server (QUIC Config name)
+- `template_quic_shared` (String) QUIC Template name
 - `template_ram_cache` (String) RAM caching template (Cache Template Name)
 - `template_reqmod_icap` (String) ICAP reqmod template (reqmod-icap template name)
 - `template_respmod_icap` (String) ICAP respmod service template (respmod-icap template name)
@@ -274,7 +219,6 @@ resource "thunder_slb_virtual_server_port" "Slb_Virtual_Server_Port_Test" {
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 - `view` (Number) Specify a GSLB View (ID)
-- `waf_template` (String) WAF template (WAF Template Name)
 - `when_down` (Number) Use alternate virtual port when down
 - `when_down_protocol2` (Number) Use alternate virtual port when down
 
@@ -335,6 +279,6 @@ Optional:
 
 Optional:
 
-- `counters1` (String) 'all': all; 'curr_conn': Current established connections; 'total_l4_conn': Total L4 connections established; 'total_l7_conn': Total L7 connections established; 'total_tcp_conn': Total TCP connections established; 'total_conn': Total connections established; 'total_fwd_bytes': Bytes processed in forward direction; 'total_fwd_pkts': Packets processed in forward direction; 'total_rev_bytes': Bytes processed in reverse direction; 'total_rev_pkts': Packets processed in reverse direction; 'total_dns_pkts': Total DNS packets processed; 'total_mf_dns_pkts': Total MF DNS packets; 'es_total_failure_actions': Total failure actions; 'compression_bytes_before': Data into compression engine; 'compression_bytes_after': Data out of compression engine; 'compression_hit': Number of requests compressed; 'compression_miss': Number of requests NOT compressed; 'compression_miss_no_client': Compression miss no client; 'compression_miss_template_exclusion': Compression miss template exclusion; 'curr_req': Current requests; 'total_req': Total requests; 'total_req_succ': Total successful requests; 'peak_conn': Peak connections; 'curr_conn_rate': Current connection rate; 'last_rsp_time': Last response time; 'fastest_rsp_time': Fastest response time; 'slowest_rsp_time': Slowest response time; 'loc_permit': Geo-location Permit count; 'loc_deny': Geo-location Deny count; 'loc_conn': Geo-location Connection count; 'curr_ssl_conn': Current SSL connections; 'total_ssl_conn': Total SSL connections; 'backend-time-to-first-byte': Backend Time from Request to Response First Byte; 'backend-time-to-last-byte': Backend Time from Request to Response Last Byte; 'in-latency': Request Latency at Thunder; 'out-latency': Response Latency at Thunder; 'total_fwd_bytes_out': Bytes processed in forward direction (outbound); 'total_fwd_pkts_out': Packets processed in forward direction (outbound); 'total_rev_bytes_out': Bytes processed in reverse direction (outbound); 'total_rev_pkts_out': Packets processed in reverse direction (outbound); 'curr_req_rate': Current request rate; 'curr_resp': Current response; 'total_resp': Total response; 'total_resp_succ': Total successful responses; 'curr_resp_rate': Current response rate; 'dnsrrl_total_allowed': DNS Response-Rate-Limiting Total Responses Allowed; 'dnsrrl_total_dropped': DNS Response-Rate-Limiting Total Responses Dropped; 'dnsrrl_total_slipped': DNS Response-Rate-Limiting Total Responses Slipped; 'dnsrrl_bad_fqdn': DNS Response-Rate-Limiting Bad FQDN; 'throughput-bits-per-sec': Throughput in bits/sec; 'dynamic-memory-alloc': dynamic memory (bytes) allocated by the vport; 'dynamic-memory-free': dynamic memory (bytes) allocated by the vport; 'dynamic-memory': dynamic memory (bytes) used by the vport(alloc-free); 'ip_only_lb_fwd_bytes': IP-Only-LB Bytes processed in forward direction; 'ip_only_lb_rev_bytes': IP-Only-LB Bytes processed in reverse direction; 'ip_only_lb_fwd_pkts': IP-Only-LB Packets processed in forward direction; 'ip_only_lb_rev_pkts': IP-Only-LB Packets processed in reverse direction; 'total_dns_filter_type_drop': Total DNS Filter Type Drop; 'total_dns_filter_class_drop': Total DNS Filter Class Drop; 'dns_filter_type_a_drop': DNS Filter Type A Drop; 'dns_filter_type_aaaa_drop': DNS Filter Type AAAA Drop; 'dns_filter_type_cname_drop': DNS Filter Type CNAME Drop; 'dns_filter_type_mx_drop': DNS Filter Type MX Drop; 'dns_filter_type_ns_drop': DNS Filter Type NS Drop; 'dns_filter_type_srv_drop': DNS Filter Type SRV Drop; 'dns_filter_type_ptr_drop': DNS Filter Type PTR Drop; 'dns_filter_type_soa_drop': DNS Filter Type SOA Drop; 'dns_filter_type_txt_drop': DNS Filter Type TXT Drop; 'dns_filter_type_any_drop': DNS Filter Type Any Drop; 'dns_filter_type_others_drop': DNS Filter Type OTHERS Drop; 'dns_filter_class_internet_drop': DNS Filter Class INTERNET Drop; 'dns_filter_class_chaos_drop': DNS Filter Class CHAOS Drop; 'dns_filter_class_hesiod_drop': DNS Filter Class HESIOD Drop; 'dns_filter_class_none_drop': DNS Filter Class NONE Drop; 'dns_filter_class_any_drop': DNS Filter Class ANY Drop; 'dns_filter_class_others_drop': DNS Filter Class OTHERS Drop; 'dns_rpz_action_drop': DNS RPZ Action Drop; 'dns_rpz_action_pass_thru': DNS RPZ Action Pass Through; 'dns_rpz_action_tcp_only': DNS RPZ Action TCP Only; 'dns_rpz_action_nxdomain': DNS RPZ Action NXDOMAIN; 'dns_rpz_action_nodata': DNS RPZ Action NODATA; 'dns_rpz_action_local_data': DNS RPZ Action Local Data; 'dns_rpz_trigger_client_ip': DNS RPZ Trigger Client IP; 'dns_rpz_trigger_resp_ip': DNS RPZ Trigger Response IP; 'dns_rpz_trigger_ns_ip': DNS RPZ Trigger NS IP; 'dns_rpz_trigger_qname': DNS RPZ Trigger Qname IP; 'dns_rpz_trigger_ns_name': DNS RPZ Trigger NS Name;
+- `counters1` (String) 'all': all; 'curr_conn': Current established connections; 'total_l4_conn': Total L4 connections established; 'total_l7_conn': Total L7 connections established; 'total_tcp_conn': Total TCP connections established; 'total_conn': Total connections established; 'total_fwd_bytes': Bytes processed in forward direction; 'total_fwd_pkts': Packets processed in forward direction; 'total_rev_bytes': Bytes processed in reverse direction; 'total_rev_pkts': Packets processed in reverse direction; 'total_dns_pkts': Total DNS packets processed; 'total_mf_dns_pkts': Total MF DNS packets; 'es_total_failure_actions': Total failure actions; 'compression_bytes_before': Data into gzip compression engine; 'compression_bytes_after': Data out of gzip compression engine; 'compression_hit': Number of requests compressed; 'compression_miss': Number of requests NOT compressed; 'compression_miss_no_client': Compression miss no client; 'compression_miss_template_exclusion': Compression miss template exclusion; 'curr_req': Current requests; 'total_req': Total requests; 'total_req_succ': Total successful requests; 'peak_conn': Peak connections; 'curr_conn_rate': Current connection rate; 'last_rsp_time': Last response time; 'fastest_rsp_time': Fastest response time; 'slowest_rsp_time': Slowest response time; 'loc_permit': Geo-location Permit count; 'loc_deny': Geo-location Deny count; 'loc_conn': Geo-location Connection count; 'curr_ssl_conn': Current SSL connections; 'total_ssl_conn': Total SSL connections; 'backend-time-to-first-byte': Backend Time from Request to Response First Byte; 'backend-time-to-last-byte': Backend Time from Request to Response Last Byte; 'in-latency': Request Latency at Thunder; 'out-latency': Response Latency at Thunder; 'total_fwd_bytes_out': Bytes processed in forward direction (outbound); 'total_fwd_pkts_out': Packets processed in forward direction (outbound); 'total_rev_bytes_out': Bytes processed in reverse direction (outbound); 'total_rev_pkts_out': Packets processed in reverse direction (outbound); 'curr_req_rate': Current request rate; 'curr_resp': Current response; 'total_resp': Total response; 'total_resp_succ': Total successful responses; 'curr_resp_rate': Current response rate; 'dnsrrl_total_allowed': DNS Response-Rate-Limiting Total Responses Allowed; 'dnsrrl_total_dropped': DNS Response-Rate-Limiting Total Responses Dropped; 'dnsrrl_total_slipped': DNS Response-Rate-Limiting Total Responses Slipped; 'dnsrrl_bad_fqdn': DNS Response-Rate-Limiting Bad FQDN; 'throughput-bits-per-sec': Throughput in bits/sec; 'dynamic-memory-alloc': dynamic memory (bytes) allocated by the vport; 'dynamic-memory-free': dynamic memory (bytes) allocated by the vport; 'dynamic-memory': dynamic memory (bytes) used by the vport(alloc-free); 'ip_only_lb_fwd_bytes': IP-Only-LB Bytes processed in forward direction; 'ip_only_lb_rev_bytes': IP-Only-LB Bytes processed in reverse direction; 'ip_only_lb_fwd_pkts': IP-Only-LB Packets processed in forward direction; 'ip_only_lb_rev_pkts': IP-Only-LB Packets processed in reverse direction; 'total_dns_filter_type_drop': Total DNS Filter Type Drop; 'total_dns_filter_class_drop': Total DNS Filter Class Drop; 'dns_filter_type_a_drop': DNS Filter Type A Drop; 'dns_filter_type_aaaa_drop': DNS Filter Type AAAA Drop; 'dns_filter_type_cname_drop': DNS Filter Type CNAME Drop; 'dns_filter_type_mx_drop': DNS Filter Type MX Drop; 'dns_filter_type_ns_drop': DNS Filter Type NS Drop; 'dns_filter_type_srv_drop': DNS Filter Type SRV Drop; 'dns_filter_type_ptr_drop': DNS Filter Type PTR Drop; 'dns_filter_type_soa_drop': DNS Filter Type SOA Drop; 'dns_filter_type_txt_drop': DNS Filter Type TXT Drop; 'dns_filter_type_any_drop': DNS Filter Type Any Drop; 'dns_filter_type_others_drop': DNS Filter Type OTHERS Drop; 'dns_filter_class_internet_drop': DNS Filter Class INTERNET Drop; 'dns_filter_class_chaos_drop': DNS Filter Class CHAOS Drop; 'dns_filter_class_hesiod_drop': DNS Filter Class HESIOD Drop; 'dns_filter_class_none_drop': DNS Filter Class NONE Drop; 'dns_filter_class_any_drop': DNS Filter Class ANY Drop; 'dns_filter_class_others_drop': DNS Filter Class OTHERS Drop; 'dns_rpz_action_drop': DNS RPZ Action Drop; 'dns_rpz_action_pass_thru': DNS RPZ Action Pass Through; 'dns_rpz_action_tcp_only': DNS RPZ Action TCP Only; 'dns_rpz_action_nxdomain': DNS RPZ Action NXDOMAIN; 'dns_rpz_action_nodata': DNS RPZ Action NODATA; 'dns_rpz_action_local_data': DNS RPZ Action Local Data; 'dns_rpz_trigger_client_ip': DNS RPZ Trigger Client IP; 'dns_rpz_trigger_resp_ip': DNS RPZ Trigger Response IP; 'dns_rpz_trigger_ns_ip': DNS RPZ Trigger NS IP; 'dns_rpz_trigger_qname': DNS RPZ Trigger Qname IP; 'dns_rpz_trigger_ns_name': DNS RPZ Trigger NS Name; 'compression_bytes_before_br': Data into brotli compression engine; 'compression_bytes_after_br': Data out of brotli compression engine; 'compression_bytes_before_total': Data into compression engine; 'compression_bytes_after_total': Data out of compression engine; 'compression_hit_br': Number of requests compressed with brotli; 'compression_miss_br': Number of requests NOT compressed with brotli; 'compression_hit_total': Number of requests compressed; 'compression_miss_total': Number of requests NOT compressed; 'dnsrrl_total_tc': DNS Response-Rate-Limiting Total Responses Replied With Truncated; 'http1_client_idle_timeout': HTTP1 Client Idle Timeout; 'http2_client_idle_timeout': HTTP2 Client Idle Timeout;
 
 

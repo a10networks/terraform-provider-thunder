@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_snmp_server_user" "resourceSnmpServerUserTest" {
+resource "thunder_snmp_server_user" "thunderSnmpServerUserTest" {
   username  = "testing"
   auth_val  = "sha"
   v3        = "auth"

@@ -3,28 +3,32 @@
 page_title: "thunder_snmp_server_enable_traps_lsn Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_enable_traps_lsn: Enable LSN group traps
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_enable_traps_lsn (Resource)
 
+`thunder_snmp_server_enable_traps_lsn`: Enable LSN group traps
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_lsn"   "SnMPServerTrapsLsn"  {
-       all = 1 
-       total_port_usage_threshold = 0 
-       per_ip_port_usage_threshold = 0 
-       fixed_nat_port_mapping_file_change = 0 
-       traffic_exceeded = 1
-  
+resource "thunder_snmp_server_enable_traps_lsn" "thunder_snmp_server_enable_traps_lsn" {
+  all                                = 0
+  fixed_nat_port_mapping_file_change = 1
+  max_ipport_threshold               = 64512
+  max_port_threshold                 = 655350000
+  per_ip_port_usage_threshold        = 1
+  total_port_usage_threshold         = 1
+  traffic_exceeded                   = 1
 }
 ```
 
@@ -33,14 +37,14 @@ resource  "thunder_snmp_server_enable_traps_lsn"   "SnMPServerTrapsLsn"  {
 
 ### Optional
 
-- `all` (Number)
-- `fixed_nat_port_mapping_file_change` (Number)
-- `max_ipport_threshold` (Number)
-- `max_port_threshold` (Number)
-- `per_ip_port_usage_threshold` (Number)
-- `total_port_usage_threshold` (Number)
-- `traffic_exceeded` (Number)
-- `uuid` (String)
+- `all` (Number) Enable all LSN group traps
+- `fixed_nat_port_mapping_file_change` (Number) Enable LSN trap when fixed nat port mapping file change
+- `max_ipport_threshold` (Number) Maximum threshold
+- `max_port_threshold` (Number) Maximum threshold
+- `per_ip_port_usage_threshold` (Number) Enable LSN trap when IP total port usage reaches the threshold (default 64512)
+- `total_port_usage_threshold` (Number) Enable LSN trap when NAT total port usage reaches the threshold (default 655350000)
+- `traffic_exceeded` (Number) Enable LSN trap when NAT pool reaches the threshold
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

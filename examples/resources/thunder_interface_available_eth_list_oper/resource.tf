@@ -3,9 +3,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-data "thunder_interface_available_eth_list_oper" "test"{}
-
-output "get_disk" {
-  value = ["${data.thunder_interface_available_eth_list_oper.test}"]
+data "thunder_interface_available_eth_list_oper" "thunder_interface_available_eth_list_oper" {
+}
+output "get_interface_available_eth_list_oper" {
+  value = ["${data.thunder_interface_available_eth_list_oper.thunder_interface_available_eth_list_oper}"]
 }

@@ -3,12 +3,15 @@
 page_title: "thunder_slb_perf Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_perf: SLB performance stats
+  PLACEHOLDER
 ---
 
 # thunder_slb_perf (Resource)
 
+`thunder_slb_perf`: SLB performance stats
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_perf" "test_thunder_slb_perf" {
+resource "thunder_slb_perf" "thunder_slb_perf" {
   sampling_enable {
     counters1 = "all"
   }
@@ -32,6 +34,7 @@ resource "thunder_slb_perf" "test_thunder_slb_perf" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -42,6 +45,6 @@ resource "thunder_slb_perf" "test_thunder_slb_perf" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'total-throughput-bits-per-sec': Total Throughput in bits/sec; 'l4-conns-per-sec': L4 Connections/sec; 'l7-conns-per-sec': L7 Connections/sec; 'l7-trans-per-sec': L7 Transactions/sec; 'ssl-conns-per-sec': SSL Connections/sec; 'ip-nat-conns-per-sec': IP NAT Connections/sec; 'total-new-conns-per-sec': Total New Connections Established/sec; 'total-curr-conns': Total Current Established Connections; 'l4-bandwidth': L4 Bandwidth in bits/sec; 'l7-bandwidth': L7 Bandwidth in bits/sec; 'serv-ssl-conns-per-sec': Server SSL Connections/sec; 'fw-conns-per-sec': FW Connections/sec; 'gifw-conns-per-sec': GiFW Connections/sec; 'l7-proxy-conns-per-sec': L7 Proxy Connections/sec; 'l7-proxy-trans-per-sec': L7 Proxy Transactions/sec;
 
 

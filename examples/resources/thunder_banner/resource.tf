@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_banner" "bannerTest" {
   exec_banner_cfg {
     exec        = 1
@@ -13,6 +12,4 @@ resource "thunder_banner" "bannerTest" {
     login        = 1
     login_banner = "Sample Login Banner"
   }
-
 }
-

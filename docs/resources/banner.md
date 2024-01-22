@@ -3,12 +3,15 @@
 page_title: "thunder_banner Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_banner: Define a login banner
+  PLACEHOLDER
 ---
 
 # thunder_banner (Resource)
 
+`thunder_banner`: Define a login banner
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_banner" "bannerTest" {
   exec_banner_cfg {
     exec        = 1
@@ -28,7 +30,6 @@ resource "thunder_banner" "bannerTest" {
     login        = 1
     login_banner = "Sample Login Banner"
   }
-
 }
 ```
 
@@ -39,7 +40,7 @@ resource "thunder_banner" "bannerTest" {
 
 - `exec_banner_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--exec_banner_cfg))
 - `login_banner_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--login_banner_cfg))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -50,8 +51,8 @@ resource "thunder_banner" "bannerTest" {
 
 Optional:
 
-- `exec` (Number)
-- `exec_banner` (String)
+- `exec` (Number) Set EXEC process creation banner
+- `exec_banner` (String) Banner text, string -n is taken as line break of multi-line banner text, use --n for -n, -077 for ? and -011 for tab
 
 
 <a id="nestedblock--login_banner_cfg"></a>
@@ -59,7 +60,7 @@ Optional:
 
 Optional:
 
-- `login` (Number)
-- `login_banner` (String)
+- `login` (Number) Set login banner
+- `login_banner` (String) Banner text, string -n is taken as line break of multi-line banner text, use --n to indicate -n
 
 

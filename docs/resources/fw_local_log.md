@@ -3,12 +3,15 @@
 page_title: "thunder_fw_local_log Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_local_log: Enable local-log for Application Firewall
+  PLACEHOLDER
 ---
 
 # thunder_fw_local_log (Resource)
 
+`thunder_fw_local_log`: Enable local-log for Application Firewall
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_local_log" "test_thunder_fw_local_log" {
   local_logging = 1
 }
@@ -29,8 +31,8 @@ resource "thunder_fw_local_log" "test_thunder_fw_local_log" {
 
 ### Optional
 
-- `local_logging` (Number)
-- `uuid` (String)
+- `local_logging` (Number) Enable local logging
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

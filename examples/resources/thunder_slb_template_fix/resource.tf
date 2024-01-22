@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_fix" "test_thunder_slb_template_fix" {
   name             = "test_fix"
   logging          = "init"

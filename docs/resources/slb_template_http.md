@@ -3,12 +3,15 @@
 page_title: "thunder_slb_template_http Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_template_http: HTTP
+  PLACEHOLDER
 ---
 
 # thunder_slb_template_http (Resource)
 
+`thunder_slb_template_http`: HTTP
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,162 +21,158 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_template_http" "template-http" {
-  name                           = "http1"
-  user_tag                       = "http1"
-  keep_client_alive              = 1
-  req_hdr_wait_time              = 1
-  req_hdr_wait_time_val          = 2
-  compression_enable             = 1
-  cont_100_wait_for_req_complete = 1
-  url_hash_persist               = 1
-  url_hash_first                 = 5
-  use_server_status              = 1
-  template {
-    logging = "log1"
-  }
-  compression_auto_disable_on_high_cpu = 1
+resource "thunder_slb_template_http" "thunder_slb_template_http" {
+  name                                 = "slb-http"
+  client_idle_timeout                  = 0
+  client_ip_hdr_replace                = 0
+  client_port_hdr_replace              = 0
+  compression_auto_disable_on_high_cpu = 86
+  compression_br_level                 = 1
+  compression_br_sliding_window_size   = 24
   compression_content_type {
-    content_type = "html"
+    content_type = "21"
   }
+  compression_enable = 0
   compression_exclude_content_type {
-    exclude_content_type = "jpeg"
+    exclude_content_type = "4"
   }
   compression_exclude_uri {
-    exclude_uri = "html"
+    exclude_uri = "18"
   }
-  compression_keep_accept_encoding        = 1
-  compression_keep_accept_encoding_enable = 1
-  compression_level                       = 9
-  compression_minimum_content_length      = 20
-  default_charset                         = "iso-8859-1"
-  cookie_format                           = "rfc6265"
-  prefix                                  = "host"
-  cookie_samesite                         = "none"
-  failover_url                            = "google.com"
-  frame_limit                             = 65535
-  host_switching {
-    host_switching_type = "contains"
-    host_match_string   = "example.com"
-    host_service_group  = "sghttp1"
-  }
-  client_ip_hdr_replace          = 1
-  insert_client_ip_header_name   = "Keep-Alive"
-  insert_client_ip               = 1
-  insert_client_port             = 1
-  insert_client_port_header_name = "Upgrade"
-  client_port_hdr_replace        = 1
-  log_retry                      = 1
-  max_concurrent_streams         = 900
-  non_http_bypass                = 1
-  bypass_sg                      = "sghttp1"
-  persist_on_401                 = 1
-  redirect                       = 1
-  rd_simple_loc                  = "www.redirect.com"
-  rd_resp_code                   = "301"
-  redirect_rewrite {
-    match_list {
-      redirect_match = "rewrite.com"
-      rewrite_to     = "rewrite1.com"
+  compression_keep_accept_encoding        = 0
+  compression_keep_accept_encoding_enable = 0
+  compression_level                       = 1
+  cont_wait_for_req_complete100           = 0
+  default_charset                         = "utf-8"
+  disallowed_methods_action               = "drop"
+  failover_url                            = "92"
+  frame_limit                             = 1001
+  http_protocol_check {
+    get_and_payload             = "drop"
+    h2up_content_length_alias   = "drop"
+    h2up_with_host_and_auth     = "drop"
+    h2up_with_transfer_encoding = "drop"
+    header_filter_rule_list {
+      seq_num            = 1
+      header_name_value  = "19"
+      header_value_value = "57"
+      action_value       = "drop"
+      user_tag           = "47"
     }
-    redirect_secure      = 1
-    redirect_secure_port = 443
+    malformed_h2up_header_value          = "drop"
+    malformed_h2up_scheme_value          = "drop"
+    multiple_content_length              = "drop"
+    multiple_transfer_encoding           = "drop"
+    transfer_encoding_and_content_length = "drop"
   }
-  request_header_erase_list {
-    request_header_erase = "Proxy-Authenticate"
-  }
-  request_header_insert_list {
-
-    request_header_insert      = "[Proxy - Authorization]: [Basic YWxhZGRpbjpvcGVuc2VzYW1l]"
-    request_header_insert_type = "insert-if-not-exist"
-  }
-  request_line_case_insensitive = 1
-  request_timeout               = 60
-  response_content_replace_list {
-    response_content_replace = "Connection"
-    response_new_string      = "com"
-  }
-  response_header_erase_list {
-    response_header_erase = "Transfer-Encoding"
-  }
-  response_header_insert_list {
-
-    response_header_insert      = "[Proxy - Authorization]: [Basic YWxhZGRpbjpvcGVuc2VzYW1l]"
-    response_header_insert_type = "insert-if-not-exist"
-  }
-  retry_on_5xx                 = 1
-  retry_on_5xx_val             = 1
-  strict_transaction_switch    = 1
-  term_11client_hdr_conn_close = 1
+  http2_client_no_snat            = 0
+  insert_client_ip                = 1
+  insert_client_ip_header_name    = "60"
+  insert_client_port              = 1
+  insert_client_port_header_name  = "26"
+  keep_client_alive               = 0
+  log_retry                       = 0
+  max_concurrent_streams          = 50
+  non_http_bypass                 = 0
+  persist_on_401                  = 0
+  redirect                        = 0
+  retry_on_5xx                    = 0
+  retry_on_5xx_per_req_val        = 3
+  retry_on_5xx_val                = 3
+  server_support_http2_only       = 0
+  server_support_http2_only_value = "auto-detect"
+  strict_transaction_switch       = 0
+  term_11client_hdr_conn_close    = 0
+  url_hash_first                  = 0
+  url_hash_offset                 = 0
+  url_hash_persist                = 0
+  use_server_status               = 0
+  user_tag                        = "126"
 }
 ```
 
 <!-- schema generated by tfplugindocs -->
 ## Schema
 
+### Required
+
+- `name` (String) HTTP Template Name
+
 ### Optional
 
-- `bypass_sg` (String)
-- `client_ip_hdr_replace` (Number)
-- `client_port_hdr_replace` (Number)
-- `compression_auto_disable_on_high_cpu` (Number)
+- `allowed_methods` (String) Enable allowed-method check (List of allowed HTTP methods)
+- `allowed_methods_action` (String) 'drop': Respond 400 directly;
+- `bypass_sg` (String) Select service group for non-http traffic (Service Group Name)
+- `client_idle_timeout` (Number) Client session timeout if the next request is not received (timeout in seconds. 0 means disable, default is 0)
+- `client_ip_hdr_replace` (Number) Replace the existing header
+- `client_port_hdr_replace` (Number) Replace the existing header
+- `compression_auto_disable_on_high_cpu` (Number) Auto-disable software compression on high cpu usage (Disable compression if cpu usage is above threshold. Default is off.)
+- `compression_br_level` (Number) brotli compression level, default 1 (brotli compression level value, default is 1)
+- `compression_br_sliding_window_size` (Number) brotli compression sliding window size, default 10 (brotli compression sliding window size in the form of log (i.e., 10 means 1k-16MB bytes))
 - `compression_content_type` (Block List) (see [below for nested schema](#nestedblock--compression_content_type))
-- `compression_enable` (Number)
+- `compression_enable` (Number) Enable Compression
 - `compression_exclude_content_type` (Block List) (see [below for nested schema](#nestedblock--compression_exclude_content_type))
 - `compression_exclude_uri` (Block List) (see [below for nested schema](#nestedblock--compression_exclude_uri))
-- `compression_keep_accept_encoding` (Number)
-- `compression_keep_accept_encoding_enable` (Number)
-- `compression_level` (Number)
-- `compression_minimum_content_length` (Number)
-- `cont_100_wait_for_req_complete` (Number)
-- `cookie_format` (String)
-- `cookie_samesite` (String)
-- `default_charset` (String)
-- `failover_url` (String)
-- `frame_limit` (Number)
+- `compression_keep_accept_encoding` (Number) Keep accept encoding
+- `compression_keep_accept_encoding_enable` (Number) Enable Server Accept Encoding
+- `compression_level` (Number) gzip compression level, default 1 (gzip compression level value, default is 1)
+- `compression_method_order` (String) Method Order (Order to decide which compression algorithm to be applied when multiple algorithms are acceptable)
+- `compression_minimum_content_length` (Number) Minimum Content Length (Minimum content length for compression in bytes. Default is 120.)
+- `cont_wait_for_req_complete100` (Number) When REQ has Expect 100 and response is not 100, then wait for whole request to be sent
+- `cookie_format` (String) 'rfc6265': Follow rfc6265;
+- `cookie_samesite` (String) 'none': none; 'lax': lax; 'strict': strict;
+- `default_charset` (String) 'iso-8859-1': Use ISO-8859-1 as the default charset; 'utf-8': Use UTF-8 as the default charset; 'us-ascii': Use US-ASCII as the default charset;
+- `disallowed_methods` (String) Enable disallowed-method check (List of disallowed HTTP methods)
+- `disallowed_methods_action` (String) 'drop': Respond 400 directly;
+- `failover_url` (String) Failover to this URL (Failover URL Name)
+- `frame_limit` (Number) Limit the number of CONTINUATION, PING, PRIORITY, RESET, SETTINGS and empty frames in one HTTP2 connection, default 10000
 - `host_switching` (Block List) (see [below for nested schema](#nestedblock--host_switching))
-- `insert_client_ip` (Number)
-- `insert_client_ip_header_name` (String)
-- `insert_client_port` (Number)
-- `insert_client_port_header_name` (String)
-- `keep_client_alive` (Number)
-- `log_retry` (Number)
-- `max_concurrent_streams` (Number)
-- `name` (String)
-- `non_http_bypass` (Number)
-- `persist_on_401` (Number)
-- `prefix` (String)
-- `rd_port` (Number)
-- `rd_resp_code` (String)
-- `rd_secure` (Number)
-- `rd_simple_loc` (String)
-- `redirect` (Number)
+- `http2_client_no_snat` (Number) Set max-concurrent-stream = 1 when the client side is HTTP2 and no source-nat configuration is under vport
+- `http_protocol_check` (Block List, Max: 1) (see [below for nested schema](#nestedblock--http_protocol_check))
+- `insert_client_ip` (Number) Insert Client IP address into HTTP header
+- `insert_client_ip_header_name` (String) HTTP Header Name for inserting Client IP
+- `insert_client_port` (Number) Insert Client Port address into HTTP header
+- `insert_client_port_header_name` (String) HTTP Header Name for inserting Client Port
+- `keep_client_alive` (Number) Keep client alive
+- `log_retry` (Number) log when HTTP request retry
+- `max_concurrent_streams` (Number) (http2 only) Max concurrent streams, default 50
+- `non_http_bypass` (Number) Bypass non-http traffic instead of dropping
+- `persist_on_401` (Number) Persist to the same server if the response code is 401
+- `prefix` (String) 'host': the cookie will have been set with a Secure attribute, a Path attribute with a value of /, and no Domain attribute; 'secure': the cookie will have been set with a Secure attribute; 'check': check server prefix and enforce prefix format;
+- `rd_port` (Number) Port (Port Number)
+- `rd_resp_code` (String) '301': Moved Permanently; '302': Found; '303': See Other; '307': Temporary Redirect;
+- `rd_secure` (Number) Use HTTPS
+- `rd_simple_loc` (String) Redirect location tag absolute URI string
+- `redirect` (Number) Automatically send a redirect response
 - `redirect_rewrite` (Block List, Max: 1) (see [below for nested schema](#nestedblock--redirect_rewrite))
-- `req_hdr_wait_time` (Number)
-- `req_hdr_wait_time_val` (Number)
+- `req_hdr_wait_time` (Number) HTTP request header wait time before abort connection
+- `req_hdr_wait_time_val` (Number) Number of seconds wait for client request header (default is 7)
 - `request_header_erase_list` (Block List) (see [below for nested schema](#nestedblock--request_header_erase_list))
 - `request_header_insert_list` (Block List) (see [below for nested schema](#nestedblock--request_header_insert_list))
-- `request_line_case_insensitive` (Number)
-- `request_timeout` (Number)
+- `request_line_case_insensitive` (Number) Parse http request line as case insensitive
+- `request_timeout` (Number) Request timeout if response not received (timeout in seconds)
 - `response_content_replace_list` (Block List) (see [below for nested schema](#nestedblock--response_content_replace_list))
 - `response_header_erase_list` (Block List) (see [below for nested schema](#nestedblock--response_header_erase_list))
 - `response_header_insert_list` (Block List) (see [below for nested schema](#nestedblock--response_header_insert_list))
-- `retry_on_5xx` (Number)
-- `retry_on_5xx_per_req` (Number)
-- `retry_on_5xx_per_req_val` (Number)
-- `retry_on_5xx_val` (Number)
-- `strict_transaction_switch` (Number)
+- `retry_on_5xx` (Number) Retry http request on HTTP 5xx code and request timeout
+- `retry_on_5xx_per_req` (Number) Retry http request on HTTP 5xx code for each request
+- `retry_on_5xx_per_req_val` (Number) Number of times to retry (default is 3)
+- `retry_on_5xx_val` (Number) Number of times to retry (default is 3)
+- `server_support_http2_only` (Number) Notify the vport regarding whether server supports http2 only
+- `server_support_http2_only_value` (String) 'auto-detect': Commuincate with the server via HTTP/2 when an support-http2-only rport is detected; 'force': Communicate with the server via HTTP/2 when possible;
+- `stream_cancellation_limit` (Number) cancellation limit, default 0 (accumulated cancellation limit value, default is 0)
+- `stream_cancellation_rate` (Number) cancellation rate, default 10 (cancellation rate value, default is 10)
+- `strict_transaction_switch` (Number) Force server selection on every HTTP request
 - `template` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template))
-- `term_11client_hdr_conn_close` (Number)
-- `url_hash_first` (Number)
-- `url_hash_last` (Number)
-- `url_hash_offset` (Number)
-- `url_hash_persist` (Number)
+- `term_11client_hdr_conn_close` (Number) Terminate HTTP 1.1 client when req has Connection: close
+- `url_hash_first` (Number) Use the begining part of URL to calculate hash value (URL string length to calculate hash value)
+- `url_hash_last` (Number) Use the end part of URL to calculate hash value (URL string length to calculate hash value)
+- `url_hash_offset` (Number) Skip part of URL to calculate hash value (Offset of the URL string)
+- `url_hash_persist` (Number) Use URL's hash value to select server
 - `url_switching` (Block List) (see [below for nested schema](#nestedblock--url_switching))
-- `use_server_status` (Number)
-- `user_tag` (String)
-- `uuid` (String)
+- `use_server_status` (Number) Use Server-Status header to do URL hashing
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -184,7 +183,7 @@ resource "thunder_slb_template_http" "template-http" {
 
 Optional:
 
-- `content_type` (String)
+- `content_type` (String) Compression content-type
 
 
 <a id="nestedblock--compression_exclude_content_type"></a>
@@ -192,7 +191,7 @@ Optional:
 
 Optional:
 
-- `exclude_content_type` (String)
+- `exclude_content_type` (String) Compression exclude content-type (Compression exclude content type)
 
 
 <a id="nestedblock--compression_exclude_uri"></a>
@@ -200,7 +199,7 @@ Optional:
 
 Optional:
 
-- `exclude_uri` (String)
+- `exclude_uri` (String) Compression exclude uri
 
 
 <a id="nestedblock--host_switching"></a>
@@ -208,9 +207,44 @@ Optional:
 
 Optional:
 
-- `host_match_string` (String)
-- `host_service_group` (String)
-- `host_switching_type` (String)
+- `host_match_string` (String) Hostname String
+- `host_service_group` (String) Create a Service Group comprising Servers (Service Group Name)
+- `host_switching_type` (String) 'contains': Select service group if hostname contains another string; 'ends-with': Select service group if hostname ends with another string; 'equals': Select service group if hostname equals another string; 'starts-with': Select service group if hostname starts with another string; 'regex-match': Select service group if URL string matches with regular expression; 'host-hits-enable': Enables Host Hits counters;
+
+
+<a id="nestedblock--http_protocol_check"></a>
+### Nested Schema for `http_protocol_check`
+
+Optional:
+
+- `get_and_payload` (String) 'drop': Drop the request and send 400 to the client side;
+- `h2up_content_length_alias` (String) 'drop': Drop the request and send 400 to the client side;
+- `h2up_with_host_and_auth` (String) 'drop': Drop the request and send 400 to the client side;
+- `h2up_with_transfer_encoding` (String) 'drop': Drop the request and send 400 to the client side;
+- `header_filter_rule_list` (Block List) (see [below for nested schema](#nestedblock--http_protocol_check--header_filter_rule_list))
+- `malformed_h2up_header_value` (String) 'drop': Drop the request and send 400 to the client side;
+- `malformed_h2up_scheme_value` (String) 'drop': Drop the request and send 400 to the client side;
+- `multiple_content_length` (String) 'drop': Drop the request and send 400 to the client side;
+- `multiple_transfer_encoding` (String) 'drop': Drop the request and send 400 to the client side;
+- `transfer_encoding_and_content_length` (String) 'drop': Drop the request and Send 400 to the client side;
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--http_protocol_check--header_filter_rule_list"></a>
+### Nested Schema for `http_protocol_check.header_filter_rule_list`
+
+Required:
+
+- `seq_num` (Number) Specify a sequence number
+
+Optional:
+
+- `action_value` (String) 'drop': Drop the request;
+- `header_name_value` (String) Header name value
+- `header_value_value` (String) Header value
+- `match_type_value` (String) 'full-text': Full text match; 'pcre': PCRE match;
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
 
 
 <a id="nestedblock--redirect_rewrite"></a>
@@ -219,16 +253,16 @@ Optional:
 Optional:
 
 - `match_list` (Block List) (see [below for nested schema](#nestedblock--redirect_rewrite--match_list))
-- `redirect_secure` (Number)
-- `redirect_secure_port` (Number)
+- `redirect_secure` (Number) Use HTTPS
+- `redirect_secure_port` (Number) Port (Port Number)
 
 <a id="nestedblock--redirect_rewrite--match_list"></a>
 ### Nested Schema for `redirect_rewrite.match_list`
 
 Optional:
 
-- `redirect_match` (String)
-- `rewrite_to` (String)
+- `redirect_match` (String) URL Matching (Pattern URL String)
+- `rewrite_to` (String) Rewrite to Destination URL String
 
 
 
@@ -237,7 +271,7 @@ Optional:
 
 Optional:
 
-- `request_header_erase` (String)
+- `request_header_erase` (String) Erase a header from HTTP request (Header Name)
 
 
 <a id="nestedblock--request_header_insert_list"></a>
@@ -245,8 +279,8 @@ Optional:
 
 Optional:
 
-- `request_header_insert` (String)
-- `request_header_insert_type` (String)
+- `request_header_insert` (String) Insert a header into HTTP request (Header Content (Format: "[name]:[value]"))
+- `request_header_insert_type` (String) 'insert-if-not-exist': Only insert the header when it does not exist; 'insert-always': Always insert the header even when there is a header with the same name;
 
 
 <a id="nestedblock--response_content_replace_list"></a>
@@ -254,8 +288,8 @@ Optional:
 
 Optional:
 
-- `response_content_replace` (String)
-- `response_new_string` (String)
+- `response_content_replace` (String) replace the data from HTTP response content (String in the http content need to be replaced)
+- `response_new_string` (String) String will be in the http content
 
 
 <a id="nestedblock--response_header_erase_list"></a>
@@ -263,7 +297,7 @@ Optional:
 
 Optional:
 
-- `response_header_erase` (String)
+- `response_header_erase` (String) Erase a header from HTTP response (Header Name)
 
 
 <a id="nestedblock--response_header_insert_list"></a>
@@ -271,8 +305,8 @@ Optional:
 
 Optional:
 
-- `response_header_insert` (String)
-- `response_header_insert_type` (String)
+- `response_header_insert` (String) Insert a header into HTTP response (Header Content (Format: "[name]:[value]"))
+- `response_header_insert_type` (String) 'insert-if-not-exist': Only insert the header when it does not exist; 'insert-always': Always insert the header even when there is a header with the same name;
 
 
 <a id="nestedblock--template"></a>
@@ -280,19 +314,16 @@ Optional:
 
 Optional:
 
-- `logging` (String)
+- `logging` (String) Logging template (Logging Config name)
 
 
 <a id="nestedblock--url_switching"></a>
 ### Nested Schema for `url_switching`
 
-Required:
-
-- `url_switching_type` (String)
-
 Optional:
 
-- `url_match_string` (String)
-- `url_service_group` (String)
+- `url_match_string` (String) URL String
+- `url_service_group` (String) Create a Service Group comprising Servers (Service Group Name)
+- `url_switching_type` (String) 'contains': Select service group if URL string contains another string; 'ends-with': Select service group if URL string ends with another string; 'equals': Select service group if URL string equals another string; 'starts-with': Select service group if URL string starts with another string; 'regex-match': Select service group if URL string matches with regular expression; 'url-case-insensitive': Case insensitive URL switching; 'url-hits-enable': Enables URL Hits;
 
 

@@ -3,9 +3,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-data "thunder_sessions_oper" "test"{ }
-
-output "get_sessions" {
-  value = ["${data.thunder_sessions_oper.test}"]
+data "thunder_sessions_oper" "thunder_sessions_oper" {
+}
+output "get_sessions_oper" {
+  value = ["${data.thunder_sessions_oper.thunder_sessions_oper}"]
 }

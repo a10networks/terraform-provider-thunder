@@ -3,12 +3,15 @@
 page_title: "thunder_slb_pop3_proxy Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_pop3_proxy: Configure POP3 Proxy global
+  PLACEHOLDER
 ---
 
 # thunder_slb_pop3_proxy (Resource)
 
+`thunder_slb_pop3_proxy`: Configure POP3 Proxy global
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_pop3_proxy" "test_thunder_slb_pop3_proxy" {
+resource "thunder_slb_pop3_proxy" "thunder_slb_pop3_proxy" {
   sampling_enable {
     counters1 = "all"
   }
@@ -32,6 +34,7 @@ resource "thunder_slb_pop3_proxy" "test_thunder_slb_pop3_proxy" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -42,6 +45,6 @@ resource "thunder_slb_pop3_proxy" "test_thunder_slb_pop3_proxy" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'num': Num; 'curr': Current proxy conns; 'total': Total proxy conns; 'svrsel_fail': Server selection failure; 'no_route': no route failure; 'snat_fail': source nat failure; 'line_too_long': line too long; 'line_mem_freed': request line freed; 'invalid_start_line': invalid start line; 'stls': stls cmd; 'request_dont_care': other cmd; 'unsupported_command': Unsupported cmd; 'bad_sequence': Bad Sequence; 'rsv_persist_conn_fail': Serv Sel Persist fail; 'smp_v6_fail': Serv Sel SMPv6 fail; 'smp_v4_fail': Serv Sel SMPv4 fail; 'insert_tuple_fail': Serv Sel insert tuple fail; 'cl_est_err': Client EST state erro; 'ser_connecting_err': Serv CTNG state error; 'server_response_err': Serv RESP state error; 'cl_request_err': Client RQ state error; 'request': Total POP3 Request; 'control_to_ssl': Control chn ssl;
 
 

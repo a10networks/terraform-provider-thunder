@@ -3,12 +3,15 @@
 page_title: "thunder_fw_tcp_window_check Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_tcp_window_check: Configure TCP window check
+  PLACEHOLDER
 ---
 
 # thunder_fw_tcp_window_check (Resource)
 
+`thunder_fw_tcp_window_check`: Configure TCP window check
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,10 +21,9 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_tcp_window_check" "test_thunder_fw_tcp_window_check" {
   status = "enable"
-  sampling_enable{
+  sampling_enable {
     counters1 = "all"
   }
 }
@@ -33,8 +35,8 @@ resource "thunder_fw_tcp_window_check" "test_thunder_fw_tcp_window_check" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `status` (String)
-- `uuid` (String)
+- `status` (String) 'enable': Enable TCP window check (default); 'disable': Disable TCP window check;
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -45,6 +47,6 @@ resource "thunder_fw_tcp_window_check" "test_thunder_fw_tcp_window_check" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'outside-window': packet dropped counter for outside of tcp window;
 
 

@@ -3,12 +3,15 @@
 page_title: "thunder_snmp_server_slb_data_cache_timeout Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_slb_data_cache_timeout: Configure the SLB data cache time-out in seconds
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_slb_data_cache_timeout (Resource)
 
+`thunder_snmp_server_slb_data_cache_timeout`: Configure the SLB data cache time-out in seconds
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,9 +21,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_snmp_server_slb_data_cache_timeout" "resourceSnmpServerSlbDataCacheTimeoutTest" {
-  slblimit = 75
+resource "thunder_snmp_server_slb_data_cache_timeout" "thunder_snmp_server_slb_data_cache_timeout" {
+  slblimit = 62
 }
 ```
 
@@ -29,8 +31,8 @@ resource "thunder_snmp_server_slb_data_cache_timeout" "resourceSnmpServerSlbData
 
 ### Optional
 
-- `slblimit` (Number)
-- `uuid` (String)
+- `slblimit` (Number) Cache time-out in seconds, default as 60 seconds
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

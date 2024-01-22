@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_ip_dns_suffix" "testname" {
+resource "thunder_ip_dns_suffix" "thunder_ip_dns_suffix" {
   domain_name = "A10test"
 }

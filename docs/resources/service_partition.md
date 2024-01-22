@@ -21,11 +21,12 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_service_partition" "test"{
-  partition_name = "svcpartition"
+resource "thunder_service_partition" "thunder_service_partition" {
   application_type = "adc"
-  id1 = 22
+  follow_vrid      = 0
+  id1              = 1
+  partition_name   = "14"
+  user_tag         = "52"
 }
 ```
 

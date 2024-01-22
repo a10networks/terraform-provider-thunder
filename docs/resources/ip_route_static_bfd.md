@@ -3,12 +3,15 @@
 page_title: "thunder_ip_route_static_bfd Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ip_route_static_bfd: Bidirectional Forwarding Detection
+  PLACEHOLDER
 ---
 
 # thunder_ip_route_static_bfd (Resource)
 
+`thunder_ip_route_static_bfd`: Bidirectional Forwarding Detection
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ip_route_static_bfd" "ipStaticBFD" {
   local_ip   = "20.20.20.21"
   nexthop_ip = "21.21.21.22"
@@ -38,10 +40,10 @@ resource "thunder_ip_route_static_bfd" "ipStaticBFD" {
 - `action` (String) 'down': BFD down;  (BFD state)
 - `template` (String) Configure tracking template (bind tracking template name)
 - `threshold` (Number) action triggering threshold
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `uuid` (String) uuid of the object
 
 

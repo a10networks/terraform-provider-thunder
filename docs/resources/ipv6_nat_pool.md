@@ -3,12 +3,15 @@
 page_title: "thunder_ipv6_nat_pool Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ipv6_nat_pool: IPv6 pool name
+  PLACEHOLDER
 ---
 
 # thunder_ipv6_nat_pool (Resource)
 
+`thunder_ipv6_nat_pool`: IPv6 pool name
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ipv6_nat_pool" "A" {
   pool_name     = "K"
   start_address = "a::1"
@@ -39,6 +41,7 @@ resource "thunder_ipv6_nat_pool" "A" {
 
 ### Optional
 
+- `chunk_sharing` (Number) Share NAT pool chunk across CPUs
 - `end_address` (String) Configure end IP address of NAT pool
 - `gateway` (String) Configure gateway IP
 - `ip_rr` (Number) Use IP address round-robin behavior

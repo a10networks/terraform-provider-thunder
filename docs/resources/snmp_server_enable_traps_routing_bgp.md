@@ -3,26 +3,33 @@
 page_title: "thunder_snmp_server_enable_traps_routing_bgp Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_enable_traps_routing_bgp: Enable bgp traps
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_enable_traps_routing_bgp (Resource)
 
+`thunder_snmp_server_enable_traps_routing_bgp`: Enable bgp traps
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_routing_bgp"   "SnMPServerEnableTrapsRoutingBgp"  {
-
-         bgp_established_notification = 1 
-         bgp_backward_trans_notification = 1  
-         
+resource "thunder_snmp_server_enable_traps_routing_bgp" "thunder_snmp_server_enable_traps_routing_bgp" {
+  ax {
+    bgpestablishednotification             = 0
+    bgpbackwardtransnotification           = 0
+    bgpprefixthresholdexceedednotification = 0
+    bgpprefixthresholdclearnotification    = 0
+  }
+  bgpbackwardtransnotification = 0
+  bgpestablishednotification   = 0
 }
 ```
 
@@ -31,12 +38,24 @@ resource  "thunder_snmp_server_enable_traps_routing_bgp"   "SnMPServerEnableTrap
 
 ### Optional
 
-- `bgp_backward_trans_notification` (Number)
-- `bgp_established_notification` (Number)
-- `uuid` (String)
+- `ax` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ax))
+- `bgpbackwardtransnotification` (Number) Enable bgpBackwardTransNotification traps
+- `bgpestablishednotification` (Number) Enable bgpEstablishedNotification traps
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
+
+<a id="nestedblock--ax"></a>
+### Nested Schema for `ax`
+
+Optional:
+
+- `bgpbackwardtransnotification` (Number) Enable bgpBackwardTransNotification traps
+- `bgpestablishednotification` (Number) Enable bgpEstablishedNotification traps
+- `bgpprefixthresholdclearnotification` (Number) Enable bgpPrefixThresholdClearNotification traps
+- `bgpprefixthresholdexceedednotification` (Number) Enable bgpPrefixThresholdExceededNotification traps
+- `uuid` (String) uuid of the object
 
 

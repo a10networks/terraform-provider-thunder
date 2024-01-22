@@ -3,10 +3,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_proxy" "test_thunder_slb_proxy" {
+resource "thunder_slb_proxy" "thunder_slb_proxy" {
   sampling_enable {
     counters1 = "all"
   }
 }
-

@@ -3,12 +3,15 @@
 page_title: "thunder_slb_ftp_data Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_ftp_data: Configure FTP
+  PLACEHOLDER
 ---
 
 # thunder_slb_ftp_data (Resource)
 
+`thunder_slb_ftp_data`: Configure FTP
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_ftp_data" "test_thunder_slb_ftp_data" {
   sampling_enable {
     counters1 = "all"
@@ -32,7 +34,7 @@ resource "thunder_slb_ftp_data" "test_thunder_slb_ftp_data" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,6 @@ resource "thunder_slb_ftp_data" "test_thunder_slb_ftp_data" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'sessions_num': Total Data Sessions; 'port_out_of_range': Drop Data Port out of range;
 
 

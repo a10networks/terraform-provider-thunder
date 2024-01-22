@@ -3,12 +3,15 @@
 page_title: "thunder_fw_apply_changes Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_apply_changes: Recompile rule-set immediately
+  PLACEHOLDER
 ---
 
 # thunder_fw_apply_changes (Resource)
 
+`thunder_fw_apply_changes`: Recompile rule-set immediately
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,9 +21,9 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
+resource "thunder_fw_apply_changes" "thunder_fw_apply_changes" {
 
-resource "thunder_fw_apply_changes" "test_thunder_fw_apply_changes" {
-  forced = 0
+  forced = 1
 }
 ```
 
@@ -29,7 +32,7 @@ resource "thunder_fw_apply_changes" "test_thunder_fw_apply_changes" {
 
 ### Optional
 
-- `forced` (Number)
+- `forced` (Number) Force recompile rule-set
 
 ### Read-Only
 

@@ -14,6 +14,7 @@ func resourceGslbGroup() *schema.Resource {
 		UpdateContext: resourceGslbGroupUpdate,
 		ReadContext:   resourceGslbGroupRead,
 		DeleteContext: resourceGslbGroupDelete,
+
 		Schema: map[string]*schema.Schema{
 			"auto_map_learn": {
 				Type: schema.TypeInt, Optional: true, Default: 1, Description: "IP Address learned from other controller",
@@ -49,7 +50,7 @@ func resourceGslbGroup() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Management Interface IP Address",
 			},
 			"name": {
-				Type: schema.TypeString, Required: true, ForceNew: true, Description: "Specify Group domain name",
+				Type: schema.TypeString, Required: true, Description: "Specify Group domain name",
 			},
 			"primary_ipv6_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
@@ -92,7 +93,6 @@ func resourceGslbGroup() *schema.Resource {
 		},
 	}
 }
-
 func resourceGslbGroupCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -106,21 +106,6 @@ func resourceGslbGroupCreate(ctx context.Context, d *schema.ResourceData, meta i
 			return diag.FromErr(err)
 		}
 		return resourceGslbGroupRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceGslbGroupRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceGslbGroupRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointGslbGroup(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -140,7 +125,6 @@ func resourceGslbGroupUpdate(ctx context.Context, d *schema.ResourceData, meta i
 	}
 	return diags
 }
-
 func resourceGslbGroupDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -156,9 +140,25 @@ func resourceGslbGroupDelete(ctx context.Context, d *schema.ResourceData, meta i
 	return diags
 }
 
+func resourceGslbGroupRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceGslbGroupRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointGslbGroup(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
 func getSliceGslbGroupPrimaryIpv6List(d []interface{}) []edpt.GslbGroupPrimaryIpv6List {
-	count := len(d)
-	ret := make([]edpt.GslbGroupPrimaryIpv6List, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbGroupPrimaryIpv6List, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbGroupPrimaryIpv6List
@@ -169,8 +169,9 @@ func getSliceGslbGroupPrimaryIpv6List(d []interface{}) []edpt.GslbGroupPrimaryIp
 }
 
 func getSliceGslbGroupPrimaryList(d []interface{}) []edpt.GslbGroupPrimaryList {
-	count := len(d)
-	ret := make([]edpt.GslbGroupPrimaryList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbGroupPrimaryList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbGroupPrimaryList

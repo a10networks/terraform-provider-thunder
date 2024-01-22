@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_router_bgp_address_family_ipv6" "resourceRouterBgpAddressFamilyIpv6Test" {
+resource "thunder_router_bgp_address_family_ipv6" "thunderRouterBgpAddressFamilyIpv6Test" {
   as_number = "300"
   bgp {
     dampening                = 1
@@ -179,4 +178,3 @@ resource "thunder_router_bgp_address_family_ipv6" "resourceRouterBgpAddressFamil
     }
   }
 }
-

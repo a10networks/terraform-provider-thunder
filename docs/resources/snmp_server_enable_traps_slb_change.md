@@ -3,34 +3,34 @@
 page_title: "thunder_snmp_server_enable_traps_slb_change Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_enable_traps_slb_change: Enable SLB change traps
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_enable_traps_slb_change (Resource)
 
+`thunder_snmp_server_enable_traps_slb_change`: Enable SLB change traps
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_slb_change"   "SnMPServerEnableTrapsSlbChange"  {
-
-    all= 1
-    resource_usage_warning= 1
-    connection_resource_event= 0
-    server= 0
-    server_port= 1
-    ssl_cert_change= 0
-    ssl_cert_expire= 0
-    vip= 1
-    vip_port= 0
-    system_threshold= 1
-  
+resource "thunder_snmp_server_enable_traps_slb_change" "thunder_snmp_server_enable_traps_slb_change" {
+  all                       = 0
+  connection_resource_event = 0
+  resource_usage_warning    = 0
+  server_port               = 0
+  ssl_cert_change           = 0
+  ssl_cert_expire           = 0
+  system_threshold          = 0
+  vip                       = 0
+  vip_port                  = 0
 }
 ```
 
@@ -39,17 +39,17 @@ resource  "thunder_snmp_server_enable_traps_slb_change"   "SnMPServerEnableTraps
 
 ### Optional
 
-- `all` (Number)
-- `connection_resource_event` (Number)
-- `resource_usage_warning` (Number)
-- `server` (Number)
-- `server_port` (Number)
-- `ssl_cert_change` (Number)
-- `ssl_cert_expire` (Number)
-- `system_threshold` (Number)
-- `uuid` (String)
-- `vip` (Number)
-- `vip_port` (Number)
+- `all` (Number) Enable all system group traps
+- `connection_resource_event` (Number) Enable system connection resource event trap
+- `resource_usage_warning` (Number) Enable partition resource usage warning trap
+- `server` (Number) Enable slb server create/delete trap
+- `server_port` (Number) Enable slb server port create/delete trap
+- `ssl_cert_change` (Number) Enable SSL certificate change trap
+- `ssl_cert_expire` (Number) Enable SSL certificate expiring trap
+- `system_threshold` (Number) Enable slb system threshold trap
+- `uuid` (String) uuid of the object
+- `vip` (Number) Enable slb vip create/delete trap
+- `vip_port` (Number) Enable slb vip-port create/delete trap
 
 ### Read-Only
 

@@ -2,21 +2,19 @@ package thunder
 
 import (
 	"context"
-	"fmt"
-	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
 	edpt "github.com/a10networks/terraform-provider-thunder/thunder/axapi/endpoint"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
 func resourceClassList() *schema.Resource {
 	return &schema.Resource{
-		Description:   "`thunder_class_list` configures classification list\n\n",
+		Description:   "`thunder_class_list`: Configure classification list\n\n__PLACEHOLDER__",
 		CreateContext: resourceClassListCreate,
 		UpdateContext: resourceClassListUpdate,
 		ReadContext:   resourceClassListRead,
 		DeleteContext: resourceClassListDelete,
+
 		Schema: map[string]*schema.Schema{
 			"ac_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
@@ -24,19 +22,15 @@ func resourceClassList() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"ac_match_type": {
 							Type: schema.TypeString, Optional: true, Description: "'contains': String contains another string; 'ends-with': String ends with another string; 'equals': String equals another string; 'starts-with': String starts with another string;",
-							ValidateFunc: validation.StringInSlice([]string{"contains", "ends-with", "equals", "starts-with"}, false),
 						},
 						"ac_key_string": {
 							Type: schema.TypeString, Optional: true, Description: "Specify key string",
-							ValidateFunc: validation.StringLenBetween(1, 255),
 						},
 						"ac_value": {
 							Type: schema.TypeString, Optional: true, Description: "Specify value string",
-							ValidateFunc: validation.StringLenBetween(1, 639),
 						},
 						"gtp_rate_limit_policy_str": {
 							Type: schema.TypeString, Optional: true, Description: "GTP Rate Limit Template Name",
-							ValidateFunc: validation.StringLenBetween(1, 128),
 						},
 					},
 				},
@@ -47,34 +41,40 @@ func resourceClassList() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"dns_match_type": {
 							Type: schema.TypeString, Optional: true, Description: "'contains': Domain contains another string; 'ends-with': Domain ends with another string; 'starts-with': Domain starts-with another string;",
-							ValidateFunc: validation.StringInSlice([]string{"contains", "ends-with", "starts-with"}, false),
 						},
 						"dns_match_string": {
 							Type: schema.TypeString, Optional: true, Description: "Domain name",
-							ValidateFunc: validation.StringLenBetween(1, 128),
 						},
 						"dns_lid": {
 							Type: schema.TypeInt, Optional: true, Description: "Use Limit ID defined in template (Specify LID index)",
-							ValidateFunc: validation.IntBetween(1, 1023),
 						},
 						"dns_glid": {
-							Type: schema.TypeInt, Optional: true, Description: "Use global Limit ID (Specify global LID index)",
-							ValidateFunc: validation.IntBetween(1, 1023),
+							Type: schema.TypeString, Optional: true, Description: "Use global Limit ID (Specify global LID index)",
 						},
 						"shared_partition_dns_glid": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Reference a glid from shared partition",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"dns_glid_shared": {
-							Type: schema.TypeInt, Optional: true, Description: "Use global Limit ID",
-							ValidateFunc: validation.IntBetween(1, 1023),
+							Type: schema.TypeString, Optional: true, Description: "Use global Limit ID",
 						},
 					},
 				},
 			},
 			"file": {
-				Type: schema.TypeInt, ForceNew: true, Optional: true, Default: 0, Description: "Create/Edit a class-list stored as a file",
-				ValidateFunc: validation.IntBetween(0, 1),
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Create/Edit a class-list stored as a file",
+			},
+			"geo_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"geo_location": {
+							Type: schema.TypeString, Optional: true, Description: "Specify geo-location",
+						},
+						"geo_location_ipv6": {
+							Type: schema.TypeString, Optional: true, Description: "Specify IPv6 geo-location",
+						},
+					},
+				},
 			},
 			"ipv4_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
@@ -82,39 +82,30 @@ func resourceClassList() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"ipv4addr": {
 							Type: schema.TypeString, Optional: true, Description: "Specify IP address",
-							ValidateFunc: validation.IsCIDR,
 						},
 						"lid": {
 							Type: schema.TypeInt, Optional: true, Description: "Use Limit ID defined in template (Specify LID index)",
-							ValidateFunc: validation.IntBetween(1, 1023),
 						},
 						"glid": {
-							Type: schema.TypeInt, Optional: true, Description: "Use global Limit ID (Specify global LID index)",
-							ValidateFunc: validation.IntBetween(1, 1023),
+							Type: schema.TypeString, Optional: true, Description: "Use global Limit ID (Specify global LID index)",
 						},
 						"shared_partition_glid": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Reference a glid from shared partition",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"glid_shared": {
-							Type: schema.TypeInt, Optional: true, Description: "Use global Limit ID",
-							ValidateFunc: validation.IntBetween(1, 1023),
+							Type: schema.TypeString, Optional: true, Description: "Use global Limit ID",
 						},
 						"lsn_lid": {
 							Type: schema.TypeInt, Optional: true, Description: "LSN Limit ID (LID index)",
-							ValidateFunc: validation.IntBetween(1, 1023),
 						},
 						"lsn_radius_profile": {
 							Type: schema.TypeInt, Optional: true, Description: "LSN RADIUS Profile Index",
-							ValidateFunc: validation.IntBetween(1, 16),
 						},
 						"gtp_rate_limit_policy_v4": {
 							Type: schema.TypeString, Optional: true, Description: "GTP Rate Limit Template Name",
-							ValidateFunc: validation.StringLenBetween(1, 128),
 						},
 						"age": {
 							Type: schema.TypeInt, Optional: true, Description: "Specify age in minutes",
-							ValidateFunc: validation.IntBetween(1, 2000),
 						},
 					},
 				},
@@ -125,46 +116,36 @@ func resourceClassList() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"ipv6_addr": {
 							Type: schema.TypeString, Optional: true, Description: "Specify IPv6 host or subnet",
-							ValidateFunc: axapi.IsIpv6AddressPlen,
 						},
 						"v6_lid": {
 							Type: schema.TypeInt, Optional: true, Description: "Use Limit ID defined in template (Specify LID index)",
-							ValidateFunc: validation.IntBetween(1, 1023),
 						},
 						"v6_glid": {
-							Type: schema.TypeInt, Optional: true, Description: "Use global Limit ID (Specify global LID index)",
-							ValidateFunc: validation.IntBetween(1, 1023),
+							Type: schema.TypeString, Optional: true, Description: "Use global Limit ID (Specify global LID index)",
 						},
 						"shared_partition_v6_glid": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Reference a glid from shared partition",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"v6_glid_shared": {
-							Type: schema.TypeInt, Optional: true, Description: "Use global Limit ID",
-							ValidateFunc: validation.IntBetween(1, 1023),
+							Type: schema.TypeString, Optional: true, Description: "Use global Limit ID",
 						},
 						"v6_lsn_lid": {
 							Type: schema.TypeInt, Optional: true, Description: "LSN Limit ID (LID index)",
-							ValidateFunc: validation.IntBetween(1, 1023),
 						},
 						"v6_lsn_radius_profile": {
 							Type: schema.TypeInt, Optional: true, Description: "LSN RADIUS Profile Index",
-							ValidateFunc: validation.IntBetween(1, 16),
 						},
 						"gtp_rate_limit_policy_v6": {
 							Type: schema.TypeString, Optional: true, Description: "GTP Rate Limit Template Name",
-							ValidateFunc: validation.StringLenBetween(1, 128),
 						},
 						"v6_age": {
 							Type: schema.TypeInt, Optional: true, Description: "Specify age in minutes",
-							ValidateFunc: validation.IntBetween(1, 2000),
 						},
 					},
 				},
 			},
 			"name": {
-				Type: schema.TypeString, Required: true, ForceNew: true, Description: "Specify name of the class list",
-				ValidateFunc: validation.StringLenBetween(1, 63),
+				Type: schema.TypeString, Required: true, Description: "Specify name of the class list",
 			},
 			"str_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
@@ -172,46 +153,36 @@ func resourceClassList() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"str": {
 							Type: schema.TypeString, Optional: true, Description: "Specify key string",
-							ValidateFunc: validation.StringLenBetween(1, 255),
 						},
 						"str_lid_dummy": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use Limit ID defined in template",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"str_lid": {
 							Type: schema.TypeInt, Optional: true, Description: "LID index",
-							ValidateFunc: validation.IntBetween(1, 1023),
 						},
 						"str_glid_dummy": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use global Limit ID",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"str_glid": {
-							Type: schema.TypeInt, Optional: true, Description: "Global LID index",
-							ValidateFunc: validation.IntBetween(1, 1023),
+							Type: schema.TypeString, Optional: true, Description: "Global LID index",
 						},
 						"shared_partition_str_glid": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Reference a glid from shared partition",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"str_glid_shared": {
-							Type: schema.TypeInt, Optional: true, Description: "Use global Limit ID",
-							ValidateFunc: validation.IntBetween(1, 1023),
+							Type: schema.TypeString, Optional: true, Description: "Use global Limit ID",
 						},
 						"value_str": {
 							Type: schema.TypeString, Optional: true, Description: "Specify value string",
-							ValidateFunc: validation.StringLenBetween(1, 639),
 						},
 					},
 				},
 			},
 			"type": {
 				Type: schema.TypeString, Optional: true, Description: "'ac': Make class-list type Aho-Corasick; 'dns': Make class-list type DNS; 'ipv4': Make class-list type IPv4; 'ipv6': Make class-list type IPv6; 'string': Make class-list type String; 'string-case-insensitive': Make class-list type String-case-insensitive. Case insensitive is applied to key string;",
-				ValidateFunc: validation.StringInSlice([]string{"ac", "dns", "ipv4", "ipv6", "string", "string-case-insensitive"}, false),
 			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
-				ValidateFunc: validation.StringLenBetween(1, 127),
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -219,7 +190,6 @@ func resourceClassList() *schema.Resource {
 		},
 	}
 }
-
 func resourceClassListCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -233,21 +203,6 @@ func resourceClassListCreate(ctx context.Context, d *schema.ResourceData, meta i
 			return diag.FromErr(err)
 		}
 		return resourceClassListRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceClassListRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceClassListRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := edpt.ClassList{}
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -267,14 +222,13 @@ func resourceClassListUpdate(ctx context.Context, d *schema.ResourceData, meta i
 	}
 	return diags
 }
-
 func resourceClassListDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
 	logger.Println("resourceClassListDelete()")
 	var diags diag.Diagnostics
 	if client.Host != "" {
-		obj := edpt.ClassList{}
+		obj := dataToEndpointClassList(d)
 		err := obj.Delete(client.Token, client.Host, d.Id(), logger)
 		if err != nil {
 			return diag.FromErr(err)
@@ -283,82 +237,141 @@ func resourceClassListDelete(ctx context.Context, d *schema.ResourceData, meta i
 	return diags
 }
 
+func resourceClassListRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceClassListRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointClassList(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
+func getSliceClassListAcList(d []interface{}) []edpt.ClassListAcList {
+
+	count1 := len(d)
+	ret := make([]edpt.ClassListAcList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.ClassListAcList
+		oi.AcMatchType = in["ac_match_type"].(string)
+		oi.AcKeyString = in["ac_key_string"].(string)
+		oi.AcValue = in["ac_value"].(string)
+		oi.GtpRateLimitPolicyStr = in["gtp_rate_limit_policy_str"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceClassListDns(d []interface{}) []edpt.ClassListDns {
+
+	count1 := len(d)
+	ret := make([]edpt.ClassListDns, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.ClassListDns
+		oi.DnsMatchType = in["dns_match_type"].(string)
+		oi.DnsMatchString = in["dns_match_string"].(string)
+		oi.DnsLid = in["dns_lid"].(int)
+		oi.DnsGlid = in["dns_glid"].(string)
+		oi.SharedPartitionDnsGlid = in["shared_partition_dns_glid"].(int)
+		oi.DnsGlidShared = in["dns_glid_shared"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceClassListGeoList(d []interface{}) []edpt.ClassListGeoList {
+
+	count1 := len(d)
+	ret := make([]edpt.ClassListGeoList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.ClassListGeoList
+		oi.GeoLocation = in["geo_location"].(string)
+		oi.GeoLocationIpv6 = in["geo_location_ipv6"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceClassListIpv4List(d []interface{}) []edpt.ClassListIpv4List {
+
+	count1 := len(d)
+	ret := make([]edpt.ClassListIpv4List, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.ClassListIpv4List
+		oi.Ipv4addr = in["ipv4addr"].(string)
+		oi.Lid = in["lid"].(int)
+		oi.Glid = in["glid"].(string)
+		oi.SharedPartitionGlid = in["shared_partition_glid"].(int)
+		oi.GlidShared = in["glid_shared"].(string)
+		oi.LsnLid = in["lsn_lid"].(int)
+		oi.LsnRadiusProfile = in["lsn_radius_profile"].(int)
+		oi.GtpRateLimitPolicyV4 = in["gtp_rate_limit_policy_v4"].(string)
+		oi.Age = in["age"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceClassListIpv6List(d []interface{}) []edpt.ClassListIpv6List {
+
+	count1 := len(d)
+	ret := make([]edpt.ClassListIpv6List, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.ClassListIpv6List
+		oi.Ipv6Addr = in["ipv6_addr"].(string)
+		oi.V6Lid = in["v6_lid"].(int)
+		oi.V6Glid = in["v6_glid"].(string)
+		oi.SharedPartitionV6Glid = in["shared_partition_v6_glid"].(int)
+		oi.V6GlidShared = in["v6_glid_shared"].(string)
+		oi.V6LsnLid = in["v6_lsn_lid"].(int)
+		oi.V6LsnRadiusProfile = in["v6_lsn_radius_profile"].(int)
+		oi.GtpRateLimitPolicyV6 = in["gtp_rate_limit_policy_v6"].(string)
+		oi.V6Age = in["v6_age"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceClassListStrList(d []interface{}) []edpt.ClassListStrList {
+
+	count1 := len(d)
+	ret := make([]edpt.ClassListStrList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.ClassListStrList
+		oi.Str = in["str"].(string)
+		oi.StrLidDummy = in["str_lid_dummy"].(int)
+		oi.StrLid = in["str_lid"].(int)
+		oi.StrGlidDummy = in["str_glid_dummy"].(int)
+		oi.StrGlid = in["str_glid"].(string)
+		oi.SharedPartitionStrGlid = in["shared_partition_str_glid"].(int)
+		oi.StrGlidShared = in["str_glid_shared"].(string)
+		oi.ValueStr = in["value_str"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func dataToEndpointClassList(d *schema.ResourceData) edpt.ClassList {
 	var ret edpt.ClassList
-	count := 0
-	count = d.Get("ac_list.#").(int)
-	ret.Inst.AcList = make([]edpt.ClassListAcList, 0, count)
-	for i := 0; i < count; i++ {
-		var obj edpt.ClassListAcList
-		prefix := fmt.Sprintf("ac_list.%d.", i)
-		obj.AcMatchType = d.Get(prefix + "ac_match_type").(string)
-		obj.AcKeyString = d.Get(prefix + "ac_key_string").(string)
-		obj.AcValue = d.Get(prefix + "ac_value").(string)
-		obj.GtpRateLimitPolicyStr = d.Get(prefix + "gtp_rate_limit_policy_str").(string)
-		ret.Inst.AcList = append(ret.Inst.AcList, obj)
-	}
-	count = d.Get("dns.#").(int)
-	ret.Inst.Dns = make([]edpt.ClassListDns, 0, count)
-	for i := 0; i < count; i++ {
-		var obj edpt.ClassListDns
-		prefix := fmt.Sprintf("dns.%d.", i)
-		obj.DnsMatchType = d.Get(prefix + "dns_match_type").(string)
-		obj.DnsMatchString = d.Get(prefix + "dns_match_string").(string)
-		obj.DnsLid = d.Get(prefix + "dns_lid").(int)
-		obj.DnsGlid = d.Get(prefix + "dns_glid").(int)
-		obj.SharedPartitionDnsGlid = d.Get(prefix + "shared_partition_dns_glid").(int)
-		obj.DnsGlidShared = d.Get(prefix + "dns_glid_shared").(int)
-		ret.Inst.Dns = append(ret.Inst.Dns, obj)
-	}
+	ret.Inst.AcList = getSliceClassListAcList(d.Get("ac_list").([]interface{}))
+	ret.Inst.Dns = getSliceClassListDns(d.Get("dns").([]interface{}))
 	ret.Inst.File = d.Get("file").(int)
-	count = d.Get("ipv4_list.#").(int)
-	ret.Inst.Ipv4List = make([]edpt.ClassListIpv4List, 0, count)
-	for i := 0; i < count; i++ {
-		var obj edpt.ClassListIpv4List
-		prefix := fmt.Sprintf("ipv4_list.%d.", i)
-		obj.Ipv4addr = d.Get(prefix + "ipv4addr").(string)
-		obj.Lid = d.Get(prefix + "lid").(int)
-		obj.Glid = d.Get(prefix + "glid").(int)
-		obj.SharedPartitionGlid = d.Get(prefix + "shared_partition_glid").(int)
-		obj.GlidShared = d.Get(prefix + "glid_shared").(int)
-		obj.LsnLid = d.Get(prefix + "lsn_lid").(int)
-		obj.LsnRadiusProfile = d.Get(prefix + "lsn_radius_profile").(int)
-		obj.GtpRateLimitPolicyV4 = d.Get(prefix + "gtp_rate_limit_policy_v4").(string)
-		obj.Age = d.Get(prefix + "age").(int)
-		ret.Inst.Ipv4List = append(ret.Inst.Ipv4List, obj)
-	}
-	count = d.Get("ipv6_list.#").(int)
-	ret.Inst.Ipv6List = make([]edpt.ClassListIpv6List, 0, count)
-	for i := 0; i < count; i++ {
-		var obj edpt.ClassListIpv6List
-		prefix := fmt.Sprintf("ipv6_list.%d.", i)
-		obj.Ipv6Addr = d.Get(prefix + "ipv6_addr").(string)
-		obj.V6Lid = d.Get(prefix + "v6_lid").(int)
-		obj.V6Glid = d.Get(prefix + "v6_glid").(int)
-		obj.SharedPartitionV6Glid = d.Get(prefix + "shared_partition_v6_glid").(int)
-		obj.V6GlidShared = d.Get(prefix + "v6_glid_shared").(int)
-		obj.V6LsnLid = d.Get(prefix + "v6_lsn_lid").(int)
-		obj.V6LsnRadiusProfile = d.Get(prefix + "v6_lsn_radius_profile").(int)
-		obj.GtpRateLimitPolicyV6 = d.Get(prefix + "gtp_rate_limit_policy_v6").(string)
-		obj.V6Age = d.Get(prefix + "v6_age").(int)
-		ret.Inst.Ipv6List = append(ret.Inst.Ipv6List, obj)
-	}
+	ret.Inst.GeoList = getSliceClassListGeoList(d.Get("geo_list").([]interface{}))
+	ret.Inst.Ipv4List = getSliceClassListIpv4List(d.Get("ipv4_list").([]interface{}))
+	ret.Inst.Ipv6List = getSliceClassListIpv6List(d.Get("ipv6_list").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
-	count = d.Get("str_list.#").(int)
-	ret.Inst.StrList = make([]edpt.ClassListStrList, 0, count)
-	for i := 0; i < count; i++ {
-		var obj edpt.ClassListStrList
-		prefix := fmt.Sprintf("str_list.%d.", i)
-		obj.Str = d.Get(prefix + "str").(string)
-		obj.StrLidDummy = d.Get(prefix + "str_lid_dummy").(int)
-		obj.StrLid = d.Get(prefix + "str_lid").(int)
-		obj.StrGlidDummy = d.Get(prefix + "str_glid_dummy").(int)
-		obj.StrGlid = d.Get(prefix + "str_glid").(int)
-		obj.SharedPartitionStrGlid = d.Get(prefix + "shared_partition_str_glid").(int)
-		obj.StrGlidShared = d.Get(prefix + "str_glid_shared").(int)
-		obj.ValueStr = d.Get(prefix + "value_str").(string)
-		ret.Inst.StrList = append(ret.Inst.StrList, obj)
-	}
+	ret.Inst.StrList = getSliceClassListStrList(d.Get("str_list").([]interface{}))
 	ret.Inst.Type = d.Get("type").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid

@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_fw_tcp_rst_close_immediate" "test_thunder_fw_tcp_rst_close_immediate" {
-  status = "enable"
+resource "thunder_fw_tcp_rst_close_immediate" "thunder_fw_tcp_rst_close_immediate" {
+  status = "disable"
 }

@@ -21,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_gslb_policy" "thunder_gslb_policy_test" {
+resource "thunder_gslb_policy" "thunder_gslb_policy" {
   name                           = "a10"
   health_check_preference_enable = 1
   health_preference_top          = 1
@@ -269,6 +268,7 @@ Optional:
 - `server_authoritative` (Number) As authoritative server
 - `server_auto_ns` (Number) Provide A-Records for NS-Records automatically
 - `server_auto_ptr` (Number) Provide PTR Records automatically
+- `server_caa` (Number) Provide CAA Records
 - `server_cname` (Number) Provide CNAME Records
 - `server_custom` (Number) Provide Custom Records
 - `server_full_list` (Number) Append All A Records in Authoritative Section
@@ -289,6 +289,7 @@ Optional:
 - `ttl` (Number) Specify the TTL value contained in DNS record (TTL value, unit: second, default is 10)
 - `use_server_ttl` (Number) Use DNS Server Response TTL value in GSLB Proxy mode
 - `uuid` (String) uuid of the object
+- `zone_owner_mode` (Number) Only run GSLB as DNS server mode with zone ownership
 
 <a id="nestedblock--dns--block_value"></a>
 ### Nested Schema for `dns.block_value`

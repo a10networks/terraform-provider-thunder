@@ -3,12 +3,15 @@
 page_title: "thunder_fw_alg_icmp Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_alg_icmp: Change Firewall ICMP ALG Settings
+  PLACEHOLDER
 ---
 
 # thunder_fw_alg_icmp (Resource)
 
+`thunder_fw_alg_icmp`: Change Firewall ICMP ALG Settings
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_alg_icmp" "test_thunder_fw_alg_icmp" {
   disable = "disable"
 }
@@ -29,8 +31,8 @@ resource "thunder_fw_alg_icmp" "test_thunder_fw_alg_icmp" {
 
 ### Optional
 
-- `disable` (String)
-- `uuid` (String)
+- `disable` (String) 'disable': Disable ICMP ALG which allows ICMP errors to pass the firewall;
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

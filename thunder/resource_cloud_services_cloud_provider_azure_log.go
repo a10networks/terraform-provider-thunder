@@ -14,26 +14,26 @@ func resourceCloudServicesCloudProviderAzureLog() *schema.Resource {
 		UpdateContext: resourceCloudServicesCloudProviderAzureLogUpdate,
 		ReadContext:   resourceCloudServicesCloudProviderAzureLogRead,
 		DeleteContext: resourceCloudServicesCloudProviderAzureLogDelete,
+
 		Schema: map[string]*schema.Schema{
 			"action": {
-				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Azure Log Analytics; 'disable': Disable Azure Log Analytics(default);",
+				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Azure Log Analytics Workspace; 'disable': Disable Azure Log Analytics Workspace (default);",
 			},
-			"customer_id": {
-				Type: schema.TypeString, Optional: true, Description: "Azure Log Analytics Customer ID",
+			"active_partitions": {
+				Type: schema.TypeString, Optional: true, Description: "Specifies the thunder active partition name separated by a comma for multiple values",
 			},
 			"resource_id": {
-				Type: schema.TypeString, Optional: true, Description: "Resource/Instance ID of vThunder",
-			},
-			"shared_key": {
-				Type: schema.TypeString, Optional: true, Description: "Azure Log Analytics Shared Key",
+				Type: schema.TypeString, Optional: true, Description: "Specifies the compute instance resource ID/Instance on which thunder is deployed",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
+			"workspace_id": {
+				Type: schema.TypeString, Optional: true, Description: "Specifies the Azure Log Analytics Workspace ID",
+			},
 		},
 	}
 }
-
 func resourceCloudServicesCloudProviderAzureLogCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -47,21 +47,6 @@ func resourceCloudServicesCloudProviderAzureLogCreate(ctx context.Context, d *sc
 			return diag.FromErr(err)
 		}
 		return resourceCloudServicesCloudProviderAzureLogRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceCloudServicesCloudProviderAzureLogRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceCloudServicesCloudProviderAzureLogRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointCloudServicesCloudProviderAzureLog(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -81,7 +66,6 @@ func resourceCloudServicesCloudProviderAzureLogUpdate(ctx context.Context, d *sc
 	}
 	return diags
 }
-
 func resourceCloudServicesCloudProviderAzureLogDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -97,13 +81,27 @@ func resourceCloudServicesCloudProviderAzureLogDelete(ctx context.Context, d *sc
 	return diags
 }
 
+func resourceCloudServicesCloudProviderAzureLogRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceCloudServicesCloudProviderAzureLogRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointCloudServicesCloudProviderAzureLog(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
 func dataToEndpointCloudServicesCloudProviderAzureLog(d *schema.ResourceData) edpt.CloudServicesCloudProviderAzureLog {
 	var ret edpt.CloudServicesCloudProviderAzureLog
 	ret.Inst.Action = d.Get("action").(string)
-	ret.Inst.CustomerId = d.Get("customer_id").(string)
-	//omit encrypted
+	ret.Inst.ActivePartitions = d.Get("active_partitions").(string)
 	ret.Inst.ResourceId = d.Get("resource_id").(string)
-	ret.Inst.SharedKey = d.Get("shared_key").(string)
 	//omit uuid
+	ret.Inst.WorkspaceId = d.Get("workspace_id").(string)
 	return ret
 }

@@ -3,12 +3,15 @@
 page_title: "thunder_ip_frag Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ip_frag: IP fragmentation parameters
+  PLACEHOLDER
 ---
 
 # thunder_ip_frag (Resource)
 
+`thunder_ip_frag`: IP fragmentation parameters
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,12 +21,10 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_ip_frag" "frag" {
+resource "thunder_ip_frag" "thunder_ip_frag" {
   buff                       = 200000
   max_packets_per_reassembly = 10
   max_reassembly_sessions    = 1
-  eassembly_sessions         = 1
   sampling_enable {
     counters1 = "all"
   }
@@ -39,13 +40,13 @@ resource "thunder_ip_frag" "frag" {
 
 ### Optional
 
-- `buff` (Number)
+- `buff` (Number) Max buff used for fragmentation (Buffer Value(10000-3000000))
 - `cpu_threshold` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_threshold))
-- `max_packets_per_reassembly` (Number)
-- `max_reassembly_sessions` (Number)
+- `max_packets_per_reassembly` (Number) Max number of fragmented packets allowed per reassembly(0 is unlimited) (default 0)
+- `max_reassembly_sessions` (Number) Max number of pending reassembly sessions allowed (default 100000)
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `timeout` (Number)
-- `uuid` (String)
+- `timeout` (Number) Fragmentation timeout (in milliseconds 4 - 65535 (default is 60000))
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -56,8 +57,8 @@ resource "thunder_ip_frag" "frag" {
 
 Optional:
 
-- `high` (Number)
-- `low` (Number)
+- `high` (Number) When CPU usage reaches this value, it will stop processing fragments (default: 75%)
+- `low` (Number) When CPU usage remains under this value, it will resume processing fragments (default: 60%)
 
 
 <a id="nestedblock--sampling_enable"></a>
@@ -65,6 +66,6 @@ Optional:
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'session-inserted': Session Inserted; 'session-expired': Session Expired; 'icmp-rcv': ICMP Received; 'icmpv6-rcv': ICMPv6 Received; 'udp-rcv': UDP Received; 'tcp-rcv': TCP Received; 'ipip-rcv': IP-in-IP Received; 'ipv6ip-rcv': IPv6-in-IP Received; 'other-rcv': Other Received; 'icmp-dropped': ICMP Dropped; 'icmpv6-dropped': ICMPv6 Dropped; 'udp-dropped': UDP Dropped; 'tcp-dropped': TCP Dropped; 'ipip-dropped': IP-in-IP Dropped; 'ipv6ip-dropped': IPv6-in-IP Dropped; 'other-dropped': Other Dropped; 'overlap-error': Overlapping Fragment Dropped; 'bad-ip-len': Bad IP Length; 'too-small': Fragment Too Small Drop; 'first-tcp-too-small': First TCP Fragment Too Small Drop; 'first-l4-too-small': First L4 Fragment Too Small Drop; 'total-sessions-exceeded': Total Sessions Exceeded Drop; 'no-session-memory': Out of Session Memory; 'fast-aging-set': Fragmentation Fast Aging Set; 'fast-aging-unset': Fragmentation Fast Aging Unset; 'fragment-queue-success': Fragment Queue Success; 'unaligned-len': Payload Length Unaligned; 'exceeded-len': Payload Length Out of Bounds; 'duplicate-first-frag': Duplicate First Fragment; 'duplicate-last-frag': Duplicate Last Fragment; 'total-fragments-exceeded': Total Queued Fragments Exceeded; 'fragment-queue-failure': Fragment Queue Failure; 'reassembly-success': Fragment Reassembly Success; 'max-len-exceeded': Fragment Max Data Length Exceeded; 'reassembly-failure': Fragment Reassembly Failure; 'policy-drop': MTU Exceeded Policy Drop; 'error-drop': Fragment Processing Drop; 'high-cpu-threshold': High CPU Threshold Reached; 'low-cpu-threshold': Low CPU Threshold Reached; 'cpu-threshold-drop': High CPU Drop; 'ipd-entry-drop': DDoS Protection Drop; 'max-packets-exceeded': Too Many Packets Per Reassembly Drop; 'session-packets-exceeded': Session Max Packets Exceeded; 'frag-session-count': Fragmentation Session Count; 'sctp-rcv': SCTP Received; 'sctp-dropped': SCTP Dropped; 'first-gtp-packet-too-small': First GTP Fragment Too Small Drop;
 
 

@@ -1,20 +1,16 @@
-
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_slb_change"   "SnMPServerEnableTrapsSlbChange"  {
-
-    all= 1
-    resource_usage_warning= 1
-    connection_resource_event= 0
-    server= 0
-    server_port= 1
-    ssl_cert_change= 0
-    ssl_cert_expire= 0
-    vip= 1
-    vip_port= 0
-    system_threshold= 1
-  
+resource "thunder_snmp_server_enable_traps_slb_change" "thunder_snmp_server_enable_traps_slb_change" {
+  all                       = 0
+  connection_resource_event = 0
+  resource_usage_warning    = 0
+  server_port               = 0
+  ssl_cert_change           = 0
+  ssl_cert_expire           = 0
+  system_threshold          = 0
+  vip                       = 0
+  vip_port                  = 0
 }

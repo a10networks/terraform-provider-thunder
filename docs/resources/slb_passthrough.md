@@ -3,12 +3,15 @@
 page_title: "thunder_slb_passthrough Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_passthrough: passthrough session stats
+  PLACEHOLDER
 ---
 
 # thunder_slb_passthrough (Resource)
 
+`thunder_slb_passthrough`: passthrough session stats
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_passthrough" "test_thunder_slb_passthrough" {
+resource "thunder_slb_passthrough" "thunder_slb_passthrough" {
   sampling_enable {
     counters1 = "all"
   }
@@ -32,6 +34,7 @@ resource "thunder_slb_passthrough" "test_thunder_slb_passthrough" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -42,6 +45,6 @@ resource "thunder_slb_passthrough" "test_thunder_slb_passthrough" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'curr_conn': Current connections; 'total_conn': Total connections; 'total_fwd_bytes': Forward bytes; 'total_fwd_packets': Forward packets; 'total_rev_bytes': Reverse bytes; 'total_rev_packets': Reverse packets; 'curr_pconn': Persistent connections;
 
 

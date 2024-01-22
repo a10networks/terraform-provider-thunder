@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_virtual_server" "virtual-server" {
   name                            = "virtualserver1"
   conn_limit                      = 10

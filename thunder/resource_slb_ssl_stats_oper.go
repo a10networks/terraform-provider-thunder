@@ -11,6 +11,7 @@ func resourceSlbSslStatsOper() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_slb_ssl_stats_oper`: Operational Status for the object ssl-stats\n\n__PLACEHOLDER__",
 		ReadContext: resourceSlbSslStatsOperRead,
+
 		Schema: map[string]*schema.Schema{
 			"oper": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -236,19 +237,19 @@ func resourceSlbSslStatsOper() *schema.Resource {
 									"util_percentage": {
 										Type: schema.TypeInt, Optional: true, Description: "current module percentage per sec",
 									},
-									"1sec_rate": {
+									"sec_rate1": {
 										Type: schema.TypeInt, Optional: true, Description: "Average module percentage per sec",
 									},
-									"5sec_rate": {
+									"sec_rate5": {
 										Type: schema.TypeInt, Optional: true, Description: "Average module percentage per 5 sec",
 									},
-									"10sec_rate": {
+									"sec_rate10": {
 										Type: schema.TypeInt, Optional: true, Description: "Average module percentage per 10 sec",
 									},
-									"30sec_rate": {
+									"sec_rate30": {
 										Type: schema.TypeInt, Optional: true, Description: "Average module percentage per 30 sec",
 									},
-									"60sec_rate": {
+									"sec_rate60": {
 										Type: schema.TypeInt, Optional: true, Description: "Average module percentage per 60 sec",
 									},
 								},
@@ -269,10 +270,10 @@ func resourceSlbSslStatsOperRead(ctx context.Context, d *schema.ResourceData, me
 	if client.Host != "" {
 		obj := dataToEndpointSlbSslStatsOper(d)
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		items := setObjectSlbSslStatsOperOper(res)
 		d.SetId(obj.GetId())
-		d.Set("oper", items)
-
+		logger.Println(res)
+		SlbSslStatsOperOper := setObjectSlbSslStatsOperOper(res)
+		d.Set("oper", SlbSslStatsOperOper)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -280,80 +281,79 @@ func resourceSlbSslStatsOperRead(ctx context.Context, d *schema.ResourceData, me
 	return diags
 }
 
-func setObjectSlbSslStatsOperOper(res edpt.SlbSslStatss) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["ssl_module_type"] = res.DataSlbSslStats.Oper.SslModuleType
-	in["config_module_type"] = res.DataSlbSslStats.Oper.ConfigModuleType
-	in["thales_hsm_status"] = res.DataSlbSslStats.Oper.ThalesHsmStatus
-	in["ssl_modules_count"] = res.DataSlbSslStats.Oper.SslModulesCount
-	in["current_clientside_connections"] = res.DataSlbSslStats.Oper.CurrentClientsideConnections
-	in["total_clientside_connections"] = res.DataSlbSslStats.Oper.TotalClientsideConnections
-	in["current_serverside_connections"] = res.DataSlbSslStats.Oper.CurrentServersideConnections
-	in["total_serverside_connections"] = res.DataSlbSslStats.Oper.TotalServersideConnections
-	in["non_ssl_bypass_connections"] = res.DataSlbSslStats.Oper.NonSslBypassConnections
-	in["total_reuse_client_ssl"] = res.DataSlbSslStats.Oper.TotalReuseClientSsl
-	in["total_reuse_server_ssl"] = res.DataSlbSslStats.Oper.TotalReuseServerSsl
-	in["total_reuse_session_ticket_client_ssl"] = res.DataSlbSslStats.Oper.TotalReuseSessionTicketClientSsl
-	in["total_reuse_session_ticket_server_ssl"] = res.DataSlbSslStats.Oper.TotalReuseSessionTicketServerSsl
-	in["total_clientside_early_data_connections"] = res.DataSlbSslStats.Oper.TotalClientsideEarlyDataConnections
-	in["total_serverside_early_data_connections"] = res.DataSlbSslStats.Oper.TotalServersideEarlyDataConnections
-	in["total_clientside_failed_early_data_connections"] = res.DataSlbSslStats.Oper.TotalClientsideFailedEarlyDataConnections
-	in["total_serverside_failed_early_data_connections"] = res.DataSlbSslStats.Oper.TotalServersideFailedEarlyDataConnections
-	in["failed_handshakes"] = res.DataSlbSslStats.Oper.FailedHandshakes
-	in["failed_crypto"] = res.DataSlbSslStats.Oper.FailedCrypto
-	in["ssl_memory_usage"] = res.DataSlbSslStats.Oper.SslMemoryUsage
-	in["server_cert_errors"] = res.DataSlbSslStats.Oper.ServerCertErrors
-	in["client_cert_auth_fail"] = res.DataSlbSslStats.Oper.ClientCertAuthFail
-	in["ca_verification_failures"] = res.DataSlbSslStats.Oper.CaVerificationFailures
-	in["hw_context_total"] = res.DataSlbSslStats.Oper.HwContextTotal
-	in["hw_context_usage"] = res.DataSlbSslStats.Oper.HwContextUsage
-	in["hw_context_alloc_fail"] = res.DataSlbSslStats.Oper.HwContextAllocFail
-	in["hw_ring_full"] = res.DataSlbSslStats.Oper.HwRingFull
-	in["record_too_big"] = res.DataSlbSslStats.Oper.RecordTooBig
-	in["clientssl_context_malloc_fail"] = res.DataSlbSslStats.Oper.ClientsslContextMallocFail
-	in["max_ssl_contexts"] = res.DataSlbSslStats.Oper.MaxSslContexts
-	in["curr_ssl_contexts"] = res.DataSlbSslStats.Oper.CurrSslContexts
-	in["static_ssl_contexts"] = res.DataSlbSslStats.Oper.StaticSslContexts
-	in["dynamic_ssl_contexts"] = res.DataSlbSslStats.Oper.DynamicSslContexts
-	in["bypass_failsafe_sessions"] = res.DataSlbSslStats.Oper.BypassFailsafeSessions
-	in["bypass_usename_sessions"] = res.DataSlbSslStats.Oper.BypassUsenameSessions
-	in["bypass_ad_group_sessions"] = res.DataSlbSslStats.Oper.BypassAdGroupSessions
-	in["bypass_sni_sessions"] = res.DataSlbSslStats.Oper.BypassSniSessions
-	in["bypass_cert_subject_sessions"] = res.DataSlbSslStats.Oper.BypassCertSubjectSessions
-	in["bypass_cert_issuer_sessions"] = res.DataSlbSslStats.Oper.BypassCertIssuerSessions
-	in["bypass_cert_san_sessions"] = res.DataSlbSslStats.Oper.BypassCertSanSessions
-	in["bypass_no_sni_sessions"] = res.DataSlbSslStats.Oper.BypassNoSniSessions
-	in["reset_no_sni_sessions"] = res.DataSlbSslStats.Oper.ResetNoSniSessions
-	in["bypass_esni_sessions"] = res.DataSlbSslStats.Oper.BypassEsniSessions
-	in["drop_esni_sessions"] = res.DataSlbSslStats.Oper.DropEsniSessions
-	in["bypass_client_auth_sessions"] = res.DataSlbSslStats.Oper.BypassClientAuthSessions
-	in["ssl_handshake_failure"] = res.DataSlbSslStats.Oper.SslHandshakeFailure
-	in["cryptio_operations"] = res.DataSlbSslStats.Oper.CryptioOperations
-	in["tcp_failures"] = res.DataSlbSslStats.Oper.TcpFailures
-	in["certificate_verification_failures"] = res.DataSlbSslStats.Oper.CertificateVerificationFailures
-	in["certificate_signing_failures"] = res.DataSlbSslStats.Oper.CertificateSigningFailures
-	in["invalid_ocsp_stapling_response"] = res.DataSlbSslStats.Oper.InvalidOcspStaplingResponse
-	in["revoked_ocsp_response"] = res.DataSlbSslStats.Oper.RevokedOcspResponse
-	in["unsupported_ssl_version"] = res.DataSlbSslStats.Oper.UnsupportedSslVersion
-	in["client_ssl_fatal_alert"] = res.DataSlbSslStats.Oper.ClientSslFatalAlert
-	in["client_ssl_fin_reset"] = res.DataSlbSslStats.Oper.ClientSslFinReset
-	in["ssl_session_fin_reset"] = res.DataSlbSslStats.Oper.SslSessionFinReset
-	in["server_ssl_fatal_alert"] = res.DataSlbSslStats.Oper.ServerSslFatalAlert
-	in["server_ssl_fin_reset"] = res.DataSlbSslStats.Oper.ServerSslFinReset
-	in["client_ssl_internal_error"] = res.DataSlbSslStats.Oper.ClientSslInternalError
-	in["client_ssl_unknown_error"] = res.DataSlbSslStats.Oper.ClientSslUnknownError
-	in["server_ssl_internal_error"] = res.DataSlbSslStats.Oper.ServerSslInternalError
-	in["server_ssl_unknown_error"] = res.DataSlbSslStats.Oper.ServerSslUnknownError
-	in["fp_fail_handshake"] = res.DataSlbSslStats.Oper.FpFailHandshake
-	in["fp_fail_tcp_error"] = res.DataSlbSslStats.Oper.FpFailTcpError
-	in["fp_fail_verify_cert"] = res.DataSlbSslStats.Oper.FpFailVerifyCert
-	in["fp_fail_aflex"] = res.DataSlbSslStats.Oper.FpFailAflex
-	in["util_enable_status"] = res.DataSlbSslStats.Oper.UtilEnableStatus
-	in["ssl_module_stats"] = setSliceSlbSslStatsOperOperSslModuleStats(res.DataSlbSslStats.Oper.SslModuleStats)
-
-	result = append(result, in)
-	return result
+func setObjectSlbSslStatsOperOper(ret edpt.DataSlbSslStatsOper) []interface{} {
+	return []interface{}{
+		map[string]interface{}{
+			"ssl_module_type":                                ret.DtSlbSslStatsOper.Oper.SslModuleType,
+			"config_module_type":                             ret.DtSlbSslStatsOper.Oper.ConfigModuleType,
+			"thales_hsm_status":                              ret.DtSlbSslStatsOper.Oper.ThalesHsmStatus,
+			"ssl_modules_count":                              ret.DtSlbSslStatsOper.Oper.SslModulesCount,
+			"current_clientside_connections":                 ret.DtSlbSslStatsOper.Oper.CurrentClientsideConnections,
+			"total_clientside_connections":                   ret.DtSlbSslStatsOper.Oper.TotalClientsideConnections,
+			"current_serverside_connections":                 ret.DtSlbSslStatsOper.Oper.CurrentServersideConnections,
+			"total_serverside_connections":                   ret.DtSlbSslStatsOper.Oper.TotalServersideConnections,
+			"non_ssl_bypass_connections":                     ret.DtSlbSslStatsOper.Oper.NonSslBypassConnections,
+			"total_reuse_client_ssl":                         ret.DtSlbSslStatsOper.Oper.TotalReuseClientSsl,
+			"total_reuse_server_ssl":                         ret.DtSlbSslStatsOper.Oper.TotalReuseServerSsl,
+			"total_reuse_session_ticket_client_ssl":          ret.DtSlbSslStatsOper.Oper.TotalReuseSessionTicketClientSsl,
+			"total_reuse_session_ticket_server_ssl":          ret.DtSlbSslStatsOper.Oper.TotalReuseSessionTicketServerSsl,
+			"total_clientside_early_data_connections":        ret.DtSlbSslStatsOper.Oper.TotalClientsideEarlyDataConnections,
+			"total_serverside_early_data_connections":        ret.DtSlbSslStatsOper.Oper.TotalServersideEarlyDataConnections,
+			"total_clientside_failed_early_data_connections": ret.DtSlbSslStatsOper.Oper.TotalClientsideFailedEarlyDataConnections,
+			"total_serverside_failed_early_data_connections": ret.DtSlbSslStatsOper.Oper.TotalServersideFailedEarlyDataConnections,
+			"failed_handshakes":                              ret.DtSlbSslStatsOper.Oper.FailedHandshakes,
+			"failed_crypto":                                  ret.DtSlbSslStatsOper.Oper.FailedCrypto,
+			"ssl_memory_usage":                               ret.DtSlbSslStatsOper.Oper.SslMemoryUsage,
+			"server_cert_errors":                             ret.DtSlbSslStatsOper.Oper.ServerCertErrors,
+			"client_cert_auth_fail":                          ret.DtSlbSslStatsOper.Oper.ClientCertAuthFail,
+			"ca_verification_failures":                       ret.DtSlbSslStatsOper.Oper.CaVerificationFailures,
+			"hw_context_total":                               ret.DtSlbSslStatsOper.Oper.HwContextTotal,
+			"hw_context_usage":                               ret.DtSlbSslStatsOper.Oper.HwContextUsage,
+			"hw_context_alloc_fail":                          ret.DtSlbSslStatsOper.Oper.HwContextAllocFail,
+			"hw_ring_full":                                   ret.DtSlbSslStatsOper.Oper.HwRingFull,
+			"record_too_big":                                 ret.DtSlbSslStatsOper.Oper.RecordTooBig,
+			"clientssl_context_malloc_fail":                  ret.DtSlbSslStatsOper.Oper.ClientsslContextMallocFail,
+			"max_ssl_contexts":                               ret.DtSlbSslStatsOper.Oper.MaxSslContexts,
+			"curr_ssl_contexts":                              ret.DtSlbSslStatsOper.Oper.CurrSslContexts,
+			"static_ssl_contexts":                            ret.DtSlbSslStatsOper.Oper.StaticSslContexts,
+			"dynamic_ssl_contexts":                           ret.DtSlbSslStatsOper.Oper.DynamicSslContexts,
+			"bypass_failsafe_sessions":                       ret.DtSlbSslStatsOper.Oper.BypassFailsafeSessions,
+			"bypass_usename_sessions":                        ret.DtSlbSslStatsOper.Oper.BypassUsenameSessions,
+			"bypass_ad_group_sessions":                       ret.DtSlbSslStatsOper.Oper.BypassAdGroupSessions,
+			"bypass_sni_sessions":                            ret.DtSlbSslStatsOper.Oper.BypassSniSessions,
+			"bypass_cert_subject_sessions":                   ret.DtSlbSslStatsOper.Oper.BypassCertSubjectSessions,
+			"bypass_cert_issuer_sessions":                    ret.DtSlbSslStatsOper.Oper.BypassCertIssuerSessions,
+			"bypass_cert_san_sessions":                       ret.DtSlbSslStatsOper.Oper.BypassCertSanSessions,
+			"bypass_no_sni_sessions":                         ret.DtSlbSslStatsOper.Oper.BypassNoSniSessions,
+			"reset_no_sni_sessions":                          ret.DtSlbSslStatsOper.Oper.ResetNoSniSessions,
+			"bypass_esni_sessions":                           ret.DtSlbSslStatsOper.Oper.BypassEsniSessions,
+			"drop_esni_sessions":                             ret.DtSlbSslStatsOper.Oper.DropEsniSessions,
+			"bypass_client_auth_sessions":                    ret.DtSlbSslStatsOper.Oper.BypassClientAuthSessions,
+			"ssl_handshake_failure":                          ret.DtSlbSslStatsOper.Oper.SslHandshakeFailure,
+			"cryptio_operations":                             ret.DtSlbSslStatsOper.Oper.CryptioOperations,
+			"tcp_failures":                                   ret.DtSlbSslStatsOper.Oper.TcpFailures,
+			"certificate_verification_failures":              ret.DtSlbSslStatsOper.Oper.CertificateVerificationFailures,
+			"certificate_signing_failures":                   ret.DtSlbSslStatsOper.Oper.CertificateSigningFailures,
+			"invalid_ocsp_stapling_response":                 ret.DtSlbSslStatsOper.Oper.InvalidOcspStaplingResponse,
+			"revoked_ocsp_response":                          ret.DtSlbSslStatsOper.Oper.RevokedOcspResponse,
+			"unsupported_ssl_version":                        ret.DtSlbSslStatsOper.Oper.UnsupportedSslVersion,
+			"client_ssl_fatal_alert":                         ret.DtSlbSslStatsOper.Oper.ClientSslFatalAlert,
+			"client_ssl_fin_reset":                           ret.DtSlbSslStatsOper.Oper.ClientSslFinReset,
+			"ssl_session_fin_reset":                          ret.DtSlbSslStatsOper.Oper.SslSessionFinReset,
+			"server_ssl_fatal_alert":                         ret.DtSlbSslStatsOper.Oper.ServerSslFatalAlert,
+			"server_ssl_fin_reset":                           ret.DtSlbSslStatsOper.Oper.ServerSslFinReset,
+			"client_ssl_internal_error":                      ret.DtSlbSslStatsOper.Oper.ClientSslInternalError,
+			"client_ssl_unknown_error":                       ret.DtSlbSslStatsOper.Oper.ClientSslUnknownError,
+			"server_ssl_internal_error":                      ret.DtSlbSslStatsOper.Oper.ServerSslInternalError,
+			"server_ssl_unknown_error":                       ret.DtSlbSslStatsOper.Oper.ServerSslUnknownError,
+			"fp_fail_handshake":                              ret.DtSlbSslStatsOper.Oper.FpFailHandshake,
+			"fp_fail_tcp_error":                              ret.DtSlbSslStatsOper.Oper.FpFailTcpError,
+			"fp_fail_verify_cert":                            ret.DtSlbSslStatsOper.Oper.FpFailVerifyCert,
+			"fp_fail_aflex":                                  ret.DtSlbSslStatsOper.Oper.FpFailAflex,
+			"util_enable_status":                             ret.DtSlbSslStatsOper.Oper.UtilEnableStatus,
+			"ssl_module_stats":                               setSliceSlbSslStatsOperOperSslModuleStats(ret.DtSlbSslStatsOper.Oper.SslModuleStats),
+		},
+	}
 }
 
 func setSliceSlbSslStatsOperOperSslModuleStats(d []edpt.SlbSslStatsOperOperSslModuleStats) []map[string]interface{} {
@@ -365,21 +365,21 @@ func setSliceSlbSslStatsOperOperSslModuleStats(d []edpt.SlbSslStatsOperOperSslMo
 		in["total_available_crypto_engines"] = item.TotalAvailableCryptoEngines
 		in["requests_handled"] = item.RequestsHandled
 		in["util_percentage"] = item.UtilPercentage
-		in["1sec_rate"] = item.Sec1Rate
-		in["5sec_rate"] = item.Sec5Rate
-		in["10sec_rate"] = item.Sec10Rate
-		in["30sec_rate"] = item.Sec30Rate
-		in["60sec_rate"] = item.Sec60Rate
-
+		in["sec_rate1"] = item.SecRate1
+		in["sec_rate5"] = item.SecRate5
+		in["sec_rate10"] = item.SecRate10
+		in["sec_rate30"] = item.SecRate30
+		in["sec_rate60"] = item.SecRate60
 		result = append(result, in)
 	}
 	return result
 }
 
 func getObjectSlbSslStatsOperOper(d []interface{}) edpt.SlbSslStatsOperOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SlbSslStatsOperOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SslModuleType = in["ssl_module_type"].(string)
 		ret.ConfigModuleType = in["config_module_type"].(string)
@@ -454,8 +454,9 @@ func getObjectSlbSslStatsOperOper(d []interface{}) edpt.SlbSslStatsOperOper {
 }
 
 func getSliceSlbSslStatsOperOperSslModuleStats(d []interface{}) []edpt.SlbSslStatsOperOperSslModuleStats {
-	count := len(d)
-	ret := make([]edpt.SlbSslStatsOperOperSslModuleStats, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SlbSslStatsOperOperSslModuleStats, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SlbSslStatsOperOperSslModuleStats
@@ -464,11 +465,11 @@ func getSliceSlbSslStatsOperOperSslModuleStats(d []interface{}) []edpt.SlbSslSta
 		oi.TotalAvailableCryptoEngines = in["total_available_crypto_engines"].(int)
 		oi.RequestsHandled = in["requests_handled"].(int)
 		oi.UtilPercentage = in["util_percentage"].(int)
-		oi.Sec1Rate = in["1sec_rate"].(int)
-		oi.Sec5Rate = in["5sec_rate"].(int)
-		oi.Sec10Rate = in["10sec_rate"].(int)
-		oi.Sec30Rate = in["30sec_rate"].(int)
-		oi.Sec60Rate = in["60sec_rate"].(int)
+		oi.SecRate1 = in["sec_rate1"].(int)
+		oi.SecRate5 = in["sec_rate5"].(int)
+		oi.SecRate10 = in["sec_rate10"].(int)
+		oi.SecRate30 = in["sec_rate30"].(int)
+		oi.SecRate60 = in["sec_rate60"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -476,6 +477,7 @@ func getSliceSlbSslStatsOperOperSslModuleStats(d []interface{}) []edpt.SlbSslSta
 
 func dataToEndpointSlbSslStatsOper(d *schema.ResourceData) edpt.SlbSslStatsOper {
 	var ret edpt.SlbSslStatsOper
+
 	ret.Oper = getObjectSlbSslStatsOperOper(d.Get("oper").([]interface{}))
 	return ret
 }

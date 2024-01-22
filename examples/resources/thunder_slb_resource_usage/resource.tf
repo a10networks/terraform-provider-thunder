@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_resource_usage" "Slb_Resource_Usage_Test" {
   slb_threshold_res_usage_percent = 60
   proxy_template_count            = 4096

@@ -14,9 +14,13 @@ func resourceGslbProtocol() *schema.Resource {
 		UpdateContext: resourceGslbProtocolUpdate,
 		ReadContext:   resourceGslbProtocolRead,
 		DeleteContext: resourceGslbProtocolDelete,
+
 		Schema: map[string]*schema.Schema{
 			"auto_detect": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Automatically detect SLB Config",
+			},
+			"disable_new_gslb_sync": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable new gslb config sync",
 			},
 			"enable_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
@@ -93,7 +97,6 @@ func resourceGslbProtocol() *schema.Resource {
 		},
 	}
 }
-
 func resourceGslbProtocolCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -107,21 +110,6 @@ func resourceGslbProtocolCreate(ctx context.Context, d *schema.ResourceData, met
 			return diag.FromErr(err)
 		}
 		return resourceGslbProtocolRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceGslbProtocolRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceGslbProtocolRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointGslbProtocol(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -141,7 +129,6 @@ func resourceGslbProtocolUpdate(ctx context.Context, d *schema.ResourceData, met
 	}
 	return diags
 }
-
 func resourceGslbProtocolDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -157,9 +144,25 @@ func resourceGslbProtocolDelete(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
+func resourceGslbProtocolRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceGslbProtocolRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointGslbProtocol(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
 func getSliceGslbProtocolEnableList(d []interface{}) []edpt.GslbProtocolEnableList {
-	count := len(d)
-	ret := make([]edpt.GslbProtocolEnableList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbProtocolEnableList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbProtocolEnableList
@@ -170,10 +173,11 @@ func getSliceGslbProtocolEnableList(d []interface{}) []edpt.GslbProtocolEnableLi
 	return ret
 }
 
-func getObjectGslbProtocolLimit(d []interface{}) edpt.GslbProtocolLimit {
-	count := len(d)
-	var ret edpt.GslbProtocolLimit
-	if count > 0 {
+func getObjectGslbProtocolLimit394(d []interface{}) edpt.GslbProtocolLimit394 {
+
+	count1 := len(d)
+	var ret edpt.GslbProtocolLimit394
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ArdtQuery = in["ardt_query"].(int)
 		ret.ArdtResponse = in["ardt_response"].(int)
@@ -186,10 +190,11 @@ func getObjectGslbProtocolLimit(d []interface{}) edpt.GslbProtocolLimit {
 	return ret
 }
 
-func getObjectGslbProtocolSecure(d []interface{}) edpt.GslbProtocolSecure {
-	count := len(d)
-	var ret edpt.GslbProtocolSecure
-	if count > 0 {
+func getObjectGslbProtocolSecure395(d []interface{}) edpt.GslbProtocolSecure395 {
+
+	count1 := len(d)
+	var ret edpt.GslbProtocolSecure395
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
 		//omit uuid
@@ -200,11 +205,12 @@ func getObjectGslbProtocolSecure(d []interface{}) edpt.GslbProtocolSecure {
 func dataToEndpointGslbProtocol(d *schema.ResourceData) edpt.GslbProtocol {
 	var ret edpt.GslbProtocol
 	ret.Inst.AutoDetect = d.Get("auto_detect").(int)
+	ret.Inst.DisableNewGslbSync = d.Get("disable_new_gslb_sync").(int)
 	ret.Inst.EnableList = getSliceGslbProtocolEnableList(d.Get("enable_list").([]interface{}))
-	ret.Inst.Limit = getObjectGslbProtocolLimit(d.Get("limit").([]interface{}))
+	ret.Inst.Limit = getObjectGslbProtocolLimit394(d.Get("limit").([]interface{}))
 	ret.Inst.MsgFormatAcos2x = d.Get("msg_format_acos_2x").(int)
 	ret.Inst.PingSite = d.Get("ping_site").(string)
-	ret.Inst.Secure = getObjectGslbProtocolSecure(d.Get("secure").([]interface{}))
+	ret.Inst.Secure = getObjectGslbProtocolSecure395(d.Get("secure").([]interface{}))
 	ret.Inst.StatusInterval = d.Get("status_interval").(int)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	ret.Inst.UseMgmtPortForAllPartitions = d.Get("use_mgmt_port_for_all_partitions").(int)

@@ -3,41 +3,40 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-provider "thunder" {
-  alias     = "L3V_A"
-  address   = var.dut9049
-  username  = var.username
-  password  = var.password
-  partition = var.l3v_1
-}
-
-resource "thunder_vrrp_a_vrid" "test" {
-  vrid_val = 1
+resource "thunder_vrrp_a_vrid" "thunder_vrrp_a_vrid" {
+  vrid_val = 3
   floating_ip {
-    ipv6_address_cfg {
-      ipv6_address = "2001:1::1"
-    }
     ip_address_cfg {
-      ip_address = "10.21.1.1"
+      ip_address = "10.10.20.11"
     }
-    #ip_address_part_cfg and ipv6_address_part_cfg are private-patition-only
-  }
-}
 
-resource "thunder_vrrp_a_vrid" "test_l3v_a" {
-  provider = thunder.L3V_A
-  vrid_val = 2
-  floating_ip {
-    ipv6_address_part_cfg {
-      ipv6_address_partition = "2002:1::1"
-    }
-    ip_address_part_cfg {
-      ip_address_partition = "10.22.1.1"
-    }
-    #ip_address_cfg and ipv6_address_cfg are shared-patition-only
   }
-  follow {
-    vrid_lead = "default-vrid-lead"
+  preempt_mode {
+    threshold = 2
+  }
+  user_tag = "test"
+  blade_parameters {
+    priority = 3
+    tracking_options {
+      interface {
+        ethernet      = 2
+        priority_cost = 22
+      }
+
+      bgp {
+        bgp_ipv4_address_cfg {
+          bgp_ipv4_address = "10.10.10.10"
+          priority_cost    = 22
+        }
+
+      }
+      gateway {
+        ipv4_gateway_list {
+          ip_address    = "20.20.20.20"
+          priority_cost = 22
+        }
+
+      }
+    }
   }
 }

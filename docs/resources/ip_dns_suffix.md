@@ -3,12 +3,15 @@
 page_title: "thunder_ip_dns_suffix Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ip_dns_suffix: DNS suffix
+  PLACEHOLDER
 ---
 
 # thunder_ip_dns_suffix (Resource)
 
+`thunder_ip_dns_suffix`: DNS suffix
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_ip_dns_suffix" "testname" {
+resource "thunder_ip_dns_suffix" "thunder_ip_dns_suffix" {
   domain_name = "A10test"
 }
 ```
@@ -29,8 +31,8 @@ resource "thunder_ip_dns_suffix" "testname" {
 
 ### Optional
 
-- `domain_name` (String)
-- `uuid` (String)
+- `domain_name` (String) DNS suffix
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

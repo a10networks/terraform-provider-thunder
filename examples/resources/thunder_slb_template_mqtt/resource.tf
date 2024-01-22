@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_mqtt" "test_thunder_slb_template_mqtt" {
   name                  = "test"
   clientid_hash_persist = 1

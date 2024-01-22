@@ -3,12 +3,15 @@
 page_title: "thunder_fw_alg_dns Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_alg_dns: Change Firewall DNS ALG Settings
+  PLACEHOLDER
 ---
 
 # thunder_fw_alg_dns (Resource)
 
+`thunder_fw_alg_dns`: Change Firewall DNS ALG Settings
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_alg_dns" "test_thunder_fw_alg_dns" {
   default_port_disable = "default-port-disable"
 }
@@ -29,8 +31,8 @@ resource "thunder_fw_alg_dns" "test_thunder_fw_alg_dns" {
 
 ### Optional
 
-- `default_port_disable` (String)
-- `uuid` (String)
+- `default_port_disable` (String) 'default-port-disable': Disable DNS ALG default port 53;
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

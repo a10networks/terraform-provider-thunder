@@ -21,24 +21,23 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_cloud_services_cloud_provider_aws_metrics" "test" {
-  action = "enable"
-  namespace = "enable"
-  cpu = "enable"
-  memory = "enable"
-  disk = "enable"
-  throughput = "enable"
-  interfaces = "enable"
-  cps = "enable"
-  tps = "enable"
-  server_down_count = "enable"
+  action                 = "enable"
+  namespace              = "enable"
+  cpu                    = "enable"
+  memory                 = "enable"
+  disk                   = "enable"
+  throughput             = "enable"
+  interfaces             = "enable"
+  cps                    = "enable"
+  tps                    = "enable"
+  server_down_count      = "enable"
   server_down_percentage = "enable"
-  ssl_cert = "enable"
-  server_error = "enable"
-  sessions = "enable"
-  packet_drop = "enable"
-  packet_rate = "enable"
+  ssl_cert               = "enable"
+  server_error           = "enable"
+  sessions               = "enable"
+  packet_drop            = "enable"
+  packet_rate            = "enable"
 }
 ```
 
@@ -47,13 +46,14 @@ resource "thunder_cloud_services_cloud_provider_aws_metrics" "test" {
 
 ### Optional
 
-- `action` (String) 'enable': Enable AWS Metrics Analytics; 'disable': Disable AWS Metrics Analytics(default);
+- `action` (String) 'enable': Enable AWS CloudWatch; 'disable': Disable AWS CloudWatch (default);
+- `active_partitions` (String) Specifies the thunder active partition name separated by a comma for multiple values
 - `cps` (String) 'enable': Enable CPS Metrics; 'disable': Disable CPS Metrics;
 - `cpu` (String) 'enable': Enable CPU Metrics; 'disable': Disable CPU Metrics;
 - `disk` (String) 'enable': Enable Disk Metrics; 'disable': Disable Disk Metrics;
 - `interfaces` (String) 'enable': Enable Interfaces Metrics; 'disable': Disable Interfaces Metrics;
 - `memory` (String) 'enable': Enable Memory Metrics; 'disable': Disable Memory Metrics;
-- `namespace` (String) AWS Metrics Analytics Namespace
+- `namespace` (String) Specifies the AWS namespace where all the metrics must be published
 - `packet_drop` (String) 'enable': Enable Packet Drop Metrics; 'disable': Disable Packet Drop Metrics;
 - `packet_rate` (String) 'enable': Enable Packet Rate Metrics; 'disable': Disable Packet Rate Metrics;
 - `server_down_count` (String) 'enable': Enable Server Down Count Metrics; 'disable': Disable Server Down Count Metrics;

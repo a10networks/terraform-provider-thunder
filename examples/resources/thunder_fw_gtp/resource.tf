@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_fw_gtp" "test_thunder_fw_gtp" {
+resource "thunder_fw_gtp" "thunder_fw_gtp" {
   sampling_enable {
     counters1 = "all"
   }

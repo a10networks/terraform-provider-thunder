@@ -14,6 +14,7 @@ func resourceTerminal() *schema.Resource {
 		UpdateContext: resourceTerminalUpdate,
 		ReadContext:   resourceTerminalRead,
 		DeleteContext: resourceTerminalDelete,
+
 		Schema: map[string]*schema.Schema{
 			"auto_size": {
 				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Enable terminal length and width automatically (not work if width or length set to 0)",
@@ -94,7 +95,6 @@ func resourceTerminal() *schema.Resource {
 		},
 	}
 }
-
 func resourceTerminalCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -108,21 +108,6 @@ func resourceTerminalCreate(ctx context.Context, d *schema.ResourceData, meta in
 			return diag.FromErr(err)
 		}
 		return resourceTerminalRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceTerminalRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceTerminalRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointTerminal(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -142,7 +127,6 @@ func resourceTerminalUpdate(ctx context.Context, d *schema.ResourceData, meta in
 	}
 	return diags
 }
-
 func resourceTerminalDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -158,10 +142,26 @@ func resourceTerminalDelete(ctx context.Context, d *schema.ResourceData, meta in
 	return diags
 }
 
+func resourceTerminalRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceTerminalRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointTerminal(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
 func getObjectTerminalGslbCfg(d []interface{}) edpt.TerminalGslbCfg {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.TerminalGslbCfg
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GslbPrompt = in["gslb_prompt"].(int)
 		ret.Disable = in["disable"].(int)
@@ -172,9 +172,10 @@ func getObjectTerminalGslbCfg(d []interface{}) edpt.TerminalGslbCfg {
 }
 
 func getObjectTerminalHistoryCfg(d []interface{}) edpt.TerminalHistoryCfg {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.TerminalHistoryCfg
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
 		ret.Size = in["size"].(int)
@@ -183,9 +184,10 @@ func getObjectTerminalHistoryCfg(d []interface{}) edpt.TerminalHistoryCfg {
 }
 
 func getObjectTerminalPromptCfg(d []interface{}) edpt.TerminalPromptCfg {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.TerminalPromptCfg
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Prompt = in["prompt"].(int)
 		ret.HaStatus = in["ha_status"].(int)
@@ -196,9 +198,10 @@ func getObjectTerminalPromptCfg(d []interface{}) edpt.TerminalPromptCfg {
 }
 
 func getObjectTerminalPromptCfgVcsCfg(d []interface{}) edpt.TerminalPromptCfgVcsCfg {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.TerminalPromptCfgVcsCfg
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.VcsStatus = in["vcs_status"].(int)
 	}

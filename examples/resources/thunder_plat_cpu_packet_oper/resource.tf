@@ -3,10 +3,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-data "thunder_plat_cpu_packet_oper" "test"{
+data "thunder_plat_cpu_packet_oper" "test" {
 }
-
 output "get_plat_cpu_packet" {
   value = ["${data.thunder_plat_cpu_packet_oper.test}"]
 }

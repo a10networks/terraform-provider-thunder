@@ -3,27 +3,28 @@
 page_title: "thunder_snmp_server_enable_traps_snmp Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_enable_traps_snmp: Enable SNMP group traps
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_enable_traps_snmp (Resource)
 
+`thunder_snmp_server_enable_traps_snmp`: Enable SNMP group traps
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_snmp"   "SnMPServerEnableTrapsSnmp"  {
-
-    all= 1
-    linkdown= 0
-    linkup= 1
-   
+resource "thunder_snmp_server_enable_traps_snmp" "thunder_snmp_server_enable_traps_snmp" {
+  all      = 0
+  linkdown = 0
+  linkup   = 0
 }
 ```
 
@@ -32,10 +33,10 @@ resource  "thunder_snmp_server_enable_traps_snmp"   "SnMPServerEnableTrapsSnmp" 
 
 ### Optional
 
-- `all` (Number)
-- `linkdown` (Number)
-- `linkup` (Number)
-- `uuid` (String)
+- `all` (Number) Enable all SNMP group traps
+- `linkdown` (Number) Enable SNMP link-down trap
+- `linkup` (Number) Enable SNMP link-up trap
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

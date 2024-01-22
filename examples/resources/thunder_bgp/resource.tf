@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_bgp" "BGP" {
   extended_asn_cap = 1
   nexthop_trigger {
@@ -11,4 +10,3 @@ resource "thunder_bgp" "BGP" {
     delay  = 10
   }
 }
-

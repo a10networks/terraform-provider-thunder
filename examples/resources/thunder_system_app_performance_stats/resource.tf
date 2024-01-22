@@ -3,9 +3,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-data "thunder_system_app_performance_stats" "app_performance" {}
-
-output "get_app_performance" {
-  value = ["${data.thunder_system_app_performance_stats.app_performance}"]
+data "thunder_system_app_performance_stats" "thunder_system_app_performance_stats" {
+}
+output "get_system_app_performance_stats" {
+  value = ["${data.thunder_system_app_performance_stats.thunder_system_app_performance_stats}"]
 }

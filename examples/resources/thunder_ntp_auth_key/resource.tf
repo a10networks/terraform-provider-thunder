@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_ntp_auth_key" "resourceNtpAuthKeyTest" {
+resource "thunder_ntp_auth_key" "thunderNtpAuthKeyTest" {
   key      = 1
   alg_type = "SHA1"
   key_type = "ascii"

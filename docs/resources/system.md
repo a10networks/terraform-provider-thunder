@@ -4,11 +4,14 @@ page_title: "thunder_system Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
   thunder_system: Configure System Parameters
+  PLACEHOLDER
 ---
 
 # thunder_system (Resource)
 
 `thunder_system`: Configure System Parameters
+
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_system" "test" {
   promiscuous_mode = 1
   anomaly_log      = 1
@@ -40,71 +42,111 @@ resource "thunder_system" "test" {
 - `add_port` (Block List, Max: 1) (see [below for nested schema](#nestedblock--add_port))
 - `all_vlan_limit` (Block List, Max: 1) (see [below for nested schema](#nestedblock--all_vlan_limit))
 - `anomaly_log` (Number) log system anomalies
+- `anomaly_log_rate_limit` (Number) Anomaly log rate-limit per second, default 32
 - `app_performance` (Block List, Max: 1) (see [below for nested schema](#nestedblock--app_performance))
 - `apps_global` (Block List, Max: 1) (see [below for nested schema](#nestedblock--apps_global))
 - `asic_debug_dump` (Block List, Max: 1) (see [below for nested schema](#nestedblock--asic_debug_dump))
+- `asic_mmu_fail_safe` (Block List, Max: 1) (see [below for nested schema](#nestedblock--asic_mmu_fail_safe))
 - `attack_log` (Number) log attack anomalies
 - `bandwidth` (Block List, Max: 1) (see [below for nested schema](#nestedblock--bandwidth))
 - `bfd` (Block List, Max: 1) (see [below for nested schema](#nestedblock--bfd))
-- `class_list_hitcount_enable` (Number) Enable class list hit count [shared partition only]
+- `class_list_hitcount_enable` (Number) Enable class list hit count
+- `cli_monitor_interval` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cli_monitor_interval))
 - `cm_update_file_name_ref` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cm_update_file_name_ref))
+- `control_cpu` (Block List, Max: 1) (see [below for nested schema](#nestedblock--control_cpu))
+- `core` (Block List, Max: 1) (see [below for nested schema](#nestedblock--core))
+- `cosq_show` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cosq_show))
+- `cosq_stats` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cosq_stats))
+- `counter_lib_accounting` (Block List, Max: 1) (see [below for nested schema](#nestedblock--counter_lib_accounting))
 - `cpu_hyper_thread` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_hyper_thread))
+- `cpu_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_list))
 - `cpu_load_sharing` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_load_sharing))
-- `ddos_attack` (Number) System DDoS Attack [shared partition only]
+- `cpu_map` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_map))
+- `cpu_packet_prio_support` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_packet_prio_support))
+- `data_cpu` (Block List, Max: 1) (see [below for nested schema](#nestedblock--data_cpu))
+- `ddos_attack` (Number) System DDoS Attack
 - `ddos_log` (Number) log DDoS attack anomalies
-- `deep_hrxq` (Block List, Max: 1) (see [below for nested schema](#nestedblock--deep_hrxq))
+- `default_mtu` (Number) Set all interfaces default mtu (Interface MTU, default 1 (System jumbo needs to be enabled))
 - `del_port` (Block List, Max: 1) (see [below for nested schema](#nestedblock--del_port))
 - `delete_cpu_core` (Block List, Max: 1) (see [below for nested schema](#nestedblock--delete_cpu_core))
 - `dns` (Block List, Max: 1) (see [below for nested schema](#nestedblock--dns))
 - `dns_cache` (Block List, Max: 1) (see [below for nested schema](#nestedblock--dns_cache))
 - `domain_list_hitcount_enable` (Number) Enable class list hit count
+- `domain_list_info` (Block List, Max: 1) (see [below for nested schema](#nestedblock--domain_list_info))
 - `dpdk_stats` (Block List, Max: 1) (see [below for nested schema](#nestedblock--dpdk_stats))
+- `drop_linux_closed_port_syn` (String) 'enable': enable (default); 'disable': disable;
 - `dynamic_service_dns_socket_pool` (Number) Enable socket pool for dynamic-service DNS
+- `enable_password` (Block List, Max: 1) (see [below for nested schema](#nestedblock--enable_password))
+- `environment` (Block List, Max: 1) (see [below for nested schema](#nestedblock--environment))
+- `ext_only_logging` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ext_only_logging))
 - `fpga_core_crc` (Block List, Max: 1) (see [below for nested schema](#nestedblock--fpga_core_crc))
 - `fpga_drop` (Block List, Max: 1) (see [below for nested schema](#nestedblock--fpga_drop))
 - `fw` (Block List, Max: 1) (see [below for nested schema](#nestedblock--fw))
-- `geo_db_hitcount_enable` (Number) Enable Geolocation database hit count [shared partition only]
+- `geo_db_hitcount_enable` (Number) Enable Geolocation database hit count
 - `geo_location` (Block List, Max: 1) (see [below for nested schema](#nestedblock--geo_location))
 - `geoloc` (Block List, Max: 1) (see [below for nested schema](#nestedblock--geoloc))
 - `geoloc_list_list` (Block List) (see [below for nested schema](#nestedblock--geoloc_list_list))
 - `geoloc_name_helper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--geoloc_name_helper))
-- `glid` (Number) Apply limits to the whole system [shared partition only]
-- `hardware_forward` (Block List, Max: 1) (see [below for nested schema](#nestedblock--hardware_forward))
+- `geolocation_file` (Block List, Max: 1) (see [below for nested schema](#nestedblock--geolocation_file))
+- `glid` (Block List, Max: 1) (see [below for nested schema](#nestedblock--glid))
+- `guest_file` (Block List, Max: 1) (see [below for nested schema](#nestedblock--guest_file))
+- `gui_image_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--gui_image_list))
+- `hardware` (Block List, Max: 1) (see [below for nested schema](#nestedblock--hardware))
+- `hardware_accelerate` (Block List, Max: 1) (see [below for nested schema](#nestedblock--hardware_accelerate))
+- `health_check_list` (Block List) (see [below for nested schema](#nestedblock--health_check_list))
 - `high_memory_l4_session` (Block List, Max: 1) (see [below for nested schema](#nestedblock--high_memory_l4_session))
+- `hrxq_status` (Block List, Max: 1) (see [below for nested schema](#nestedblock--hrxq_status))
+- `hw_blocking_enable` (Number) Enable system hardware blocking (default disabled)
 - `icmp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--icmp))
 - `icmp6` (Block List, Max: 1) (see [below for nested schema](#nestedblock--icmp6))
 - `icmp_rate` (Block List, Max: 1) (see [below for nested schema](#nestedblock--icmp_rate))
+- `inuse_cpu_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--inuse_cpu_list))
+- `inuse_port_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--inuse_port_list))
 - `io_cpu` (Block List, Max: 1) (see [below for nested schema](#nestedblock--io_cpu))
 - `ip6_stats` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip6_stats))
+- `ip_dns_cache` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_dns_cache))
 - `ip_stats` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_stats))
 - `ip_threat_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_threat_list))
 - `ipmi` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipmi))
 - `ipmi_service` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipmi_service))
 - `ipsec` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipsec))
-- `ipv6_prefix_length` (Number) Length of IPv6 prefix used to determine the user-group and the PU, by default 128 [shared partition only]
+- `ipv6_prefix_length` (Number) Length of IPv6 prefix used to determine the user-group and the PU, by default 128
+- `job_offload` (Block List, Max: 1) (see [below for nested schema](#nestedblock--job_offload))
 - `link_capability` (Block List, Max: 1) (see [below for nested schema](#nestedblock--link_capability))
 - `link_monitor` (Block List, Max: 1) (see [below for nested schema](#nestedblock--link_monitor))
 - `lro` (Block List, Max: 1) (see [below for nested schema](#nestedblock--lro))
 - `management_interface_mode` (Block List, Max: 1) (see [below for nested schema](#nestedblock--management_interface_mode))
 - `memory` (Block List, Max: 1) (see [below for nested schema](#nestedblock--memory))
+- `memory_block_debug` (Block List, Max: 1) (see [below for nested schema](#nestedblock--memory_block_debug))
 - `mfa_auth` (Block List, Max: 1) (see [below for nested schema](#nestedblock--mfa_auth))
 - `mfa_cert_store` (Block List, Max: 1) (see [below for nested schema](#nestedblock--mfa_cert_store))
 - `mfa_management` (Block List, Max: 1) (see [below for nested schema](#nestedblock--mfa_management))
 - `mfa_validation_type` (Block List, Max: 1) (see [below for nested schema](#nestedblock--mfa_validation_type))
 - `mgmt_port` (Block List, Max: 1) (see [below for nested schema](#nestedblock--mgmt_port))
 - `modify_port` (Block List, Max: 1) (see [below for nested schema](#nestedblock--modify_port))
-- `module_ctrl_cpu` (String) 'high': high cpu usage; 'low': low cpu usage; 'medium': medium cpu usage; [shared partition only]
+- `module_ctrl_cpu` (String) 'high': high cpu usage; 'low': low cpu usage; 'medium': medium cpu usage;
 - `mon_template` (Block List, Max: 1) (see [below for nested schema](#nestedblock--mon_template))
 - `multi_queue_support` (Block List, Max: 1) (see [below for nested schema](#nestedblock--multi_queue_support))
 - `ndisc_ra` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ndisc_ra))
+- `netvsc_monitor` (Block List, Max: 1) (see [below for nested schema](#nestedblock--netvsc_monitor))
 - `nsm_a10lb` (Block List, Max: 1) (see [below for nested schema](#nestedblock--nsm_a10lb))
 - `password_policy` (Block List, Max: 1) (see [below for nested schema](#nestedblock--password_policy))
+- `path_list` (Block List) (see [below for nested schema](#nestedblock--path_list))
+- `pbslb` (Block List, Max: 1) (see [below for nested schema](#nestedblock--pbslb))
 - `per_vlan_limit` (Block List, Max: 1) (see [below for nested schema](#nestedblock--per_vlan_limit))
+- `platformtype` (Block List, Max: 1) (see [below for nested schema](#nestedblock--platformtype))
+- `port_count` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_count))
+- `port_info` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_info))
+- `port_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_list))
 - `ports` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ports))
-- `promiscuous_mode` (Number) Run in promiscous mode settings [shared partition only]
+- `power_on_self_test` (Block List, Max: 1) (see [below for nested schema](#nestedblock--power_on_self_test))
+- `probe_network_devices` (Block List, Max: 1) (see [below for nested schema](#nestedblock--probe_network_devices))
+- `promiscuous_mode` (Number) Run in promiscous mode settings
+- `psu_info` (Block List, Max: 1) (see [below for nested schema](#nestedblock--psu_info))
 - `q_in_q` (Block List, Max: 1) (see [below for nested schema](#nestedblock--q_in_q))
 - `queuing_buffer` (Block List, Max: 1) (see [below for nested schema](#nestedblock--queuing_buffer))
 - `radius` (Block List, Max: 1) (see [below for nested schema](#nestedblock--radius))
+- `reboot` (Block List, Max: 1) (see [below for nested schema](#nestedblock--reboot))
 - `resource_accounting` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting))
 - `resource_usage` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_usage))
 - `session` (Block List, Max: 1) (see [below for nested schema](#nestedblock--session))
@@ -115,18 +157,24 @@ resource "thunder_system" "test" {
 - `shared_poll_mode` (Block List, Max: 1) (see [below for nested schema](#nestedblock--shared_poll_mode))
 - `shell_privileges` (Block List, Max: 1) (see [below for nested schema](#nestedblock--shell_privileges))
 - `shm_logging` (Block List, Max: 1) (see [below for nested schema](#nestedblock--shm_logging))
+- `shutdown` (Block List, Max: 1) (see [below for nested schema](#nestedblock--shutdown))
 - `sockstress_disable` (Number) Disable sockstress protection
 - `spe_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spe_profile))
+- `spe_status` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spe_status))
 - `src_ip_hash_enable` (Number) Enable source ip hash
 - `ssl_req_q` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl_req_q))
 - `ssl_scv` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl_scv))
 - `ssl_scv_verify_crl_sign` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl_scv_verify_crl_sign))
 - `ssl_scv_verify_host` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl_scv_verify_host))
 - `ssl_set_compatible_cipher` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl_set_compatible_cipher))
+- `ssl_status` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ssl_status))
 - `syslog_time_msec` (Block List, Max: 1) (see [below for nested schema](#nestedblock--syslog_time_msec))
+- `system_chassis_port_split_enable` (Number) Enable port split for the chassis
 - `table_integrity` (Block List, Max: 1) (see [below for nested schema](#nestedblock--table_integrity))
 - `tcp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--tcp))
 - `tcp_stats` (Block List, Max: 1) (see [below for nested schema](#nestedblock--tcp_stats))
+- `tcp_syn_per_sec` (Block List, Max: 1) (see [below for nested schema](#nestedblock--tcp_syn_per_sec))
+- `telemetry_log` (Block List, Max: 1) (see [below for nested schema](#nestedblock--telemetry_log))
 - `template` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template))
 - `template_bind` (Block List, Max: 1) (see [below for nested schema](#nestedblock--template_bind))
 - `throughput` (Block List, Max: 1) (see [below for nested schema](#nestedblock--throughput))
@@ -136,7 +184,10 @@ resource "thunder_system" "test" {
 - `trunk_hw_hash` (Block List, Max: 1) (see [below for nested schema](#nestedblock--trunk_hw_hash))
 - `trunk_xaui_hw_hash` (Block List, Max: 1) (see [below for nested schema](#nestedblock--trunk_xaui_hw_hash))
 - `tso` (Block List, Max: 1) (see [below for nested schema](#nestedblock--tso))
+- `upgrade_status` (Block List, Max: 1) (see [below for nested schema](#nestedblock--upgrade_status))
 - `uuid` (String) uuid of the object
+- `ve_mac_scheme` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ve_mac_scheme))
+- `xaui_dlb_mode` (Block List, Max: 1) (see [below for nested schema](#nestedblock--xaui_dlb_mode))
 
 ### Read-Only
 
@@ -163,10 +214,10 @@ Optional:
 
 Optional:
 
-- `bcast` (Number) broadcast packets (per second limit) [shared partition only]
-- `ipmcast` (Number) IP multicast packets (per second limit) [shared partition only]
-- `mcast` (Number) multicast packets (per second limit) [shared partition only]
-- `unknown_ucast` (Number) unknown unicast packets (per second limit) [shared partition only]
+- `bcast` (Number) broadcast packets (per second limit)
+- `ipmcast` (Number) IP multicast packets (per second limit)
+- `mcast` (Number) multicast packets (per second limit)
+- `unknown_ucast` (Number) unknown unicast packets (per second limit)
 - `uuid` (String) uuid of the object
 
 
@@ -192,8 +243,11 @@ Optional:
 
 Optional:
 
-- `log_session_on_established` (Number) Send TCP session creation log on completion of 3-way handshake [shared partition only]
-- `msl_time` (Number) Configure maximum session life, default is 2 seconds (1-39 seconds, default is 2 seconds) [shared partition only]
+- `cps_threshold` (Number) Set threshold for the total Connections Per Second across the system (Enter threshold number)
+- `log_session_on_established` (Number) Send TCP session creation log on completion of 3-way handshake
+- `msl_time` (Number) Configure maximum session life, default is 2 seconds (1-39 seconds, default is 2 seconds)
+- `sessions_threshold` (Number) Set threshold for total sessions across the system (Enter threshold number)
+- `timer_wheel_walk_limit` (Number) Set timer wheel walk limit (0-1024, 0 is unlimited, default is 100)
 - `uuid` (String) uuid of the object
 
 
@@ -202,7 +256,21 @@ Optional:
 
 Optional:
 
-- `enable` (Number) Enable/Disable L2L3 ASIC traffic discard/drop events and Dump debug information [shared partition only]
+- `enable` (Number) Enable/Disable L2L3 ASIC traffic discard/drop events and Dump debug information
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--asic_mmu_fail_safe"></a>
+### Nested Schema for `asic_mmu_fail_safe`
+
+Optional:
+
+- `inject_error` (Number) Inject MMU SER/Parity errors
+- `monitor_disable` (Number) Enable Fail-safe software error monitoring and act on it
+- `monitor_interval` (Number) ASIC Fail-safe monitoring intervals in Seconds (Units of 1 Seconds (default 60))
+- `reboot_disable` (Number) Disable system reboot if system encounters mmu error
+- `recovery_threshold` (Number) ASIC Fail-safe recovery threshold in Errors (Units of 1 Errors (default 2))
+- `test_pattern_type` (String) 'all-zeros': Inject all bits 0s in a byte; 'all-ones': Inject all bits 1s in a byte; 'lcb': Logical checker board; 'inverse-lcb': Inverse Logical checker board;
 - `uuid` (String) uuid of the object
 
 
@@ -240,14 +308,63 @@ Optional:
 
 
 
+<a id="nestedblock--cli_monitor_interval"></a>
+### Nested Schema for `cli_monitor_interval`
+
+Optional:
+
+- `interval` (Number) one interval is 300ms (0 = disable)
+- `uuid` (String) uuid of the object
+
+
 <a id="nestedblock--cm_update_file_name_ref"></a>
 ### Nested Schema for `cm_update_file_name_ref`
 
 Optional:
 
 - `dest_name` (String) bind dest name
-- `id` (Number) Specify unique Partition id
+- `id1` (Number) Specify unique Partition id
 - `source_name` (String) bind source name
+
+
+<a id="nestedblock--control_cpu"></a>
+### Nested Schema for `control_cpu`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--core"></a>
+### Nested Schema for `core`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--cosq_show"></a>
+### Nested Schema for `cosq_show`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--cosq_stats"></a>
+### Nested Schema for `cosq_stats`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--counter_lib_accounting"></a>
+### Nested Schema for `counter_lib_accounting`
+
+Optional:
+
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--cpu_hyper_thread"></a>
@@ -259,16 +376,25 @@ Optional:
 - `enable` (Number) Enable CPU Hyperthreading
 
 
+<a id="nestedblock--cpu_list"></a>
+### Nested Schema for `cpu_list`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
 <a id="nestedblock--cpu_load_sharing"></a>
 ### Nested Schema for `cpu_load_sharing`
 
 Optional:
 
 - `cpu_usage` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_load_sharing--cpu_usage))
-- `disable` (Number) Disable CPU load sharing in overload situations [shared partition only]
+- `disable` (Number) Disable CPU load sharing in overload situations
+- `others` (Number) Disallow redistribution of new non TCP/UDP IP sessions
 - `packets_per_second` (Block List, Max: 1) (see [below for nested schema](#nestedblock--cpu_load_sharing--packets_per_second))
-- `tcp` (Number) Disallow redistribution of new TCP sessions [shared partition only]
-- `udp` (Number) Disallow redistribution of new UDP sessions [shared partition only]
+- `tcp` (Number) Disallow redistribution of new TCP sessions
+- `udp` (Number) Disallow redistribution of new UDP sessions
 - `uuid` (String) uuid of the object
 
 <a id="nestedblock--cpu_load_sharing--cpu_usage"></a>
@@ -276,8 +402,8 @@ Optional:
 
 Optional:
 
-- `high` (Number) CPU usage threshold (percentage) that will trigger the redistribution (default: 75) [shared partition only]
-- `low` (Number) CPU usage threshold (percentage) that will restore the normal packet distribution (default: 60) [shared partition only]
+- `high` (Number) CPU usage threshold (percentage) that will trigger the redistribution (default: 75)
+- `low` (Number) CPU usage threshold (percentage) that will restore the normal packet distribution (default: 60)
 
 
 <a id="nestedblock--cpu_load_sharing--packets_per_second"></a>
@@ -285,16 +411,33 @@ Optional:
 
 Optional:
 
-- `min` (Number) Minimum packets-per-second threshold (per CPU) before redistribution will take effect (Minimum packets-per-second threshold (per CPU) before redistribution will take effect (default: 100000)) [shared partition only]
+- `min` (Number) Minimum packets-per-second threshold (per CPU) before redistribution will take effect (Minimum packets-per-second threshold (per CPU) before redistribution will take effect (default: 100000))
 
 
 
-<a id="nestedblock--deep_hrxq"></a>
-### Nested Schema for `deep_hrxq`
+<a id="nestedblock--cpu_map"></a>
+### Nested Schema for `cpu_map`
 
 Optional:
 
-- `enable` (Number) [shared partition only]
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--cpu_packet_prio_support"></a>
+### Nested Schema for `cpu_packet_prio_support`
+
+Optional:
+
+- `disable` (Number) Disable CPU packet prioritization Support
+- `enable` (Number) Enable CPU packet prioritization Support
+
+
+<a id="nestedblock--data_cpu"></a>
+### Nested Schema for `data_cpu`
+
+Optional:
+
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--del_port"></a>
@@ -327,7 +470,7 @@ Optional:
 
 Optional:
 
-- `follow_shared` (Number) Use the configured name servers of shared partition [private partition only]
+- `follow_shared` (Number) Use the configured name servers of shared partition
 - `server_list` (Block List) (see [below for nested schema](#nestedblock--dns--recursive_nameserver--server_list))
 - `uuid` (String) uuid of the object
 
@@ -348,7 +491,7 @@ Optional:
 
 Optional:
 
-- `counters1` (String) 'all': all; 'slb_req': No. of requests; 'slb_resp': No. of responses; 'slb_no_resp': No. of requests with no response; 'slb_req_rexmit': No. of requests retransmit; 'slb_resp_no_match': No. of requests and responses with no match; 'slb_no_resource': No. of resource failures; 'nat_req': (NAT) No. of requests; 'nat_resp': (NAT) No. of responses; 'nat_no_resp': (NAT) No. of resource failures; 'nat_req_rexmit': (NAT) No. of request retransmits; 'nat_resp_no_match': (NAT) No. of requests with no response; 'nat_no_resource': (NAT) No. of resource failures; 'nat_xid_reused': (NAT) No. of requests reusing a transaction id; 'filter_type_drop': Total Query Type Drop; 'filter_class_drop': Total Query Class Drop; 'filter_type_any_drop': Total Query ANY Type Drop; 'slb_dns_client_ssl_succ': No. of client ssl success; 'slb_dns_server_ssl_succ': No. of server ssl success; 'slb_dns_udp_conn': No. of backend udp connections; 'slb_dns_udp_conn_succ': No. of backend udp conn established; 'slb_dns_padding_to_server_removed': some help string; 'slb_dns_padding_to_client_added': some help string; 'slb_dns_edns_subnet_to_server_removed': some help string; 'slb_dns_udp_retransmit': some help string; 'slb_dns_udp_retransmit_fail': some help string; 'rpz_action_drop': RPZ Action Drop; 'rpz_action_pass_thru': RPZ Action Pass Through; 'rpz_action_tcp_only': RPZ Action TCP Only; 'rpz_action_nxdomain': RPZ Action NXDOMAIN; 'rpz_action_nodata': RPZ Action NODATA; 'rpz_action_local_data': RPZ Action Local Data; 'slb_drop': DNS requests drop; 'nat_slb_drop': (NAT)DNS requests drop; 'invalid_q_len_to_udp': invalid query length to conver to UDP;
+- `counters1` (String) 'all': all; 'slb_req': No. of requests; 'slb_resp': No. of responses; 'slb_no_resp': No. of requests with no response; 'slb_req_rexmit': No. of requests retransmit; 'slb_resp_no_match': No. of requests and responses with no match; 'slb_no_resource': No. of resource failures; 'nat_req': (NAT) No. of requests; 'nat_resp': (NAT) No. of responses; 'nat_no_resp': (NAT) No. of resource failures; 'nat_req_rexmit': (NAT) No. of request retransmits; 'nat_resp_no_match': (NAT) No. of requests with no response; 'nat_no_resource': (NAT) No. of resource failures; 'nat_xid_reused': (NAT) No. of requests reusing a transaction id; 'filter_type_drop': Total Query Type Drop; 'filter_class_drop': Total Query Class Drop; 'filter_type_any_drop': Total Query ANY Type Drop; 'slb_dns_client_ssl_succ': No. of client ssl success; 'slb_dns_server_ssl_succ': No. of server ssl success; 'slb_dns_udp_conn': No. of backend udp connections; 'slb_dns_udp_conn_succ': No. of backend udp conn established; 'slb_dns_padding_to_server_removed': slb_dns_padding_to_server_removed; 'slb_dns_padding_to_client_added': slb_dns_padding_to_client_added; 'slb_dns_edns_subnet_to_server_removed': slb_dns_edns_subnet_to_server_removed; 'slb_dns_udp_retransmit': slb_dns_udp_retransmit; 'slb_dns_udp_retransmit_fail': slb_dns_udp_retransmit_fail; 'rpz_action_drop': RPZ Action Drop; 'rpz_action_pass_thru': RPZ Action Pass Through; 'rpz_action_tcp_only': RPZ Action TCP Only; 'rpz_action_nxdomain': RPZ Action NXDOMAIN; 'rpz_action_nodata': RPZ Action NODATA; 'rpz_action_local_data': RPZ Action Local Data; 'slb_drop': DNS requests drop; 'nat_slb_drop': (NAT)DNS requests drop; 'invalid_q_len_to_udp': invalid query length to conver to UDP; 'slb_dns_edns_ecs_received': Number of ecs from client received; 'slb_dns_edns_ecs_inserted': Number of ecs inserted;
 
 
 
@@ -369,6 +512,14 @@ Optional:
 
 
 
+<a id="nestedblock--domain_list_info"></a>
+### Nested Schema for `domain_list_info`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
 <a id="nestedblock--dpdk_stats"></a>
 ### Nested Schema for `dpdk_stats`
 
@@ -386,13 +537,39 @@ Optional:
 
 
 
+<a id="nestedblock--enable_password"></a>
+### Nested Schema for `enable_password`
+
+Optional:
+
+- `follow_password_policy` (Number) enable-password will follow password policy complexity
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--environment"></a>
+### Nested Schema for `environment`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--ext_only_logging"></a>
+### Nested Schema for `ext_only_logging`
+
+Optional:
+
+- `enable` (Number) enable external only logging for packet driven DDOS logs
+- `uuid` (String) uuid of the object
+
+
 <a id="nestedblock--fpga_core_crc"></a>
 ### Nested Schema for `fpga_core_crc`
 
 Optional:
 
-- `monitor_disable` (Number) Disable FPGA Core CRC error monitoring and act on it [shared partition only]
-- `reboot_enable` (Number) Enable system reboot if system encounters FPGA Core CRC error [shared partition only]
+- `monitor_disable` (Number) Disable FPGA Core CRC error monitoring and act on it
+- `reboot_enable` (Number) Enable system reboot if system encounters FPGA Core CRC error
 - `uuid` (String) uuid of the object
 
 
@@ -418,9 +595,9 @@ Optional:
 
 Optional:
 
-- `application_flow` (Number) Number of flows [shared partition only]
-- `application_mempool` (Number) Enable application memory pool [shared partition only]
-- `basic_dpi_enable` (Number) Enable basic dpi [shared partition only]
+- `application_flow` (Number) Number of flows
+- `application_mempool` (Number) Enable application memory pool
+- `basic_dpi_enable` (Number) Enable basic dpi
 - `uuid` (String) uuid of the object
 
 
@@ -430,11 +607,14 @@ Optional:
 Optional:
 
 - `entry_list` (Block List) (see [below for nested schema](#nestedblock--geo_location--entry_list))
-- `geo_location_geolite2_city` (Number) Load built-in Maxmind GeoLite2-City database. Database available from http://www.maxmind.com [shared partition only]
-- `geo_location_geolite2_country` (Number) Load built-in Maxmind GeoLite2-Country database. Database available from http://www.maxmind.com [shared partition only]
-- `geo_location_iana` (Number) Load built-in IANA Database [shared partition only]
-- `geolite2_city_include_ipv6` (Number) Include IPv6 address [shared partition only]
-- `geolite2_country_include_ipv6` (Number) Include IPv6 address [shared partition only]
+- `geo_location_geolite2_asn` (Number) Load built-in Maxmind GeoLite2-ASN database. Database available from http://www.maxmind.com
+- `geo_location_geolite2_city` (Number) Load built-in Maxmind GeoLite2-City database. Database available from http://www.maxmind.com
+- `geo_location_geolite2_country` (Number) Load built-in Maxmind GeoLite2-Country database. Database available from http://www.maxmind.com
+- `geo_location_iana` (Number) Load built-in IANA Database
+- `geo_location_iana_system` (Number) Load built-in IANA Database
+- `geolite2_asn_include_ipv6` (Number) Include IPv6 address
+- `geolite2_city_include_ipv6` (Number) Include IPv6 address
+- `geolite2_country_include_ipv6` (Number) Include IPv6 address
 - `geoloc_load_file_list` (Block List) (see [below for nested schema](#nestedblock--geo_location--geoloc_load_file_list))
 - `uuid` (String) uuid of the object
 
@@ -443,12 +623,12 @@ Optional:
 
 Required:
 
-- `geo_locn_obj_name` (String) Specify geo-location name, section range is (1-15) [shared partition only]
+- `geo_locn_obj_name` (String) Specify geo-location name, section range is (1-15)
 
 Optional:
 
 - `geo_locn_multiple_addresses` (Block List) (see [below for nested schema](#nestedblock--geo_location--entry_list--geo_locn_multiple_addresses))
-- `user_tag` (String) Customized tag [shared partition only]
+- `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 
 <a id="nestedblock--geo_location--entry_list--geo_locn_multiple_addresses"></a>
@@ -456,12 +636,12 @@ Optional:
 
 Optional:
 
-- `first_ip_address` (String) Specify IP information (Specify IP address) [shared partition only]
-- `first_ipv6_address` (String) Specify IPv6 address [shared partition only]
-- `geol_ipv4_mask` (String) Specify IPv4 mask [shared partition only]
-- `geol_ipv6_mask` (Number) Specify IPv6 mask [shared partition only]
-- `ip_addr2` (String) Specify IP address range [shared partition only]
-- `ipv6_addr2` (String) Specify IPv6 address range [shared partition only]
+- `first_ip_address` (String) Specify IP information (Specify IP address)
+- `first_ipv6_address` (String) Specify IPv6 address
+- `geol_ipv4_mask` (String) Specify IPv4 mask
+- `geol_ipv6_mask` (Number) Specify IPv6 mask
+- `ip_addr2` (String) Specify IP address range
+- `ipv6_addr2` (String) Specify IPv6 address range
 
 
 
@@ -470,8 +650,9 @@ Optional:
 
 Optional:
 
-- `geo_location_load_filename` (String) Specify file to be loaded [shared partition only]
-- `template_name` (String) CSV template to load this file [shared partition only]
+- `geo_location_load_file_include_ipv6` (Number) Include IPv6 address
+- `geo_location_load_filename` (String) Specify file to be loaded
+- `template_name` (String) CSV template to load this file
 
 
 
@@ -504,7 +685,7 @@ Optional:
 - `exclude_geoloc_name_list` (Block List) (see [below for nested schema](#nestedblock--geoloc_list_list--exclude_geoloc_name_list))
 - `include_geoloc_name_list` (Block List) (see [below for nested schema](#nestedblock--geoloc_list_list--include_geoloc_name_list))
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--geoloc_list_list--sampling_enable))
-- `shared` (Number) Enable sharing with other partitions [shared partition only]
+- `shared` (Number) Enable sharing with other partitions
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 
@@ -529,7 +710,7 @@ Optional:
 
 Optional:
 
-- `counters1` (String) 'all': all; 'hit-count': some help string; 'total-geoloc': some help string; 'total-active': some help string;
+- `counters1` (String) 'all': all; 'hit-count': hit-count; 'total-geoloc': total-geoloc; 'total-active': total-active;
 
 
 
@@ -550,33 +731,85 @@ Optional:
 
 
 
-<a id="nestedblock--hardware_forward"></a>
-### Nested Schema for `hardware_forward`
+<a id="nestedblock--geolocation_file"></a>
+### Nested Schema for `geolocation_file`
 
 Optional:
 
-- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--hardware_forward--sampling_enable))
-- `slb` (Block List, Max: 1) (see [below for nested schema](#nestedblock--hardware_forward--slb))
+- `error_info` (Block List, Max: 1) (see [below for nested schema](#nestedblock--geolocation_file--error_info))
 - `uuid` (String) uuid of the object
 
-<a id="nestedblock--hardware_forward--sampling_enable"></a>
-### Nested Schema for `hardware_forward.sampling_enable`
+<a id="nestedblock--geolocation_file--error_info"></a>
+### Nested Schema for `geolocation_file.error_info`
 
 Optional:
 
-- `counters1` (String) 'all': all; 'hit-counts': Total packts hit counts; 'hit-index': HW Fwd hit index; 'ipv4-forward-counts': Total IPv4 hardware forwarded packets; 'ipv6-forward-counts': Total IPv6 hardware forwarded packets; 'hw-fwd-module-status': hardware forwarder status flags; 'hw-fwd-prog-reqs': hardware forward programming requests; 'hw-fwd-prog-errors': hardware forward programming Errors; 'hw-fwd-flow-singlebit-errors': hardware forward singlebit Errors; 'hw-fwd-flow-tag-mismatch': hardware forward tag mismatch errors; 'hw-fwd-flow-seq-mismatch': hardware forward sequence mismatch errors; 'hw-fwd-ageout-drop-count': hardware forward ageout drop count; 'hw-fwd-invalidation-drop': hardware forward invalid drop count; 'hw-fwd-flow-hit-index': hardware forward flow hit index; 'hw-fwd-flow-reason-flags': hardware forward flow reason flags; 'hw-fwd-flow-drop-count': hardware forward flow drop count; 'hw-fwd-flow-error-count': hardware forward flow error count; 'hw-fwd-flow-unalign-count': hardware forward flow unalign count; 'hw-fwd-flow-underflow-count': hardware forward flow underflow count; 'hw-fwd-flow-tx-full-drop': hardware forward flow tx full drop count; 'hw-fwd-flow-qdr-full-drop': hardware forward flow qdr full drop count; 'hw-fwd-phyport-mismatch-drop': hardware forward phyport mismatch count; 'hw-fwd-vlanid-mismatch-drop': hardware forward vlanid mismatch count; 'hw-fwd-vmid-drop': hardware forward vmid mismatch count; 'hw-fwd-protocol-mismatch-drop': hardware forward protocol mismatch count; 'hw-fwd-avail-ipv4-entry': hardware forward available ipv4 entries count; 'hw-fwd-avail-ipv6-entry': hardware forward available ipv6 entries count;
-
-
-<a id="nestedblock--hardware_forward--slb"></a>
-### Nested Schema for `hardware_forward.slb`
-
-Optional:
-
-- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--hardware_forward--slb--sampling_enable))
 - `uuid` (String) uuid of the object
 
-<a id="nestedblock--hardware_forward--slb--sampling_enable"></a>
-### Nested Schema for `hardware_forward.slb.sampling_enable`
+
+
+<a id="nestedblock--glid"></a>
+### Nested Schema for `glid`
+
+Optional:
+
+- `glid_id` (String) Apply limits to the whole system
+- `non_shared` (Number) Apply global limit ID to the whole system at per data cpu level (default disabled)
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--guest_file"></a>
+### Nested Schema for `guest_file`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--gui_image_list"></a>
+### Nested Schema for `gui_image_list`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--hardware"></a>
+### Nested Schema for `hardware`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--hardware_accelerate"></a>
+### Nested Schema for `hardware_accelerate`
+
+Optional:
+
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--hardware_accelerate--sampling_enable))
+- `session_forwarding` (Number) Configure session-forwarding in Hardware (default:off)
+- `slb` (Block List, Max: 1) (see [below for nested schema](#nestedblock--hardware_accelerate--slb))
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--hardware_accelerate--sampling_enable"></a>
+### Nested Schema for `hardware_accelerate.sampling_enable`
+
+Optional:
+
+- `counters1` (String) 'all': all; 'hit-counts': Total packets hit counts; 'hit-index': HW Fwd hit index; 'ipv4-forward-counts': Total IPv4 hardware forwarded packets; 'ipv6-forward-counts': Total IPv6 hardware forwarded packets; 'hw-fwd-module-status': Hardware forwarder status flags; 'hw-fwd-prog-reqs': Hardware forward programming requests; 'hw-fwd-prog-errors': Hardware forward programming Errors; 'hw-fwd-flow-singlebit-errors': Hardware forward singlebit Errors; 'hw-fwd-flow-tag-mismatch': Hardware forward tag mismatch errors; 'hw-fwd-flow-seq-mismatch': Hardware forward sequence mismatch errors; 'hw-fwd-ageout-drop-count': Hardware forward ageout drop count; 'hw-fwd-invalidation-drop': Hardware forward invalid drop count; 'hw-fwd-flow-hit-index': Hardware forward flow hit index; 'hw-fwd-flow-reason-flags': Hardware forward flow reason flags; 'hw-fwd-flow-drop-count': Hardware forward flow drop count; 'hw-fwd-flow-error-count': Hardware forward flow error count; 'hw-fwd-flow-unalign-count': Hardware forward flow unalign count; 'hw-fwd-flow-underflow-count': Hardware forward flow underflow count; 'hw-fwd-flow-tx-full-drop': Hardware forward flow tx full drop count; 'hw-fwd-flow-qdr-full-drop': Hardware forward flow qdr full drop count; 'hw-fwd-phyport-mismatch-drop': Hardware forward phyport mismatch count; 'hw-fwd-vlanid-mismatch-drop': Hardware forward vlanid mismatch count; 'hw-fwd-vmid-drop': Hardware forward vmid mismatch count; 'hw-fwd-protocol-mismatch-drop': Hardware forward protocol mismatch count; 'hw-fwd-avail-ipv4-entry': Hardware forward available ipv4 entries count; 'hw-fwd-avail-ipv6-entry': Hardware forward available ipv6 entries count; 'hw-fwd-rate-drop-count': Hardware forward rate drop count; 'hw-fwd-normal-ageout-rcvd': Hardware forward normal ageout received count; 'hw-fwd-tcp-fin-ageout-rcvd': Hardware forward tcp FIN ageout received count; 'hw-fwd-tcp-rst-ageout-rcvd': Hardware forward tcp RST ageout received count; 'hw-fwd-lookup-fail-rcvd': Hardware forward entry lookup fail count; 'hw-fwd-stats-update-rcvd': Hardware forward entry stats update count; 'hw-fwd-flow-sflow-count': hardware forward rate drop count;
+
+
+<a id="nestedblock--hardware_accelerate--slb"></a>
+### Nested Schema for `hardware_accelerate.slb`
+
+Optional:
+
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--hardware_accelerate--slb--sampling_enable))
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--hardware_accelerate--slb--sampling_enable"></a>
+### Nested Schema for `hardware_accelerate.slb.sampling_enable`
 
 Optional:
 
@@ -585,12 +818,37 @@ Optional:
 
 
 
+<a id="nestedblock--health_check_list"></a>
+### Nested Schema for `health_check_list`
+
+Required:
+
+- `l2hm_hc_name` (String) Monitor Name
+
+Optional:
+
+- `l2bfd_multiplier` (Number) Multiplier value used to compute holddown (value used to multiply the interval (default: 4))
+- `l2bfd_rx_interval` (Number) Minimum receive interval capability (Milliseconds (default: 800))
+- `l2bfd_tx_interval` (Number) Transmit interval between BFD packets
+- `method_l2bfd` (Number) Method is l2bfd
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+
 <a id="nestedblock--high_memory_l4_session"></a>
 ### Nested Schema for `high_memory_l4_session`
 
 Optional:
 
-- `enable` (Number) Enable/Disable high memory l4 session support [shared partition only]
+- `enable` (Number) Enable/Disable high memory l4 session support
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--hrxq_status"></a>
+### Nested Schema for `hrxq_status`
+
+Optional:
+
 - `uuid` (String) uuid of the object
 
 
@@ -645,6 +903,22 @@ Optional:
 
 
 
+<a id="nestedblock--inuse_cpu_list"></a>
+### Nested Schema for `inuse_cpu_list`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--inuse_port_list"></a>
+### Nested Schema for `inuse_port_list`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
 <a id="nestedblock--io_cpu"></a>
 ### Nested Schema for `io_cpu`
 
@@ -668,6 +942,14 @@ Optional:
 
 - `counters1` (String) 'all': all; 'inreceives': Incoming packets received; 'inhdrerrors': Incoming packet header errors; 'intoobigerrors': Incoming packet too big errors; 'innoroutes': Incoming no route packet drops; 'inaddrerrors': Incoming packet address errors; 'inunknownprotos': Incoming unkown protocol packet drops; 'intruncatedpkts': Incoming truncated packets; 'indiscards': Incoming packets discarded; 'indelivers': Incoming packets delivered; 'outforwdatagrams': Outgoing forwarded datagrams; 'outrequests': Outgoing packets; 'outdiscards': Outgoing packets discarded; 'outnoroutes': Outgoing no route packet drops; 'reasmtimeout': Reassembly timed out packet drops; 'reasmreqds': Incoming reassembly requests; 'reasmoks': Incoming reassembled packets; 'reasmfails': Incoming reassembly requests failed; 'fragoks': Outgoing packets fragmented; 'fragfails': Outgoing packets fragmentation failed; 'fragcreates': Outgoing fragmented packets; 'inmcastpkts': Incoming multicast packets; 'outmcastpkts': Outgoing multicast packets;
 
+
+
+<a id="nestedblock--ip_dns_cache"></a>
+### Nested Schema for `ip_dns_cache`
+
+Optional:
+
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--ip_stats"></a>
@@ -714,8 +996,8 @@ Optional:
 
 Optional:
 
-- `class_list` (String) Bind class-list (class-list name) [shared partition only]
-- `ip_threat_action_tmpl` (Number) Bind ip-threat-action Template (ip-threat-action Template number) [shared partition only]
+- `class_list` (String) Bind class-list (class-list name)
+- `ip_threat_action_tmpl` (Number) Bind ip-threat-action Template (ip-threat-action Template number)
 
 
 
@@ -732,8 +1014,8 @@ Optional:
 
 Optional:
 
-- `class_list` (String) Bind class-list (class-list name) [shared partition only]
-- `ip_threat_action_tmpl` (Number) Bind ip-threat-action Template (ip-threat-action Template number) [shared partition only]
+- `class_list` (String) Bind class-list (class-list name)
+- `ip_threat_action_tmpl` (Number) Bind ip-threat-action Template (ip-threat-action Template number)
 
 
 
@@ -750,8 +1032,8 @@ Optional:
 
 Optional:
 
-- `class_list` (String) Bind class-list (class-list name) [shared partition only]
-- `ip_threat_action_tmpl` (Number) Bind ip-threat-action Template (ip-threat-action Template number) [shared partition only]
+- `class_list` (String) Bind class-list (class-list name)
+- `ip_threat_action_tmpl` (Number) Bind ip-threat-action Template (ip-threat-action Template number)
 
 
 
@@ -768,8 +1050,8 @@ Optional:
 
 Optional:
 
-- `class_list` (String) Bind class-list (class-list name) [shared partition only]
-- `ip_threat_action_tmpl` (Number) Bind ip-threat-action Template (ip-threat-action Template number) [shared partition only]
+- `class_list` (String) Bind class-list (class-list name)
+- `ip_threat_action_tmpl` (Number) Bind ip-threat-action Template (ip-threat-action Template number)
 
 
 
@@ -786,8 +1068,8 @@ Optional:
 
 Optional:
 
-- `class_list` (String) Bind class-list (class-list name) [shared partition only]
-- `ip_threat_action_tmpl` (Number) Bind ip-threat-action Template (ip-threat-action Template number) [shared partition only]
+- `class_list` (String) Bind class-list (class-list name)
+- `ip_threat_action_tmpl` (Number) Bind ip-threat-action Template (ip-threat-action Template number)
 
 
 
@@ -804,8 +1086,8 @@ Optional:
 
 Optional:
 
-- `class_list` (String) Bind class-list (class-list name) [shared partition only]
-- `ip_threat_action_tmpl` (Number) Bind ip-threat-action Template (ip-threat-action Template number) [shared partition only]
+- `class_list` (String) Bind class-list (class-list name)
+- `ip_threat_action_tmpl` (Number) Bind ip-threat-action Template (ip-threat-action Template number)
 
 
 
@@ -814,7 +1096,7 @@ Optional:
 
 Optional:
 
-- `counters1` (String) 'all': all; 'packet_hit_count_in_sw': Packet Hit Count in SW; 'packet_hit_count_in_spe': Packet Hit Count in SPE; 'entries_added_in_sw': Entries Added in SW; 'entries_removed_from_sw': Entries Removed from SW; 'entries_added_in_spe': Entries Added in SPE; 'entries_removed_from_spe': Entries Removed from SPE; 'error_out_of_memory': Out of memory Error; 'error_out_of_spe_entries': Out of SPE Entries Error; [shared partition only]
+- `counters1` (String) 'all': all; 'packet_hit_count_in_sw': Packet Hit Count in SW; 'packet_hit_count_in_spe': Packet Hit Count in SPE; 'entries_added_in_sw': Entries Added in SW; 'entries_removed_from_sw': Entries Removed from SW; 'entries_added_in_spe': Entries Added in SPE; 'entries_removed_from_spe': Entries Removed from SPE; 'error_out_of_memory': Out of memory Error; 'error_out_of_spe_entries': Out of SPE Entries Error;
 
 
 
@@ -825,7 +1107,7 @@ Optional:
 
 - `ip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipmi--ip))
 - `ipsrc` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipmi--ipsrc))
-- `reset` (Number) Reset IPMI Controller [shared partition only]
+- `reset` (Number) Reset IPMI Controller
 - `tool` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipmi--tool))
 - `user` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipmi--user))
 
@@ -834,9 +1116,9 @@ Optional:
 
 Optional:
 
-- `default_gateway` (String) Default gateway address [shared partition only]
-- `ipv4_address` (String) IP address [shared partition only]
-- `ipv4_netmask` (String) IP subnet mask [shared partition only]
+- `default_gateway` (String) Default gateway address
+- `ipv4_address` (String) IP address
+- `ipv4_netmask` (String) IP subnet mask
 
 
 <a id="nestedblock--ipmi--ipsrc"></a>
@@ -844,8 +1126,8 @@ Optional:
 
 Optional:
 
-- `dhcp` (Number) IP addr obtained by BMC running DHCP [shared partition only]
-- `static` (Number) Manually configured static IP address [shared partition only]
+- `dhcp` (Number) IP addr obtained by BMC running DHCP
+- `static` (Number) Manually configured static IP address
 
 
 <a id="nestedblock--ipmi--tool"></a>
@@ -853,7 +1135,7 @@ Optional:
 
 Optional:
 
-- `cmd` (String) Command to execute in double quotes [shared partition only]
+- `cmd` (String) Command to execute in double quotes
 
 
 <a id="nestedblock--ipmi--user"></a>
@@ -861,18 +1143,18 @@ Optional:
 
 Optional:
 
-- `add` (String) Add a new IPMI user (IPMI User Name) [shared partition only]
-- `administrator` (Number) Full control [shared partition only]
-- `callback` (Number) Lowest privilege level [shared partition only]
-- `disable` (String) Disable an existing IPMI user (IPMI User Name) [shared partition only]
-- `newname` (String) New IPMI User Name [shared partition only]
-- `newpass` (String) New Password [shared partition only]
-- `operator` (Number) Most BMC commands are allowed [shared partition only]
-- `password` (String) Password [shared partition only]
-- `privilege` (String) Change an existing IPMI user privilege (IPMI User Name) [shared partition only]
-- `setname` (String) Change User Name (Current IPMI User Name) [shared partition only]
-- `setpass` (String) Change Password (IPMI User Name) [shared partition only]
-- `user` (Number) Only 'benign' commands are allowed [shared partition only]
+- `add` (String) Add a new IPMI user (IPMI User Name)
+- `administrator` (Number) Full control
+- `callback` (Number) Lowest privilege level
+- `disable` (String) Disable an existing IPMI user (IPMI User Name)
+- `newname` (String) New IPMI User Name
+- `newpass` (String) New Password
+- `operator` (Number) Most BMC commands are allowed
+- `password` (String) Password
+- `privilege` (String) Change an existing IPMI user privilege (IPMI User Name)
+- `setname` (String) Change User Name (Current IPMI User Name)
+- `setpass` (String) Change Password (IPMI User Name)
+- `user` (Number) Only 'benign' commands are allowed
 
 
 
@@ -881,7 +1163,7 @@ Optional:
 
 Optional:
 
-- `disable` (Number) Disable IPMI on platform [shared partition only]
+- `disable` (Number) Disable IPMI on platform
 - `uuid` (String) uuid of the object
 
 
@@ -890,10 +1172,11 @@ Optional:
 
 Optional:
 
-- `crypto_core` (Number) Crypto cores assigned for IPsec processing [shared partition only]
-- `crypto_mem` (Number) Crypto memory percentage assigned for IPsec processing (rounded to increments of 10) [shared partition only]
+- `crypto_core` (Number) Crypto cores assigned for IPsec processing
+- `crypto_mem` (Number) Crypto memory percentage assigned for IPsec processing (rounded to increments of 10)
 - `fpga_decrypt` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipsec--fpga_decrypt))
-- `packet_round_robin` (Number) Enable packet round robin for IPsec packets [shared partition only]
+- `packet_round_robin` (Number) Enable packet round robin for IPsec packets
+- `qat` (Number) HW assisted QAT SSL module
 - `uuid` (String) uuid of the object
 
 <a id="nestedblock--ipsec--fpga_decrypt"></a>
@@ -901,7 +1184,24 @@ Optional:
 
 Optional:
 
-- `action` (String) 'enable': Enable FPGA decryption offload; 'disable': Disable FPGA decryption offload; [shared partition only]
+- `action` (String) 'enable': Enable FPGA decryption offload; 'disable': Disable FPGA decryption offload;
+
+
+
+<a id="nestedblock--job_offload"></a>
+### Nested Schema for `job_offload`
+
+Optional:
+
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--job_offload--sampling_enable))
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--job_offload--sampling_enable"></a>
+### Nested Schema for `job_offload.sampling_enable`
+
+Optional:
+
+- `counters1` (String) 'all': all; 'jobs': Current Jobs; 'submit': Jobs Submitted; 'receive': Jobs Received; 'execute': Jobs Executed; 'snt_home': Jobs Sent Back Home; 'rcv_home': Jobs Received Home; 'complete': Jobs Completed; 'fail_submit': Jobs Failed to Submit; 'q_no_space': No More Space in Q; 'fail_execute': Failed to Execute Job; 'fail_complete': Failed to Complete Job;
 
 
 
@@ -910,7 +1210,7 @@ Optional:
 
 Optional:
 
-- `enable` (Number) Enable/Disable link capabilities [shared partition only]
+- `enable` (Number) Enable/Disable link capabilities
 - `uuid` (String) uuid of the object
 
 
@@ -956,6 +1256,20 @@ Optional:
 
 - `counters1` (String) 'all': all; 'usage-percentage': Memory Usage percentage;
 
+
+
+<a id="nestedblock--memory_block_debug"></a>
+### Nested Schema for `memory_block_debug`
+
+Optional:
+
+- `assert_block` (Number) Over size block allocation (Assert memory block over size (default: 65536))
+- `first_blk` (Number) First memory block ascending order (default: 8192) (Memory blocks 32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K)
+- `fourth_blk` (Number) Fourth memory block (default: 65536) (Memory blocks 32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K)
+- `pktdump_block` (Number) Enable pktdump Oversize block request packet
+- `second_blk` (Number) Second memory block (default: 16384) (Memory blocks 32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K)
+- `third_blk` (Number) Third memory block (default: 32768) (Memory blocks 32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K)
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--mfa_auth"></a>
@@ -1031,7 +1345,7 @@ Optional:
 
 Optional:
 
-- `enable` (Number) [shared partition only]
+- `enable` (Number)
 - `uuid` (String) uuid of the object
 
 
@@ -1040,7 +1354,7 @@ Optional:
 
 Optional:
 
-- `enable` (Number) [shared partition only]
+- `enable` (Number)
 - `uuid` (String) uuid of the object
 
 
@@ -1049,7 +1363,7 @@ Optional:
 
 Required:
 
-- `id` (Number) Monitor template ID Number [shared partition only]
+- `id1` (Number) Monitor template ID Number
 
 Optional:
 
@@ -1058,8 +1372,8 @@ Optional:
 - `link_down_cfg` (Block List) (see [below for nested schema](#nestedblock--mon_template--monitor_list--link_down_cfg))
 - `link_enable_cfg` (Block List) (see [below for nested schema](#nestedblock--mon_template--monitor_list--link_enable_cfg))
 - `link_up_cfg` (Block List) (see [below for nested schema](#nestedblock--mon_template--monitor_list--link_up_cfg))
-- `monitor_relation` (String) 'monitor-and': Configures the monitors in current template to work with AND logic; 'monitor-or': Configures the monitors in current template to work with OR logic; [shared partition only]
-- `user_tag` (String) Customized tag [shared partition only]
+- `monitor_relation` (String) 'monitor-and': Configures the monitors in current template to work with AND logic; 'monitor-or': Configures the monitors in current template to work with OR logic;
+- `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 
 <a id="nestedblock--mon_template--monitor_list--clear_cfg"></a>
@@ -1067,9 +1381,9 @@ Optional:
 
 Optional:
 
-- `clear_all_sequence` (Number) Sequence number (Specify the port physical port number) [shared partition only]
-- `clear_sequence` (Number) Specify the port physical port number [shared partition only]
-- `sessions` (String) 'all': Clear all sessions; 'sequence': Sequence number; [shared partition only]
+- `clear_all_sequence` (Number) Sequence number (Specify the port physical port number)
+- `clear_sequence` (Number) Specify the port physical port number
+- `sessions` (String) 'all': Clear all sessions; 'sequence': Sequence number;
 
 
 <a id="nestedblock--mon_template--monitor_list--link_disable_cfg"></a>
@@ -1077,8 +1391,8 @@ Optional:
 
 Optional:
 
-- `dis_sequence` (Number) Sequence number (Specify the sequence number) [shared partition only]
-- `diseth` (Number) Specify the physical port number (Ethernet interface number) [shared partition only]
+- `dis_sequence` (Number) Sequence number (Specify the sequence number)
+- `diseth` (Number) Specify the physical port number (Ethernet interface number)
 
 
 <a id="nestedblock--mon_template--monitor_list--link_down_cfg"></a>
@@ -1086,12 +1400,12 @@ Optional:
 
 Optional:
 
-- `link_down_sequence1` (Number) Sequence number (Specify the sequence number) [shared partition only]
-- `link_down_sequence2` (Number) Sequence number (Specify the seqeuence number) [shared partition only]
-- `link_down_sequence3` (Number) Sequence number (Specify the sequence number) [shared partition only]
-- `linkdown_ethernet1` (Number) Specify the port physical port number (Ethernet interface number) [shared partition only]
-- `linkdown_ethernet2` (Number) Specify the port physical port number (Ethernet interface number) [shared partition only]
-- `linkdown_ethernet3` (Number) Specify the port physical port number (Ethernet interface number) [shared partition only]
+- `link_down_sequence1` (Number) Sequence number (Specify the sequence number)
+- `link_down_sequence2` (Number) Sequence number (Specify the seqeuence number)
+- `link_down_sequence3` (Number) Sequence number (Specify the sequence number)
+- `linkdown_ethernet1` (Number) Specify the port physical port number (Ethernet interface number)
+- `linkdown_ethernet2` (Number) Specify the port physical port number (Ethernet interface number)
+- `linkdown_ethernet3` (Number) Specify the port physical port number (Ethernet interface number)
 
 
 <a id="nestedblock--mon_template--monitor_list--link_enable_cfg"></a>
@@ -1099,8 +1413,8 @@ Optional:
 
 Optional:
 
-- `ena_sequence` (Number) Sequence number (Specify the sequence number) [shared partition only]
-- `enaeth` (Number) Specify the physical port number (Ethernet interface number) [shared partition only]
+- `ena_sequence` (Number) Sequence number (Specify the sequence number)
+- `enaeth` (Number) Specify the physical port number (Ethernet interface number)
 
 
 <a id="nestedblock--mon_template--monitor_list--link_up_cfg"></a>
@@ -1108,12 +1422,12 @@ Optional:
 
 Optional:
 
-- `link_up_sequence1` (Number) Sequence number (Specify the sequence number) [shared partition only]
-- `link_up_sequence2` (Number) Sequence number (Specify the sequence number) [shared partition only]
-- `link_up_sequence3` (Number) Sequence number (Specify the sequece number) [shared partition only]
-- `linkup_ethernet1` (Number) Specify the port physical port number (Ethernet interface number) [shared partition only]
-- `linkup_ethernet2` (Number) Specify the port physical port number (Ethernet interface number) [shared partition only]
-- `linkup_ethernet3` (Number) Specify the port physical port number (Ethernet interface number) [shared partition only]
+- `link_up_sequence1` (Number) Sequence number (Specify the sequence number)
+- `link_up_sequence2` (Number) Sequence number (Specify the sequence number)
+- `link_up_sequence3` (Number) Sequence number (Specify the sequece number)
+- `linkup_ethernet1` (Number) Specify the port physical port number (Ethernet interface number)
+- `linkup_ethernet2` (Number) Specify the port physical port number (Ethernet interface number)
+- `linkup_ethernet3` (Number) Specify the port physical port number (Ethernet interface number)
 
 
 
@@ -1123,7 +1437,7 @@ Optional:
 
 Optional:
 
-- `enable` (Number) Enable Multi-Queue-Support [shared partition only]
+- `enable` (Number) Enable Multi-Queue-Support
 
 
 <a id="nestedblock--ndisc_ra"></a>
@@ -1143,6 +1457,15 @@ Optional:
 
 
 
+<a id="nestedblock--netvsc_monitor"></a>
+### Nested Schema for `netvsc_monitor`
+
+Optional:
+
+- `enable` (Number) Enable/Disable auto-recovery from Rx/Tx hang
+- `uuid` (String) uuid of the object
+
+
 <a id="nestedblock--nsm_a10lb"></a>
 ### Nested Schema for `nsm_a10lb`
 
@@ -1157,11 +1480,51 @@ Optional:
 
 Optional:
 
-- `aging` (String) 'Strict': Strict: Max Age-60 Days; 'Medium': Medium: Max Age- 90 Days; 'Simple': Simple: Max Age-120 Days; [shared partition only]
-- `complexity` (String) 'Strict': Strict: Min length:8, Min Lower Case:2, Min Upper Case:2, Min Numbers:2, Min Special Character:1; 'Medium': Medium: Min length:6, Min Lower Case:2, Min Upper Case:2, Min Numbers:1, Min Special Character:1; 'Simple': Simple: Min length:4, Min Lower Case:1, Min Upper Case:1, Min Numbers:1, Min Special Character:0; [shared partition only]
-- `history` (String) 'Strict': Strict: Does not allow upto 5 old passwords; 'Medium': Medium: Does not allow upto 4 old passwords; 'Simple': Simple: Does not allow upto 3 old passwords; [shared partition only]
-- `min_pswd_len` (Number) Configure custom password length [shared partition only]
+- `aging` (String) 'Strict': Strict: Max Age-60 Days; 'Medium': Medium: Max Age- 90 Days; 'Simple': Simple: Max Age-120 Days;
+- `complexity` (String) 'Strict': Strict: Min length:8, Min Lower Case:2, Min Upper Case:2, Min Numbers:2, Min Special Character:1, CHANGE Min 8 Characters; 'Medium': Medium: Min length:6, Min Lower Case:2, Min Upper Case:2, Min Numbers:1, Min Special Character:1, CHANGE Min 6 Characters; 'Default': Default: Min length:9, Min Lower Case:1, Min Upper Case:1, Min Numbers:1, Min Special Character:1, CHANGE Min 1 Characters; 'Simple': Simple: Min length:4, Min Lower Case:1, Min Upper Case:1, Min Numbers:1, Min Special Character:0, CHANGE Min 4 Characters;
+- `forbid_consecutive_character` (String) '0': Will disable the check; '3': Three consecutive characters on keyboard will not be allowed.; '4': Four consecutive characters on keyboard will not be allowed.; '5': Five consecutive characters on keyboard will not be allowed.;
+- `history` (String) 'Strict': Strict: Does not allow upto 5 old passwords; 'Medium': Medium: Does not allow upto 4 old passwords; 'Simple': Simple: Does not allow upto 3 old passwords;
+- `min_pswd_len` (Number) Configure custom password length
+- `repeat_character_check` (String) 'enable': Prohibition of consecutive repeated input of the same letter/number, case sensitive; 'disable': Will not check if the password contains repeat characters;
+- `username_check` (String) 'enable': Prohibition to set password contains user account, case sensitive; 'disable': Will not check if the password contains user account;
 - `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--path_list"></a>
+### Nested Schema for `path_list`
+
+Required:
+
+- `l2hm_path_name` (String) Monitor Name
+
+Optional:
+
+- `ifpair_eth_end` (Number) Ethernet port
+- `ifpair_eth_start` (Number) Ethernet port (Interface number)
+- `ifpair_trunk_end` (Number) Trunk Group
+- `ifpair_trunk_start` (Number) Trunk groups
+- `l2hm_attach` (String) Monitor Name
+- `l2hm_setup_test_api` (Number) Test-API Interface (Ethernet Interface)
+- `l2hm_vlan` (Number) VLAN id
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--pbslb"></a>
+### Nested Schema for `pbslb`
+
+Optional:
+
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--pbslb--sampling_enable))
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--pbslb--sampling_enable"></a>
+### Nested Schema for `pbslb.sampling_enable`
+
+Optional:
+
+- `counters1` (String) 'all': all; 'curr_entries': Current PBSLB Entry Count; 'total_v4_entries_created': Total V4 Entry Count Created; 'total_v4_entries_freed': Total V4 Entry Count Freed; 'total_v6_entries_created': Total V6 Entry Count Created; 'total_v6_entries_freed': Total V6 Entry Count Freed; 'total_domain_entries_created': Total Domain Entry Count Created; 'total_domain_entries_freed': Total Domain Entry Count Freed; 'total_direct_action_entries_created': Total Direct Action Entry Count Created; 'total_direct_action_entries_freed': Total Direct Action Entry Count Freed; 'curr_entries_target_global': Current Entry Target Global; 'curr_entries_target_vserver': Current Entry Target Vserver; 'curr_entries_target_vport': Current Entry Target Vport; 'curr_entries_target_LOC': Current Entry Target LOC; 'curr_entries_target_rserver': Current Entry Target Rserver; 'curr_entries_target_rport': Current Entry Target Rport; 'curr_entries_target_service': Current Entry Target Service; 'curr_entries_stats': Current Entry Stats Count;
+
 
 
 <a id="nestedblock--per_vlan_limit"></a>
@@ -1169,10 +1532,46 @@ Optional:
 
 Optional:
 
-- `bcast` (Number) broadcast packets (per second limit) [shared partition only]
-- `ipmcast` (Number) IP multicast packets (per second limit) [shared partition only]
-- `mcast` (Number) multicast packets (per second limit) [shared partition only]
-- `unknown_ucast` (Number) unknown unicast packets (per second limit) [shared partition only]
+- `bcast` (Number) broadcast packets (per second limit)
+- `ipmcast` (Number) IP multicast packets (per second limit)
+- `mcast` (Number) multicast packets (per second limit)
+- `unknown_ucast` (Number) unknown unicast packets (per second limit)
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--platformtype"></a>
+### Nested Schema for `platformtype`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--port_count"></a>
+### Nested Schema for `port_count`
+
+Optional:
+
+- `port_count_alg` (Number) Total Ports to be allocated for alg types.
+- `port_count_hm` (Number) Total Ports to be allocated for hm.
+- `port_count_kernel` (Number) Total Ports to be allocated for kernel.
+- `port_count_logging` (Number) Total Ports to be allocated for logging.
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--port_info"></a>
+### Nested Schema for `port_info`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--port_list"></a>
+### Nested Schema for `port_list`
+
+Optional:
+
 - `uuid` (String) uuid of the object
 
 
@@ -1181,7 +1580,27 @@ Optional:
 
 Optional:
 
-- `link_detection_interval` (Number) Link detection interval in msecs [shared partition only]
+- `link_detection_interval` (Number) Link detection interval in msecs
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--power_on_self_test"></a>
+### Nested Schema for `power_on_self_test`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--probe_network_devices"></a>
+### Nested Schema for `probe_network_devices`
+
+
+<a id="nestedblock--psu_info"></a>
+### Nested Schema for `psu_info`
+
+Optional:
+
 - `uuid` (String) uuid of the object
 
 
@@ -1190,9 +1609,9 @@ Optional:
 
 Optional:
 
-- `enable_all_ports` (Number) Enable 802.1QinQ on all physical ports [shared partition only]
-- `inner_tpid` (String) TPID for inner VLAN (Inner TPID, 16 bit hex value, default is 8100) [shared partition only]
-- `outer_tpid` (String) TPID for outer VLAN (Outer TPID, 16 bit hex value, default is 8100) [shared partition only]
+- `enable_all_ports` (Number) Enable 802.1QinQ on all physical ports
+- `inner_tpid` (String) TPID for inner VLAN (Inner TPID, 16 bit hex value, default is 8100)
+- `outer_tpid` (String) TPID for outer VLAN (Outer TPID, 16 bit hex value, default is 8100)
 - `uuid` (String) uuid of the object
 
 
@@ -1201,7 +1620,7 @@ Optional:
 
 Optional:
 
-- `enable` (Number) Enable/Disable micro-burst traffic support [shared partition only]
+- `enable` (Number) Enable/Disable micro-burst traffic support
 - `uuid` (String) uuid of the object
 
 
@@ -1278,6 +1697,14 @@ Optional:
 
 
 
+<a id="nestedblock--reboot"></a>
+### Nested Schema for `reboot`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
 <a id="nestedblock--resource_accounting"></a>
 ### Nested Schema for `resource_accounting`
 
@@ -1291,14 +1718,14 @@ Optional:
 
 Required:
 
-- `name` (String) Enter template name [shared partition only]
+- `name` (String) Enter template name
 
 Optional:
 
 - `app_resources` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources))
 - `network_resources` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--network_resources))
 - `system_resources` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--system_resources))
-- `user_tag` (String) Customized tag [shared partition only]
+- `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 
 <a id="nestedblock--resource_accounting--template_list--app_resources"></a>
@@ -1326,6 +1753,7 @@ Optional:
 - `health_monitor_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources--health_monitor_cfg))
 - `http_template_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources--http_template_cfg))
 - `link_cost_template_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources--link_cost_template_cfg))
+- `pbslb_entry_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources--pbslb_entry_cfg))
 - `persist_cookie_template_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources--persist_cookie_template_cfg))
 - `persist_srcip_template_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources--persist_srcip_template_cfg))
 - `proxy_template_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources--proxy_template_cfg))
@@ -1334,7 +1762,7 @@ Optional:
 - `server_ssl_template_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources--server_ssl_template_cfg))
 - `service_group_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources--service_group_cfg))
 - `stream_template_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources--stream_template_cfg))
-- `threshold` (Number) Enter the threshold as a percentage (Threshold in percentage(default is 100%)) [shared partition only]
+- `threshold` (Number) Enter the threshold as a percentage (Threshold in percentage(default is 100%))
 - `uuid` (String) uuid of the object
 - `virtual_port_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources--virtual_port_cfg))
 - `virtual_server_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--app_resources--virtual_server_cfg))
@@ -1344,8 +1772,8 @@ Optional:
 
 Optional:
 
-- `cache_template_max` (Number) Enter the number of cache-template allowed (cache-template count (default is max-value)) [shared partition only]
-- `cache_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `cache_template_max` (Number) Enter the number of cache-template allowed (cache-template count (default is max-value))
+- `cache_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--client_ssl_template_cfg"></a>
@@ -1353,8 +1781,8 @@ Optional:
 
 Optional:
 
-- `client_ssl_template_max` (Number) Enter the number of client-ssl-template allowed (client-ssl-template count (default is max-value)) [shared partition only]
-- `client_ssl_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `client_ssl_template_max` (Number) Enter the number of client-ssl-template allowed (client-ssl-template count (default is max-value))
+- `client_ssl_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--conn_reuse_template_cfg"></a>
@@ -1362,8 +1790,8 @@ Optional:
 
 Optional:
 
-- `conn_reuse_template_max` (Number) Enter the number of conn-reuse-template allowed (conn-reuse-template count (default is max-value)) [shared partition only]
-- `conn_reuse_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `conn_reuse_template_max` (Number) Enter the number of conn-reuse-template allowed (conn-reuse-template count (default is max-value))
+- `conn_reuse_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--fast_tcp_template_cfg"></a>
@@ -1371,8 +1799,8 @@ Optional:
 
 Optional:
 
-- `fast_tcp_template_max` (Number) Enter the number of fast-tcp-template allowed (fast-tcp-template count (default is max-value)) [shared partition only]
-- `fast_tcp_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `fast_tcp_template_max` (Number) Enter the number of fast-tcp-template allowed (fast-tcp-template count (default is max-value))
+- `fast_tcp_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--fast_udp_template_cfg"></a>
@@ -1380,8 +1808,8 @@ Optional:
 
 Optional:
 
-- `fast_udp_template_max` (Number) Enter the number of fast-udp-template allowed (fast-udp-template count (default is max-value)) [shared partition only]
-- `fast_udp_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `fast_udp_template_max` (Number) Enter the number of fast-udp-template allowed (fast-udp-template count (default is max-value))
+- `fast_udp_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--fix_template_cfg"></a>
@@ -1389,8 +1817,8 @@ Optional:
 
 Optional:
 
-- `fix_template_max` (Number) Enter the number of fix-template allowed (fix-template count (default is max-value)) [shared partition only]
-- `fix_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `fix_template_max` (Number) Enter the number of fix-template allowed (fix-template count (default is max-value))
+- `fix_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--gslb_device_cfg"></a>
@@ -1398,8 +1826,8 @@ Optional:
 
 Optional:
 
-- `gslb_device_max` (Number) Enter the number of gslb-device allowed (gslb-device count (default is max-value)) [shared partition only]
-- `gslb_device_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `gslb_device_max` (Number) Enter the number of gslb-device allowed (gslb-device count (default is max-value))
+- `gslb_device_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--gslb_geo_location_cfg"></a>
@@ -1407,8 +1835,8 @@ Optional:
 
 Optional:
 
-- `gslb_geo_location_max` (Number) Enter the number of gslb-geo-location allowed (gslb-geo-location count (default is max-value)) [shared partition only]
-- `gslb_geo_location_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `gslb_geo_location_max` (Number) Enter the number of gslb-geo-location allowed (gslb-geo-location count (default is max-value))
+- `gslb_geo_location_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--gslb_ip_list_cfg"></a>
@@ -1416,8 +1844,8 @@ Optional:
 
 Optional:
 
-- `gslb_ip_list_max` (Number) Enter the number of gslb-ip-list allowed (gslb-ip-list count (default is max-value)) [shared partition only]
-- `gslb_ip_list_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `gslb_ip_list_max` (Number) Enter the number of gslb-ip-list allowed (gslb-ip-list count (default is max-value))
+- `gslb_ip_list_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--gslb_policy_cfg"></a>
@@ -1425,8 +1853,8 @@ Optional:
 
 Optional:
 
-- `gslb_policy_max` (Number) Enter the number of gslb-policy allowed (gslb-policy count (default is max-value)) [shared partition only]
-- `gslb_policy_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `gslb_policy_max` (Number) Enter the number of gslb-policy allowed (gslb-policy count (default is max-value))
+- `gslb_policy_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--gslb_service_cfg"></a>
@@ -1434,8 +1862,8 @@ Optional:
 
 Optional:
 
-- `gslb_service_max` (Number) Enter the number of gslb-service allowed (gslb-service count (default is max-value) [shared partition only]
-- `gslb_service_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `gslb_service_max` (Number) Enter the number of gslb-service allowed (gslb-service count (default is max-value)
+- `gslb_service_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--gslb_service_ip_cfg"></a>
@@ -1443,8 +1871,8 @@ Optional:
 
 Optional:
 
-- `gslb_service_ip_max` (Number) Enter the number of gslb-service-ip allowed (gslb-service-ip count (default is max-value)) [shared partition only]
-- `gslb_service_ip_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `gslb_service_ip_max` (Number) Enter the number of gslb-service-ip allowed (gslb-service-ip count (default is max-value))
+- `gslb_service_ip_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--gslb_service_port_cfg"></a>
@@ -1452,8 +1880,8 @@ Optional:
 
 Optional:
 
-- `gslb_service_port_max` (Number) Enter the number of gslb-service-port allowed ( gslb-service-port count (default is max-value)) [shared partition only]
-- `gslb_service_port_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `gslb_service_port_max` (Number) Enter the number of gslb-service-port allowed ( gslb-service-port count (default is max-value))
+- `gslb_service_port_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--gslb_site_cfg"></a>
@@ -1461,8 +1889,8 @@ Optional:
 
 Optional:
 
-- `gslb_site_max` (Number) Enter the number of gslb-site allowed (gslb-site count (default is max-value)) [shared partition only]
-- `gslb_site_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `gslb_site_max` (Number) Enter the number of gslb-site allowed (gslb-site count (default is max-value))
+- `gslb_site_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--gslb_svc_group_cfg"></a>
@@ -1470,8 +1898,8 @@ Optional:
 
 Optional:
 
-- `gslb_svc_group_max` (Number) Enter the number of gslb-svc-group allowed (gslb-svc-group count (default is max-value)) [shared partition only]
-- `gslb_svc_group_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `gslb_svc_group_max` (Number) Enter the number of gslb-svc-group allowed (gslb-svc-group count (default is max-value))
+- `gslb_svc_group_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--gslb_template_cfg"></a>
@@ -1479,8 +1907,8 @@ Optional:
 
 Optional:
 
-- `gslb_template_max` (Number) Enter the number of gslb-template allowed (gslb-template count (default is max-value)) [shared partition only]
-- `gslb_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `gslb_template_max` (Number) Enter the number of gslb-template allowed (gslb-template count (default is max-value))
+- `gslb_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--gslb_zone_cfg"></a>
@@ -1488,8 +1916,8 @@ Optional:
 
 Optional:
 
-- `gslb_zone_max` (Number) Enter the number of gslb-zone allowed (gslb-zone count (default is max-value)) [shared partition only]
-- `gslb_zone_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `gslb_zone_max` (Number) Enter the number of gslb-zone allowed (gslb-zone count (default is max-value))
+- `gslb_zone_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--health_monitor_cfg"></a>
@@ -1497,8 +1925,8 @@ Optional:
 
 Optional:
 
-- `health_monitor_max` (Number) Enter the number of health monitors allowed (health-monitor count (default is max-value)) [shared partition only]
-- `health_monitor_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `health_monitor_max` (Number) Enter the number of health monitors allowed (health-monitor count (default is max-value))
+- `health_monitor_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--http_template_cfg"></a>
@@ -1506,8 +1934,8 @@ Optional:
 
 Optional:
 
-- `http_template_max` (Number) Enter the number of http-template allowed (http-template count (default is max-value)) [shared partition only]
-- `http_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `http_template_max` (Number) Enter the number of http-template allowed (http-template count (default is max-value))
+- `http_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--link_cost_template_cfg"></a>
@@ -1515,8 +1943,17 @@ Optional:
 
 Optional:
 
-- `link_cost_template_max` (Number) Enter the number of link-cost-template allowed (link-cost-template count (default is max-value)) [shared partition only]
-- `link_cost_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `link_cost_template_max` (Number) Enter the number of link-cost-template allowed (link-cost-template count (default is max-value))
+- `link_cost_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
+
+
+<a id="nestedblock--resource_accounting--template_list--app_resources--pbslb_entry_cfg"></a>
+### Nested Schema for `resource_accounting.template_list.app_resources.pbslb_entry_cfg`
+
+Optional:
+
+- `pbslb_entry_max` (Number) Enter the number of pbslb-entry allowed (pbslb-entry count)
+- `pbslb_entry_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--persist_cookie_template_cfg"></a>
@@ -1524,8 +1961,8 @@ Optional:
 
 Optional:
 
-- `persist_cookie_template_max` (Number) Enter the number of persist-cookie-template allowed (persist-cookie-template count (default is max-value)) [shared partition only]
-- `persist_cookie_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `persist_cookie_template_max` (Number) Enter the number of persist-cookie-template allowed (persist-cookie-template count (default is max-value))
+- `persist_cookie_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--persist_srcip_template_cfg"></a>
@@ -1533,8 +1970,8 @@ Optional:
 
 Optional:
 
-- `persist_srcip_template_max` (Number) Enter the number of persist-srcip-template allowed (persist-source-ip-template count (default is max-value)) [shared partition only]
-- `persist_srcip_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `persist_srcip_template_max` (Number) Enter the number of persist-srcip-template allowed (persist-source-ip-template count (default is max-value))
+- `persist_srcip_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--proxy_template_cfg"></a>
@@ -1542,8 +1979,8 @@ Optional:
 
 Optional:
 
-- `proxy_template_max` (Number) Enter the number of proxy-template allowed (server-ssl-template count (default is max-value)) [shared partition only]
-- `proxy_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `proxy_template_max` (Number) Enter the number of proxy-template allowed (server-ssl-template count (default is max-value))
+- `proxy_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--real_port_cfg"></a>
@@ -1551,8 +1988,8 @@ Optional:
 
 Optional:
 
-- `real_port_max` (Number) Enter the number of real-ports allowed (real-port count (default is max-value)) [shared partition only]
-- `real_port_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `real_port_max` (Number) Enter the number of real-ports allowed (real-port count (default is max-value))
+- `real_port_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--real_server_cfg"></a>
@@ -1560,8 +1997,8 @@ Optional:
 
 Optional:
 
-- `real_server_max` (Number) Enter the number of real-servers allowed (real-server count (default is max-value)) [shared partition only]
-- `real_server_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `real_server_max` (Number) Enter the number of real-servers allowed (real-server count (default is max-value))
+- `real_server_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--server_ssl_template_cfg"></a>
@@ -1569,8 +2006,8 @@ Optional:
 
 Optional:
 
-- `server_ssl_template_max` (Number) Enter the number of server-ssl-template allowed (server-ssl-template count (default is max-value)) [shared partition only]
-- `server_ssl_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `server_ssl_template_max` (Number) Enter the number of server-ssl-template allowed (server-ssl-template count (default is max-value))
+- `server_ssl_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--service_group_cfg"></a>
@@ -1578,8 +2015,8 @@ Optional:
 
 Optional:
 
-- `service_group_max` (Number) Enter the number of service groups allowed (service-group count (default is max-value)) [shared partition only]
-- `service_group_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `service_group_max` (Number) Enter the number of service groups allowed (service-group count (default is max-value))
+- `service_group_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--stream_template_cfg"></a>
@@ -1587,8 +2024,8 @@ Optional:
 
 Optional:
 
-- `stream_template_max` (Number) Enter the number of stream-template allowed (server-ssl-template count (default is max-value)) [shared partition only]
-- `stream_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `stream_template_max` (Number) Enter the number of stream-template allowed (server-ssl-template count (default is max-value))
+- `stream_template_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--virtual_port_cfg"></a>
@@ -1596,8 +2033,8 @@ Optional:
 
 Optional:
 
-- `virtual_port_max` (Number) Enter the number of virtual-port allowed (virtual-port count (default is max-value)) [shared partition only]
-- `virtual_port_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `virtual_port_max` (Number) Enter the number of virtual-port allowed (virtual-port count (default is max-value))
+- `virtual_port_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--app_resources--virtual_server_cfg"></a>
@@ -1605,8 +2042,8 @@ Optional:
 
 Optional:
 
-- `virtual_server_max` (Number) Enter the number of virtual-servers allowed (virtual-server count (default is max-value)) [shared partition only]
-- `virtual_server_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `virtual_server_max` (Number) Enter the number of virtual-servers allowed (virtual-server count (default is max-value))
+- `virtual_server_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 
@@ -1624,7 +2061,7 @@ Optional:
 - `static_ipv6_route_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--network_resources--static_ipv6_route_cfg))
 - `static_mac_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--network_resources--static_mac_cfg))
 - `static_neighbor_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--network_resources--static_neighbor_cfg))
-- `threshold` (Number) Enter the threshold as a percentage (Threshold in percentage(default is 100%)) [shared partition only]
+- `threshold` (Number) Enter the threshold as a percentage (Threshold in percentage(default is 100%))
 - `uuid` (String) uuid of the object
 
 <a id="nestedblock--resource_accounting--template_list--network_resources--ipv4_acl_line_cfg"></a>
@@ -1632,8 +2069,8 @@ Optional:
 
 Optional:
 
-- `ipv4_acl_line_max` (Number) Enter the number of ACL lines allowed (IPV4 ACL lines (default is max-value)) [shared partition only]
-- `ipv4_acl_line_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `ipv4_acl_line_max` (Number) Enter the number of ACL lines allowed (IPV4 ACL lines (default is max-value))
+- `ipv4_acl_line_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--network_resources--ipv6_acl_line_cfg"></a>
@@ -1641,8 +2078,8 @@ Optional:
 
 Optional:
 
-- `ipv6_acl_line_max` (Number) Enter the number of ACL lines allowed (IPV6 ACL lines (default is max-value)) [shared partition only]
-- `ipv6_acl_line_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `ipv6_acl_line_max` (Number) Enter the number of ACL lines allowed (IPV6 ACL lines (default is max-value))
+- `ipv6_acl_line_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--network_resources--object_group_cfg"></a>
@@ -1650,8 +2087,8 @@ Optional:
 
 Optional:
 
-- `object_group_max` (Number) Enter the number of object groups allowed (Object group (default is max-value)) [shared partition only]
-- `object_group_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `object_group_max` (Number) Enter the number of object groups allowed (Object group (default is max-value))
+- `object_group_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--network_resources--object_group_clause_cfg"></a>
@@ -1659,8 +2096,8 @@ Optional:
 
 Optional:
 
-- `object_group_clause_max` (Number) Enter the number of object group clauses allowed (Object group clauses (default is max-value)) [shared partition only]
-- `object_group_clause_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `object_group_clause_max` (Number) Enter the number of object group clauses allowed (Object group clauses (default is max-value))
+- `object_group_clause_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--network_resources--static_arp_cfg"></a>
@@ -1668,8 +2105,8 @@ Optional:
 
 Optional:
 
-- `static_arp_max` (Number) Enter the number of static arp entries allowed (Static arp (default is max-value)) [shared partition only]
-- `static_arp_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `static_arp_max` (Number) Enter the number of static arp entries allowed (Static arp (default is max-value))
+- `static_arp_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--network_resources--static_ipv4_route_cfg"></a>
@@ -1677,8 +2114,8 @@ Optional:
 
 Optional:
 
-- `static_ipv4_route_max` (Number) Enter the number of static ipv4 routes allowed (Static ipv4 routes (default is max-value)) [shared partition only]
-- `static_ipv4_route_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `static_ipv4_route_max` (Number) Enter the number of static ipv4 routes allowed (Static ipv4 routes (default is max-value))
+- `static_ipv4_route_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--network_resources--static_ipv6_route_cfg"></a>
@@ -1686,8 +2123,8 @@ Optional:
 
 Optional:
 
-- `static_ipv6_route_max` (Number) Enter the number of static ipv6 routes allowed (Static ipv6 routes (default is max-value)) [shared partition only]
-- `static_ipv6_route_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `static_ipv6_route_max` (Number) Enter the number of static ipv6 routes allowed (Static ipv6 routes (default is max-value))
+- `static_ipv6_route_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--network_resources--static_mac_cfg"></a>
@@ -1695,8 +2132,8 @@ Optional:
 
 Optional:
 
-- `static_mac_max` (Number) Enter the number of static MAC entries allowed (Static MACs (default is max-value)) [shared partition only]
-- `static_mac_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `static_mac_max` (Number) Enter the number of static MAC entries allowed (Static MACs (default is max-value))
+- `static_mac_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 <a id="nestedblock--resource_accounting--template_list--network_resources--static_neighbor_cfg"></a>
@@ -1704,8 +2141,8 @@ Optional:
 
 Optional:
 
-- `static_neighbor_max` (Number) Enter the number of static neighbor entries allowed (Static neighbors (default is max-value)) [shared partition only]
-- `static_neighbor_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value) [shared partition only]
+- `static_neighbor_max` (Number) Enter the number of static neighbor entries allowed (Static neighbors (default is max-value))
+- `static_neighbor_min_guarantee` (Number) Minimum guaranteed value ( Minimum guaranteed value)
 
 
 
@@ -1723,7 +2160,7 @@ Optional:
 - `natcps_limit_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--system_resources--natcps_limit_cfg))
 - `ssl_throughput_limit_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--system_resources--ssl_throughput_limit_cfg))
 - `sslcps_limit_cfg` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_accounting--template_list--system_resources--sslcps_limit_cfg))
-- `threshold` (Number) Enter the threshold as a percentage (Threshold in percentage(default is 100%)) [shared partition only]
+- `threshold` (Number) Enter the threshold as a percentage (Threshold in percentage(default is 100%))
 - `uuid` (String) uuid of the object
 
 <a id="nestedblock--resource_accounting--template_list--system_resources--bw_limit_cfg"></a>
@@ -1731,8 +2168,8 @@ Optional:
 
 Optional:
 
-- `bw_limit_max` (Number) Enter the bandwidth limit in mbps (Bandwidth limit in Mbit/s (no limits applied by default)) [shared partition only]
-- `bw_limit_watermark_disable` (Number) Disable watermark (90% drop, keep existing sessions, drop  new sessions) [shared partition only]
+- `bw_limit_max` (Number) Enter the bandwidth limit in mbps (Bandwidth limit in Mbit/s (no limits applied by default))
+- `bw_limit_watermark_disable` (Number) Disable watermark (90% drop, keep existing sessions, drop  new sessions)
 
 
 <a id="nestedblock--resource_accounting--template_list--system_resources--concurrent_session_limit_cfg"></a>
@@ -1740,7 +2177,7 @@ Optional:
 
 Optional:
 
-- `concurrent_session_limit_max` (Number) Enter the Concurrent Session limit (cps) (Concurrent-Session cps limit (no limits applied by default)) [shared partition only]
+- `concurrent_session_limit_max` (Number) Enter the Concurrent Session limit (cps) (Concurrent-Session cps limit (no limits applied by default))
 
 
 <a id="nestedblock--resource_accounting--template_list--system_resources--fwcps_limit_cfg"></a>
@@ -1748,7 +2185,7 @@ Optional:
 
 Optional:
 
-- `fwcps_limit_max` (Number) Enter the Firewall cps limit (Firewall cps limit (no limits applied by default)) [shared partition only]
+- `fwcps_limit_max` (Number) Enter the Firewall cps limit (Firewall cps limit (no limits applied by default))
 
 
 <a id="nestedblock--resource_accounting--template_list--system_resources--l4_session_limit_cfg"></a>
@@ -1756,8 +2193,8 @@ Optional:
 
 Optional:
 
-- `l4_session_limit_max` (String) Enter the l4 session limit in % (0.01% to 99.99%) (Enter a number from 0.01 to 99.99 (up to 2 digits precision)) [shared partition only]
-- `l4_session_limit_min_guarantee` (String) minimum guaranteed value in % (up to 2 digits precision) (Enter a number from 0 to 99.99) [shared partition only]
+- `l4_session_limit_max` (String) Enter the l4 session limit in % (0.01% to 99.99%) (Enter a number from 0.01 to 99.99 (up to 2 digits precision))
+- `l4_session_limit_min_guarantee` (String) minimum guaranteed value in % (up to 2 digits precision) (Enter a number from 0 to 99.99)
 
 
 <a id="nestedblock--resource_accounting--template_list--system_resources--l4cps_limit_cfg"></a>
@@ -1765,7 +2202,7 @@ Optional:
 
 Optional:
 
-- `l4cps_limit_max` (Number) Enter the L4 cps limit (L4 cps limit (no limits applied by default)) [shared partition only]
+- `l4cps_limit_max` (Number) Enter the L4 cps limit (L4 cps limit (no limits applied by default))
 
 
 <a id="nestedblock--resource_accounting--template_list--system_resources--l7cps_limit_cfg"></a>
@@ -1773,7 +2210,7 @@ Optional:
 
 Optional:
 
-- `l7cps_limit_max` (Number) L7cps-limit (L7 cps limit (no limits applied by default)) [shared partition only]
+- `l7cps_limit_max` (Number) L7cps-limit (L7 cps limit (no limits applied by default))
 
 
 <a id="nestedblock--resource_accounting--template_list--system_resources--natcps_limit_cfg"></a>
@@ -1781,7 +2218,7 @@ Optional:
 
 Optional:
 
-- `natcps_limit_max` (Number) Enter the Nat cps limit (NAT cps limit (no limits applied by default)) [shared partition only]
+- `natcps_limit_max` (Number) Enter the Nat cps limit (NAT cps limit (no limits applied by default))
 
 
 <a id="nestedblock--resource_accounting--template_list--system_resources--ssl_throughput_limit_cfg"></a>
@@ -1789,8 +2226,8 @@ Optional:
 
 Optional:
 
-- `ssl_throughput_limit_max` (Number) Enter the ssl throughput limit in mbps (SSL Througput limit in Mbit/s (no limits applied by default)) [shared partition only]
-- `ssl_throughput_limit_watermark_disable` (Number) Disable watermark (90% drop, keep existing sessions, drop  new sessions) [shared partition only]
+- `ssl_throughput_limit_max` (Number) Enter the ssl throughput limit in mbps (SSL Througput limit in Mbit/s (no limits applied by default))
+- `ssl_throughput_limit_watermark_disable` (Number) Disable watermark (90% drop, keep existing sessions, drop  new sessions)
 
 
 <a id="nestedblock--resource_accounting--template_list--system_resources--sslcps_limit_cfg"></a>
@@ -1798,7 +2235,7 @@ Optional:
 
 Optional:
 
-- `sslcps_limit_max` (Number) Enter the SSL cps limit (SSL cps limit (no limits applied by default)) [shared partition only]
+- `sslcps_limit_max` (Number) Enter the SSL cps limit (SSL cps limit (no limits applied by default))
 
 
 
@@ -1809,33 +2246,32 @@ Optional:
 
 Optional:
 
-- `aflex_table_entry_count` (Number) Total aFleX table entry in the system (Total aFlex entry in the system) [shared partition only]
-- `auth_portal_html_file_size` (Number) Specify maximum html file size for each html page in auth portal (in KB) [shared partition only]
-- `auth_portal_image_file_size` (Number) Specify maximum image file size for default portal (in KB) [shared partition only]
-- `auth_session_count` (Number) Total auth sessions in the system [shared partition only]
-- `authz_policy_number` (Number) Specify the maximum number of authorization policies [shared partition only]
-- `class_list_ac_entry_count` (Number) Total entries for AC class-list [shared partition only]
-- `class_list_entry_count` (Number) Total entries for class-list [shared partition only]
-- `class_list_ipv6_addr_count` (Number) Total IPv6 addresses for class-list [shared partition only]
-- `ipsec_sa_number` (Number) Specify the maximum number of IPsec SA [shared partition only]
-- `l4_session_count` (Number) Total Sessions in the System [shared partition only]
-- `max_aflex_authz_collection_number` (Number) Specify the maximum number of collections supported by aFleX authorization [shared partition only]
-- `max_aflex_file_size` (Number) Set maximum aFleX file size (Maximum file size in KBytes, default is 32K) [shared partition only]
-- `nat_pool_addr_count` (Number) Total configurable NAT Pool addresses in the System [shared partition only]
-- `radius_table_size` (Number) Total configurable CGNV6 RADIUS Table entries [shared partition only]
-- `ram_cache_memory_limit` (Number) Specify the maximum memory used by ram cache [shared partition only]
-- `ssl_context_memory` (Number) Total SSL context memory needed in units of MB. Will be rounded to closest multiple of 2MB [shared partition only]
-- `ssl_dma_memory` (Number) Total SSL DMA memory needed in units of MB. Will be rounded to closest multiple of 2MB [shared partition only]
+- `aflex_table_entry_count` (Number) Total aFleX table entry in the system (Total aFlex entry in the system)
+- `auth_portal_html_file_size` (Number) Specify maximum html file size for each html page in auth portal (in KB)
+- `auth_portal_image_file_size` (Number) Specify maximum image file size for default portal (in KB)
+- `auth_session_count` (Number) Total auth sessions in the system
+- `authz_policy_number` (Number) Specify the maximum number of authorization policies
+- `class_list_ac_entry_count` (Number) Total entries for AC class-list
+- `class_list_entry_count` (Number) Total entries for class-list
+- `class_list_ipv6_addr_count` (Number) Total IPv6 addresses for class-list
+- `ipsec_sa_number` (Number) Specify the maximum number of IPsec SA
+- `l4_session_count` (Number) Total Sessions in the System
+- `max_aflex_authz_collection_number` (Number) Specify the maximum number of collections supported by aFleX authorization
+- `max_aflex_file_size` (Number) Set maximum aFleX file size (Maximum file size in KBytes, default is 32K)
+- `nat_pool_addr_count` (Number) Total configurable NAT Pool addresses in the System
+- `radius_table_size` (Number) Total configurable CGNV6 RADIUS Table entries
+- `ram_cache_memory_limit` (Number) Specify the maximum memory used by ram cache
+- `ssl_context_memory` (Number) Total SSL context memory needed in units of MB. Will be rounded to closest multiple of 2MB
+- `ssl_dma_memory` (Number) Total SSL DMA memory needed in units of MB. Will be rounded to closest multiple of 2MB
 - `uuid` (String) uuid of the object
 - `visibility` (Block List, Max: 1) (see [below for nested schema](#nestedblock--resource_usage--visibility))
-- `waf_template_count` (Number) Total configurable WAF Templates in the System [shared partition only]
 
 <a id="nestedblock--resource_usage--visibility"></a>
 ### Nested Schema for `resource_usage.visibility`
 
 Optional:
 
-- `monitored_entity_count` (Number) Total number of monitored entities for visibility [shared partition only]
+- `monitored_entity_count` (Number) Total number of monitored entities for visibility
 - `uuid` (String) uuid of the object
 
 
@@ -1853,7 +2289,7 @@ Optional:
 
 Optional:
 
-- `counters1` (String) 'all': all; 'total_l4_conn': Total L4 Count; 'conn_counter': Conn Count; 'conn_freed_counter': Conn Freed; 'total_l4_packet_count': Total L4 Packet Count; 'total_l7_packet_count': Total L7 Packet Count; 'total_l4_conn_proxy': Total L4 Conn Proxy Count; 'total_l7_conn': Total L7 Conn; 'total_tcp_conn': Total TCP Conn; 'curr_free_conn': Curr Free Conn; 'tcp_est_counter': TCP Established; 'tcp_half_open_counter': TCP Half Open; 'tcp_half_close_counter': TCP Half Closed; 'udp_counter': UDP Count; 'ip_counter': IP Count; 'other_counter': Non TCP/UDP IP sessions; 'reverse_nat_tcp_counter': Reverse NAT TCP; 'reverse_nat_udp_counter': Reverse NAT UDP; 'tcp_syn_half_open_counter': TCP SYN Half Open; 'conn_smp_alloc_counter': Conn SMP Alloc; 'conn_smp_free_counter': Conn SMP Free; 'conn_smp_aged_counter': Conn SMP Aged; 'ssl_count_curr': Curr SSL Count; 'ssl_count_total': Total SSL Count; 'server_ssl_count_curr': Current SSL Server Count; 'server_ssl_count_total': Total SSL Server Count; 'client_ssl_reuse_total': Total SSL Client Reuse; 'server_ssl_reuse_total': Total SSL Server Reuse; 'ssl_failed_total': Total SSL Failures; 'ssl_failed_ca_verification': SSL Cert Auth Verification Errors; 'ssl_server_cert_error': SSL Server Cert Errors; 'ssl_client_cert_auth_fail': SSL Client Cert Auth Failures; 'total_ip_nat_conn': Total IP Nat Conn; 'total_l2l3_conn': Totl L2/L3 Connections; 'client_ssl_ctx_malloc_failure': Client SSL Ctx malloc Failures; 'conn_type_0_available': Conn Type 0 Available; 'conn_type_1_available': Conn Type 1 Available; 'conn_type_2_available': Conn Type 2 Available; 'conn_type_3_available': Conn Type 3 Available; 'conn_type_4_available': Conn Type 4 Available; 'conn_smp_type_0_available': Conn SMP Type 0 Available; 'conn_smp_type_1_available': Conn SMP Type 1 Available; 'conn_smp_type_2_available': Conn SMP Type 2 Available; 'conn_smp_type_3_available': Conn SMP Type 3 Available; 'conn_smp_type_4_available': Conn SMP Type 4 Available; 'sctp-half-open-counter': SCTP Half Open; 'sctp-est-counter': SCTP Established; 'nonssl_bypass': NON SSL Bypass Count; 'ssl_failsafe_total': Total SSL Failsafe Count; 'ssl_forward_proxy_failed_handshake_total': Total SSL Forward Proxy Failed Handshake Count; 'ssl_forward_proxy_failed_tcp_total': Total SSL Forward Proxy Failed TCP Count; 'ssl_forward_proxy_failed_crypto_total': Total SSL Forward Proxy Failed Crypto Count; 'ssl_forward_proxy_failed_cert_verify_total': Total SSL Forward Proxy Failed Certificate Verification Count; 'ssl_forward_proxy_invalid_ocsp_stapling_total': Total SSL Forward Proxy Invalid OCSP Stapling Count; 'ssl_forward_proxy_revoked_ocsp_total': Total SSL Forward Proxy Revoked OCSP Response Count; 'ssl_forward_proxy_failed_cert_signing_total': Total SSL Forward Proxy Failed Certificate Signing Count; 'ssl_forward_proxy_failed_ssl_version_total': Total SSL Forward Proxy Unsupported version Count; 'ssl_forward_proxy_sni_bypass_total': Total SSL Forward Proxy SNI Bypass Count; 'ssl_forward_proxy_client_auth_bypass_total': Total SSL Forward Proxy Client Auth Bypass Count; 'conn_app_smp_alloc_counter': Conn APP SMP Alloc; 'diameter_conn_counter': Diameter Conn Count; 'diameter_conn_freed_counter': Diameter Conn Freed; 'debug_tcp_counter': Hidden TCP sessions for CGNv6 Stateless Technologies; 'debug_udp_counter': Hidden UDP sessions for CGNv6 Stateless Technologies; 'total_fw_conn': Total Firewall Conn; 'total_local_conn': Total Local Conn; 'total_curr_conn': Total Curr Conn; 'client_ssl_fatal_alert': client ssl fatal alert; 'client_ssl_fin_rst': client ssl fin rst; 'fp_session_fin_rst': FP Session FIN/RST; 'server_ssl_fatal_alert': server ssl fatal alert; 'server_ssl_fin_rst': server ssl fin rst; 'client_template_int_err': client template internal error; 'client_template_unknown_err': client template unknown error; 'server_template_int_err': server template int error; 'server_template_unknown_err': server template unknown error; 'total_debug_conn': Total Debug Conn; 'ssl_forward_proxy_failed_aflex_total': Total SSL Forward Proxy AFLEX Count; 'ssl_forward_proxy_cert_subject_bypass_total': Total SSL Forward Proxy Certificate Subject Bypass Count; 'ssl_forward_proxy_cert_issuer_bypass_total': Total SSL Forward Proxy Certificate Issuer Bypass Count; 'ssl_forward_proxy_cert_san_bypass_total': Total SSL Forward Proxy Certificate SAN Bypass Count; 'ssl_forward_proxy_no_sni_bypass_total': Total SSL Forward Proxy No SNI Bypass Count; 'ssl_forward_proxy_no_sni_reset_total': Total SSL Forward Proxy No SNI reset Count; 'ssl_forward_proxy_username_bypass_total': Total SSL Forward Proxy Username Bypass Count; 'ssl_forward_proxy_ad_grpup_bypass_total': Total SSL Forward Proxy AD-Group Bypass Count; 'diameter_concurrent_user_sessions_counter': Diameter Concurrent User-Sessions; 'client_ssl_session_ticket_reuse_total': Total SSL Client Session Ticket Reuse; 'server_ssl_session_ticket_reuse_total': Total SSL Server Session Ticket Reuse; 'total_clientside_early_data_connections': Total clientside early data connections; 'total_serverside_early_data_connections': Total serverside early data connections; 'total_clientside_failed_early_data-connections': Total clientside failed early data connections; 'total_serverside_failed_early_data-connections': Total serverside failed early data connections; 'ssl_forward_proxy_esni_bypass_total': Total SSL Forward Proxy ESNI Bypass Count; 'ssl_forward_proxy_esni_reset_total': Total SSL Forward Proxy ESNI Drop Count; 'total_logging_conn': Total Logging Conn; 'gtp_c_est_counter': GTP-C Established; 'gtp_c_half_open_counter': GTP-C Half Open; 'gtp_u_counter': GTP-U Count; 'gtp_c_echo_counter': GTP-C Echo Count; 'gtp_u_echo_counter': GTP-U Echo Count; 'gtp_curr_free_conn': GTP Current Available Conn; 'gtp_cum_conn_counter': GTP cumulative Conn Count; 'gtp_cum_conn_freed_counter': GTP cumulative Conn Freed;
+- `counters1` (String) 'all': all; 'total_l4_conn': Total L4 Count; 'conn_counter': Conn Count; 'conn_freed_counter': Conn Freed; 'total_l4_packet_count': Total L4 Packet Count; 'total_l7_packet_count': Total L7 Packet Count; 'total_l4_conn_proxy': Total L4 Conn Proxy Count; 'total_l7_conn': Total L7 Conn; 'total_tcp_conn': Total TCP Conn; 'curr_free_conn': Curr Free Conn; 'tcp_est_counter': TCP Established; 'tcp_half_open_counter': TCP Half Open; 'tcp_half_close_counter': TCP Half Closed; 'udp_counter': UDP Count; 'ip_counter': IP Count; 'other_counter': Non TCP/UDP IP sessions; 'reverse_nat_tcp_counter': Reverse NAT TCP; 'reverse_nat_udp_counter': Reverse NAT UDP; 'tcp_syn_half_open_counter': TCP SYN Half Open; 'conn_smp_alloc_counter': Conn SMP Alloc; 'conn_smp_free_counter': Conn SMP Free; 'conn_smp_aged_counter': Conn SMP Aged; 'ssl_count_curr': Curr SSL Count; 'ssl_count_total': Total SSL Count; 'server_ssl_count_curr': Current SSL Server Count; 'server_ssl_count_total': Total SSL Server Count; 'client_ssl_reuse_total': Total SSL Client Reuse; 'server_ssl_reuse_total': Total SSL Server Reuse; 'ssl_failed_total': Total SSL Failures; 'ssl_failed_ca_verification': SSL Cert Auth Verification Errors; 'ssl_server_cert_error': SSL Server Cert Errors; 'ssl_client_cert_auth_fail': SSL Client Cert Auth Failures; 'total_ip_nat_conn': Total IP Nat Conn; 'total_l2l3_conn': Totl L2/L3 Connections; 'client_ssl_ctx_malloc_failure': Client SSL Ctx malloc Failures; 'conn_type_0_available': Conn Type 0 Available; 'conn_type_1_available': Conn Type 1 Available; 'conn_type_2_available': Conn Type 2 Available; 'conn_type_3_available': Conn Type 3 Available; 'conn_type_4_available': Conn Type 4 Available; 'conn_smp_type_0_available': Conn SMP Type 0 Available; 'conn_smp_type_1_available': Conn SMP Type 1 Available; 'conn_smp_type_2_available': Conn SMP Type 2 Available; 'conn_smp_type_3_available': Conn SMP Type 3 Available; 'conn_smp_type_4_available': Conn SMP Type 4 Available; 'sctp-half-open-counter': SCTP Half Open; 'sctp-est-counter': SCTP Established; 'nonssl_bypass': NON SSL Bypass Count; 'ssl_failsafe_total': Total SSL Failsafe Count; 'ssl_forward_proxy_failed_handshake_total': Total SSL Forward Proxy Failed Handshake Count; 'ssl_forward_proxy_failed_tcp_total': Total SSL Forward Proxy Failed TCP Count; 'ssl_forward_proxy_failed_crypto_total': Total SSL Forward Proxy Failed Crypto Count; 'ssl_forward_proxy_failed_cert_verify_total': Total SSL Forward Proxy Failed Certificate Verification Count; 'ssl_forward_proxy_invalid_ocsp_stapling_total': Total SSL Forward Proxy Invalid OCSP Stapling Count; 'ssl_forward_proxy_revoked_ocsp_total': Total SSL Forward Proxy Revoked OCSP Response Count; 'ssl_forward_proxy_failed_cert_signing_total': Total SSL Forward Proxy Failed Certificate Signing Count; 'ssl_forward_proxy_failed_ssl_version_total': Total SSL Forward Proxy Unsupported version Count; 'ssl_forward_proxy_sni_bypass_total': Total SSL Forward Proxy SNI Bypass Count; 'ssl_forward_proxy_client_auth_bypass_total': Total SSL Forward Proxy Client Auth Bypass Count; 'conn_app_smp_alloc_counter': Conn APP SMP Alloc; 'diameter_conn_counter': Diameter Conn Count; 'diameter_conn_freed_counter': Diameter Conn Freed; 'debug_tcp_counter': Hidden TCP sessions for CGNv6 Stateless Technologies; 'debug_udp_counter': Hidden UDP sessions for CGNv6 Stateless Technologies; 'total_fw_conn': Total Firewall Conn; 'total_local_conn': Total Local Conn; 'total_curr_conn': Total Curr Conn; 'client_ssl_fatal_alert': client ssl fatal alert; 'client_ssl_fin_rst': client ssl fin rst; 'fp_session_fin_rst': FP Session FIN/RST; 'server_ssl_fatal_alert': server ssl fatal alert; 'server_ssl_fin_rst': server ssl fin rst; 'client_template_int_err': client template internal error; 'client_template_unknown_err': client template unknown error; 'server_template_int_err': server template int error; 'server_template_unknown_err': server template unknown error; 'total_debug_conn': Total Debug Conn; 'ssl_forward_proxy_failed_aflex_total': Total SSL Forward Proxy AFLEX Count; 'ssl_forward_proxy_cert_subject_bypass_total': Total SSL Forward Proxy Certificate Subject Bypass Count; 'ssl_forward_proxy_cert_issuer_bypass_total': Total SSL Forward Proxy Certificate Issuer Bypass Count; 'ssl_forward_proxy_cert_san_bypass_total': Total SSL Forward Proxy Certificate SAN Bypass Count; 'ssl_forward_proxy_no_sni_bypass_total': Total SSL Forward Proxy No SNI Bypass Count; 'ssl_forward_proxy_no_sni_reset_total': Total SSL Forward Proxy No SNI reset Count; 'ssl_forward_proxy_username_bypass_total': Total SSL Forward Proxy Username Bypass Count; 'ssl_forward_proxy_ad_grpup_bypass_total': Total SSL Forward Proxy AD-Group Bypass Count; 'diameter_concurrent_user_sessions_counter': Diameter Concurrent User-Sessions; 'client_ssl_session_ticket_reuse_total': Total SSL Client Session Ticket Reuse; 'server_ssl_session_ticket_reuse_total': Total SSL Server Session Ticket Reuse; 'total_clientside_early_data_connections': Total clientside early data connections; 'total_serverside_early_data_connections': Total serverside early data connections; 'total_clientside_failed_early_data-connections': Total clientside failed early data connections; 'total_serverside_failed_early_data-connections': Total serverside failed early data connections; 'ssl_forward_proxy_esni_bypass_total': Total SSL Forward Proxy ESNI Bypass Count; 'ssl_forward_proxy_esni_reset_total': Total SSL Forward Proxy ESNI Drop Count; 'total_logging_conn': Total Logging Conn; 'gtp_c_est_counter': GTP-C Established; 'gtp_c_half_open_counter': GTP-C Half Open; 'gtp_u_counter': GTP-U Count; 'gtp_c_echo_counter': GTP-C Echo Count; 'gtp_u_echo_counter': GTP-U Echo Count; 'gtp_curr_free_conn': GTP Current Available Conn; 'gtp_cum_conn_counter': GTP cumulative Conn Count; 'gtp_cum_conn_freed_counter': GTP cumulative Conn Freed; 'fw_blacklist_sess': Blacklist Sessions; 'fw_blacklist_sess_created': Blacklist Session Created; 'fw_blacklist_sess_freed': Blacklist Session Freed; 'server_tcp_est_counter': Server TCP Established; 'server_tcp_half_open_counter': Server TCP Half Open; 'sched_conn_with_wrong_next_idx_to_rml': Attempt to Put a Conn to RML Whose next_idx is NOT Invalid; 'free_conn_not_in_sp': Attempt to Free a Conn Whoes Address Not in Session Pool;
 
 
 
@@ -1862,8 +2298,8 @@ Optional:
 
 Optional:
 
-- `nscan_limit` (Number) smp session scan limit (number of smp sessions per scan) [shared partition only]
-- `scan_freq` (Number) smp session scan frequency (scan per second) [shared partition only]
+- `nscan_limit` (Number) smp session scan limit (number of smp sessions per scan)
+- `scan_freq` (Number) smp session scan frequency (scan per second)
 - `uuid` (String) uuid of the object
 
 
@@ -1892,7 +2328,7 @@ Optional:
 
 Optional:
 
-- `tcp_syn_value` (Number) Configure Tcp SYN's per sec, default 70 [shared partition only]
+- `tcp_syn_value` (Number) Configure Tcp SYN's per sec, default 70
 - `uuid` (String) uuid of the object
 
 
@@ -1910,7 +2346,7 @@ Optional:
 
 Optional:
 
-- `enable_shell_privileges` (Number) enable the shell privileges for a given customer [shared partition only]
+- `enable_shell_privileges` (Number) enable the shell privileges for a given customer
 - `uuid` (String) uuid of the object
 
 
@@ -1923,12 +2359,28 @@ Optional:
 - `uuid` (String) uuid of the object
 
 
+<a id="nestedblock--shutdown"></a>
+### Nested Schema for `shutdown`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
 <a id="nestedblock--spe_profile"></a>
 ### Nested Schema for `spe_profile`
 
 Optional:
 
-- `action` (String) 'ipv4-only': Enable IPv4 HW forward entries only; 'ipv6-only': Enable IPv6 HW forward entries only; 'ipv4-ipv6': Enable Both IPv4/IPv6 HW forward entries (shared); [shared partition only]
+- `action` (String) 'ipv4-only': Enable IPv4 HW forward entries only; 'ipv6-only': Enable IPv6 HW forward entries only; 'ipv4-ipv6': Enable Both IPv4/IPv6 HW forward entries (shared);
+
+
+<a id="nestedblock--spe_status"></a>
+### Nested Schema for `spe_status`
+
+Optional:
+
+- `uuid` (String) uuid of the object
 
 
 <a id="nestedblock--ssl_req_q"></a>
@@ -1944,7 +2396,7 @@ Optional:
 
 Optional:
 
-- `counters1` (String) 'all': all; 'num-ssl-queues': some help string; 'ssl-req-q-depth-tot': some help string; 'ssl-req-q-inuse-tot': some help string; 'ssl-hw-q-depth-tot': some help string; 'ssl-hw-q-inuse-tot': some help string;
+- `counters1` (String) 'all': all; 'num-ssl-queues': num-ssl-queues; 'ssl-req-q-depth-tot': ssl-req-q-depth-tot; 'ssl-req-q-inuse-tot': ssl-req-q-inuse-tot; 'ssl-hw-q-depth-tot': ssl-hw-q-depth-tot; 'ssl-hw-q-inuse-tot': ssl-hw-q-inuse-tot;
 
 
 
@@ -1953,7 +2405,7 @@ Optional:
 
 Optional:
 
-- `enable` (Number) Enable server certificate validation for all SSL connections [shared partition only]
+- `enable` (Number) Enable server certificate validation for all SSL connections
 - `uuid` (String) uuid of the object
 
 
@@ -1962,7 +2414,7 @@ Optional:
 
 Optional:
 
-- `enable` (Number) Enable verify CRL signature during SCV [shared partition only]
+- `enable` (Number) Enable verify CRL signature during SCV
 - `uuid` (String) uuid of the object
 
 
@@ -1971,7 +2423,7 @@ Optional:
 
 Optional:
 
-- `disable` (Number) Disable verify host during SCV [shared partition only]
+- `disable` (Number) Disable verify host during SCV
 - `uuid` (String) uuid of the object
 
 
@@ -1980,7 +2432,15 @@ Optional:
 
 Optional:
 
-- `disable` (Number) Disable setting common cipher suite in management plane [shared partition only]
+- `disable` (Number) Disable setting common cipher suite in management plane
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--ssl_status"></a>
+### Nested Schema for `ssl_status`
+
+Optional:
+
 - `uuid` (String) uuid of the object
 
 
@@ -1989,7 +2449,7 @@ Optional:
 
 Optional:
 
-- `enable_flag` (Number) [shared partition only]
+- `enable_flag` (Number)
 
 
 <a id="nestedblock--table_integrity"></a>
@@ -1997,10 +2457,10 @@ Optional:
 
 Optional:
 
-- `audit_action` (String) 'enable': Enable table integrity audit; 'disable': Disable table integrity audit; [shared partition only]
-- `auto_sync_action` (String) 'enable': Enable auto-sync; 'disable': Disable auto-sync; [shared partition only]
+- `audit_action` (String) 'enable': Enable table integrity audit; 'disable': Disable table integrity audit;
+- `auto_sync_action` (String) 'enable': Enable auto-sync; 'disable': Disable auto-sync;
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--table_integrity--sampling_enable))
-- `table` (String) 'all': All tables; [shared partition only]
+- `table` (String) 'all': All tables;
 - `uuid` (String) uuid of the object
 
 <a id="nestedblock--table_integrity--sampling_enable"></a>
@@ -2059,12 +2519,72 @@ Optional:
 
 
 
+<a id="nestedblock--tcp_syn_per_sec"></a>
+### Nested Schema for `tcp_syn_per_sec`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--telemetry_log"></a>
+### Nested Schema for `telemetry_log`
+
+Optional:
+
+- `device_status` (Block List, Max: 1) (see [below for nested schema](#nestedblock--telemetry_log--device_status))
+- `environment` (Block List, Max: 1) (see [below for nested schema](#nestedblock--telemetry_log--environment))
+- `partition_metrics` (Block List, Max: 1) (see [below for nested schema](#nestedblock--telemetry_log--partition_metrics))
+- `top_k_app_svc_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--telemetry_log--top_k_app_svc_list))
+- `top_k_source_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--telemetry_log--top_k_source_list))
+
+<a id="nestedblock--telemetry_log--device_status"></a>
+### Nested Schema for `telemetry_log.device_status`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--telemetry_log--environment"></a>
+### Nested Schema for `telemetry_log.environment`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--telemetry_log--partition_metrics"></a>
+### Nested Schema for `telemetry_log.partition_metrics`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--telemetry_log--top_k_app_svc_list"></a>
+### Nested Schema for `telemetry_log.top_k_app_svc_list`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--telemetry_log--top_k_source_list"></a>
+### Nested Schema for `telemetry_log.top_k_source_list`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+
 <a id="nestedblock--template"></a>
 ### Nested Schema for `template`
 
 Optional:
 
-- `template_policy` (String) Apply policy template to the whole system (Policy template name) [shared partition only]
+- `template_policy` (String) Apply policy template to the whole system (Policy template name)
 - `uuid` (String) uuid of the object
 
 
@@ -2080,7 +2600,7 @@ Optional:
 
 Required:
 
-- `template_monitor` (Number) Monitor template ID Number [shared partition only]
+- `template_monitor` (Number) Monitor template ID Number
 
 Optional:
 
@@ -2110,12 +2630,12 @@ Optional:
 
 Optional:
 
-- `ftp` (Number) set timeout to stop ftp transfer in seconds, 0 is no limit [shared partition only]
-- `http` (Number) set timeout to stop http transfer in seconds, 0 is no limit [shared partition only]
-- `https` (Number) set timeout to stop https transfer in seconds, 0 is no limit [shared partition only]
-- `scp` (Number) set timeout to stop scp transfer in seconds, 0 is no limit [shared partition only]
-- `sftp` (Number) set timeout to stop sftp transfer in seconds, 0 is no limit [shared partition only]
-- `tftp` (Number) set timeout to stop tftp transfer in seconds, 0 is no limit [shared partition only]
+- `ftp` (Number) set timeout to stop ftp transfer in seconds, 0 is no limit
+- `http` (Number) set timeout to stop http transfer in seconds, 0 is no limit
+- `https` (Number) set timeout to stop https transfer in seconds, 0 is no limit
+- `scp` (Number) set timeout to stop scp transfer in seconds, 0 is no limit
+- `sftp` (Number) set timeout to stop sftp transfer in seconds, 0 is no limit
+- `tftp` (Number) set timeout to stop tftp transfer in seconds, 0 is no limit
 - `uuid` (String) uuid of the object
 
 
@@ -2124,7 +2644,7 @@ Optional:
 
 Optional:
 
-- `enable` (Number) Enable TLS 1.3 support on ACOS management plane [shared partition only]
+- `enable` (Number) Enable TLS 1.3 support on ACOS management plane
 - `uuid` (String) uuid of the object
 
 
@@ -2140,8 +2660,8 @@ Optional:
 
 Optional:
 
-- `use_l3` (Number) Layer-3 Header based load balancing [shared partition only]
-- `use_l4` (Number) Layer-3/4 Header based load balancing [shared partition only]
+- `use_l3` (Number) Layer-3 Header based load balancing
+- `use_l4` (Number) Layer-3/4 Header based load balancing
 - `uuid` (String) uuid of the object
 
 
@@ -2151,7 +2671,7 @@ Optional:
 
 Optional:
 
-- `mode` (Number) Set HW hash mode, default is 6 (1:dst-mac 2:src-mac 3:src-dst-mac 4:src-ip 5:dst-ip 6:rtag6 7:rtag7) [shared partition only]
+- `mode` (Number) Set HW hash mode, default is 6 (1:dst-mac 2:src-mac 3:src-dst-mac 4:src-ip 5:dst-ip 6:rtag6 7:rtag7)
 - `uuid` (String) uuid of the object
 
 
@@ -2160,7 +2680,7 @@ Optional:
 
 Optional:
 
-- `mode` (Number) Set HW hash mode, default is 6 (1:dst-mac 2:src-mac 3:src-dst-mac 4:src-ip 5:dst-ip 6:rtag6 7:rtag7) [shared partition only]
+- `mode` (Number) Set HW hash mode, default is 6 (1:dst-mac 2:src-mac 3:src-dst-mac 4:src-ip 5:dst-ip 6:rtag6 7:rtag7)
 - `uuid` (String) uuid of the object
 
 
@@ -2171,5 +2691,31 @@ Optional:
 
 - `disable` (Number) Disable TCP Segmentation Offload
 - `enable` (Number) Enable TCP Segmentation Offload
+
+
+<a id="nestedblock--upgrade_status"></a>
+### Nested Schema for `upgrade_status`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+
+
+<a id="nestedblock--ve_mac_scheme"></a>
+### Nested Schema for `ve_mac_scheme`
+
+Optional:
+
+- `uuid` (String) uuid of the object
+- `ve_mac_scheme_val` (String) 'hash-based': Hash-based using the VE number; 'round-robin': Round Robin scheme; 'system-mac': Use system MAC address;
+
+
+<a id="nestedblock--xaui_dlb_mode"></a>
+### Nested Schema for `xaui_dlb_mode`
+
+Optional:
+
+- `enable` (Number) Enable/Disable Dynamic Load Balancing traffic distribution support
+- `uuid` (String) uuid of the object
 
 

@@ -3,9 +3,10 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
+resource "thunder_ntp_server_hostname" "thunder_ntp_server_hostname" {
 
-resource "thunder_ntp_server_hostname" "NtpServerTest" {
-  host_servername = "abcde"
   action          = "enable"
+  host_servername = "5"
+  key             = 41809
   prefer          = 0
 }

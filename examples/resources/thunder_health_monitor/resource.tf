@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_health_monitor" "common" {
+resource "thunder_health_monitor" "thunder_health_monitor" {
   method {
     radius {
       radius                 = 1
@@ -38,6 +37,5 @@ resource "thunder_health_monitor" "common" {
       }
     }
   }
-  ssl_version = 33
-  name        = "tf_test"
+  name = "tf_test"
 }

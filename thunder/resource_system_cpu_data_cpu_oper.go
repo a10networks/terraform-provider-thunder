@@ -11,6 +11,7 @@ func resourceSystemCpuDataCpuOper() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_system_cpu_data_cpu_oper`: Operational Status for the object data-cpu\n\n__PLACEHOLDER__",
 		ReadContext: resourceSystemCpuDataCpuOperRead,
+
 		Schema: map[string]*schema.Schema{
 			"oper": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -29,19 +30,19 @@ func resourceSystemCpuDataCpuOper() *schema.Resource {
 									"cpu_id": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
-									"1_sec": {
+									"sec1": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
-									"5_sec": {
+									"sec5": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
-									"10_sec": {
+									"sec10": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
-									"30_sec": {
+									"sec30": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
-									"60_sec": {
+									"sec60": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 									"dcpu_str": {
@@ -65,9 +66,10 @@ func resourceSystemCpuDataCpuOperRead(ctx context.Context, d *schema.ResourceDat
 	if client.Host != "" {
 		obj := dataToEndpointSystemCpuDataCpuOper(d)
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		items := setObjectSystemCpuDataCpuOperOper(res)
 		d.SetId(obj.GetId())
-		d.Set("oper", items)
+		logger.Println(res)
+		SystemCpuDataCpuOperOper := setObjectSystemCpuDataCpuOperOper(res)
+		d.Set("oper", SystemCpuDataCpuOperOper)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -75,14 +77,14 @@ func resourceSystemCpuDataCpuOperRead(ctx context.Context, d *schema.ResourceDat
 	return diags
 }
 
-func setObjectSystemCpuDataCpuOperOper(res edpt.SystemCpuDataCpus) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["number_of_cpu"] = res.DataSystemCpuDataCpu.Oper.NumberOfCpu
-	in["number_of_data_cpu"] = res.DataSystemCpuDataCpu.Oper.NumberOfDataCpu
-	in["cpu_usage"] = setSliceSystemCpuDataCpuOperOperCpuUsage(res.DataSystemCpuDataCpu.Oper.CpuUsage)
-	result = append(result, in)
-	return result
+func setObjectSystemCpuDataCpuOperOper(ret edpt.DataSystemCpuDataCpuOper) []interface{} {
+	return []interface{}{
+		map[string]interface{}{
+			"number_of_cpu":      ret.DtSystemCpuDataCpuOper.Oper.NumberOfCpu,
+			"number_of_data_cpu": ret.DtSystemCpuDataCpuOper.Oper.NumberOfDataCpu,
+			"cpu_usage":          setSliceSystemCpuDataCpuOperOperCpuUsage(ret.DtSystemCpuDataCpuOper.Oper.CpuUsage),
+		},
+	}
 }
 
 func setSliceSystemCpuDataCpuOperOperCpuUsage(d []edpt.SystemCpuDataCpuOperOperCpuUsage) []map[string]interface{} {
@@ -90,11 +92,11 @@ func setSliceSystemCpuDataCpuOperOperCpuUsage(d []edpt.SystemCpuDataCpuOperOperC
 	for _, item := range d {
 		in := make(map[string]interface{})
 		in["cpu_id"] = item.CpuId
-		in["1_sec"] = item.Sec1
-		in["5_sec"] = item.Sec5
-		in["10_sec"] = item.Sec10
-		in["30_sec"] = item.Sec30
-		in["60_sec"] = item.Sec60
+		in["sec1"] = item.Sec1
+		in["sec5"] = item.Sec5
+		in["sec10"] = item.Sec10
+		in["sec30"] = item.Sec30
+		in["sec60"] = item.Sec60
 		in["dcpu_str"] = item.DcpuStr
 		result = append(result, in)
 	}
@@ -102,9 +104,10 @@ func setSliceSystemCpuDataCpuOperOperCpuUsage(d []edpt.SystemCpuDataCpuOperOperC
 }
 
 func getObjectSystemCpuDataCpuOperOper(d []interface{}) edpt.SystemCpuDataCpuOperOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SystemCpuDataCpuOperOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NumberOfCpu = in["number_of_cpu"].(int)
 		ret.NumberOfDataCpu = in["number_of_data_cpu"].(int)
@@ -114,17 +117,18 @@ func getObjectSystemCpuDataCpuOperOper(d []interface{}) edpt.SystemCpuDataCpuOpe
 }
 
 func getSliceSystemCpuDataCpuOperOperCpuUsage(d []interface{}) []edpt.SystemCpuDataCpuOperOperCpuUsage {
-	count := len(d)
-	ret := make([]edpt.SystemCpuDataCpuOperOperCpuUsage, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SystemCpuDataCpuOperOperCpuUsage, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SystemCpuDataCpuOperOperCpuUsage
 		oi.CpuId = in["cpu_id"].(int)
-		oi.Sec1 = in["1_sec"].(int)
-		oi.Sec5 = in["5_sec"].(int)
-		oi.Sec10 = in["10_sec"].(int)
-		oi.Sec30 = in["30_sec"].(int)
-		oi.Sec60 = in["60_sec"].(int)
+		oi.Sec1 = in["sec1"].(int)
+		oi.Sec5 = in["sec5"].(int)
+		oi.Sec10 = in["sec10"].(int)
+		oi.Sec30 = in["sec30"].(int)
+		oi.Sec60 = in["sec60"].(int)
 		oi.DcpuStr = in["dcpu_str"].(string)
 		ret = append(ret, oi)
 	}
@@ -133,6 +137,7 @@ func getSliceSystemCpuDataCpuOperOperCpuUsage(d []interface{}) []edpt.SystemCpuD
 
 func dataToEndpointSystemCpuDataCpuOper(d *schema.ResourceData) edpt.SystemCpuDataCpuOper {
 	var ret edpt.SystemCpuDataCpuOper
+
 	ret.Oper = getObjectSystemCpuDataCpuOperOper(d.Get("oper").([]interface{}))
 	return ret
 }

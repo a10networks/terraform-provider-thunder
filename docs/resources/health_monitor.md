@@ -4,11 +4,14 @@ page_title: "thunder_health_monitor Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
   thunder_health_monitor: Define the Health Monitor object
+  PLACEHOLDER
 ---
 
 # thunder_health_monitor (Resource)
 
 `thunder_health_monitor`: Define the Health Monitor object
+
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_health_monitor" "common" {
+resource "thunder_health_monitor" "thunder_health_monitor" {
   method {
     radius {
       radius                 = 1
@@ -53,8 +55,7 @@ resource "thunder_health_monitor" "common" {
       }
     }
   }
-  ssl_version = 33
-  name        = "tf_test"
+  name = "tf_test"
 }
 ```
 
@@ -69,7 +70,9 @@ resource "thunder_health_monitor" "common" {
 
 - `default_state_up` (Number) Initial health state will default to UP
 - `disable_after_down` (Number) Disable the target if health check failed
+- `dplane` (String) 'enable': Enable health-check on dplane; 'disable': Disable health-check on dplane; 'auto(default)': Auto select;
 - `dsr_l2_strict` (Number) Enable strict L2dsr health-check
+- `header_insert` (Block List, Max: 1) (see [below for nested schema](#nestedblock--header_insert))
 - `interval` (Number) Specify the Healthcheck Interval (Interval Value, in seconds (default 5))
 - `method` (Block List, Max: 1) (see [below for nested schema](#nestedblock--method))
 - `override_ipv4` (String) Override implicitly inherited IPv4 address from target
@@ -77,6 +80,7 @@ resource "thunder_health_monitor" "common" {
 - `override_port` (Number) Override implicitly inherited port from target (Port number (1-65534))
 - `passive` (Number) Specify passive mode
 - `passive_interval` (Number) Interval to do manual health checking while in passive mode (Specify value in seconds (Default is 10 s))
+- `proxy_header` (Block List, Max: 1) (see [below for nested schema](#nestedblock--proxy_header))
 - `retry` (Number) Specify the Healthcheck Retries (Retry Count (default 3))
 - `sample_threshold` (Number) Number of samples in one epoch above which passive HC is enabled. If below or equal to the threshold, passive HC is disabled (Specify number of samples in one second (Default is 50). If the number of samples is 0, no action is taken)
 - `ssl_ciphers` (String) Specify OpenSSL Cipher Suite name(s) for Health check (OpenSSL Cipher Suite(s) (Eg: AES128-SHA256), if the cipher is invalid, would give information at HM down reason)
@@ -86,6 +90,7 @@ resource "thunder_health_monitor" "common" {
 - `ssl_version` (Number) TLS/SSL version (TLS/SSL version: 31-TLSv1.0, 32-TLSv1.1, 33-TLSv1.2 and 34-TLSv1.3)
 - `status_code` (String) 'status-code-2xx': Enable passive mode with 2xx http status code; 'status-code-non-5xx': Enable passive mode with non-5xx http status code;
 - `strict_retry_on_server_err_resp` (Number) Require strictly retry
+- `template_server_ssl` (String) Server side SSL template for health monitor (Server side SSL Name)
 - `threshold` (Number) Threshold percentage above which passive mode is enabled (Specify percentage (Default is 75%))
 - `timeout` (Number) Specify the Healthcheck Timeout (Timeout Value, in seconds(default 5), Timeout should be less than or equal to interval)
 - `up_retry` (Number) Specify the Healthcheck Retries before declaring target up (Up-retry count (default 1))
@@ -95,6 +100,23 @@ resource "thunder_health_monitor" "common" {
 ### Read-Only
 
 - `id` (String) The ID of this resource.
+
+<a id="nestedblock--header_insert"></a>
+### Nested Schema for `header_insert`
+
+Optional:
+
+- `insert_list` (Block List) (see [below for nested schema](#nestedblock--header_insert--insert_list))
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--header_insert--insert_list"></a>
+### Nested Schema for `header_insert.insert_list`
+
+Optional:
+
+- `insert_content` (String) Header Content (Format: "[name]:[value]")
+
+
 
 <a id="nestedblock--method"></a>
 ### Nested Schema for `method`
@@ -114,6 +136,7 @@ Optional:
 - `ldap` (Block List, Max: 1) (see [below for nested schema](#nestedblock--method--ldap))
 - `ntp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--method--ntp))
 - `pop3` (Block List, Max: 1) (see [below for nested schema](#nestedblock--method--pop3))
+- `quic` (Block List, Max: 1) (see [below for nested schema](#nestedblock--method--quic))
 - `radius` (Block List, Max: 1) (see [below for nested schema](#nestedblock--method--radius))
 - `rtsp` (Block List, Max: 1) (see [below for nested schema](#nestedblock--method--rtsp))
 - `sip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--method--sip))
@@ -268,6 +291,7 @@ Optional:
 - `url_path` (String) Specify URL path, default is "/"
 - `url_type` (String) 'GET': HTTP GET method; 'POST': HTTP POST method; 'HEAD': HTTP HEAD method;
 - `uuid` (String) uuid of the object
+- `version2` (Number) Specify HTTP version2 (Specify http version 2)
 
 <a id="nestedblock--method--http--http_kerberos_kdc"></a>
 ### Nested Schema for `method.http.http_kerberos_kdc`
@@ -289,6 +313,7 @@ Optional:
 - `cert` (String) Specify client certificate (Certificate name)
 - `cert_key_shared` (Number) Select shared partition
 - `disable_sslv2hello` (Number) Disable SSLv2Hello for HTTPs
+- `http_version` (String) 'http-version2': HTTP version 2 for HTTPs; 'http-version3': HTTP version 3 for HTTPs;
 - `https` (Number) HTTPS type
 - `https_expect` (Number) Specify what you expect from the response message
 - `https_host` (String) Specify "Host:" header used in request (enclose IPv6 address in [])
@@ -436,6 +461,16 @@ Optional:
 - `uuid` (String) uuid of the object
 
 
+<a id="nestedblock--method--quic"></a>
+### Nested Schema for `method.quic`
+
+Optional:
+
+- `quic` (Number) QUIC type
+- `quic_port` (Number) Specify QUIC port (Port Number (default 443))
+- `uuid` (String) uuid of the object
+
+
 <a id="nestedblock--method--radius"></a>
 ### Nested Schema for `method.radius`
 
@@ -470,6 +505,7 @@ Optional:
 - `expect_response_code` (String) Specify accepted response codes (e.g. 200, 400-430, any) (Format is xxx,xxx-xxx,any (xxx between [100,899]))
 - `register` (Number) Send SIP REGISTER message, default is to send OPTION message
 - `sip` (Number) SIP type
+- `sip_hostname` (String) Specify the SIP hostname that used in request
 - `sip_port` (Number) Specify the SIP port, default is 5060 (Port Number)
 - `sip_tcp` (Number) Use TCP for transmission, default is UDP
 - `uuid` (String) uuid of the object
@@ -566,6 +602,16 @@ Optional:
 - `force_up_with_single_healthcheck` (Number) Force Up with no response at the first time
 - `udp` (Number) UDP type
 - `udp_port` (Number) Specify UDP port (Specify port number)
+- `uuid` (String) uuid of the object
+
+
+
+<a id="nestedblock--proxy_header"></a>
+### Nested Schema for `proxy_header`
+
+Optional:
+
+- `proxy_header_ver` (String) 'v1': version 1; 'v2': version 2;  (version number)
 - `uuid` (String) uuid of the object
 
 

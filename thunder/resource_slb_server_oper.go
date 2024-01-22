@@ -11,6 +11,7 @@ func resourceSlbServerOper() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_slb_server_oper`: Operational Status for the object server\n\n__PLACEHOLDER__",
 		ReadContext: resourceSlbServerOperRead,
+
 		Schema: map[string]*schema.Schema{
 			"name": {
 				Type: schema.TypeString, Required: true, Description: "Server Name",
@@ -147,7 +148,6 @@ func resourceSlbServerOper() *schema.Resource {
 						"port_number": {
 							Type: schema.TypeInt, Required: true, Description: "Port Number",
 						},
-
 						"protocol": {
 							Type: schema.TypeString, Required: true, Description: "'tcp': TCP Port; 'udp': UDP Port;",
 						},
@@ -365,11 +365,12 @@ func resourceSlbServerOperRead(ctx context.Context, d *schema.ResourceData, meta
 	if client.Host != "" {
 		obj := dataToEndpointSlbServerOper(d)
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		opers := setObjectSlbServerOperOper(res)
-		port_lists := setSliceSlbServerOperPortList(res)
 		d.SetId(obj.GetId())
-		d.Set("oper", opers)
-		d.Set("port_list", port_lists)
+		logger.Println(res)
+		SlbServerOperOper := setObjectSlbServerOperOper(res)
+		d.Set("oper", SlbServerOperOper)
+		SlbServerOperPortList := setSliceSlbServerOperPortList(res)
+		d.Set("port_list", SlbServerOperPortList)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -377,24 +378,24 @@ func resourceSlbServerOperRead(ctx context.Context, d *schema.ResourceData, meta
 	return diags
 }
 
-func setObjectSlbServerOperOper(res edpt.SlbServerr) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["state"] = res.DataSlbServer.Oper.State
-	in["creation_type"] = res.DataSlbServer.Oper.Creation_type
-	in["dns_update_time"] = res.DataSlbServer.Oper.Dns_update_time
-	in["server_ttl"] = res.DataSlbServer.Oper.Server_ttl
-	in["srv_gateway_arp"] = res.DataSlbServer.Oper.Srv_gateway_arp
-	in["is_autocreate"] = res.DataSlbServer.Oper.Is_autocreate
-	in["slow_start_conn_limit"] = res.DataSlbServer.Oper.Slow_start_conn_limit
-	in["curr_conn_rate"] = res.DataSlbServer.Oper.Curr_conn_rate
-	in["conn_rate_unit"] = res.DataSlbServer.Oper.Conn_rate_unit
-	in["curr_observe_rate"] = res.DataSlbServer.Oper.Curr_observe_rate
-	in["disable"] = res.DataSlbServer.Oper.Disable
-	in["weight"] = res.DataSlbServer.Oper.Weight
-	in["drs_list"] = setSliceSlbServerOperOperDrsList(res.DataSlbServer.Oper.DrsList)
-	result = append(result, in)
-	return result
+func setObjectSlbServerOperOper(ret edpt.DataSlbServerOper) []interface{} {
+	return []interface{}{
+		map[string]interface{}{
+			"state":                 ret.DtSlbServerOper.Oper.State,
+			"creation_type":         ret.DtSlbServerOper.Oper.Creation_type,
+			"dns_update_time":       ret.DtSlbServerOper.Oper.Dns_update_time,
+			"server_ttl":            ret.DtSlbServerOper.Oper.Server_ttl,
+			"srv_gateway_arp":       ret.DtSlbServerOper.Oper.Srv_gateway_arp,
+			"is_autocreate":         ret.DtSlbServerOper.Oper.Is_autocreate,
+			"slow_start_conn_limit": ret.DtSlbServerOper.Oper.Slow_start_conn_limit,
+			"curr_conn_rate":        ret.DtSlbServerOper.Oper.Curr_conn_rate,
+			"conn_rate_unit":        ret.DtSlbServerOper.Oper.Conn_rate_unit,
+			"curr_observe_rate":     ret.DtSlbServerOper.Oper.Curr_observe_rate,
+			"disable":               ret.DtSlbServerOper.Oper.Disable,
+			"weight":                ret.DtSlbServerOper.Oper.Weight,
+			"drs_list":              setSliceSlbServerOperOperDrsList(ret.DtSlbServerOper.Oper.DrsList),
+		},
+	}
 }
 
 func setSliceSlbServerOperOperDrsList(d []edpt.SlbServerOperOperDrsList) []map[string]interface{} {
@@ -431,9 +432,10 @@ func setSliceSlbServerOperOperDrsList(d []edpt.SlbServerOperOperDrsList) []map[s
 	return result
 }
 
-func setSliceSlbServerOperPortList(d edpt.SlbServerr) []map[string]interface{} {
+func setSliceSlbServerOperPortList(d edpt.DataSlbServerOper) []map[string]interface{} {
 	result := []map[string]interface{}{}
-	for _, item := range d.DataSlbServer.PortList {
+
+	for _, item := range d.DtSlbServerOper.PortList {
 		in := make(map[string]interface{})
 		in["port_number"] = item.PortNumber
 		in["protocol"] = item.Protocol
@@ -443,32 +445,51 @@ func setSliceSlbServerOperPortList(d edpt.SlbServerr) []map[string]interface{} {
 	return result
 }
 
-func setObjectSlbServerOperPortListOper(res edpt.SlbServerOperPortListOper) []map[string]interface{} {
+func setObjectSlbServerOperPortListOper(d edpt.SlbServerOperPortListOper) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["state"] = res.State
-	in["curr_conn_rate"] = res.Curr_conn_rate
-	in["conn_rate_unit"] = res.Conn_rate_unit
-	in["slow_start_conn_limit"] = res.Slow_start_conn_limit
-	in["curr_observe_rate"] = res.Curr_observe_rate
-	in["down_grace_period_allowed"] = res.Down_grace_period_allowed
-	in["current_time"] = res.Current_time
-	in["down_time_grace_period"] = res.Down_time_grace_period
-	in["diameter_enabled"] = res.Diameter_enabled
-	in["es_resp_time"] = res.Es_resp_time
-	in["inband_hm_reassign_num"] = res.Inband_hm_reassign_num
-	in["disable"] = res.Disable
-	in["hm_key"] = res.HmKey
-	in["hm_index"] = res.HmIndex
-	in["soft_down_time"] = res.Soft_down_time
-	in["aflow_conn_limit"] = res.Aflow_conn_limit
-	in["aflow_queue_size"] = res.Aflow_queue_size
-	in["resv_conn"] = res.Resv_conn
-	in["auto_nat_addr_list"] = setSliceSlbServerOperPortListOperAutoNatAddrList(res.AutoNatAddrList)
-	in["drs_auto_nat_list"] = setSliceSlbServerOperPortListOperDrsAutoNatList(res.DrsAutoNatList)
-	in["pool_name"] = res.Pool_name
-	in["nat_pool_addr_list"] = setSliceSlbServerOperPortListOperNatPoolAddrList(res.NatPoolAddrList)
-	in["drs_ip_nat_list"] = setSliceSlbServerOperPortListOperDrsIpNatList(res.DrsIpNatList)
+
+	in["state"] = d.State
+
+	in["curr_conn_rate"] = d.Curr_conn_rate
+
+	in["conn_rate_unit"] = d.Conn_rate_unit
+
+	in["slow_start_conn_limit"] = d.Slow_start_conn_limit
+
+	in["curr_observe_rate"] = d.Curr_observe_rate
+
+	in["down_grace_period_allowed"] = d.Down_grace_period_allowed
+
+	in["current_time"] = d.Current_time
+
+	in["down_time_grace_period"] = d.Down_time_grace_period
+
+	in["diameter_enabled"] = d.Diameter_enabled
+
+	in["es_resp_time"] = d.Es_resp_time
+
+	in["inband_hm_reassign_num"] = d.Inband_hm_reassign_num
+
+	in["disable"] = d.Disable
+
+	in["hm_key"] = d.HmKey
+
+	in["hm_index"] = d.HmIndex
+
+	in["soft_down_time"] = d.Soft_down_time
+
+	in["aflow_conn_limit"] = d.Aflow_conn_limit
+
+	in["aflow_queue_size"] = d.Aflow_queue_size
+
+	in["resv_conn"] = d.Resv_conn
+	in["auto_nat_addr_list"] = setSliceSlbServerOperPortListOperAutoNatAddrList(d.AutoNatAddrList)
+	in["drs_auto_nat_list"] = setSliceSlbServerOperPortListOperDrsAutoNatList(d.DrsAutoNatList)
+
+	in["pool_name"] = d.Pool_name
+	in["nat_pool_addr_list"] = setSliceSlbServerOperPortListOperNatPoolAddrList(d.NatPoolAddrList)
+	in["drs_ip_nat_list"] = setSliceSlbServerOperPortListOperDrsIpNatList(d.DrsIpNatList)
 	result = append(result, in)
 	return result
 }
@@ -561,9 +582,10 @@ func setSliceSlbServerOperPortListOperDrsIpNatListNatPoolAddrList(d []edpt.SlbSe
 }
 
 func getObjectSlbServerOperOper(d []interface{}) edpt.SlbServerOperOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SlbServerOperOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.State = in["state"].(string)
 		ret.Creation_type = in["creation_type"].(string)
@@ -583,8 +605,9 @@ func getObjectSlbServerOperOper(d []interface{}) edpt.SlbServerOperOper {
 }
 
 func getSliceSlbServerOperOperDrsList(d []interface{}) []edpt.SlbServerOperOperDrsList {
-	count := len(d)
-	ret := make([]edpt.SlbServerOperOperDrsList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SlbServerOperOperDrsList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SlbServerOperOperDrsList
@@ -619,8 +642,9 @@ func getSliceSlbServerOperOperDrsList(d []interface{}) []edpt.SlbServerOperOperD
 }
 
 func getSliceSlbServerOperPortList(d []interface{}) []edpt.SlbServerOperPortList {
-	count := len(d)
-	ret := make([]edpt.SlbServerOperPortList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SlbServerOperPortList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SlbServerOperPortList
@@ -633,9 +657,10 @@ func getSliceSlbServerOperPortList(d []interface{}) []edpt.SlbServerOperPortList
 }
 
 func getObjectSlbServerOperPortListOper(d []interface{}) edpt.SlbServerOperPortListOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SlbServerOperPortListOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.State = in["state"].(string)
 		ret.Curr_conn_rate = in["curr_conn_rate"].(int)
@@ -665,8 +690,9 @@ func getObjectSlbServerOperPortListOper(d []interface{}) edpt.SlbServerOperPortL
 }
 
 func getSliceSlbServerOperPortListOperAutoNatAddrList(d []interface{}) []edpt.SlbServerOperPortListOperAutoNatAddrList {
-	count := len(d)
-	ret := make([]edpt.SlbServerOperPortListOperAutoNatAddrList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SlbServerOperPortListOperAutoNatAddrList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SlbServerOperPortListOperAutoNatAddrList
@@ -684,8 +710,9 @@ func getSliceSlbServerOperPortListOperAutoNatAddrList(d []interface{}) []edpt.Sl
 }
 
 func getSliceSlbServerOperPortListOperDrsAutoNatList(d []interface{}) []edpt.SlbServerOperPortListOperDrsAutoNatList {
-	count := len(d)
-	ret := make([]edpt.SlbServerOperPortListOperDrsAutoNatList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SlbServerOperPortListOperDrsAutoNatList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SlbServerOperPortListOperDrsAutoNatList
@@ -698,8 +725,9 @@ func getSliceSlbServerOperPortListOperDrsAutoNatList(d []interface{}) []edpt.Slb
 }
 
 func getSliceSlbServerOperPortListOperDrsAutoNatListDrsAutoNatAddressList(d []interface{}) []edpt.SlbServerOperPortListOperDrsAutoNatListDrsAutoNatAddressList {
-	count := len(d)
-	ret := make([]edpt.SlbServerOperPortListOperDrsAutoNatListDrsAutoNatAddressList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SlbServerOperPortListOperDrsAutoNatListDrsAutoNatAddressList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SlbServerOperPortListOperDrsAutoNatListDrsAutoNatAddressList
@@ -717,8 +745,9 @@ func getSliceSlbServerOperPortListOperDrsAutoNatListDrsAutoNatAddressList(d []in
 }
 
 func getSliceSlbServerOperPortListOperNatPoolAddrList(d []interface{}) []edpt.SlbServerOperPortListOperNatPoolAddrList {
-	count := len(d)
-	ret := make([]edpt.SlbServerOperPortListOperNatPoolAddrList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SlbServerOperPortListOperNatPoolAddrList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SlbServerOperPortListOperNatPoolAddrList
@@ -733,8 +762,9 @@ func getSliceSlbServerOperPortListOperNatPoolAddrList(d []interface{}) []edpt.Sl
 }
 
 func getSliceSlbServerOperPortListOperDrsIpNatList(d []interface{}) []edpt.SlbServerOperPortListOperDrsIpNatList {
-	count := len(d)
-	ret := make([]edpt.SlbServerOperPortListOperDrsIpNatList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SlbServerOperPortListOperDrsIpNatList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SlbServerOperPortListOperDrsIpNatList
@@ -748,8 +778,9 @@ func getSliceSlbServerOperPortListOperDrsIpNatList(d []interface{}) []edpt.SlbSe
 }
 
 func getSliceSlbServerOperPortListOperDrsIpNatListNatPoolAddrList(d []interface{}) []edpt.SlbServerOperPortListOperDrsIpNatListNatPoolAddrList {
-	count := len(d)
-	ret := make([]edpt.SlbServerOperPortListOperDrsIpNatListNatPoolAddrList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SlbServerOperPortListOperDrsIpNatListNatPoolAddrList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SlbServerOperPortListOperDrsIpNatListNatPoolAddrList
@@ -765,8 +796,11 @@ func getSliceSlbServerOperPortListOperDrsIpNatListNatPoolAddrList(d []interface{
 
 func dataToEndpointSlbServerOper(d *schema.ResourceData) edpt.SlbServerOper {
 	var ret edpt.SlbServerOper
+
 	ret.Name = d.Get("name").(string)
+
 	ret.Oper = getObjectSlbServerOperOper(d.Get("oper").([]interface{}))
+
 	ret.PortList = getSliceSlbServerOperPortList(d.Get("port_list").([]interface{}))
 	return ret
 }

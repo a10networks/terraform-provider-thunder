@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_template_tcp" "resourceSlbTemplateTcp" {
+resource "thunder_slb_template_tcp" "thunderSlbTemplateTcp" {
   name                       = "template_tcp"
   logging                    = "init"
   idle_timeout               = 1

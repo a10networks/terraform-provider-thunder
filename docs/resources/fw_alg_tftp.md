@@ -3,12 +3,15 @@
 page_title: "thunder_fw_alg_tftp Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_alg_tftp: Change Firewall TFTP ALG Settings
+  PLACEHOLDER
 ---
 
 # thunder_fw_alg_tftp (Resource)
 
+`thunder_fw_alg_tftp`: Change Firewall TFTP ALG Settings
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_alg_tftp" "test_thunder_fw_alg_tftp" {
   default_port_disable = "default-port-disable"
   sampling_enable {
@@ -32,9 +34,9 @@ resource "thunder_fw_alg_tftp" "test_thunder_fw_alg_tftp" {
 
 ### Optional
 
-- `default_port_disable` (String)
+- `default_port_disable` (String) 'default-port-disable': Disable TFTP ALG default port 69;
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -45,6 +47,6 @@ resource "thunder_fw_alg_tftp" "test_thunder_fw_alg_tftp" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'session-created': TFTP Client Sessions Created; 'helper-created': TFTP Helper Sessions created; 'helper-freed': TFTP Helper Sessions freed; 'helper-freed-used': TFTP Helper Sessions freed used; 'helper-freed-unused': TFTP Helper Sessions freed unused; 'helper-already-used': TFTP Helper Session already used; 'helper-in-rml': TFTP Helper Session in Remove List;
 
 

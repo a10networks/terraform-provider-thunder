@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_access_list_extended" "AccessListTest" {
   extd = 100
   rules {
@@ -27,4 +26,3 @@ resource "thunder_access_list_extended" "AccessListTest" {
     transparent_session_only = 1
   }
 }
-

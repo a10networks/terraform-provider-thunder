@@ -3,12 +3,15 @@
 page_title: "thunder_fw_tcp_reset_on_error Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_tcp_reset_on_error: Send TCP resets for invalid sessions (Default: Disabled)
+  PLACEHOLDER
 ---
 
 # thunder_fw_tcp_reset_on_error (Resource)
 
+`thunder_fw_tcp_reset_on_error`: Send TCP resets for invalid sessions (Default: Disabled)
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_tcp_reset_on_error" "test_thunder_fw_tcp_reset_on_error" {
   enable = 1
 }
@@ -29,8 +31,9 @@ resource "thunder_fw_tcp_reset_on_error" "test_thunder_fw_tcp_reset_on_error" {
 
 ### Optional
 
-- `enable` (Number)
-- `uuid` (String)
+- `enable` (Number) Enable send TCP reset on error
+- `outbound` (String) 'enable': Enable send TCP reset on error;
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

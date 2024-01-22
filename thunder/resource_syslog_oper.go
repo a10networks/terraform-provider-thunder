@@ -11,6 +11,7 @@ func resourceSyslogOper() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_syslog_oper`: Operational Status for the object syslog\n\n__PLACEHOLDER__",
 		ReadContext: resourceSyslogOperRead,
+
 		Schema: map[string]*schema.Schema{
 			"oper": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -50,9 +51,10 @@ func resourceSyslogOperRead(ctx context.Context, d *schema.ResourceData, meta in
 	if client.Host != "" {
 		obj := dataToEndpointSyslogOper(d)
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		opers := setObjectSyslogOperOper(res)
 		d.SetId(obj.GetId())
-		d.Set("oper", opers)
+		logger.Println(res)
+		SyslogOperOper := setObjectSyslogOperOper(res)
+		d.Set("oper", SyslogOperOper)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -60,13 +62,13 @@ func resourceSyslogOperRead(ctx context.Context, d *schema.ResourceData, meta in
 	return diags
 }
 
-func setObjectSyslogOperOper(res edpt.Syslogg) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["system_log"] = setSliceSyslogOperOperSystemLog(res.DataSyslog.Oper.SystemLog)
-	in["next_msg_idx"] = res.DataSyslog.Oper.NextMsgIdx
-	result = append(result, in)
-	return result
+func setObjectSyslogOperOper(ret edpt.DataSyslogOper) []interface{} {
+	return []interface{}{
+		map[string]interface{}{
+			"system_log":   setSliceSyslogOperOperSystemLog(ret.DtSyslogOper.Oper.SystemLog),
+			"next_msg_idx": ret.DtSyslogOper.Oper.NextMsgIdx,
+		},
+	}
 }
 
 func setSliceSyslogOperOperSystemLog(d []edpt.SyslogOperOperSystemLog) []map[string]interface{} {
@@ -82,9 +84,10 @@ func setSliceSyslogOperOperSystemLog(d []edpt.SyslogOperOperSystemLog) []map[str
 }
 
 func getObjectSyslogOperOper(d []interface{}) edpt.SyslogOperOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SyslogOperOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SystemLog = getSliceSyslogOperOperSystemLog(in["system_log"].([]interface{}))
 		ret.NextMsgIdx = in["next_msg_idx"].(int)
@@ -93,8 +96,9 @@ func getObjectSyslogOperOper(d []interface{}) edpt.SyslogOperOper {
 }
 
 func getSliceSyslogOperOperSystemLog(d []interface{}) []edpt.SyslogOperOperSystemLog {
-	count := len(d)
-	ret := make([]edpt.SyslogOperOperSystemLog, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SyslogOperOperSystemLog, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SyslogOperOperSystemLog
@@ -108,6 +112,7 @@ func getSliceSyslogOperOperSystemLog(d []interface{}) []edpt.SyslogOperOperSyste
 
 func dataToEndpointSyslogOper(d *schema.ResourceData) edpt.SyslogOper {
 	var ret edpt.SyslogOper
+
 	ret.Oper = getObjectSyslogOperOper(d.Get("oper").([]interface{}))
 	return ret
 }

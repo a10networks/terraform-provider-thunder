@@ -3,10 +3,9 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_timezone" "timezoneTest" {
+resource "thunder_timezone" "thunder_timezone" {
   timezone_index_cfg {
-    timezone_index = "America/Phoenix"
-    nodst          = 1
+    timezone_index = "UTC"
+    nodst          = 0
   }
 }

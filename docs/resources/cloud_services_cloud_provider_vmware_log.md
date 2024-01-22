@@ -21,9 +21,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_cloud_services_cloud_provider_vmware_log" "test" {
-  action = "enable"
+  action    = "enable"
   vrli_host = "test"
 }
 ```
@@ -33,9 +32,10 @@ resource "thunder_cloud_services_cloud_provider_vmware_log" "test" {
 
 ### Optional
 
-- `action` (String) 'enable': Enable VMware Log Analytics; 'disable': Disable VMware Log Analytics(default);
+- `action` (String) 'enable': Enable VMware vRealize Log Insight; 'disable': Disable VMware vRealize Log Insight (default);
+- `active_partitions` (String) Specifies the thunder active partition name separated by a comma for multiple values
 - `uuid` (String) uuid of the object
-- `vrli_host` (String) VMware Log Analytics vrli-host
+- `vrli_host` (String) Specifies the VMware vRLI host IP address
 
 ### Read-Only
 

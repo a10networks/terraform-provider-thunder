@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_route_map" "routemap" {
   action   = "permit"
   tag      = "map"
@@ -165,4 +164,3 @@ resource "thunder_route_map" "routemap" {
     }
   }
 }
-

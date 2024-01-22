@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_system" "test" {
   promiscuous_mode = 1
   anomaly_log      = 1

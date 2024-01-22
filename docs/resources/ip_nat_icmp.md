@@ -3,12 +3,15 @@
 page_title: "thunder_ip_nat_icmp Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ip_nat_icmp: Configure NAT ICMP settings
+  PLACEHOLDER
 ---
 
 # thunder_ip_nat_icmp (Resource)
 
+`thunder_ip_nat_icmp`: Configure NAT ICMP settings
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ip_nat_icmp" "NatIcmp" {
   respond_to_ping          = 1
   always_source_nat_errors = 1
@@ -30,9 +32,9 @@ resource "thunder_ip_nat_icmp" "NatIcmp" {
 
 ### Optional
 
-- `always_source_nat_errors` (Number)
-- `respond_to_ping` (Number)
-- `uuid` (String)
+- `always_source_nat_errors` (Number) Source NAT intermediate routers' IPs for ICMP errors (default: disabled)
+- `respond_to_ping` (Number) Respond to ICMP echo requests to NAT pool IPs (default: disabled)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

@@ -3,41 +3,43 @@
 page_title: "thunder_snmp_server_enable_traps_routing_isis Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_enable_traps_routing_isis: Enable isis traps
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_enable_traps_routing_isis (Resource)
 
+`thunder_snmp_server_enable_traps_routing_isis`: Enable isis traps
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_routing_isis"   "SnMPServerEnableTrapsRoutingIsis"  {
-    
-    isis_adjacency_change= 1
-    isis_area_mismatch= 1
-    isis_attempt_to_exceed_max_sequence= 1
-    isis_authentication_failure= 1
-    isis_authentication_type_failure= 1
-    isis_corrupted_lsp_detected= 1
-    isis_database_overload= 1
-    isis_id_len_mismatch= 1
-    isis_lsp_too_large_to_propagate= 0
-    isis_manual_address_drops= 1
-    isis_max_area_addresses_mismatch= 1
-    isis_originating_lsp_buffer_size_mismatch= 0
-    isis_own_lsp_purge= 0
-    isis_protocols_supported_mismatch= 0
-    isis_rejected_adjacency= 0
-    isis_sequence_number_skip= 0
-    isis_version_skew= 0
-   
+resource "thunder_snmp_server_enable_traps_routing_isis" "thunder_snmp_server_enable_traps_routing_isis" {
+  isisadjacencychange                  = 0
+  isisareamismatch                     = 0
+  isisattempttoexceedmaxsequence       = 0
+  isisauthenticationfailure            = 0
+  isisauthenticationtypefailure        = 0
+  isiscorruptedlspdetected             = 0
+  isisdatabaseoverload                 = 0
+  isisidlenmismatch                    = 0
+  isislsperrordetected                 = 0
+  isislsptoolargetopropagate           = 0
+  isismanualaddressdrops               = 0
+  isismaxareaaddressesmismatch         = 0
+  isisoriginatinglspbuffersizemismatch = 0
+  isisownlsppurge                      = 0
+  isisprotocolssupportedmismatch       = 0
+  isisrejectedadjacency                = 0
+  isissequencenumberskip               = 0
+  isisversionskew                      = 0
 }
 ```
 
@@ -46,24 +48,25 @@ resource  "thunder_snmp_server_enable_traps_routing_isis"   "SnMPServerEnableTra
 
 ### Optional
 
-- `isis_adjacency_change` (Number)
-- `isis_area_mismatch` (Number)
-- `isis_attempt_to_exceed_max_sequence` (Number)
-- `isis_authentication_failure` (Number)
-- `isis_authentication_type_failure` (Number)
-- `isis_corrupted_lsp_detected` (Number)
-- `isis_database_overload` (Number)
-- `isis_id_len_mismatch` (Number)
-- `isis_lsp_too_large_to_propagate` (Number)
-- `isis_manual_address_drops` (Number)
-- `isis_max_area_addresses_mismatch` (Number)
-- `isis_originating_lsp_buffer_size_mismatch` (Number)
-- `isis_own_lsp_purge` (Number)
-- `isis_protocols_supported_mismatch` (Number)
-- `isis_rejected_adjacency` (Number)
-- `isis_sequence_number_skip` (Number)
-- `isis_version_skew` (Number)
-- `uuid` (String)
+- `isisadjacencychange` (Number) Enable isisAdjacencyChange traps
+- `isisareamismatch` (Number) Enable isisAreaMismatch traps
+- `isisattempttoexceedmaxsequence` (Number) Enable isisAttemptToExceedMaxSequence traps
+- `isisauthenticationfailure` (Number) Enable isisAuthenticationFailure traps
+- `isisauthenticationtypefailure` (Number) Enable isisAuthenticationTypeFailure traps
+- `isiscorruptedlspdetected` (Number) Enable isisCorruptedLSPDetected traps
+- `isisdatabaseoverload` (Number) Enable isisDatabaseOverload traps
+- `isisidlenmismatch` (Number) Enable isisIDLenMismatch traps
+- `isislsperrordetected` (Number) Enable isisLSPErrorDetected traps
+- `isislsptoolargetopropagate` (Number) Enable isisLSPTooLargeToPropagate traps
+- `isismanualaddressdrops` (Number) Enable isisManualAddressDrops traps
+- `isismaxareaaddressesmismatch` (Number) Enable isisMaxAreaAddressesMismatch traps
+- `isisoriginatinglspbuffersizemismatch` (Number) Enable isisOriginatingLSPBufferSizeMismatch traps
+- `isisownlsppurge` (Number) Enable isisOwnLSPPurge traps
+- `isisprotocolssupportedmismatch` (Number) Enable isisProtocolsSupportedMismatch traps
+- `isisrejectedadjacency` (Number) Enable isisRejectedAdjacency traps
+- `isissequencenumberskip` (Number) Enable isisSequenceNumberSkip traps
+- `isisversionskew` (Number) Enable isisVersionSkew traps
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

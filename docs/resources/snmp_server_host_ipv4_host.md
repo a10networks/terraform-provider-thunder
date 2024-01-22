@@ -3,15 +3,15 @@
 page_title: "thunder_snmp_server_host_ipv4_host Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  thunder_snmp_server_host_ipv4_host: Specify hosts to receive SNMP traps
-  _
+  thunder_snmp_server_host_ipv4_host: Specify IPV4 hosts to receive SNMP traps
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_host_ipv4_host (Resource)
 
-`thunder_snmp_server_host_ipv4_host`: Specify hosts to receive SNMP traps
+`thunder_snmp_server_host_ipv4_host`: Specify IPV4 hosts to receive SNMP traps
 
-_
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -21,12 +21,11 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_snmp_server_host_ipv4_host" "resourceSnmpServerHostIpv4HostTest" {
-  ipv4_addr   = "192.168.20.3"
-  udp_port    = 65535
-  v1_v2c_comm = "testing"
-  version1    = "v1"
+resource "thunder_snmp_server_host_ipv4_host" "thunder_snmp_server_host_ipv4_host" {
+  ipv4_addr   = "10.10.10.10"
+  udp_port    = 162
+  v1_v2c_comm = "20"
+  version     = "v1"
 }
 ```
 
@@ -35,7 +34,8 @@ resource "thunder_snmp_server_host_ipv4_host" "resourceSnmpServerHostIpv4HostTes
 
 ### Required
 
-- `ipv4_addr` (String) IPv4 address of SNMP trap host
+- `ipv4_addr` (String) IPV4 address of SNMP trap host
+- `version` (String) 'v1': Use SNMPv1; 'v2c': Use SNMPv2c; 'v3': User SNMPv3;
 
 ### Optional
 
@@ -43,7 +43,6 @@ resource "thunder_snmp_server_host_ipv4_host" "resourceSnmpServerHostIpv4HostTes
 - `user` (String) SNMPv3 user to send traps (User Name)
 - `uuid` (String) uuid of the object
 - `v1_v2c_comm` (String) SNMPv1/v2c community string
-- `version` (String) 'v1': Use SNMPv1; 'v2c': Use SNMPv2c; 'v3': User SNMPv3;
 
 ### Read-Only
 

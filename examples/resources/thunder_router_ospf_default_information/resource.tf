@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_router_ospf_default_information" "RouterOspfDefaultInformation" {
+resource "thunder_router_ospf_default_information" "thunder_router_ospf_default_information" {
   originate   = 1
   always      = 1
   metric      = 40

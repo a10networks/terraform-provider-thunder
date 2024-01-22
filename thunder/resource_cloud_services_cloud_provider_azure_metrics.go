@@ -14,12 +14,13 @@ func resourceCloudServicesCloudProviderAzureMetrics() *schema.Resource {
 		UpdateContext: resourceCloudServicesCloudProviderAzureMetricsUpdate,
 		ReadContext:   resourceCloudServicesCloudProviderAzureMetricsRead,
 		DeleteContext: resourceCloudServicesCloudProviderAzureMetricsDelete,
+
 		Schema: map[string]*schema.Schema{
 			"action": {
-				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Azure Metrics Analytics; 'disable': Disable Azure Metrics Analytics(default);",
+				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Azure Application Insights; 'disable': Disable Azure Application Insights (default);",
 			},
-			"client_id": {
-				Type: schema.TypeString, Optional: true, Description: "Azure Metrics Analytics Client id",
+			"active_partitions": {
+				Type: schema.TypeString, Optional: true, Description: "Specifies the thunder active partition name separated by a comma for multiple values",
 			},
 			"cps": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable CPS Metrics; 'disable': Disable CPS Metrics;",
@@ -33,9 +34,6 @@ func resourceCloudServicesCloudProviderAzureMetrics() *schema.Resource {
 			"interfaces": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Interfaces Metrics; 'disable': Disable Interfaces Metrics;",
 			},
-			"location": {
-				Type: schema.TypeString, Optional: true, Description: "Azure Metrics Location",
-			},
 			"memory": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Memory Metrics; 'disable': Disable Memory Metrics;",
 			},
@@ -46,10 +44,7 @@ func resourceCloudServicesCloudProviderAzureMetrics() *schema.Resource {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Packet Rate Metrics; 'disable': Disable Packet Rate Metrics;",
 			},
 			"resource_id": {
-				Type: schema.TypeString, Optional: true, Description: "Resource/Instance ID of vThunder VMSS",
-			},
-			"secret_id": {
-				Type: schema.TypeString, Optional: true, Description: "Azure Log Analytics Secret id",
+				Type: schema.TypeString, Optional: true, Description: "Specifies the Azure Application Insights resource ID or Instance Resource ID",
 			},
 			"server_down_count": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Server Down Count Metrics; 'disable': Disable Server Down Count Metrics;",
@@ -66,9 +61,6 @@ func resourceCloudServicesCloudProviderAzureMetrics() *schema.Resource {
 			"ssl_cert": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable SSL Cert Metrics; 'disable': Disable SSL Cert Metrics;",
 			},
-			"tenant_id": {
-				Type: schema.TypeString, Optional: true, Description: "Azure Metrics Tenant ID",
-			},
 			"throughput": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Throughput Metrics; 'disable': Disable Throughput Metrics;",
 			},
@@ -81,7 +73,6 @@ func resourceCloudServicesCloudProviderAzureMetrics() *schema.Resource {
 		},
 	}
 }
-
 func resourceCloudServicesCloudProviderAzureMetricsCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -95,21 +86,6 @@ func resourceCloudServicesCloudProviderAzureMetricsCreate(ctx context.Context, d
 			return diag.FromErr(err)
 		}
 		return resourceCloudServicesCloudProviderAzureMetricsRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceCloudServicesCloudProviderAzureMetricsRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceCloudServicesCloudProviderAzureMetricsRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointCloudServicesCloudProviderAzureMetrics(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -129,7 +105,6 @@ func resourceCloudServicesCloudProviderAzureMetricsUpdate(ctx context.Context, d
 	}
 	return diags
 }
-
 func resourceCloudServicesCloudProviderAzureMetricsDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -145,27 +120,38 @@ func resourceCloudServicesCloudProviderAzureMetricsDelete(ctx context.Context, d
 	return diags
 }
 
+func resourceCloudServicesCloudProviderAzureMetricsRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceCloudServicesCloudProviderAzureMetricsRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointCloudServicesCloudProviderAzureMetrics(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
 func dataToEndpointCloudServicesCloudProviderAzureMetrics(d *schema.ResourceData) edpt.CloudServicesCloudProviderAzureMetrics {
 	var ret edpt.CloudServicesCloudProviderAzureMetrics
 	ret.Inst.Action = d.Get("action").(string)
-	ret.Inst.ClientId = d.Get("client_id").(string)
+	ret.Inst.ActivePartitions = d.Get("active_partitions").(string)
 	ret.Inst.Cps = d.Get("cps").(string)
 	ret.Inst.Cpu = d.Get("cpu").(string)
 	ret.Inst.Disk = d.Get("disk").(string)
-	//omit encrypted
 	ret.Inst.Interfaces = d.Get("interfaces").(string)
-	ret.Inst.Location = d.Get("location").(string)
 	ret.Inst.Memory = d.Get("memory").(string)
 	ret.Inst.PacketDrop = d.Get("packet_drop").(string)
 	ret.Inst.PacketRate = d.Get("packet_rate").(string)
 	ret.Inst.ResourceId = d.Get("resource_id").(string)
-	ret.Inst.SecretId = d.Get("secret_id").(string)
 	ret.Inst.ServerDownCount = d.Get("server_down_count").(string)
 	ret.Inst.ServerDownPercentage = d.Get("server_down_percentage").(string)
 	ret.Inst.ServerError = d.Get("server_error").(string)
 	ret.Inst.Sessions = d.Get("sessions").(string)
 	ret.Inst.SslCert = d.Get("ssl_cert").(string)
-	ret.Inst.TenantId = d.Get("tenant_id").(string)
 	ret.Inst.Throughput = d.Get("throughput").(string)
 	ret.Inst.Tps = d.Get("tps").(string)
 	//omit uuid

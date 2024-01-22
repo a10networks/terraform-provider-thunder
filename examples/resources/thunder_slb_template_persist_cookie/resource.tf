@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_persist_cookie" "persist-cookie" {
   name                  = "persistcookie1"
   cookie_name           = "testcookie123"
@@ -22,4 +21,3 @@ resource "thunder_slb_template_persist_cookie" "persist-cookie" {
   pass_phrase           = "password"
   user_tag              = "persistcookie1"
 }
-

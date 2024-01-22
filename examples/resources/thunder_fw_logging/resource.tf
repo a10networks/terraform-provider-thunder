@@ -3,15 +3,13 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_fw_logging" "test_thunder_fw_logging" {
-  name = "test_logging_template"
-  sampling_enable {
-    counters1 = "all"
-  }
+resource "thunder_fw_logging" "thunder_fw_logging" {
   gtp {
     sampling_enable {
       counters1 = "all"
     }
+  }
+  sampling_enable {
+    counters1 = "all"
   }
 }

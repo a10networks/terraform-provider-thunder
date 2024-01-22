@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_snmp_server_location" "resourceSnmpServerLocationTest" {
-  loc = "location_testing"
+resource "thunder_snmp_server_location" "thunder_snmp_server_location" {
+  loc = "230"
 }

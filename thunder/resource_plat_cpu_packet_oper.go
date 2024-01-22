@@ -11,6 +11,7 @@ func resourcePlatCpuPacketOper() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_plat_cpu_packet_oper`: Operational Status for the object plat-cpu-packet\n\n__PLACEHOLDER__",
 		ReadContext: resourcePlatCpuPacketOperRead,
+
 		Schema: map[string]*schema.Schema{
 			"oper": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -50,10 +51,10 @@ func resourcePlatCpuPacketOperRead(ctx context.Context, d *schema.ResourceData, 
 	if client.Host != "" {
 		obj := dataToEndpointPlatCpuPacketOper(d)
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		items := setObjectPlatCpuPacketOperOper(res)
 		d.SetId(obj.GetId())
-		d.Set("oper", items)
-
+		logger.Println(res)
+		PlatCpuPacketOperOper := setObjectPlatCpuPacketOperOper(res)
+		d.Set("oper", PlatCpuPacketOperOper)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -61,12 +62,12 @@ func resourcePlatCpuPacketOperRead(ctx context.Context, d *schema.ResourceData, 
 	return diags
 }
 
-func setObjectPlatCpuPacketOperOper(res edpt.PlatCpuPackett) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["pkt_stats"] = setSlicePlatCpuPacketOperOperPktStats(res.DataPlatCpuPacket.Oper.PktStats)
-	result = append(result, in)
-	return result
+func setObjectPlatCpuPacketOperOper(ret edpt.DataPlatCpuPacketOper) []interface{} {
+	return []interface{}{
+		map[string]interface{}{
+			"pkt_stats": setSlicePlatCpuPacketOperOperPktStats(ret.DtPlatCpuPacketOper.Oper.PktStats),
+		},
+	}
 }
 
 func setSlicePlatCpuPacketOperOperPktStats(d []edpt.PlatCpuPacketOperOperPktStats) []map[string]interface{} {
@@ -83,9 +84,10 @@ func setSlicePlatCpuPacketOperOperPktStats(d []edpt.PlatCpuPacketOperOperPktStat
 }
 
 func getObjectPlatCpuPacketOperOper(d []interface{}) edpt.PlatCpuPacketOperOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.PlatCpuPacketOperOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PktStats = getSlicePlatCpuPacketOperOperPktStats(in["pkt_stats"].([]interface{}))
 	}
@@ -93,8 +95,9 @@ func getObjectPlatCpuPacketOperOper(d []interface{}) edpt.PlatCpuPacketOperOper 
 }
 
 func getSlicePlatCpuPacketOperOperPktStats(d []interface{}) []edpt.PlatCpuPacketOperOperPktStats {
-	count := len(d)
-	ret := make([]edpt.PlatCpuPacketOperOperPktStats, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.PlatCpuPacketOperOperPktStats, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.PlatCpuPacketOperOperPktStats
@@ -109,6 +112,7 @@ func getSlicePlatCpuPacketOperOperPktStats(d []interface{}) []edpt.PlatCpuPacket
 
 func dataToEndpointPlatCpuPacketOper(d *schema.ResourceData) edpt.PlatCpuPacketOper {
 	var ret edpt.PlatCpuPacketOper
+
 	ret.Oper = getObjectPlatCpuPacketOperOper(d.Get("oper").([]interface{}))
 	return ret
 }

@@ -21,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_file_geo_location" "test" {
   action      = "import"
   file        = "testing"

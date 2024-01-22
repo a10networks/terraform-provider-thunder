@@ -1,10 +1,9 @@
-
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_glm_send"  "GlmSend"  {
-    license_request = 1
-      
+resource "thunder_glm_send" "thunder_glm_send" {
+  ha_status       = 1
+  license_request = 1
 }

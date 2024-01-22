@@ -3,12 +3,15 @@
 page_title: "thunder_slb_proxy Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_proxy: Configure Proxy Global
+  PLACEHOLDER
 ---
 
 # thunder_slb_proxy (Resource)
 
+`thunder_slb_proxy`: Configure Proxy Global
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_proxy" "test_thunder_slb_proxy" {
+resource "thunder_slb_proxy" "thunder_slb_proxy" {
   sampling_enable {
     counters1 = "all"
   }
@@ -32,6 +34,7 @@ resource "thunder_slb_proxy" "test_thunder_slb_proxy" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -42,6 +45,6 @@ resource "thunder_slb_proxy" "test_thunder_slb_proxy" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'num': Num; 'tcp_event': TCP stack event; 'est_event': Connection established; 'data_event': Data received; 'client_fin': Client FIN; 'server_fin': Server FIN; 'wbuf_event': Ready to send data; 'err_event': Error occured; 'no_mem': No memory; 'client_rst': Client RST; 'server_rst': Server RST; 'queue_depth_over_limit': Queue depth over limit; 'event_failed': Event failed; 'conn_not_exist': Conn not exist; 'service_alloc_cb': Service alloc callback; 'service_alloc_cb_failed': Service alloc callback failed; 'service_free_cb': Service free callback; 'service_free_cb_failed': Service free callback failed; 'est_cb_failed': App EST callback failed; 'data_cb_failed': App DATA callback failed; 'wbuf_cb_failed': App WBUF callback failed; 'err_cb_failed': App ERR callback failed; 'start_server_conn': Start server conn; 'start_server_conn_succ': Success; 'start_server_conn_no_route': No route to server; 'start_server_conn_fail_mem': No memory; 'start_server_conn_fail_snat': Failed Source NAT; 'start_server_conn_fail_persist': Fail Persistence; 'start_server_conn_fail_server': Fail Server issue; 'start_server_conn_fail_tuple': Fail Tuple Issue; 'line_too_long': Line too long;
 
 

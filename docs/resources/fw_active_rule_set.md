@@ -3,12 +3,15 @@
 page_title: "thunder_fw_active_rule_set Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_active_rule_set: Active firewall policy
+  PLACEHOLDER
 ---
 
 # thunder_fw_active_rule_set (Resource)
 
+`thunder_fw_active_rule_set`: Active firewall policy
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,10 +21,9 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
+resource "thunder_fw_active_rule_set" "thunder_fw_active_rule_set" {
 
-resource "thunder_fw_active_rule_set" "test_thunder_fw_active_rule_set" {
-  name               = "testing"
-  session_aging      = "temp"
+  name               = "test"
   override_nat_aging = 1
 }
 ```
@@ -31,10 +33,10 @@ resource "thunder_fw_active_rule_set" "test_thunder_fw_active_rule_set" {
 
 ### Optional
 
-- `name` (String)
-- `override_nat_aging` (Number)
-- `session_aging` (String)
-- `uuid` (String)
+- `name` (String) Rule set name
+- `override_nat_aging` (Number) Override NAT idle-timeout
+- `session_aging` (String) Session Aging Template
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

@@ -14,9 +14,13 @@ func resourceCloudServicesCloudProviderAwsMetrics() *schema.Resource {
 		UpdateContext: resourceCloudServicesCloudProviderAwsMetricsUpdate,
 		ReadContext:   resourceCloudServicesCloudProviderAwsMetricsRead,
 		DeleteContext: resourceCloudServicesCloudProviderAwsMetricsDelete,
+
 		Schema: map[string]*schema.Schema{
 			"action": {
-				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable AWS Metrics Analytics; 'disable': Disable AWS Metrics Analytics(default);",
+				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable AWS CloudWatch; 'disable': Disable AWS CloudWatch (default);",
+			},
+			"active_partitions": {
+				Type: schema.TypeString, Optional: true, Description: "Specifies the thunder active partition name separated by a comma for multiple values",
 			},
 			"cps": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable CPS Metrics; 'disable': Disable CPS Metrics;",
@@ -34,7 +38,7 @@ func resourceCloudServicesCloudProviderAwsMetrics() *schema.Resource {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Memory Metrics; 'disable': Disable Memory Metrics;",
 			},
 			"namespace": {
-				Type: schema.TypeString, Optional: true, Description: "AWS Metrics Analytics Namespace",
+				Type: schema.TypeString, Optional: true, Description: "Specifies the AWS namespace where all the metrics must be published",
 			},
 			"packet_drop": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Packet Drop Metrics; 'disable': Disable Packet Drop Metrics;",
@@ -69,7 +73,6 @@ func resourceCloudServicesCloudProviderAwsMetrics() *schema.Resource {
 		},
 	}
 }
-
 func resourceCloudServicesCloudProviderAwsMetricsCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -83,21 +86,6 @@ func resourceCloudServicesCloudProviderAwsMetricsCreate(ctx context.Context, d *
 			return diag.FromErr(err)
 		}
 		return resourceCloudServicesCloudProviderAwsMetricsRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceCloudServicesCloudProviderAwsMetricsRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceCloudServicesCloudProviderAwsMetricsRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointCloudServicesCloudProviderAwsMetrics(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -117,7 +105,6 @@ func resourceCloudServicesCloudProviderAwsMetricsUpdate(ctx context.Context, d *
 	}
 	return diags
 }
-
 func resourceCloudServicesCloudProviderAwsMetricsDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -133,9 +120,25 @@ func resourceCloudServicesCloudProviderAwsMetricsDelete(ctx context.Context, d *
 	return diags
 }
 
+func resourceCloudServicesCloudProviderAwsMetricsRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceCloudServicesCloudProviderAwsMetricsRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointCloudServicesCloudProviderAwsMetrics(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
 func dataToEndpointCloudServicesCloudProviderAwsMetrics(d *schema.ResourceData) edpt.CloudServicesCloudProviderAwsMetrics {
 	var ret edpt.CloudServicesCloudProviderAwsMetrics
 	ret.Inst.Action = d.Get("action").(string)
+	ret.Inst.ActivePartitions = d.Get("active_partitions").(string)
 	ret.Inst.Cps = d.Get("cps").(string)
 	ret.Inst.Cpu = d.Get("cpu").(string)
 	ret.Inst.Disk = d.Get("disk").(string)

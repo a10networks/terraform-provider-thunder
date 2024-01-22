@@ -21,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_gslb_group" "thunder_gslb_group_test" {
+resource "thunder_gslb_group" "thunder_gslb_group" {
   name     = "default"
   enable   = 1
   priority = 255

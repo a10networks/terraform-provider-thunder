@@ -3,12 +3,15 @@
 page_title: "thunder_ipv6_icmpv6 Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ipv6_icmpv6: Global ICMPv6 commands
+  PLACEHOLDER
 ---
 
 # thunder_ipv6_icmpv6 (Resource)
 
+`thunder_ipv6_icmpv6`: Global ICMPv6 commands
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ipv6_icmpv6" "testname" {
   redirect    = 0
   unreachable = 1
@@ -30,9 +32,9 @@ resource "thunder_ipv6_icmpv6" "testname" {
 
 ### Optional
 
-- `redirect` (Number)
-- `unreachable` (Number)
-- `uuid` (String)
+- `redirect` (Number) Disable outbound ICMPv6 redirect messages
+- `unreachable` (Number) Disable outbound ICMPv6 unreachable messages
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

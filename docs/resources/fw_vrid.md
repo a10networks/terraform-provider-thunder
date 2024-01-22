@@ -3,12 +3,15 @@
 page_title: "thunder_fw_vrid Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_vrid: Vrrp group ID
+  PLACEHOLDER
 ---
 
 # thunder_fw_vrid (Resource)
 
+`thunder_fw_vrid`: Vrrp group ID
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,9 +21,9 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
+resource "thunder_fw_vrid" "thunder_fw_vrid" {
 
-resource "thunder_fw_vrid" "test_thunder_fw_vrid" {
-  vrid = 3
+  vrid = 2
 }
 ```
 
@@ -29,8 +32,8 @@ resource "thunder_fw_vrid" "test_thunder_fw_vrid" {
 
 ### Optional
 
-- `uuid` (String)
-- `vrid` (Number)
+- `uuid` (String) uuid of the object
+- `vrid` (Number) Vrrp group (VRRP-A vrid)
 
 ### Read-Only
 

@@ -3,14 +3,12 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_router_ospf" "routerOSPF" {
+resource "thunder_router_ospf" "thunder_router_ospf" {
   process_id                    = 400
   auto_cost_reference_bandwidth = 30000
   bfd_all_interfaces            = 1
   rfc1583_compatible            = 1
   default_metric                = 30
-  action                        = "enable"
 
   distance {
     distance_value = 10
@@ -62,13 +60,12 @@ resource "thunder_router_ospf" "routerOSPF" {
   }
   overflow {
     database {
-      count = 4000000
       limit = "hard"
     }
   }
   passive_interface {
     eth_cfg {
-      ethernet    = 3
+      ethernet    = 2
       eth_address = "2.2.2.2"
     }
     lif_cfg {
@@ -123,13 +120,6 @@ resource "thunder_router_ospf" "routerOSPF" {
     route_map   = "MAP"
   }
   redistribute {
-    redist_list {
-      type        = var.type
-      metric_type = 1
-      metric      = 16777214
-      route_map   = "MAP"
-      tag         = 40
-    }
     ip_nat             = 1
     metric_ip_nat      = 40
     metric_type_ip_nat = 1
@@ -195,4 +185,3 @@ resource "thunder_router_ospf" "routerOSPF" {
   }
 
 }
-

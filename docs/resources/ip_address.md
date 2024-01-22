@@ -3,12 +3,15 @@
 page_title: "thunder_ip_address Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ip_address: Transparent mode IP Address
+  PLACEHOLDER
 ---
 
 # thunder_ip_address (Resource)
 
+`thunder_ip_address`: Transparent mode IP Address
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ip_address" "testname" {
   ip_addr = "3.3.3.3"
   ip_mask = "255.255.0.0"
@@ -30,9 +32,9 @@ resource "thunder_ip_address" "testname" {
 
 ### Optional
 
-- `ip_addr` (String)
-- `ip_mask` (String)
-- `uuid` (String)
+- `ip_addr` (String) IP address
+- `ip_mask` (String) IP subnet mask
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

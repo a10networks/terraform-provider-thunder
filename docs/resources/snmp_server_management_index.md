@@ -3,12 +3,15 @@
 page_title: "thunder_snmp_server_management_index Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_management_index: Define index of management interface
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_management_index (Resource)
 
+`thunder_snmp_server_management_index`: Define index of management interface
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,9 +21,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_snmp_server_management_index" "resourceSnmpServerManagementIndexTest" {
-  mgmt_index = 99
+resource "thunder_snmp_server_management_index" "thunder_snmp_server_management_index" {
+  mgmt_index = 1178168705
 }
 ```
 
@@ -29,8 +31,8 @@ resource "thunder_snmp_server_management_index" "resourceSnmpServerManagementInd
 
 ### Optional
 
-- `mgmt_index` (Number)
-- `uuid` (String)
+- `mgmt_index` (Number) index number
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

@@ -3,8 +3,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
+resource "thunder_router_bgp_redistribute" "thunder_router_bgp_redistribute" {
 
-resource "thunder_router_bgp_redistribute" "resourceRouterBgpRedistributeTest" {
   as_number = "300"
   connected_cfg {
     connected = 1

@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_ip_access_list" "resourceIpAccessListTest" {
+resource "thunder_ip_access_list" "thunder_ip_access_list" {
   name = "IPAccessList"
   rules {
     seq_num                  = 4

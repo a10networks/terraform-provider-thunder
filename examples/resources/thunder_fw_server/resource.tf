@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_fw_server" "test_thunder_fw_server" {
+resource "thunder_fw_server" "thunder_fw_server" {
   name         = "test"
   fqdn_name    = "test.com"
   action       = "enable"

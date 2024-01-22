@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_virtual_port" "virtual-port" {
   name                       = "testvirtualport"
   user_tag                   = "virtualport1"

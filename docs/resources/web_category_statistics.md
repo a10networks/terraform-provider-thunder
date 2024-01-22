@@ -3,12 +3,15 @@
 page_title: "thunder_web_category_statistics Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_web_category_statistics: Statistics
+  PLACEHOLDER
 ---
 
 # thunder_web_category_statistics (Resource)
 
+`thunder_web_category_statistics`: Statistics
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_web_category_statistics" "resourceWebCategoryStatisticsTest" {
+resource "thunder_web_category_statistics" "thunderWebCategoryStatisticsTest" {
   sampling_enable {
     counters1 = "all"
   }
@@ -32,7 +34,7 @@ resource "thunder_web_category_statistics" "resourceWebCategoryStatisticsTest" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,6 @@ resource "thunder_web_category_statistics" "resourceWebCategoryStatisticsTest" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'db-lookup': db-lookup; 'cloud-cache-lookup': cloud-cache-lookup; 'cloud-lookup': cloud-lookup; 'rtu-lookup': rtu-lookup; 'lookup-latency': lookup-latency; 'db-mem': db-mem; 'rtu-cache-mem': rtu-cache-mem; 'lookup-cache-mem': lookup-cache-mem;
 
 

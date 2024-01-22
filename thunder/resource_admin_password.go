@@ -14,6 +14,7 @@ func resourceAdminPassword() *schema.Resource {
 		UpdateContext: resourceAdminPasswordUpdate,
 		ReadContext:   resourceAdminPasswordRead,
 		DeleteContext: resourceAdminPasswordDelete,
+
 		Schema: map[string]*schema.Schema{
 			"password_in_module": {
 				Type: schema.TypeString, Optional: true, Description: "Config admin user password",
@@ -21,10 +22,12 @@ func resourceAdminPassword() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
+			"user": {
+				Type: schema.TypeString, Required: true, Description: "User",
+			},
 		},
 	}
 }
-
 func resourceAdminPasswordCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -33,26 +36,11 @@ func resourceAdminPasswordCreate(ctx context.Context, d *schema.ResourceData, me
 	if client.Host != "" {
 		obj := dataToEndpointAdminPassword(d)
 		d.SetId(obj.GetId())
-		err := obj.Post(client.Token, client.Host, client.User, logger)
+		err := obj.Post(client.Token, client.Host, logger)
 		if err != nil {
 			return diag.FromErr(err)
 		}
 		return resourceAdminPasswordRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceAdminPasswordRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceAdminPasswordRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointAdminPassword(d)
-		err := obj.Get(client.Token, client.Host, client.User, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -64,7 +52,7 @@ func resourceAdminPasswordUpdate(ctx context.Context, d *schema.ResourceData, me
 	var diags diag.Diagnostics
 	if client.Host != "" {
 		obj := dataToEndpointAdminPassword(d)
-		err := obj.Put(client.Token, client.Host, client.User, logger)
+		err := obj.Put(client.Token, client.Host, logger)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -72,7 +60,6 @@ func resourceAdminPasswordUpdate(ctx context.Context, d *schema.ResourceData, me
 	}
 	return diags
 }
-
 func resourceAdminPasswordDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -80,7 +67,22 @@ func resourceAdminPasswordDelete(ctx context.Context, d *schema.ResourceData, me
 	var diags diag.Diagnostics
 	if client.Host != "" {
 		obj := dataToEndpointAdminPassword(d)
-		err := obj.Delete(client.Token, client.Host, client.User, d.Id(), logger)
+		err := obj.Delete(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
+func resourceAdminPasswordRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceAdminPasswordRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointAdminPassword(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -93,5 +95,6 @@ func dataToEndpointAdminPassword(d *schema.ResourceData) edpt.AdminPassword {
 	//omit encrypted_in_module
 	ret.Inst.PasswordInModule = d.Get("password_in_module").(string)
 	//omit uuid
+	ret.Inst.User = d.Get("user").(string)
 	return ret
 }

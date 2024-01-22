@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_tcp_proxy" "test" {
   name                       = "tcp_proxy1"
   server_down_action         = "FIN"

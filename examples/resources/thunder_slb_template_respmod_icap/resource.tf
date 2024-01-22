@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_respmod_icap" "test_thunder_slb_template_respmod_icap" {
   name                      = "testICAP"
   include_protocol_in_uri   = 1

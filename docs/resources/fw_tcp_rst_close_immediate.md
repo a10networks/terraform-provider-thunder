@@ -3,12 +3,15 @@
 page_title: "thunder_fw_tcp_rst_close_immediate Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_tcp_rst_close_immediate: Configure TCP RST behavior
+  PLACEHOLDER
 ---
 
 # thunder_fw_tcp_rst_close_immediate (Resource)
 
+`thunder_fw_tcp_rst_close_immediate`: Configure TCP RST behavior
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,9 +21,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_fw_tcp_rst_close_immediate" "test_thunder_fw_tcp_rst_close_immediate" {
-  status = "enable"
+resource "thunder_fw_tcp_rst_close_immediate" "thunder_fw_tcp_rst_close_immediate" {
+  status = "disable"
 }
 ```
 
@@ -29,8 +31,8 @@ resource "thunder_fw_tcp_rst_close_immediate" "test_thunder_fw_tcp_rst_close_imm
 
 ### Optional
 
-- `status` (String)
-- `uuid` (String)
+- `status` (String) 'enable': Enable TCP RST close immediate (default); 'disable': Disable TCP RST close immediate;
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

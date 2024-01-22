@@ -3,12 +3,15 @@
 page_title: "thunder_snmp_server_contact Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_contact: Text for mib object sysContact
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_contact (Resource)
 
+`thunder_snmp_server_contact`: Text for mib object sysContact
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,9 +21,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_snmp_server_contact" "Snmp_Server_Contact_Test" {
-  contact_name = "test_server"
+resource "thunder_snmp_server_contact" "thunder_snmp_server_contact" {
+  contact_name = "212"
 }
 ```
 
@@ -29,8 +31,8 @@ resource "thunder_snmp_server_contact" "Snmp_Server_Contact_Test" {
 
 ### Optional
 
-- `contact_name` (String)
-- `uuid` (String)
+- `contact_name` (String) Identification of the contact person for this managed node
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

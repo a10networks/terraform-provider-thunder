@@ -3,15 +3,15 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
+resource "thunder_ip_reroute" "thunder_ip_reroute" {
 
-resource "thunder_ip_reroute" "reRoute" {
   suppress_protocols {
-    isis      = 1
-    ebgp      = 1
-    rip       = 1
-    connected = 1
-    static    = 1
-    ospf      = 1
-    ibgp      = 1
+    ospf      = 0
+    ebgp      = 0
+    ibgp      = 0
+    static    = 0
+    isis      = 0
+    rip       = 0
+    connected = 0
   }
 }

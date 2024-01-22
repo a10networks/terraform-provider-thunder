@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_template_udp" "resourceSlbTemplateUdp" {
+resource "thunder_slb_template_udp" "thunderSlbTemplateUdp" {
   name                       = "template_udp"
   qos                        = 1
   stateless_conn_timeout     = 5

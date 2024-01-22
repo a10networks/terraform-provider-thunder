@@ -3,12 +3,15 @@
 page_title: "thunder_logging_host_partition Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_logging_host_partition: Specify preferred partition configuration
+  PLACEHOLDER
 ---
 
 # thunder_logging_host_partition (Resource)
 
+`thunder_logging_host_partition`: Specify preferred partition configuration
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,9 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_logging_host_partition" "host_partiton_test" {
-  partition_name = "Testing"
+resource "thunder_logging_host_partition" "thunder_logging_host_partition" {
 }
 ```
 

@@ -3,12 +3,15 @@
 page_title: "thunder_ip_nat_global Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ip_nat_global: IP NAT global settings
+  PLACEHOLDER
 ---
 
 # thunder_ip_nat_global (Resource)
 
+`thunder_ip_nat_global`: IP NAT global settings
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ip_nat_global" "IpNatGlobal" {
   reset_idle_tcp_conn = 1
 }
@@ -29,8 +31,8 @@ resource "thunder_ip_nat_global" "IpNatGlobal" {
 
 ### Optional
 
-- `reset_idle_tcp_conn` (Number)
-- `uuid` (String)
+- `reset_idle_tcp_conn` (Number) Reset Idle TCP Connections
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

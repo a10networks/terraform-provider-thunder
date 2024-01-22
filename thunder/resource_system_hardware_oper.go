@@ -11,6 +11,7 @@ func resourceSystemHardwareOper() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_system_hardware_oper`: Operational Status for the object hardware\n\n__PLACEHOLDER__",
 		ReadContext: resourceSystemHardwareOperRead,
+
 		Schema: map[string]*schema.Schema{
 			"oper": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -212,9 +213,10 @@ func resourceSystemHardwareOperRead(ctx context.Context, d *schema.ResourceData,
 	if client.Host != "" {
 		obj := dataToEndpointSystemHardwareOper(d)
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		items := setObjectSystemHardwareOperOper(res)
 		d.SetId(obj.GetId())
-		d.Set("oper", items)
+		logger.Println(res)
+		SystemHardwareOperOper := setObjectSystemHardwareOperOper(res)
+		d.Set("oper", SystemHardwareOperOper)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -222,79 +224,88 @@ func resourceSystemHardwareOperRead(ctx context.Context, d *schema.ResourceData,
 	return diags
 }
 
-func setObjectSystemHardwareOperOper(res edpt.SystemHardwaree) []interface{} {
+func setObjectSystemHardwareOperOper(ret edpt.DataSystemHardwareOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"platform_description": res.DataSystemHardware.Oper.PlatformDescription,
-			"serial":               res.DataSystemHardware.Oper.Serial,
-			"cpu":                  res.DataSystemHardware.Oper.Cpu,
-			"cpu_cores":            res.DataSystemHardware.Oper.CpuCores,
-			"cpu_stepping":         res.DataSystemHardware.Oper.CpuStepping,
-			"storage":              res.DataSystemHardware.Oper.Storage,
-			"memory":               res.DataSystemHardware.Oper.Memory,
-			"ssl_cards":            setObjectSystemHardwareOperOperSslCards(res.DataSystemHardware.Oper.SslCards),
-			"octeon":               res.DataSystemHardware.Oper.Octeon,
-			"compression_cards":    setObjectSystemHardwareOperOperCompressionCards(res.DataSystemHardware.Oper.CompressionCards),
-			"l23_asic":             res.DataSystemHardware.Oper.L23Asic,
-			"ipmi":                 res.DataSystemHardware.Oper.Ipmi,
-			"ports":                res.DataSystemHardware.Oper.Ports,
-			"plat_flag":            res.DataSystemHardware.Oper.PlatFlag,
-			"bios_version":         res.DataSystemHardware.Oper.BiosVersion,
-			"bios_release_date":    res.DataSystemHardware.Oper.BiosReleaseDate,
-			"nvm_firmware_version": res.DataSystemHardware.Oper.NvmFirmwareVersion,
-			"fpga_summary":         res.DataSystemHardware.Oper.FpgaSummary,
-			"fpga_date":            res.DataSystemHardware.Oper.FpgaDate,
-			"disk_total":           res.DataSystemHardware.Oper.DiskTotal,
-			"disk_used":            res.DataSystemHardware.Oper.DiskUsed,
-			"disk_free":            res.DataSystemHardware.Oper.DiskFree,
-			"disk_percentage":      res.DataSystemHardware.Oper.DiskPercentage,
-			"disk1_status":         res.DataSystemHardware.Oper.Disk1Status,
-			"disk2_status":         res.DataSystemHardware.Oper.Disk2Status,
-			"num_disks":            res.DataSystemHardware.Oper.NumDisks,
-			"raid_present":         res.DataSystemHardware.Oper.Raid_present,
-			"raid_list":            setSliceSystemHardwareOperOperRaidList(res.DataSystemHardware.Oper.RaidList),
-			"psu1_np15":            res.DataSystemHardware.Oper.Psu1_np15,
-			"psu2_np15":            res.DataSystemHardware.Oper.Psu2_np15,
-			"spe_present":          res.DataSystemHardware.Oper.Spe_present,
-			"bypass_pr":            res.DataSystemHardware.Oper.BypassPr,
-			"bypass_list":          setSliceSystemHardwareOperOperBypassList(res.DataSystemHardware.Oper.BypassList),
-			"alldynamic":           res.DataSystemHardware.Oper.Alldynamic,
-			"mcpld_type":           res.DataSystemHardware.Oper.McpldType,
-			"mcpld_date":           res.DataSystemHardware.Oper.McpldDate,
+			"platform_description": ret.DtSystemHardwareOper.Oper.PlatformDescription,
+			"serial":               ret.DtSystemHardwareOper.Oper.Serial,
+			"cpu":                  ret.DtSystemHardwareOper.Oper.Cpu,
+			"cpu_cores":            ret.DtSystemHardwareOper.Oper.CpuCores,
+			"cpu_stepping":         ret.DtSystemHardwareOper.Oper.CpuStepping,
+			"storage":              ret.DtSystemHardwareOper.Oper.Storage,
+			"memory":               ret.DtSystemHardwareOper.Oper.Memory,
+			"ssl_cards":            setObjectSystemHardwareOperOperSslCards(ret.DtSystemHardwareOper.Oper.SslCards),
+			"octeon":               ret.DtSystemHardwareOper.Oper.Octeon,
+			"compression_cards":    setObjectSystemHardwareOperOperCompressionCards(ret.DtSystemHardwareOper.Oper.CompressionCards),
+			"l23_asic":             ret.DtSystemHardwareOper.Oper.L23Asic,
+			"ipmi":                 ret.DtSystemHardwareOper.Oper.Ipmi,
+			"ports":                ret.DtSystemHardwareOper.Oper.Ports,
+			"plat_flag":            ret.DtSystemHardwareOper.Oper.PlatFlag,
+			"bios_version":         ret.DtSystemHardwareOper.Oper.BiosVersion,
+			"bios_release_date":    ret.DtSystemHardwareOper.Oper.BiosReleaseDate,
+			"nvm_firmware_version": ret.DtSystemHardwareOper.Oper.NvmFirmwareVersion,
+			"fpga_summary":         ret.DtSystemHardwareOper.Oper.FpgaSummary,
+			"fpga_date":            ret.DtSystemHardwareOper.Oper.FpgaDate,
+			"disk_total":           ret.DtSystemHardwareOper.Oper.DiskTotal,
+			"disk_used":            ret.DtSystemHardwareOper.Oper.DiskUsed,
+			"disk_free":            ret.DtSystemHardwareOper.Oper.DiskFree,
+			"disk_percentage":      ret.DtSystemHardwareOper.Oper.DiskPercentage,
+			"disk1_status":         ret.DtSystemHardwareOper.Oper.Disk1Status,
+			"disk2_status":         ret.DtSystemHardwareOper.Oper.Disk2Status,
+			"num_disks":            ret.DtSystemHardwareOper.Oper.NumDisks,
+			"raid_present":         ret.DtSystemHardwareOper.Oper.Raid_present,
+			"raid_list":            setSliceSystemHardwareOperOperRaidList(ret.DtSystemHardwareOper.Oper.RaidList),
+			"psu1_np15":            ret.DtSystemHardwareOper.Oper.Psu1_np15,
+			"psu2_np15":            ret.DtSystemHardwareOper.Oper.Psu2_np15,
+			"spe_present":          ret.DtSystemHardwareOper.Oper.Spe_present,
+			"bypass_pr":            ret.DtSystemHardwareOper.Oper.BypassPr,
+			"bypass_list":          setSliceSystemHardwareOperOperBypassList(ret.DtSystemHardwareOper.Oper.BypassList),
+			"alldynamic":           ret.DtSystemHardwareOper.Oper.Alldynamic,
+			"mcpld_type":           ret.DtSystemHardwareOper.Oper.McpldType,
+			"mcpld_date":           ret.DtSystemHardwareOper.Oper.McpldDate,
 		},
 	}
-
 }
 
-func setObjectSystemHardwareOperOperSslCards(d []edpt.SystemHardwareOperOperSslCards) []map[string]interface{} {
+func setObjectSystemHardwareOperOperSslCards(d edpt.SystemHardwareOperOperSslCards) []map[string]interface{} {
 	result := []map[string]interface{}{}
-	for _, item := range d {
-		in := make(map[string]interface{})
-		in["ssl_devices"] = item.SslDevices
-		in["nitroxpx"] = item.Nitroxpx
-		in["nitrox3"] = item.Nitrox3
-		in["nitrox3_cores"] = item.Nitrox3Cores
-		in["nitrox5"] = item.Nitrox5
-		in["nitrox5_cores"] = item.Nitrox5Cores
-		in["nitrox2"] = item.Nitrox2
-		in["nitrox1"] = item.Nitrox1
-		in["hsm"] = item.Hsm
-		in["unknown_ssl_cards"] = item.UnknownSslCards
-		in["coleto_ssl_cards"] = item.ColetoSslCards
-		result = append(result, in)
-	}
+	in := make(map[string]interface{})
+
+	in["ssl_devices"] = d.SslDevices
+
+	in["nitroxpx"] = d.Nitroxpx
+
+	in["nitrox3"] = d.Nitrox3
+
+	in["nitrox3_cores"] = d.Nitrox3Cores
+
+	in["nitrox5"] = d.Nitrox5
+
+	in["nitrox5_cores"] = d.Nitrox5Cores
+
+	in["nitrox2"] = d.Nitrox2
+
+	in["nitrox1"] = d.Nitrox1
+
+	in["hsm"] = d.Hsm
+
+	in["unknown_ssl_cards"] = d.UnknownSslCards
+
+	in["coleto_ssl_cards"] = d.ColetoSslCards
+	result = append(result, in)
 	return result
 }
 
-func setObjectSystemHardwareOperOperCompressionCards(d []edpt.SystemHardwareOperOperCompressionCards) []map[string]interface{} {
+func setObjectSystemHardwareOperOperCompressionCards(d edpt.SystemHardwareOperOperCompressionCards) []map[string]interface{} {
 	result := []map[string]interface{}{}
-	for _, item := range d {
-		in := make(map[string]interface{})
-		in["gzip_devices"] = item.GzipDevices
-		in["aha363"] = item.Aha363
-		in["unknown_compression"] = item.UnknownCompression
-		result = append(result, in)
-	}
+	in := make(map[string]interface{})
+
+	in["gzip_devices"] = d.GzipDevices
+
+	in["aha363"] = d.Aha363
+
+	in["unknown_compression"] = d.UnknownCompression
+	result = append(result, in)
 	return result
 }
 
@@ -322,9 +333,10 @@ func setSliceSystemHardwareOperOperBypassList(d []edpt.SystemHardwareOperOperByp
 }
 
 func getObjectSystemHardwareOperOper(d []interface{}) edpt.SystemHardwareOperOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SystemHardwareOperOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PlatformDescription = in["platform_description"].(string)
 		ret.Serial = in["serial"].(string)
@@ -366,43 +378,44 @@ func getObjectSystemHardwareOperOper(d []interface{}) edpt.SystemHardwareOperOpe
 	return ret
 }
 
-func getObjectSystemHardwareOperOperSslCards(d []interface{}) []edpt.SystemHardwareOperOperSslCards {
-	count := len(d)
-	ret := make([]edpt.SystemHardwareOperOperSslCards, 0, count)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.SystemHardwareOperOperSslCards
-		oi.SslDevices = in["ssl_devices"].(int)
-		oi.Nitroxpx = in["nitroxpx"].(int)
-		oi.Nitrox3 = in["nitrox3"].(int)
-		oi.Nitrox3Cores = in["nitrox3_cores"].(int)
-		oi.Nitrox5 = in["nitrox5"].(int)
-		oi.Nitrox5Cores = in["nitrox5_cores"].(int)
-		oi.Nitrox2 = in["nitrox2"].(int)
-		oi.Nitrox1 = in["nitrox1"].(int)
-		oi.Hsm = in["hsm"].(int)
-		oi.UnknownSslCards = in["unknown_ssl_cards"].(int)
-		oi.ColetoSslCards = in["coleto_ssl_cards"].(int)
+func getObjectSystemHardwareOperOperSslCards(d []interface{}) edpt.SystemHardwareOperOperSslCards {
+
+	count1 := len(d)
+	var ret edpt.SystemHardwareOperOperSslCards
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.SslDevices = in["ssl_devices"].(int)
+		ret.Nitroxpx = in["nitroxpx"].(int)
+		ret.Nitrox3 = in["nitrox3"].(int)
+		ret.Nitrox3Cores = in["nitrox3_cores"].(int)
+		ret.Nitrox5 = in["nitrox5"].(int)
+		ret.Nitrox5Cores = in["nitrox5_cores"].(int)
+		ret.Nitrox2 = in["nitrox2"].(int)
+		ret.Nitrox1 = in["nitrox1"].(int)
+		ret.Hsm = in["hsm"].(int)
+		ret.UnknownSslCards = in["unknown_ssl_cards"].(int)
+		ret.ColetoSslCards = in["coleto_ssl_cards"].(int)
 	}
 	return ret
 }
 
-func getObjectSystemHardwareOperOperCompressionCards(d []interface{}) []edpt.SystemHardwareOperOperCompressionCards {
-	count := len(d)
-	ret := make([]edpt.SystemHardwareOperOperCompressionCards, 0, count)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.SystemHardwareOperOperCompressionCards
-		oi.GzipDevices = in["gzip_devices"].(int)
-		oi.Aha363 = in["aha363"].(int)
-		oi.UnknownCompression = in["unknown_compression"].(int)
+func getObjectSystemHardwareOperOperCompressionCards(d []interface{}) edpt.SystemHardwareOperOperCompressionCards {
+
+	count1 := len(d)
+	var ret edpt.SystemHardwareOperOperCompressionCards
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.GzipDevices = in["gzip_devices"].(int)
+		ret.Aha363 = in["aha363"].(int)
+		ret.UnknownCompression = in["unknown_compression"].(int)
 	}
 	return ret
 }
 
 func getSliceSystemHardwareOperOperRaidList(d []interface{}) []edpt.SystemHardwareOperOperRaidList {
-	count := len(d)
-	ret := make([]edpt.SystemHardwareOperOperRaidList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SystemHardwareOperOperRaidList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SystemHardwareOperOperRaidList
@@ -415,8 +428,9 @@ func getSliceSystemHardwareOperOperRaidList(d []interface{}) []edpt.SystemHardwa
 }
 
 func getSliceSystemHardwareOperOperBypassList(d []interface{}) []edpt.SystemHardwareOperOperBypassList {
-	count := len(d)
-	ret := make([]edpt.SystemHardwareOperOperBypassList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SystemHardwareOperOperBypassList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SystemHardwareOperOperBypassList
@@ -429,6 +443,7 @@ func getSliceSystemHardwareOperOperBypassList(d []interface{}) []edpt.SystemHard
 
 func dataToEndpointSystemHardwareOper(d *schema.ResourceData) edpt.SystemHardwareOper {
 	var ret edpt.SystemHardwareOper
+
 	ret.Oper = getObjectSystemHardwareOperOper(d.Get("oper").([]interface{}))
 	return ret
 }

@@ -3,12 +3,15 @@
 page_title: "thunder_fw_helper_sessions Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_helper_sessions: Configure firewall helper-session (TAC use only)
+  PLACEHOLDER
 ---
 
 # thunder_fw_helper_sessions (Resource)
 
+`thunder_fw_helper_sessions`: Configure firewall helper-session (TAC use only)
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_helper_sessions" "test_thunder_fw_helper_sessions" {
   mode         = "disable"
   idle_timeout = 30
@@ -31,10 +33,10 @@ resource "thunder_fw_helper_sessions" "test_thunder_fw_helper_sessions" {
 
 ### Optional
 
-- `idle_timeout` (Number)
-- `limit` (Number)
-- `mode` (String)
-- `uuid` (String)
+- `idle_timeout` (Number) helper-sessions idle-timeout time (Idle-timeout in minutes (default: 1 minute))
+- `limit` (Number) Limit number of helper-sessions (Limit helper-sessions number)
+- `mode` (String) 'disable': Disable helper-sessions;
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

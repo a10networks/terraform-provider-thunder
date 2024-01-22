@@ -11,6 +11,7 @@ func resourceSessionsOper() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_sessions_oper`: Operational Status for the object sessions\n\n__PLACEHOLDER__",
 		ReadContext: resourceSessionsOperRead,
+
 		Schema: map[string]*schema.Schema{
 			"ext": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -98,7 +99,7 @@ func resourceSessionsOper() *schema.Resource {
 									"app_type": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
-									"100ms": {
+									"ms100": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 									"sip_call_id": {
@@ -306,6 +307,45 @@ func resourceSessionsOper() *schema.Resource {
 						"ext_filter_name": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
+						"uie": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"persist_ipv4": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"persist_type": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"persist_source_addr": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"persist_source_port": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"persist_dest_addr": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"persist_dest_port": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"persist_ipv6": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"persist_ipv6_type": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"persist_v6_source_addr": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"persist_v6_source_port": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"persist_v6_dest_addr": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"persist_v6_dest_port": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 					},
 				},
 			},
@@ -402,18 +442,16 @@ func resourceSessionsOperRead(ctx context.Context, d *schema.ResourceData, meta 
 	if client.Host != "" {
 		obj := dataToEndpointSessionsOper(d)
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
-
-		SetExt := setObjectSessionsOperExt(res)
-		SetOpr := setObjectSessionsOperOper(res)
-		SetSmp := setObjectSessionsOperSmp(res)
-		SetSmpTable := setObjectSessionsOperSmpTable(res)
-
 		d.SetId(obj.GetId())
-		d.Set("ext", SetExt)
-		d.Set("oper", SetOpr)
-		d.Set("smp", SetSmp)
-		d.Set("smp_table", SetSmpTable)
-
+		logger.Println(res)
+		SessionsOperExt := setObjectSessionsOperExt(res)
+		d.Set("ext", SessionsOperExt)
+		SessionsOperOper := setObjectSessionsOperOper(res)
+		d.Set("oper", SessionsOperOper)
+		SessionsOperSmp := setObjectSessionsOperSmp(res)
+		d.Set("smp", SessionsOperSmp)
+		SessionsOperSmpTable := setObjectSessionsOperSmpTable(res)
+		d.Set("smp_table", SessionsOperSmpTable)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -421,12 +459,12 @@ func resourceSessionsOperRead(ctx context.Context, d *schema.ResourceData, meta 
 	return diags
 }
 
-func setObjectSessionsOperExt(res edpt.Sessionss) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["oper"] = setObjectSessionsOperExtOper(res.Datasession.Ext.Oper)
-	result = append(result, in)
-	return result
+func setObjectSessionsOperExt(ret edpt.DataSessionsOper) []interface{} {
+	return []interface{}{
+		map[string]interface{}{
+			"oper": setObjectSessionsOperExtOper(ret.DtSessionsOper.Ext.Oper),
+		},
+	}
 }
 
 func setObjectSessionsOperExtOper(d edpt.SessionsOperExtOper) []map[string]interface{} {
@@ -452,56 +490,69 @@ func setSliceSessionsOperExtOperSessionExtList(d []edpt.SessionsOperExtOperSessi
 	return result
 }
 
-func setObjectSessionsOperOper(res edpt.Sessionss) []interface{} {
+func setObjectSessionsOperOper(ret edpt.DataSessionsOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"session_list":            setSliceSessionsOperOperSessionList(res.Datasession.Oper.SessionList),
-			"total_sessions":          res.Datasession.Oper.TotalSessions,
-			"app_sessions":            res.Datasession.Oper.TotalSessions,
-			"filter_type":             res.Datasession.Oper.Filter_type,
-			"src_ipv4_addr":           res.Datasession.Oper.SrcIpv4Addr,
-			"dst_ipv4_addr":           res.Datasession.Oper.DstIpv4Addr,
-			"nat_ipv4_addr":           res.Datasession.Oper.NatIpv4Addr,
-			"src_ipv6_addr":           res.Datasession.Oper.SrcIpv6Addr,
-			"dst_ipv6_addr":           res.Datasession.Oper.DstIpv6Addr,
-			"name_str":                res.Datasession.Oper.NameStr,
-			"dest_port":               res.Datasession.Oper.DestPort,
-			"src_port":                res.Datasession.Oper.SrcPort,
-			"nat_port":                res.Datasession.Oper.NatPort,
-			"thread":                  res.Datasession.Oper.Thread,
-			"bucket":                  res.Datasession.Oper.Bucket,
-			"app_category":            res.Datasession.Oper.AppCategory,
-			"app":                     res.Datasession.Oper.App,
-			"l4_protocol":             res.Datasession.Oper.L4Protocol,
-			"fw_helper_sessions":      res.Datasession.Oper.FwHelperSessions,
-			"fw_ip_type":              res.Datasession.Oper.FwIpType,
-			"fw_rule":                 res.Datasession.Oper.FwRule,
-			"fw_dest_zone":            res.Datasession.Oper.FwDestZone,
-			"fw_src_zone":             res.Datasession.Oper.FwSrcZone,
-			"fw_dest_obj":             res.Datasession.Oper.FwDestObj,
-			"fw_src_obj":              res.Datasession.Oper.FwSrcObj,
-			"fw_dest_obj_grp":         res.Datasession.Oper.FwDestObjGrp,
-			"fw_src_obj_grp":          res.Datasession.Oper.FwSrcObjGrp,
-			"fw_dest_rserver":         res.Datasession.Oper.FwDestRserver,
-			"fw_src_rserver":          res.Datasession.Oper.FwSrcRserver,
-			"fw_dest_vserver":         res.Datasession.Oper.FwDestVserver,
-			"application":             res.Datasession.Oper.Application,
-			"session_id":              res.Datasession.Oper.SessionId,
-			"zone_name":               res.Datasession.Oper.ZoneName,
-			"sport_rate_limit_exceed": res.Datasession.Oper.SportRateLimitExceed,
-			"sport_rate_limit_curr":   res.Datasession.Oper.SportRateLimitCurr,
-			"src_ipv6_prefix":         res.Datasession.Oper.SrcIpv6Prefix,
-			"dst_ipv6_prefix":         res.Datasession.Oper.DstIpv6Prefix,
-			"check_inside_user":       res.Datasession.Oper.CheckInsideUser,
-			"rev_dest_teid":           res.Datasession.Oper.RevDestTeid,
-			"msisdn":                  res.Datasession.Oper.Msisdn,
-			"msisdn_val":              res.Datasession.Oper.MsisdnVal,
-			"imsi":                    res.Datasession.Oper.Imsi,
-			"imsi_val":                res.Datasession.Oper.ImsiVal,
-			"gtp_msg_type":            res.Datasession.Oper.GtpMsgType,
-			"gtp_version":             res.Datasession.Oper.GtpVersion,
-			"full_width":              res.Datasession.Oper.FullWidth,
-			"ext_filter_name":         res.Datasession.Oper.ExtFilterName,
+			"session_list":            setSliceSessionsOperOperSessionList(ret.DtSessionsOper.Oper.SessionList),
+			"total_sessions":          ret.DtSessionsOper.Oper.TotalSessions,
+			"app_sessions":            ret.DtSessionsOper.Oper.AppSessions,
+			"filter_type":             ret.DtSessionsOper.Oper.Filter_type,
+			"src_ipv4_addr":           ret.DtSessionsOper.Oper.SrcIpv4Addr,
+			"dst_ipv4_addr":           ret.DtSessionsOper.Oper.DstIpv4Addr,
+			"nat_ipv4_addr":           ret.DtSessionsOper.Oper.NatIpv4Addr,
+			"src_ipv6_addr":           ret.DtSessionsOper.Oper.SrcIpv6Addr,
+			"dst_ipv6_addr":           ret.DtSessionsOper.Oper.DstIpv6Addr,
+			"name_str":                ret.DtSessionsOper.Oper.NameStr,
+			"dest_port":               ret.DtSessionsOper.Oper.DestPort,
+			"src_port":                ret.DtSessionsOper.Oper.SrcPort,
+			"nat_port":                ret.DtSessionsOper.Oper.NatPort,
+			"thread":                  ret.DtSessionsOper.Oper.Thread,
+			"bucket":                  ret.DtSessionsOper.Oper.Bucket,
+			"app_category":            ret.DtSessionsOper.Oper.AppCategory,
+			"app":                     ret.DtSessionsOper.Oper.App,
+			"l4_protocol":             ret.DtSessionsOper.Oper.L4Protocol,
+			"fw_helper_sessions":      ret.DtSessionsOper.Oper.FwHelperSessions,
+			"fw_ip_type":              ret.DtSessionsOper.Oper.FwIpType,
+			"fw_rule":                 ret.DtSessionsOper.Oper.FwRule,
+			"fw_dest_zone":            ret.DtSessionsOper.Oper.FwDestZone,
+			"fw_src_zone":             ret.DtSessionsOper.Oper.FwSrcZone,
+			"fw_dest_obj":             ret.DtSessionsOper.Oper.FwDestObj,
+			"fw_src_obj":              ret.DtSessionsOper.Oper.FwSrcObj,
+			"fw_dest_obj_grp":         ret.DtSessionsOper.Oper.FwDestObjGrp,
+			"fw_src_obj_grp":          ret.DtSessionsOper.Oper.FwSrcObjGrp,
+			"fw_dest_rserver":         ret.DtSessionsOper.Oper.FwDestRserver,
+			"fw_src_rserver":          ret.DtSessionsOper.Oper.FwSrcRserver,
+			"fw_dest_vserver":         ret.DtSessionsOper.Oper.FwDestVserver,
+			"application":             ret.DtSessionsOper.Oper.Application,
+			"session_id":              ret.DtSessionsOper.Oper.SessionId,
+			"zone_name":               ret.DtSessionsOper.Oper.ZoneName,
+			"sport_rate_limit_exceed": ret.DtSessionsOper.Oper.SportRateLimitExceed,
+			"sport_rate_limit_curr":   ret.DtSessionsOper.Oper.SportRateLimitCurr,
+			"src_ipv6_prefix":         ret.DtSessionsOper.Oper.SrcIpv6Prefix,
+			"dst_ipv6_prefix":         ret.DtSessionsOper.Oper.DstIpv6Prefix,
+			"check_inside_user":       ret.DtSessionsOper.Oper.CheckInsideUser,
+			"rev_dest_teid":           ret.DtSessionsOper.Oper.RevDestTeid,
+			"msisdn":                  ret.DtSessionsOper.Oper.Msisdn,
+			"msisdn_val":              ret.DtSessionsOper.Oper.MsisdnVal,
+			"imsi":                    ret.DtSessionsOper.Oper.Imsi,
+			"imsi_val":                ret.DtSessionsOper.Oper.ImsiVal,
+			"gtp_msg_type":            ret.DtSessionsOper.Oper.GtpMsgType,
+			"gtp_version":             ret.DtSessionsOper.Oper.GtpVersion,
+			"full_width":              ret.DtSessionsOper.Oper.FullWidth,
+			"ext_filter_name":         ret.DtSessionsOper.Oper.ExtFilterName,
+			"uie":                     ret.DtSessionsOper.Oper.Uie,
+			"persist_ipv4":            ret.DtSessionsOper.Oper.PersistIpv4,
+			"persist_type":            ret.DtSessionsOper.Oper.PersistType,
+			"persist_source_addr":     ret.DtSessionsOper.Oper.PersistSourceAddr,
+			"persist_source_port":     ret.DtSessionsOper.Oper.PersistSourcePort,
+			"persist_dest_addr":       ret.DtSessionsOper.Oper.PersistDestAddr,
+			"persist_dest_port":       ret.DtSessionsOper.Oper.PersistDestPort,
+			"persist_ipv6":            ret.DtSessionsOper.Oper.PersistIpv6,
+			"persist_ipv6_type":       ret.DtSessionsOper.Oper.PersistIpv6Type,
+			"persist_v6_source_addr":  ret.DtSessionsOper.Oper.PersistV6SourceAddr,
+			"persist_v6_source_port":  ret.DtSessionsOper.Oper.PersistV6SourcePort,
+			"persist_v6_dest_addr":    ret.DtSessionsOper.Oper.PersistV6DestAddr,
+			"persist_v6_dest_port":    ret.DtSessionsOper.Oper.PersistV6DestPort,
 		},
 	}
 }
@@ -523,7 +574,7 @@ func setSliceSessionsOperOperSessionList(d []edpt.SessionsOperOperSessionList) [
 		in["hash"] = item.Hash
 		in["flags"] = item.Flags
 		in["app_type"] = item.AppType
-		in["100ms"] = item.Ms100
+		in["ms100"] = item.Ms100
 		in["sip_call_id"] = item.Sip_call_id
 		in["app_name"] = item.AppName
 		in["service_name"] = item.ServiceName
@@ -558,18 +609,18 @@ func setSliceSessionsOperOperSessionListExtensionFieldsList(d []edpt.SessionsOpe
 	return result
 }
 
-func setObjectSessionsOperSmp(res edpt.Sessionss) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["oper"] = setObjectSessionsOperSmpOper(res.Datasession.Smp.Oper)
-	result = append(result, in)
-	return result
+func setObjectSessionsOperSmp(ret edpt.DataSessionsOper) []interface{} {
+	return []interface{}{
+		map[string]interface{}{
+			"oper": setObjectSessionsOperSmpOper(ret.DtSessionsOper.Smp.Oper),
+		},
+	}
 }
 
-func setObjectSessionsOperSmpOper(res edpt.SessionsOperSmpOper) []map[string]interface{} {
+func setObjectSessionsOperSmpOper(d edpt.SessionsOperSmpOper) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["session_smp_list"] = setSliceSessionsOperSmpOperSessionSmpList(res.SessionSmpList)
+	in["session_smp_list"] = setSliceSessionsOperSmpOperSessionSmpList(d.SessionSmpList)
 	result = append(result, in)
 	return result
 }
@@ -587,12 +638,12 @@ func setSliceSessionsOperSmpOperSessionSmpList(d []edpt.SessionsOperSmpOperSessi
 	return result
 }
 
-func setObjectSessionsOperSmpTable(res edpt.Sessionss) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["oper"] = setObjectSessionsOperSmpTableOper(res.Datasession.SmpTable.Oper)
-	result = append(result, in)
-	return result
+func setObjectSessionsOperSmpTable(ret edpt.DataSessionsOper) []interface{} {
+	return []interface{}{
+		map[string]interface{}{
+			"oper": setObjectSessionsOperSmpTableOper(ret.DtSessionsOper.SmpTable.Oper),
+		},
+	}
 }
 
 func setObjectSessionsOperSmpTableOper(d edpt.SessionsOperSmpTableOper) []map[string]interface{} {
@@ -622,9 +673,10 @@ func setSliceSessionsOperSmpTableOperEntryList(d []edpt.SessionsOperSmpTableOper
 }
 
 func getObjectSessionsOperExt(d []interface{}) edpt.SessionsOperExt {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SessionsOperExt
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Oper = getObjectSessionsOperExtOper(in["oper"].([]interface{}))
 	}
@@ -632,9 +684,10 @@ func getObjectSessionsOperExt(d []interface{}) edpt.SessionsOperExt {
 }
 
 func getObjectSessionsOperExtOper(d []interface{}) edpt.SessionsOperExtOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SessionsOperExtOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SessionExtList = getSliceSessionsOperExtOperSessionExtList(in["session_ext_list"].([]interface{}))
 	}
@@ -642,8 +695,9 @@ func getObjectSessionsOperExtOper(d []interface{}) edpt.SessionsOperExtOper {
 }
 
 func getSliceSessionsOperExtOperSessionExtList(d []interface{}) []edpt.SessionsOperExtOperSessionExtList {
-	count := len(d)
-	ret := make([]edpt.SessionsOperExtOperSessionExtList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SessionsOperExtOperSessionExtList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SessionsOperExtOperSessionExtList
@@ -659,9 +713,10 @@ func getSliceSessionsOperExtOperSessionExtList(d []interface{}) []edpt.SessionsO
 }
 
 func getObjectSessionsOperOper(d []interface{}) edpt.SessionsOperOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SessionsOperOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SessionList = getSliceSessionsOperOperSessionList(in["session_list"].([]interface{}))
 		ret.TotalSessions = in["total_sessions"].(int)
@@ -710,13 +765,27 @@ func getObjectSessionsOperOper(d []interface{}) edpt.SessionsOperOper {
 		ret.GtpVersion = in["gtp_version"].(string)
 		ret.FullWidth = in["full_width"].(int)
 		ret.ExtFilterName = in["ext_filter_name"].(string)
+		ret.Uie = in["uie"].(string)
+		ret.PersistIpv4 = in["persist_ipv4"].(int)
+		ret.PersistType = in["persist_type"].(string)
+		ret.PersistSourceAddr = in["persist_source_addr"].(string)
+		ret.PersistSourcePort = in["persist_source_port"].(int)
+		ret.PersistDestAddr = in["persist_dest_addr"].(string)
+		ret.PersistDestPort = in["persist_dest_port"].(int)
+		ret.PersistIpv6 = in["persist_ipv6"].(int)
+		ret.PersistIpv6Type = in["persist_ipv6_type"].(string)
+		ret.PersistV6SourceAddr = in["persist_v6_source_addr"].(string)
+		ret.PersistV6SourcePort = in["persist_v6_source_port"].(int)
+		ret.PersistV6DestAddr = in["persist_v6_dest_addr"].(string)
+		ret.PersistV6DestPort = in["persist_v6_dest_port"].(int)
 	}
 	return ret
 }
 
 func getSliceSessionsOperOperSessionList(d []interface{}) []edpt.SessionsOperOperSessionList {
-	count := len(d)
-	ret := make([]edpt.SessionsOperOperSessionList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SessionsOperOperSessionList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SessionsOperOperSessionList
@@ -733,7 +802,7 @@ func getSliceSessionsOperOperSessionList(d []interface{}) []edpt.SessionsOperOpe
 		oi.Hash = in["hash"].(int)
 		oi.Flags = in["flags"].(string)
 		oi.AppType = in["app_type"].(string)
-		oi.Ms100 = in["100ms"].(string)
+		oi.Ms100 = in["ms100"].(string)
 		oi.Sip_call_id = in["sip_call_id"].(string)
 		oi.AppName = in["app_name"].(string)
 		oi.ServiceName = in["service_name"].(string)
@@ -758,8 +827,9 @@ func getSliceSessionsOperOperSessionList(d []interface{}) []edpt.SessionsOperOpe
 }
 
 func getSliceSessionsOperOperSessionListExtensionFieldsList(d []interface{}) []edpt.SessionsOperOperSessionListExtensionFieldsList {
-	count := len(d)
-	ret := make([]edpt.SessionsOperOperSessionListExtensionFieldsList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SessionsOperOperSessionListExtensionFieldsList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SessionsOperOperSessionListExtensionFieldsList
@@ -771,9 +841,10 @@ func getSliceSessionsOperOperSessionListExtensionFieldsList(d []interface{}) []e
 }
 
 func getObjectSessionsOperSmp(d []interface{}) edpt.SessionsOperSmp {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SessionsOperSmp
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Oper = getObjectSessionsOperSmpOper(in["oper"].([]interface{}))
 	}
@@ -781,9 +852,10 @@ func getObjectSessionsOperSmp(d []interface{}) edpt.SessionsOperSmp {
 }
 
 func getObjectSessionsOperSmpOper(d []interface{}) edpt.SessionsOperSmpOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SessionsOperSmpOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SessionSmpList = getSliceSessionsOperSmpOperSessionSmpList(in["session_smp_list"].([]interface{}))
 	}
@@ -791,8 +863,9 @@ func getObjectSessionsOperSmpOper(d []interface{}) edpt.SessionsOperSmpOper {
 }
 
 func getSliceSessionsOperSmpOperSessionSmpList(d []interface{}) []edpt.SessionsOperSmpOperSessionSmpList {
-	count := len(d)
-	ret := make([]edpt.SessionsOperSmpOperSessionSmpList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SessionsOperSmpOperSessionSmpList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SessionsOperSmpOperSessionSmpList
@@ -806,9 +879,10 @@ func getSliceSessionsOperSmpOperSessionSmpList(d []interface{}) []edpt.SessionsO
 }
 
 func getObjectSessionsOperSmpTable(d []interface{}) edpt.SessionsOperSmpTable {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SessionsOperSmpTable
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Oper = getObjectSessionsOperSmpTableOper(in["oper"].([]interface{}))
 	}
@@ -816,9 +890,10 @@ func getObjectSessionsOperSmpTable(d []interface{}) edpt.SessionsOperSmpTable {
 }
 
 func getObjectSessionsOperSmpTableOper(d []interface{}) edpt.SessionsOperSmpTableOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SessionsOperSmpTableOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.EntryList = getSliceSessionsOperSmpTableOperEntryList(in["entry_list"].([]interface{}))
 	}
@@ -826,8 +901,9 @@ func getObjectSessionsOperSmpTableOper(d []interface{}) edpt.SessionsOperSmpTabl
 }
 
 func getSliceSessionsOperSmpTableOperEntryList(d []interface{}) []edpt.SessionsOperSmpTableOperEntryList {
-	count := len(d)
-	ret := make([]edpt.SessionsOperSmpTableOperEntryList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SessionsOperSmpTableOperEntryList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SessionsOperSmpTableOperEntryList
@@ -847,9 +923,13 @@ func getSliceSessionsOperSmpTableOperEntryList(d []interface{}) []edpt.SessionsO
 
 func dataToEndpointSessionsOper(d *schema.ResourceData) edpt.SessionsOper {
 	var ret edpt.SessionsOper
+
 	ret.Ext = getObjectSessionsOperExt(d.Get("ext").([]interface{}))
+
 	ret.Oper = getObjectSessionsOperOper(d.Get("oper").([]interface{}))
+
 	ret.Smp = getObjectSessionsOperSmp(d.Get("smp").([]interface{}))
+
 	ret.SmpTable = getObjectSessionsOperSmpTable(d.Get("smp_table").([]interface{}))
 	return ret
 }

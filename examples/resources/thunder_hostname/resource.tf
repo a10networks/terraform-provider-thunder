@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_hostname" "test_hostname" {
   value = "testingHost"
 }

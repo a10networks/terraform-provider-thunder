@@ -3,10 +3,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-data "thunder_slb_http_proxy_oper" "test"{
+data "thunder_slb_http_proxy_oper" "thunder_slb_http_proxy_oper" {
 }
-
-output "testing" {
-  value = ["${data.thunder_slb_http_proxy_oper.test}"]
+output "get_slb_http_proxy_oper" {
+  value = ["${data.thunder_slb_http_proxy_oper.thunder_slb_http_proxy_oper}"]
 }

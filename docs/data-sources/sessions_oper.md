@@ -98,6 +98,18 @@ Optional:
 - `name_str` (String)
 - `nat_ipv4_addr` (String)
 - `nat_port` (Number)
+- `persist_dest_addr` (String)
+- `persist_dest_port` (Number)
+- `persist_ipv4` (Number)
+- `persist_ipv6` (Number)
+- `persist_ipv6_type` (String)
+- `persist_source_addr` (String)
+- `persist_source_port` (Number)
+- `persist_type` (String)
+- `persist_v6_dest_addr` (String)
+- `persist_v6_dest_port` (Number)
+- `persist_v6_source_addr` (String)
+- `persist_v6_source_port` (Number)
 - `rev_dest_teid` (Number)
 - `session_id` (String)
 - `session_list` (Block List) (see [below for nested schema](#nestedblock--oper--session_list))
@@ -109,6 +121,7 @@ Optional:
 - `src_port` (Number)
 - `thread` (Number)
 - `total_sessions` (Number)
+- `uie` (String)
 - `zone_name` (String)
 
 <a id="nestedblock--oper--session_list"></a>
@@ -116,7 +129,6 @@ Optional:
 
 Optional:
 
-- `100ms` (String)
 - `age` (Number)
 - `app_name` (String)
 - `app_type` (String)
@@ -140,6 +152,7 @@ Optional:
 - `hash` (Number)
 - `hash_idx` (Number)
 - `limit` (Number)
+- `ms100` (String)
 - `peak_rate` (Number)
 - `protocol` (String)
 - `rate` (Number)

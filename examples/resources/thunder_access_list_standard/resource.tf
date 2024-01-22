@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_access_list_standard" "AccessListTest" {
   std = 50
   stdrules {
@@ -22,4 +21,3 @@ resource "thunder_access_list_standard" "AccessListTest" {
     transparent_session_only = 1
   }
 }
-

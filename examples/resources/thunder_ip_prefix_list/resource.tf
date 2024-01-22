@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ip_prefix_list" "IpPrefixList1" {
   name = "PREFIX-LIST"
   rules {

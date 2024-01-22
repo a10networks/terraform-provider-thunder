@@ -4,11 +4,14 @@ page_title: "thunder_interface_lif Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
   thunder_interface_lif: Logical interface
+  PLACEHOLDER
 ---
 
 # thunder_interface_lif (Resource)
 
 `thunder_interface_lif`: Logical interface
+
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,42 +21,12 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-provider "thunder" {
-  alias     = "L3V_A"
-  address   = var.dut9049
-  username  = var.username
-  password  = var.password
-  partition = var.l3v_1
-}
-
-resource "thunder_interface_lif" "test00" {
+resource "thunder_interface_lif" "thunder_interface_lif" {
   ifname = 2
   ip {
     address_list {
       ipv4_address = "56.56.56.56"
       ipv4_netmask = "/16"
-    }
-  }
-}
-
-resource "thunder_interface_lif" "test01" {
-  provider = thunder.L3V_A
-  ifname   = 7
-  ip {
-    address_list {
-      ipv4_address = "56.156.0.1"
-      ipv4_netmask = "/24"
-    }
-  }
-}
-
-resource "thunder_interface_lif" "test02" {
-  provider = thunder.L3V_A
-  ifname   = 8
-  ipv6 {
-    address_list {
-      ipv6_addr = "fd08::222/64"
     }
   }
 }
@@ -71,6 +44,7 @@ resource "thunder_interface_lif" "test02" {
 - `access_list` (Block List, Max: 1) (see [below for nested schema](#nestedblock--access_list))
 - `action` (String) 'enable': Enable; 'disable': Disable;
 - `bfd` (Block List, Max: 1) (see [below for nested schema](#nestedblock--bfd))
+- `encapsulation` (Block List, Max: 1) (see [below for nested schema](#nestedblock--encapsulation))
 - `ip` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip))
 - `ipv6` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ipv6))
 - `isis` (Block List, Max: 1) (see [below for nested schema](#nestedblock--isis))
@@ -122,6 +96,25 @@ Optional:
 - `interval` (Number) Transmit interval between BFD packets (Milliseconds)
 - `min_rx` (Number) Minimum receive interval capability (Milliseconds)
 - `multiplier` (Number) Multiplier value used to compute holddown (value used to multiply the interval)
+
+
+
+<a id="nestedblock--encapsulation"></a>
+### Nested Schema for `encapsulation`
+
+Optional:
+
+- `dot1q` (Block List, Max: 1) (see [below for nested schema](#nestedblock--encapsulation--dot1q))
+
+<a id="nestedblock--encapsulation--dot1q"></a>
+### Nested Schema for `encapsulation.dot1q`
+
+Optional:
+
+- `ethernet` (Number) Ethernet Interface (Ethernet port number)
+- `tag` (Number) Tag ID
+- `trunk` (Number) Trunk Interface (Trunk number)
+- `uuid` (String) uuid of the object
 
 
 
@@ -700,6 +693,6 @@ Optional:
 
 Optional:
 
-- `counters1` (String) 'all': all; 'num_pkts': some help string; 'num_total_bytes': some help string; 'num_unicast_pkts': some help string; 'num_broadcast_pkts': some help string; 'num_multicast_pkts': some help string; 'num_tx_pkts': some help string; 'num_total_tx_bytes': some help string; 'num_unicast_tx_pkts': some help string; 'num_broadcast_tx_pkts': some help string; 'num_multicast_tx_pkts': some help string; 'dropped_dis_rx_pkts': some help string; 'dropped_rx_pkts': some help string; 'dropped_dis_tx_pkts': some help string; 'dropped_tx_pkts': some help string; 'dropped_rx_pkts_gre_key': some help string;
+- `counters1` (String) 'all': all; 'num_pkts': num_pkts; 'num_total_bytes': num_total_bytes; 'num_unicast_pkts': num_unicast_pkts; 'num_broadcast_pkts': num_broadcast_pkts; 'num_multicast_pkts': num_multicast_pkts; 'num_tx_pkts': num_tx_pkts; 'num_total_tx_bytes': num_total_tx_bytes; 'num_unicast_tx_pkts': num_unicast_tx_pkts; 'num_broadcast_tx_pkts': num_broadcast_tx_pkts; 'num_multicast_tx_pkts': num_multicast_tx_pkts; 'dropped_dis_rx_pkts': dropped_dis_rx_pkts; 'dropped_rx_pkts': dropped_rx_pkts; 'dropped_dis_tx_pkts': dropped_dis_tx_pkts; 'dropped_tx_pkts': dropped_tx_pkts; 'dropped_rx_pkts_gre_key': dropped_rx_pkts_gre_key;
 
 

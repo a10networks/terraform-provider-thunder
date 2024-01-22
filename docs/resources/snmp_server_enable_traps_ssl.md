@@ -3,23 +3,26 @@
 page_title: "thunder_snmp_server_enable_traps_ssl Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_enable_traps_ssl: Enable SSL group traps
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_enable_traps_ssl (Resource)
 
+`thunder_snmp_server_enable_traps_ssl`: Enable SSL group traps
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_ssl"   "SnMPServerEnableTrapsSsl"  {
-    server_certificate_error= 1
+resource "thunder_snmp_server_enable_traps_ssl" "thunder_snmp_server_enable_traps_ssl" {
+  server_certificate_error = 0
 }
 ```
 
@@ -28,8 +31,8 @@ resource  "thunder_snmp_server_enable_traps_ssl"   "SnMPServerEnableTrapsSsl"  {
 
 ### Optional
 
-- `server_certificate_error` (Number)
-- `uuid` (String)
+- `server_certificate_error` (Number) Enable SSL server certificate error trap
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

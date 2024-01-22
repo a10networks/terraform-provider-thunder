@@ -21,9 +21,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_cloud_services_cloud_provider_aws_log" "test" {
-  action = "enable"
+  action         = "enable"
   log_group_name = "testing"
 }
 ```
@@ -33,8 +32,9 @@ resource "thunder_cloud_services_cloud_provider_aws_log" "test" {
 
 ### Optional
 
-- `action` (String) 'enable': Enable AWS Log Analytics; 'disable': Disable AWS Log Analytics(default);
-- `log_group_name` (String) AWS Log Analytics log group name
+- `action` (String) 'enable': Enable AWS CloudWatch; 'disable': Disable AWS CloudWatch (default);
+- `active_partitions` (String) Specifies the thunder active partition name separated by a comma for multiple values
+- `log_group_name` (String) Specifies the log group name under which all logs are sent to AWS CloudWatch
 - `uuid` (String) uuid of the object
 
 ### Read-Only

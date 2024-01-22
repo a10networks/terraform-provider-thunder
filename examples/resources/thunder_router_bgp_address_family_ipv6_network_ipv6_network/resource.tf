@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_router_bgp_address_family_ipv6_network_ipv6_network" "resourceRouterBgpAddressFamilyIpv6NetworkIpv6NetworkTest" {
+resource "thunder_router_bgp_address_family_ipv6_network_ipv6_network" "thunderRouterBgpAddressFamilyIpv6NetworkIpv6NetworkTest" {
 
   as_number    = "300"
   network_ipv6 = "2222::1/64"

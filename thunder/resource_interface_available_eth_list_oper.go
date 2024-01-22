@@ -11,6 +11,7 @@ func resourceInterfaceAvailableEthListOper() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_interface_available_eth_list_oper`: Operational Status for the object available-eth-list\n\n__PLACEHOLDER__",
 		ReadContext: resourceInterfaceAvailableEthListOperRead,
+
 		Schema: map[string]*schema.Schema{
 			"oper": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -53,10 +54,10 @@ func resourceInterfaceAvailableEthListOperRead(ctx context.Context, d *schema.Re
 	if client.Host != "" {
 		obj := dataToEndpointInterfaceAvailableEthListOper(d)
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		items := setObjectInterfaceAvailableEthListOperOper(res)
 		d.SetId(obj.GetId())
-		d.Set("oper", items)
-
+		logger.Println(res)
+		InterfaceAvailableEthListOperOper := setObjectInterfaceAvailableEthListOperOper(res)
+		d.Set("oper", InterfaceAvailableEthListOperOper)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -64,11 +65,11 @@ func resourceInterfaceAvailableEthListOperRead(ctx context.Context, d *schema.Re
 	return diags
 }
 
-func setObjectInterfaceAvailableEthListOperOper(res edpt.InterfaceAvailableEthListt) []interface{} {
+func setObjectInterfaceAvailableEthListOperOper(ret edpt.DataInterfaceAvailableEthListOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"tot_num_of_ports": res.InterfaceAvailableEthList.Oper.Tot_num_of_ports,
-			"if_list":          setSliceInterfaceAvailableEthListOperOperIfList(res.InterfaceAvailableEthList.Oper.IfList),
+			"tot_num_of_ports": ret.DtInterfaceAvailableEthListOper.Oper.Tot_num_of_ports,
+			"if_list":          setSliceInterfaceAvailableEthListOperOperIfList(ret.DtInterfaceAvailableEthListOper.Oper.IfList),
 		},
 	}
 }
@@ -87,9 +88,10 @@ func setSliceInterfaceAvailableEthListOperOperIfList(d []edpt.InterfaceAvailable
 }
 
 func getObjectInterfaceAvailableEthListOperOper(d []interface{}) edpt.InterfaceAvailableEthListOperOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.InterfaceAvailableEthListOperOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tot_num_of_ports = in["tot_num_of_ports"].(int)
 		ret.IfList = getSliceInterfaceAvailableEthListOperOperIfList(in["if_list"].([]interface{}))
@@ -98,8 +100,9 @@ func getObjectInterfaceAvailableEthListOperOper(d []interface{}) edpt.InterfaceA
 }
 
 func getSliceInterfaceAvailableEthListOperOperIfList(d []interface{}) []edpt.InterfaceAvailableEthListOperOperIfList {
-	count := len(d)
-	ret := make([]edpt.InterfaceAvailableEthListOperOperIfList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.InterfaceAvailableEthListOperOperIfList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.InterfaceAvailableEthListOperOperIfList
@@ -114,6 +117,7 @@ func getSliceInterfaceAvailableEthListOperOperIfList(d []interface{}) []edpt.Int
 
 func dataToEndpointInterfaceAvailableEthListOper(d *schema.ResourceData) edpt.InterfaceAvailableEthListOper {
 	var ret edpt.InterfaceAvailableEthListOper
+
 	ret.Oper = getObjectInterfaceAvailableEthListOperOper(d.Get("oper").([]interface{}))
 	return ret
 }

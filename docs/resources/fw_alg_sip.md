@@ -3,12 +3,15 @@
 page_title: "thunder_fw_alg_sip Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_alg_sip: Change Firewall SIP ALG Settings
+  PLACEHOLDER
 ---
 
 # thunder_fw_alg_sip (Resource)
 
+`thunder_fw_alg_sip`: Change Firewall SIP ALG Settings
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_alg_sip" "test_thunder_fw_alg_sip" {
   default_port_disable = "default-port-disable"
   sampling_enable {
@@ -32,9 +34,9 @@ resource "thunder_fw_alg_sip" "test_thunder_fw_alg_sip" {
 
 ### Optional
 
-- `default_port_disable` (String)
+- `default_port_disable` (String) 'default-port-disable': Disable SIP ALG default port 5060;
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -45,6 +47,6 @@ resource "thunder_fw_alg_sip" "test_thunder_fw_alg_sip" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'stat-request': Request Received; 'stat-response': Response Received; 'method-register': Method REGISTER; 'method-invite': Method INVITE; 'method-ack': Method ACK; 'method-cancel': Method CANCEL; 'method-bye': Method BYE; 'method-options': Method OPTIONS; 'method-prack': Method PRACK; 'method-subscribe': Method SUBSCRIBE; 'method-notify': Method NOTIFY; 'method-publish': Method PUBLISH; 'method-info': Method INFO; 'method-refer': Method REFER; 'method-message': Method MESSAGE; 'method-update': Method UPDATE; 'method-unknown': Method Unknown; 'parse-error': Message Parse Error; 'keep-alive': Keep Alive; 'contact-error': Contact Process Error; 'sdp-error': SDP Process Error; 'rtp-port-no-op': RTP Port No Op; 'rtp-rtcp-port-success': RTP RTCP Port Success; 'rtp-port-failure': RTP Port Failure; 'rtcp-port-failure': RTCP Port Failure; 'contact-port-no-op': Contact Port No Op; 'contact-port-success': Contact Port Success; 'contact-port-failure': Contact Port Failure; 'contact-new': Contact Alloc; 'contact-alloc-failure': Contact Alloc Failure; 'contact-eim': Contact EIM; 'contact-eim-set': Contact EIM Set; 'rtp-new': RTP Alloc; 'rtp-alloc-failure': RTP Alloc Failure; 'rtp-eim': RTP EIM; 'helper-found': SMP Helper Conn Found; 'helper-created': SMP Helper Conn Created; 'helper-deleted': SMP Helper Conn Already Deleted; 'helper-freed': SMP Helper Conn Freed; 'helper-failure': SMP Helper Failure;
 
 

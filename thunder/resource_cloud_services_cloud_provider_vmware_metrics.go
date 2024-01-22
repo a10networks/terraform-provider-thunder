@@ -14,12 +14,13 @@ func resourceCloudServicesCloudProviderVmwareMetrics() *schema.Resource {
 		UpdateContext: resourceCloudServicesCloudProviderVmwareMetricsUpdate,
 		ReadContext:   resourceCloudServicesCloudProviderVmwareMetricsRead,
 		DeleteContext: resourceCloudServicesCloudProviderVmwareMetricsDelete,
+
 		Schema: map[string]*schema.Schema{
 			"action": {
-				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable VMware Metrics Analytics; 'disable': Disable VMware Metrics Analytics(default);",
+				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable VMware vRealize Operations Manager; 'disable': Disable VMware vRealize Operations Manager (default);",
 			},
-			"adaptor_key": {
-				Type: schema.TypeString, Optional: true, Description: "VMware Metrics Analytics Adaptor Key",
+			"active_partitions": {
+				Type: schema.TypeString, Optional: true, Description: "Specifies the thunder active partition name separated by a comma for multiple values",
 			},
 			"cps": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable CPS Metrics; 'disable': Disable CPS Metrics;",
@@ -43,7 +44,7 @@ func resourceCloudServicesCloudProviderVmwareMetrics() *schema.Resource {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Packet Rate Metrics; 'disable': Disable Packet Rate Metrics;",
 			},
 			"resource_id": {
-				Type: schema.TypeString, Optional: true, Description: "vThunder Resource ID",
+				Type: schema.TypeString, Optional: true, Description: "Specifies the compute instance resource ID on which thunder is deployed",
 			},
 			"server_down_count": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Server Down Count Metrics; 'disable': Disable Server Down Count Metrics;",
@@ -70,18 +71,11 @@ func resourceCloudServicesCloudProviderVmwareMetrics() *schema.Resource {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
 			"vrops_host": {
-				Type: schema.TypeString, Optional: true, Description: "VMware Metrics Analytics vrops-host",
-			},
-			"vrops_password": {
-				Type: schema.TypeString, Optional: true, Description: "Azure Metrics Analytics VROPS Password",
-			},
-			"vrops_username": {
-				Type: schema.TypeString, Optional: true, Description: "VMWARE Metrics Analytics VROPS Username",
+				Type: schema.TypeString, Optional: true, Description: "Specifies the VMware vROps host IP address",
 			},
 		},
 	}
 }
-
 func resourceCloudServicesCloudProviderVmwareMetricsCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -95,21 +89,6 @@ func resourceCloudServicesCloudProviderVmwareMetricsCreate(ctx context.Context, 
 			return diag.FromErr(err)
 		}
 		return resourceCloudServicesCloudProviderVmwareMetricsRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceCloudServicesCloudProviderVmwareMetricsRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceCloudServicesCloudProviderVmwareMetricsRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointCloudServicesCloudProviderVmwareMetrics(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -129,7 +108,6 @@ func resourceCloudServicesCloudProviderVmwareMetricsUpdate(ctx context.Context, 
 	}
 	return diags
 }
-
 func resourceCloudServicesCloudProviderVmwareMetricsDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -145,14 +123,28 @@ func resourceCloudServicesCloudProviderVmwareMetricsDelete(ctx context.Context, 
 	return diags
 }
 
+func resourceCloudServicesCloudProviderVmwareMetricsRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceCloudServicesCloudProviderVmwareMetricsRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointCloudServicesCloudProviderVmwareMetrics(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
 func dataToEndpointCloudServicesCloudProviderVmwareMetrics(d *schema.ResourceData) edpt.CloudServicesCloudProviderVmwareMetrics {
 	var ret edpt.CloudServicesCloudProviderVmwareMetrics
 	ret.Inst.Action = d.Get("action").(string)
-	ret.Inst.AdaptorKey = d.Get("adaptor_key").(string)
+	ret.Inst.ActivePartitions = d.Get("active_partitions").(string)
 	ret.Inst.Cps = d.Get("cps").(string)
 	ret.Inst.Cpu = d.Get("cpu").(string)
 	ret.Inst.Disk = d.Get("disk").(string)
-	//omit encrypted
 	ret.Inst.Interfaces = d.Get("interfaces").(string)
 	ret.Inst.Memory = d.Get("memory").(string)
 	ret.Inst.PacketDrop = d.Get("packet_drop").(string)
@@ -167,7 +159,5 @@ func dataToEndpointCloudServicesCloudProviderVmwareMetrics(d *schema.ResourceDat
 	ret.Inst.Tps = d.Get("tps").(string)
 	//omit uuid
 	ret.Inst.VropsHost = d.Get("vrops_host").(string)
-	ret.Inst.VropsPassword = d.Get("vrops_password").(string)
-	ret.Inst.VropsUsername = d.Get("vrops_username").(string)
 	return ret
 }

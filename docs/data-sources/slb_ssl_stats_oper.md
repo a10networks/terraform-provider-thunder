@@ -105,12 +105,12 @@ Optional:
 
 Optional:
 
-- `10sec_rate` (Number) Average module percentage per 10 sec
-- `1sec_rate` (Number) Average module percentage per sec
-- `30sec_rate` (Number) Average module percentage per 30 sec
-- `5sec_rate` (Number) Average module percentage per 5 sec
-- `60sec_rate` (Number) Average module percentage per 60 sec
 - `requests_handled` (Number) Number of requests handled
+- `sec_rate1` (Number) Average module percentage per sec
+- `sec_rate10` (Number) Average module percentage per 10 sec
+- `sec_rate30` (Number) Average module percentage per 30 sec
+- `sec_rate5` (Number) Average module percentage per 5 sec
+- `sec_rate60` (Number) Average module percentage per 60 sec
 - `ssl_modules_index` (Number) SSL module index
 - `total_available_crypto_engines` (Number) Number of available crypto engines
 - `total_enabled_crypto_engines` (Number) Number of enabled crypto engines

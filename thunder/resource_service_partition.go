@@ -14,6 +14,7 @@ func resourceServicePartition() *schema.Resource {
 		UpdateContext: resourceServicePartitionUpdate,
 		ReadContext:   resourceServicePartitionRead,
 		DeleteContext: resourceServicePartitionDelete,
+
 		Schema: map[string]*schema.Schema{
 			"application_type": {
 				Type: schema.TypeString, Optional: true, Description: "'adc': Application type ADC;",
@@ -25,7 +26,7 @@ func resourceServicePartition() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Description: "Specify unique service partition id",
 			},
 			"partition_name": {
-				Type: schema.TypeString, Required: true, ForceNew: true, Description: "Object service partition name",
+				Type: schema.TypeString, Required: true, Description: "Object service partition name",
 			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
@@ -36,7 +37,6 @@ func resourceServicePartition() *schema.Resource {
 		},
 	}
 }
-
 func resourceServicePartitionCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -50,21 +50,6 @@ func resourceServicePartitionCreate(ctx context.Context, d *schema.ResourceData,
 			return diag.FromErr(err)
 		}
 		return resourceServicePartitionRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceServicePartitionRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceServicePartitionRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointServicePartition(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -84,7 +69,6 @@ func resourceServicePartitionUpdate(ctx context.Context, d *schema.ResourceData,
 	}
 	return diags
 }
-
 func resourceServicePartitionDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -100,11 +84,26 @@ func resourceServicePartitionDelete(ctx context.Context, d *schema.ResourceData,
 	return diags
 }
 
+func resourceServicePartitionRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceServicePartitionRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointServicePartition(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
 func dataToEndpointServicePartition(d *schema.ResourceData) edpt.ServicePartition {
 	var ret edpt.ServicePartition
 	ret.Inst.ApplicationType = d.Get("application_type").(string)
 	ret.Inst.FollowVrid = d.Get("follow_vrid").(int)
-	ret.Inst.Id = d.Get("id1").(int)
+	ret.Inst.Id1 = d.Get("id1").(int)
 	ret.Inst.PartitionName = d.Get("partition_name").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid

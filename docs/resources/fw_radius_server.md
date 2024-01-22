@@ -3,12 +3,15 @@
 page_title: "thunder_fw_radius_server Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_radius_server: Configure system as a RADIUS server
+  PLACEHOLDER
 ---
 
 # thunder_fw_radius_server (Resource)
 
+`thunder_fw_radius_server`: Configure system as a RADIUS server
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,18 +21,12 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_fw_radius_server" "test_thunder_fw_radius_server" {
-  listen_port = 1211
-  secret      = 1
-  encrypted   = "CR7g9VpvefshUcltaTe06ONIm4Wr8dGKhaM7NZ2+rmpRCOQOmhzET7MC5CUQTNlP"
-  attribute {
-    attribute_value = "inside-ip"
-    number          = 2
-  }
-  accounting_interim_update = "append-entry"
-  accounting_on             = "delete-entries-using-attribute"
-  attribute_name            = "imsi"
+resource "thunder_fw_radius_server" "thunder_fw_radius_server" {
+  accounting_interim_update = "ignore"
+  accounting_on             = "ignore"
+  accounting_start          = "append-entry"
+  accounting_stop           = "delete-entry"
+  listen_port               = 38143
   sampling_enable {
     counters1 = "all"
   }
@@ -41,21 +38,20 @@ resource "thunder_fw_radius_server" "test_thunder_fw_radius_server" {
 
 ### Optional
 
-- `accounting_interim_update` (String)
-- `accounting_on` (String)
-- `accounting_start` (String)
-- `accounting_stop` (String)
+- `accounting_interim_update` (String) 'ignore': Ignore (default); 'append-entry': Append the AVPs to existing entry; 'replace-entry': Replace the AVPs of existing entry;
+- `accounting_on` (String) 'ignore': Ignore (default); 'delete-entries-using-attribute': Delete entries matching attribute in RADIUS Table;
+- `accounting_start` (String) 'ignore': Ignore; 'append-entry': Append the AVPs to existing entry (default); 'replace-entry': Replace the AVPs of existing entry;
+- `accounting_stop` (String) 'ignore': Ignore; 'delete-entry': Delete the entry (default);
 - `attribute` (Block List) (see [below for nested schema](#nestedblock--attribute))
-- `attribute_name` (String)
-- `custom_attribute_name` (String)
-- `encrypted` (String)
-- `listen_port` (Number)
+- `attribute_name` (String) 'msisdn': Clear using MSISDN; 'imei': Clear using IMEI; 'imsi': Clear using IMSI;
+- `custom_attribute_name` (String) Clear using customized attribute
+- `listen_port` (Number) Configure the listen port of RADIUS server (Port number)
 - `remote` (Block List, Max: 1) (see [below for nested schema](#nestedblock--remote))
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `secret` (Number)
-- `secret_string` (String)
-- `uuid` (String)
-- `vrid` (Number)
+- `secret` (Number) Configure shared secret
+- `secret_string` (String) The RADIUS secret
+- `uuid` (String) uuid of the object
+- `vrid` (Number) Join a VRRP-A failover group
 
 ### Read-Only
 
@@ -66,16 +62,16 @@ resource "thunder_fw_radius_server" "test_thunder_fw_radius_server" {
 
 Optional:
 
-- `attribute_value` (String)
-- `custom_number` (Number)
-- `custom_vendor` (Number)
-- `name` (String)
-- `number` (Number)
-- `prefix_length` (String)
-- `prefix_number` (Number)
-- `prefix_vendor` (Number)
-- `value` (String)
-- `vendor` (Number)
+- `attribute_value` (String) 'inside-ipv6-prefix': Framed IPv6 Prefix; 'inside-ip': Inside IP address; 'inside-ipv6': Inside IPv6 address; 'imei': International Mobile Equipment Identity (IMEI); 'imsi': International Mobile Subscriber Identity (IMSI); 'msisdn': Mobile Subscriber Integrated Services Digital Network-Number (MSISDN); 'custom1': Customized attribute 1; 'custom2': Customized attribute 2; 'custom3': Customized attribute 3; 'custom4': Customized attribute 4; 'custom5': Customized attribute 5; 'custom6': Customized attribute 6;
+- `custom_number` (Number) RADIUS attribute number
+- `custom_vendor` (Number) RADIUS vendor attribute information (RADIUS vendor ID)
+- `name` (String) Customized attribute name
+- `number` (Number) RADIUS attribute number
+- `prefix_length` (String) '32': Prefix length 32; '48': Prefix length 48; '64': Prefix length 64; '80': Prefix length 80; '96': Prefix length 96; '112': Prefix length 112;
+- `prefix_number` (Number) RADIUS attribute number
+- `prefix_vendor` (Number) RADIUS vendor attribute information (RADIUS vendor ID)
+- `value` (String) 'hexadecimal': Type of attribute value is hexadecimal;
+- `vendor` (Number) RADIUS vendor attribute information (RADIUS vendor ID)
 
 
 <a id="nestedblock--remote"></a>
@@ -90,10 +86,9 @@ Optional:
 
 Optional:
 
-- `ip_list_encrypted` (String)
-- `ip_list_name` (String)
-- `ip_list_secret` (Number)
-- `ip_list_secret_string` (String)
+- `ip_list_name` (String) IP-list name
+- `ip_list_secret` (Number) Configure shared secret
+- `ip_list_secret_string` (String) The RADIUS secret
 
 
 
@@ -102,6 +97,6 @@ Optional:
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'msisdn-received': MSISDN Received; 'imei-received': IMEI Received; 'imsi-received': IMSI Received; 'custom-received': Custom attribute Received; 'radius-request-received': RADIUS Request Received; 'radius-request-dropped': RADIUS Request Dropped (Malformed Packet); 'request-bad-secret-dropped': RADIUS Request Bad Secret Dropped; 'request-no-key-vap-dropped': RADIUS Request No Key Attribute Dropped; 'request-malformed-dropped': RADIUS Request Malformed Dropped; 'request-ignored': RADIUS Request Table Full Dropped; 'radius-table-full': RADIUS Request Dropped (Table Full); 'secret-not-configured-dropped': RADIUS Secret Not Configured Dropped; 'ha-standby-dropped': HA Standby Dropped; 'ipv6-prefix-length-mismatch': Framed IPV6 Prefix Length Mismatch; 'invalid-key': Radius Request has Invalid Key Field; 'smp-mem-allocated': RADIUS SMP Memory Allocated; 'smp-mem-alloc-failed': RADIUS SMP Memory Allocation Failed; 'smp-mem-freed': RADIUS SMP Memory Freed; 'smp-created': RADIUS SMP Created; 'smp-in-rml': RADIUS SMP in RML; 'smp-deleted': RADIUS SMP Deleted; 'mem-allocated': RADIUS Memory Allocated; 'mem-alloc-failed': RADIUS Memory Allocation Failed; 'mem-freed': RADIUS Memory Freed; 'ha-sync-create-sent': HA Record Sync Create Sent; 'ha-sync-delete-sent': HA Record Sync Delete Sent; 'ha-sync-create-recv': HA Record Sync Create Received; 'ha-sync-delete-recv': HA Record Sync Delete Received; 'acct-on-filters-full': RADIUS Acct On Request Ignored(Filters Full); 'acct-on-dup-request': Duplicate RADIUS Acct On Request; 'ip-mismatch-delete': Radius Entry IP Mismatch Delete; 'ip-add-race-drop': Radius Entry IP Add Race Drop; 'ha-sync-no-key-vap-dropped': HA Record Sync No key dropped; 'inter-card-msg-fail-drop': Inter-Card Message Fail Drop; 'radius-packets-redirected': RADIUS packets redirected (SO); 'radius-packets-redirect-fail-dropped': RADIUS packets dropped due to redirect failure (SO); 'radius-packets-process-local': RADIUS packets processed locally without redirection (SO); 'radius-packets-dropped-not-lo': RADIUS packets dropped dest not loopback (SO); 'radius-inter-card-dup-redir': RADIUS packet dropped as redirected by other blade (SO);
 
 

@@ -3,12 +3,15 @@
 page_title: "thunder_slb_ssl_expire_check Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_ssl_expire_check: SSL certificate expiration check
+  PLACEHOLDER
 ---
 
 # thunder_slb_ssl_expire_check (Resource)
 
+`thunder_slb_ssl_expire_check`: SSL certificate expiration check
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -17,13 +20,6 @@ provider "thunder" {
   address  = var.dut9049
   username = var.username
   password = var.password
-}
-
-resource "thunder_slb_ssl_expire_check" "Slb_Ssl_Expire_Check_Exception" {
-  exception {
-    action           = "add"
-    certificate_name = "SLBCERT"
-  }
 }
 resource "thunder_slb_ssl_expire_check" "Slb_Ssl_Expire_Check_Email" {
   ssl_expire_email_address = "ssltest@a10networks.com"
@@ -38,12 +34,12 @@ resource "thunder_slb_ssl_expire_check" "Slb_Ssl_Expire_Check_Email" {
 
 ### Optional
 
-- `before` (Number)
+- `before` (Number) The number of days in advance notice before expiration, default is 5
 - `exception` (Block List, Max: 1) (see [below for nested schema](#nestedblock--exception))
-- `expire_address1` (String)
-- `interval_days` (Number)
-- `ssl_expire_email_address` (String)
-- `uuid` (String)
+- `expire_address1` (String) Email address for certificate expiration check
+- `interval_days` (Number) The interval of days notice after expiration, default is 2
+- `ssl_expire_email_address` (String) Config Email address for certificate expiration check
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -54,7 +50,7 @@ resource "thunder_slb_ssl_expire_check" "Slb_Ssl_Expire_Check_Email" {
 
 Optional:
 
-- `action` (String)
-- `certificate_name` (String)
+- `action` (String) 'add': Add an exception; 'delete': Delete an exception; 'clean': Delete all exception;
+- `certificate_name` (String) The certificate name
 
 

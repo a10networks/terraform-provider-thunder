@@ -14,12 +14,16 @@ func resourceCloudServicesCloudProviderAwsLog() *schema.Resource {
 		UpdateContext: resourceCloudServicesCloudProviderAwsLogUpdate,
 		ReadContext:   resourceCloudServicesCloudProviderAwsLogRead,
 		DeleteContext: resourceCloudServicesCloudProviderAwsLogDelete,
+
 		Schema: map[string]*schema.Schema{
 			"action": {
-				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable AWS Log Analytics; 'disable': Disable AWS Log Analytics(default);",
+				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable AWS CloudWatch; 'disable': Disable AWS CloudWatch (default);",
+			},
+			"active_partitions": {
+				Type: schema.TypeString, Optional: true, Description: "Specifies the thunder active partition name separated by a comma for multiple values",
 			},
 			"log_group_name": {
-				Type: schema.TypeString, Optional: true, Description: "AWS Log Analytics log group name",
+				Type: schema.TypeString, Optional: true, Description: "Specifies the log group name under which all logs are sent to AWS CloudWatch",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -27,7 +31,6 @@ func resourceCloudServicesCloudProviderAwsLog() *schema.Resource {
 		},
 	}
 }
-
 func resourceCloudServicesCloudProviderAwsLogCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -41,21 +44,6 @@ func resourceCloudServicesCloudProviderAwsLogCreate(ctx context.Context, d *sche
 			return diag.FromErr(err)
 		}
 		return resourceCloudServicesCloudProviderAwsLogRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceCloudServicesCloudProviderAwsLogRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceCloudServicesCloudProviderAwsLogRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointCloudServicesCloudProviderAwsLog(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -75,7 +63,6 @@ func resourceCloudServicesCloudProviderAwsLogUpdate(ctx context.Context, d *sche
 	}
 	return diags
 }
-
 func resourceCloudServicesCloudProviderAwsLogDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -91,9 +78,25 @@ func resourceCloudServicesCloudProviderAwsLogDelete(ctx context.Context, d *sche
 	return diags
 }
 
+func resourceCloudServicesCloudProviderAwsLogRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceCloudServicesCloudProviderAwsLogRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointCloudServicesCloudProviderAwsLog(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
 func dataToEndpointCloudServicesCloudProviderAwsLog(d *schema.ResourceData) edpt.CloudServicesCloudProviderAwsLog {
 	var ret edpt.CloudServicesCloudProviderAwsLog
 	ret.Inst.Action = d.Get("action").(string)
+	ret.Inst.ActivePartitions = d.Get("active_partitions").(string)
 	ret.Inst.LogGroupName = d.Get("log_group_name").(string)
 	//omit uuid
 	return ret

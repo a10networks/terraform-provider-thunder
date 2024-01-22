@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_diameter" "test_thunder_slb_template_diameter" {
   name                       = "testing_diameter"
   customize_cea              = 1
@@ -34,5 +33,4 @@ resource "thunder_slb_template_diameter" "test_thunder_slb_template_diameter" {
     origin_host_name = "test_host"
   }
   user_tag = "tet_user"
-
 }

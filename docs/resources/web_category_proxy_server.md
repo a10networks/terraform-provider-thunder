@@ -3,12 +3,15 @@
 page_title: "thunder_web_category_proxy_server Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_web_category_proxy_server: Commands to connect web-category through proxy server
+  PLACEHOLDER
 ---
 
 # thunder_web_category_proxy_server (Resource)
 
+`thunder_web_category_proxy_server`: Commands to connect web-category through proxy server
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_web_category_proxy_server" "resourceWebCategoryProxyServerTest" {
+resource "thunder_web_category_proxy_server" "thunderWebCategoryProxyServerTest" {
   proxy_host    = "192.168.50.10"
   http_port     = 80
   https_port    = 443
@@ -36,15 +38,15 @@ resource "thunder_web_category_proxy_server" "resourceWebCategoryProxyServerTest
 
 ### Optional
 
-- `auth_type` (String)
-- `domain` (String)
-- `http_port` (Number)
-- `https_port` (Number)
-- `password` (Number)
-- `proxy_host` (String)
-- `secret_string` (String)
-- `username` (String)
-- `uuid` (String)
+- `auth_type` (String) 'ntlm': NTLM authentication(default); 'basic': Basic authentication;
+- `domain` (String) Realm for NTLM authentication
+- `http_port` (Number) Proxy server HTTP port
+- `https_port` (Number) Proxy server HTTPS port(HTTP port will be used if not configured)
+- `password` (Number) Password for proxy authentication
+- `proxy_host` (String) Proxy server hostname or IP address
+- `secret_string` (String) password value
+- `username` (String) Username for proxy authentication
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

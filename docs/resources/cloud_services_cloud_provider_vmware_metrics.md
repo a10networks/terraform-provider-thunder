@@ -21,28 +21,25 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_cloud_services_cloud_provider_vmware_metrics" "test" {
-  action= "enable"
-  vrops_host= "enable"
-  vrops_username= "enable"
-  vrops_password= "enable"
-  resource_id= "enable"
-  adaptor_key= "enable"
-  cpu= "enable"
-  memory= "enable"
-  disk= "enable"
-  throughput= "enable"
-  interfaces= "enable"
-  cps= "enable"
-  tps= "enable"
-  server_down_count= "enable"
-  server_down_percentage= "enable"
-  ssl_cert= "enable"
-  server_error= "enable"
-  sessions= "enable"
-  packet_drop= "enable"
-  packet_rate= "enable"
+resource "thunder_cloud_services_cloud_provider_vmware_metrics" "thunder_cloud_services_cloud_provider_vmware_metrics" {
+  action                 = "disable"
+  active_partitions      = "238"
+  cps                    = "disable"
+  cpu                    = "disable"
+  disk                   = "disable"
+  interfaces             = "disable"
+  memory                 = "disable"
+  packet_drop            = "disable"
+  packet_rate            = "disable"
+  resource_id            = "103"
+  server_down_count      = "disable"
+  server_down_percentage = "disable"
+  server_error           = "disable"
+  sessions               = "disable"
+  ssl_cert               = "disable"
+  throughput             = "disable"
+  tps                    = "disable"
+  vrops_host             = "32"
 }
 ```
 
@@ -51,8 +48,8 @@ resource "thunder_cloud_services_cloud_provider_vmware_metrics" "test" {
 
 ### Optional
 
-- `action` (String) 'enable': Enable VMware Metrics Analytics; 'disable': Disable VMware Metrics Analytics(default);
-- `adaptor_key` (String) VMware Metrics Analytics Adaptor Key
+- `action` (String) 'enable': Enable VMware vRealize Operations Manager; 'disable': Disable VMware vRealize Operations Manager (default);
+- `active_partitions` (String) Specifies the thunder active partition name separated by a comma for multiple values
 - `cps` (String) 'enable': Enable CPS Metrics; 'disable': Disable CPS Metrics;
 - `cpu` (String) 'enable': Enable CPU Metrics; 'disable': Disable CPU Metrics;
 - `disk` (String) 'enable': Enable Disk Metrics; 'disable': Disable Disk Metrics;
@@ -60,7 +57,7 @@ resource "thunder_cloud_services_cloud_provider_vmware_metrics" "test" {
 - `memory` (String) 'enable': Enable Memory Metrics; 'disable': Disable Memory Metrics;
 - `packet_drop` (String) 'enable': Enable Packet Drop Metrics; 'disable': Disable Packet Drop Metrics;
 - `packet_rate` (String) 'enable': Enable Packet Rate Metrics; 'disable': Disable Packet Rate Metrics;
-- `resource_id` (String) vThunder Resource ID
+- `resource_id` (String) Specifies the compute instance resource ID on which thunder is deployed
 - `server_down_count` (String) 'enable': Enable Server Down Count Metrics; 'disable': Disable Server Down Count Metrics;
 - `server_down_percentage` (String) 'enable': Enable Server Down Percentage Metrics; 'disable': Disable Server Down Percentage Metrics;
 - `server_error` (String) 'enable': Enable Server Error Metrics; 'disable': Disable Server Error Metrics;
@@ -69,9 +66,7 @@ resource "thunder_cloud_services_cloud_provider_vmware_metrics" "test" {
 - `throughput` (String) 'enable': Enable Throughput Metrics; 'disable': Disable Throughput Metrics;
 - `tps` (String) 'enable': Enable TPS Metrics; 'disable': Disable TPS Metrics;
 - `uuid` (String) uuid of the object
-- `vrops_host` (String) VMware Metrics Analytics vrops-host
-- `vrops_password` (String) Azure Metrics Analytics VROPS Password
-- `vrops_username` (String) VMWARE Metrics Analytics VROPS Username
+- `vrops_host` (String) Specifies the VMware vROps host IP address
 
 ### Read-Only
 

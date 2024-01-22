@@ -3,9 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-
-resource "thunder_router_bgp_neighbor_ipv4_neighbor" "resourceRouterBgpNeighborIpv4NeighborTest" {
+resource "thunder_router_bgp_neighbor_ipv4_neighbor" "thunderRouterBgpNeighborIpv4NeighborTest" {
   as_number = "300"
   distribute_lists {
     distribute_list           = "BGPDistribute"

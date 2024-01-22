@@ -3,12 +3,15 @@
 page_title: "thunder_ipv6_route_static_bfd_bfd_ipv6 Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ipv6_route_static_bfd_bfd_ipv6: Bidirectional Forwarding Detection
+  PLACEHOLDER
 ---
 
 # thunder_ipv6_route_static_bfd_bfd_ipv6 (Resource)
 
+`thunder_ipv6_route_static_bfd_bfd_ipv6`: Bidirectional Forwarding Detection
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_ipv6_route_static_bfd_bfd_ipv6" "ipv6_1" {
   local_ipv6   = "fda1:2:3:4::1"
   nexthop_ipv6 = "fdb1::1"

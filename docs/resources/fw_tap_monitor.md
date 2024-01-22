@@ -3,12 +3,15 @@
 page_title: "thunder_fw_tap_monitor Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_tap_monitor: Configure tap monitor port
+  PLACEHOLDER
 ---
 
 # thunder_fw_tap_monitor (Resource)
 
+`thunder_fw_tap_monitor`: Configure tap monitor port
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,12 +21,11 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_tap_monitor" "test_thunder_fw_tap_monitor" {
   status = "enable"
   tap_port_cfg {
-      tap_eth = 2
-    }
+    tap_eth = 2
+  }
 }
 ```
 
@@ -32,9 +34,9 @@ resource "thunder_fw_tap_monitor" "test_thunder_fw_tap_monitor" {
 
 ### Optional
 
-- `status` (String)
+- `status` (String) 'enable': Enable tap monitor mode; 'disable': Disable tap monitor mode (Default:Disable);
 - `tap_port_cfg` (Block List) (see [below for nested schema](#nestedblock--tap_port_cfg))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -45,7 +47,7 @@ resource "thunder_fw_tap_monitor" "test_thunder_fw_tap_monitor" {
 
 Optional:
 
-- `tap_eth` (Number)
-- `tap_vlan` (Number)
+- `tap_eth` (Number) Ethernet interface number
+- `tap_vlan` (Number) Vlan number
 
 

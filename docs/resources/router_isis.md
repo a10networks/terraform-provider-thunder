@@ -4,11 +4,14 @@ page_title: "thunder_router_isis Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
   thunder_router_isis: Intermediate System - Intermediate System (IS-IS)
+  PLACEHOLDER
 ---
 
 # thunder_router_isis (Resource)
 
 `thunder_router_isis`: Intermediate System - Intermediate System (IS-IS)
+
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,16 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-provider "thunder" {
-  alias     = "L3V_A"
-  address   = var.dut9049
-  username  = var.username
-  password  = var.password
-  partition = var.l3v_1
-}
-
-resource "thunder_router_isis" "test00" {
+resource "thunder_router_isis" "thunder_router_isis" {
   tag                  = "TeSt"
   adjacency_check      = 1
   ignore_lsp_errors    = 0
@@ -51,11 +45,6 @@ resource "thunder_router_isis" "test00" {
       }
     }
   }
-}
-
-resource "thunder_router_isis" "test02" {
-  provider = thunder.L3V_A
-  tag      = "TeSt2"
 }
 ```
 
@@ -348,7 +337,7 @@ Optional:
 Optional:
 
 - `ethernet` (Number) Ethernet interface (Port number)
-- `lif` (Number) Logical interface (Lif interface number)
+- `lif` (String) Logical interface (Lif interface name)
 - `loopback` (Number) Loopback interface (Port number)
 - `trunk` (Number) Trunk interface (Trunk interface number)
 - `tunnel` (Number) Tunnel interface (Tunnel interface number)

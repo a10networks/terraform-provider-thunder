@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_reqmod_icap" "test_thunder_slb_template_reqmod_icap" {
   name                      = "test_reqmod"
   allowed_http_methods      = "POST"

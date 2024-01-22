@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_web_category_statistics" "resourceWebCategoryStatisticsTest" {
+resource "thunder_web_category_statistics" "thunderWebCategoryStatisticsTest" {
   sampling_enable {
     counters1 = "all"
   }

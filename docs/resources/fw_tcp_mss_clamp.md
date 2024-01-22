@@ -3,12 +3,15 @@
 page_title: "thunder_fw_tcp_mss_clamp Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_tcp_mss_clamp: FW TCP MSS Clamping
+  PLACEHOLDER
 ---
 
 # thunder_fw_tcp_mss_clamp (Resource)
 
+`thunder_fw_tcp_mss_clamp`: FW TCP MSS Clamping
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,10 +21,9 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_tcp_mss_clamp" "test_thunder_fw_tcp_mss_clamp" {
   mss_clamp_type = "subtract"
-  mss_subtract = 3
+  mss_subtract   = 3
 }
 ```
 
@@ -30,11 +32,11 @@ resource "thunder_fw_tcp_mss_clamp" "test_thunder_fw_tcp_mss_clamp" {
 
 ### Optional
 
-- `min` (Number)
-- `mss_clamp_type` (String)
-- `mss_subtract` (Number)
-- `mss_value` (Number)
-- `uuid` (String)
+- `min` (Number) Specify the min value allowed for the TCP MSS (Specify the min value allowed for the TCP MSS (default: ((576 - 60 - 60))))
+- `mss_clamp_type` (String) 'fixed': Specify a fixed max value for the TCP MSS; 'subtract': Specify the value to subtract from the TCP MSS;
+- `mss_subtract` (Number) Specify the value to subtract from the TCP MSS (default: not configured)
+- `mss_value` (Number) The max value allowed for the TCP MSS (default: not configured)}
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

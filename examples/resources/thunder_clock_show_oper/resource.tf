@@ -3,10 +3,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-data "thunder_clock_show_oper" "test"{
+data "thunder_clock_show_oper" "thunder_clock_show_oper" {
 }
-
-output "testing" {
-  value = ["${data.thunder_clock_show_oper.test}"]
+output "get_clock_show_oper" {
+  value = ["${data.thunder_clock_show_oper.thunder_clock_show_oper}"]
 }

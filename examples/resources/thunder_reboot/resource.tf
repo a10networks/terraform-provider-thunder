@@ -1,13 +1,10 @@
-
-
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_reboot"   "Reboot"  {
-    
-    all = 1
-  
-  }
-  
+resource "thunder_reboot" "Reboot" {
+
+  all = 1
+
+}

@@ -3,7 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
+resource "thunder_ntp_trusted_key" "thunder_ntp_trusted_key" {
 
-resource "thunder_ntp_trusted_key" "resourceNtpTrustedKeyTest" {
-  key = 2
+  key = 47878
 }

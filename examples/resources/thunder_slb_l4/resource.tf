@@ -3,10 +3,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_l4" "test_thunder_slb_l4" {
+resource "thunder_slb_l4" "thunder_slb_l4" {
   sampling_enable {
     counters1 = "all"
   }
 }
-

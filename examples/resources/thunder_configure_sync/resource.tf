@@ -1,17 +1,15 @@
-
-
-provider  thunder  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource thunder_configure_sync "ConfigSync"{
-    type =  "running"
-    all_partitions =  0
-    shared =  1
-    partition_name =  "shared"
-    address =  "10.64.3.183"
-    auto_authentication =  1
-    usr =  "admin"
-    pwd =  "a10023"
+resource "thunder_configure_sync" "thunder_configure_sync" {
+  address             = "10.64.3.185"
+  all_partitions      = 1
+  auto_authentication = 1
+  private_key         = "87"
+  pwd                 = "a10"
+  shared              = 0
+  type                = "running"
+  usr                 = "admin"
 }

@@ -10,10 +10,8 @@ import (
 func resourceSystemThroughputStats() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_system_throughput_stats`: Statistics for the object throughput\n\n__PLACEHOLDER__",
-		// CreateContext: resourceSystemThroughputStatsCreate,
-		// UpdateContext: resourceSystemThroughputStatsUpdate,
 		ReadContext: resourceSystemThroughputStatsRead,
-		// DeleteContext: resourceSystemThroughputStatsDelete,
+
 		Schema: map[string]*schema.Schema{
 			"stats": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -40,10 +38,10 @@ func resourceSystemThroughputStatsRead(ctx context.Context, d *schema.ResourceDa
 	if client.Host != "" {
 		obj := dataToEndpointSystemThroughputStats(d)
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		items := setObjectSystemThroughputStatsStats(res)
 		d.SetId(obj.GetId())
-		d.Set("stats", items)
-
+		logger.Println(res)
+		SystemThroughputStatsStats := setObjectSystemThroughputStatsStats(res)
+		d.Set("stats", SystemThroughputStatsStats)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -51,19 +49,20 @@ func resourceSystemThroughputStatsRead(ctx context.Context, d *schema.ResourceDa
 	return diags
 }
 
-func setObjectSystemThroughputStatsStats(res edpt.SystemThroughputt) []interface{} {
+func setObjectSystemThroughputStatsStats(ret edpt.DataSystemThroughputStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"global_system_throughput_bits_per_sec": res.Throughput.Stats.GlobalSystemThroughputBitsPerSec,
-			"per_part_throughput_bits_per_sec":      res.Throughput.Stats.PerPartThroughputBitsPerSec,
+			"global_system_throughput_bits_per_sec": ret.DtSystemThroughputStats.Stats.GlobalSystemThroughputBitsPerSec,
+			"per_part_throughput_bits_per_sec":      ret.DtSystemThroughputStats.Stats.PerPartThroughputBitsPerSec,
 		},
 	}
 }
 
 func getObjectSystemThroughputStatsStats(d []interface{}) edpt.SystemThroughputStatsStats {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SystemThroughputStatsStats
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.GlobalSystemThroughputBitsPerSec = in["global_system_throughput_bits_per_sec"].(int)
 		ret.PerPartThroughputBitsPerSec = in["per_part_throughput_bits_per_sec"].(int)
@@ -73,6 +72,7 @@ func getObjectSystemThroughputStatsStats(d []interface{}) edpt.SystemThroughputS
 
 func dataToEndpointSystemThroughputStats(d *schema.ResourceData) edpt.SystemThroughputStats {
 	var ret edpt.SystemThroughputStats
+
 	ret.Stats = getObjectSystemThroughputStatsStats(d.Get("stats").([]interface{}))
 	return ret
 }

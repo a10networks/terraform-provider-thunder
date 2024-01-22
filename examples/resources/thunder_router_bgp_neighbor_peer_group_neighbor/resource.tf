@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_router_bgp_neighbor_peer_group_neighbor" "BgpNeighborPeerGroupNei" {
   as_number                  = "300"
   peer_group                 = "A10"

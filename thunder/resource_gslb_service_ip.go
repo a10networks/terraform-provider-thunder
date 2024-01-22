@@ -14,6 +14,7 @@ func resourceGslbServiceIp() *schema.Resource {
 		UpdateContext: resourceGslbServiceIpUpdate,
 		ReadContext:   resourceGslbServiceIpRead,
 		DeleteContext: resourceGslbServiceIpDelete,
+
 		Schema: map[string]*schema.Schema{
 			"action": {
 				Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable this GSLB server; 'disable': Disable this GSLB server;",
@@ -40,7 +41,7 @@ func resourceGslbServiceIp() *schema.Resource {
 				Type: schema.TypeString, Optional: true, Description: "IPV6 address",
 			},
 			"node_name": {
-				Type: schema.TypeString, Required: true, ForceNew: true, Description: "Service-IP Name",
+				Type: schema.TypeString, Required: true, Description: "Service-IP Name",
 			},
 			"port_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
@@ -108,7 +109,6 @@ func resourceGslbServiceIp() *schema.Resource {
 		},
 	}
 }
-
 func resourceGslbServiceIpCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -122,21 +122,6 @@ func resourceGslbServiceIpCreate(ctx context.Context, d *schema.ResourceData, me
 			return diag.FromErr(err)
 		}
 		return resourceGslbServiceIpRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceGslbServiceIpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceGslbServiceIpRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointGslbServiceIp(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -156,7 +141,6 @@ func resourceGslbServiceIpUpdate(ctx context.Context, d *schema.ResourceData, me
 	}
 	return diags
 }
-
 func resourceGslbServiceIpDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -172,9 +156,25 @@ func resourceGslbServiceIpDelete(ctx context.Context, d *schema.ResourceData, me
 	return diags
 }
 
+func resourceGslbServiceIpRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceGslbServiceIpRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointGslbServiceIp(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
 func getSliceGslbServiceIpPortList(d []interface{}) []edpt.GslbServiceIpPortList {
-	count := len(d)
-	ret := make([]edpt.GslbServiceIpPortList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbServiceIpPortList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbServiceIpPortList
@@ -195,8 +195,9 @@ func getSliceGslbServiceIpPortList(d []interface{}) []edpt.GslbServiceIpPortList
 }
 
 func getSliceGslbServiceIpPortListSamplingEnable(d []interface{}) []edpt.GslbServiceIpPortListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbServiceIpPortListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbServiceIpPortListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbServiceIpPortListSamplingEnable
@@ -207,8 +208,9 @@ func getSliceGslbServiceIpPortListSamplingEnable(d []interface{}) []edpt.GslbSer
 }
 
 func getSliceGslbServiceIpSamplingEnable(d []interface{}) []edpt.GslbServiceIpSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbServiceIpSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbServiceIpSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbServiceIpSamplingEnable

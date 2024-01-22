@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_logging" "test_thunder_slb_template_logging" {
   name          = "test_logs"
   format        = "test.com"

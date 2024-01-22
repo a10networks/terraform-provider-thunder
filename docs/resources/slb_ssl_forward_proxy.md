@@ -3,12 +3,15 @@
 page_title: "thunder_slb_ssl_forward_proxy Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_ssl_forward_proxy: SSL forward proxy stats info
+  PLACEHOLDER
 ---
 
 # thunder_slb_ssl_forward_proxy (Resource)
 
+`thunder_slb_ssl_forward_proxy`: SSL forward proxy stats info
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_ssl_forward_proxy" "test_thunder_slb_ssl_forward_proxy" {
+resource "thunder_slb_ssl_forward_proxy" "thunder_slb_ssl_forward_proxy" {
   sampling_enable {
     counters1 = "all"
   }
@@ -32,6 +34,7 @@ resource "thunder_slb_ssl_forward_proxy" "test_thunder_slb_ssl_forward_proxy" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -42,6 +45,6 @@ resource "thunder_slb_ssl_forward_proxy" "test_thunder_slb_ssl_forward_proxy" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'cert_create': Certificates created; 'cert_expr': Certificates expired; 'cert_hit': Certificate cache hits; 'cert_miss': Certificate cache miss; 'conn_bypass': Connections bypassed; 'conn_inspect': Connections inspected; 'bypass-failsafe-ssl-sessions': Bypass Failsafe SSL sessions; 'bypass-sni-sessions': Bypass SNI sessions; 'bypass-client-auth-sessions': Bypass Client Auth sessions; 'failed-in-ssl-handshakes': Failed in SSL handshakes; 'failed-in-crypto-operations': Failed in crypto operations; 'failed-in-tcp': Failed in TCP; 'failed-in-certificate-verification': Failed in Certificate verification; 'failed-in-certificate-signing': Failed in Certificate signing; 'invalid-ocsp-stapling-response': Invalid OCSP Stapling Response; 'revoked-ocsp-response': Revoked OCSP Response; 'unsupported-ssl-version': Unsupported SSL version; 'certificates-in-cache': Certificates in cache; 'connections-failed': Connections failed; 'aflex-bypass': Bypass triggered by aFleX; 'bypass-cert-subject-sessions': Bypass Cert Subject sessions; 'bypass-cert-issuer-sessions': Bypass Cert issuer sessions; 'bypass-cert-san-sessions': Bypass Cert SAN sessions; 'bypass-no-sni-sessions': Bypass NO SNI sessions; 'reset-no-sni-sessions': Reset No SNI sessions; 'bypass-esni-sessions': Bypass ESNI sessions; 'drop-esni-sessions': Drop ESNI sessions; 'bypass-username-sessions': Bypass Username sessions; 'bypass-ad-group-sessions': Bypass AD-group sessions; 'tot_conn_in_buff': Total buffered async connections; 'curr_conn_in_buff': Current buffered async connections; 'async_conn_timeout': SSLi Async connections failures due to timeout; 'async_conn_limit_drop': SSLi Async connections failures due to limit; 'cert_in_cache': Certificates in cache used by HC SSLi App; 'bypass-client-ip-sessions': Bypass Client IP sessions; 'bypass-server-ip-sessions': Bypass Server IP sessions;
 
 

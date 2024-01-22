@@ -3,12 +3,15 @@
 page_title: "thunder_slb_aflow Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_aflow: Configure aFlow
+  PLACEHOLDER
 ---
 
 # thunder_slb_aflow (Resource)
 
+`thunder_slb_aflow`: Configure aFlow
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_aflow" "test_thunder_slb_aflow" {
   sampling_enable {
     counters1 = "all"
@@ -32,7 +34,7 @@ resource "thunder_slb_aflow" "test_thunder_slb_aflow" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,6 @@ resource "thunder_slb_aflow" "test_thunder_slb_aflow" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'pause_conn': Pause connection; 'pause_conn_fail': Pause connection fail; 'resume_conn': Resume connection; 'event_resume_conn': Resume conn by event; 'timer_resume_conn': Resume conn by timer; 'try_to_resume_conn': Resume conn by trying; 'retry_resume_conn': Resume conn by retry; 'error_resume_conn': Resume conn by error; 'open_new_server_conn': Open new server conn; 'reuse_server_idle_conn': Reuse idle server conn; 'inc_aflow_limit': Inc aFlow limit;
 
 

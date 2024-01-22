@@ -3,12 +3,15 @@
 page_title: "thunder_slb_crl_srcip Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_crl_srcip: Configure connection rate limit
+  PLACEHOLDER
 ---
 
 # thunder_slb_crl_srcip (Resource)
 
+`thunder_slb_crl_srcip`: Configure connection rate limit
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_crl_srcip" "test_thunder_slb_crl_srcip" {
   sampling_enable {
     counters1 = "all"
@@ -32,7 +34,7 @@ resource "thunder_slb_crl_srcip" "test_thunder_slb_crl_srcip" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,6 @@ resource "thunder_slb_crl_srcip" "test_thunder_slb_crl_srcip" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'sessions_alloc': Sessions allocated; 'sessions_freed': Sessions freed; 'out_of_sessions': Out of sessions; 'too_many_sessions': Too many sessions consumed; 'called': Threshold check count; 'permitted': Honor threshold  count; 'threshold_exceed': Threshold exceeded count; 'lockout_drop': Lockout drops; 'log_msg_sent': Log messages sent;
 
 

@@ -14,6 +14,7 @@ func resourceGslbSite() *schema.Resource {
 		UpdateContext: resourceGslbSiteUpdate,
 		ReadContext:   resourceGslbSiteRead,
 		DeleteContext: resourceGslbSiteDelete,
+
 		Schema: map[string]*schema.Schema{
 			"active_rdt": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -134,7 +135,7 @@ func resourceGslbSite() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify GSLB Protocol aging time",
 			},
 			"site_name": {
-				Type: schema.TypeString, Required: true, ForceNew: true, Description: "Specify GSLB site name",
+				Type: schema.TypeString, Required: true, Description: "Specify GSLB site name",
 			},
 			"slb_dev_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
@@ -148,6 +149,12 @@ func resourceGslbSite() *schema.Resource {
 						},
 						"ipv6_address": {
 							Type: schema.TypeString, Optional: true, Description: "IPv6 address",
+						},
+						"domain": {
+							Type: schema.TypeString, Optional: true, Description: "Device hostname",
+						},
+						"dev_resolve_as": {
+							Type: schema.TypeString, Optional: true, Default: "resolve-to-ipv4", Description: "'resolve-to-ipv4': Use A Query only to resolve FQDN (Default Query type); 'resolve-to-ipv6': Use AAAA Query only to resolve FQDN; 'resolve-to-ipv4-and-ipv6': Use A as well as AAAA Query to resolve FQDN;",
 						},
 						"admin_preference": {
 							Type: schema.TypeInt, Optional: true, Default: 100, Description: "Specify administrative preference (Specify admin-preference value,default is 100)",
@@ -222,7 +229,7 @@ func resourceGslbSite() *schema.Resource {
 													Elem: &schema.Resource{
 														Schema: map[string]*schema.Schema{
 															"counters1": {
-																Type: schema.TypeString, Optional: true, Description: "'all': all; 'dev_vip_hits': Number of times the service-ip was selected;",
+																Type: schema.TypeString, Optional: true, Description: "'all': all; 'dev_vip_hits': Number of times the service-ip was selected; 'dev_vip_recent': Recent hits;",
 															},
 														},
 													},
@@ -245,7 +252,7 @@ func resourceGslbSite() *schema.Resource {
 													Elem: &schema.Resource{
 														Schema: map[string]*schema.Schema{
 															"counters1": {
-																Type: schema.TypeString, Optional: true, Description: "'all': all; 'dev_vip_hits': Number of times the service-ip was selected;",
+																Type: schema.TypeString, Optional: true, Description: "'all': all; 'dev_vip_hits': Number of times the service-ip was selected; 'dev_vip_recent': Recent hits;",
 															},
 														},
 													},
@@ -268,7 +275,7 @@ func resourceGslbSite() *schema.Resource {
 													Elem: &schema.Resource{
 														Schema: map[string]*schema.Schema{
 															"counters1": {
-																Type: schema.TypeString, Optional: true, Description: "'all': all; 'dev_vip_hits': Number of times the service-ip was selected;",
+																Type: schema.TypeString, Optional: true, Description: "'all': all; 'dev_vip_hits': Number of times the service-ip was selected; 'dev_vip_recent': Recent hits;",
 															},
 														},
 													},
@@ -300,7 +307,6 @@ func resourceGslbSite() *schema.Resource {
 		},
 	}
 }
-
 func resourceGslbSiteCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -314,21 +320,6 @@ func resourceGslbSiteCreate(ctx context.Context, d *schema.ResourceData, meta in
 			return diag.FromErr(err)
 		}
 		return resourceGslbSiteRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceGslbSiteRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceGslbSiteRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointGslbSite(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -348,7 +339,6 @@ func resourceGslbSiteUpdate(ctx context.Context, d *schema.ResourceData, meta in
 	}
 	return diags
 }
-
 func resourceGslbSiteDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -364,10 +354,26 @@ func resourceGslbSiteDelete(ctx context.Context, d *schema.ResourceData, meta in
 	return diags
 }
 
-func getObjectGslbSiteActiveRdt(d []interface{}) edpt.GslbSiteActiveRdt {
-	count := len(d)
-	var ret edpt.GslbSiteActiveRdt
-	if count > 0 {
+func resourceGslbSiteRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceGslbSiteRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointGslbSite(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
+func getObjectGslbSiteActiveRdt397(d []interface{}) edpt.GslbSiteActiveRdt397 {
+
+	count1 := len(d)
+	var ret edpt.GslbSiteActiveRdt397
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AgingTime = in["aging_time"].(int)
 		ret.SmoothFactor = in["smooth_factor"].(int)
@@ -383,10 +389,11 @@ func getObjectGslbSiteActiveRdt(d []interface{}) edpt.GslbSiteActiveRdt {
 	return ret
 }
 
-func getObjectGslbSiteEasyRdt(d []interface{}) edpt.GslbSiteEasyRdt {
-	count := len(d)
-	var ret edpt.GslbSiteEasyRdt
-	if count > 0 {
+func getObjectGslbSiteEasyRdt398(d []interface{}) edpt.GslbSiteEasyRdt398 {
+
+	count1 := len(d)
+	var ret edpt.GslbSiteEasyRdt398
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AgingTime = in["aging_time"].(int)
 		ret.SmoothFactor = in["smooth_factor"].(int)
@@ -403,8 +410,9 @@ func getObjectGslbSiteEasyRdt(d []interface{}) edpt.GslbSiteEasyRdt {
 }
 
 func getSliceGslbSiteIpServerList(d []interface{}) []edpt.GslbSiteIpServerList {
-	count := len(d)
-	ret := make([]edpt.GslbSiteIpServerList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteIpServerList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbSiteIpServerList
@@ -416,8 +424,9 @@ func getSliceGslbSiteIpServerList(d []interface{}) []edpt.GslbSiteIpServerList {
 }
 
 func getSliceGslbSiteMultipleGeoLocations(d []interface{}) []edpt.GslbSiteMultipleGeoLocations {
-	count := len(d)
-	ret := make([]edpt.GslbSiteMultipleGeoLocations, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteMultipleGeoLocations, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbSiteMultipleGeoLocations
@@ -428,14 +437,17 @@ func getSliceGslbSiteMultipleGeoLocations(d []interface{}) []edpt.GslbSiteMultip
 }
 
 func getSliceGslbSiteSlbDevList(d []interface{}) []edpt.GslbSiteSlbDevList {
-	count := len(d)
-	ret := make([]edpt.GslbSiteSlbDevList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteSlbDevList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbSiteSlbDevList
 		oi.DeviceName = in["device_name"].(string)
 		oi.IpAddress = in["ip_address"].(string)
 		oi.Ipv6Address = in["ipv6_address"].(string)
+		oi.Domain = in["domain"].(string)
+		oi.DevResolveAs = in["dev_resolve_as"].(string)
 		oi.AdminPreference = in["admin_preference"].(int)
 		oi.SessionNumber = in["session_number"].(int)
 		oi.SessionUtilization = in["session_utilization"].(int)
@@ -461,9 +473,10 @@ func getSliceGslbSiteSlbDevList(d []interface{}) []edpt.GslbSiteSlbDevList {
 }
 
 func getObjectGslbSiteSlbDevListVipServer(d []interface{}) edpt.GslbSiteSlbDevListVipServer {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.GslbSiteSlbDevListVipServer
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.VipServerV4List = getSliceGslbSiteSlbDevListVipServerVipServerV4List(in["vip_server_v4_list"].([]interface{}))
 		ret.VipServerV6List = getSliceGslbSiteSlbDevListVipServerVipServerV6List(in["vip_server_v6_list"].([]interface{}))
@@ -473,8 +486,9 @@ func getObjectGslbSiteSlbDevListVipServer(d []interface{}) edpt.GslbSiteSlbDevLi
 }
 
 func getSliceGslbSiteSlbDevListVipServerVipServerV4List(d []interface{}) []edpt.GslbSiteSlbDevListVipServerVipServerV4List {
-	count := len(d)
-	ret := make([]edpt.GslbSiteSlbDevListVipServerVipServerV4List, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteSlbDevListVipServerVipServerV4List, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbSiteSlbDevListVipServerVipServerV4List
@@ -487,8 +501,9 @@ func getSliceGslbSiteSlbDevListVipServerVipServerV4List(d []interface{}) []edpt.
 }
 
 func getSliceGslbSiteSlbDevListVipServerVipServerV4ListSamplingEnable(d []interface{}) []edpt.GslbSiteSlbDevListVipServerVipServerV4ListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbSiteSlbDevListVipServerVipServerV4ListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteSlbDevListVipServerVipServerV4ListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbSiteSlbDevListVipServerVipServerV4ListSamplingEnable
@@ -499,8 +514,9 @@ func getSliceGslbSiteSlbDevListVipServerVipServerV4ListSamplingEnable(d []interf
 }
 
 func getSliceGslbSiteSlbDevListVipServerVipServerV6List(d []interface{}) []edpt.GslbSiteSlbDevListVipServerVipServerV6List {
-	count := len(d)
-	ret := make([]edpt.GslbSiteSlbDevListVipServerVipServerV6List, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteSlbDevListVipServerVipServerV6List, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbSiteSlbDevListVipServerVipServerV6List
@@ -513,8 +529,9 @@ func getSliceGslbSiteSlbDevListVipServerVipServerV6List(d []interface{}) []edpt.
 }
 
 func getSliceGslbSiteSlbDevListVipServerVipServerV6ListSamplingEnable(d []interface{}) []edpt.GslbSiteSlbDevListVipServerVipServerV6ListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbSiteSlbDevListVipServerVipServerV6ListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteSlbDevListVipServerVipServerV6ListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbSiteSlbDevListVipServerVipServerV6ListSamplingEnable
@@ -525,8 +542,9 @@ func getSliceGslbSiteSlbDevListVipServerVipServerV6ListSamplingEnable(d []interf
 }
 
 func getSliceGslbSiteSlbDevListVipServerVipServerNameList(d []interface{}) []edpt.GslbSiteSlbDevListVipServerVipServerNameList {
-	count := len(d)
-	ret := make([]edpt.GslbSiteSlbDevListVipServerVipServerNameList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteSlbDevListVipServerVipServerNameList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbSiteSlbDevListVipServerVipServerNameList
@@ -539,8 +557,9 @@ func getSliceGslbSiteSlbDevListVipServerVipServerNameList(d []interface{}) []edp
 }
 
 func getSliceGslbSiteSlbDevListVipServerVipServerNameListSamplingEnable(d []interface{}) []edpt.GslbSiteSlbDevListVipServerVipServerNameListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbSiteSlbDevListVipServerVipServerNameListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteSlbDevListVipServerVipServerNameListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbSiteSlbDevListVipServerVipServerNameListSamplingEnable
@@ -552,12 +571,12 @@ func getSliceGslbSiteSlbDevListVipServerVipServerNameListSamplingEnable(d []inte
 
 func dataToEndpointGslbSite(d *schema.ResourceData) edpt.GslbSite {
 	var ret edpt.GslbSite
-	ret.Inst.ActiveRdt = getObjectGslbSiteActiveRdt(d.Get("active_rdt").([]interface{}))
+	ret.Inst.ActiveRdt = getObjectGslbSiteActiveRdt397(d.Get("active_rdt").([]interface{}))
 	ret.Inst.AutoMap = d.Get("auto_map").(int)
 	ret.Inst.BwCost = d.Get("bw_cost").(int)
 	ret.Inst.Controller = d.Get("controller").(string)
 	ret.Inst.Disable = d.Get("disable").(int)
-	ret.Inst.EasyRdt = getObjectGslbSiteEasyRdt(d.Get("easy_rdt").([]interface{}))
+	ret.Inst.EasyRdt = getObjectGslbSiteEasyRdt398(d.Get("easy_rdt").([]interface{}))
 	ret.Inst.IpServerList = getSliceGslbSiteIpServerList(d.Get("ip_server_list").([]interface{}))
 	ret.Inst.Limit = d.Get("limit").(int)
 	ret.Inst.MultipleGeoLocations = getSliceGslbSiteMultipleGeoLocations(d.Get("multiple_geo_locations").([]interface{}))

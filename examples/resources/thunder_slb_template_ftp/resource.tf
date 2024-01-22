@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_ftp" "test_thunder_slb_template_ftp" {
   name                 = "test_ftp"
   active_mode_port     = 1

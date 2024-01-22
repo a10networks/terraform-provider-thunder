@@ -3,12 +3,15 @@
 page_title: "thunder_system_ve_mac_scheme Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_system_ve_mac_scheme: VE MAC allocation scheme
+  PLACEHOLDER
 ---
 
 # thunder_system_ve_mac_scheme (Resource)
 
+`thunder_system_ve_mac_scheme`: VE MAC allocation scheme
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_system_ve_mac_scheme" "resourceSystemVeMacSchemeTest" {
+resource "thunder_system_ve_mac_scheme" "thunderSystemVeMacSchemeTest" {
   ve_mac_scheme_val = "round-robin"
 }
 ```

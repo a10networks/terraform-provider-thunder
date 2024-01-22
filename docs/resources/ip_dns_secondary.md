@@ -3,12 +3,15 @@
 page_title: "thunder_ip_dns_secondary Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ip_dns_secondary: Secondary DNS server
+  PLACEHOLDER
 ---
 
 # thunder_ip_dns_secondary (Resource)
 
+`thunder_ip_dns_secondary`: Secondary DNS server
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,8 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
+resource "thunder_ip_dns_secondary" "thunder_ip_dns_secondary" {
 
-resource "thunder_ip_dns_secondary" "dnsPSecondary" {
   ip_v4_addr = "9.9.9.9"
 }
 ```
@@ -29,9 +32,9 @@ resource "thunder_ip_dns_secondary" "dnsPSecondary" {
 
 ### Optional
 
-- `ip_v4_addr` (String)
-- `ip_v6_addr` (String)
-- `uuid` (String)
+- `ip_v4_addr` (String) DNS server address
+- `ip_v6_addr` (String) DNS server address
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

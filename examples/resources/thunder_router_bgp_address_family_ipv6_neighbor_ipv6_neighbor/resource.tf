@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_router_bgp_address_family_ipv6_neighbor_ipv6_neighbor" "AFIpv6NeighborIpv6NeighborTest" {
   as_number         = "300"
   neighbor_ipv6     = "2222::1"

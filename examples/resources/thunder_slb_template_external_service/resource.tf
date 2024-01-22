@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_external_service" "test_thunder_slb_template_external_service" {
   name = "ext_svc"
   type = "url-filter"

@@ -3,23 +3,26 @@
 page_title: "thunder_snmp_server_enable_traps_network Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_enable_traps_network: Enable network group traps
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_enable_traps_network (Resource)
 
+`thunder_snmp_server_enable_traps_network`: Enable network group traps
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_network"  "SnMPServerEnableTrapsNetworks"  { 
-       trunk_port_threshold = 1
+resource "thunder_snmp_server_enable_traps_network" "thunder_snmp_server_enable_traps_network" {
+  trunk_port_threshold = 0
 }
 ```
 
@@ -28,8 +31,8 @@ resource  "thunder_snmp_server_enable_traps_network"  "SnMPServerEnableTrapsNetw
 
 ### Optional
 
-- `trunk_port_threshold` (Number)
-- `uuid` (String)
+- `trunk_port_threshold` (Number) Enable network trunk-port-threshold trap
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

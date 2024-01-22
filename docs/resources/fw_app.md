@@ -3,12 +3,15 @@
 page_title: "thunder_fw_app Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_fw_app: Show application firewall supported protocols
+  PLACEHOLDER
 ---
 
 # thunder_fw_app (Resource)
 
+`thunder_fw_app`: Show application firewall supported protocols
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_fw_app" "test_thunder_fw_app" {
   sampling_enable {
     counters1 = "all"
@@ -32,7 +34,7 @@ resource "thunder_fw_app" "test_thunder_fw_app" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,6 @@ resource "thunder_fw_app" "test_thunder_fw_app" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'dummy': Entry for a10countergen;
 
 

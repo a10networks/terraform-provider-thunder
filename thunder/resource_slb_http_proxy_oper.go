@@ -10,7 +10,6 @@ import (
 func resourceSlbHttpProxyOper() *schema.Resource {
 	return &schema.Resource{
 		Description: "`thunder_slb_http_proxy_oper`: Operational Status for the object http-proxy\n\n__PLACEHOLDER__",
-
 		ReadContext: resourceSlbHttpProxyOperRead,
 
 		Schema: map[string]*schema.Schema{
@@ -1006,25 +1005,19 @@ func resourceSlbHttpProxyOper() *schema.Resource {
 									"header_filter_rule_hit": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
-									"current_stream": {
-										Type: schema.TypeInt, Optional: true, Description: "",
-									},
-									"stream_create": {
-										Type: schema.TypeInt, Optional: true, Description: "",
-									},
-									"stream_free": {
-										Type: schema.TypeInt, Optional: true, Description: "",
-									},
-									"end_stream_rcvd": {
-										Type: schema.TypeInt, Optional: true, Description: "",
-									},
-									"end_stream_sent": {
-										Type: schema.TypeInt, Optional: true, Description: "",
-									},
 									"http1_client_idle_timeout": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 									"http2_client_idle_timeout": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"http_disallowed_methods": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"http_allowed_methods": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"req_http11_new_proxy": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 								},
@@ -1051,10 +1044,10 @@ func resourceSlbHttpProxyOperRead(ctx context.Context, d *schema.ResourceData, m
 	if client.Host != "" {
 		obj := dataToEndpointSlbHttpProxyOper(d)
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		items := setObjectSlbHttpProxyOperOper(res)
 		d.SetId(obj.GetId())
-		d.Set("oper", items)
-
+		logger.Println(res)
+		SlbHttpProxyOperOper := setObjectSlbHttpProxyOperOper(res)
+		d.Set("oper", SlbHttpProxyOperOper)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -1062,14 +1055,14 @@ func resourceSlbHttpProxyOperRead(ctx context.Context, d *schema.ResourceData, m
 	return diags
 }
 
-func setObjectSlbHttpProxyOperOper(res edpt.SlbHttpProxyy) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["http_proxy_cpu_list"] = setSliceSlbHttpProxyOperOperHttpProxyCpuList(res.DataSlbHttpProxy.Oper.HttpProxyCpuList)
-	in["cpu_count"] = res.DataSlbHttpProxy.Oper.CpuCount
-	in["debug_fields"] = res.DataSlbHttpProxy.Oper.Debug_fields
-	result = append(result, in)
-	return result
+func setObjectSlbHttpProxyOperOper(ret edpt.DataSlbHttpProxyOper) []interface{} {
+	return []interface{}{
+		map[string]interface{}{
+			"http_proxy_cpu_list": setSliceSlbHttpProxyOperOperHttpProxyCpuList(ret.DtSlbHttpProxyOper.Oper.HttpProxyCpuList),
+			"cpu_count":           ret.DtSlbHttpProxyOper.Oper.CpuCount,
+			"debug_fields":        ret.DtSlbHttpProxyOper.Oper.Debug_fields,
+		},
+	}
 }
 
 func setSliceSlbHttpProxyOperOperHttpProxyCpuList(d []edpt.SlbHttpProxyOperOperHttpProxyCpuList) []map[string]interface{} {
@@ -1404,22 +1397,21 @@ func setSliceSlbHttpProxyOperOperHttpProxyCpuList(d []edpt.SlbHttpProxyOperOperH
 		in["get_and_payload"] = item.Get_and_payload
 		in["h2up_with_host_and_auth"] = item.H2up_with_host_and_auth
 		in["header_filter_rule_hit"] = item.Header_filter_rule_hit
-		in["current_stream"] = item.Current_stream
-		in["stream_create"] = item.Stream_create
-		in["stream_free"] = item.Stream_free
-		in["end_stream_rcvd"] = item.End_stream_rcvd
-		in["end_stream_sent"] = item.End_stream_sent
 		in["http1_client_idle_timeout"] = item.Http1_client_idle_timeout
 		in["http2_client_idle_timeout"] = item.Http2_client_idle_timeout
+		in["http_disallowed_methods"] = item.Http_disallowed_methods
+		in["http_allowed_methods"] = item.Http_allowed_methods
+		in["req_http11_new_proxy"] = item.Req_http11_new_proxy
 		result = append(result, in)
 	}
 	return result
 }
 
 func getObjectSlbHttpProxyOperOper(d []interface{}) edpt.SlbHttpProxyOperOper {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.SlbHttpProxyOperOper
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.HttpProxyCpuList = getSliceSlbHttpProxyOperOperHttpProxyCpuList(in["http_proxy_cpu_list"].([]interface{}))
 		ret.CpuCount = in["cpu_count"].(int)
@@ -1429,8 +1421,9 @@ func getObjectSlbHttpProxyOperOper(d []interface{}) edpt.SlbHttpProxyOperOper {
 }
 
 func getSliceSlbHttpProxyOperOperHttpProxyCpuList(d []interface{}) []edpt.SlbHttpProxyOperOperHttpProxyCpuList {
-	count := len(d)
-	ret := make([]edpt.SlbHttpProxyOperOperHttpProxyCpuList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.SlbHttpProxyOperOperHttpProxyCpuList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.SlbHttpProxyOperOperHttpProxyCpuList
@@ -1762,13 +1755,11 @@ func getSliceSlbHttpProxyOperOperHttpProxyCpuList(d []interface{}) []edpt.SlbHtt
 		oi.Get_and_payload = in["get_and_payload"].(int)
 		oi.H2up_with_host_and_auth = in["h2up_with_host_and_auth"].(int)
 		oi.Header_filter_rule_hit = in["header_filter_rule_hit"].(int)
-		oi.Current_stream = in["current_stream"].(int)
-		oi.Stream_create = in["stream_create"].(int)
-		oi.Stream_free = in["stream_free"].(int)
-		oi.End_stream_rcvd = in["end_stream_rcvd"].(int)
-		oi.End_stream_sent = in["end_stream_sent"].(int)
 		oi.Http1_client_idle_timeout = in["http1_client_idle_timeout"].(int)
 		oi.Http2_client_idle_timeout = in["http2_client_idle_timeout"].(int)
+		oi.Http_disallowed_methods = in["http_disallowed_methods"].(int)
+		oi.Http_allowed_methods = in["http_allowed_methods"].(int)
+		oi.Req_http11_new_proxy = in["req_http11_new_proxy"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -1776,6 +1767,7 @@ func getSliceSlbHttpProxyOperOperHttpProxyCpuList(d []interface{}) []edpt.SlbHtt
 
 func dataToEndpointSlbHttpProxyOper(d *schema.ResourceData) edpt.SlbHttpProxyOper {
 	var ret edpt.SlbHttpProxyOper
+
 	ret.Oper = getObjectSlbHttpProxyOperOper(d.Get("oper").([]interface{}))
 	return ret
 }

@@ -14,50 +14,65 @@ func resourceGslbZone() *schema.Resource {
 		UpdateContext: resourceGslbZoneUpdate,
 		ReadContext:   resourceGslbZoneRead,
 		DeleteContext: resourceGslbZoneDelete,
+
 		Schema: map[string]*schema.Schema{
 			"disable": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Default:     0,
-				Description: "Disable all services in the GSLB zone",
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable all services in the GSLB zone",
 			},
-			"dns_mx_record_list": {
-				Type:        schema.TypeList,
-				Optional:    true,
-				Description: "",
+			"dns_caa_record_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"mx_name": {
-							Type:        schema.TypeString,
-							Required:    true,
-							Description: "Specify Domain Name",
+						"critical_flag": {
+							Type: schema.TypeInt, Required: true, Description: "Issuer Critical Flag",
 						},
-						"priority": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "Specify Priority",
+						"property_tag": {
+							Type: schema.TypeString, Required: true, Description: "Specify other property tags, only allowed lowercase alphanumeric",
+						},
+						"rdata": {
+							Type: schema.TypeString, Required: true, Description: "Specify the Issuer Domain Name or a URL",
 						},
 						"ttl": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "Specify TTL",
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
 						},
 						"uuid": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Computed:    true,
-							Description: "uuid of the object",
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
 						"sampling_enable": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"counters1": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "'all': all; 'hits': Number of times the record has been used;",
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'hits': Number of times the record has been used;",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			"dns_mx_record_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"mx_name": {
+							Type: schema.TypeString, Required: true, Description: "Specify Domain Name",
+						},
+						"priority": {
+							Type: schema.TypeInt, Optional: true, Description: "Specify Priority",
+						},
+						"ttl": {
+							Type: schema.TypeInt, Optional: true, Description: "Specify TTL",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"sampling_enable": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"counters1": {
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'hits': Number of times the record has been used;",
 									},
 								},
 							},
@@ -66,37 +81,24 @@ func resourceGslbZone() *schema.Resource {
 				},
 			},
 			"dns_ns_record_list": {
-				Type:        schema.TypeList,
-				Optional:    true,
-				Description: "",
+				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"ns_name": {
-							Type:        schema.TypeString,
-							Required:    true,
-							Description: "Specify Domain Name",
+							Type: schema.TypeString, Required: true, Description: "Specify Domain Name",
 						},
 						"ttl": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "Specify TTL",
+							Type: schema.TypeInt, Optional: true, Description: "Specify TTL",
 						},
 						"uuid": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Computed:    true,
-							Description: "uuid of the object",
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
 						"sampling_enable": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"counters1": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "'all': all; 'hits': Number of times the record has been used;",
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'hits': Number of times the record has been used;",
 									},
 								},
 							},
@@ -105,400 +107,232 @@ func resourceGslbZone() *schema.Resource {
 				},
 			},
 			"dns_soa_record": {
-				Type:        schema.TypeList,
-				MaxItems:    1,
-				Optional:    true,
-				Description: "",
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"soa_name": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "DNS Server Name",
+							Type: schema.TypeString, Optional: true, Description: "DNS Server Name",
 						},
 						"mail": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "Mailbox",
+							Type: schema.TypeString, Optional: true, Description: "Mailbox",
 						},
 						"expire": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Default:     1209600,
-							Description: "Specify Expire Time Interval, default is 1209600",
+							Type: schema.TypeInt, Optional: true, Default: 1209600, Description: "Specify Expire Time Interval, default is 1209600",
 						},
 						"refresh": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Default:     3600,
-							Description: "Specify Refresh Time Interval, default is 3600",
+							Type: schema.TypeInt, Optional: true, Default: 3600, Description: "Specify Refresh Time Interval, default is 3600",
 						},
 						"retry": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Default:     900,
-							Description: "Specify Retry Time Interval, default is 900",
+							Type: schema.TypeInt, Optional: true, Default: 900, Description: "Specify Retry Time Interval, default is 900",
 						},
 						"serial": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "Specify Serial Number, default is Current Time (Time Interval)",
+							Type: schema.TypeInt, Optional: true, Description: "Specify Serial Number, default is Current Time (Time Interval)",
 						},
 						"soa_ttl": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "Specify Negative caching TTL, default is Zone TTL",
+							Type: schema.TypeInt, Optional: true, Description: "Specify Negative caching TTL, default is Zone TTL",
 						},
 						"external": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "Specify External SOA Record (DNS Server Name)",
+							Type: schema.TypeString, Optional: true, Description: "Specify External SOA Record (DNS Server Name)",
 						},
 						"ex_mail": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "Mailbox",
+							Type: schema.TypeString, Optional: true, Description: "Mailbox",
 						},
 						"ex_expire": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Default:     1209600,
-							Description: "Specify Expire Time Interval, default is 1209600",
+							Type: schema.TypeInt, Optional: true, Default: 1209600, Description: "Specify Expire Time Interval, default is 1209600",
 						},
 						"ex_refresh": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Default:     3600,
-							Description: "Specify Refresh Time Interval, default is 3600",
+							Type: schema.TypeInt, Optional: true, Default: 3600, Description: "Specify Refresh Time Interval, default is 3600",
 						},
 						"ex_retry": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Default:     900,
-							Description: "Specify Retry Time Interval, default is 900",
+							Type: schema.TypeInt, Optional: true, Default: 900, Description: "Specify Retry Time Interval, default is 900",
 						},
 						"ex_serial": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "Specify Serial Number, default is Current Time (Time Interval)",
+							Type: schema.TypeInt, Optional: true, Description: "Specify Serial Number, default is Current Time (Time Interval)",
 						},
 						"ex_soa_ttl": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Description: "Specify Negative caching TTL, default is Zone TTL",
+							Type: schema.TypeInt, Optional: true, Description: "Specify Negative caching TTL, default is Zone TTL",
 						},
 					},
 				},
 			},
 			"name": {
-				Type:        schema.TypeString,
-				Required:    true,
-				ForceNew:    true,
-				Description: "Specify the name for the DNS zone",
+				Type: schema.TypeString, Required: true, Description: "Specify the name for the DNS zone",
 			},
 			"policy": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Default:     "default",
-				Description: "Specify the policy for this zone (Specify policy name)",
+				Type: schema.TypeString, Optional: true, Default: "default", Description: "Specify the policy for this zone (Specify policy name)",
 			},
 			"sampling_enable": {
-				Type:        schema.TypeList,
-				Optional:    true,
-				Description: "",
+				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "'all': all; 'received-query': Total Number of DNS queries received for the zone; 'sent-response': Total Number of DNS replies sent to clients for the zone; 'proxy-mode-response': Total Number of DNS replies sent to clients by the ACOS device as a DNS proxy for the zone; 'cache-mode-response': Total Number of cached DNS replies sent to clients by the ACOS device for the zone. (This statistic applies only if the DNS cac; 'server-mode-response': Total Number of DNS replies sent to clients by the ACOS device as a DNS server for the zone. (This statistic applies only if th; 'sticky-mode-response': Total Number of DNS replies sent to clients by the ACOS device to keep the clients on the same site. (This statistic applies on; 'backup-mode-response': Total Number of DNS replies sent to clients by the ACOS device in backup mode;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'received-query': Total Number of DNS queries received for the zone; 'sent-response': Total Number of DNS replies sent to clients for the zone; 'proxy-mode-response': Total Number of DNS replies sent to clients by the ACOS device as a DNS proxy for the zone; 'cache-mode-response': Total Number of cached DNS replies sent to clients by the ACOS device for the zone. (This statistic applies only if the DNS cac; 'server-mode-response': Total Number of DNS replies sent to clients by the ACOS device as a DNS server for the zone. (This statistic applies only if th; 'sticky-mode-response': Total Number of DNS replies sent to clients by the ACOS device to keep the clients on the same site. (This statistic applies on; 'backup-mode-response': Total Number of DNS replies sent to clients by the ACOS device in backup mode;",
 						},
 					},
 				},
 			},
 			"service_list": {
-				Type:        schema.TypeList,
-				Optional:    true,
-				Description: "",
+				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"service_port": {
-							Type:        schema.TypeInt,
-							Required:    true,
-							Description: "Port number of the service",
+							Type: schema.TypeInt, Required: true, Description: "Port number of the service",
 						},
 						"service_name": {
-							Type:        schema.TypeString,
-							Required:    true,
-							Description: "Specify the service name for the zone, * for wildcard",
+							Type: schema.TypeString, Required: true, Description: "Specify the service name for the zone, * for wildcard",
 						},
 						"action": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "'drop': Drop query; 'forward': Forward packet; 'ignore': Send empty response; 'reject': Send refuse response;",
+							Type: schema.TypeString, Optional: true, Description: "'drop': Drop query; 'forward': Forward packet; 'ignore': Send empty response; 'reject': Send refuse response;",
 						},
 						"forward_type": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "'both': Forward both query and response; 'query': Forward query; 'response': Forward response;",
+							Type: schema.TypeString, Optional: true, Description: "'both': Forward both query and response; 'query': Forward query; 'response': Forward response;",
 						},
 						"disable": {
-							Type:        schema.TypeInt,
-							Optional:    true,
-							Default:     0,
-							Description: "Disable",
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable",
 						},
 						"health_check_gateway": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Default:     "enable",
-							Description: "'enable': Enable Gateway Status Check; 'disable': Disable Gateway Status Check;",
+							Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable Gateway Status Check; 'disable': Disable Gateway Status Check;",
 						},
 						"health_check_port": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"health_check_port": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "Check Related Port Status (Port Number)",
+										Type: schema.TypeInt, Optional: true, Description: "Check Related Port Status (Port Number)",
 									},
 								},
 							},
 						},
 						"policy": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "Specify policy for this service (Specify policy name)",
+							Type: schema.TypeString, Optional: true, Description: "Specify policy for this service (Specify policy name)",
 						},
 						"uuid": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Computed:    true,
-							Description: "uuid of the object",
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
 						"user_tag": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "Customized tag",
+							Type: schema.TypeString, Optional: true, Description: "Customized tag",
 						},
 						"sampling_enable": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"counters1": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "'all': all; 'received-query': Number of DNS queries received for the service; 'sent-response': Number of DNS replies sent to clients for the service; 'proxy-mode-response': Number of DNS replies sent to clients by the ACOS device as a DNS proxy for the service; 'cache-mode-response': Number of cached DNS replies sent to clients by the ACOS device for the service. (This statistic applies only if the DNS cache; 'server-mode-response': Number of DNS replies sent to clients by the ACOS device as a DNS server for the service. (This statistic applies only if the D; 'sticky-mode-response': Number of DNS replies sent to clients by the ACOS device to keep the clients on the same site. (This statistic applies only if; 'backup-mode-response': help Number of DNS replies sent to clients by the ACOS device in backup mode;",
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'received-query': Number of DNS queries received for the service; 'sent-response': Number of DNS replies sent to clients for the service; 'proxy-mode-response': Number of DNS replies sent to clients by the ACOS device as a DNS proxy for the service; 'cache-mode-response': Number of cached DNS replies sent to clients by the ACOS device for the service. (This statistic applies only if the DNS cache; 'server-mode-response': Number of DNS replies sent to clients by the ACOS device as a DNS server for the service. (This statistic applies only if the D; 'sticky-mode-response': Number of DNS replies sent to clients by the ACOS device to keep the clients on the same site. (This statistic applies only if; 'backup-mode-response': help Number of DNS replies sent to clients by the ACOS device in backup mode;",
 									},
 								},
 							},
 						},
 						"dns_a_record": {
-							Type:        schema.TypeList,
-							MaxItems:    1,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"dns_a_record_srv_list": {
-										Type:        schema.TypeList,
-										Optional:    true,
-										Description: "",
+										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"svrname": {
-													Type:        schema.TypeString,
-													Required:    true,
-													Description: "Specify name",
+													Type: schema.TypeString, Required: true, Description: "Specify name",
 												},
 												"no_resp": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Don't use this Service-IP as DNS response",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Don't use this Service-IP as DNS response",
 												},
 												"as_backup": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "As backup when fail",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "As backup when fail",
 												},
 												"weight": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "Specify weight for Service-IP (Weight value)",
+													Type: schema.TypeInt, Optional: true, Description: "Specify weight for Service-IP (Weight value)",
 												},
 												"ttl": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Specify TTL for Service-IP",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL for Service-IP",
 												},
 												"as_replace": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Return this Service-IP when enable ip-replace",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Return this Service-IP when enable ip-replace",
 												},
 												"disable": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Disable this Service-IP",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable this Service-IP",
 												},
 												"static": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Return this Service-IP in DNS server mode",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Return this Service-IP in DNS server mode",
 												},
 												"admin_ip": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "Specify admin priority of Service-IP (Specify the priority)",
+													Type: schema.TypeInt, Optional: true, Description: "Specify admin priority of Service-IP (Specify the priority)",
 												},
 												"uuid": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Computed:    true,
-													Description: "uuid of the object",
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 												},
 											},
 										},
 									},
 									"dns_a_record_ipv4_list": {
-										Type:        schema.TypeList,
-										Optional:    true,
-										Description: "",
+										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"dns_a_record_ip": {
-													Type:        schema.TypeString,
-													Required:    true,
-													Description: "Specify IP address",
+													Type: schema.TypeString, Required: true, Description: "Specify IP address",
 												},
 												"no_resp": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Don't use this Service-IP as DNS response",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Don't use this Service-IP as DNS response",
 												},
 												"as_backup": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "As backup when fail",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "As backup when fail",
 												},
 												"weight": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "Specify weight for Service-IP (Weight value)",
+													Type: schema.TypeInt, Optional: true, Description: "Specify weight for Service-IP (Weight value)",
 												},
 												"ttl": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Specify TTL for Service-IP",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL for Service-IP",
 												},
 												"as_replace": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Return this Service-IP when enable ip-replace",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Return this Service-IP when enable ip-replace",
 												},
 												"disable": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Disable this Service-IP",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable this Service-IP",
 												},
 												"static": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Return this Service-IP in DNS server mode",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Return this Service-IP in DNS server mode",
 												},
 												"admin_ip": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "Specify admin priority of Service-IP (Specify the priority)",
+													Type: schema.TypeInt, Optional: true, Description: "Specify admin priority of Service-IP (Specify the priority)",
 												},
 												"uuid": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Computed:    true,
-													Description: "uuid of the object",
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 												},
 											},
 										},
 									},
 									"dns_a_record_ipv6_list": {
-										Type:        schema.TypeList,
-										Optional:    true,
-										Description: "",
+										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"dns_a_record_ipv6": {
-													Type:        schema.TypeString,
-													Required:    true,
-													Description: "IPV6 address",
+													Type: schema.TypeString, Required: true, Description: "IPV6 address",
 												},
 												"no_resp": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Don't use this Service-IP as DNS response",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Don't use this Service-IP as DNS response",
 												},
 												"as_backup": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "As backup when fail",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "As backup when fail",
 												},
 												"weight": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "Specify weight for Service-IP (Weight value)",
+													Type: schema.TypeInt, Optional: true, Description: "Specify weight for Service-IP (Weight value)",
 												},
 												"ttl": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Specify TTL for Service-IP",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL for Service-IP",
 												},
 												"as_replace": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Return this Service-IP when enable ip-replace",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Return this Service-IP when enable ip-replace",
 												},
 												"disable": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Disable this Service-IP",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable this Service-IP",
 												},
 												"static": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Default:     0,
-													Description: "Return this Service-IP in DNS server mode",
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Return this Service-IP in DNS server mode",
 												},
 												"admin_ip": {
-													Type:        schema.TypeInt,
-													Optional:    true,
-													Description: "Specify admin priority of Service-IP (Specify the priority)",
+													Type: schema.TypeInt, Optional: true, Description: "Specify admin priority of Service-IP (Specify the priority)",
 												},
 												"uuid": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Computed:    true,
-													Description: "uuid of the object",
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 												},
 											},
 										},
@@ -507,50 +341,30 @@ func resourceGslbZone() *schema.Resource {
 							},
 						},
 						"dns_cname_record_list": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"alias_name": {
-										Type:        schema.TypeString,
-										Required:    true,
-										Description: "Specify the alias name",
+										Type: schema.TypeString, Required: true, Description: "Specify the alias name",
 									},
 									"admin_preference": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Default:     100,
-										Description: "Specify Administrative Preference, default is 100",
+										Type: schema.TypeInt, Optional: true, Default: 100, Description: "Specify Administrative Preference, default is 100",
 									},
 									"weight": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Default:     1,
-										Description: "Specify Weight, default is 1",
+										Type: schema.TypeInt, Optional: true, Default: 1, Description: "Specify Weight, default is 1",
 									},
 									"as_backup": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Default:     0,
-										Description: "As backup when fail",
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "As backup when fail",
 									},
 									"uuid": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Computed:    true,
-										Description: "uuid of the object",
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
 									"sampling_enable": {
-										Type:        schema.TypeList,
-										Optional:    true,
-										Description: "",
+										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"counters1": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "'all': all; 'cname-hits': Number of times the CNAME has been used;",
+													Type: schema.TypeString, Optional: true, Description: "'all': all; 'cname-hits': Number of times the CNAME has been used;",
 												},
 											},
 										},
@@ -559,43 +373,27 @@ func resourceGslbZone() *schema.Resource {
 							},
 						},
 						"dns_mx_record_list": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"mx_name": {
-										Type:        schema.TypeString,
-										Required:    true,
-										Description: "Specify Domain Name",
+										Type: schema.TypeString, Required: true, Description: "Specify Domain Name",
 									},
 									"priority": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "Specify Priority",
+										Type: schema.TypeInt, Optional: true, Description: "Specify Priority",
 									},
 									"ttl": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Default:     0,
-										Description: "Specify TTL",
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
 									},
 									"uuid": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Computed:    true,
-										Description: "uuid of the object",
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
 									"sampling_enable": {
-										Type:        schema.TypeList,
-										Optional:    true,
-										Description: "",
+										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"counters1": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "'all': all; 'hits': Number of times the record has been used;",
+													Type: schema.TypeString, Optional: true, Description: "'all': all; 'hits': Number of times the record has been used;",
 												},
 											},
 										},
@@ -604,38 +402,24 @@ func resourceGslbZone() *schema.Resource {
 							},
 						},
 						"dns_ns_record_list": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"ns_name": {
-										Type:        schema.TypeString,
-										Required:    true,
-										Description: "Specify Domain Name",
+										Type: schema.TypeString, Required: true, Description: "Specify Domain Name",
 									},
 									"ttl": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Default:     0,
-										Description: "Specify TTL",
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
 									},
 									"uuid": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Computed:    true,
-										Description: "uuid of the object",
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
 									"sampling_enable": {
-										Type:        schema.TypeList,
-										Optional:    true,
-										Description: "",
+										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"counters1": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "'all': all; 'hits': Number of times the record has been used;",
+													Type: schema.TypeString, Optional: true, Description: "'all': all; 'hits': Number of times the record has been used;",
 												},
 											},
 										},
@@ -644,38 +428,24 @@ func resourceGslbZone() *schema.Resource {
 							},
 						},
 						"dns_ptr_record_list": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"ptr_name": {
-										Type:        schema.TypeString,
-										Required:    true,
-										Description: "Specify Domain Name",
+										Type: schema.TypeString, Required: true, Description: "Specify Domain Name",
 									},
 									"ttl": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Default:     0,
-										Description: "Specify TTL",
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
 									},
 									"uuid": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Computed:    true,
-										Description: "uuid of the object",
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
 									"sampling_enable": {
-										Type:        schema.TypeList,
-										Optional:    true,
-										Description: "",
+										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"counters1": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "'all': all; 'hits': Number of times the record has been used;",
+													Type: schema.TypeString, Optional: true, Description: "'all': all; 'hits': Number of times the record has been used;",
 												},
 											},
 										},
@@ -684,54 +454,33 @@ func resourceGslbZone() *schema.Resource {
 							},
 						},
 						"dns_srv_record_list": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"srv_name": {
-										Type:        schema.TypeString,
-										Required:    true,
-										Description: "Specify Domain Name",
+										Type: schema.TypeString, Required: true, Description: "Specify Domain Name",
 									},
 									"port": {
-										Type:        schema.TypeInt,
-										Required:    true,
-										Description: "Specify Port (Port Number)",
+										Type: schema.TypeInt, Required: true, Description: "Specify Port (Port Number)",
 									},
 									"priority": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "Specify Priority",
+										Type: schema.TypeInt, Optional: true, Description: "Specify Priority",
 									},
 									"weight": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Default:     10,
-										Description: "Specify Weight, default is 10",
+										Type: schema.TypeInt, Optional: true, Default: 10, Description: "Specify Weight, default is 10",
 									},
 									"ttl": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Default:     0,
-										Description: "Specify TTL",
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
 									},
 									"uuid": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Computed:    true,
-										Description: "uuid of the object",
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
 									"sampling_enable": {
-										Type:        schema.TypeList,
-										Optional:    true,
-										Description: "",
+										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"counters1": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "'all': all; 'hits': Number of times the record has been used;",
+													Type: schema.TypeString, Optional: true, Description: "'all': all; 'hits': Number of times the record has been used;",
 												},
 											},
 										},
@@ -740,64 +489,39 @@ func resourceGslbZone() *schema.Resource {
 							},
 						},
 						"dns_naptr_record_list": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"naptr_target": {
-										Type:        schema.TypeString,
-										Required:    true,
-										Description: "Specify the replacement or regular expression",
+										Type: schema.TypeString, Required: true, Description: "Specify the replacement or regular expression",
 									},
 									"service_proto": {
-										Type:        schema.TypeString,
-										Required:    true,
-										Description: "Specify Service and Protocol",
+										Type: schema.TypeString, Required: true, Description: "Specify Service and Protocol",
 									},
 									"flag": {
-										Type:        schema.TypeString,
-										Required:    true,
-										Description: "Specify the flag (e.g., a, s). Default is empty flag",
+										Type: schema.TypeString, Required: true, Description: "Specify the flag (e.g., a, s). Default is empty flag",
 									},
 									"order": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "Specify Order",
+										Type: schema.TypeInt, Optional: true, Description: "Specify Order",
 									},
 									"preference": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Description: "Specify Preference",
+										Type: schema.TypeInt, Optional: true, Description: "Specify Preference",
 									},
 									"regexp": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Default:     0,
-										Description: "Return the regular expression",
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Return the regular expression",
 									},
 									"ttl": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Default:     0,
-										Description: "Specify TTL",
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
 									},
 									"uuid": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Computed:    true,
-										Description: "uuid of the object",
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
 									"sampling_enable": {
-										Type:        schema.TypeList,
-										Optional:    true,
-										Description: "",
+										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"counters1": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "'all': all; 'naptr-hits': Number of times the NAPTR has been used;",
+													Type: schema.TypeString, Optional: true, Description: "'all': all; 'naptr-hits': Number of times the NAPTR has been used;",
 												},
 											},
 										},
@@ -806,43 +530,59 @@ func resourceGslbZone() *schema.Resource {
 							},
 						},
 						"dns_txt_record_list": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"record_name": {
-										Type:        schema.TypeString,
-										Required:    true,
-										Description: "Specify the Object Name for TXT Data",
+										Type: schema.TypeString, Required: true, Description: "Specify the Object Name for TXT Data",
 									},
 									"txt_data": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "Specify TXT Data",
+										Type: schema.TypeString, Optional: true, Description: "Specify TXT Data",
 									},
 									"ttl": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Default:     0,
-										Description: "Specify TTL",
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
 									},
 									"uuid": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Computed:    true,
-										Description: "uuid of the object",
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
 									"sampling_enable": {
-										Type:        schema.TypeList,
-										Optional:    true,
-										Description: "",
+										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"counters1": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "'all': all; 'hits': Number of times the record has been used;",
+													Type: schema.TypeString, Optional: true, Description: "'all': all; 'hits': Number of times the record has been used;",
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+						"dns_caa_record_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"critical_flag": {
+										Type: schema.TypeInt, Required: true, Description: "Issuer Critical Flag",
+									},
+									"property_tag": {
+										Type: schema.TypeString, Required: true, Description: "Specify other property tags, only allowed lowercase alphanumeric",
+									},
+									"rdata": {
+										Type: schema.TypeString, Required: true, Description: "Specify the Issuer Domain Name or a URL",
+									},
+									"ttl": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+									"sampling_enable": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"counters1": {
+													Type: schema.TypeString, Optional: true, Description: "'all': all; 'hits': Number of times the CAA has been used;",
 												},
 											},
 										},
@@ -851,86 +591,55 @@ func resourceGslbZone() *schema.Resource {
 							},
 						},
 						"dns_record_list": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"type": {
-										Type:        schema.TypeInt,
-										Required:    true,
-										Description: "Specify DNS Type",
+										Type: schema.TypeInt, Required: true, Description: "Specify DNS Type",
 									},
 									"data": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "Specify DNS Data",
+										Type: schema.TypeString, Optional: true, Description: "Specify DNS Data",
 									},
 									"uuid": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Computed:    true,
-										Description: "uuid of the object",
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
 								},
 							},
 						},
 						"geo_location_list": {
-							Type:        schema.TypeList,
-							Optional:    true,
-							Description: "",
+							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"geo_name": {
-										Type:        schema.TypeString,
-										Required:    true,
-										Description: "Specify the geo-location",
+										Type: schema.TypeString, Required: true, Description: "Specify the geo-location",
 									},
 									"alias": {
-										Type:        schema.TypeList,
-										Optional:    true,
-										Description: "",
+										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"alias": {
-													Type:        schema.TypeString,
-													Optional:    true,
-													Description: "Send CNAME response for this geo-location (Specify a CNAME record)",
+													Type: schema.TypeString, Optional: true, Description: "Send CNAME response for this geo-location (Specify a CNAME record)",
 												},
 											},
 										},
 									},
 									"action": {
-										Type:        schema.TypeInt,
-										Optional:    true,
-										Default:     0,
-										Description: "Action for this geo-location",
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Action for this geo-location",
 									},
 									"action_type": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "'allow': Allow query from this geo-location; 'drop': Drop query from this geo-location; 'forward': Forward packet for this geo-location; 'ignore': Send empty response to this geo-location; 'reject': Send refuse response to this geo-location;",
+										Type: schema.TypeString, Optional: true, Description: "'allow': Allow query from this geo-location; 'drop': Drop query from this geo-location; 'forward': Forward packet for this geo-location; 'ignore': Send empty response to this geo-location; 'reject': Send refuse response to this geo-location;",
 									},
 									"forward_type": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "'both': Forward both query and response; 'query': Forward query from this geo-location; 'response': Forward response to this geo-location;",
+										Type: schema.TypeString, Optional: true, Description: "'both': Forward both query and response; 'query': Forward query from this geo-location; 'response': Forward response to this geo-location;",
 									},
 									"policy": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "Policy for this geo-location (Specify the policy name)",
+										Type: schema.TypeString, Optional: true, Description: "Policy for this geo-location (Specify the policy name)",
 									},
 									"uuid": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Computed:    true,
-										Description: "uuid of the object",
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
 									"user_tag": {
-										Type:        schema.TypeString,
-										Optional:    true,
-										Description: "Customized tag",
+										Type: schema.TypeString, Optional: true, Description: "Customized tag",
 									},
 								},
 							},
@@ -939,42 +648,26 @@ func resourceGslbZone() *schema.Resource {
 				},
 			},
 			"template": {
-				Type:        schema.TypeList,
-				MaxItems:    1,
-				Optional:    true,
-				Description: "",
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"dnssec": {
-							Type:        schema.TypeString,
-							Optional:    true,
-							Description: "Specify DNSSEC template (Specify template name)",
+							Type: schema.TypeString, Optional: true, Description: "Specify DNSSEC template (Specify template name)",
 						},
 					},
 				},
 			},
 			"ttl": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Default:     10,
-				Description: "Specify the zone ttl value (TTL value, unit: second, default is 10)",
+				Type: schema.TypeInt, Optional: true, Default: 10, Description: "Specify the zone ttl value (TTL value, unit: second, default is 10)",
 			},
 			"use_server_ttl": {
-				Type:        schema.TypeInt,
-				Optional:    true,
-				Default:     0,
-				Description: "Use DNS Server Response TTL value in GSLB Proxy mode",
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use DNS Server Response TTL value in GSLB Proxy mode",
 			},
 			"user_tag": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Description: "Customized tag",
+				Type: schema.TypeString, Optional: true, Description: "Customized tag",
 			},
 			"uuid": {
-				Type:        schema.TypeString,
-				Optional:    true,
-				Computed:    true,
-				Description: "uuid of the object",
+				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
 		},
 	}
@@ -995,20 +688,7 @@ func resourceGslbZoneCreate(ctx context.Context, d *schema.ResourceData, meta in
 	}
 	return diags
 }
-func resourceGslbZoneRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceGslbZoneRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointGslbZone(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
-	}
-	return diags
-}
+
 func resourceGslbZoneUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -1038,9 +718,57 @@ func resourceGslbZoneDelete(ctx context.Context, d *schema.ResourceData, meta in
 	}
 	return diags
 }
+
+func resourceGslbZoneRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceGslbZoneRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointGslbZone(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
+func getSliceGslbZoneDnsCaaRecordList(d []interface{}) []edpt.GslbZoneDnsCaaRecordList {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneDnsCaaRecordList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbZoneDnsCaaRecordList
+		oi.CriticalFlag = in["critical_flag"].(int)
+		oi.PropertyTag = in["property_tag"].(string)
+		oi.Rdata = in["rdata"].(string)
+		oi.Ttl = in["ttl"].(int)
+		//omit uuid
+		oi.SamplingEnable = getSliceGslbZoneDnsCaaRecordListSamplingEnable(in["sampling_enable"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceGslbZoneDnsCaaRecordListSamplingEnable(d []interface{}) []edpt.GslbZoneDnsCaaRecordListSamplingEnable {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneDnsCaaRecordListSamplingEnable, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbZoneDnsCaaRecordListSamplingEnable
+		oi.Counters1 = in["counters1"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func getSliceGslbZoneDnsMxRecordList(d []interface{}) []edpt.GslbZoneDnsMxRecordList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneDnsMxRecordList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneDnsMxRecordList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneDnsMxRecordList
@@ -1053,9 +781,11 @@ func getSliceGslbZoneDnsMxRecordList(d []interface{}) []edpt.GslbZoneDnsMxRecord
 	}
 	return ret
 }
+
 func getSliceGslbZoneDnsMxRecordListSamplingEnable(d []interface{}) []edpt.GslbZoneDnsMxRecordListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbZoneDnsMxRecordListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneDnsMxRecordListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneDnsMxRecordListSamplingEnable
@@ -1064,9 +794,11 @@ func getSliceGslbZoneDnsMxRecordListSamplingEnable(d []interface{}) []edpt.GslbZ
 	}
 	return ret
 }
+
 func getSliceGslbZoneDnsNsRecordList(d []interface{}) []edpt.GslbZoneDnsNsRecordList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneDnsNsRecordList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneDnsNsRecordList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneDnsNsRecordList
@@ -1078,9 +810,11 @@ func getSliceGslbZoneDnsNsRecordList(d []interface{}) []edpt.GslbZoneDnsNsRecord
 	}
 	return ret
 }
+
 func getSliceGslbZoneDnsNsRecordListSamplingEnable(d []interface{}) []edpt.GslbZoneDnsNsRecordListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbZoneDnsNsRecordListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneDnsNsRecordListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneDnsNsRecordListSamplingEnable
@@ -1089,10 +823,12 @@ func getSliceGslbZoneDnsNsRecordListSamplingEnable(d []interface{}) []edpt.GslbZ
 	}
 	return ret
 }
+
 func getObjectGslbZoneDnsSoaRecord(d []interface{}) edpt.GslbZoneDnsSoaRecord {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.GslbZoneDnsSoaRecord
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SoaName = in["soa_name"].(string)
 		ret.Mail = in["mail"].(string)
@@ -1111,9 +847,11 @@ func getObjectGslbZoneDnsSoaRecord(d []interface{}) edpt.GslbZoneDnsSoaRecord {
 	}
 	return ret
 }
+
 func getSliceGslbZoneSamplingEnable(d []interface{}) []edpt.GslbZoneSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbZoneSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneSamplingEnable
@@ -1122,9 +860,11 @@ func getSliceGslbZoneSamplingEnable(d []interface{}) []edpt.GslbZoneSamplingEnab
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceList(d []interface{}) []edpt.GslbZoneServiceList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceList
@@ -1147,15 +887,18 @@ func getSliceGslbZoneServiceList(d []interface{}) []edpt.GslbZoneServiceList {
 		oi.DnsSrvRecordList = getSliceGslbZoneServiceListDnsSrvRecordList(in["dns_srv_record_list"].([]interface{}))
 		oi.DnsNaptrRecordList = getSliceGslbZoneServiceListDnsNaptrRecordList(in["dns_naptr_record_list"].([]interface{}))
 		oi.DnsTxtRecordList = getSliceGslbZoneServiceListDnsTxtRecordList(in["dns_txt_record_list"].([]interface{}))
+		oi.DnsCaaRecordList = getSliceGslbZoneServiceListDnsCaaRecordList(in["dns_caa_record_list"].([]interface{}))
 		oi.DnsRecordList = getSliceGslbZoneServiceListDnsRecordList(in["dns_record_list"].([]interface{}))
 		oi.GeoLocationList = getSliceGslbZoneServiceListGeoLocationList(in["geo_location_list"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListHealthCheckPort(d []interface{}) []edpt.GslbZoneServiceListHealthCheckPort {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListHealthCheckPort, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListHealthCheckPort, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListHealthCheckPort
@@ -1164,9 +907,11 @@ func getSliceGslbZoneServiceListHealthCheckPort(d []interface{}) []edpt.GslbZone
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListSamplingEnable(d []interface{}) []edpt.GslbZoneServiceListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListSamplingEnable
@@ -1175,10 +920,12 @@ func getSliceGslbZoneServiceListSamplingEnable(d []interface{}) []edpt.GslbZoneS
 	}
 	return ret
 }
+
 func getObjectGslbZoneServiceListDnsARecord(d []interface{}) edpt.GslbZoneServiceListDnsARecord {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.GslbZoneServiceListDnsARecord
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DnsARecordSrvList = getSliceGslbZoneServiceListDnsARecordDnsARecordSrvList(in["dns_a_record_srv_list"].([]interface{}))
 		ret.DnsARecordIpv4List = getSliceGslbZoneServiceListDnsARecordDnsARecordIpv4List(in["dns_a_record_ipv4_list"].([]interface{}))
@@ -1186,9 +933,11 @@ func getObjectGslbZoneServiceListDnsARecord(d []interface{}) edpt.GslbZoneServic
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsARecordDnsARecordSrvList(d []interface{}) []edpt.GslbZoneServiceListDnsARecordDnsARecordSrvList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsARecordDnsARecordSrvList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsARecordDnsARecordSrvList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsARecordDnsARecordSrvList
@@ -1206,9 +955,11 @@ func getSliceGslbZoneServiceListDnsARecordDnsARecordSrvList(d []interface{}) []e
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsARecordDnsARecordIpv4List(d []interface{}) []edpt.GslbZoneServiceListDnsARecordDnsARecordIpv4List {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsARecordDnsARecordIpv4List, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsARecordDnsARecordIpv4List, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsARecordDnsARecordIpv4List
@@ -1226,9 +977,11 @@ func getSliceGslbZoneServiceListDnsARecordDnsARecordIpv4List(d []interface{}) []
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsARecordDnsARecordIpv6List(d []interface{}) []edpt.GslbZoneServiceListDnsARecordDnsARecordIpv6List {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsARecordDnsARecordIpv6List, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsARecordDnsARecordIpv6List, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsARecordDnsARecordIpv6List
@@ -1246,9 +999,11 @@ func getSliceGslbZoneServiceListDnsARecordDnsARecordIpv6List(d []interface{}) []
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsCnameRecordList(d []interface{}) []edpt.GslbZoneServiceListDnsCnameRecordList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsCnameRecordList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsCnameRecordList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsCnameRecordList
@@ -1262,9 +1017,11 @@ func getSliceGslbZoneServiceListDnsCnameRecordList(d []interface{}) []edpt.GslbZ
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsCnameRecordListSamplingEnable(d []interface{}) []edpt.GslbZoneServiceListDnsCnameRecordListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsCnameRecordListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsCnameRecordListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsCnameRecordListSamplingEnable
@@ -1273,9 +1030,11 @@ func getSliceGslbZoneServiceListDnsCnameRecordListSamplingEnable(d []interface{}
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsMxRecordList(d []interface{}) []edpt.GslbZoneServiceListDnsMxRecordList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsMxRecordList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsMxRecordList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsMxRecordList
@@ -1288,9 +1047,11 @@ func getSliceGslbZoneServiceListDnsMxRecordList(d []interface{}) []edpt.GslbZone
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsMxRecordListSamplingEnable(d []interface{}) []edpt.GslbZoneServiceListDnsMxRecordListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsMxRecordListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsMxRecordListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsMxRecordListSamplingEnable
@@ -1299,9 +1060,11 @@ func getSliceGslbZoneServiceListDnsMxRecordListSamplingEnable(d []interface{}) [
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsNsRecordList(d []interface{}) []edpt.GslbZoneServiceListDnsNsRecordList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsNsRecordList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsNsRecordList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsNsRecordList
@@ -1313,9 +1076,11 @@ func getSliceGslbZoneServiceListDnsNsRecordList(d []interface{}) []edpt.GslbZone
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsNsRecordListSamplingEnable(d []interface{}) []edpt.GslbZoneServiceListDnsNsRecordListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsNsRecordListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsNsRecordListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsNsRecordListSamplingEnable
@@ -1324,9 +1089,11 @@ func getSliceGslbZoneServiceListDnsNsRecordListSamplingEnable(d []interface{}) [
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsPtrRecordList(d []interface{}) []edpt.GslbZoneServiceListDnsPtrRecordList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsPtrRecordList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsPtrRecordList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsPtrRecordList
@@ -1338,9 +1105,11 @@ func getSliceGslbZoneServiceListDnsPtrRecordList(d []interface{}) []edpt.GslbZon
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsPtrRecordListSamplingEnable(d []interface{}) []edpt.GslbZoneServiceListDnsPtrRecordListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsPtrRecordListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsPtrRecordListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsPtrRecordListSamplingEnable
@@ -1349,9 +1118,11 @@ func getSliceGslbZoneServiceListDnsPtrRecordListSamplingEnable(d []interface{}) 
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsSrvRecordList(d []interface{}) []edpt.GslbZoneServiceListDnsSrvRecordList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsSrvRecordList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsSrvRecordList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsSrvRecordList
@@ -1366,9 +1137,11 @@ func getSliceGslbZoneServiceListDnsSrvRecordList(d []interface{}) []edpt.GslbZon
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsSrvRecordListSamplingEnable(d []interface{}) []edpt.GslbZoneServiceListDnsSrvRecordListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsSrvRecordListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsSrvRecordListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsSrvRecordListSamplingEnable
@@ -1377,9 +1150,11 @@ func getSliceGslbZoneServiceListDnsSrvRecordListSamplingEnable(d []interface{}) 
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsNaptrRecordList(d []interface{}) []edpt.GslbZoneServiceListDnsNaptrRecordList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsNaptrRecordList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsNaptrRecordList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsNaptrRecordList
@@ -1396,9 +1171,11 @@ func getSliceGslbZoneServiceListDnsNaptrRecordList(d []interface{}) []edpt.GslbZ
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsNaptrRecordListSamplingEnable(d []interface{}) []edpt.GslbZoneServiceListDnsNaptrRecordListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsNaptrRecordListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsNaptrRecordListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsNaptrRecordListSamplingEnable
@@ -1407,9 +1184,11 @@ func getSliceGslbZoneServiceListDnsNaptrRecordListSamplingEnable(d []interface{}
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsTxtRecordList(d []interface{}) []edpt.GslbZoneServiceListDnsTxtRecordList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsTxtRecordList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsTxtRecordList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsTxtRecordList
@@ -1422,9 +1201,11 @@ func getSliceGslbZoneServiceListDnsTxtRecordList(d []interface{}) []edpt.GslbZon
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListDnsTxtRecordListSamplingEnable(d []interface{}) []edpt.GslbZoneServiceListDnsTxtRecordListSamplingEnable {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsTxtRecordListSamplingEnable, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsTxtRecordListSamplingEnable, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsTxtRecordListSamplingEnable
@@ -1433,9 +1214,42 @@ func getSliceGslbZoneServiceListDnsTxtRecordListSamplingEnable(d []interface{}) 
 	}
 	return ret
 }
+
+func getSliceGslbZoneServiceListDnsCaaRecordList(d []interface{}) []edpt.GslbZoneServiceListDnsCaaRecordList {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsCaaRecordList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbZoneServiceListDnsCaaRecordList
+		oi.CriticalFlag = in["critical_flag"].(int)
+		oi.PropertyTag = in["property_tag"].(string)
+		oi.Rdata = in["rdata"].(string)
+		oi.Ttl = in["ttl"].(int)
+		//omit uuid
+		oi.SamplingEnable = getSliceGslbZoneServiceListDnsCaaRecordListSamplingEnable(in["sampling_enable"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceGslbZoneServiceListDnsCaaRecordListSamplingEnable(d []interface{}) []edpt.GslbZoneServiceListDnsCaaRecordListSamplingEnable {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsCaaRecordListSamplingEnable, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbZoneServiceListDnsCaaRecordListSamplingEnable
+		oi.Counters1 = in["counters1"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func getSliceGslbZoneServiceListDnsRecordList(d []interface{}) []edpt.GslbZoneServiceListDnsRecordList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListDnsRecordList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListDnsRecordList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListDnsRecordList
@@ -1446,9 +1260,11 @@ func getSliceGslbZoneServiceListDnsRecordList(d []interface{}) []edpt.GslbZoneSe
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListGeoLocationList(d []interface{}) []edpt.GslbZoneServiceListGeoLocationList {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListGeoLocationList, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListGeoLocationList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListGeoLocationList
@@ -1464,9 +1280,11 @@ func getSliceGslbZoneServiceListGeoLocationList(d []interface{}) []edpt.GslbZone
 	}
 	return ret
 }
+
 func getSliceGslbZoneServiceListGeoLocationListAlias(d []interface{}) []edpt.GslbZoneServiceListGeoLocationListAlias {
-	count := len(d)
-	ret := make([]edpt.GslbZoneServiceListGeoLocationListAlias, 0, count)
+
+	count1 := len(d)
+	ret := make([]edpt.GslbZoneServiceListGeoLocationListAlias, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceListGeoLocationListAlias
@@ -1475,18 +1293,22 @@ func getSliceGslbZoneServiceListGeoLocationListAlias(d []interface{}) []edpt.Gsl
 	}
 	return ret
 }
+
 func getObjectGslbZoneTemplate(d []interface{}) edpt.GslbZoneTemplate {
-	count := len(d)
+
+	count1 := len(d)
 	var ret edpt.GslbZoneTemplate
-	if count > 0 {
+	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dnssec = in["dnssec"].(string)
 	}
 	return ret
 }
+
 func dataToEndpointGslbZone(d *schema.ResourceData) edpt.GslbZone {
 	var ret edpt.GslbZone
 	ret.Inst.Disable = d.Get("disable").(int)
+	ret.Inst.DnsCaaRecordList = getSliceGslbZoneDnsCaaRecordList(d.Get("dns_caa_record_list").([]interface{}))
 	ret.Inst.DnsMxRecordList = getSliceGslbZoneDnsMxRecordList(d.Get("dns_mx_record_list").([]interface{}))
 	ret.Inst.DnsNsRecordList = getSliceGslbZoneDnsNsRecordList(d.Get("dns_ns_record_list").([]interface{}))
 	ret.Inst.DnsSoaRecord = getObjectGslbZoneDnsSoaRecord(d.Get("dns_soa_record").([]interface{}))

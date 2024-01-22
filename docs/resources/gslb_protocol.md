@@ -21,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_gslb_protocol" "thunder_gslb_protocol_test" {
   auto_detect        = 1
   msg_format_acos_2x = 1
@@ -37,7 +36,6 @@ resource "thunder_gslb_protocol" "thunder_gslb_protocol_test" {
     conn_response = 1000
     response      = 1000
     message       = 1000
-
   }
   enable_list {
     type = "controller"
@@ -51,6 +49,7 @@ resource "thunder_gslb_protocol" "thunder_gslb_protocol_test" {
 ### Optional
 
 - `auto_detect` (Number) Automatically detect SLB Config
+- `disable_new_gslb_sync` (Number) Disable new gslb config sync
 - `enable_list` (Block List) (see [below for nested schema](#nestedblock--enable_list))
 - `limit` (Block List, Max: 1) (see [below for nested schema](#nestedblock--limit))
 - `msg_format_acos_2x` (Number) Run GSLB Protocol in compatible mode with a ACOS 2.x GSLB peer

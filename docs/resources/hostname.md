@@ -3,12 +3,15 @@
 page_title: "thunder_hostname Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_hostname: Set system's network name
+  PLACEHOLDER
 ---
 
 # thunder_hostname (Resource)
 
+`thunder_hostname`: Set system's network name
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_hostname" "test_hostname" {
   value = "testingHost"
 }
@@ -29,8 +31,8 @@ resource "thunder_hostname" "test_hostname" {
 
 ### Optional
 
-- `uuid` (String)
-- `value` (String)
+- `uuid` (String) uuid of the object
+- `value` (String) This System's Network Name
 
 ### Read-Only
 

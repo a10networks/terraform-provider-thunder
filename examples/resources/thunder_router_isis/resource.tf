@@ -3,16 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-provider "thunder" {
-  alias     = "L3V_A"
-  address   = var.dut9049
-  username  = var.username
-  password  = var.password
-  partition = var.l3v_1
-}
-
-resource "thunder_router_isis" "test00" {
+resource "thunder_router_isis" "thunder_router_isis" {
   tag                  = "TeSt"
   adjacency_check      = 1
   ignore_lsp_errors    = 0
@@ -36,9 +27,4 @@ resource "thunder_router_isis" "test00" {
       }
     }
   }
-}
-
-resource "thunder_router_isis" "test02" {
-  provider = thunder.L3V_A
-  tag      = "TeSt2"
 }

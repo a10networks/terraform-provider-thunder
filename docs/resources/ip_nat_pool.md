@@ -3,12 +3,15 @@
 page_title: "thunder_ip_nat_pool Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ip_nat_pool: Configure IP pool name
+  PLACEHOLDER
 ---
 
 # thunder_ip_nat_pool (Resource)
 
+`thunder_ip_nat_pool`: Configure IP pool name
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,14 +21,13 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-resource "thunder_ip_nat_pool" "test12"{
-  pool_name = "test"
-      start_address = "10.10.10.20"
-      end_address = "10.10.10.22"
-      netmask = "/24"
-      ip_rr = 1
-      port_overload = 1
-
+resource "thunder_ip_nat_pool" "test12" {
+  pool_name     = "test"
+  start_address = "10.10.10.20"
+  end_address   = "10.10.10.22"
+  netmask       = "/24"
+  ip_rr         = 1
+  port_overload = 1
 }
 ```
 
@@ -38,6 +40,7 @@ resource "thunder_ip_nat_pool" "test12"{
 
 ### Optional
 
+- `chunk_sharing` (Number) Share NAT pool chunk across CPUs
 - `end_address` (String) Configure end IP address of NAT pool
 - `ethernet` (Number) Ethernet interface
 - `gateway` (String) Configure gateway IP

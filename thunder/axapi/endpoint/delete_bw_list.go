@@ -1,30 +1,71 @@
-package endpoint
 
+
+package endpoint
 import (
-	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
-	"github.com/clarketm/json"
+    "github.com/a10networks/terraform-provider-thunder/thunder/axapi"
+    "github.com/clarketm/json"
 )
 
-// based on ACOS 5_2_1-P3_70
+//based on ACOS 6_0_2_P1-37
 type DeleteBwList struct {
 	Inst struct {
-		FileName string `json:"file-name"`
+
+    FileName string `json:"file-name"`
+
 	} `json:"bw-list"`
 }
 
-func (p *DeleteBwList) GetId() string {
-	return "1"
+func (p *DeleteBwList) GetId() string{
+    return "1"
+}
+
+func (p *DeleteBwList) getPath() string{
+    return "delete/bw-list"
 }
 
 func (p *DeleteBwList) Post(authToken string, host string, logger *axapi.ThunderLog) error {
-	logger.Println("DeleteBwList::Post")
-	headers := axapi.GenRequestHeader(authToken)
-	payloadBytes, err := json.Marshal(p)
-	if err != nil {
-		logger.Println("json.Marshal() failed with error", err)
-		return err
-	}
-	logger.Println("payload:", string(payloadBytes))
-	_, _, err = axapi.SendPost(host, "delete/bw-list", payloadBytes, headers, logger)
-	return err
+    logger.Println("DeleteBwList::Post")
+    headers := axapi.GenRequestHeader(authToken)
+        payloadBytes, err := axapi.SerializeToJson(p)
+        if err != nil {
+            logger.Println("Failed to serialize struct as json", err)
+            return err
+        }
+        logger.Println("payload:", string(payloadBytes))
+        _, _, err = axapi.SendPost(host, p.getPath(), payloadBytes, headers, logger)
+    return err
+}
+
+func (p *DeleteBwList) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) error {
+    logger.Println("DeleteBwList::Get")
+    headers := axapi.GenRequestHeader(authToken)
+        _, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
+    if err == nil {
+        if len(axResp) > 0{
+        err = json.Unmarshal(axResp, &p)
+        }
+        if err != nil {
+            logger.Println("json.Unmarshal() failed with error", err)
+        }
+    }
+    return err
+}
+func (p *DeleteBwList) Put(authToken string, host string, logger *axapi.ThunderLog) error {
+    logger.Println("DeleteBwList::Put")
+    headers := axapi.GenRequestHeader(authToken)
+    payloadBytes, err := axapi.SerializeToJson(p)
+    if err != nil {
+        logger.Println("Failed to serialize struct as json", err)
+        return err
+    }
+    logger.Println("payload: " + string(payloadBytes))
+    _, _, err = axapi.SendPut(host, p.getPath(), "", payloadBytes, headers, logger)
+    return err
+}
+
+func (p *DeleteBwList) Delete(authToken string, host string, instId string, logger *axapi.ThunderLog) error {
+    logger.Println("DeleteBwList::Delete")
+    headers := axapi.GenRequestHeader(authToken)
+        _, _, err := axapi.SendDelete(host, p.getPath(), "", nil, headers, logger)
+    return err
 }

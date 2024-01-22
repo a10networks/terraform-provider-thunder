@@ -21,105 +21,22 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
+resource "thunder_slb_template_policy" "thunder_slb_template_policy" {
 
-resource "thunder_slb_template_policy" "template-policy" {
-  name    = "policy1"
-  timeout = 5
-  bw_list_id {
-    id             = 3
-    service_group  = "sghttp1"
-    pbslb_logging  = 1
-    pbslb_interval = 10
-    fail           = 1
-  }
-  overlap          = 1
-  share            = 1
-  full_domain_tree = 1
-  user_tag         = "policy testing"
-  sampling_enable {
-    counters1 = "fwd-policy-dns-unresolved"
-  }
+  name = "test-policy"
   class_list {
-    name              = "test_class"
-    client_ip_l3_dest = 1
+    name = "test"
     lid_list {
-      user_tag = "lidconfig"
-      lidnum   = 1
-      response_code_rate_limit {
-        code_range_start = 250
-        code_range_end   = 300
-        threshold        = 3
-        period           = 90
-
-      }
-      dns64 {
-        disable          = 1
-        exclusive_answer = 0
-      }
-      conn_limit            = 1048575
-      conn_rate_limit       = 30000
-      conn_per              = 2000
-      request_limit         = 4000
-      request_rate_limit    = 8000
-      request_per           = 900
-      bw_rate_limit         = 500
-      bw_per                = 1000
-      over_limit_action     = 1
-      action_value          = "forward"
-      log                   = 1
-      interval              = 30
-      direct_action         = 1
-      direct_service_group  = "sghttp1"
-      direct_pbslb_logging  = 1
-      direct_pbslb_interval = 30
-      direct_fail           = 1
+      lidnum = 517
     }
   }
-
-  forward_policy {
-    no_client_conn_reuse = 1
-    acos_event_log       = 1
-    local_logging        = 1
-    require_web_category = 1
-    filtering {
-      ssli_url_filtering = "bypassed-sni-disable"
-    }
-    san_filtering {
-      ssli_url_filtering_san = "enable-san"
-    }
-    action_list {
-      name               = "Default_Deny"
-      action1            = "forward-to-internet"
-      fake_sg            = "sghttp1"
-      fall_back          = "sghttp1"
-      fall_back_snat     = "pool1"
-      log                = 0
-      drop_message       = "request dropped"
-      drop_response_code = 300
-      sampling_enable {
-        counters1 = "all"
-      }
-      user_tag = "actiondefaultdeny"
-    }
-
-    source_list {
-      name = "rule1"
-      sampling_enable {
-        counters1 = "all"
-      }
-      match_any              = 1
-      match_authorize_policy = "p1"
-      priority               = 300
-      destination {
-        any {
-          action = "Default_Deny"
-          sampling_enable {
-            counters1 = "all"
-          }
-        }
-      }
-    }
+  interval           = 131
+  over_limit         = 1
+  over_limit_logging = 1
+  sampling_enable {
+    counters1 = "all"
   }
+  user_tag = "66"
 }
 ```
 
@@ -162,7 +79,7 @@ Optional:
 - `action_interval` (Number) Specify logging interval in minute (default is 3)
 - `bw_list_action` (String) 'drop': drop the packet; 'reset': Send reset back;
 - `fail` (Number) Only log unsuccessful connections
-- `id` (Number) Specify id that maps to service group (The id number)
+- `id1` (Number) Specify id that maps to service group (The id number)
 - `logging_drp_rst` (Number) Configure PBSLB logging
 - `pbslb_interval` (Number) Specify logging interval in minutes
 - `pbslb_logging` (Number) Configure PBSLB logging
@@ -246,9 +163,13 @@ Optional:
 
 - `acos_event_log` (Number) Enable acos event logging
 - `action_list` (Block List) (see [below for nested schema](#nestedblock--forward_policy--action_list))
+- `dual_stack_action_list` (Block List) (see [below for nested schema](#nestedblock--forward_policy--dual_stack_action_list))
+- `enable_adv_match` (Number) Enable adv-match rules and deactive all the other kinds of destination rules
 - `filtering` (Block List) (see [below for nested schema](#nestedblock--forward_policy--filtering))
+- `forward_http_connect_to_icap` (Number) Forward HTTP CONNECT request to ICAP server
 - `local_logging` (Number) Enable local logging
 - `no_client_conn_reuse` (Number) Inspects only first request of a connection
+- `reqmod_icap` (String) ICAP reqmod template (Reqmod ICAP Template Name)
 - `require_web_category` (Number) Wait for web category to be resolved before taking proxy decision
 - `san_filtering` (Block List) (see [below for nested schema](#nestedblock--forward_policy--san_filtering))
 - `source_list` (Block List) (see [below for nested schema](#nestedblock--forward_policy--source_list))
@@ -270,7 +191,9 @@ Optional:
 - `fake_sg` (String) service group to forward the packets to Internet
 - `fall_back` (String) Fallback service group for Internet
 - `fall_back_snat` (String) Source NAT pool or pool group for fallback server
+- `fall_back_snat_pt_only` (Number) Source port translation only for fallback server
 - `forward_snat` (String) Source NAT pool or pool group
+- `forward_snat_pt_only` (Number) Source port translation only
 - `http_status_code` (String) '301': Moved permanently; '302': Found;
 - `log` (Number) enable logging
 - `proxy_chaining` (Number) Enable proxy chaining feature
@@ -287,6 +210,35 @@ Optional:
 Optional:
 
 - `counters1` (String) 'all': all; 'hits': Number of requests matching this destination rule;
+
+
+
+<a id="nestedblock--forward_policy--dual_stack_action_list"></a>
+### Nested Schema for `forward_policy.dual_stack_action_list`
+
+Required:
+
+- `name` (String) Action name
+
+Optional:
+
+- `fall_back` (String) Fallback service group
+- `fall_back_snat` (String) Source NAT pool or pool group for fallback
+- `ipv4` (String) IPv4 service group to forward
+- `ipv4_snat` (String) IPv4 source NAT pool or pool group
+- `ipv6` (String) IPv6 service group to forward
+- `ipv6_snat` (String) IPv6 source NAT pool or pool group
+- `log` (Number) enable logging
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--forward_policy--dual_stack_action_list--sampling_enable))
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--forward_policy--dual_stack_action_list--sampling_enable"></a>
+### Nested Schema for `forward_policy.dual_stack_action_list.sampling_enable`
+
+Optional:
+
+- `counters1` (String) 'all': all; 'hits': Number of requests forward by this action;
 
 
 
@@ -329,10 +281,64 @@ Optional:
 
 Optional:
 
+- `adv_match_list` (Block List) (see [below for nested schema](#nestedblock--forward_policy--source_list--destination--adv_match_list))
 - `any` (Block List, Max: 1) (see [below for nested schema](#nestedblock--forward_policy--source_list--destination--any))
 - `class_list_list` (Block List) (see [below for nested schema](#nestedblock--forward_policy--source_list--destination--class_list_list))
 - `web_category_list_list` (Block List) (see [below for nested schema](#nestedblock--forward_policy--source_list--destination--web_category_list_list))
 - `web_reputation_scope_list` (Block List) (see [below for nested schema](#nestedblock--forward_policy--source_list--destination--web_reputation_scope_list))
+
+<a id="nestedblock--forward_policy--source_list--destination--adv_match_list"></a>
+### Nested Schema for `forward_policy.source_list.destination.adv_match_list`
+
+Required:
+
+- `priority` (Number) Rule priority (1000 is highest)
+
+Optional:
+
+- `action` (String) Forwading action of this rule
+- `disable_reqmod_icap` (Number) Disable REQMOD ICAP template
+- `disable_respmod_icap` (Number) Disable RESPMOD ICAP template
+- `dual_stack_action` (String) Forwarding action of this rule
+- `match_host` (String) Match request host (HTTP stage) or SNI/SAN (SSL stage)
+- `match_http_content_encoding` (String) Match the value of HTTP header "Content-Encoding"
+- `match_http_content_length_range_begin` (Number) Match the value of HTTP header "Content-Length" with an inclusive range
+- `match_http_content_length_range_end` (Number) End of the "Content-Length" range
+- `match_http_content_type` (String) Match the value of HTTP header "Content-Type"
+- `match_http_header` (String) Matching the name of all request headers
+- `match_http_method_connect` (Number) Match HTTP request method CONNECT
+- `match_http_method_delete` (Number) Match HTTP request method DELETE
+- `match_http_method_get` (Number) Match HTTP request method GET
+- `match_http_method_head` (Number) Match HTTP request method HEAD
+- `match_http_method_options` (Number) Match HTTP request method OPTIONS
+- `match_http_method_patch` (Number) Match HTTP request method PATCH
+- `match_http_method_post` (Number) Match HTTP request method POST
+- `match_http_method_put` (Number) Match HTTP request method PUT
+- `match_http_method_trace` (Number) Match HTTP request method TRACE
+- `match_http_request_file_extension` (String) Match file extension of URL in HTTP request line
+- `match_http_url` (String) Match URL in HTTP request line
+- `match_http_url_regex` (String) Match URI in HTTP request line by given regular expression
+- `match_http_user_agent` (String) Matching the value of HTTP header "User-Agent"
+- `match_server_address` (String) Match target server IP address
+- `match_server_port` (Number) Match target server port number
+- `match_server_port_range_begin` (Number) Math targer server port range inclusively
+- `match_server_port_range_end` (Number) End of port range
+- `match_time_range` (String) Enable rule in this time-range
+- `match_web_category_list` (String) Match web-category list
+- `match_web_reputation_scope` (String) Match web-reputation scope
+- `notify_page` (String) Send notify-page to client
+- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--forward_policy--source_list--destination--adv_match_list--sampling_enable))
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--forward_policy--source_list--destination--adv_match_list--sampling_enable"></a>
+### Nested Schema for `forward_policy.source_list.destination.adv_match_list.sampling_enable`
+
+Optional:
+
+- `counters1` (String) 'all': all; 'hits': Number of requests hit this rule;
+
+
 
 <a id="nestedblock--forward_policy--source_list--destination--any"></a>
 ### Nested Schema for `forward_policy.source_list.destination.any`
@@ -340,6 +346,7 @@ Optional:
 Optional:
 
 - `action` (String) Action to be performed
+- `dual_stack_action` (String) Dual-stack action to be performed
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--forward_policy--source_list--destination--any--sampling_enable))
 - `uuid` (String) uuid of the object
 
@@ -362,18 +369,10 @@ Required:
 Optional:
 
 - `action` (String) Action to be performed
+- `dual_stack_action` (String) Dual-stack action to be performed
 - `priority` (Number) Priority value of the action(higher the number higher the priority)
-- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--forward_policy--source_list--destination--class_list_list--sampling_enable))
 - `type` (String) 'host': Match hostname; 'url': Match URL; 'ip': Match destination IP address;
 - `uuid` (String) uuid of the object
-
-<a id="nestedblock--forward_policy--source_list--destination--class_list_list--sampling_enable"></a>
-### Nested Schema for `forward_policy.source_list.destination.class_list_list.sampling_enable`
-
-Optional:
-
-- `counters1` (String) 'all': all; 'hits': Number of requests matching this destination rule;
-
 
 
 <a id="nestedblock--forward_policy--source_list--destination--web_category_list_list"></a>
@@ -386,18 +385,10 @@ Required:
 Optional:
 
 - `action` (String) Action to be performed
+- `dual_stack_action` (String) Dual-stack action to be performed
 - `priority` (Number) Priority value of the action(higher the number higher the priority)
-- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--forward_policy--source_list--destination--web_category_list_list--sampling_enable))
 - `type` (String) 'host': Match hostname; 'url': match URL;
 - `uuid` (String) uuid of the object
-
-<a id="nestedblock--forward_policy--source_list--destination--web_category_list_list--sampling_enable"></a>
-### Nested Schema for `forward_policy.source_list.destination.web_category_list_list.sampling_enable`
-
-Optional:
-
-- `counters1` (String) 'all': all; 'hits': Number of requests matching this destination rule;
-
 
 
 <a id="nestedblock--forward_policy--source_list--destination--web_reputation_scope_list"></a>
@@ -410,18 +401,10 @@ Required:
 Optional:
 
 - `action` (String) Action to be performed
+- `dual_stack_action` (String) Dual-stack action to be performed
 - `priority` (Number) Priority value of the action(higher the number higher the priority)
-- `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--forward_policy--source_list--destination--web_reputation_scope_list--sampling_enable))
 - `type` (String) 'host': Match hostname; 'url': match URL;
 - `uuid` (String) uuid of the object
-
-<a id="nestedblock--forward_policy--source_list--destination--web_reputation_scope_list--sampling_enable"></a>
-### Nested Schema for `forward_policy.source_list.destination.web_reputation_scope_list.sampling_enable`
-
-Optional:
-
-- `counters1` (String) 'all': all; 'hits': Number of requests matching this destination rule;
-
 
 
 

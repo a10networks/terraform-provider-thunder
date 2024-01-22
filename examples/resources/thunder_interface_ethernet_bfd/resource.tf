@@ -3,21 +3,18 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_interface_ethernet_bfd" "BFD" {
-  ifnum = 5
-  interval_cfg {
-    interval   = 300
-    min_rx     = 300
-    multiplier = 3
-  }
-  echo   = 0
-  demand = 0
+resource "thunder_interface_ethernet_bfd" "thunder_interface_ethernet_bfd" {
+  ifnum = 1
   authentication {
-    password  = "A10"
-    encrypted = 1
-    key_id    = 3
-    method    = "md5"
+    key_id   = 255
+    method   = "md5"
+    password = "a10net"
   }
-
-} 
+  demand = 0
+  echo   = 0
+  interval_cfg {
+    interval   = 208
+    min_rx     = 280
+    multiplier = 47
+  }
+}

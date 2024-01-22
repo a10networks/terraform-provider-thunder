@@ -3,12 +3,15 @@
 page_title: "thunder_slb_template_dns_logging Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_template_dns_logging: DNS Logging template
+  PLACEHOLDER
 ---
 
 # thunder_slb_template_dns_logging (Resource)
 
+`thunder_slb_template_dns_logging`: DNS Logging template
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_dns_logging" "dns_logging" {
   name                        = "logging_template1"
   dns_logging_protocol        = "tcp"
@@ -41,12 +43,60 @@ resource "thunder_slb_template_dns_logging" "dns_logging" {
 - `disable` (Number) Disable DNS Logging template
 - `dns_logging_protocol` (String) 'both': Log DNS over tcp and udp; 'tcp': Log DNS over tcp; 'udp': Log DNS over udp;
 - `dns_logging_request_section` (String) 'all': Log DNS header and question section; 'header': Log DNS header information; 'question': Log DNS question section;
-- `dns_logging_type` (String) 'query': DNS Query Logging;
+- `dns_logging_response_section` (String) 'all': Log DNS header information, answer, authority, additional section content; 'header': Log DNS header information; 'answer': Log DNS header information and answer section content;
+- `dns_logging_type` (String) 'query': DNS Query Logging; 'response': DNS Response Logging; 'both': DNS Query and Response Logging;
+- `response_type` (Block List, Max: 1) (see [below for nested schema](#nestedblock--response_type))
 - `user_tag` (String) Customized tag
 - `uuid` (String) uuid of the object
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
+
+<a id="nestedblock--response_type"></a>
+### Nested Schema for `response_type`
+
+Optional:
+
+- `config` (Number) start config the response type detail
+- `type_list` (Block List) (see [below for nested schema](#nestedblock--response_type--type_list))
+- `uuid` (String) uuid of the object
+
+<a id="nestedblock--response_type--type_list"></a>
+### Nested Schema for `response_type.type_list`
+
+Required:
+
+- `response_type_name` (String) 'TXT': TXT; 'RRSIG': RRSIG; 'TSIG': TSIG; 'DNSKEY': DNSKEY; 'DS': DS; 'CAA': CAA; 'NAPTR': NAPTR; 'OPT': OPT;
+
+Optional:
+
+- `caa_type_limit_num` (Number) Limit the field length
+- `caa_type_no_limit` (Number) Print the field as much as possible
+- `digest` (Number)
+- `dnskey_type_limit_num` (Number) Limit the field length
+- `dnskey_type_no_limit` (Number) Print the field as much as possible
+- `ds_type_limit_num` (Number) Limit the field length
+- `ds_type_no_limit` (Number) Print the field as much as possible
+- `length_limit_flag` (Number)
+- `naptr_type_limit_num` (Number) Limit the field length
+- `naptr_type_no_limit` (Number) Print the field as much as possible
+- `opt_type_limit_num` (Number) Limit the field length
+- `opt_type_no_limit` (Number) Print the field as much as possible
+- `other_data` (Number)
+- `public_key` (Number)
+- `rdata_field` (Number)
+- `rrsig_type_limit_num` (Number) Limit the field length
+- `rrsig_type_no_limit` (Number) Print the field as much as possible
+- `service_field` (Number)
+- `signature` (Number)
+- `tsig_type_limit_num` (Number) Limit the field length
+- `tsig_type_no_limit` (Number) Print the field as much as possible
+- `txt_data` (Number)
+- `txt_type_limit_num` (Number) Limit the field length
+- `txt_type_no_limit` (Number) Print the field as much as possible
+- `user_tag` (String) Customized tag
+- `uuid` (String) uuid of the object
+- `value_field` (Number)
 
 

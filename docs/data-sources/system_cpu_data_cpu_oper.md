@@ -40,12 +40,12 @@ Optional:
 
 Optional:
 
-- `10_sec` (Number)
-- `1_sec` (Number)
-- `30_sec` (Number)
-- `5_sec` (Number)
-- `60_sec` (Number)
 - `cpu_id` (Number)
 - `dcpu_str` (String)
+- `sec1` (Number)
+- `sec10` (Number)
+- `sec30` (Number)
+- `sec5` (Number)
+- `sec60` (Number)
 
 

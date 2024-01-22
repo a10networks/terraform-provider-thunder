@@ -3,52 +3,53 @@
 page_title: "thunder_snmp_server_enable_traps_slb Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_enable_traps_slb: Enable SLB group traps
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_enable_traps_slb (Resource)
 
+`thunder_snmp_server_enable_traps_slb`: Enable SLB group traps
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_slb"   "SnMPServerEnableTrapsSlb"  {
-
-    all= 1
-    application_buffer_limit= 1
-    gateway_up=1
-    gateway_down= 0
-    server_conn_limit= 0
-    server_conn_resume= 1
-    server_up= 1
-    server_down= 1
-    server_disabled= 0
-    server_selection_failure= 0
-    service_conn_limit= 0
-    service_conn_resume= 0
-    service_down= 1
-    service_up= 0
-    service_group_up= 0
-    service_group_down= 0
-    service_group_member_up= 0
-    service_group_member_down= 0
-    vip_connlimit= 0
-    vip_connratelimit= 0
-    vip_down= 0
-    vip_port_connlimit= 0
-    vip_port_connratelimit= 0
-    vip_port_down= 0
-    vip_port_up= 0
-    vip_up= 0
-    bw_rate_limit_exceed= 0
-    bw_rate_limit_resume= 1
-  
+resource "thunder_snmp_server_enable_traps_slb" "thunder_snmp_server_enable_traps_slb" {
+  all                       = 0
+  application_buffer_limit  = 0
+  bw_rate_limit_exceed      = 0
+  bw_rate_limit_resume      = 0
+  gateway_down              = 0
+  gateway_up                = 0
+  server_conn_limit         = 0
+  server_conn_resume        = 0
+  server_disabled           = 0
+  server_down               = 0
+  server_selection_failure  = 0
+  server_up                 = 0
+  service_conn_limit        = 0
+  service_conn_resume       = 0
+  service_down              = 0
+  service_group_down        = 0
+  service_group_member_down = 0
+  service_group_member_up   = 0
+  service_group_up          = 0
+  service_up                = 0
+  vip_connlimit             = 0
+  vip_connratelimit         = 0
+  vip_down                  = 0
+  vip_port_connlimit        = 0
+  vip_port_connratelimit    = 0
+  vip_port_down             = 0
+  vip_port_up               = 0
+  vip_up                    = 0
 }
 ```
 
@@ -57,35 +58,35 @@ resource  "thunder_snmp_server_enable_traps_slb"   "SnMPServerEnableTrapsSlb"  {
 
 ### Optional
 
-- `all` (Number)
-- `application_buffer_limit` (Number)
-- `bw_rate_limit_exceed` (Number)
-- `bw_rate_limit_resume` (Number)
-- `gateway_down` (Number)
-- `gateway_up` (Number)
-- `server_conn_limit` (Number)
-- `server_conn_resume` (Number)
-- `server_disabled` (Number)
-- `server_down` (Number)
-- `server_selection_failure` (Number)
-- `server_up` (Number)
-- `service_conn_limit` (Number)
-- `service_conn_resume` (Number)
-- `service_down` (Number)
-- `service_group_down` (Number)
-- `service_group_member_down` (Number)
-- `service_group_member_up` (Number)
-- `service_group_up` (Number)
-- `service_up` (Number)
-- `uuid` (String)
-- `vip_connlimit` (Number)
-- `vip_connratelimit` (Number)
-- `vip_down` (Number)
-- `vip_port_connlimit` (Number)
-- `vip_port_connratelimit` (Number)
-- `vip_port_down` (Number)
-- `vip_port_up` (Number)
-- `vip_up` (Number)
+- `all` (Number) Enable all SLB traps
+- `application_buffer_limit` (Number) Enable application buffer reach limit trap
+- `bw_rate_limit_exceed` (Number) Enable SLB server/port bandwidth rate limit exceed trap
+- `bw_rate_limit_resume` (Number) Enable SLB server/port bandwidth rate limit resume trap
+- `gateway_down` (Number) Enable SLB server gateway down trap
+- `gateway_up` (Number) Enable SLB server gateway up trap
+- `server_conn_limit` (Number) Enable SLB server connection limit trap
+- `server_conn_resume` (Number) Enable SLB server connection resume trap
+- `server_disabled` (Number) Enable SLB server-disabled trap
+- `server_down` (Number) Enable SLB server-down trap
+- `server_selection_failure` (Number) Enable SLB server selection failure trap
+- `server_up` (Number) Enable slb server up trap
+- `service_conn_limit` (Number) Enable SLB service connection limit trap
+- `service_conn_resume` (Number) Enable SLB service connection resume trap
+- `service_down` (Number) Enable SLB service-down trap
+- `service_group_down` (Number) Enable SLB service-group-down trap
+- `service_group_member_down` (Number) Enable SLB service-group-member-down trap
+- `service_group_member_up` (Number) Enable SLB service-group-member-up trap
+- `service_group_up` (Number) Enable SLB service-group-up trap
+- `service_up` (Number) Enable SLB service-up trap
+- `uuid` (String) uuid of the object
+- `vip_connlimit` (Number) Enable the virtual server reach conn-limit trap
+- `vip_connratelimit` (Number) Enable the virtual server reach conn-rate-limit trap
+- `vip_down` (Number) Enable SLB virtual server down trap
+- `vip_port_connlimit` (Number) Enable the virtual port reach conn-limit trap
+- `vip_port_connratelimit` (Number) Enable the virtual port reach conn-rate-limit trap
+- `vip_port_down` (Number) Enable SLB virtual port down trap
+- `vip_port_up` (Number) Enable SLB virtual port up trap
+- `vip_up` (Number) Enable SLB virtual server up trap
 
 ### Read-Only
 

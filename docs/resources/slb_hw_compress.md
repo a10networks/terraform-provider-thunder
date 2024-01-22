@@ -3,12 +3,15 @@
 page_title: "thunder_slb_hw_compress Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_hw_compress: Configure HW compression
+  PLACEHOLDER
 ---
 
 # thunder_slb_hw_compress (Resource)
 
+`thunder_slb_hw_compress`: Configure HW compression
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_slb_hw_compress" "test_thunder_slb_hw_compress" {
+resource "thunder_slb_hw_compress" "thunder_slb_hw_compress" {
   sampling_enable {
     counters1 = "all"
   }
@@ -32,7 +34,7 @@ resource "thunder_slb_hw_compress" "test_thunder_slb_hw_compress" {
 ### Optional
 
 - `sampling_enable` (Block List) (see [below for nested schema](#nestedblock--sampling_enable))
-- `uuid` (String)
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 
@@ -43,6 +45,6 @@ resource "thunder_slb_hw_compress" "test_thunder_slb_hw_compress" {
 
 Optional:
 
-- `counters1` (String)
+- `counters1` (String) 'all': all; 'request_count': Total request count; 'submit_count': Total submit count; 'response_count': Total response count; 'failure_count': Total failure count; 'failure_code': Last failure code; 'ring_full_count': Compression queue full; 'max_outstanding_request_count': Max queued request count; 'max_outstanding_submit_count': Max queued submit count;
 
 

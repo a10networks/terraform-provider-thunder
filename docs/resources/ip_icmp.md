@@ -3,12 +3,15 @@
 page_title: "thunder_ip_icmp Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ip_icmp: Global ICMP commands
+  PLACEHOLDER
 ---
 
 # thunder_ip_icmp (Resource)
 
+`thunder_ip_icmp`: Global ICMP commands
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_ip_icmp" "ICMP" {
+resource "thunder_ip_icmp" "thunder_ip_icmp" {
   redirect    = 1
   unreachable = 1
 }
@@ -30,9 +32,9 @@ resource "thunder_ip_icmp" "ICMP" {
 
 ### Optional
 
-- `redirect` (Number)
-- `unreachable` (Number)
-- `uuid` (String)
+- `redirect` (Number) Disable outbound ICMP redirect messages
+- `unreachable` (Number) Disable outbound ICMP unreachable messages
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

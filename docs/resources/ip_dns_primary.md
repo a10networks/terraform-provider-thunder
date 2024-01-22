@@ -3,12 +3,15 @@
 page_title: "thunder_ip_dns_primary Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_ip_dns_primary: Primary DNS server
+  PLACEHOLDER
 ---
 
 # thunder_ip_dns_primary (Resource)
 
+`thunder_ip_dns_primary`: Primary DNS server
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,8 +21,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_ip_dns_primary" "dnsPrimary" {
+resource "thunder_ip_dns_primary" "thunder_ip_dns_primary" {
   ip_v4_addr = "10.10.10.10"
 }
 ```
@@ -29,9 +31,9 @@ resource "thunder_ip_dns_primary" "dnsPrimary" {
 
 ### Optional
 
-- `ip_v4_addr` (String)
-- `ip_v6_addr` (String)
-- `uuid` (String)
+- `ip_v4_addr` (String) DNS server address
+- `ip_v6_addr` (String) DNS server address
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

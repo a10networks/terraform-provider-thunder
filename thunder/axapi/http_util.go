@@ -188,6 +188,7 @@ func getAPIRequest(method string, host string, token map[string]string, path str
 }
 
 func CallMultipartAPI(method string, host string, token map[string]string, path string, rpns map[string]string, rfcs map[string][]byte, logger *ThunderLog) (resp *http.Response, err error) {
+	url := "https://" + host + "/axapi/v3/" + path
 	defer func() {
 		io.Copy(ioutil.Discard, resp.Body)
 		resp.Body.Close()
@@ -203,7 +204,7 @@ func CallMultipartAPI(method string, host string, token map[string]string, path 
 		ff.Write(rfcs[rfn])
 	}
 	w.Close()
-
+    var respBytes []byte
 	req := getAPIRequest(method, host, token, path, buf.Bytes(), logger)
 	if req == nil {
 		return nil, fmt.Errorf("ACOS aXAPI call to %v failed", path)
@@ -214,8 +215,11 @@ func CallMultipartAPI(method string, host string, token map[string]string, path 
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 	client := &http.Client{Transport: tr, Timeout: 30 * time.Second}
-
+   
 	resp, err = client.Do(req)
+    logger.Println(method, ">", url)
+	respBytes, _ = ioutil.ReadAll(resp.Body)
+	logger.Println("axApi response:\n", string(respBytes))
 	if err != nil {
 		return nil, fmt.Errorf("ACOS aXAPI call to %v failed, error = %v", path, err)
 	}
@@ -232,7 +236,7 @@ func NormalizeMultipartObject(method, path, file string, fContent []byte, obj in
 		logger.Println("MulitpartObject : Failed to marshal")
 		return nil, err
 	}
-
+    
 	rpns[jsonName] = blobName
 	rfcs[blobName] = jsonBlob
 	rpns[fileName] = file

@@ -3,29 +3,30 @@
 page_title: "thunder_snmp_server_enable_traps_gslb Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_snmp_server_enable_traps_gslb: Enable GSLB group traps
+  PLACEHOLDER
 ---
 
 # thunder_snmp_server_enable_traps_gslb (Resource)
 
+`thunder_snmp_server_enable_traps_gslb`: Enable GSLB group traps
 
+__PLACEHOLDER__
 
 ## Example Usage
 
 ```terraform
-provider  "thunder"  {
-    address  = var.dut9049
-    username = var.UserName
-    password = var.Password
+provider "thunder" {
+  address  = var.dut9049
+  username = var.username
+  password = var.password
 }
-resource  "thunder_snmp_server_enable_traps_gslb"   "SnMPServerEnableTrapsGslb"  {
-    
-       all = 1 
-       zone = 1 
-       site = 0 
-       group = 1 
-       service_ip = 1
-     
+resource "thunder_snmp_server_enable_traps_gslb" "thunder_snmp_server_enable_traps_gslb" {
+  all        = 0
+  group      = 0
+  service_ip = 0
+  site       = 0
+  zone       = 0
 }
 ```
 
@@ -34,12 +35,12 @@ resource  "thunder_snmp_server_enable_traps_gslb"   "SnMPServerEnableTrapsGslb" 
 
 ### Optional
 
-- `all` (Number)
-- `group` (Number)
-- `service_ip` (Number)
-- `site` (Number)
-- `uuid` (String)
-- `zone` (Number)
+- `all` (Number) Enable all GSLB traps
+- `group` (Number) Enable GSLB group related traps
+- `service_ip` (Number) Enable GSLB service-ip related traps
+- `site` (Number) Enable GSLB site related traps
+- `uuid` (String) uuid of the object
+- `zone` (Number) Enable GSLB zone related traps
 
 ### Read-Only
 

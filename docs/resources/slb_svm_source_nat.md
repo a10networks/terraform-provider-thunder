@@ -3,12 +3,15 @@
 page_title: "thunder_slb_svm_source_nat Resource - terraform-provider-thunder"
 subcategory: ""
 description: |-
-  
+  thunder_slb_svm_source_nat: Configure SVM Source-NAT Pool
+  PLACEHOLDER
 ---
 
 # thunder_slb_svm_source_nat (Resource)
 
+`thunder_slb_svm_source_nat`: Configure SVM Source-NAT Pool
 
+__PLACEHOLDER__
 
 ## Example Usage
 
@@ -18,7 +21,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_svm_source_nat" "test_thunder_slb_svm_source_nat" {
   pool = "pool1"
 }
@@ -29,7 +31,8 @@ resource "thunder_slb_svm_source_nat" "test_thunder_slb_svm_source_nat" {
 
 ### Optional
 
-- `pool` (String)
+- `pool` (String) Specify NAT pool or pool group
+- `uuid` (String) uuid of the object
 
 ### Read-Only
 

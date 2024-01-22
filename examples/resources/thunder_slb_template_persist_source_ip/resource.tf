@@ -3,7 +3,6 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
 resource "thunder_slb_template_persist_source_ip" "persist-source" {
   name                    = "persistip1"
   incl_dst_ip             = 1

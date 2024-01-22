@@ -3,8 +3,7 @@ provider "thunder" {
   username = var.username
   password = var.password
 }
-
-resource "thunder_web_category_reputation_scope" "resourceWebCategoryReputationScopeTest" {
+resource "thunder_web_category_reputation_scope" "thunderWebCategoryReputationScopeTest" {
   name = "testingWebCategory"
   greater_than {
     greater_trustworthy   = 1

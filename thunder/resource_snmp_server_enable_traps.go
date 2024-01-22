@@ -5,20 +5,19 @@ import (
 	edpt "github.com/a10networks/terraform-provider-thunder/thunder/axapi/endpoint"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
 func resourceSnmpServerEnableTraps() *schema.Resource {
 	return &schema.Resource{
-		Description:   "`thunder_snmp_server_enable_traps`: Enable SNMP traps\n\n",
+		Description:   "`thunder_snmp_server_enable_traps`: Enable SNMP traps\n\n__PLACEHOLDER__",
 		CreateContext: resourceSnmpServerEnableTrapsCreate,
 		UpdateContext: resourceSnmpServerEnableTrapsUpdate,
 		ReadContext:   resourceSnmpServerEnableTrapsRead,
 		DeleteContext: resourceSnmpServerEnableTrapsDelete,
+
 		Schema: map[string]*schema.Schema{
 			"all": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable all SNMP traps",
-				ValidateFunc: validation.IntBetween(0, 1),
 			},
 			"gslb": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -26,23 +25,18 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"all": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable all GSLB traps",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"zone": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable GSLB zone related traps [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable GSLB zone related traps",
 						},
 						"site": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable GSLB site related traps [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable GSLB site related traps",
 						},
 						"group": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable GSLB group related traps [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable GSLB group related traps",
 						},
 						"service_ip": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable GSLB service-ip related traps [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable GSLB service-ip related traps",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -51,8 +45,7 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 				},
 			},
 			"lldp": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable lldp traps [shared partition only]",
-				ValidateFunc: validation.IntBetween(0, 1),
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable lldp traps",
 			},
 			"lsn": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -60,31 +53,24 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"all": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable all LSN group traps",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"total_port_usage_threshold": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable LSN trap when NAT total port usage reaches the threshold (default 655350000)",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"per_ip_port_usage_threshold": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable LSN trap when IP total port usage reaches the threshold (default 64512)",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"max_port_threshold": {
 							Type: schema.TypeInt, Optional: true, Default: 655350000, Description: "Maximum threshold",
-							ValidateFunc: validation.IntBetween(10000, 655355000),
 						},
 						"max_ipport_threshold": {
 							Type: schema.TypeInt, Optional: true, Default: 64512, Description: "Maximum threshold",
-							ValidateFunc: validation.IntBetween(10000, 64512),
 						},
 						"fixed_nat_port_mapping_file_change": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable LSN trap when fixed nat port mapping file change",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"traffic_exceeded": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable LSN trap when NAT pool reaches the threshold",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -97,8 +83,7 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"trunk_port_threshold": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable network trunk-port-threshold trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable network trunk-port-threshold trap",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -115,15 +100,35 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"bgpestablishednotification": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable bgpEstablishedNotification traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable bgpEstablishedNotification traps",
 									},
 									"bgpbackwardtransnotification": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable bgpBackwardTransNotification traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable bgpBackwardTransNotification traps",
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+									"ax": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"bgpestablishednotification": {
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable bgpEstablishedNotification traps",
+												},
+												"bgpbackwardtransnotification": {
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable bgpBackwardTransNotification traps",
+												},
+												"bgpprefixthresholdexceedednotification": {
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable bgpPrefixThresholdExceededNotification traps",
+												},
+												"bgpprefixthresholdclearnotification": {
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable bgpPrefixThresholdClearNotification traps",
+												},
+												"uuid": {
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+												},
+											},
+										},
 									},
 								},
 							},
@@ -133,72 +138,58 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"isisadjacencychange": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisAdjacencyChange traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisAdjacencyChange traps",
 									},
 									"isisareamismatch": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisAreaMismatch traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisAreaMismatch traps",
 									},
 									"isisattempttoexceedmaxsequence": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisAttemptToExceedMaxSequence traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisAttemptToExceedMaxSequence traps",
 									},
 									"isisauthenticationfailure": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisAuthenticationFailure traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisAuthenticationFailure traps",
 									},
 									"isisauthenticationtypefailure": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisAuthenticationTypeFailure traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisAuthenticationTypeFailure traps",
 									},
 									"isiscorruptedlspdetected": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisCorruptedLSPDetected traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisCorruptedLSPDetected traps",
 									},
 									"isisdatabaseoverload": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisDatabaseOverload traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisDatabaseOverload traps",
 									},
 									"isisidlenmismatch": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisIDLenMismatch traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisIDLenMismatch traps",
 									},
 									"isislsptoolargetopropagate": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisLSPTooLargeToPropagate traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisLSPTooLargeToPropagate traps",
 									},
 									"isismanualaddressdrops": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisManualAddressDrops traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisManualAddressDrops traps",
 									},
 									"isismaxareaaddressesmismatch": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisMaxAreaAddressesMismatch traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisMaxAreaAddressesMismatch traps",
 									},
 									"isisoriginatinglspbuffersizemismatch": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisOriginatingLSPBufferSizeMismatch traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisOriginatingLSPBufferSizeMismatch traps",
 									},
 									"isisownlsppurge": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisOwnLSPPurge traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisOwnLSPPurge traps",
 									},
 									"isisprotocolssupportedmismatch": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisProtocolsSupportedMismatch traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisProtocolsSupportedMismatch traps",
 									},
 									"isisrejectedadjacency": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisRejectedAdjacency traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisRejectedAdjacency traps",
 									},
 									"isissequencenumberskip": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisSequenceNumberSkip traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisSequenceNumberSkip traps",
 									},
 									"isisversionskew": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisVersionSkew traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisVersionSkew traps",
+									},
+									"isislsperrordetected": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable isisLSPErrorDetected traps",
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -211,68 +202,52 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"ospfifauthfailure": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfIfAuthFailure traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfIfAuthFailure traps",
 									},
 									"ospfifconfigerror": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfIfConfigError traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfIfConfigError traps",
 									},
 									"ospfifrxbadpacket": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfIfRxBadPacket traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfIfRxBadPacket traps",
 									},
 									"ospfifstatechange": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfIfStateChange traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfIfStateChange traps",
 									},
 									"ospflsdbapproachingoverflow": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfLsdbApproachingOverflow traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfLsdbApproachingOverflow traps",
 									},
 									"ospflsdboverflow": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfLsdbOverflow traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfLsdbOverflow traps",
 									},
 									"ospfmaxagelsa": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfMaxAgeLsa traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfMaxAgeLsa traps",
 									},
 									"ospfnbrstatechange": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfNbrStateChange traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfNbrStateChange traps",
 									},
 									"ospforiginatelsa": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfOriginateLsa traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfOriginateLsa traps",
 									},
 									"ospftxretransmit": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfTxRetransmit traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfTxRetransmit traps",
 									},
 									"ospfvirtifauthfailure": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfVirtIfAuthFailure traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfVirtIfAuthFailure traps",
 									},
 									"ospfvirtifconfigerror": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfVirtIfConfigError traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfVirtIfConfigError traps",
 									},
 									"ospfvirtifrxbadpacket": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfVirtIfRxBadPacket traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfVirtIfRxBadPacket traps",
 									},
 									"ospfvirtifstatechange": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfVirtIfStateChange traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfVirtIfStateChange traps",
 									},
 									"ospfvirtiftxretransmit": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfVirtIfTxRetransmit traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfVirtIfTxRetransmit traps",
 									},
 									"ospfvirtnbrstatechange": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfVirtNbrStateChange traps [shared partition only]",
-										ValidateFunc: validation.IntBetween(0, 1),
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ospfVirtNbrStateChange traps",
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -293,11 +268,9 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 								Schema: map[string]*schema.Schema{
 									"all": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable all infra traps",
-										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"test_send_all_traps": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Send all infra traps",
-										ValidateFunc: validation.IntBetween(0, 1),
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -306,21 +279,14 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
-												"single_node_mode": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable single node status trap [shared partition only]",
-													ValidateFunc: validation.IntBetween(0, 1),
-												},
 												"election": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable election status trap [shared partition only]",
-													ValidateFunc: validation.IntBetween(0, 1),
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable election status trap",
 												},
 												"master_calling_re_election": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable re-election trap [shared partition only]",
-													ValidateFunc: validation.IntBetween(0, 1),
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable re-election trap",
 												},
 												"node_status": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable active node status trap [shared partition only]",
-													ValidateFunc: validation.IntBetween(0, 1),
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable active node status trap",
 												},
 												"uuid": {
 													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -333,16 +299,13 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"local_device_disabled": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable local device disabled trap [shared partition only]",
-													ValidateFunc: validation.IntBetween(0, 1),
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable local device disabled trap",
 												},
 												"service_master": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable service-master trap [shared partition only]",
-													ValidateFunc: validation.IntBetween(0, 1),
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable service-master trap",
 												},
 												"traffic_map_update": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable traffic map update trap [shared partition only]",
-													ValidateFunc: validation.IntBetween(0, 1),
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable traffic map update trap",
 												},
 												"uuid": {
 													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -355,12 +318,10 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"traffic_map_distribution": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable Traffic-map distribution trap [shared partition only]",
-													ValidateFunc: validation.IntBetween(0, 1),
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable Traffic-map distribution trap",
 												},
 												"vserver_traffic_map_update": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable VServer Traffic-map trap [shared partition only]",
-													ValidateFunc: validation.IntBetween(0, 1),
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable VServer Traffic-map trap",
 												},
 												"uuid": {
 													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -380,115 +341,87 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"all": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable all SLB traps",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"application_buffer_limit": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable application buffer reach limit trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable application buffer reach limit trap",
 						},
 						"gateway_up": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server gateway up trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server gateway up trap",
 						},
 						"gateway_down": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server gateway down trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server gateway down trap",
 						},
 						"server_conn_limit": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server connection limit trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server connection limit trap",
 						},
 						"server_conn_resume": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server connection resume trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server connection resume trap",
 						},
 						"server_up": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable slb server up trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable slb server up trap",
 						},
 						"server_down": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server-down trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server-down trap",
 						},
 						"server_disabled": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server-disabled trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server-disabled trap",
 						},
 						"server_selection_failure": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server selection failure trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server selection failure trap",
 						},
 						"service_conn_limit": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service connection limit trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service connection limit trap",
 						},
 						"service_conn_resume": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service connection resume trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service connection resume trap",
 						},
 						"service_down": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service-down trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service-down trap",
 						},
 						"service_up": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service-up trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service-up trap",
 						},
 						"service_group_up": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service-group-up trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service-group-up trap",
 						},
 						"service_group_down": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service-group-down trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service-group-down trap",
 						},
 						"service_group_member_up": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service-group-member-up trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service-group-member-up trap",
 						},
 						"service_group_member_down": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service-group-member-down trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB service-group-member-down trap",
 						},
 						"vip_connlimit": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the virtual server reach conn-limit trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the virtual server reach conn-limit trap",
 						},
 						"vip_connratelimit": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the virtual server reach conn-rate-limit trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the virtual server reach conn-rate-limit trap",
 						},
 						"vip_down": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB virtual server down trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB virtual server down trap",
 						},
 						"vip_port_connlimit": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the virtual port reach conn-limit trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the virtual port reach conn-limit trap",
 						},
 						"vip_port_connratelimit": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the virtual port reach conn-rate-limit trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the virtual port reach conn-rate-limit trap",
 						},
 						"vip_port_down": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB virtual port down trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB virtual port down trap",
 						},
 						"vip_port_up": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB virtual port up trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB virtual port up trap",
 						},
 						"vip_up": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB virtual server up trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB virtual server up trap",
 						},
 						"bw_rate_limit_exceed": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server/port bandwidth rate limit exceed trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server/port bandwidth rate limit exceed trap",
 						},
 						"bw_rate_limit_resume": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server/port bandwidth rate limit resume trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB server/port bandwidth rate limit resume trap",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -502,43 +435,33 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"all": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable all system group traps",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"resource_usage_warning": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable partition resource usage warning trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable partition resource usage warning trap",
 						},
 						"connection_resource_event": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system connection resource event trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system connection resource event trap",
 						},
 						"server": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable slb server create/delete trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable slb server create/delete trap",
 						},
 						"server_port": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable slb server port create/delete trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable slb server port create/delete trap",
 						},
 						"ssl_cert_change": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SSL certificate change trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SSL certificate change trap",
 						},
 						"ssl_cert_expire": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SSL certificate expiring trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SSL certificate expiring trap",
 						},
 						"vip": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable slb vip create/delete trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable slb vip create/delete trap",
 						},
 						"vip_port": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable slb vip-port create/delete trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable slb vip-port create/delete trap",
 						},
 						"system_threshold": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable slb system threshold trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable slb system threshold trap",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -552,15 +475,12 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"all": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable all SNMP group traps",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"linkdown": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SNMP link-down trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SNMP link-down trap",
 						},
 						"linkup": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SNMP link-up trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SNMP link-up trap",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -573,8 +493,7 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"server_certificate_error": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SSL server certificate error trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SSL server certificate error trap",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -587,87 +506,83 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"all": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable all system group traps [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable all system group traps",
 						},
 						"control_cpu_high": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable control CPU usage high trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable control CPU usage high trap",
 						},
 						"data_cpu_high": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable data CPU usage high trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable data CPU usage high trap",
 						},
 						"fan": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system fan trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system fan trap",
 						},
 						"file_sys_read_only": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable file system read-only trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable file system read-only trap",
 						},
 						"high_disk_use": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system high disk usage trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system high disk usage trap",
 						},
 						"high_memory_use": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system high memory usage trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system high memory usage trap",
 						},
 						"high_temp": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system high temperature trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system high temperature trap",
 						},
 						"low_temp": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system low temperature trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system low temperature trap",
 						},
 						"license_management": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system license management traps [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system license management traps",
 						},
 						"packet_drop": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system packet dropped trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system packet dropped trap",
 						},
 						"power": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system power supply trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system power supply trap",
 						},
 						"pri_disk": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system primary hard disk trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system primary hard disk trap",
 						},
 						"restart": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system restart trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system restart trap",
 						},
 						"sec_disk": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system secondary hard disk trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system secondary hard disk trap",
 						},
 						"shutdown": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system shutdown trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system shutdown trap",
 						},
 						"smp_resource_event": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system smp resource event trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system smp resource event trap",
 						},
 						"syslog_severity_one": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system syslog severity one messages trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system syslog severity one messages trap",
 						},
 						"tacacs_server_up_down": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system TACACS monitor server up/down trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system TACACS monitor server up/down trap",
 						},
 						"start": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system start trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable system start trap",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"apps_global": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"sessions_threshold": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable sessions threshold trap",
+									},
+									"cps_threshold": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable CPS trap",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
 						},
 					},
 				},
@@ -680,8 +595,7 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"state_change": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable VCS state change trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable VCS state change trap",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -695,15 +609,12 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"all": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable all VRRP-A group traps",
-							ValidateFunc: validation.IntBetween(0, 1),
 						},
 						"active": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable VRRP-A active trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable VRRP-A active trap",
 						},
 						"standby": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable VRRP-A standby trap [shared partition only]",
-							ValidateFunc: validation.IntBetween(0, 1),
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable VRRP-A standby trap",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -714,7 +625,6 @@ func resourceSnmpServerEnableTraps() *schema.Resource {
 		},
 	}
 }
-
 func resourceSnmpServerEnableTrapsCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -728,21 +638,6 @@ func resourceSnmpServerEnableTrapsCreate(ctx context.Context, d *schema.Resource
 			return diag.FromErr(err)
 		}
 		return resourceSnmpServerEnableTrapsRead(ctx, d, meta)
-	}
-	return diags
-}
-
-func resourceSnmpServerEnableTrapsRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(Thunder)
-	logger := client.log
-	logger.Println("resourceSnmpServerEnableTrapsRead()")
-	var diags diag.Diagnostics
-	if client.Host != "" {
-		obj := dataToEndpointSnmpServerEnableTraps(d)
-		err := obj.Get(client.Token, client.Host, d.Id(), logger)
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 	return diags
 }
@@ -762,7 +657,6 @@ func resourceSnmpServerEnableTrapsUpdate(ctx context.Context, d *schema.Resource
 	}
 	return diags
 }
-
 func resourceSnmpServerEnableTrapsDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	client := meta.(Thunder)
 	logger := client.log
@@ -778,13 +672,27 @@ func resourceSnmpServerEnableTrapsDelete(ctx context.Context, d *schema.Resource
 	return diags
 }
 
-func getObjectSnmpServerEnableTrapsGslb(d []interface{}) edpt.SnmpServerEnableTrapsGslb {
-	var ret edpt.SnmpServerEnableTrapsGslb
-	for _, item := range d {
-		if item == nil {
-			continue
+func resourceSnmpServerEnableTrapsRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceSnmpServerEnableTrapsRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointSnmpServerEnableTraps(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
 		}
-		in := item.(map[string]interface{})
+	}
+	return diags
+}
+
+func getObjectSnmpServerEnableTrapsGslb1483(d []interface{}) edpt.SnmpServerEnableTrapsGslb1483 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsGslb1483
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
 		ret.Zone = in["zone"].(int)
 		ret.Site = in["site"].(int)
@@ -795,13 +703,12 @@ func getObjectSnmpServerEnableTrapsGslb(d []interface{}) edpt.SnmpServerEnableTr
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsLsn(d []interface{}) edpt.SnmpServerEnableTrapsLsn {
-	var ret edpt.SnmpServerEnableTrapsLsn
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsLsn1484(d []interface{}) edpt.SnmpServerEnableTrapsLsn1484 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsLsn1484
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
 		ret.TotalPortUsageThreshold = in["total_port_usage_threshold"].(int)
 		ret.PerIpPortUsageThreshold = in["per_ip_port_usage_threshold"].(int)
@@ -814,54 +721,66 @@ func getObjectSnmpServerEnableTrapsLsn(d []interface{}) edpt.SnmpServerEnableTra
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsNetwork(d []interface{}) edpt.SnmpServerEnableTrapsNetwork {
-	var ret edpt.SnmpServerEnableTrapsNetwork
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsNetwork1485(d []interface{}) edpt.SnmpServerEnableTrapsNetwork1485 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsNetwork1485
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.TrunkPortThreshold = in["trunk_port_threshold"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsRouting(d []interface{}) edpt.SnmpServerEnableTrapsRouting {
-	var ret edpt.SnmpServerEnableTrapsRouting
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
-		ret.Bgp = getObjectSnmpServerEnableTrapsRoutingBgp(in["bgp"].([]interface{}))
-		ret.Isis = getObjectSnmpServerEnableTrapsRoutingIsis(in["isis"].([]interface{}))
-		ret.Ospf = getObjectSnmpServerEnableTrapsRoutingOspf(in["ospf"].([]interface{}))
+func getObjectSnmpServerEnableTrapsRouting1486(d []interface{}) edpt.SnmpServerEnableTrapsRouting1486 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsRouting1486
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Bgp = getObjectSnmpServerEnableTrapsRoutingBgp1487(in["bgp"].([]interface{}))
+		ret.Isis = getObjectSnmpServerEnableTrapsRoutingIsis1489(in["isis"].([]interface{}))
+		ret.Ospf = getObjectSnmpServerEnableTrapsRoutingOspf1490(in["ospf"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsRoutingBgp(d []interface{}) edpt.SnmpServerEnableTrapsRoutingBgp {
-	var ret edpt.SnmpServerEnableTrapsRoutingBgp
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsRoutingBgp1487(d []interface{}) edpt.SnmpServerEnableTrapsRoutingBgp1487 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsRoutingBgp1487
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.Bgpestablishednotification = in["bgpestablishednotification"].(int)
 		ret.Bgpbackwardtransnotification = in["bgpbackwardtransnotification"].(int)
+		//omit uuid
+		ret.Ax = getObjectSnmpServerEnableTrapsRoutingBgpAx1488(in["ax"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectSnmpServerEnableTrapsRoutingBgpAx1488(d []interface{}) edpt.SnmpServerEnableTrapsRoutingBgpAx1488 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsRoutingBgpAx1488
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Bgpestablishednotification = in["bgpestablishednotification"].(int)
+		ret.Bgpbackwardtransnotification = in["bgpbackwardtransnotification"].(int)
+		ret.Bgpprefixthresholdexceedednotification = in["bgpprefixthresholdexceedednotification"].(int)
+		ret.Bgpprefixthresholdclearnotification = in["bgpprefixthresholdclearnotification"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsRoutingIsis(d []interface{}) edpt.SnmpServerEnableTrapsRoutingIsis {
-	var ret edpt.SnmpServerEnableTrapsRoutingIsis
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsRoutingIsis1489(d []interface{}) edpt.SnmpServerEnableTrapsRoutingIsis1489 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsRoutingIsis1489
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.Isisadjacencychange = in["isisadjacencychange"].(int)
 		ret.Isisareamismatch = in["isisareamismatch"].(int)
 		ret.Isisattempttoexceedmaxsequence = in["isisattempttoexceedmaxsequence"].(int)
@@ -879,18 +798,18 @@ func getObjectSnmpServerEnableTrapsRoutingIsis(d []interface{}) edpt.SnmpServerE
 		ret.Isisrejectedadjacency = in["isisrejectedadjacency"].(int)
 		ret.Isissequencenumberskip = in["isissequencenumberskip"].(int)
 		ret.Isisversionskew = in["isisversionskew"].(int)
+		ret.Isislsperrordetected = in["isislsperrordetected"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsRoutingOspf(d []interface{}) edpt.SnmpServerEnableTrapsRoutingOspf {
-	var ret edpt.SnmpServerEnableTrapsRoutingOspf
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsRoutingOspf1490(d []interface{}) edpt.SnmpServerEnableTrapsRoutingOspf1490 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsRoutingOspf1490
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.Ospfifauthfailure = in["ospfifauthfailure"].(int)
 		ret.Ospfifconfigerror = in["ospfifconfigerror"].(int)
 		ret.Ospfifrxbadpacket = in["ospfifrxbadpacket"].(int)
@@ -912,43 +831,39 @@ func getObjectSnmpServerEnableTrapsRoutingOspf(d []interface{}) edpt.SnmpServerE
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsScaleout(d []interface{}) edpt.SnmpServerEnableTrapsScaleout {
-	var ret edpt.SnmpServerEnableTrapsScaleout
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
-		ret.Infrastructure = getObjectSnmpServerEnableTrapsScaleoutInfrastructure(in["infrastructure"].([]interface{}))
+func getObjectSnmpServerEnableTrapsScaleout1491(d []interface{}) edpt.SnmpServerEnableTrapsScaleout1491 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsScaleout1491
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Infrastructure = getObjectSnmpServerEnableTrapsScaleoutInfrastructure1492(in["infrastructure"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsScaleoutInfrastructure(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructure {
-	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructure
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsScaleoutInfrastructure1492(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructure1492 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructure1492
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
 		ret.TestSendAllTraps = in["test_send_all_traps"].(int)
 		//omit uuid
-		ret.Cluster = getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster(in["cluster"].([]interface{}))
-		ret.ServiceNode = getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode(in["service_node"].([]interface{}))
-		ret.MasterNode = getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode(in["master_node"].([]interface{}))
+		ret.Cluster = getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster1493(in["cluster"].([]interface{}))
+		ret.ServiceNode = getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode1494(in["service_node"].([]interface{}))
+		ret.MasterNode = getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode1495(in["master_node"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureCluster {
-	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureCluster
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
-		ret.SingleNodeMode = in["single_node_mode"].(int)
+func getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster1493(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureCluster1493 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureCluster1493
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.Election = in["election"].(int)
 		ret.MasterCallingReElection = in["master_calling_re_election"].(int)
 		ret.NodeStatus = in["node_status"].(int)
@@ -957,13 +872,12 @@ func getObjectSnmpServerEnableTrapsScaleoutInfrastructureCluster(d []interface{}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureServiceNode {
-	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureServiceNode
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode1494(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1494 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureServiceNode1494
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.LocalDeviceDisabled = in["local_device_disabled"].(int)
 		ret.ServiceMaster = in["service_master"].(int)
 		ret.TrafficMapUpdate = in["traffic_map_update"].(int)
@@ -972,13 +886,12 @@ func getObjectSnmpServerEnableTrapsScaleoutInfrastructureServiceNode(d []interfa
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureMasterNode {
-	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureMasterNode
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode1495(d []interface{}) edpt.SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1495 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsScaleoutInfrastructureMasterNode1495
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.TrafficMapDistribution = in["traffic_map_distribution"].(int)
 		ret.VserverTrafficMapUpdate = in["vserver_traffic_map_update"].(int)
 		//omit uuid
@@ -986,13 +899,12 @@ func getObjectSnmpServerEnableTrapsScaleoutInfrastructureMasterNode(d []interfac
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsSlb(d []interface{}) edpt.SnmpServerEnableTrapsSlb {
-	var ret edpt.SnmpServerEnableTrapsSlb
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsSlb1496(d []interface{}) edpt.SnmpServerEnableTrapsSlb1496 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsSlb1496
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
 		ret.ApplicationBufferLimit = in["application_buffer_limit"].(int)
 		ret.GatewayUp = in["gateway_up"].(int)
@@ -1026,13 +938,12 @@ func getObjectSnmpServerEnableTrapsSlb(d []interface{}) edpt.SnmpServerEnableTra
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsSlbChange(d []interface{}) edpt.SnmpServerEnableTrapsSlbChange {
-	var ret edpt.SnmpServerEnableTrapsSlbChange
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsSlbChange1497(d []interface{}) edpt.SnmpServerEnableTrapsSlbChange1497 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsSlbChange1497
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
 		ret.ResourceUsageWarning = in["resource_usage_warning"].(int)
 		ret.ConnectionResourceEvent = in["connection_resource_event"].(int)
@@ -1048,13 +959,12 @@ func getObjectSnmpServerEnableTrapsSlbChange(d []interface{}) edpt.SnmpServerEna
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsSnmp(d []interface{}) edpt.SnmpServerEnableTrapsSnmp {
-	var ret edpt.SnmpServerEnableTrapsSnmp
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsSnmp1498(d []interface{}) edpt.SnmpServerEnableTrapsSnmp1498 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsSnmp1498
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
 		ret.Linkdown = in["linkdown"].(int)
 		ret.Linkup = in["linkup"].(int)
@@ -1063,26 +973,24 @@ func getObjectSnmpServerEnableTrapsSnmp(d []interface{}) edpt.SnmpServerEnableTr
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsSsl(d []interface{}) edpt.SnmpServerEnableTrapsSsl {
-	var ret edpt.SnmpServerEnableTrapsSsl
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsSsl1499(d []interface{}) edpt.SnmpServerEnableTrapsSsl1499 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsSsl1499
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.ServerCertificateError = in["server_certificate_error"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsSystem(d []interface{}) edpt.SnmpServerEnableTrapsSystem {
-	var ret edpt.SnmpServerEnableTrapsSystem
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsSystem1500(d []interface{}) edpt.SnmpServerEnableTrapsSystem1500 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsSystem1500
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
 		ret.ControlCpuHigh = in["control_cpu_high"].(int)
 		ret.DataCpuHigh = in["data_cpu_high"].(int)
@@ -1104,30 +1012,42 @@ func getObjectSnmpServerEnableTrapsSystem(d []interface{}) edpt.SnmpServerEnable
 		ret.TacacsServerUpDown = in["tacacs_server_up_down"].(int)
 		ret.Start = in["start"].(int)
 		//omit uuid
+		ret.AppsGlobal = getObjectSnmpServerEnableTrapsSystemAppsGlobal1501(in["apps_global"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsVcs(d []interface{}) edpt.SnmpServerEnableTrapsVcs {
-	var ret edpt.SnmpServerEnableTrapsVcs
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsSystemAppsGlobal1501(d []interface{}) edpt.SnmpServerEnableTrapsSystemAppsGlobal1501 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsSystemAppsGlobal1501
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.SessionsThreshold = in["sessions_threshold"].(int)
+		ret.CpsThreshold = in["cps_threshold"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectSnmpServerEnableTrapsVcs1502(d []interface{}) edpt.SnmpServerEnableTrapsVcs1502 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsVcs1502
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.StateChange = in["state_change"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSnmpServerEnableTrapsVrrpA(d []interface{}) edpt.SnmpServerEnableTrapsVrrpA {
-	var ret edpt.SnmpServerEnableTrapsVrrpA
-	for _, item := range d {
-		if item == nil {
-			continue
-		}
-		in := item.(map[string]interface{})
+func getObjectSnmpServerEnableTrapsVrrpA1503(d []interface{}) edpt.SnmpServerEnableTrapsVrrpA1503 {
+
+	count1 := len(d)
+	var ret edpt.SnmpServerEnableTrapsVrrpA1503
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
 		ret.Active = in["active"].(int)
 		ret.Standby = in["standby"].(int)
@@ -1139,19 +1059,19 @@ func getObjectSnmpServerEnableTrapsVrrpA(d []interface{}) edpt.SnmpServerEnableT
 func dataToEndpointSnmpServerEnableTraps(d *schema.ResourceData) edpt.SnmpServerEnableTraps {
 	var ret edpt.SnmpServerEnableTraps
 	ret.Inst.All = d.Get("all").(int)
-	ret.Inst.Gslb = getObjectSnmpServerEnableTrapsGslb(d.Get("gslb").([]interface{}))
+	ret.Inst.Gslb = getObjectSnmpServerEnableTrapsGslb1483(d.Get("gslb").([]interface{}))
 	ret.Inst.Lldp = d.Get("lldp").(int)
-	ret.Inst.Lsn = getObjectSnmpServerEnableTrapsLsn(d.Get("lsn").([]interface{}))
-	ret.Inst.Network = getObjectSnmpServerEnableTrapsNetwork(d.Get("network").([]interface{}))
-	ret.Inst.Routing = getObjectSnmpServerEnableTrapsRouting(d.Get("routing").([]interface{}))
-	ret.Inst.Scaleout = getObjectSnmpServerEnableTrapsScaleout(d.Get("scaleout").([]interface{}))
-	ret.Inst.Slb = getObjectSnmpServerEnableTrapsSlb(d.Get("slb").([]interface{}))
-	ret.Inst.SlbChange = getObjectSnmpServerEnableTrapsSlbChange(d.Get("slb_change").([]interface{}))
-	ret.Inst.Snmp = getObjectSnmpServerEnableTrapsSnmp(d.Get("snmp").([]interface{}))
-	ret.Inst.Ssl = getObjectSnmpServerEnableTrapsSsl(d.Get("ssl").([]interface{}))
-	ret.Inst.System = getObjectSnmpServerEnableTrapsSystem(d.Get("system").([]interface{}))
+	ret.Inst.Lsn = getObjectSnmpServerEnableTrapsLsn1484(d.Get("lsn").([]interface{}))
+	ret.Inst.Network = getObjectSnmpServerEnableTrapsNetwork1485(d.Get("network").([]interface{}))
+	ret.Inst.Routing = getObjectSnmpServerEnableTrapsRouting1486(d.Get("routing").([]interface{}))
+	ret.Inst.Scaleout = getObjectSnmpServerEnableTrapsScaleout1491(d.Get("scaleout").([]interface{}))
+	ret.Inst.Slb = getObjectSnmpServerEnableTrapsSlb1496(d.Get("slb").([]interface{}))
+	ret.Inst.SlbChange = getObjectSnmpServerEnableTrapsSlbChange1497(d.Get("slb_change").([]interface{}))
+	ret.Inst.Snmp = getObjectSnmpServerEnableTrapsSnmp1498(d.Get("snmp").([]interface{}))
+	ret.Inst.Ssl = getObjectSnmpServerEnableTrapsSsl1499(d.Get("ssl").([]interface{}))
+	ret.Inst.System = getObjectSnmpServerEnableTrapsSystem1500(d.Get("system").([]interface{}))
 	//omit uuid
-	ret.Inst.Vcs = getObjectSnmpServerEnableTrapsVcs(d.Get("vcs").([]interface{}))
-	ret.Inst.VrrpA = getObjectSnmpServerEnableTrapsVrrpA(d.Get("vrrp_a").([]interface{}))
+	ret.Inst.Vcs = getObjectSnmpServerEnableTrapsVcs1502(d.Get("vcs").([]interface{}))
+	ret.Inst.VrrpA = getObjectSnmpServerEnableTrapsVrrpA1503(d.Get("vrrp_a").([]interface{}))
 	return ret
 }
