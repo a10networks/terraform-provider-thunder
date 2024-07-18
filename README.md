@@ -1,6 +1,6 @@
 # A10’s Thunder Terraform Provider Introduction.
 
-Welcome TTP 1.4.1 Latest Version.
+Welcome TTP 1.4.1.1 Latest Version.
 
 Thunder Terraform Provider is a custom plugin to configure thunder using terraform as a IaC tool and terraform scripts[.tf] simplifies applying configuration on thunder. You can configure or de-configure thunder settings.
 
@@ -9,18 +9,23 @@ Terraform provider plugin will only configure thunder via axapi, It will not ins
 
 ## Support Matrix
 
-| ACOS | [TTP 1.0.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.0.0) | [TTP 1.1.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.1.0) | [TTP 1.2.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.1) | [TTP 1.2.2](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.2) | [TTP 1.3.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.3.0) | [TTP 1.4.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.1) |
-| :--------: | :-------: | :-------:  | :-------: | :-------: | :-------: | :-------: |
-| `ACOS version 6.0.2-p1` | `No`  | `No`  | `No`| `No` | `No` | `Yes` |
-| `ACOS version 6.0.1` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` |
-| `ACOS version 6.0.0-p2` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` |
-| `ACOS version 6.0.0-p1` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` |
-| `ACOS version 5.2.1-p6` | `No`  | `Yes` | `No` | `No` | `No` | `No` |
-| `ACOS version 5.2.1-p5`| `No`  | `Yes` | `No` | `No` | `No` | `No` |
-| `ACOS version 5.2.1-p4` | `Yes` | `No`  | `No` | `No` | `No` | `No` |
-| `ACOS version 5.2.1-p3` | `Yes` | `No`  | `No` | `No` | `No` | `No` |
+| ACOS | [TTP 1.0.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.0.0) | [TTP 1.1.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.1.0) | [TTP 1.2.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.1) | [TTP 1.2.2](https://github.com/a10networks/terraform-provider-thunder/tree/v1.2.2) | [TTP 1.3.0](https://github.com/a10networks/terraform-provider-thunder/tree/v1.3.0) | [TTP 1.4.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.1) | [TTP 1.4.1.1](https://github.com/a10networks/terraform-provider-thunder/tree/v1.4.1.1) |
+| :--------: | :-------: | :-------:  | :-------: | :-------: | :-------: | :-------: | :-------: |  
+| `ACOS version 6.0.2-p1` | `No`  | `No`  | `No`| `No` | `No` | `Yes` | `Yes`|
+| `ACOS version 6.0.1` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` |
+| `ACOS version 6.0.0-p2` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` |
+| `ACOS version 6.0.0-p1` | `No`  | `No`  | `Yes`| `Yes` | `Yes` | `No` | `No` |
+| `ACOS version 5.2.1-p6` | `No`  | `Yes` | `No` | `No` | `No` | `No` | `No` |
+| `ACOS version 5.2.1-p5`| `No`  | `Yes` | `No` | `No` | `No` | `No` | `No` |
+| `ACOS version 5.2.1-p4` | `Yes` | `No`  | `No` | `No` | `No` | `No` | `No` |
+| `ACOS version 5.2.1-p3` | `Yes` | `No`  | `No` | `No` | `No` | `No` | `No` |
 
 ## Release Logs
+
+### TTP-1.4.1.1
+- Support for ACOS v6.0.2-p1
+- Supports total 2712 resources with examples
+- Restructured docs
 
 ### TTP-1.4.1
 - Support for ACOS v6.0.2-p1
@@ -184,7 +189,7 @@ terraform {
   required_providers {
     thunder = {
       source = "a10networks/thunder"
-      version = "1.4.1"
+      version = "1.4.1.1"
     }
   }
 }
@@ -213,7 +218,7 @@ terraform {
       required_providers {
         thunder = {
           source = "a10networks/thunder"
-          version = "1.4.1" # Replace with your desired provider version
+          version = "1.4.1.1" # Replace with your desired provider version
         }
       }
     }
@@ -368,3 +373,4 @@ Please include the Terraform script that demonstrates the bug and the command ou
 
 ## Support
 Please reach out at support@a10networks.com with "a10-terraform-provider" in the subject line.
+
