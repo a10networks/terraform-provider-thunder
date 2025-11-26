@@ -50,5 +50,3 @@ Optional:
 - `number_of_errors` (Number)
 - `status` (String)
 - `uptime` (String)
-
-

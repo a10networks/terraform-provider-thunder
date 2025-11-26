@@ -131,10 +131,16 @@ Optional:
 - `inbound_bytes_sent` (Number) Inbound: Bytes Forwarded
 - `ingress_bytes` (Number) Inbound: Bytes Received
 - `ingress_packets` (Number) Inbound: Packets Received
+- `multi_pu_src_hash_pu1` (Number) internal src hash counter for pu1
+- `multi_pu_src_hash_pu2` (Number) internal src hash counter for pu2
 - `outbound_bytes_drop` (Number) Outbound: Bytes Dropped
 - `outbound_bytes_sent` (Number) Outbound: Bytes Forwarded
 - `outbound_drop` (Number) Outbound: Packets Dropped
 - `outbound_pkt_sent` (Number) Outbound: Packets Forwarded
+- `port_zero_fwd_byte_rcvd` (Number) Port Zero Inbound Byte Received
+- `port_zero_fwd_pkt_rcvd` (Number) Port Zero Inbound Packet Received
+- `port_zero_rev_byte_rcvd` (Number) Port Zero Outbound Byte Received
+- `port_zero_rev_pkt_rcvd` (Number) Port Zero Outbound Packet Received
 - `prog_conn_exceed_bl` (Number) Connection: Violation Exceed Blacklisted
 - `prog_conn_exceed_drop` (Number) Connection: Violation Exceed Dropped
 - `prog_conn_rcvd_exceed` (Number) Connection: Received Exceed
@@ -146,13 +152,15 @@ Optional:
 - `prog_exceed_bl` (Number) Req-Resp: Violation Exceed Blacklisted
 - `prog_exceed_drop` (Number) Req-Resp: Violation Exceed Dropped
 - `prog_first_req_time_exceed` (Number) Req-Resp: First Request Time Exceed
+- `prog_query_exceed` (Number) Req-Resp: Client Query Time Exceed
 - `prog_req_resp_time_exceed` (Number) Req-Resp: Request to Response Time Exceed
 - `prog_req_samples` (Number) Sample Collected: Req-Resp
 - `prog_req_samples_processed` (Number) Sample Processed: Req-Resp
 - `prog_request_len_exceed` (Number) Req-Resp: Request Length Exceed
-- `prog_resp_req_ratio_exceed` (Number) Req-Resp: Response to Request Ratio Exceed
+- `prog_resp_pkt_rate_exceed` (Number) Req-Resp: Response Packet Rate Exceed
 - `prog_resp_req_time_exceed` (Number) Req-Resp: Response to Request Time Exceed
 - `prog_response_len_exceed` (Number) Req-Resp: Response Length Exceed
+- `prog_think_exceed` (Number) Req-Resp: Server Think Time Exceed
 - `prog_win_exceed_bl` (Number) Time Window: Violation Exceed Blacklisted
 - `prog_win_exceed_drop` (Number) Time Window: Violation Exceed Dropped
 - `prog_win_rcvd_exceed` (Number) Time Window: Received Exceed
@@ -172,10 +180,15 @@ Optional:
 - `secondary_entry_miss` (Number) Per Addr Entry Missed
 - `secondary_port_aged` (Number) Per Addr Port Aged
 - `secondary_port_learn` (Number) Per Addr Port Learned
+- `service_miss_fwd_byte_rcvd` (Number) Service Match Miss: Inbound Byte Received
+- `service_miss_fwd_pkt_rcvd` (Number) Service Match Miss: Inbound Packet Received
+- `service_miss_rev_byte_rcvd` (Number) Service Match Miss: Outbound Byte Received
+- `service_miss_rev_pkt_rcvd` (Number) Service Match Miss: Outbound Packet Received
 - `sflow_external_packets_sent` (Number) Sflow External Packets Sent
 - `sflow_external_samples_packed` (Number) Sflow External Samples Packed
 - `sflow_internal_packets_sent` (Number) Sflow Internal Packets Sent
 - `sflow_internal_samples_packed` (Number) Sflow Internal Samples Packed
+- `small_window_rcv` (Number) Small Window Received
 - `source_entry_icmp` (Number) Source Entry ICMP Count
 - `source_entry_other` (Number) Source Entry OTHER Count
 - `source_entry_tcp` (Number) Source Entry TCP Count
@@ -206,6 +219,7 @@ Optional:
 - `src_tcp_out_of_seq_excd` (Number) Src TCP Out-Of-Seq Exceeded
 - `src_tcp_retransmit_excd` (Number) Src TCP Retransmit Exceeded
 - `src_tcp_rst_cookie_fail` (Number) Src TCP Auth: RST Cookie Failed
+- `src_tcp_small_window_excd` (Number) Src TCP Small-Window Exceeded
 - `src_tcp_syn_auth_fail` (Number) Src TCP Auth: SYN Auth Failed
 - `src_tcp_syn_cookie_fail` (Number) Src TCP Auth: SYN Cookie Failed
 - `src_tcp_syn_cookie_sent` (Number) Src TCP Auth: SYN Cookie Sent
@@ -230,12 +244,19 @@ Optional:
 - `tcp_fin_rcvd` (Number) TCP FIN Received
 - `tcp_fwd_recv` (Number) TCP Inbound Packets Received
 - `tcp_invalid_syn` (Number) TCP Invalid SYN Received
+- `tcp_invalid_synack` (Number) TCP Invalid SYNACK Received
 - `tcp_rexmit_syn_limit_bl` (Number) TCP SYN Retransmit Exceeded Blacklist
 - `tcp_rexmit_syn_limit_drop` (Number) TCP SYN Retransmit Exceeded Drop
 - `tcp_rst_rcvd` (Number) TCP RST Received
 - `tcp_syn_ack_rcvd` (Number) TCP SYN ACK Received
 - `tcp_syn_cookie_fail` (Number) TCP Auth: SYN Cookie Failed
 - `tcp_syn_rcvd` (Number) TCP Inbound SYN Received
+- `token_auth_current_salt_matched` (Number) Token Authentication Current Salt Matched
+- `token_auth_invalid_packets` (Number) Token Authentication Invalid Packets
+- `token_auth_mismatched_packets` (Number) Token Authentication Mismatched Packets
+- `token_auth_previous_salt_matched` (Number) Token Authentication Previous Salt Matched
+- `token_auth_session_created` (Number) Token Authentication Session Created
+- `token_auth_session_created_fail` (Number) Token Authentication Session Created Fail
 - `udp_fwd_recv` (Number) UDP Inbound Packets Received
 - `victim_ip_aged` (Number) Victim Identification: IP Entry Aged
 - `victim_ip_learned` (Number) Victim Identification: IP Entry Learned
@@ -328,6 +349,7 @@ Optional:
 - `zone_tcp_retransmit_excd` (Number) TCP Retransmit Exceeded
 - `zone_tcp_rst_cookie_fail` (Number) TCP Auth: RST Cookie Failed
 - `zone_tcp_session_created` (Number) TCP Sessions Created
+- `zone_tcp_small_window_excd` (Number) TCP Small-Window Exceeded
 - `zone_tcp_src_drop` (Number) TCP Src Packets Dropped
 - `zone_tcp_src_rate_drop` (Number) TCP Src Rate: Total Exceeded
 - `zone_tcp_syn` (Number) TCP Total SYN Received
@@ -362,5 +384,3 @@ Optional:
 - `zone_udp_src_drop` (Number) UDP Src Packets Dropped
 - `zone_udp_src_rate_drop` (Number) UDP Src Rate: Total Exceeded
 - `zone_udp_wellknown_sport_drop` (Number) UDP SrcPort Wellknown
-
-

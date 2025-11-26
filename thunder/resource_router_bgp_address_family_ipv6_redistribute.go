@@ -133,6 +133,19 @@ func resourceRouterBgpAddressFamilyIpv6Redistribute() *schema.Resource {
 					},
 				},
 			},
+			"public_ip_cfg": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"public_ip": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Public IPv6/IPv4 Prefixes",
+						},
+						"route_map": {
+							Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+						},
+					},
+				},
+			},
 			"rip_cfg": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -384,6 +397,18 @@ func getObjectRouterBgpAddressFamilyIpv6RedistributeOspfCfg(d []interface{}) edp
 	return ret
 }
 
+func getObjectRouterBgpAddressFamilyIpv6RedistributePublicIpCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributePublicIpCfg {
+
+	count1 := len(d)
+	var ret edpt.RouterBgpAddressFamilyIpv6RedistributePublicIpCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.PublicIp = in["public_ip"].(int)
+		ret.RouteMap = in["route_map"].(string)
+	}
+	return ret
+}
+
 func getObjectRouterBgpAddressFamilyIpv6RedistributeRipCfg(d []interface{}) edpt.RouterBgpAddressFamilyIpv6RedistributeRipCfg {
 
 	count1 := len(d)
@@ -467,6 +492,7 @@ func dataToEndpointRouterBgpAddressFamilyIpv6Redistribute(d *schema.ResourceData
 	ret.Inst.NatMapCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeNatMapCfg(d.Get("nat_map_cfg").([]interface{}))
 	ret.Inst.Nat64Cfg = getObjectRouterBgpAddressFamilyIpv6RedistributeNat64Cfg(d.Get("nat64_cfg").([]interface{}))
 	ret.Inst.OspfCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeOspfCfg(d.Get("ospf_cfg").([]interface{}))
+	ret.Inst.PublicIpCfg = getObjectRouterBgpAddressFamilyIpv6RedistributePublicIpCfg(d.Get("public_ip_cfg").([]interface{}))
 	ret.Inst.RipCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeRipCfg(d.Get("rip_cfg").([]interface{}))
 	ret.Inst.StaticCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeStaticCfg(d.Get("static_cfg").([]interface{}))
 	ret.Inst.StaticNatCfg = getObjectRouterBgpAddressFamilyIpv6RedistributeStaticNatCfg(d.Get("static_nat_cfg").([]interface{}))

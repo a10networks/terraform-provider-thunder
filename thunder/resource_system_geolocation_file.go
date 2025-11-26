@@ -94,15 +94,15 @@ func resourceSystemGeolocationFileRead(ctx context.Context, d *schema.ResourceDa
 	return diags
 }
 
-func getObjectSystemGeolocationFileErrorInfo1573(d []interface{}) edpt.SystemGeolocationFileErrorInfo1573 {
+func getObjectSystemGeolocationFileErrorInfo1678(d []interface{}) edpt.SystemGeolocationFileErrorInfo1678 {
 
-	var ret edpt.SystemGeolocationFileErrorInfo1573
+	var ret edpt.SystemGeolocationFileErrorInfo1678
 	return ret
 }
 
 func dataToEndpointSystemGeolocationFile(d *schema.ResourceData) edpt.SystemGeolocationFile {
 	var ret edpt.SystemGeolocationFile
-	ret.Inst.ErrorInfo = getObjectSystemGeolocationFileErrorInfo1573(d.Get("error_info").([]interface{}))
+	ret.Inst.ErrorInfo = getObjectSystemGeolocationFileErrorInfo1678(d.Get("error_info").([]interface{}))
 	//omit uuid
 	return ret
 }

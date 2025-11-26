@@ -59,5 +59,3 @@ Optional:
 - `resp_empty` (Number) Response Empty
 - `resp_err` (Number) Response Error
 - `resp_local` (Number) Response Local
-
-

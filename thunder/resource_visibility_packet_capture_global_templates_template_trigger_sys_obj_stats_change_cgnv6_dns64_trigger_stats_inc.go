@@ -31,8 +31,8 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"template_name": {
+				Type: schema.TypeString, Required: true, Description: "Template_name",
 			},
 		},
 	}
@@ -106,6 +106,6 @@ func dataToEndpointVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjSt
 	ret.Inst.RespBadPkt = d.Get("resp_bad_pkt").(int)
 	ret.Inst.RespBadQr = d.Get("resp_bad_qr").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Template_name = d.Get("template_name").(string)
 	return ret
 }

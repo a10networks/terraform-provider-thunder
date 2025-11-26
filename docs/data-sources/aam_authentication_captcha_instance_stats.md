@@ -57,5 +57,3 @@ Optional:
 - `request` (Number) Total Request
 - `timeout_error` (Number) Total Timeout
 - `verify_succ` (Number) Total Verification Success Response
-
-

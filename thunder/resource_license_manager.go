@@ -194,10 +194,10 @@ func resourceLicenseManagerRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getObjectLicenseManagerConnect1046(d []interface{}) edpt.LicenseManagerConnect1046 {
+func getObjectLicenseManagerConnect1128(d []interface{}) edpt.LicenseManagerConnect1128 {
 
 	count1 := len(d)
-	var ret edpt.LicenseManagerConnect1046
+	var ret edpt.LicenseManagerConnect1128
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Connect = in["connect"].(int)
@@ -222,10 +222,10 @@ func getSliceLicenseManagerHostList(d []interface{}) []edpt.LicenseManagerHostLi
 	return ret
 }
 
-func getObjectLicenseManagerNgWafModule1047(d []interface{}) edpt.LicenseManagerNgWafModule1047 {
+func getObjectLicenseManagerNgWafModule1129(d []interface{}) edpt.LicenseManagerNgWafModule1129 {
 
 	count1 := len(d)
-	var ret edpt.LicenseManagerNgWafModule1047
+	var ret edpt.LicenseManagerNgWafModule1129
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AccessKeyId = in["access_key_id"].(string)
@@ -234,10 +234,10 @@ func getObjectLicenseManagerNgWafModule1047(d []interface{}) edpt.LicenseManager
 	return ret
 }
 
-func getObjectLicenseManagerOverage1048(d []interface{}) edpt.LicenseManagerOverage1048 {
+func getObjectLicenseManagerOverage1130(d []interface{}) edpt.LicenseManagerOverage1130 {
 
 	count1 := len(d)
-	var ret edpt.LicenseManagerOverage1048
+	var ret edpt.LicenseManagerOverage1130
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Days = in["days"].(int)
@@ -271,12 +271,12 @@ func dataToEndpointLicenseManager(d *schema.ResourceData) edpt.LicenseManager {
 	var ret edpt.LicenseManager
 	ret.Inst.BandwidthBase = d.Get("bandwidth_base").(int)
 	ret.Inst.BandwidthUnrestricted = d.Get("bandwidth_unrestricted").(int)
-	ret.Inst.Connect = getObjectLicenseManagerConnect1046(d.Get("connect").([]interface{}))
+	ret.Inst.Connect = getObjectLicenseManagerConnect1128(d.Get("connect").([]interface{}))
 	ret.Inst.HostList = getSliceLicenseManagerHostList(d.Get("host_list").([]interface{}))
 	ret.Inst.InstanceName = d.Get("instance_name").(string)
 	ret.Inst.Interval = d.Get("interval").(int)
-	ret.Inst.NgWafModule = getObjectLicenseManagerNgWafModule1047(d.Get("ng_waf_module").([]interface{}))
-	ret.Inst.Overage = getObjectLicenseManagerOverage1048(d.Get("overage").([]interface{}))
+	ret.Inst.NgWafModule = getObjectLicenseManagerNgWafModule1129(d.Get("ng_waf_module").([]interface{}))
+	ret.Inst.Overage = getObjectLicenseManagerOverage1130(d.Get("overage").([]interface{}))
 	ret.Inst.ReminderList = getSliceLicenseManagerReminderList(d.Get("reminder_list").([]interface{}))
 	ret.Inst.Sn = d.Get("sn").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

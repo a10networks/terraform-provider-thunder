@@ -136,5 +136,3 @@ Optional:
 - `unknown_control_frame` (Number)
 - `window_frame` (Number)
 - `window_no_stream` (Number)
-
-

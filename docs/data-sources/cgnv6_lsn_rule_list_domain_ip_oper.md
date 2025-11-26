@@ -35,7 +35,7 @@ output "get_cgnv6_lsn_rule_list_domain_ip_oper" {
 
 ### Required
 
-- `name` (String) Name
+- `lsn_rule_list_name` (String) Lsn_rule_list_name
 
 ### Optional
 
@@ -61,5 +61,3 @@ Optional:
 - `domain_list` (String)
 - `ip_address` (String)
 - `ttl` (Number)
-
-

@@ -48,5 +48,3 @@ Optional:
 - `cert_count` (Number)
 - `key_count` (Number)
 - `partition` (String)
-
-

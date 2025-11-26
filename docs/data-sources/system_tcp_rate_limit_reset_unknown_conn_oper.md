@@ -47,5 +47,3 @@ Optional:
 - `unknown_conn_current_rate` (Number)
 - `unknown_conn_rate_limit` (Number)
 - `unknown_conn_rate_limit_drop` (Number)
-
-

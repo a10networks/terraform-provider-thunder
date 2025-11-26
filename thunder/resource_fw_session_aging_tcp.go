@@ -59,8 +59,8 @@ func resourceFwSessionAgingTcp() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"session_aging_name": {
+				Type: schema.TypeString, Required: true, Description: "Session_aging_name",
 			},
 		},
 	}
@@ -154,6 +154,6 @@ func dataToEndpointFwSessionAgingTcp(d *schema.ResourceData) edpt.FwSessionAging
 	ret.Inst.PortCfg = getSliceFwSessionAgingTcpPortCfg(d.Get("port_cfg").([]interface{}))
 	ret.Inst.TcpIdleTimeout = d.Get("tcp_idle_timeout").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Session_aging_name = d.Get("session_aging_name").(string)
 	return ret
 }

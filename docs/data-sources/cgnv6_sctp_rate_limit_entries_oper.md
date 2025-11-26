@@ -56,5 +56,3 @@ Optional:
 - `direction` (String)
 - `pps` (Number)
 - `rate_limit` (Number)
-
-

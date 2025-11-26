@@ -39,6 +39,7 @@ output "get_aam_authentication_service_group_member_oper" {
 
 - `name` (String) Member name
 - `port` (Number) Port number
+- `service_group_name` (String) Service_group_name
 
 ### Optional
 
@@ -99,5 +100,3 @@ Optional:
 - `drs_total_conn` (Number)
 - `drs_total_req` (Number)
 - `drs_total_req_succ` (Number)
-
-

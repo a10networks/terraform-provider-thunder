@@ -30,6 +30,9 @@ func resourceGslbSiteOper() *schema.Resource {
 									"ip_address": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
+									"desc": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
 									"state": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
@@ -60,6 +63,83 @@ func resourceGslbSiteOper() *schema.Resource {
 									"dynamic": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"hits": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"recent": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"drs_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"drs_name": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"drs_ip_address": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"drs_fqdn_name": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"drs_state": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"drs_service_ip": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"drs_port_count": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"drs_virtual_server": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"drs_disabled": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"drs_gslb_protocol": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"drs_local_protocol": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"drs_manually_health_check": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"drs_use_gslb_state": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"drs_dynamic": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"drs_hits": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"drs_recent": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"drs_port": {
+													Type: schema.TypeList, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"vport": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"vport_protocol": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+															"vport_state": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+															"service_name": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+														},
+													},
+												},
+											},
+										},
+									},
 									"ip_server_port": {
 										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
@@ -67,7 +147,13 @@ func resourceGslbSiteOper() *schema.Resource {
 												"vport": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
+												"vport_protocol": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
 												"vport_state": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"service_name": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
 											},
@@ -83,11 +169,47 @@ func resourceGslbSiteOper() *schema.Resource {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"bw_cost": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"gslb_site": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
+						"template_name": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"curr_count": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"highest_count": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"unlimited": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"limit": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"unusable": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"type": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"len": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"value": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"time": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"state": {
 							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"total_vip_curr_conn": {
+							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 						"type_last": {
 							Type: schema.TypeList, Optional: true, Description: "",
@@ -159,8 +281,59 @@ func resourceGslbSiteOper() *schema.Resource {
 							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
+									"fqdn_based": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 									"dev_name": {
 										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"dynamic_dev_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"dyn_dev_name": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"dyn_dev_ip": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"dyn_dev_inherit_vipserver": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+											},
+										},
+									},
+									"dyn_vipserver_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"dyn_svr_ip": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"dyn_svr_state": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"dyn_svr_hits": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"port_list": {
+													Type: schema.TypeList, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"port_num": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"port_protocol": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+															"port_state": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+														},
+													},
+												},
+											},
+										},
 									},
 									"dev_ip": {
 										Type: schema.TypeString, Optional: true, Description: "",
@@ -185,6 +358,9 @@ func resourceGslbSiteOper() *schema.Resource {
 									},
 									"dev_state": {
 										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"dev_creation_type": {
+										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 									"client_ldns_list": {
 										Type: schema.TypeList, Optional: true, Description: "",
@@ -286,6 +462,9 @@ func resourceGslbSiteOper() *schema.Resource {
 															"dynamic": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
+															"shared": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
 															"hits": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
@@ -300,6 +479,15 @@ func resourceGslbSiteOper() *schema.Resource {
 																			Type: schema.TypeInt, Optional: true, Description: "",
 																		},
 																		"dev_vip_port_state": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"dev_vip_port_dev_curr_conn": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"dev_vip_port_protocol": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"dev_vip_port_service_name": {
 																			Type: schema.TypeString, Optional: true, Description: "",
 																		},
 																	},
@@ -358,6 +546,9 @@ func resourceGslbSiteOper() *schema.Resource {
 															"dynamic": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
+															"shared": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
 															"hits": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
@@ -372,6 +563,15 @@ func resourceGslbSiteOper() *schema.Resource {
 																			Type: schema.TypeInt, Optional: true, Description: "",
 																		},
 																		"dev_vip_port_state": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"dev_vip_port_dev_curr_conn": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"dev_vip_port_protocol": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"dev_vip_port_service_name": {
 																			Type: schema.TypeString, Optional: true, Description: "",
 																		},
 																	},
@@ -430,6 +630,9 @@ func resourceGslbSiteOper() *schema.Resource {
 															"dynamic": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
+															"shared": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
 															"hits": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
@@ -444,6 +647,15 @@ func resourceGslbSiteOper() *schema.Resource {
 																			Type: schema.TypeInt, Optional: true, Description: "",
 																		},
 																		"dev_vip_port_state": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"dev_vip_port_dev_curr_conn": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"dev_vip_port_protocol": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"dev_vip_port_service_name": {
 																			Type: schema.TypeString, Optional: true, Description: "",
 																		},
 																	},
@@ -508,6 +720,8 @@ func setObjectGslbSiteOperIpServerListOper(d edpt.GslbSiteOperIpServerListOper) 
 
 	in["ip_address"] = d.IpAddress
 
+	in["desc"] = d.Desc
+
 	in["state"] = d.State
 
 	in["service_ip"] = d.ServiceIp
@@ -527,8 +741,51 @@ func setObjectGslbSiteOperIpServerListOper(d edpt.GslbSiteOperIpServerListOper) 
 	in["use_gslb_state"] = d.Use_gslb_state
 
 	in["dynamic"] = d.Dynamic
+
+	in["hits"] = d.Hits
+
+	in["recent"] = d.Recent
+	in["drs_list"] = setSliceGslbSiteOperIpServerListOperDrsList(d.DrsList)
 	in["ip_server_port"] = setSliceGslbSiteOperIpServerListOperIpServerPort(d.IpServerPort)
 	result = append(result, in)
+	return result
+}
+
+func setSliceGslbSiteOperIpServerListOperDrsList(d []edpt.GslbSiteOperIpServerListOperDrsList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["drs_name"] = item.DrsName
+		in["drs_ip_address"] = item.DrsIpAddress
+		in["drs_fqdn_name"] = item.DrsFqdnName
+		in["drs_state"] = item.DrsState
+		in["drs_service_ip"] = item.DrsServiceIp
+		in["drs_port_count"] = item.DrsPortCount
+		in["drs_virtual_server"] = item.DrsVirtualServer
+		in["drs_disabled"] = item.DrsDisabled
+		in["drs_gslb_protocol"] = item.DrsGslbProtocol
+		in["drs_local_protocol"] = item.DrsLocalProtocol
+		in["drs_manually_health_check"] = item.DrsManuallyHealthCheck
+		in["drs_use_gslb_state"] = item.DrsUse_gslb_state
+		in["drs_dynamic"] = item.DrsDynamic
+		in["drs_hits"] = item.DrsHits
+		in["drs_recent"] = item.DrsRecent
+		in["drs_port"] = setSliceGslbSiteOperIpServerListOperDrsListDrsPort(item.DrsPort)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setSliceGslbSiteOperIpServerListOperDrsListDrsPort(d []edpt.GslbSiteOperIpServerListOperDrsListDrsPort) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["vport"] = item.Vport
+		in["vport_protocol"] = item.VportProtocol
+		in["vport_state"] = item.VportState
+		in["service_name"] = item.ServiceName
+		result = append(result, in)
+	}
 	return result
 }
 
@@ -537,7 +794,9 @@ func setSliceGslbSiteOperIpServerListOperIpServerPort(d []edpt.GslbSiteOperIpSer
 	for _, item := range d {
 		in := make(map[string]interface{})
 		in["vport"] = item.Vport
+		in["vport_protocol"] = item.VportProtocol
 		in["vport_state"] = item.VportState
+		in["service_name"] = item.ServiceName
 		result = append(result, in)
 	}
 	return result
@@ -546,10 +805,22 @@ func setSliceGslbSiteOperIpServerListOperIpServerPort(d []edpt.GslbSiteOperIpSer
 func setObjectGslbSiteOperOper(ret edpt.DataGslbSiteOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"gslb_site":        ret.DtGslbSiteOper.Oper.GslbSite,
-			"state":            ret.DtGslbSiteOper.Oper.State,
-			"type_last":        setSliceGslbSiteOperOperTypeLast(ret.DtGslbSiteOper.Oper.TypeLast),
-			"client_ldns_list": setSliceGslbSiteOperOperClientLdnsList(ret.DtGslbSiteOper.Oper.ClientLdnsList),
+			"bw_cost":             ret.DtGslbSiteOper.Oper.BwCost,
+			"gslb_site":           ret.DtGslbSiteOper.Oper.GslbSite,
+			"template_name":       ret.DtGslbSiteOper.Oper.TemplateName,
+			"curr_count":          ret.DtGslbSiteOper.Oper.CurrCount,
+			"highest_count":       ret.DtGslbSiteOper.Oper.HighestCount,
+			"unlimited":           ret.DtGslbSiteOper.Oper.Unlimited,
+			"limit":               ret.DtGslbSiteOper.Oper.Limit,
+			"unusable":            ret.DtGslbSiteOper.Oper.Unusable,
+			"type":                ret.DtGslbSiteOper.Oper.Type,
+			"len":                 ret.DtGslbSiteOper.Oper.Len,
+			"value":               ret.DtGslbSiteOper.Oper.Value,
+			"time":                ret.DtGslbSiteOper.Oper.Time,
+			"state":               ret.DtGslbSiteOper.Oper.State,
+			"total_vip_curr_conn": ret.DtGslbSiteOper.Oper.TotalVipCurrConn,
+			"type_last":           setSliceGslbSiteOperOperTypeLast(ret.DtGslbSiteOper.Oper.TypeLast),
+			"client_ldns_list":    setSliceGslbSiteOperOperClientLdnsList(ret.DtGslbSiteOper.Oper.ClientLdnsList),
 		},
 	}
 }
@@ -602,7 +873,11 @@ func setObjectGslbSiteOperSlbDevListOper(d edpt.GslbSiteOperSlbDevListOper) []ma
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
 
+	in["fqdn_based"] = d.FqdnBased
+
 	in["dev_name"] = d.Dev_name
+	in["dynamic_dev_list"] = setSliceGslbSiteOperSlbDevListOperDynamicDevList(d.DynamicDevList)
+	in["dyn_vipserver_list"] = setSliceGslbSiteOperSlbDevListOperDynVipserverList(d.DynVipserverList)
 
 	in["dev_ip"] = d.Dev_ip
 
@@ -619,8 +894,47 @@ func setObjectGslbSiteOperSlbDevListOper(d edpt.GslbSiteOperSlbDevListOper) []ma
 	in["dev_ip_cnt"] = d.Dev_ip_cnt
 
 	in["dev_state"] = d.DevState
+
+	in["dev_creation_type"] = d.DevCreationType
 	in["client_ldns_list"] = setSliceGslbSiteOperSlbDevListOperClientLdnsList(d.ClientLdnsList)
 	result = append(result, in)
+	return result
+}
+
+func setSliceGslbSiteOperSlbDevListOperDynamicDevList(d []edpt.GslbSiteOperSlbDevListOperDynamicDevList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["dyn_dev_name"] = item.DynDevName
+		in["dyn_dev_ip"] = item.DynDevIp
+		in["dyn_dev_inherit_vipserver"] = item.DynDevInheritVipserver
+		result = append(result, in)
+	}
+	return result
+}
+
+func setSliceGslbSiteOperSlbDevListOperDynVipserverList(d []edpt.GslbSiteOperSlbDevListOperDynVipserverList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["dyn_svr_ip"] = item.DynSvrIp
+		in["dyn_svr_state"] = item.DynSvrState
+		in["dyn_svr_hits"] = item.DynSvrHits
+		in["port_list"] = setSliceGslbSiteOperSlbDevListOperDynVipserverListPortList(item.PortList)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setSliceGslbSiteOperSlbDevListOperDynVipserverListPortList(d []edpt.GslbSiteOperSlbDevListOperDynVipserverListPortList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["port_num"] = item.PortNum
+		in["port_protocol"] = item.PortProtocol
+		in["port_state"] = item.PortState
+		result = append(result, in)
+	}
 	return result
 }
 
@@ -701,6 +1015,8 @@ func setObjectGslbSiteOperSlbDevListVipServerVipServerV4ListOper(d edpt.GslbSite
 
 	in["dynamic"] = d.Dynamic
 
+	in["shared"] = d.Shared
+
 	in["hits"] = d.Hits
 
 	in["recent"] = d.Recent
@@ -715,6 +1031,9 @@ func setSliceGslbSiteOperSlbDevListVipServerVipServerV4ListOperDevVipPortList(d 
 		in := make(map[string]interface{})
 		in["dev_vip_port_num"] = item.DevVipPortNum
 		in["dev_vip_port_state"] = item.DevVipPortState
+		in["dev_vip_port_dev_curr_conn"] = item.DevVipPortDevCurrConn
+		in["dev_vip_port_protocol"] = item.DevVipPortProtocol
+		in["dev_vip_port_service_name"] = item.DevVipPortServiceName
 		result = append(result, in)
 	}
 	return result
@@ -759,6 +1078,8 @@ func setObjectGslbSiteOperSlbDevListVipServerVipServerV6ListOper(d edpt.GslbSite
 
 	in["dynamic"] = d.Dynamic
 
+	in["shared"] = d.Shared
+
 	in["hits"] = d.Hits
 
 	in["recent"] = d.Recent
@@ -773,6 +1094,9 @@ func setSliceGslbSiteOperSlbDevListVipServerVipServerV6ListOperDevVipPortList(d 
 		in := make(map[string]interface{})
 		in["dev_vip_port_num"] = item.DevVipPortNum
 		in["dev_vip_port_state"] = item.DevVipPortState
+		in["dev_vip_port_dev_curr_conn"] = item.DevVipPortDevCurrConn
+		in["dev_vip_port_protocol"] = item.DevVipPortProtocol
+		in["dev_vip_port_service_name"] = item.DevVipPortServiceName
 		result = append(result, in)
 	}
 	return result
@@ -817,6 +1141,8 @@ func setObjectGslbSiteOperSlbDevListVipServerVipServerNameListOper(d edpt.GslbSi
 
 	in["dynamic"] = d.Dynamic
 
+	in["shared"] = d.Shared
+
 	in["hits"] = d.Hits
 
 	in["recent"] = d.Recent
@@ -831,6 +1157,9 @@ func setSliceGslbSiteOperSlbDevListVipServerVipServerNameListOperDevVipPortList(
 		in := make(map[string]interface{})
 		in["dev_vip_port_num"] = item.DevVipPortNum
 		in["dev_vip_port_state"] = item.DevVipPortState
+		in["dev_vip_port_dev_curr_conn"] = item.DevVipPortDevCurrConn
+		in["dev_vip_port_protocol"] = item.DevVipPortProtocol
+		in["dev_vip_port_service_name"] = item.DevVipPortServiceName
 		result = append(result, in)
 	}
 	return result
@@ -858,6 +1187,7 @@ func getObjectGslbSiteOperIpServerListOper(d []interface{}) edpt.GslbSiteOperIpS
 		in := d[0].(map[string]interface{})
 		ret.IpServer = in["ip_server"].(string)
 		ret.IpAddress = in["ip_address"].(string)
+		ret.Desc = in["desc"].(string)
 		ret.State = in["state"].(string)
 		ret.ServiceIp = in["service_ip"].(string)
 		ret.PortCount = in["port_count"].(int)
@@ -868,7 +1198,54 @@ func getObjectGslbSiteOperIpServerListOper(d []interface{}) edpt.GslbSiteOperIpS
 		ret.ManuallyHealthCheck = in["manually_health_check"].(int)
 		ret.Use_gslb_state = in["use_gslb_state"].(int)
 		ret.Dynamic = in["dynamic"].(int)
+		ret.Hits = in["hits"].(int)
+		ret.Recent = in["recent"].(int)
+		ret.DrsList = getSliceGslbSiteOperIpServerListOperDrsList(in["drs_list"].([]interface{}))
 		ret.IpServerPort = getSliceGslbSiteOperIpServerListOperIpServerPort(in["ip_server_port"].([]interface{}))
+	}
+	return ret
+}
+
+func getSliceGslbSiteOperIpServerListOperDrsList(d []interface{}) []edpt.GslbSiteOperIpServerListOperDrsList {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteOperIpServerListOperDrsList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbSiteOperIpServerListOperDrsList
+		oi.DrsName = in["drs_name"].(string)
+		oi.DrsIpAddress = in["drs_ip_address"].(string)
+		oi.DrsFqdnName = in["drs_fqdn_name"].(string)
+		oi.DrsState = in["drs_state"].(string)
+		oi.DrsServiceIp = in["drs_service_ip"].(string)
+		oi.DrsPortCount = in["drs_port_count"].(int)
+		oi.DrsVirtualServer = in["drs_virtual_server"].(int)
+		oi.DrsDisabled = in["drs_disabled"].(int)
+		oi.DrsGslbProtocol = in["drs_gslb_protocol"].(int)
+		oi.DrsLocalProtocol = in["drs_local_protocol"].(int)
+		oi.DrsManuallyHealthCheck = in["drs_manually_health_check"].(int)
+		oi.DrsUse_gslb_state = in["drs_use_gslb_state"].(int)
+		oi.DrsDynamic = in["drs_dynamic"].(int)
+		oi.DrsHits = in["drs_hits"].(int)
+		oi.DrsRecent = in["drs_recent"].(int)
+		oi.DrsPort = getSliceGslbSiteOperIpServerListOperDrsListDrsPort(in["drs_port"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceGslbSiteOperIpServerListOperDrsListDrsPort(d []interface{}) []edpt.GslbSiteOperIpServerListOperDrsListDrsPort {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteOperIpServerListOperDrsListDrsPort, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbSiteOperIpServerListOperDrsListDrsPort
+		oi.Vport = in["vport"].(int)
+		oi.VportProtocol = in["vport_protocol"].(string)
+		oi.VportState = in["vport_state"].(string)
+		oi.ServiceName = in["service_name"].(string)
+		ret = append(ret, oi)
 	}
 	return ret
 }
@@ -881,7 +1258,9 @@ func getSliceGslbSiteOperIpServerListOperIpServerPort(d []interface{}) []edpt.Gs
 		in := item.(map[string]interface{})
 		var oi edpt.GslbSiteOperIpServerListOperIpServerPort
 		oi.Vport = in["vport"].(int)
+		oi.VportProtocol = in["vport_protocol"].(string)
 		oi.VportState = in["vport_state"].(string)
+		oi.ServiceName = in["service_name"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -893,8 +1272,20 @@ func getObjectGslbSiteOperOper(d []interface{}) edpt.GslbSiteOperOper {
 	var ret edpt.GslbSiteOperOper
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
+		ret.BwCost = in["bw_cost"].(int)
 		ret.GslbSite = in["gslb_site"].(string)
+		ret.TemplateName = in["template_name"].(string)
+		ret.CurrCount = in["curr_count"].(int)
+		ret.HighestCount = in["highest_count"].(int)
+		ret.Unlimited = in["unlimited"].(int)
+		ret.Limit = in["limit"].(int)
+		ret.Unusable = in["unusable"].(int)
+		ret.Type = in["type"].(string)
+		ret.Len = in["len"].(int)
+		ret.Value = in["value"].(int)
+		ret.Time = in["time"].(int)
 		ret.State = in["state"].(string)
+		ret.TotalVipCurrConn = in["total_vip_curr_conn"].(int)
 		ret.TypeLast = getSliceGslbSiteOperOperTypeLast(in["type_last"].([]interface{}))
 		ret.ClientLdnsList = getSliceGslbSiteOperOperClientLdnsList(in["client_ldns_list"].([]interface{}))
 	}
@@ -959,7 +1350,10 @@ func getObjectGslbSiteOperSlbDevListOper(d []interface{}) edpt.GslbSiteOperSlbDe
 	var ret edpt.GslbSiteOperSlbDevListOper
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
+		ret.FqdnBased = in["fqdn_based"].(int)
 		ret.Dev_name = in["dev_name"].(string)
+		ret.DynamicDevList = getSliceGslbSiteOperSlbDevListOperDynamicDevList(in["dynamic_dev_list"].([]interface{}))
+		ret.DynVipserverList = getSliceGslbSiteOperSlbDevListOperDynVipserverList(in["dyn_vipserver_list"].([]interface{}))
 		ret.Dev_ip = in["dev_ip"].(string)
 		ret.Dev_attr = in["dev_attr"].(string)
 		ret.Dev_admin_preference = in["dev_admin_preference"].(int)
@@ -968,7 +1362,54 @@ func getObjectGslbSiteOperSlbDevListOper(d []interface{}) edpt.GslbSiteOperSlbDe
 		ret.Dev_gw_state = in["dev_gw_state"].(string)
 		ret.Dev_ip_cnt = in["dev_ip_cnt"].(int)
 		ret.DevState = in["dev_state"].(string)
+		ret.DevCreationType = in["dev_creation_type"].(int)
 		ret.ClientLdnsList = getSliceGslbSiteOperSlbDevListOperClientLdnsList(in["client_ldns_list"].([]interface{}))
+	}
+	return ret
+}
+
+func getSliceGslbSiteOperSlbDevListOperDynamicDevList(d []interface{}) []edpt.GslbSiteOperSlbDevListOperDynamicDevList {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteOperSlbDevListOperDynamicDevList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbSiteOperSlbDevListOperDynamicDevList
+		oi.DynDevName = in["dyn_dev_name"].(string)
+		oi.DynDevIp = in["dyn_dev_ip"].(string)
+		oi.DynDevInheritVipserver = in["dyn_dev_inherit_vipserver"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceGslbSiteOperSlbDevListOperDynVipserverList(d []interface{}) []edpt.GslbSiteOperSlbDevListOperDynVipserverList {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteOperSlbDevListOperDynVipserverList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbSiteOperSlbDevListOperDynVipserverList
+		oi.DynSvrIp = in["dyn_svr_ip"].(string)
+		oi.DynSvrState = in["dyn_svr_state"].(string)
+		oi.DynSvrHits = in["dyn_svr_hits"].(int)
+		oi.PortList = getSliceGslbSiteOperSlbDevListOperDynVipserverListPortList(in["port_list"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceGslbSiteOperSlbDevListOperDynVipserverListPortList(d []interface{}) []edpt.GslbSiteOperSlbDevListOperDynVipserverListPortList {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbSiteOperSlbDevListOperDynVipserverListPortList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbSiteOperSlbDevListOperDynVipserverListPortList
+		oi.PortNum = in["port_num"].(int)
+		oi.PortProtocol = in["port_protocol"].(string)
+		oi.PortState = in["port_state"].(string)
+		ret = append(ret, oi)
 	}
 	return ret
 }
@@ -1048,6 +1489,7 @@ func getObjectGslbSiteOperSlbDevListVipServerVipServerV4ListOper(d []interface{}
 		ret.ManuallyHealthCheck = in["manually_health_check"].(int)
 		ret.Use_gslb_state = in["use_gslb_state"].(int)
 		ret.Dynamic = in["dynamic"].(int)
+		ret.Shared = in["shared"].(int)
 		ret.Hits = in["hits"].(int)
 		ret.Recent = in["recent"].(int)
 		ret.DevVipPortList = getSliceGslbSiteOperSlbDevListVipServerVipServerV4ListOperDevVipPortList(in["dev_vip_port_list"].([]interface{}))
@@ -1064,6 +1506,9 @@ func getSliceGslbSiteOperSlbDevListVipServerVipServerV4ListOperDevVipPortList(d 
 		var oi edpt.GslbSiteOperSlbDevListVipServerVipServerV4ListOperDevVipPortList
 		oi.DevVipPortNum = in["dev_vip_port_num"].(int)
 		oi.DevVipPortState = in["dev_vip_port_state"].(string)
+		oi.DevVipPortDevCurrConn = in["dev_vip_port_dev_curr_conn"].(int)
+		oi.DevVipPortProtocol = in["dev_vip_port_protocol"].(string)
+		oi.DevVipPortServiceName = in["dev_vip_port_service_name"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -1101,6 +1546,7 @@ func getObjectGslbSiteOperSlbDevListVipServerVipServerV6ListOper(d []interface{}
 		ret.ManuallyHealthCheck = in["manually_health_check"].(int)
 		ret.Use_gslb_state = in["use_gslb_state"].(int)
 		ret.Dynamic = in["dynamic"].(int)
+		ret.Shared = in["shared"].(int)
 		ret.Hits = in["hits"].(int)
 		ret.Recent = in["recent"].(int)
 		ret.DevVipPortList = getSliceGslbSiteOperSlbDevListVipServerVipServerV6ListOperDevVipPortList(in["dev_vip_port_list"].([]interface{}))
@@ -1117,6 +1563,9 @@ func getSliceGslbSiteOperSlbDevListVipServerVipServerV6ListOperDevVipPortList(d 
 		var oi edpt.GslbSiteOperSlbDevListVipServerVipServerV6ListOperDevVipPortList
 		oi.DevVipPortNum = in["dev_vip_port_num"].(int)
 		oi.DevVipPortState = in["dev_vip_port_state"].(string)
+		oi.DevVipPortDevCurrConn = in["dev_vip_port_dev_curr_conn"].(int)
+		oi.DevVipPortProtocol = in["dev_vip_port_protocol"].(string)
+		oi.DevVipPortServiceName = in["dev_vip_port_service_name"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -1154,6 +1603,7 @@ func getObjectGslbSiteOperSlbDevListVipServerVipServerNameListOper(d []interface
 		ret.ManuallyHealthCheck = in["manually_health_check"].(int)
 		ret.Use_gslb_state = in["use_gslb_state"].(int)
 		ret.Dynamic = in["dynamic"].(int)
+		ret.Shared = in["shared"].(int)
 		ret.Hits = in["hits"].(int)
 		ret.Recent = in["recent"].(int)
 		ret.DevVipPortList = getSliceGslbSiteOperSlbDevListVipServerVipServerNameListOperDevVipPortList(in["dev_vip_port_list"].([]interface{}))
@@ -1170,6 +1620,9 @@ func getSliceGslbSiteOperSlbDevListVipServerVipServerNameListOperDevVipPortList(
 		var oi edpt.GslbSiteOperSlbDevListVipServerVipServerNameListOperDevVipPortList
 		oi.DevVipPortNum = in["dev_vip_port_num"].(int)
 		oi.DevVipPortState = in["dev_vip_port_state"].(string)
+		oi.DevVipPortDevCurrConn = in["dev_vip_port_dev_curr_conn"].(int)
+		oi.DevVipPortProtocol = in["dev_vip_port_protocol"].(string)
+		oi.DevVipPortServiceName = in["dev_vip_port_service_name"].(string)
 		ret = append(ret, oi)
 	}
 	return ret

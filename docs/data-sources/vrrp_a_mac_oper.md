@@ -54,5 +54,3 @@ Optional:
 - `mac_address` (String)
 - `mac_with_syn_cookie` (String)
 - `vrid` (Number)
-
-

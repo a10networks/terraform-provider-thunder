@@ -174,10 +174,10 @@ func getObjectInterfaceTrunkBfdIntervalCfg(d []interface{}) edpt.InterfaceTrunkB
 	return ret
 }
 
-func getObjectInterfaceTrunkBfdPerMemberPort742(d []interface{}) edpt.InterfaceTrunkBfdPerMemberPort742 {
+func getObjectInterfaceTrunkBfdPerMemberPort832(d []interface{}) edpt.InterfaceTrunkBfdPerMemberPort832 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceTrunkBfdPerMemberPort742
+	var ret edpt.InterfaceTrunkBfdPerMemberPort832
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.LocalAddress = in["local_address"].(string)
@@ -195,7 +195,7 @@ func dataToEndpointInterfaceTrunkBfd(d *schema.ResourceData) edpt.InterfaceTrunk
 	ret.Inst.Demand = d.Get("demand").(int)
 	ret.Inst.Echo = d.Get("echo").(int)
 	ret.Inst.IntervalCfg = getObjectInterfaceTrunkBfdIntervalCfg(d.Get("interval_cfg").([]interface{}))
-	ret.Inst.PerMemberPort = getObjectInterfaceTrunkBfdPerMemberPort742(d.Get("per_member_port").([]interface{}))
+	ret.Inst.PerMemberPort = getObjectInterfaceTrunkBfdPerMemberPort832(d.Get("per_member_port").([]interface{}))
 	//omit uuid
 	ret.Inst.Ifnum = d.Get("ifnum").(string)
 	return ret

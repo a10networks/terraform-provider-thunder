@@ -185,18 +185,6 @@ func resourceSystemResourceUsageOper() *schema.Resource {
 						"ram_cache_memory_limit_default": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
-						"waf_template_cur": {
-							Type: schema.TypeInt, Optional: true, Description: "",
-						},
-						"waf_template_min": {
-							Type: schema.TypeInt, Optional: true, Description: "",
-						},
-						"waf_template_max": {
-							Type: schema.TypeInt, Optional: true, Description: "",
-						},
-						"waf_template_default": {
-							Type: schema.TypeInt, Optional: true, Description: "",
-						},
 						"auth_session_count_cur": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -219,6 +207,18 @@ func resourceSystemResourceUsageOper() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 						"class_list_entry_default": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"ngwaf_cache_entry_cur": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"ngwaf_cache_entry_min": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"ngwaf_cache_entry_max": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"ngwaf_cache_entry_default": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 					},
@@ -306,10 +306,6 @@ func setObjectSystemResourceUsageOperOper(ret edpt.DataSystemResourceUsageOper) 
 			"ram_cache_memory_limit_min":            ret.DtSystemResourceUsageOper.Oper.RamCacheMemoryLimitMin,
 			"ram_cache_memory_limit_max":            ret.DtSystemResourceUsageOper.Oper.RamCacheMemoryLimitMax,
 			"ram_cache_memory_limit_default":        ret.DtSystemResourceUsageOper.Oper.RamCacheMemoryLimitDefault,
-			"waf_template_cur":                      ret.DtSystemResourceUsageOper.Oper.WafTemplateCur,
-			"waf_template_min":                      ret.DtSystemResourceUsageOper.Oper.WafTemplateMin,
-			"waf_template_max":                      ret.DtSystemResourceUsageOper.Oper.WafTemplateMax,
-			"waf_template_default":                  ret.DtSystemResourceUsageOper.Oper.WafTemplateDefault,
 			"auth_session_count_cur":                ret.DtSystemResourceUsageOper.Oper.AuthSessionCountCur,
 			"auth_session_count_min":                ret.DtSystemResourceUsageOper.Oper.AuthSessionCountMin,
 			"auth_session_count_max":                ret.DtSystemResourceUsageOper.Oper.AuthSessionCountMax,
@@ -318,6 +314,10 @@ func setObjectSystemResourceUsageOperOper(ret edpt.DataSystemResourceUsageOper) 
 			"class_list_entry_min":                  ret.DtSystemResourceUsageOper.Oper.ClassListEntryMin,
 			"class_list_entry_max":                  ret.DtSystemResourceUsageOper.Oper.ClassListEntryMax,
 			"class_list_entry_default":              ret.DtSystemResourceUsageOper.Oper.ClassListEntryDefault,
+			"ngwaf_cache_entry_cur":                 ret.DtSystemResourceUsageOper.Oper.NgwafCacheEntryCur,
+			"ngwaf_cache_entry_min":                 ret.DtSystemResourceUsageOper.Oper.NgwafCacheEntryMin,
+			"ngwaf_cache_entry_max":                 ret.DtSystemResourceUsageOper.Oper.NgwafCacheEntryMax,
+			"ngwaf_cache_entry_default":             ret.DtSystemResourceUsageOper.Oper.NgwafCacheEntryDefault,
 		},
 	}
 }
@@ -384,10 +384,6 @@ func getObjectSystemResourceUsageOperOper(d []interface{}) edpt.SystemResourceUs
 		ret.RamCacheMemoryLimitMin = in["ram_cache_memory_limit_min"].(int)
 		ret.RamCacheMemoryLimitMax = in["ram_cache_memory_limit_max"].(int)
 		ret.RamCacheMemoryLimitDefault = in["ram_cache_memory_limit_default"].(int)
-		ret.WafTemplateCur = in["waf_template_cur"].(int)
-		ret.WafTemplateMin = in["waf_template_min"].(int)
-		ret.WafTemplateMax = in["waf_template_max"].(int)
-		ret.WafTemplateDefault = in["waf_template_default"].(int)
 		ret.AuthSessionCountCur = in["auth_session_count_cur"].(int)
 		ret.AuthSessionCountMin = in["auth_session_count_min"].(int)
 		ret.AuthSessionCountMax = in["auth_session_count_max"].(int)
@@ -396,6 +392,10 @@ func getObjectSystemResourceUsageOperOper(d []interface{}) edpt.SystemResourceUs
 		ret.ClassListEntryMin = in["class_list_entry_min"].(int)
 		ret.ClassListEntryMax = in["class_list_entry_max"].(int)
 		ret.ClassListEntryDefault = in["class_list_entry_default"].(int)
+		ret.NgwafCacheEntryCur = in["ngwaf_cache_entry_cur"].(int)
+		ret.NgwafCacheEntryMin = in["ngwaf_cache_entry_min"].(int)
+		ret.NgwafCacheEntryMax = in["ngwaf_cache_entry_max"].(int)
+		ret.NgwafCacheEntryDefault = in["ngwaf_cache_entry_default"].(int)
 	}
 	return ret
 }

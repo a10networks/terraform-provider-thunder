@@ -43,8 +43,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsSeve
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"pop3_vport_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Pop3_vport_tmpl_name",
 			},
 		},
 	}
@@ -122,6 +122,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerSta
 	ret.Inst.ErrorCritical = d.Get("error_critical").(int)
 	ret.Inst.ErrorWarning = d.Get("error_warning").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Pop3_vport_tmpl_name = d.Get("pop3_vport_tmpl_name").(string)
 	return ret
 }

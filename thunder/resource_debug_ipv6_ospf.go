@@ -270,10 +270,10 @@ func resourceDebugIpv6OspfRead(ctx context.Context, d *schema.ResourceData, meta
 	return diags
 }
 
-func getObjectDebugIpv6OspfAll325(d []interface{}) edpt.DebugIpv6OspfAll325 {
+func getObjectDebugIpv6OspfAll396(d []interface{}) edpt.DebugIpv6OspfAll396 {
 
 	count1 := len(d)
-	var ret edpt.DebugIpv6OspfAll325
+	var ret edpt.DebugIpv6OspfAll396
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dumy = in["dumy"].(int)
@@ -282,10 +282,10 @@ func getObjectDebugIpv6OspfAll325(d []interface{}) edpt.DebugIpv6OspfAll325 {
 	return ret
 }
 
-func getObjectDebugIpv6OspfBfd326(d []interface{}) edpt.DebugIpv6OspfBfd326 {
+func getObjectDebugIpv6OspfBfd397(d []interface{}) edpt.DebugIpv6OspfBfd397 {
 
 	count1 := len(d)
-	var ret edpt.DebugIpv6OspfBfd326
+	var ret edpt.DebugIpv6OspfBfd397
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dumy = in["dumy"].(int)
@@ -294,10 +294,10 @@ func getObjectDebugIpv6OspfBfd326(d []interface{}) edpt.DebugIpv6OspfBfd326 {
 	return ret
 }
 
-func getObjectDebugIpv6OspfEvents327(d []interface{}) edpt.DebugIpv6OspfEvents327 {
+func getObjectDebugIpv6OspfEvents398(d []interface{}) edpt.DebugIpv6OspfEvents398 {
 
 	count1 := len(d)
-	var ret edpt.DebugIpv6OspfEvents327
+	var ret edpt.DebugIpv6OspfEvents398
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Abr = in["abr"].(int)
@@ -310,10 +310,10 @@ func getObjectDebugIpv6OspfEvents327(d []interface{}) edpt.DebugIpv6OspfEvents32
 	return ret
 }
 
-func getObjectDebugIpv6OspfIfsm328(d []interface{}) edpt.DebugIpv6OspfIfsm328 {
+func getObjectDebugIpv6OspfIfsm399(d []interface{}) edpt.DebugIpv6OspfIfsm399 {
 
 	count1 := len(d)
-	var ret edpt.DebugIpv6OspfIfsm328
+	var ret edpt.DebugIpv6OspfIfsm399
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Events = in["events"].(int)
@@ -324,10 +324,10 @@ func getObjectDebugIpv6OspfIfsm328(d []interface{}) edpt.DebugIpv6OspfIfsm328 {
 	return ret
 }
 
-func getObjectDebugIpv6OspfLsa329(d []interface{}) edpt.DebugIpv6OspfLsa329 {
+func getObjectDebugIpv6OspfLsa400(d []interface{}) edpt.DebugIpv6OspfLsa400 {
 
 	count1 := len(d)
-	var ret edpt.DebugIpv6OspfLsa329
+	var ret edpt.DebugIpv6OspfLsa400
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Flooding = in["flooding"].(int)
@@ -340,10 +340,10 @@ func getObjectDebugIpv6OspfLsa329(d []interface{}) edpt.DebugIpv6OspfLsa329 {
 	return ret
 }
 
-func getObjectDebugIpv6OspfNfsm330(d []interface{}) edpt.DebugIpv6OspfNfsm330 {
+func getObjectDebugIpv6OspfNfsm401(d []interface{}) edpt.DebugIpv6OspfNfsm401 {
 
 	count1 := len(d)
-	var ret edpt.DebugIpv6OspfNfsm330
+	var ret edpt.DebugIpv6OspfNfsm401
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Events = in["events"].(int)
@@ -354,10 +354,10 @@ func getObjectDebugIpv6OspfNfsm330(d []interface{}) edpt.DebugIpv6OspfNfsm330 {
 	return ret
 }
 
-func getObjectDebugIpv6OspfNsm331(d []interface{}) edpt.DebugIpv6OspfNsm331 {
+func getObjectDebugIpv6OspfNsm402(d []interface{}) edpt.DebugIpv6OspfNsm402 {
 
 	count1 := len(d)
-	var ret edpt.DebugIpv6OspfNsm331
+	var ret edpt.DebugIpv6OspfNsm402
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Interface = in["interface"].(int)
@@ -367,10 +367,10 @@ func getObjectDebugIpv6OspfNsm331(d []interface{}) edpt.DebugIpv6OspfNsm331 {
 	return ret
 }
 
-func getObjectDebugIpv6OspfPacket332(d []interface{}) edpt.DebugIpv6OspfPacket332 {
+func getObjectDebugIpv6OspfPacket403(d []interface{}) edpt.DebugIpv6OspfPacket403 {
 
 	count1 := len(d)
-	var ret edpt.DebugIpv6OspfPacket332
+	var ret edpt.DebugIpv6OspfPacket403
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dd = in["dd"].(int)
@@ -386,10 +386,10 @@ func getObjectDebugIpv6OspfPacket332(d []interface{}) edpt.DebugIpv6OspfPacket33
 	return ret
 }
 
-func getObjectDebugIpv6OspfRoute333(d []interface{}) edpt.DebugIpv6OspfRoute333 {
+func getObjectDebugIpv6OspfRoute404(d []interface{}) edpt.DebugIpv6OspfRoute404 {
 
 	count1 := len(d)
-	var ret edpt.DebugIpv6OspfRoute333
+	var ret edpt.DebugIpv6OspfRoute404
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ase = in["ase"].(int)
@@ -403,15 +403,15 @@ func getObjectDebugIpv6OspfRoute333(d []interface{}) edpt.DebugIpv6OspfRoute333 
 
 func dataToEndpointDebugIpv6Ospf(d *schema.ResourceData) edpt.DebugIpv6Ospf {
 	var ret edpt.DebugIpv6Ospf
-	ret.Inst.All = getObjectDebugIpv6OspfAll325(d.Get("all").([]interface{}))
-	ret.Inst.Bfd = getObjectDebugIpv6OspfBfd326(d.Get("bfd").([]interface{}))
+	ret.Inst.All = getObjectDebugIpv6OspfAll396(d.Get("all").([]interface{}))
+	ret.Inst.Bfd = getObjectDebugIpv6OspfBfd397(d.Get("bfd").([]interface{}))
 	ret.Inst.Dumy = d.Get("dumy").(int)
-	ret.Inst.Events = getObjectDebugIpv6OspfEvents327(d.Get("events").([]interface{}))
-	ret.Inst.Ifsm = getObjectDebugIpv6OspfIfsm328(d.Get("ifsm").([]interface{}))
-	ret.Inst.Lsa = getObjectDebugIpv6OspfLsa329(d.Get("lsa").([]interface{}))
-	ret.Inst.Nfsm = getObjectDebugIpv6OspfNfsm330(d.Get("nfsm").([]interface{}))
-	ret.Inst.Nsm = getObjectDebugIpv6OspfNsm331(d.Get("nsm").([]interface{}))
-	ret.Inst.Packet = getObjectDebugIpv6OspfPacket332(d.Get("packet").([]interface{}))
-	ret.Inst.Route = getObjectDebugIpv6OspfRoute333(d.Get("route").([]interface{}))
+	ret.Inst.Events = getObjectDebugIpv6OspfEvents398(d.Get("events").([]interface{}))
+	ret.Inst.Ifsm = getObjectDebugIpv6OspfIfsm399(d.Get("ifsm").([]interface{}))
+	ret.Inst.Lsa = getObjectDebugIpv6OspfLsa400(d.Get("lsa").([]interface{}))
+	ret.Inst.Nfsm = getObjectDebugIpv6OspfNfsm401(d.Get("nfsm").([]interface{}))
+	ret.Inst.Nsm = getObjectDebugIpv6OspfNsm402(d.Get("nsm").([]interface{}))
+	ret.Inst.Packet = getObjectDebugIpv6OspfPacket403(d.Get("packet").([]interface{}))
+	ret.Inst.Route = getObjectDebugIpv6OspfRoute404(d.Get("route").([]interface{}))
 	return ret
 }

@@ -46,8 +46,8 @@ func resourceTupleFilterFilterRule() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"tuple_filter_name": {
+				Type: schema.TypeString, Required: true, Description: "Tuple_filter_name",
 			},
 		},
 	}
@@ -126,6 +126,6 @@ func dataToEndpointTupleFilterFilterRule(d *schema.ResourceData) edpt.TupleFilte
 	ret.Inst.SrcV6Addr = d.Get("src_v6_addr").(string)
 	ret.Inst.SrcV6Port = d.Get("src_v6_port").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Tuple_filter_name = d.Get("tuple_filter_name").(string)
 	return ret
 }

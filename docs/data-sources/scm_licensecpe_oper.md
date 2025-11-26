@@ -48,5 +48,3 @@ Optional:
 - `platform` (String)
 - `product` (String)
 - `uuid` (String)
-
-

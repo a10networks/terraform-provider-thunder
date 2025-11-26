@@ -74,5 +74,3 @@ Optional:
 - `timeout_with_packet` (Number) Number of pin timeouts while socket has packets
 - `total_number` (Number) Total number
 - `unexpected_error` (Number) Number of unexpected errors
-
-

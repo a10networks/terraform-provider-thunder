@@ -1,46 +1,42 @@
-
-
 package endpoint
+
 import (
-    "github.com/a10networks/terraform-provider-thunder/thunder/axapi"
-    "github.com/clarketm/json"
+	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
+	"github.com/clarketm/json"
 )
 
-//based on ACOS 6_0_2_P1-37
+// based on ACOS 7_0_2-102
 type DdosTokenAuthenticationSummaryOper struct {
-    
-    Oper DdosTokenAuthenticationSummaryOperOper `json:"oper"`
-
+	Oper DdosTokenAuthenticationSummaryOperOper `json:"oper"`
 }
 type DataDdosTokenAuthenticationSummaryOper struct {
-    DtDdosTokenAuthenticationSummaryOper DdosTokenAuthenticationSummaryOper `json:"summary"`
+	DtDdosTokenAuthenticationSummaryOper DdosTokenAuthenticationSummaryOper `json:"summary"`
 }
-
 
 type DdosTokenAuthenticationSummaryOperOper struct {
-    PlayerMode string `json:"player-mode"`
+	PlayerMode string `json:"player-mode"`
 }
 
-func (p *DdosTokenAuthenticationSummaryOper) GetId() string{
-    return "1"
+func (p *DdosTokenAuthenticationSummaryOper) GetId() string {
+	return "1"
 }
 
-func (p *DdosTokenAuthenticationSummaryOper) getPath() string{
-    return "ddos/token-authentication/summary/oper"
+func (p *DdosTokenAuthenticationSummaryOper) getPath() string {
+	return "ddos/token-authentication/summary/oper"
 }
 
-func (p *DdosTokenAuthenticationSummaryOper) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) (DataDdosTokenAuthenticationSummaryOper,error) {
-logger.Println("DdosTokenAuthenticationSummaryOper::Get")
-    headers := axapi.GenRequestHeader(authToken)
-    _, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
-    var payload DataDdosTokenAuthenticationSummaryOper
-    if err == nil {
-        if len(axResp) > 0{
-        err = json.Unmarshal(axResp, &p)
-        }
-        if err != nil {
-            logger.Println("json.Unmarshal() failed with error", err)
-        }
-    }
-    return payload,err
+func (p *DdosTokenAuthenticationSummaryOper) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) (DataDdosTokenAuthenticationSummaryOper, error) {
+	logger.Println("DdosTokenAuthenticationSummaryOper::Get")
+	headers := axapi.GenRequestHeader(authToken)
+	_, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
+	var payload DataDdosTokenAuthenticationSummaryOper
+	if err == nil {
+		if len(axResp) > 0 {
+			err = json.Unmarshal(axResp, &p)
+		}
+		if err != nil {
+			logger.Println("json.Unmarshal() failed with error", err)
+		}
+	}
+	return payload, err
 }

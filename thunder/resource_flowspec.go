@@ -42,7 +42,7 @@ func resourceFlowspec() *schema.Resource {
 							Type: schema.TypeInt, Required: true, Description: "Specify the port number",
 						},
 						"port_num_end": {
-							Type: schema.TypeInt, Optional: true, Description: "Specify the port number",
+							Type: schema.TypeInt, Required: true, Description: "Specify the port number",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -61,7 +61,7 @@ func resourceFlowspec() *schema.Resource {
 							Type: schema.TypeInt, Required: true, Description: "Specify the DSCP value",
 						},
 						"dscp_val_end": {
-							Type: schema.TypeInt, Optional: true, Description: "Specify the DSCP value",
+							Type: schema.TypeInt, Required: true, Description: "Specify the DSCP value",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -169,7 +169,7 @@ func resourceFlowspec() *schema.Resource {
 							Type: schema.TypeInt, Required: true, Description: "Specify the ICMP Code",
 						},
 						"code_end": {
-							Type: schema.TypeInt, Optional: true, Description: "Specify the ICMP Code",
+							Type: schema.TypeInt, Required: true, Description: "Specify the ICMP Code",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -188,7 +188,7 @@ func resourceFlowspec() *schema.Resource {
 							Type: schema.TypeInt, Required: true, Description: "Specify the ICMP Type",
 						},
 						"type_end": {
-							Type: schema.TypeInt, Optional: true, Description: "Specify the ICMP Type",
+							Type: schema.TypeInt, Required: true, Description: "Specify the ICMP Type",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -223,7 +223,7 @@ func resourceFlowspec() *schema.Resource {
 							Type: schema.TypeInt, Required: true, Description: "Specify the Packet Length",
 						},
 						"length_end": {
-							Type: schema.TypeInt, Optional: true, Description: "Specify the Packet Length",
+							Type: schema.TypeInt, Required: true, Description: "Specify the Packet Length",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -242,7 +242,7 @@ func resourceFlowspec() *schema.Resource {
 							Type: schema.TypeInt, Required: true, Description: "Specify the port number",
 						},
 						"port_num_end": {
-							Type: schema.TypeInt, Optional: true, Description: "Specify the port number",
+							Type: schema.TypeInt, Required: true, Description: "Specify the port number",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -261,7 +261,7 @@ func resourceFlowspec() *schema.Resource {
 							Type: schema.TypeInt, Required: true, Description: "Specify the protocol number(6 for TCP and 17 for UDP)",
 						},
 						"proto_num_end": {
-							Type: schema.TypeInt, Optional: true, Description: "Specify the protocol number",
+							Type: schema.TypeInt, Required: true, Description: "Specify the protocol number",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -280,7 +280,7 @@ func resourceFlowspec() *schema.Resource {
 							Type: schema.TypeInt, Required: true, Description: "Specify the port number",
 						},
 						"port_num_end": {
-							Type: schema.TypeInt, Optional: true, Description: "Specify the port number",
+							Type: schema.TypeInt, Required: true, Description: "Specify the port number",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -412,10 +412,10 @@ func getSliceFlowspecDscpList(d []interface{}) []edpt.FlowspecDscpList {
 	return ret
 }
 
-func getObjectFlowspecFilteringAction353(d []interface{}) edpt.FlowspecFilteringAction353 {
+func getObjectFlowspecFilteringAction424(d []interface{}) edpt.FlowspecFilteringAction424 {
 
 	count1 := len(d)
-	var ret edpt.FlowspecFilteringAction353
+	var ret edpt.FlowspecFilteringAction424
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TerminalAction = in["terminal_action"].(int)
@@ -491,10 +491,10 @@ func getSliceFlowspecIcmpTypeList(d []interface{}) []edpt.FlowspecIcmpTypeList {
 	return ret
 }
 
-func getObjectFlowspecOperationalMode354(d []interface{}) edpt.FlowspecOperationalMode354 {
+func getObjectFlowspecOperationalMode425(d []interface{}) edpt.FlowspecOperationalMode425 {
 
 	count1 := len(d)
-	var ret edpt.FlowspecOperationalMode354
+	var ret edpt.FlowspecOperationalMode425
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mode = in["mode"].(string)
@@ -576,12 +576,12 @@ func dataToEndpointFlowspec(d *schema.ResourceData) edpt.Flowspec {
 	ret.Inst.DestIpv6Subnet = d.Get("dest_ipv6_subnet").(string)
 	ret.Inst.DestinationPortList = getSliceFlowspecDestinationPortList(d.Get("destination_port_list").([]interface{}))
 	ret.Inst.DscpList = getSliceFlowspecDscpList(d.Get("dscp_list").([]interface{}))
-	ret.Inst.FilteringAction = getObjectFlowspecFilteringAction353(d.Get("filtering_action").([]interface{}))
+	ret.Inst.FilteringAction = getObjectFlowspecFilteringAction424(d.Get("filtering_action").([]interface{}))
 	ret.Inst.FragmentationOptionList = getSliceFlowspecFragmentationOptionList(d.Get("fragmentation_option_list").([]interface{}))
 	ret.Inst.IcmpCodeList = getSliceFlowspecIcmpCodeList(d.Get("icmp_code_list").([]interface{}))
 	ret.Inst.IcmpTypeList = getSliceFlowspecIcmpTypeList(d.Get("icmp_type_list").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.OperationalMode = getObjectFlowspecOperationalMode354(d.Get("operational_mode").([]interface{}))
+	ret.Inst.OperationalMode = getObjectFlowspecOperationalMode425(d.Get("operational_mode").([]interface{}))
 	ret.Inst.PacketLengthList = getSliceFlowspecPacketLengthList(d.Get("packet_length_list").([]interface{}))
 	ret.Inst.PortList = getSliceFlowspecPortList(d.Get("port_list").([]interface{}))
 	ret.Inst.ProtocolList = getSliceFlowspecProtocolList(d.Get("protocol_list").([]interface{}))

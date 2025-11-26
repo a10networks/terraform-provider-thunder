@@ -85,5 +85,3 @@ Optional:
 - `nat_port` (Number)
 - `outbound` (Number)
 - `protocol` (String)
-
-

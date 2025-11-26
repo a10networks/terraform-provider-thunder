@@ -199,8 +199,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStat
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"netflow_monitor_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Netflow_monitor_tmpl_name",
 			},
 		},
 	}
@@ -330,6 +330,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTrigg
 	ret.Inst.SessionEventNat44RecordsSentFailur = d.Get("session_event_nat44_records_sent_failur").(int)
 	ret.Inst.SessionEventNat64RecordsSentFailur = d.Get("session_event_nat64_records_sent_failur").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Netflow_monitor_tmpl_name = d.Get("netflow_monitor_tmpl_name").(string)
 	return ret
 }

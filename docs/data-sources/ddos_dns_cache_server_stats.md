@@ -44,8 +44,13 @@ output "get_ddos_dns_cache_server_stats" {
 
 Optional:
 
+- `alias_subtype_already_exist` (Number) ALIAS Record Subtype Already Exists
+- `dns_prebuild_alloc_fail` (Number) DNS Prebuild Alloc Fail
+- `dnssec_rrsig_link_fail` (Number) DNSSEC RRSIG Link Failure
+- `insert_apex_zone_node_fail` (Number) Insert Apex Zone Node Fail
 - `insert_fail_all` (Number) Insert Fail
 - `insert_success` (Number) Insert Success
+- `insert_suffix_fqdn_node_fail` (Number) Insert Suffix FQDN Node Fail
 - `insert_total` (Number) Insert Total
 - `lookup_any_type_query_action_drop` (Number) Lookup DNS ANY Type Query Action Drop
 - `lookup_any_type_query_action_refused` (Number) Lookup DNS ANY Type Query Action Refused
@@ -71,9 +76,12 @@ Optional:
 - `lookup_nxdomain_resp` (Number) Lookup Nxdomain Response
 - `lookup_opcode_notimpl_resp` (Number) Lookup Opcode Not Implemented Response
 - `lookup_refuse_resp` (Number) Lookup Refuse Response
+- `lookup_servfail_resp` (Number) Lookup Server Fail Response
 - `lookup_undefined_rtype` (Number) Lookup Undefined Record Type
 - `lookup_unexp_err` (Number) Lookup Unexpected Error
 - `shard_filter_match` (Number) Lookup Shard Filter Matched
+- `suffix_table_trylock_fail` (Number) DNS Cache Suffix Table Trylock Fail
+- `zone_apex_suffix_node_insert_fail` (Number) Zone Apex Suffix Node Insert Fail
 - `zt_axfr_attempts` (Number) Zone Transfer AXFR Started
 - `zt_completed_no_update` (Number) Zone Transfer Completed No Update
 - `zt_completed_ok` (Number) Zone Transfer Completed
@@ -86,5 +94,3 @@ Optional:
 - `zt_tcp_conn_connect_server_fail` (Number) Zone Transfer TCP Connect Server Fail
 - `zt_tcp_conn_rst` (Number) Zone Transfer TCP RST / FIN Received
 - `zt_total_fail` (Number) Zone Transfer Total Failure
-
-

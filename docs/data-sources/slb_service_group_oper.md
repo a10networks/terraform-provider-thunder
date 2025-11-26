@@ -139,5 +139,3 @@ Optional:
 
 - `sgm_name` (String)
 - `sgm_port` (Number)
-
-

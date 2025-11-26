@@ -28,8 +28,8 @@ func resourceHealthMonitorMethodRtsp() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -102,6 +102,6 @@ func dataToEndpointHealthMonitorMethodRtsp(d *schema.ResourceData) edpt.HealthMo
 	ret.Inst.RtspPort = d.Get("rtsp_port").(int)
 	ret.Inst.Rtspurl = d.Get("rtspurl").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

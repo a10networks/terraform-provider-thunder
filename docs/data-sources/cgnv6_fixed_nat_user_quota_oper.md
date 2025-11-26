@@ -64,5 +64,3 @@ Optional:
 - `tcp_ports_used` (Number)
 - `udp_ports_available` (Number)
 - `udp_ports_used` (Number)
-
-

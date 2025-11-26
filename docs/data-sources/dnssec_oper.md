@@ -88,5 +88,3 @@ Optional:
 - `txt_objects` (Number)
 - `zone_memory` (Number)
 - `zone_objects` (Number)
-
-

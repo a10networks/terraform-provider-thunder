@@ -58,5 +58,3 @@ Optional:
 - `local_device_id` (Number)
 - `partition_name` (String)
 - `vrid` (Number)
-
-

@@ -45,13 +45,12 @@ output "get_ddos_ipproto_icmp_stats" {
 
 Optional:
 
-- `addr_filter_bl` (Number) IP Filtering Policy: Blacklisted
-- `addr_filter_drop` (Number) IP Filtering Policy: Dropped
 - `bl` (Number) Dst Blacklisted
 - `current_es_level` (Number) Current Escalation Level
 - `dst_hw_drop` (Number) Dst Hardware Packets Dropped
 - `dst_hw_drop_inserted` (Number) Dst Hardware Drop Rules Inserted
 - `dst_hw_drop_removed` (Number) Dst Hardware Drop Rules Removed
+- `dynamic_count_warn` (Number) dynamic-entry-count warning send
 - `ew_inbound_port_byte_drop` (Number) East-West Inbound Bytes Dropped
 - `ew_inbound_port_byte_rcv` (Number) East-West Inbound Bytes Recevied
 - `ew_inbound_port_byte_sent` (Number) East-West Inbound Bytes Forwarded
@@ -84,6 +83,8 @@ Optional:
 - `frag_timeout` (Number) Fragmented Packets Timeout
 - `icmpv4_rfc_undef_drop` (Number) ICMPv4 RFC Undef Type Dropped
 - `icmpv6_rfc_undef_drop` (Number) ICMPv6 RFC Undef Type Dropped
+- `ip_filtering_bl` (Number) IP Filtering Policy: Blacklisted
+- `ip_filtering_drop` (Number) IP Filtering Policy: Dropped
 - `no_policy_class_list_match` (Number) No Policy Class-list Match
 - `no_route_drop` (Number) No Route Dropped
 - `outbound_port_bytes` (Number) Outbound Bytes Received
@@ -112,6 +113,7 @@ Optional:
 - `rate_type2_exceed` (Number) ICMP Type Dst Rate 3 Exceeded
 - `rate_type2_exceed_bl` (Number) ICMP Type Dst Rate 3 Blacklisted
 - `rate_type2_exceed_drop` (Number) ICMP Type Dst Rate 3 Dropped
+- `same_sport_dport_drop` (Number) Same Source and Destination Port Drop
 - `secondary_port_hit` (Number) Per Addr-Port Hit
 - `secondary_port_kbit_rate_exceed` (Number) Per Addr-Port KiBit Rate Exceeded
 - `secondary_port_kbit_rate_exceed_pkt` (Number) Per Addr-Port KiBit Rate Exceeded Count
@@ -136,6 +138,7 @@ Optional:
 - `src_rate_type2_exceed_bl` (Number) ICMP Type Src Rate 3 Blacklisted
 - `src_rate_type2_exceed_drop` (Number) ICMP Type Src Rate 3 Dropped
 - `src_zone_service_entry_aged` (Number) SrcZoneService Entry Aged
+- `src_zone_service_entry_hit` (Number) SrcZoneService Entry Hit
 - `src_zone_service_entry_learned` (Number) SrcZoneService Entry Learned
 - `type` (Number) ICMP Type
 - `type_bl` (Number) ICMP Type Blacklisted
@@ -143,5 +146,3 @@ Optional:
 - `wildcard` (Number) ICMP Type Wildcard
 - `wildcard_bl` (Number) ICMP Type Wildcard Blacklisted
 - `wildcard_deny_drop` (Number) ICMP Type Wildcard Dropped
-
-

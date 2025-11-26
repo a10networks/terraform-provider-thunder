@@ -19,6 +19,9 @@ func resourceCgnv6Nat64Prefix() *schema.Resource {
 			"class_list": {
 				Type: schema.TypeString, Optional: true, Description: "Class-list to match for NAT64",
 			},
+			"follow_nat_pool_vrid": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Follow NAT pool vird",
+			},
 			"prefix_val": {
 				Type: schema.TypeString, Required: true, Description: "NAT64 Prefix",
 			},
@@ -96,6 +99,7 @@ func resourceCgnv6Nat64PrefixRead(ctx context.Context, d *schema.ResourceData, m
 func dataToEndpointCgnv6Nat64Prefix(d *schema.ResourceData) edpt.Cgnv6Nat64Prefix {
 	var ret edpt.Cgnv6Nat64Prefix
 	ret.Inst.ClassList = d.Get("class_list").(string)
+	ret.Inst.FollowNatPoolVrid = d.Get("follow_nat_pool_vrid").(int)
 	ret.Inst.PrefixVal = d.Get("prefix_val").(string)
 	//omit uuid
 	ret.Inst.Vrid = d.Get("vrid").(int)

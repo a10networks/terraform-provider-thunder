@@ -47,6 +47,7 @@ output "get_fw_rate_limit_oper" {
 Optional:
 
 - `rate_limit_list` (Block List) (see [below for nested schema](#nestedblock--oper--rate_limit_list))
+- `string_value` (String)
 - `template_id` (Number)
 - `v4_address` (String)
 - `v4_netmask` (String)
@@ -65,6 +66,7 @@ Optional:
 - `drop_count` (Number)
 - `prefix_len` (Number)
 - `rule_name` (String)
+- `string_value` (String)
 - `template_id` (Number)
 - `total_traffic_allowed` (Number)
 - `total_traffic_received` (Number)
@@ -91,10 +93,14 @@ Optional:
 - `mem_used` (Number)
 - `total_entries_scope_aggregate` (Number)
 - `total_entries_scope_parent` (Number)
+- `total_entries_scope_parent_radius_usergroup` (Number)
+- `total_entries_scope_parent_radius_userid` (Number)
 - `total_entries_scope_parent_subscriber_ip` (Number)
 - `total_entries_scope_parent_subscriber_prefix` (Number)
+- `total_entries_scope_radius_usergroup` (Number)
+- `total_entries_scope_radius_userid` (Number)
 - `total_entries_scope_subscriber_ip` (Number)
 - `total_entries_scope_subscriber_prefix` (Number)
 - `total_num_entries` (Number)
-
-
+- `total_num_entries_allocated` (Number)
+- `total_num_entries_freed` (Number)

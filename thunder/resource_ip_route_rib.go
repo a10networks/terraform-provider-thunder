@@ -43,7 +43,7 @@ func resourceIpRouteRib() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"lif": {
-							Type: schema.TypeString, Optional: true, Description: "LIF Interface (Logical tunnel interface name)",
+							Type: schema.TypeString, Optional: true, Description: "LIF Interface (Logical interface name)",
 						},
 						"description_nexthop_lif": {
 							Type: schema.TypeString, Optional: true, Description: "Description for static route",

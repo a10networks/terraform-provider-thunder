@@ -71,14 +71,14 @@ func resourceDdosDstZonePortZoneServiceDynamicEntryOverflowPolicy() *schema.Reso
 					},
 				},
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 			"port_num": {
 				Type: schema.TypeString, Required: true, Description: "PortNum",
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 		},
 	}
@@ -174,8 +174,8 @@ func dataToEndpointDdosDstZonePortZoneServiceDynamicEntryOverflowPolicy(d *schem
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ZoneTemplate = getObjectDdosDstZonePortZoneServiceDynamicEntryOverflowPolicyZoneTemplate(d.Get("zone_template").([]interface{}))
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
-	ret.Inst.PortNum = d.Get("port_num").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
+	ret.Inst.PortNum = d.Get("port_num").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	return ret
 }

@@ -46,8 +46,8 @@ func resourceAamAuthorizationPolicyJwtClaimMap() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
 			},
 		},
 	}
@@ -126,6 +126,6 @@ func dataToEndpointAamAuthorizationPolicyJwtClaimMap(d *schema.ResourceData) edp
 	ret.Inst.StringType = d.Get("string_type").(int)
 	ret.Inst.Type = d.Get("type").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

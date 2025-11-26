@@ -46,13 +46,17 @@ Optional:
 
 - `active_interface_list` (Block List) (see [below for nested schema](#nestedblock--oper--active_interface_list))
 - `advertised_redirect_ip_list` (Block List) (see [below for nested schema](#nestedblock--oper--advertised_redirect_ip_list))
+- `advertised_redirect_ipv6_list` (Block List) (see [below for nested schema](#nestedblock--oper--advertised_redirect_ipv6_list))
 - `advertised_session_sync_ip_list` (Block List) (see [below for nested schema](#nestedblock--oper--advertised_session_sync_ip_list))
+- `advertised_session_sync_ipv6_list` (Block List) (see [below for nested schema](#nestedblock--oper--advertised_session_sync_ipv6_list))
 - `cluster_mode` (String)
 - `db_role` (String)
 - `dest_redirect_ip_list` (Block List) (see [below for nested schema](#nestedblock--oper--dest_redirect_ip_list))
+- `dest_redirect_ipv6_list` (Block List) (see [below for nested schema](#nestedblock--oper--dest_redirect_ipv6_list))
 - `dest_session_sync_ip_list` (Block List) (see [below for nested schema](#nestedblock--oper--dest_session_sync_ip_list))
 - `device_list` (Block List) (see [below for nested schema](#nestedblock--oper--device_list))
 - `exclude_interface_ip_list` (Block List) (see [below for nested schema](#nestedblock--oper--exclude_interface_ip_list))
+- `exclude_interface_ipv6_list` (Block List) (see [below for nested schema](#nestedblock--oper--exclude_interface_ipv6_list))
 - `follow_shared_redirection` (Number)
 - `follow_shared_session_sync` (Number)
 - `l2redirect` (Number)
@@ -79,12 +83,28 @@ Optional:
 - `ip` (String)
 
 
+<a id="nestedblock--oper--advertised_redirect_ipv6_list"></a>
+### Nested Schema for `oper.advertised_redirect_ipv6_list`
+
+Optional:
+
+- `ipv6` (String)
+
+
 <a id="nestedblock--oper--advertised_session_sync_ip_list"></a>
 ### Nested Schema for `oper.advertised_session_sync_ip_list`
 
 Optional:
 
 - `ip` (String)
+
+
+<a id="nestedblock--oper--advertised_session_sync_ipv6_list"></a>
+### Nested Schema for `oper.advertised_session_sync_ipv6_list`
+
+Optional:
+
+- `ipv6` (String)
 
 
 <a id="nestedblock--oper--dest_redirect_ip_list"></a>
@@ -95,6 +115,16 @@ Optional:
 - `device_id` (Number)
 - `direction` (String)
 - `ip` (String)
+
+
+<a id="nestedblock--oper--dest_redirect_ipv6_list"></a>
+### Nested Schema for `oper.dest_redirect_ipv6_list`
+
+Optional:
+
+- `device_id` (Number)
+- `direction` (String)
+- `ipv6` (String)
 
 
 <a id="nestedblock--oper--dest_session_sync_ip_list"></a>
@@ -126,3 +156,9 @@ Optional:
 - `ip` (String)
 
 
+<a id="nestedblock--oper--exclude_interface_ipv6_list"></a>
+### Nested Schema for `oper.exclude_interface_ipv6_list`
+
+Optional:
+
+- `ipv6` (String)

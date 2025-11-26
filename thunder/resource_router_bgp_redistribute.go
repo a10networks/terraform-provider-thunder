@@ -120,6 +120,19 @@ func resourceRouterBgpRedistribute() *schema.Resource {
 					},
 				},
 			},
+			"public_ip_cfg": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"public_ip": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Public IPv6/IPv4 Prefixes",
+						},
+						"route_map": {
+							Type: schema.TypeString, Optional: true, Description: "Route map reference (Pointer to route-map entries)",
+						},
+					},
+				},
+			},
 			"rip_cfg": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -359,6 +372,18 @@ func getObjectRouterBgpRedistributeOspfCfg(d []interface{}) edpt.RouterBgpRedist
 	return ret
 }
 
+func getObjectRouterBgpRedistributePublicIpCfg(d []interface{}) edpt.RouterBgpRedistributePublicIpCfg {
+
+	count1 := len(d)
+	var ret edpt.RouterBgpRedistributePublicIpCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.PublicIp = in["public_ip"].(int)
+		ret.RouteMap = in["route_map"].(string)
+	}
+	return ret
+}
+
 func getObjectRouterBgpRedistributeRipCfg(d []interface{}) edpt.RouterBgpRedistributeRipCfg {
 
 	count1 := len(d)
@@ -441,6 +466,7 @@ func dataToEndpointRouterBgpRedistribute(d *schema.ResourceData) edpt.RouterBgpR
 	ret.Inst.Lw4o6Cfg = getObjectRouterBgpRedistributeLw4o6Cfg(d.Get("lw4o6_cfg").([]interface{}))
 	ret.Inst.NatMapCfg = getObjectRouterBgpRedistributeNatMapCfg(d.Get("nat_map_cfg").([]interface{}))
 	ret.Inst.OspfCfg = getObjectRouterBgpRedistributeOspfCfg(d.Get("ospf_cfg").([]interface{}))
+	ret.Inst.PublicIpCfg = getObjectRouterBgpRedistributePublicIpCfg(d.Get("public_ip_cfg").([]interface{}))
 	ret.Inst.RipCfg = getObjectRouterBgpRedistributeRipCfg(d.Get("rip_cfg").([]interface{}))
 	ret.Inst.StaticCfg = getObjectRouterBgpRedistributeStaticCfg(d.Get("static_cfg").([]interface{}))
 	ret.Inst.StaticNatCfg = getObjectRouterBgpRedistributeStaticNatCfg(d.Get("static_nat_cfg").([]interface{}))

@@ -45,27 +45,27 @@ output "get_ddos_detection_statistics_stats" {
 Optional:
 
 - `agent_not_found` (Number) Detection Agent Not Found
-- `db_n_ip_restore_attempt` (Number) Database Network IP Entry Restoring Attempt
-- `db_n_ip_save_attempt` (Number) Database Network IP Entry Saving Attempt
-- `db_n_ip_save_failure` (Number) Database Network IP Entry Saving Failure
-- `db_n_ip_table_create_failure` (Number) Database Network IP Entry Table Creation Failure
-- `db_n_ip_table_purge_failure` (Number) Database Network IP Entry Table Purge Entries Failure
-- `db_n_parent_entry_not_found` (Number) Database Network Parent Entry Not Found
-- `db_n_static_subnet_not_found` (Number) Database Network Static Subnet Entry Not Found
-- `db_n_subnet_restore_attempt` (Number) Database Network Subnet Entry Restoring Attempt
-- `db_n_subnet_save_attempt` (Number) Database Network Subnet Entry Saving Attempt
-- `db_n_subnet_save_failure` (Number) Database Network Subnet Entry Saving Failure
-- `db_n_subnet_table_create_failure` (Number) Database Network Subnet Entry Table Creation Failure
-- `db_n_subnet_table_purge_failure` (Number) Database Network Subnet Entry Table Purge Entries Failure
-- `db_n_svc_restore_attempt` (Number) Database Network Service Entry Restoring Attempt
-- `db_n_svc_save_attempt` (Number) Database Network Service Entry Saving Attempt
-- `db_n_svc_save_failure` (Number) Database Network Service Entry Saving Failure
-- `db_n_svc_table_create_failure` (Number) Database Network Service Entry Table Creation Failure
-- `db_n_svc_table_purge_failure` (Number) Database Network Service Entry Table Purge Entries Failure
-- `db_open_failure` (Number) Database Open Failure
-- `db_oper_failure` (Number) Database Operation Failure
-- `db_unexpected_error` (Number) Database Unexpected Error
-- `db_worker_enq_failure` (Number) Database Worker Enqueue Failure
+- `db_n_ip_restore_attempt` (Number) Entry-Saving Network IP Entry Restoring Attempt
+- `db_n_ip_save_attempt` (Number) Entry-Saving Network IP Entry Saving Attempt
+- `db_n_ip_save_failure` (Number) Entry-Saving Network IP Entry Saving Failure
+- `db_n_ip_table_create_failure` (Number) Entry-Saving Network IP Entry Storage Creation Failure
+- `db_n_ip_table_purge_failure` (Number) Entry-Saving Network IP Entry Storage Purge Failure
+- `db_n_parent_entry_not_found` (Number) Entry-Saving Network Parent Entry Not Found
+- `db_n_static_subnet_not_found` (Number) Entry-Saving Network Static Subnet Entry Not Found
+- `db_n_subnet_restore_attempt` (Number) Entry-Saving Network Subnet Entry Restoring Attempt
+- `db_n_subnet_save_attempt` (Number) Entry-Saving Network Subnet Entry Saving Attempt
+- `db_n_subnet_save_failure` (Number) Entry-Saving Network Subnet Entry Saving Failure
+- `db_n_subnet_table_create_failure` (Number) Entry-Saving Network Subnet Entry Storage Creation Failure
+- `db_n_subnet_table_purge_failure` (Number) Entry-Saving Network Subnet Entry Storage Purge Failure
+- `db_n_svc_restore_attempt` (Number) Entry-Saving Network Service Entry Restoring Attempt
+- `db_n_svc_save_attempt` (Number) Entry-Saving Network Service Entry Saving Attempt
+- `db_n_svc_save_failure` (Number) Entry-Saving Network Service Entry Saving Failure
+- `db_n_svc_table_create_failure` (Number) Entry-Saving Network Service Entry Storage Creation Failure
+- `db_n_svc_table_purge_failure` (Number) Entry-Saving Network Service Entry Storage Purge Failure
+- `db_open_failure` (Number) Entry-Saving Storage Open Failure
+- `db_oper_failure` (Number) Entry-Saving Storage Operation Failure
+- `db_unexpected_error` (Number) Entry-Saving Unexpected Error
+- `db_worker_enq_failure` (Number) Entry-Saving Periodic Saving Routine Schedule Failure
 - `dst_age` (Number) Dst Entry Aged
 - `dst_hit` (Number) Dst Entry Hit
 - `dst_ip_age` (Number) Dst IP Entry Aged
@@ -91,6 +91,10 @@ Optional:
 - `n_service_create_fail` (Number) Service Entry of Network-object Create Failed
 - `n_service_learned` (Number) Service Entry of Network-object Learned
 - `n_service_not_found` (Number) Service Entry of Network-object Not Found
+- `n_sport_aged` (Number) Source Port Entry of Network-object Aged
+- `n_sport_create_fail` (Number) Source Port Entry of Network-object Create Failed
+- `n_sport_learned` (Number) Source Port Entry of Network-object Learned
+- `n_sport_not_found` (Number) Source Port Entry of Network-object Not Found
 - `n_subnet_aged` (Number) Subnet Entry of Network-object Aged
 - `n_subnet_create_fail` (Number) Subnet Entry of Network-object Create Failed
 - `n_subnet_learned` (Number) Subnet Entry of Network-object learned
@@ -120,6 +124,5 @@ Optional:
 - `src_port_hit` (Number) Src Port Entry Hit
 - `src_port_learn` (Number) Src Port Entry Learned
 - `src_port_miss` (Number) Src Port Entry Missed
+- `trusted_sample_processed` (Number) Samples with Source IP in Trustlist Processed
 - `unmatch_entry_port_zero` (Number) Unmatched Entry Port-zero Packet
-
-

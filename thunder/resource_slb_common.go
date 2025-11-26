@@ -16,6 +16,9 @@ func resourceSlbCommon() *schema.Resource {
 		DeleteContext: resourceSlbCommonDelete,
 
 		Schema: map[string]*schema.Schema{
+			"aflex_persist_uie_chassis_sync_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable aflex persist uie cross PU sync",
+			},
 			"aflex_table_entry_aging_interval": {
 				Type: schema.TypeInt, Optional: true, Default: 1, Description: "aFleX table entry aging interval in second",
 			},
@@ -249,6 +252,9 @@ func resourceSlbCommon() *schema.Resource {
 			"dns_cache_entry_size": {
 				Type: schema.TypeInt, Optional: true, Default: 256, Description: "Set DNS cache entry size, default is 256 bytes (1-4096 bytes, default is 256 bytes)",
 			},
+			"dns_cache_hitcount_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable DNS cache entry hit count",
+			},
 			"dns_cache_sync": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable DNS cache HA sync",
 			},
@@ -260,6 +266,15 @@ func resourceSlbCommon() *schema.Resource {
 			},
 			"dns_cache_ttl_adjustment_enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable DNS cache response ttl adjustment",
+			},
+			"dns_cookie_cache_policy": {
+				Type: schema.TypeString, Optional: true, Description: "'served-by-cache': Answer from cache for requests with cookie; 'served-by-backend': Answer from server for requests with cookie;",
+			},
+			"dns_negative_cache_bypass_threshold": {
+				Type: schema.TypeInt, Optional: true, Default: 100, Description: "Query bypass threshold of negative cache entry, default is 100",
+			},
+			"dns_negative_cache_caching_non_valid": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable caching non-valid negative response, otherwise will only cache valid negative response",
 			},
 			"dns_negative_cache_enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable DNS negative cache",
@@ -279,6 +294,9 @@ func resourceSlbCommon() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"max_table_entries": {
 							Type: schema.TypeInt, Optional: true, Description: "Maximum number of entries allowed",
+						},
+						"source_entry_age": {
+							Type: schema.TypeInt, Optional: true, Description: "Source entry age in minutes (default 2)",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -321,6 +339,82 @@ func resourceSlbCommon() *schema.Resource {
 			},
 			"gateway_health_check": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable gateway health check",
+			},
+			"global_dns_cache": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"class_list": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"name": {
+										Type: schema.TypeString, Optional: true, Description: "Specify a class list name",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+									"lid_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"lidnum": {
+													Type: schema.TypeInt, Required: true, Description: "Specify a limit ID",
+												},
+												"conn_rate_limit": {
+													Type: schema.TypeInt, Optional: true, Description: "Connection rate limit",
+												},
+												"per": {
+													Type: schema.TypeInt, Optional: true, Description: "Per (Number of 100ms)",
+												},
+												"over_limit_action": {
+													Type: schema.TypeString, Optional: true, Default: "drop", Description: "'ignore': Ignore the limit and proceed; 'drop': Drop the query when it exceeds limit;",
+												},
+												"lockout": {
+													Type: schema.TypeInt, Optional: true, Description: "Don't accept any new connection for certain time (Lockout duration in minutes)",
+												},
+												"log": {
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Log a message",
+												},
+												"log_interval": {
+													Type: schema.TypeInt, Optional: true, Description: "Log interval (minute, by default system will log every over limit instance)",
+												},
+												"dns": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"cache_action": {
+																Type: schema.TypeString, Optional: true, Default: "cache-enable", Description: "'cache-disable': Disable dns cache; 'cache-enable': Enable dns cache;",
+															},
+															"ttl": {
+																Type: schema.TypeInt, Optional: true, Default: 300, Description: "TTL for cache entry (TTL in seconds)",
+															},
+															"weight": {
+																Type: schema.TypeInt, Optional: true, Default: 1, Description: "Weight for cache entry",
+															},
+															"honor_server_response_ttl": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Honor the server response TTL",
+															},
+														},
+													},
+												},
+												"uuid": {
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+												},
+												"user_tag": {
+													Type: schema.TypeString, Optional: true, Description: "Customized tag",
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				},
 			},
 			"graceful_shutdown": {
 				Type: schema.TypeInt, Optional: true, Description: "1-65535, in unit of seconds",
@@ -368,7 +462,7 @@ func resourceSlbCommon() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Default: 90, Description: "Set maximum number of HTTP headers allowed",
 			},
 			"max_local_rate": {
-				Type: schema.TypeInt, Optional: true, Default: 32, Description: "Set maximum local rate",
+				Type: schema.TypeInt, Optional: true, Default: 64, Description: "Set maximum local rate",
 			},
 			"max_persistent_cache": {
 				Type: schema.TypeInt, Optional: true, Description: "Define maximum persistent cache (Maximum persistent cache entry)",
@@ -385,15 +479,6 @@ func resourceSlbCommon() *schema.Resource {
 			"mss_table": {
 				Type: schema.TypeInt, Optional: true, Default: 536, Description: "Set MSS table (128-750, default is 536)",
 			},
-			"multi_cpu": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specific NGWAF CPU",
-			},
-			"n5_new": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "HW assisted N5 SSL module with TLS 1.3 and TLS 1.2 support using OpenSSL 1.1.1",
-			},
-			"n5_old": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "HW assisted N5 SSL module with TLS 1.2 support using OpenSSL 0.9.7",
-			},
 			"ngwaf_proxy_ipv4": {
 				Type: schema.TypeString, Optional: true, Description: "IPv4 address",
 			},
@@ -408,6 +493,9 @@ func resourceSlbCommon() *schema.Resource {
 			},
 			"odd_even_nat_enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable odd even nat pool allocation in dual blade systems",
+			},
+			"odd_even_nat_one_arm": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable odd even nat pool allocation in one-arm deployment",
 			},
 			"one_server_conn_hm_rate": {
 				Type: schema.TypeInt, Optional: true, Description: "One Server Conn Health Check Rate",
@@ -444,6 +532,9 @@ func resourceSlbCommon() *schema.Resource {
 			},
 			"qat": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "HW assisted QAT SSL module",
+			},
+			"qat4": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "HW assisted QAT Gen4 SSL module",
 			},
 			"quic": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -493,6 +584,12 @@ func resourceSlbCommon() *schema.Resource {
 			},
 			"recursive_ns_cache": {
 				Type: schema.TypeString, Optional: true, Default: "honor-packet-ttl", Description: "'honor-packet-ttl': Honor the lowest TTL among NS records in the server response; 'honor-age-config': Honor the ttl/age settings based on acos dns cache configuration;",
+			},
+			"redirect_dummy_ethernet": {
+				Type: schema.TypeInt, Optional: true, Description: "Ethernet interface (Ethernet interface number)",
+			},
+			"redirect_dummy_vlan": {
+				Type: schema.TypeInt, Optional: true, Description: "VLAN Id",
 			},
 			"reset_stale_session": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Send reset if session in delete queue receives a SYN packet",
@@ -554,38 +651,13 @@ func resourceSlbCommon() *schema.Resource {
 				},
 			},
 			"software": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Software",
-			},
-			"software_tls13": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Software TLS1.3",
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Software(includes TLS 1.3 support)",
 			},
 			"software_tls13_offload": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Software TLS1.3 with CPU Offload Support",
 			},
-			"sort_res": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB sorting of resource names",
-			},
 			"ssl_module_usage_enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SSL module usage calculations for QAT",
-			},
-			"ssl_n5_delay_tx_enable": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable delay transmission for N5-new",
-			},
-			"ssl_ratelimit_cfg": {
-				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"disable_rate": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable HW SSL Rate limit for N5-new",
-						},
-						"tls12_rate": {
-							Type: schema.TypeInt, Optional: true, Default: 120, Description: "Enabling Rateliming for TLS1.2 HW requests per chip in 1K - default 120",
-						},
-						"tls13_rate": {
-							Type: schema.TypeInt, Optional: true, Default: 72, Description: "Enabling Rateliming for TLS1.3 HW requests per chip in 1K - default 72",
-						},
-					},
-				},
 			},
 			"ssli_cert_not_ready_inspect_limit": {
 				Type: schema.TypeInt, Optional: true, Default: 2000, Description: "SSLI asynchronized connection max number, default is 2000 (set to 0 for unlimited size)",
@@ -703,10 +775,10 @@ func resourceSlbCommonRead(ctx context.Context, d *schema.ResourceData, meta int
 	return diags
 }
 
-func getObjectSlbCommonAflexTableEntrySync1407(d []interface{}) edpt.SlbCommonAflexTableEntrySync1407 {
+func getObjectSlbCommonAflexTableEntrySync1502(d []interface{}) edpt.SlbCommonAflexTableEntrySync1502 {
 
 	count1 := len(d)
-	var ret edpt.SlbCommonAflexTableEntrySync1407
+	var ret edpt.SlbCommonAflexTableEntrySync1502
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AflexTableEntrySyncEnable = in["aflex_table_entry_sync_enable"].(int)
@@ -718,23 +790,23 @@ func getObjectSlbCommonAflexTableEntrySync1407(d []interface{}) edpt.SlbCommonAf
 	return ret
 }
 
-func getObjectSlbCommonCertPinning1408(d []interface{}) edpt.SlbCommonCertPinning1408 {
+func getObjectSlbCommonCertPinning1503(d []interface{}) edpt.SlbCommonCertPinning1503 {
 
 	count1 := len(d)
-	var ret edpt.SlbCommonCertPinning1408
+	var ret edpt.SlbCommonCertPinning1503
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ttl = in["ttl"].(int)
 		//omit uuid
-		ret.CandidateListFeedbackOptIn = getObjectSlbCommonCertPinningCandidateListFeedbackOptIn1409(in["candidate_list_feedback_opt_in"].([]interface{}))
+		ret.CandidateListFeedbackOptIn = getObjectSlbCommonCertPinningCandidateListFeedbackOptIn1504(in["candidate_list_feedback_opt_in"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSlbCommonCertPinningCandidateListFeedbackOptIn1409(d []interface{}) edpt.SlbCommonCertPinningCandidateListFeedbackOptIn1409 {
+func getObjectSlbCommonCertPinningCandidateListFeedbackOptIn1504(d []interface{}) edpt.SlbCommonCertPinningCandidateListFeedbackOptIn1504 {
 
 	count1 := len(d)
-	var ret edpt.SlbCommonCertPinningCandidateListFeedbackOptIn1409
+	var ret edpt.SlbCommonCertPinningCandidateListFeedbackOptIn1504
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -750,10 +822,10 @@ func getObjectSlbCommonCertPinningCandidateListFeedbackOptIn1409(d []interface{}
 	return ret
 }
 
-func getObjectSlbCommonConnRateLimit1410(d []interface{}) edpt.SlbCommonConnRateLimit1410 {
+func getObjectSlbCommonConnRateLimit1505(d []interface{}) edpt.SlbCommonConnRateLimit1505 {
 
 	count1 := len(d)
-	var ret edpt.SlbCommonConnRateLimit1410
+	var ret edpt.SlbCommonConnRateLimit1505
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SrcIpList = getSliceSlbCommonConnRateLimitSrcIpList(in["src_ip_list"].([]interface{}))
@@ -818,22 +890,84 @@ func getObjectSlbCommonDdosProtectionPacketsPerSecond(d []interface{}) edpt.SlbC
 	return ret
 }
 
-func getObjectSlbCommonDnsResponseRateLimiting1411(d []interface{}) edpt.SlbCommonDnsResponseRateLimiting1411 {
+func getObjectSlbCommonDnsResponseRateLimiting1506(d []interface{}) edpt.SlbCommonDnsResponseRateLimiting1506 {
 
 	count1 := len(d)
-	var ret edpt.SlbCommonDnsResponseRateLimiting1411
+	var ret edpt.SlbCommonDnsResponseRateLimiting1506
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MaxTableEntries = in["max_table_entries"].(int)
+		ret.SourceEntryAge = in["source_entry_age"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSlbCommonQuic1412(d []interface{}) edpt.SlbCommonQuic1412 {
+func getObjectSlbCommonGlobalDnsCache1507(d []interface{}) edpt.SlbCommonGlobalDnsCache1507 {
 
 	count1 := len(d)
-	var ret edpt.SlbCommonQuic1412
+	var ret edpt.SlbCommonGlobalDnsCache1507
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		//omit uuid
+		ret.ClassList = getObjectSlbCommonGlobalDnsCacheClassList1508(in["class_list"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectSlbCommonGlobalDnsCacheClassList1508(d []interface{}) edpt.SlbCommonGlobalDnsCacheClassList1508 {
+
+	count1 := len(d)
+	var ret edpt.SlbCommonGlobalDnsCacheClassList1508
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Name = in["name"].(string)
+		//omit uuid
+		ret.LidList = getSliceSlbCommonGlobalDnsCacheClassListLidList1509(in["lid_list"].([]interface{}))
+	}
+	return ret
+}
+
+func getSliceSlbCommonGlobalDnsCacheClassListLidList1509(d []interface{}) []edpt.SlbCommonGlobalDnsCacheClassListLidList1509 {
+
+	count1 := len(d)
+	ret := make([]edpt.SlbCommonGlobalDnsCacheClassListLidList1509, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.SlbCommonGlobalDnsCacheClassListLidList1509
+		oi.Lidnum = in["lidnum"].(int)
+		oi.ConnRateLimit = in["conn_rate_limit"].(int)
+		oi.Per = in["per"].(int)
+		oi.OverLimitAction = in["over_limit_action"].(string)
+		oi.Lockout = in["lockout"].(int)
+		oi.Log = in["log"].(int)
+		oi.LogInterval = in["log_interval"].(int)
+		oi.Dns = getObjectSlbCommonGlobalDnsCacheClassListLidListDns1510(in["dns"].([]interface{}))
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectSlbCommonGlobalDnsCacheClassListLidListDns1510(d []interface{}) edpt.SlbCommonGlobalDnsCacheClassListLidListDns1510 {
+
+	count1 := len(d)
+	var ret edpt.SlbCommonGlobalDnsCacheClassListLidListDns1510
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.CacheAction = in["cache_action"].(string)
+		ret.Ttl = in["ttl"].(int)
+		ret.Weight = in["weight"].(int)
+		ret.HonorServerResponseTtl = in["honor_server_response_ttl"].(int)
+	}
+	return ret
+}
+
+func getObjectSlbCommonQuic1511(d []interface{}) edpt.SlbCommonQuic1511 {
+
+	count1 := len(d)
+	var ret edpt.SlbCommonQuic1511
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CidLen = in["cid_len"].(int)
@@ -874,23 +1008,11 @@ func getSliceSlbCommonSnatPreserveRange(d []interface{}) []edpt.SlbCommonSnatPre
 	return ret
 }
 
-func getObjectSlbCommonSslRatelimitCfg(d []interface{}) edpt.SlbCommonSslRatelimitCfg {
-
-	count1 := len(d)
-	var ret edpt.SlbCommonSslRatelimitCfg
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.DisableRate = in["disable_rate"].(int)
-		ret.Tls12Rate = in["tls12_rate"].(int)
-		ret.Tls13Rate = in["tls13_rate"].(int)
-	}
-	return ret
-}
-
 func dataToEndpointSlbCommon(d *schema.ResourceData) edpt.SlbCommon {
 	var ret edpt.SlbCommon
+	ret.Inst.AflexPersistUieChassisSyncEnable = d.Get("aflex_persist_uie_chassis_sync_enable").(int)
 	ret.Inst.AflexTableEntryAgingInterval = d.Get("aflex_table_entry_aging_interval").(int)
-	ret.Inst.AflexTableEntrySync = getObjectSlbCommonAflexTableEntrySync1407(d.Get("aflex_table_entry_sync").([]interface{}))
+	ret.Inst.AflexTableEntrySync = getObjectSlbCommonAflexTableEntrySync1502(d.Get("aflex_table_entry_sync").([]interface{}))
 	ret.Inst.AfterDisable = d.Get("after_disable").(int)
 	ret.Inst.AllowInGatewayMode = d.Get("allow_in_gateway_mode").(int)
 	ret.Inst.AttackRespCode = d.Get("attack_resp_code").(int)
@@ -903,11 +1025,11 @@ func dataToEndpointSlbCommon(d *schema.ResourceData) edpt.SlbCommon {
 	ret.Inst.BuffThreshSysBuffLow = d.Get("buff_thresh_sys_buff_low").(int)
 	ret.Inst.CacheExpireTime = d.Get("cache_expire_time").(int)
 	ret.Inst.CancelStreamLoopLimit = d.Get("cancel_stream_loop_limit").(int)
-	ret.Inst.CertPinning = getObjectSlbCommonCertPinning1408(d.Get("cert_pinning").([]interface{}))
+	ret.Inst.CertPinning = getObjectSlbCommonCertPinning1503(d.Get("cert_pinning").([]interface{}))
 	ret.Inst.ClientsideIp = d.Get("clientside_ip").(string)
 	ret.Inst.ClientsideIpv6 = d.Get("clientside_ipv6").(string)
 	ret.Inst.CompressBlockSize = d.Get("compress_block_size").(int)
-	ret.Inst.ConnRateLimit = getObjectSlbCommonConnRateLimit1410(d.Get("conn_rate_limit").([]interface{}))
+	ret.Inst.ConnRateLimit = getObjectSlbCommonConnRateLimit1505(d.Get("conn_rate_limit").([]interface{}))
 	ret.Inst.CustomMessage = d.Get("custom_message").(string)
 	ret.Inst.CustomPage = d.Get("custom_page").(string)
 	ret.Inst.CustomSignalClist = d.Get("custom_signal_clist").(string)
@@ -923,15 +1045,19 @@ func dataToEndpointSlbCommon(d *schema.ResourceData) edpt.SlbCommon {
 	ret.Inst.DnsCacheAgingWeight = d.Get("dns_cache_aging_weight").(int)
 	ret.Inst.DnsCacheEnable = d.Get("dns_cache_enable").(int)
 	ret.Inst.DnsCacheEntrySize = d.Get("dns_cache_entry_size").(int)
+	ret.Inst.DnsCacheHitcountEnable = d.Get("dns_cache_hitcount_enable").(int)
 	ret.Inst.DnsCacheSync = d.Get("dns_cache_sync").(int)
 	ret.Inst.DnsCacheSyncEntrySize = d.Get("dns_cache_sync_entry_size").(int)
 	ret.Inst.DnsCacheSyncTtlThreshold = d.Get("dns_cache_sync_ttl_threshold").(int)
 	ret.Inst.DnsCacheTtlAdjustmentEnable = d.Get("dns_cache_ttl_adjustment_enable").(int)
+	ret.Inst.DnsCookieCachePolicy = d.Get("dns_cookie_cache_policy").(string)
+	ret.Inst.DnsNegativeCacheBypassThreshold = d.Get("dns_negative_cache_bypass_threshold").(int)
+	ret.Inst.DnsNegativeCacheCachingNonValid = d.Get("dns_negative_cache_caching_non_valid").(int)
 	ret.Inst.DnsNegativeCacheEnable = d.Get("dns_negative_cache_enable").(int)
 	ret.Inst.DnsPersistentCacheEnable = d.Get("dns_persistent_cache_enable").(int)
 	ret.Inst.DnsPersistentCacheHitThreshold = d.Get("dns_persistent_cache_hit_threshold").(int)
 	ret.Inst.DnsPersistentCacheTtlThreshold = d.Get("dns_persistent_cache_ttl_threshold").(int)
-	ret.Inst.DnsResponseRateLimiting = getObjectSlbCommonDnsResponseRateLimiting1411(d.Get("dns_response_rate_limiting").([]interface{}))
+	ret.Inst.DnsResponseRateLimiting = getObjectSlbCommonDnsResponseRateLimiting1506(d.Get("dns_response_rate_limiting").([]interface{}))
 	ret.Inst.DnsVipStateless = d.Get("dns_vip_stateless").(int)
 	ret.Inst.DropIcmpToVipWhenVipDown = d.Get("drop_icmp_to_vip_when_vip_down").(int)
 	ret.Inst.DsrHealthCheckEnable = d.Get("dsr_health_check_enable").(int)
@@ -944,6 +1070,7 @@ func dataToEndpointSlbCommon(d *schema.ResourceData) edpt.SlbCommon {
 	ret.Inst.ExtendedStats = d.Get("extended_stats").(int)
 	ret.Inst.FastPathDisable = d.Get("fast_path_disable").(int)
 	ret.Inst.GatewayHealthCheck = d.Get("gateway_health_check").(int)
+	ret.Inst.GlobalDnsCache = getObjectSlbCommonGlobalDnsCache1507(d.Get("global_dns_cache").([]interface{}))
 	ret.Inst.GracefulShutdown = d.Get("graceful_shutdown").(int)
 	ret.Inst.GracefulShutdownEnable = d.Get("graceful_shutdown_enable").(int)
 	ret.Inst.HealthCheckToAllVip = d.Get("health_check_to_all_vip").(int)
@@ -965,14 +1092,12 @@ func dataToEndpointSlbCommon(d *schema.ResourceData) edpt.SlbCommon {
 	ret.Inst.MonitorModeEnable = d.Get("monitor_mode_enable").(int)
 	ret.Inst.MslTime = d.Get("msl_time").(int)
 	ret.Inst.MssTable = d.Get("mss_table").(int)
-	ret.Inst.MultiCpu = d.Get("multi_cpu").(int)
-	ret.Inst.N5New = d.Get("n5_new").(int)
-	ret.Inst.N5Old = d.Get("n5_old").(int)
 	ret.Inst.NgwafProxyIpv4 = d.Get("ngwaf_proxy_ipv4").(string)
 	ret.Inst.NgwafProxyIpv6 = d.Get("ngwaf_proxy_ipv6").(string)
 	ret.Inst.NgwafProxyPort = d.Get("ngwaf_proxy_port").(int)
 	ret.Inst.NoAutoUpOnAflex = d.Get("no_auto_up_on_aflex").(int)
 	ret.Inst.OddEvenNatEnable = d.Get("odd_even_nat_enable").(int)
+	ret.Inst.OddEvenNatOneArm = d.Get("odd_even_nat_one_arm").(int)
 	ret.Inst.OneServerConnHmRate = d.Get("one_server_conn_hm_rate").(int)
 	ret.Inst.OverridePort = d.Get("override_port").(int)
 	ret.Inst.PbslbEntryAge = d.Get("pbslb_entry_age").(int)
@@ -985,12 +1110,15 @@ func dataToEndpointSlbCommon(d *schema.ResourceData) edpt.SlbCommon {
 	ret.Inst.PortScanDetection = d.Get("port_scan_detection").(string)
 	ret.Inst.PreProcessEnable = d.Get("pre_process_enable").(int)
 	ret.Inst.Qat = d.Get("qat").(int)
-	ret.Inst.Quic = getObjectSlbCommonQuic1412(d.Get("quic").([]interface{}))
+	ret.Inst.Qat4 = d.Get("qat4").(int)
+	ret.Inst.Quic = getObjectSlbCommonQuic1511(d.Get("quic").([]interface{}))
 	ret.Inst.Range = d.Get("range").(int)
 	ret.Inst.RangeEnd = d.Get("range_end").(int)
 	ret.Inst.RangeStart = d.Get("range_start").(int)
 	ret.Inst.RateLimitLogging = d.Get("rate_limit_logging").(int)
 	ret.Inst.RecursiveNsCache = d.Get("recursive_ns_cache").(string)
+	ret.Inst.RedirectDummyEthernet = d.Get("redirect_dummy_ethernet").(int)
+	ret.Inst.RedirectDummyVlan = d.Get("redirect_dummy_vlan").(int)
 	ret.Inst.ResetStaleSession = d.Get("reset_stale_session").(int)
 	ret.Inst.ResolvePortConflict = d.Get("resolve_port_conflict").(int)
 	ret.Inst.ResponseType = d.Get("response_type").(string)
@@ -1006,12 +1134,8 @@ func dataToEndpointSlbCommon(d *schema.ResourceData) edpt.SlbCommon {
 	ret.Inst.SnatOnVip = d.Get("snat_on_vip").(int)
 	ret.Inst.SnatPreserve = getObjectSlbCommonSnatPreserve(d.Get("snat_preserve").([]interface{}))
 	ret.Inst.Software = d.Get("software").(int)
-	ret.Inst.SoftwareTls13 = d.Get("software_tls13").(int)
 	ret.Inst.SoftwareTls13Offload = d.Get("software_tls13_offload").(int)
-	ret.Inst.SortRes = d.Get("sort_res").(int)
 	ret.Inst.SslModuleUsageEnable = d.Get("ssl_module_usage_enable").(int)
-	ret.Inst.SslN5DelayTxEnable = d.Get("ssl_n5_delay_tx_enable").(int)
-	ret.Inst.SslRatelimitCfg = getObjectSlbCommonSslRatelimitCfg(d.Get("ssl_ratelimit_cfg").([]interface{}))
 	ret.Inst.SsliCertNotReadyInspectLimit = d.Get("ssli_cert_not_ready_inspect_limit").(int)
 	ret.Inst.SsliCertNotReadyInspectTimeout = d.Get("ssli_cert_not_ready_inspect_timeout").(int)
 	ret.Inst.SsliSilentTerminationEnable = d.Get("ssli_silent_termination_enable").(int)

@@ -89,8 +89,11 @@ func resourceInterfaceEthernetStats() *schema.Resource {
 						"load_interval": {
 							Type: schema.TypeInt, Optional: true, Description: "Load Interval",
 						},
-						"drops": {
-							Type: schema.TypeInt, Optional: true, Description: "Drops",
+						"transmit_drops": {
+							Type: schema.TypeInt, Optional: true, Description: "Transmit Drops",
+						},
+						"receive_drops": {
+							Type: schema.TypeInt, Optional: true, Description: "Receive Drops",
 						},
 						"input_utilization": {
 							Type: schema.TypeInt, Optional: true, Description: "Input Utilization",
@@ -150,7 +153,8 @@ func setObjectInterfaceEthernetStatsStats(ret edpt.DataInterfaceEthernetStats) [
 			"rate_pkt_rcvd":          ret.DtInterfaceEthernetStats.Stats.Rate_pkt_rcvd,
 			"rate_byte_rcvd":         ret.DtInterfaceEthernetStats.Stats.Rate_byte_rcvd,
 			"load_interval":          ret.DtInterfaceEthernetStats.Stats.Load_interval,
-			"drops":                  ret.DtInterfaceEthernetStats.Stats.Drops,
+			"transmit_drops":         ret.DtInterfaceEthernetStats.Stats.Transmit_drops,
+			"receive_drops":          ret.DtInterfaceEthernetStats.Stats.Receive_drops,
 			"input_utilization":      ret.DtInterfaceEthernetStats.Stats.Input_utilization,
 			"output_utilization":     ret.DtInterfaceEthernetStats.Stats.Output_utilization,
 		},
@@ -186,7 +190,8 @@ func getObjectInterfaceEthernetStatsStats(d []interface{}) edpt.InterfaceEtherne
 		ret.Rate_pkt_rcvd = in["rate_pkt_rcvd"].(int)
 		ret.Rate_byte_rcvd = in["rate_byte_rcvd"].(int)
 		ret.Load_interval = in["load_interval"].(int)
-		ret.Drops = in["drops"].(int)
+		ret.Transmit_drops = in["transmit_drops"].(int)
+		ret.Receive_drops = in["receive_drops"].(int)
 		ret.Input_utilization = in["input_utilization"].(int)
 		ret.Output_utilization = in["output_utilization"].(int)
 	}

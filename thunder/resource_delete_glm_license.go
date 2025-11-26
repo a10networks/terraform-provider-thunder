@@ -19,14 +19,23 @@ func resourceDeleteGlmLicense() *schema.Resource {
 			"a10_ti": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "only remove A10 Threat Intel license",
 			},
+			"hw_accelerated_blocking": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "only remove HW accelerated blocking license",
+			},
 			"ipsec_vpn": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "only remove IPSEC VPN license",
+			},
+			"ngen_low_latency": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "only remove low latency NHA license",
 			},
 			"ngwaf": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "only remove NGWAF license",
 			},
 			"qosmos": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "only remove QOSMOS license",
+			},
+			"rhel_support": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "only remove redhat license",
 			},
 			"secure_gaming": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "only remove Secure gaming license",
@@ -108,9 +117,12 @@ func resourceDeleteGlmLicenseRead(ctx context.Context, d *schema.ResourceData, m
 func dataToEndpointDeleteGlmLicense(d *schema.ResourceData) edpt.DeleteGlmLicense {
 	var ret edpt.DeleteGlmLicense
 	ret.Inst.A10Ti = d.Get("a10_ti").(int)
+	ret.Inst.HwAcceleratedBlocking = d.Get("hw_accelerated_blocking").(int)
 	ret.Inst.IpsecVpn = d.Get("ipsec_vpn").(int)
+	ret.Inst.NgenLowLatency = d.Get("ngen_low_latency").(int)
 	ret.Inst.Ngwaf = d.Get("ngwaf").(int)
 	ret.Inst.Qosmos = d.Get("qosmos").(int)
+	ret.Inst.RhelSupport = d.Get("rhel_support").(int)
 	ret.Inst.SecureGaming = d.Get("secure_gaming").(int)
 	ret.Inst.Threatstop = d.Get("threatstop").(int)
 	ret.Inst.Webroot = d.Get("webroot").(int)

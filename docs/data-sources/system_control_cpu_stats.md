@@ -109,5 +109,3 @@ Optional:
 - `cpu_8` (Number) Control CPU-8
 - `cpu_9` (Number) Control CPU-9
 - `ctrl_cpu_number` (Number) Number of ctrl cpus
-
-

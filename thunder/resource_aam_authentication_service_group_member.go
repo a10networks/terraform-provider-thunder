@@ -47,6 +47,9 @@ func resourceAamAuthenticationServiceGroupMember() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
+			"service_group_name": {
+				Type: schema.TypeString, Required: true, Description: "Service_group_name",
+			},
 		},
 	}
 }
@@ -135,5 +138,6 @@ func dataToEndpointAamAuthenticationServiceGroupMember(d *schema.ResourceData) e
 	ret.Inst.SamplingEnable = getSliceAamAuthenticationServiceGroupMemberSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
+	ret.Inst.Service_group_name = d.Get("service_group_name").(string)
 	return ret
 }

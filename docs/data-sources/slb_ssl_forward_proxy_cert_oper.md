@@ -81,5 +81,3 @@ Optional:
 - `subject_alt_name` (String) Certificate subject alternative name
 - `timeout_after` (Number) Timeout after (seconds)
 - `version` (Number) Certificate version
-
-

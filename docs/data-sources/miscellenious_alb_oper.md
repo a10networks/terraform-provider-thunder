@@ -47,5 +47,3 @@ Optional:
 - `crash_count` (Number)
 - `reboot_num` (Number)
 - `uptime` (Number)
-
-

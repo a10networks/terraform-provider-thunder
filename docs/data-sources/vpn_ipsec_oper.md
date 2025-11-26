@@ -91,7 +91,7 @@ Optional:
 - `packets_err_encryption` (Number)
 - `packets_err_icv_check` (Number)
 - `packets_err_inactive` (Number)
-- `packets_err_lifetime_lifebytes` (Block List, Max: 1) (see [below for nested schema](#nestedblock--oper--sa_list--packets_err_lifetime_lifebytes))
+- `packets_err_lifetime_lifebytes` (Number)
 - `packets_err_nh_check` (Number)
 - `packets_err_pad_check` (Number)
 - `packets_err_pkt_sanity` (Number)
@@ -114,8 +114,3 @@ Optional:
 - `status` (String)
 - `ts_proto` (Number)
 - `tunnel_intf_down` (Number)
-
-<a id="nestedblock--oper--sa_list--packets_err_lifetime_lifebytes"></a>
-### Nested Schema for `oper.sa_list.packets_err_lifetime_lifebytes`
-
-

@@ -25,8 +25,8 @@ func resourceNetflowMonitorResendTemplate() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -98,6 +98,6 @@ func dataToEndpointNetflowMonitorResendTemplate(d *schema.ResourceData) edpt.Net
 	ret.Inst.Records = d.Get("records").(int)
 	ret.Inst.Timeout = d.Get("timeout").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

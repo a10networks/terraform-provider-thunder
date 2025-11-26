@@ -39,9 +39,9 @@ output "get_gslb_zone_service_dns_mx_record_oper" {
 ### Required
 
 - `mx_name` (String) Specify Domain Name
-- `name` (String) Name
 - `service_name` (String) ServiceName
 - `service_port` (String) ServicePort
+- `zone_name` (String) Zone_name
 
 ### Optional
 
@@ -59,5 +59,3 @@ Optional:
 - `hits` (Number)
 - `last_server` (String)
 - `priority` (Number)
-
-

@@ -22,8 +22,8 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"template_name": {
+				Type: schema.TypeString, Required: true, Description: "Template_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjSt
 	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSlbPlyrIdGblTriggerStatsInc
 	ret.Inst.Total_invalid_playerid_pkts = d.Get("total_invalid_playerid_pkts").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Template_name = d.Get("template_name").(string)
 	return ret
 }

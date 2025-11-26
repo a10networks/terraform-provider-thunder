@@ -59,5 +59,3 @@ Optional:
 - `method_subscribe` (Number) SIP Method SUBSCRIBE
 - `method_unknown` (Number) SIP Method UNKNOWN
 - `method_update` (Number) SIP Method UPDATE
-
-

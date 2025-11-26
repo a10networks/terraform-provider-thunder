@@ -53,5 +53,3 @@ Optional:
 Optional:
 
 - `pool_name` (String)
-
-

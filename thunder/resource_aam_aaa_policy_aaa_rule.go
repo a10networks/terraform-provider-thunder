@@ -117,8 +117,8 @@ func resourceAamAaaPolicyAaaRule() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"aaa_policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Aaa_policy_name",
 			},
 		},
 	}
@@ -272,6 +272,6 @@ func dataToEndpointAamAaaPolicyAaaRule(d *schema.ResourceData) edpt.AamAaaPolicy
 	ret.Inst.UserAgent = getSliceAamAaaPolicyAaaRuleUserAgent(d.Get("user_agent").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Aaa_policy_name = d.Get("aaa_policy_name").(string)
 	return ret
 }

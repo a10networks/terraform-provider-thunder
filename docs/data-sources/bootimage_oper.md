@@ -50,5 +50,3 @@ Optional:
 - `hd_default` (String)
 - `hd_pri` (String)
 - `hd_sec` (String)
-
-

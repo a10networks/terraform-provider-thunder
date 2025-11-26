@@ -55,5 +55,3 @@ Optional:
 - `active` (String)
 - `modified` (String)
 - `name` (String)
-
-

@@ -63,5 +63,3 @@ Optional:
 - `reuse_server_idle_conn` (Number)
 - `timer_resume_conn` (Number)
 - `try_to_resume_conn` (Number)
-
-

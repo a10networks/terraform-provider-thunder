@@ -141,7 +141,7 @@ func resourceIpAnomalyDrop() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type: schema.TypeString, Optional: true, Description: "'all': all; 'land': Land Attack Drop; 'emp_frg': Empty Fragment Drop; 'emp_mic_frg': Micro Fragment Drop; 'opt': IPv4 Options Drop; 'frg': IPv4 Fragment Drop; 'bad_ip_hdrlen': Bad IP Header Len Drop; 'bad_ip_flg': Bad IP Flags Drop; 'bad_ip_ttl': Bad IP TTL Drop; 'no_ip_payload': No IP Payload drop; 'over_ip_payload': Oversize IP Payload Drop; 'bad_ip_payload_len': Bad IP Payload Len Drop; 'bad_ip_frg_offset': Bad IP Fragment Offset Drop; 'csum': Bad IP Checksum Drop; 'pod': ICMP Ping of Death Drop; 'bad_tcp_urg_offset': TCP Bad Urgent Offset Drop; 'tcp_sht_hdr': TCP Short Header Drop; 'tcp_bad_iplen': TCP Bad IP Length Drop; 'tcp_null_frg': TCP Null Flags Drop; 'tcp_null_scan': TCP Null Scan Drop; 'tcp_syn_fin': TCP Syn and Fin Drop; 'tcp_xmas': TCP XMAS Flags Drop; 'tcp_xmas_scan': TCP XMAS Scan Drop; 'tcp_syn_frg': TCP Syn Fragment Drop; 'tcp_frg_hdr': TCP Fragmented Header Drop; 'tcp_bad_csum': TCP Bad Checksum Drop; 'udp_srt_hdr': UDP Short Header Drop; 'udp_bad_len': UDP Bad Length Drop; 'udp_kerb_frg': UDP Kerberos Fragment Drop; 'udp_port_lb': UDP Port Loopback Drop; 'udp_bad_csum': UDP Bad Checksum Drop; 'runt_ip_hdr': Runt IP Header Drop; 'runt_tcp_udp_hdr': Runt TCP/UDP Header Drop; 'ipip_tnl_msmtch': IP-over-IP Tunnel Mismatch Drop; 'tcp_opt_err': TCP Option Error Drop; 'ipip_tnl_err': IP-over-IP Tunnel Error Drop; 'vxlan_err': VXLAN Tunnel Error Drop; 'nvgre_err': GRE Tunnel Error Drop; 'gre_pptp_err': GRE PPTP Error Drop; 'ipv6_eh_hbh': IPv6 Hop by Hop Header Drop; 'ipv6_eh_dest': IPv6 Destination Header Drop; 'ipv6_eh_routing': IPv6 Routing Header Drop; 'ipv6_eh_frag': IPv6 Fragmentation Header Drop; 'ipv6_eh_ah': IPv6 Authentication Header Drop; 'ipv6_eh_esp': IPv6 ESP Header Drop; 'ipv6_eh_mobility': IPv6 Mobility Header Drop; 'ipv6_eh_none': IPv6 No Next Header Drop; 'ipv6_eh_other': IPv6 Unknown Extension Header Drop; 'ipv6_eh_malformed': IPv6 Malformed Extension Header Drop;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'land': Land Attack Drop; 'emp_frg': Empty Fragment Drop; 'emp_mic_frg': Micro Fragment Drop; 'opt': IPv4 Options Drop; 'frg': IPv4 Fragment Drop; 'bad_ip_hdrlen': Bad IP Header Len Drop; 'bad_ip_flg': Bad IP Flags Drop; 'bad_ip_ttl': Bad IP TTL Drop; 'no_ip_payload': No IP Payload drop; 'over_ip_payload': Oversize IP Payload Drop; 'bad_ip_payload_len': Bad IP Payload Len Drop; 'bad_ip_frg_offset': Bad IP Fragment Offset Drop; 'csum': Bad IP Checksum Drop; 'pod': ICMP Ping of Death Drop; 'bad_tcp_urg_offset': TCP Bad Urgent Offset Drop; 'tcp_sht_hdr': TCP Short Header Drop; 'tcp_bad_iplen': TCP Bad IP Length Drop; 'tcp_null_frg': TCP Null Flags Drop; 'tcp_null_scan': TCP Null Scan Drop; 'tcp_syn_fin': TCP Syn and Fin Drop; 'tcp_xmas': TCP XMAS Flags Drop; 'tcp_xmas_scan': TCP XMAS Scan Drop; 'tcp_syn_frg': TCP Syn Fragment Drop; 'tcp_frg_hdr': TCP Fragmented Header Drop; 'tcp_bad_csum': TCP Bad Checksum Drop; 'udp_srt_hdr': UDP Short Header Drop; 'udp_bad_len': UDP Bad Length Drop; 'udp_kerb_frg': UDP Kerberos Fragment Drop; 'udp_port_lb': UDP Port Loopback Drop; 'udp_bad_csum': UDP Bad Checksum Drop; 'runt_ip_hdr': Runt IP Header Drop; 'runt_tcp_udp_hdr': Runt TCP/UDP Header Drop; 'ipip_tnl_msmtch': IP-over-IP Tunnel Mismatch Drop; 'tcp_opt_err': TCP Option Error Drop; 'ipip_tnl_err': IP-over-IP Tunnel Error Drop; 'vxlan_err': VXLAN Tunnel Error Drop; 'nvgre_err': GRE Tunnel Error Drop; 'gre_pptp_err': GRE PPTP Error Drop; 'ipv6_eh_hbh': IPv6 Hop by Hop Header Drop; 'ipv6_eh_dest': IPv6 Destination Header Drop; 'ipv6_eh_routing': IPv6 Routing Header Drop; 'ipv6_eh_frag': IPv6 Fragmentation Header Drop; 'ipv6_eh_ah': IPv6 Authentication Header Drop; 'ipv6_eh_esp': IPv6 ESP Header Drop; 'ipv6_eh_mobility': IPv6 Mobility Header Drop; 'ipv6_eh_none': IPv6 No Next Header Drop; 'ipv6_eh_other': IPv6 Unknown Extension Header Drop; 'ipv6_eh_malformed': IPv6 Malformed Extension Header Drop; 'tcp_udp_zero_port': TCP UDP Zero Port Drop;",
 						},
 					},
 				},
@@ -167,6 +167,9 @@ func resourceIpAnomalyDrop() *schema.Resource {
 			},
 			"tcp_syn_frag": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "drop fragmented TCP packets with syn flag set",
+			},
+			"tcp_udp_zero_port": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "drop all TCP/UDP packets with 0 port",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -371,6 +374,7 @@ func dataToEndpointIpAnomalyDrop(d *schema.ResourceData) edpt.IpAnomalyDrop {
 	ret.Inst.TcpNoFlag = d.Get("tcp_no_flag").(int)
 	ret.Inst.TcpSynFin = d.Get("tcp_syn_fin").(int)
 	ret.Inst.TcpSynFrag = d.Get("tcp_syn_frag").(int)
+	ret.Inst.TcpUdpZeroPort = d.Get("tcp_udp_zero_port").(int)
 	//omit uuid
 	ret.Inst.ZeroWindow = d.Get("zero_window").(int)
 	return ret

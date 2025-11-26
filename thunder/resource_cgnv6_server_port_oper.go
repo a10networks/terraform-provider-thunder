@@ -218,8 +218,8 @@ func resourceCgnv6ServerPortOper() *schema.Resource {
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "'tcp': TCP Port; 'udp': UDP Port;",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"server_name": {
+				Type: schema.TypeString, Required: true, Description: "Server_name",
 			},
 		},
 	}
@@ -508,6 +508,6 @@ func dataToEndpointCgnv6ServerPortOper(d *schema.ResourceData) edpt.Cgnv6ServerP
 
 	ret.Protocol = d.Get("protocol").(string)
 
-	ret.Name = d.Get("name").(string)
+	ret.Server_name = d.Get("server_name").(string)
 	return ret
 }

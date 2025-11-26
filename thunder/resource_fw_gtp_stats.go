@@ -36,6 +36,18 @@ func resourceFwGtpStats() *schema.Resource {
 									"downlink_pkts": {
 										Type: schema.TypeInt, Optional: true, Description: "Downlink Packets",
 									},
+									"u_uplink_bytes": {
+										Type: schema.TypeInt, Optional: true, Description: "Uplink Bytes",
+									},
+									"u_downlink_bytes": {
+										Type: schema.TypeInt, Optional: true, Description: "Downlink Bytes",
+									},
+									"u_uplink_pkts": {
+										Type: schema.TypeInt, Optional: true, Description: "Uplink Packets",
+									},
+									"u_downlink_pkts": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP-U Downlink Packets",
+									},
 									"gtp_v0_c_tunnel_created": {
 										Type: schema.TypeInt, Optional: true, Description: "GTPv0-C Tunnel Created",
 									},
@@ -303,6 +315,12 @@ func resourceFwGtpStats() *schema.Resource {
 									"drop_vld_gtp_v2_c_message_length_mismatch": {
 										Type: schema.TypeInt, Optional: true, Description: "Validation Drop: GTPv2-C Message Length Mismatch Across Layers",
 									},
+									"vld_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP Message forwarded via monitor mode at validation policy",
+									},
+									"gen_message_length_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP Message forwarded via monitor mode at validation policy",
+									},
 									"drop_vld_gtp_v0_c_message_dropped_apn_filtering_no_apn": {
 										Type: schema.TypeInt, Optional: true, Description: "GTPv0-C APN/IMSI Filtering dropped (No APN)",
 									},
@@ -326,6 +344,21 @@ func resourceFwGtpStats() *schema.Resource {
 									},
 									"drop_flt_gtp_in_gtp": {
 										Type: schema.TypeInt, Optional: true, Description: "Filtering Drop: GTP in GTP Tunnel Present",
+									},
+									"flt_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at message filtering policy",
+									},
+									"rat_flt_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at rat filtering policy",
+									},
+									"apn_imsi_flt_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at APN-IMSI filtering policy",
+									},
+									"msisdn_flt_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at Msisdn filtering policy",
+									},
+									"gtp_in_gtp_flt_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at GTP-IN_GTP filtering policy",
 									},
 									"drop_rl_gtp_v0_c_agg": {
 										Type: schema.TypeInt, Optional: true, Description: "Rate-limit Drop: Maximum GTPv0-C messages rate",
@@ -372,6 +405,9 @@ func resourceFwGtpStats() *schema.Resource {
 									"drop_rl_gtp_u_max_concurrent_tunnels": {
 										Type: schema.TypeInt, Optional: true, Description: "Rate-limit Drop: GTP-U Concurrent Tunnels",
 									},
+									"rl_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP Message forwarded via monitor mode at rate-limit policy",
+									},
 								},
 							},
 						},
@@ -403,6 +439,18 @@ func resourceFwGtpStats() *schema.Resource {
 									},
 									"downlink_pkts": {
 										Type: schema.TypeInt, Optional: true, Description: "Downlink Packets",
+									},
+									"u_uplink_bytes": {
+										Type: schema.TypeInt, Optional: true, Description: "Uplink Bytes",
+									},
+									"u_downlink_bytes": {
+										Type: schema.TypeInt, Optional: true, Description: "Downlink Bytes",
+									},
+									"u_uplink_pkts": {
+										Type: schema.TypeInt, Optional: true, Description: "Uplink Packets",
+									},
+									"u_downlink_pkts": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP-U Downlink Packets",
 									},
 									"gtp_v0_c_tunnel_created": {
 										Type: schema.TypeInt, Optional: true, Description: "GTPv0-C Tunnel Created",
@@ -611,6 +659,12 @@ func resourceFwGtpStats() *schema.Resource {
 									"gtp_c_handover_in_progress_with_conn": {
 										Type: schema.TypeInt, Optional: true, Description: "GTP-C matching a conn with Handover In Progress",
 									},
+									"vld_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP Message forwarded via monitor mode at validation policy",
+									},
+									"gen_message_length_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP Message forwarded via monitor mode at general policy",
+									},
 									"drop_vld_v0_reserved_message_drop": {
 										Type: schema.TypeInt, Optional: true, Description: "Validation Drop: GTPv0-C Reserved Message Drop",
 									},
@@ -698,6 +752,21 @@ func resourceFwGtpStats() *schema.Resource {
 									"drop_flt_gtp_in_gtp": {
 										Type: schema.TypeInt, Optional: true, Description: "Filtering Drop: GTP in GTP Tunnel Present",
 									},
+									"flt_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at message filtering policy",
+									},
+									"rat_flt_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at rat filtering policy",
+									},
+									"apn_imsi_flt_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at APN-IMSI filtering policy",
+									},
+									"msisdn_flt_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at Msisdn filtering policy",
+									},
+									"gtp_in_gtp_flt_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at GTP-IN_GTP filtering policy",
+									},
 									"drop_rl_gtp_v0_c_agg": {
 										Type: schema.TypeInt, Optional: true, Description: "Rate-limit Drop: Maximum GTPv0-C messages rate",
 									},
@@ -743,6 +812,9 @@ func resourceFwGtpStats() *schema.Resource {
 									"drop_rl_gtp_u_max_concurrent_tunnels": {
 										Type: schema.TypeInt, Optional: true, Description: "Rate-limit Drop: GTP-U Concurrent Tunnels",
 									},
+									"rl_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Description: "GTP Message forwarded via monitor mode at rate-limit policy",
+									},
 								},
 							},
 						},
@@ -754,31 +826,40 @@ func resourceFwGtpStats() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"out_of_session_memory": {
-							Type: schema.TypeInt, Optional: true, Description: "Out of Tunnel Memory",
+							Type: schema.TypeInt, Optional: true, Description: "Out of Tunnel Memory for GTP-C",
 						},
 						"no_fwd_route": {
-							Type: schema.TypeInt, Optional: true, Description: "No Forward Route",
+							Type: schema.TypeInt, Optional: true, Description: "No Forward Route for GTP-C",
 						},
 						"no_rev_route": {
-							Type: schema.TypeInt, Optional: true, Description: "No Reverse Route",
+							Type: schema.TypeInt, Optional: true, Description: "No Reverse Route for GTP-C",
+						},
+						"blade_out_of_session_memory": {
+							Type: schema.TypeInt, Optional: true, Description: "Out of Tunnel Memory on PU2",
+						},
+						"blade_no_fwd_route": {
+							Type: schema.TypeInt, Optional: true, Description: "No Forward Route on PU2",
+						},
+						"blade_no_rev_route": {
+							Type: schema.TypeInt, Optional: true, Description: "No Reverse Route on PU2",
 						},
 						"gtp_smp_path_check_failed": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP SMP PATH check Failed",
 						},
-						"gtp_smp_check_failed": {
-							Type: schema.TypeInt, Optional: true, Description: "GTP SMP check Failed",
+						"gtp_smp_c_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C SMP check Failed",
 						},
-						"gtp_smp_session_count_check_failed": {
-							Type: schema.TypeInt, Optional: true, Description: "GTP-U session count is not in range of 0-11 in GTP-C SMP",
+						"blade_gtp_smp_path_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP SMP PATH check Failed on PU2",
 						},
-						"gtp_c_ref_count_smp_exceeded": {
-							Type: schema.TypeInt, Optional: true, Description: "GTP-C session count on C-smp exceeded 2",
-						},
-						"gtp_u_smp_in_rml_with_sess": {
-							Type: schema.TypeInt, Optional: true, Description: "GTP-U smp is marked RML with U-session",
+						"blade_gtp_smp_c_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C SMP check Failed on PU2",
 						},
 						"gtp_tunnel_rate_limit_entry_create_failure": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP Tunnel Level Rate Limit Entry Create Failure",
+						},
+						"gtp_u_tunnel_rate_limit_entry_create_failure": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U Tunnel Level Rate Limit Entry Create Failure",
 						},
 						"gtp_rate_limit_smp_create_failure": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP Rate Limit SMP Create Failure",
@@ -788,6 +869,15 @@ func resourceFwGtpStats() *schema.Resource {
 						},
 						"gtp_rate_limit_entry_create_failure": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP Rate Limit Entry Create Failure",
+						},
+						"blade_gtp_rate_limit_smp_create_failure": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP Rate Limit SMP Create Failure on PU2",
+						},
+						"blade_gtp_rate_limit_t3_ctr_create_failure": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP Rate Limit Dynamic Counters Create Failure on PU2",
+						},
+						"blade_gtp_rate_limit_entry_create_failure": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP Rate Limit Entry Create Failure on PU2",
 						},
 						"gtp_node_restart_echo": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP Node Restoration due to Recovery IE in Echo",
@@ -801,11 +891,11 @@ func resourceFwGtpStats() *schema.Resource {
 						"drop_vld_gtp_echo_ie_len_exceed_msg_len": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP Echo IE Length Exceeds Message Length",
 						},
-						"gtp_del_bearer_request_retransmit": {
-							Type: schema.TypeInt, Optional: true, Description: "GTP-C Retransmitted Delete Bearer Request",
+						"drop_vld_gtp_u_echo_out_of_state_": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U Echo Out of State Drop",
 						},
-						"gtp_add_bearer_response_retransmit": {
-							Type: schema.TypeInt, Optional: true, Description: "GTP-C Retransmitted Add Bearer Response",
+						"gtp_create_session_request_retx_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Retransmitted Create Session Request dropped",
 						},
 						"gtp_u_out_of_state_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP-U Out of state Drop",
@@ -825,14 +915,101 @@ func resourceFwGtpStats() *schema.Resource {
 						"gtp_rr_message_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP Message Dropped in RR Mode",
 						},
+						"gtp_u_rr_message_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U Message Dropped in RR Mode",
+						},
 						"drop_gtp_frag_or_jumbo_pkt": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP Fragmented or JUMBO packet Drop",
+						},
+						"gtp_v0_c_ver_not_supp": {
+							Type: schema.TypeInt, Optional: true, Description: "GTPv0-C Version not supported indication",
+						},
+						"gtp_v1_c_ver_not_supp": {
+							Type: schema.TypeInt, Optional: true, Description: "GTPv1-C Version not supported indication",
+						},
+						"gtp_v2_c_ver_not_supp": {
+							Type: schema.TypeInt, Optional: true, Description: "GTPv2-C Version not supported indication",
 						},
 						"gtp_c_handover_in_progress_with_conn": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP-C mesg matching conn with HO In Progress",
 						},
+						"gtp_c_conn_create_pkt_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C conn creation drop",
+						},
 						"gtp_smp_dec_sess_count_check_failed": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP-U session count is 0 in GTP-C SMP",
+						},
+						"gtp_u_smp_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP U-SMP check Failed",
+						},
+						"gtp_info_ext_not_found": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-Info ext not found while freeing C-smp",
+						},
+						"blade_gtp_smp_dec_sess_count_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U session count is 0 in GTP-C SMP on PU2",
+						},
+						"blade_gtp_u_smp_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP U-SMP check Failed on PU2",
+						},
+						"blade_gtp_info_ext_not_found": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-Info ext not found while freeing C-smp on PU2",
+						},
+						"gtp_u_stateless_forward": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U Stateless Forward",
+						},
+						"gtp_echo_stateless_forward": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-echo Stateless Forward",
+						},
+						"gtp_u_frag_pkt_processed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U Fragmented packet processed",
+						},
+						"gtp_c_frag_pkt_received": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Fragmented packet received",
+						},
+						"gtp_u_frag_pkt_received": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U Fragmented packet received",
+						},
+						"gtp_c_frag_or_jumbo_pkt_processed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Fragmented or Jumbo packet processed",
+						},
+						"gtp_echo_frag_or_jumbo_pkt_processed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-Echo Fragmented or Jumbo packet processed",
+						},
+						"gtp_u_tunnel_frag_or_jumbo_pkt_processed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U Tunnel Fragmented or Jumbo packet processed",
+						},
+						"blade_gtp_smp_session_count_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U session count is not in range of 0-11 in GTP-C SMP on PU2",
+						},
+						"gtp_sync_tx_fw_drop_session_create": {
+							Type: schema.TypeInt, Optional: true, Description: "Conn Sync FW gtp Create Session Sent dropped",
+						},
+						"gtp_c_smp_sig_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C SMP signature check Failed",
+						},
+						"blade_gtp_c_smp_sig_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C SMP signature check Failed on PU2",
+						},
+						"gtp_u_smp_sig_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP SMP signature check Failed",
+						},
+						"blade_gtp_u_smp_sig_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U SMP signature check Failed on PU2",
+						},
+						"gtp_smp_sig_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP SMP signature check Failed",
+						},
+						"blade_gtp_smp_sig_check_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP SMP signature check Failed on PU2",
+						},
+						"gtp_c_fail_conn_create_slow": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C packet failed creating L4-session in slowpath",
+						},
+						"gtp_u_fail_conn_create_slow": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U packet failed while creating L4-session in slowpath",
+						},
+						"gtp_pathm_fail_conn_create_slow": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP path packet failed while creating L4-session in slowpath",
 						},
 						"gtp_v0_c_uplink_ingress_packets": {
 							Type: schema.TypeInt, Optional: true, Description: "GTPv0-C Uplink Ingress Packets",
@@ -948,6 +1125,12 @@ func resourceFwGtpStats() *schema.Resource {
 						"gtp_monitor_forward": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP messages forwarded via monitor mode",
 						},
+						"gtp_u_monitor_forward": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U messages forwarded via monitor mode",
+						},
+						"gtp_ext_hdr_incorrect_length": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP Extension header incorrect length",
+						},
 					},
 				},
 			},
@@ -999,6 +1182,14 @@ func setObjectFwGtpStatsApnPrefixStats(d edpt.FwGtpStatsApnPrefixStats) []map[st
 	in["uplink_pkts"] = d.UplinkPkts
 
 	in["downlink_pkts"] = d.DownlinkPkts
+
+	in["u_uplink_bytes"] = d.UUplinkBytes
+
+	in["u_downlink_bytes"] = d.UDownlinkBytes
+
+	in["u_uplink_pkts"] = d.UUplinkPkts
+
+	in["u_downlink_pkts"] = d.UDownlinkPkts
 
 	in["gtp_v0_c_tunnel_created"] = d.GtpV0CTunnelCreated
 
@@ -1178,6 +1369,10 @@ func setObjectFwGtpStatsApnPrefixStats(d edpt.FwGtpStatsApnPrefixStats) []map[st
 
 	in["drop_vld_gtp_v2_c_message_length_mismatch"] = d.DropVldGtpV2CMessageLengthMismatch
 
+	in["vld_message_monitor"] = d.VldMessageMonitor
+
+	in["gen_message_length_monitor"] = d.GenMessageLengthMonitor
+
 	in["drop_vld_gtp_v0_c_message_dropped_apn_filtering_no_apn"] = d.DropVldGtpV0CMessageDroppedApnFilteringNoApn
 
 	in["drop_vld_gtp_v1_c_message_dropped_apn_filtering_no_apn"] = d.DropVldGtpV1CMessageDroppedApnFilteringNoApn
@@ -1193,6 +1388,16 @@ func setObjectFwGtpStatsApnPrefixStats(d edpt.FwGtpStatsApnPrefixStats) []map[st
 	in["drop_flt_rat_type_filtering"] = d.DropFltRatTypeFiltering
 
 	in["drop_flt_gtp_in_gtp"] = d.DropFltGtpInGtp
+
+	in["flt_message_monitor"] = d.FltMessageMonitor
+
+	in["rat_flt_message_monitor"] = d.RatFltMessageMonitor
+
+	in["apn_imsi_flt_message_monitor"] = d.ApnImsiFltMessageMonitor
+
+	in["msisdn_flt_message_monitor"] = d.MsisdnFltMessageMonitor
+
+	in["gtp_in_gtp_flt_message_monitor"] = d.GtpInGtpFltMessageMonitor
 
 	in["drop_rl_gtp_v0_c_agg"] = d.DropRlGtpV0CAgg
 
@@ -1223,6 +1428,8 @@ func setObjectFwGtpStatsApnPrefixStats(d edpt.FwGtpStatsApnPrefixStats) []map[st
 	in["drop_rl_gtp_u_total_packet"] = d.DropRlGtpUTotalPacket
 
 	in["drop_rl_gtp_u_max_concurrent_tunnels"] = d.DropRlGtpUMaxConcurrentTunnels
+
+	in["rl_message_monitor"] = d.RlMessageMonitor
 	result = append(result, in)
 	return result
 }
@@ -1250,6 +1457,14 @@ func setObjectFwGtpStatsNetworkElementStats(d edpt.FwGtpStatsNetworkElementStats
 	in["uplink_pkts"] = d.UplinkPkts
 
 	in["downlink_pkts"] = d.DownlinkPkts
+
+	in["u_uplink_bytes"] = d.UUplinkBytes
+
+	in["u_downlink_bytes"] = d.UDownlinkBytes
+
+	in["u_uplink_pkts"] = d.UUplinkPkts
+
+	in["u_downlink_pkts"] = d.UDownlinkPkts
 
 	in["gtp_v0_c_tunnel_created"] = d.GtpV0CTunnelCreated
 
@@ -1389,6 +1604,10 @@ func setObjectFwGtpStatsNetworkElementStats(d edpt.FwGtpStatsNetworkElementStats
 
 	in["gtp_c_handover_in_progress_with_conn"] = d.GtpCHandoverInProgressWithConn
 
+	in["vld_message_monitor"] = d.VldMessageMonitor
+
+	in["gen_message_length_monitor"] = d.GenMessageLengthMonitor
+
 	in["drop_vld_v0_reserved_message_drop"] = d.DropVldV0ReservedMessageDrop
 
 	in["drop_vld_v1_reserved_message_drop"] = d.DropVldV1ReservedMessageDrop
@@ -1447,6 +1666,16 @@ func setObjectFwGtpStatsNetworkElementStats(d edpt.FwGtpStatsNetworkElementStats
 
 	in["drop_flt_gtp_in_gtp"] = d.DropFltGtpInGtp
 
+	in["flt_message_monitor"] = d.FltMessageMonitor
+
+	in["rat_flt_message_monitor"] = d.RatFltMessageMonitor
+
+	in["apn_imsi_flt_message_monitor"] = d.ApnImsiFltMessageMonitor
+
+	in["msisdn_flt_message_monitor"] = d.MsisdnFltMessageMonitor
+
+	in["gtp_in_gtp_flt_message_monitor"] = d.GtpInGtpFltMessageMonitor
+
 	in["drop_rl_gtp_v0_c_agg"] = d.DropRlGtpV0CAgg
 
 	in["drop_rl_gtp_v1_c_agg"] = d.DropRlGtpV1CAgg
@@ -1476,6 +1705,8 @@ func setObjectFwGtpStatsNetworkElementStats(d edpt.FwGtpStatsNetworkElementStats
 	in["drop_rl_gtp_u_total_packet"] = d.DropRlGtpUTotalPacket
 
 	in["drop_rl_gtp_u_max_concurrent_tunnels"] = d.DropRlGtpUMaxConcurrentTunnels
+
+	in["rl_message_monitor"] = d.RlMessageMonitor
 	result = append(result, in)
 	return result
 }
@@ -1483,71 +1714,108 @@ func setObjectFwGtpStatsNetworkElementStats(d edpt.FwGtpStatsNetworkElementStats
 func setObjectFwGtpStatsStats(ret edpt.DataFwGtpStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"out_of_session_memory":                      ret.DtFwGtpStats.Stats.OutOfSessionMemory,
-			"no_fwd_route":                               ret.DtFwGtpStats.Stats.NoFwdRoute,
-			"no_rev_route":                               ret.DtFwGtpStats.Stats.NoRevRoute,
-			"gtp_smp_path_check_failed":                  ret.DtFwGtpStats.Stats.GtpSmpPathCheckFailed,
-			"gtp_smp_check_failed":                       ret.DtFwGtpStats.Stats.GtpSmpCheckFailed,
-			"gtp_smp_session_count_check_failed":         ret.DtFwGtpStats.Stats.GtpSmpSessionCountCheckFailed,
-			"gtp_c_ref_count_smp_exceeded":               ret.DtFwGtpStats.Stats.GtpCRefCountSmpExceeded,
-			"gtp_u_smp_in_rml_with_sess":                 ret.DtFwGtpStats.Stats.GtpUSmpInRmlWithSess,
-			"gtp_tunnel_rate_limit_entry_create_failure": ret.DtFwGtpStats.Stats.GtpTunnelRateLimitEntryCreateFailure,
-			"gtp_rate_limit_smp_create_failure":          ret.DtFwGtpStats.Stats.GtpRateLimitSmpCreateFailure,
-			"gtp_rate_limit_t3_ctr_create_failure":       ret.DtFwGtpStats.Stats.GtpRateLimitT3CtrCreateFailure,
-			"gtp_rate_limit_entry_create_failure":        ret.DtFwGtpStats.Stats.GtpRateLimitEntryCreateFailure,
-			"gtp_node_restart_echo":                      ret.DtFwGtpStats.Stats.GtpNodeRestartEcho,
-			"gtp_c_echo_path_failure":                    ret.DtFwGtpStats.Stats.GtpCEchoPathFailure,
-			"drop_vld_gtp_echo_out_of_state_":            ret.DtFwGtpStats.Stats.DropVldGtpEchoOutOfState,
-			"drop_vld_gtp_echo_ie_len_exceed_msg_len":    ret.DtFwGtpStats.Stats.DropVldGtpEchoIeLenExceedMsgLen,
-			"gtp_del_bearer_request_retransmit":          ret.DtFwGtpStats.Stats.GtpDelBearerRequestRetransmit,
-			"gtp_add_bearer_response_retransmit":         ret.DtFwGtpStats.Stats.GtpAddBearerResponseRetransmit,
-			"gtp_u_out_of_state_drop":                    ret.DtFwGtpStats.Stats.GtpUOutOfStateDrop,
-			"gtp_c_handover_request_out_of_state_drop":   ret.DtFwGtpStats.Stats.GtpCHandoverRequestOutOfStateDrop,
-			"gtp_v1_c_nsapi_not_found_in_delete_req":     ret.DtFwGtpStats.Stats.GtpV1CNsapiNotFoundInDeleteReq,
-			"gtp_v2_c_bearer_not_found_in_delete_req":    ret.DtFwGtpStats.Stats.GtpV2CBearerNotFoundInDeleteReq,
-			"gtp_v2_c_bearer_not_found_in_delete_resp":   ret.DtFwGtpStats.Stats.GtpV2CBearerNotFoundInDeleteResp,
-			"gtp_rr_message_drop":                        ret.DtFwGtpStats.Stats.GtpRrMessageDrop,
-			"drop_gtp_frag_or_jumbo_pkt":                 ret.DtFwGtpStats.Stats.DropGtpFragOrJumboPkt,
-			"gtp_c_handover_in_progress_with_conn":       ret.DtFwGtpStats.Stats.GtpCHandoverInProgressWithConn,
-			"gtp_smp_dec_sess_count_check_failed":        ret.DtFwGtpStats.Stats.GtpSmpDecSessCountCheckFailed,
-			"gtp_v0_c_uplink_ingress_packets":            ret.DtFwGtpStats.Stats.GtpV0CUplinkIngressPackets,
-			"gtp_v0_c_uplink_egress_packets":             ret.DtFwGtpStats.Stats.GtpV0CUplinkEgressPackets,
-			"gtp_v0_c_downlink_ingress_packets":          ret.DtFwGtpStats.Stats.GtpV0CDownlinkIngressPackets,
-			"gtp_v0_c_downlink_egress_packets":           ret.DtFwGtpStats.Stats.GtpV0CDownlinkEgressPackets,
-			"gtp_v0_c_uplink_ingress_bytes":              ret.DtFwGtpStats.Stats.GtpV0CUplinkIngressBytes,
-			"gtp_v0_c_uplink_egress_bytes":               ret.DtFwGtpStats.Stats.GtpV0CUplinkEgressBytes,
-			"gtp_v0_c_downlink_ingress_bytes":            ret.DtFwGtpStats.Stats.GtpV0CDownlinkIngressBytes,
-			"gtp_v0_c_downlink_egress_bytes":             ret.DtFwGtpStats.Stats.GtpV0CDownlinkEgressBytes,
-			"gtp_v1_c_uplink_ingress_packets":            ret.DtFwGtpStats.Stats.GtpV1CUplinkIngressPackets,
-			"gtp_v1_c_uplink_egress_packets":             ret.DtFwGtpStats.Stats.GtpV1CUplinkEgressPackets,
-			"gtp_v1_c_downlink_ingress_packets":          ret.DtFwGtpStats.Stats.GtpV1CDownlinkIngressPackets,
-			"gtp_v1_c_downlink_egress_packets":           ret.DtFwGtpStats.Stats.GtpV1CDownlinkEgressPackets,
-			"gtp_v1_c_uplink_ingress_bytes":              ret.DtFwGtpStats.Stats.GtpV1CUplinkIngressBytes,
-			"gtp_v1_c_uplink_egress_bytes":               ret.DtFwGtpStats.Stats.GtpV1CUplinkEgressBytes,
-			"gtp_v1_c_downlink_ingress_bytes":            ret.DtFwGtpStats.Stats.GtpV1CDownlinkIngressBytes,
-			"gtp_v1_c_downlink_egress_bytes":             ret.DtFwGtpStats.Stats.GtpV1CDownlinkEgressBytes,
-			"gtp_v2_c_uplink_ingress_packets":            ret.DtFwGtpStats.Stats.GtpV2CUplinkIngressPackets,
-			"gtp_v2_c_uplink_egress_packets":             ret.DtFwGtpStats.Stats.GtpV2CUplinkEgressPackets,
-			"gtp_v2_c_downlink_ingress_packets":          ret.DtFwGtpStats.Stats.GtpV2CDownlinkIngressPackets,
-			"gtp_v2_c_downlink_egress_packets":           ret.DtFwGtpStats.Stats.GtpV2CDownlinkEgressPackets,
-			"gtp_v2_c_uplink_ingress_bytes":              ret.DtFwGtpStats.Stats.GtpV2CUplinkIngressBytes,
-			"gtp_v2_c_uplink_egress_bytes":               ret.DtFwGtpStats.Stats.GtpV2CUplinkEgressBytes,
-			"gtp_v2_c_downlink_ingress_bytes":            ret.DtFwGtpStats.Stats.GtpV2CDownlinkIngressBytes,
-			"gtp_v2_c_downlink_egress_bytes":             ret.DtFwGtpStats.Stats.GtpV2CDownlinkEgressBytes,
-			"gtp_u_uplink_ingress_packets":               ret.DtFwGtpStats.Stats.GtpUUplinkIngressPackets,
-			"gtp_u_uplink_egress_packets":                ret.DtFwGtpStats.Stats.GtpUUplinkEgressPackets,
-			"gtp_u_downlink_ingress_packets":             ret.DtFwGtpStats.Stats.GtpUDownlinkIngressPackets,
-			"gtp_u_downlink_egress_packets":              ret.DtFwGtpStats.Stats.GtpUDownlinkEgressPackets,
-			"gtp_u_uplink_ingress_bytes":                 ret.DtFwGtpStats.Stats.GtpUUplinkIngressBytes,
-			"gtp_u_uplink_egress_bytes":                  ret.DtFwGtpStats.Stats.GtpUUplinkEgressBytes,
-			"gtp_u_downlink_ingress_bytes":               ret.DtFwGtpStats.Stats.GtpUDownlinkIngressBytes,
-			"gtp_u_downlink_egress_bytes":                ret.DtFwGtpStats.Stats.GtpUDownlinkEgressBytes,
-			"gtp_u_message_length_mismatch":              ret.DtFwGtpStats.Stats.GtpUMessageLengthMismatch,
-			"gtp_path_message_length_mismatch":           ret.DtFwGtpStats.Stats.GtpPathMessageLengthMismatch,
-			"drop_gtp_missing_cond_ie_bearer_ctx":        ret.DtFwGtpStats.Stats.DropGtpMissingCondIeBearerCtx,
-			"drop_gtp_bearer_not_found_in_resp":          ret.DtFwGtpStats.Stats.DropGtpBearerNotFoundInResp,
-			"gtp_stateless_forward":                      ret.DtFwGtpStats.Stats.GtpStatelessForward,
-			"gtp_monitor_forward":                        ret.DtFwGtpStats.Stats.GtpMonitorForward,
+			"out_of_session_memory":                        ret.DtFwGtpStats.Stats.OutOfSessionMemory,
+			"no_fwd_route":                                 ret.DtFwGtpStats.Stats.NoFwdRoute,
+			"no_rev_route":                                 ret.DtFwGtpStats.Stats.NoRevRoute,
+			"blade_out_of_session_memory":                  ret.DtFwGtpStats.Stats.BladeOutOfSessionMemory,
+			"blade_no_fwd_route":                           ret.DtFwGtpStats.Stats.BladeNoFwdRoute,
+			"blade_no_rev_route":                           ret.DtFwGtpStats.Stats.BladeNoRevRoute,
+			"gtp_smp_path_check_failed":                    ret.DtFwGtpStats.Stats.GtpSmpPathCheckFailed,
+			"gtp_smp_c_check_failed":                       ret.DtFwGtpStats.Stats.GtpSmpCCheckFailed,
+			"blade_gtp_smp_path_check_failed":              ret.DtFwGtpStats.Stats.BladeGtpSmpPathCheckFailed,
+			"blade_gtp_smp_c_check_failed":                 ret.DtFwGtpStats.Stats.BladeGtpSmpCCheckFailed,
+			"gtp_tunnel_rate_limit_entry_create_failure":   ret.DtFwGtpStats.Stats.GtpTunnelRateLimitEntryCreateFailure,
+			"gtp_u_tunnel_rate_limit_entry_create_failure": ret.DtFwGtpStats.Stats.GtpUTunnelRateLimitEntryCreateFailure,
+			"gtp_rate_limit_smp_create_failure":            ret.DtFwGtpStats.Stats.GtpRateLimitSmpCreateFailure,
+			"gtp_rate_limit_t3_ctr_create_failure":         ret.DtFwGtpStats.Stats.GtpRateLimitT3CtrCreateFailure,
+			"gtp_rate_limit_entry_create_failure":          ret.DtFwGtpStats.Stats.GtpRateLimitEntryCreateFailure,
+			"blade_gtp_rate_limit_smp_create_failure":      ret.DtFwGtpStats.Stats.BladeGtpRateLimitSmpCreateFailure,
+			"blade_gtp_rate_limit_t3_ctr_create_failure":   ret.DtFwGtpStats.Stats.BladeGtpRateLimitT3CtrCreateFailure,
+			"blade_gtp_rate_limit_entry_create_failure":    ret.DtFwGtpStats.Stats.BladeGtpRateLimitEntryCreateFailure,
+			"gtp_node_restart_echo":                        ret.DtFwGtpStats.Stats.GtpNodeRestartEcho,
+			"gtp_c_echo_path_failure":                      ret.DtFwGtpStats.Stats.GtpCEchoPathFailure,
+			"drop_vld_gtp_echo_out_of_state_":              ret.DtFwGtpStats.Stats.DropVldGtpEchoOutOfState,
+			"drop_vld_gtp_echo_ie_len_exceed_msg_len":      ret.DtFwGtpStats.Stats.DropVldGtpEchoIeLenExceedMsgLen,
+			"drop_vld_gtp_u_echo_out_of_state_":            ret.DtFwGtpStats.Stats.DropVldGtpUEchoOutOfState,
+			"gtp_create_session_request_retx_drop":         ret.DtFwGtpStats.Stats.GtpCreateSessionRequestRetxDrop,
+			"gtp_u_out_of_state_drop":                      ret.DtFwGtpStats.Stats.GtpUOutOfStateDrop,
+			"gtp_c_handover_request_out_of_state_drop":     ret.DtFwGtpStats.Stats.GtpCHandoverRequestOutOfStateDrop,
+			"gtp_v1_c_nsapi_not_found_in_delete_req":       ret.DtFwGtpStats.Stats.GtpV1CNsapiNotFoundInDeleteReq,
+			"gtp_v2_c_bearer_not_found_in_delete_req":      ret.DtFwGtpStats.Stats.GtpV2CBearerNotFoundInDeleteReq,
+			"gtp_v2_c_bearer_not_found_in_delete_resp":     ret.DtFwGtpStats.Stats.GtpV2CBearerNotFoundInDeleteResp,
+			"gtp_rr_message_drop":                          ret.DtFwGtpStats.Stats.GtpRrMessageDrop,
+			"gtp_u_rr_message_drop":                        ret.DtFwGtpStats.Stats.GtpURrMessageDrop,
+			"drop_gtp_frag_or_jumbo_pkt":                   ret.DtFwGtpStats.Stats.DropGtpFragOrJumboPkt,
+			"gtp_v0_c_ver_not_supp":                        ret.DtFwGtpStats.Stats.GtpV0CVerNotSupp,
+			"gtp_v1_c_ver_not_supp":                        ret.DtFwGtpStats.Stats.GtpV1CVerNotSupp,
+			"gtp_v2_c_ver_not_supp":                        ret.DtFwGtpStats.Stats.GtpV2CVerNotSupp,
+			"gtp_c_handover_in_progress_with_conn":         ret.DtFwGtpStats.Stats.GtpCHandoverInProgressWithConn,
+			"gtp_c_conn_create_pkt_drop":                   ret.DtFwGtpStats.Stats.GtpCConnCreatePktDrop,
+			"gtp_smp_dec_sess_count_check_failed":          ret.DtFwGtpStats.Stats.GtpSmpDecSessCountCheckFailed,
+			"gtp_u_smp_check_failed":                       ret.DtFwGtpStats.Stats.GtpUSmpCheckFailed,
+			"gtp_info_ext_not_found":                       ret.DtFwGtpStats.Stats.GtpInfoExtNotFound,
+			"blade_gtp_smp_dec_sess_count_check_failed":    ret.DtFwGtpStats.Stats.BladeGtpSmpDecSessCountCheckFailed,
+			"blade_gtp_u_smp_check_failed":                 ret.DtFwGtpStats.Stats.BladeGtpUSmpCheckFailed,
+			"blade_gtp_info_ext_not_found":                 ret.DtFwGtpStats.Stats.BladeGtpInfoExtNotFound,
+			"gtp_u_stateless_forward":                      ret.DtFwGtpStats.Stats.GtpUStatelessForward,
+			"gtp_echo_stateless_forward":                   ret.DtFwGtpStats.Stats.GtpEchoStatelessForward,
+			"gtp_u_frag_pkt_processed":                     ret.DtFwGtpStats.Stats.GtpUFragPktProcessed,
+			"gtp_c_frag_pkt_received":                      ret.DtFwGtpStats.Stats.GtpCFragPktReceived,
+			"gtp_u_frag_pkt_received":                      ret.DtFwGtpStats.Stats.GtpUFragPktReceived,
+			"gtp_c_frag_or_jumbo_pkt_processed":            ret.DtFwGtpStats.Stats.GtpCFragOrJumboPktProcessed,
+			"gtp_echo_frag_or_jumbo_pkt_processed":         ret.DtFwGtpStats.Stats.GtpEchoFragOrJumboPktProcessed,
+			"gtp_u_tunnel_frag_or_jumbo_pkt_processed":     ret.DtFwGtpStats.Stats.GtpUTunnelFragOrJumboPktProcessed,
+			"blade_gtp_smp_session_count_check_failed":     ret.DtFwGtpStats.Stats.BladeGtpSmpSessionCountCheckFailed,
+			"gtp_sync_tx_fw_drop_session_create":           ret.DtFwGtpStats.Stats.GtpSyncTxFwDropSessionCreate,
+			"gtp_c_smp_sig_check_failed":                   ret.DtFwGtpStats.Stats.GtpCSmpSigCheckFailed,
+			"blade_gtp_c_smp_sig_check_failed":             ret.DtFwGtpStats.Stats.BladeGtpCSmpSigCheckFailed,
+			"gtp_u_smp_sig_check_failed":                   ret.DtFwGtpStats.Stats.GtpUSmpSigCheckFailed,
+			"blade_gtp_u_smp_sig_check_failed":             ret.DtFwGtpStats.Stats.BladeGtpUSmpSigCheckFailed,
+			"gtp_smp_sig_check_failed":                     ret.DtFwGtpStats.Stats.GtpSmpSigCheckFailed,
+			"blade_gtp_smp_sig_check_failed":               ret.DtFwGtpStats.Stats.BladeGtpSmpSigCheckFailed,
+			"gtp_c_fail_conn_create_slow":                  ret.DtFwGtpStats.Stats.GtpCFailConnCreateSlow,
+			"gtp_u_fail_conn_create_slow":                  ret.DtFwGtpStats.Stats.GtpUFailConnCreateSlow,
+			"gtp_pathm_fail_conn_create_slow":              ret.DtFwGtpStats.Stats.GtpPathmFailConnCreateSlow,
+			"gtp_v0_c_uplink_ingress_packets":              ret.DtFwGtpStats.Stats.GtpV0CUplinkIngressPackets,
+			"gtp_v0_c_uplink_egress_packets":               ret.DtFwGtpStats.Stats.GtpV0CUplinkEgressPackets,
+			"gtp_v0_c_downlink_ingress_packets":            ret.DtFwGtpStats.Stats.GtpV0CDownlinkIngressPackets,
+			"gtp_v0_c_downlink_egress_packets":             ret.DtFwGtpStats.Stats.GtpV0CDownlinkEgressPackets,
+			"gtp_v0_c_uplink_ingress_bytes":                ret.DtFwGtpStats.Stats.GtpV0CUplinkIngressBytes,
+			"gtp_v0_c_uplink_egress_bytes":                 ret.DtFwGtpStats.Stats.GtpV0CUplinkEgressBytes,
+			"gtp_v0_c_downlink_ingress_bytes":              ret.DtFwGtpStats.Stats.GtpV0CDownlinkIngressBytes,
+			"gtp_v0_c_downlink_egress_bytes":               ret.DtFwGtpStats.Stats.GtpV0CDownlinkEgressBytes,
+			"gtp_v1_c_uplink_ingress_packets":              ret.DtFwGtpStats.Stats.GtpV1CUplinkIngressPackets,
+			"gtp_v1_c_uplink_egress_packets":               ret.DtFwGtpStats.Stats.GtpV1CUplinkEgressPackets,
+			"gtp_v1_c_downlink_ingress_packets":            ret.DtFwGtpStats.Stats.GtpV1CDownlinkIngressPackets,
+			"gtp_v1_c_downlink_egress_packets":             ret.DtFwGtpStats.Stats.GtpV1CDownlinkEgressPackets,
+			"gtp_v1_c_uplink_ingress_bytes":                ret.DtFwGtpStats.Stats.GtpV1CUplinkIngressBytes,
+			"gtp_v1_c_uplink_egress_bytes":                 ret.DtFwGtpStats.Stats.GtpV1CUplinkEgressBytes,
+			"gtp_v1_c_downlink_ingress_bytes":              ret.DtFwGtpStats.Stats.GtpV1CDownlinkIngressBytes,
+			"gtp_v1_c_downlink_egress_bytes":               ret.DtFwGtpStats.Stats.GtpV1CDownlinkEgressBytes,
+			"gtp_v2_c_uplink_ingress_packets":              ret.DtFwGtpStats.Stats.GtpV2CUplinkIngressPackets,
+			"gtp_v2_c_uplink_egress_packets":               ret.DtFwGtpStats.Stats.GtpV2CUplinkEgressPackets,
+			"gtp_v2_c_downlink_ingress_packets":            ret.DtFwGtpStats.Stats.GtpV2CDownlinkIngressPackets,
+			"gtp_v2_c_downlink_egress_packets":             ret.DtFwGtpStats.Stats.GtpV2CDownlinkEgressPackets,
+			"gtp_v2_c_uplink_ingress_bytes":                ret.DtFwGtpStats.Stats.GtpV2CUplinkIngressBytes,
+			"gtp_v2_c_uplink_egress_bytes":                 ret.DtFwGtpStats.Stats.GtpV2CUplinkEgressBytes,
+			"gtp_v2_c_downlink_ingress_bytes":              ret.DtFwGtpStats.Stats.GtpV2CDownlinkIngressBytes,
+			"gtp_v2_c_downlink_egress_bytes":               ret.DtFwGtpStats.Stats.GtpV2CDownlinkEgressBytes,
+			"gtp_u_uplink_ingress_packets":                 ret.DtFwGtpStats.Stats.GtpUUplinkIngressPackets,
+			"gtp_u_uplink_egress_packets":                  ret.DtFwGtpStats.Stats.GtpUUplinkEgressPackets,
+			"gtp_u_downlink_ingress_packets":               ret.DtFwGtpStats.Stats.GtpUDownlinkIngressPackets,
+			"gtp_u_downlink_egress_packets":                ret.DtFwGtpStats.Stats.GtpUDownlinkEgressPackets,
+			"gtp_u_uplink_ingress_bytes":                   ret.DtFwGtpStats.Stats.GtpUUplinkIngressBytes,
+			"gtp_u_uplink_egress_bytes":                    ret.DtFwGtpStats.Stats.GtpUUplinkEgressBytes,
+			"gtp_u_downlink_ingress_bytes":                 ret.DtFwGtpStats.Stats.GtpUDownlinkIngressBytes,
+			"gtp_u_downlink_egress_bytes":                  ret.DtFwGtpStats.Stats.GtpUDownlinkEgressBytes,
+			"gtp_u_message_length_mismatch":                ret.DtFwGtpStats.Stats.GtpUMessageLengthMismatch,
+			"gtp_path_message_length_mismatch":             ret.DtFwGtpStats.Stats.GtpPathMessageLengthMismatch,
+			"drop_gtp_missing_cond_ie_bearer_ctx":          ret.DtFwGtpStats.Stats.DropGtpMissingCondIeBearerCtx,
+			"drop_gtp_bearer_not_found_in_resp":            ret.DtFwGtpStats.Stats.DropGtpBearerNotFoundInResp,
+			"gtp_stateless_forward":                        ret.DtFwGtpStats.Stats.GtpStatelessForward,
+			"gtp_monitor_forward":                          ret.DtFwGtpStats.Stats.GtpMonitorForward,
+			"gtp_u_monitor_forward":                        ret.DtFwGtpStats.Stats.GtpUMonitorForward,
+			"gtp_ext_hdr_incorrect_length":                 ret.DtFwGtpStats.Stats.GtpExt_hdrIncorrectLength,
 		},
 	}
 }
@@ -1574,6 +1842,10 @@ func getObjectFwGtpStatsApnPrefixStats(d []interface{}) edpt.FwGtpStatsApnPrefix
 		ret.DownlinkBytes = in["downlink_bytes"].(int)
 		ret.UplinkPkts = in["uplink_pkts"].(int)
 		ret.DownlinkPkts = in["downlink_pkts"].(int)
+		ret.UUplinkBytes = in["u_uplink_bytes"].(int)
+		ret.UDownlinkBytes = in["u_downlink_bytes"].(int)
+		ret.UUplinkPkts = in["u_uplink_pkts"].(int)
+		ret.UDownlinkPkts = in["u_downlink_pkts"].(int)
 		ret.GtpV0CTunnelCreated = in["gtp_v0_c_tunnel_created"].(int)
 		ret.GtpV0CTunnelHalfOpen = in["gtp_v0_c_tunnel_half_open"].(int)
 		ret.GtpV0CTunnelHalfClosed = in["gtp_v0_c_tunnel_half_closed"].(int)
@@ -1663,6 +1935,8 @@ func getObjectFwGtpStatsApnPrefixStats(d []interface{}) edpt.FwGtpStatsApnPrefix
 		ret.DropVldGtpV0CMessageLengthMismatch = in["drop_vld_gtp_v0_c_message_length_mismatch"].(int)
 		ret.DropVldGtpV1CMessageLengthMismatch = in["drop_vld_gtp_v1_c_message_length_mismatch"].(int)
 		ret.DropVldGtpV2CMessageLengthMismatch = in["drop_vld_gtp_v2_c_message_length_mismatch"].(int)
+		ret.VldMessageMonitor = in["vld_message_monitor"].(int)
+		ret.GenMessageLengthMonitor = in["gen_message_length_monitor"].(int)
 		ret.DropVldGtpV0CMessageDroppedApnFilteringNoApn = in["drop_vld_gtp_v0_c_message_dropped_apn_filtering_no_apn"].(int)
 		ret.DropVldGtpV1CMessageDroppedApnFilteringNoApn = in["drop_vld_gtp_v1_c_message_dropped_apn_filtering_no_apn"].(int)
 		ret.DropVldGtpV2CMessageDroppedApnFilteringNoApn = in["drop_vld_gtp_v2_c_message_dropped_apn_filtering_no_apn"].(int)
@@ -1671,6 +1945,11 @@ func getObjectFwGtpStatsApnPrefixStats(d []interface{}) edpt.FwGtpStatsApnPrefix
 		ret.DropFltMsisdnFiltering = in["drop_flt_msisdn_filtering"].(int)
 		ret.DropFltRatTypeFiltering = in["drop_flt_rat_type_filtering"].(int)
 		ret.DropFltGtpInGtp = in["drop_flt_gtp_in_gtp"].(int)
+		ret.FltMessageMonitor = in["flt_message_monitor"].(int)
+		ret.RatFltMessageMonitor = in["rat_flt_message_monitor"].(int)
+		ret.ApnImsiFltMessageMonitor = in["apn_imsi_flt_message_monitor"].(int)
+		ret.MsisdnFltMessageMonitor = in["msisdn_flt_message_monitor"].(int)
+		ret.GtpInGtpFltMessageMonitor = in["gtp_in_gtp_flt_message_monitor"].(int)
 		ret.DropRlGtpV0CAgg = in["drop_rl_gtp_v0_c_agg"].(int)
 		ret.DropRlGtpV1CAgg = in["drop_rl_gtp_v1_c_agg"].(int)
 		ret.DropRlGtpV2CAgg = in["drop_rl_gtp_v2_c_agg"].(int)
@@ -1686,6 +1965,7 @@ func getObjectFwGtpStatsApnPrefixStats(d []interface{}) edpt.FwGtpStatsApnPrefix
 		ret.DropRlGtpUTotalByte = in["drop_rl_gtp_u_total_byte"].(int)
 		ret.DropRlGtpUTotalPacket = in["drop_rl_gtp_u_total_packet"].(int)
 		ret.DropRlGtpUMaxConcurrentTunnels = in["drop_rl_gtp_u_max_concurrent_tunnels"].(int)
+		ret.RlMessageMonitor = in["rl_message_monitor"].(int)
 	}
 	return ret
 }
@@ -1713,6 +1993,10 @@ func getObjectFwGtpStatsNetworkElementStats(d []interface{}) edpt.FwGtpStatsNetw
 		ret.DownlinkBytes = in["downlink_bytes"].(int)
 		ret.UplinkPkts = in["uplink_pkts"].(int)
 		ret.DownlinkPkts = in["downlink_pkts"].(int)
+		ret.UUplinkBytes = in["u_uplink_bytes"].(int)
+		ret.UDownlinkBytes = in["u_downlink_bytes"].(int)
+		ret.UUplinkPkts = in["u_uplink_pkts"].(int)
+		ret.UDownlinkPkts = in["u_downlink_pkts"].(int)
 		ret.GtpV0CTunnelCreated = in["gtp_v0_c_tunnel_created"].(int)
 		ret.GtpV0CTunnelHalfOpen = in["gtp_v0_c_tunnel_half_open"].(int)
 		ret.GtpV0CTunnelHalfClosed = in["gtp_v0_c_tunnel_half_closed"].(int)
@@ -1782,6 +2066,8 @@ func getObjectFwGtpStatsNetworkElementStats(d []interface{}) edpt.FwGtpStatsNetw
 		ret.Drop_vldGtpBearerCountExceed = in["drop_vld_gtp_bearer_count_exceed"].(int)
 		ret.DropVldGtpV2WrongLbiCreateBearerReq = in["drop_vld_gtp_v2_wrong_lbi_create_bearer_req"].(int)
 		ret.GtpCHandoverInProgressWithConn = in["gtp_c_handover_in_progress_with_conn"].(int)
+		ret.VldMessageMonitor = in["vld_message_monitor"].(int)
+		ret.GenMessageLengthMonitor = in["gen_message_length_monitor"].(int)
 		ret.DropVldV0ReservedMessageDrop = in["drop_vld_v0_reserved_message_drop"].(int)
 		ret.DropVldV1ReservedMessageDrop = in["drop_vld_v1_reserved_message_drop"].(int)
 		ret.DropVldV2ReservedMessageDrop = in["drop_vld_v2_reserved_message_drop"].(int)
@@ -1811,6 +2097,11 @@ func getObjectFwGtpStatsNetworkElementStats(d []interface{}) edpt.FwGtpStatsNetw
 		ret.DropFltMsisdnFiltering = in["drop_flt_msisdn_filtering"].(int)
 		ret.DropFltRatTypeFiltering = in["drop_flt_rat_type_filtering"].(int)
 		ret.DropFltGtpInGtp = in["drop_flt_gtp_in_gtp"].(int)
+		ret.FltMessageMonitor = in["flt_message_monitor"].(int)
+		ret.RatFltMessageMonitor = in["rat_flt_message_monitor"].(int)
+		ret.ApnImsiFltMessageMonitor = in["apn_imsi_flt_message_monitor"].(int)
+		ret.MsisdnFltMessageMonitor = in["msisdn_flt_message_monitor"].(int)
+		ret.GtpInGtpFltMessageMonitor = in["gtp_in_gtp_flt_message_monitor"].(int)
 		ret.DropRlGtpV0CAgg = in["drop_rl_gtp_v0_c_agg"].(int)
 		ret.DropRlGtpV1CAgg = in["drop_rl_gtp_v1_c_agg"].(int)
 		ret.DropRlGtpV2CAgg = in["drop_rl_gtp_v2_c_agg"].(int)
@@ -1826,6 +2117,7 @@ func getObjectFwGtpStatsNetworkElementStats(d []interface{}) edpt.FwGtpStatsNetw
 		ret.DropRlGtpUTotalByte = in["drop_rl_gtp_u_total_byte"].(int)
 		ret.DropRlGtpUTotalPacket = in["drop_rl_gtp_u_total_packet"].(int)
 		ret.DropRlGtpUMaxConcurrentTunnels = in["drop_rl_gtp_u_max_concurrent_tunnels"].(int)
+		ret.RlMessageMonitor = in["rl_message_monitor"].(int)
 	}
 	return ret
 }
@@ -1839,30 +2131,65 @@ func getObjectFwGtpStatsStats(d []interface{}) edpt.FwGtpStatsStats {
 		ret.OutOfSessionMemory = in["out_of_session_memory"].(int)
 		ret.NoFwdRoute = in["no_fwd_route"].(int)
 		ret.NoRevRoute = in["no_rev_route"].(int)
+		ret.BladeOutOfSessionMemory = in["blade_out_of_session_memory"].(int)
+		ret.BladeNoFwdRoute = in["blade_no_fwd_route"].(int)
+		ret.BladeNoRevRoute = in["blade_no_rev_route"].(int)
 		ret.GtpSmpPathCheckFailed = in["gtp_smp_path_check_failed"].(int)
-		ret.GtpSmpCheckFailed = in["gtp_smp_check_failed"].(int)
-		ret.GtpSmpSessionCountCheckFailed = in["gtp_smp_session_count_check_failed"].(int)
-		ret.GtpCRefCountSmpExceeded = in["gtp_c_ref_count_smp_exceeded"].(int)
-		ret.GtpUSmpInRmlWithSess = in["gtp_u_smp_in_rml_with_sess"].(int)
+		ret.GtpSmpCCheckFailed = in["gtp_smp_c_check_failed"].(int)
+		ret.BladeGtpSmpPathCheckFailed = in["blade_gtp_smp_path_check_failed"].(int)
+		ret.BladeGtpSmpCCheckFailed = in["blade_gtp_smp_c_check_failed"].(int)
 		ret.GtpTunnelRateLimitEntryCreateFailure = in["gtp_tunnel_rate_limit_entry_create_failure"].(int)
+		ret.GtpUTunnelRateLimitEntryCreateFailure = in["gtp_u_tunnel_rate_limit_entry_create_failure"].(int)
 		ret.GtpRateLimitSmpCreateFailure = in["gtp_rate_limit_smp_create_failure"].(int)
 		ret.GtpRateLimitT3CtrCreateFailure = in["gtp_rate_limit_t3_ctr_create_failure"].(int)
 		ret.GtpRateLimitEntryCreateFailure = in["gtp_rate_limit_entry_create_failure"].(int)
+		ret.BladeGtpRateLimitSmpCreateFailure = in["blade_gtp_rate_limit_smp_create_failure"].(int)
+		ret.BladeGtpRateLimitT3CtrCreateFailure = in["blade_gtp_rate_limit_t3_ctr_create_failure"].(int)
+		ret.BladeGtpRateLimitEntryCreateFailure = in["blade_gtp_rate_limit_entry_create_failure"].(int)
 		ret.GtpNodeRestartEcho = in["gtp_node_restart_echo"].(int)
 		ret.GtpCEchoPathFailure = in["gtp_c_echo_path_failure"].(int)
 		ret.DropVldGtpEchoOutOfState = in["drop_vld_gtp_echo_out_of_state_"].(int)
 		ret.DropVldGtpEchoIeLenExceedMsgLen = in["drop_vld_gtp_echo_ie_len_exceed_msg_len"].(int)
-		ret.GtpDelBearerRequestRetransmit = in["gtp_del_bearer_request_retransmit"].(int)
-		ret.GtpAddBearerResponseRetransmit = in["gtp_add_bearer_response_retransmit"].(int)
+		ret.DropVldGtpUEchoOutOfState = in["drop_vld_gtp_u_echo_out_of_state_"].(int)
+		ret.GtpCreateSessionRequestRetxDrop = in["gtp_create_session_request_retx_drop"].(int)
 		ret.GtpUOutOfStateDrop = in["gtp_u_out_of_state_drop"].(int)
 		ret.GtpCHandoverRequestOutOfStateDrop = in["gtp_c_handover_request_out_of_state_drop"].(int)
 		ret.GtpV1CNsapiNotFoundInDeleteReq = in["gtp_v1_c_nsapi_not_found_in_delete_req"].(int)
 		ret.GtpV2CBearerNotFoundInDeleteReq = in["gtp_v2_c_bearer_not_found_in_delete_req"].(int)
 		ret.GtpV2CBearerNotFoundInDeleteResp = in["gtp_v2_c_bearer_not_found_in_delete_resp"].(int)
 		ret.GtpRrMessageDrop = in["gtp_rr_message_drop"].(int)
+		ret.GtpURrMessageDrop = in["gtp_u_rr_message_drop"].(int)
 		ret.DropGtpFragOrJumboPkt = in["drop_gtp_frag_or_jumbo_pkt"].(int)
+		ret.GtpV0CVerNotSupp = in["gtp_v0_c_ver_not_supp"].(int)
+		ret.GtpV1CVerNotSupp = in["gtp_v1_c_ver_not_supp"].(int)
+		ret.GtpV2CVerNotSupp = in["gtp_v2_c_ver_not_supp"].(int)
 		ret.GtpCHandoverInProgressWithConn = in["gtp_c_handover_in_progress_with_conn"].(int)
+		ret.GtpCConnCreatePktDrop = in["gtp_c_conn_create_pkt_drop"].(int)
 		ret.GtpSmpDecSessCountCheckFailed = in["gtp_smp_dec_sess_count_check_failed"].(int)
+		ret.GtpUSmpCheckFailed = in["gtp_u_smp_check_failed"].(int)
+		ret.GtpInfoExtNotFound = in["gtp_info_ext_not_found"].(int)
+		ret.BladeGtpSmpDecSessCountCheckFailed = in["blade_gtp_smp_dec_sess_count_check_failed"].(int)
+		ret.BladeGtpUSmpCheckFailed = in["blade_gtp_u_smp_check_failed"].(int)
+		ret.BladeGtpInfoExtNotFound = in["blade_gtp_info_ext_not_found"].(int)
+		ret.GtpUStatelessForward = in["gtp_u_stateless_forward"].(int)
+		ret.GtpEchoStatelessForward = in["gtp_echo_stateless_forward"].(int)
+		ret.GtpUFragPktProcessed = in["gtp_u_frag_pkt_processed"].(int)
+		ret.GtpCFragPktReceived = in["gtp_c_frag_pkt_received"].(int)
+		ret.GtpUFragPktReceived = in["gtp_u_frag_pkt_received"].(int)
+		ret.GtpCFragOrJumboPktProcessed = in["gtp_c_frag_or_jumbo_pkt_processed"].(int)
+		ret.GtpEchoFragOrJumboPktProcessed = in["gtp_echo_frag_or_jumbo_pkt_processed"].(int)
+		ret.GtpUTunnelFragOrJumboPktProcessed = in["gtp_u_tunnel_frag_or_jumbo_pkt_processed"].(int)
+		ret.BladeGtpSmpSessionCountCheckFailed = in["blade_gtp_smp_session_count_check_failed"].(int)
+		ret.GtpSyncTxFwDropSessionCreate = in["gtp_sync_tx_fw_drop_session_create"].(int)
+		ret.GtpCSmpSigCheckFailed = in["gtp_c_smp_sig_check_failed"].(int)
+		ret.BladeGtpCSmpSigCheckFailed = in["blade_gtp_c_smp_sig_check_failed"].(int)
+		ret.GtpUSmpSigCheckFailed = in["gtp_u_smp_sig_check_failed"].(int)
+		ret.BladeGtpUSmpSigCheckFailed = in["blade_gtp_u_smp_sig_check_failed"].(int)
+		ret.GtpSmpSigCheckFailed = in["gtp_smp_sig_check_failed"].(int)
+		ret.BladeGtpSmpSigCheckFailed = in["blade_gtp_smp_sig_check_failed"].(int)
+		ret.GtpCFailConnCreateSlow = in["gtp_c_fail_conn_create_slow"].(int)
+		ret.GtpUFailConnCreateSlow = in["gtp_u_fail_conn_create_slow"].(int)
+		ret.GtpPathmFailConnCreateSlow = in["gtp_pathm_fail_conn_create_slow"].(int)
 		ret.GtpV0CUplinkIngressPackets = in["gtp_v0_c_uplink_ingress_packets"].(int)
 		ret.GtpV0CUplinkEgressPackets = in["gtp_v0_c_uplink_egress_packets"].(int)
 		ret.GtpV0CDownlinkIngressPackets = in["gtp_v0_c_downlink_ingress_packets"].(int)
@@ -1901,6 +2228,8 @@ func getObjectFwGtpStatsStats(d []interface{}) edpt.FwGtpStatsStats {
 		ret.DropGtpBearerNotFoundInResp = in["drop_gtp_bearer_not_found_in_resp"].(int)
 		ret.GtpStatelessForward = in["gtp_stateless_forward"].(int)
 		ret.GtpMonitorForward = in["gtp_monitor_forward"].(int)
+		ret.GtpUMonitorForward = in["gtp_u_monitor_forward"].(int)
+		ret.GtpExt_hdrIncorrectLength = in["gtp_ext_hdr_incorrect_length"].(int)
 	}
 	return ret
 }

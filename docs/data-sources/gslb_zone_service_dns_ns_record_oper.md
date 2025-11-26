@@ -38,10 +38,10 @@ output "get_gslb_zone_service_dns_ns_record_oper" {
 
 ### Required
 
-- `name` (String) Name
 - `ns_name` (String) Specify Domain Name
 - `service_name` (String) ServiceName
 - `service_port` (String) ServicePort
+- `zone_name` (String) Zone_name
 
 ### Optional
 
@@ -58,5 +58,3 @@ Optional:
 
 - `hits` (Number)
 - `last_server` (String)
-
-

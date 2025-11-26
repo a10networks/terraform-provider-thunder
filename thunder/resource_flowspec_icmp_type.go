@@ -23,13 +23,13 @@ func resourceFlowspecIcmpType() *schema.Resource {
 				Type: schema.TypeInt, Required: true, Description: "Specify the ICMP Type",
 			},
 			"type_end": {
-				Type: schema.TypeInt, Optional: true, Description: "Specify the ICMP Type",
+				Type: schema.TypeInt, Required: true, Description: "Specify the ICMP Type",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"flowspec_name": {
+				Type: schema.TypeString, Required: true, Description: "Flowspec_name",
 			},
 		},
 	}
@@ -102,6 +102,6 @@ func dataToEndpointFlowspecIcmpType(d *schema.ResourceData) edpt.FlowspecIcmpTyp
 	ret.Inst.Type = d.Get("type").(int)
 	ret.Inst.TypeEnd = d.Get("type_end").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Flowspec_name = d.Get("flowspec_name").(string)
 	return ret
 }

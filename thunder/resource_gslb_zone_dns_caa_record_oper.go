@@ -32,8 +32,8 @@ func resourceGslbZoneDnsCaaRecordOper() *schema.Resource {
 			"rdata": {
 				Type: schema.TypeString, Required: true, Description: "Specify the Issuer Domain Name or a URL",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -88,6 +88,6 @@ func dataToEndpointGslbZoneDnsCaaRecordOper(d *schema.ResourceData) edpt.GslbZon
 
 	ret.Rdata = d.Get("rdata").(string)
 
-	ret.Name = d.Get("name").(string)
+	ret.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

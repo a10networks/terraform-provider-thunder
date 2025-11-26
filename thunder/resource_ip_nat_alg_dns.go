@@ -19,6 +19,9 @@ func resourceIpNatAlgDns() *schema.Resource {
 			"dns_alg": {
 				Type: schema.TypeString, Optional: true, Default: "enable", Description: "'disable': Disable DNS NAT ALG; 'enable': Enable DNS NAT ALG;",
 			},
+			"query_id_switch": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use DNS query ID to create session (UDP session only)",
+			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
@@ -90,6 +93,7 @@ func resourceIpNatAlgDnsRead(ctx context.Context, d *schema.ResourceData, meta i
 func dataToEndpointIpNatAlgDns(d *schema.ResourceData) edpt.IpNatAlgDns {
 	var ret edpt.IpNatAlgDns
 	ret.Inst.DnsAlg = d.Get("dns_alg").(string)
+	ret.Inst.QueryIdSwitch = d.Get("query_id_switch").(int)
 	//omit uuid
 	return ret
 }

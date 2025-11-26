@@ -29,6 +29,15 @@ func resourceScaleoutTrafficMapOper() *schema.Resource {
 						"src_ipv6": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
+						"service_config_template": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"ipv4": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"ipv6": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"map_entries_list_head": {
 							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
@@ -102,12 +111,15 @@ func resourceScaleoutTrafficMapOperRead(ctx context.Context, d *schema.ResourceD
 func setObjectScaleoutTrafficMapOperOper(ret edpt.DataScaleoutTrafficMapOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"virtual_server":        ret.DtScaleoutTrafficMapOper.Oper.VirtualServer,
-			"virtual_port":          ret.DtScaleoutTrafficMapOper.Oper.VirtualPort,
-			"src_ip":                ret.DtScaleoutTrafficMapOper.Oper.SrcIp,
-			"src_ipv6":              ret.DtScaleoutTrafficMapOper.Oper.SrcIpv6,
-			"map_entries_list_head": setSliceScaleoutTrafficMapOperOperMapEntriesListHead(ret.DtScaleoutTrafficMapOper.Oper.MapEntriesListHead),
-			"tbl_num":               ret.DtScaleoutTrafficMapOper.Oper.TblNum,
+			"virtual_server":          ret.DtScaleoutTrafficMapOper.Oper.VirtualServer,
+			"virtual_port":            ret.DtScaleoutTrafficMapOper.Oper.VirtualPort,
+			"src_ip":                  ret.DtScaleoutTrafficMapOper.Oper.SrcIp,
+			"src_ipv6":                ret.DtScaleoutTrafficMapOper.Oper.SrcIpv6,
+			"service_config_template": ret.DtScaleoutTrafficMapOper.Oper.ServiceConfigTemplate,
+			"ipv4":                    ret.DtScaleoutTrafficMapOper.Oper.Ipv4,
+			"ipv6":                    ret.DtScaleoutTrafficMapOper.Oper.Ipv6,
+			"map_entries_list_head":   setSliceScaleoutTrafficMapOperOperMapEntriesListHead(ret.DtScaleoutTrafficMapOper.Oper.MapEntriesListHead),
+			"tbl_num":                 ret.DtScaleoutTrafficMapOper.Oper.TblNum,
 		},
 	}
 }
@@ -150,6 +162,9 @@ func getObjectScaleoutTrafficMapOperOper(d []interface{}) edpt.ScaleoutTrafficMa
 		ret.VirtualPort = in["virtual_port"].(int)
 		ret.SrcIp = in["src_ip"].(string)
 		ret.SrcIpv6 = in["src_ipv6"].(string)
+		ret.ServiceConfigTemplate = in["service_config_template"].(string)
+		ret.Ipv4 = in["ipv4"].(int)
+		ret.Ipv6 = in["ipv6"].(int)
 		ret.MapEntriesListHead = getSliceScaleoutTrafficMapOperOperMapEntriesListHead(in["map_entries_list_head"].([]interface{}))
 		ret.TblNum = in["tbl_num"].(int)
 	}

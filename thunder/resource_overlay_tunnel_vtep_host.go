@@ -19,8 +19,14 @@ func resourceOverlayTunnelVtepHost() *schema.Resource {
 			"ip_addr": {
 				Type: schema.TypeString, Required: true, Description: "IPv4 address of the overlay host",
 			},
+			"ipv6_addr": {
+				Type: schema.TypeString, Optional: true, Description: "IPv6 address of the overlay host",
+			},
 			"overlay_mac_addr": {
 				Type: schema.TypeString, Required: true, Description: "MAC Address of the overlay host",
+			},
+			"remote_ipv6_vtep": {
+				Type: schema.TypeString, Required: true, Description: "Configure the VTEP IPv6 address (IPv6 address of the VTEP for the remote host)",
 			},
 			"remote_vtep": {
 				Type: schema.TypeString, Required: true, Description: "Configure the VTEP IP address (IPv4 address of the VTEP for the remote host)",
@@ -102,7 +108,9 @@ func resourceOverlayTunnelVtepHostRead(ctx context.Context, d *schema.ResourceDa
 func dataToEndpointOverlayTunnelVtepHost(d *schema.ResourceData) edpt.OverlayTunnelVtepHost {
 	var ret edpt.OverlayTunnelVtepHost
 	ret.Inst.IpAddr = d.Get("ip_addr").(string)
+	ret.Inst.Ipv6Addr = d.Get("ipv6_addr").(string)
 	ret.Inst.OverlayMacAddr = d.Get("overlay_mac_addr").(string)
+	ret.Inst.RemoteIpv6Vtep = d.Get("remote_ipv6_vtep").(string)
 	ret.Inst.RemoteVtep = d.Get("remote_vtep").(string)
 	//omit uuid
 	ret.Inst.Vni = d.Get("vni").(int)

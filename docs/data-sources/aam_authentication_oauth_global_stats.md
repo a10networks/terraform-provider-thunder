@@ -52,5 +52,3 @@ Optional:
 - `relay_fail` (Number)
 - `relay_req` (Number)
 - `relay_succ` (Number)
-
-

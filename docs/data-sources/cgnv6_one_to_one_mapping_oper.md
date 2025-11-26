@@ -70,5 +70,3 @@ Optional:
 - `nat_address` (String)
 - `pool` (String)
 - `sessions` (Number)
-
-

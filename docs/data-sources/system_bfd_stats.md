@@ -66,5 +66,3 @@ Optional:
 - `session_not_found` (Number) Session not found
 - `udp_checksum_error` (Number) UDP packet checksum errors
 - `version_mismatch` (Number) BFD version mismatch
-
-

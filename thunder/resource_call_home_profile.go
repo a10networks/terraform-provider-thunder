@@ -34,9 +34,6 @@ func resourceCallHomeProfile() *schema.Resource {
 			"port": {
 				Type: schema.TypeInt, Optional: true, Description: "Set port for the call home portal",
 			},
-			"time": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Set export time of the data in minutes. default 0 (12 AM). exported between 12-01 AM",
-			},
 			"use_mgmt_port": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use management port for connections",
 			},
@@ -116,7 +113,6 @@ func dataToEndpointCallHomeProfile(d *schema.ResourceData) edpt.CallHomeProfile 
 	ret.Inst.Ipv6 = d.Get("ipv6").(string)
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.Port = d.Get("port").(int)
-	ret.Inst.Time = d.Get("time").(int)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	//omit uuid
 	return ret

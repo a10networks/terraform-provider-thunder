@@ -58,8 +58,8 @@ func resourceHealthMonitorMethodDatabase() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -143,6 +143,6 @@ func dataToEndpointHealthMonitorMethodDatabase(d *schema.ResourceData) edpt.Heal
 	ret.Inst.DbSend = d.Get("db_send").(string)
 	ret.Inst.DbUsername = d.Get("db_username").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

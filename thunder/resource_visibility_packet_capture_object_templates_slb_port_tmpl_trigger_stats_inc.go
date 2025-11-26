@@ -37,8 +37,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsInc() 
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"slb_port_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Slb_port_tmpl_name",
 			},
 		},
 	}
@@ -114,6 +114,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStats
 	ret.Inst.Resp4xx = d.Get("resp_4xx").(int)
 	ret.Inst.Resp5xx = d.Get("resp_5xx").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Slb_port_tmpl_name = d.Get("slb_port_tmpl_name").(string)
 	return ret
 }

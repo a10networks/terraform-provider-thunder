@@ -37,8 +37,8 @@ func resourceSlbTemplateHttpHttpProtocolCheckHeaderFilterRule() *schema.Resource
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"http_name": {
+				Type: schema.TypeString, Required: true, Description: "Http_name",
 			},
 		},
 	}
@@ -114,6 +114,6 @@ func dataToEndpointSlbTemplateHttpHttpProtocolCheckHeaderFilterRule(d *schema.Re
 	ret.Inst.SeqNum = d.Get("seq_num").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Http_name = d.Get("http_name").(string)
 	return ret
 }

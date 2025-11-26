@@ -55,5 +55,3 @@ Optional:
 - `if_num` (Number)
 - `if_status` (String)
 - `if_type` (String)
-
-

@@ -107,5 +107,3 @@ Optional:
 - `eth` (Number)
 - `eth_miss` (Number)
 - `vrrp_pkt_recv` (Number)
-
-

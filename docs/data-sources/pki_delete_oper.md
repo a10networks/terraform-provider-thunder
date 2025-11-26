@@ -38,5 +38,3 @@ output "get_pki_delete_oper" {
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-
-

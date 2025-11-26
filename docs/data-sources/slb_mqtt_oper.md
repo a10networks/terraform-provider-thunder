@@ -82,5 +82,3 @@ Optional:
 - `total_proxy` (Number)
 - `tuple_already_linked` (Number)
 - `tuple_not_linked` (Number)
-
-

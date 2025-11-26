@@ -74,5 +74,3 @@ Optional:
 - `total_proxy` (Number) Total proxy conns
 - `tuple_already_linked` (Number) tuple-already-linked failure
 - `tuple_not_linked` (Number) tuple-not-linked failure
-
-

@@ -36,6 +36,9 @@ func resourceDdosGeoLocationFileOper() *schema.Resource {
 									"error_warning": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"md5": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
 									"error_list": {
 										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
@@ -95,6 +98,7 @@ func setSliceDdosGeoLocationFileOperOperFileList(d []edpt.DdosGeoLocationFileOpe
 		in["lines"] = item.Lines
 		in["success"] = item.Success
 		in["error_warning"] = item.ErrorWarning
+		in["md5"] = item.Md5
 		in["error_list"] = setSliceDdosGeoLocationFileOperOperFileListErrorList(item.ErrorList)
 		result = append(result, in)
 	}
@@ -135,6 +139,7 @@ func getSliceDdosGeoLocationFileOperOperFileList(d []interface{}) []edpt.DdosGeo
 		oi.Lines = in["lines"].(int)
 		oi.Success = in["success"].(int)
 		oi.ErrorWarning = in["error_warning"].(int)
+		oi.Md5 = in["md5"].(string)
 		oi.ErrorList = getSliceDdosGeoLocationFileOperOperFileListErrorList(in["error_list"].([]interface{}))
 		ret = append(ret, oi)
 	}

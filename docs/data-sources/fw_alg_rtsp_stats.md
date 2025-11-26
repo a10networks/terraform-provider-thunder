@@ -50,5 +50,3 @@ Optional:
 - `transport_alloc_failure` (Number) Transport Alloc Failure
 - `transport_freed` (Number) Transport Freed
 - `transport_inserted` (Number) Transport Created
-
-

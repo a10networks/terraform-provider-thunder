@@ -86,6 +86,12 @@ func resourceSlbDnsCacheStats() *schema.Resource {
 						"truncated_r": {
 							Type: schema.TypeInt, Optional: true, Description: "Response with Truncation bit set",
 						},
+						"qps": {
+							Type: schema.TypeInt, Optional: true, Description: "Cache Queries-per-second",
+						},
+						"hit_rate_per_sec": {
+							Type: schema.TypeInt, Optional: true, Description: "Cache hit rate per second",
+						},
 					},
 				},
 			},
@@ -138,6 +144,8 @@ func setObjectSlbDnsCacheStatsStats(ret edpt.DataSlbDnsCacheStats) []interface{}
 			"current_data_allocate": ret.DtSlbDnsCacheStats.Stats.Current_data_allocate,
 			"resolver_queue_full":   ret.DtSlbDnsCacheStats.Stats.Resolver_queue_full,
 			"truncated_r":           ret.DtSlbDnsCacheStats.Stats.Truncated_r,
+			"qps":                   ret.DtSlbDnsCacheStats.Stats.Qps,
+			"hit_rate_per_sec":      ret.DtSlbDnsCacheStats.Stats.Hit_rate_per_sec,
 		},
 	}
 }
@@ -171,6 +179,8 @@ func getObjectSlbDnsCacheStatsStats(d []interface{}) edpt.SlbDnsCacheStatsStats 
 		ret.Current_data_allocate = in["current_data_allocate"].(int)
 		ret.Resolver_queue_full = in["resolver_queue_full"].(int)
 		ret.Truncated_r = in["truncated_r"].(int)
+		ret.Qps = in["qps"].(int)
+		ret.Hit_rate_per_sec = in["hit_rate_per_sec"].(int)
 	}
 	return ret
 }

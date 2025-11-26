@@ -45,5 +45,3 @@ output "get_scaleout_debug_role_oper" {
 Optional:
 
 - `scaleout_role_action` (String)
-
-

@@ -171,8 +171,39 @@ func resourceDdosZoneTemplateSslL4() *schema.Resource {
 					},
 				},
 			},
+			"ssl_handshake_policy": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"action": {
+							Type: schema.TypeString, Optional: true, Description: "'drop': Drop packets (Default); 'reset': Reset client connection; 'blacklist-src': Blacklist source IP;",
+						},
+						"ssl_handshake_policy_action_list_name": {
+							Type: schema.TypeString, Optional: true, Description: "Configure action-list to take",
+						},
+						"cipher_suites_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Set cipher suites limit",
+						},
+						"client_extensions_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Set client extensions limit",
+						},
+						"src_handshaking_conn_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Set handshaking connection limit",
+						},
+						"clienthello_to_appdata_timeout": {
+							Type: schema.TypeInt, Optional: true, Description: "Set maximum timeout seconds from ClientHello to App-Data",
+						},
+						"finished_to_appdata_timeout": {
+							Type: schema.TypeInt, Optional: true, Description: "Set maximum timeout seconds from Handshake finished to App-Data",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
 			"ssl_l4_tmpl_name": {
-				Type: schema.TypeString, Required: true, Description: "",
+				Type: schema.TypeString, Required: true, Description: "DDOS SSL-L4 Template Name",
 			},
 			"ssl_traffic_check": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -408,10 +439,28 @@ func getObjectDdosZoneTemplateSslL4SrcRateLimitRequest(d []interface{}) edpt.Ddo
 	return ret
 }
 
-func getObjectDdosZoneTemplateSslL4SslTrafficCheck317(d []interface{}) edpt.DdosZoneTemplateSslL4SslTrafficCheck317 {
+func getObjectDdosZoneTemplateSslL4SslHandshakePolicy371(d []interface{}) edpt.DdosZoneTemplateSslL4SslHandshakePolicy371 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateSslL4SslTrafficCheck317
+	var ret edpt.DdosZoneTemplateSslL4SslHandshakePolicy371
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Action = in["action"].(string)
+		ret.SslHandshakePolicyActionListName = in["ssl_handshake_policy_action_list_name"].(string)
+		ret.CipherSuitesLimit = in["cipher_suites_limit"].(int)
+		ret.ClientExtensionsLimit = in["client_extensions_limit"].(int)
+		ret.SrcHandshakingConnLimit = in["src_handshaking_conn_limit"].(int)
+		ret.ClienthelloToAppdataTimeout = in["clienthello_to_appdata_timeout"].(int)
+		ret.FinishedToAppdataTimeout = in["finished_to_appdata_timeout"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectDdosZoneTemplateSslL4SslTrafficCheck372(d []interface{}) edpt.DdosZoneTemplateSslL4SslTrafficCheck372 {
+
+	count1 := len(d)
+	var ret edpt.DdosZoneTemplateSslL4SslTrafficCheck372
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.HeaderInspection = in["header_inspection"].(int)
@@ -431,8 +480,9 @@ func dataToEndpointDdosZoneTemplateSslL4(d *schema.ResourceData) edpt.DdosZoneTe
 	ret.Inst.MultiPuThresholdDistribution = getObjectDdosZoneTemplateSslL4MultiPuThresholdDistribution(d.Get("multi_pu_threshold_distribution").([]interface{}))
 	ret.Inst.Renegotiation = getObjectDdosZoneTemplateSslL4Renegotiation(d.Get("renegotiation").([]interface{}))
 	ret.Inst.Src = getObjectDdosZoneTemplateSslL4Src(d.Get("src").([]interface{}))
+	ret.Inst.SslHandshakePolicy = getObjectDdosZoneTemplateSslL4SslHandshakePolicy371(d.Get("ssl_handshake_policy").([]interface{}))
 	ret.Inst.SslL4TmplName = d.Get("ssl_l4_tmpl_name").(string)
-	ret.Inst.SslTrafficCheck = getObjectDdosZoneTemplateSslL4SslTrafficCheck317(d.Get("ssl_traffic_check").([]interface{}))
+	ret.Inst.SslTrafficCheck = getObjectDdosZoneTemplateSslL4SslTrafficCheck372(d.Get("ssl_traffic_check").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

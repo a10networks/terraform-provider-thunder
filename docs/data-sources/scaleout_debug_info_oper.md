@@ -63,5 +63,3 @@ Optional:
 - `trigger_cluster_exit` (Number)
 - `trigger_disable` (Number)
 - `trigger_enable` (Number)
-
-

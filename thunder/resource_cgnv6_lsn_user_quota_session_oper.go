@@ -39,6 +39,12 @@ func resourceCgnv6LsnUserQuotaSessionOper() *schema.Resource {
 									"session_count": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"session_count_udp": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"session_count_tcp": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 									"nat_pool_name": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
@@ -151,6 +157,8 @@ func setSliceCgnv6LsnUserQuotaSessionOperOperSessionList(d []edpt.Cgnv6LsnUserQu
 		in["udp_quota"] = item.UdpQuota
 		in["tcp_quota"] = item.TcpQuota
 		in["session_count"] = item.SessionCount
+		in["session_count_udp"] = item.SessionCountUdp
+		in["session_count_tcp"] = item.SessionCountTcp
 		in["nat_pool_name"] = item.NatPoolName
 		in["lid_number"] = item.LidNumber
 		in["flags"] = item.Flags
@@ -197,6 +205,8 @@ func getSliceCgnv6LsnUserQuotaSessionOperOperSessionList(d []interface{}) []edpt
 		oi.UdpQuota = in["udp_quota"].(int)
 		oi.TcpQuota = in["tcp_quota"].(int)
 		oi.SessionCount = in["session_count"].(int)
+		oi.SessionCountUdp = in["session_count_udp"].(int)
+		oi.SessionCountTcp = in["session_count_tcp"].(int)
 		oi.NatPoolName = in["nat_pool_name"].(string)
 		oi.LidNumber = in["lid_number"].(int)
 		oi.Flags = in["flags"].(string)

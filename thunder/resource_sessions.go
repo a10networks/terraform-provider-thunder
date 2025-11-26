@@ -114,29 +114,29 @@ func resourceSessionsRead(ctx context.Context, d *schema.ResourceData, meta inte
 	return diags
 }
 
-func getObjectSessionsExt1397(d []interface{}) edpt.SessionsExt1397 {
+func getObjectSessionsExt1487(d []interface{}) edpt.SessionsExt1487 {
 
-	var ret edpt.SessionsExt1397
+	var ret edpt.SessionsExt1487
 	return ret
 }
 
-func getObjectSessionsSmp1398(d []interface{}) edpt.SessionsSmp1398 {
+func getObjectSessionsSmp1488(d []interface{}) edpt.SessionsSmp1488 {
 
-	var ret edpt.SessionsSmp1398
+	var ret edpt.SessionsSmp1488
 	return ret
 }
 
-func getObjectSessionsSmpTable1399(d []interface{}) edpt.SessionsSmpTable1399 {
+func getObjectSessionsSmpTable1489(d []interface{}) edpt.SessionsSmpTable1489 {
 
-	var ret edpt.SessionsSmpTable1399
+	var ret edpt.SessionsSmpTable1489
 	return ret
 }
 
 func dataToEndpointSessions(d *schema.ResourceData) edpt.Sessions {
 	var ret edpt.Sessions
-	ret.Inst.Ext = getObjectSessionsExt1397(d.Get("ext").([]interface{}))
-	ret.Inst.Smp = getObjectSessionsSmp1398(d.Get("smp").([]interface{}))
-	ret.Inst.SmpTable = getObjectSessionsSmpTable1399(d.Get("smp_table").([]interface{}))
+	ret.Inst.Ext = getObjectSessionsExt1487(d.Get("ext").([]interface{}))
+	ret.Inst.Smp = getObjectSessionsSmp1488(d.Get("smp").([]interface{}))
+	ret.Inst.SmpTable = getObjectSessionsSmpTable1489(d.Get("smp_table").([]interface{}))
 	//omit uuid
 	return ret
 }

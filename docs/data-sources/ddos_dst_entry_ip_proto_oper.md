@@ -40,37 +40,11 @@ output "get_ddos_dst_entry_ip_proto_oper" {
 
 ### Optional
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_filtering_policy_oper))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--oper))
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-
-<a id="nestedblock--ip_filtering_policy_oper"></a>
-### Nested Schema for `ip_filtering_policy_oper`
-
-Optional:
-
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_filtering_policy_oper--oper))
-
-<a id="nestedblock--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `ip_filtering_policy_oper.oper`
-
-Optional:
-
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--ip_filtering_policy_oper--oper--rule_list))
-
-<a id="nestedblock--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `ip_filtering_policy_oper.oper.rule_list`
-
-Optional:
-
-- `hits` (Number)
-- `seq` (Number)
-
-
-
 
 <a id="nestedblock--oper"></a>
 ### Nested Schema for `oper`
@@ -124,6 +98,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `kbit_rate_limit` (String)
 - `level_str` (String)
@@ -133,5 +108,3 @@ Optional:
 - `sflow_source_id` (String)
 - `src_address_str` (String)
 - `state_str` (String)
-
-

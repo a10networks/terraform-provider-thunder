@@ -71,5 +71,3 @@ Optional:
 - `q_length` (Number)
 - `r_length` (Number)
 - `ttl` (Number)
-
-

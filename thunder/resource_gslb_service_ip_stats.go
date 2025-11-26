@@ -42,6 +42,35 @@ func resourceGslbServiceIpStats() *schema.Resource {
 					},
 				},
 			},
+			"service_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"port_num": {
+							Type: schema.TypeInt, Required: true, Description: "Port Number",
+						},
+						"port_proto": {
+							Type: schema.TypeString, Required: true, Description: "'tcp': TCP Port; 'udp': UDP Port;",
+						},
+						"label": {
+							Type: schema.TypeString, Required: true, Description: "Service Label",
+						},
+						"stats": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"active": {
+										Type: schema.TypeInt, Optional: true, Description: "Active Servers",
+									},
+									"current": {
+										Type: schema.TypeInt, Optional: true, Description: "Current Connections",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			"stats": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -71,6 +100,8 @@ func resourceGslbServiceIpStatsRead(ctx context.Context, d *schema.ResourceData,
 		logger.Println(res)
 		GslbServiceIpStatsPortList := setSliceGslbServiceIpStatsPortList(res)
 		d.Set("port_list", GslbServiceIpStatsPortList)
+		GslbServiceIpStatsServiceList := setSliceGslbServiceIpStatsServiceList(res)
+		d.Set("service_list", GslbServiceIpStatsServiceList)
 		GslbServiceIpStatsStats := setObjectGslbServiceIpStatsStats(res)
 		d.Set("stats", GslbServiceIpStatsStats)
 		if err != nil {
@@ -94,6 +125,31 @@ func setSliceGslbServiceIpStatsPortList(d edpt.DataGslbServiceIpStats) []map[str
 }
 
 func setObjectGslbServiceIpStatsPortListStats(d edpt.GslbServiceIpStatsPortListStats) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+
+	in["active"] = d.Active
+
+	in["current"] = d.Current
+	result = append(result, in)
+	return result
+}
+
+func setSliceGslbServiceIpStatsServiceList(d edpt.DataGslbServiceIpStats) []map[string]interface{} {
+	result := []map[string]interface{}{}
+
+	for _, item := range d.DtGslbServiceIpStats.ServiceList {
+		in := make(map[string]interface{})
+		in["port_num"] = item.PortNum
+		in["port_proto"] = item.PortProto
+		in["label"] = item.Label
+		in["stats"] = setObjectGslbServiceIpStatsServiceListStats(item.Stats)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectGslbServiceIpStatsServiceListStats(d edpt.GslbServiceIpStatsServiceListStats) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
 
@@ -140,6 +196,34 @@ func getObjectGslbServiceIpStatsPortListStats(d []interface{}) edpt.GslbServiceI
 	return ret
 }
 
+func getSliceGslbServiceIpStatsServiceList(d []interface{}) []edpt.GslbServiceIpStatsServiceList {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbServiceIpStatsServiceList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbServiceIpStatsServiceList
+		oi.PortNum = in["port_num"].(int)
+		oi.PortProto = in["port_proto"].(string)
+		oi.Label = in["label"].(string)
+		oi.Stats = getObjectGslbServiceIpStatsServiceListStats(in["stats"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectGslbServiceIpStatsServiceListStats(d []interface{}) edpt.GslbServiceIpStatsServiceListStats {
+
+	count1 := len(d)
+	var ret edpt.GslbServiceIpStatsServiceListStats
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Active = in["active"].(int)
+		ret.Current = in["current"].(int)
+	}
+	return ret
+}
+
 func getObjectGslbServiceIpStatsStats(d []interface{}) edpt.GslbServiceIpStatsStats {
 
 	count1 := len(d)
@@ -158,6 +242,8 @@ func dataToEndpointGslbServiceIpStats(d *schema.ResourceData) edpt.GslbServiceIp
 	ret.NodeName = d.Get("node_name").(string)
 
 	ret.PortList = getSliceGslbServiceIpStatsPortList(d.Get("port_list").([]interface{}))
+
+	ret.ServiceList = getSliceGslbServiceIpStatsServiceList(d.Get("service_list").([]interface{}))
 
 	ret.Stats = getObjectGslbServiceIpStatsStats(d.Get("stats").([]interface{}))
 	return ret

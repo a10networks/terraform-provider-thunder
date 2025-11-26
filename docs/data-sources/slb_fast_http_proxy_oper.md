@@ -296,5 +296,3 @@ Optional:
 - `url_switching_enqueue` (Number)
 - `url_switching_ok` (Number)
 - `wrong_resp_header` (Number)
-
-

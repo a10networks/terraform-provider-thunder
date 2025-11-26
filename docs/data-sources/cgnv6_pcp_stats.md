@@ -76,5 +76,3 @@ Optional:
 - `unsupp_protocol` (Number) Unsupported Mapping Protocol
 - `unsupported_version` (Number) Unsupported PCP version
 - `user_quota_exceeded` (Number) User Quota Exceeded
-
-

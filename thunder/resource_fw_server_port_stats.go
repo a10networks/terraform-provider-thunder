@@ -98,8 +98,8 @@ func resourceFwServerPortStats() *schema.Resource {
 					},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"server_name": {
+				Type: schema.TypeString, Required: true, Description: "Server_name",
 			},
 		},
 	}
@@ -198,6 +198,6 @@ func dataToEndpointFwServerPortStats(d *schema.ResourceData) edpt.FwServerPortSt
 
 	ret.Stats = getObjectFwServerPortStatsStats(d.Get("stats").([]interface{}))
 
-	ret.Name = d.Get("name").(string)
+	ret.Server_name = d.Get("server_name").(string)
 	return ret
 }

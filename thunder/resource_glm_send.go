@@ -19,6 +19,9 @@ func resourceGlmSend() *schema.Resource {
 			"ha_status": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Send a ELM HA status request",
 			},
+			"harmony": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Harmony specific single GLM license request",
+			},
 			"license_request": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Immediately send a single GLM license request",
 			},
@@ -90,6 +93,7 @@ func resourceGlmSendRead(ctx context.Context, d *schema.ResourceData, meta inter
 func dataToEndpointGlmSend(d *schema.ResourceData) edpt.GlmSend {
 	var ret edpt.GlmSend
 	ret.Inst.HaStatus = d.Get("ha_status").(int)
+	ret.Inst.Harmony = d.Get("harmony").(int)
 	ret.Inst.LicenseRequest = d.Get("license_request").(int)
 	return ret
 }

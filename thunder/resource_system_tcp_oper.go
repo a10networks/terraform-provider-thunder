@@ -63,6 +63,9 @@ func resourceSystemTcpOper() *schema.Resource {
 									"inerrs": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"sock_init": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 									"sock_alloc": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
@@ -120,6 +123,9 @@ func resourceSystemTcpOper() *schema.Resource {
 									"syn_rcv_ack": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"syn_rcv_rexmit": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 									"tcpabortontimeout": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
@@ -127,6 +133,12 @@ func resourceSystemTcpOper() *schema.Resource {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 									"exceedmss": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"invalid_drop": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"delayed_free": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 								},
@@ -213,6 +225,7 @@ func setSliceSystemTcpOperOperTcpCpuList(d []edpt.SystemTcpOperOperTcpCpuList) [
 		in["tfo_actives"] = item.Tfo_actives
 		in["tfo_denied"] = item.Tfo_denied
 		in["inerrs"] = item.Inerrs
+		in["sock_init"] = item.Sock_init
 		in["sock_alloc"] = item.Sock_alloc
 		in["orphan_count"] = item.Orphan_count
 		in["mem_alloc"] = item.Mem_alloc
@@ -232,9 +245,12 @@ func setSliceSystemTcpOperOperTcpCpuList(d []edpt.SystemTcpOperOperTcpCpuList) [
 		in["syn_rcv_rstack"] = item.Syn_rcv_rstack
 		in["syn_rcv_rst"] = item.Syn_rcv_rst
 		in["syn_rcv_ack"] = item.Syn_rcv_ack
+		in["syn_rcv_rexmit"] = item.Syn_rcv_rexmit
 		in["tcpabortontimeout"] = item.Tcpabortontimeout
 		in["ax_rexmit_syn"] = item.Ax_rexmit_syn
 		in["exceedmss"] = item.Exceedmss
+		in["invalid_drop"] = item.Invalid_drop
+		in["delayed_free"] = item.Delayed_free
 		result = append(result, in)
 	}
 	return result
@@ -294,6 +310,7 @@ func getSliceSystemTcpOperOperTcpCpuList(d []interface{}) []edpt.SystemTcpOperOp
 		oi.Tfo_actives = in["tfo_actives"].(int)
 		oi.Tfo_denied = in["tfo_denied"].(int)
 		oi.Inerrs = in["inerrs"].(int)
+		oi.Sock_init = in["sock_init"].(int)
 		oi.Sock_alloc = in["sock_alloc"].(int)
 		oi.Orphan_count = in["orphan_count"].(int)
 		oi.Mem_alloc = in["mem_alloc"].(int)
@@ -313,9 +330,12 @@ func getSliceSystemTcpOperOperTcpCpuList(d []interface{}) []edpt.SystemTcpOperOp
 		oi.Syn_rcv_rstack = in["syn_rcv_rstack"].(int)
 		oi.Syn_rcv_rst = in["syn_rcv_rst"].(int)
 		oi.Syn_rcv_ack = in["syn_rcv_ack"].(int)
+		oi.Syn_rcv_rexmit = in["syn_rcv_rexmit"].(int)
 		oi.Tcpabortontimeout = in["tcpabortontimeout"].(int)
 		oi.Ax_rexmit_syn = in["ax_rexmit_syn"].(int)
 		oi.Exceedmss = in["exceedmss"].(int)
+		oi.Invalid_drop = in["invalid_drop"].(int)
+		oi.Delayed_free = in["delayed_free"].(int)
 		ret = append(ret, oi)
 	}
 	return ret

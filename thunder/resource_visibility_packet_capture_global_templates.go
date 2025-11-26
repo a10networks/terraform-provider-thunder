@@ -961,6 +961,9 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															"ipv6_eh_malformed": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for IPv6 Malformed Extension Header Drop",
 															},
+															"tcp_udp_zero_port": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for TCP UDP Zero Port Drop",
+															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 															},
@@ -1120,6 +1123,9 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															},
 															"ipv6_eh_malformed": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for IPv6 Malformed Extension Header Drop",
+															},
+															"tcp_udp_zero_port": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for TCP UDP Zero Port Drop",
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -1615,15 +1621,6 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															"kerberos_other_error": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Kerberos Other Error",
 															},
-															"ntlm_authentication_failure": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Authentication Failure",
-															},
-															"ntlm_proto_negotiation_failure": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Protocol Negotiation Failure",
-															},
-															"ntlm_session_setup_failed": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Session Setup Failure",
-															},
 															"kerberos_request_dropped": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Kerberos Dropped Request",
 															},
@@ -1641,33 +1638,6 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															},
 															"kerberos_polling_control_error": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Kerberos Polling Control Error",
-															},
-															"ntlm_prepare_req_failed": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Prepare Request Failed",
-															},
-															"ntlm_timeout_error": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Timeout",
-															},
-															"ntlm_other_error": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Other Error",
-															},
-															"ntlm_request_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Dropped Request",
-															},
-															"ntlm_response_failure": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Failure Response",
-															},
-															"ntlm_response_error": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Error Response",
-															},
-															"ntlm_response_timeout": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Timeout Response",
-															},
-															"ntlm_job_start_error": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Job Start Error",
-															},
-															"ntlm_polling_control_error": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Polling Control Error",
 															},
 															"kerberos_pw_expiry": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Kerberos password expiry",
@@ -1706,15 +1676,6 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															"kerberos_other_error": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Kerberos Other Error",
 															},
-															"ntlm_authentication_failure": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Authentication Failure",
-															},
-															"ntlm_proto_negotiation_failure": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Protocol Negotiation Failure",
-															},
-															"ntlm_session_setup_failed": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Session Setup Failure",
-															},
 															"kerberos_request_dropped": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Kerberos Dropped Request",
 															},
@@ -1732,33 +1693,6 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															},
 															"kerberos_polling_control_error": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Kerberos Polling Control Error",
-															},
-															"ntlm_prepare_req_failed": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Prepare Request Failed",
-															},
-															"ntlm_timeout_error": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Timeout",
-															},
-															"ntlm_other_error": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Other Error",
-															},
-															"ntlm_request_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Dropped Request",
-															},
-															"ntlm_response_failure": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Failure Response",
-															},
-															"ntlm_response_error": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Error Response",
-															},
-															"ntlm_response_timeout": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Timeout Response",
-															},
-															"ntlm_job_start_error": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Job Start Error",
-															},
-															"ntlm_polling_control_error": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Polling Control Error",
 															},
 															"kerberos_pw_expiry": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Kerberos password expiry",
@@ -4100,54 +4034,6 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 											},
 										},
 									},
-									"cgnv6_global": {
-										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"uuid": {
-													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-												},
-												"trigger_stats_inc": {
-													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"udp_total_ports_allocated": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total UDP ports allocated",
-															},
-															"icmp_total_ports_allocated": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total ICMP ports allocated",
-															},
-															"uuid": {
-																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-															},
-														},
-													},
-												},
-												"trigger_stats_rate": {
-													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"threshold_exceeded_by": {
-																Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
-															},
-															"duration": {
-																Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
-															},
-															"udp_total_ports_allocated": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total UDP ports allocated",
-															},
-															"icmp_total_ports_allocated": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total ICMP ports allocated",
-															},
-															"uuid": {
-																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-															},
-														},
-													},
-												},
-											},
-										},
-									},
 									"cgnv6_ddos_proc": {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 										Elem: &schema.Resource{
@@ -4201,6 +4087,15 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															"syn_cookie_verification_failed": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for SYN cookie verification failed",
 															},
+															"l3_entry_del_to_hw_failure": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L3 entry HW del failure",
+															},
+															"l4_entry_del_to_hw_failure": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW del failure",
+															},
+															"l4_entry_add_to_hw_failure": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW add failure",
+															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 															},
@@ -4258,6 +4153,15 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															},
 															"syn_cookie_verification_failed": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for SYN cookie verification failed",
+															},
+															"l3_entry_del_to_hw_failure": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L3 entry HW del failure",
+															},
+															"l4_entry_del_to_hw_failure": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW del failure",
+															},
+															"l4_entry_add_to_hw_failure": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L4 entry HW add failure",
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -4762,96 +4666,6 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															},
 															"tcp_out_of_order_drop": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for TCP Out-of-Order Drop",
-															},
-															"uuid": {
-																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-															},
-														},
-													},
-												},
-											},
-										},
-									},
-									"cgnv6_lsn_radius": {
-										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"uuid": {
-													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-												},
-												"trigger_stats_inc": {
-													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"radius_request_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)",
-															},
-															"request_bad_secret_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Bad Secret Dropped",
-															},
-															"request_no_key_vap_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped",
-															},
-															"request_malformed_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Malformed Dropped",
-															},
-															"request_ignored": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Ignored",
-															},
-															"radius_table_full": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Table Full)",
-															},
-															"secret_not_configured_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Secret Not Configured Dropped",
-															},
-															"ha_standby_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Standby Dropped",
-															},
-															"invalid_key": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Radius Request has Invalid Key Field",
-															},
-															"uuid": {
-																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-															},
-														},
-													},
-												},
-												"trigger_stats_rate": {
-													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"threshold_exceeded_by": {
-																Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
-															},
-															"duration": {
-																Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
-															},
-															"radius_request_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)",
-															},
-															"request_bad_secret_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Bad Secret Dropped",
-															},
-															"request_no_key_vap_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped",
-															},
-															"request_malformed_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Malformed Dropped",
-															},
-															"request_ignored": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Ignored",
-															},
-															"radius_table_full": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Table Full)",
-															},
-															"secret_not_configured_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Secret Not Configured Dropped",
-															},
-															"ha_standby_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Standby Dropped",
-															},
-															"invalid_key": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Radius Request has Invalid Key Field",
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -6032,96 +5846,6 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 											},
 										},
 									},
-									"fw_rad_server": {
-										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"uuid": {
-													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-												},
-												"trigger_stats_inc": {
-													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"radius_request_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)",
-															},
-															"request_bad_secret_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Bad Secret Dropped",
-															},
-															"request_no_key_vap_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped",
-															},
-															"request_malformed_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Malformed Dropped",
-															},
-															"request_ignored": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Table Full Dropped",
-															},
-															"radius_table_full": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Table Full)",
-															},
-															"ha_standby_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Standby Dropped",
-															},
-															"ipv6_prefix_length_mismatch": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Framed IPV6 Prefix Length Mismatch",
-															},
-															"invalid_key": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Radius Request has Invalid Key Field",
-															},
-															"uuid": {
-																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-															},
-														},
-													},
-												},
-												"trigger_stats_rate": {
-													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"threshold_exceeded_by": {
-																Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
-															},
-															"duration": {
-																Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
-															},
-															"radius_request_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Malformed Packet)",
-															},
-															"request_bad_secret_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Bad Secret Dropped",
-															},
-															"request_no_key_vap_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request No Key Attribute Dropped",
-															},
-															"request_malformed_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Malformed Dropped",
-															},
-															"request_ignored": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Table Full Dropped",
-															},
-															"radius_table_full": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for RADIUS Request Dropped (Table Full)",
-															},
-															"ha_standby_dropped": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for HA Standby Dropped",
-															},
-															"ipv6_prefix_length_mismatch": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Framed IPV6 Prefix Length Mismatch",
-															},
-															"invalid_key": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Radius Request has Invalid Key Field",
-															},
-															"uuid": {
-																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-															},
-														},
-													},
-												},
-											},
-										},
-									},
 									"fw_tcp_syn_cookie": {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 										Elem: &schema.Resource{
@@ -6236,25 +5960,28 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 													Elem: &schema.Resource{
 														Schema: map[string]*schema.Schema{
 															"out_of_session_memory": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Out of Tunnel Memory",
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Out of Tunnel Memory for GTP-C",
+															},
+															"blade_out_of_session_memory": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Out of Tunnel Memory on PU2",
 															},
 															"gtp_smp_path_check_failed": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP PATH check Failed",
 															},
-															"gtp_smp_check_failed": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP check Failed",
+															"gtp_smp_c_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C SMP check Failed",
 															},
-															"gtp_smp_session_count_check_failed": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U session count is not in range of 0-11 in GTP-C SMP",
+															"blade_gtp_smp_path_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP PATH check Failed on PU2",
 															},
-															"gtp_c_ref_count_smp_exceeded": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C session count on C-smp exceeded 2",
-															},
-															"gtp_u_smp_in_rml_with_sess": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U smp is marked RML with U-session",
+															"blade_gtp_smp_c_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C SMP check Failed on PU2",
 															},
 															"gtp_tunnel_rate_limit_entry_create_fail": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Tunnel Level Rate Limit Entry Create Failure",
+															},
+															"gtp_u_tunnel_rate_limit_entry_create_fa": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U Tunnel Level Rate Limit Entry Create Failure",
 															},
 															"gtp_rate_limit_smp_create_failure": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit SMP Create Failure",
@@ -6265,8 +5992,62 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															"gtp_rate_limit_entry_create_failure": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit Entry Create Failure",
 															},
+															"blade_gtp_rate_limit_smp_create_failure": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit SMP Create Failure on PU2",
+															},
+															"blade_gtp_rate_limit_t3_ctr_create_fail": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit Dynamic Counters Create Failure on PU2",
+															},
+															"blade_gtp_rate_limit_entry_create_failu": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit Entry Create Failure on PU2",
+															},
 															"gtp_smp_dec_sess_count_check_failed": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U session count is 0 in GTP-C SMP",
+															},
+															"gtp_u_smp_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP U-SMP check Failed",
+															},
+															"gtp_info_ext_not_found": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-Info ext not found while freeing C-smp",
+															},
+															"blade_gtp_smp_dec_sess_count_check_fail": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U session count is 0 in GTP-C SMP on PU2",
+															},
+															"blade_gtp_u_smp_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP U-SMP check Failed on PU2",
+															},
+															"blade_gtp_info_ext_not_found": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-Info ext not found while freeing C-smp on PU2",
+															},
+															"blade_gtp_smp_session_count_check_faile": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U session count is not in range of 0-11 in GTP-C SMP on PU2",
+															},
+															"gtp_c_smp_sig_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C SMP signature check Failed",
+															},
+															"blade_gtp_c_smp_sig_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C SMP signature check Failed on PU2",
+															},
+															"gtp_u_smp_sig_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP signature check Failed",
+															},
+															"blade_gtp_u_smp_sig_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U SMP signature check Failed on PU2",
+															},
+															"gtp_smp_sig_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP signature check Failed",
+															},
+															"blade_gtp_smp_sig_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP signature check Failed on PU2",
+															},
+															"gtp_c_fail_conn_create_slow": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C packet failed creating L4-session in slowpath",
+															},
+															"gtp_u_fail_conn_create_slow": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U packet failed while creating L4-session in slowpath",
+															},
+															"gtp_pathm_fail_conn_create_slow": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP path packet failed while creating L4-session in slowpath",
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -6285,25 +6066,28 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 																Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
 															},
 															"out_of_session_memory": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Out of Tunnel Memory",
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Out of Tunnel Memory for GTP-C",
+															},
+															"blade_out_of_session_memory": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Out of Tunnel Memory on PU2",
 															},
 															"gtp_smp_path_check_failed": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP PATH check Failed",
 															},
-															"gtp_smp_check_failed": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP check Failed",
+															"gtp_smp_c_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C SMP check Failed",
 															},
-															"gtp_smp_session_count_check_failed": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U session count is not in range of 0-11 in GTP-C SMP",
+															"blade_gtp_smp_path_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP PATH check Failed on PU2",
 															},
-															"gtp_c_ref_count_smp_exceeded": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C session count on C-smp exceeded 2",
-															},
-															"gtp_u_smp_in_rml_with_sess": {
-																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U smp is marked RML with U-session",
+															"blade_gtp_smp_c_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C SMP check Failed on PU2",
 															},
 															"gtp_tunnel_rate_limit_entry_create_fail": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Tunnel Level Rate Limit Entry Create Failure",
+															},
+															"gtp_u_tunnel_rate_limit_entry_create_fa": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U Tunnel Level Rate Limit Entry Create Failure",
 															},
 															"gtp_rate_limit_smp_create_failure": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit SMP Create Failure",
@@ -6314,8 +6098,62 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															"gtp_rate_limit_entry_create_failure": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit Entry Create Failure",
 															},
+															"blade_gtp_rate_limit_smp_create_failure": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit SMP Create Failure on PU2",
+															},
+															"blade_gtp_rate_limit_t3_ctr_create_fail": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit Dynamic Counters Create Failure on PU2",
+															},
+															"blade_gtp_rate_limit_entry_create_failu": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit Entry Create Failure on PU2",
+															},
 															"gtp_smp_dec_sess_count_check_failed": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U session count is 0 in GTP-C SMP",
+															},
+															"gtp_u_smp_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP U-SMP check Failed",
+															},
+															"gtp_info_ext_not_found": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-Info ext not found while freeing C-smp",
+															},
+															"blade_gtp_smp_dec_sess_count_check_fail": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U session count is 0 in GTP-C SMP on PU2",
+															},
+															"blade_gtp_u_smp_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP U-SMP check Failed on PU2",
+															},
+															"blade_gtp_info_ext_not_found": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-Info ext not found while freeing C-smp on PU2",
+															},
+															"blade_gtp_smp_session_count_check_faile": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U session count is not in range of 0-11 in GTP-C SMP on PU2",
+															},
+															"gtp_c_smp_sig_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C SMP signature check Failed",
+															},
+															"blade_gtp_c_smp_sig_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C SMP signature check Failed on PU2",
+															},
+															"gtp_u_smp_sig_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP signature check Failed",
+															},
+															"blade_gtp_u_smp_sig_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U SMP signature check Failed on PU2",
+															},
+															"gtp_smp_sig_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP signature check Failed",
+															},
+															"blade_gtp_smp_sig_check_failed": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP signature check Failed on PU2",
+															},
+															"gtp_c_fail_conn_create_slow": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C packet failed creating L4-session in slowpath",
+															},
+															"gtp_u_fail_conn_create_slow": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U packet failed while creating L4-session in slowpath",
+															},
+															"gtp_pathm_fail_conn_create_slow": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP path packet failed while creating L4-session in slowpath",
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -9259,6 +9097,15 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															"so_pkts_l2redirect_port_retrieval_error": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect pkt port not retrieved",
 															},
+															"so_pkts_l2redirect_loop_detect_drop": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect pkt loop detected and dropped",
+															},
+															"so_pkts_l2redirect_frag_vlan_retrieval_": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect pkt frag vlan not retrieved",
+															},
+															"so_pkts_l2redirect_tx_frag_vlan_add_fai": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect tx pkt failed to add vlan",
+															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 															},
@@ -9316,6 +9163,15 @@ func resourceVisibilityPacketCaptureGlobalTemplates() *schema.Resource {
 															},
 															"so_pkts_l2redirect_port_retrieval_error": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect pkt port not retrieved",
+															},
+															"so_pkts_l2redirect_loop_detect_drop": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect pkt loop detected and dropped",
+															},
+															"so_pkts_l2redirect_frag_vlan_retrieval_": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect pkt frag vlan not retrieved",
+															},
+															"so_pkts_l2redirect_tx_frag_vlan_add_fai": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect tx pkt failed to add vlan",
 															},
 															"uuid": {
 																Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -9724,10 +9580,10 @@ func resourceVisibilityPacketCaptureGlobalTemplatesRead(ctx context.Context, d *
 	return diags
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesActivate2617(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesActivate2617 {
+func getObjectVisibilityPacketCaptureGlobalTemplatesActivate2718(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesActivate2718 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesActivate2617
+	var ret edpt.VisibilityPacketCaptureGlobalTemplatesActivate2718
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Template = in["template"].(string)
@@ -9801,7 +9657,6 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.SlbSslCertRevoke = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslCertRevoke(in["slb_ssl_cert_revoke"].([]interface{}))
 		ret.SlbSslForwardProxy = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeSlbSslForwardProxy(in["slb_ssl_forward_proxy"].([]interface{}))
 		ret.VpnError = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeVpnError(in["vpn_error"].([]interface{}))
-		ret.Cgnv6Global = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Global(in["cgnv6_global"].([]interface{}))
 		ret.Cgnv6DdosProc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc(in["cgnv6_ddos_proc"].([]interface{}))
 		ret.Cgnv6Lsn = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Lsn(in["cgnv6_lsn"].([]interface{}))
 		ret.Cgnv6LsnAlgEsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgEsp(in["cgnv6_lsn_alg_esp"].([]interface{}))
@@ -9810,7 +9665,6 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.Cgnv6LsnAlgSip = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgSip(in["cgnv6_lsn_alg_sip"].([]interface{}))
 		ret.Cgnv6LsnAlgMgcp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgMgcp(in["cgnv6_lsn_alg_mgcp"].([]interface{}))
 		ret.Cgnv6LsnAlgH323 = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnAlgH323(in["cgnv6_lsn_alg_h323"].([]interface{}))
-		ret.Cgnv6LsnRadius = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius(in["cgnv6_lsn_radius"].([]interface{}))
 		ret.Cgnv6Nat64Global = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Nat64Global(in["cgnv6_nat64_global"].([]interface{}))
 		ret.Cgnv6DsLiteGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DsLiteGlobal(in["cgnv6_ds_lite_global"].([]interface{}))
 		ret.Cgnv6FixedNatGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6FixedNatGlobal(in["cgnv6_fixed_nat_global"].([]interface{}))
@@ -9828,7 +9682,6 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.FwGlobal = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGlobal(in["fw_global"].([]interface{}))
 		ret.FwAlgRtsp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgRtsp(in["fw_alg_rtsp"].([]interface{}))
 		ret.FwAlgPptp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwAlgPptp(in["fw_alg_pptp"].([]interface{}))
-		ret.FwRadServer = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer(in["fw_rad_server"].([]interface{}))
 		ret.FwTcpSynCookie = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie(in["fw_tcp_syn_cookie"].([]interface{}))
 		ret.FwDdosProtection = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwDdosProtection(in["fw_ddos_protection"].([]interface{}))
 		ret.FwGtp = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwGtp(in["fw_gtp"].([]interface{}))
@@ -10326,6 +10179,7 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.Ipv6_eh_none = in["ipv6_eh_none"].(int)
 		ret.Ipv6_eh_other = in["ipv6_eh_other"].(int)
 		ret.Ipv6_eh_malformed = in["ipv6_eh_malformed"].(int)
+		ret.Tcp_udp_zero_port = in["tcp_udp_zero_port"].(int)
 		//omit uuid
 	}
 	return ret
@@ -10387,6 +10241,7 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.Ipv6_eh_none = in["ipv6_eh_none"].(int)
 		ret.Ipv6_eh_other = in["ipv6_eh_other"].(int)
 		ret.Ipv6_eh_malformed = in["ipv6_eh_malformed"].(int)
+		ret.Tcp_udp_zero_port = in["tcp_udp_zero_port"].(int)
 		//omit uuid
 	}
 	return ret
@@ -10694,24 +10549,12 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		in := d[0].(map[string]interface{})
 		ret.KerberosTimeoutError = in["kerberos_timeout_error"].(int)
 		ret.KerberosOtherError = in["kerberos_other_error"].(int)
-		ret.NtlmAuthenticationFailure = in["ntlm_authentication_failure"].(int)
-		ret.NtlmProtoNegotiationFailure = in["ntlm_proto_negotiation_failure"].(int)
-		ret.NtlmSessionSetupFailed = in["ntlm_session_setup_failed"].(int)
 		ret.KerberosRequestDropped = in["kerberos_request_dropped"].(int)
 		ret.KerberosResponseFailure = in["kerberos_response_failure"].(int)
 		ret.KerberosResponseError = in["kerberos_response_error"].(int)
 		ret.KerberosResponseTimeout = in["kerberos_response_timeout"].(int)
 		ret.KerberosJobStartError = in["kerberos_job_start_error"].(int)
 		ret.KerberosPollingControlError = in["kerberos_polling_control_error"].(int)
-		ret.NtlmPrepareReqFailed = in["ntlm_prepare_req_failed"].(int)
-		ret.NtlmTimeoutError = in["ntlm_timeout_error"].(int)
-		ret.NtlmOtherError = in["ntlm_other_error"].(int)
-		ret.NtlmRequestDropped = in["ntlm_request_dropped"].(int)
-		ret.NtlmResponseFailure = in["ntlm_response_failure"].(int)
-		ret.NtlmResponseError = in["ntlm_response_error"].(int)
-		ret.NtlmResponseTimeout = in["ntlm_response_timeout"].(int)
-		ret.NtlmJobStartError = in["ntlm_job_start_error"].(int)
-		ret.NtlmPollingControlError = in["ntlm_polling_control_error"].(int)
 		ret.KerberosPwExpiry = in["kerberos_pw_expiry"].(int)
 		ret.KerberosPwChangeFailure = in["kerberos_pw_change_failure"].(int)
 		ret.KerberosValidateKdcFailure = in["kerberos_validate_kdc_failure"].(int)
@@ -10732,24 +10575,12 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.Duration = in["duration"].(int)
 		ret.KerberosTimeoutError = in["kerberos_timeout_error"].(int)
 		ret.KerberosOtherError = in["kerberos_other_error"].(int)
-		ret.NtlmAuthenticationFailure = in["ntlm_authentication_failure"].(int)
-		ret.NtlmProtoNegotiationFailure = in["ntlm_proto_negotiation_failure"].(int)
-		ret.NtlmSessionSetupFailed = in["ntlm_session_setup_failed"].(int)
 		ret.KerberosRequestDropped = in["kerberos_request_dropped"].(int)
 		ret.KerberosResponseFailure = in["kerberos_response_failure"].(int)
 		ret.KerberosResponseError = in["kerberos_response_error"].(int)
 		ret.KerberosResponseTimeout = in["kerberos_response_timeout"].(int)
 		ret.KerberosJobStartError = in["kerberos_job_start_error"].(int)
 		ret.KerberosPollingControlError = in["kerberos_polling_control_error"].(int)
-		ret.NtlmPrepareReqFailed = in["ntlm_prepare_req_failed"].(int)
-		ret.NtlmTimeoutError = in["ntlm_timeout_error"].(int)
-		ret.NtlmOtherError = in["ntlm_other_error"].(int)
-		ret.NtlmRequestDropped = in["ntlm_request_dropped"].(int)
-		ret.NtlmResponseFailure = in["ntlm_response_failure"].(int)
-		ret.NtlmResponseError = in["ntlm_response_error"].(int)
-		ret.NtlmResponseTimeout = in["ntlm_response_timeout"].(int)
-		ret.NtlmJobStartError = in["ntlm_job_start_error"].(int)
-		ret.NtlmPollingControlError = in["ntlm_polling_control_error"].(int)
 		ret.KerberosPwExpiry = in["kerberos_pw_expiry"].(int)
 		ret.KerberosPwChangeFailure = in["kerberos_pw_change_failure"].(int)
 		ret.KerberosValidateKdcFailure = in["kerberos_validate_kdc_failure"].(int)
@@ -11732,47 +11563,6 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Global(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Global {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6Global
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6GlobalTriggerStatsInc(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6GlobalTriggerStatsRate(in["trigger_stats_rate"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6GlobalTriggerStatsInc(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6GlobalTriggerStatsInc {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6GlobalTriggerStatsInc
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.UdpTotalPortsAllocated = in["udp_total_ports_allocated"].(int)
-		ret.IcmpTotalPortsAllocated = in["icmp_total_ports_allocated"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6GlobalTriggerStatsRate(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6GlobalTriggerStatsRate {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6GlobalTriggerStatsRate
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
-		ret.Duration = in["duration"].(int)
-		ret.UdpTotalPortsAllocated = in["udp_total_ports_allocated"].(int)
-		ret.IcmpTotalPortsAllocated = in["icmp_total_ports_allocated"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
 func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6DdosProc {
 
 	count1 := len(d)
@@ -11806,6 +11596,9 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.L3_entry_remove_from_bgp_failure = in["l3_entry_remove_from_bgp_failure"].(int)
 		ret.L3_entry_add_to_hw_failure = in["l3_entry_add_to_hw_failure"].(int)
 		ret.Syn_cookie_verification_failed = in["syn_cookie_verification_failed"].(int)
+		ret.L3_entry_del_to_hw_failure = in["l3_entry_del_to_hw_failure"].(int)
+		ret.L4_entry_del_to_hw_failure = in["l4_entry_del_to_hw_failure"].(int)
+		ret.L4_entry_add_to_hw_failure = in["l4_entry_add_to_hw_failure"].(int)
 		//omit uuid
 	}
 	return ret
@@ -11833,6 +11626,9 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.L3_entry_remove_from_bgp_failure = in["l3_entry_remove_from_bgp_failure"].(int)
 		ret.L3_entry_add_to_hw_failure = in["l3_entry_add_to_hw_failure"].(int)
 		ret.Syn_cookie_verification_failed = in["syn_cookie_verification_failed"].(int)
+		ret.L3_entry_del_to_hw_failure = in["l3_entry_del_to_hw_failure"].(int)
+		ret.L4_entry_del_to_hw_failure = in["l4_entry_del_to_hw_failure"].(int)
+		ret.L4_entry_add_to_hw_failure = in["l4_entry_add_to_hw_failure"].(int)
 		//omit uuid
 	}
 	return ret
@@ -12176,61 +11972,6 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.Duration = in["duration"].(int)
 		ret.ParseError = in["parse_error"].(int)
 		ret.TcpOutOfOrderDrop = in["tcp_out_of_order_drop"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadius
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate(in["trigger_stats_rate"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsInc
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
-		ret.RequestBadSecretDropped = in["request_bad_secret_dropped"].(int)
-		ret.RequestNoKeyVapDropped = in["request_no_key_vap_dropped"].(int)
-		ret.RequestMalformedDropped = in["request_malformed_dropped"].(int)
-		ret.RequestIgnored = in["request_ignored"].(int)
-		ret.RadiusTableFull = in["radius_table_full"].(int)
-		ret.SecretNotConfiguredDropped = in["secret_not_configured_dropped"].(int)
-		ret.HaStandbyDropped = in["ha_standby_dropped"].(int)
-		ret.InvalidKey = in["invalid_key"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeCgnv6LsnRadiusTriggerStatsRate
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
-		ret.Duration = in["duration"].(int)
-		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
-		ret.RequestBadSecretDropped = in["request_bad_secret_dropped"].(int)
-		ret.RequestNoKeyVapDropped = in["request_no_key_vap_dropped"].(int)
-		ret.RequestMalformedDropped = in["request_malformed_dropped"].(int)
-		ret.RequestIgnored = in["request_ignored"].(int)
-		ret.RadiusTableFull = in["radius_table_full"].(int)
-		ret.SecretNotConfiguredDropped = in["secret_not_configured_dropped"].(int)
-		ret.HaStandbyDropped = in["ha_standby_dropped"].(int)
-		ret.InvalidKey = in["invalid_key"].(int)
 		//omit uuid
 	}
 	return ret
@@ -13051,61 +12792,6 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServer
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		//omit uuid
-		ret.TriggerStatsInc = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc(in["trigger_stats_inc"].([]interface{}))
-		ret.TriggerStatsRate = getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate(in["trigger_stats_rate"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsInc
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
-		ret.RequestBadSecretDropped = in["request_bad_secret_dropped"].(int)
-		ret.RequestNoKeyVapDropped = in["request_no_key_vap_dropped"].(int)
-		ret.RequestMalformedDropped = in["request_malformed_dropped"].(int)
-		ret.RequestIgnored = in["request_ignored"].(int)
-		ret.RadiusTableFull = in["radius_table_full"].(int)
-		ret.HaStandbyDropped = in["ha_standby_dropped"].(int)
-		ret.Ipv6PrefixLengthMismatch = in["ipv6_prefix_length_mismatch"].(int)
-		ret.InvalidKey = in["invalid_key"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwRadServerTriggerStatsRate
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
-		ret.Duration = in["duration"].(int)
-		ret.RadiusRequestDropped = in["radius_request_dropped"].(int)
-		ret.RequestBadSecretDropped = in["request_bad_secret_dropped"].(int)
-		ret.RequestNoKeyVapDropped = in["request_no_key_vap_dropped"].(int)
-		ret.RequestMalformedDropped = in["request_malformed_dropped"].(int)
-		ret.RequestIgnored = in["request_ignored"].(int)
-		ret.RadiusTableFull = in["radius_table_full"].(int)
-		ret.HaStandbyDropped = in["ha_standby_dropped"].(int)
-		ret.Ipv6PrefixLengthMismatch = in["ipv6_prefix_length_mismatch"].(int)
-		ret.InvalidKey = in["invalid_key"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
 func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie(d []interface{}) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjStatsChangeFwTcpSynCookie {
 
 	count1 := len(d)
@@ -13210,16 +12896,35 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.OutOfSessionMemory = in["out_of_session_memory"].(int)
+		ret.BladeOutOfSessionMemory = in["blade_out_of_session_memory"].(int)
 		ret.GtpSmpPathCheckFailed = in["gtp_smp_path_check_failed"].(int)
-		ret.GtpSmpCheckFailed = in["gtp_smp_check_failed"].(int)
-		ret.GtpSmpSessionCountCheckFailed = in["gtp_smp_session_count_check_failed"].(int)
-		ret.GtpCRefCountSmpExceeded = in["gtp_c_ref_count_smp_exceeded"].(int)
-		ret.GtpUSmpInRmlWithSess = in["gtp_u_smp_in_rml_with_sess"].(int)
+		ret.GtpSmpCCheckFailed = in["gtp_smp_c_check_failed"].(int)
+		ret.BladeGtpSmpPathCheckFailed = in["blade_gtp_smp_path_check_failed"].(int)
+		ret.BladeGtpSmpCCheckFailed = in["blade_gtp_smp_c_check_failed"].(int)
 		ret.GtpTunnelRateLimitEntryCreateFail = in["gtp_tunnel_rate_limit_entry_create_fail"].(int)
+		ret.GtpUTunnelRateLimitEntryCreateFa = in["gtp_u_tunnel_rate_limit_entry_create_fa"].(int)
 		ret.GtpRateLimitSmpCreateFailure = in["gtp_rate_limit_smp_create_failure"].(int)
 		ret.GtpRateLimitT3CtrCreateFailure = in["gtp_rate_limit_t3_ctr_create_failure"].(int)
 		ret.GtpRateLimitEntryCreateFailure = in["gtp_rate_limit_entry_create_failure"].(int)
+		ret.BladeGtpRateLimitSmpCreateFailure = in["blade_gtp_rate_limit_smp_create_failure"].(int)
+		ret.BladeGtpRateLimitT3CtrCreateFail = in["blade_gtp_rate_limit_t3_ctr_create_fail"].(int)
+		ret.BladeGtpRateLimitEntryCreateFailu = in["blade_gtp_rate_limit_entry_create_failu"].(int)
 		ret.GtpSmpDecSessCountCheckFailed = in["gtp_smp_dec_sess_count_check_failed"].(int)
+		ret.GtpUSmpCheckFailed = in["gtp_u_smp_check_failed"].(int)
+		ret.GtpInfoExtNotFound = in["gtp_info_ext_not_found"].(int)
+		ret.BladeGtpSmpDecSessCountCheckFail = in["blade_gtp_smp_dec_sess_count_check_fail"].(int)
+		ret.BladeGtpUSmpCheckFailed = in["blade_gtp_u_smp_check_failed"].(int)
+		ret.BladeGtpInfoExtNotFound = in["blade_gtp_info_ext_not_found"].(int)
+		ret.BladeGtpSmpSessionCountCheckFaile = in["blade_gtp_smp_session_count_check_faile"].(int)
+		ret.GtpCSmpSigCheckFailed = in["gtp_c_smp_sig_check_failed"].(int)
+		ret.BladeGtpCSmpSigCheckFailed = in["blade_gtp_c_smp_sig_check_failed"].(int)
+		ret.GtpUSmpSigCheckFailed = in["gtp_u_smp_sig_check_failed"].(int)
+		ret.BladeGtpUSmpSigCheckFailed = in["blade_gtp_u_smp_sig_check_failed"].(int)
+		ret.GtpSmpSigCheckFailed = in["gtp_smp_sig_check_failed"].(int)
+		ret.BladeGtpSmpSigCheckFailed = in["blade_gtp_smp_sig_check_failed"].(int)
+		ret.GtpCFailConnCreateSlow = in["gtp_c_fail_conn_create_slow"].(int)
+		ret.GtpUFailConnCreateSlow = in["gtp_u_fail_conn_create_slow"].(int)
+		ret.GtpPathmFailConnCreateSlow = in["gtp_pathm_fail_conn_create_slow"].(int)
 		//omit uuid
 	}
 	return ret
@@ -13234,16 +12939,35 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
 		ret.Duration = in["duration"].(int)
 		ret.OutOfSessionMemory = in["out_of_session_memory"].(int)
+		ret.BladeOutOfSessionMemory = in["blade_out_of_session_memory"].(int)
 		ret.GtpSmpPathCheckFailed = in["gtp_smp_path_check_failed"].(int)
-		ret.GtpSmpCheckFailed = in["gtp_smp_check_failed"].(int)
-		ret.GtpSmpSessionCountCheckFailed = in["gtp_smp_session_count_check_failed"].(int)
-		ret.GtpCRefCountSmpExceeded = in["gtp_c_ref_count_smp_exceeded"].(int)
-		ret.GtpUSmpInRmlWithSess = in["gtp_u_smp_in_rml_with_sess"].(int)
+		ret.GtpSmpCCheckFailed = in["gtp_smp_c_check_failed"].(int)
+		ret.BladeGtpSmpPathCheckFailed = in["blade_gtp_smp_path_check_failed"].(int)
+		ret.BladeGtpSmpCCheckFailed = in["blade_gtp_smp_c_check_failed"].(int)
 		ret.GtpTunnelRateLimitEntryCreateFail = in["gtp_tunnel_rate_limit_entry_create_fail"].(int)
+		ret.GtpUTunnelRateLimitEntryCreateFa = in["gtp_u_tunnel_rate_limit_entry_create_fa"].(int)
 		ret.GtpRateLimitSmpCreateFailure = in["gtp_rate_limit_smp_create_failure"].(int)
 		ret.GtpRateLimitT3CtrCreateFailure = in["gtp_rate_limit_t3_ctr_create_failure"].(int)
 		ret.GtpRateLimitEntryCreateFailure = in["gtp_rate_limit_entry_create_failure"].(int)
+		ret.BladeGtpRateLimitSmpCreateFailure = in["blade_gtp_rate_limit_smp_create_failure"].(int)
+		ret.BladeGtpRateLimitT3CtrCreateFail = in["blade_gtp_rate_limit_t3_ctr_create_fail"].(int)
+		ret.BladeGtpRateLimitEntryCreateFailu = in["blade_gtp_rate_limit_entry_create_failu"].(int)
 		ret.GtpSmpDecSessCountCheckFailed = in["gtp_smp_dec_sess_count_check_failed"].(int)
+		ret.GtpUSmpCheckFailed = in["gtp_u_smp_check_failed"].(int)
+		ret.GtpInfoExtNotFound = in["gtp_info_ext_not_found"].(int)
+		ret.BladeGtpSmpDecSessCountCheckFail = in["blade_gtp_smp_dec_sess_count_check_fail"].(int)
+		ret.BladeGtpUSmpCheckFailed = in["blade_gtp_u_smp_check_failed"].(int)
+		ret.BladeGtpInfoExtNotFound = in["blade_gtp_info_ext_not_found"].(int)
+		ret.BladeGtpSmpSessionCountCheckFaile = in["blade_gtp_smp_session_count_check_faile"].(int)
+		ret.GtpCSmpSigCheckFailed = in["gtp_c_smp_sig_check_failed"].(int)
+		ret.BladeGtpCSmpSigCheckFailed = in["blade_gtp_c_smp_sig_check_failed"].(int)
+		ret.GtpUSmpSigCheckFailed = in["gtp_u_smp_sig_check_failed"].(int)
+		ret.BladeGtpUSmpSigCheckFailed = in["blade_gtp_u_smp_sig_check_failed"].(int)
+		ret.GtpSmpSigCheckFailed = in["gtp_smp_sig_check_failed"].(int)
+		ret.BladeGtpSmpSigCheckFailed = in["blade_gtp_smp_sig_check_failed"].(int)
+		ret.GtpCFailConnCreateSlow = in["gtp_c_fail_conn_create_slow"].(int)
+		ret.GtpUFailConnCreateSlow = in["gtp_u_fail_conn_create_slow"].(int)
+		ret.GtpPathmFailConnCreateSlow = in["gtp_pathm_fail_conn_create_slow"].(int)
 		//omit uuid
 	}
 	return ret
@@ -14892,6 +14616,9 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.So_pkts_l3_redirect_chassis_dest_mac_er = in["so_pkts_l3_redirect_chassis_dest_mac_er"].(int)
 		ret.So_pkts_l2redirect_vlan_retrieval_error = in["so_pkts_l2redirect_vlan_retrieval_error"].(int)
 		ret.So_pkts_l2redirect_port_retrieval_error = in["so_pkts_l2redirect_port_retrieval_error"].(int)
+		ret.So_pkts_l2redirect_loop_detect_drop = in["so_pkts_l2redirect_loop_detect_drop"].(int)
+		ret.So_pkts_l2redirect_frag_vlan_retrieval_ = in["so_pkts_l2redirect_frag_vlan_retrieval_"].(int)
+		ret.So_pkts_l2redirect_tx_frag_vlan_add_fai = in["so_pkts_l2redirect_tx_frag_vlan_add_fai"].(int)
 		//omit uuid
 	}
 	return ret
@@ -14919,6 +14646,9 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 		ret.So_pkts_l3_redirect_chassis_dest_mac_er = in["so_pkts_l3_redirect_chassis_dest_mac_er"].(int)
 		ret.So_pkts_l2redirect_vlan_retrieval_error = in["so_pkts_l2redirect_vlan_retrieval_error"].(int)
 		ret.So_pkts_l2redirect_port_retrieval_error = in["so_pkts_l2redirect_port_retrieval_error"].(int)
+		ret.So_pkts_l2redirect_loop_detect_drop = in["so_pkts_l2redirect_loop_detect_drop"].(int)
+		ret.So_pkts_l2redirect_frag_vlan_retrieval_ = in["so_pkts_l2redirect_frag_vlan_retrieval_"].(int)
+		ret.So_pkts_l2redirect_tx_frag_vlan_add_fai = in["so_pkts_l2redirect_tx_frag_vlan_add_fai"].(int)
 		//omit uuid
 	}
 	return ret
@@ -15184,7 +14914,7 @@ func getObjectVisibilityPacketCaptureGlobalTemplatesTemplateListTriggerSysObjSta
 
 func dataToEndpointVisibilityPacketCaptureGlobalTemplates(d *schema.ResourceData) edpt.VisibilityPacketCaptureGlobalTemplates {
 	var ret edpt.VisibilityPacketCaptureGlobalTemplates
-	ret.Inst.Activate = getObjectVisibilityPacketCaptureGlobalTemplatesActivate2617(d.Get("activate").([]interface{}))
+	ret.Inst.Activate = getObjectVisibilityPacketCaptureGlobalTemplatesActivate2718(d.Get("activate").([]interface{}))
 	ret.Inst.TemplateList = getSliceVisibilityPacketCaptureGlobalTemplatesTemplateList(d.Get("template_list").([]interface{}))
 	//omit uuid
 	return ret

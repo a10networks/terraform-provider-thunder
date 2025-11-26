@@ -27,9 +27,6 @@ func resourceAccessListIpv4Oper() *schema.Resource {
 									"name": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
-									"mgmt_pkt_hit_count": {
-										Type: schema.TypeInt, Optional: true, Description: "",
-									},
 									"binding": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
@@ -130,8 +127,14 @@ func resourceAccessListIpv4Oper() *schema.Resource {
 												"data_plane_hits": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
+												"mgmt_plane_hits": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
 											},
 										},
+									},
+									"mgmt_pkt_hit_count": {
+										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 								},
 							},
@@ -176,13 +179,13 @@ func setSliceAccessListIpv4OperOperAclList(d []edpt.AccessListIpv4OperOperAclLis
 		in := make(map[string]interface{})
 		in["id1"] = item.Id1
 		in["name"] = item.Name
-		in["mgmt_pkt_hit_count"] = item.MgmtPktHitCount
 		in["binding"] = item.Binding
 		in["nat_pool_name"] = item.NatPoolName
 		in["nat_pool_haid"] = item.NatPoolHaid
 		in["is_pool_group"] = item.IsPoolGroup
 		in["nat_pool_msl"] = item.NatPoolMsl
 		in["rule_list"] = setSliceAccessListIpv4OperOperAclListRuleList(item.RuleList)
+		in["mgmt_pkt_hit_count"] = item.MgmtPktHitCount
 		result = append(result, in)
 	}
 	return result
@@ -219,6 +222,7 @@ func setSliceAccessListIpv4OperOperAclListRuleList(d []edpt.AccessListIpv4OperOp
 		in["log"] = item.Log
 		in["log_transparent_sess_only"] = item.LogTransparentSessOnly
 		in["data_plane_hits"] = item.DataPlaneHits
+		in["mgmt_plane_hits"] = item.MgmtPlaneHits
 		result = append(result, in)
 	}
 	return result
@@ -244,13 +248,13 @@ func getSliceAccessListIpv4OperOperAclList(d []interface{}) []edpt.AccessListIpv
 		var oi edpt.AccessListIpv4OperOperAclList
 		oi.Id1 = in["id1"].(int)
 		oi.Name = in["name"].(string)
-		oi.MgmtPktHitCount = in["mgmt_pkt_hit_count"].(int)
 		oi.Binding = in["binding"].(int)
 		oi.NatPoolName = in["nat_pool_name"].(string)
 		oi.NatPoolHaid = in["nat_pool_haid"].(int)
 		oi.IsPoolGroup = in["is_pool_group"].(int)
 		oi.NatPoolMsl = in["nat_pool_msl"].(int)
 		oi.RuleList = getSliceAccessListIpv4OperOperAclListRuleList(in["rule_list"].([]interface{}))
+		oi.MgmtPktHitCount = in["mgmt_pkt_hit_count"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -290,6 +294,7 @@ func getSliceAccessListIpv4OperOperAclListRuleList(d []interface{}) []edpt.Acces
 		oi.Log = in["log"].(int)
 		oi.LogTransparentSessOnly = in["log_transparent_sess_only"].(int)
 		oi.DataPlaneHits = in["data_plane_hits"].(int)
+		oi.MgmtPlaneHits = in["mgmt_plane_hits"].(int)
 		ret = append(ret, oi)
 	}
 	return ret

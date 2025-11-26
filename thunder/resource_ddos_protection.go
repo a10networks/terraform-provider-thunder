@@ -97,20 +97,8 @@ func resourceDdosProtection() *schema.Resource {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"distribution_method": {
-							Type: schema.TypeString, Optional: true, Default: "traffic-rate", Description: "'cpu-usage': Entry/Zone distribution based on CPU usage percentage; 'traffic-rate': Entry/Zone distribution based on traffic kbit/pkt rate (Default);",
-						},
-						"cpu_threshold_per_entry": {
-							Type: schema.TypeInt, Optional: true, Default: 60, Description: "Entry/zone percentage threshold of CPU usage for source hash mode. Requires distribution-method cpu-usage. Default:60",
-						},
-						"cpu_threshold_per_pu": {
-							Type: schema.TypeInt, Optional: true, Default: 80, Description: "Per PU percentage threshold of average CPU usage to start check entry usage. Requires distribution-method cpu-usage. Default:80",
-						},
-						"rate_pkt_threshold": {
-							Type: schema.TypeInt, Optional: true, Default: 55000000, Description: "DDOS DST Entry/Zone packet rate threshold for source hash mode",
-						},
-						"rate_kbit_threshold": {
-							Type: schema.TypeInt, Optional: true, Default: 150000000, Description: "DDOS DST Entry/Zone kbit rate threshold for source hash mode",
+						"regular_rebalance": {
+							Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': enable; 'disable': disable;",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -121,17 +109,84 @@ func resourceDdosProtection() *schema.Resource {
 			"non_zero_win_size_syncookie": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Send syn-cookie with fix TCP window size if SYN packet has zero window size  (default disabled)",
 			},
+			"per_service_szp_entry_limit": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"dns_tcp_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for port / port-range dns-tcp",
+						},
+						"dns_udp_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for port / port-range dns-udp",
+						},
+						"http_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for port / port-range http",
+						},
+						"tcp_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for port / port-range tcp",
+						},
+						"udp_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for port / port-range udp",
+						},
+						"ssl_l4_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for port / port-range ssl-l4",
+						},
+						"sip_udp_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for port / port-range sip-udp",
+						},
+						"sip_tcp_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for port / port-range sip-tcp",
+						},
+						"quic_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for port / port-range quic",
+						},
+						"ip_proto_icmp_v4_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for ip-proto icmp-v4",
+						},
+						"ip_proto_icmp_v6_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for ip-proto icmp-v6",
+						},
+						"ip_proto_other_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for ip-proto other",
+						},
+						"ip_proto_gre_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for ip-proto gre",
+						},
+						"ip_proto_ipv4_encap_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for ip-proto ipv4-encap",
+						},
+						"ip_proto_ipv6_encap_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for ip-proto ipv6-encap",
+						},
+						"ip_proto_custom_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Szp limit for custom ip-proto",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
+			"pkt_rate_limit_on_reassemble": {
+				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': enable; 'disable': disable (Default);",
+			},
 			"progression_tracking": {
 				Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': enable; 'disable': disable;",
 			},
 			"rate_interval": {
 				Type: schema.TypeString, Optional: true, Default: "100ms", Description: "'100ms': 100ms; '1sec': 1sec;",
 			},
+			"rate_limit_sync_interval": {
+				Type: schema.TypeInt, Optional: true, Default: 3, Description: "Multi-PU rate limit syncing interval (default 3)",
+			},
 			"rexmit_syn_log": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable ddos per flow rexmit syn exceeded log",
 			},
 			"src_dst_entry_limit": {
 				Type: schema.TypeString, Optional: true, Default: "16M", Description: "'8M': 8 Million; '16M': 16 Million; 'unlimited': Unlimited; 'platform-default': Half of platform maximum;",
+			},
+			"src_hash_function": {
+				Type: schema.TypeString, Optional: true, Default: "v1", Description: "'v1': v1; 'v2': v2;",
 			},
 			"src_ip_hash_bit": {
 				Type: schema.TypeInt, Optional: true, Default: 2, Description: "Configure which bit hashed on",
@@ -142,6 +197,15 @@ func resourceDdosProtection() *schema.Resource {
 			"src_zone_port_entry_limit": {
 				Type: schema.TypeString, Optional: true, Default: "16M", Description: "'8M': 8 Million; '16M': 16 Million; 'unlimited': Unlimited; 'platform-default': Half of platform maximum;",
 			},
+			"szp_clist_warn_threshold": {
+				Type: schema.TypeInt, Optional: true, Description: "Set threshold percentage of \"max-src-dst-entry\" for generating warning logs. Including start and end.",
+			},
+			"szp_warn_exceed_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Send logs if src-zone-port count exceeds \"max-src-dst-entry\"",
+			},
+			"szp_warn_threshold": {
+				Type: schema.TypeInt, Optional: true, Description: "Set threshold percentage of \"max-src-dst-entry\" for generating warning logs. Including start and end.",
+			},
 			"toggle": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': enable; 'disable': disable;",
 			},
@@ -150,6 +214,9 @@ func resourceDdosProtection() *schema.Resource {
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+			},
+			"vxlan_outbound_check": {
+				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': enable; 'disable': disable;",
 			},
 		},
 	}
@@ -228,10 +295,10 @@ func getObjectDdosProtectionFastAging(d []interface{}) edpt.DdosProtectionFastAg
 	return ret
 }
 
-func getObjectDdosProtectionIpv6SrcHashMaskBits291(d []interface{}) edpt.DdosProtectionIpv6SrcHashMaskBits291 {
+func getObjectDdosProtectionIpv6SrcHashMaskBits330(d []interface{}) edpt.DdosProtectionIpv6SrcHashMaskBits330 {
 
 	count1 := len(d)
-	var ret edpt.DdosProtectionIpv6SrcHashMaskBits291
+	var ret edpt.DdosProtectionIpv6SrcHashMaskBits330
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MaskBitOffset1 = in["mask_bit_offset_1"].(int)
@@ -244,17 +311,40 @@ func getObjectDdosProtectionIpv6SrcHashMaskBits291(d []interface{}) edpt.DdosPro
 	return ret
 }
 
-func getObjectDdosProtectionMultiPuZoneDistribution292(d []interface{}) edpt.DdosProtectionMultiPuZoneDistribution292 {
+func getObjectDdosProtectionMultiPuZoneDistribution331(d []interface{}) edpt.DdosProtectionMultiPuZoneDistribution331 {
 
 	count1 := len(d)
-	var ret edpt.DdosProtectionMultiPuZoneDistribution292
+	var ret edpt.DdosProtectionMultiPuZoneDistribution331
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.DistributionMethod = in["distribution_method"].(string)
-		ret.CpuThresholdPerEntry = in["cpu_threshold_per_entry"].(int)
-		ret.CpuThresholdPerPu = in["cpu_threshold_per_pu"].(int)
-		ret.RatePktThreshold = in["rate_pkt_threshold"].(int)
-		ret.RateKbitThreshold = in["rate_kbit_threshold"].(int)
+		ret.RegularRebalance = in["regular_rebalance"].(string)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectDdosProtectionPerServiceSzpEntryLimit332(d []interface{}) edpt.DdosProtectionPerServiceSzpEntryLimit332 {
+
+	count1 := len(d)
+	var ret edpt.DdosProtectionPerServiceSzpEntryLimit332
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.DnsTcpLimit = in["dns_tcp_limit"].(int)
+		ret.DnsUdpLimit = in["dns_udp_limit"].(int)
+		ret.HttpLimit = in["http_limit"].(int)
+		ret.TcpLimit = in["tcp_limit"].(int)
+		ret.UdpLimit = in["udp_limit"].(int)
+		ret.SslL4Limit = in["ssl_l4_limit"].(int)
+		ret.SipUdpLimit = in["sip_udp_limit"].(int)
+		ret.SipTcpLimit = in["sip_tcp_limit"].(int)
+		ret.QuicLimit = in["quic_limit"].(int)
+		ret.IpProtoIcmpV4Limit = in["ip_proto_icmp_v4_limit"].(int)
+		ret.IpProtoIcmpV6Limit = in["ip_proto_icmp_v6_limit"].(int)
+		ret.IpProtoOtherLimit = in["ip_proto_other_limit"].(int)
+		ret.IpProtoGreLimit = in["ip_proto_gre_limit"].(int)
+		ret.IpProtoIpv4EncapLimit = in["ip_proto_ipv4_encap_limit"].(int)
+		ret.IpProtoIpv6EncapLimit = in["ip_proto_ipv6_encap_limit"].(int)
+		ret.IpProtoCustomLimit = in["ip_proto_custom_limit"].(int)
 		//omit uuid
 	}
 	return ret
@@ -275,19 +365,27 @@ func dataToEndpointDdosProtection(d *schema.ResourceData) edpt.DdosProtection {
 	ret.Inst.ForceTrafficToSameBladeDisable = d.Get("force_traffic_to_same_blade_disable").(int)
 	ret.Inst.HwBlockingEnable = d.Get("hw_blocking_enable").(int)
 	ret.Inst.HwBlockingThresholdLimit = d.Get("hw_blocking_threshold_limit").(int)
-	ret.Inst.Ipv6SrcHashMaskBits = getObjectDdosProtectionIpv6SrcHashMaskBits291(d.Get("ipv6_src_hash_mask_bits").([]interface{}))
+	ret.Inst.Ipv6SrcHashMaskBits = getObjectDdosProtectionIpv6SrcHashMaskBits330(d.Get("ipv6_src_hash_mask_bits").([]interface{}))
 	ret.Inst.Mpls = d.Get("mpls").(int)
-	ret.Inst.MultiPuZoneDistribution = getObjectDdosProtectionMultiPuZoneDistribution292(d.Get("multi_pu_zone_distribution").([]interface{}))
+	ret.Inst.MultiPuZoneDistribution = getObjectDdosProtectionMultiPuZoneDistribution331(d.Get("multi_pu_zone_distribution").([]interface{}))
 	ret.Inst.NonZeroWinSizeSyncookie = d.Get("non_zero_win_size_syncookie").(int)
+	ret.Inst.PerServiceSzpEntryLimit = getObjectDdosProtectionPerServiceSzpEntryLimit332(d.Get("per_service_szp_entry_limit").([]interface{}))
+	ret.Inst.PktRateLimitOnReassemble = d.Get("pkt_rate_limit_on_reassemble").(string)
 	ret.Inst.ProgressionTracking = d.Get("progression_tracking").(string)
 	ret.Inst.RateInterval = d.Get("rate_interval").(string)
+	ret.Inst.RateLimitSyncInterval = d.Get("rate_limit_sync_interval").(int)
 	ret.Inst.RexmitSynLog = d.Get("rexmit_syn_log").(int)
 	ret.Inst.SrcDstEntryLimit = d.Get("src_dst_entry_limit").(string)
+	ret.Inst.SrcHashFunction = d.Get("src_hash_function").(string)
 	ret.Inst.SrcIpHashBit = d.Get("src_ip_hash_bit").(int)
 	ret.Inst.SrcIpv6HashBit = d.Get("src_ipv6_hash_bit").(int)
 	ret.Inst.SrcZonePortEntryLimit = d.Get("src_zone_port_entry_limit").(string)
+	ret.Inst.SzpClistWarnThreshold = d.Get("szp_clist_warn_threshold").(int)
+	ret.Inst.SzpWarnExceedEnable = d.Get("szp_warn_exceed_enable").(int)
+	ret.Inst.SzpWarnThreshold = d.Get("szp_warn_threshold").(int)
 	ret.Inst.Toggle = d.Get("toggle").(string)
 	ret.Inst.UseRoute = d.Get("use_route").(int)
 	//omit uuid
+	ret.Inst.VxlanOutboundCheck = d.Get("vxlan_outbound_check").(string)
 	return ret
 }

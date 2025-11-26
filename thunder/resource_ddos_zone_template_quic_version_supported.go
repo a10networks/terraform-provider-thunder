@@ -57,7 +57,7 @@ func resourceDdosZoneTemplateQuicVersionSupported() *schema.Resource {
 				Type: schema.TypeString, Required: true, Description: "Version supported range end",
 			},
 			"version_start": {
-				Type: schema.TypeString, Required: true, Description: "Configure versions supported",
+				Type: schema.TypeString, Required: true, Description: "Configure versions supported in hex",
 			},
 			"quic_tmpl_name": {
 				Type: schema.TypeString, Required: true, Description: "QuicTmplName",
@@ -127,10 +127,10 @@ func resourceDdosZoneTemplateQuicVersionSupportedRead(ctx context.Context, d *sc
 	return diags
 }
 
-func getObjectDdosZoneTemplateQuicVersionSupportedMalformedCheck315(d []interface{}) edpt.DdosZoneTemplateQuicVersionSupportedMalformedCheck315 {
+func getObjectDdosZoneTemplateQuicVersionSupportedMalformedCheck368(d []interface{}) edpt.DdosZoneTemplateQuicVersionSupportedMalformedCheck368 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateQuicVersionSupportedMalformedCheck315
+	var ret edpt.DdosZoneTemplateQuicVersionSupportedMalformedCheck368
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MalformedEnable = in["malformed_enable"].(string)
@@ -145,7 +145,7 @@ func getObjectDdosZoneTemplateQuicVersionSupportedMalformedCheck315(d []interfac
 
 func dataToEndpointDdosZoneTemplateQuicVersionSupported(d *schema.ResourceData) edpt.DdosZoneTemplateQuicVersionSupported {
 	var ret edpt.DdosZoneTemplateQuicVersionSupported
-	ret.Inst.MalformedCheck = getObjectDdosZoneTemplateQuicVersionSupportedMalformedCheck315(d.Get("malformed_check").([]interface{}))
+	ret.Inst.MalformedCheck = getObjectDdosZoneTemplateQuicVersionSupportedMalformedCheck368(d.Get("malformed_check").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.VersionAction = d.Get("version_action").(string)

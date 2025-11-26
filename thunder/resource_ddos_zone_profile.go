@@ -35,7 +35,7 @@ func resourceDdosZoneProfile() *schema.Resource {
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"indicator_name": {
-													Type: schema.TypeString, Required: true, Description: "'pkt-rate': pkt-rate; 'pkt-drop-rate': pkt-drop-rate; 'bit-rate': bit-rate; 'pkt-drop-ratio': pkt-drop-ratio; 'bytes-to-bytes-from-ratio': bytes-to-bytes-from-ratio; 'frag-rate': frag-rate; 'cpu-utilization': cpu-utilization; 'interface-utilization': interface-utilization;",
+													Type: schema.TypeString, Required: true, Description: "'pkt-rate': pkt-rate; 'pkt-drop-rate': pkt-drop-rate; 'bit-rate': bit-rate; 'pkt-drop-ratio': pkt-drop-ratio; 'bytes-to-bytes-from-ratio': bytes-to-bytes-from-ratio; 'frag-rate': frag-rate; 'cpu-utilization': cpu-utilization; 'interface-utilization': interface-utilization; 'learnt-sources': learnt-sources;",
 												},
 												"src_threshold_cfg": {
 													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -96,7 +96,7 @@ func resourceDdosZoneProfile() *schema.Resource {
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"indicator_name": {
-													Type: schema.TypeString, Required: true, Description: "'pkt-rate': pkt-rate; 'pkt-drop-rate': pkt-drop-rate; 'bit-rate': bit-rate; 'pkt-drop-ratio': pkt-drop-ratio; 'bytes-to-bytes-from-ratio': bytes-to-bytes-from-ratio; 'frag-rate': frag-rate; 'cpu-utilization': cpu-utilization; 'interface-utilization': interface-utilization;",
+													Type: schema.TypeString, Required: true, Description: "'pkt-rate': pkt-rate; 'pkt-drop-rate': pkt-drop-rate; 'bit-rate': bit-rate; 'pkt-drop-ratio': pkt-drop-ratio; 'bytes-to-bytes-from-ratio': bytes-to-bytes-from-ratio; 'frag-rate': frag-rate; 'cpu-utilization': cpu-utilization; 'interface-utilization': interface-utilization; 'learnt-sources': learnt-sources;",
 												},
 												"src_threshold_cfg": {
 													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -166,7 +166,7 @@ func resourceDdosZoneProfile() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"indicator_name": {
-										Type: schema.TypeString, Required: true, Description: "'pkt-rate': pkt-rate; 'pkt-drop-rate': pkt-drop-rate; 'bit-rate': bit-rate; 'pkt-drop-ratio': pkt-drop-ratio; 'bytes-to-bytes-from-ratio': bytes-to-bytes-from-ratio; 'concurrent-conns': concurrent-conns; 'conn-miss-rate': conn-miss-rate; 'syn-rate': syn-rate; 'fin-rate': fin-rate; 'rst-rate': rst-rate; 'small-window-ack-rate': small-window-ack-rate; 'empty-ack-rate': empty-ack-rate; 'small-payload-rate': small-payload-rate; 'syn-fin-ratio': syn-fin-ratio; 'cpu-utilization': cpu-utilization; 'interface-utilization': interface-utilization;",
+										Type: schema.TypeString, Required: true, Description: "'pkt-rate': pkt-rate; 'pkt-drop-rate': pkt-drop-rate; 'bit-rate': bit-rate; 'pkt-drop-ratio': pkt-drop-ratio; 'bytes-to-bytes-from-ratio': bytes-to-bytes-from-ratio; 'concurrent-conns': concurrent-conns; 'conn-miss-rate': conn-miss-rate; 'syn-rate': syn-rate; 'fin-rate': fin-rate; 'rst-rate': rst-rate; 'syn-ack-rate': syn-ack-rate; 'small-window-ack-rate': small-window-ack-rate; 'empty-ack-rate': empty-ack-rate; 'small-payload-rate': small-payload-rate; 'syn-fin-ratio': syn-fin-ratio; 'cpu-utilization': cpu-utilization; 'interface-utilization': interface-utilization; 'learnt-sources': learnt-sources;",
 									},
 									"src_threshold_cfg": {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -236,7 +236,7 @@ func resourceDdosZoneProfile() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"indicator_name": {
-										Type: schema.TypeString, Required: true, Description: "'pkt-rate': pkt-rate; 'pkt-drop-rate': pkt-drop-rate; 'bit-rate': bit-rate; 'pkt-drop-ratio': pkt-drop-ratio; 'bytes-to-bytes-from-ratio': bytes-to-bytes-from-ratio; 'concurrent-conns': concurrent-conns; 'conn-miss-rate': conn-miss-rate; 'syn-rate': syn-rate; 'fin-rate': fin-rate; 'rst-rate': rst-rate; 'small-window-ack-rate': small-window-ack-rate; 'empty-ack-rate': empty-ack-rate; 'small-payload-rate': small-payload-rate; 'syn-fin-ratio': syn-fin-ratio; 'cpu-utilization': cpu-utilization; 'interface-utilization': interface-utilization;",
+										Type: schema.TypeString, Required: true, Description: "'pkt-rate': pkt-rate; 'pkt-drop-rate': pkt-drop-rate; 'bit-rate': bit-rate; 'pkt-drop-ratio': pkt-drop-ratio; 'bytes-to-bytes-from-ratio': bytes-to-bytes-from-ratio; 'concurrent-conns': concurrent-conns; 'conn-miss-rate': conn-miss-rate; 'syn-rate': syn-rate; 'fin-rate': fin-rate; 'rst-rate': rst-rate; 'syn-ack-rate': syn-ack-rate; 'small-window-ack-rate': small-window-ack-rate; 'empty-ack-rate': empty-ack-rate; 'small-payload-rate': small-payload-rate; 'syn-fin-ratio': syn-fin-ratio; 'cpu-utilization': cpu-utilization; 'interface-utilization': interface-utilization; 'learnt-sources': learnt-sources;",
 									},
 									"src_threshold_cfg": {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -356,10 +356,10 @@ func resourceDdosZoneProfileRead(ctx context.Context, d *schema.ResourceData, me
 	return diags
 }
 
-func getObjectDdosZoneProfileIpProto305(d []interface{}) edpt.DdosZoneProfileIpProto305 {
+func getObjectDdosZoneProfileIpProto358(d []interface{}) edpt.DdosZoneProfileIpProto358 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneProfileIpProto305
+	var ret edpt.DdosZoneProfileIpProto358
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProtoNumberList = getSliceDdosZoneProfileIpProtoProtoNumberList(in["proto_number_list"].([]interface{}))
@@ -607,7 +607,7 @@ func getObjectDdosZoneProfilePortRangeListIndicatorListZoneThresholdCfg(d []inte
 
 func dataToEndpointDdosZoneProfile(d *schema.ResourceData) edpt.DdosZoneProfile {
 	var ret edpt.DdosZoneProfile
-	ret.Inst.IpProto = getObjectDdosZoneProfileIpProto305(d.Get("ip_proto").([]interface{}))
+	ret.Inst.IpProto = getObjectDdosZoneProfileIpProto358(d.Get("ip_proto").([]interface{}))
 	ret.Inst.PortList = getSliceDdosZoneProfilePortList(d.Get("port_list").([]interface{}))
 	ret.Inst.PortRangeList = getSliceDdosZoneProfilePortRangeList(d.Get("port_range_list").([]interface{}))
 	ret.Inst.ProfileName = d.Get("profile_name").(string)

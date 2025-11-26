@@ -94,5 +94,3 @@ Optional:
 - `v2_out_init_req` (Number) Outgoing Init Request
 - `v2_out_init_rsp` (Number) Outgoing Init Response
 - `v2_rsp_rekey` (Number) Respond Rekey
-
-

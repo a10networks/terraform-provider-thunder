@@ -74,5 +74,3 @@ Optional:
 - `hardware_filter` (Number)
 - `processing_unit` (String)
 - `sample_ratio` (Number)
-
-

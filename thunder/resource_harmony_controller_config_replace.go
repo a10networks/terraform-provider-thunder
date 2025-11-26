@@ -17,7 +17,7 @@ func resourceHarmonyControllerConfigReplace() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"status": {
-				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': enable config replace mode; 'disable': disable config replace mode;",
+				Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': enable config replace mode; 'disable': disable config replace mode;",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",

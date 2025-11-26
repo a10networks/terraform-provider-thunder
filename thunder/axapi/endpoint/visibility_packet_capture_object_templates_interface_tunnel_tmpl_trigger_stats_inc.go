@@ -1,74 +1,74 @@
-
-
 package endpoint
+
 import (
-    "github.com/a10networks/terraform-provider-thunder/thunder/axapi"
-    "github.com/clarketm/json"
+	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
+	"github.com/clarketm/json"
 )
 
-//based on ACOS 6_0_2_P1-37
+// based on ACOS 7_0_2-102
 type VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc struct {
 	Inst struct {
+		NumRxErrPkts int `json:"num-rx-err-pkts"`
 
-    NumRxErrPkts int `json:"num-rx-err-pkts"`
-    NumTxErrPkts int `json:"num-tx-err-pkts"`
-    Uuid string `json:"uuid"`
-    Name string 
+		NumTxErrPkts int `json:"num-tx-err-pkts"`
 
+		Uuid string `json:"uuid"`
+
+		Interface_tunnel_tmpl_name string
 	} `json:"trigger-stats-inc"`
 }
 
-func (p *VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc) GetId() string{
-    return "1"
+func (p *VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc) GetId() string {
+	return "1"
 }
 
-func (p *VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc) getPath() string{
-    return "visibility/packet-capture/object-templates/interface-tunnel-tmpl/" +p.Inst.Name + "/trigger-stats-inc"
+func (p *VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc) getPath() string {
+	return "visibility/packet-capture/object-templates/interface-tunnel-tmpl/" + p.Inst.Interface_tunnel_tmpl_name + "/trigger-stats-inc"
 }
 
 func (p *VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc) Post(authToken string, host string, logger *axapi.ThunderLog) error {
-    logger.Println("VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc::Post")
-    headers := axapi.GenRequestHeader(authToken)
-        payloadBytes, err := axapi.SerializeToJson(p)
-        if err != nil {
-            logger.Println("Failed to serialize struct as json", err)
-            return err
-        }
-        logger.Println("payload:", string(payloadBytes))
-        _, _, err = axapi.SendPost(host, p.getPath(), payloadBytes, headers, logger)
-    return err
+	logger.Println("VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc::Post")
+	headers := axapi.GenRequestHeader(authToken)
+	payloadBytes, err := axapi.SerializeToJson(p)
+	if err != nil {
+		logger.Println("Failed to serialize struct as json", err)
+		return err
+	}
+	logger.Println("payload:", string(payloadBytes))
+	_, _, err = axapi.SendPost(host, p.getPath(), payloadBytes, headers, logger)
+	return err
 }
 
 func (p *VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) error {
-    logger.Println("VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc::Get")
-    headers := axapi.GenRequestHeader(authToken)
-        _, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
-    if err == nil {
-        if len(axResp) > 0{
-        err = json.Unmarshal(axResp, &p)
-        }
-        if err != nil {
-            logger.Println("json.Unmarshal() failed with error", err)
-        }
-    }
-    return err
+	logger.Println("VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc::Get")
+	headers := axapi.GenRequestHeader(authToken)
+	_, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
+	if err == nil {
+		if len(axResp) > 0 {
+			err = json.Unmarshal(axResp, &p)
+		}
+		if err != nil {
+			logger.Println("json.Unmarshal() failed with error", err)
+		}
+	}
+	return err
 }
 func (p *VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc) Put(authToken string, host string, logger *axapi.ThunderLog) error {
-    logger.Println("VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc::Put")
-    headers := axapi.GenRequestHeader(authToken)
-    payloadBytes, err := axapi.SerializeToJson(p)
-    if err != nil {
-        logger.Println("Failed to serialize struct as json", err)
-        return err
-    }
-    logger.Println("payload: " + string(payloadBytes))
-    _, _, err = axapi.SendPut(host, p.getPath(), "", payloadBytes, headers, logger)
-    return err
+	logger.Println("VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc::Put")
+	headers := axapi.GenRequestHeader(authToken)
+	payloadBytes, err := axapi.SerializeToJson(p)
+	if err != nil {
+		logger.Println("Failed to serialize struct as json", err)
+		return err
+	}
+	logger.Println("payload: " + string(payloadBytes))
+	_, _, err = axapi.SendPut(host, p.getPath(), "", payloadBytes, headers, logger)
+	return err
 }
 
 func (p *VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc) Delete(authToken string, host string, instId string, logger *axapi.ThunderLog) error {
-    logger.Println("VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc::Delete")
-    headers := axapi.GenRequestHeader(authToken)
-        _, _, err := axapi.SendDelete(host, p.getPath(), "", nil, headers, logger)
-    return err
+	logger.Println("VisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerStatsInc::Delete")
+	headers := axapi.GenRequestHeader(authToken)
+	_, _, err := axapi.SendDelete(host, p.getPath(), "", nil, headers, logger)
+	return err
 }

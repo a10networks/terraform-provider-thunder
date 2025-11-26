@@ -16,11 +16,307 @@ func resourceFwTemplateLogging() *schema.Resource {
 		DeleteContext: resourceFwTemplateLoggingDelete,
 
 		Schema: map[string]*schema.Schema{
+			"custom": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"custom_message": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"custom_session_created": {
+										Type: schema.TypeString, Optional: true, Description: "Session created (Custom message string)",
+									},
+									"custom_session_deleted": {
+										Type: schema.TypeString, Optional: true, Description: "Session deleted (Custom message string)",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			"disable_log_by_destination": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"tcp_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"tcp_port_start": {
+										Type: schema.TypeInt, Optional: true, Description: "Destination Port (Single Destination Port or Port Range Start)",
+									},
+									"tcp_port_end": {
+										Type: schema.TypeInt, Optional: true, Description: "Port Range End",
+									},
+								},
+							},
+						},
+						"udp_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"udp_port_start": {
+										Type: schema.TypeInt, Optional: true, Description: "Destination Port (Single Destination Port or Port Range Start)",
+									},
+									"udp_port_end": {
+										Type: schema.TypeInt, Optional: true, Description: "Port Range End",
+									},
+								},
+							},
+						},
+						"icmp": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable logging for the ICMP traffic",
+						},
+						"others": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable logging for the other layer-4 protocols",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"ip_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ipv4_addr": {
+										Type: schema.TypeString, Required: true, Description: "Configure an IP subnet",
+									},
+									"tcp_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"tcp_port_start": {
+													Type: schema.TypeInt, Optional: true, Description: "Destination Port (Single Destination Port or Port Range Start)",
+												},
+												"tcp_port_end": {
+													Type: schema.TypeInt, Optional: true, Description: "Port Range End",
+												},
+											},
+										},
+									},
+									"udp_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"udp_port_start": {
+													Type: schema.TypeInt, Optional: true, Description: "Destination Port (Single Destination Port or Port Range Start)",
+												},
+												"udp_port_end": {
+													Type: schema.TypeInt, Optional: true, Description: "Port Range End",
+												},
+											},
+										},
+									},
+									"icmp": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable logging for the ICMP traffic",
+									},
+									"others": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable logging for the other layer-4 protocols",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+									"user_tag": {
+										Type: schema.TypeString, Optional: true, Description: "Customized tag",
+									},
+								},
+							},
+						},
+						"ip6_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ipv6_addr": {
+										Type: schema.TypeString, Required: true, Description: "Configure an IPv6 subnet",
+									},
+									"tcp_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"tcp_port_start": {
+													Type: schema.TypeInt, Optional: true, Description: "Destination Port (Single Destination Port or Port Range Start)",
+												},
+												"tcp_port_end": {
+													Type: schema.TypeInt, Optional: true, Description: "Port Range End",
+												},
+											},
+										},
+									},
+									"udp_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"udp_port_start": {
+													Type: schema.TypeInt, Optional: true, Description: "Destination Port (Single Destination Port or Port Range Start)",
+												},
+												"udp_port_end": {
+													Type: schema.TypeInt, Optional: true, Description: "Port Range End",
+												},
+											},
+										},
+									},
+									"icmp": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable logging for the ICMP traffic",
+									},
+									"others": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable logging for the other layer-4 protocols",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+									"user_tag": {
+										Type: schema.TypeString, Optional: true, Description: "Customized tag",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			"enable_log_by_destination": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"tcp_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"tcp_port_start": {
+										Type: schema.TypeInt, Optional: true, Description: "Destination Port (Single Destination Port or Port Range Start)",
+									},
+									"tcp_port_end": {
+										Type: schema.TypeInt, Optional: true, Description: "Port Range End",
+									},
+								},
+							},
+						},
+						"udp_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"udp_port_start": {
+										Type: schema.TypeInt, Optional: true, Description: "Destination Port (Single Destination Port or Port Range Start)",
+									},
+									"udp_port_end": {
+										Type: schema.TypeInt, Optional: true, Description: "Port Range End",
+									},
+								},
+							},
+						},
+						"icmp": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable logging for the ICMP traffic",
+						},
+						"others": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable logging for the other layer-4 protocols",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"ip_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ipv4_addr": {
+										Type: schema.TypeString, Required: true, Description: "Configure an IP subnet",
+									},
+									"tcp_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"tcp_port_start": {
+													Type: schema.TypeInt, Optional: true, Description: "Destination Port (Single Destination Port or Port Range Start)",
+												},
+												"tcp_port_end": {
+													Type: schema.TypeInt, Optional: true, Description: "Port Range End",
+												},
+											},
+										},
+									},
+									"udp_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"udp_port_start": {
+													Type: schema.TypeInt, Optional: true, Description: "Destination Port (Single Destination Port or Port Range Start)",
+												},
+												"udp_port_end": {
+													Type: schema.TypeInt, Optional: true, Description: "Port Range End",
+												},
+											},
+										},
+									},
+									"icmp": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable logging for the ICMP traffic",
+									},
+									"others": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable logging for the other layer-4 protocols",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+									"user_tag": {
+										Type: schema.TypeString, Optional: true, Description: "Customized tag",
+									},
+								},
+							},
+						},
+						"ip6_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ipv6_addr": {
+										Type: schema.TypeString, Required: true, Description: "Configure an IPv6 subnet",
+									},
+									"tcp_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"tcp_port_start": {
+													Type: schema.TypeInt, Optional: true, Description: "Destination Port (Single Destination Port or Port Range Start)",
+												},
+												"tcp_port_end": {
+													Type: schema.TypeInt, Optional: true, Description: "Port Range End",
+												},
+											},
+										},
+									},
+									"udp_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"udp_port_start": {
+													Type: schema.TypeInt, Optional: true, Description: "Destination Port (Single Destination Port or Port Range Start)",
+												},
+												"udp_port_end": {
+													Type: schema.TypeInt, Optional: true, Description: "Port Range End",
+												},
+											},
+										},
+									},
+									"icmp": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable logging for the ICMP traffic",
+									},
+									"others": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable logging for the other layer-4 protocols",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+									"user_tag": {
+										Type: schema.TypeString, Optional: true, Description: "Customized tag",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			"facility": {
 				Type: schema.TypeString, Optional: true, Default: "local0", Description: "'kernel': 0: Kernel; 'user': 1: User-level; 'mail': 2: Mail; 'daemon': 3: System daemons; 'security-authorization': 4: Security/authorization; 'syslog': 5: Syslog internal; 'line-printer': 6: Line printer; 'news': 7: Network news; 'uucp': 8: UUCP subsystem; 'cron': 9: Time-related; 'security-authorization-private': 10: Private security/authorization; 'ftp': 11: FTP; 'ntp': 12: NTP; 'audit': 13: Audit; 'alert': 14: Alert; 'clock': 15: Clock-related; 'local0': 16: Local use 0; 'local1': 17: Local use 1; 'local2': 18: Local use 2; 'local3': 19: Local use 3; 'local4': 20: Local use 4; 'local5': 21: Local use 5; 'local6': 22: Local use 6; 'local7': 23: Local use 7;",
 			},
 			"format": {
-				Type: schema.TypeString, Optional: true, Default: "cef", Description: "'ascii': A10 Text logging format (ASCII); 'cef': Common Event Format for logging (default);",
+				Type: schema.TypeString, Optional: true, Default: "cef", Description: "'ascii': A10 Text logging format (ASCII); 'cef': Common Event Format for logging (default); 'custom': custom format;",
 			},
 			"include_dest_fqdn": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Include destination FQDN string",
@@ -98,6 +394,9 @@ func resourceFwTemplateLogging() *schema.Resource {
 					},
 				},
 			},
+			"include_year": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "include the 4-digit year in logs",
+			},
 			"log": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -142,7 +441,7 @@ func resourceFwTemplateLogging() *schema.Resource {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Log every HTTP request in an HTTP 1.1 session (Default: Log the first HTTP request in a session)",
 									},
 									"max_url_len": {
-										Type: schema.TypeInt, Optional: true, Default: 128, Description: "Max length of URL log (Max URL length (Default: 128 char))",
+										Type: schema.TypeInt, Optional: true, Default: 100, Description: "Max length of URL log (Max URL length (Default: 100 char))",
 									},
 									"include_all_headers": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Include all configured headers despite of absence in HTTP request",
@@ -262,6 +561,307 @@ func resourceFwTemplateLoggingRead(ctx context.Context, d *schema.ResourceData, 
 	return diags
 }
 
+func getObjectFwTemplateLoggingCustom(d []interface{}) edpt.FwTemplateLoggingCustom {
+
+	count1 := len(d)
+	var ret edpt.FwTemplateLoggingCustom
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.CustomMessage = getObjectFwTemplateLoggingCustomCustomMessage(in["custom_message"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectFwTemplateLoggingCustomCustomMessage(d []interface{}) edpt.FwTemplateLoggingCustomCustomMessage {
+
+	count1 := len(d)
+	var ret edpt.FwTemplateLoggingCustomCustomMessage
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.CustomSessionCreated = in["custom_session_created"].(string)
+		ret.CustomSessionDeleted = in["custom_session_deleted"].(string)
+	}
+	return ret
+}
+
+func getObjectFwTemplateLoggingDisableLogByDestination450(d []interface{}) edpt.FwTemplateLoggingDisableLogByDestination450 {
+
+	count1 := len(d)
+	var ret edpt.FwTemplateLoggingDisableLogByDestination450
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.TcpList = getSliceFwTemplateLoggingDisableLogByDestinationTcpList451(in["tcp_list"].([]interface{}))
+		ret.UdpList = getSliceFwTemplateLoggingDisableLogByDestinationUdpList452(in["udp_list"].([]interface{}))
+		ret.Icmp = in["icmp"].(int)
+		ret.Others = in["others"].(int)
+		//omit uuid
+		ret.IpList = getSliceFwTemplateLoggingDisableLogByDestinationIpList453(in["ip_list"].([]interface{}))
+		ret.Ip6List = getSliceFwTemplateLoggingDisableLogByDestinationIp6List456(in["ip6_list"].([]interface{}))
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingDisableLogByDestinationTcpList451(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationTcpList451 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationTcpList451, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationTcpList451
+		oi.TcpPortStart = in["tcp_port_start"].(int)
+		oi.TcpPortEnd = in["tcp_port_end"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingDisableLogByDestinationUdpList452(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationUdpList452 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationUdpList452, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationUdpList452
+		oi.UdpPortStart = in["udp_port_start"].(int)
+		oi.UdpPortEnd = in["udp_port_end"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingDisableLogByDestinationIpList453(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIpList453 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIpList453, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationIpList453
+		oi.Ipv4Addr = in["ipv4_addr"].(string)
+		oi.TcpList = getSliceFwTemplateLoggingDisableLogByDestinationIpListTcpList454(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceFwTemplateLoggingDisableLogByDestinationIpListUdpList455(in["udp_list"].([]interface{}))
+		oi.Icmp = in["icmp"].(int)
+		oi.Others = in["others"].(int)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingDisableLogByDestinationIpListTcpList454(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIpListTcpList454 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIpListTcpList454, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationIpListTcpList454
+		oi.TcpPortStart = in["tcp_port_start"].(int)
+		oi.TcpPortEnd = in["tcp_port_end"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingDisableLogByDestinationIpListUdpList455(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIpListUdpList455 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIpListUdpList455, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationIpListUdpList455
+		oi.UdpPortStart = in["udp_port_start"].(int)
+		oi.UdpPortEnd = in["udp_port_end"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingDisableLogByDestinationIp6List456(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIp6List456 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIp6List456, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationIp6List456
+		oi.Ipv6Addr = in["ipv6_addr"].(string)
+		oi.TcpList = getSliceFwTemplateLoggingDisableLogByDestinationIp6ListTcpList457(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceFwTemplateLoggingDisableLogByDestinationIp6ListUdpList458(in["udp_list"].([]interface{}))
+		oi.Icmp = in["icmp"].(int)
+		oi.Others = in["others"].(int)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingDisableLogByDestinationIp6ListTcpList457(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIp6ListTcpList457 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIp6ListTcpList457, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationIp6ListTcpList457
+		oi.TcpPortStart = in["tcp_port_start"].(int)
+		oi.TcpPortEnd = in["tcp_port_end"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingDisableLogByDestinationIp6ListUdpList458(d []interface{}) []edpt.FwTemplateLoggingDisableLogByDestinationIp6ListUdpList458 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingDisableLogByDestinationIp6ListUdpList458, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingDisableLogByDestinationIp6ListUdpList458
+		oi.UdpPortStart = in["udp_port_start"].(int)
+		oi.UdpPortEnd = in["udp_port_end"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectFwTemplateLoggingEnableLogByDestination459(d []interface{}) edpt.FwTemplateLoggingEnableLogByDestination459 {
+
+	count1 := len(d)
+	var ret edpt.FwTemplateLoggingEnableLogByDestination459
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.TcpList = getSliceFwTemplateLoggingEnableLogByDestinationTcpList460(in["tcp_list"].([]interface{}))
+		ret.UdpList = getSliceFwTemplateLoggingEnableLogByDestinationUdpList461(in["udp_list"].([]interface{}))
+		ret.Icmp = in["icmp"].(int)
+		ret.Others = in["others"].(int)
+		//omit uuid
+		ret.IpList = getSliceFwTemplateLoggingEnableLogByDestinationIpList462(in["ip_list"].([]interface{}))
+		ret.Ip6List = getSliceFwTemplateLoggingEnableLogByDestinationIp6List465(in["ip6_list"].([]interface{}))
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingEnableLogByDestinationTcpList460(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationTcpList460 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationTcpList460, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationTcpList460
+		oi.TcpPortStart = in["tcp_port_start"].(int)
+		oi.TcpPortEnd = in["tcp_port_end"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingEnableLogByDestinationUdpList461(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationUdpList461 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationUdpList461, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationUdpList461
+		oi.UdpPortStart = in["udp_port_start"].(int)
+		oi.UdpPortEnd = in["udp_port_end"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingEnableLogByDestinationIpList462(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIpList462 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIpList462, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationIpList462
+		oi.Ipv4Addr = in["ipv4_addr"].(string)
+		oi.TcpList = getSliceFwTemplateLoggingEnableLogByDestinationIpListTcpList463(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceFwTemplateLoggingEnableLogByDestinationIpListUdpList464(in["udp_list"].([]interface{}))
+		oi.Icmp = in["icmp"].(int)
+		oi.Others = in["others"].(int)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingEnableLogByDestinationIpListTcpList463(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIpListTcpList463 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIpListTcpList463, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationIpListTcpList463
+		oi.TcpPortStart = in["tcp_port_start"].(int)
+		oi.TcpPortEnd = in["tcp_port_end"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingEnableLogByDestinationIpListUdpList464(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIpListUdpList464 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIpListUdpList464, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationIpListUdpList464
+		oi.UdpPortStart = in["udp_port_start"].(int)
+		oi.UdpPortEnd = in["udp_port_end"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingEnableLogByDestinationIp6List465(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIp6List465 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIp6List465, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationIp6List465
+		oi.Ipv6Addr = in["ipv6_addr"].(string)
+		oi.TcpList = getSliceFwTemplateLoggingEnableLogByDestinationIp6ListTcpList466(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceFwTemplateLoggingEnableLogByDestinationIp6ListUdpList467(in["udp_list"].([]interface{}))
+		oi.Icmp = in["icmp"].(int)
+		oi.Others = in["others"].(int)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingEnableLogByDestinationIp6ListTcpList466(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIp6ListTcpList466 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIp6ListTcpList466, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationIp6ListTcpList466
+		oi.TcpPortStart = in["tcp_port_start"].(int)
+		oi.TcpPortEnd = in["tcp_port_end"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceFwTemplateLoggingEnableLogByDestinationIp6ListUdpList467(d []interface{}) []edpt.FwTemplateLoggingEnableLogByDestinationIp6ListUdpList467 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwTemplateLoggingEnableLogByDestinationIp6ListUdpList467, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.FwTemplateLoggingEnableLogByDestinationIp6ListUdpList467
+		oi.UdpPortStart = in["udp_port_start"].(int)
+		oi.UdpPortEnd = in["udp_port_end"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func getObjectFwTemplateLoggingIncludeHttp(d []interface{}) edpt.FwTemplateLoggingIncludeHttp {
 
 	count1 := len(d)
@@ -374,10 +974,10 @@ func getSliceFwTemplateLoggingRuleRuleHttpRequestsDestPort(d []interface{}) []ed
 	return ret
 }
 
-func getObjectFwTemplateLoggingSessionPeriodicLog378(d []interface{}) edpt.FwTemplateLoggingSessionPeriodicLog378 {
+func getObjectFwTemplateLoggingSessionPeriodicLog468(d []interface{}) edpt.FwTemplateLoggingSessionPeriodicLog468 {
 
 	count1 := len(d)
-	var ret edpt.FwTemplateLoggingSessionPeriodicLog378
+	var ret edpt.FwTemplateLoggingSessionPeriodicLog468
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Interval = in["interval"].(int)
@@ -386,10 +986,10 @@ func getObjectFwTemplateLoggingSessionPeriodicLog378(d []interface{}) edpt.FwTem
 	return ret
 }
 
-func getObjectFwTemplateLoggingSourceAddress379(d []interface{}) edpt.FwTemplateLoggingSourceAddress379 {
+func getObjectFwTemplateLoggingSourceAddress469(d []interface{}) edpt.FwTemplateLoggingSourceAddress469 {
 
 	count1 := len(d)
-	var ret edpt.FwTemplateLoggingSourceAddress379
+	var ret edpt.FwTemplateLoggingSourceAddress469
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ip = in["ip"].(string)
@@ -401,20 +1001,24 @@ func getObjectFwTemplateLoggingSourceAddress379(d []interface{}) edpt.FwTemplate
 
 func dataToEndpointFwTemplateLogging(d *schema.ResourceData) edpt.FwTemplateLogging {
 	var ret edpt.FwTemplateLogging
+	ret.Inst.Custom = getObjectFwTemplateLoggingCustom(d.Get("custom").([]interface{}))
+	ret.Inst.DisableLogByDestination = getObjectFwTemplateLoggingDisableLogByDestination450(d.Get("disable_log_by_destination").([]interface{}))
+	ret.Inst.EnableLogByDestination = getObjectFwTemplateLoggingEnableLogByDestination459(d.Get("enable_log_by_destination").([]interface{}))
 	ret.Inst.Facility = d.Get("facility").(string)
 	ret.Inst.Format = d.Get("format").(string)
 	ret.Inst.IncludeDestFqdn = d.Get("include_dest_fqdn").(int)
 	ret.Inst.IncludeHttp = getObjectFwTemplateLoggingIncludeHttp(d.Get("include_http").([]interface{}))
 	ret.Inst.IncludeRadiusAttribute = getObjectFwTemplateLoggingIncludeRadiusAttribute(d.Get("include_radius_attribute").([]interface{}))
+	ret.Inst.IncludeYear = d.Get("include_year").(int)
 	ret.Inst.Log = getObjectFwTemplateLoggingLog(d.Get("log").([]interface{}))
 	ret.Inst.MergedStyle = d.Get("merged_style").(int)
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.Resolution = d.Get("resolution").(string)
 	ret.Inst.Rule = getObjectFwTemplateLoggingRule(d.Get("rule").([]interface{}))
 	ret.Inst.ServiceGroup = d.Get("service_group").(string)
-	ret.Inst.SessionPeriodicLog = getObjectFwTemplateLoggingSessionPeriodicLog378(d.Get("session_periodic_log").([]interface{}))
+	ret.Inst.SessionPeriodicLog = getObjectFwTemplateLoggingSessionPeriodicLog468(d.Get("session_periodic_log").([]interface{}))
 	ret.Inst.Severity = d.Get("severity").(string)
-	ret.Inst.SourceAddress = getObjectFwTemplateLoggingSourceAddress379(d.Get("source_address").([]interface{}))
+	ret.Inst.SourceAddress = getObjectFwTemplateLoggingSourceAddress469(d.Get("source_address").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

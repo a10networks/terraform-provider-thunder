@@ -40,8 +40,8 @@ func resourceVisibilityReportingTemplateNotificationTemplateNameAuthentication()
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"template_name_name": {
+				Type: schema.TypeString, Required: true, Description: "Template_name_name",
 			},
 		},
 	}
@@ -120,6 +120,6 @@ func dataToEndpointVisibilityReportingTemplateNotificationTemplateNameAuthentica
 	ret.Inst.RelativeLoginUri = d.Get("relative_login_uri").(string)
 	ret.Inst.RelativeLogoffUri = d.Get("relative_logoff_uri").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Template_name_name = d.Get("template_name_name").(string)
 	return ret
 }

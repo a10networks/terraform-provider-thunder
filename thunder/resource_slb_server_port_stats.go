@@ -131,8 +131,8 @@ func resourceSlbServerPortStats47() *schema.Resource {
 					},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"server_name": {
+				Type: schema.TypeString, Required: true, Description: "Server_name",
 			},
 		},
 	}
@@ -253,6 +253,6 @@ func dataToEndpointSlbServerPortStats47(d *schema.ResourceData) edpt.SlbServerPo
 
 	ret.Stats = getObjectSlbServerPortStats47Stats(d.Get("stats").([]interface{}))
 
-	ret.Name = d.Get("name").(string)
+	ret.Server_name = d.Get("server_name").(string)
 	return ret
 }

@@ -28,8 +28,8 @@ func resourceGslbPolicyCapacity() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
 			},
 		},
 	}
@@ -102,6 +102,6 @@ func dataToEndpointGslbPolicyCapacity(d *schema.ResourceData) edpt.GslbPolicyCap
 	ret.Inst.CapacityFailBreak = d.Get("capacity_fail_break").(int)
 	ret.Inst.Threshold = d.Get("threshold").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

@@ -54,6 +54,7 @@ Optional:
 
 Optional:
 
+- `apn_imsi_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at APN-IMSI filtering policy
 - `downlink_bytes` (Number) Downlink Bytes
 - `downlink_pkts` (Number) Downlink Packets
 - `drop_flt_apn_filtering` (Number) Filtering Drop: APN IMSI Filtering
@@ -120,7 +121,10 @@ Optional:
 - `drop_vld_v1_reserved_message_drop` (Number) Validation Drop: GTPv1-C Reserved Message Drop
 - `drop_vld_v2_reserved_message_drop` (Number) Validation Drop: GTPv2-C Reserved Message Drop
 - `drop_vld_version_not_supported` (Number) Validation Drop: Invalid GTP version
+- `flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at message filtering policy
+- `gen_message_length_monitor` (Number) GTP Message forwarded via monitor mode at validation policy
 - `gtp_c_handover_in_progress_with_conn` (Number) GTP-C matching a conn with Handover In Progress
+- `gtp_in_gtp_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at GTP-IN_GTP filtering policy
 - `gtp_path_management_message` (Number) GTP Path Management Messages Received
 - `gtp_u_tunnel_created` (Number) GTP-U Tunnel Created
 - `gtp_u_tunnel_deleted` (Number) GTP-U Tunnel Deleted
@@ -169,8 +173,16 @@ Optional:
 - `gtp_v2_c_tunnel_half_closed` (Number) GTPv2-C Tunnel Delete Request
 - `gtp_v2_c_tunnel_half_open` (Number) GTPv2-C Half open tunnel created
 - `key_name` (String)
+- `msisdn_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at Msisdn filtering policy
+- `rat_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at rat filtering policy
+- `rl_message_monitor` (Number) GTP Message forwarded via monitor mode at rate-limit policy
+- `u_downlink_bytes` (Number) Downlink Bytes
+- `u_downlink_pkts` (Number) GTP-U Downlink Packets
+- `u_uplink_bytes` (Number) Uplink Bytes
+- `u_uplink_pkts` (Number) Uplink Packets
 - `uplink_bytes` (Number) Uplink Bytes
 - `uplink_pkts` (Number) Uplink Packets
+- `vld_message_monitor` (Number) GTP Message forwarded via monitor mode at validation policy
 
 
 
@@ -186,6 +198,7 @@ Optional:
 
 Optional:
 
+- `apn_imsi_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at APN-IMSI filtering policy
 - `downlink_bytes` (Number) Downlink Bytes
 - `downlink_pkts` (Number) Downlink Packets
 - `drop_flt_apn_filtering` (Number) Filtering Drop: APN IMSI Filtering
@@ -252,7 +265,10 @@ Optional:
 - `drop_vld_v1_reserved_message_drop` (Number) Validation Drop: GTPv1-C Reserved Message Drop
 - `drop_vld_v2_reserved_message_drop` (Number) Validation Drop: GTPv2-C Reserved Message Drop
 - `drop_vld_version_not_supported` (Number) Validation Drop: Invalid GTP version
+- `flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at message filtering policy
+- `gen_message_length_monitor` (Number) GTP Message forwarded via monitor mode at general policy
 - `gtp_c_handover_in_progress_with_conn` (Number) GTP-C matching a conn with Handover In Progress
+- `gtp_in_gtp_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at GTP-IN_GTP filtering policy
 - `gtp_node_restart_gtp_c` (Number) GTP Node Restoration due to Recovery IE in GTP-C Message
 - `gtp_path_management_message` (Number) GTP Path Management Messages Received
 - `gtp_u_tunnel_created` (Number) GTP-U Tunnel Created
@@ -303,8 +319,16 @@ Optional:
 - `gtp_v2_c_tunnel_half_open` (Number) GTPv2-C Half open tunnel created
 - `key_name` (String)
 - `key_type` (String)
+- `msisdn_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at Msisdn filtering policy
+- `rat_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at rat filtering policy
+- `rl_message_monitor` (Number) GTP Message forwarded via monitor mode at rate-limit policy
+- `u_downlink_bytes` (Number) Downlink Bytes
+- `u_downlink_pkts` (Number) GTP-U Downlink Packets
+- `u_uplink_bytes` (Number) Uplink Bytes
+- `u_uplink_pkts` (Number) Uplink Packets
 - `uplink_bytes` (Number) Uplink Bytes
 - `uplink_pkts` (Number) Uplink Packets
+- `vld_message_monitor` (Number) GTP Message forwarded via monitor mode at validation policy
 
 
 
@@ -313,37 +337,71 @@ Optional:
 
 Optional:
 
+- `blade_gtp_c_smp_sig_check_failed` (Number) GTP-C SMP signature check Failed on PU2
+- `blade_gtp_info_ext_not_found` (Number) GTP-Info ext not found while freeing C-smp on PU2
+- `blade_gtp_rate_limit_entry_create_failure` (Number) GTP Rate Limit Entry Create Failure on PU2
+- `blade_gtp_rate_limit_smp_create_failure` (Number) GTP Rate Limit SMP Create Failure on PU2
+- `blade_gtp_rate_limit_t3_ctr_create_failure` (Number) GTP Rate Limit Dynamic Counters Create Failure on PU2
+- `blade_gtp_smp_c_check_failed` (Number) GTP-C SMP check Failed on PU2
+- `blade_gtp_smp_dec_sess_count_check_failed` (Number) GTP-U session count is 0 in GTP-C SMP on PU2
+- `blade_gtp_smp_path_check_failed` (Number) GTP SMP PATH check Failed on PU2
+- `blade_gtp_smp_session_count_check_failed` (Number) GTP-U session count is not in range of 0-11 in GTP-C SMP on PU2
+- `blade_gtp_smp_sig_check_failed` (Number) GTP SMP signature check Failed on PU2
+- `blade_gtp_u_smp_check_failed` (Number) GTP U-SMP check Failed on PU2
+- `blade_gtp_u_smp_sig_check_failed` (Number) GTP-U SMP signature check Failed on PU2
+- `blade_no_fwd_route` (Number) No Forward Route on PU2
+- `blade_no_rev_route` (Number) No Reverse Route on PU2
+- `blade_out_of_session_memory` (Number) Out of Tunnel Memory on PU2
 - `drop_gtp_bearer_not_found_in_resp` (Number) GTP Bearer not found in response
 - `drop_gtp_frag_or_jumbo_pkt` (Number) GTP Fragmented or JUMBO packet Drop
 - `drop_gtp_missing_cond_ie_bearer_ctx` (Number) Missing conditional IE in bearer context Drop
 - `drop_vld_gtp_echo_ie_len_exceed_msg_len` (Number) GTP Echo IE Length Exceeds Message Length
 - `drop_vld_gtp_echo_out_of_state_` (Number) GTP Echo Out of State Drop
-- `gtp_add_bearer_response_retransmit` (Number) GTP-C Retransmitted Add Bearer Response
+- `drop_vld_gtp_u_echo_out_of_state_` (Number) GTP-U Echo Out of State Drop
+- `gtp_c_conn_create_pkt_drop` (Number) GTP-C conn creation drop
 - `gtp_c_echo_path_failure` (Number) GTP-C Path Failure due to Echo
+- `gtp_c_fail_conn_create_slow` (Number) GTP-C packet failed creating L4-session in slowpath
+- `gtp_c_frag_or_jumbo_pkt_processed` (Number) GTP-C Fragmented or Jumbo packet processed
+- `gtp_c_frag_pkt_received` (Number) GTP-C Fragmented packet received
 - `gtp_c_handover_in_progress_with_conn` (Number) GTP-C mesg matching conn with HO In Progress
 - `gtp_c_handover_request_out_of_state_drop` (Number) GTP-C Handover Request Out of state Drop
-- `gtp_c_ref_count_smp_exceeded` (Number) GTP-C session count on C-smp exceeded 2
-- `gtp_del_bearer_request_retransmit` (Number) GTP-C Retransmitted Delete Bearer Request
+- `gtp_c_smp_sig_check_failed` (Number) GTP-C SMP signature check Failed
+- `gtp_create_session_request_retx_drop` (Number) GTP-C Retransmitted Create Session Request dropped
+- `gtp_echo_frag_or_jumbo_pkt_processed` (Number) GTP-Echo Fragmented or Jumbo packet processed
+- `gtp_echo_stateless_forward` (Number) GTP-echo Stateless Forward
+- `gtp_ext_hdr_incorrect_length` (Number) GTP Extension header incorrect length
+- `gtp_info_ext_not_found` (Number) GTP-Info ext not found while freeing C-smp
 - `gtp_monitor_forward` (Number) GTP messages forwarded via monitor mode
 - `gtp_node_restart_echo` (Number) GTP Node Restoration due to Recovery IE in Echo
 - `gtp_path_message_length_mismatch` (Number) GTP-Path Message Length Mismatch Across Layers
+- `gtp_pathm_fail_conn_create_slow` (Number) GTP path packet failed while creating L4-session in slowpath
 - `gtp_rate_limit_entry_create_failure` (Number) GTP Rate Limit Entry Create Failure
 - `gtp_rate_limit_smp_create_failure` (Number) GTP Rate Limit SMP Create Failure
 - `gtp_rate_limit_t3_ctr_create_failure` (Number) GTP Rate Limit Dynamic Counters Create Failure
 - `gtp_rr_message_drop` (Number) GTP Message Dropped in RR Mode
-- `gtp_smp_check_failed` (Number) GTP SMP check Failed
+- `gtp_smp_c_check_failed` (Number) GTP-C SMP check Failed
 - `gtp_smp_dec_sess_count_check_failed` (Number) GTP-U session count is 0 in GTP-C SMP
 - `gtp_smp_path_check_failed` (Number) GTP SMP PATH check Failed
-- `gtp_smp_session_count_check_failed` (Number) GTP-U session count is not in range of 0-11 in GTP-C SMP
+- `gtp_smp_sig_check_failed` (Number) GTP SMP signature check Failed
 - `gtp_stateless_forward` (Number) GTP Stateless Forward
+- `gtp_sync_tx_fw_drop_session_create` (Number) Conn Sync FW gtp Create Session Sent dropped
 - `gtp_tunnel_rate_limit_entry_create_failure` (Number) GTP Tunnel Level Rate Limit Entry Create Failure
 - `gtp_u_downlink_egress_bytes` (Number) GTP-U Downlink Egress Bytes
 - `gtp_u_downlink_egress_packets` (Number) GTP-U Downlink Egress Packets
 - `gtp_u_downlink_ingress_bytes` (Number) GTP-U Downlink Ingress Bytes
 - `gtp_u_downlink_ingress_packets` (Number) GTP-U Downlink Ingress Packets
+- `gtp_u_fail_conn_create_slow` (Number) GTP-U packet failed while creating L4-session in slowpath
+- `gtp_u_frag_pkt_processed` (Number) GTP-U Fragmented packet processed
+- `gtp_u_frag_pkt_received` (Number) GTP-U Fragmented packet received
 - `gtp_u_message_length_mismatch` (Number) GTP-U Message Length Mismatch Across Layers
+- `gtp_u_monitor_forward` (Number) GTP-U messages forwarded via monitor mode
 - `gtp_u_out_of_state_drop` (Number) GTP-U Out of state Drop
-- `gtp_u_smp_in_rml_with_sess` (Number) GTP-U smp is marked RML with U-session
+- `gtp_u_rr_message_drop` (Number) GTP-U Message Dropped in RR Mode
+- `gtp_u_smp_check_failed` (Number) GTP U-SMP check Failed
+- `gtp_u_smp_sig_check_failed` (Number) GTP SMP signature check Failed
+- `gtp_u_stateless_forward` (Number) GTP-U Stateless Forward
+- `gtp_u_tunnel_frag_or_jumbo_pkt_processed` (Number) GTP-U Tunnel Fragmented or Jumbo packet processed
+- `gtp_u_tunnel_rate_limit_entry_create_failure` (Number) GTP-U Tunnel Level Rate Limit Entry Create Failure
 - `gtp_u_uplink_egress_bytes` (Number) GTP-U Uplink Egress Bytes
 - `gtp_u_uplink_egress_packets` (Number) GTP-U Uplink Egress Packets
 - `gtp_u_uplink_ingress_bytes` (Number) GTP-U Uplink Ingress Bytes
@@ -356,6 +414,7 @@ Optional:
 - `gtp_v0_c_uplink_egress_packets` (Number) GTPv0-C Uplink Egress Packets
 - `gtp_v0_c_uplink_ingress_bytes` (Number) GTPv0-C Uplink Ingress Bytes
 - `gtp_v0_c_uplink_ingress_packets` (Number) GTPv0-C Uplink Ingress Packets
+- `gtp_v0_c_ver_not_supp` (Number) GTPv0-C Version not supported indication
 - `gtp_v1_c_downlink_egress_bytes` (Number) GTPv1-C Downlink Egress Bytes
 - `gtp_v1_c_downlink_egress_packets` (Number) GTPv1-C Downlink Egress Packets
 - `gtp_v1_c_downlink_ingress_bytes` (Number) GTPv1-C Downlink Ingress Bytes
@@ -365,6 +424,7 @@ Optional:
 - `gtp_v1_c_uplink_egress_packets` (Number) GTPv1-C Uplink Egress Packets
 - `gtp_v1_c_uplink_ingress_bytes` (Number) GTPv1-C Uplink Ingress Bytes
 - `gtp_v1_c_uplink_ingress_packets` (Number) GTPv1-C Uplink Ingress Packets
+- `gtp_v1_c_ver_not_supp` (Number) GTPv1-C Version not supported indication
 - `gtp_v2_c_bearer_not_found_in_delete_req` (Number) GTPv2-C Bearer Not Found in GTP Request
 - `gtp_v2_c_bearer_not_found_in_delete_resp` (Number) GTPv2-C Bearer Not Found in GTP Response
 - `gtp_v2_c_downlink_egress_bytes` (Number) GTPv2-C Downlink Egress Bytes
@@ -375,8 +435,7 @@ Optional:
 - `gtp_v2_c_uplink_egress_packets` (Number) GTPv2-C Uplink Egress Packets
 - `gtp_v2_c_uplink_ingress_bytes` (Number) GTPv2-C Uplink Ingress Bytes
 - `gtp_v2_c_uplink_ingress_packets` (Number) GTPv2-C Uplink Ingress Packets
-- `no_fwd_route` (Number) No Forward Route
-- `no_rev_route` (Number) No Reverse Route
-- `out_of_session_memory` (Number) Out of Tunnel Memory
-
-
+- `gtp_v2_c_ver_not_supp` (Number) GTPv2-C Version not supported indication
+- `no_fwd_route` (Number) No Forward Route for GTP-C
+- `no_rev_route` (Number) No Reverse Route for GTP-C
+- `out_of_session_memory` (Number) Out of Tunnel Memory for GTP-C

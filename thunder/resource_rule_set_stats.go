@@ -1631,6 +1631,18 @@ func resourceRuleSetStats() *schema.Resource {
 									"rate_limit_drops": {
 										Type: schema.TypeInt, Optional: true, Description: "Rate Limit Drops",
 									},
+									"syn_cookie_syn_ack_sent": {
+										Type: schema.TypeInt, Optional: true, Description: "SYN cookie SYN ACK sent",
+									},
+									"syn_cookie_verification_passed": {
+										Type: schema.TypeInt, Optional: true, Description: "SYN cookie verification passed",
+									},
+									"syn_cookie_verification_failed": {
+										Type: schema.TypeInt, Optional: true, Description: "SYN cookie verification failed",
+									},
+									"tcp_half_open_count": {
+										Type: schema.TypeInt, Optional: true, Description: "TCP half open sessions matching the rule",
+									},
 								},
 							},
 						},
@@ -3595,6 +3607,14 @@ func setObjectRuleSetStatsRuleListStats(d edpt.RuleSetStatsRuleListStats) []map[
 	in["hitcount_timestamp"] = d.HitcountTimestamp
 
 	in["rate_limit_drops"] = d.RateLimitDrops
+
+	in["syn_cookie_syn_ack_sent"] = d.SynCookieSynAckSent
+
+	in["syn_cookie_verification_passed"] = d.SynCookieVerificationPassed
+
+	in["syn_cookie_verification_failed"] = d.SynCookieVerificationFailed
+
+	in["tcp_half_open_count"] = d.TcpHalfOpenCount
 	result = append(result, in)
 	return result
 }
@@ -4742,6 +4762,10 @@ func getObjectRuleSetStatsRuleListStats(d []interface{}) edpt.RuleSetStatsRuleLi
 		ret.SessionSctp = in["session_sctp"].(int)
 		ret.HitcountTimestamp = in["hitcount_timestamp"].(int)
 		ret.RateLimitDrops = in["rate_limit_drops"].(int)
+		ret.SynCookieSynAckSent = in["syn_cookie_syn_ack_sent"].(int)
+		ret.SynCookieVerificationPassed = in["syn_cookie_verification_passed"].(int)
+		ret.SynCookieVerificationFailed = in["syn_cookie_verification_failed"].(int)
+		ret.TcpHalfOpenCount = in["tcp_half_open_count"].(int)
 	}
 	return ret
 }

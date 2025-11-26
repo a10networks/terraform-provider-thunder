@@ -56,5 +56,3 @@ Optional:
 - `moderate_risk` (Number) Moderate-risk level(41-60)
 - `suspicious` (Number) Suspicious level(21-40)
 - `trustworthy` (Number) Trustworthy level(81-100)
-
-

@@ -108,5 +108,3 @@ Optional:
 - `sync_szp_tcp_auth_sent` (Number) Sync Sent SrcZoneService TCP Authenticated
 - `sync_szp_udp_auth_rcvd` (Number) Sync Received SrcZoneService UDP Authenticated
 - `sync_szp_udp_auth_sent` (Number) Sync Sent SrcZoneService UDP Authenticated
-
-

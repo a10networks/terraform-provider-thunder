@@ -35,8 +35,14 @@ func resourceInterfaceLifIp() *schema.Resource {
 			"cache_spoofing_port": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "This interface connects to spoofing cache",
 			},
+			"client": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Client facing interface for IPv4/v6 traffic",
+			},
 			"dhcp": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use DHCP to configure IP address",
+			},
+			"dmz": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "DMZ network facing interface for IPv4/v6 traffic",
 			},
 			"generate_membership_query": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable Membership Query",
@@ -352,6 +358,9 @@ func resourceInterfaceLifIp() *schema.Resource {
 					},
 				},
 			},
+			"server": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Server facing interface for IPv4/v6 traffic",
+			},
 			"unnumbered": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Set the interface as unnumbered",
 			},
@@ -440,36 +449,36 @@ func getSliceInterfaceLifIpAddressList(d []interface{}) []edpt.InterfaceLifIpAdd
 	return ret
 }
 
-func getObjectInterfaceLifIpOspf560(d []interface{}) edpt.InterfaceLifIpOspf560 {
+func getObjectInterfaceLifIpOspf650(d []interface{}) edpt.InterfaceLifIpOspf650 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpOspf560
+	var ret edpt.InterfaceLifIpOspf650
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.OspfGlobal = getObjectInterfaceLifIpOspfOspfGlobal561(in["ospf_global"].([]interface{}))
+		ret.OspfGlobal = getObjectInterfaceLifIpOspfOspfGlobal651(in["ospf_global"].([]interface{}))
 		ret.OspfIpList = getSliceInterfaceLifIpOspfOspfIpList(in["ospf_ip_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceLifIpOspfOspfGlobal561(d []interface{}) edpt.InterfaceLifIpOspfOspfGlobal561 {
+func getObjectInterfaceLifIpOspfOspfGlobal651(d []interface{}) edpt.InterfaceLifIpOspfOspfGlobal651 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpOspfOspfGlobal561
+	var ret edpt.InterfaceLifIpOspfOspfGlobal651
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AuthenticationCfg = getObjectInterfaceLifIpOspfOspfGlobalAuthenticationCfg562(in["authentication_cfg"].([]interface{}))
+		ret.AuthenticationCfg = getObjectInterfaceLifIpOspfOspfGlobalAuthenticationCfg652(in["authentication_cfg"].([]interface{}))
 		ret.AuthenticationKey = in["authentication_key"].(string)
-		ret.BfdCfg = getObjectInterfaceLifIpOspfOspfGlobalBfdCfg563(in["bfd_cfg"].([]interface{}))
+		ret.BfdCfg = getObjectInterfaceLifIpOspfOspfGlobalBfdCfg653(in["bfd_cfg"].([]interface{}))
 		ret.Cost = in["cost"].(int)
-		ret.DatabaseFilterCfg = getObjectInterfaceLifIpOspfOspfGlobalDatabaseFilterCfg564(in["database_filter_cfg"].([]interface{}))
+		ret.DatabaseFilterCfg = getObjectInterfaceLifIpOspfOspfGlobalDatabaseFilterCfg654(in["database_filter_cfg"].([]interface{}))
 		ret.DeadInterval = in["dead_interval"].(int)
 		ret.Disable = in["disable"].(string)
 		ret.HelloInterval = in["hello_interval"].(int)
-		ret.MessageDigestCfg = getSliceInterfaceLifIpOspfOspfGlobalMessageDigestCfg565(in["message_digest_cfg"].([]interface{}))
+		ret.MessageDigestCfg = getSliceInterfaceLifIpOspfOspfGlobalMessageDigestCfg655(in["message_digest_cfg"].([]interface{}))
 		ret.Mtu = in["mtu"].(int)
 		ret.MtuIgnore = in["mtu_ignore"].(int)
-		ret.Network = getObjectInterfaceLifIpOspfOspfGlobalNetwork567(in["network"].([]interface{}))
+		ret.Network = getObjectInterfaceLifIpOspfOspfGlobalNetwork657(in["network"].([]interface{}))
 		ret.Priority = in["priority"].(int)
 		ret.RetransmitInterval = in["retransmit_interval"].(int)
 		ret.TransmitDelay = in["transmit_delay"].(int)
@@ -478,10 +487,10 @@ func getObjectInterfaceLifIpOspfOspfGlobal561(d []interface{}) edpt.InterfaceLif
 	return ret
 }
 
-func getObjectInterfaceLifIpOspfOspfGlobalAuthenticationCfg562(d []interface{}) edpt.InterfaceLifIpOspfOspfGlobalAuthenticationCfg562 {
+func getObjectInterfaceLifIpOspfOspfGlobalAuthenticationCfg652(d []interface{}) edpt.InterfaceLifIpOspfOspfGlobalAuthenticationCfg652 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpOspfOspfGlobalAuthenticationCfg562
+	var ret edpt.InterfaceLifIpOspfOspfGlobalAuthenticationCfg652
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Authentication = in["authentication"].(int)
@@ -490,10 +499,10 @@ func getObjectInterfaceLifIpOspfOspfGlobalAuthenticationCfg562(d []interface{}) 
 	return ret
 }
 
-func getObjectInterfaceLifIpOspfOspfGlobalBfdCfg563(d []interface{}) edpt.InterfaceLifIpOspfOspfGlobalBfdCfg563 {
+func getObjectInterfaceLifIpOspfOspfGlobalBfdCfg653(d []interface{}) edpt.InterfaceLifIpOspfOspfGlobalBfdCfg653 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpOspfOspfGlobalBfdCfg563
+	var ret edpt.InterfaceLifIpOspfOspfGlobalBfdCfg653
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bfd = in["bfd"].(int)
@@ -502,10 +511,10 @@ func getObjectInterfaceLifIpOspfOspfGlobalBfdCfg563(d []interface{}) edpt.Interf
 	return ret
 }
 
-func getObjectInterfaceLifIpOspfOspfGlobalDatabaseFilterCfg564(d []interface{}) edpt.InterfaceLifIpOspfOspfGlobalDatabaseFilterCfg564 {
+func getObjectInterfaceLifIpOspfOspfGlobalDatabaseFilterCfg654(d []interface{}) edpt.InterfaceLifIpOspfOspfGlobalDatabaseFilterCfg654 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpOspfOspfGlobalDatabaseFilterCfg564
+	var ret edpt.InterfaceLifIpOspfOspfGlobalDatabaseFilterCfg654
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DatabaseFilter = in["database_filter"].(string)
@@ -514,24 +523,24 @@ func getObjectInterfaceLifIpOspfOspfGlobalDatabaseFilterCfg564(d []interface{}) 
 	return ret
 }
 
-func getSliceInterfaceLifIpOspfOspfGlobalMessageDigestCfg565(d []interface{}) []edpt.InterfaceLifIpOspfOspfGlobalMessageDigestCfg565 {
+func getSliceInterfaceLifIpOspfOspfGlobalMessageDigestCfg655(d []interface{}) []edpt.InterfaceLifIpOspfOspfGlobalMessageDigestCfg655 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceLifIpOspfOspfGlobalMessageDigestCfg565, 0, count1)
+	ret := make([]edpt.InterfaceLifIpOspfOspfGlobalMessageDigestCfg655, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceLifIpOspfOspfGlobalMessageDigestCfg565
+		var oi edpt.InterfaceLifIpOspfOspfGlobalMessageDigestCfg655
 		oi.MessageDigestKey = in["message_digest_key"].(int)
-		oi.Md5 = getObjectInterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5566(in["md5"].([]interface{}))
+		oi.Md5 = getObjectInterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5656(in["md5"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectInterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5566(d []interface{}) edpt.InterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5566 {
+func getObjectInterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5656(d []interface{}) edpt.InterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5656 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5566
+	var ret edpt.InterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5656
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Md5Value = in["md5_value"].(string)
@@ -540,10 +549,10 @@ func getObjectInterfaceLifIpOspfOspfGlobalMessageDigestCfgMd5566(d []interface{}
 	return ret
 }
 
-func getObjectInterfaceLifIpOspfOspfGlobalNetwork567(d []interface{}) edpt.InterfaceLifIpOspfOspfGlobalNetwork567 {
+func getObjectInterfaceLifIpOspfOspfGlobalNetwork657(d []interface{}) edpt.InterfaceLifIpOspfOspfGlobalNetwork657 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpOspfOspfGlobalNetwork567
+	var ret edpt.InterfaceLifIpOspfOspfGlobalNetwork657
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Broadcast = in["broadcast"].(int)
@@ -597,40 +606,40 @@ func getSliceInterfaceLifIpOspfOspfIpListMessageDigestCfg(d []interface{}) []edp
 	return ret
 }
 
-func getObjectInterfaceLifIpRip568(d []interface{}) edpt.InterfaceLifIpRip568 {
+func getObjectInterfaceLifIpRip658(d []interface{}) edpt.InterfaceLifIpRip658 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpRip568
+	var ret edpt.InterfaceLifIpRip658
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Authentication = getObjectInterfaceLifIpRipAuthentication569(in["authentication"].([]interface{}))
+		ret.Authentication = getObjectInterfaceLifIpRipAuthentication659(in["authentication"].([]interface{}))
 		ret.SendPacket = in["send_packet"].(int)
 		ret.ReceivePacket = in["receive_packet"].(int)
-		ret.SendCfg = getObjectInterfaceLifIpRipSendCfg573(in["send_cfg"].([]interface{}))
-		ret.ReceiveCfg = getObjectInterfaceLifIpRipReceiveCfg574(in["receive_cfg"].([]interface{}))
-		ret.SplitHorizonCfg = getObjectInterfaceLifIpRipSplitHorizonCfg575(in["split_horizon_cfg"].([]interface{}))
+		ret.SendCfg = getObjectInterfaceLifIpRipSendCfg663(in["send_cfg"].([]interface{}))
+		ret.ReceiveCfg = getObjectInterfaceLifIpRipReceiveCfg664(in["receive_cfg"].([]interface{}))
+		ret.SplitHorizonCfg = getObjectInterfaceLifIpRipSplitHorizonCfg665(in["split_horizon_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceLifIpRipAuthentication569(d []interface{}) edpt.InterfaceLifIpRipAuthentication569 {
+func getObjectInterfaceLifIpRipAuthentication659(d []interface{}) edpt.InterfaceLifIpRipAuthentication659 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpRipAuthentication569
+	var ret edpt.InterfaceLifIpRipAuthentication659
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Str = getObjectInterfaceLifIpRipAuthenticationStr570(in["str"].([]interface{}))
-		ret.Mode = getObjectInterfaceLifIpRipAuthenticationMode571(in["mode"].([]interface{}))
-		ret.KeyChain = getObjectInterfaceLifIpRipAuthenticationKeyChain572(in["key_chain"].([]interface{}))
+		ret.Str = getObjectInterfaceLifIpRipAuthenticationStr660(in["str"].([]interface{}))
+		ret.Mode = getObjectInterfaceLifIpRipAuthenticationMode661(in["mode"].([]interface{}))
+		ret.KeyChain = getObjectInterfaceLifIpRipAuthenticationKeyChain662(in["key_chain"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceLifIpRipAuthenticationStr570(d []interface{}) edpt.InterfaceLifIpRipAuthenticationStr570 {
+func getObjectInterfaceLifIpRipAuthenticationStr660(d []interface{}) edpt.InterfaceLifIpRipAuthenticationStr660 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpRipAuthenticationStr570
+	var ret edpt.InterfaceLifIpRipAuthenticationStr660
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.String = in["string"].(string)
@@ -638,10 +647,10 @@ func getObjectInterfaceLifIpRipAuthenticationStr570(d []interface{}) edpt.Interf
 	return ret
 }
 
-func getObjectInterfaceLifIpRipAuthenticationMode571(d []interface{}) edpt.InterfaceLifIpRipAuthenticationMode571 {
+func getObjectInterfaceLifIpRipAuthenticationMode661(d []interface{}) edpt.InterfaceLifIpRipAuthenticationMode661 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpRipAuthenticationMode571
+	var ret edpt.InterfaceLifIpRipAuthenticationMode661
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mode = in["mode"].(string)
@@ -649,10 +658,10 @@ func getObjectInterfaceLifIpRipAuthenticationMode571(d []interface{}) edpt.Inter
 	return ret
 }
 
-func getObjectInterfaceLifIpRipAuthenticationKeyChain572(d []interface{}) edpt.InterfaceLifIpRipAuthenticationKeyChain572 {
+func getObjectInterfaceLifIpRipAuthenticationKeyChain662(d []interface{}) edpt.InterfaceLifIpRipAuthenticationKeyChain662 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpRipAuthenticationKeyChain572
+	var ret edpt.InterfaceLifIpRipAuthenticationKeyChain662
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.KeyChain = in["key_chain"].(string)
@@ -660,10 +669,10 @@ func getObjectInterfaceLifIpRipAuthenticationKeyChain572(d []interface{}) edpt.I
 	return ret
 }
 
-func getObjectInterfaceLifIpRipSendCfg573(d []interface{}) edpt.InterfaceLifIpRipSendCfg573 {
+func getObjectInterfaceLifIpRipSendCfg663(d []interface{}) edpt.InterfaceLifIpRipSendCfg663 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpRipSendCfg573
+	var ret edpt.InterfaceLifIpRipSendCfg663
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Send = in["send"].(int)
@@ -672,10 +681,10 @@ func getObjectInterfaceLifIpRipSendCfg573(d []interface{}) edpt.InterfaceLifIpRi
 	return ret
 }
 
-func getObjectInterfaceLifIpRipReceiveCfg574(d []interface{}) edpt.InterfaceLifIpRipReceiveCfg574 {
+func getObjectInterfaceLifIpRipReceiveCfg664(d []interface{}) edpt.InterfaceLifIpRipReceiveCfg664 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpRipReceiveCfg574
+	var ret edpt.InterfaceLifIpRipReceiveCfg664
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Receive = in["receive"].(int)
@@ -684,10 +693,10 @@ func getObjectInterfaceLifIpRipReceiveCfg574(d []interface{}) edpt.InterfaceLifI
 	return ret
 }
 
-func getObjectInterfaceLifIpRipSplitHorizonCfg575(d []interface{}) edpt.InterfaceLifIpRipSplitHorizonCfg575 {
+func getObjectInterfaceLifIpRipSplitHorizonCfg665(d []interface{}) edpt.InterfaceLifIpRipSplitHorizonCfg665 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpRipSplitHorizonCfg575
+	var ret edpt.InterfaceLifIpRipSplitHorizonCfg665
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.State = in["state"].(string)
@@ -695,21 +704,21 @@ func getObjectInterfaceLifIpRipSplitHorizonCfg575(d []interface{}) edpt.Interfac
 	return ret
 }
 
-func getObjectInterfaceLifIpRouter576(d []interface{}) edpt.InterfaceLifIpRouter576 {
+func getObjectInterfaceLifIpRouter666(d []interface{}) edpt.InterfaceLifIpRouter666 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpRouter576
+	var ret edpt.InterfaceLifIpRouter666
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Isis = getObjectInterfaceLifIpRouterIsis577(in["isis"].([]interface{}))
+		ret.Isis = getObjectInterfaceLifIpRouterIsis667(in["isis"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceLifIpRouterIsis577(d []interface{}) edpt.InterfaceLifIpRouterIsis577 {
+func getObjectInterfaceLifIpRouterIsis667(d []interface{}) edpt.InterfaceLifIpRouterIsis667 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLifIpRouterIsis577
+	var ret edpt.InterfaceLifIpRouterIsis667
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tag = in["tag"].(string)
@@ -723,15 +732,18 @@ func dataToEndpointInterfaceLifIp(d *schema.ResourceData) edpt.InterfaceLifIp {
 	ret.Inst.AddressList = getSliceInterfaceLifIpAddressList(d.Get("address_list").([]interface{}))
 	ret.Inst.AllowPromiscuousVip = d.Get("allow_promiscuous_vip").(int)
 	ret.Inst.CacheSpoofingPort = d.Get("cache_spoofing_port").(int)
+	ret.Inst.Client = d.Get("client").(int)
 	ret.Inst.Dhcp = d.Get("dhcp").(int)
+	ret.Inst.Dmz = d.Get("dmz").(int)
 	ret.Inst.GenerateMembershipQuery = d.Get("generate_membership_query").(int)
 	ret.Inst.Inside = d.Get("inside").(int)
 	ret.Inst.MaxRespTime = d.Get("max_resp_time").(int)
-	ret.Inst.Ospf = getObjectInterfaceLifIpOspf560(d.Get("ospf").([]interface{}))
+	ret.Inst.Ospf = getObjectInterfaceLifIpOspf650(d.Get("ospf").([]interface{}))
 	ret.Inst.Outside = d.Get("outside").(int)
 	ret.Inst.QueryInterval = d.Get("query_interval").(int)
-	ret.Inst.Rip = getObjectInterfaceLifIpRip568(d.Get("rip").([]interface{}))
-	ret.Inst.Router = getObjectInterfaceLifIpRouter576(d.Get("router").([]interface{}))
+	ret.Inst.Rip = getObjectInterfaceLifIpRip658(d.Get("rip").([]interface{}))
+	ret.Inst.Router = getObjectInterfaceLifIpRouter666(d.Get("router").([]interface{}))
+	ret.Inst.Server = d.Get("server").(int)
 	ret.Inst.Unnumbered = d.Get("unnumbered").(int)
 	//omit uuid
 	ret.Inst.Ifname = d.Get("ifname").(string)

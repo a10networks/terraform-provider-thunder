@@ -83,5 +83,3 @@ Optional:
 - `sequence_num` (Number) Sequence Number
 - `sequence_num_rollover` (Number) Sequence Number Rollover
 - `tunnel_intf_down` (Number) Packet dropped: Tunnel Interface Down
-
-

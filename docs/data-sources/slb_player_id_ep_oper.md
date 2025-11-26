@@ -60,5 +60,3 @@ Optional:
 - `idle_time` (Number)
 - `player_id` (Number)
 - `user_session_count` (Number)
-
-

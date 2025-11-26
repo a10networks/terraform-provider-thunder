@@ -446,14 +446,77 @@ func resourceDdosQuicZonePortStats() *schema.Resource {
 						"src_hw_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Src Hardware Packets Dropped",
 						},
-						"addr_filter_drop": {
+						"ip_filtering_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "IP Filtering Policy: Dropped",
 						},
-						"addr_filter_bl": {
+						"ip_filtering_bl": {
 							Type: schema.TypeInt, Optional: true, Description: "IP Filtering Policy: Blacklisted",
 						},
 						"src_learn_overflow": {
 							Type: schema.TypeInt, Optional: true, Description: "Source Dynamic Entry Overflow",
+						},
+						"all_src_session_reset": {
+							Type: schema.TypeInt, Optional: true, Description: "Session Reset for All Src Upon Level Escalation",
+						},
+						"clear_session_upon_deescalation": {
+							Type: schema.TypeInt, Optional: true, Description: "Clear Session Upon De-escalation to Level 0",
+						},
+						"retry_auth_pass": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC Retry Auth Pass",
+						},
+						"retry_auth_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC Retry Auth Fail",
+						},
+						"retry_auth_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC Retry Auth Sent",
+						},
+						"connection_close_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC Connection Close Sent",
+						},
+						"invalid_retry_token": {
+							Type: schema.TypeInt, Optional: true, Description: "Invalid Retry Token",
+						},
+						"short_header": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC Short Header Packet",
+						},
+						"short_header_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC Short Header Drop",
+						},
+						"encrypt_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC Encrypt Fail",
+						},
+						"decrypt_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC Decrypt Fail",
+						},
+						"encrypt_success": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC Encrypt Success",
+						},
+						"decrypt_success": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC Decrypt Success",
+						},
+						"rtt_drop0": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC 0-RTT DROP",
+						},
+						"dynamic_count_warn": {
+							Type: schema.TypeInt, Optional: true, Description: "dynamic-entry-count warning send",
+						},
+						"aead_pkt_rate_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC AEAD Packet Rate Exceed",
+						},
+						"dcid_pkt_rate_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC DCID Packet Rate Exceed",
+						},
+						"create_conn_init_only": {
+							Type: schema.TypeInt, Optional: true, Description: "QUIC Create Connection on Initial Only",
+						},
+						"src_zone_service_entry_hit": {
+							Type: schema.TypeInt, Optional: true, Description: "SrcZoneService Entry Hit",
+						},
+						"same_sport_dport_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Same Source and Destination Port Drop",
+						},
+						"version_no_match_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Version No Match Drop",
 						},
 					},
 				},
@@ -627,9 +690,30 @@ func setObjectDdosQuicZonePortStatsStats(ret edpt.DataDdosQuicZonePortStats) []i
 			"no_route_drop":                             ret.DtDdosQuicZonePortStats.Stats.No_route_drop,
 			"unauth_src_session_reset":                  ret.DtDdosQuicZonePortStats.Stats.Unauth_src_session_reset,
 			"src_hw_drop":                               ret.DtDdosQuicZonePortStats.Stats.Src_hw_drop,
-			"addr_filter_drop":                          ret.DtDdosQuicZonePortStats.Stats.Addr_filter_drop,
-			"addr_filter_bl":                            ret.DtDdosQuicZonePortStats.Stats.Addr_filter_bl,
+			"ip_filtering_drop":                         ret.DtDdosQuicZonePortStats.Stats.Ip_filtering_drop,
+			"ip_filtering_bl":                           ret.DtDdosQuicZonePortStats.Stats.Ip_filtering_bl,
 			"src_learn_overflow":                        ret.DtDdosQuicZonePortStats.Stats.Src_learn_overflow,
+			"all_src_session_reset":                     ret.DtDdosQuicZonePortStats.Stats.All_src_session_reset,
+			"clear_session_upon_deescalation":           ret.DtDdosQuicZonePortStats.Stats.Clear_session_upon_deescalation,
+			"retry_auth_pass":                           ret.DtDdosQuicZonePortStats.Stats.Retry_auth_pass,
+			"retry_auth_fail":                           ret.DtDdosQuicZonePortStats.Stats.Retry_auth_fail,
+			"retry_auth_sent":                           ret.DtDdosQuicZonePortStats.Stats.Retry_auth_sent,
+			"connection_close_sent":                     ret.DtDdosQuicZonePortStats.Stats.Connection_close_sent,
+			"invalid_retry_token":                       ret.DtDdosQuicZonePortStats.Stats.Invalid_retry_token,
+			"short_header":                              ret.DtDdosQuicZonePortStats.Stats.Short_header,
+			"short_header_drop":                         ret.DtDdosQuicZonePortStats.Stats.Short_header_drop,
+			"encrypt_fail":                              ret.DtDdosQuicZonePortStats.Stats.Encrypt_fail,
+			"decrypt_fail":                              ret.DtDdosQuicZonePortStats.Stats.Decrypt_fail,
+			"encrypt_success":                           ret.DtDdosQuicZonePortStats.Stats.Encrypt_success,
+			"decrypt_success":                           ret.DtDdosQuicZonePortStats.Stats.Decrypt_success,
+			"rtt_drop0":                                 ret.DtDdosQuicZonePortStats.Stats.Rtt_drop0,
+			"dynamic_count_warn":                        ret.DtDdosQuicZonePortStats.Stats.Dynamic_count_warn,
+			"aead_pkt_rate_exceed":                      ret.DtDdosQuicZonePortStats.Stats.Aead_pkt_rate_exceed,
+			"dcid_pkt_rate_exceed":                      ret.DtDdosQuicZonePortStats.Stats.Dcid_pkt_rate_exceed,
+			"create_conn_init_only":                     ret.DtDdosQuicZonePortStats.Stats.Create_conn_init_only,
+			"src_zone_service_entry_hit":                ret.DtDdosQuicZonePortStats.Stats.Src_zone_service_entry_hit,
+			"same_sport_dport_drop":                     ret.DtDdosQuicZonePortStats.Stats.Same_sport_dport_drop,
+			"version_no_match_drop":                     ret.DtDdosQuicZonePortStats.Stats.Version_no_match_drop,
 		},
 	}
 }
@@ -783,9 +867,30 @@ func getObjectDdosQuicZonePortStatsStats(d []interface{}) edpt.DdosQuicZonePortS
 		ret.No_route_drop = in["no_route_drop"].(int)
 		ret.Unauth_src_session_reset = in["unauth_src_session_reset"].(int)
 		ret.Src_hw_drop = in["src_hw_drop"].(int)
-		ret.Addr_filter_drop = in["addr_filter_drop"].(int)
-		ret.Addr_filter_bl = in["addr_filter_bl"].(int)
+		ret.Ip_filtering_drop = in["ip_filtering_drop"].(int)
+		ret.Ip_filtering_bl = in["ip_filtering_bl"].(int)
 		ret.Src_learn_overflow = in["src_learn_overflow"].(int)
+		ret.All_src_session_reset = in["all_src_session_reset"].(int)
+		ret.Clear_session_upon_deescalation = in["clear_session_upon_deescalation"].(int)
+		ret.Retry_auth_pass = in["retry_auth_pass"].(int)
+		ret.Retry_auth_fail = in["retry_auth_fail"].(int)
+		ret.Retry_auth_sent = in["retry_auth_sent"].(int)
+		ret.Connection_close_sent = in["connection_close_sent"].(int)
+		ret.Invalid_retry_token = in["invalid_retry_token"].(int)
+		ret.Short_header = in["short_header"].(int)
+		ret.Short_header_drop = in["short_header_drop"].(int)
+		ret.Encrypt_fail = in["encrypt_fail"].(int)
+		ret.Decrypt_fail = in["decrypt_fail"].(int)
+		ret.Encrypt_success = in["encrypt_success"].(int)
+		ret.Decrypt_success = in["decrypt_success"].(int)
+		ret.Rtt_drop0 = in["rtt_drop0"].(int)
+		ret.Dynamic_count_warn = in["dynamic_count_warn"].(int)
+		ret.Aead_pkt_rate_exceed = in["aead_pkt_rate_exceed"].(int)
+		ret.Dcid_pkt_rate_exceed = in["dcid_pkt_rate_exceed"].(int)
+		ret.Create_conn_init_only = in["create_conn_init_only"].(int)
+		ret.Src_zone_service_entry_hit = in["src_zone_service_entry_hit"].(int)
+		ret.Same_sport_dport_drop = in["same_sport_dport_drop"].(int)
+		ret.Version_no_match_drop = in["version_no_match_drop"].(int)
 	}
 	return ret
 }

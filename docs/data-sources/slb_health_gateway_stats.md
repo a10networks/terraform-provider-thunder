@@ -47,5 +47,3 @@ Optional:
 - `total_retry_sent` (Number) Number of Total health-check retry sent
 - `total_sent` (Number) Number of Total health-check sent
 - `total_timeout` (Number) Number of Total health-check timeout
-
-

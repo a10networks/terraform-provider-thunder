@@ -72,5 +72,3 @@ Optional:
 
 - `templates_added_to_delq` (Number) Netflow templates added to the delete queue
 - `templates_removed_from_delq` (Number) Netflow templates removed from the delete queue
-
-

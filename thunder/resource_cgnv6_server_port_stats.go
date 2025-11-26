@@ -98,8 +98,8 @@ func resourceCgnv6ServerPortStats() *schema.Resource {
 					},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"server_name": {
+				Type: schema.TypeString, Required: true, Description: "Server_name",
 			},
 		},
 	}
@@ -198,6 +198,6 @@ func dataToEndpointCgnv6ServerPortStats(d *schema.ResourceData) edpt.Cgnv6Server
 
 	ret.Stats = getObjectCgnv6ServerPortStatsStats(d.Get("stats").([]interface{}))
 
-	ret.Name = d.Get("name").(string)
+	ret.Server_name = d.Get("server_name").(string)
 	return ret
 }

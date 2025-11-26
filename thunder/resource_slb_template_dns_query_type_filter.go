@@ -35,8 +35,8 @@ func resourceSlbTemplateDnsQueryTypeFilter() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_name",
 			},
 		},
 	}
@@ -122,6 +122,6 @@ func dataToEndpointSlbTemplateDnsQueryTypeFilter(d *schema.ResourceData) edpt.Sl
 	ret.Inst.QueryType = getSliceSlbTemplateDnsQueryTypeFilterQueryType(d.Get("query_type").([]interface{}))
 	ret.Inst.QueryTypeAction = d.Get("query_type_action").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dns_name = d.Get("dns_name").(string)
 	return ret
 }

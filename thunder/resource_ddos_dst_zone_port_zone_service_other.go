@@ -28,6 +28,9 @@ func resourceDdosDstZonePortZoneServiceOther() *schema.Resource {
 			"deny": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Blacklist and Drop all incoming packets for protocol",
 			},
+			"dynamic_entry_count_warn_threshold": {
+				Type: schema.TypeInt, Optional: true, Description: "Set threshold percentage of \"max-src-dst-entry\" for generating warning logs. Including start and end.",
+			},
 			"dynamic_entry_overflow_policy_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -121,7 +124,7 @@ func resourceDdosDstZonePortZoneServiceOther() *schema.Resource {
 			"ip_filtering_policy": {
 				Type: schema.TypeString, Optional: true, Description: "Configure IP Filter",
 			},
-			"ip_filtering_policy_oper": {
+			"ip_filtering_policy_statistics": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
@@ -175,6 +178,12 @@ func resourceDdosDstZonePortZoneServiceOther() *schema.Resource {
 						"close_sessions_for_unauth_sources": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Close session for unauthenticated sources",
 						},
+						"close_sessions_for_all_sources": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Close session for all sources",
+						},
+						"clear_sources_upon_deescalation": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Clear sources upon de-escalation from level 1 to 0 or manual to 0",
+						},
 						"start_pattern_recognition": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Start pattern recognition from this level",
 						},
@@ -192,7 +201,7 @@ func resourceDdosDstZonePortZoneServiceOther() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"type": {
-										Type: schema.TypeString, Required: true, Description: "'pkt-rate': rate of incoming packets; 'pkt-drop-rate': rate of packets got dropped; 'bit-rate': rate of incoming bits; 'pkt-drop-ratio': ratio of incoming packet rate divided by the rate of dropping packets; 'bytes-to-bytes-from-ratio': ratio of incoming packet rate divided by the rate of outgoing packets; 'concurrent-conns': number of concurrent connections; 'conn-miss-rate': rate of incoming packets for which no previously established connection exists; 'syn-rate': rate on incoming SYN packets; 'fin-rate': rate on incoming FIN packets; 'rst-rate': rate of incoming RST packets; 'small-window-ack-rate': rate of small window advertisement; 'empty-ack-rate': rate of incoming packets which have no payload; 'small-payload-rate': rate of short payload packet; 'syn-fin-ratio': ratio of incoming SYN packet rate divided by the rate of incoming FIN packets; 'cpu-utilization': average data CPU utilization; 'interface-utilization': outside interface utilization;",
+										Type: schema.TypeString, Required: true, Description: "'pkt-rate': rate of incoming packets; 'pkt-drop-rate': rate of packets got dropped; 'bit-rate': rate of incoming bits; 'pkt-drop-ratio': ratio of incoming packet rate divided by the rate of dropping packets; 'bytes-to-bytes-from-ratio': ratio of incoming packet rate divided by the rate of outgoing packets; 'concurrent-conns': number of concurrent connections; 'conn-miss-rate': rate of incoming packets for which no previously established connection exists; 'syn-rate': rate on incoming SYN packets; 'fin-rate': rate on incoming FIN packets; 'rst-rate': rate of incoming RST packets; 'syn-ack-rate': rate on incoming SYN-ACK packets; 'small-window-ack-rate': rate of small window advertisement; 'empty-ack-rate': rate of incoming packets which have no payload; 'small-payload-rate': rate of short payload packet; 'syn-fin-ratio': ratio of incoming SYN packet rate divided by the rate of incoming FIN packets; 'cpu-utilization': average data CPU utilization; 'interface-utilization': outside interface utilization; 'learnt-sources': learnt sources;",
 									},
 									"tcp_window_size": {
 										Type: schema.TypeInt, Optional: true, Description: "Expected minimal window size",
@@ -274,6 +283,9 @@ func resourceDdosDstZonePortZoneServiceOther() *schema.Resource {
 						"close_sessions_for_unauth_sources": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Close session for unauthenticated sources",
 						},
+						"close_sessions_for_all_sources": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Close session for all sources",
+						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
@@ -342,7 +354,7 @@ func resourceDdosDstZonePortZoneServiceOther() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"counters1": {
-										Type: schema.TypeString, Optional: true, Description: "'all': all; 'ip-proto-type': IP Protocol Type; 'ddet_ind_pkt_rate_current': Pkt Rate Current; 'ddet_ind_pkt_rate_min': Pkt Rate Min; 'ddet_ind_pkt_rate_max': Pkt Rate Max; 'ddet_ind_pkt_rate_adaptive_threshold': Pkt Rate Adaptive Threshold; 'ddet_ind_pkt_drop_rate_current': Pkt Drop Rate Current; 'ddet_ind_pkt_drop_rate_min': Pkt Drop Rate Min; 'ddet_ind_pkt_drop_rate_max': Pkt Drop Rate Max; 'ddet_ind_pkt_drop_rate_adaptive_threshold': Pkt Drop Rate Adaptive Threshold; 'ddet_ind_syn_rate_current': TCP SYN Rate Current; 'ddet_ind_syn_rate_min': TCP SYN Rate Min; 'ddet_ind_syn_rate_max': TCP SYN Rate Max; 'ddet_ind_syn_rate_adaptive_threshold': TCP SYN Rate Adaptive Threshold; 'ddet_ind_fin_rate_current': TCP FIN Rate Current; 'ddet_ind_fin_rate_min': TCP FIN Rate Min; 'ddet_ind_fin_rate_max': TCP FIN Rate Max; 'ddet_ind_fin_rate_adaptive_threshold': TCP FIN Rate Adaptive Threshold; 'ddet_ind_rst_rate_current': TCP RST Rate Current; 'ddet_ind_rst_rate_min': TCP RST Rate Min; 'ddet_ind_rst_rate_max': TCP RST Rate Max; 'ddet_ind_rst_rate_adaptive_threshold': TCP RST Rate Adaptive Threshold; 'ddet_ind_small_window_ack_rate_current': TCP Small Window ACK Rate Current; 'ddet_ind_small_window_ack_rate_min': TCP Small Window ACK Rate Min; 'ddet_ind_small_window_ack_rate_max': TCP Small Window ACK Rate Max; 'ddet_ind_small_window_ack_rate_adaptive_threshold': TCP Small Window ACK Rate Adaptive Threshold; 'ddet_ind_empty_ack_rate_current': TCP Empty ACK Rate Current; 'ddet_ind_empty_ack_rate_min': TCP Empty ACK Rate Min; 'ddet_ind_empty_ack_rate_max': TCP Empty ACK Rate Max; 'ddet_ind_empty_ack_rate_adaptive_threshold': TCP Empty ACK Rate Adaptive Threshold; 'ddet_ind_small_payload_rate_current': TCP Small Payload Rate Current; 'ddet_ind_small_payload_rate_min': TCP Small Payload Rate Min; 'ddet_ind_small_payload_rate_max': TCP Small Payload Rate Max; 'ddet_ind_small_payload_rate_adaptive_threshold': TCP Small Payload Rate Adaptive Threshold; 'ddet_ind_pkt_drop_ratio_current': Pkt Drop / Pkt Rcvd Current; 'ddet_ind_pkt_drop_ratio_min': Pkt Drop / Pkt Rcvd Min; 'ddet_ind_pkt_drop_ratio_max': Pkt Drop / Pkt Rcvd Max; 'ddet_ind_pkt_drop_ratio_adaptive_threshold': Pkt Drop / Pkt Rcvd Adaptive Threshold; 'ddet_ind_inb_per_outb_current': Bytes-to / Bytes-from Current; 'ddet_ind_inb_per_outb_min': Bytes-to / Bytes-from Min; 'ddet_ind_inb_per_outb_max': Bytes-to / Bytes-from Max; 'ddet_ind_inb_per_outb_adaptive_threshold': Bytes-to / Bytes-from Adaptive Threshold; 'ddet_ind_syn_per_fin_rate_current': TCP SYN Rate / FIN Rate Current; 'ddet_ind_syn_per_fin_rate_min': TCP SYN Rate / FIN Rate Min; 'ddet_ind_syn_per_fin_rate_max': TCP SYN Rate / FIN Rate Max; 'ddet_ind_syn_per_fin_rate_adaptive_threshold': TCP SYN Rate / FIN Rate Adaptive Threshold; 'ddet_ind_conn_miss_rate_current': TCP Session Miss Rate Current; 'ddet_ind_conn_miss_rate_min': TCP Session Miss Rate Min; 'ddet_ind_conn_miss_rate_max': TCP Session Miss Rate Max; 'ddet_ind_conn_miss_rate_adaptive_threshold': TCP Session Miss Rate Adaptive Threshold; 'ddet_ind_concurrent_conns_current': TCP/UDP Concurrent Sessions Current; 'ddet_ind_concurrent_conns_min': TCP/UDP Concurrent Sessions Min; 'ddet_ind_concurrent_conns_max': TCP/UDP Concurrent Sessions Max; 'ddet_ind_concurrent_conns_adaptive_threshold': TCP/UDP Concurrent Sessions Adaptive Threshold; 'ddet_ind_data_cpu_util_current': Data CPU Utilization Current; 'ddet_ind_data_cpu_util_min': Data CPU Utilization Min; 'ddet_ind_data_cpu_util_max': Data CPU Utilization Max; 'ddet_ind_data_cpu_util_adaptive_threshold': Data CPU Utilization Adaptive Threshold; 'ddet_ind_outside_intf_util_current': Outside Interface Utilization Current; 'ddet_ind_outside_intf_util_min': Outside Interface Utilization Min; 'ddet_ind_outside_intf_util_max': Outside Interface Utilization Max; 'ddet_ind_outside_intf_util_adaptive_threshold': Outside Interface Utilization Adaptive Threshold; 'ddet_ind_frag_rate_current': Frag Pkt Rate Current; 'ddet_ind_frag_rate_min': Frag Pkt Rate Min; 'ddet_ind_frag_rate_max': Frag Pkt Rate Max; 'ddet_ind_frag_rate_adaptive_threshold': Frag Pkt Rate Adaptive Threshold; 'ddet_ind_bit_rate_current': Bit Rate Current; 'ddet_ind_bit_rate_min': Bit Rate Min; 'ddet_ind_bit_rate_max': Bit Rate Max; 'ddet_ind_bit_rate_adaptive_threshold': Bit Rate Adaptive Threshold;",
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'ip-proto-type': IP Protocol Type; 'ddet_ind_pkt_rate_current': Pkt Rate Current; 'ddet_ind_pkt_rate_min': Pkt Rate Min; 'ddet_ind_pkt_rate_max': Pkt Rate Max; 'ddet_ind_pkt_rate_adaptive_threshold': Pkt Rate Adaptive Threshold; 'ddet_ind_pkt_drop_rate_current': Pkt Drop Rate Current; 'ddet_ind_pkt_drop_rate_min': Pkt Drop Rate Min; 'ddet_ind_pkt_drop_rate_max': Pkt Drop Rate Max; 'ddet_ind_pkt_drop_rate_adaptive_threshold': Pkt Drop Rate Adaptive Threshold; 'ddet_ind_syn_rate_current': TCP SYN Rate Current; 'ddet_ind_syn_rate_min': TCP SYN Rate Min; 'ddet_ind_syn_rate_max': TCP SYN Rate Max; 'ddet_ind_syn_rate_adaptive_threshold': TCP SYN Rate Adaptive Threshold; 'ddet_ind_fin_rate_current': TCP FIN Rate Current; 'ddet_ind_fin_rate_min': TCP FIN Rate Min; 'ddet_ind_fin_rate_max': TCP FIN Rate Max; 'ddet_ind_fin_rate_adaptive_threshold': TCP FIN Rate Adaptive Threshold; 'ddet_ind_rst_rate_current': TCP RST Rate Current; 'ddet_ind_rst_rate_min': TCP RST Rate Min; 'ddet_ind_rst_rate_max': TCP RST Rate Max; 'ddet_ind_rst_rate_adaptive_threshold': TCP RST Rate Adaptive Threshold; 'ddet_ind_small_window_ack_rate_current': TCP Small Window ACK Rate Current; 'ddet_ind_small_window_ack_rate_min': TCP Small Window ACK Rate Min; 'ddet_ind_small_window_ack_rate_max': TCP Small Window ACK Rate Max; 'ddet_ind_small_window_ack_rate_adaptive_threshold': TCP Small Window ACK Rate Adaptive Threshold; 'ddet_ind_empty_ack_rate_current': TCP Empty ACK Rate Current; 'ddet_ind_empty_ack_rate_min': TCP Empty ACK Rate Min; 'ddet_ind_empty_ack_rate_max': TCP Empty ACK Rate Max; 'ddet_ind_empty_ack_rate_adaptive_threshold': TCP Empty ACK Rate Adaptive Threshold; 'ddet_ind_small_payload_rate_current': TCP Small Payload Rate Current; 'ddet_ind_small_payload_rate_min': TCP Small Payload Rate Min; 'ddet_ind_small_payload_rate_max': TCP Small Payload Rate Max; 'ddet_ind_small_payload_rate_adaptive_threshold': TCP Small Payload Rate Adaptive Threshold; 'ddet_ind_pkt_drop_ratio_current': Pkt Drop / Pkt Rcvd Current; 'ddet_ind_pkt_drop_ratio_min': Pkt Drop / Pkt Rcvd Min; 'ddet_ind_pkt_drop_ratio_max': Pkt Drop / Pkt Rcvd Max; 'ddet_ind_pkt_drop_ratio_adaptive_threshold': Pkt Drop / Pkt Rcvd Adaptive Threshold; 'ddet_ind_inb_per_outb_current': Bytes-to / Bytes-from Current; 'ddet_ind_inb_per_outb_min': Bytes-to / Bytes-from Min; 'ddet_ind_inb_per_outb_max': Bytes-to / Bytes-from Max; 'ddet_ind_inb_per_outb_adaptive_threshold': Bytes-to / Bytes-from Adaptive Threshold; 'ddet_ind_syn_per_fin_rate_current': TCP SYN Rate / FIN Rate Current; 'ddet_ind_syn_per_fin_rate_min': TCP SYN Rate / FIN Rate Min; 'ddet_ind_syn_per_fin_rate_max': TCP SYN Rate / FIN Rate Max; 'ddet_ind_syn_per_fin_rate_adaptive_threshold': TCP SYN Rate / FIN Rate Adaptive Threshold; 'ddet_ind_conn_miss_rate_current': TCP Session Miss Rate Current; 'ddet_ind_conn_miss_rate_min': TCP Session Miss Rate Min; 'ddet_ind_conn_miss_rate_max': TCP Session Miss Rate Max; 'ddet_ind_conn_miss_rate_adaptive_threshold': TCP Session Miss Rate Adaptive Threshold; 'ddet_ind_concurrent_conns_current': TCP/UDP Concurrent Sessions Current; 'ddet_ind_concurrent_conns_min': TCP/UDP Concurrent Sessions Min; 'ddet_ind_concurrent_conns_max': TCP/UDP Concurrent Sessions Max; 'ddet_ind_concurrent_conns_adaptive_threshold': TCP/UDP Concurrent Sessions Adaptive Threshold; 'ddet_ind_data_cpu_util_current': Data CPU Utilization Current; 'ddet_ind_data_cpu_util_min': Data CPU Utilization Min; 'ddet_ind_data_cpu_util_max': Data CPU Utilization Max; 'ddet_ind_data_cpu_util_adaptive_threshold': Data CPU Utilization Adaptive Threshold; 'ddet_ind_outside_intf_util_current': Outside Interface Utilization Current; 'ddet_ind_outside_intf_util_min': Outside Interface Utilization Min; 'ddet_ind_outside_intf_util_max': Outside Interface Utilization Max; 'ddet_ind_outside_intf_util_adaptive_threshold': Outside Interface Utilization Adaptive Threshold; 'ddet_ind_frag_rate_current': Frag Pkt Rate Current; 'ddet_ind_frag_rate_min': Frag Pkt Rate Min; 'ddet_ind_frag_rate_max': Frag Pkt Rate Max; 'ddet_ind_frag_rate_adaptive_threshold': Frag Pkt Rate Adaptive Threshold; 'ddet_ind_bit_rate_current': Bit Rate Current; 'ddet_ind_bit_rate_min': Bit Rate Min; 'ddet_ind_bit_rate_max': Bit Rate Max; 'ddet_ind_bit_rate_adaptive_threshold': Bit Rate Adaptive Threshold; 'ddet_ind_total_szp_current': Total Learnt Sources Current; 'ddet_ind_total_szp_min': Total Learnt Sources Min; 'ddet_ind_total_szp_max': Total Learnt Sources Max; 'ddet_ind_total_szp_adaptive_threshold': Total Learnt Sources Adaptive Threshold; 'ddet_ind_syn_ack_rate_current': TCP SYN ACK Rate Current; 'ddet_ind_syn_ack_rate_min': TCP SYN ACK Rate Min; 'ddet_ind_syn_ack_rate_max': TCP SYN ACK Rate Max; 'ddet_ind_syn_ack_rate_adaptive_threshold': TCP SYN ACK Adaptive Threshold;",
 									},
 								},
 							},
@@ -366,11 +378,17 @@ func resourceDdosDstZonePortZoneServiceOther() *schema.Resource {
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "'tcp': TCP Port; 'udp': UDP Port;",
 			},
+			"same_source_dest_port_drop": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Drop packet with same Source Port and Dest Port",
+			},
 			"set_counter_base_val": {
 				Type: schema.TypeInt, Optional: true, Description: "Set T2 counter value of current context to specified value",
 			},
 			"sflow_common": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable all sFlow polling options under this zone port",
+			},
+			"sflow_ip_filtering_policy": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable sFlow IP filtering policy per port per rule counter polling",
 			},
 			"sflow_packets": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable sFlow packet-level counter polling",
@@ -408,6 +426,9 @@ func resourceDdosDstZonePortZoneServiceOther() *schema.Resource {
 									"class_list_name": {
 										Type: schema.TypeString, Required: true, Description: "Class-list name",
 									},
+									"class_list_glid": {
+										Type: schema.TypeString, Optional: true, Description: "Global limit ID (class-list based)",
+									},
 									"glid": {
 										Type: schema.TypeString, Optional: true, Description: "Global limit ID",
 									},
@@ -419,6 +440,9 @@ func resourceDdosDstZonePortZoneServiceOther() *schema.Resource {
 									},
 									"max_dynamic_entry_count": {
 										Type: schema.TypeInt, Optional: true, Description: "Maximum count for dynamic source zone service entry allowed for this class-list",
+									},
+									"dynamic_entry_count_warn_threshold": {
+										Type: schema.TypeInt, Optional: true, Description: "Set threshold percentage of \"max-src-dst-entry\" for generating warning logs. Including start and end.",
 									},
 									"zone_template": {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -450,7 +474,7 @@ func resourceDdosDstZonePortZoneServiceOther() *schema.Resource {
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"counters1": {
-													Type: schema.TypeString, Optional: true, Description: "'all': all; 'packet_received': Packets Received; 'packet_dropped': Packets Dropped; 'entry_learned': Entry Learned; 'entry_count_overflow': Entry Count Overflow;",
+													Type: schema.TypeString, Optional: true, Description: "'all': all; 'packet_received': Packets Received; 'packet_dropped': Packets Dropped; 'entry_learned': Entry Learned; 'entry_count_overflow': Entry Count Overflow; 'exceed_drop_pkt_rate_clist': Packet Rate Exceeded; 'exceed_drop_conn_rate_clist': Conn Rate Exceeded; 'exceed_drop_conn_limit_clist': Conn Limit Exceeded; 'exceed_drop_kbit_rate_clist': KiBit Rate Exceeded; 'exceed_drop_kbit_rate_clist_pkt': KiBit Rate Exceeded Count; 'exceed_drop_frag_rate_clist': Frag Rate Exceeded;",
 												},
 											},
 										},
@@ -536,8 +560,14 @@ func resourceDdosDstZonePortZoneServiceOther() *schema.Resource {
 			"topk_dst_num_records": {
 				Type: schema.TypeInt, Optional: true, Default: 20, Description: "Maximum number of records to show in topk",
 			},
+			"topk_dst_sort_key": {
+				Type: schema.TypeString, Optional: true, Default: "avg", Description: "'avg': window average; 'max-peak': max peak;",
+			},
 			"topk_num_records": {
 				Type: schema.TypeInt, Optional: true, Default: 20, Description: "Maximum number of records to show in topk",
+			},
+			"topk_sort_key": {
+				Type: schema.TypeString, Optional: true, Default: "avg", Description: "'avg': window average; 'max-peak': max peak;",
 			},
 			"topk_sources": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -675,9 +705,9 @@ func getObjectDdosDstZonePortZoneServiceOtherGlidCfg(d []interface{}) edpt.DdosD
 	return ret
 }
 
-func getObjectDdosDstZonePortZoneServiceOtherIpFilteringPolicyOper222(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherIpFilteringPolicyOper222 {
+func getObjectDdosDstZonePortZoneServiceOtherIpFilteringPolicyStatistics243(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherIpFilteringPolicyStatistics243 {
 
-	var ret edpt.DdosDstZonePortZoneServiceOtherIpFilteringPolicyOper222
+	var ret edpt.DdosDstZonePortZoneServiceOtherIpFilteringPolicyStatistics243
 	return ret
 }
 
@@ -697,6 +727,8 @@ func getSliceDdosDstZonePortZoneServiceOtherLevelList(d []interface{}) []edpt.Dd
 		oi.SrcViolationActions = in["src_violation_actions"].(string)
 		oi.ZoneTemplate = getObjectDdosDstZonePortZoneServiceOtherLevelListZoneTemplate(in["zone_template"].([]interface{}))
 		oi.CloseSessionsForUnauthSources = in["close_sessions_for_unauth_sources"].(int)
+		oi.CloseSessionsForAllSources = in["close_sessions_for_all_sources"].(int)
+		oi.ClearSourcesUponDeescalation = in["clear_sources_upon_deescalation"].(int)
 		oi.StartPatternRecognition = in["start_pattern_recognition"].(int)
 		oi.ApplyExtractedFilters = in["apply_extracted_filters"].(int)
 		//omit uuid
@@ -758,6 +790,7 @@ func getSliceDdosDstZonePortZoneServiceOtherManualModeList(d []interface{}) []ed
 		oi.GlidAction = in["glid_action"].(string)
 		oi.ZoneTemplate = getObjectDdosDstZonePortZoneServiceOtherManualModeListZoneTemplate(in["zone_template"].([]interface{}))
 		oi.CloseSessionsForUnauthSources = in["close_sessions_for_unauth_sources"].(int)
+		oi.CloseSessionsForAllSources = in["close_sessions_for_all_sources"].(int)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -778,10 +811,10 @@ func getObjectDdosDstZonePortZoneServiceOtherManualModeListZoneTemplate(d []inte
 	return ret
 }
 
-func getObjectDdosDstZonePortZoneServiceOtherPatternRecognition223(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherPatternRecognition223 {
+func getObjectDdosDstZonePortZoneServiceOtherPatternRecognition244(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherPatternRecognition244 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZonePortZoneServiceOtherPatternRecognition223
+	var ret edpt.DdosDstZonePortZoneServiceOtherPatternRecognition244
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Algorithm = in["algorithm"].(string)
@@ -796,40 +829,40 @@ func getObjectDdosDstZonePortZoneServiceOtherPatternRecognition223(d []interface
 	return ret
 }
 
-func getObjectDdosDstZonePortZoneServiceOtherPatternRecognitionPuDetails224(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherPatternRecognitionPuDetails224 {
+func getObjectDdosDstZonePortZoneServiceOtherPatternRecognitionPuDetails245(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherPatternRecognitionPuDetails245 {
 
-	var ret edpt.DdosDstZonePortZoneServiceOtherPatternRecognitionPuDetails224
+	var ret edpt.DdosDstZonePortZoneServiceOtherPatternRecognitionPuDetails245
 	return ret
 }
 
-func getObjectDdosDstZonePortZoneServiceOtherPortInd225(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherPortInd225 {
+func getObjectDdosDstZonePortZoneServiceOtherPortInd246(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherPortInd246 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZonePortZoneServiceOtherPortInd225
+	var ret edpt.DdosDstZonePortZoneServiceOtherPortInd246
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceDdosDstZonePortZoneServiceOtherPortIndSamplingEnable226(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceDdosDstZonePortZoneServiceOtherPortIndSamplingEnable247(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZonePortZoneServiceOtherPortIndSamplingEnable226(d []interface{}) []edpt.DdosDstZonePortZoneServiceOtherPortIndSamplingEnable226 {
+func getSliceDdosDstZonePortZoneServiceOtherPortIndSamplingEnable247(d []interface{}) []edpt.DdosDstZonePortZoneServiceOtherPortIndSamplingEnable247 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZonePortZoneServiceOtherPortIndSamplingEnable226, 0, count1)
+	ret := make([]edpt.DdosDstZonePortZoneServiceOtherPortIndSamplingEnable247, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZonePortZoneServiceOtherPortIndSamplingEnable226
+		var oi edpt.DdosDstZonePortZoneServiceOtherPortIndSamplingEnable247
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectDdosDstZonePortZoneServiceOtherProgressionTracking227(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherProgressionTracking227 {
+func getObjectDdosDstZonePortZoneServiceOtherProgressionTracking248(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherProgressionTracking248 {
 
-	var ret edpt.DdosDstZonePortZoneServiceOtherProgressionTracking227
+	var ret edpt.DdosDstZonePortZoneServiceOtherProgressionTracking248
 	return ret
 }
 
@@ -869,10 +902,12 @@ func getSliceDdosDstZonePortZoneServiceOtherSrcBasedPolicyListPolicyClassListLis
 		in := item.(map[string]interface{})
 		var oi edpt.DdosDstZonePortZoneServiceOtherSrcBasedPolicyListPolicyClassListList
 		oi.ClassListName = in["class_list_name"].(string)
+		oi.ClassListGlid = in["class_list_glid"].(string)
 		oi.Glid = in["glid"].(string)
 		oi.GlidAction = in["glid_action"].(string)
 		oi.Action = in["action"].(string)
 		oi.MaxDynamicEntryCount = in["max_dynamic_entry_count"].(int)
+		oi.DynamicEntryCountWarnThreshold = in["dynamic_entry_count_warn_threshold"].(int)
 		oi.ZoneTemplate = getObjectDdosDstZonePortZoneServiceOtherSrcBasedPolicyListPolicyClassListListZoneTemplate(in["zone_template"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
@@ -948,15 +983,15 @@ func getObjectDdosDstZonePortZoneServiceOtherSrcBasedPolicyListPolicyClassListLi
 	return ret
 }
 
-func getObjectDdosDstZonePortZoneServiceOtherTopkDestinations228(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherTopkDestinations228 {
+func getObjectDdosDstZonePortZoneServiceOtherTopkDestinations249(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherTopkDestinations249 {
 
-	var ret edpt.DdosDstZonePortZoneServiceOtherTopkDestinations228
+	var ret edpt.DdosDstZonePortZoneServiceOtherTopkDestinations249
 	return ret
 }
 
-func getObjectDdosDstZonePortZoneServiceOtherTopkSources229(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherTopkSources229 {
+func getObjectDdosDstZonePortZoneServiceOtherTopkSources250(d []interface{}) edpt.DdosDstZonePortZoneServiceOtherTopkSources250 {
 
-	var ret edpt.DdosDstZonePortZoneServiceOtherTopkSources229
+	var ret edpt.DdosDstZonePortZoneServiceOtherTopkSources250
 	return ret
 }
 
@@ -966,6 +1001,7 @@ func dataToEndpointDdosDstZonePortZoneServiceOther(d *schema.ResourceData) edpt.
 	ret.Inst.ApplyPolicyOnOverflow = d.Get("apply_policy_on_overflow").(int)
 	ret.Inst.DefaultActionList = d.Get("default_action_list").(string)
 	ret.Inst.Deny = d.Get("deny").(int)
+	ret.Inst.DynamicEntryCountWarnThreshold = d.Get("dynamic_entry_count_warn_threshold").(int)
 	ret.Inst.DynamicEntryOverflowPolicyList = getSliceDdosDstZonePortZoneServiceOtherDynamicEntryOverflowPolicyList(d.Get("dynamic_entry_overflow_policy_list").([]interface{}))
 	ret.Inst.EnableClassListOverflow = d.Get("enable_class_list_overflow").(int)
 	ret.Inst.EnableTopK = d.Get("enable_top_k").(int)
@@ -973,28 +1009,32 @@ func dataToEndpointDdosDstZonePortZoneServiceOther(d *schema.ResourceData) edpt.
 	ret.Inst.FasterDeEscalation = d.Get("faster_de_escalation").(int)
 	ret.Inst.GlidCfg = getObjectDdosDstZonePortZoneServiceOtherGlidCfg(d.Get("glid_cfg").([]interface{}))
 	ret.Inst.IpFilteringPolicy = d.Get("ip_filtering_policy").(string)
-	ret.Inst.IpFilteringPolicyOper = getObjectDdosDstZonePortZoneServiceOtherIpFilteringPolicyOper222(d.Get("ip_filtering_policy_oper").([]interface{}))
+	ret.Inst.IpFilteringPolicyStatistics = getObjectDdosDstZonePortZoneServiceOtherIpFilteringPolicyStatistics243(d.Get("ip_filtering_policy_statistics").([]interface{}))
 	ret.Inst.LevelList = getSliceDdosDstZonePortZoneServiceOtherLevelList(d.Get("level_list").([]interface{}))
 	ret.Inst.ManualModeEnable = d.Get("manual_mode_enable").(int)
 	ret.Inst.ManualModeList = getSliceDdosDstZonePortZoneServiceOtherManualModeList(d.Get("manual_mode_list").([]interface{}))
 	ret.Inst.MaxDynamicEntryCount = d.Get("max_dynamic_entry_count").(int)
 	ret.Inst.OutboundOnly = d.Get("outbound_only").(int)
-	ret.Inst.PatternRecognition = getObjectDdosDstZonePortZoneServiceOtherPatternRecognition223(d.Get("pattern_recognition").([]interface{}))
-	ret.Inst.PatternRecognitionPuDetails = getObjectDdosDstZonePortZoneServiceOtherPatternRecognitionPuDetails224(d.Get("pattern_recognition_pu_details").([]interface{}))
-	ret.Inst.PortInd = getObjectDdosDstZonePortZoneServiceOtherPortInd225(d.Get("port_ind").([]interface{}))
+	ret.Inst.PatternRecognition = getObjectDdosDstZonePortZoneServiceOtherPatternRecognition244(d.Get("pattern_recognition").([]interface{}))
+	ret.Inst.PatternRecognitionPuDetails = getObjectDdosDstZonePortZoneServiceOtherPatternRecognitionPuDetails245(d.Get("pattern_recognition_pu_details").([]interface{}))
+	ret.Inst.PortInd = getObjectDdosDstZonePortZoneServiceOtherPortInd246(d.Get("port_ind").([]interface{}))
 	ret.Inst.PortOther = d.Get("port_other").(string)
-	ret.Inst.ProgressionTracking = getObjectDdosDstZonePortZoneServiceOtherProgressionTracking227(d.Get("progression_tracking").([]interface{}))
+	ret.Inst.ProgressionTracking = getObjectDdosDstZonePortZoneServiceOtherProgressionTracking248(d.Get("progression_tracking").([]interface{}))
 	ret.Inst.Protocol = d.Get("protocol").(string)
+	ret.Inst.SameSourceDestPortDrop = d.Get("same_source_dest_port_drop").(int)
 	ret.Inst.SetCounterBaseVal = d.Get("set_counter_base_val").(int)
 	ret.Inst.SflowCommon = d.Get("sflow_common").(int)
+	ret.Inst.SflowIpFilteringPolicy = d.Get("sflow_ip_filtering_policy").(int)
 	ret.Inst.SflowPackets = d.Get("sflow_packets").(int)
 	ret.Inst.SflowTcp = getObjectDdosDstZonePortZoneServiceOtherSflowTcp(d.Get("sflow_tcp").([]interface{}))
 	ret.Inst.SrcBasedPolicyList = getSliceDdosDstZonePortZoneServiceOtherSrcBasedPolicyList(d.Get("src_based_policy_list").([]interface{}))
 	ret.Inst.Stateful = d.Get("stateful").(int)
-	ret.Inst.TopkDestinations = getObjectDdosDstZonePortZoneServiceOtherTopkDestinations228(d.Get("topk_destinations").([]interface{}))
+	ret.Inst.TopkDestinations = getObjectDdosDstZonePortZoneServiceOtherTopkDestinations249(d.Get("topk_destinations").([]interface{}))
 	ret.Inst.TopkDstNumRecords = d.Get("topk_dst_num_records").(int)
+	ret.Inst.TopkDstSortKey = d.Get("topk_dst_sort_key").(string)
 	ret.Inst.TopkNumRecords = d.Get("topk_num_records").(int)
-	ret.Inst.TopkSources = getObjectDdosDstZonePortZoneServiceOtherTopkSources229(d.Get("topk_sources").([]interface{}))
+	ret.Inst.TopkSortKey = d.Get("topk_sort_key").(string)
+	ret.Inst.TopkSources = getObjectDdosDstZonePortZoneServiceOtherTopkSources250(d.Get("topk_sources").([]interface{}))
 	ret.Inst.UnlimitedDynamicEntryCount = d.Get("unlimited_dynamic_entry_count").(int)
 	//omit uuid
 	ret.Inst.ZoneName = d.Get("zone_name").(string)

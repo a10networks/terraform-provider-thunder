@@ -58,5 +58,3 @@ Optional:
 - `md_state` (Number) Metadata State
 - `md_update` (Number) Metadata Update Success Count
 - `valid_status` (Number) Valid IdP status or not
-
-

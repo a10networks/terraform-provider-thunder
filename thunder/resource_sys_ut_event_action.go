@@ -408,10 +408,10 @@ func resourceSysUtEventActionRead(ctx context.Context, d *schema.ResourceData, m
 	return diags
 }
 
-func getObjectSysUtEventActionIgnoreValidation1528(d []interface{}) edpt.SysUtEventActionIgnoreValidation1528 {
+func getObjectSysUtEventActionIgnoreValidation1630(d []interface{}) edpt.SysUtEventActionIgnoreValidation1630 {
 
 	count1 := len(d)
-	var ret edpt.SysUtEventActionIgnoreValidation1528
+	var ret edpt.SysUtEventActionIgnoreValidation1630
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.L1 = in["l1"].(int)
@@ -424,14 +424,14 @@ func getObjectSysUtEventActionIgnoreValidation1528(d []interface{}) edpt.SysUtEv
 	return ret
 }
 
-func getObjectSysUtEventActionL11529(d []interface{}) edpt.SysUtEventActionL11529 {
+func getObjectSysUtEventActionL11631(d []interface{}) edpt.SysUtEventActionL11631 {
 
 	count1 := len(d)
-	var ret edpt.SysUtEventActionL11529
+	var ret edpt.SysUtEventActionL11631
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.EthList = getSliceSysUtEventActionL1EthList1530(in["eth_list"].([]interface{}))
-		ret.Trunk_list = getSliceSysUtEventActionL1Trunk_list1531(in["trunk_list"].([]interface{}))
+		ret.EthList = getSliceSysUtEventActionL1EthList1632(in["eth_list"].([]interface{}))
+		ret.Trunk_list = getSliceSysUtEventActionL1Trunk_list1633(in["trunk_list"].([]interface{}))
 		ret.Length = in["length"].(int)
 		ret.Value = in["value"].(int)
 		ret.Auto = in["auto"].(int)
@@ -440,13 +440,13 @@ func getObjectSysUtEventActionL11529(d []interface{}) edpt.SysUtEventActionL1152
 	return ret
 }
 
-func getSliceSysUtEventActionL1EthList1530(d []interface{}) []edpt.SysUtEventActionL1EthList1530 {
+func getSliceSysUtEventActionL1EthList1632(d []interface{}) []edpt.SysUtEventActionL1EthList1632 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtEventActionL1EthList1530, 0, count1)
+	ret := make([]edpt.SysUtEventActionL1EthList1632, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtEventActionL1EthList1530
+		var oi edpt.SysUtEventActionL1EthList1632
 		oi.EthernetStart = in["ethernet_start"].(int)
 		oi.EthernetEnd = in["ethernet_end"].(int)
 		ret = append(ret, oi)
@@ -454,13 +454,13 @@ func getSliceSysUtEventActionL1EthList1530(d []interface{}) []edpt.SysUtEventAct
 	return ret
 }
 
-func getSliceSysUtEventActionL1Trunk_list1531(d []interface{}) []edpt.SysUtEventActionL1Trunk_list1531 {
+func getSliceSysUtEventActionL1Trunk_list1633(d []interface{}) []edpt.SysUtEventActionL1Trunk_list1633 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtEventActionL1Trunk_list1531, 0, count1)
+	ret := make([]edpt.SysUtEventActionL1Trunk_list1633, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtEventActionL1Trunk_list1531
+		var oi edpt.SysUtEventActionL1Trunk_list1633
 		oi.TrunkStart = in["trunk_start"].(int)
 		oi.TrunkEnd = in["trunk_end"].(int)
 		ret = append(ret, oi)
@@ -468,10 +468,10 @@ func getSliceSysUtEventActionL1Trunk_list1531(d []interface{}) []edpt.SysUtEvent
 	return ret
 }
 
-func getObjectSysUtEventActionL21532(d []interface{}) edpt.SysUtEventActionL21532 {
+func getObjectSysUtEventActionL21634(d []interface{}) edpt.SysUtEventActionL21634 {
 
 	count1 := len(d)
-	var ret edpt.SysUtEventActionL21532
+	var ret edpt.SysUtEventActionL21634
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ethertype = in["ethertype"].(int)
@@ -479,18 +479,18 @@ func getObjectSysUtEventActionL21532(d []interface{}) edpt.SysUtEventActionL2153
 		ret.Value = in["value"].(int)
 		ret.Vlan = in["vlan"].(int)
 		//omit uuid
-		ret.MacList = getSliceSysUtEventActionL2MacList1533(in["mac_list"].([]interface{}))
+		ret.MacList = getSliceSysUtEventActionL2MacList1635(in["mac_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSysUtEventActionL2MacList1533(d []interface{}) []edpt.SysUtEventActionL2MacList1533 {
+func getSliceSysUtEventActionL2MacList1635(d []interface{}) []edpt.SysUtEventActionL2MacList1635 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtEventActionL2MacList1533, 0, count1)
+	ret := make([]edpt.SysUtEventActionL2MacList1635, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtEventActionL2MacList1533
+		var oi edpt.SysUtEventActionL2MacList1635
 		oi.SrcDst = in["src_dst"].(string)
 		oi.AddressType = in["address_type"].(string)
 		oi.VirtualServer = in["virtual_server"].(string)
@@ -505,10 +505,10 @@ func getSliceSysUtEventActionL2MacList1533(d []interface{}) []edpt.SysUtEventAct
 	return ret
 }
 
-func getObjectSysUtEventActionL31534(d []interface{}) edpt.SysUtEventActionL31534 {
+func getObjectSysUtEventActionL31636(d []interface{}) edpt.SysUtEventActionL31636 {
 
 	count1 := len(d)
-	var ret edpt.SysUtEventActionL31534
+	var ret edpt.SysUtEventActionL31636
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Protocol = in["protocol"].(int)
@@ -517,18 +517,18 @@ func getObjectSysUtEventActionL31534(d []interface{}) edpt.SysUtEventActionL3153
 		ret.Checksum = in["checksum"].(string)
 		ret.Ttl = in["ttl"].(int)
 		//omit uuid
-		ret.IpList = getSliceSysUtEventActionL3IpList1535(in["ip_list"].([]interface{}))
+		ret.IpList = getSliceSysUtEventActionL3IpList1637(in["ip_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSysUtEventActionL3IpList1535(d []interface{}) []edpt.SysUtEventActionL3IpList1535 {
+func getSliceSysUtEventActionL3IpList1637(d []interface{}) []edpt.SysUtEventActionL3IpList1637 {
 
 	count1 := len(d)
-	ret := make([]edpt.SysUtEventActionL3IpList1535, 0, count1)
+	ret := make([]edpt.SysUtEventActionL3IpList1637, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SysUtEventActionL3IpList1535
+		var oi edpt.SysUtEventActionL3IpList1637
 		oi.SrcDst = in["src_dst"].(string)
 		oi.Ipv4Address = in["ipv4_address"].(string)
 		oi.Ipv6Address = in["ipv6_address"].(string)
@@ -543,10 +543,10 @@ func getSliceSysUtEventActionL3IpList1535(d []interface{}) []edpt.SysUtEventActi
 	return ret
 }
 
-func getObjectSysUtEventActionTcp1536(d []interface{}) edpt.SysUtEventActionTcp1536 {
+func getObjectSysUtEventActionTcp1638(d []interface{}) edpt.SysUtEventActionTcp1638 {
 
 	count1 := len(d)
-	var ret edpt.SysUtEventActionTcp1536
+	var ret edpt.SysUtEventActionTcp1638
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SrcPort = in["src_port"].(int)
@@ -559,16 +559,16 @@ func getObjectSysUtEventActionTcp1536(d []interface{}) edpt.SysUtEventActionTcp1
 		ret.Urgent = in["urgent"].(string)
 		ret.Window = in["window"].(string)
 		//omit uuid
-		ret.Flags = getObjectSysUtEventActionTcpFlags1537(in["flags"].([]interface{}))
-		ret.Options = getObjectSysUtEventActionTcpOptions1538(in["options"].([]interface{}))
+		ret.Flags = getObjectSysUtEventActionTcpFlags1639(in["flags"].([]interface{}))
+		ret.Options = getObjectSysUtEventActionTcpOptions1640(in["options"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectSysUtEventActionTcpFlags1537(d []interface{}) edpt.SysUtEventActionTcpFlags1537 {
+func getObjectSysUtEventActionTcpFlags1639(d []interface{}) edpt.SysUtEventActionTcpFlags1639 {
 
 	count1 := len(d)
-	var ret edpt.SysUtEventActionTcpFlags1537
+	var ret edpt.SysUtEventActionTcpFlags1639
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Syn = in["syn"].(int)
@@ -584,10 +584,10 @@ func getObjectSysUtEventActionTcpFlags1537(d []interface{}) edpt.SysUtEventActio
 	return ret
 }
 
-func getObjectSysUtEventActionTcpOptions1538(d []interface{}) edpt.SysUtEventActionTcpOptions1538 {
+func getObjectSysUtEventActionTcpOptions1640(d []interface{}) edpt.SysUtEventActionTcpOptions1640 {
 
 	count1 := len(d)
-	var ret edpt.SysUtEventActionTcpOptions1538
+	var ret edpt.SysUtEventActionTcpOptions1640
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mss = in["mss"].(int)
@@ -600,10 +600,10 @@ func getObjectSysUtEventActionTcpOptions1538(d []interface{}) edpt.SysUtEventAct
 	return ret
 }
 
-func getObjectSysUtEventActionUdp1539(d []interface{}) edpt.SysUtEventActionUdp1539 {
+func getObjectSysUtEventActionUdp1641(d []interface{}) edpt.SysUtEventActionUdp1641 {
 
 	count1 := len(d)
-	var ret edpt.SysUtEventActionUdp1539
+	var ret edpt.SysUtEventActionUdp1641
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SrcPort = in["src_port"].(int)
@@ -622,13 +622,13 @@ func dataToEndpointSysUtEventAction(d *schema.ResourceData) edpt.SysUtEventActio
 	ret.Inst.Delay = d.Get("delay").(int)
 	ret.Inst.Direction = d.Get("direction").(string)
 	ret.Inst.Drop = d.Get("drop").(int)
-	ret.Inst.IgnoreValidation = getObjectSysUtEventActionIgnoreValidation1528(d.Get("ignore_validation").([]interface{}))
-	ret.Inst.L1 = getObjectSysUtEventActionL11529(d.Get("l1").([]interface{}))
-	ret.Inst.L2 = getObjectSysUtEventActionL21532(d.Get("l2").([]interface{}))
-	ret.Inst.L3 = getObjectSysUtEventActionL31534(d.Get("l3").([]interface{}))
-	ret.Inst.Tcp = getObjectSysUtEventActionTcp1536(d.Get("tcp").([]interface{}))
+	ret.Inst.IgnoreValidation = getObjectSysUtEventActionIgnoreValidation1630(d.Get("ignore_validation").([]interface{}))
+	ret.Inst.L1 = getObjectSysUtEventActionL11631(d.Get("l1").([]interface{}))
+	ret.Inst.L2 = getObjectSysUtEventActionL21634(d.Get("l2").([]interface{}))
+	ret.Inst.L3 = getObjectSysUtEventActionL31636(d.Get("l3").([]interface{}))
+	ret.Inst.Tcp = getObjectSysUtEventActionTcp1638(d.Get("tcp").([]interface{}))
 	ret.Inst.Template = d.Get("template").(string)
-	ret.Inst.Udp = getObjectSysUtEventActionUdp1539(d.Get("udp").([]interface{}))
+	ret.Inst.Udp = getObjectSysUtEventActionUdp1641(d.Get("udp").([]interface{}))
 	//omit uuid
 	ret.Inst.EventNumber = d.Get("event_number").(string)
 	return ret

@@ -289,5 +289,3 @@ Optional:
 - `wrong_version_number` (Number) wrong version number
 - `x509_lib` (Number) x509 lib
 - `x509_verification_setup_problems` (Number) x509 verification setup problems
-
-

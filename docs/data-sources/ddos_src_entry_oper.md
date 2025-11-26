@@ -97,6 +97,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `kbit_rate_limit` (String)
 - `level_str` (String)
@@ -106,5 +107,3 @@ Optional:
 - `sflow_source_id` (String)
 - `src_address_str` (String)
 - `state_str` (String)
-
-

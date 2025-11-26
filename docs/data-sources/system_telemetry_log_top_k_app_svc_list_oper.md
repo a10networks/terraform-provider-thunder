@@ -62,5 +62,3 @@ Optional:
 - `app_svc_name` (String)
 - `app_svc_uuid` (String)
 - `indicator_value` (Number)
-
-

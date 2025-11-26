@@ -47,6 +47,9 @@ func resourceVisibilityPacketCaptureObjectTemplatesSlbVportTmpl() *schema.Resour
 						"dnsrrl_bad_fqdn": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting Bad FQDN",
 						},
+						"dnsrrl_nx_exceed": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting NX Responses Exceed Limit",
+						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
@@ -83,6 +86,9 @@ func resourceVisibilityPacketCaptureObjectTemplatesSlbVportTmpl() *schema.Resour
 						},
 						"dnsrrl_bad_fqdn": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting Bad FQDN",
+						},
+						"dnsrrl_nx_exceed": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting NX Responses Exceed Limit",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -195,10 +201,10 @@ func resourceVisibilityPacketCaptureObjectTemplatesSlbVportTmplRead(ctx context.
 	return diags
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2714(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2714 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2818(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2818 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2714
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2818
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Total_mf_dns_pkts = in["total_mf_dns_pkts"].(int)
@@ -208,15 +214,16 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2
 		ret.Loc_deny = in["loc_deny"].(int)
 		ret.Dnsrrl_total_dropped = in["dnsrrl_total_dropped"].(int)
 		ret.Dnsrrl_bad_fqdn = in["dnsrrl_bad_fqdn"].(int)
+		ret.Dnsrrl_nx_exceed = in["dnsrrl_nx_exceed"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2715(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2715 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2819(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2819 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2715
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2819
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -228,15 +235,16 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate
 		ret.Loc_deny = in["loc_deny"].(int)
 		ret.Dnsrrl_total_dropped = in["dnsrrl_total_dropped"].(int)
 		ret.Dnsrrl_bad_fqdn = in["dnsrrl_bad_fqdn"].(int)
+		ret.Dnsrrl_nx_exceed = in["dnsrrl_nx_exceed"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsSeverity2716(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsSeverity2716 {
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsSeverity2820(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsSeverity2820 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsSeverity2716
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsSeverity2820
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -256,9 +264,9 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesSlbVportTmpl(d *schema.
 	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbVportTmpl
 	ret.Inst.CaptureConfig = d.Get("capture_config").(string)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2714(d.Get("trigger_stats_inc").([]interface{}))
-	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2715(d.Get("trigger_stats_rate").([]interface{}))
-	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsSeverity2716(d.Get("trigger_stats_severity").([]interface{}))
+	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsInc2818(d.Get("trigger_stats_inc").([]interface{}))
+	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate2819(d.Get("trigger_stats_rate").([]interface{}))
+	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsSeverity2820(d.Get("trigger_stats_severity").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

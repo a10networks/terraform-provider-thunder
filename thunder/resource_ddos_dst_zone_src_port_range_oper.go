@@ -162,6 +162,9 @@ func resourceDdosDstZoneSrcPortRangeOper() *schema.Resource {
 									"dynamic_entry_limit": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
+									"dynamic_entry_warn_state": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
 									"sflow_source_id": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
@@ -361,6 +364,7 @@ func setSliceDdosDstZoneSrcPortRangeOperOperDdos_entry_list(d []edpt.DdosDstZone
 		in["lockup_time"] = item.LockupTime
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -489,6 +493,7 @@ func getSliceDdosDstZoneSrcPortRangeOperOperDdos_entry_list(d []interface{}) []e
 		oi.LockupTime = in["lockup_time"].(int)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(int)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)

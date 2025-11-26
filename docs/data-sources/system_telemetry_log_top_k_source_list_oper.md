@@ -61,5 +61,3 @@ Optional:
 
 - `indicator_value` (Number)
 - `ip_address` (String)
-
-

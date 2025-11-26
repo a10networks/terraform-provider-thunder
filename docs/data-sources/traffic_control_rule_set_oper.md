@@ -84,5 +84,3 @@ Optional:
 
 - `hitcount` (Number)
 - `status` (String)
-
-

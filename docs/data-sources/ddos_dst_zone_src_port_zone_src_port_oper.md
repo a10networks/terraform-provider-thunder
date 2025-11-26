@@ -100,6 +100,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `is_app_stat1_exceed` (Number)
 - `is_app_stat2_exceed` (Number)
@@ -158,5 +159,3 @@ Optional:
 - `level` (Number)
 - `source_threshold` (String)
 - `zone_threshold` (String)
-
-

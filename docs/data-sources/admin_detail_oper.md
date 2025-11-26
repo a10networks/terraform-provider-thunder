@@ -62,5 +62,3 @@ Optional:
 - `trusted_host` (String)
 - `unlock_time` (String)
 - `user_name` (String)
-
-

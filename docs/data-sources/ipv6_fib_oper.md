@@ -58,5 +58,3 @@ Optional:
 - `nexthop` (String)
 - `prefix` (String)
 - `prefixlen` (Number)
-
-

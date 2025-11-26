@@ -33,6 +33,9 @@ func resourceGslbZoneService() *schema.Resource {
 									"svrname": {
 										Type: schema.TypeString, Required: true, Description: "Specify name",
 									},
+									"service_name": {
+										Type: schema.TypeString, Optional: true, Description: "Specify service label",
+									},
 									"no_resp": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Don't use this Service-IP as DNS response",
 									},
@@ -43,7 +46,7 @@ func resourceGslbZoneService() *schema.Resource {
 										Type: schema.TypeInt, Optional: true, Description: "Specify weight for Service-IP (Weight value)",
 									},
 									"ttl": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL for Service-IP",
+										Type: schema.TypeInt, Optional: true, Description: "Specify TTL for Service-IP",
 									},
 									"as_replace": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Return this Service-IP when enable ip-replace",
@@ -80,7 +83,7 @@ func resourceGslbZoneService() *schema.Resource {
 										Type: schema.TypeInt, Optional: true, Description: "Specify weight for Service-IP (Weight value)",
 									},
 									"ttl": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL for Service-IP",
+										Type: schema.TypeInt, Optional: true, Description: "Specify TTL for Service-IP",
 									},
 									"as_replace": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Return this Service-IP when enable ip-replace",
@@ -117,7 +120,7 @@ func resourceGslbZoneService() *schema.Resource {
 										Type: schema.TypeInt, Optional: true, Description: "Specify weight for Service-IP (Weight value)",
 									},
 									"ttl": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL for Service-IP",
+										Type: schema.TypeInt, Optional: true, Description: "Specify TTL for Service-IP",
 									},
 									"as_replace": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Return this Service-IP when enable ip-replace",
@@ -154,7 +157,7 @@ func resourceGslbZoneService() *schema.Resource {
 							Type: schema.TypeString, Required: true, Description: "Specify the Issuer Domain Name or a URL",
 						},
 						"ttl": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
+							Type: schema.TypeInt, Optional: true, Description: "Specify TTL",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -215,7 +218,7 @@ func resourceGslbZoneService() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "Specify Priority",
 						},
 						"ttl": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
+							Type: schema.TypeInt, Optional: true, Description: "Specify TTL",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -256,7 +259,7 @@ func resourceGslbZoneService() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Return the regular expression",
 						},
 						"ttl": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
+							Type: schema.TypeInt, Optional: true, Description: "Specify TTL",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -282,7 +285,7 @@ func resourceGslbZoneService() *schema.Resource {
 							Type: schema.TypeString, Required: true, Description: "Specify Domain Name",
 						},
 						"ttl": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
+							Type: schema.TypeInt, Optional: true, Description: "Specify TTL",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -308,7 +311,7 @@ func resourceGslbZoneService() *schema.Resource {
 							Type: schema.TypeString, Required: true, Description: "Specify Domain Name",
 						},
 						"ttl": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
+							Type: schema.TypeInt, Optional: true, Description: "Specify TTL",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -359,7 +362,7 @@ func resourceGslbZoneService() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Default: 10, Description: "Specify Weight, default is 10",
 						},
 						"ttl": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
+							Type: schema.TypeInt, Optional: true, Description: "Specify TTL",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -388,7 +391,7 @@ func resourceGslbZoneService() *schema.Resource {
 							Type: schema.TypeString, Optional: true, Description: "Specify TXT Data",
 						},
 						"ttl": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
+							Type: schema.TypeInt, Optional: true, Description: "Specify TTL",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -468,7 +471,7 @@ func resourceGslbZoneService() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type: schema.TypeString, Optional: true, Description: "'all': all; 'received-query': Number of DNS queries received for the service; 'sent-response': Number of DNS replies sent to clients for the service; 'proxy-mode-response': Number of DNS replies sent to clients by the ACOS device as a DNS proxy for the service; 'cache-mode-response': Number of cached DNS replies sent to clients by the ACOS device for the service. (This statistic applies only if the DNS cache; 'server-mode-response': Number of DNS replies sent to clients by the ACOS device as a DNS server for the service. (This statistic applies only if the D; 'sticky-mode-response': Number of DNS replies sent to clients by the ACOS device to keep the clients on the same site. (This statistic applies only if; 'backup-mode-response': help Number of DNS replies sent to clients by the ACOS device in backup mode;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'received-query': DNS queries received for the service; 'sent-response': DNS replies sent to clients for the service; 'proxy-mode-response': DNS replies sent by ACOS as DNS proxy (service); 'cache-mode-response': Cached DNS replies sent by ACOS (service, if cache enabled); 'server-mode-response': DNS replies sent by ACOS (service, if server enabled); 'sticky-mode-response': DNS replies sent by ACOS on same site (if sticky enabled); 'backup-mode-response': DNS replies sent by ACOS in backup mode; 'smrule-redir-from-svc-hit': DNS queries redirected by rule (originally hit a service); 'smrule-redir-from-svc-miss': DNS queries redirected by rule (originally missed service);",
 						},
 					},
 				},
@@ -485,8 +488,8 @@ func resourceGslbZoneService() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -553,10 +556,10 @@ func resourceGslbZoneServiceRead(ctx context.Context, d *schema.ResourceData, me
 	return diags
 }
 
-func getObjectGslbZoneServiceDnsARecord399(d []interface{}) edpt.GslbZoneServiceDnsARecord399 {
+func getObjectGslbZoneServiceDnsARecord492(d []interface{}) edpt.GslbZoneServiceDnsARecord492 {
 
 	count1 := len(d)
-	var ret edpt.GslbZoneServiceDnsARecord399
+	var ret edpt.GslbZoneServiceDnsARecord492
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DnsARecordSrvList = getSliceGslbZoneServiceDnsARecordDnsARecordSrvList(in["dns_a_record_srv_list"].([]interface{}))
@@ -574,6 +577,7 @@ func getSliceGslbZoneServiceDnsARecordDnsARecordSrvList(d []interface{}) []edpt.
 		in := item.(map[string]interface{})
 		var oi edpt.GslbZoneServiceDnsARecordDnsARecordSrvList
 		oi.Svrname = in["svrname"].(string)
+		oi.ServiceName = in["service_name"].(string)
 		oi.NoResp = in["no_resp"].(int)
 		oi.AsBackup = in["as_backup"].(int)
 		oi.Weight = in["weight"].(int)
@@ -956,7 +960,7 @@ func dataToEndpointGslbZoneService(d *schema.ResourceData) edpt.GslbZoneService 
 	var ret edpt.GslbZoneService
 	ret.Inst.Action = d.Get("action").(string)
 	ret.Inst.Disable = d.Get("disable").(int)
-	ret.Inst.DnsARecord = getObjectGslbZoneServiceDnsARecord399(d.Get("dns_a_record").([]interface{}))
+	ret.Inst.DnsARecord = getObjectGslbZoneServiceDnsARecord492(d.Get("dns_a_record").([]interface{}))
 	ret.Inst.DnsCaaRecordList = getSliceGslbZoneServiceDnsCaaRecordList(d.Get("dns_caa_record_list").([]interface{}))
 	ret.Inst.DnsCnameRecordList = getSliceGslbZoneServiceDnsCnameRecordList(d.Get("dns_cname_record_list").([]interface{}))
 	ret.Inst.DnsMxRecordList = getSliceGslbZoneServiceDnsMxRecordList(d.Get("dns_mx_record_list").([]interface{}))
@@ -976,6 +980,6 @@ func dataToEndpointGslbZoneService(d *schema.ResourceData) edpt.GslbZoneService 
 	ret.Inst.ServicePort = d.Get("service_port").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

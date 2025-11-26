@@ -66,5 +66,3 @@ Optional:
 - `sp_metadata_export_req` (Number) Metadata Export Request
 - `sp_metadata_export_success` (Number) Metadata Export Success
 - `sp_slo_req` (Number) SP-initiated Single Logout Request
-
-

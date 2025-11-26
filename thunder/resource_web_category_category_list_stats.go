@@ -272,11 +272,23 @@ func resourceWebCategoryCategoryListStats() *schema.Resource {
 						"food_and_dining": {
 							Type: schema.TypeInt, Optional: true, Description: "food and dining category",
 						},
+						"self_harm": {
+							Type: schema.TypeInt, Optional: true, Description: "self harm category",
+						},
+						"dns_over_https": {
+							Type: schema.TypeInt, Optional: true, Description: "dns over https category",
+						},
+						"low_thc_cannabis_products": {
+							Type: schema.TypeInt, Optional: true, Description: "low-thc cannabis products category",
+						},
+						"generative_ai": {
+							Type: schema.TypeInt, Optional: true, Description: "generative ai",
+						},
 						"nudity_artistic": {
-							Type: schema.TypeInt, Optional: true, Description: "nudity join entertainment and arts",
+							Type: schema.TypeInt, Optional: true, Description: "artistic nudity",
 						},
 						"illegal_pornography": {
-							Type: schema.TypeInt, Optional: true, Description: "illegal join adult and pornography",
+							Type: schema.TypeInt, Optional: true, Description: "illegal pornography eg. child sexual abuse",
 						},
 					},
 				},
@@ -391,6 +403,10 @@ func setObjectWebCategoryCategoryListStatsStats(ret edpt.DataWebCategoryCategory
 			"motor_vehicles":                 ret.DtWebCategoryCategoryListStats.Stats.MotorVehicles,
 			"web_hosting_sites":              ret.DtWebCategoryCategoryListStats.Stats.WebHostingSites,
 			"food_and_dining":                ret.DtWebCategoryCategoryListStats.Stats.FoodAndDining,
+			"self_harm":                      ret.DtWebCategoryCategoryListStats.Stats.SelfHarm,
+			"dns_over_https":                 ret.DtWebCategoryCategoryListStats.Stats.DnsOverHttps,
+			"low_thc_cannabis_products":      ret.DtWebCategoryCategoryListStats.Stats.LowThcCannabisProducts,
+			"generative_ai":                  ret.DtWebCategoryCategoryListStats.Stats.GenerativeAi,
 			"nudity_artistic":                ret.DtWebCategoryCategoryListStats.Stats.NudityArtistic,
 			"illegal_pornography":            ret.DtWebCategoryCategoryListStats.Stats.IllegalPornography,
 		},
@@ -487,6 +503,10 @@ func getObjectWebCategoryCategoryListStatsStats(d []interface{}) edpt.WebCategor
 		ret.MotorVehicles = in["motor_vehicles"].(int)
 		ret.WebHostingSites = in["web_hosting_sites"].(int)
 		ret.FoodAndDining = in["food_and_dining"].(int)
+		ret.SelfHarm = in["self_harm"].(int)
+		ret.DnsOverHttps = in["dns_over_https"].(int)
+		ret.LowThcCannabisProducts = in["low_thc_cannabis_products"].(int)
+		ret.GenerativeAi = in["generative_ai"].(int)
 		ret.NudityArtistic = in["nudity_artistic"].(int)
 		ret.IllegalPornography = in["illegal_pornography"].(int)
 	}

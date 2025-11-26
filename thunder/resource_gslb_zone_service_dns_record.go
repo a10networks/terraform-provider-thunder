@@ -25,14 +25,14 @@ func resourceGslbZoneServiceDnsRecord() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"service_name": {
-				Type: schema.TypeString, Required: true, Description: "ServiceName",
-			},
 			"service_port": {
 				Type: schema.TypeString, Required: true, Description: "ServicePort",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"service_name": {
+				Type: schema.TypeString, Required: true, Description: "ServiceName",
+			},
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -104,8 +104,8 @@ func dataToEndpointGslbZoneServiceDnsRecord(d *schema.ResourceData) edpt.GslbZon
 	ret.Inst.Data = d.Get("data").(string)
 	ret.Inst.Type = d.Get("type").(int)
 	//omit uuid
-	ret.Inst.ServiceName = d.Get("service_name").(string)
 	ret.Inst.ServicePort = d.Get("service_port").(string)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.ServiceName = d.Get("service_name").(string)
+	ret.Inst.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

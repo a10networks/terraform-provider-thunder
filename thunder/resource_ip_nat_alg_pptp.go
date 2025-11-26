@@ -17,7 +17,7 @@ func resourceIpNatAlgPptp() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"pptp": {
-				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'disable': Disable PPTP NAT ALG; 'enable': Enable PPTP NAT ALG;",
+				Type: schema.TypeString, Optional: true, Default: "enable", Description: "'disable': Disable PPTP NAT ALG; 'enable': Enable PPTP NAT ALG;",
 			},
 			"sampling_enable": {
 				Type: schema.TypeList, Optional: true, Description: "",

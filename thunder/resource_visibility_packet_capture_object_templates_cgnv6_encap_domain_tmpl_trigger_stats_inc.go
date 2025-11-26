@@ -43,8 +43,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplTriggerSt
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"cgnv6_encap_domain_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Cgnv6_encap_domain_tmpl_name",
 			},
 		},
 	}
@@ -122,6 +122,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesCgnv6EncapDomainTmplTri
 	ret.Inst.Outbound_rev_lookup_failed = d.Get("outbound_rev_lookup_failed").(int)
 	ret.Inst.Packet_mtu_exceeded = d.Get("packet_mtu_exceeded").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Cgnv6_encap_domain_tmpl_name = d.Get("cgnv6_encap_domain_tmpl_name").(string)
 	return ret
 }

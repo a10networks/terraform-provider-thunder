@@ -81,5 +81,3 @@ Optional:
 - `udp_total` (Number)
 - `udp_used` (Number)
 - `users` (Number)
-
-

@@ -547,7 +547,7 @@ output "get_rule_set_app_stats" {
 
 ### Required
 
-- `name` (String) Name
+- `rule_set_name` (String) Rule_set_name
 
 ### Optional
 
@@ -1073,5 +1073,3 @@ Optional:
 - `appstat97` (Number) counter app stat 97
 - `appstat98` (Number) counter app stat 98
 - `appstat99` (Number) counter app stat 99
-
-

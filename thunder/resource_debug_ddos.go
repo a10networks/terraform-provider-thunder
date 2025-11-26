@@ -34,6 +34,9 @@ func resourceDebugDdos() *schema.Resource {
 			"level": {
 				Type: schema.TypeInt, Optional: true, Description: "Debug level (Level 1-4)",
 			},
+			"progression_tracking_source": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Debug DDOS Progression Tracking Slow Attacker Identification Event",
+			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
@@ -113,6 +116,7 @@ func dataToEndpointDebugDdos(d *schema.ResourceData) edpt.DebugDdos {
 	ret.Inst.EventFilter = d.Get("event_filter").(string)
 	ret.Inst.FlowBasedDetection = d.Get("flow_based_detection").(int)
 	ret.Inst.Level = d.Get("level").(int)
+	ret.Inst.ProgressionTrackingSource = d.Get("progression_tracking_source").(int)
 	//omit uuid
 	ret.Inst.Zbar = d.Get("zbar").(int)
 	return ret

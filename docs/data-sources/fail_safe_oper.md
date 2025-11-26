@@ -91,5 +91,3 @@ Optional:
 - `fpga_stats_iochan_id` (Number)
 - `fpga_stats_iochan_rx` (Number)
 - `fpga_stats_iochan_tx` (Number)
-
-

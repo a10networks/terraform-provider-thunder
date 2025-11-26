@@ -68,5 +68,3 @@ Optional:
 - `txpkts512to1023_counts` (Number)
 - `txpkts64_counts` (Number)
 - `txpkts65to127_counts` (Number)
-
-

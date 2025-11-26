@@ -22,8 +22,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsI
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"aam_aaa_policy_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Aam_aaa_policy_tmpl_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTrigger
 	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAaaPolicyTmplTriggerStatsInc
 	ret.Inst.Error = d.Get("error").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Aam_aaa_policy_tmpl_name = d.Get("aam_aaa_policy_tmpl_name").(string)
 	return ret
 }

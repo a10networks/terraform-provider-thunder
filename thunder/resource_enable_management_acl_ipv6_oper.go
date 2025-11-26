@@ -33,6 +33,9 @@ func resourceEnableManagementAclIpv6Oper() *schema.Resource {
 									"tunnel": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"lif": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
 									"action": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
@@ -81,6 +84,7 @@ func setSliceEnableManagementAclIpv6OperOperPortList(d []edpt.EnableManagementAc
 		in["ethernet"] = item.Ethernet
 		in["ve"] = item.Ve
 		in["tunnel"] = item.Tunnel
+		in["lif"] = item.Lif
 		in["action"] = item.Action
 		result = append(result, in)
 	}
@@ -109,6 +113,7 @@ func getSliceEnableManagementAclIpv6OperOperPortList(d []interface{}) []edpt.Ena
 		oi.Ethernet = in["ethernet"].(int)
 		oi.Ve = in["ve"].(int)
 		oi.Tunnel = in["tunnel"].(int)
+		oi.Lif = in["lif"].(string)
 		oi.Action = in["action"].(string)
 		ret = append(ret, oi)
 	}

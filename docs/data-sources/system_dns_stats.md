@@ -80,5 +80,3 @@ Optional:
 - `slb_req_rexmit` (Number) No. of requests retransmit
 - `slb_resp` (Number) No. of responses
 - `slb_resp_no_match` (Number) No. of requests and responses with no match
-
-

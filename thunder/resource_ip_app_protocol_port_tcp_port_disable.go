@@ -129,27 +129,27 @@ func resourceIpAppProtocolPortTcpPortDisableRead(ctx context.Context, d *schema.
 	return diags
 }
 
-func getObjectIpAppProtocolPortTcpPortDisableInterface1033(d []interface{}) edpt.IpAppProtocolPortTcpPortDisableInterface1033 {
+func getObjectIpAppProtocolPortTcpPortDisableInterface1115(d []interface{}) edpt.IpAppProtocolPortTcpPortDisableInterface1115 {
 
 	count1 := len(d)
-	var ret edpt.IpAppProtocolPortTcpPortDisableInterface1033
+	var ret edpt.IpAppProtocolPortTcpPortDisableInterface1115
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Management = in["management"].(int)
-		ret.VeCfg = getSliceIpAppProtocolPortTcpPortDisableInterfaceVeCfg1034(in["ve_cfg"].([]interface{}))
-		ret.EthCfg = getSliceIpAppProtocolPortTcpPortDisableInterfaceEthCfg1035(in["eth_cfg"].([]interface{}))
+		ret.VeCfg = getSliceIpAppProtocolPortTcpPortDisableInterfaceVeCfg1116(in["ve_cfg"].([]interface{}))
+		ret.EthCfg = getSliceIpAppProtocolPortTcpPortDisableInterfaceEthCfg1117(in["eth_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceIpAppProtocolPortTcpPortDisableInterfaceVeCfg1034(d []interface{}) []edpt.IpAppProtocolPortTcpPortDisableInterfaceVeCfg1034 {
+func getSliceIpAppProtocolPortTcpPortDisableInterfaceVeCfg1116(d []interface{}) []edpt.IpAppProtocolPortTcpPortDisableInterfaceVeCfg1116 {
 
 	count1 := len(d)
-	ret := make([]edpt.IpAppProtocolPortTcpPortDisableInterfaceVeCfg1034, 0, count1)
+	ret := make([]edpt.IpAppProtocolPortTcpPortDisableInterfaceVeCfg1116, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.IpAppProtocolPortTcpPortDisableInterfaceVeCfg1034
+		var oi edpt.IpAppProtocolPortTcpPortDisableInterfaceVeCfg1116
 		oi.VeStart = in["ve_start"].(int)
 		oi.VeEnd = in["ve_end"].(int)
 		ret = append(ret, oi)
@@ -157,13 +157,13 @@ func getSliceIpAppProtocolPortTcpPortDisableInterfaceVeCfg1034(d []interface{}) 
 	return ret
 }
 
-func getSliceIpAppProtocolPortTcpPortDisableInterfaceEthCfg1035(d []interface{}) []edpt.IpAppProtocolPortTcpPortDisableInterfaceEthCfg1035 {
+func getSliceIpAppProtocolPortTcpPortDisableInterfaceEthCfg1117(d []interface{}) []edpt.IpAppProtocolPortTcpPortDisableInterfaceEthCfg1117 {
 
 	count1 := len(d)
-	ret := make([]edpt.IpAppProtocolPortTcpPortDisableInterfaceEthCfg1035, 0, count1)
+	ret := make([]edpt.IpAppProtocolPortTcpPortDisableInterfaceEthCfg1117, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.IpAppProtocolPortTcpPortDisableInterfaceEthCfg1035
+		var oi edpt.IpAppProtocolPortTcpPortDisableInterfaceEthCfg1117
 		oi.EthernetStart = in["ethernet_start"].(int)
 		oi.EthernetEnd = in["ethernet_end"].(int)
 		ret = append(ret, oi)
@@ -173,7 +173,7 @@ func getSliceIpAppProtocolPortTcpPortDisableInterfaceEthCfg1035(d []interface{})
 
 func dataToEndpointIpAppProtocolPortTcpPortDisable(d *schema.ResourceData) edpt.IpAppProtocolPortTcpPortDisable {
 	var ret edpt.IpAppProtocolPortTcpPortDisable
-	ret.Inst.Interface = getObjectIpAppProtocolPortTcpPortDisableInterface1033(d.Get("interface").([]interface{}))
+	ret.Inst.Interface = getObjectIpAppProtocolPortTcpPortDisableInterface1115(d.Get("interface").([]interface{}))
 	ret.Inst.Port = d.Get("port").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid

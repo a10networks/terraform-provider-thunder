@@ -142,5 +142,3 @@ Optional:
 
 - `counter` (Number)
 - `name` (String)
-
-

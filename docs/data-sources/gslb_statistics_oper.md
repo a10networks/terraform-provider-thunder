@@ -45,5 +45,3 @@ output "get_gslb_statistics_oper" {
 Optional:
 
 - `curr_ssl_ctx` (Number)
-
-

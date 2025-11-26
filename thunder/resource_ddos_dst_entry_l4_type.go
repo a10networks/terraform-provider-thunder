@@ -57,19 +57,6 @@ func resourceDdosDstEntryL4Type() *schema.Resource {
 					},
 				},
 			},
-			"ip_filtering_policy": {
-				Type: schema.TypeString, Optional: true, Description: "Configure IP Filter",
-			},
-			"ip_filtering_policy_oper": {
-				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"uuid": {
-							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-						},
-					},
-				},
-			},
 			"max_rexmit_syn_per_flow": {
 				Type: schema.TypeInt, Optional: true, Description: "Maximum number of re-transmit SYN per flow",
 			},
@@ -142,6 +129,9 @@ func resourceDdosDstEntryL4Type() *schema.Resource {
 			},
 			"topk_num_records": {
 				Type: schema.TypeInt, Optional: true, Default: 20, Description: "Maximum number of records to show in topk",
+			},
+			"topk_sort_key": {
+				Type: schema.TypeString, Optional: true, Default: "avg", Description: "'avg': window average; 'max-peak': max peak;",
 			},
 			"topk_sources": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -299,40 +289,34 @@ func getObjectDdosDstEntryL4TypeGlidExceedActionStatelessEncapActionCfg(d []inte
 	return ret
 }
 
-func getObjectDdosDstEntryL4TypeIpFilteringPolicyOper158(d []interface{}) edpt.DdosDstEntryL4TypeIpFilteringPolicyOper158 {
-
-	var ret edpt.DdosDstEntryL4TypeIpFilteringPolicyOper158
-	return ret
-}
-
-func getObjectDdosDstEntryL4TypePortInd159(d []interface{}) edpt.DdosDstEntryL4TypePortInd159 {
+func getObjectDdosDstEntryL4TypePortInd178(d []interface{}) edpt.DdosDstEntryL4TypePortInd178 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstEntryL4TypePortInd159
+	var ret edpt.DdosDstEntryL4TypePortInd178
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceDdosDstEntryL4TypePortIndSamplingEnable160(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceDdosDstEntryL4TypePortIndSamplingEnable179(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstEntryL4TypePortIndSamplingEnable160(d []interface{}) []edpt.DdosDstEntryL4TypePortIndSamplingEnable160 {
+func getSliceDdosDstEntryL4TypePortIndSamplingEnable179(d []interface{}) []edpt.DdosDstEntryL4TypePortIndSamplingEnable179 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstEntryL4TypePortIndSamplingEnable160, 0, count1)
+	ret := make([]edpt.DdosDstEntryL4TypePortIndSamplingEnable179, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstEntryL4TypePortIndSamplingEnable160
+		var oi edpt.DdosDstEntryL4TypePortIndSamplingEnable179
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectDdosDstEntryL4TypeProgressionTracking161(d []interface{}) edpt.DdosDstEntryL4TypeProgressionTracking161 {
+func getObjectDdosDstEntryL4TypeProgressionTracking180(d []interface{}) edpt.DdosDstEntryL4TypeProgressionTracking180 {
 
-	var ret edpt.DdosDstEntryL4TypeProgressionTracking161
+	var ret edpt.DdosDstEntryL4TypeProgressionTracking180
 	return ret
 }
 
@@ -348,9 +332,9 @@ func getObjectDdosDstEntryL4TypeTemplate(d []interface{}) edpt.DdosDstEntryL4Typ
 	return ret
 }
 
-func getObjectDdosDstEntryL4TypeTopkSources162(d []interface{}) edpt.DdosDstEntryL4TypeTopkSources162 {
+func getObjectDdosDstEntryL4TypeTopkSources181(d []interface{}) edpt.DdosDstEntryL4TypeTopkSources181 {
 
-	var ret edpt.DdosDstEntryL4TypeTopkSources162
+	var ret edpt.DdosDstEntryL4TypeTopkSources181
 	return ret
 }
 
@@ -414,12 +398,10 @@ func dataToEndpointDdosDstEntryL4Type(d *schema.ResourceData) edpt.DdosDstEntryL
 	ret.Inst.EnableTopK = d.Get("enable_top_k").(int)
 	ret.Inst.Glid = d.Get("glid").(string)
 	ret.Inst.GlidExceedAction = getObjectDdosDstEntryL4TypeGlidExceedAction(d.Get("glid_exceed_action").([]interface{}))
-	ret.Inst.IpFilteringPolicy = d.Get("ip_filtering_policy").(string)
-	ret.Inst.IpFilteringPolicyOper = getObjectDdosDstEntryL4TypeIpFilteringPolicyOper158(d.Get("ip_filtering_policy_oper").([]interface{}))
 	ret.Inst.MaxRexmitSynPerFlow = d.Get("max_rexmit_syn_per_flow").(int)
 	ret.Inst.MaxRexmitSynPerFlowExceedAction = d.Get("max_rexmit_syn_per_flow_exceed_action").(string)
-	ret.Inst.PortInd = getObjectDdosDstEntryL4TypePortInd159(d.Get("port_ind").([]interface{}))
-	ret.Inst.ProgressionTracking = getObjectDdosDstEntryL4TypeProgressionTracking161(d.Get("progression_tracking").([]interface{}))
+	ret.Inst.PortInd = getObjectDdosDstEntryL4TypePortInd178(d.Get("port_ind").([]interface{}))
+	ret.Inst.ProgressionTracking = getObjectDdosDstEntryL4TypeProgressionTracking180(d.Get("progression_tracking").([]interface{}))
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.SetCounterBaseVal = d.Get("set_counter_base_val").(int)
 	ret.Inst.Stateful = d.Get("stateful").(int)
@@ -429,7 +411,8 @@ func dataToEndpointDdosDstEntryL4Type(d *schema.ResourceData) edpt.DdosDstEntryL
 	ret.Inst.TcpResetServer = d.Get("tcp_reset_server").(int)
 	ret.Inst.Template = getObjectDdosDstEntryL4TypeTemplate(d.Get("template").([]interface{}))
 	ret.Inst.TopkNumRecords = d.Get("topk_num_records").(int)
-	ret.Inst.TopkSources = getObjectDdosDstEntryL4TypeTopkSources162(d.Get("topk_sources").([]interface{}))
+	ret.Inst.TopkSortKey = d.Get("topk_sort_key").(string)
+	ret.Inst.TopkSources = getObjectDdosDstEntryL4TypeTopkSources181(d.Get("topk_sources").([]interface{}))
 	ret.Inst.TunnelDecap = getObjectDdosDstEntryL4TypeTunnelDecap(d.Get("tunnel_decap").([]interface{}))
 	ret.Inst.TunnelRateLimit = getObjectDdosDstEntryL4TypeTunnelRateLimit(d.Get("tunnel_rate_limit").([]interface{}))
 	ret.Inst.UndefinedPortHitStatistics = getObjectDdosDstEntryL4TypeUndefinedPortHitStatistics(d.Get("undefined_port_hit_statistics").([]interface{}))

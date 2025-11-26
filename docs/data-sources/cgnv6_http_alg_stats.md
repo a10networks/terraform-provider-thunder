@@ -60,5 +60,3 @@ Optional:
 - `request_insert_msisdn_performed` (Number) HTTP MSISDN Insertion Performed
 - `request_insert_msisdn_unavailable` (Number) Inserted MSISDN is 0000 (MSISDN Unavailable)
 - `request_processed` (Number) HTTP Request Processed
-
-

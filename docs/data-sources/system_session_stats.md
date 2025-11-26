@@ -121,5 +121,3 @@ Optional:
 - `total_serverside_failed_early_data_connections` (Number) Total serverside failed early data connections
 - `total_tcp_conn` (Number) Total TCP Conn
 - `udp_counter` (Number) UDP Count
-
-

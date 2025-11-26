@@ -22,8 +22,8 @@ func resourceSlbTemplateDiameterOriginHost() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"diameter_name": {
+				Type: schema.TypeString, Required: true, Description: "Diameter_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointSlbTemplateDiameterOriginHost(d *schema.ResourceData) edpt.Sl
 	var ret edpt.SlbTemplateDiameterOriginHost
 	ret.Inst.OriginHostName = d.Get("origin_host_name").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Diameter_name = d.Get("diameter_name").(string)
 	return ret
 }

@@ -77,5 +77,3 @@ Optional:
 
 - `dst_index` (Number)
 - `dst_index_valid` (Number)
-
-

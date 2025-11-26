@@ -22,8 +22,8 @@ func resourceFlowspecFragmentationOption() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"flowspec_name": {
+				Type: schema.TypeString, Required: true, Description: "Flowspec_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointFlowspecFragmentationOption(d *schema.ResourceData) edpt.Flow
 	var ret edpt.FlowspecFragmentationOption
 	ret.Inst.FragAttribute = d.Get("frag_attribute").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Flowspec_name = d.Get("flowspec_name").(string)
 	return ret
 }

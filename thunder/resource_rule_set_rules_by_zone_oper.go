@@ -86,8 +86,8 @@ func resourceRuleSetRulesByZoneOper() *schema.Resource {
 					},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"rule_set_name": {
+				Type: schema.TypeString, Required: true, Description: "Rule_set_name",
 			},
 		},
 	}
@@ -288,6 +288,6 @@ func dataToEndpointRuleSetRulesByZoneOper(d *schema.ResourceData) edpt.RuleSetRu
 
 	ret.Oper = getObjectRuleSetRulesByZoneOperOper(d.Get("oper").([]interface{}))
 
-	ret.Name = d.Get("name").(string)
+	ret.Rule_set_name = d.Get("rule_set_name").(string)
 	return ret
 }

@@ -59,5 +59,3 @@ Optional:
 - `pkt_count` (Number)
 - `pkt_dropped` (Number)
 - `status` (String)
-
-

@@ -202,6 +202,22 @@ func resourceGslbPolicyDns() *schema.Resource {
 			"sticky_mask": {
 				Type: schema.TypeString, Optional: true, Default: "/32", Description: "Specify IP mask, default is /32",
 			},
+			"sticky_options": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"edns_client_subnet": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use ECS for sticky creation and lookup",
+						},
+						"only_ecs": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Only use ECS for session creation",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
 			"template": {
 				Type: schema.TypeString, Optional: true, Description: "Logging template (Logging Template Name)",
 			},
@@ -217,8 +233,8 @@ func resourceGslbPolicyDns() *schema.Resource {
 			"zone_owner_mode": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Only run GSLB as DNS server mode with zone ownership",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
 			},
 		},
 	}
@@ -326,6 +342,19 @@ func getSliceGslbPolicyDnsProxyBlockPortRangeList(d []interface{}) []edpt.GslbPo
 	return ret
 }
 
+func getObjectGslbPolicyDnsStickyOptions474(d []interface{}) edpt.GslbPolicyDnsStickyOptions474 {
+
+	count1 := len(d)
+	var ret edpt.GslbPolicyDnsStickyOptions474
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.EdnsClientSubnet = in["edns_client_subnet"].(int)
+		ret.OnlyEcs = in["only_ecs"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
 func dataToEndpointGslbPolicyDns(d *schema.ResourceData) edpt.GslbPolicyDns {
 	var ret edpt.GslbPolicyDns
 	ret.Inst.Action = d.Get("action").(int)
@@ -381,11 +410,12 @@ func dataToEndpointGslbPolicyDns(d *schema.ResourceData) edpt.GslbPolicyDns {
 	ret.Inst.StickyAgingTime = d.Get("sticky_aging_time").(int)
 	ret.Inst.StickyIpv6Mask = d.Get("sticky_ipv6_mask").(int)
 	ret.Inst.StickyMask = d.Get("sticky_mask").(string)
+	ret.Inst.StickyOptions = getObjectGslbPolicyDnsStickyOptions474(d.Get("sticky_options").([]interface{}))
 	ret.Inst.Template = d.Get("template").(string)
 	ret.Inst.Ttl = d.Get("ttl").(int)
 	ret.Inst.UseServerTtl = d.Get("use_server_ttl").(int)
 	//omit uuid
 	ret.Inst.ZoneOwnerMode = d.Get("zone_owner_mode").(int)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

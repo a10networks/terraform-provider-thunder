@@ -130,8 +130,8 @@ func resourceSlbServerPort() *schema.Resource {
 			"weight": {
 				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Port Weight (Connection Weight)",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"server_name": {
+				Type: schema.TypeString, Required: true, Description: "Server_name",
 			},
 		},
 	}
@@ -268,6 +268,6 @@ func dataToEndpointSlbServerPort(d *schema.ResourceData) edpt.SlbServerPort {
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.Weight = d.Get("weight").(int)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Server_name = d.Get("server_name").(string)
 	return ret
 }

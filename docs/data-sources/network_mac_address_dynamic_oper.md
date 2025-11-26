@@ -58,5 +58,3 @@ Optional:
 - `port` (Number)
 - `type` (String)
 - `vlan` (Number)
-
-

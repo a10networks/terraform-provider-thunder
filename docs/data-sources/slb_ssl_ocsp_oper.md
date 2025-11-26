@@ -59,5 +59,3 @@ Optional:
 - `status` (String) Cert Name
 - `subject` (String) Cert Name
 - `uri` (String) Cert Name
-
-

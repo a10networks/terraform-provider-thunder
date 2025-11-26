@@ -35,6 +35,18 @@ func resourceFwGtpNetworkElementStats() *schema.Resource {
 						"downlink_pkts": {
 							Type: schema.TypeInt, Optional: true, Description: "Downlink Packets",
 						},
+						"u_uplink_bytes": {
+							Type: schema.TypeInt, Optional: true, Description: "Uplink Bytes",
+						},
+						"u_downlink_bytes": {
+							Type: schema.TypeInt, Optional: true, Description: "Downlink Bytes",
+						},
+						"u_uplink_pkts": {
+							Type: schema.TypeInt, Optional: true, Description: "Uplink Packets",
+						},
+						"u_downlink_pkts": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-U Downlink Packets",
+						},
 						"gtp_v0_c_tunnel_created": {
 							Type: schema.TypeInt, Optional: true, Description: "GTPv0-C Tunnel Created",
 						},
@@ -242,6 +254,12 @@ func resourceFwGtpNetworkElementStats() *schema.Resource {
 						"gtp_c_handover_in_progress_with_conn": {
 							Type: schema.TypeInt, Optional: true, Description: "GTP-C matching a conn with Handover In Progress",
 						},
+						"vld_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP Message forwarded via monitor mode at validation policy",
+						},
+						"gen_message_length_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP Message forwarded via monitor mode at general policy",
+						},
 						"drop_vld_v0_reserved_message_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Validation Drop: GTPv0-C Reserved Message Drop",
 						},
@@ -329,6 +347,21 @@ func resourceFwGtpNetworkElementStats() *schema.Resource {
 						"drop_flt_gtp_in_gtp": {
 							Type: schema.TypeInt, Optional: true, Description: "Filtering Drop: GTP in GTP Tunnel Present",
 						},
+						"flt_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at message filtering policy",
+						},
+						"rat_flt_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at rat filtering policy",
+						},
+						"apn_imsi_flt_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at APN-IMSI filtering policy",
+						},
+						"msisdn_flt_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at Msisdn filtering policy",
+						},
+						"gtp_in_gtp_flt_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at GTP-IN_GTP filtering policy",
+						},
 						"drop_rl_gtp_v0_c_agg": {
 							Type: schema.TypeInt, Optional: true, Description: "Rate-limit Drop: Maximum GTPv0-C messages rate",
 						},
@@ -374,6 +407,9 @@ func resourceFwGtpNetworkElementStats() *schema.Resource {
 						"drop_rl_gtp_u_max_concurrent_tunnels": {
 							Type: schema.TypeInt, Optional: true, Description: "Rate-limit Drop: GTP-U Concurrent Tunnels",
 						},
+						"rl_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP Message forwarded via monitor mode at rate-limit policy",
+						},
 					},
 				},
 			},
@@ -409,6 +445,10 @@ func setObjectFwGtpNetworkElementStatsStats(ret edpt.DataFwGtpNetworkElementStat
 			"downlink_bytes":                                         ret.DtFwGtpNetworkElementStats.Stats.DownlinkBytes,
 			"uplink_pkts":                                            ret.DtFwGtpNetworkElementStats.Stats.UplinkPkts,
 			"downlink_pkts":                                          ret.DtFwGtpNetworkElementStats.Stats.DownlinkPkts,
+			"u_uplink_bytes":                                         ret.DtFwGtpNetworkElementStats.Stats.UUplinkBytes,
+			"u_downlink_bytes":                                       ret.DtFwGtpNetworkElementStats.Stats.UDownlinkBytes,
+			"u_uplink_pkts":                                          ret.DtFwGtpNetworkElementStats.Stats.UUplinkPkts,
+			"u_downlink_pkts":                                        ret.DtFwGtpNetworkElementStats.Stats.UDownlinkPkts,
 			"gtp_v0_c_tunnel_created":                                ret.DtFwGtpNetworkElementStats.Stats.GtpV0CTunnelCreated,
 			"gtp_v0_c_tunnel_half_open":                              ret.DtFwGtpNetworkElementStats.Stats.GtpV0CTunnelHalfOpen,
 			"gtp_v0_c_tunnel_half_closed":                            ret.DtFwGtpNetworkElementStats.Stats.GtpV0CTunnelHalfClosed,
@@ -478,6 +518,8 @@ func setObjectFwGtpNetworkElementStatsStats(ret edpt.DataFwGtpNetworkElementStat
 			"drop_vld_gtp_bearer_count_exceed":                       ret.DtFwGtpNetworkElementStats.Stats.Drop_vldGtpBearerCountExceed,
 			"drop_vld_gtp_v2_wrong_lbi_create_bearer_req":            ret.DtFwGtpNetworkElementStats.Stats.DropVldGtpV2WrongLbiCreateBearerReq,
 			"gtp_c_handover_in_progress_with_conn":                   ret.DtFwGtpNetworkElementStats.Stats.GtpCHandoverInProgressWithConn,
+			"vld_message_monitor":                                    ret.DtFwGtpNetworkElementStats.Stats.VldMessageMonitor,
+			"gen_message_length_monitor":                             ret.DtFwGtpNetworkElementStats.Stats.GenMessageLengthMonitor,
 			"drop_vld_v0_reserved_message_drop":                      ret.DtFwGtpNetworkElementStats.Stats.DropVldV0ReservedMessageDrop,
 			"drop_vld_v1_reserved_message_drop":                      ret.DtFwGtpNetworkElementStats.Stats.DropVldV1ReservedMessageDrop,
 			"drop_vld_v2_reserved_message_drop":                      ret.DtFwGtpNetworkElementStats.Stats.DropVldV2ReservedMessageDrop,
@@ -507,6 +549,11 @@ func setObjectFwGtpNetworkElementStatsStats(ret edpt.DataFwGtpNetworkElementStat
 			"drop_flt_msisdn_filtering":                              ret.DtFwGtpNetworkElementStats.Stats.DropFltMsisdnFiltering,
 			"drop_flt_rat_type_filtering":                            ret.DtFwGtpNetworkElementStats.Stats.DropFltRatTypeFiltering,
 			"drop_flt_gtp_in_gtp":                                    ret.DtFwGtpNetworkElementStats.Stats.DropFltGtpInGtp,
+			"flt_message_monitor":                                    ret.DtFwGtpNetworkElementStats.Stats.FltMessageMonitor,
+			"rat_flt_message_monitor":                                ret.DtFwGtpNetworkElementStats.Stats.RatFltMessageMonitor,
+			"apn_imsi_flt_message_monitor":                           ret.DtFwGtpNetworkElementStats.Stats.ApnImsiFltMessageMonitor,
+			"msisdn_flt_message_monitor":                             ret.DtFwGtpNetworkElementStats.Stats.MsisdnFltMessageMonitor,
+			"gtp_in_gtp_flt_message_monitor":                         ret.DtFwGtpNetworkElementStats.Stats.GtpInGtpFltMessageMonitor,
 			"drop_rl_gtp_v0_c_agg":                                   ret.DtFwGtpNetworkElementStats.Stats.DropRlGtpV0CAgg,
 			"drop_rl_gtp_v1_c_agg":                                   ret.DtFwGtpNetworkElementStats.Stats.DropRlGtpV1CAgg,
 			"drop_rl_gtp_v2_c_agg":                                   ret.DtFwGtpNetworkElementStats.Stats.DropRlGtpV2CAgg,
@@ -522,6 +569,7 @@ func setObjectFwGtpNetworkElementStatsStats(ret edpt.DataFwGtpNetworkElementStat
 			"drop_rl_gtp_u_total_byte":                               ret.DtFwGtpNetworkElementStats.Stats.DropRlGtpUTotalByte,
 			"drop_rl_gtp_u_total_packet":                             ret.DtFwGtpNetworkElementStats.Stats.DropRlGtpUTotalPacket,
 			"drop_rl_gtp_u_max_concurrent_tunnels":                   ret.DtFwGtpNetworkElementStats.Stats.DropRlGtpUMaxConcurrentTunnels,
+			"rl_message_monitor":                                     ret.DtFwGtpNetworkElementStats.Stats.RlMessageMonitor,
 		},
 	}
 }
@@ -538,6 +586,10 @@ func getObjectFwGtpNetworkElementStatsStats(d []interface{}) edpt.FwGtpNetworkEl
 		ret.DownlinkBytes = in["downlink_bytes"].(int)
 		ret.UplinkPkts = in["uplink_pkts"].(int)
 		ret.DownlinkPkts = in["downlink_pkts"].(int)
+		ret.UUplinkBytes = in["u_uplink_bytes"].(int)
+		ret.UDownlinkBytes = in["u_downlink_bytes"].(int)
+		ret.UUplinkPkts = in["u_uplink_pkts"].(int)
+		ret.UDownlinkPkts = in["u_downlink_pkts"].(int)
 		ret.GtpV0CTunnelCreated = in["gtp_v0_c_tunnel_created"].(int)
 		ret.GtpV0CTunnelHalfOpen = in["gtp_v0_c_tunnel_half_open"].(int)
 		ret.GtpV0CTunnelHalfClosed = in["gtp_v0_c_tunnel_half_closed"].(int)
@@ -607,6 +659,8 @@ func getObjectFwGtpNetworkElementStatsStats(d []interface{}) edpt.FwGtpNetworkEl
 		ret.Drop_vldGtpBearerCountExceed = in["drop_vld_gtp_bearer_count_exceed"].(int)
 		ret.DropVldGtpV2WrongLbiCreateBearerReq = in["drop_vld_gtp_v2_wrong_lbi_create_bearer_req"].(int)
 		ret.GtpCHandoverInProgressWithConn = in["gtp_c_handover_in_progress_with_conn"].(int)
+		ret.VldMessageMonitor = in["vld_message_monitor"].(int)
+		ret.GenMessageLengthMonitor = in["gen_message_length_monitor"].(int)
 		ret.DropVldV0ReservedMessageDrop = in["drop_vld_v0_reserved_message_drop"].(int)
 		ret.DropVldV1ReservedMessageDrop = in["drop_vld_v1_reserved_message_drop"].(int)
 		ret.DropVldV2ReservedMessageDrop = in["drop_vld_v2_reserved_message_drop"].(int)
@@ -636,6 +690,11 @@ func getObjectFwGtpNetworkElementStatsStats(d []interface{}) edpt.FwGtpNetworkEl
 		ret.DropFltMsisdnFiltering = in["drop_flt_msisdn_filtering"].(int)
 		ret.DropFltRatTypeFiltering = in["drop_flt_rat_type_filtering"].(int)
 		ret.DropFltGtpInGtp = in["drop_flt_gtp_in_gtp"].(int)
+		ret.FltMessageMonitor = in["flt_message_monitor"].(int)
+		ret.RatFltMessageMonitor = in["rat_flt_message_monitor"].(int)
+		ret.ApnImsiFltMessageMonitor = in["apn_imsi_flt_message_monitor"].(int)
+		ret.MsisdnFltMessageMonitor = in["msisdn_flt_message_monitor"].(int)
+		ret.GtpInGtpFltMessageMonitor = in["gtp_in_gtp_flt_message_monitor"].(int)
 		ret.DropRlGtpV0CAgg = in["drop_rl_gtp_v0_c_agg"].(int)
 		ret.DropRlGtpV1CAgg = in["drop_rl_gtp_v1_c_agg"].(int)
 		ret.DropRlGtpV2CAgg = in["drop_rl_gtp_v2_c_agg"].(int)
@@ -651,6 +710,7 @@ func getObjectFwGtpNetworkElementStatsStats(d []interface{}) edpt.FwGtpNetworkEl
 		ret.DropRlGtpUTotalByte = in["drop_rl_gtp_u_total_byte"].(int)
 		ret.DropRlGtpUTotalPacket = in["drop_rl_gtp_u_total_packet"].(int)
 		ret.DropRlGtpUMaxConcurrentTunnels = in["drop_rl_gtp_u_max_concurrent_tunnels"].(int)
+		ret.RlMessageMonitor = in["rl_message_monitor"].(int)
 	}
 	return ret
 }

@@ -75,6 +75,9 @@ func resourceClassListOper() *schema.Resource {
 									"ipv4_gtp_policy": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
+									"ipv4_category": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 									"ipv4_hit_count": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
@@ -108,6 +111,9 @@ func resourceClassListOper() *schema.Resource {
 									},
 									"ipv6_gtp_policy": {
 										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"ipv6_category": {
+										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 									"ipv6_hit_count": {
 										Type: schema.TypeInt, Optional: true, Description: "",
@@ -197,6 +203,9 @@ func resourceClassListOper() *schema.Resource {
 									"geo_location": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
+									"geo_location_status": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
 								},
 							},
 						},
@@ -260,6 +269,7 @@ func setSliceClassListOperOperIpv4Entries(d []edpt.ClassListOperOperIpv4Entries)
 		in["ipv4_lsn_lid"] = item.Ipv4LsnLid
 		in["ipv4_lsn_radius_profile"] = item.Ipv4LsnRadiusProfile
 		in["ipv4_gtp_policy"] = item.Ipv4GtpPolicy
+		in["ipv4_category"] = item.Ipv4Category
 		in["ipv4_hit_count"] = item.Ipv4HitCount
 		in["ipv4_age"] = item.Ipv4Age
 		in["ipv4_rpz_type"] = item.Ipv4RpzType
@@ -278,6 +288,7 @@ func setSliceClassListOperOperIpv6Entries(d []edpt.ClassListOperOperIpv6Entries)
 		in["ipv6_lsn_lid"] = item.Ipv6LsnLid
 		in["ipv6_lsn_radius_profile"] = item.Ipv6LsnRadiusProfile
 		in["ipv6_gtp_policy"] = item.Ipv6GtpPolicy
+		in["ipv6_category"] = item.Ipv6Category
 		in["ipv6_hit_count"] = item.Ipv6HitCount
 		in["ipv6_age"] = item.Ipv6Age
 		in["ipv6_rpz_type"] = item.Ipv6RpzType
@@ -334,6 +345,7 @@ func setSliceClassListOperOperGeoLocationEntries(d []edpt.ClassListOperOperGeoLo
 	for _, item := range d {
 		in := make(map[string]interface{})
 		in["geo_location"] = item.GeoLocation
+		in["geo_location_status"] = item.GeoLocationStatus
 		result = append(result, in)
 	}
 	return result
@@ -379,6 +391,7 @@ func getSliceClassListOperOperIpv4Entries(d []interface{}) []edpt.ClassListOperO
 		oi.Ipv4LsnLid = in["ipv4_lsn_lid"].(int)
 		oi.Ipv4LsnRadiusProfile = in["ipv4_lsn_radius_profile"].(int)
 		oi.Ipv4GtpPolicy = in["ipv4_gtp_policy"].(string)
+		oi.Ipv4Category = in["ipv4_category"].(int)
 		oi.Ipv4HitCount = in["ipv4_hit_count"].(int)
 		oi.Ipv4Age = in["ipv4_age"].(int)
 		oi.Ipv4RpzType = in["ipv4_rpz_type"].(int)
@@ -400,6 +413,7 @@ func getSliceClassListOperOperIpv6Entries(d []interface{}) []edpt.ClassListOperO
 		oi.Ipv6LsnLid = in["ipv6_lsn_lid"].(int)
 		oi.Ipv6LsnRadiusProfile = in["ipv6_lsn_radius_profile"].(int)
 		oi.Ipv6GtpPolicy = in["ipv6_gtp_policy"].(string)
+		oi.Ipv6Category = in["ipv6_category"].(int)
 		oi.Ipv6HitCount = in["ipv6_hit_count"].(int)
 		oi.Ipv6Age = in["ipv6_age"].(int)
 		oi.Ipv6RpzType = in["ipv6_rpz_type"].(int)
@@ -468,6 +482,7 @@ func getSliceClassListOperOperGeoLocationEntries(d []interface{}) []edpt.ClassLi
 		in := item.(map[string]interface{})
 		var oi edpt.ClassListOperOperGeoLocationEntries
 		oi.GeoLocation = in["geo_location"].(string)
+		oi.GeoLocationStatus = in["geo_location_status"].(string)
 		ret = append(ret, oi)
 	}
 	return ret

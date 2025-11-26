@@ -36,6 +36,7 @@ output "get_traffic_control_rule_set_rule_oper" {
 ### Required
 
 - `name` (String) Rule name
+- `rule_set_name` (String) Rule_set_name
 
 ### Optional
 
@@ -52,5 +53,3 @@ Optional:
 
 - `hitcount` (Number)
 - `status` (String)
-
-

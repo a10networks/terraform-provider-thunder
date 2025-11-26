@@ -77,5 +77,3 @@ Optional:
 - `responder_spi` (String)
 - `sign_hash` (String)
 - `status` (String)
-
-

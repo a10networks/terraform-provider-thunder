@@ -23,8 +23,8 @@ func resourceRuleSetTrackAppRuleListStats() *schema.Resource {
 					},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"rule_set_name": {
+				Type: schema.TypeString, Required: true, Description: "Rule_set_name",
 			},
 		},
 	}
@@ -73,6 +73,6 @@ func dataToEndpointRuleSetTrackAppRuleListStats(d *schema.ResourceData) edpt.Rul
 
 	ret.Stats = getObjectRuleSetTrackAppRuleListStatsStats(d.Get("stats").([]interface{}))
 
-	ret.Name = d.Get("name").(string)
+	ret.Rule_set_name = d.Get("rule_set_name").(string)
 	return ret
 }

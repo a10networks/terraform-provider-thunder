@@ -49,5 +49,3 @@ Optional:
 - `h225ras_message` (Number) H323 H225 RAS Message
 - `h245_tunneled` (Number) H323 H245 Tunnelled Message
 - `h245ctl_message` (Number) H323 H245 Media Control Message
-
-

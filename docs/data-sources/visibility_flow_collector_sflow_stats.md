@@ -49,5 +49,3 @@ Optional:
 - `pkts_received` (Number) Total sflow pkts received
 - `unknown_dir` (Number) sflow sample direction is unknown
 - `version_not_supported` (Number) sflow version not supported
-
-

@@ -54,5 +54,3 @@ Optional:
 
 - `geoloc_name` (String)
 - `has_subregion` (Number)
-
-

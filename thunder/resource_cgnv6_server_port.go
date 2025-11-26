@@ -53,8 +53,8 @@ func resourceCgnv6ServerPort() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"server_name": {
+				Type: schema.TypeString, Required: true, Description: "Server_name",
 			},
 		},
 	}
@@ -146,6 +146,6 @@ func dataToEndpointCgnv6ServerPort(d *schema.ResourceData) edpt.Cgnv6ServerPort 
 	ret.Inst.SamplingEnable = getSliceCgnv6ServerPortSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Server_name = d.Get("server_name").(string)
 	return ret
 }

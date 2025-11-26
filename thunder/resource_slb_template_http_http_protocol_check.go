@@ -74,8 +74,8 @@ func resourceSlbTemplateHttpHttpProtocolCheck() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"http_name": {
+				Type: schema.TypeString, Required: true, Description: "Http_name",
 			},
 		},
 	}
@@ -174,6 +174,6 @@ func dataToEndpointSlbTemplateHttpHttpProtocolCheck(d *schema.ResourceData) edpt
 	ret.Inst.MultipleTransferEncoding = d.Get("multiple_transfer_encoding").(string)
 	ret.Inst.TransferEncodingAndContentLength = d.Get("transfer_encoding_and_content_length").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Http_name = d.Get("http_name").(string)
 	return ret
 }

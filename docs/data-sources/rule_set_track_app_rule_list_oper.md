@@ -38,7 +38,7 @@ output "get_rule_set_track_app_rule_list_oper" {
 
 ### Required
 
-- `name` (String) Name
+- `rule_set_name` (String) Rule_set_name
 
 ### Optional
 
@@ -61,5 +61,3 @@ Optional:
 Optional:
 
 - `name` (String)
-
-

@@ -16,18 +16,24 @@ func resourceSystemBandwidth() *schema.Resource {
 		DeleteContext: resourceSystemBandwidthDelete,
 
 		Schema: map[string]*schema.Schema{
+			"critical_threshold": {
+				Type: schema.TypeInt, Optional: true, Default: 95, Description: "Adjust bandwidth critical threshold",
+			},
 			"sampling_enable": {
 				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type: schema.TypeString, Optional: true, Description: "'all': all; 'input-bytes-per-sec': In Bytes per second; 'output-bytes-per-sec': Out Bytes per second;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'input-bytes-per-sec': In Bytes per second; 'output-bytes-per-sec': Out Bytes per second; 'ppsl_drop_egr': Packet-Per-Sec Limit Drop at egress; 'ppsl_drop_ing': Packet-Per-Sec Limit Drop at ingress; 'ppsl_ignore_limit': Packet-Per-Sec Limit ignored packets count; 'licexpire_drop': License Expire Drop; 'bwl_drop': BW Limit Drop;",
 						},
 					},
 				},
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+			},
+			"warning_threshold": {
+				Type: schema.TypeInt, Optional: true, Default: 75, Description: "Adjust bandwidth warning threshold",
 			},
 		},
 	}
@@ -109,7 +115,9 @@ func getSliceSystemBandwidthSamplingEnable(d []interface{}) []edpt.SystemBandwid
 
 func dataToEndpointSystemBandwidth(d *schema.ResourceData) edpt.SystemBandwidth {
 	var ret edpt.SystemBandwidth
+	ret.Inst.CriticalThreshold = d.Get("critical_threshold").(int)
 	ret.Inst.SamplingEnable = getSliceSystemBandwidthSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	//omit uuid
+	ret.Inst.WarningThreshold = d.Get("warning_threshold").(int)
 	return ret
 }

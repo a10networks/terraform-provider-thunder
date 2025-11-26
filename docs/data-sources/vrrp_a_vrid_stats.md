@@ -53,5 +53,3 @@ Optional:
 - `associated_natpool_count` (Number) Number of nat pools associated to vrid
 - `associated_vip_count` (Number) Number of vips associated to vrid
 - `associated_vport_count` (Number) Number of vports associated to vrid
-
-

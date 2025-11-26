@@ -37,9 +37,9 @@ output "get_gslb_zone_service_oper" {
 
 ### Required
 
-- `name` (String) Name
 - `service_name` (String) Specify the service name for the zone, * for wildcard
 - `service_port` (Number) Port number of the service
+- `zone_name` (String) Zone_name
 
 ### Optional
 
@@ -143,5 +143,3 @@ Optional:
 - `mode` (String)
 - `ttl` (String)
 - `update` (Number)
-
-

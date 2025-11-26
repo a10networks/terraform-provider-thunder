@@ -55,5 +55,3 @@ Optional:
 - `alloc_fail` (Number)
 - `free` (Number)
 - `type` (String)
-
-

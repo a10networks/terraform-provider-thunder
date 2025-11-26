@@ -78,6 +78,7 @@ Optional:
 - `fwd_ingress_pkt_size_range2` (Number) Forward Ingress Packet size between 201 and 800
 - `fwd_ingress_pkt_size_range3` (Number) Forward Ingress Packet size between 801 and 1550
 - `fwd_ingress_pkt_size_range4` (Number) Forward Ingress Packet size between 1551 and 9000
+- `limit_entry_already_added_to_del_queue` (Number) Limit Entry Added twice to delete queue
 - `limit_entry_created` (Number) Limit Entry Created
 - `limit_entry_marked_deleted` (Number) Limit Entry Marked Deleted
 - `non_syn_pkt_fwd_allowed` (Number) Non-SYN pkt forward allowed
@@ -110,5 +111,3 @@ Optional:
 - `udp_fullcone_created` (Number) UDP Full-cone Created
 - `udp_fullcone_freed` (Number) UDP Full-cone Freed
 - `undetermined_rule_counter` (Number) Undetermined rule detected
-
-

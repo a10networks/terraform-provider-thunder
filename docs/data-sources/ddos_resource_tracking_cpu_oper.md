@@ -67,5 +67,3 @@ Optional:
 - `address` (String)
 - `entry` (String)
 - `relative_cpu_percent` (String)
-
-

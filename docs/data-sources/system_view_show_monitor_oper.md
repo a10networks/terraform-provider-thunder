@@ -61,5 +61,3 @@ Optional:
 - `spm3` (Number)
 - `spm4` (Number)
 - `warn_temp` (Number)
-
-

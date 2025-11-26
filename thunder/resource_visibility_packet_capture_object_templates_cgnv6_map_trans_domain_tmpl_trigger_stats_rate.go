@@ -49,8 +49,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmplTrigge
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"cgnv6_map_trans_domain_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Cgnv6_map_trans_domain_tmpl_name",
 			},
 		},
 	}
@@ -130,6 +130,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesCgnv6MapTransDomainTmpl
 	ret.Inst.Packet_mtu_exceeded = d.Get("packet_mtu_exceeded").(int)
 	ret.Inst.ThresholdExceededBy = d.Get("threshold_exceeded_by").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Cgnv6_map_trans_domain_tmpl_name = d.Get("cgnv6_map_trans_domain_tmpl_name").(string)
 	return ret
 }

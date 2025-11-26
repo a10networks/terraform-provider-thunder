@@ -101,5 +101,3 @@ Optional:
 - `src_filter_none_match` (Number) Src Filter No Match
 - `src_filter_total_not_match` (Number) Src Filter Not Matched on Pkt
 - `src_frag_drop` (Number) Src Fragmented Packets Dropped
-
-

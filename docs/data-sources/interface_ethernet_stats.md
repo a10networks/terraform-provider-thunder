@@ -53,7 +53,6 @@ Optional:
 - `bytes_output` (Number) Output bytes
 - `collisions` (Number) Collisions
 - `crc` (Number) CRC
-- `drops` (Number) Drops
 - `frame` (Number) Frames
 - `giants` (Number) Giants
 - `giants_output` (Number) Output Giants
@@ -68,12 +67,12 @@ Optional:
 - `rate_byte_sent` (Number) Byte sent rate bits/sec
 - `rate_pkt_rcvd` (Number) Packet received rate packets/sec
 - `rate_pkt_sent` (Number) Packet sent rate packets/sec
+- `receive_drops` (Number) Receive Drops
 - `received_broadcasts` (Number) Received broadcasts
 - `received_multicasts` (Number) Received multicasts
 - `received_unicasts` (Number) Received unicasts
 - `runts` (Number) Runts
+- `transmit_drops` (Number) Transmit Drops
 - `transmitted_broadcasts` (Number) Transmitted broadcasts
 - `transmitted_multicasts` (Number) Transmitted multicasts
 - `transmitted_unicasts` (Number) Transmitted unicasts
-
-

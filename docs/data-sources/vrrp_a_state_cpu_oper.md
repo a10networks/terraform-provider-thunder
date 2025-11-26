@@ -56,5 +56,3 @@ Optional:
 - `max_sync_msg_per_packet` (Number)
 - `min_query_msg_per_packet` (Number)
 - `min_sync_msg_per_packet` (Number)
-
-

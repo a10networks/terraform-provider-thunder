@@ -119,5 +119,3 @@ Optional:
 - `addr` (String) IP address
 - `is_anycast` (Number)
 - `prefix` (String) IP subnet mask
-
-

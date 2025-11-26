@@ -35,7 +35,7 @@ output "get_cgnv6_lsn_rule_list_default_stats" {
 
 ### Required
 
-- `name` (String) Name
+- `lsn_rule_list_name` (String) Lsn_rule_list_name
 
 ### Optional
 
@@ -47,5 +47,3 @@ output "get_cgnv6_lsn_rule_list_default_stats" {
 
 <a id="nestedblock--stats"></a>
 ### Nested Schema for `stats`
-
-

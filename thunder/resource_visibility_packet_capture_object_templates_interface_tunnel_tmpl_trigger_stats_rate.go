@@ -31,8 +31,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTriggerSta
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"interface_tunnel_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Interface_tunnel_tmpl_name",
 			},
 		},
 	}
@@ -106,6 +106,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplTrig
 	ret.Inst.NumTxErrPkts = d.Get("num_tx_err_pkts").(int)
 	ret.Inst.ThresholdExceededBy = d.Get("threshold_exceeded_by").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Interface_tunnel_tmpl_name = d.Get("interface_tunnel_tmpl_name").(string)
 	return ret
 }

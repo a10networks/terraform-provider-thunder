@@ -28,6 +28,28 @@ func resourceCloudServicesCloudProviderAzureMetrics() *schema.Resource {
 			"cpu": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable CPU Metrics; 'disable': Disable CPU Metrics;",
 			},
+			"ddos": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"tcp": {
+							Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable All TCP Metrics; 'disable': Disable All TCP Metrics;",
+						},
+						"udp": {
+							Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable All UDP Metrics; 'disable': Disable All UDP Metrics;",
+						},
+						"port": {
+							Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable All Port Metrics; 'disable': Disable All Port Metrics;",
+						},
+						"entry_zone": {
+							Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable All DDoS Entries and Zones Stats; 'disable': Disable All DDoS Entries and Zones Stats;",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
 			"disk": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Disk Metrics; 'disable': Disable Disk Metrics;",
 			},
@@ -135,12 +157,28 @@ func resourceCloudServicesCloudProviderAzureMetricsRead(ctx context.Context, d *
 	return diags
 }
 
+func getObjectCloudServicesCloudProviderAzureMetricsDdos139(d []interface{}) edpt.CloudServicesCloudProviderAzureMetricsDdos139 {
+
+	count1 := len(d)
+	var ret edpt.CloudServicesCloudProviderAzureMetricsDdos139
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Tcp = in["tcp"].(string)
+		ret.Udp = in["udp"].(string)
+		ret.Port = in["port"].(string)
+		ret.EntryZone = in["entry_zone"].(string)
+		//omit uuid
+	}
+	return ret
+}
+
 func dataToEndpointCloudServicesCloudProviderAzureMetrics(d *schema.ResourceData) edpt.CloudServicesCloudProviderAzureMetrics {
 	var ret edpt.CloudServicesCloudProviderAzureMetrics
 	ret.Inst.Action = d.Get("action").(string)
 	ret.Inst.ActivePartitions = d.Get("active_partitions").(string)
 	ret.Inst.Cps = d.Get("cps").(string)
 	ret.Inst.Cpu = d.Get("cpu").(string)
+	ret.Inst.Ddos = getObjectCloudServicesCloudProviderAzureMetricsDdos139(d.Get("ddos").([]interface{}))
 	ret.Inst.Disk = d.Get("disk").(string)
 	ret.Inst.Interfaces = d.Get("interfaces").(string)
 	ret.Inst.Memory = d.Get("memory").(string)

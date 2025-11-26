@@ -9,13 +9,16 @@ import (
 
 func resourceFwLogging() *schema.Resource {
 	return &schema.Resource{
-		Description:   "`thunder_fw_logging`: Bind a logging template to firewall\n\n__PLACEHOLDER__",
+		Description:   "`thunder_fw_logging`: logging configurations e.g. FW logging template Binding/CEF log options\n\n__PLACEHOLDER__",
 		CreateContext: resourceFwLoggingCreate,
 		UpdateContext: resourceFwLoggingUpdate,
 		ReadContext:   resourceFwLoggingRead,
 		DeleteContext: resourceFwLoggingDelete,
 
 		Schema: map[string]*schema.Schema{
+			"cef_label": {
+				Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': enable; 'disable': disable;",
+			},
 			"gtp": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -117,25 +120,25 @@ func resourceFwLoggingRead(ctx context.Context, d *schema.ResourceData, meta int
 	return diags
 }
 
-func getObjectFwLoggingGtp371(d []interface{}) edpt.FwLoggingGtp371 {
+func getObjectFwLoggingGtp443(d []interface{}) edpt.FwLoggingGtp443 {
 
 	count1 := len(d)
-	var ret edpt.FwLoggingGtp371
+	var ret edpt.FwLoggingGtp443
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceFwLoggingGtpSamplingEnable372(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceFwLoggingGtpSamplingEnable444(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceFwLoggingGtpSamplingEnable372(d []interface{}) []edpt.FwLoggingGtpSamplingEnable372 {
+func getSliceFwLoggingGtpSamplingEnable444(d []interface{}) []edpt.FwLoggingGtpSamplingEnable444 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwLoggingGtpSamplingEnable372, 0, count1)
+	ret := make([]edpt.FwLoggingGtpSamplingEnable444, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwLoggingGtpSamplingEnable372
+		var oi edpt.FwLoggingGtpSamplingEnable444
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
@@ -157,7 +160,8 @@ func getSliceFwLoggingSamplingEnable(d []interface{}) []edpt.FwLoggingSamplingEn
 
 func dataToEndpointFwLogging(d *schema.ResourceData) edpt.FwLogging {
 	var ret edpt.FwLogging
-	ret.Inst.Gtp = getObjectFwLoggingGtp371(d.Get("gtp").([]interface{}))
+	ret.Inst.CefLabel = d.Get("cef_label").(string)
+	ret.Inst.Gtp = getObjectFwLoggingGtp443(d.Get("gtp").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.SamplingEnable = getSliceFwLoggingSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	//omit uuid

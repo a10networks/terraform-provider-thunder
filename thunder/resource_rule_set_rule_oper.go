@@ -95,8 +95,26 @@ func resourceRuleSetRuleOper() *schema.Resource {
 						"ratelimitdrops": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"syncookieon": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"synacksent": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"verificationpassed": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"verificationfailed": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"tcphalfopencount": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 					},
 				},
+			},
+			"rule_set_name": {
+				Type: schema.TypeString, Required: true, Description: "Rule_set_name",
 			},
 		},
 	}
@@ -149,6 +167,11 @@ func setObjectRuleSetRuleOperOper(ret edpt.DataRuleSetRuleOper) []interface{} {
 			"sessionother":       ret.DtRuleSetRuleOper.Oper.Sessionother,
 			"sessiontotal":       ret.DtRuleSetRuleOper.Oper.Sessiontotal,
 			"ratelimitdrops":     ret.DtRuleSetRuleOper.Oper.Ratelimitdrops,
+			"syncookieon":        ret.DtRuleSetRuleOper.Oper.Syncookieon,
+			"synacksent":         ret.DtRuleSetRuleOper.Oper.Synacksent,
+			"verificationpassed": ret.DtRuleSetRuleOper.Oper.Verificationpassed,
+			"verificationfailed": ret.DtRuleSetRuleOper.Oper.Verificationfailed,
+			"tcphalfopencount":   ret.DtRuleSetRuleOper.Oper.Tcphalfopencount,
 		},
 	}
 }
@@ -184,6 +207,11 @@ func getObjectRuleSetRuleOperOper(d []interface{}) edpt.RuleSetRuleOperOper {
 		ret.Sessionother = in["sessionother"].(int)
 		ret.Sessiontotal = in["sessiontotal"].(int)
 		ret.Ratelimitdrops = in["ratelimitdrops"].(int)
+		ret.Syncookieon = in["syncookieon"].(int)
+		ret.Synacksent = in["synacksent"].(int)
+		ret.Verificationpassed = in["verificationpassed"].(int)
+		ret.Verificationfailed = in["verificationfailed"].(int)
+		ret.Tcphalfopencount = in["tcphalfopencount"].(int)
 	}
 	return ret
 }
@@ -194,5 +222,7 @@ func dataToEndpointRuleSetRuleOper(d *schema.ResourceData) edpt.RuleSetRuleOper 
 	ret.Name = d.Get("name").(string)
 
 	ret.Oper = getObjectRuleSetRuleOperOper(d.Get("oper").([]interface{}))
+
+	ret.Rule_set_name = d.Get("rule_set_name").(string)
 	return ret
 }

@@ -53,6 +53,9 @@ func resourceGslbSiteSlbDevVipServerVipServerNameOper() *schema.Resource {
 						"dynamic": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"shared": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"hits": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -69,6 +72,15 @@ func resourceGslbSiteSlbDevVipServerVipServerNameOper() *schema.Resource {
 									"dev_vip_port_state": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
+									"dev_vip_port_dev_curr_conn": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"dev_vip_port_protocol": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"dev_vip_port_service_name": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
 								},
 							},
 						},
@@ -78,11 +90,11 @@ func resourceGslbSiteSlbDevVipServerVipServerNameOper() *schema.Resource {
 			"vip_name": {
 				Type: schema.TypeString, Required: true, Description: "Specify a VIP name for the SLB device",
 			},
-			"site_name": {
-				Type: schema.TypeString, Required: true, Description: "SiteName",
-			},
 			"device_name": {
 				Type: schema.TypeString, Required: true, Description: "DeviceName",
+			},
+			"site_name": {
+				Type: schema.TypeString, Required: true, Description: "SiteName",
 			},
 		},
 	}
@@ -122,6 +134,7 @@ func setObjectGslbSiteSlbDevVipServerVipServerNameOperOper(ret edpt.DataGslbSite
 			"manually_health_check": ret.DtGslbSiteSlbDevVipServerVipServerNameOper.Oper.ManuallyHealthCheck,
 			"use_gslb_state":        ret.DtGslbSiteSlbDevVipServerVipServerNameOper.Oper.Use_gslb_state,
 			"dynamic":               ret.DtGslbSiteSlbDevVipServerVipServerNameOper.Oper.Dynamic,
+			"shared":                ret.DtGslbSiteSlbDevVipServerVipServerNameOper.Oper.Shared,
 			"hits":                  ret.DtGslbSiteSlbDevVipServerVipServerNameOper.Oper.Hits,
 			"recent":                ret.DtGslbSiteSlbDevVipServerVipServerNameOper.Oper.Recent,
 			"dev_vip_port_list":     setSliceGslbSiteSlbDevVipServerVipServerNameOperOperDevVipPortList(ret.DtGslbSiteSlbDevVipServerVipServerNameOper.Oper.DevVipPortList),
@@ -135,6 +148,9 @@ func setSliceGslbSiteSlbDevVipServerVipServerNameOperOperDevVipPortList(d []edpt
 		in := make(map[string]interface{})
 		in["dev_vip_port_num"] = item.DevVipPortNum
 		in["dev_vip_port_state"] = item.DevVipPortState
+		in["dev_vip_port_dev_curr_conn"] = item.DevVipPortDevCurrConn
+		in["dev_vip_port_protocol"] = item.DevVipPortProtocol
+		in["dev_vip_port_service_name"] = item.DevVipPortServiceName
 		result = append(result, in)
 	}
 	return result
@@ -158,6 +174,7 @@ func getObjectGslbSiteSlbDevVipServerVipServerNameOperOper(d []interface{}) edpt
 		ret.ManuallyHealthCheck = in["manually_health_check"].(int)
 		ret.Use_gslb_state = in["use_gslb_state"].(int)
 		ret.Dynamic = in["dynamic"].(int)
+		ret.Shared = in["shared"].(int)
 		ret.Hits = in["hits"].(int)
 		ret.Recent = in["recent"].(int)
 		ret.DevVipPortList = getSliceGslbSiteSlbDevVipServerVipServerNameOperOperDevVipPortList(in["dev_vip_port_list"].([]interface{}))
@@ -174,6 +191,9 @@ func getSliceGslbSiteSlbDevVipServerVipServerNameOperOperDevVipPortList(d []inte
 		var oi edpt.GslbSiteSlbDevVipServerVipServerNameOperOperDevVipPortList
 		oi.DevVipPortNum = in["dev_vip_port_num"].(int)
 		oi.DevVipPortState = in["dev_vip_port_state"].(string)
+		oi.DevVipPortDevCurrConn = in["dev_vip_port_dev_curr_conn"].(int)
+		oi.DevVipPortProtocol = in["dev_vip_port_protocol"].(string)
+		oi.DevVipPortServiceName = in["dev_vip_port_service_name"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -186,8 +206,8 @@ func dataToEndpointGslbSiteSlbDevVipServerVipServerNameOper(d *schema.ResourceDa
 
 	ret.VipName = d.Get("vip_name").(string)
 
-	ret.SiteName = d.Get("site_name").(string)
-
 	ret.DeviceName = d.Get("device_name").(string)
+
+	ret.SiteName = d.Get("site_name").(string)
 	return ret
 }

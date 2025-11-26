@@ -49,8 +49,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTmplTrig
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"aam_auth_server_ldap_inst_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Aam_auth_server_ldap_inst_tmpl_name",
 			},
 		},
 	}
@@ -130,6 +130,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesAamAuthServerLdapInstTm
 	ret.Inst.ThresholdExceededBy = d.Get("threshold_exceeded_by").(int)
 	ret.Inst.TimeoutError = d.Get("timeout_error").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Aam_auth_server_ldap_inst_tmpl_name = d.Get("aam_auth_server_ldap_inst_tmpl_name").(string)
 	return ret
 }

@@ -62,5 +62,3 @@ Optional:
 - `peer_message_received` (Number) Number of messages received from this peer
 - `peer_message_sent` (Number) Number messages sent to this peer
 - `peer_status` (String) Status of the connection with the peer
-
-

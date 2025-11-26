@@ -61,5 +61,3 @@ Optional:
 - `total_nodes_unlink_failed` (Number) Total nodes unlink failed
 - `total_oper_alloc` (Number) Total oper blocks allocated
 - `total_oper_free` (Number) Total oper blocks freed
-
-

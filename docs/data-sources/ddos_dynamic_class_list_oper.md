@@ -132,5 +132,3 @@ Optional:
 - `string_key` (String)
 - `string_lid` (Number)
 - `string_value` (String)
-
-

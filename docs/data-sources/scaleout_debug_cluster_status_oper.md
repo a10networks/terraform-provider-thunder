@@ -89,5 +89,3 @@ Optional:
 
 - `device_id` (Number)
 - `state` (Number)
-
-

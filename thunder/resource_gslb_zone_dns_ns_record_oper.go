@@ -29,8 +29,8 @@ func resourceGslbZoneDnsNsRecordOper() *schema.Resource {
 					},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -83,6 +83,6 @@ func dataToEndpointGslbZoneDnsNsRecordOper(d *schema.ResourceData) edpt.GslbZone
 
 	ret.Oper = getObjectGslbZoneDnsNsRecordOperOper(d.Get("oper").([]interface{}))
 
-	ret.Name = d.Get("name").(string)
+	ret.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

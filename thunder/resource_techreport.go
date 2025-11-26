@@ -142,10 +142,10 @@ func resourceTechreportRead(ctx context.Context, d *schema.ResourceData, meta in
 	return diags
 }
 
-func getObjectTechreportInterval1897(d []interface{}) edpt.TechreportInterval1897 {
+func getObjectTechreportInterval2021(d []interface{}) edpt.TechreportInterval2021 {
 
 	count1 := len(d)
-	var ret edpt.TechreportInterval1897
+	var ret edpt.TechreportInterval2021
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -154,10 +154,10 @@ func getObjectTechreportInterval1897(d []interface{}) edpt.TechreportInterval189
 	return ret
 }
 
-func getObjectTechreportMaxLogfileSize1898(d []interface{}) edpt.TechreportMaxLogfileSize1898 {
+func getObjectTechreportMaxLogfileSize2022(d []interface{}) edpt.TechreportMaxLogfileSize2022 {
 
 	count1 := len(d)
-	var ret edpt.TechreportMaxLogfileSize1898
+	var ret edpt.TechreportMaxLogfileSize2022
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -166,10 +166,10 @@ func getObjectTechreportMaxLogfileSize1898(d []interface{}) edpt.TechreportMaxLo
 	return ret
 }
 
-func getObjectTechreportMaxPartitions1899(d []interface{}) edpt.TechreportMaxPartitions1899 {
+func getObjectTechreportMaxPartitions2023(d []interface{}) edpt.TechreportMaxPartitions2023 {
 
 	count1 := len(d)
-	var ret edpt.TechreportMaxPartitions1899
+	var ret edpt.TechreportMaxPartitions2023
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -196,9 +196,9 @@ func dataToEndpointTechreport(d *schema.ResourceData) edpt.Techreport {
 	var ret edpt.Techreport
 	ret.Inst.Disable = d.Get("disable").(int)
 	ret.Inst.EnableFullHistory = d.Get("enable_full_history").(int)
-	ret.Inst.Interval = getObjectTechreportInterval1897(d.Get("interval").([]interface{}))
-	ret.Inst.MaxLogfileSize = getObjectTechreportMaxLogfileSize1898(d.Get("max_logfile_size").([]interface{}))
-	ret.Inst.MaxPartitions = getObjectTechreportMaxPartitions1899(d.Get("max_partitions").([]interface{}))
+	ret.Inst.Interval = getObjectTechreportInterval2021(d.Get("interval").([]interface{}))
+	ret.Inst.MaxLogfileSize = getObjectTechreportMaxLogfileSize2022(d.Get("max_logfile_size").([]interface{}))
+	ret.Inst.MaxPartitions = getObjectTechreportMaxPartitions2023(d.Get("max_partitions").([]interface{}))
 	ret.Inst.PriorityPartitionList = getSliceTechreportPriorityPartitionList(d.Get("priority_partition_list").([]interface{}))
 	//omit uuid
 	return ret

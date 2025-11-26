@@ -45,5 +45,3 @@ output "get_system_view_memory_view_stats" {
 Optional:
 
 - `usage_percentage` (Number) Usage percentage
-
-

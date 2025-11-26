@@ -51,6 +51,7 @@ Optional:
 - `dst_port_frag_rate_exceed` (Number) Dst Port Frag Pkt Rate Exceeded
 - `dst_port_kbit_rate_exceed` (Number) Dst Port KiBit Rate Exceeded (KiBit)
 - `dst_port_pkt_rate_exceed` (Number) Dst Port Pkt Rate Exceeded
+- `dst_port_same_sport_drop` (Number) Dst Port Same Src Port Dropped
 - `dst_port_undef_drop` (Number) Dst Port Undefined Dropped
 - `dst_sport_bl` (Number) Dst SrcPort Blacklist Packets Dropped
 - `dst_sport_conn_limit_exceed` (Number) Dst SrcPort Conn Limit Exceeded
@@ -59,5 +60,3 @@ Optional:
 - `dst_sport_frag_rate_exceed` (Number) Dst SrcPort Frag Pkt Rate Exceeded
 - `dst_sport_kbit_rate_exceed` (Number) Dst SrcPort KiBit Rate Exceeded (KiBit)
 - `dst_sport_pkt_rate_exceed` (Number) Dst SrcPort Pkt Rate Exceeded
-
-

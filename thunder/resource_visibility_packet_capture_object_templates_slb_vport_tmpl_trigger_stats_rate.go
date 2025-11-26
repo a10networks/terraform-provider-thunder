@@ -25,6 +25,9 @@ func resourceVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate(
 			"dnsrrl_bad_fqdn": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting Bad FQDN",
 			},
+			"dnsrrl_nx_exceed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting NX Responses Exceed Limit",
+			},
 			"dnsrrl_total_dropped": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting Total Responses Dropped",
 			},
@@ -46,8 +49,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStatsRate(
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"slb_vport_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Slb_vport_tmpl_name",
 			},
 		},
 	}
@@ -119,6 +122,7 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStat
 	ret.Inst.Compression_miss_no_client = d.Get("compression_miss_no_client").(int)
 	ret.Inst.Compression_miss_template_exclusion = d.Get("compression_miss_template_exclusion").(int)
 	ret.Inst.Dnsrrl_bad_fqdn = d.Get("dnsrrl_bad_fqdn").(int)
+	ret.Inst.Dnsrrl_nx_exceed = d.Get("dnsrrl_nx_exceed").(int)
 	ret.Inst.Dnsrrl_total_dropped = d.Get("dnsrrl_total_dropped").(int)
 	ret.Inst.Duration = d.Get("duration").(int)
 	ret.Inst.Es_total_failure_actions = d.Get("es_total_failure_actions").(int)
@@ -126,6 +130,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesSlbVportTmplTriggerStat
 	ret.Inst.ThresholdExceededBy = d.Get("threshold_exceeded_by").(int)
 	ret.Inst.Total_mf_dns_pkts = d.Get("total_mf_dns_pkts").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Slb_vport_tmpl_name = d.Get("slb_vport_tmpl_name").(string)
 	return ret
 }

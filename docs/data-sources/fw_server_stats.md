@@ -100,5 +100,3 @@ Optional:
 - `peak_conn` (Number) Peak connections
 - `rev_pkt` (Number) Reverse Packets
 - `total_conn` (Number) Total connections
-
-

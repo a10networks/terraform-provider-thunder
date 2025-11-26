@@ -173,10 +173,10 @@ func getSliceGslbProtocolEnableList(d []interface{}) []edpt.GslbProtocolEnableLi
 	return ret
 }
 
-func getObjectGslbProtocolLimit394(d []interface{}) edpt.GslbProtocolLimit394 {
+func getObjectGslbProtocolLimit487(d []interface{}) edpt.GslbProtocolLimit487 {
 
 	count1 := len(d)
-	var ret edpt.GslbProtocolLimit394
+	var ret edpt.GslbProtocolLimit487
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ArdtQuery = in["ardt_query"].(int)
@@ -190,10 +190,10 @@ func getObjectGslbProtocolLimit394(d []interface{}) edpt.GslbProtocolLimit394 {
 	return ret
 }
 
-func getObjectGslbProtocolSecure395(d []interface{}) edpt.GslbProtocolSecure395 {
+func getObjectGslbProtocolSecure488(d []interface{}) edpt.GslbProtocolSecure488 {
 
 	count1 := len(d)
-	var ret edpt.GslbProtocolSecure395
+	var ret edpt.GslbProtocolSecure488
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
@@ -207,10 +207,10 @@ func dataToEndpointGslbProtocol(d *schema.ResourceData) edpt.GslbProtocol {
 	ret.Inst.AutoDetect = d.Get("auto_detect").(int)
 	ret.Inst.DisableNewGslbSync = d.Get("disable_new_gslb_sync").(int)
 	ret.Inst.EnableList = getSliceGslbProtocolEnableList(d.Get("enable_list").([]interface{}))
-	ret.Inst.Limit = getObjectGslbProtocolLimit394(d.Get("limit").([]interface{}))
+	ret.Inst.Limit = getObjectGslbProtocolLimit487(d.Get("limit").([]interface{}))
 	ret.Inst.MsgFormatAcos2x = d.Get("msg_format_acos_2x").(int)
 	ret.Inst.PingSite = d.Get("ping_site").(string)
-	ret.Inst.Secure = getObjectGslbProtocolSecure395(d.Get("secure").([]interface{}))
+	ret.Inst.Secure = getObjectGslbProtocolSecure488(d.Get("secure").([]interface{}))
 	ret.Inst.StatusInterval = d.Get("status_interval").(int)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	ret.Inst.UseMgmtPortForAllPartitions = d.Get("use_mgmt_port_for_all_partitions").(int)

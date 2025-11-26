@@ -212,5 +212,3 @@ Optional:
 - `ports_consumed` (Number)
 - `ports_consumed_total` (Number)
 - `ports_freed_total` (Number)
-
-

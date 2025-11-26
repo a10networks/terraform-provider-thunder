@@ -66,5 +66,3 @@ Optional:
 - `reasmoks` (Number) Incoming reassembled packets
 - `reasmreqds` (Number) Incoming reassembly requests
 - `reasmtimeout` (Number) Reassembly timed out packet drops
-
-

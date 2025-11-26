@@ -45,5 +45,3 @@ output "get_ddos_token_authentication_summary_oper" {
 Optional:
 
 - `player_mode` (String)
-
-

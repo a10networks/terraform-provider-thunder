@@ -147,8 +147,8 @@ func resourceCgnv6TemplateLoggingDisableLogByDestination() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"logging_name": {
+				Type: schema.TypeString, Required: true, Description: "Logging_name",
 			},
 		},
 	}
@@ -346,6 +346,6 @@ func dataToEndpointCgnv6TemplateLoggingDisableLogByDestination(d *schema.Resourc
 	ret.Inst.TcpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationTcpList(d.Get("tcp_list").([]interface{}))
 	ret.Inst.UdpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationUdpList(d.Get("udp_list").([]interface{}))
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Logging_name = d.Get("logging_name").(string)
 	return ret
 }

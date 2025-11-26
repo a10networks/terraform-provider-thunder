@@ -300,6 +300,9 @@ func resourceAamAuthenticationServer() *schema.Resource {
 									"auth_type": {
 										Type: schema.TypeString, Optional: true, Description: "'pap': PAP authentication. Default; 'mschapv2': MS-CHAPv2 authentication; 'mschapv2-pap': Use MS-CHAPv2 first. If server doesn't support it, try PAP;",
 									},
+									"message_authenticator_verify_enable": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Verify Message-Authenticator attribute",
+									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
@@ -337,7 +340,7 @@ func resourceAamAuthenticationServer() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"counters1": {
-										Type: schema.TypeString, Optional: true, Description: "'all': all; 'kerberos-request-send': Total Kerberos Request; 'kerberos-response-get': Total Kerberos Response; 'kerberos-timeout-error': Total Kerberos Timeout; 'kerberos-other-error': Total Kerberos Other Error; 'ntlm-authentication-success': Total NTLM Authentication Success; 'ntlm-authentication-failure': Total NTLM Authentication Failure; 'ntlm-proto-negotiation-success': Total NTLM Protocol Negotiation Success; 'ntlm-proto-negotiation-failure': Total NTLM Protocol Negotiation Failure; 'ntlm-session-setup-success': Total NTLM Session Setup Success; 'ntlm-session-setup-failed': Total NTLM Session Setup Failure; 'kerberos-request-normal': Total Kerberos Normal Request; 'kerberos-request-dropped': Total Kerberos Dropped Request; 'kerberos-response-success': Total Kerberos Success Response; 'kerberos-response-failure': Total Kerberos Failure Response; 'kerberos-response-error': Total Kerberos Error Response; 'kerberos-response-timeout': Total Kerberos Timeout Response; 'kerberos-response-other': Total Kerberos Other Response; 'kerberos-job-start-error': Total Kerberos Job Start Error; 'kerberos-polling-control-error': Total Kerberos Polling Control Error; 'ntlm-prepare-req-success': Total NTLM Prepare Request Success; 'ntlm-prepare-req-failed': Total NTLM Prepare Request Failed; 'ntlm-timeout-error': Total NTLM Timeout; 'ntlm-other-error': Total NTLM Other Error; 'ntlm-request-normal': Total NTLM Normal Request; 'ntlm-request-dropped': Total NTLM Dropped Request; 'ntlm-response-success': Total NTLM Success Response; 'ntlm-response-failure': Total NTLM Failure Response; 'ntlm-response-error': Total NTLM Error Response; 'ntlm-response-timeout': Total NTLM Timeout Response; 'ntlm-response-other': Total NTLM Other Response; 'ntlm-job-start-error': Total NTLM Job Start Error; 'ntlm-polling-control-error': Total NTLM Polling Control Error; 'kerberos-pw-expiry': Total Kerberos password expiry; 'kerberos-pw-change-success': Total Kerberos password change success; 'kerberos-pw-change-failure': Total Kerberos password change failure; 'kerberos-validate-kdc-success': Total Kerberos KDC Validation Success; 'kerberos-validate-kdc-failure': Total Kerberos KDC Validation Failure; 'kerberos-generate-kdc-keytab-success': Total Kerberos KDC Keytab Generation Success; 'kerberos-generate-kdc-keytab-failure': Total Kerberos KDC Keytab Generation Failure; 'kerberos-delete-kdc-keytab-success': Total Kerberos KDC Keytab Deletion Success; 'kerberos-delete-kdc-keytab-failure': Total Kerberos KDC Keytab Deletion Failure; 'kerberos-kdc-keytab-count': Current Kerberos KDC Keytab Count;",
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'kerberos-request-send': Total Kerberos Request; 'kerberos-response-get': Total Kerberos Response; 'kerberos-timeout-error': Total Kerberos Timeout; 'kerberos-other-error': Total Kerberos Other Error; 'kerberos-request-normal': Total Kerberos Normal Request; 'kerberos-request-dropped': Total Kerberos Dropped Request; 'kerberos-response-success': Total Kerberos Success Response; 'kerberos-response-failure': Total Kerberos Failure Response; 'kerberos-response-error': Total Kerberos Error Response; 'kerberos-response-timeout': Total Kerberos Timeout Response; 'kerberos-response-other': Total Kerberos Other Response; 'kerberos-job-start-error': Total Kerberos Job Start Error; 'kerberos-polling-control-error': Total Kerberos Polling Control Error; 'kerberos-pw-expiry': Total Kerberos password expiry; 'kerberos-pw-change-success': Total Kerberos password change success; 'kerberos-pw-change-failure': Total Kerberos password change failure; 'kerberos-validate-kdc-success': Total Kerberos KDC Validation Success; 'kerberos-validate-kdc-failure': Total Kerberos KDC Validation Failure; 'kerberos-generate-kdc-keytab-success': Total Kerberos KDC Keytab Generation Success; 'kerberos-generate-kdc-keytab-failure': Total Kerberos KDC Keytab Generation Failure; 'kerberos-delete-kdc-keytab-success': Total Kerberos KDC Keytab Deletion Success; 'kerberos-delete-kdc-keytab-failure': Total Kerberos KDC Keytab Deletion Failure; 'kerberos-kdc-keytab-count': Current Kerberos KDC Keytab Count;",
 									},
 								},
 							},
@@ -369,21 +372,6 @@ func resourceAamAuthenticationServer() *schema.Resource {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
-												"ntlm_disable": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable NTLM authentication protocol",
-												},
-												"ntlm_version": {
-													Type: schema.TypeInt, Optional: true, Default: 2, Description: "Specify NTLM version, default is 2",
-												},
-												"ntlm_health_check": {
-													Type: schema.TypeString, Optional: true, Description: "Check NTLM port's health status",
-												},
-												"ntlm_health_check_disable": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable configured NTLM port health check configuration",
-												},
-												"kerberos_disable": {
-													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable Kerberos authentication protocol",
-												},
 												"kerberos_port": {
 													Type: schema.TypeInt, Optional: true, Default: 88, Description: "Specify the Kerberos port, default is 88",
 												},
@@ -444,7 +432,7 @@ func resourceAamAuthenticationServer() *schema.Resource {
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"counters1": {
-													Type: schema.TypeString, Optional: true, Description: "'all': all; 'krb_send_req_success': Kerberos Request; 'krb_get_resp_success': Kerberos Response; 'krb_timeout_error': Kerberos Timeout; 'krb_other_error': Kerberos Other Error; 'krb_pw_expiry': Kerberos password expiry; 'krb_pw_change_success': Kerberos password change success; 'krb_pw_change_failure': Kerberos password change failure; 'ntlm_proto_nego_success': NTLM Protocol Negotiation Success; 'ntlm_proto_nego_failure': NTLM Protocol Negotiation Failure; 'ntlm_session_setup_success': NTLM Session Setup Success; 'ntlm_session_setup_failure': NTLM Session Setup Failure; 'ntlm_prepare_req_success': NTLM Prepare Request Success; 'ntlm_prepare_req_error': NTLM Prepare Request Error; 'ntlm_auth_success': NTLM Authentication Success; 'ntlm_auth_failure': NTLM Authentication Failure; 'ntlm_timeout_error': NTLM Timeout; 'ntlm_other_error': NTLM Other Error; 'krb_validate_kdc_success': Kerberos KDC Validation Success; 'krb_validate_kdc_failure': Kerberos KDC Validation Failure;",
+													Type: schema.TypeString, Optional: true, Description: "'all': all; 'krb_send_req_success': Kerberos Request; 'krb_get_resp_success': Kerberos Response; 'krb_timeout_error': Kerberos Timeout; 'krb_other_error': Kerberos Other Error; 'krb_pw_expiry': Kerberos password expiry; 'krb_pw_change_success': Kerberos password change success; 'krb_pw_change_failure': Kerberos password change failure; 'krb_validate_kdc_success': Kerberos KDC Validation Success; 'krb_validate_kdc_failure': Kerberos KDC Validation Failure;",
 												},
 											},
 										},
@@ -739,6 +727,7 @@ func getSliceAamAuthenticationServerRadiusInstanceList36(d []interface{}) []edpt
 		oi.AcctPortHm = in["acct_port_hm"].(string)
 		oi.AcctPortHmDisable = in["acct_port_hm_disable"].(int)
 		oi.AuthType = in["auth_type"].(string)
+		oi.MessageAuthenticatorVerifyEnable = in["message_authenticator_verify_enable"].(int)
 		//omit uuid
 		oi.SamplingEnable = getSliceAamAuthenticationServerRadiusInstanceListSamplingEnable38(in["sampling_enable"].([]interface{}))
 		oi.PacketCaptureTemplate = in["packet_capture_template"].(string)
@@ -840,11 +829,6 @@ func getObjectAamAuthenticationServerWindowsInstanceListAuthProtocol(d []interfa
 	var ret edpt.AamAuthenticationServerWindowsInstanceListAuthProtocol
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.NtlmDisable = in["ntlm_disable"].(int)
-		ret.NtlmVersion = in["ntlm_version"].(int)
-		ret.NtlmHealthCheck = in["ntlm_health_check"].(string)
-		ret.NtlmHealthCheckDisable = in["ntlm_health_check_disable"].(int)
-		ret.KerberosDisable = in["kerberos_disable"].(int)
 		ret.KerberosPort = in["kerberos_port"].(int)
 		ret.KportHm = in["kport_hm"].(string)
 		ret.KportHmDisable = in["kport_hm_disable"].(int)

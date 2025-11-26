@@ -32,11 +32,11 @@ func resourceGslbSiteSlbDevVipServerVipServerName() *schema.Resource {
 			"vip_name": {
 				Type: schema.TypeString, Required: true, Description: "Specify a VIP name for the SLB device",
 			},
-			"site_name": {
-				Type: schema.TypeString, Required: true, Description: "SiteName",
-			},
 			"device_name": {
 				Type: schema.TypeString, Required: true, Description: "DeviceName",
+			},
+			"site_name": {
+				Type: schema.TypeString, Required: true, Description: "SiteName",
 			},
 		},
 	}
@@ -121,7 +121,7 @@ func dataToEndpointGslbSiteSlbDevVipServerVipServerName(d *schema.ResourceData) 
 	ret.Inst.SamplingEnable = getSliceGslbSiteSlbDevVipServerVipServerNameSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	//omit uuid
 	ret.Inst.VipName = d.Get("vip_name").(string)
-	ret.Inst.SiteName = d.Get("site_name").(string)
 	ret.Inst.DeviceName = d.Get("device_name").(string)
+	ret.Inst.SiteName = d.Get("site_name").(string)
 	return ret
 }

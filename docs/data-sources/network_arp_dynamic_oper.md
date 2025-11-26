@@ -57,5 +57,3 @@ Optional:
 - `mac_address` (String)
 - `type` (String)
 - `vlan` (Number)
-
-

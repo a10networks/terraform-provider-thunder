@@ -55,10 +55,12 @@ Optional:
 - `encode_q` (Number) Query encoded
 - `encode_r` (Number) Response encoded
 - `hit` (Number) Total cache hit
+- `hit_rate_per_sec` (Number) Cache hit rate per second
 - `multiple_q` (Number) Query with multiple questions
 - `multiple_r` (Number) Response with multiple questions
 - `oversize_q` (Number) Query exceed cache size
 - `oversize_r` (Number) Response exceed cache size
+- `qps` (Number) Cache Queries-per-second
 - `resolver_queue_full` (Number) Resolver task queue full
 - `total_alloc` (Number) Total allocated
 - `total_freed` (Number) Total freed
@@ -67,5 +69,3 @@ Optional:
 - `total_r` (Number) Total server response
 - `truncated_r` (Number) Response with Truncation bit set
 - `ttl_r` (Number) Response with short TTL
-
-

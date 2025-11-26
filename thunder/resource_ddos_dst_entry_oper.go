@@ -136,6 +136,9 @@ func resourceDdosDstEntryOper() *schema.Resource {
 												"dynamic_entry_limit": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
+												"dynamic_entry_warn_state": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
 												"sflow_source_id": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
@@ -180,33 +183,6 @@ func resourceDdosDstEntryOper() *schema.Resource {
 									},
 									"domain_name": {
 										Type: schema.TypeString, Optional: true, Description: "",
-									},
-								},
-							},
-						},
-						"ip_filtering_policy_oper": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"oper": {
-										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"rule_list": {
-													Type: schema.TypeList, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"seq": {
-																Type: schema.TypeInt, Optional: true, Description: "",
-															},
-															"hits": {
-																Type: schema.TypeInt, Optional: true, Description: "",
-															},
-														},
-													},
-												},
-											},
-										},
 									},
 								},
 							},
@@ -334,6 +310,9 @@ func resourceDdosDstEntryOper() *schema.Resource {
 												"dynamic_entry_limit": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
+												"dynamic_entry_warn_state": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
 												"sflow_source_id": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
@@ -392,33 +371,6 @@ func resourceDdosDstEntryOper() *schema.Resource {
 									},
 									"hw_blacklisted": {
 										Type: schema.TypeString, Optional: true, Description: "",
-									},
-								},
-							},
-						},
-						"ip_filtering_policy_oper": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"oper": {
-										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"rule_list": {
-													Type: schema.TypeList, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"seq": {
-																Type: schema.TypeInt, Optional: true, Description: "",
-															},
-															"hits": {
-																Type: schema.TypeInt, Optional: true, Description: "",
-															},
-														},
-													},
-												},
-											},
-										},
 									},
 								},
 							},
@@ -711,6 +663,9 @@ func resourceDdosDstEntryOper() *schema.Resource {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 									"dynamic_entry_limit": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"dynamic_entry_warn_state": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 									"sflow_source_id": {
@@ -1051,6 +1006,9 @@ func resourceDdosDstEntryOper() *schema.Resource {
 												"dynamic_entry_limit": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
+												"dynamic_entry_warn_state": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
 												"sflow_source_id": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
@@ -1155,33 +1113,6 @@ func resourceDdosDstEntryOper() *schema.Resource {
 												},
 												"detection_data_source": {
 													Type: schema.TypeString, Optional: true, Description: "",
-												},
-											},
-										},
-									},
-								},
-							},
-						},
-						"ip_filtering_policy_oper": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"oper": {
-										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"rule_list": {
-													Type: schema.TypeList, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"seq": {
-																Type: schema.TypeInt, Optional: true, Description: "",
-															},
-															"hits": {
-																Type: schema.TypeInt, Optional: true, Description: "",
-															},
-														},
-													},
 												},
 											},
 										},
@@ -1571,6 +1502,9 @@ func resourceDdosDstEntryOper() *schema.Resource {
 												"dynamic_entry_limit": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
+												"dynamic_entry_warn_state": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
 												"sflow_source_id": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
@@ -1630,33 +1564,6 @@ func resourceDdosDstEntryOper() *schema.Resource {
 									},
 									"domain_name": {
 										Type: schema.TypeString, Optional: true, Description: "",
-									},
-								},
-							},
-						},
-						"ip_filtering_policy_oper": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"oper": {
-										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"rule_list": {
-													Type: schema.TypeList, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"seq": {
-																Type: schema.TypeInt, Optional: true, Description: "",
-															},
-															"hits": {
-																Type: schema.TypeInt, Optional: true, Description: "",
-															},
-														},
-													},
-												},
-											},
-										},
 									},
 								},
 							},
@@ -2088,6 +1995,9 @@ func resourceDdosDstEntryOper() *schema.Resource {
 												"dynamic_entry_limit": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
+												"dynamic_entry_warn_state": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
 												"sflow_source_id": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
@@ -2263,6 +2173,9 @@ func resourceDdosDstEntryOper() *schema.Resource {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
 												"dynamic_entry_limit": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"dynamic_entry_warn_state": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
 												"sflow_source_id": {
@@ -2444,7 +2357,6 @@ func setSliceDdosDstEntryOperIpProtoList(d edpt.DataDdosDstEntryOper) []map[stri
 		in := make(map[string]interface{})
 		in["port_num"] = item.PortNum
 		in["oper"] = setObjectDdosDstEntryOperIpProtoListOper(item.Oper)
-		in["ip_filtering_policy_oper"] = setObjectDdosDstEntryOperIpProtoListIpFilteringPolicyOper(item.IpFilteringPolicyOper)
 		result = append(result, in)
 	}
 	return result
@@ -2521,35 +2433,9 @@ func setSliceDdosDstEntryOperIpProtoListOperDdos_entry_list(d []edpt.DdosDstEntr
 		in["lockup_time_str"] = item.LockupTimeStr
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
-		result = append(result, in)
-	}
-	return result
-}
-
-func setObjectDdosDstEntryOperIpProtoListIpFilteringPolicyOper(d edpt.DdosDstEntryOperIpProtoListIpFilteringPolicyOper) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["oper"] = setObjectDdosDstEntryOperIpProtoListIpFilteringPolicyOperOper(d.Oper)
-	result = append(result, in)
-	return result
-}
-
-func setObjectDdosDstEntryOperIpProtoListIpFilteringPolicyOperOper(d edpt.DdosDstEntryOperIpProtoListIpFilteringPolicyOperOper) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstEntryOperIpProtoListIpFilteringPolicyOperOperRuleList(d.RuleList)
-	result = append(result, in)
-	return result
-}
-
-func setSliceDdosDstEntryOperIpProtoListIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstEntryOperIpProtoListIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	for _, item := range d {
-		in := make(map[string]interface{})
-		in["seq"] = item.Seq
-		in["hits"] = item.Hits
 		result = append(result, in)
 	}
 	return result
@@ -2562,7 +2448,6 @@ func setSliceDdosDstEntryOperL4TypeList(d edpt.DataDdosDstEntryOper) []map[strin
 		in := make(map[string]interface{})
 		in["protocol"] = item.Protocol
 		in["oper"] = setObjectDdosDstEntryOperL4TypeListOper(item.Oper)
-		in["ip_filtering_policy_oper"] = setObjectDdosDstEntryOperL4TypeListIpFilteringPolicyOper(item.IpFilteringPolicyOper)
 		in["port_ind"] = setObjectDdosDstEntryOperL4TypeListPortInd(item.PortInd)
 		in["topk_sources"] = setObjectDdosDstEntryOperL4TypeListTopkSources(item.TopkSources)
 		in["progression_tracking"] = setObjectDdosDstEntryOperL4TypeListProgressionTracking(item.ProgressionTracking)
@@ -2634,6 +2519,7 @@ func setSliceDdosDstEntryOperL4TypeListOperDdos_entry_list(d []edpt.DdosDstEntry
 		in["lockup_time_str"] = item.LockupTimeStr
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -2659,33 +2545,6 @@ func setSliceDdosDstEntryOperL4TypeListOperUndefinedPortHitStatsNonWellknown(d [
 		in["port_start"] = item.PortStart
 		in["port_end"] = item.PortEnd
 		in["status"] = item.Status
-		result = append(result, in)
-	}
-	return result
-}
-
-func setObjectDdosDstEntryOperL4TypeListIpFilteringPolicyOper(d edpt.DdosDstEntryOperL4TypeListIpFilteringPolicyOper) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["oper"] = setObjectDdosDstEntryOperL4TypeListIpFilteringPolicyOperOper(d.Oper)
-	result = append(result, in)
-	return result
-}
-
-func setObjectDdosDstEntryOperL4TypeListIpFilteringPolicyOperOper(d edpt.DdosDstEntryOperL4TypeListIpFilteringPolicyOperOper) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstEntryOperL4TypeListIpFilteringPolicyOperOperRuleList(d.RuleList)
-	result = append(result, in)
-	return result
-}
-
-func setSliceDdosDstEntryOperL4TypeListIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstEntryOperL4TypeListIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	for _, item := range d {
-		in := make(map[string]interface{})
-		in["seq"] = item.Seq
-		in["hits"] = item.Hits
 		result = append(result, in)
 	}
 	return result
@@ -2940,6 +2799,7 @@ func setSliceDdosDstEntryOperOperDdos_entry_list(d []edpt.DdosDstEntryOperOperDd
 		in["lockup_time_str"] = item.LockupTimeStr
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -2977,7 +2837,6 @@ func setSliceDdosDstEntryOperPortList(d edpt.DataDdosDstEntryOper) []map[string]
 		in["protocol"] = item.Protocol
 		in["oper"] = setObjectDdosDstEntryOperPortListOper(item.Oper)
 		in["port_ind"] = setObjectDdosDstEntryOperPortListPortInd(item.PortInd)
-		in["ip_filtering_policy_oper"] = setObjectDdosDstEntryOperPortListIpFilteringPolicyOper(item.IpFilteringPolicyOper)
 		in["topk_sources"] = setObjectDdosDstEntryOperPortListTopkSources(item.TopkSources)
 		in["progression_tracking"] = setObjectDdosDstEntryOperPortListProgressionTracking(item.ProgressionTracking)
 		in["pattern_recognition"] = setObjectDdosDstEntryOperPortListPatternRecognition(item.PatternRecognition)
@@ -3068,6 +2927,7 @@ func setSliceDdosDstEntryOperPortListOperDdos_entry_list(d []edpt.DdosDstEntryOp
 		in["lockup_time_str"] = item.LockupTimeStr
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -3105,33 +2965,6 @@ func setSliceDdosDstEntryOperPortListPortIndOperIndicators(d []edpt.DdosDstEntry
 		in["entry_non_zero_minimum"] = item.EntryNonZeroMinimum
 		in["entry_average"] = item.EntryAverage
 		in["src_maximum"] = item.SrcMaximum
-		result = append(result, in)
-	}
-	return result
-}
-
-func setObjectDdosDstEntryOperPortListIpFilteringPolicyOper(d edpt.DdosDstEntryOperPortListIpFilteringPolicyOper) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["oper"] = setObjectDdosDstEntryOperPortListIpFilteringPolicyOperOper(d.Oper)
-	result = append(result, in)
-	return result
-}
-
-func setObjectDdosDstEntryOperPortListIpFilteringPolicyOperOper(d edpt.DdosDstEntryOperPortListIpFilteringPolicyOperOper) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstEntryOperPortListIpFilteringPolicyOperOperRuleList(d.RuleList)
-	result = append(result, in)
-	return result
-}
-
-func setSliceDdosDstEntryOperPortListIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstEntryOperPortListIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	for _, item := range d {
-		in := make(map[string]interface{})
-		in["seq"] = item.Seq
-		in["hits"] = item.Hits
 		result = append(result, in)
 	}
 	return result
@@ -3344,7 +3177,6 @@ func setSliceDdosDstEntryOperPortRangeList(d edpt.DataDdosDstEntryOper) []map[st
 		in["port_range_end"] = item.PortRangeEnd
 		in["protocol"] = item.Protocol
 		in["oper"] = setObjectDdosDstEntryOperPortRangeListOper(item.Oper)
-		in["ip_filtering_policy_oper"] = setObjectDdosDstEntryOperPortRangeListIpFilteringPolicyOper(item.IpFilteringPolicyOper)
 		in["port_ind"] = setObjectDdosDstEntryOperPortRangeListPortInd(item.PortInd)
 		in["topk_sources"] = setObjectDdosDstEntryOperPortRangeListTopkSources(item.TopkSources)
 		in["progression_tracking"] = setObjectDdosDstEntryOperPortRangeListProgressionTracking(item.ProgressionTracking)
@@ -3436,35 +3268,9 @@ func setSliceDdosDstEntryOperPortRangeListOperDdos_entry_list(d []edpt.DdosDstEn
 		in["lockup_time_str"] = item.LockupTimeStr
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
-		result = append(result, in)
-	}
-	return result
-}
-
-func setObjectDdosDstEntryOperPortRangeListIpFilteringPolicyOper(d edpt.DdosDstEntryOperPortRangeListIpFilteringPolicyOper) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["oper"] = setObjectDdosDstEntryOperPortRangeListIpFilteringPolicyOperOper(d.Oper)
-	result = append(result, in)
-	return result
-}
-
-func setObjectDdosDstEntryOperPortRangeListIpFilteringPolicyOperOper(d edpt.DdosDstEntryOperPortRangeListIpFilteringPolicyOperOper) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstEntryOperPortRangeListIpFilteringPolicyOperOperRuleList(d.RuleList)
-	result = append(result, in)
-	return result
-}
-
-func setSliceDdosDstEntryOperPortRangeListIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstEntryOperPortRangeListIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	for _, item := range d {
-		in := make(map[string]interface{})
-		in["seq"] = item.Seq
-		in["hits"] = item.Hits
 		result = append(result, in)
 	}
 	return result
@@ -3787,6 +3593,7 @@ func setSliceDdosDstEntryOperSrcPortListOperDdos_entry_list(d []edpt.DdosDstEntr
 		in["lockup_time_str"] = item.LockupTimeStr
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -3879,6 +3686,7 @@ func setSliceDdosDstEntryOperSrcPortRangeListOperDdos_entry_list(d []edpt.DdosDs
 		in["lockup_time_str"] = item.LockupTimeStr
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -3968,7 +3776,6 @@ func getSliceDdosDstEntryOperIpProtoList(d []interface{}) []edpt.DdosDstEntryOpe
 		var oi edpt.DdosDstEntryOperIpProtoList
 		oi.PortNum = in["port_num"].(int)
 		oi.Oper = getObjectDdosDstEntryOperIpProtoListOper(in["oper"].([]interface{}))
-		oi.IpFilteringPolicyOper = getObjectDdosDstEntryOperIpProtoListIpFilteringPolicyOper(in["ip_filtering_policy_oper"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
@@ -4039,44 +3846,9 @@ func getSliceDdosDstEntryOperIpProtoListOperDdos_entry_list(d []interface{}) []e
 		oi.LockupTimeStr = in["lockup_time_str"].(string)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(string)
 		oi.DebugStr = in["debug_str"].(string)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getObjectDdosDstEntryOperIpProtoListIpFilteringPolicyOper(d []interface{}) edpt.DdosDstEntryOperIpProtoListIpFilteringPolicyOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstEntryOperIpProtoListIpFilteringPolicyOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstEntryOperIpProtoListIpFilteringPolicyOperOper(in["oper"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectDdosDstEntryOperIpProtoListIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstEntryOperIpProtoListIpFilteringPolicyOperOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstEntryOperIpProtoListIpFilteringPolicyOperOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstEntryOperIpProtoListIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
-	}
-	return ret
-}
-
-func getSliceDdosDstEntryOperIpProtoListIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstEntryOperIpProtoListIpFilteringPolicyOperOperRuleList {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosDstEntryOperIpProtoListIpFilteringPolicyOperOperRuleList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosDstEntryOperIpProtoListIpFilteringPolicyOperOperRuleList
-		oi.Seq = in["seq"].(int)
-		oi.Hits = in["hits"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -4091,7 +3863,6 @@ func getSliceDdosDstEntryOperL4TypeList(d []interface{}) []edpt.DdosDstEntryOper
 		var oi edpt.DdosDstEntryOperL4TypeList
 		oi.Protocol = in["protocol"].(string)
 		oi.Oper = getObjectDdosDstEntryOperL4TypeListOper(in["oper"].([]interface{}))
-		oi.IpFilteringPolicyOper = getObjectDdosDstEntryOperL4TypeListIpFilteringPolicyOper(in["ip_filtering_policy_oper"].([]interface{}))
 		oi.PortInd = getObjectDdosDstEntryOperL4TypeListPortInd(in["port_ind"].([]interface{}))
 		oi.TopkSources = getObjectDdosDstEntryOperL4TypeListTopkSources(in["topk_sources"].([]interface{}))
 		oi.ProgressionTracking = getObjectDdosDstEntryOperL4TypeListProgressionTracking(in["progression_tracking"].([]interface{}))
@@ -4162,6 +3933,7 @@ func getSliceDdosDstEntryOperL4TypeListOperDdos_entry_list(d []interface{}) []ed
 		oi.LockupTimeStr = in["lockup_time_str"].(string)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(string)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -4193,42 +3965,6 @@ func getSliceDdosDstEntryOperL4TypeListOperUndefinedPortHitStatsNonWellknown(d [
 		oi.PortStart = in["port_start"].(string)
 		oi.PortEnd = in["port_end"].(string)
 		oi.Status = in["status"].(string)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getObjectDdosDstEntryOperL4TypeListIpFilteringPolicyOper(d []interface{}) edpt.DdosDstEntryOperL4TypeListIpFilteringPolicyOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstEntryOperL4TypeListIpFilteringPolicyOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstEntryOperL4TypeListIpFilteringPolicyOperOper(in["oper"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectDdosDstEntryOperL4TypeListIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstEntryOperL4TypeListIpFilteringPolicyOperOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstEntryOperL4TypeListIpFilteringPolicyOperOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstEntryOperL4TypeListIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
-	}
-	return ret
-}
-
-func getSliceDdosDstEntryOperL4TypeListIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstEntryOperL4TypeListIpFilteringPolicyOperOperRuleList {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosDstEntryOperL4TypeListIpFilteringPolicyOperOperRuleList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosDstEntryOperL4TypeListIpFilteringPolicyOperOperRuleList
-		oi.Seq = in["seq"].(int)
-		oi.Hits = in["hits"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -4520,6 +4256,7 @@ func getSliceDdosDstEntryOperOperDdos_entry_list(d []interface{}) []edpt.DdosDst
 		oi.LockupTimeStr = in["lockup_time_str"].(string)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(string)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -4565,7 +4302,6 @@ func getSliceDdosDstEntryOperPortList(d []interface{}) []edpt.DdosDstEntryOperPo
 		oi.Protocol = in["protocol"].(string)
 		oi.Oper = getObjectDdosDstEntryOperPortListOper(in["oper"].([]interface{}))
 		oi.PortInd = getObjectDdosDstEntryOperPortListPortInd(in["port_ind"].([]interface{}))
-		oi.IpFilteringPolicyOper = getObjectDdosDstEntryOperPortListIpFilteringPolicyOper(in["ip_filtering_policy_oper"].([]interface{}))
 		oi.TopkSources = getObjectDdosDstEntryOperPortListTopkSources(in["topk_sources"].([]interface{}))
 		oi.ProgressionTracking = getObjectDdosDstEntryOperPortListProgressionTracking(in["progression_tracking"].([]interface{}))
 		oi.PatternRecognition = getObjectDdosDstEntryOperPortListPatternRecognition(in["pattern_recognition"].([]interface{}))
@@ -4645,6 +4381,7 @@ func getSliceDdosDstEntryOperPortListOperDdos_entry_list(d []interface{}) []edpt
 		oi.LockupTimeStr = in["lockup_time_str"].(string)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(string)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -4690,42 +4427,6 @@ func getSliceDdosDstEntryOperPortListPortIndOperIndicators(d []interface{}) []ed
 		oi.EntryNonZeroMinimum = in["entry_non_zero_minimum"].(string)
 		oi.EntryAverage = in["entry_average"].(string)
 		oi.SrcMaximum = in["src_maximum"].(string)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getObjectDdosDstEntryOperPortListIpFilteringPolicyOper(d []interface{}) edpt.DdosDstEntryOperPortListIpFilteringPolicyOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstEntryOperPortListIpFilteringPolicyOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstEntryOperPortListIpFilteringPolicyOperOper(in["oper"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectDdosDstEntryOperPortListIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstEntryOperPortListIpFilteringPolicyOperOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstEntryOperPortListIpFilteringPolicyOperOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstEntryOperPortListIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
-	}
-	return ret
-}
-
-func getSliceDdosDstEntryOperPortListIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstEntryOperPortListIpFilteringPolicyOperOperRuleList {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosDstEntryOperPortListIpFilteringPolicyOperOperRuleList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosDstEntryOperPortListIpFilteringPolicyOperOperRuleList
-		oi.Seq = in["seq"].(int)
-		oi.Hits = in["hits"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -4977,7 +4678,6 @@ func getSliceDdosDstEntryOperPortRangeList(d []interface{}) []edpt.DdosDstEntryO
 		oi.PortRangeEnd = in["port_range_end"].(int)
 		oi.Protocol = in["protocol"].(string)
 		oi.Oper = getObjectDdosDstEntryOperPortRangeListOper(in["oper"].([]interface{}))
-		oi.IpFilteringPolicyOper = getObjectDdosDstEntryOperPortRangeListIpFilteringPolicyOper(in["ip_filtering_policy_oper"].([]interface{}))
 		oi.PortInd = getObjectDdosDstEntryOperPortRangeListPortInd(in["port_ind"].([]interface{}))
 		oi.TopkSources = getObjectDdosDstEntryOperPortRangeListTopkSources(in["topk_sources"].([]interface{}))
 		oi.ProgressionTracking = getObjectDdosDstEntryOperPortRangeListProgressionTracking(in["progression_tracking"].([]interface{}))
@@ -5058,44 +4758,9 @@ func getSliceDdosDstEntryOperPortRangeListOperDdos_entry_list(d []interface{}) [
 		oi.LockupTimeStr = in["lockup_time_str"].(string)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(string)
 		oi.DebugStr = in["debug_str"].(string)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getObjectDdosDstEntryOperPortRangeListIpFilteringPolicyOper(d []interface{}) edpt.DdosDstEntryOperPortRangeListIpFilteringPolicyOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstEntryOperPortRangeListIpFilteringPolicyOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstEntryOperPortRangeListIpFilteringPolicyOperOper(in["oper"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectDdosDstEntryOperPortRangeListIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstEntryOperPortRangeListIpFilteringPolicyOperOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstEntryOperPortRangeListIpFilteringPolicyOperOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstEntryOperPortRangeListIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
-	}
-	return ret
-}
-
-func getSliceDdosDstEntryOperPortRangeListIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstEntryOperPortRangeListIpFilteringPolicyOperOperRuleList {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosDstEntryOperPortRangeListIpFilteringPolicyOperOperRuleList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosDstEntryOperPortRangeListIpFilteringPolicyOperOperRuleList
-		oi.Seq = in["seq"].(int)
-		oi.Hits = in["hits"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -5459,6 +5124,7 @@ func getSliceDdosDstEntryOperSrcPortListOperDdos_entry_list(d []interface{}) []e
 		oi.LockupTimeStr = in["lockup_time_str"].(string)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(string)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -5547,6 +5213,7 @@ func getSliceDdosDstEntryOperSrcPortRangeListOperDdos_entry_list(d []interface{}
 		oi.LockupTimeStr = in["lockup_time_str"].(string)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(string)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)

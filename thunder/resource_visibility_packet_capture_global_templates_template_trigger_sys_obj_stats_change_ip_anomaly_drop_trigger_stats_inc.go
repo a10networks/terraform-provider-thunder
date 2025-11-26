@@ -136,6 +136,9 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			"tcp_syn_frg": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for TCP Syn Fragment Drop",
 			},
+			"tcp_udp_zero_port": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for TCP UDP Zero Port Drop",
+			},
 			"tcp_xmas": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for TCP XMAS Flags Drop",
 			},
@@ -163,8 +166,8 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			"vxlan_err": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for VXLAN Tunnel Error Drop",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"template_name": {
+				Type: schema.TypeString, Required: true, Description: "Template_name",
 			},
 		},
 	}
@@ -273,6 +276,7 @@ func dataToEndpointVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjSt
 	ret.Inst.Tcp_sht_hdr = d.Get("tcp_sht_hdr").(int)
 	ret.Inst.Tcp_syn_fin = d.Get("tcp_syn_fin").(int)
 	ret.Inst.Tcp_syn_frg = d.Get("tcp_syn_frg").(int)
+	ret.Inst.Tcp_udp_zero_port = d.Get("tcp_udp_zero_port").(int)
 	ret.Inst.Tcp_xmas = d.Get("tcp_xmas").(int)
 	ret.Inst.Tcp_xmas_scan = d.Get("tcp_xmas_scan").(int)
 	ret.Inst.Udp_bad_csum = d.Get("udp_bad_csum").(int)
@@ -282,6 +286,6 @@ func dataToEndpointVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjSt
 	ret.Inst.Udp_srt_hdr = d.Get("udp_srt_hdr").(int)
 	//omit uuid
 	ret.Inst.Vxlan_err = d.Get("vxlan_err").(int)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Template_name = d.Get("template_name").(string)
 	return ret
 }

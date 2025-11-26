@@ -71,5 +71,3 @@ Optional:
 - `select_server_conn` (Number) Server conn selection
 - `select_server_fail` (Number) Fail to select server conn
 - `select_server_from_list` (Number) Select by roundbin
-
-

@@ -125,6 +125,15 @@ func resourceSystemDnsCacheOper() *schema.Resource {
 						"total": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"cache_usage": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"cache_hit_ratio": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"hit_ratio_percentage_per_sec": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"client": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -211,28 +220,31 @@ func resourceSystemDnsCacheOperRead(ctx context.Context, d *schema.ResourceData,
 func setObjectSystemDnsCacheOperOper(ret edpt.DataSystemDnsCacheOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"cache_client":     setSliceSystemDnsCacheOperOperCacheClient(ret.DtSystemDnsCacheOper.Oper.CacheClient),
-			"cache_entry":      setSliceSystemDnsCacheOperOperCacheEntry(ret.DtSystemDnsCacheOper.Oper.CacheEntry),
-			"total":            ret.DtSystemDnsCacheOper.Oper.Total,
-			"client":           ret.DtSystemDnsCacheOper.Oper.Client,
-			"entry":            ret.DtSystemDnsCacheOper.Oper.Entry,
-			"global":           ret.DtSystemDnsCacheOper.Oper.Global,
-			"cache_content":    ret.DtSystemDnsCacheOper.Oper.CacheContent,
-			"vport":            ret.DtSystemDnsCacheOper.Oper.Vport,
-			"vs_name":          ret.DtSystemDnsCacheOper.Oper.VsName,
-			"port_type":        ret.DtSystemDnsCacheOper.Oper.PortType,
-			"port_num":         ret.DtSystemDnsCacheOper.Oper.PortNum,
-			"type_value":       ret.DtSystemDnsCacheOper.Oper.TypeValue,
-			"fqdn_domain":      ret.DtSystemDnsCacheOper.Oper.FqdnDomain,
-			"class_string":     ret.DtSystemDnsCacheOper.Oper.ClassString,
-			"class_value":      ret.DtSystemDnsCacheOper.Oper.ClassValue,
-			"type_string":      ret.DtSystemDnsCacheOper.Oper.TypeString,
-			"domain_name":      ret.DtSystemDnsCacheOper.Oper.DomainName,
-			"content_mode":     ret.DtSystemDnsCacheOper.Oper.ContentMode,
-			"rdata_size_value": ret.DtSystemDnsCacheOper.Oper.RdataSizeValue,
-			"rdata_all":        ret.DtSystemDnsCacheOper.Oper.RdataAll,
-			"record_num_value": ret.DtSystemDnsCacheOper.Oper.RecordNumValue,
-			"record_all":       ret.DtSystemDnsCacheOper.Oper.RecordAll,
+			"cache_client":                 setSliceSystemDnsCacheOperOperCacheClient(ret.DtSystemDnsCacheOper.Oper.CacheClient),
+			"cache_entry":                  setSliceSystemDnsCacheOperOperCacheEntry(ret.DtSystemDnsCacheOper.Oper.CacheEntry),
+			"total":                        ret.DtSystemDnsCacheOper.Oper.Total,
+			"cache_usage":                  ret.DtSystemDnsCacheOper.Oper.Cache_usage,
+			"cache_hit_ratio":              ret.DtSystemDnsCacheOper.Oper.Cache_hit_ratio,
+			"hit_ratio_percentage_per_sec": ret.DtSystemDnsCacheOper.Oper.Hit_ratio_percentage_per_sec,
+			"client":                       ret.DtSystemDnsCacheOper.Oper.Client,
+			"entry":                        ret.DtSystemDnsCacheOper.Oper.Entry,
+			"global":                       ret.DtSystemDnsCacheOper.Oper.Global,
+			"cache_content":                ret.DtSystemDnsCacheOper.Oper.CacheContent,
+			"vport":                        ret.DtSystemDnsCacheOper.Oper.Vport,
+			"vs_name":                      ret.DtSystemDnsCacheOper.Oper.VsName,
+			"port_type":                    ret.DtSystemDnsCacheOper.Oper.PortType,
+			"port_num":                     ret.DtSystemDnsCacheOper.Oper.PortNum,
+			"type_value":                   ret.DtSystemDnsCacheOper.Oper.TypeValue,
+			"fqdn_domain":                  ret.DtSystemDnsCacheOper.Oper.FqdnDomain,
+			"class_string":                 ret.DtSystemDnsCacheOper.Oper.ClassString,
+			"class_value":                  ret.DtSystemDnsCacheOper.Oper.ClassValue,
+			"type_string":                  ret.DtSystemDnsCacheOper.Oper.TypeString,
+			"domain_name":                  ret.DtSystemDnsCacheOper.Oper.DomainName,
+			"content_mode":                 ret.DtSystemDnsCacheOper.Oper.ContentMode,
+			"rdata_size_value":             ret.DtSystemDnsCacheOper.Oper.RdataSizeValue,
+			"rdata_all":                    ret.DtSystemDnsCacheOper.Oper.RdataAll,
+			"record_num_value":             ret.DtSystemDnsCacheOper.Oper.RecordNumValue,
+			"record_all":                   ret.DtSystemDnsCacheOper.Oper.RecordAll,
 		},
 	}
 }
@@ -302,6 +314,9 @@ func getObjectSystemDnsCacheOperOper(d []interface{}) edpt.SystemDnsCacheOperOpe
 		ret.CacheClient = getSliceSystemDnsCacheOperOperCacheClient(in["cache_client"].([]interface{}))
 		ret.CacheEntry = getSliceSystemDnsCacheOperOperCacheEntry(in["cache_entry"].([]interface{}))
 		ret.Total = in["total"].(int)
+		ret.Cache_usage = in["cache_usage"].(string)
+		ret.Cache_hit_ratio = in["cache_hit_ratio"].(string)
+		ret.Hit_ratio_percentage_per_sec = in["hit_ratio_percentage_per_sec"].(int)
 		ret.Client = in["client"].(int)
 		ret.Entry = in["entry"].(int)
 		ret.Global = in["global"].(int)

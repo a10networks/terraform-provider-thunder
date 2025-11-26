@@ -76,5 +76,3 @@ Optional:
 - `sys_poll_mode` (String)
 - `up_time` (String)
 - `virtualization_type` (String)
-
-

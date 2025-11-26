@@ -61,5 +61,3 @@ Optional:
 - `method_update` (Number) SIP Method UPDATE
 - `parse_error` (Number) SIP Message Parse Error
 - `tcp_out_of_order_drop` (Number) TCP Out-of-Order Drop
-
-

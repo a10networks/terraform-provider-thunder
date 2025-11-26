@@ -54,5 +54,3 @@ Optional:
 - `binding` (String)
 - `file` (String)
 - `size` (Number)
-
-

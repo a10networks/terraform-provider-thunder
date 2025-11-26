@@ -19,6 +19,9 @@ func resourceNetworkVlanGlobal() *schema.Resource {
 			"enable_def_vlan_l2_forwarding": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable layer 2 forwarding on default vlan",
 			},
+			"l2_fwd_for_me_arp_ns": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable L2 forwarding for both ARP and NS packet with target IP/IPv6 addresses that are owned by the device",
+			},
 			"l3_vlan_fwd_disable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable L3 forwarding between VLANs",
 			},
@@ -27,7 +30,7 @@ func resourceNetworkVlanGlobal() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type: schema.TypeString, Optional: true, Description: "'all': all; 'xparent_vlan_list_err': Transparent Mode VLAN List Errors;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'xparent_vlan_list_err': Transparent Mode VLAN List Errors; 'asymmetric_route_drop_err': asymmetric_route_drop_err;",
 						},
 					},
 				},
@@ -116,6 +119,7 @@ func getSliceNetworkVlanGlobalSamplingEnable(d []interface{}) []edpt.NetworkVlan
 func dataToEndpointNetworkVlanGlobal(d *schema.ResourceData) edpt.NetworkVlanGlobal {
 	var ret edpt.NetworkVlanGlobal
 	ret.Inst.EnableDefVlanL2Forwarding = d.Get("enable_def_vlan_l2_forwarding").(int)
+	ret.Inst.L2FwdForMeArpNs = d.Get("l2_fwd_for_me_arp_ns").(int)
 	ret.Inst.L3VlanFwdDisable = d.Get("l3_vlan_fwd_disable").(int)
 	ret.Inst.SamplingEnable = getSliceNetworkVlanGlobalSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	//omit uuid

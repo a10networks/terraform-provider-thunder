@@ -45,12 +45,17 @@ output "get_so_counters_stats" {
 Optional:
 
 - `so_fw_shadow_session_created` (Number) FW Shadow Session created
+- `so_pkts_cgn_traffic_map_mismatch_drop` (Number) CGN packets traffic map mismatch drop
 - `so_pkts_dest_mac_mismatch_drop` (Number) Destination MAC Mistmatch Drop
 - `so_pkts_dropped` (Number) Total packets dropped
 - `so_pkts_l2redirect_dest_mac_zero_drop` (Number) Destination MAC Address zero Drop
+- `so_pkts_l2redirect_frag_vlan_retrieval_error` (Number) L2 redirect pkt frag vlan not retrieved
 - `so_pkts_l2redirect_interface_not_up` (Number) L2redirect Intf is not UP
 - `so_pkts_l2redirect_invalid_redirect_info_error` (Number) Redirect Table Error due to invalid redirect info
+- `so_pkts_l2redirect_loop_detect_drop` (Number) L2 redirect pkt loop detected and dropped
 - `so_pkts_l2redirect_port_retrieval_error` (Number) L2 redirect pkt port not retrieved
+- `so_pkts_l2redirect_same_pkt_multiple_times` (Number) L2 redirect same pkt multiple times
+- `so_pkts_l2redirect_tx_frag_vlan_add_fail` (Number) L2 redirect tx pkt failed to add vlan
 - `so_pkts_l2redirect_vlan_retrieval_error` (Number) L2 redirect pkt vlan not retrieved
 - `so_pkts_l3_redirect_chassis_dest_mac_error` (Number) L3 Redirect RX multi-slot Destination MAC Error
 - `so_pkts_l3_redirect_decap_non_ipv4_vxlan_drop` (Number) L3 Redirect received non ipv4 VXLAN packet
@@ -59,6 +64,7 @@ Optional:
 - `so_pkts_l3_redirect_encap_error_drop` (Number) L3 Redirect encap error drop during transmission
 - `so_pkts_l3_redirect_encap_ipv4_jumbo_frag_drop` (Number) L3 Redirect ipv4 packet after encap more than max jumbo size
 - `so_pkts_l3_redirect_encap_ipv6_jumbo_frag_drop` (Number) L3 Redirect tx ipv6 packet after encap more than max jumbo size
+- `so_pkts_l3_redirect_encap_mtu_error_drop` (Number) Received L3 Redirected MTU not enough to add encap
 - `so_pkts_l3_redirect_fragmentation_error` (Number) L3 redirect encap Fragmentation error
 - `so_pkts_l3_redirect_inner_mac_zero_drop` (Number) L3 Redirect inner mac zero drop during transmission
 - `so_pkts_l3_redirect_invalid_dev_dir` (Number) L3 Redirect Invalid Device direction during transmission
@@ -67,6 +73,7 @@ Optional:
 - `so_pkts_l3_redirect_table_no_entry_found` (Number) L3 redirect Table no redirect entry found error
 - `so_pkts_l3_redirect_too_large_pkts_in_drop` (Number) Received L3 Redirected fragmented packets too large
 - `so_pkts_rcvd` (Number) Total data packets received
+- `so_pkts_redirection_loop_drop` (Number) Packets redirection loop drop
 - `so_pkts_scaleout_not_active_drop` (Number) Scaleout Not Active Drop
 - `so_pkts_slb_nat_release_fail` (Number) Total SLB NAT release failures
 - `so_pkts_slb_nat_reserve_fail` (Number) Total SLB NAT reserve failures
@@ -75,5 +82,3 @@ Optional:
 - `so_redirected_pkts_rcvd` (Number) Total redirected packets received on node
 - `so_slb_pkts_redirect_conn_aged_out` (Number) Total SLB redirect conns aged out
 - `so_slb_shadow_session_created` (Number) SLB Shadow Session created
-
-

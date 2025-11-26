@@ -16,16 +16,6 @@ func resourceNgWaf() *schema.Resource {
 		DeleteContext: resourceNgWafDelete,
 
 		Schema: map[string]*schema.Schema{
-			"cpu": {
-				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"uuid": {
-							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-						},
-					},
-				},
-			},
 			"custom_page": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -140,21 +130,15 @@ func resourceNgWafRead(ctx context.Context, d *schema.ResourceData, meta interfa
 	return diags
 }
 
-func getObjectNgWafCpu1076(d []interface{}) edpt.NgWafCpu1076 {
+func getObjectNgWafCustomPage1158(d []interface{}) edpt.NgWafCustomPage1158 {
 
-	var ret edpt.NgWafCpu1076
+	var ret edpt.NgWafCustomPage1158
 	return ret
 }
 
-func getObjectNgWafCustomPage1077(d []interface{}) edpt.NgWafCustomPage1077 {
+func getObjectNgWafCustomSignals1159(d []interface{}) edpt.NgWafCustomSignals1159 {
 
-	var ret edpt.NgWafCustomPage1077
-	return ret
-}
-
-func getObjectNgWafCustomSignals1078(d []interface{}) edpt.NgWafCustomSignals1078 {
-
-	var ret edpt.NgWafCustomSignals1078
+	var ret edpt.NgWafCustomSignals1159
 	return ret
 }
 
@@ -173,19 +157,18 @@ func getSliceNgWafStatsList(d []interface{}) []edpt.NgWafStatsList {
 	return ret
 }
 
-func getObjectNgWafStatus1079(d []interface{}) edpt.NgWafStatus1079 {
+func getObjectNgWafStatus1160(d []interface{}) edpt.NgWafStatus1160 {
 
-	var ret edpt.NgWafStatus1079
+	var ret edpt.NgWafStatus1160
 	return ret
 }
 
 func dataToEndpointNgWaf(d *schema.ResourceData) edpt.NgWaf {
 	var ret edpt.NgWaf
-	ret.Inst.Cpu = getObjectNgWafCpu1076(d.Get("cpu").([]interface{}))
-	ret.Inst.CustomPage = getObjectNgWafCustomPage1077(d.Get("custom_page").([]interface{}))
-	ret.Inst.CustomSignals = getObjectNgWafCustomSignals1078(d.Get("custom_signals").([]interface{}))
+	ret.Inst.CustomPage = getObjectNgWafCustomPage1158(d.Get("custom_page").([]interface{}))
+	ret.Inst.CustomSignals = getObjectNgWafCustomSignals1159(d.Get("custom_signals").([]interface{}))
 	ret.Inst.StatsList = getSliceNgWafStatsList(d.Get("stats_list").([]interface{}))
-	ret.Inst.Status = getObjectNgWafStatus1079(d.Get("status").([]interface{}))
+	ret.Inst.Status = getObjectNgWafStatus1160(d.Get("status").([]interface{}))
 	//omit uuid
 	return ret
 }

@@ -55,6 +55,7 @@ Optional:
 - `error_warning` (Number)
 - `filename` (String)
 - `lines` (Number)
+- `md5` (String)
 - `success` (Number)
 - `type` (String)
 
@@ -65,5 +66,3 @@ Optional:
 
 - `error_information` (String)
 - `error_line` (Number)
-
-

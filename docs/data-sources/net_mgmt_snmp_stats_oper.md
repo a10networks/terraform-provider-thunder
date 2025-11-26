@@ -62,5 +62,3 @@ Optional:
 - `too_big_errors` (Number)
 - `unknown_community` (Number)
 - `unknown_security_models` (Number)
-
-

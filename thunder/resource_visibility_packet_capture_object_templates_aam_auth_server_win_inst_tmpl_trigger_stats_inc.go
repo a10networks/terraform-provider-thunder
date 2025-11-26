@@ -31,29 +31,11 @@ func resourceVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplTrigg
 			"krb_validate_kdc_failure": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Kerberos KDC Validation Failure",
 			},
-			"ntlm_auth_failure": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Authentication Failure",
-			},
-			"ntlm_other_error": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Other Error",
-			},
-			"ntlm_prepare_req_error": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Prepare Request Error",
-			},
-			"ntlm_proto_nego_failure": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Protocol Negotiation Failure",
-			},
-			"ntlm_session_setup_failure": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Session Setup Failure",
-			},
-			"ntlm_timeout_error": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Timeout",
-			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"aam_auth_server_win_inst_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Aam_auth_server_win_inst_tmpl_name",
 			},
 		},
 	}
@@ -127,13 +109,7 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmp
 	ret.Inst.Krb_pw_expiry = d.Get("krb_pw_expiry").(int)
 	ret.Inst.Krb_timeout_error = d.Get("krb_timeout_error").(int)
 	ret.Inst.Krb_validate_kdc_failure = d.Get("krb_validate_kdc_failure").(int)
-	ret.Inst.Ntlm_auth_failure = d.Get("ntlm_auth_failure").(int)
-	ret.Inst.Ntlm_other_error = d.Get("ntlm_other_error").(int)
-	ret.Inst.Ntlm_prepare_req_error = d.Get("ntlm_prepare_req_error").(int)
-	ret.Inst.Ntlm_proto_nego_failure = d.Get("ntlm_proto_nego_failure").(int)
-	ret.Inst.Ntlm_session_setup_failure = d.Get("ntlm_session_setup_failure").(int)
-	ret.Inst.Ntlm_timeout_error = d.Get("ntlm_timeout_error").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Aam_auth_server_win_inst_tmpl_name = d.Get("aam_auth_server_win_inst_tmpl_name").(string)
 	return ret
 }

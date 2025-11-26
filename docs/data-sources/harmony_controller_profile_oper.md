@@ -65,5 +65,3 @@ Optional:
 - `service_registry_error_message` (String)
 - `tunnel_error_message` (String)
 - `tunnel_status` (String)
-
-

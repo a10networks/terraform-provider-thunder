@@ -25,8 +25,8 @@ func resourceAcosEventsLogServerPortStats() *schema.Resource {
 					Schema: map[string]*schema.Schema{},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"log_server_name": {
+				Type: schema.TypeString, Required: true, Description: "Log_server_name",
 			},
 		},
 	}
@@ -72,6 +72,6 @@ func dataToEndpointAcosEventsLogServerPortStats(d *schema.ResourceData) edpt.Aco
 
 	ret.Stats = getObjectAcosEventsLogServerPortStatsStats(d.Get("stats").([]interface{}))
 
-	ret.Name = d.Get("name").(string)
+	ret.Log_server_name = d.Get("log_server_name").(string)
 	return ret
 }

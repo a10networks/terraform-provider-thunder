@@ -61,16 +61,6 @@ func resourceDdosDstEntryIpProto() *schema.Resource {
 			"ip_filtering_policy": {
 				Type: schema.TypeString, Optional: true, Description: "Configure IP Filter",
 			},
-			"ip_filtering_policy_oper": {
-				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"uuid": {
-							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-						},
-					},
-				},
-			},
 			"port_num": {
 				Type: schema.TypeInt, Required: true, Description: "Protocol Number",
 			},
@@ -197,12 +187,6 @@ func getObjectDdosDstEntryIpProtoGlidExceedActionStatelessEncapActionCfg(d []int
 	return ret
 }
 
-func getObjectDdosDstEntryIpProtoIpFilteringPolicyOper157(d []interface{}) edpt.DdosDstEntryIpProtoIpFilteringPolicyOper157 {
-
-	var ret edpt.DdosDstEntryIpProtoIpFilteringPolicyOper157
-	return ret
-}
-
 func getObjectDdosDstEntryIpProtoTemplate(d []interface{}) edpt.DdosDstEntryIpProtoTemplate {
 
 	count1 := len(d)
@@ -221,7 +205,6 @@ func dataToEndpointDdosDstEntryIpProto(d *schema.ResourceData) edpt.DdosDstEntry
 	ret.Inst.Glid = d.Get("glid").(string)
 	ret.Inst.GlidExceedAction = getObjectDdosDstEntryIpProtoGlidExceedAction(d.Get("glid_exceed_action").([]interface{}))
 	ret.Inst.IpFilteringPolicy = d.Get("ip_filtering_policy").(string)
-	ret.Inst.IpFilteringPolicyOper = getObjectDdosDstEntryIpProtoIpFilteringPolicyOper157(d.Get("ip_filtering_policy_oper").([]interface{}))
 	ret.Inst.PortNum = d.Get("port_num").(int)
 	ret.Inst.SetCounterBaseVal = d.Get("set_counter_base_val").(int)
 	ret.Inst.Template = getObjectDdosDstEntryIpProtoTemplate(d.Get("template").([]interface{}))

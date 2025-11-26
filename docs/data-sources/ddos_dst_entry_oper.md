@@ -61,33 +61,7 @@ Required:
 
 Optional:
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto_list--ip_filtering_policy_oper))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto_list--oper))
-
-<a id="nestedblock--ip_proto_list--ip_filtering_policy_oper"></a>
-### Nested Schema for `ip_proto_list.ip_filtering_policy_oper`
-
-Optional:
-
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto_list--ip_filtering_policy_oper--oper))
-
-<a id="nestedblock--ip_proto_list--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `ip_proto_list.ip_filtering_policy_oper.oper`
-
-Optional:
-
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--ip_proto_list--ip_filtering_policy_oper--oper--rule_list))
-
-<a id="nestedblock--ip_proto_list--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `ip_proto_list.ip_filtering_policy_oper.oper.rule_list`
-
-Optional:
-
-- `hits` (Number)
-- `seq` (Number)
-
-
-
 
 <a id="nestedblock--ip_proto_list--oper"></a>
 ### Nested Schema for `ip_proto_list.oper`
@@ -141,6 +115,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `kbit_rate_limit` (String)
 - `level_str` (String)
@@ -163,36 +138,10 @@ Required:
 
 Optional:
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--l4_type_list--ip_filtering_policy_oper))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--l4_type_list--oper))
 - `port_ind` (Block List, Max: 1) (see [below for nested schema](#nestedblock--l4_type_list--port_ind))
 - `progression_tracking` (Block List, Max: 1) (see [below for nested schema](#nestedblock--l4_type_list--progression_tracking))
 - `topk_sources` (Block List, Max: 1) (see [below for nested schema](#nestedblock--l4_type_list--topk_sources))
-
-<a id="nestedblock--l4_type_list--ip_filtering_policy_oper"></a>
-### Nested Schema for `l4_type_list.ip_filtering_policy_oper`
-
-Optional:
-
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--l4_type_list--ip_filtering_policy_oper--oper))
-
-<a id="nestedblock--l4_type_list--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `l4_type_list.ip_filtering_policy_oper.oper`
-
-Optional:
-
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--l4_type_list--ip_filtering_policy_oper--oper--rule_list))
-
-<a id="nestedblock--l4_type_list--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `l4_type_list.ip_filtering_policy_oper.oper.rule_list`
-
-Optional:
-
-- `hits` (Number)
-- `seq` (Number)
-
-
-
 
 <a id="nestedblock--l4_type_list--oper"></a>
 ### Nested Schema for `l4_type_list.oper`
@@ -243,6 +192,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `kbit_rate_limit` (String)
 - `level_str` (String)
@@ -500,6 +450,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `kbit_rate_limit` (String)
 - `level_str` (String)
@@ -539,38 +490,12 @@ Required:
 
 Optional:
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_list--ip_filtering_policy_oper))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_list--oper))
 - `pattern_recognition` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_list--pattern_recognition))
 - `pattern_recognition_pu_details` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_list--pattern_recognition_pu_details))
 - `port_ind` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_list--port_ind))
 - `progression_tracking` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_list--progression_tracking))
 - `topk_sources` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_list--topk_sources))
-
-<a id="nestedblock--port_list--ip_filtering_policy_oper"></a>
-### Nested Schema for `port_list.ip_filtering_policy_oper`
-
-Optional:
-
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_list--ip_filtering_policy_oper--oper))
-
-<a id="nestedblock--port_list--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `port_list.ip_filtering_policy_oper.oper`
-
-Optional:
-
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--port_list--ip_filtering_policy_oper--oper--rule_list))
-
-<a id="nestedblock--port_list--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `port_list.ip_filtering_policy_oper.oper.rule_list`
-
-Optional:
-
-- `hits` (Number)
-- `seq` (Number)
-
-
-
 
 <a id="nestedblock--port_list--oper"></a>
 ### Nested Schema for `port_list.oper`
@@ -629,6 +554,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `kbit_rate_limit` (String)
 - `level_str` (String)
@@ -856,38 +782,12 @@ Required:
 
 Optional:
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--ip_filtering_policy_oper))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--oper))
 - `pattern_recognition` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--pattern_recognition))
 - `pattern_recognition_pu_details` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--pattern_recognition_pu_details))
 - `port_ind` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--port_ind))
 - `progression_tracking` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--progression_tracking))
 - `topk_sources` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--topk_sources))
-
-<a id="nestedblock--port_range_list--ip_filtering_policy_oper"></a>
-### Nested Schema for `port_range_list.ip_filtering_policy_oper`
-
-Optional:
-
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--ip_filtering_policy_oper--oper))
-
-<a id="nestedblock--port_range_list--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `port_range_list.ip_filtering_policy_oper.oper`
-
-Optional:
-
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--port_range_list--ip_filtering_policy_oper--oper--rule_list))
-
-<a id="nestedblock--port_range_list--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `port_range_list.ip_filtering_policy_oper.oper.rule_list`
-
-Optional:
-
-- `hits` (Number)
-- `seq` (Number)
-
-
-
 
 <a id="nestedblock--port_range_list--oper"></a>
 ### Nested Schema for `port_range_list.oper`
@@ -946,6 +846,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `kbit_rate_limit` (String)
 - `level_str` (String)
@@ -1226,6 +1127,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `kbit_rate_limit` (String)
 - `level_str` (String)
@@ -1304,6 +1206,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `kbit_rate_limit` (String)
 - `level_str` (String)
@@ -1373,5 +1276,3 @@ Optional:
 
 - `address` (String)
 - `rate` (String)
-
-

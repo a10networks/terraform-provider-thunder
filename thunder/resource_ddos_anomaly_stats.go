@@ -119,6 +119,12 @@ func resourceDdosAnomalyStats() *schema.Resource {
 						"tcp_opt_overflow": {
 							Type: schema.TypeInt, Optional: true, Description: "TCP Option Error",
 						},
+						"undersize_ip_pl": {
+							Type: schema.TypeInt, Optional: true, Description: "IP Payload Too Small",
+						},
+						"undersize_icmp": {
+							Type: schema.TypeInt, Optional: true, Description: "ICMP Undersize",
+						},
 					},
 				},
 			},
@@ -182,6 +188,8 @@ func setObjectDdosAnomalyStatsStats(ret edpt.DataDdosAnomalyStats) []interface{}
 			"runt_tcpudp_hdr":  ret.DtDdosAnomalyStats.Stats.Runt_tcpudp_hdr,
 			"tun_mismatch":     ret.DtDdosAnomalyStats.Stats.Tun_mismatch,
 			"tcp_opt_overflow": ret.DtDdosAnomalyStats.Stats.Tcp_opt_overflow,
+			"undersize_ip_pl":  ret.DtDdosAnomalyStats.Stats.Undersize_ip_pl,
+			"undersize_icmp":   ret.DtDdosAnomalyStats.Stats.Undersize_icmp,
 		},
 	}
 }
@@ -226,6 +234,8 @@ func getObjectDdosAnomalyStatsStats(d []interface{}) edpt.DdosAnomalyStatsStats 
 		ret.Runt_tcpudp_hdr = in["runt_tcpudp_hdr"].(int)
 		ret.Tun_mismatch = in["tun_mismatch"].(int)
 		ret.Tcp_opt_overflow = in["tcp_opt_overflow"].(int)
+		ret.Undersize_ip_pl = in["undersize_ip_pl"].(int)
+		ret.Undersize_icmp = in["undersize_icmp"].(int)
 	}
 	return ret
 }

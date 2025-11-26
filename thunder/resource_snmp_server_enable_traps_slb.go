@@ -97,6 +97,9 @@ func resourceSnmpServerEnableTrapsSlb() *schema.Resource {
 			"vip_port_down": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB virtual port down trap",
 			},
+			"vip_port_qps": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the virtual port query-per-second threshold trap",
+			},
 			"vip_port_up": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SLB virtual port up trap",
 			},
@@ -197,6 +200,7 @@ func dataToEndpointSnmpServerEnableTrapsSlb(d *schema.ResourceData) edpt.SnmpSer
 	ret.Inst.VipPortConnlimit = d.Get("vip_port_connlimit").(int)
 	ret.Inst.VipPortConnratelimit = d.Get("vip_port_connratelimit").(int)
 	ret.Inst.VipPortDown = d.Get("vip_port_down").(int)
+	ret.Inst.VipPortQps = d.Get("vip_port_qps").(int)
 	ret.Inst.VipPortUp = d.Get("vip_port_up").(int)
 	ret.Inst.VipUp = d.Get("vip_up").(int)
 	return ret

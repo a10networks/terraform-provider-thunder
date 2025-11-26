@@ -352,5 +352,3 @@ Optional:
 - `obj_reg_failed` (Number) Total object node alloc failed
 - `obj_reg_oom` (Number) Total object node alloc failed Out of Memory
 - `obj_reg_success` (Number) Total object node allocated
-
-

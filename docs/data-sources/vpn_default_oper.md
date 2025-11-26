@@ -73,5 +73,3 @@ Optional:
 - `ipsec_remote_protocol` (Number)
 - `ipsec_remote_subnet` (String)
 - `ipsec_traffic_selector` (String)
-
-

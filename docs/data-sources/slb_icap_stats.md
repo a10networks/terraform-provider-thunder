@@ -149,5 +149,3 @@ Optional:
 - `status_5xx` (Number) Status 5xx Stats
 - `status_6xx` (Number) Status 6xx Stats
 - `status_unknown` (Number) Status Unknown Stats
-
-

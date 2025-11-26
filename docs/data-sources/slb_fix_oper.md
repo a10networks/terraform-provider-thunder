@@ -65,5 +65,3 @@ Optional:
 - `svrsel_fail` (Number)
 - `target_switching` (Number)
 - `total_proxy` (Number)
-
-

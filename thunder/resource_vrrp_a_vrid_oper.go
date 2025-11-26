@@ -44,6 +44,16 @@ func resourceVrrpAVridOper() *schema.Resource {
 						"active_standby_local": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
+						"failover_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"failover_reason": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+								},
+							},
+						},
 						"peer_list": {
 							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
@@ -110,9 +120,20 @@ func setObjectVrrpAVridOperOper(ret edpt.DataVrrpAVridOper) []interface{} {
 			"became_active":        ret.DtVrrpAVridOper.Oper.Became_active,
 			"vrid_lead":            ret.DtVrrpAVridOper.Oper.Vrid_lead,
 			"active_standby_local": ret.DtVrrpAVridOper.Oper.Active_standby_local,
+			"failover_list":        setSliceVrrpAVridOperOperFailoverList(ret.DtVrrpAVridOper.Oper.FailoverList),
 			"peer_list":            setSliceVrrpAVridOperOperPeerList(ret.DtVrrpAVridOper.Oper.PeerList),
 		},
 	}
+}
+
+func setSliceVrrpAVridOperOperFailoverList(d []edpt.VrrpAVridOperOperFailoverList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["failover_reason"] = item.Failover_reason
+		result = append(result, in)
+	}
+	return result
 }
 
 func setSliceVrrpAVridOperOperPeerList(d []edpt.VrrpAVridOperOperPeerList) []map[string]interface{} {
@@ -145,7 +166,21 @@ func getObjectVrrpAVridOperOper(d []interface{}) edpt.VrrpAVridOperOper {
 		ret.Became_active = in["became_active"].(string)
 		ret.Vrid_lead = in["vrid_lead"].(string)
 		ret.Active_standby_local = in["active_standby_local"].(string)
+		ret.FailoverList = getSliceVrrpAVridOperOperFailoverList(in["failover_list"].([]interface{}))
 		ret.PeerList = getSliceVrrpAVridOperOperPeerList(in["peer_list"].([]interface{}))
+	}
+	return ret
+}
+
+func getSliceVrrpAVridOperOperFailoverList(d []interface{}) []edpt.VrrpAVridOperOperFailoverList {
+
+	count1 := len(d)
+	ret := make([]edpt.VrrpAVridOperOperFailoverList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.VrrpAVridOperOperFailoverList
+		oi.Failover_reason = in["failover_reason"].(string)
+		ret = append(ret, oi)
 	}
 	return ret
 }

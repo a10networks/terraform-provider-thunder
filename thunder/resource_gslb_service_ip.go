@@ -100,6 +100,50 @@ func resourceGslbServiceIp() *schema.Resource {
 					},
 				},
 			},
+			"service_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"port_num": {
+							Type: schema.TypeInt, Required: true, Description: "Port Number",
+						},
+						"port_proto": {
+							Type: schema.TypeString, Required: true, Description: "'tcp': TCP Port; 'udp': UDP Port;",
+						},
+						"label": {
+							Type: schema.TypeString, Required: true, Description: "Service Label",
+						},
+						"action": {
+							Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable this GSLB server port; 'disable': Disable this GSLB server port;",
+						},
+						"health_check": {
+							Type: schema.TypeString, Optional: true, Description: "Health Check Monitor (Monitor Name)",
+						},
+						"health_check_protocol_disable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable GSLB Protocol Health Monitor",
+						},
+						"health_check_disable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable Health Check Monitor",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"user_tag": {
+							Type: schema.TypeString, Optional: true, Description: "Customized tag",
+						},
+						"sampling_enable": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"counters1": {
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'active': Active Servers; 'current': Current Connections;",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
 			},
@@ -220,6 +264,41 @@ func getSliceGslbServiceIpSamplingEnable(d []interface{}) []edpt.GslbServiceIpSa
 	return ret
 }
 
+func getSliceGslbServiceIpServiceList(d []interface{}) []edpt.GslbServiceIpServiceList {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbServiceIpServiceList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbServiceIpServiceList
+		oi.PortNum = in["port_num"].(int)
+		oi.PortProto = in["port_proto"].(string)
+		oi.Label = in["label"].(string)
+		oi.Action = in["action"].(string)
+		oi.HealthCheck = in["health_check"].(string)
+		oi.HealthCheckProtocolDisable = in["health_check_protocol_disable"].(int)
+		oi.HealthCheckDisable = in["health_check_disable"].(int)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		oi.SamplingEnable = getSliceGslbServiceIpServiceListSamplingEnable(in["sampling_enable"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceGslbServiceIpServiceListSamplingEnable(d []interface{}) []edpt.GslbServiceIpServiceListSamplingEnable {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbServiceIpServiceListSamplingEnable, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbServiceIpServiceListSamplingEnable
+		oi.Counters1 = in["counters1"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func dataToEndpointGslbServiceIp(d *schema.ResourceData) edpt.GslbServiceIp {
 	var ret edpt.GslbServiceIp
 	ret.Inst.Action = d.Get("action").(string)
@@ -233,6 +312,7 @@ func dataToEndpointGslbServiceIp(d *schema.ResourceData) edpt.GslbServiceIp {
 	ret.Inst.NodeName = d.Get("node_name").(string)
 	ret.Inst.PortList = getSliceGslbServiceIpPortList(d.Get("port_list").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceGslbServiceIpSamplingEnable(d.Get("sampling_enable").([]interface{}))
+	ret.Inst.ServiceList = getSliceGslbServiceIpServiceList(d.Get("service_list").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

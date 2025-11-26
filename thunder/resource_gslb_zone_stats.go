@@ -97,25 +97,31 @@ func resourceGslbZoneStats() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"received_query": {
-										Type: schema.TypeInt, Optional: true, Description: "Number of DNS queries received for the service",
+										Type: schema.TypeInt, Optional: true, Description: "DNS queries received for the service",
 									},
 									"sent_response": {
-										Type: schema.TypeInt, Optional: true, Description: "Number of DNS replies sent to clients for the service",
+										Type: schema.TypeInt, Optional: true, Description: "DNS replies sent to clients for the service",
 									},
 									"proxy_mode_response": {
-										Type: schema.TypeInt, Optional: true, Description: "Number of DNS replies sent to clients by the ACOS device as a DNS proxy for the service",
+										Type: schema.TypeInt, Optional: true, Description: "DNS replies sent by ACOS as DNS proxy (service)",
 									},
 									"cache_mode_response": {
-										Type: schema.TypeInt, Optional: true, Description: "Number of cached DNS replies sent to clients by the ACOS device for the service. (This statistic applies only if the DNS cache",
+										Type: schema.TypeInt, Optional: true, Description: "Cached DNS replies sent by ACOS (service, if cache enabled)",
 									},
 									"server_mode_response": {
-										Type: schema.TypeInt, Optional: true, Description: "Number of DNS replies sent to clients by the ACOS device as a DNS server for the service. (This statistic applies only if the D",
+										Type: schema.TypeInt, Optional: true, Description: "DNS replies sent by ACOS (service, if server enabled)",
 									},
 									"sticky_mode_response": {
-										Type: schema.TypeInt, Optional: true, Description: "Number of DNS replies sent to clients by the ACOS device to keep the clients on the same site. (This statistic applies only if",
+										Type: schema.TypeInt, Optional: true, Description: "DNS replies sent by ACOS on same site (if sticky enabled)",
 									},
 									"backup_mode_response": {
-										Type: schema.TypeInt, Optional: true, Description: "help Number of DNS replies sent to clients by the ACOS device in backup mode",
+										Type: schema.TypeInt, Optional: true, Description: "DNS replies sent by ACOS in backup mode",
+									},
+									"smrule_redir_from_svc_hit": {
+										Type: schema.TypeInt, Optional: true, Description: "DNS queries redirected by rule (originally hit a service)",
+									},
+									"smrule_redir_from_svc_miss": {
+										Type: schema.TypeInt, Optional: true, Description: "DNS queries redirected by rule (originally missed service)",
 									},
 								},
 							},
@@ -303,25 +309,31 @@ func resourceGslbZoneStats() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"received_query": {
-							Type: schema.TypeInt, Optional: true, Description: "Total Number of DNS queries received for the zone",
+							Type: schema.TypeInt, Optional: true, Description: "DNS queries received for the zone",
 						},
 						"sent_response": {
-							Type: schema.TypeInt, Optional: true, Description: "Total Number of DNS replies sent to clients for the zone",
+							Type: schema.TypeInt, Optional: true, Description: "DNS replies sent to clients for the zone",
 						},
 						"proxy_mode_response": {
-							Type: schema.TypeInt, Optional: true, Description: "Total Number of DNS replies sent to clients by the ACOS device as a DNS proxy for the zone",
+							Type: schema.TypeInt, Optional: true, Description: "DNS replies sent by ACOS as DNS proxy",
 						},
 						"cache_mode_response": {
-							Type: schema.TypeInt, Optional: true, Description: "Total Number of cached DNS replies sent to clients by the ACOS device for the zone. (This statistic applies only if the DNS cac",
+							Type: schema.TypeInt, Optional: true, Description: "Cached DNS replies sent by ACOS (if DNS cache enabled)",
 						},
 						"server_mode_response": {
-							Type: schema.TypeInt, Optional: true, Description: "Total Number of DNS replies sent to clients by the ACOS device as a DNS server for the zone. (This statistic applies only if th",
+							Type: schema.TypeInt, Optional: true, Description: "DNS replies sent by ACOS as DNS server (if DNS server enabled)",
 						},
 						"sticky_mode_response": {
-							Type: schema.TypeInt, Optional: true, Description: "Total Number of DNS replies sent to clients by the ACOS device to keep the clients on the same site. (This statistic applies on",
+							Type: schema.TypeInt, Optional: true, Description: "DNS replies sent by ACOS on same site (if sticky enabled)",
 						},
 						"backup_mode_response": {
-							Type: schema.TypeInt, Optional: true, Description: "Total Number of DNS replies sent to clients by the ACOS device in backup mode",
+							Type: schema.TypeInt, Optional: true, Description: "DNS replies sent by ACOS in backup mode",
+						},
+						"smrule_redir_from_svc_hit": {
+							Type: schema.TypeInt, Optional: true, Description: "DNS queries redirected by rule (originally hit a service)",
+						},
+						"smrule_redir_from_svc_miss": {
+							Type: schema.TypeInt, Optional: true, Description: "DNS queries redirected by rule (originally missed service)",
 						},
 					},
 				},
@@ -460,6 +472,10 @@ func setObjectGslbZoneStatsServiceListStats(d edpt.GslbZoneStatsServiceListStats
 	in["sticky_mode_response"] = d.StickyModeResponse
 
 	in["backup_mode_response"] = d.BackupModeResponse
+
+	in["smrule_redir_from_svc_hit"] = d.SmruleRedirFromSvcHit
+
+	in["smrule_redir_from_svc_miss"] = d.SmruleRedirFromSvcMiss
 	result = append(result, in)
 	return result
 }
@@ -632,13 +648,15 @@ func setObjectGslbZoneStatsServiceListDnsCaaRecordListStats(d edpt.GslbZoneStats
 func setObjectGslbZoneStatsStats(ret edpt.DataGslbZoneStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"received_query":       ret.DtGslbZoneStats.Stats.ReceivedQuery,
-			"sent_response":        ret.DtGslbZoneStats.Stats.SentResponse,
-			"proxy_mode_response":  ret.DtGslbZoneStats.Stats.ProxyModeResponse,
-			"cache_mode_response":  ret.DtGslbZoneStats.Stats.CacheModeResponse,
-			"server_mode_response": ret.DtGslbZoneStats.Stats.ServerModeResponse,
-			"sticky_mode_response": ret.DtGslbZoneStats.Stats.StickyModeResponse,
-			"backup_mode_response": ret.DtGslbZoneStats.Stats.BackupModeResponse,
+			"received_query":             ret.DtGslbZoneStats.Stats.ReceivedQuery,
+			"sent_response":              ret.DtGslbZoneStats.Stats.SentResponse,
+			"proxy_mode_response":        ret.DtGslbZoneStats.Stats.ProxyModeResponse,
+			"cache_mode_response":        ret.DtGslbZoneStats.Stats.CacheModeResponse,
+			"server_mode_response":       ret.DtGslbZoneStats.Stats.ServerModeResponse,
+			"sticky_mode_response":       ret.DtGslbZoneStats.Stats.StickyModeResponse,
+			"backup_mode_response":       ret.DtGslbZoneStats.Stats.BackupModeResponse,
+			"smrule_redir_from_svc_hit":  ret.DtGslbZoneStats.Stats.SmruleRedirFromSvcHit,
+			"smrule_redir_from_svc_miss": ret.DtGslbZoneStats.Stats.SmruleRedirFromSvcMiss,
 		},
 	}
 }
@@ -756,6 +774,8 @@ func getObjectGslbZoneStatsServiceListStats(d []interface{}) edpt.GslbZoneStatsS
 		ret.ServerModeResponse = in["server_mode_response"].(int)
 		ret.StickyModeResponse = in["sticky_mode_response"].(int)
 		ret.BackupModeResponse = in["backup_mode_response"].(int)
+		ret.SmruleRedirFromSvcHit = in["smrule_redir_from_svc_hit"].(int)
+		ret.SmruleRedirFromSvcMiss = in["smrule_redir_from_svc_miss"].(int)
 	}
 	return ret
 }
@@ -978,6 +998,8 @@ func getObjectGslbZoneStatsStats(d []interface{}) edpt.GslbZoneStatsStats {
 		ret.ServerModeResponse = in["server_mode_response"].(int)
 		ret.StickyModeResponse = in["sticky_mode_response"].(int)
 		ret.BackupModeResponse = in["backup_mode_response"].(int)
+		ret.SmruleRedirFromSvcHit = in["smrule_redir_from_svc_hit"].(int)
+		ret.SmruleRedirFromSvcMiss = in["smrule_redir_from_svc_miss"].(int)
 	}
 	return ret
 }

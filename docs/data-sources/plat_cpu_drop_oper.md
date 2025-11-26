@@ -44,6 +44,8 @@ output "get_plat_cpu_drop_oper" {
 
 Optional:
 
+- `app_buff_drop` (Number)
+- `app_buff_drop_total` (Number)
 - `drop_seg` (Block List) (see [below for nested schema](#nestedblock--oper--drop_seg))
 - `fpga_seg` (Block List) (see [below for nested schema](#nestedblock--oper--fpga_seg))
 - `rate_limit` (Number)
@@ -80,5 +82,3 @@ Optional:
 Optional:
 
 - `rate_limit_drop` (String)
-
-

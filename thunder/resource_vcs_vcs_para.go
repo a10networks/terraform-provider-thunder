@@ -63,11 +63,17 @@ func resourceVcsVcsPara() *schema.Resource {
 			"forever": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "VCS retry forever if fails to join the chassis",
 			},
+			"hold_preemption_interval": {
+				Type: schema.TypeInt, Optional: true, Default: 60, Description: "The VCS Node will hold specified time interval before it start to challenge peer(s) for Mastership (in unit of second (default is 60))",
+			},
+			"link_poll_timeout": {
+				Type: schema.TypeInt, Optional: true, Description: "",
+			},
 			"memory_stat_interval": {
 				Type: schema.TypeInt, Optional: true, Default: 30, Description: "Interval of aVCS memory statistics record (minutes)",
 			},
 			"multicast_ip": {
-				Type: schema.TypeString, Optional: true, Default: "224.0.1.210", Description: "Multicast (group) IP address (Multicast IP address)",
+				Type: schema.TypeString, Optional: true, Default: "224.0.0.211", Description: "Multicast (group) IP address (Multicast IP address (224.0.0.211 by default))",
 			},
 			"multicast_ipv6": {
 				Type: schema.TypeString, Optional: true, Description: "Multicast (group) IPv6 address (Multicast IPv6 address)",
@@ -87,8 +93,17 @@ func resourceVcsVcsPara() *schema.Resource {
 			"speed_limit": {
 				Type: schema.TypeInt, Optional: true, Description: "speed (KByte/s) limitation for the transmit monitor",
 			},
+			"ssl_cert": {
+				Type: schema.TypeString, Optional: true, Description: "Specify the cert file name",
+			},
+			"ssl_config": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Configure SSL",
+			},
 			"ssl_enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SSL",
+			},
+			"ssl_key": {
+				Type: schema.TypeString, Optional: true, Description: "Specify the key file name",
 			},
 			"tcp_channel_monitor": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable vBlade TCP channel monitor",
@@ -209,6 +224,8 @@ func dataToEndpointVcsVcsPara(d *schema.ResourceData) edpt.VcsVcsPara {
 	ret.Inst.FloatingIpv6Cfg = getSliceVcsVcsParaFloatingIpv6Cfg(d.Get("floating_ipv6_cfg").([]interface{}))
 	ret.Inst.ForceWaitInterval = d.Get("force_wait_interval").(int)
 	ret.Inst.Forever = d.Get("forever").(int)
+	ret.Inst.HoldPreemptionInterval = d.Get("hold_preemption_interval").(int)
+	ret.Inst.LinkPollTimeout = d.Get("link_poll_timeout").(int)
 	ret.Inst.MemoryStatInterval = d.Get("memory_stat_interval").(int)
 	ret.Inst.MulticastIp = d.Get("multicast_ip").(string)
 	ret.Inst.MulticastIpv6 = d.Get("multicast_ipv6").(string)
@@ -217,7 +234,10 @@ func dataToEndpointVcsVcsPara(d *schema.ResourceData) edpt.VcsVcsPara {
 	ret.Inst.SlogLevel = d.Get("slog_level").(int)
 	ret.Inst.SlogMethod = d.Get("slog_method").(int)
 	ret.Inst.Speed_limit = d.Get("speed_limit").(int)
+	ret.Inst.SslCert = d.Get("ssl_cert").(string)
+	ret.Inst.SslConfig = d.Get("ssl_config").(int)
 	ret.Inst.SslEnable = d.Get("ssl_enable").(int)
+	ret.Inst.SslKey = d.Get("ssl_key").(string)
 	ret.Inst.TcpChannelMonitor = d.Get("tcp_channel_monitor").(int)
 	ret.Inst.TimeInterval = d.Get("time_interval").(int)
 	ret.Inst.TimeIntervalMseconds = d.Get("time_interval_mseconds").(int)

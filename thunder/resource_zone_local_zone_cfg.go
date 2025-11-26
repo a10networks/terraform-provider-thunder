@@ -22,8 +22,8 @@ func resourceZoneLocalZoneCfg() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointZoneLocalZoneCfg(d *schema.ResourceData) edpt.ZoneLocalZoneCf
 	var ret edpt.ZoneLocalZoneCfg
 	ret.Inst.LocalType = d.Get("local_type").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

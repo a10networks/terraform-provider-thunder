@@ -53,5 +53,3 @@ Optional:
 - `ntfy` (Number) MGCP NTFY
 - `rqnt` (Number) MGCP RQNT
 - `rsip` (Number) MGCP RSIP
-
-

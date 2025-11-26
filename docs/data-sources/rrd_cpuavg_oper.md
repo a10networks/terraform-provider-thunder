@@ -57,5 +57,3 @@ Optional:
 - `cpu_type` (Number)
 - `cpu_usage` (String)
 - `time` (Number)
-
-

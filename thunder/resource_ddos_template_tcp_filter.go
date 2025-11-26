@@ -37,8 +37,8 @@ func resourceDdosTemplateTcpFilter() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"tcp_name": {
+				Type: schema.TypeString, Required: true, Description: "Tcp_name",
 			},
 		},
 	}
@@ -114,6 +114,6 @@ func dataToEndpointDdosTemplateTcpFilter(d *schema.ResourceData) edpt.DdosTempla
 	ret.Inst.TcpFilterUnmatched = d.Get("tcp_filter_unmatched").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Tcp_name = d.Get("tcp_name").(string)
 	return ret
 }

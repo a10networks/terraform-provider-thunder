@@ -47,5 +47,3 @@ Optional:
 - `data_sessions` (Number)
 - `full_cone_sessions` (Number)
 - `user_quotas` (Number)
-
-

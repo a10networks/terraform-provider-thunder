@@ -100,10 +100,10 @@ func resourceScaleoutAppsRead(ctx context.Context, d *schema.ResourceData, meta 
 	return diags
 }
 
-func getObjectScaleoutAppsSkipMacOverwrite1324(d []interface{}) edpt.ScaleoutAppsSkipMacOverwrite1324 {
+func getObjectScaleoutAppsSkipMacOverwrite1411(d []interface{}) edpt.ScaleoutAppsSkipMacOverwrite1411 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutAppsSkipMacOverwrite1324
+	var ret edpt.ScaleoutAppsSkipMacOverwrite1411
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -115,7 +115,7 @@ func getObjectScaleoutAppsSkipMacOverwrite1324(d []interface{}) edpt.ScaleoutApp
 func dataToEndpointScaleoutApps(d *schema.ResourceData) edpt.ScaleoutApps {
 	var ret edpt.ScaleoutApps
 	ret.Inst.Enable = d.Get("enable").(int)
-	ret.Inst.SkipMacOverwrite = getObjectScaleoutAppsSkipMacOverwrite1324(d.Get("skip_mac_overwrite").([]interface{}))
+	ret.Inst.SkipMacOverwrite = getObjectScaleoutAppsSkipMacOverwrite1411(d.Get("skip_mac_overwrite").([]interface{}))
 	//omit uuid
 	return ret
 }

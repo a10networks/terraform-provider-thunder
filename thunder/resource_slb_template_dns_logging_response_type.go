@@ -113,8 +113,8 @@ func resourceSlbTemplateDnsLoggingResponseType() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns_logging_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_logging_name",
 			},
 		},
 	}
@@ -226,6 +226,6 @@ func dataToEndpointSlbTemplateDnsLoggingResponseType(d *schema.ResourceData) edp
 	ret.Inst.Config = d.Get("config").(int)
 	ret.Inst.TypeList = getSliceSlbTemplateDnsLoggingResponseTypeTypeList(d.Get("type_list").([]interface{}))
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dns_logging_name = d.Get("dns_logging_name").(string)
 	return ret
 }

@@ -48,5 +48,3 @@ Optional:
 - `progress` (Number)
 - `size` (Number)
 - `status` (Number)
-
-

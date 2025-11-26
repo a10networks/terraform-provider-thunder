@@ -58,5 +58,3 @@ Optional:
 Optional:
 
 - `vpn_log_data` (String)
-
-

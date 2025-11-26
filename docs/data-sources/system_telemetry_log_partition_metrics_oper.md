@@ -45,5 +45,3 @@ output "get_system_telemetry_log_partition_metrics_oper" {
 Optional:
 
 - `data_cpu_usage` (Number)
-
-

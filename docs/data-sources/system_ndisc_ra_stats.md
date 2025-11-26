@@ -54,5 +54,3 @@ Optional:
 - `periodic_sent` (Number) Periodic Router Advertisements (R.A.) Sent
 - `rate_limit` (Number) R.S. Rate Limited
 - `truncated` (Number) R.S. Truncated
-
-

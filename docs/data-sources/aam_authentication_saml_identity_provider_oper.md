@@ -94,5 +94,3 @@ Optional:
 
 - `sso_binding` (String)
 - `sso_location` (String)
-
-

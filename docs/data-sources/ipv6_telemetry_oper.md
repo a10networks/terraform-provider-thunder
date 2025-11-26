@@ -62,5 +62,3 @@ Optional:
 - `origin_as` (Number)
 - `peer_as` (Number)
 - `zone_name` (String)
-
-

@@ -36,7 +36,7 @@ func resourceTrafficControlRuleSet() *schema.Resource {
 							Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable rule; 'disable': Disable rule;",
 						},
 						"ip_version": {
-							Type: schema.TypeString, Optional: true, Default: "v4", Description: "'v4': IPv4 rule; 'v6': IPv6 rule;",
+							Type: schema.TypeString, Optional: true, Default: "v4", Description: "'v4': IPv4 rule; 'v6': IPv6 rule; 'any': IP version is not specified. Only compatible with filters by application, zone or the source class-list of radius type.;",
 						},
 						"src_geoloc_name": {
 							Type: schema.TypeString, Optional: true, Description: "Single geolocation name",
@@ -56,6 +56,12 @@ func resourceTrafficControlRuleSet() *schema.Resource {
 						"src_class_list": {
 							Type: schema.TypeString, Optional: true, Description: "Match source IP against class-list",
 						},
+						"src_class_list_type": {
+							Type: schema.TypeString, Optional: true, Description: "'radius': Match the value of specified RADIUS attribute in the class-list.;",
+						},
+						"derived_attribute": {
+							Type: schema.TypeString, Optional: true, Description: "'usergroup': Match the value from the derived attribute of user group in the class-list.; 'userid': Match the value from the derived attribute of user ID in the class-list.;",
+						},
 						"source_list": {
 							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
@@ -72,9 +78,6 @@ func resourceTrafficControlRuleSet() *schema.Resource {
 									"src_obj_grp_network": {
 										Type: schema.TypeString, Optional: true, Description: "Network object group",
 									},
-									"src_slb_server": {
-										Type: schema.TypeString, Optional: true, Description: "SLB Real server name",
-									},
 								},
 							},
 						},
@@ -83,9 +86,6 @@ func resourceTrafficControlRuleSet() *schema.Resource {
 						},
 						"src_zone_any": {
 							Type: schema.TypeString, Optional: true, Default: "any", Description: "'any': any;",
-						},
-						"src_threat_list": {
-							Type: schema.TypeString, Optional: true, Description: "Bind threat-list for source IP based filtering",
 						},
 						"dst_geoloc_name": {
 							Type: schema.TypeString, Optional: true, Description: "Single geolocation name",
@@ -121,9 +121,6 @@ func resourceTrafficControlRuleSet() *schema.Resource {
 									"dst_obj_grp_network": {
 										Type: schema.TypeString, Optional: true, Description: "Network object group",
 									},
-									"dst_slb_server": {
-										Type: schema.TypeString, Optional: true, Description: "SLB Real server name",
-									},
 									"dst_slb_vserver": {
 										Type: schema.TypeString, Optional: true, Description: "SLB Virtual server name",
 									},
@@ -138,9 +135,6 @@ func resourceTrafficControlRuleSet() *schema.Resource {
 						},
 						"dst_zone_any": {
 							Type: schema.TypeString, Optional: true, Default: "any", Description: "'any': any;",
-						},
-						"dst_threat_list": {
-							Type: schema.TypeString, Optional: true, Description: "Bind threat-list for destination IP based filtering",
 						},
 						"service_any": {
 							Type: schema.TypeString, Optional: true, Default: "any", Description: "'any': any;",
@@ -259,6 +253,19 @@ func resourceTrafficControlRuleSet() *schema.Resource {
 								},
 							},
 						},
+						"move_rule": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"location": {
+										Type: schema.TypeString, Optional: true, Default: "bottom", Description: "'top': top; 'before': before; 'after': after; 'bottom': bottom;",
+									},
+									"target_rule": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+								},
+							},
+						},
 						"action_group": {
 							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 							Elem: &schema.Resource{
@@ -373,10 +380,11 @@ func getSliceTrafficControlRuleSetRuleList(d []interface{}) []edpt.TrafficContro
 		oi.SrcIpv4Any = in["src_ipv4_any"].(string)
 		oi.SrcIpv6Any = in["src_ipv6_any"].(string)
 		oi.SrcClassList = in["src_class_list"].(string)
+		oi.SrcClassListType = in["src_class_list_type"].(string)
+		oi.DerivedAttribute = in["derived_attribute"].(string)
 		oi.SourceList = getSliceTrafficControlRuleSetRuleListSourceList(in["source_list"].([]interface{}))
 		oi.SrcZone = in["src_zone"].(string)
 		oi.SrcZoneAny = in["src_zone_any"].(string)
-		oi.SrcThreatList = in["src_threat_list"].(string)
 		oi.DstGeolocName = in["dst_geoloc_name"].(string)
 		oi.DstGeolocList = in["dst_geoloc_list"].(string)
 		oi.DstGeolocListShared = in["dst_geoloc_list_shared"].(int)
@@ -387,7 +395,6 @@ func getSliceTrafficControlRuleSetRuleList(d []interface{}) []edpt.TrafficContro
 		oi.DstDomainList = in["dst_domain_list"].(string)
 		oi.DstZone = in["dst_zone"].(string)
 		oi.DstZoneAny = in["dst_zone_any"].(string)
-		oi.DstThreatList = in["dst_threat_list"].(string)
 		oi.ServiceAny = in["service_any"].(string)
 		oi.ServiceList = getSliceTrafficControlRuleSetRuleListServiceList(in["service_list"].([]interface{}))
 		oi.ApplicationAny = in["application_any"].(string)
@@ -395,6 +402,7 @@ func getSliceTrafficControlRuleSetRuleList(d []interface{}) []edpt.TrafficContro
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		oi.SamplingEnable = getSliceTrafficControlRuleSetRuleListSamplingEnable(in["sampling_enable"].([]interface{}))
+		oi.MoveRule = getObjectTrafficControlRuleSetRuleListMoveRule(in["move_rule"].([]interface{}))
 		oi.ActionGroup = getObjectTrafficControlRuleSetRuleListActionGroup(in["action_group"].([]interface{}))
 		ret = append(ret, oi)
 	}
@@ -412,7 +420,6 @@ func getSliceTrafficControlRuleSetRuleListSourceList(d []interface{}) []edpt.Tra
 		oi.SrcIpv6Subnet = in["src_ipv6_subnet"].(string)
 		oi.SrcObjNetwork = in["src_obj_network"].(string)
 		oi.SrcObjGrpNetwork = in["src_obj_grp_network"].(string)
-		oi.SrcSlbServer = in["src_slb_server"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -429,7 +436,6 @@ func getSliceTrafficControlRuleSetRuleListDestList(d []interface{}) []edpt.Traff
 		oi.DstIpv6Subnet = in["dst_ipv6_subnet"].(string)
 		oi.DstObjNetwork = in["dst_obj_network"].(string)
 		oi.DstObjGrpNetwork = in["dst_obj_grp_network"].(string)
-		oi.DstSlbServer = in["dst_slb_server"].(string)
 		oi.DstSlbVserver = in["dst_slb_vserver"].(string)
 		ret = append(ret, oi)
 	}
@@ -496,6 +502,18 @@ func getSliceTrafficControlRuleSetRuleListSamplingEnable(d []interface{}) []edpt
 		var oi edpt.TrafficControlRuleSetRuleListSamplingEnable
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectTrafficControlRuleSetRuleListMoveRule(d []interface{}) edpt.TrafficControlRuleSetRuleListMoveRule {
+
+	count1 := len(d)
+	var ret edpt.TrafficControlRuleSetRuleListMoveRule
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Location = in["location"].(string)
+		ret.TargetRule = in["target_rule"].(string)
 	}
 	return ret
 }

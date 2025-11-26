@@ -398,44 +398,44 @@ func resourceVrrpAVridRead(ctx context.Context, d *schema.ResourceData, meta int
 	return diags
 }
 
-func getObjectVrrpAVridBladeParameters3644(d []interface{}) edpt.VrrpAVridBladeParameters3644 {
+func getObjectVrrpAVridBladeParameters3743(d []interface{}) edpt.VrrpAVridBladeParameters3743 {
 
 	count1 := len(d)
-	var ret edpt.VrrpAVridBladeParameters3644
+	var ret edpt.VrrpAVridBladeParameters3743
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Priority = in["priority"].(int)
 		ret.FailOverPolicyTemplate = in["fail_over_policy_template"].(string)
 		//omit uuid
-		ret.TrackingOptions = getObjectVrrpAVridBladeParametersTrackingOptions3645(in["tracking_options"].([]interface{}))
+		ret.TrackingOptions = getObjectVrrpAVridBladeParametersTrackingOptions3744(in["tracking_options"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectVrrpAVridBladeParametersTrackingOptions3645(d []interface{}) edpt.VrrpAVridBladeParametersTrackingOptions3645 {
+func getObjectVrrpAVridBladeParametersTrackingOptions3744(d []interface{}) edpt.VrrpAVridBladeParametersTrackingOptions3744 {
 
 	count1 := len(d)
-	var ret edpt.VrrpAVridBladeParametersTrackingOptions3645
+	var ret edpt.VrrpAVridBladeParametersTrackingOptions3744
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Interface = getSliceVrrpAVridBladeParametersTrackingOptionsInterface3646(in["interface"].([]interface{}))
-		ret.Route = getObjectVrrpAVridBladeParametersTrackingOptionsRoute3647(in["route"].([]interface{}))
-		ret.TrunkCfg = getSliceVrrpAVridBladeParametersTrackingOptionsTrunkCfg3650(in["trunk_cfg"].([]interface{}))
-		ret.Bgp = getObjectVrrpAVridBladeParametersTrackingOptionsBgp3651(in["bgp"].([]interface{}))
-		ret.VlanCfg = getSliceVrrpAVridBladeParametersTrackingOptionsVlanCfg3654(in["vlan_cfg"].([]interface{}))
+		ret.Interface = getSliceVrrpAVridBladeParametersTrackingOptionsInterface3745(in["interface"].([]interface{}))
+		ret.Route = getObjectVrrpAVridBladeParametersTrackingOptionsRoute3746(in["route"].([]interface{}))
+		ret.TrunkCfg = getSliceVrrpAVridBladeParametersTrackingOptionsTrunkCfg3749(in["trunk_cfg"].([]interface{}))
+		ret.Bgp = getObjectVrrpAVridBladeParametersTrackingOptionsBgp3750(in["bgp"].([]interface{}))
+		ret.VlanCfg = getSliceVrrpAVridBladeParametersTrackingOptionsVlanCfg3753(in["vlan_cfg"].([]interface{}))
 		//omit uuid
-		ret.Gateway = getObjectVrrpAVridBladeParametersTrackingOptionsGateway3655(in["gateway"].([]interface{}))
+		ret.Gateway = getObjectVrrpAVridBladeParametersTrackingOptionsGateway3754(in["gateway"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVrrpAVridBladeParametersTrackingOptionsInterface3646(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsInterface3646 {
+func getSliceVrrpAVridBladeParametersTrackingOptionsInterface3745(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsInterface3745 {
 
 	count1 := len(d)
-	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsInterface3646, 0, count1)
+	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsInterface3745, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VrrpAVridBladeParametersTrackingOptionsInterface3646
+		var oi edpt.VrrpAVridBladeParametersTrackingOptionsInterface3745
 		oi.Ethernet = in["ethernet"].(int)
 		oi.PriorityCost = in["priority_cost"].(int)
 		ret = append(ret, oi)
@@ -443,25 +443,25 @@ func getSliceVrrpAVridBladeParametersTrackingOptionsInterface3646(d []interface{
 	return ret
 }
 
-func getObjectVrrpAVridBladeParametersTrackingOptionsRoute3647(d []interface{}) edpt.VrrpAVridBladeParametersTrackingOptionsRoute3647 {
+func getObjectVrrpAVridBladeParametersTrackingOptionsRoute3746(d []interface{}) edpt.VrrpAVridBladeParametersTrackingOptionsRoute3746 {
 
 	count1 := len(d)
-	var ret edpt.VrrpAVridBladeParametersTrackingOptionsRoute3647
+	var ret edpt.VrrpAVridBladeParametersTrackingOptionsRoute3746
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.IpDestinationCfg = getSliceVrrpAVridBladeParametersTrackingOptionsRouteIpDestinationCfg3648(in["ip_destination_cfg"].([]interface{}))
-		ret.Ipv6DestinationCfg = getSliceVrrpAVridBladeParametersTrackingOptionsRouteIpv6DestinationCfg3649(in["ipv6_destination_cfg"].([]interface{}))
+		ret.IpDestinationCfg = getSliceVrrpAVridBladeParametersTrackingOptionsRouteIpDestinationCfg3747(in["ip_destination_cfg"].([]interface{}))
+		ret.Ipv6DestinationCfg = getSliceVrrpAVridBladeParametersTrackingOptionsRouteIpv6DestinationCfg3748(in["ipv6_destination_cfg"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVrrpAVridBladeParametersTrackingOptionsRouteIpDestinationCfg3648(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsRouteIpDestinationCfg3648 {
+func getSliceVrrpAVridBladeParametersTrackingOptionsRouteIpDestinationCfg3747(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsRouteIpDestinationCfg3747 {
 
 	count1 := len(d)
-	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsRouteIpDestinationCfg3648, 0, count1)
+	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsRouteIpDestinationCfg3747, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VrrpAVridBladeParametersTrackingOptionsRouteIpDestinationCfg3648
+		var oi edpt.VrrpAVridBladeParametersTrackingOptionsRouteIpDestinationCfg3747
 		oi.IpDestination = in["ip_destination"].(string)
 		oi.Mask = in["mask"].(string)
 		oi.PriorityCost = in["priority_cost"].(int)
@@ -473,13 +473,13 @@ func getSliceVrrpAVridBladeParametersTrackingOptionsRouteIpDestinationCfg3648(d 
 	return ret
 }
 
-func getSliceVrrpAVridBladeParametersTrackingOptionsRouteIpv6DestinationCfg3649(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsRouteIpv6DestinationCfg3649 {
+func getSliceVrrpAVridBladeParametersTrackingOptionsRouteIpv6DestinationCfg3748(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsRouteIpv6DestinationCfg3748 {
 
 	count1 := len(d)
-	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsRouteIpv6DestinationCfg3649, 0, count1)
+	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsRouteIpv6DestinationCfg3748, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VrrpAVridBladeParametersTrackingOptionsRouteIpv6DestinationCfg3649
+		var oi edpt.VrrpAVridBladeParametersTrackingOptionsRouteIpv6DestinationCfg3748
 		oi.Ipv6Destination = in["ipv6_destination"].(string)
 		oi.PriorityCost = in["priority_cost"].(int)
 		oi.Gatewayv6 = in["gatewayv6"].(string)
@@ -490,13 +490,13 @@ func getSliceVrrpAVridBladeParametersTrackingOptionsRouteIpv6DestinationCfg3649(
 	return ret
 }
 
-func getSliceVrrpAVridBladeParametersTrackingOptionsTrunkCfg3650(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsTrunkCfg3650 {
+func getSliceVrrpAVridBladeParametersTrackingOptionsTrunkCfg3749(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsTrunkCfg3749 {
 
 	count1 := len(d)
-	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsTrunkCfg3650, 0, count1)
+	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsTrunkCfg3749, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VrrpAVridBladeParametersTrackingOptionsTrunkCfg3650
+		var oi edpt.VrrpAVridBladeParametersTrackingOptionsTrunkCfg3749
 		oi.Trunk = in["trunk"].(int)
 		oi.PriorityCost = in["priority_cost"].(int)
 		oi.PerPortPri = in["per_port_pri"].(int)
@@ -505,25 +505,25 @@ func getSliceVrrpAVridBladeParametersTrackingOptionsTrunkCfg3650(d []interface{}
 	return ret
 }
 
-func getObjectVrrpAVridBladeParametersTrackingOptionsBgp3651(d []interface{}) edpt.VrrpAVridBladeParametersTrackingOptionsBgp3651 {
+func getObjectVrrpAVridBladeParametersTrackingOptionsBgp3750(d []interface{}) edpt.VrrpAVridBladeParametersTrackingOptionsBgp3750 {
 
 	count1 := len(d)
-	var ret edpt.VrrpAVridBladeParametersTrackingOptionsBgp3651
+	var ret edpt.VrrpAVridBladeParametersTrackingOptionsBgp3750
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.BgpIpv4AddressCfg = getSliceVrrpAVridBladeParametersTrackingOptionsBgpBgpIpv4AddressCfg3652(in["bgp_ipv4_address_cfg"].([]interface{}))
-		ret.BgpIpv6AddressCfg = getSliceVrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg3653(in["bgp_ipv6_address_cfg"].([]interface{}))
+		ret.BgpIpv4AddressCfg = getSliceVrrpAVridBladeParametersTrackingOptionsBgpBgpIpv4AddressCfg3751(in["bgp_ipv4_address_cfg"].([]interface{}))
+		ret.BgpIpv6AddressCfg = getSliceVrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg3752(in["bgp_ipv6_address_cfg"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVrrpAVridBladeParametersTrackingOptionsBgpBgpIpv4AddressCfg3652(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv4AddressCfg3652 {
+func getSliceVrrpAVridBladeParametersTrackingOptionsBgpBgpIpv4AddressCfg3751(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv4AddressCfg3751 {
 
 	count1 := len(d)
-	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv4AddressCfg3652, 0, count1)
+	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv4AddressCfg3751, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv4AddressCfg3652
+		var oi edpt.VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv4AddressCfg3751
 		oi.BgpIpv4Address = in["bgp_ipv4_address"].(string)
 		oi.PriorityCost = in["priority_cost"].(int)
 		ret = append(ret, oi)
@@ -531,13 +531,13 @@ func getSliceVrrpAVridBladeParametersTrackingOptionsBgpBgpIpv4AddressCfg3652(d [
 	return ret
 }
 
-func getSliceVrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg3653(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg3653 {
+func getSliceVrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg3752(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg3752 {
 
 	count1 := len(d)
-	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg3653, 0, count1)
+	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg3752, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg3653
+		var oi edpt.VrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg3752
 		oi.BgpIpv6Address = in["bgp_ipv6_address"].(string)
 		oi.PriorityCost = in["priority_cost"].(int)
 		ret = append(ret, oi)
@@ -545,13 +545,13 @@ func getSliceVrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg3653(d [
 	return ret
 }
 
-func getSliceVrrpAVridBladeParametersTrackingOptionsVlanCfg3654(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsVlanCfg3654 {
+func getSliceVrrpAVridBladeParametersTrackingOptionsVlanCfg3753(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsVlanCfg3753 {
 
 	count1 := len(d)
-	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsVlanCfg3654, 0, count1)
+	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsVlanCfg3753, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VrrpAVridBladeParametersTrackingOptionsVlanCfg3654
+		var oi edpt.VrrpAVridBladeParametersTrackingOptionsVlanCfg3753
 		oi.Vlan = in["vlan"].(int)
 		oi.Timeout = in["timeout"].(int)
 		oi.PriorityCost = in["priority_cost"].(int)
@@ -560,25 +560,25 @@ func getSliceVrrpAVridBladeParametersTrackingOptionsVlanCfg3654(d []interface{})
 	return ret
 }
 
-func getObjectVrrpAVridBladeParametersTrackingOptionsGateway3655(d []interface{}) edpt.VrrpAVridBladeParametersTrackingOptionsGateway3655 {
+func getObjectVrrpAVridBladeParametersTrackingOptionsGateway3754(d []interface{}) edpt.VrrpAVridBladeParametersTrackingOptionsGateway3754 {
 
 	count1 := len(d)
-	var ret edpt.VrrpAVridBladeParametersTrackingOptionsGateway3655
+	var ret edpt.VrrpAVridBladeParametersTrackingOptionsGateway3754
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Ipv4GatewayList = getSliceVrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList3656(in["ipv4_gateway_list"].([]interface{}))
-		ret.Ipv6GatewayList = getSliceVrrpAVridBladeParametersTrackingOptionsGatewayIpv6GatewayList3657(in["ipv6_gateway_list"].([]interface{}))
+		ret.Ipv4GatewayList = getSliceVrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList3755(in["ipv4_gateway_list"].([]interface{}))
+		ret.Ipv6GatewayList = getSliceVrrpAVridBladeParametersTrackingOptionsGatewayIpv6GatewayList3756(in["ipv6_gateway_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList3656(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList3656 {
+func getSliceVrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList3755(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList3755 {
 
 	count1 := len(d)
-	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList3656, 0, count1)
+	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList3755, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList3656
+		var oi edpt.VrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList3755
 		oi.IpAddress = in["ip_address"].(string)
 		oi.PriorityCost = in["priority_cost"].(int)
 		//omit uuid
@@ -587,13 +587,13 @@ func getSliceVrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList3656(d
 	return ret
 }
 
-func getSliceVrrpAVridBladeParametersTrackingOptionsGatewayIpv6GatewayList3657(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsGatewayIpv6GatewayList3657 {
+func getSliceVrrpAVridBladeParametersTrackingOptionsGatewayIpv6GatewayList3756(d []interface{}) []edpt.VrrpAVridBladeParametersTrackingOptionsGatewayIpv6GatewayList3756 {
 
 	count1 := len(d)
-	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsGatewayIpv6GatewayList3657, 0, count1)
+	ret := make([]edpt.VrrpAVridBladeParametersTrackingOptionsGatewayIpv6GatewayList3756, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VrrpAVridBladeParametersTrackingOptionsGatewayIpv6GatewayList3657
+		var oi edpt.VrrpAVridBladeParametersTrackingOptionsGatewayIpv6GatewayList3756
 		oi.Ipv6Address = in["ipv6_address"].(string)
 		oi.PriorityCost = in["priority_cost"].(int)
 		//omit uuid
@@ -724,7 +724,7 @@ func getSliceVrrpAVridSamplingEnable(d []interface{}) []edpt.VrrpAVridSamplingEn
 
 func dataToEndpointVrrpAVrid(d *schema.ResourceData) edpt.VrrpAVrid {
 	var ret edpt.VrrpAVrid
-	ret.Inst.BladeParameters = getObjectVrrpAVridBladeParameters3644(d.Get("blade_parameters").([]interface{}))
+	ret.Inst.BladeParameters = getObjectVrrpAVridBladeParameters3743(d.Get("blade_parameters").([]interface{}))
 	ret.Inst.FloatingIp = getObjectVrrpAVridFloatingIp(d.Get("floating_ip").([]interface{}))
 	ret.Inst.Follow = getObjectVrrpAVridFollow(d.Get("follow").([]interface{}))
 	ret.Inst.PairFollow = getObjectVrrpAVridPairFollow(d.Get("pair_follow").([]interface{}))

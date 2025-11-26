@@ -56,5 +56,3 @@ Optional:
 - `if_status` (String)
 - `if_type` (String)
 - `state` (String)
-
-

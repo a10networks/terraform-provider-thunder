@@ -29,8 +29,8 @@ func resourceSlbTemplateDnsRecursiveDnsResolutionOper() *schema.Resource {
 					},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_name",
 			},
 		},
 	}
@@ -83,6 +83,6 @@ func dataToEndpointSlbTemplateDnsRecursiveDnsResolutionOper(d *schema.ResourceDa
 
 	ret.Oper = getObjectSlbTemplateDnsRecursiveDnsResolutionOperOper(d.Get("oper").([]interface{}))
 
-	ret.Name = d.Get("name").(string)
+	ret.Dns_name = d.Get("dns_name").(string)
 	return ret
 }

@@ -37,11 +37,17 @@ func resourceConfigureSync() *schema.Resource {
 			"shared": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Shared partition",
 			},
+			"timeout": {
+				Type: schema.TypeInt, Optional: true, Description: "Specify the timeout (in second)",
+			},
 			"type": {
 				Type: schema.TypeString, Optional: true, Description: "'running': Sync local running to peer's running configuration; 'all': Sync local running to peer's running configuration, and local startup to peer's startup configuration;",
 			},
 			"usr": {
 				Type: schema.TypeString, Optional: true, Description: "",
+			},
+			"uuid": {
+				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
 		},
 	}
@@ -118,7 +124,9 @@ func dataToEndpointConfigureSync(d *schema.ResourceData) edpt.ConfigureSync {
 	ret.Inst.Pwd = d.Get("pwd").(string)
 	//omit pwd_enc
 	ret.Inst.Shared = d.Get("shared").(int)
+	ret.Inst.Timeout = d.Get("timeout").(int)
 	ret.Inst.Type = d.Get("type").(string)
 	ret.Inst.Usr = d.Get("usr").(string)
+	//omit uuid
 	return ret
 }

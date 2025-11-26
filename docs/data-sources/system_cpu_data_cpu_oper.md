@@ -60,5 +60,3 @@ Optional:
 - `sec30` (Number)
 - `sec5` (Number)
 - `sec60` (Number)
-
-

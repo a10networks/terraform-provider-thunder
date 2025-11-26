@@ -50,5 +50,3 @@ Optional:
 - `calls_established` (Number) Calls Established
 - `gre_session_created` (Number) GRE Session Created
 - `gre_session_freed` (Number) GRE Session Freed
-
-

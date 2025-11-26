@@ -95,5 +95,3 @@ Optional:
 - `stapling_response_other` (Number) Total OCSP Stapling Other Response
 - `stapling_response_success` (Number) Total OCSP Stapling Success Response
 - `stapling_response_timeout` (Number) Total OCSP Stapling Timeout Response
-
-

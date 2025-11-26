@@ -45,5 +45,3 @@ output "get_cgnv6_lsn_alg_tftp_stats" {
 Optional:
 
 - `session_created` (Number) TFTP Client Sessions Created
-
-

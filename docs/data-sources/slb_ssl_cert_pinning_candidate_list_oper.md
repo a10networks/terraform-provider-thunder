@@ -64,5 +64,3 @@ Optional:
 - `list_type` (String)
 - `servername` (String)
 - `ttl` (Number)
-
-

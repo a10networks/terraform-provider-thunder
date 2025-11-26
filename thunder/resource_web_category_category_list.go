@@ -55,6 +55,9 @@ func resourceWebCategoryCategoryList() *schema.Resource {
 			"dead_sites": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Dead Sites (db Ops only)",
 			},
+			"dns_over_https": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category DNS over HTTPs",
+			},
 			"drugs": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Abused Drugs",
 			},
@@ -78,6 +81,9 @@ func resourceWebCategoryCategoryList() *schema.Resource {
 			},
 			"games": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Games",
+			},
+			"generative_ai": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Generative AI",
 			},
 			"government": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Government",
@@ -104,7 +110,7 @@ func resourceWebCategoryCategoryList() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Illegal",
 			},
 			"illegal_pornography": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Illegal join Adult and Pornography",
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Illegal Pornography eg. Child Sexual Abuse",
 			},
 			"image_and_video_search": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Image and Video Search",
@@ -129,6 +135,9 @@ func resourceWebCategoryCategoryList() *schema.Resource {
 			},
 			"local_information": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Local Information",
+			},
+			"low_thc_cannabis_products": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Low-THC Cannabis Products",
 			},
 			"malware_sites": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Malware Sites",
@@ -155,7 +164,7 @@ func resourceWebCategoryCategoryList() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Nudity",
 			},
 			"nudity_artistic": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Nudity join Entertainment and Arts",
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Artistic Nudity",
 			},
 			"online_greeting_cards": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Online Greeting cards",
@@ -204,13 +213,16 @@ func resourceWebCategoryCategoryList() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type: schema.TypeString, Optional: true, Description: "'all': all; 'uncategorized': uncategorized category; 'real-estate': real estate category; 'computer-and-internet-security': computer and internet security category; 'financial-services': financial services category; 'business-and-economy': business and economy category; 'computer-and-internet-info': computer and internet info category; 'auctions': auctions category; 'shopping': shopping category; 'cult-and-occult': cult and occult category; 'travel': travel category; 'drugs': drugs category; 'adult-and-pornography': adult and pornography category; 'home-and-garden': home and garden category; 'military': military category; 'social-network': social network category; 'dead-sites': dead sites category; 'stock-advice-and-tools': stock advice and tools category; 'training-and-tools': training and tools category; 'dating': dating category; 'sex-education': sex education category; 'religion': religion category; 'entertainment-and-arts': entertainment and arts category; 'personal-sites-and-blogs': personal sites and blogs category; 'legal': legal category; 'local-information': local information category; 'streaming-media': streaming media category; 'job-search': job search category; 'gambling': gambling category; 'translation': translation category; 'reference-and-research': reference and research category; 'shareware-and-freeware': shareware and freeware category; 'peer-to-peer': peer to peer category; 'marijuana': marijuana category; 'hacking': hacking category; 'games': games category; 'philosophy-and-politics': philosophy and politics category; 'weapons': weapons category; 'pay-to-surf': pay to surf category; 'hunting-and-fishing': hunting and fishing category; 'society': society category; 'educational-institutions': educational institutions category; 'online-greeting-cards': online greeting cards category; 'sports': sports category; 'swimsuits-and-intimate-apparel': swimsuits and intimate apparel category; 'questionable': questionable category; 'kids': kids category; 'hate-and-racism': hate and racism category; 'personal-storage': personal storage category; 'violence': violence category; 'keyloggers-and-monitoring': keyloggers and monitoring category; 'search-engines': search engines category; 'internet-portals': internet portals category; 'web-advertisements': web advertisements category; 'cheating': cheating category; 'gross': gross category; 'web-based-email': web based email category; 'malware-sites': malware sites category; 'phishing-and-other-fraud': phishing and other fraud category; 'proxy-avoid-and-anonymizers': proxy avoid and anonymizers category; 'spyware-and-adware': spyware and adware category; 'music': music category; 'government': government category; 'nudity': nudity category; 'news-and-media': news and media category; 'illegal': illegal category; 'CDNs': content delivery networks category; 'internet-communications': internet communications category; 'bot-nets': bot nets category; 'abortion': abortion category; 'health-and-medicine': health and medicine category; 'confirmed-SPAM-sources': confirmed SPAM sources category; 'SPAM-URLs': SPAM URLs category; 'unconfirmed-SPAM-sources': unconfirmed SPAM sources category; 'open-HTTP-proxies': open HTTP proxies category; 'dynamically-generated-content': dynamically generated content category; 'parked-domains': parked domains category; 'alcohol-and-tobacco': alcohol and tobacco category; 'private-IP-addresses': private IP addresses category; 'image-and-video-search': image and video search category; 'fashion-and-beauty': fashion and beauty category; 'recreation-and-hobbies': recreation and hobbies category; 'motor-vehicles': motor vehicles category; 'web-hosting-sites': web hosting sites category; 'food-and-dining': food and dining category; 'nudity-artistic': nudity join entertainment and arts; 'illegal-pornography': illegal join adult and pornography;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'uncategorized': uncategorized category; 'real-estate': real estate category; 'computer-and-internet-security': computer and internet security category; 'financial-services': financial services category; 'business-and-economy': business and economy category; 'computer-and-internet-info': computer and internet info category; 'auctions': auctions category; 'shopping': shopping category; 'cult-and-occult': cult and occult category; 'travel': travel category; 'drugs': drugs category; 'adult-and-pornography': adult and pornography category; 'home-and-garden': home and garden category; 'military': military category; 'social-network': social network category; 'dead-sites': dead sites category; 'stock-advice-and-tools': stock advice and tools category; 'training-and-tools': training and tools category; 'dating': dating category; 'sex-education': sex education category; 'religion': religion category; 'entertainment-and-arts': entertainment and arts category; 'personal-sites-and-blogs': personal sites and blogs category; 'legal': legal category; 'local-information': local information category; 'streaming-media': streaming media category; 'job-search': job search category; 'gambling': gambling category; 'translation': translation category; 'reference-and-research': reference and research category; 'shareware-and-freeware': shareware and freeware category; 'peer-to-peer': peer to peer category; 'marijuana': marijuana category; 'hacking': hacking category; 'games': games category; 'philosophy-and-politics': philosophy and politics category; 'weapons': weapons category; 'pay-to-surf': pay to surf category; 'hunting-and-fishing': hunting and fishing category; 'society': society category; 'educational-institutions': educational institutions category; 'online-greeting-cards': online greeting cards category; 'sports': sports category; 'swimsuits-and-intimate-apparel': swimsuits and intimate apparel category; 'questionable': questionable category; 'kids': kids category; 'hate-and-racism': hate and racism category; 'personal-storage': personal storage category; 'violence': violence category; 'keyloggers-and-monitoring': keyloggers and monitoring category; 'search-engines': search engines category; 'internet-portals': internet portals category; 'web-advertisements': web advertisements category; 'cheating': cheating category; 'gross': gross category; 'web-based-email': web based email category; 'malware-sites': malware sites category; 'phishing-and-other-fraud': phishing and other fraud category; 'proxy-avoid-and-anonymizers': proxy avoid and anonymizers category; 'spyware-and-adware': spyware and adware category; 'music': music category; 'government': government category; 'nudity': nudity category; 'news-and-media': news and media category; 'illegal': illegal category; 'CDNs': content delivery networks category; 'internet-communications': internet communications category; 'bot-nets': bot nets category; 'abortion': abortion category; 'health-and-medicine': health and medicine category; 'confirmed-SPAM-sources': confirmed SPAM sources category; 'SPAM-URLs': SPAM URLs category; 'unconfirmed-SPAM-sources': unconfirmed SPAM sources category; 'open-HTTP-proxies': open HTTP proxies category; 'dynamically-generated-content': dynamically generated content category; 'parked-domains': parked domains category; 'alcohol-and-tobacco': alcohol and tobacco category; 'private-IP-addresses': private IP addresses category; 'image-and-video-search': image and video search category; 'fashion-and-beauty': fashion and beauty category; 'recreation-and-hobbies': recreation and hobbies category; 'motor-vehicles': motor vehicles category; 'web-hosting-sites': web hosting sites category; 'food-and-dining': food and dining category; 'dummy-item': dummy item category; 'self-harm': self harm category; 'dns-over-https': dns over https category; 'low-thc-cannabis-products': low-thc cannabis products category; 'generative-ai': generative ai; 'nudity-artistic': artistic nudity; 'illegal-pornography': illegal pornography eg. child sexual abuse;",
 						},
 					},
 				},
 			},
 			"search_engines": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Search Engines",
+			},
+			"self_harm": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Self Harm",
 			},
 			"sex_education": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Sex Education",
@@ -371,6 +383,7 @@ func dataToEndpointWebCategoryCategoryList(d *schema.ResourceData) edpt.WebCateg
 	ret.Inst.CultAndOccult = d.Get("cult_and_occult").(int)
 	ret.Inst.Dating = d.Get("dating").(int)
 	ret.Inst.DeadSites = d.Get("dead_sites").(int)
+	ret.Inst.DnsOverHttps = d.Get("dns_over_https").(int)
 	ret.Inst.Drugs = d.Get("drugs").(int)
 	ret.Inst.DynamicallyGeneratedContent = d.Get("dynamically_generated_content").(int)
 	ret.Inst.EducationalInstitutions = d.Get("educational_institutions").(int)
@@ -379,6 +392,7 @@ func dataToEndpointWebCategoryCategoryList(d *schema.ResourceData) edpt.WebCateg
 	ret.Inst.FinancialServices = d.Get("financial_services").(int)
 	ret.Inst.Gambling = d.Get("gambling").(int)
 	ret.Inst.Games = d.Get("games").(int)
+	ret.Inst.GenerativeAi = d.Get("generative_ai").(int)
 	ret.Inst.Government = d.Get("government").(int)
 	ret.Inst.Gross = d.Get("gross").(int)
 	ret.Inst.Hacking = d.Get("hacking").(int)
@@ -396,6 +410,7 @@ func dataToEndpointWebCategoryCategoryList(d *schema.ResourceData) edpt.WebCateg
 	ret.Inst.Kids = d.Get("kids").(int)
 	ret.Inst.Legal = d.Get("legal").(int)
 	ret.Inst.LocalInformation = d.Get("local_information").(int)
+	ret.Inst.LowThcCannabisProducts = d.Get("low_thc_cannabis_products").(int)
 	ret.Inst.MalwareSites = d.Get("malware_sites").(int)
 	ret.Inst.Marijuana = d.Get("marijuana").(int)
 	ret.Inst.Military = d.Get("military").(int)
@@ -421,6 +436,7 @@ func dataToEndpointWebCategoryCategoryList(d *schema.ResourceData) edpt.WebCateg
 	ret.Inst.Religion = d.Get("religion").(int)
 	ret.Inst.SamplingEnable = getSliceWebCategoryCategoryListSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.SearchEngines = d.Get("search_engines").(int)
+	ret.Inst.SelfHarm = d.Get("self_harm").(int)
 	ret.Inst.SexEducation = d.Get("sex_education").(int)
 	ret.Inst.SharewareAndFreeware = d.Get("shareware_and_freeware").(int)
 	ret.Inst.Shopping = d.Get("shopping").(int)

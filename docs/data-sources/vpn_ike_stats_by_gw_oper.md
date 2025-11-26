@@ -112,5 +112,3 @@ Optional:
 - `v2_out_init_req` (Number)
 - `v2_out_init_rsp` (Number)
 - `v2_rsp_rekey` (Number)
-
-

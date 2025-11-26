@@ -46,5 +46,3 @@ Optional:
 
 - `down_id` (Number)
 - `down_reason` (String) health down reason
-
-

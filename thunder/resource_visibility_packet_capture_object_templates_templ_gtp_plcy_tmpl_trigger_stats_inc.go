@@ -109,8 +109,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsI
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"templ_gtp_plcy_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Templ_gtp_plcy_tmpl_name",
 			},
 		},
 	}
@@ -210,6 +210,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTrigger
 	ret.Inst.DropVldV2ReservedMessageDrop = d.Get("drop_vld_v2_reserved_message_drop").(int)
 	ret.Inst.DropVldVersionNotSupported = d.Get("drop_vld_version_not_supported").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Templ_gtp_plcy_tmpl_name = d.Get("templ_gtp_plcy_tmpl_name").(string)
 	return ret
 }

@@ -189,10 +189,10 @@ func resourceVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplRead(c
 	return diags
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsInc2663(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsInc2663 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsInc2761(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsInc2761 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsInc2663
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsInc2761
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.JwtAuthorizeFailure = in["jwt_authorize_failure"].(int)
@@ -206,10 +206,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTrigg
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRate2664(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRate2664 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRate2762(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRate2762 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRate2664
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRate2762
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -225,10 +225,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTrigg
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsSeverity2665(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsSeverity2665 {
+func getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsSeverity2763(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsSeverity2763 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsSeverity2665
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsSeverity2763
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -248,9 +248,9 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmpl
 	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmpl
 	ret.Inst.CaptureConfig = d.Get("capture_config").(string)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsInc2663(d.Get("trigger_stats_inc").([]interface{}))
-	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRate2664(d.Get("trigger_stats_rate").([]interface{}))
-	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsSeverity2665(d.Get("trigger_stats_severity").([]interface{}))
+	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsInc2761(d.Get("trigger_stats_inc").([]interface{}))
+	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsRate2762(d.Get("trigger_stats_rate").([]interface{}))
+	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTriggerStatsSeverity2763(d.Get("trigger_stats_severity").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

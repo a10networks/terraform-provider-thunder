@@ -80,8 +80,8 @@ func resourceDdosNotificationTemplateApi() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"notification_template_name": {
+				Type: schema.TypeString, Required: true, Description: "Notification_template_name",
 			},
 		},
 	}
@@ -148,10 +148,10 @@ func resourceDdosNotificationTemplateApiRead(ctx context.Context, d *schema.Reso
 	return diags
 }
 
-func getObjectDdosNotificationTemplateApiAuthentication284(d []interface{}) edpt.DdosNotificationTemplateApiAuthentication284 {
+func getObjectDdosNotificationTemplateApiAuthentication323(d []interface{}) edpt.DdosNotificationTemplateApiAuthentication323 {
 
 	count1 := len(d)
-	var ret edpt.DdosNotificationTemplateApiAuthentication284
+	var ret edpt.DdosNotificationTemplateApiAuthentication323
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RelativeLoginUri = in["relative_login_uri"].(string)
@@ -170,7 +170,7 @@ func getObjectDdosNotificationTemplateApiAuthentication284(d []interface{}) edpt
 
 func dataToEndpointDdosNotificationTemplateApi(d *schema.ResourceData) edpt.DdosNotificationTemplateApi {
 	var ret edpt.DdosNotificationTemplateApi
-	ret.Inst.Authentication = getObjectDdosNotificationTemplateApiAuthentication284(d.Get("authentication").([]interface{}))
+	ret.Inst.Authentication = getObjectDdosNotificationTemplateApiAuthentication323(d.Get("authentication").([]interface{}))
 	ret.Inst.DisableAuthentication = d.Get("disable_authentication").(int)
 	ret.Inst.HostIpv4Address = d.Get("host_ipv4_address").(string)
 	ret.Inst.HostIpv6Address = d.Get("host_ipv6_address").(string)
@@ -182,6 +182,6 @@ func dataToEndpointDdosNotificationTemplateApi(d *schema.ResourceData) edpt.Ddos
 	ret.Inst.Timeout = d.Get("timeout").(int)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Notification_template_name = d.Get("notification_template_name").(string)
 	return ret
 }

@@ -527,6 +527,18 @@ func resourceDdosDnsUdpPortStats() *schema.Resource {
 						"exceed_action_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Exceed Action: Dropped",
 						},
+						"query_forward_rate_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Query Forward Rate Exceed",
+						},
+						"alias_forward_rate_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "ALIAS Forward Rate Exceed",
+						},
+						"dnssec_wildcard_forward_rate_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "DNSSEC Wildcard Forward Rate Exceed",
+						},
+						"rrsig_expire_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "RRSIG Expire: Drop",
+						},
 					},
 				},
 			},
@@ -726,6 +738,10 @@ func setObjectDdosDnsUdpPortStatsStats(ret edpt.DataDdosDnsUdpPortStats) []inter
 			"token_authentication_session_created_fail": ret.DtDdosDnsUdpPortStats.Stats.Token_authentication_session_created_fail,
 			"snat_fail":                                 ret.DtDdosDnsUdpPortStats.Stats.Snat_fail,
 			"exceed_action_drop":                        ret.DtDdosDnsUdpPortStats.Stats.Exceed_action_drop,
+			"query_forward_rate_exceed":                 ret.DtDdosDnsUdpPortStats.Stats.Query_forward_rate_exceed,
+			"alias_forward_rate_exceed":                 ret.DtDdosDnsUdpPortStats.Stats.Alias_forward_rate_exceed,
+			"dnssec_wildcard_forward_rate_exceed":       ret.DtDdosDnsUdpPortStats.Stats.Dnssec_wildcard_forward_rate_exceed,
+			"rrsig_expire_drop":                         ret.DtDdosDnsUdpPortStats.Stats.Rrsig_expire_drop,
 		},
 	}
 }
@@ -906,6 +922,10 @@ func getObjectDdosDnsUdpPortStatsStats(d []interface{}) edpt.DdosDnsUdpPortStats
 		ret.Token_authentication_session_created_fail = in["token_authentication_session_created_fail"].(int)
 		ret.Snat_fail = in["snat_fail"].(int)
 		ret.Exceed_action_drop = in["exceed_action_drop"].(int)
+		ret.Query_forward_rate_exceed = in["query_forward_rate_exceed"].(int)
+		ret.Alias_forward_rate_exceed = in["alias_forward_rate_exceed"].(int)
+		ret.Dnssec_wildcard_forward_rate_exceed = in["dnssec_wildcard_forward_rate_exceed"].(int)
+		ret.Rrsig_expire_drop = in["rrsig_expire_drop"].(int)
 	}
 	return ret
 }

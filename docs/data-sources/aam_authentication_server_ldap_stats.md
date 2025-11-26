@@ -107,5 +107,3 @@ Optional:
 - `ssl_session_created` (Number) TLS/SSL Session Created
 - `ssl_session_failure` (Number) TLS/SSL Session Failure
 - `timeout_error` (Number) Total Timeout
-
-

@@ -62,6 +62,16 @@ func resourceEnableManagementServiceHttps() *schema.Resource {
 								},
 							},
 						},
+						"lif_cfg": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"lif": {
+										Type: schema.TypeString, Optional: true, Description: "Lif name (Lif interface name)",
+									},
+								},
+							},
+						},
 						"management": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Management Interface",
 						},
@@ -123,6 +133,16 @@ func resourceEnableManagementServiceHttps() *schema.Resource {
 								},
 							},
 						},
+						"lif_cfg": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"lif": {
+										Type: schema.TypeString, Optional: true, Description: "Lif name (Lif interface name)",
+									},
+								},
+							},
+						},
 						"management": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Management Interface",
 						},
@@ -150,6 +170,16 @@ func resourceEnableManagementServiceHttps() *schema.Resource {
 						},
 						"ethernet_end": {
 							Type: schema.TypeInt, Optional: true, Description: "Ethernet port",
+						},
+					},
+				},
+			},
+			"lif_cfg": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"lif": {
+							Type: schema.TypeString, Optional: true, Description: "Lif name (Lif interface name)",
 						},
 					},
 				},
@@ -259,6 +289,7 @@ func getSliceEnableManagementServiceHttpsAclV4List(d []interface{}) []edpt.Enabl
 		oi.EthCfg = getSliceEnableManagementServiceHttpsAclV4ListEthCfg(in["eth_cfg"].([]interface{}))
 		oi.VeCfg = getSliceEnableManagementServiceHttpsAclV4ListVeCfg(in["ve_cfg"].([]interface{}))
 		oi.TunnelCfg = getSliceEnableManagementServiceHttpsAclV4ListTunnelCfg(in["tunnel_cfg"].([]interface{}))
+		oi.LifCfg = getObjectEnableManagementServiceHttpsAclV4ListLifCfg(in["lif_cfg"].([]interface{}))
 		oi.Management = in["management"].(int)
 		oi.AllDataIntf = in["all_data_intf"].(int)
 		//omit uuid
@@ -310,6 +341,17 @@ func getSliceEnableManagementServiceHttpsAclV4ListTunnelCfg(d []interface{}) []e
 	return ret
 }
 
+func getObjectEnableManagementServiceHttpsAclV4ListLifCfg(d []interface{}) edpt.EnableManagementServiceHttpsAclV4ListLifCfg {
+
+	count1 := len(d)
+	var ret edpt.EnableManagementServiceHttpsAclV4ListLifCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Lif = in["lif"].(string)
+	}
+	return ret
+}
+
 func getSliceEnableManagementServiceHttpsAclV6List(d []interface{}) []edpt.EnableManagementServiceHttpsAclV6List {
 
 	count1 := len(d)
@@ -321,6 +363,7 @@ func getSliceEnableManagementServiceHttpsAclV6List(d []interface{}) []edpt.Enabl
 		oi.EthCfg = getSliceEnableManagementServiceHttpsAclV6ListEthCfg(in["eth_cfg"].([]interface{}))
 		oi.VeCfg = getSliceEnableManagementServiceHttpsAclV6ListVeCfg(in["ve_cfg"].([]interface{}))
 		oi.TunnelCfg = getSliceEnableManagementServiceHttpsAclV6ListTunnelCfg(in["tunnel_cfg"].([]interface{}))
+		oi.LifCfg = getObjectEnableManagementServiceHttpsAclV6ListLifCfg(in["lif_cfg"].([]interface{}))
 		oi.Management = in["management"].(int)
 		oi.AllDataIntf = in["all_data_intf"].(int)
 		//omit uuid
@@ -372,6 +415,17 @@ func getSliceEnableManagementServiceHttpsAclV6ListTunnelCfg(d []interface{}) []e
 	return ret
 }
 
+func getObjectEnableManagementServiceHttpsAclV6ListLifCfg(d []interface{}) edpt.EnableManagementServiceHttpsAclV6ListLifCfg {
+
+	count1 := len(d)
+	var ret edpt.EnableManagementServiceHttpsAclV6ListLifCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Lif = in["lif"].(string)
+	}
+	return ret
+}
+
 func getSliceEnableManagementServiceHttpsEthCfg(d []interface{}) []edpt.EnableManagementServiceHttpsEthCfg {
 
 	count1 := len(d)
@@ -382,6 +436,17 @@ func getSliceEnableManagementServiceHttpsEthCfg(d []interface{}) []edpt.EnableMa
 		oi.EthernetStart = in["ethernet_start"].(int)
 		oi.EthernetEnd = in["ethernet_end"].(int)
 		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectEnableManagementServiceHttpsLifCfg(d []interface{}) edpt.EnableManagementServiceHttpsLifCfg {
+
+	count1 := len(d)
+	var ret edpt.EnableManagementServiceHttpsLifCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Lif = in["lif"].(string)
 	}
 	return ret
 }
@@ -420,6 +485,7 @@ func dataToEndpointEnableManagementServiceHttps(d *schema.ResourceData) edpt.Ena
 	ret.Inst.AclV6List = getSliceEnableManagementServiceHttpsAclV6List(d.Get("acl_v6_list").([]interface{}))
 	ret.Inst.AllDataIntf = d.Get("all_data_intf").(int)
 	ret.Inst.EthCfg = getSliceEnableManagementServiceHttpsEthCfg(d.Get("eth_cfg").([]interface{}))
+	ret.Inst.LifCfg = getObjectEnableManagementServiceHttpsLifCfg(d.Get("lif_cfg").([]interface{}))
 	ret.Inst.TunnelCfg = getSliceEnableManagementServiceHttpsTunnelCfg(d.Get("tunnel_cfg").([]interface{}))
 	//omit uuid
 	ret.Inst.VeCfg = getSliceEnableManagementServiceHttpsVeCfg(d.Get("ve_cfg").([]interface{}))

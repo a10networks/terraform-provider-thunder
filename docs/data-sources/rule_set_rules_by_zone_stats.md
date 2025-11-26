@@ -37,7 +37,7 @@ output "get_rule_set_rules_by_zone_stats" {
 
 ### Required
 
-- `name` (String) Name
+- `rule_set_name` (String) Rule_set_name
 
 ### Optional
 
@@ -53,5 +53,3 @@ output "get_rule_set_rules_by_zone_stats" {
 Optional:
 
 - `dummy` (Number) Entry for a10countergen
-
-

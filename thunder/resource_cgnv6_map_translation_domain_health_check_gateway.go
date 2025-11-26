@@ -42,8 +42,8 @@ func resourceCgnv6MapTranslationDomainHealthCheckGateway() *schema.Resource {
 			"withdraw_route": {
 				Type: schema.TypeString, Optional: true, Default: "any-link-failure", Description: "'all-link-failure': Withdraw routes on health-check failure of all IPv4 gateways or all IPv6 gateways; 'any-link-failure': Withdraw routes on health-check failure of any gateway (default);",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"domain_name": {
+				Type: schema.TypeString, Required: true, Description: "Domain_name",
 			},
 		},
 	}
@@ -142,6 +142,6 @@ func dataToEndpointCgnv6MapTranslationDomainHealthCheckGateway(d *schema.Resourc
 	ret.Inst.Ipv6AddressList = getSliceCgnv6MapTranslationDomainHealthCheckGatewayIpv6AddressList(d.Get("ipv6_address_list").([]interface{}))
 	//omit uuid
 	ret.Inst.WithdrawRoute = d.Get("withdraw_route").(string)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Domain_name = d.Get("domain_name").(string)
 	return ret
 }

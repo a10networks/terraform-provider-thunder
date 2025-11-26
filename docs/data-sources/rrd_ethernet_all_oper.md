@@ -63,5 +63,3 @@ Optional:
 
 - `time` (Number)
 - `tx_bits` (Number)
-
-

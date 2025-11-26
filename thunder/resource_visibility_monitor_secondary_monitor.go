@@ -160,10 +160,10 @@ func getSliceVisibilityMonitorSecondaryMonitorDebugList(d []interface{}) []edpt.
 	return ret
 }
 
-func getObjectVisibilityMonitorSecondaryMonitorDeleteDebugFile1914(d []interface{}) edpt.VisibilityMonitorSecondaryMonitorDeleteDebugFile1914 {
+func getObjectVisibilityMonitorSecondaryMonitorDeleteDebugFile2039(d []interface{}) edpt.VisibilityMonitorSecondaryMonitorDeleteDebugFile2039 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitorSecondaryMonitorDeleteDebugFile1914
+	var ret edpt.VisibilityMonitorSecondaryMonitorDeleteDebugFile2039
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DebugIpAddr = in["debug_ip_addr"].(string)
@@ -173,10 +173,10 @@ func getObjectVisibilityMonitorSecondaryMonitorDeleteDebugFile1914(d []interface
 	return ret
 }
 
-func getObjectVisibilityMonitorSecondaryMonitorReplayDebugFile1915(d []interface{}) edpt.VisibilityMonitorSecondaryMonitorReplayDebugFile1915 {
+func getObjectVisibilityMonitorSecondaryMonitorReplayDebugFile2040(d []interface{}) edpt.VisibilityMonitorSecondaryMonitorReplayDebugFile2040 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityMonitorSecondaryMonitorReplayDebugFile1915
+	var ret edpt.VisibilityMonitorSecondaryMonitorReplayDebugFile2040
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DebugIpAddr = in["debug_ip_addr"].(string)
@@ -189,9 +189,9 @@ func getObjectVisibilityMonitorSecondaryMonitorReplayDebugFile1915(d []interface
 func dataToEndpointVisibilityMonitorSecondaryMonitor(d *schema.ResourceData) edpt.VisibilityMonitorSecondaryMonitor {
 	var ret edpt.VisibilityMonitorSecondaryMonitor
 	ret.Inst.DebugList = getSliceVisibilityMonitorSecondaryMonitorDebugList(d.Get("debug_list").([]interface{}))
-	ret.Inst.DeleteDebugFile = getObjectVisibilityMonitorSecondaryMonitorDeleteDebugFile1914(d.Get("delete_debug_file").([]interface{}))
+	ret.Inst.DeleteDebugFile = getObjectVisibilityMonitorSecondaryMonitorDeleteDebugFile2039(d.Get("delete_debug_file").([]interface{}))
 	ret.Inst.MonEntityTopk = d.Get("mon_entity_topk").(int)
-	ret.Inst.ReplayDebugFile = getObjectVisibilityMonitorSecondaryMonitorReplayDebugFile1915(d.Get("replay_debug_file").([]interface{}))
+	ret.Inst.ReplayDebugFile = getObjectVisibilityMonitorSecondaryMonitorReplayDebugFile2040(d.Get("replay_debug_file").([]interface{}))
 	ret.Inst.SecondaryMonitoringKey = d.Get("secondary_monitoring_key").(string)
 	ret.Inst.SourceEntityTopk = d.Get("source_entity_topk").(int)
 	//omit uuid

@@ -57,5 +57,3 @@ Optional:
 - `fail` (Number)
 - `free` (Number)
 - `type` (String)
-
-

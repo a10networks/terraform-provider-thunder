@@ -23,13 +23,13 @@ func resourceFlowspecProtocol() *schema.Resource {
 				Type: schema.TypeInt, Required: true, Description: "Specify the protocol number(6 for TCP and 17 for UDP)",
 			},
 			"proto_num_end": {
-				Type: schema.TypeInt, Optional: true, Description: "Specify the protocol number",
+				Type: schema.TypeInt, Required: true, Description: "Specify the protocol number",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"flowspec_name": {
+				Type: schema.TypeString, Required: true, Description: "Flowspec_name",
 			},
 		},
 	}
@@ -102,6 +102,6 @@ func dataToEndpointFlowspecProtocol(d *schema.ResourceData) edpt.FlowspecProtoco
 	ret.Inst.ProtoNum = d.Get("proto_num").(int)
 	ret.Inst.ProtoNumEnd = d.Get("proto_num_end").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Flowspec_name = d.Get("flowspec_name").(string)
 	return ret
 }

@@ -46,17 +46,21 @@ output "get_slb_hm_dplane_stats" {
 Optional:
 
 - `curr_entries` (Number) Current HM Entries
+- `curr_ready_to_free` (Number) Current HM entries ready to free
 - `entry_deleted` (Number) Entry deleted
+- `err_create_ssl_ctx_fail` (Number) Error in creating SSL CTX
 - `err_entry_create_failed` (Number) Entry Creation Failure
 - `err_entry_create_oom` (Number) Entry creation out of memory
-- `err_entry_create_vip_failed` (Number) Error in creating HM internal VIP
+- `err_entry_create_slb_failed` (Number) Error in creating HM internal SLB Resource
 - `err_entry_insert_failed` (Number) Entry insert failed
+- `err_entry_missing_vport` (Number) Entry missing Virtual-Port
 - `err_hm_tcp_conn_sent` (Number) Error in initiating TCP connection for HM
 - `err_http2_callback` (Number) Error HTTP2 callback
 - `err_http2_ver_mismatch` (Number) Error HTTP2 version mismatch
 - `err_l4_sess_alloc` (Number) Error allocating L4 session for HM
 - `err_l7_sess_process_tcp_data_failed` (Number) L7 session process TCP data failed
 - `err_l7_sess_process_tcp_estab_failed` (Number) L7 session process TCP established failed
+- `err_missing_server_ssl_template` (Number) Missing Server-SSL Template
 - `err_no_hm_entry` (Number) Error no HM entry found
 - `err_server_syn_timeout` (Number) Error SSL server SYN timeout
 - `err_smart_nat_alloc` (Number) Error creating smart-nat instance
@@ -73,10 +77,8 @@ Optional:
 - `total_maintenance_received` (Number) Total maintenace response received
 - `total_match_default_resp_code` (Number) Total HTTP received response with match 200 response code
 - `total_match_resp_code` (Number) Total HTTP received response with match response code
-- `total_ready_to_free` (Number) Total HM entries ready to free
 - `total_server_quic_conn` (Number) Total start server QUIC connections
 - `total_server_quic_conn_err` (Number) Total start server QUIC connections error
+- `total_start_server_conn_err` (Number) Total start server connections error
 - `total_tcp_err` (Number) Total TCP errors in health-checks sent
 - `total_wrong_status_received` (Number) Total HTTP received response with wrong response code
-
-

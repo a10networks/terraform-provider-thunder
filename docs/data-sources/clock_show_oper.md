@@ -50,5 +50,3 @@ Optional:
 - `source_type` (Number)
 - `time` (String)
 - `timezone` (String)
-
-

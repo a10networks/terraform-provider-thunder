@@ -94,5 +94,3 @@ Optional:
 - `src_pkt_other` (String)
 - `src_pkt_tcp` (String)
 - `src_pkt_udp` (String)
-
-

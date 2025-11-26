@@ -29,7 +29,7 @@ func resourceDdosZoneTemplateLogging() *schema.Resource {
 				Type: schema.TypeString, Required: true, Description: "DDOS Logging Template Name",
 			},
 			"use_obj_name": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Show obj name instead of ip in the log",
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Show obj name in the log",
 			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",

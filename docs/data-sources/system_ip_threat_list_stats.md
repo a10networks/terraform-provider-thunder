@@ -52,5 +52,3 @@ Optional:
 - `error_out_of_spe_entries` (Number) Out of SPE Entries Error
 - `packet_hit_count_in_spe` (Number) Packet Hit Count in SPE
 - `packet_hit_count_in_sw` (Number) Packet Hit Count in SW
-
-

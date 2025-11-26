@@ -96,6 +96,10 @@ Optional:
 - `nat_pool_addr_default` (Number)
 - `nat_pool_addr_max` (Number)
 - `nat_pool_addr_min` (Number)
+- `ngwaf_cache_entry_cur` (Number)
+- `ngwaf_cache_entry_default` (Number)
+- `ngwaf_cache_entry_max` (Number)
+- `ngwaf_cache_entry_min` (Number)
 - `radius_table_size_cur` (Number)
 - `radius_table_size_default` (Number)
 - `radius_table_size_max` (Number)
@@ -108,9 +112,3 @@ Optional:
 - `visibility_mon_entity_default` (Number)
 - `visibility_mon_entity_max` (Number)
 - `visibility_mon_entity_min` (Number)
-- `waf_template_cur` (Number)
-- `waf_template_default` (Number)
-- `waf_template_max` (Number)
-- `waf_template_min` (Number)
-
-

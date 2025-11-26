@@ -57,5 +57,3 @@ Optional:
 - `truncated_pac_message` (Number)
 - `truncated_pns_message` (Number)
 - `unknown_gre_version` (Number)
-
-

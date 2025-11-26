@@ -75,5 +75,3 @@ Optional:
 - `src_other_filter_action_whitelist` (Number) Src Filter Action WL
 - `src_other_filter_match` (Number) Src Filter Match
 - `src_other_filter_not_match` (Number) Src Filter No Match
-
-

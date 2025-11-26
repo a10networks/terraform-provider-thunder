@@ -61,6 +61,7 @@ Optional:
 - `disk_used` (Number)
 - `fpga_date` (String)
 - `fpga_summary` (String)
+- `hw_gpus` (String)
 - `ipmi` (String)
 - `l23_asic` (String)
 - `mcpld_date` (String)
@@ -126,5 +127,3 @@ Optional:
 - `nitroxpx` (Number)
 - `ssl_devices` (Number)
 - `unknown_ssl_cards` (Number)
-
-

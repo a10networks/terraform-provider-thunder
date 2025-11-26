@@ -34,6 +34,9 @@ func resourceVisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsRate(
 			"dns_filter_class_others_drop": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for counters DNS Filter Class OTHER Drop",
 			},
+			"dns_filter_tld_drop": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for counters Total DNS Filter TLD Drop",
+			},
 			"dns_filter_type_a_drop": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for counters DNS Filter Type A Drop",
 			},
@@ -109,8 +112,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStatsRate(
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns_vport_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_vport_tmpl_name",
 			},
 		},
 	}
@@ -185,6 +188,7 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStat
 	ret.Inst.Dns_filter_class_internet_drop = d.Get("dns_filter_class_internet_drop").(int)
 	ret.Inst.Dns_filter_class_none_drop = d.Get("dns_filter_class_none_drop").(int)
 	ret.Inst.Dns_filter_class_others_drop = d.Get("dns_filter_class_others_drop").(int)
+	ret.Inst.Dns_filter_tld_drop = d.Get("dns_filter_tld_drop").(int)
 	ret.Inst.Dns_filter_type_a_drop = d.Get("dns_filter_type_a_drop").(int)
 	ret.Inst.Dns_filter_type_aaaa_drop = d.Get("dns_filter_type_aaaa_drop").(int)
 	ret.Inst.Dns_filter_type_any_drop = d.Get("dns_filter_type_any_drop").(int)
@@ -210,6 +214,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesDnsVportTmplTriggerStat
 	ret.Inst.Total_filter_drop = d.Get("total_filter_drop").(int)
 	ret.Inst.Total_max_query_len_drop = d.Get("total_max_query_len_drop").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dns_vport_tmpl_name = d.Get("dns_vport_tmpl_name").(string)
 	return ret
 }

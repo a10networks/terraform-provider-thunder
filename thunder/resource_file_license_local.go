@@ -17,7 +17,7 @@ func resourceFileLicenseLocal() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"action": {
-				Type: schema.TypeString, Optional: true, Description: "'create': create; 'import': import; 'export': export; 'copy': copy; 'rename': rename; 'check': check; 'replace': replace; 'delete': delete;",
+				Type: schema.TypeString, Optional: true, Description: "'import': import; 'export': export;",
 			},
 			"device": {
 				Type: schema.TypeInt, Optional: true, Description: "Device (Device ID)",

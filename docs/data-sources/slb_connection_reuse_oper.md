@@ -53,6 +53,8 @@ Optional:
 Optional:
 
 - `current_active` (Number)
+- `current_http1_conn_in_the_pool` (Number)
+- `current_http2_conn_in_the_pool` (Number)
 - `current_open` (Number)
 - `delay_unbind` (Number)
 - `long_resp` (Number)
@@ -67,5 +69,5 @@ Optional:
 - `pause_conn_fail` (Number)
 - `resume_conn` (Number)
 - `unbound_data_rcv` (Number)
-
-
+- `zero_pconn_bind_value` (Number)
+- `zero_pconn_value` (Number)

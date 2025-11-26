@@ -87,5 +87,3 @@ Optional:
 - `response_timeout` (Number) Total Timeout Response
 - `timeout_error` (Number) Total Timeout
 - `verify_succ` (Number) Total Verification Success Response
-
-

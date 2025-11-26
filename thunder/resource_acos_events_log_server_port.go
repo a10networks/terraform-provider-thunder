@@ -47,8 +47,8 @@ func resourceAcosEventsLogServerPort() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"log_server_name": {
+				Type: schema.TypeString, Required: true, Description: "Log_server_name",
 			},
 		},
 	}
@@ -138,6 +138,6 @@ func dataToEndpointAcosEventsLogServerPort(d *schema.ResourceData) edpt.AcosEven
 	ret.Inst.SamplingEnable = getSliceAcosEventsLogServerPortSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Log_server_name = d.Get("log_server_name").(string)
 	return ret
 }

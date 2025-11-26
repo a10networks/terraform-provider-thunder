@@ -164,6 +164,9 @@ func resourceAamAuthenticationSamlServiceProvider() *schema.Resource {
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
 			},
+			"username_attribute": {
+				Type: schema.TypeString, Optional: true, Description: "Specify the assertion attribute which value is username",
+			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
@@ -380,6 +383,7 @@ func dataToEndpointAamAuthenticationSamlServiceProvider(d *schema.ResourceData) 
 	ret.Inst.SoapTlsCertificateValidate = getObjectAamAuthenticationSamlServiceProviderSoapTlsCertificateValidate(d.Get("soap_tls_certificate_validate").([]interface{}))
 	ret.Inst.SpInitiatedSingleLogoutService = getSliceAamAuthenticationSamlServiceProviderSpInitiatedSingleLogoutService(d.Get("sp_initiated_single_logout_service").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
+	ret.Inst.UsernameAttribute = d.Get("username_attribute").(string)
 	//omit uuid
 	return ret
 }

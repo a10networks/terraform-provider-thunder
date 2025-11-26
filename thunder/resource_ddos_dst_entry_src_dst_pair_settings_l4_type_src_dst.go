@@ -31,11 +31,11 @@ func resourceDdosDstEntrySrcDstPairSettingsL4TypeSrcDst() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"all_types": {
-				Type: schema.TypeString, Required: true, Description: "AllTypes",
-			},
 			"dst_entry_name": {
 				Type: schema.TypeString, Required: true, Description: "DstEntryName",
+			},
+			"all_types": {
+				Type: schema.TypeString, Required: true, Description: "AllTypes",
 			},
 		},
 	}
@@ -109,7 +109,7 @@ func dataToEndpointDdosDstEntrySrcDstPairSettingsL4TypeSrcDst(d *schema.Resource
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.AllTypes = d.Get("all_types").(string)
 	ret.Inst.DstEntryName = d.Get("dst_entry_name").(string)
+	ret.Inst.AllTypes = d.Get("all_types").(string)
 	return ret
 }

@@ -82,8 +82,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerStatsRate
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"smtp_vport_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Smtp_vport_tmpl_name",
 			},
 		},
 	}
@@ -174,6 +174,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesSmtpVportTmplTriggerSta
 	ret.Inst.ThresholdExceededBy = d.Get("threshold_exceeded_by").(int)
 	ret.Inst.Too_many_headers = d.Get("too_many_headers").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Smtp_vport_tmpl_name = d.Get("smtp_vport_tmpl_name").(string)
 	return ret
 }

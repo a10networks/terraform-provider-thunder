@@ -76,6 +76,9 @@ func resourceSlbResourceUsage() *schema.Resource {
 			"link_cost_template_count": {
 				Type: schema.TypeInt, Optional: true, Description: "Total configurable Link-cost Templates in the System",
 			},
+			"log_template_count": {
+				Type: schema.TypeInt, Optional: true, Description: "Total configurable SLB Logging Templates in the System",
+			},
 			"nat_pool_addr_count": {
 				Type: schema.TypeInt, Optional: true, Description: "Total configurable NAT Pool addresses in the System (deprecated)",
 			},
@@ -208,6 +211,7 @@ func dataToEndpointSlbResourceUsage(d *schema.ResourceData) edpt.SlbResourceUsag
 	ret.Inst.HealthMonitorCount = d.Get("health_monitor_count").(int)
 	ret.Inst.HttpTemplateCount = d.Get("http_template_count").(int)
 	ret.Inst.LinkCostTemplateCount = d.Get("link_cost_template_count").(int)
+	ret.Inst.LogTemplateCount = d.Get("log_template_count").(int)
 	ret.Inst.NatPoolAddrCount = d.Get("nat_pool_addr_count").(int)
 	ret.Inst.PbslbEntryCount = d.Get("pbslb_entry_count").(int)
 	ret.Inst.PbslbSubnetCount = d.Get("pbslb_subnet_count").(int)

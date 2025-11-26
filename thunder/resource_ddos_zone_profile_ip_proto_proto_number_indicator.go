@@ -17,7 +17,7 @@ func resourceDdosZoneProfileIpProtoProtoNumberIndicator() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"indicator_name": {
-				Type: schema.TypeString, Required: true, Description: "'pkt-rate': pkt-rate; 'pkt-drop-rate': pkt-drop-rate; 'bit-rate': bit-rate; 'pkt-drop-ratio': pkt-drop-ratio; 'bytes-to-bytes-from-ratio': bytes-to-bytes-from-ratio; 'frag-rate': frag-rate; 'cpu-utilization': cpu-utilization; 'interface-utilization': interface-utilization;",
+				Type: schema.TypeString, Required: true, Description: "'pkt-rate': pkt-rate; 'pkt-drop-rate': pkt-drop-rate; 'bit-rate': bit-rate; 'pkt-drop-ratio': pkt-drop-ratio; 'bytes-to-bytes-from-ratio': bytes-to-bytes-from-ratio; 'frag-rate': frag-rate; 'cpu-utilization': cpu-utilization; 'interface-utilization': interface-utilization; 'learnt-sources': learnt-sources;",
 			},
 			"src_threshold_cfg": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -57,11 +57,11 @@ func resourceDdosZoneProfileIpProtoProtoNumberIndicator() *schema.Resource {
 					},
 				},
 			},
-			"protocol_num": {
-				Type: schema.TypeString, Required: true, Description: "ProtocolNum",
-			},
 			"profile_name": {
 				Type: schema.TypeString, Required: true, Description: "ProfileName",
+			},
+			"protocol_num": {
+				Type: schema.TypeString, Required: true, Description: "ProtocolNum",
 			},
 		},
 	}
@@ -161,7 +161,7 @@ func dataToEndpointDdosZoneProfileIpProtoProtoNumberIndicator(d *schema.Resource
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ZoneThresholdCfg = getObjectDdosZoneProfileIpProtoProtoNumberIndicatorZoneThresholdCfg(d.Get("zone_threshold_cfg").([]interface{}))
-	ret.Inst.ProtocolNum = d.Get("protocol_num").(string)
 	ret.Inst.ProfileName = d.Get("profile_name").(string)
+	ret.Inst.ProtocolNum = d.Get("protocol_num").(string)
 	return ret
 }

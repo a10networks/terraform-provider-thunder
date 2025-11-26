@@ -105,5 +105,3 @@ Optional:
 - `sflow_source_id` (String)
 - `src_address_str` (String)
 - `state_str` (String)
-
-

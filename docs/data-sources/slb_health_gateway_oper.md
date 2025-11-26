@@ -47,5 +47,3 @@ Optional:
 - `enabled` (Number)
 - `interval` (Number)
 - `timeout` (Number)
-
-

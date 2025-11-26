@@ -72,5 +72,3 @@ Optional:
 
 - `trunk_member_num` (Number)
 - `trunk_member_status` (String)
-
-

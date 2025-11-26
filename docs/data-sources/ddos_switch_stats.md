@@ -65,5 +65,3 @@ Optional:
 - `noroute` (Number) IPv4/v6 Out No Route
 - `pkt_not_for_ddos` (Number) Not For DDOS
 - `src_ip_bypass` (Number) Src IP Bypass
-
-

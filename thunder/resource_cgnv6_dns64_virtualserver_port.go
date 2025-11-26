@@ -94,8 +94,8 @@ func resourceCgnv6Dns64VirtualserverPort() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns64_virtualserver_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns64_virtualserver_name",
 			},
 		},
 	}
@@ -222,6 +222,6 @@ func dataToEndpointCgnv6Dns64VirtualserverPort(d *schema.ResourceData) edpt.Cgnv
 	ret.Inst.TemplatePolicy = d.Get("template_policy").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dns64_virtualserver_name = d.Get("dns64_virtualserver_name").(string)
 	return ret
 }

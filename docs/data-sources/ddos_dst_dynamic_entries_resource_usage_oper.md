@@ -52,5 +52,3 @@ Optional:
 - `dst_entry_ipv6_allocated` (Number)
 - `dst_entry_ipv6_limit` (Number)
 - `dst_entry_ipv6_remaining` (String)
-
-

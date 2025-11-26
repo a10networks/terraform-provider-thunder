@@ -50,6 +50,19 @@ Optional:
 - `dst_tcp_filter_action_whitelist` (Number) Dst Filter Action WL
 - `dst_tcp_filter_match` (Number) Dst Filter Match
 - `dst_tcp_filter_not_match` (Number) Dst Filter No Match
+- `hybrid_syn_auth_auth_no_match` (Number) SYN Auth Hybrid Auth no match
+- `hybrid_syn_auth_entry_aged_out` (Number) SYN Auth Hybrid Entry Aged Out
+- `hybrid_syn_auth_filter_full` (Number) SYN Auth Hybrid Filter Full
+- `hybrid_syn_auth_invalid_fail` (Number) SYN Auth Hybrid Invalid SYNACK Auth Fail
+- `hybrid_syn_auth_invalid_pass` (Number) SYN Auth Hybrid Invalid SYNACK Auth Pass
+- `hybrid_syn_auth_invalid_sa_sent` (Number) SYN Auth Hybrid Invalid SYNACK Sent
+- `hybrid_syn_auth_lookup_fail` (Number) SYN Auth Hybrid Lookup Fail
+- `hybrid_syn_auth_method_change` (Number) SYN Auth Hybrid Method Change
+- `hybrid_syn_auth_unknown_fail` (Number) SYN Auth Hybrid Unknown Auth Fail
+- `hybrid_syn_auth_unknown_pass` (Number) SYN Auth Hybrid Unknown Auth Pass
+- `hybrid_syn_auth_valid_fail` (Number) SYN Auth Hybrid Valid SYNACK Auth Fail
+- `hybrid_syn_auth_valid_pass` (Number) SYN Auth Hybrid Valid SYNACK Auth Pass
+- `hybrid_syn_auth_valid_sa_sent` (Number) SYN Auth Hybrid Valid SYNACK Sent
 - `intcp` (Number) TCP Total Packets Received
 - `src_dst_tcp_filter_action_blacklist` (Number) SrcDst Filter Action Blacklist
 - `src_dst_tcp_filter_action_default_pass` (Number) SrcDst Filter Action Default Pass
@@ -98,6 +111,7 @@ Optional:
 - `tcp_frag_drop` (Number) TCP Frag Dropped
 - `tcp_frag_rcvd` (Number) TCP Frag Received
 - `tcp_invalid_syn_rcvd` (Number) TCP Invalid SYN Received
+- `tcp_invalid_synack_rcvd` (Number) TCP Invalid SYNACK Received
 - `tcp_out_of_seq` (Number) TCP Out-Of-Seq Total
 - `tcp_out_of_seq_bl` (Number) TCP Out-Of-Seq Blacklisted
 - `tcp_out_of_seq_drop` (Number) TCP Out-Of-Seq Dropped
@@ -124,6 +138,9 @@ Optional:
 - `tcp_rexmit_syn_limit_drop` (Number) TCP Retransmit SYN Exceed Dropped
 - `tcp_rst_rcvd` (Number) TCP RST Received
 - `tcp_sess_create` (Number) TCP Sessions Created
+- `tcp_small_window` (Number) TCP Small-Window Total
+- `tcp_small_window_bl` (Number) TCP Small-Window Blacklisted
+- `tcp_small_window_drop` (Number) TCP Small-Window Dropped
 - `tcp_src_drop` (Number) TCP Src Packets Dropped
 - `tcp_src_dst_drop` (Number) TCP SrcDst Packets Dropped
 - `tcp_syn_ack_rcvd` (Number) TCP SYN ACK Received
@@ -143,5 +160,3 @@ Optional:
 - `tcp_zero_window` (Number) TCP Zero-Window Total
 - `tcp_zero_window_bl` (Number) TCP Zero-Window Blacklisted
 - `tcp_zero_window_drop` (Number) TCP Zero-Window Dropped
-
-

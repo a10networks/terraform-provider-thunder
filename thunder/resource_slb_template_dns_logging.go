@@ -16,6 +16,28 @@ func resourceSlbTemplateDnsLogging() *schema.Resource {
 		DeleteContext: resourceSlbTemplateDnsLoggingDelete,
 
 		Schema: map[string]*schema.Schema{
+			"custom_log_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"trigger_reason": {
+							Type: schema.TypeString, Required: true, Description: "'request': log when request comes from client; 'response': log when response to client;",
+						},
+						"format": {
+							Type: schema.TypeString, Optional: true, Description: "Request Message (Custom message string)",
+						},
+						"enable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable this log",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"user_tag": {
+							Type: schema.TypeString, Optional: true, Description: "Customized tag",
+						},
+					},
+				},
+			},
 			"disable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable DNS Logging template",
 			},
@@ -33,6 +55,12 @@ func resourceSlbTemplateDnsLogging() *schema.Resource {
 			},
 			"name": {
 				Type: schema.TypeString, Required: true, Description: "DNS Logging Template Name",
+			},
+			"response_include_rcode": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Log DNS Rcode with Response",
+			},
+			"response_tuple": {
+				Type: schema.TypeString, Optional: true, Default: "client-side", Description: "'client-side': DNS response log with client-side tuple; 'server-side': DNS response log with server-side tuple;",
 			},
 			"response_type": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -209,26 +237,43 @@ func resourceSlbTemplateDnsLoggingRead(ctx context.Context, d *schema.ResourceDa
 	return diags
 }
 
-func getObjectSlbTemplateDnsLoggingResponseType1417(d []interface{}) edpt.SlbTemplateDnsLoggingResponseType1417 {
+func getSliceSlbTemplateDnsLoggingCustomLogList(d []interface{}) []edpt.SlbTemplateDnsLoggingCustomLogList {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsLoggingResponseType1417
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Config = in["config"].(int)
+	ret := make([]edpt.SlbTemplateDnsLoggingCustomLogList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.SlbTemplateDnsLoggingCustomLogList
+		oi.TriggerReason = in["trigger_reason"].(string)
+		oi.Format = in["format"].(string)
+		oi.Enable = in["enable"].(int)
 		//omit uuid
-		ret.TypeList = getSliceSlbTemplateDnsLoggingResponseTypeTypeList1418(in["type_list"].([]interface{}))
+		oi.UserTag = in["user_tag"].(string)
+		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsLoggingResponseTypeTypeList1418(d []interface{}) []edpt.SlbTemplateDnsLoggingResponseTypeTypeList1418 {
+func getObjectSlbTemplateDnsLoggingResponseType1516(d []interface{}) edpt.SlbTemplateDnsLoggingResponseType1516 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsLoggingResponseTypeTypeList1418, 0, count1)
+	var ret edpt.SlbTemplateDnsLoggingResponseType1516
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Config = in["config"].(int)
+		//omit uuid
+		ret.TypeList = getSliceSlbTemplateDnsLoggingResponseTypeTypeList1517(in["type_list"].([]interface{}))
+	}
+	return ret
+}
+
+func getSliceSlbTemplateDnsLoggingResponseTypeTypeList1517(d []interface{}) []edpt.SlbTemplateDnsLoggingResponseTypeTypeList1517 {
+
+	count1 := len(d)
+	ret := make([]edpt.SlbTemplateDnsLoggingResponseTypeTypeList1517, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsLoggingResponseTypeTypeList1418
+		var oi edpt.SlbTemplateDnsLoggingResponseTypeTypeList1517
 		oi.ResponseTypeName = in["response_type_name"].(string)
 		oi.LengthLimitFlag = in["length_limit_flag"].(int)
 		oi.TxtData = in["txt_data"].(int)
@@ -264,13 +309,16 @@ func getSliceSlbTemplateDnsLoggingResponseTypeTypeList1418(d []interface{}) []ed
 
 func dataToEndpointSlbTemplateDnsLogging(d *schema.ResourceData) edpt.SlbTemplateDnsLogging {
 	var ret edpt.SlbTemplateDnsLogging
+	ret.Inst.CustomLogList = getSliceSlbTemplateDnsLoggingCustomLogList(d.Get("custom_log_list").([]interface{}))
 	ret.Inst.Disable = d.Get("disable").(int)
 	ret.Inst.DnsLoggingProtocol = d.Get("dns_logging_protocol").(string)
 	ret.Inst.DnsLoggingRequestSection = d.Get("dns_logging_request_section").(string)
 	ret.Inst.DnsLoggingResponseSection = d.Get("dns_logging_response_section").(string)
 	ret.Inst.DnsLoggingType = d.Get("dns_logging_type").(string)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.ResponseType = getObjectSlbTemplateDnsLoggingResponseType1417(d.Get("response_type").([]interface{}))
+	ret.Inst.ResponseIncludeRcode = d.Get("response_include_rcode").(int)
+	ret.Inst.ResponseTuple = d.Get("response_tuple").(string)
+	ret.Inst.ResponseType = getObjectSlbTemplateDnsLoggingResponseType1516(d.Get("response_type").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

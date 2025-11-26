@@ -35,7 +35,7 @@ func resourceDdosDstZoneIpProtoProtoNameLevelIndicator() *schema.Resource {
 				Type: schema.TypeString, Optional: true, Description: "Violation actions to use when this src indicator threshold reaches",
 			},
 			"type": {
-				Type: schema.TypeString, Required: true, Description: "'pkt-rate': rate of incoming packets; 'pkt-drop-rate': rate of packets got dropped; 'bit-rate': rate of incoming bits; 'pkt-drop-ratio': ratio of incoming packet rate divided by the rate of dropping packets; 'bytes-to-bytes-from-ratio': ratio of incoming packet rate divided by the rate of outgoing packets; 'frag-rate': rate of incoming fragmented packets; 'cpu-utilization': average data CPU utilization; 'interface-utilization': outside interface utilization;",
+				Type: schema.TypeString, Required: true, Description: "'pkt-rate': rate of incoming packets; 'pkt-drop-rate': rate of packets got dropped; 'bit-rate': rate of incoming bits; 'pkt-drop-ratio': ratio of incoming packet rate divided by the rate of dropping packets; 'bytes-to-bytes-from-ratio': ratio of incoming packet rate divided by the rate of outgoing packets; 'frag-rate': rate of incoming fragmented packets; 'cpu-utilization': average data CPU utilization; 'interface-utilization': outside interface utilization; 'learnt-sources': learnt sources;",
 			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
@@ -55,14 +55,14 @@ func resourceDdosDstZoneIpProtoProtoNameLevelIndicator() *schema.Resource {
 			"zone_violation_actions": {
 				Type: schema.TypeString, Optional: true, Description: "Violation actions to use when this zone indicator threshold reaches",
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 			"level_num": {
 				Type: schema.TypeString, Required: true, Description: "LevelNum",
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 		},
 	}
@@ -144,8 +144,8 @@ func dataToEndpointDdosDstZoneIpProtoProtoNameLevelIndicator(d *schema.ResourceD
 	ret.Inst.ZoneThresholdNum = d.Get("zone_threshold_num").(int)
 	ret.Inst.ZoneThresholdStr = d.Get("zone_threshold_str").(string)
 	ret.Inst.ZoneViolationActions = d.Get("zone_violation_actions").(string)
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
-	ret.Inst.LevelNum = d.Get("level_num").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
+	ret.Inst.LevelNum = d.Get("level_num").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	return ret
 }

@@ -623,14 +623,41 @@ func resourceDdosDnsUdpZonePortStats() *schema.Resource {
 						"src_hw_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Src Hardware Packets Dropped",
 						},
-						"addr_filter_drop": {
+						"ip_filtering_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "IP Filtering Policy: Dropped",
 						},
-						"addr_filter_bl": {
+						"ip_filtering_bl": {
 							Type: schema.TypeInt, Optional: true, Description: "IP Filtering Policy: Blacklisted",
 						},
 						"src_learn_overflow": {
 							Type: schema.TypeInt, Optional: true, Description: "Source Dynamic Entry Overflow",
+						},
+						"all_src_session_reset": {
+							Type: schema.TypeInt, Optional: true, Description: "Session Reset for All Src Upon Level Escalation",
+						},
+						"clear_session_upon_deescalation": {
+							Type: schema.TypeInt, Optional: true, Description: "Clear Session Upon De-escalation to Level 0",
+						},
+						"query_forward_rate_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Query Foward Rate Exceed",
+						},
+						"alias_forward_rate_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "ALIAS Forward Rate Exceed",
+						},
+						"dnssec_wildcard_forward_rate_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "DNSSEC Wildcard Forward Rate Exceed",
+						},
+						"dynamic_count_warn": {
+							Type: schema.TypeInt, Optional: true, Description: "dynamic-entry-count warning send",
+						},
+						"rrsig_expire_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "RRSIG Expire: Drop",
+						},
+						"src_zone_service_entry_hit": {
+							Type: schema.TypeInt, Optional: true, Description: "SrcZoneService Entry Hit",
+						},
+						"same_sport_dport_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Same Source and Destination Port Drop",
 						},
 					},
 				},
@@ -863,9 +890,18 @@ func setObjectDdosDnsUdpZonePortStatsStats(ret edpt.DataDdosDnsUdpZonePortStats)
 			"no_route_drop":                             ret.DtDdosDnsUdpZonePortStats.Stats.No_route_drop,
 			"unauth_src_session_reset":                  ret.DtDdosDnsUdpZonePortStats.Stats.Unauth_src_session_reset,
 			"src_hw_drop":                               ret.DtDdosDnsUdpZonePortStats.Stats.Src_hw_drop,
-			"addr_filter_drop":                          ret.DtDdosDnsUdpZonePortStats.Stats.Addr_filter_drop,
-			"addr_filter_bl":                            ret.DtDdosDnsUdpZonePortStats.Stats.Addr_filter_bl,
+			"ip_filtering_drop":                         ret.DtDdosDnsUdpZonePortStats.Stats.Ip_filtering_drop,
+			"ip_filtering_bl":                           ret.DtDdosDnsUdpZonePortStats.Stats.Ip_filtering_bl,
 			"src_learn_overflow":                        ret.DtDdosDnsUdpZonePortStats.Stats.Src_learn_overflow,
+			"all_src_session_reset":                     ret.DtDdosDnsUdpZonePortStats.Stats.All_src_session_reset,
+			"clear_session_upon_deescalation":           ret.DtDdosDnsUdpZonePortStats.Stats.Clear_session_upon_deescalation,
+			"query_forward_rate_exceed":                 ret.DtDdosDnsUdpZonePortStats.Stats.Query_forward_rate_exceed,
+			"alias_forward_rate_exceed":                 ret.DtDdosDnsUdpZonePortStats.Stats.Alias_forward_rate_exceed,
+			"dnssec_wildcard_forward_rate_exceed":       ret.DtDdosDnsUdpZonePortStats.Stats.Dnssec_wildcard_forward_rate_exceed,
+			"dynamic_count_warn":                        ret.DtDdosDnsUdpZonePortStats.Stats.Dynamic_count_warn,
+			"rrsig_expire_drop":                         ret.DtDdosDnsUdpZonePortStats.Stats.Rrsig_expire_drop,
+			"src_zone_service_entry_hit":                ret.DtDdosDnsUdpZonePortStats.Stats.Src_zone_service_entry_hit,
+			"same_sport_dport_drop":                     ret.DtDdosDnsUdpZonePortStats.Stats.Same_sport_dport_drop,
 		},
 	}
 }
@@ -1078,9 +1114,18 @@ func getObjectDdosDnsUdpZonePortStatsStats(d []interface{}) edpt.DdosDnsUdpZoneP
 		ret.No_route_drop = in["no_route_drop"].(int)
 		ret.Unauth_src_session_reset = in["unauth_src_session_reset"].(int)
 		ret.Src_hw_drop = in["src_hw_drop"].(int)
-		ret.Addr_filter_drop = in["addr_filter_drop"].(int)
-		ret.Addr_filter_bl = in["addr_filter_bl"].(int)
+		ret.Ip_filtering_drop = in["ip_filtering_drop"].(int)
+		ret.Ip_filtering_bl = in["ip_filtering_bl"].(int)
 		ret.Src_learn_overflow = in["src_learn_overflow"].(int)
+		ret.All_src_session_reset = in["all_src_session_reset"].(int)
+		ret.Clear_session_upon_deescalation = in["clear_session_upon_deescalation"].(int)
+		ret.Query_forward_rate_exceed = in["query_forward_rate_exceed"].(int)
+		ret.Alias_forward_rate_exceed = in["alias_forward_rate_exceed"].(int)
+		ret.Dnssec_wildcard_forward_rate_exceed = in["dnssec_wildcard_forward_rate_exceed"].(int)
+		ret.Dynamic_count_warn = in["dynamic_count_warn"].(int)
+		ret.Rrsig_expire_drop = in["rrsig_expire_drop"].(int)
+		ret.Src_zone_service_entry_hit = in["src_zone_service_entry_hit"].(int)
+		ret.Same_sport_dport_drop = in["same_sport_dport_drop"].(int)
 	}
 	return ret
 }

@@ -68,5 +68,3 @@ Optional:
 - `user` (String)
 - `vip` (String)
 - `vport` (String)
-
-

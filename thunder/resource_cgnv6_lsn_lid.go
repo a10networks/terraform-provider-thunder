@@ -140,6 +140,12 @@ func resourceCgnv6LsnLid() *schema.Resource {
 						"session": {
 							Type: schema.TypeInt, Optional: true, Description: "User Quota for number of data sessions",
 						},
+						"session_udp": {
+							Type: schema.TypeInt, Optional: true, Description: "User Quota for number of UDP sessions",
+						},
+						"session_tcp": {
+							Type: schema.TypeInt, Optional: true, Description: "User Quota for number of TCP sessions",
+						},
 					},
 				},
 			},
@@ -312,6 +318,8 @@ func getObjectCgnv6LsnLidUserQuota(d []interface{}) edpt.Cgnv6LsnLidUserQuota {
 		ret.QuotaUdp = getObjectCgnv6LsnLidUserQuotaQuotaUdp(in["quota_udp"].([]interface{}))
 		ret.QuotaTcp = getObjectCgnv6LsnLidUserQuotaQuotaTcp(in["quota_tcp"].([]interface{}))
 		ret.Session = in["session"].(int)
+		ret.SessionUdp = in["session_udp"].(int)
+		ret.SessionTcp = in["session_tcp"].(int)
 	}
 	return ret
 }

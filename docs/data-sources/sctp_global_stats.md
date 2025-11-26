@@ -105,5 +105,3 @@ Optional:
 - `sctp_static_nat_session_deleted` (Number) SCTP Static NAT Session Deleted
 - `static_nat_cfg_not_found` (Number) Static NAT Config Not Found Drop
 - `vrrp_standby_drop` (Number) NAT Resource VRRP-A Standby Drop
-
-

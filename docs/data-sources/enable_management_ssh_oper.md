@@ -55,8 +55,7 @@ Optional:
 - `ethernet` (Number)
 - `ipv4_acl` (String)
 - `ipv6_acl` (String)
+- `lif` (String)
 - `management` (Number)
 - `tunnel` (Number)
 - `ve` (Number)
-
-

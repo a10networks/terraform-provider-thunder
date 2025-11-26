@@ -301,13 +301,15 @@ Optional:
 
 Optional:
 
-- `backup_mode_response` (Number) help Number of DNS replies sent to clients by the ACOS device in backup mode
-- `cache_mode_response` (Number) Number of cached DNS replies sent to clients by the ACOS device for the service. (This statistic applies only if the DNS cache
-- `proxy_mode_response` (Number) Number of DNS replies sent to clients by the ACOS device as a DNS proxy for the service
-- `received_query` (Number) Number of DNS queries received for the service
-- `sent_response` (Number) Number of DNS replies sent to clients for the service
-- `server_mode_response` (Number) Number of DNS replies sent to clients by the ACOS device as a DNS server for the service. (This statistic applies only if the D
-- `sticky_mode_response` (Number) Number of DNS replies sent to clients by the ACOS device to keep the clients on the same site. (This statistic applies only if
+- `backup_mode_response` (Number) DNS replies sent by ACOS in backup mode
+- `cache_mode_response` (Number) Cached DNS replies sent by ACOS (service, if cache enabled)
+- `proxy_mode_response` (Number) DNS replies sent by ACOS as DNS proxy (service)
+- `received_query` (Number) DNS queries received for the service
+- `sent_response` (Number) DNS replies sent to clients for the service
+- `server_mode_response` (Number) DNS replies sent by ACOS (service, if server enabled)
+- `smrule_redir_from_svc_hit` (Number) DNS queries redirected by rule (originally hit a service)
+- `smrule_redir_from_svc_miss` (Number) DNS queries redirected by rule (originally missed service)
+- `sticky_mode_response` (Number) DNS replies sent by ACOS on same site (if sticky enabled)
 
 
 
@@ -316,12 +318,12 @@ Optional:
 
 Optional:
 
-- `backup_mode_response` (Number) Total Number of DNS replies sent to clients by the ACOS device in backup mode
-- `cache_mode_response` (Number) Total Number of cached DNS replies sent to clients by the ACOS device for the zone. (This statistic applies only if the DNS cac
-- `proxy_mode_response` (Number) Total Number of DNS replies sent to clients by the ACOS device as a DNS proxy for the zone
-- `received_query` (Number) Total Number of DNS queries received for the zone
-- `sent_response` (Number) Total Number of DNS replies sent to clients for the zone
-- `server_mode_response` (Number) Total Number of DNS replies sent to clients by the ACOS device as a DNS server for the zone. (This statistic applies only if th
-- `sticky_mode_response` (Number) Total Number of DNS replies sent to clients by the ACOS device to keep the clients on the same site. (This statistic applies on
-
-
+- `backup_mode_response` (Number) DNS replies sent by ACOS in backup mode
+- `cache_mode_response` (Number) Cached DNS replies sent by ACOS (if DNS cache enabled)
+- `proxy_mode_response` (Number) DNS replies sent by ACOS as DNS proxy
+- `received_query` (Number) DNS queries received for the zone
+- `sent_response` (Number) DNS replies sent to clients for the zone
+- `server_mode_response` (Number) DNS replies sent by ACOS as DNS server (if DNS server enabled)
+- `smrule_redir_from_svc_hit` (Number) DNS queries redirected by rule (originally hit a service)
+- `smrule_redir_from_svc_miss` (Number) DNS queries redirected by rule (originally missed service)
+- `sticky_mode_response` (Number) DNS replies sent by ACOS on same site (if sticky enabled)

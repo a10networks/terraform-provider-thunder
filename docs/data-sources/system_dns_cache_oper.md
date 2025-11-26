@@ -47,6 +47,8 @@ Optional:
 - `cache_client` (Block List) (see [below for nested schema](#nestedblock--oper--cache_client))
 - `cache_content` (Number)
 - `cache_entry` (Block List) (see [below for nested schema](#nestedblock--oper--cache_entry))
+- `cache_hit_ratio` (String)
+- `cache_usage` (String)
 - `class_string` (String)
 - `class_value` (Number) type value
 - `client` (Number)
@@ -55,6 +57,7 @@ Optional:
 - `entry` (Number)
 - `fqdn_domain` (String) domain name
 - `global` (Number)
+- `hit_ratio_percentage_per_sec` (Number)
 - `port_num` (Number)
 - `port_type` (String)
 - `rdata_all` (Number)
@@ -114,5 +117,3 @@ Optional:
 - `record_rdlen` (Number)
 - `record_ttl` (Number)
 - `record_type` (Number)
-
-

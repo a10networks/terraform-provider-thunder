@@ -66,5 +66,3 @@ Optional:
 - `expire_time` (String)
 - `id_provider` (String)
 - `nameid` (String)
-
-

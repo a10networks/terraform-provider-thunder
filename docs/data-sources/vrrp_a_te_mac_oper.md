@@ -55,5 +55,3 @@ Optional:
 - `mac_address_inside` (String)
 - `mac_address_outside` (String)
 - `vrid` (Number)
-
-

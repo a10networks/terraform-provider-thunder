@@ -44,12 +44,6 @@ func resourceCgnv6LsnSystemStatusOper() *schema.Resource {
 						"udp_nat_ports_free": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
-						"radius_entries_used": {
-							Type: schema.TypeInt, Optional: true, Description: "",
-						},
-						"radius_entries_free": {
-							Type: schema.TypeInt, Optional: true, Description: "",
-						},
 					},
 				},
 			},
@@ -79,17 +73,15 @@ func resourceCgnv6LsnSystemStatusOperRead(ctx context.Context, d *schema.Resourc
 func setObjectCgnv6LsnSystemStatusOperOper(ret edpt.DataCgnv6LsnSystemStatusOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"lsn_cps":             ret.DtCgnv6LsnSystemStatusOper.Oper.LsnCps,
-			"data_sessions_used":  ret.DtCgnv6LsnSystemStatusOper.Oper.DataSessionsUsed,
-			"data_sessions_free":  ret.DtCgnv6LsnSystemStatusOper.Oper.DataSessionsFree,
-			"smp_sessions_used":   ret.DtCgnv6LsnSystemStatusOper.Oper.SmpSessionsUsed,
-			"smp_sessions_free":   ret.DtCgnv6LsnSystemStatusOper.Oper.SmpSessionsFree,
-			"tcp_nat_ports_used":  ret.DtCgnv6LsnSystemStatusOper.Oper.TcpNatPortsUsed,
-			"tcp_nat_ports_free":  ret.DtCgnv6LsnSystemStatusOper.Oper.TcpNatPortsFree,
-			"udp_nat_ports_used":  ret.DtCgnv6LsnSystemStatusOper.Oper.UdpNatPortsUsed,
-			"udp_nat_ports_free":  ret.DtCgnv6LsnSystemStatusOper.Oper.UdpNatPortsFree,
-			"radius_entries_used": ret.DtCgnv6LsnSystemStatusOper.Oper.RadiusEntriesUsed,
-			"radius_entries_free": ret.DtCgnv6LsnSystemStatusOper.Oper.RadiusEntriesFree,
+			"lsn_cps":            ret.DtCgnv6LsnSystemStatusOper.Oper.LsnCps,
+			"data_sessions_used": ret.DtCgnv6LsnSystemStatusOper.Oper.DataSessionsUsed,
+			"data_sessions_free": ret.DtCgnv6LsnSystemStatusOper.Oper.DataSessionsFree,
+			"smp_sessions_used":  ret.DtCgnv6LsnSystemStatusOper.Oper.SmpSessionsUsed,
+			"smp_sessions_free":  ret.DtCgnv6LsnSystemStatusOper.Oper.SmpSessionsFree,
+			"tcp_nat_ports_used": ret.DtCgnv6LsnSystemStatusOper.Oper.TcpNatPortsUsed,
+			"tcp_nat_ports_free": ret.DtCgnv6LsnSystemStatusOper.Oper.TcpNatPortsFree,
+			"udp_nat_ports_used": ret.DtCgnv6LsnSystemStatusOper.Oper.UdpNatPortsUsed,
+			"udp_nat_ports_free": ret.DtCgnv6LsnSystemStatusOper.Oper.UdpNatPortsFree,
 		},
 	}
 }
@@ -109,8 +101,6 @@ func getObjectCgnv6LsnSystemStatusOperOper(d []interface{}) edpt.Cgnv6LsnSystemS
 		ret.TcpNatPortsFree = in["tcp_nat_ports_free"].(int)
 		ret.UdpNatPortsUsed = in["udp_nat_ports_used"].(int)
 		ret.UdpNatPortsFree = in["udp_nat_ports_free"].(int)
-		ret.RadiusEntriesUsed = in["radius_entries_used"].(int)
-		ret.RadiusEntriesFree = in["radius_entries_free"].(int)
 	}
 	return ret
 }

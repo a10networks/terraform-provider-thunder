@@ -60,5 +60,3 @@ Optional:
 - `rdt` (Number)
 - `site_name` (String)
 - `type` (String)
-
-

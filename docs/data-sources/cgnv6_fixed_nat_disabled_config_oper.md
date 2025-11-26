@@ -59,5 +59,3 @@ Optional:
 - `inside_netmask` (Number)
 - `inside_start_address` (String)
 - `partition` (String)
-
-

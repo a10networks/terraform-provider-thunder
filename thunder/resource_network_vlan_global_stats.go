@@ -20,6 +20,9 @@ func resourceNetworkVlanGlobalStats() *schema.Resource {
 						"xparent_vlan_list_err": {
 							Type: schema.TypeInt, Optional: true, Description: "Transparent Mode VLAN List Errors",
 						},
+						"asymmetric_route_drop_err": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 					},
 				},
 			},
@@ -49,7 +52,8 @@ func resourceNetworkVlanGlobalStatsRead(ctx context.Context, d *schema.ResourceD
 func setObjectNetworkVlanGlobalStatsStats(ret edpt.DataNetworkVlanGlobalStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"xparent_vlan_list_err": ret.DtNetworkVlanGlobalStats.Stats.Xparent_vlan_list_err,
+			"xparent_vlan_list_err":     ret.DtNetworkVlanGlobalStats.Stats.Xparent_vlan_list_err,
+			"asymmetric_route_drop_err": ret.DtNetworkVlanGlobalStats.Stats.Asymmetric_route_drop_err,
 		},
 	}
 }
@@ -61,6 +65,7 @@ func getObjectNetworkVlanGlobalStatsStats(d []interface{}) edpt.NetworkVlanGloba
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Xparent_vlan_list_err = in["xparent_vlan_list_err"].(int)
+		ret.Asymmetric_route_drop_err = in["asymmetric_route_drop_err"].(int)
 	}
 	return ret
 }

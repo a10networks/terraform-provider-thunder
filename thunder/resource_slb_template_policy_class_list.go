@@ -145,6 +145,9 @@ func resourceSlbTemplatePolicyClassList() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
+			},
 		},
 	}
 }
@@ -285,5 +288,6 @@ func dataToEndpointSlbTemplatePolicyClassList(d *schema.ResourceData) edpt.SlbTe
 	ret.Inst.LidList = getSliceSlbTemplatePolicyClassListLidList(d.Get("lid_list").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	//omit uuid
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

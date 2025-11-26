@@ -55,5 +55,3 @@ Optional:
 - `renew` (String)
 - `rotated` (Number)
 - `status` (String)
-
-

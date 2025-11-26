@@ -16,6 +16,9 @@ func resourceDdosDstZonePortRangeManualMode() *schema.Resource {
 		DeleteContext: resourceDdosDstZonePortRangeManualModeDelete,
 
 		Schema: map[string]*schema.Schema{
+			"close_sessions_for_all_sources": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Close session for all sources",
+			},
 			"close_sessions_for_unauth_sources": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Close session for unauthenticated sources",
 			},
@@ -65,14 +68,14 @@ func resourceDdosDstZonePortRangeManualMode() *schema.Resource {
 					},
 				},
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"port_range_start": {
+				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
 			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
-			"port_range_start": {
-				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"port_range_end": {
 				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
@@ -162,6 +165,7 @@ func getObjectDdosDstZonePortRangeManualModeZoneTemplate(d []interface{}) edpt.D
 
 func dataToEndpointDdosDstZonePortRangeManualMode(d *schema.ResourceData) edpt.DdosDstZonePortRangeManualMode {
 	var ret edpt.DdosDstZonePortRangeManualMode
+	ret.Inst.CloseSessionsForAllSources = d.Get("close_sessions_for_all_sources").(int)
 	ret.Inst.CloseSessionsForUnauthSources = d.Get("close_sessions_for_unauth_sources").(int)
 	ret.Inst.Config = d.Get("config").(string)
 	ret.Inst.GlidAction = d.Get("glid_action").(string)
@@ -169,9 +173,9 @@ func dataToEndpointDdosDstZonePortRangeManualMode(d *schema.ResourceData) edpt.D
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ZoneTemplate = getObjectDdosDstZonePortRangeManualModeZoneTemplate(d.Get("zone_template").([]interface{}))
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
-	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.PortRangeStart = d.Get("port_range_start").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	ret.Inst.PortRangeEnd = d.Get("port_range_end").(string)
 	return ret
 }

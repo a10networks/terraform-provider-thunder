@@ -67,5 +67,3 @@ Optional:
 - `end_port_udp` (Number)
 - `start_port_udp` (Number)
 - `status_udp` (String)
-
-

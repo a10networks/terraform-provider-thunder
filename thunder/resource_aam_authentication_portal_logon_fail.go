@@ -106,8 +106,8 @@ func resourceAamAuthenticationPortalLogonFail() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"portal_name": {
+				Type: schema.TypeString, Required: true, Description: "Portal_name",
 			},
 		},
 	}
@@ -232,6 +232,6 @@ func dataToEndpointAamAuthenticationPortalLogonFail(d *schema.ResourceData) edpt
 	ret.Inst.FailMsgCfg = getObjectAamAuthenticationPortalLogonFailFailMsgCfg(d.Get("fail_msg_cfg").([]interface{}))
 	ret.Inst.TitleCfg = getObjectAamAuthenticationPortalLogonFailTitleCfg(d.Get("title_cfg").([]interface{}))
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Portal_name = d.Get("portal_name").(string)
 	return ret
 }

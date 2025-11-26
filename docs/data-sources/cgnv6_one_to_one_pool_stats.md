@@ -54,5 +54,3 @@ Optional:
 - `free_address` (Number) Free Address
 - `total_address` (Number) Total Address
 - `used_address` (Number) Used Address
-
-

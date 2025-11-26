@@ -20,7 +20,7 @@ func resourceFlowspecIcmpCode() *schema.Resource {
 				Type: schema.TypeInt, Required: true, Description: "Specify the ICMP Code",
 			},
 			"code_end": {
-				Type: schema.TypeInt, Optional: true, Description: "Specify the ICMP Code",
+				Type: schema.TypeInt, Required: true, Description: "Specify the ICMP Code",
 			},
 			"icmp_code_attribute": {
 				Type: schema.TypeString, Required: true, Description: "'eq': Match only packets on a given ICMP Code; 'gt': Match only packets with a greater ICMP Code; 'lt': Match only packets with a lower ICMP Code; 'range': match only packets in the range of ICMP Codes;",
@@ -28,8 +28,8 @@ func resourceFlowspecIcmpCode() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"flowspec_name": {
+				Type: schema.TypeString, Required: true, Description: "Flowspec_name",
 			},
 		},
 	}
@@ -102,6 +102,6 @@ func dataToEndpointFlowspecIcmpCode(d *schema.ResourceData) edpt.FlowspecIcmpCod
 	ret.Inst.CodeEnd = d.Get("code_end").(int)
 	ret.Inst.IcmpCodeAttribute = d.Get("icmp_code_attribute").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Flowspec_name = d.Get("flowspec_name").(string)
 	return ret
 }

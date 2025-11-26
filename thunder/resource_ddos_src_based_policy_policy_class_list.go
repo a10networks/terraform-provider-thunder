@@ -22,8 +22,8 @@ func resourceDdosSrcBasedPolicyPolicyClassList() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"src_based_policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Src_based_policy_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointDdosSrcBasedPolicyPolicyClassList(d *schema.ResourceData) edp
 	var ret edpt.DdosSrcBasedPolicyPolicyClassList
 	ret.Inst.ClassListName = d.Get("class_list_name").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Src_based_policy_name = d.Get("src_based_policy_name").(string)
 	return ret
 }

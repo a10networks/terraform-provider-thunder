@@ -63,5 +63,3 @@ Optional:
 - `remote_ip` (String)
 - `responder_spi` (String)
 - `status` (String)
-
-

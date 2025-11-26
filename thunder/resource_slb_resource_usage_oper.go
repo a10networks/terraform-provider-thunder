@@ -314,6 +314,15 @@ func resourceSlbResourceUsageOper() *schema.Resource {
 						"cache_template_default": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"log_template_min": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"log_template_max": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"log_template_default": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"slb_threshold_res_usage_default": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -451,6 +460,9 @@ func setObjectSlbResourceUsageOperOper(ret edpt.DataSlbResourceUsageOper) []inte
 			"cache_template_min":              ret.DtSlbResourceUsageOper.Oper.CacheTemplateMin,
 			"cache_template_max":              ret.DtSlbResourceUsageOper.Oper.CacheTemplateMax,
 			"cache_template_default":          ret.DtSlbResourceUsageOper.Oper.CacheTemplateDefault,
+			"log_template_min":                ret.DtSlbResourceUsageOper.Oper.LogTemplateMin,
+			"log_template_max":                ret.DtSlbResourceUsageOper.Oper.LogTemplateMax,
+			"log_template_default":            ret.DtSlbResourceUsageOper.Oper.LogTemplateDefault,
 			"slb_threshold_res_usage_default": ret.DtSlbResourceUsageOper.Oper.SlbThresholdResUsageDefault,
 			"slb_threshold_res_usage_min":     ret.DtSlbResourceUsageOper.Oper.SlbThresholdResUsageMin,
 			"slb_threshold_res_usage_max":     ret.DtSlbResourceUsageOper.Oper.SlbThresholdResUsageMax,
@@ -563,6 +575,9 @@ func getObjectSlbResourceUsageOperOper(d []interface{}) edpt.SlbResourceUsageOpe
 		ret.CacheTemplateMin = in["cache_template_min"].(int)
 		ret.CacheTemplateMax = in["cache_template_max"].(int)
 		ret.CacheTemplateDefault = in["cache_template_default"].(int)
+		ret.LogTemplateMin = in["log_template_min"].(int)
+		ret.LogTemplateMax = in["log_template_max"].(int)
+		ret.LogTemplateDefault = in["log_template_default"].(int)
 		ret.SlbThresholdResUsageDefault = in["slb_threshold_res_usage_default"].(int)
 		ret.SlbThresholdResUsageMin = in["slb_threshold_res_usage_min"].(int)
 		ret.SlbThresholdResUsageMax = in["slb_threshold_res_usage_max"].(int)

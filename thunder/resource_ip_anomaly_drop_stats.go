@@ -161,6 +161,9 @@ func resourceIpAnomalyDropStats() *schema.Resource {
 						"ipv6_eh_malformed": {
 							Type: schema.TypeInt, Optional: true, Description: "IPv6 Malformed Extension Header Drop",
 						},
+						"tcp_udp_zero_port": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP UDP Zero Port Drop",
+						},
 					},
 				},
 			},
@@ -238,6 +241,7 @@ func setObjectIpAnomalyDropStatsStats(ret edpt.DataIpAnomalyDropStats) []interfa
 			"ipv6_eh_none":       ret.DtIpAnomalyDropStats.Stats.Ipv6_eh_none,
 			"ipv6_eh_other":      ret.DtIpAnomalyDropStats.Stats.Ipv6_eh_other,
 			"ipv6_eh_malformed":  ret.DtIpAnomalyDropStats.Stats.Ipv6_eh_malformed,
+			"tcp_udp_zero_port":  ret.DtIpAnomalyDropStats.Stats.Tcp_udp_zero_port,
 		},
 	}
 }
@@ -296,6 +300,7 @@ func getObjectIpAnomalyDropStatsStats(d []interface{}) edpt.IpAnomalyDropStatsSt
 		ret.Ipv6_eh_none = in["ipv6_eh_none"].(int)
 		ret.Ipv6_eh_other = in["ipv6_eh_other"].(int)
 		ret.Ipv6_eh_malformed = in["ipv6_eh_malformed"].(int)
+		ret.Tcp_udp_zero_port = in["tcp_udp_zero_port"].(int)
 	}
 	return ret
 }

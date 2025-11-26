@@ -19,6 +19,9 @@ func resourceDdosDstZonePortRangeSrcBasedPolicyPolicyClassList() *schema.Resourc
 			"action": {
 				Type: schema.TypeString, Optional: true, Description: "'bypass': Always permit for the Source to bypass all feature & limit checks; 'deny': Blacklist incoming packets for service;",
 			},
+			"class_list_glid": {
+				Type: schema.TypeString, Optional: true, Description: "Global limit ID (class-list based)",
+			},
 			"class_list_name": {
 				Type: schema.TypeString, Required: true, Description: "Class-list name",
 			},
@@ -84,6 +87,9 @@ func resourceDdosDstZonePortRangeSrcBasedPolicyPolicyClassList() *schema.Resourc
 					},
 				},
 			},
+			"dynamic_entry_count_warn_threshold": {
+				Type: schema.TypeInt, Optional: true, Description: "Set threshold percentage of \"max-src-dst-entry\" for generating warning logs. Including start and end.",
+			},
 			"glid": {
 				Type: schema.TypeString, Optional: true, Description: "Global limit ID",
 			},
@@ -98,7 +104,7 @@ func resourceDdosDstZonePortRangeSrcBasedPolicyPolicyClassList() *schema.Resourc
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type: schema.TypeString, Optional: true, Description: "'all': all; 'packet_received': Packets Received; 'packet_dropped': Packets Dropped; 'entry_learned': Entry Learned; 'entry_count_overflow': Entry Count Overflow;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'packet_received': Packets Received; 'packet_dropped': Packets Dropped; 'entry_learned': Entry Learned; 'entry_count_overflow': Entry Count Overflow; 'exceed_drop_pkt_rate_clist': Packet Rate Exceeded; 'exceed_drop_conn_rate_clist': Conn Rate Exceeded; 'exceed_drop_conn_limit_clist': Conn Limit Exceeded; 'exceed_drop_kbit_rate_clist': KiBit Rate Exceeded; 'exceed_drop_kbit_rate_clist_pkt': KiBit Rate Exceeded Count; 'exceed_drop_frag_rate_clist': Frag Rate Exceeded;",
 						},
 					},
 				},
@@ -143,8 +149,8 @@ func resourceDdosDstZonePortRangeSrcBasedPolicyPolicyClassList() *schema.Resourc
 					},
 				},
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"port_range_start": {
+				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
 			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
@@ -152,8 +158,8 @@ func resourceDdosDstZonePortRangeSrcBasedPolicyPolicyClassList() *schema.Resourc
 			"src_based_policy_name": {
 				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
 			},
-			"port_range_start": {
-				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"port_range_end": {
 				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
@@ -297,8 +303,10 @@ func getObjectDdosDstZonePortRangeSrcBasedPolicyPolicyClassListZoneTemplate(d []
 func dataToEndpointDdosDstZonePortRangeSrcBasedPolicyPolicyClassList(d *schema.ResourceData) edpt.DdosDstZonePortRangeSrcBasedPolicyPolicyClassList {
 	var ret edpt.DdosDstZonePortRangeSrcBasedPolicyPolicyClassList
 	ret.Inst.Action = d.Get("action").(string)
+	ret.Inst.ClassListGlid = d.Get("class_list_glid").(string)
 	ret.Inst.ClassListName = d.Get("class_list_name").(string)
 	ret.Inst.ClassListOverflowPolicyList = getSliceDdosDstZonePortRangeSrcBasedPolicyPolicyClassListClassListOverflowPolicyList(d.Get("class_list_overflow_policy_list").([]interface{}))
+	ret.Inst.DynamicEntryCountWarnThreshold = d.Get("dynamic_entry_count_warn_threshold").(int)
 	ret.Inst.Glid = d.Get("glid").(string)
 	ret.Inst.GlidAction = d.Get("glid_action").(string)
 	ret.Inst.MaxDynamicEntryCount = d.Get("max_dynamic_entry_count").(int)
@@ -306,10 +314,10 @@ func dataToEndpointDdosDstZonePortRangeSrcBasedPolicyPolicyClassList(d *schema.R
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ZoneTemplate = getObjectDdosDstZonePortRangeSrcBasedPolicyPolicyClassListZoneTemplate(d.Get("zone_template").([]interface{}))
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.PortRangeStart = d.Get("port_range_start").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
-	ret.Inst.PortRangeStart = d.Get("port_range_start").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	ret.Inst.PortRangeEnd = d.Get("port_range_end").(string)
 	return ret
 }

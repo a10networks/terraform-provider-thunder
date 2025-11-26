@@ -92,5 +92,3 @@ Optional:
 - `res_alloc` (Number)
 - `res_limit` (Number)
 - `res_name` (String)
-
-

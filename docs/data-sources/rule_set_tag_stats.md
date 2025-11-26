@@ -292,7 +292,7 @@ output "get_rule_set_tag_stats" {
 
 ### Required
 
-- `name` (String) Name
+- `rule_set_name` (String) Rule_set_name
 
 ### Optional
 
@@ -563,5 +563,3 @@ Optional:
 - `categorystat97` (Number) counter app category stat 97
 - `categorystat98` (Number) counter app category stat 98
 - `categorystat99` (Number) counter app category stat 99
-
-

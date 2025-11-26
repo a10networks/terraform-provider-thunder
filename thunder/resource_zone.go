@@ -201,29 +201,29 @@ func resourceZoneRead(ctx context.Context, d *schema.ResourceData, meta interfac
 	return diags
 }
 
-func getObjectZoneInterface3681(d []interface{}) edpt.ZoneInterface3681 {
+func getObjectZoneInterface3780(d []interface{}) edpt.ZoneInterface3780 {
 
 	count1 := len(d)
-	var ret edpt.ZoneInterface3681
+	var ret edpt.ZoneInterface3780
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.EthernetList = getSliceZoneInterfaceEthernetList3682(in["ethernet_list"].([]interface{}))
-		ret.TrunkList = getSliceZoneInterfaceTrunkList3683(in["trunk_list"].([]interface{}))
-		ret.VeList = getSliceZoneInterfaceVeList3684(in["ve_list"].([]interface{}))
-		ret.LifList = getSliceZoneInterfaceLifList3685(in["lif_list"].([]interface{}))
-		ret.TunnelList = getSliceZoneInterfaceTunnelList3686(in["tunnel_list"].([]interface{}))
+		ret.EthernetList = getSliceZoneInterfaceEthernetList3781(in["ethernet_list"].([]interface{}))
+		ret.TrunkList = getSliceZoneInterfaceTrunkList3782(in["trunk_list"].([]interface{}))
+		ret.VeList = getSliceZoneInterfaceVeList3783(in["ve_list"].([]interface{}))
+		ret.LifList = getSliceZoneInterfaceLifList3784(in["lif_list"].([]interface{}))
+		ret.TunnelList = getSliceZoneInterfaceTunnelList3785(in["tunnel_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceZoneInterfaceEthernetList3682(d []interface{}) []edpt.ZoneInterfaceEthernetList3682 {
+func getSliceZoneInterfaceEthernetList3781(d []interface{}) []edpt.ZoneInterfaceEthernetList3781 {
 
 	count1 := len(d)
-	ret := make([]edpt.ZoneInterfaceEthernetList3682, 0, count1)
+	ret := make([]edpt.ZoneInterfaceEthernetList3781, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ZoneInterfaceEthernetList3682
+		var oi edpt.ZoneInterfaceEthernetList3781
 		oi.InterfaceEthernetStart = in["interface_ethernet_start"].(int)
 		oi.InterfaceEthernetEnd = in["interface_ethernet_end"].(int)
 		ret = append(ret, oi)
@@ -231,13 +231,13 @@ func getSliceZoneInterfaceEthernetList3682(d []interface{}) []edpt.ZoneInterface
 	return ret
 }
 
-func getSliceZoneInterfaceTrunkList3683(d []interface{}) []edpt.ZoneInterfaceTrunkList3683 {
+func getSliceZoneInterfaceTrunkList3782(d []interface{}) []edpt.ZoneInterfaceTrunkList3782 {
 
 	count1 := len(d)
-	ret := make([]edpt.ZoneInterfaceTrunkList3683, 0, count1)
+	ret := make([]edpt.ZoneInterfaceTrunkList3782, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ZoneInterfaceTrunkList3683
+		var oi edpt.ZoneInterfaceTrunkList3782
 		oi.InterfaceTrunkStart = in["interface_trunk_start"].(int)
 		oi.InterfaceTrunkEnd = in["interface_trunk_end"].(int)
 		ret = append(ret, oi)
@@ -245,13 +245,13 @@ func getSliceZoneInterfaceTrunkList3683(d []interface{}) []edpt.ZoneInterfaceTru
 	return ret
 }
 
-func getSliceZoneInterfaceVeList3684(d []interface{}) []edpt.ZoneInterfaceVeList3684 {
+func getSliceZoneInterfaceVeList3783(d []interface{}) []edpt.ZoneInterfaceVeList3783 {
 
 	count1 := len(d)
-	ret := make([]edpt.ZoneInterfaceVeList3684, 0, count1)
+	ret := make([]edpt.ZoneInterfaceVeList3783, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ZoneInterfaceVeList3684
+		var oi edpt.ZoneInterfaceVeList3783
 		oi.InterfaceVeStart = in["interface_ve_start"].(int)
 		oi.InterfaceVeEnd = in["interface_ve_end"].(int)
 		ret = append(ret, oi)
@@ -259,13 +259,13 @@ func getSliceZoneInterfaceVeList3684(d []interface{}) []edpt.ZoneInterfaceVeList
 	return ret
 }
 
-func getSliceZoneInterfaceLifList3685(d []interface{}) []edpt.ZoneInterfaceLifList3685 {
+func getSliceZoneInterfaceLifList3784(d []interface{}) []edpt.ZoneInterfaceLifList3784 {
 
 	count1 := len(d)
-	ret := make([]edpt.ZoneInterfaceLifList3685, 0, count1)
+	ret := make([]edpt.ZoneInterfaceLifList3784, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ZoneInterfaceLifList3685
+		var oi edpt.ZoneInterfaceLifList3784
 		oi.InterfaceLifStart = in["interface_lif_start"].(int)
 		oi.InterfaceLifEnd = in["interface_lif_end"].(int)
 		ret = append(ret, oi)
@@ -273,13 +273,13 @@ func getSliceZoneInterfaceLifList3685(d []interface{}) []edpt.ZoneInterfaceLifLi
 	return ret
 }
 
-func getSliceZoneInterfaceTunnelList3686(d []interface{}) []edpt.ZoneInterfaceTunnelList3686 {
+func getSliceZoneInterfaceTunnelList3785(d []interface{}) []edpt.ZoneInterfaceTunnelList3785 {
 
 	count1 := len(d)
-	ret := make([]edpt.ZoneInterfaceTunnelList3686, 0, count1)
+	ret := make([]edpt.ZoneInterfaceTunnelList3785, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ZoneInterfaceTunnelList3686
+		var oi edpt.ZoneInterfaceTunnelList3785
 		oi.InterfaceTunnelStart = in["interface_tunnel_start"].(int)
 		oi.InterfaceTunnelEnd = in["interface_tunnel_end"].(int)
 		ret = append(ret, oi)
@@ -287,10 +287,10 @@ func getSliceZoneInterfaceTunnelList3686(d []interface{}) []edpt.ZoneInterfaceTu
 	return ret
 }
 
-func getObjectZoneLocalZoneCfg3687(d []interface{}) edpt.ZoneLocalZoneCfg3687 {
+func getObjectZoneLocalZoneCfg3786(d []interface{}) edpt.ZoneLocalZoneCfg3786 {
 
 	count1 := len(d)
-	var ret edpt.ZoneLocalZoneCfg3687
+	var ret edpt.ZoneLocalZoneCfg3786
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.LocalType = in["local_type"].(int)
@@ -299,25 +299,25 @@ func getObjectZoneLocalZoneCfg3687(d []interface{}) edpt.ZoneLocalZoneCfg3687 {
 	return ret
 }
 
-func getObjectZoneVlan3688(d []interface{}) edpt.ZoneVlan3688 {
+func getObjectZoneVlan3787(d []interface{}) edpt.ZoneVlan3787 {
 
 	count1 := len(d)
-	var ret edpt.ZoneVlan3688
+	var ret edpt.ZoneVlan3787
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.VlanList = getSliceZoneVlanVlanList3689(in["vlan_list"].([]interface{}))
+		ret.VlanList = getSliceZoneVlanVlanList3788(in["vlan_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceZoneVlanVlanList3689(d []interface{}) []edpt.ZoneVlanVlanList3689 {
+func getSliceZoneVlanVlanList3788(d []interface{}) []edpt.ZoneVlanVlanList3788 {
 
 	count1 := len(d)
-	ret := make([]edpt.ZoneVlanVlanList3689, 0, count1)
+	ret := make([]edpt.ZoneVlanVlanList3788, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ZoneVlanVlanList3689
+		var oi edpt.ZoneVlanVlanList3788
 		oi.VlanStart = in["vlan_start"].(int)
 		oi.VlanEnd = in["vlan_end"].(int)
 		ret = append(ret, oi)
@@ -327,11 +327,11 @@ func getSliceZoneVlanVlanList3689(d []interface{}) []edpt.ZoneVlanVlanList3689 {
 
 func dataToEndpointZone(d *schema.ResourceData) edpt.Zone {
 	var ret edpt.Zone
-	ret.Inst.Interface = getObjectZoneInterface3681(d.Get("interface").([]interface{}))
-	ret.Inst.LocalZoneCfg = getObjectZoneLocalZoneCfg3687(d.Get("local_zone_cfg").([]interface{}))
+	ret.Inst.Interface = getObjectZoneInterface3780(d.Get("interface").([]interface{}))
+	ret.Inst.LocalZoneCfg = getObjectZoneLocalZoneCfg3786(d.Get("local_zone_cfg").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Vlan = getObjectZoneVlan3688(d.Get("vlan").([]interface{}))
+	ret.Inst.Vlan = getObjectZoneVlan3787(d.Get("vlan").([]interface{}))
 	return ret
 }

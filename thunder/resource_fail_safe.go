@@ -152,16 +152,16 @@ func resourceFailSafeRead(ctx context.Context, d *schema.ResourceData, meta inte
 	return diags
 }
 
-func getObjectFailSafeConfig349(d []interface{}) edpt.FailSafeConfig349 {
+func getObjectFailSafeConfig420(d []interface{}) edpt.FailSafeConfig420 {
 
-	var ret edpt.FailSafeConfig349
+	var ret edpt.FailSafeConfig420
 	return ret
 }
 
-func getObjectFailSafeDisableFailsafe350(d []interface{}) edpt.FailSafeDisableFailsafe350 {
+func getObjectFailSafeDisableFailsafe421(d []interface{}) edpt.FailSafeDisableFailsafe421 {
 
 	count1 := len(d)
-	var ret edpt.FailSafeDisableFailsafe350
+	var ret edpt.FailSafeDisableFailsafe421
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
@@ -172,9 +172,9 @@ func getObjectFailSafeDisableFailsafe350(d []interface{}) edpt.FailSafeDisableFa
 
 func dataToEndpointFailSafe(d *schema.ResourceData) edpt.FailSafe {
 	var ret edpt.FailSafe
-	ret.Inst.Config = getObjectFailSafeConfig349(d.Get("config").([]interface{}))
+	ret.Inst.Config = getObjectFailSafeConfig420(d.Get("config").([]interface{}))
 	ret.Inst.DataplaneRecoveryTimeout = d.Get("dataplane_recovery_timeout").(int)
-	ret.Inst.DisableFailsafe = getObjectFailSafeDisableFailsafe350(d.Get("disable_failsafe").([]interface{}))
+	ret.Inst.DisableFailsafe = getObjectFailSafeDisableFailsafe421(d.Get("disable_failsafe").([]interface{}))
 	ret.Inst.FpgaBuffRecoveryThreshold = d.Get("fpga_buff_recovery_threshold").(int)
 	ret.Inst.FpgaMonitorEnable = d.Get("fpga_monitor_enable").(int)
 	ret.Inst.FpgaMonitorForcedReboot = d.Get("fpga_monitor_forced_reboot").(int)

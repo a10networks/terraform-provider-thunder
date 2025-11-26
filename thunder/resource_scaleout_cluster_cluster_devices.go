@@ -129,9 +129,9 @@ func resourceScaleoutClusterClusterDevicesRead(ctx context.Context, d *schema.Re
 	return diags
 }
 
-func getObjectScaleoutClusterClusterDevicesClusterDiscoveryTimeout1325(d []interface{}) edpt.ScaleoutClusterClusterDevicesClusterDiscoveryTimeout1325 {
+func getObjectScaleoutClusterClusterDevicesClusterDiscoveryTimeout1412(d []interface{}) edpt.ScaleoutClusterClusterDevicesClusterDiscoveryTimeout1412 {
 
-	var ret edpt.ScaleoutClusterClusterDevicesClusterDiscoveryTimeout1325
+	var ret edpt.ScaleoutClusterClusterDevicesClusterDiscoveryTimeout1412
 	return ret
 }
 
@@ -150,10 +150,10 @@ func getSliceScaleoutClusterClusterDevicesDeviceIdList(d []interface{}) []edpt.S
 	return ret
 }
 
-func getObjectScaleoutClusterClusterDevicesMinimumNodes1326(d []interface{}) edpt.ScaleoutClusterClusterDevicesMinimumNodes1326 {
+func getObjectScaleoutClusterClusterDevicesMinimumNodes1413(d []interface{}) edpt.ScaleoutClusterClusterDevicesMinimumNodes1413 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterClusterDevicesMinimumNodes1326
+	var ret edpt.ScaleoutClusterClusterDevicesMinimumNodes1413
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MinimumNodesNum = in["minimum_nodes_num"].(int)
@@ -164,10 +164,10 @@ func getObjectScaleoutClusterClusterDevicesMinimumNodes1326(d []interface{}) edp
 
 func dataToEndpointScaleoutClusterClusterDevices(d *schema.ResourceData) edpt.ScaleoutClusterClusterDevices {
 	var ret edpt.ScaleoutClusterClusterDevices
-	ret.Inst.ClusterDiscoveryTimeout = getObjectScaleoutClusterClusterDevicesClusterDiscoveryTimeout1325(d.Get("cluster_discovery_timeout").([]interface{}))
+	ret.Inst.ClusterDiscoveryTimeout = getObjectScaleoutClusterClusterDevicesClusterDiscoveryTimeout1412(d.Get("cluster_discovery_timeout").([]interface{}))
 	ret.Inst.DeviceIdList = getSliceScaleoutClusterClusterDevicesDeviceIdList(d.Get("device_id_list").([]interface{}))
 	ret.Inst.Enable = d.Get("enable").(int)
-	ret.Inst.MinimumNodes = getObjectScaleoutClusterClusterDevicesMinimumNodes1326(d.Get("minimum_nodes").([]interface{}))
+	ret.Inst.MinimumNodes = getObjectScaleoutClusterClusterDevicesMinimumNodes1413(d.Get("minimum_nodes").([]interface{}))
 	//omit uuid
 	ret.Inst.ClusterId = d.Get("cluster_id").(string)
 	return ret

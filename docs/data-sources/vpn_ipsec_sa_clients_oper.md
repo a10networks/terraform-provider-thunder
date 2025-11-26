@@ -66,5 +66,3 @@ Optional:
 - `local_ts` (String)
 - `name` (String)
 - `out_spi` (String)
-
-

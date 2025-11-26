@@ -61,5 +61,3 @@ Optional:
 - `transmitted_broadcasts` (Number) Transmitted broadcasts
 - `transmitted_multicasts` (Number) Transmitted multicasts
 - `transmitted_unicasts` (Number) Transmitted unicasts
-
-

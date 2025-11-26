@@ -256,6 +256,21 @@ func resourceVisibilityTopnGtpApnPrefixTopnTmplMetrics() *schema.Resource {
 			"gtp_v2_c_tunnel_half_open": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTPv2-C Half open tunnel created",
 			},
+			"rl_message_monitor": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTP Message forwarded via monitor mode at rate-limit policy",
+			},
+			"u_downlink_bytes": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Downlink Bytes",
+			},
+			"u_downlink_pkts": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTP-U Downlink Packets",
+			},
+			"u_uplink_bytes": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Uplink Bytes",
+			},
+			"u_uplink_pkts": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Uplink Packets",
+			},
 			"uplink_bytes": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Uplink Bytes",
 			},
@@ -265,8 +280,8 @@ func resourceVisibilityTopnGtpApnPrefixTopnTmplMetrics() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"gtp_apn_prefix_topn_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Gtp_apn_prefix_topn_tmpl_name",
 			},
 		},
 	}
@@ -415,9 +430,14 @@ func dataToEndpointVisibilityTopnGtpApnPrefixTopnTmplMetrics(d *schema.ResourceD
 	ret.Inst.GtpV2CTunnelDeletedRestart = d.Get("gtp_v2_c_tunnel_deleted_restart").(int)
 	ret.Inst.GtpV2CTunnelHalfClosed = d.Get("gtp_v2_c_tunnel_half_closed").(int)
 	ret.Inst.GtpV2CTunnelHalfOpen = d.Get("gtp_v2_c_tunnel_half_open").(int)
+	ret.Inst.RlMessageMonitor = d.Get("rl_message_monitor").(int)
+	ret.Inst.UDownlinkBytes = d.Get("u_downlink_bytes").(int)
+	ret.Inst.UDownlinkPkts = d.Get("u_downlink_pkts").(int)
+	ret.Inst.UUplinkBytes = d.Get("u_uplink_bytes").(int)
+	ret.Inst.UUplinkPkts = d.Get("u_uplink_pkts").(int)
 	ret.Inst.UplinkBytes = d.Get("uplink_bytes").(int)
 	ret.Inst.UplinkPkts = d.Get("uplink_pkts").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Gtp_apn_prefix_topn_tmpl_name = d.Get("gtp_apn_prefix_topn_tmpl_name").(string)
 	return ret
 }

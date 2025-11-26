@@ -54,5 +54,3 @@ Optional:
 - `nat_addr_start` (String)
 - `nat_port` (Number)
 - `status` (String)
-
-

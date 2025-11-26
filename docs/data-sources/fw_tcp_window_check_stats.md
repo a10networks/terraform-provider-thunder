@@ -46,5 +46,3 @@ output "get_fw_tcp_window_check_stats" {
 Optional:
 
 - `outside_window` (Number) packet dropped counter for outside of tcp window
-
-

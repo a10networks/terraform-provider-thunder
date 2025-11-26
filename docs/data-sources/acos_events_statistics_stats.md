@@ -44,6 +44,10 @@ output "get_acos_events_statistics_stats" {
 
 Optional:
 
+- `logd_stats_audit_logs` (Number) Logd audit logs sent to hc
+- `logd_stats_audit_logs_dropped` (Number) Logd audit logs dropped
+- `logd_stats_system_logs` (Number) Logd system logs sent to hc
+- `logd_stats_system_logs_dropped` (Number) Logd system logs dropped
 - `msg_dropped_craft_fail` (Number) Messages Dropped, msg crafting failed
 - `msg_dropped_format_not_defined` (Number) Messages Dropped, format not defined
 - `msg_dropped_local_log_ratelimit` (Number) Messages Dropped, local log ratelimited
@@ -60,5 +64,3 @@ Optional:
 - `param_msg_encode_fail` (Number) Parameterized log AVRO encoding failed
 - `param_msg_sent_fail` (Number) Parameterized log send to HC failed
 - `param_msg_sent_to_hc` (Number) Parameterized log sent to HC
-
-

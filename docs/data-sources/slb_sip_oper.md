@@ -214,5 +214,3 @@ Optional:
 - `uri_select_client` (Number)
 - `wrong_ip_version` (Number)
 - `x_forward_for_select_client` (Number)
-
-

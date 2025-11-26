@@ -38,8 +38,8 @@ func resourceAamAaaPolicyAaaRuleStats() *schema.Resource {
 					},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"aaa_policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Aaa_policy_name",
 			},
 		},
 	}
@@ -98,6 +98,6 @@ func dataToEndpointAamAaaPolicyAaaRuleStats(d *schema.ResourceData) edpt.AamAaaP
 
 	ret.Stats = getObjectAamAaaPolicyAaaRuleStatsStats(d.Get("stats").([]interface{}))
 
-	ret.Name = d.Get("name").(string)
+	ret.Aaa_policy_name = d.Get("aaa_policy_name").(string)
 	return ret
 }

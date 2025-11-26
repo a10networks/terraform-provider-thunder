@@ -58,5 +58,3 @@ Optional:
 - `port_usage` (Number)
 - `total_freed` (Number)
 - `total_used` (Number)
-
-

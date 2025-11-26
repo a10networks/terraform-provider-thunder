@@ -53,6 +53,9 @@ func resourceAamAuthenticationServerRadiusInstance() *schema.Resource {
 			"interval": {
 				Type: schema.TypeInt, Optional: true, Default: 3, Description: "Specify the interval time for resend the request (second), default is 3 seconds (The interval time(second), default is 3 seconds)",
 			},
+			"message_authenticator_verify_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Verify Message-Authenticator attribute",
+			},
 			"name": {
 				Type: schema.TypeString, Required: true, Description: "Specify RADIUS authentication server name",
 			},
@@ -192,6 +195,7 @@ func dataToEndpointAamAuthenticationServerRadiusInstance(d *schema.ResourceData)
 	ret.Inst.HealthCheckString = d.Get("health_check_string").(string)
 	ret.Inst.Host = getObjectAamAuthenticationServerRadiusInstanceHost(d.Get("host").([]interface{}))
 	ret.Inst.Interval = d.Get("interval").(int)
+	ret.Inst.MessageAuthenticatorVerifyEnable = d.Get("message_authenticator_verify_enable").(int)
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.PacketCaptureTemplate = d.Get("packet_capture_template").(string)
 	ret.Inst.Port = d.Get("port").(int)

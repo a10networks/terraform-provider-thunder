@@ -852,40 +852,40 @@ func resourceCgnv6LsnRuleListRead(ctx context.Context, d *schema.ResourceData, m
 	return diags
 }
 
-func getObjectCgnv6LsnRuleListDefault88(d []interface{}) edpt.Cgnv6LsnRuleListDefault88 {
+func getObjectCgnv6LsnRuleListDefault90(d []interface{}) edpt.Cgnv6LsnRuleListDefault90 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6LsnRuleListDefault88
+	var ret edpt.Cgnv6LsnRuleListDefault90
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RuleCfg = getSliceCgnv6LsnRuleListDefaultRuleCfg89(in["rule_cfg"].([]interface{}))
+		ret.RuleCfg = getSliceCgnv6LsnRuleListDefaultRuleCfg91(in["rule_cfg"].([]interface{}))
 		//omit uuid
-		ret.SamplingEnable = getSliceCgnv6LsnRuleListDefaultSamplingEnable94(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceCgnv6LsnRuleListDefaultSamplingEnable96(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceCgnv6LsnRuleListDefaultRuleCfg89(d []interface{}) []edpt.Cgnv6LsnRuleListDefaultRuleCfg89 {
+func getSliceCgnv6LsnRuleListDefaultRuleCfg91(d []interface{}) []edpt.Cgnv6LsnRuleListDefaultRuleCfg91 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6LsnRuleListDefaultRuleCfg89, 0, count1)
+	ret := make([]edpt.Cgnv6LsnRuleListDefaultRuleCfg91, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6LsnRuleListDefaultRuleCfg89
+		var oi edpt.Cgnv6LsnRuleListDefaultRuleCfg91
 		oi.Proto = in["proto"].(string)
-		oi.TcpCfg = getObjectCgnv6LsnRuleListDefaultRuleCfgTcpCfg90(in["tcp_cfg"].([]interface{}))
-		oi.UdpCfg = getObjectCgnv6LsnRuleListDefaultRuleCfgUdpCfg91(in["udp_cfg"].([]interface{}))
-		oi.IcmpOthersCfg = getObjectCgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg92(in["icmp_others_cfg"].([]interface{}))
-		oi.DscpCfg = getObjectCgnv6LsnRuleListDefaultRuleCfgDscpCfg93(in["dscp_cfg"].([]interface{}))
+		oi.TcpCfg = getObjectCgnv6LsnRuleListDefaultRuleCfgTcpCfg92(in["tcp_cfg"].([]interface{}))
+		oi.UdpCfg = getObjectCgnv6LsnRuleListDefaultRuleCfgUdpCfg93(in["udp_cfg"].([]interface{}))
+		oi.IcmpOthersCfg = getObjectCgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg94(in["icmp_others_cfg"].([]interface{}))
+		oi.DscpCfg = getObjectCgnv6LsnRuleListDefaultRuleCfgDscpCfg95(in["dscp_cfg"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectCgnv6LsnRuleListDefaultRuleCfgTcpCfg90(d []interface{}) edpt.Cgnv6LsnRuleListDefaultRuleCfgTcpCfg90 {
+func getObjectCgnv6LsnRuleListDefaultRuleCfgTcpCfg92(d []interface{}) edpt.Cgnv6LsnRuleListDefaultRuleCfgTcpCfg92 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6LsnRuleListDefaultRuleCfgTcpCfg90
+	var ret edpt.Cgnv6LsnRuleListDefaultRuleCfgTcpCfg92
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StartPort = in["start_port"].(int)
@@ -905,10 +905,10 @@ func getObjectCgnv6LsnRuleListDefaultRuleCfgTcpCfg90(d []interface{}) edpt.Cgnv6
 	return ret
 }
 
-func getObjectCgnv6LsnRuleListDefaultRuleCfgUdpCfg91(d []interface{}) edpt.Cgnv6LsnRuleListDefaultRuleCfgUdpCfg91 {
+func getObjectCgnv6LsnRuleListDefaultRuleCfgUdpCfg93(d []interface{}) edpt.Cgnv6LsnRuleListDefaultRuleCfgUdpCfg93 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6LsnRuleListDefaultRuleCfgUdpCfg91
+	var ret edpt.Cgnv6LsnRuleListDefaultRuleCfgUdpCfg93
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.StartPort = in["start_port"].(int)
@@ -927,10 +927,10 @@ func getObjectCgnv6LsnRuleListDefaultRuleCfgUdpCfg91(d []interface{}) edpt.Cgnv6
 	return ret
 }
 
-func getObjectCgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg92(d []interface{}) edpt.Cgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg92 {
+func getObjectCgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg94(d []interface{}) edpt.Cgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg94 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg92
+	var ret edpt.Cgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg94
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ActionCfg = in["action_cfg"].(string)
@@ -946,10 +946,10 @@ func getObjectCgnv6LsnRuleListDefaultRuleCfgIcmpOthersCfg92(d []interface{}) edp
 	return ret
 }
 
-func getObjectCgnv6LsnRuleListDefaultRuleCfgDscpCfg93(d []interface{}) edpt.Cgnv6LsnRuleListDefaultRuleCfgDscpCfg93 {
+func getObjectCgnv6LsnRuleListDefaultRuleCfgDscpCfg95(d []interface{}) edpt.Cgnv6LsnRuleListDefaultRuleCfgDscpCfg95 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6LsnRuleListDefaultRuleCfgDscpCfg93
+	var ret edpt.Cgnv6LsnRuleListDefaultRuleCfgDscpCfg95
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DscpMatch = in["dscp_match"].(string)
@@ -961,38 +961,38 @@ func getObjectCgnv6LsnRuleListDefaultRuleCfgDscpCfg93(d []interface{}) edpt.Cgnv
 	return ret
 }
 
-func getSliceCgnv6LsnRuleListDefaultSamplingEnable94(d []interface{}) []edpt.Cgnv6LsnRuleListDefaultSamplingEnable94 {
+func getSliceCgnv6LsnRuleListDefaultSamplingEnable96(d []interface{}) []edpt.Cgnv6LsnRuleListDefaultSamplingEnable96 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6LsnRuleListDefaultSamplingEnable94, 0, count1)
+	ret := make([]edpt.Cgnv6LsnRuleListDefaultSamplingEnable96, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6LsnRuleListDefaultSamplingEnable94
+		var oi edpt.Cgnv6LsnRuleListDefaultSamplingEnable96
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectCgnv6LsnRuleListDomainIp95(d []interface{}) edpt.Cgnv6LsnRuleListDomainIp95 {
+func getObjectCgnv6LsnRuleListDomainIp97(d []interface{}) edpt.Cgnv6LsnRuleListDomainIp97 {
 
 	count1 := len(d)
-	var ret edpt.Cgnv6LsnRuleListDomainIp95
+	var ret edpt.Cgnv6LsnRuleListDomainIp97
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceCgnv6LsnRuleListDomainIpSamplingEnable96(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceCgnv6LsnRuleListDomainIpSamplingEnable98(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceCgnv6LsnRuleListDomainIpSamplingEnable96(d []interface{}) []edpt.Cgnv6LsnRuleListDomainIpSamplingEnable96 {
+func getSliceCgnv6LsnRuleListDomainIpSamplingEnable98(d []interface{}) []edpt.Cgnv6LsnRuleListDomainIpSamplingEnable98 {
 
 	count1 := len(d)
-	ret := make([]edpt.Cgnv6LsnRuleListDomainIpSamplingEnable96, 0, count1)
+	ret := make([]edpt.Cgnv6LsnRuleListDomainIpSamplingEnable98, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.Cgnv6LsnRuleListDomainIpSamplingEnable96
+		var oi edpt.Cgnv6LsnRuleListDomainIpSamplingEnable98
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
@@ -1386,8 +1386,8 @@ func getSliceCgnv6LsnRuleListIpListSamplingEnable(d []interface{}) []edpt.Cgnv6L
 
 func dataToEndpointCgnv6LsnRuleList(d *schema.ResourceData) edpt.Cgnv6LsnRuleList {
 	var ret edpt.Cgnv6LsnRuleList
-	ret.Inst.Default = getObjectCgnv6LsnRuleListDefault88(d.Get("default").([]interface{}))
-	ret.Inst.DomainIp = getObjectCgnv6LsnRuleListDomainIp95(d.Get("domain_ip").([]interface{}))
+	ret.Inst.Default = getObjectCgnv6LsnRuleListDefault90(d.Get("default").([]interface{}))
+	ret.Inst.DomainIp = getObjectCgnv6LsnRuleListDomainIp97(d.Get("domain_ip").([]interface{}))
 	ret.Inst.DomainListNameList = getSliceCgnv6LsnRuleListDomainListNameList(d.Get("domain_list_name_list").([]interface{}))
 	ret.Inst.DomainNameList = getSliceCgnv6LsnRuleListDomainNameList(d.Get("domain_name_list").([]interface{}))
 	ret.Inst.HttpMatchDomainName = d.Get("http_match_domain_name").(int)

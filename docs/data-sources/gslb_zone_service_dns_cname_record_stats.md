@@ -39,9 +39,9 @@ output "get_gslb_zone_service_dns_cname_record_stats" {
 ### Required
 
 - `alias_name` (String) Specify the alias name
-- `name` (String) Name
 - `service_name` (String) ServiceName
 - `service_port` (String) ServicePort
+- `zone_name` (String) Zone_name
 
 ### Optional
 
@@ -57,5 +57,3 @@ output "get_gslb_zone_service_dns_cname_record_stats" {
 Optional:
 
 - `cname_hits` (Number) Number of times the CNAME has been used
-
-

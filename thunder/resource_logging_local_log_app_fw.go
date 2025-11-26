@@ -104,22 +104,22 @@ func resourceLoggingLocalLogAppFwRead(ctx context.Context, d *schema.ResourceDat
 	return diags
 }
 
-func getObjectLoggingLocalLogAppFwDotPlot1050(d []interface{}) edpt.LoggingLocalLogAppFwDotPlot1050 {
+func getObjectLoggingLocalLogAppFwDotPlot1132(d []interface{}) edpt.LoggingLocalLogAppFwDotPlot1132 {
 
-	var ret edpt.LoggingLocalLogAppFwDotPlot1050
+	var ret edpt.LoggingLocalLogAppFwDotPlot1132
 	return ret
 }
 
-func getObjectLoggingLocalLogAppFwTopN1051(d []interface{}) edpt.LoggingLocalLogAppFwTopN1051 {
+func getObjectLoggingLocalLogAppFwTopN1133(d []interface{}) edpt.LoggingLocalLogAppFwTopN1133 {
 
-	var ret edpt.LoggingLocalLogAppFwTopN1051
+	var ret edpt.LoggingLocalLogAppFwTopN1133
 	return ret
 }
 
 func dataToEndpointLoggingLocalLogAppFw(d *schema.ResourceData) edpt.LoggingLocalLogAppFw {
 	var ret edpt.LoggingLocalLogAppFw
-	ret.Inst.DotPlot = getObjectLoggingLocalLogAppFwDotPlot1050(d.Get("dot_plot").([]interface{}))
-	ret.Inst.TopN = getObjectLoggingLocalLogAppFwTopN1051(d.Get("top_n").([]interface{}))
+	ret.Inst.DotPlot = getObjectLoggingLocalLogAppFwDotPlot1132(d.Get("dot_plot").([]interface{}))
+	ret.Inst.TopN = getObjectLoggingLocalLogAppFwTopN1133(d.Get("top_n").([]interface{}))
 	//omit uuid
 	return ret
 }

@@ -19,6 +19,9 @@ func resourceSlbTemplateDnsNegativeDnsCache() *schema.Resource {
 			"bypass_query_threshold": {
 				Type: schema.TypeInt, Optional: true, Default: 100, Description: "the threshold bypass the query, default is 100",
 			},
+			"cache_non_valid": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable caching non-valid negative response, otherwise will only cache valid negative response",
+			},
 			"enable_negative_dns_cache": {
 				Type: schema.TypeInt, Required: true, Description: "Enable DNS negative cache (Need to turn-on the dns-cache for this feature)",
 			},
@@ -28,8 +31,8 @@ func resourceSlbTemplateDnsNegativeDnsCache() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_name",
 			},
 		},
 	}
@@ -99,9 +102,10 @@ func resourceSlbTemplateDnsNegativeDnsCacheRead(ctx context.Context, d *schema.R
 func dataToEndpointSlbTemplateDnsNegativeDnsCache(d *schema.ResourceData) edpt.SlbTemplateDnsNegativeDnsCache {
 	var ret edpt.SlbTemplateDnsNegativeDnsCache
 	ret.Inst.BypassQueryThreshold = d.Get("bypass_query_threshold").(int)
+	ret.Inst.CacheNonValid = d.Get("cache_non_valid").(int)
 	ret.Inst.EnableNegativeDnsCache = d.Get("enable_negative_dns_cache").(int)
 	ret.Inst.MaxNegativeCacheTtl = d.Get("max_negative_cache_ttl").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dns_name = d.Get("dns_name").(string)
 	return ret
 }

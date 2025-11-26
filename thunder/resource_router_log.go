@@ -109,10 +109,10 @@ func resourceRouterLogRead(ctx context.Context, d *schema.ResourceData, meta int
 	return diags
 }
 
-func getObjectRouterLogFile1296(d []interface{}) edpt.RouterLogFile1296 {
+func getObjectRouterLogFile1383(d []interface{}) edpt.RouterLogFile1383 {
 
 	count1 := len(d)
-	var ret edpt.RouterLogFile1296
+	var ret edpt.RouterLogFile1383
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.PerProtocol = in["per_protocol"].(int)
@@ -126,7 +126,7 @@ func getObjectRouterLogFile1296(d []interface{}) edpt.RouterLogFile1296 {
 
 func dataToEndpointRouterLog(d *schema.ResourceData) edpt.RouterLog {
 	var ret edpt.RouterLog
-	ret.Inst.File = getObjectRouterLogFile1296(d.Get("file").([]interface{}))
+	ret.Inst.File = getObjectRouterLogFile1383(d.Get("file").([]interface{}))
 	ret.Inst.LogBuffer = d.Get("log_buffer").(int)
 	//omit uuid
 	return ret

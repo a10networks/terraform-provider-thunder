@@ -53,8 +53,8 @@ func resourceFwServerPortOper() *schema.Resource {
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "'tcp': TCP Port; 'udp': UDP Port;",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"server_name": {
+				Type: schema.TypeString, Required: true, Description: "Server_name",
 			},
 		},
 	}
@@ -123,6 +123,6 @@ func dataToEndpointFwServerPortOper(d *schema.ResourceData) edpt.FwServerPortOpe
 
 	ret.Protocol = d.Get("protocol").(string)
 
-	ret.Name = d.Get("name").(string)
+	ret.Server_name = d.Get("server_name").(string)
 	return ret
 }

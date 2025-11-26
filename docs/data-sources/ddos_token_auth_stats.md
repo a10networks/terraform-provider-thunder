@@ -47,5 +47,3 @@ Optional:
 - `token_authentication_invalid` (Number) Token Authentication Invalid Packets
 - `token_authentication_matched` (Number) Token Authentication Matched Packets
 - `token_authentication_mismatched` (Number) Token Authentication Mismatched Packets
-
-

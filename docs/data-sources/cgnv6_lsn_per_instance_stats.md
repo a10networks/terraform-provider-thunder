@@ -59,5 +59,3 @@ Optional:
 - `udp_fullcone_freed` (Number) UDP Full-cone Session Freed
 - `user_quota_created` (Number) User-Quota Created
 - `user_quota_put_in_del_q` (Number) User-Quota Freed
-
-

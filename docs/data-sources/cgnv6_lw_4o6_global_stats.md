@@ -55,5 +55,3 @@ Optional:
 - `no_match_icmpv6_sent` (Number) No-Forward-Match ICMPv6 Sent
 - `rev_lookup_failed` (Number) Reverse Route Lookup Failed
 - `self_hairpinning_drop` (Number) Self-Hairpinning Drops
-
-

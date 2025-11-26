@@ -46,5 +46,3 @@ output "get_vrrp_a_common_stats" {
 Optional:
 
 - `vrrp_common_dummy` (Number) dummy counter
-
-

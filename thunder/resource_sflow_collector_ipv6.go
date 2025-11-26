@@ -121,10 +121,10 @@ func resourceSflowCollectorIpv6Read(ctx context.Context, d *schema.ResourceData,
 	return diags
 }
 
-func getObjectSflowCollectorIpv6CustomizedSetting1401(d []interface{}) edpt.SflowCollectorIpv6CustomizedSetting1401 {
+func getObjectSflowCollectorIpv6CustomizedSetting1492(d []interface{}) edpt.SflowCollectorIpv6CustomizedSetting1492 {
 
 	count1 := len(d)
-	var ret edpt.SflowCollectorIpv6CustomizedSetting1401
+	var ret edpt.SflowCollectorIpv6CustomizedSetting1492
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ExportEnable = in["export_enable"].(string)
@@ -140,7 +140,7 @@ func getObjectSflowCollectorIpv6CustomizedSetting1401(d []interface{}) edpt.Sflo
 func dataToEndpointSflowCollectorIpv6(d *schema.ResourceData) edpt.SflowCollectorIpv6 {
 	var ret edpt.SflowCollectorIpv6
 	ret.Inst.Addr = d.Get("addr").(string)
-	ret.Inst.CustomizedSetting = getObjectSflowCollectorIpv6CustomizedSetting1401(d.Get("customized_setting").([]interface{}))
+	ret.Inst.CustomizedSetting = getObjectSflowCollectorIpv6CustomizedSetting1492(d.Get("customized_setting").([]interface{}))
 	ret.Inst.Port = d.Get("port").(int)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)

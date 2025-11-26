@@ -23,6 +23,9 @@ func resourceDdosDstZonePortZoneServiceSrcBasedPolicy() *schema.Resource {
 						"class_list_name": {
 							Type: schema.TypeString, Required: true, Description: "Class-list name",
 						},
+						"class_list_glid": {
+							Type: schema.TypeString, Optional: true, Description: "Global limit ID (class-list based)",
+						},
 						"glid": {
 							Type: schema.TypeString, Optional: true, Description: "Global limit ID",
 						},
@@ -40,6 +43,9 @@ func resourceDdosDstZonePortZoneServiceSrcBasedPolicy() *schema.Resource {
 						},
 						"max_dynamic_entry_count": {
 							Type: schema.TypeInt, Optional: true, Description: "Maximum count for dynamic source zone service entry allowed for this class-list",
+						},
+						"dynamic_entry_count_warn_threshold": {
+							Type: schema.TypeInt, Optional: true, Description: "Set threshold percentage of \"max-src-dst-entry\" for generating warning logs. Including start and end.",
 						},
 						"zone_template": {
 							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -86,7 +92,7 @@ func resourceDdosDstZonePortZoneServiceSrcBasedPolicy() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"counters1": {
-										Type: schema.TypeString, Optional: true, Description: "'all': all; 'packet_received': Packets Received; 'packet_dropped': Packets Dropped; 'entry_learned': Entry Learned; 'entry_count_overflow': Entry Count Overflow;",
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'packet_received': Packets Received; 'packet_dropped': Packets Dropped; 'entry_learned': Entry Learned; 'entry_count_overflow': Entry Count Overflow; 'exceed_drop_pkt_rate_clist': Packet Rate Exceeded; 'exceed_drop_conn_rate_clist': Conn Rate Exceeded; 'exceed_drop_conn_limit_clist': Conn Limit Exceeded; 'exceed_drop_kbit_rate_clist': KiBit Rate Exceeded; 'exceed_drop_kbit_rate_clist_pkt': KiBit Rate Exceeded Count; 'exceed_drop_frag_rate_clist': Frag Rate Exceeded;",
 									},
 								},
 							},
@@ -165,14 +171,14 @@ func resourceDdosDstZonePortZoneServiceSrcBasedPolicy() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 			"port_num": {
 				Type: schema.TypeString, Required: true, Description: "PortNum",
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 		},
 	}
@@ -247,12 +253,14 @@ func getSliceDdosDstZonePortZoneServiceSrcBasedPolicyPolicyClassListList(d []int
 		in := item.(map[string]interface{})
 		var oi edpt.DdosDstZonePortZoneServiceSrcBasedPolicyPolicyClassListList
 		oi.ClassListName = in["class_list_name"].(string)
+		oi.ClassListGlid = in["class_list_glid"].(string)
 		oi.Glid = in["glid"].(string)
 		oi.GlidAction = in["glid_action"].(string)
 		oi.Action = in["action"].(string)
 		oi.LogEnable = in["log_enable"].(int)
 		oi.LogPeriodic = in["log_periodic"].(int)
 		oi.MaxDynamicEntryCount = in["max_dynamic_entry_count"].(int)
+		oi.DynamicEntryCountWarnThreshold = in["dynamic_entry_count_warn_threshold"].(int)
 		oi.ZoneTemplate = getObjectDdosDstZonePortZoneServiceSrcBasedPolicyPolicyClassListListZoneTemplate(in["zone_template"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
@@ -340,8 +348,8 @@ func dataToEndpointDdosDstZonePortZoneServiceSrcBasedPolicy(d *schema.ResourceDa
 	ret.Inst.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
-	ret.Inst.PortNum = d.Get("port_num").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
+	ret.Inst.PortNum = d.Get("port_num").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	return ret
 }

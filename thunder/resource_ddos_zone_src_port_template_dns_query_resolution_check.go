@@ -31,8 +31,8 @@ func resourceDdosZoneSrcPortTemplateDnsQueryResolutionCheck() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_name",
 			},
 		},
 	}
@@ -106,6 +106,6 @@ func dataToEndpointDdosZoneSrcPortTemplateDnsQueryResolutionCheck(d *schema.Reso
 	ret.Inst.DomainLockupAction = d.Get("domain_lockup_action").(string)
 	ret.Inst.SessionTimeoutValue = d.Get("session_timeout_value").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dns_name = d.Get("dns_name").(string)
 	return ret
 }

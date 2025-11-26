@@ -51,5 +51,3 @@ Optional:
 - `total_fwd_packets` (Number) Forward packets
 - `total_rev_bytes` (Number) Reverse bytes
 - `total_rev_packets` (Number) Reverse packets
-
-

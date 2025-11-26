@@ -62,5 +62,3 @@ Optional:
 - `method_update` (Number) Method UPDATE
 - `stat_request` (Number) Request Received
 - `stat_response` (Number) Response Received
-
-

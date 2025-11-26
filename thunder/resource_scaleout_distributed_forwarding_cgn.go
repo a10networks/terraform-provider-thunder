@@ -9,15 +9,15 @@ import (
 
 func resourceScaleoutDistributedForwardingCgn() *schema.Resource {
 	return &schema.Resource{
-		Description:   "`thunder_scaleout_distributed_forwarding_cgn`: Enable Scaleout distributed-forwarding for cgn\n\n__PLACEHOLDER__",
+		Description:   "`thunder_scaleout_distributed_forwarding_cgn`: Enable Scaleout distributed-forwarding for cgn sessions\n\n__PLACEHOLDER__",
 		CreateContext: resourceScaleoutDistributedForwardingCgnCreate,
 		UpdateContext: resourceScaleoutDistributedForwardingCgnUpdate,
 		ReadContext:   resourceScaleoutDistributedForwardingCgnRead,
 		DeleteContext: resourceScaleoutDistributedForwardingCgnDelete,
 
 		Schema: map[string]*schema.Schema{
-			"cgn_value": {
-				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable CGN; 'disable': Disable CGN;",
+			"enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable distributed-forwarding for CGN",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -89,7 +89,7 @@ func resourceScaleoutDistributedForwardingCgnRead(ctx context.Context, d *schema
 
 func dataToEndpointScaleoutDistributedForwardingCgn(d *schema.ResourceData) edpt.ScaleoutDistributedForwardingCgn {
 	var ret edpt.ScaleoutDistributedForwardingCgn
-	ret.Inst.CgnValue = d.Get("cgn_value").(string)
+	ret.Inst.Enable = d.Get("enable").(int)
 	//omit uuid
 	return ret
 }

@@ -47,5 +47,3 @@ Optional:
 - `state` (String)
 - `table_count` (Number)
 - `time_to_active` (Number)
-
-

@@ -70,5 +70,3 @@ Optional:
 - `server_conn_failed` (Number)
 - `server_conn_rst` (Number)
 - `server_msg_received` (Number)
-
-

@@ -14,7 +14,7 @@ func resourceVpnIpsecSaStats() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"sampling_enable": {
-				Type: schema.TypeList, Required: true, Description: "",
+				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {

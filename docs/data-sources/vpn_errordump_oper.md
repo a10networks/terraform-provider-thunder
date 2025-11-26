@@ -47,5 +47,3 @@ output "get_vpn_errordump_oper" {
 Optional:
 
 - `ipsec_error_dump_path` (String)
-
-

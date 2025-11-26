@@ -52,5 +52,3 @@ output "get_slb_server_group_stats" {
 Optional:
 
 - `dummy_conn` (Number) Current established connections
-
-

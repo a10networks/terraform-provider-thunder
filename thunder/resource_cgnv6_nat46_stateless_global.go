@@ -26,6 +26,32 @@ func resourceCgnv6Nat46StatelessGlobal() *schema.Resource {
 					},
 				},
 			},
+			"tcp": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"mss_clamp": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"mss_clamp_type": {
+										Type: schema.TypeString, Optional: true, Default: "subtract", Description: "'fixed': Specify a fixed max value for the TCP MSS; 'none': No TCP MSS clamping; 'subtract': Specify the value to subtract from the TCP MSS (default: 20);",
+									},
+									"mss_value": {
+										Type: schema.TypeInt, Optional: true, Description: "The max value allowed for the TCP MSS (default: not configured)",
+									},
+									"mss_subtract": {
+										Type: schema.TypeInt, Optional: true, Default: 20, Description: "Specify the value to subtract from the TCP MSS (default: 20)",
+									},
+									"min": {
+										Type: schema.TypeInt, Optional: true, Default: 456, Description: "Specify the min value allowed for the TCP MSS (Specify the min value allowed for the TCP MSS (default: ((576 - 60 - 60))))",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
@@ -107,9 +133,35 @@ func getSliceCgnv6Nat46StatelessGlobalSamplingEnable(d []interface{}) []edpt.Cgn
 	return ret
 }
 
+func getObjectCgnv6Nat46StatelessGlobalTcp(d []interface{}) edpt.Cgnv6Nat46StatelessGlobalTcp {
+
+	count1 := len(d)
+	var ret edpt.Cgnv6Nat46StatelessGlobalTcp
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.MssClamp = getObjectCgnv6Nat46StatelessGlobalTcpMssClamp(in["mss_clamp"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectCgnv6Nat46StatelessGlobalTcpMssClamp(d []interface{}) edpt.Cgnv6Nat46StatelessGlobalTcpMssClamp {
+
+	count1 := len(d)
+	var ret edpt.Cgnv6Nat46StatelessGlobalTcpMssClamp
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.MssClampType = in["mss_clamp_type"].(string)
+		ret.MssValue = in["mss_value"].(int)
+		ret.MssSubtract = in["mss_subtract"].(int)
+		ret.Min = in["min"].(int)
+	}
+	return ret
+}
+
 func dataToEndpointCgnv6Nat46StatelessGlobal(d *schema.ResourceData) edpt.Cgnv6Nat46StatelessGlobal {
 	var ret edpt.Cgnv6Nat46StatelessGlobal
 	ret.Inst.SamplingEnable = getSliceCgnv6Nat46StatelessGlobalSamplingEnable(d.Get("sampling_enable").([]interface{}))
+	ret.Inst.Tcp = getObjectCgnv6Nat46StatelessGlobalTcp(d.Get("tcp").([]interface{}))
 	//omit uuid
 	return ret
 }

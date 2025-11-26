@@ -39,9 +39,9 @@ output "get_gslb_zone_service_dns_mx_record_stats" {
 ### Required
 
 - `mx_name` (String) Specify Domain Name
-- `name` (String) Name
 - `service_name` (String) ServiceName
 - `service_port` (String) ServicePort
+- `zone_name` (String) Zone_name
 
 ### Optional
 
@@ -57,5 +57,3 @@ output "get_gslb_zone_service_dns_mx_record_stats" {
 Optional:
 
 - `hits` (Number) Number of times the record has been used
-
-

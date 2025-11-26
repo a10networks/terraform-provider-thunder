@@ -57,5 +57,3 @@ Optional:
 
 - `nat_pool_name` (String)
 - `v4_address` (String)
-
-

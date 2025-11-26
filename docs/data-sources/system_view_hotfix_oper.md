@@ -46,5 +46,3 @@ Optional:
 
 - `applied` (String)
 - `copied` (String)
-
-

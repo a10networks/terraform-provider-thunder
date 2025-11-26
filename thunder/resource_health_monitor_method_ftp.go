@@ -34,8 +34,8 @@ func resourceHealthMonitorMethodFtp() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -111,6 +111,6 @@ func dataToEndpointHealthMonitorMethodFtp(d *schema.ResourceData) edpt.HealthMon
 	ret.Inst.FtpPort = d.Get("ftp_port").(int)
 	ret.Inst.FtpUsername = d.Get("ftp_username").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

@@ -340,5 +340,3 @@ Optional:
 
 - `ha_standby_drop` (Number)
 - `passthrough` (Number)
-
-

@@ -29,8 +29,8 @@ func resourceCgnv6LsnRuleListDomainIp() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"lsn_rule_list_name": {
+				Type: schema.TypeString, Required: true, Description: "Lsn_rule_list_name",
 			},
 		},
 	}
@@ -114,6 +114,6 @@ func dataToEndpointCgnv6LsnRuleListDomainIp(d *schema.ResourceData) edpt.Cgnv6Ls
 	var ret edpt.Cgnv6LsnRuleListDomainIp
 	ret.Inst.SamplingEnable = getSliceCgnv6LsnRuleListDomainIpSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Lsn_rule_list_name = d.Get("lsn_rule_list_name").(string)
 	return ret
 }

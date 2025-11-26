@@ -62,6 +62,18 @@ func resourceSlbConnectionReuseStats() *schema.Resource {
 						"not_remove_from_rport": {
 							Type: schema.TypeInt, Optional: true, Description: "Not remove from list",
 						},
+						"zero_pconn_value": {
+							Type: schema.TypeInt, Optional: true, Description: "Zero current pconn counter value",
+						},
+						"zero_pconn_bind_value": {
+							Type: schema.TypeInt, Optional: true, Description: "Zero current pconn bind counter value",
+						},
+						"current_http1_conn_in_the_pool": {
+							Type: schema.TypeInt, Optional: true, Description: "Current http1 conn in the pool",
+						},
+						"current_http2_conn_in_the_pool": {
+							Type: schema.TypeInt, Optional: true, Description: "Current http2 conn in the pool",
+						},
 					},
 				},
 			},
@@ -91,21 +103,25 @@ func resourceSlbConnectionReuseStatsRead(ctx context.Context, d *schema.Resource
 func setObjectSlbConnectionReuseStatsStats(ret edpt.DataSlbConnectionReuseStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"current_open":          ret.DtSlbConnectionReuseStats.Stats.Current_open,
-			"current_active":        ret.DtSlbConnectionReuseStats.Stats.Current_active,
-			"nbind":                 ret.DtSlbConnectionReuseStats.Stats.Nbind,
-			"nunbind":               ret.DtSlbConnectionReuseStats.Stats.Nunbind,
-			"nestab":                ret.DtSlbConnectionReuseStats.Stats.Nestab,
-			"ntermi":                ret.DtSlbConnectionReuseStats.Stats.Ntermi,
-			"ntermi_err":            ret.DtSlbConnectionReuseStats.Stats.Ntermi_err,
-			"delay_unbind":          ret.DtSlbConnectionReuseStats.Stats.Delay_unbind,
-			"long_resp":             ret.DtSlbConnectionReuseStats.Stats.Long_resp,
-			"miss_resp":             ret.DtSlbConnectionReuseStats.Stats.Miss_resp,
-			"unbound_data_rcv":      ret.DtSlbConnectionReuseStats.Stats.Unbound_data_rcv,
-			"pause_conn":            ret.DtSlbConnectionReuseStats.Stats.Pause_conn,
-			"pause_conn_fail":       ret.DtSlbConnectionReuseStats.Stats.Pause_conn_fail,
-			"resume_conn":           ret.DtSlbConnectionReuseStats.Stats.Resume_conn,
-			"not_remove_from_rport": ret.DtSlbConnectionReuseStats.Stats.Not_remove_from_rport,
+			"current_open":                   ret.DtSlbConnectionReuseStats.Stats.Current_open,
+			"current_active":                 ret.DtSlbConnectionReuseStats.Stats.Current_active,
+			"nbind":                          ret.DtSlbConnectionReuseStats.Stats.Nbind,
+			"nunbind":                        ret.DtSlbConnectionReuseStats.Stats.Nunbind,
+			"nestab":                         ret.DtSlbConnectionReuseStats.Stats.Nestab,
+			"ntermi":                         ret.DtSlbConnectionReuseStats.Stats.Ntermi,
+			"ntermi_err":                     ret.DtSlbConnectionReuseStats.Stats.Ntermi_err,
+			"delay_unbind":                   ret.DtSlbConnectionReuseStats.Stats.Delay_unbind,
+			"long_resp":                      ret.DtSlbConnectionReuseStats.Stats.Long_resp,
+			"miss_resp":                      ret.DtSlbConnectionReuseStats.Stats.Miss_resp,
+			"unbound_data_rcv":               ret.DtSlbConnectionReuseStats.Stats.Unbound_data_rcv,
+			"pause_conn":                     ret.DtSlbConnectionReuseStats.Stats.Pause_conn,
+			"pause_conn_fail":                ret.DtSlbConnectionReuseStats.Stats.Pause_conn_fail,
+			"resume_conn":                    ret.DtSlbConnectionReuseStats.Stats.Resume_conn,
+			"not_remove_from_rport":          ret.DtSlbConnectionReuseStats.Stats.Not_remove_from_rport,
+			"zero_pconn_value":               ret.DtSlbConnectionReuseStats.Stats.Zero_pconn_value,
+			"zero_pconn_bind_value":          ret.DtSlbConnectionReuseStats.Stats.Zero_pconn_bind_value,
+			"current_http1_conn_in_the_pool": ret.DtSlbConnectionReuseStats.Stats.Current_http1_conn_in_the_pool,
+			"current_http2_conn_in_the_pool": ret.DtSlbConnectionReuseStats.Stats.Current_http2_conn_in_the_pool,
 		},
 	}
 }
@@ -131,6 +147,10 @@ func getObjectSlbConnectionReuseStatsStats(d []interface{}) edpt.SlbConnectionRe
 		ret.Pause_conn_fail = in["pause_conn_fail"].(int)
 		ret.Resume_conn = in["resume_conn"].(int)
 		ret.Not_remove_from_rport = in["not_remove_from_rport"].(int)
+		ret.Zero_pconn_value = in["zero_pconn_value"].(int)
+		ret.Zero_pconn_bind_value = in["zero_pconn_bind_value"].(int)
+		ret.Current_http1_conn_in_the_pool = in["current_http1_conn_in_the_pool"].(int)
+		ret.Current_http2_conn_in_the_pool = in["current_http2_conn_in_the_pool"].(int)
 	}
 	return ret
 }

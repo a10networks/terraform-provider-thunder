@@ -25,8 +25,8 @@ func resourceSlbTemplateDnsUdpRetransmit() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_name",
 			},
 		},
 	}
@@ -98,6 +98,6 @@ func dataToEndpointSlbTemplateDnsUdpRetransmit(d *schema.ResourceData) edpt.SlbT
 	ret.Inst.MaxTrials = d.Get("max_trials").(int)
 	ret.Inst.RetryInterval = d.Get("retry_interval").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dns_name = d.Get("dns_name").(string)
 	return ret
 }

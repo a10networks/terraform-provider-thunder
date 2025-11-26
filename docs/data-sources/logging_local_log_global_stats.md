@@ -75,5 +75,3 @@ Optional:
 - `raw_log` (Number) Total local-log raw logs
 - `raw_log_error` (Number) Total raw log logging error
 - `response` (Number) Total local-log axapi response
-
-

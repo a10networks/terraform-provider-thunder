@@ -54,5 +54,3 @@ Optional:
 - `streams_created` (Number) Streams Created
 - `streams_freed` (Number) Streams Freed
 - `unknown_client_port_from_server` (Number) Server Replies With Unknown Client Ports
-
-

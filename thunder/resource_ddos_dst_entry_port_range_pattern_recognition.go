@@ -40,11 +40,11 @@ func resourceDdosDstEntryPortRangePatternRecognition() *schema.Resource {
 			"port_range_end": {
 				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
 			},
-			"port_range_start": {
-				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
-			},
 			"dst_entry_name": {
 				Type: schema.TypeString, Required: true, Description: "DstEntryName",
+			},
+			"port_range_start": {
+				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
 			},
 		},
 	}
@@ -121,7 +121,7 @@ func dataToEndpointDdosDstEntryPortRangePatternRecognition(d *schema.ResourceDat
 	//omit uuid
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.PortRangeEnd = d.Get("port_range_end").(string)
-	ret.Inst.PortRangeStart = d.Get("port_range_start").(string)
 	ret.Inst.DstEntryName = d.Get("dst_entry_name").(string)
+	ret.Inst.PortRangeStart = d.Get("port_range_start").(string)
 	return ret
 }

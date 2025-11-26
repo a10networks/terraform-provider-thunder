@@ -56,5 +56,3 @@ Optional:
 - `addr_v4` (String)
 - `addr_v6` (String)
 - `amount` (Number)
-
-

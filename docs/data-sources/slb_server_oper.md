@@ -41,6 +41,7 @@ output "get_slb_server_oper" {
 
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--oper))
 - `port_list` (Block List) (see [below for nested schema](#nestedblock--port_list))
+- `service_list` (Block List) (see [below for nested schema](#nestedblock--service_list))
 
 ### Read-Only
 
@@ -214,3 +215,120 @@ Optional:
 - `ports_freed_total` (Number)
 
 
+
+
+<a id="nestedblock--service_list"></a>
+### Nested Schema for `service_list`
+
+Required:
+
+- `label` (String) Service Label
+- `port_number` (Number) Port Number
+- `protocol` (String) 'tcp': TCP Port; 'udp': UDP Port;
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--service_list--oper))
+
+<a id="nestedblock--service_list--oper"></a>
+### Nested Schema for `service_list.oper`
+
+Optional:
+
+- `aflow_conn_limit` (Number)
+- `aflow_queue_size` (Number)
+- `auto_nat_addr_list` (Block List) (see [below for nested schema](#nestedblock--service_list--oper--auto_nat_addr_list))
+- `conn_rate_unit` (String)
+- `curr_conn_rate` (Number)
+- `curr_observe_rate` (Number)
+- `current_time` (Number)
+- `diameter_enabled` (Number)
+- `disable` (Number)
+- `down_grace_period_allowed` (Number)
+- `down_time_grace_period` (Number)
+- `drs_auto_nat_list` (Block List) (see [below for nested schema](#nestedblock--service_list--oper--drs_auto_nat_list))
+- `drs_ip_nat_list` (Block List) (see [below for nested schema](#nestedblock--service_list--oper--drs_ip_nat_list))
+- `es_resp_time` (Number)
+- `hm_index` (Number)
+- `hm_key` (Number)
+- `inband_hm_reassign_num` (Number)
+- `nat_pool_addr_list` (Block List) (see [below for nested schema](#nestedblock--service_list--oper--nat_pool_addr_list))
+- `pool_name` (String)
+- `resv_conn` (Number)
+- `slow_start_conn_limit` (Number)
+- `soft_down_time` (Number)
+- `state` (String)
+
+<a id="nestedblock--service_list--oper--auto_nat_addr_list"></a>
+### Nested Schema for `service_list.oper.auto_nat_addr_list`
+
+Optional:
+
+- `alloc_failed` (Number)
+- `auto_nat_ip` (String)
+- `ha_group_id` (Number)
+- `ip_rr` (Number)
+- `ports_consumed` (Number)
+- `ports_consumed_total` (Number)
+- `ports_freed_total` (Number)
+- `vrid` (Number)
+
+
+<a id="nestedblock--service_list--oper--drs_auto_nat_list"></a>
+### Nested Schema for `service_list.oper.drs_auto_nat_list`
+
+Optional:
+
+- `drs_auto_nat_address_list` (Block List) (see [below for nested schema](#nestedblock--service_list--oper--drs_auto_nat_list--drs_auto_nat_address_list))
+- `drs_name` (String)
+- `drs_port` (Number)
+
+<a id="nestedblock--service_list--oper--drs_auto_nat_list--drs_auto_nat_address_list"></a>
+### Nested Schema for `service_list.oper.drs_auto_nat_list.drs_auto_nat_address_list`
+
+Optional:
+
+- `alloc_failed` (Number)
+- `auto_nat_ip` (String)
+- `ha_group_id` (Number)
+- `ip_rr` (Number)
+- `ports_consumed` (Number)
+- `ports_consumed_total` (Number)
+- `ports_freed_total` (Number)
+- `vrid` (Number)
+
+
+
+<a id="nestedblock--service_list--oper--drs_ip_nat_list"></a>
+### Nested Schema for `service_list.oper.drs_ip_nat_list`
+
+Optional:
+
+- `drs_name` (String)
+- `drs_port` (Number)
+- `nat_pool_addr_list` (Block List) (see [below for nested schema](#nestedblock--service_list--oper--drs_ip_nat_list--nat_pool_addr_list))
+- `pool_name` (String)
+
+<a id="nestedblock--service_list--oper--drs_ip_nat_list--nat_pool_addr_list"></a>
+### Nested Schema for `service_list.oper.drs_ip_nat_list.nat_pool_addr_list`
+
+Optional:
+
+- `alloc_failed` (Number)
+- `nat_ip` (String)
+- `ports_consumed` (Number)
+- `ports_consumed_total` (Number)
+- `ports_freed_total` (Number)
+
+
+
+<a id="nestedblock--service_list--oper--nat_pool_addr_list"></a>
+### Nested Schema for `service_list.oper.nat_pool_addr_list`
+
+Optional:
+
+- `alloc_failed` (Number)
+- `nat_ip` (String)
+- `ports_consumed` (Number)
+- `ports_consumed_total` (Number)
+- `ports_freed_total` (Number)

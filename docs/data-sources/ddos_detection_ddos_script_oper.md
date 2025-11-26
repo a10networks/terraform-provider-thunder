@@ -55,5 +55,3 @@ Optional:
 - `file` (String)
 - `file_size` (Number)
 - `reference_count` (Number)
-
-

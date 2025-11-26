@@ -48,8 +48,8 @@ func resourceIpAppProtocolPortTcpPortAddAppNameInterface() *schema.Resource {
 					},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"app_name_name": {
+				Type: schema.TypeString, Required: true, Description: "App_name_name",
 			},
 			"port": {
 				Type: schema.TypeString, Required: true, Description: "Port",
@@ -153,7 +153,7 @@ func dataToEndpointIpAppProtocolPortTcpPortAddAppNameInterface(d *schema.Resourc
 	ret.Inst.Management = d.Get("management").(int)
 	//omit uuid
 	ret.Inst.VeCfg = getSliceIpAppProtocolPortTcpPortAddAppNameInterfaceVeCfg(d.Get("ve_cfg").([]interface{}))
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.App_name_name = d.Get("app_name_name").(string)
 	ret.Inst.Port = d.Get("port").(string)
 	return ret
 }

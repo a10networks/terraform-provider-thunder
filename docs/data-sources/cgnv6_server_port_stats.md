@@ -38,9 +38,9 @@ output "get_cgnv6_server_port_stats" {
 
 ### Required
 
-- `name` (String) Name
 - `port_number` (Number) Port Number
 - `protocol` (String) 'tcp': TCP Port; 'udp': UDP Port;
+- `server_name` (String) Server_name
 
 ### Optional
 
@@ -79,5 +79,3 @@ Optional:
 - `total_rev_pkts` (Number) Reverse packets
 - `total_rev_pkts_inspected` (Number) Total reverse packets inspected
 - `total_rev_pkts_inspected_good_status_code` (Number) Total reverse packets with good status code inspected
-
-

@@ -53,8 +53,7 @@ Optional:
 
 - `action` (String)
 - `ethernet` (Number)
+- `lif` (String)
 - `management` (Number)
 - `tunnel` (Number)
 - `ve` (Number)
-
-

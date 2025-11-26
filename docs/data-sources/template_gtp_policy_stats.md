@@ -50,6 +50,7 @@ output "get_template_gtp_policy_stats" {
 
 Optional:
 
+- `apn_imsi_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at APN-IMSI filtering policy
 - `drop_flt_apn_filtering` (Number) Filtering Drop: APN IMSI Filtering
 - `drop_flt_gtp_in_gtp` (Number) Filtering Drop: GTP in GTP Tunnel Present
 - `drop_flt_message_filtering` (Number) Filtering Drop: Message Type Not Permitted on Interface
@@ -115,7 +116,10 @@ Optional:
 - `drop_vld_v1_reserved_message_drop` (Number) Validation Drop: GTPv1-C Reserved Message Drop
 - `drop_vld_v2_reserved_message_drop` (Number) Validation Drop: GTPv2-C Reserved Message Drop
 - `drop_vld_version_not_supported` (Number) Validation Drop: Invalid GTP version
+- `flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at message filtering policy
+- `gen_message_length_monitor` (Number) GTP Message forwarded via monitor mode at validation policy
 - `gtp_c_handover_in_progress_with_conn` (Number) GTP-C matching a conn with Handover In Progress
+- `gtp_in_gtp_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at GTP-IN_GTP filtering policy
 - `gtp_path_management_message` (Number) GTP Path Management Messages Received
 - `gtp_u_tunnel_created` (Number) GTP-U Tunnel Created
 - `gtp_u_tunnel_deleted` (Number) GTP-U Tunnel Deleted
@@ -164,5 +168,7 @@ Optional:
 - `gtp_v2_c_tunnel_deleted_restart` (Number) GTPv2-C Tunnel Deleted with Restart/failure
 - `gtp_v2_c_tunnel_half_closed` (Number) GTPv2-C Tunnel Delete Request
 - `gtp_v2_c_tunnel_half_open` (Number) GTPv2-C Half open tunnel created
-
-
+- `msisdn_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at Msisdn filtering policy
+- `rat_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at rat filtering policy
+- `rl_message_monitor` (Number) GTP Message forwarded via monitor mode at rate-limit policy
+- `vld_message_monitor` (Number) GTP Message forwarded via monitor mode at validation policy

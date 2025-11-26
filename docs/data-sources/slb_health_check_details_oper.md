@@ -114,5 +114,3 @@ Optional:
 - `transport_proto` (Number)
 - `url` (String)
 - `user` (String)
-
-

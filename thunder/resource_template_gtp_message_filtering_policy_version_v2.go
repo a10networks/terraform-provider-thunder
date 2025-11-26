@@ -79,8 +79,8 @@ func resourceTemplateGtpMessageFilteringPolicyVersionV2() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"message_filtering_policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Message_filtering_policy_name",
 			},
 		},
 	}
@@ -170,6 +170,6 @@ func dataToEndpointTemplateGtpMessageFilteringPolicyVersionV2(d *schema.Resource
 	ret.Inst.UpdateBearer = d.Get("update_bearer").(string)
 	ret.Inst.UpdatePdn = d.Get("update_pdn").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Message_filtering_policy_name = d.Get("message_filtering_policy_name").(string)
 	return ret
 }

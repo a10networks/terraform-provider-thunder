@@ -152,6 +152,9 @@ func resourceRadiusServer() *schema.Resource {
 					},
 				},
 			},
+			"message_authenticator_verify_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the verification of Message-Authenticator attribute",
+			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
@@ -220,10 +223,10 @@ func resourceRadiusServerRead(ctx context.Context, d *schema.ResourceData, meta 
 	return diags
 }
 
-func getObjectRadiusServerHost1093(d []interface{}) edpt.RadiusServerHost1093 {
+func getObjectRadiusServerHost1177(d []interface{}) edpt.RadiusServerHost1177 {
 
 	count1 := len(d)
-	var ret edpt.RadiusServerHost1093
+	var ret edpt.RadiusServerHost1177
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ipv4List = getSliceRadiusServerHostIpv4List(in["ipv4_list"].([]interface{}))
@@ -362,7 +365,8 @@ func getObjectRadiusServerHostNameListSecretPortCfg(d []interface{}) edpt.Radius
 func dataToEndpointRadiusServer(d *schema.ResourceData) edpt.RadiusServer {
 	var ret edpt.RadiusServer
 	ret.Inst.DefaultPrivilegeReadWrite = d.Get("default_privilege_read_write").(int)
-	ret.Inst.Host = getObjectRadiusServerHost1093(d.Get("host").([]interface{}))
+	ret.Inst.Host = getObjectRadiusServerHost1177(d.Get("host").([]interface{}))
+	ret.Inst.MessageAuthenticatorVerifyEnable = d.Get("message_authenticator_verify_enable").(int)
 	//omit uuid
 	return ret
 }

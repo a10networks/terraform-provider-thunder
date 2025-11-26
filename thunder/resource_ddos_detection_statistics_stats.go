@@ -186,67 +186,82 @@ func resourceDdosDetectionStatisticsStats() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "Service Entry of Network-object Create Failed",
 						},
 						"db_unexpected_error": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Unexpected Error",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Unexpected Error",
 						},
 						"db_oper_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Operation Failure",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Storage Operation Failure",
 						},
 						"db_open_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Open Failure",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Storage Open Failure",
 						},
 						"db_n_subnet_table_create_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network Subnet Entry Table Creation Failure",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network Subnet Entry Storage Creation Failure",
 						},
 						"db_n_ip_table_create_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network IP Entry Table Creation Failure",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network IP Entry Storage Creation Failure",
 						},
 						"db_n_svc_table_create_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network Service Entry Table Creation Failure",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network Service Entry Storage Creation Failure",
 						},
 						"db_n_subnet_save_attempt": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network Subnet Entry Saving Attempt",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network Subnet Entry Saving Attempt",
 						},
 						"db_n_subnet_save_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network Subnet Entry Saving Failure",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network Subnet Entry Saving Failure",
 						},
 						"db_n_subnet_restore_attempt": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network Subnet Entry Restoring Attempt",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network Subnet Entry Restoring Attempt",
 						},
 						"db_n_ip_save_attempt": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network IP Entry Saving Attempt",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network IP Entry Saving Attempt",
 						},
 						"db_n_ip_save_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network IP Entry Saving Failure",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network IP Entry Saving Failure",
 						},
 						"db_n_ip_restore_attempt": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network IP Entry Restoring Attempt",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network IP Entry Restoring Attempt",
 						},
 						"db_n_svc_save_attempt": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network Service Entry Saving Attempt",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network Service Entry Saving Attempt",
 						},
 						"db_n_svc_save_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network Service Entry Saving Failure",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network Service Entry Saving Failure",
 						},
 						"db_n_svc_restore_attempt": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network Service Entry Restoring Attempt",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network Service Entry Restoring Attempt",
 						},
 						"db_n_static_subnet_not_found": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network Static Subnet Entry Not Found",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network Static Subnet Entry Not Found",
 						},
 						"db_n_parent_entry_not_found": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network Parent Entry Not Found",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network Parent Entry Not Found",
 						},
 						"db_worker_enq_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Worker Enqueue Failure",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Periodic Saving Routine Schedule Failure",
 						},
 						"db_n_subnet_table_purge_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network Subnet Entry Table Purge Entries Failure",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network Subnet Entry Storage Purge Failure",
 						},
 						"db_n_ip_table_purge_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network IP Entry Table Purge Entries Failure",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network IP Entry Storage Purge Failure",
 						},
 						"db_n_svc_table_purge_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Database Network Service Entry Table Purge Entries Failure",
+							Type: schema.TypeInt, Optional: true, Description: "Entry-Saving Network Service Entry Storage Purge Failure",
+						},
+						"n_sport_learned": {
+							Type: schema.TypeInt, Optional: true, Description: "Source Port Entry of Network-object Learned",
+						},
+						"n_sport_aged": {
+							Type: schema.TypeInt, Optional: true, Description: "Source Port Entry of Network-object Aged",
+						},
+						"n_sport_not_found": {
+							Type: schema.TypeInt, Optional: true, Description: "Source Port Entry of Network-object Not Found",
+						},
+						"n_sport_create_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "Source Port Entry of Network-object Create Failed",
+						},
+						"trusted_sample_processed": {
+							Type: schema.TypeInt, Optional: true, Description: "Samples with Source IP in Trustlist Processed",
 						},
 					},
 				},
@@ -354,6 +369,11 @@ func setObjectDdosDetectionStatisticsStatsStats(ret edpt.DataDdosDetectionStatis
 			"db_n_subnet_table_purge_failure":  ret.DtDdosDetectionStatisticsStats.Stats.DbNSubnetTablePurgeFailure,
 			"db_n_ip_table_purge_failure":      ret.DtDdosDetectionStatisticsStats.Stats.DbNIpTablePurgeFailure,
 			"db_n_svc_table_purge_failure":     ret.DtDdosDetectionStatisticsStats.Stats.DbNSvcTablePurgeFailure,
+			"n_sport_learned":                  ret.DtDdosDetectionStatisticsStats.Stats.NSportLearned,
+			"n_sport_aged":                     ret.DtDdosDetectionStatisticsStats.Stats.NSportAged,
+			"n_sport_not_found":                ret.DtDdosDetectionStatisticsStats.Stats.NSportNotFound,
+			"n_sport_create_fail":              ret.DtDdosDetectionStatisticsStats.Stats.NSportCreateFail,
+			"trusted_sample_processed":         ret.DtDdosDetectionStatisticsStats.Stats.TrustedSampleProcessed,
 		},
 	}
 }
@@ -441,6 +461,11 @@ func getObjectDdosDetectionStatisticsStatsStats(d []interface{}) edpt.DdosDetect
 		ret.DbNSubnetTablePurgeFailure = in["db_n_subnet_table_purge_failure"].(int)
 		ret.DbNIpTablePurgeFailure = in["db_n_ip_table_purge_failure"].(int)
 		ret.DbNSvcTablePurgeFailure = in["db_n_svc_table_purge_failure"].(int)
+		ret.NSportLearned = in["n_sport_learned"].(int)
+		ret.NSportAged = in["n_sport_aged"].(int)
+		ret.NSportNotFound = in["n_sport_not_found"].(int)
+		ret.NSportCreateFail = in["n_sport_create_fail"].(int)
+		ret.TrustedSampleProcessed = in["trusted_sample_processed"].(int)
 	}
 	return ret
 }

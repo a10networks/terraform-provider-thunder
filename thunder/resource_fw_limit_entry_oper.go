@@ -27,6 +27,9 @@ func resourceFwLimitEntryOper() *schema.Resource {
 									"prefix_len": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"string_value": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
 									"rule_name": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
@@ -56,6 +59,12 @@ func resourceFwLimitEntryOper() *schema.Resource {
 						},
 						"prefix_len4": {
 							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"string_value": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"rule_name": {
+							Type: schema.TypeString, Optional: true, Description: "",
 						},
 					},
 				},
@@ -92,6 +101,8 @@ func setObjectFwLimitEntryOperOper(ret edpt.DataFwLimitEntryOper) []interface{} 
 			"prefix4":           ret.DtFwLimitEntryOper.Oper.Prefix4,
 			"prefix_len6":       ret.DtFwLimitEntryOper.Oper.PrefixLen6,
 			"prefix_len4":       ret.DtFwLimitEntryOper.Oper.PrefixLen4,
+			"string_value":      ret.DtFwLimitEntryOper.Oper.StringValue,
+			"rule_name":         ret.DtFwLimitEntryOper.Oper.RuleName,
 		},
 	}
 }
@@ -102,6 +113,7 @@ func setSliceFwLimitEntryOperOperLimitEntryList(d []edpt.FwLimitEntryOperOperLim
 		in := make(map[string]interface{})
 		in["address"] = item.Address
 		in["prefix_len"] = item.PrefixLen
+		in["string_value"] = item.StringValue
 		in["rule_name"] = item.RuleName
 		in["curr_count"] = item.CurrCount
 		in["max_count"] = item.MaxCount
@@ -123,6 +135,8 @@ func getObjectFwLimitEntryOperOper(d []interface{}) edpt.FwLimitEntryOperOper {
 		ret.Prefix4 = in["prefix4"].(string)
 		ret.PrefixLen6 = in["prefix_len6"].(int)
 		ret.PrefixLen4 = in["prefix_len4"].(int)
+		ret.StringValue = in["string_value"].(string)
+		ret.RuleName = in["rule_name"].(string)
 	}
 	return ret
 }
@@ -136,6 +150,7 @@ func getSliceFwLimitEntryOperOperLimitEntryList(d []interface{}) []edpt.FwLimitE
 		var oi edpt.FwLimitEntryOperOperLimitEntryList
 		oi.Address = in["address"].(string)
 		oi.PrefixLen = in["prefix_len"].(int)
+		oi.StringValue = in["string_value"].(string)
 		oi.RuleName = in["rule_name"].(string)
 		oi.CurrCount = in["curr_count"].(int)
 		oi.MaxCount = in["max_count"].(int)

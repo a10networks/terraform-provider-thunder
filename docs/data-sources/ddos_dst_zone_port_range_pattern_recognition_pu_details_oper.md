@@ -83,5 +83,3 @@ Optional:
 - `filter_expr` (String)
 - `hardware_filter` (Number)
 - `sample_ratio` (Number)
-
-

@@ -56,5 +56,3 @@ Optional:
 
 - `active` (Number) Active Servers
 - `current` (Number) Current Connections
-
-

@@ -37,7 +37,7 @@ output "get_cgnv6_lsn_rule_list_domain_list_name_oper" {
 
 ### Required
 
-- `name` (String) Name
+- `lsn_rule_list_name` (String) Lsn_rule_list_name
 - `name_domain_list` (String) Configure a Specific Rule-Set (Domain List Name)
 
 ### Optional
@@ -81,5 +81,3 @@ Optional:
 - `start_port` (Number)
 - `timeout_val` (Number)
 - `vrid` (Number)
-
-

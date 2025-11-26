@@ -65,5 +65,3 @@ Optional:
 - `renew_time` (String)
 - `service_principal` (String)
 - `start_time` (String)
-
-

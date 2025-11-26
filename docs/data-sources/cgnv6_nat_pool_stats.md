@@ -79,5 +79,3 @@ Optional:
 - `udp_rsvd` (Number) UDP Reserved
 - `udp_total` (Number) UDP Total
 - `users` (Number) Users
-
-

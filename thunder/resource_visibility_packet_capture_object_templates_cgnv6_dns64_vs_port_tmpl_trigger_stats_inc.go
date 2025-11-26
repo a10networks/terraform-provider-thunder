@@ -22,8 +22,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerSt
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"cgnv6_dns64_vs_port_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Cgnv6_dns64_vs_port_tmpl_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTri
 	var ret edpt.VisibilityPacketCaptureObjectTemplatesCgnv6Dns64VsPortTmplTriggerStatsInc
 	ret.Inst.Es_total_failure_actions = d.Get("es_total_failure_actions").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Cgnv6_dns64_vs_port_tmpl_name = d.Get("cgnv6_dns64_vs_port_tmpl_name").(string)
 	return ret
 }

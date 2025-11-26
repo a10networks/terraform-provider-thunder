@@ -25,6 +25,9 @@ func resourceWebService() *schema.Resource {
 			"axapi_session_limit": {
 				Type: schema.TypeInt, Optional: true, Default: 30, Description: "Set the max allowed aXAPI sessions (Session limit (default 30))",
 			},
+			"axapi_token_sharing": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable axapi token sharing within multiple hosts",
+			},
 			"gui_idle": {
 				Type: schema.TypeInt, Optional: true, Default: 10, Description: "Idle timeout of a connection in minutes (Connection idle timeout value in minutes, default 10, 0 means never timeout)",
 			},
@@ -232,26 +235,26 @@ func getSliceWebServicePublicApis(d []interface{}) []edpt.WebServicePublicApis {
 	return ret
 }
 
-func getObjectWebServiceSecure3676(d []interface{}) edpt.WebServiceSecure3676 {
+func getObjectWebServiceSecure3775(d []interface{}) edpt.WebServiceSecure3775 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecure3676
+	var ret edpt.WebServiceSecure3775
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Restart = in["restart"].(int)
 		ret.Wipe = in["wipe"].(int)
-		ret.Generate = getObjectWebServiceSecureGenerate3677(in["generate"].([]interface{}))
-		ret.Regenerate = getObjectWebServiceSecureRegenerate3678(in["regenerate"].([]interface{}))
-		ret.Certificate = getObjectWebServiceSecureCertificate3679(in["certificate"].([]interface{}))
-		ret.PrivateKey = getObjectWebServiceSecurePrivateKey3680(in["private_key"].([]interface{}))
+		ret.Generate = getObjectWebServiceSecureGenerate3776(in["generate"].([]interface{}))
+		ret.Regenerate = getObjectWebServiceSecureRegenerate3777(in["regenerate"].([]interface{}))
+		ret.Certificate = getObjectWebServiceSecureCertificate3778(in["certificate"].([]interface{}))
+		ret.PrivateKey = getObjectWebServiceSecurePrivateKey3779(in["private_key"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectWebServiceSecureGenerate3677(d []interface{}) edpt.WebServiceSecureGenerate3677 {
+func getObjectWebServiceSecureGenerate3776(d []interface{}) edpt.WebServiceSecureGenerate3776 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecureGenerate3677
+	var ret edpt.WebServiceSecureGenerate3776
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DomainName = in["domain_name"].(string)
@@ -261,10 +264,10 @@ func getObjectWebServiceSecureGenerate3677(d []interface{}) edpt.WebServiceSecur
 	return ret
 }
 
-func getObjectWebServiceSecureRegenerate3678(d []interface{}) edpt.WebServiceSecureRegenerate3678 {
+func getObjectWebServiceSecureRegenerate3777(d []interface{}) edpt.WebServiceSecureRegenerate3777 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecureRegenerate3678
+	var ret edpt.WebServiceSecureRegenerate3777
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DomainName = in["domain_name"].(string)
@@ -274,10 +277,10 @@ func getObjectWebServiceSecureRegenerate3678(d []interface{}) edpt.WebServiceSec
 	return ret
 }
 
-func getObjectWebServiceSecureCertificate3679(d []interface{}) edpt.WebServiceSecureCertificate3679 {
+func getObjectWebServiceSecureCertificate3778(d []interface{}) edpt.WebServiceSecureCertificate3778 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecureCertificate3679
+	var ret edpt.WebServiceSecureCertificate3778
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Load = in["load"].(int)
@@ -287,10 +290,10 @@ func getObjectWebServiceSecureCertificate3679(d []interface{}) edpt.WebServiceSe
 	return ret
 }
 
-func getObjectWebServiceSecurePrivateKey3680(d []interface{}) edpt.WebServiceSecurePrivateKey3680 {
+func getObjectWebServiceSecurePrivateKey3779(d []interface{}) edpt.WebServiceSecurePrivateKey3779 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecurePrivateKey3680
+	var ret edpt.WebServiceSecurePrivateKey3779
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Load = in["load"].(int)
@@ -305,6 +308,7 @@ func dataToEndpointWebService(d *schema.ResourceData) edpt.WebService {
 	ret.Inst.AutoRedirtDisable = d.Get("auto_redirt_disable").(int)
 	ret.Inst.AxapiIdle = d.Get("axapi_idle").(int)
 	ret.Inst.AxapiSessionLimit = d.Get("axapi_session_limit").(int)
+	ret.Inst.AxapiTokenSharing = d.Get("axapi_token_sharing").(int)
 	ret.Inst.GuiIdle = d.Get("gui_idle").(int)
 	ret.Inst.GuiSessionLimit = d.Get("gui_session_limit").(int)
 	ret.Inst.KeepAliveTimeout = d.Get("keep_alive_timeout").(int)
@@ -316,7 +320,7 @@ func dataToEndpointWebService(d *schema.ResourceData) edpt.WebService {
 	ret.Inst.Port = d.Get("port").(int)
 	ret.Inst.PreLoginMessage = d.Get("pre_login_message").(string)
 	ret.Inst.PublicApis = getSliceWebServicePublicApis(d.Get("public_apis").([]interface{}))
-	ret.Inst.Secure = getObjectWebServiceSecure3676(d.Get("secure").([]interface{}))
+	ret.Inst.Secure = getObjectWebServiceSecure3775(d.Get("secure").([]interface{}))
 	ret.Inst.SecurePort = d.Get("secure_port").(int)
 	ret.Inst.SecureServerDisable = d.Get("secure_server_disable").(int)
 	ret.Inst.ServerDisable = d.Get("server_disable").(int)

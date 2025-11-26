@@ -32,11 +32,11 @@ func resourceGslbSiteSlbDevVipServerVipServerV6() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"site_name": {
-				Type: schema.TypeString, Required: true, Description: "SiteName",
-			},
 			"device_name": {
 				Type: schema.TypeString, Required: true, Description: "DeviceName",
+			},
+			"site_name": {
+				Type: schema.TypeString, Required: true, Description: "SiteName",
 			},
 		},
 	}
@@ -121,7 +121,7 @@ func dataToEndpointGslbSiteSlbDevVipServerVipServerV6(d *schema.ResourceData) ed
 	ret.Inst.Ipv6 = d.Get("ipv6").(string)
 	ret.Inst.SamplingEnable = getSliceGslbSiteSlbDevVipServerVipServerV6SamplingEnable(d.Get("sampling_enable").([]interface{}))
 	//omit uuid
-	ret.Inst.SiteName = d.Get("site_name").(string)
 	ret.Inst.DeviceName = d.Get("device_name").(string)
+	ret.Inst.SiteName = d.Get("site_name").(string)
 	return ret
 }

@@ -48,5 +48,3 @@ Optional:
 - `syn_ack_sent` (Number) SYN cookie SYN ACK sent
 - `verification_failed` (Number) SYN cookie verification failed
 - `verification_passed` (Number) SYN cookie verification passed
-
-

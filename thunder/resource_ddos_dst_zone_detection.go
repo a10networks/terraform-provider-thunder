@@ -287,57 +287,57 @@ func resourceDdosDstZoneDetectionRead(ctx context.Context, d *schema.ResourceDat
 	return diags
 }
 
-func getObjectDdosDstZoneDetectionNotification188(d []interface{}) edpt.DdosDstZoneDetectionNotification188 {
+func getObjectDdosDstZoneDetectionNotification205(d []interface{}) edpt.DdosDstZoneDetectionNotification205 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneDetectionNotification188
+	var ret edpt.DdosDstZoneDetectionNotification205
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Configuration = in["configuration"].(string)
-		ret.Notification = getSliceDdosDstZoneDetectionNotificationNotification189(in["notification"].([]interface{}))
+		ret.Notification = getSliceDdosDstZoneDetectionNotificationNotification206(in["notification"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneDetectionNotificationNotification189(d []interface{}) []edpt.DdosDstZoneDetectionNotificationNotification189 {
+func getSliceDdosDstZoneDetectionNotificationNotification206(d []interface{}) []edpt.DdosDstZoneDetectionNotificationNotification206 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneDetectionNotificationNotification189, 0, count1)
+	ret := make([]edpt.DdosDstZoneDetectionNotificationNotification206, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneDetectionNotificationNotification189
+		var oi edpt.DdosDstZoneDetectionNotificationNotification206
 		oi.NotificationTemplateName = in["notification_template_name"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectDdosDstZoneDetectionOutboundDetection190(d []interface{}) edpt.DdosDstZoneDetectionOutboundDetection190 {
+func getObjectDdosDstZoneDetectionOutboundDetection207(d []interface{}) edpt.DdosDstZoneDetectionOutboundDetection207 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneDetectionOutboundDetection190
+	var ret edpt.DdosDstZoneDetectionOutboundDetection207
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Configuration = in["configuration"].(string)
 		ret.Toggle = in["toggle"].(string)
 		ret.DiscoveryMethod = in["discovery_method"].(string)
 		ret.DiscoveryRecord = in["discovery_record"].(int)
-		ret.EnableTopK = getSliceDdosDstZoneDetectionOutboundDetectionEnableTopK191(in["enable_top_k"].([]interface{}))
+		ret.EnableTopK = getSliceDdosDstZoneDetectionOutboundDetectionEnableTopK208(in["enable_top_k"].([]interface{}))
 		//omit uuid
-		ret.IndicatorList = getSliceDdosDstZoneDetectionOutboundDetectionIndicatorList192(in["indicator_list"].([]interface{}))
-		ret.TopkSourceSubnet = getObjectDdosDstZoneDetectionOutboundDetectionTopkSourceSubnet193(in["topk_source_subnet"].([]interface{}))
+		ret.IndicatorList = getSliceDdosDstZoneDetectionOutboundDetectionIndicatorList209(in["indicator_list"].([]interface{}))
+		ret.TopkSourceSubnet = getObjectDdosDstZoneDetectionOutboundDetectionTopkSourceSubnet210(in["topk_source_subnet"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneDetectionOutboundDetectionEnableTopK191(d []interface{}) []edpt.DdosDstZoneDetectionOutboundDetectionEnableTopK191 {
+func getSliceDdosDstZoneDetectionOutboundDetectionEnableTopK208(d []interface{}) []edpt.DdosDstZoneDetectionOutboundDetectionEnableTopK208 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneDetectionOutboundDetectionEnableTopK191, 0, count1)
+	ret := make([]edpt.DdosDstZoneDetectionOutboundDetectionEnableTopK208, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneDetectionOutboundDetectionEnableTopK191
+		var oi edpt.DdosDstZoneDetectionOutboundDetectionEnableTopK208
 		oi.TopkType = in["topk_type"].(string)
 		oi.TopkNetmask = in["topk_netmask"].(int)
 		oi.TopkNumRecords = in["topk_num_records"].(int)
@@ -346,13 +346,13 @@ func getSliceDdosDstZoneDetectionOutboundDetectionEnableTopK191(d []interface{})
 	return ret
 }
 
-func getSliceDdosDstZoneDetectionOutboundDetectionIndicatorList192(d []interface{}) []edpt.DdosDstZoneDetectionOutboundDetectionIndicatorList192 {
+func getSliceDdosDstZoneDetectionOutboundDetectionIndicatorList209(d []interface{}) []edpt.DdosDstZoneDetectionOutboundDetectionIndicatorList209 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneDetectionOutboundDetectionIndicatorList192, 0, count1)
+	ret := make([]edpt.DdosDstZoneDetectionOutboundDetectionIndicatorList209, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneDetectionOutboundDetectionIndicatorList192
+		var oi edpt.DdosDstZoneDetectionOutboundDetectionIndicatorList209
 		oi.Type = in["type"].(string)
 		oi.TcpWindowSize = in["tcp_window_size"].(int)
 		oi.DataPacketSize = in["data_packet_size"].(int)
@@ -366,33 +366,33 @@ func getSliceDdosDstZoneDetectionOutboundDetectionIndicatorList192(d []interface
 	return ret
 }
 
-func getObjectDdosDstZoneDetectionOutboundDetectionTopkSourceSubnet193(d []interface{}) edpt.DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet193 {
+func getObjectDdosDstZoneDetectionOutboundDetectionTopkSourceSubnet210(d []interface{}) edpt.DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet210 {
 
-	var ret edpt.DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet193
+	var ret edpt.DdosDstZoneDetectionOutboundDetectionTopkSourceSubnet210
 	return ret
 }
 
-func getObjectDdosDstZoneDetectionPacketAnomalyDetection194(d []interface{}) edpt.DdosDstZoneDetectionPacketAnomalyDetection194 {
+func getObjectDdosDstZoneDetectionPacketAnomalyDetection211(d []interface{}) edpt.DdosDstZoneDetectionPacketAnomalyDetection211 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneDetectionPacketAnomalyDetection194
+	var ret edpt.DdosDstZoneDetectionPacketAnomalyDetection211
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Configuration = in["configuration"].(string)
 		ret.Toggle = in["toggle"].(string)
 		//omit uuid
-		ret.IndicatorList = getSliceDdosDstZoneDetectionPacketAnomalyDetectionIndicatorList195(in["indicator_list"].([]interface{}))
+		ret.IndicatorList = getSliceDdosDstZoneDetectionPacketAnomalyDetectionIndicatorList212(in["indicator_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneDetectionPacketAnomalyDetectionIndicatorList195(d []interface{}) []edpt.DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList195 {
+func getSliceDdosDstZoneDetectionPacketAnomalyDetectionIndicatorList212(d []interface{}) []edpt.DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList212 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList195, 0, count1)
+	ret := make([]edpt.DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList212, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList195
+		var oi edpt.DdosDstZoneDetectionPacketAnomalyDetectionIndicatorList212
 		oi.Type = in["type"].(string)
 		oi.ThresholdNum = in["threshold_num"].(int)
 		//omit uuid
@@ -402,10 +402,10 @@ func getSliceDdosDstZoneDetectionPacketAnomalyDetectionIndicatorList195(d []inte
 	return ret
 }
 
-func getObjectDdosDstZoneDetectionServiceDiscovery196(d []interface{}) edpt.DdosDstZoneDetectionServiceDiscovery196 {
+func getObjectDdosDstZoneDetectionServiceDiscovery213(d []interface{}) edpt.DdosDstZoneDetectionServiceDiscovery213 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneDetectionServiceDiscovery196
+	var ret edpt.DdosDstZoneDetectionServiceDiscovery213
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Configuration = in["configuration"].(string)
@@ -416,28 +416,28 @@ func getObjectDdosDstZoneDetectionServiceDiscovery196(d []interface{}) edpt.Ddos
 	return ret
 }
 
-func getObjectDdosDstZoneDetectionVictimIpDetection197(d []interface{}) edpt.DdosDstZoneDetectionVictimIpDetection197 {
+func getObjectDdosDstZoneDetectionVictimIpDetection214(d []interface{}) edpt.DdosDstZoneDetectionVictimIpDetection214 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneDetectionVictimIpDetection197
+	var ret edpt.DdosDstZoneDetectionVictimIpDetection214
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Configuration = in["configuration"].(string)
 		ret.Toggle = in["toggle"].(string)
 		ret.HistogramToggle = in["histogram_toggle"].(string)
 		//omit uuid
-		ret.IndicatorList = getSliceDdosDstZoneDetectionVictimIpDetectionIndicatorList198(in["indicator_list"].([]interface{}))
+		ret.IndicatorList = getSliceDdosDstZoneDetectionVictimIpDetectionIndicatorList215(in["indicator_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneDetectionVictimIpDetectionIndicatorList198(d []interface{}) []edpt.DdosDstZoneDetectionVictimIpDetectionIndicatorList198 {
+func getSliceDdosDstZoneDetectionVictimIpDetectionIndicatorList215(d []interface{}) []edpt.DdosDstZoneDetectionVictimIpDetectionIndicatorList215 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneDetectionVictimIpDetectionIndicatorList198, 0, count1)
+	ret := make([]edpt.DdosDstZoneDetectionVictimIpDetectionIndicatorList215, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneDetectionVictimIpDetectionIndicatorList198
+		var oi edpt.DdosDstZoneDetectionVictimIpDetectionIndicatorList215
 		oi.Type = in["type"].(string)
 		oi.IpThresholdNum = in["ip_threshold_num"].(int)
 		//omit uuid
@@ -449,14 +449,14 @@ func getSliceDdosDstZoneDetectionVictimIpDetectionIndicatorList198(d []interface
 
 func dataToEndpointDdosDstZoneDetection(d *schema.ResourceData) edpt.DdosDstZoneDetection {
 	var ret edpt.DdosDstZoneDetection
-	ret.Inst.Notification = getObjectDdosDstZoneDetectionNotification188(d.Get("notification").([]interface{}))
-	ret.Inst.OutboundDetection = getObjectDdosDstZoneDetectionOutboundDetection190(d.Get("outbound_detection").([]interface{}))
-	ret.Inst.PacketAnomalyDetection = getObjectDdosDstZoneDetectionPacketAnomalyDetection194(d.Get("packet_anomaly_detection").([]interface{}))
-	ret.Inst.ServiceDiscovery = getObjectDdosDstZoneDetectionServiceDiscovery196(d.Get("service_discovery").([]interface{}))
+	ret.Inst.Notification = getObjectDdosDstZoneDetectionNotification205(d.Get("notification").([]interface{}))
+	ret.Inst.OutboundDetection = getObjectDdosDstZoneDetectionOutboundDetection207(d.Get("outbound_detection").([]interface{}))
+	ret.Inst.PacketAnomalyDetection = getObjectDdosDstZoneDetectionPacketAnomalyDetection211(d.Get("packet_anomaly_detection").([]interface{}))
+	ret.Inst.ServiceDiscovery = getObjectDdosDstZoneDetectionServiceDiscovery213(d.Get("service_discovery").([]interface{}))
 	ret.Inst.Settings = d.Get("settings").(string)
 	ret.Inst.Toggle = d.Get("toggle").(string)
 	//omit uuid
-	ret.Inst.VictimIpDetection = getObjectDdosDstZoneDetectionVictimIpDetection197(d.Get("victim_ip_detection").([]interface{}))
+	ret.Inst.VictimIpDetection = getObjectDdosDstZoneDetectionVictimIpDetection214(d.Get("victim_ip_detection").([]interface{}))
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	return ret
 }

@@ -102,5 +102,3 @@ Optional:
 
 - `vcs_handshake_completed` (Number)
 - `vcs_handshake_completed_id` (Number)
-
-

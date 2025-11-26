@@ -101,6 +101,7 @@ Optional:
 - `error_max_invalid_stream` (Number) Max Invalid Stream Rcvd
 - `exceeds_max_window_size_stream` (Number) Window Update with increment that results in exceeding max window
 - `flow_control_error` (Number) Flow Control Error
+- `frame_flood_detected` (Number) frame flood detected
 - `frame_header_bytes_received` (Number) frame header bytes received
 - `frame_header_bytes_sent` (Number) frame header bytes sent
 - `frame_size_error` (Number) Frame Size Error
@@ -148,6 +149,7 @@ Optional:
 - `settings_frame_sent` (Number) SETTINGS Frame Sent
 - `settings_timeout` (Number) Settings Timeout
 - `split_buff_fail` (Number) Splitting Buffer Failed
+- `stream_cancel_flood_detected` (Number) stream cancel flood detected
 - `stream_closed` (Number) stream closed
 - `stream_create` (Number) Stream Create
 - `stream_free` (Number) Stream Free
@@ -156,10 +158,9 @@ Optional:
 - `total_bytes_sent` (Number) HTTP/2 total bytes sent
 - `total_proxy` (Number) Total Proxy Conns
 - `trailers_no_end_stream` (Number) trailers not marked as end-of-stream
+- `transaction_limited` (Number) transaction_limited
 - `unknown_frame` (Number) Unknown Frame Recvd
 - `window_update_frame` (Number) WINDOW_UPDATE Frame Rcvd
 - `window_update_frame_sent` (Number) WINDOW_UPDATE Frame Sent
 - `wrong_stream_state` (Number) Wrong Stream State
 - `zero_window_size_on_stream` (Number) Window Update with zero increment rcvd
-
-

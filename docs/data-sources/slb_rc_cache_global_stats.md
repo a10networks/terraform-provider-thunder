@@ -76,5 +76,3 @@ Optional:
 - `rv_failure` (Number) Revalidation Failures
 - `rv_success` (Number) Revalidation Successes
 - `total_req` (Number) Total Requests
-
-

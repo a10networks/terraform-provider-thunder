@@ -45,7 +45,7 @@ func resourceDdosL4SslStats() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "TLS v1.1",
 						},
 						"ssl_l4_is_tls1_3": {
-							Type: schema.TypeInt, Optional: true, Description: "TLS v1.2",
+							Type: schema.TypeInt, Optional: true, Description: "TLS v1.2 or higher version",
 						},
 						"ssl_l4_is_renegotiation": {
 							Type: schema.TypeInt, Optional: true, Description: "SSL Renegotiation",

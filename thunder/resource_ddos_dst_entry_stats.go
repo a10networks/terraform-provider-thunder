@@ -803,8 +803,8 @@ func resourceDdosDstEntryStats() *schema.Resource {
 						"prog_response_len_exceed": {
 							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response Length Exceed",
 						},
-						"prog_resp_req_ratio_exceed": {
-							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response to Request Ratio Exceed",
+						"prog_resp_pkt_rate_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response Packet Rate Exceed",
 						},
 						"prog_resp_req_time_exceed": {
 							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response to Request Time Exceed",
@@ -857,6 +857,27 @@ func resourceDdosDstEntryStats() *schema.Resource {
 						"dst_exceed_action_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Entry Exceed Action: Dropped",
 						},
+						"src_hw_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Src Hardware Packets Dropped",
+						},
+						"dst_tcp_auth_rst": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth: Reset",
+						},
+						"dst_src_learn_overflow": {
+							Type: schema.TypeInt, Optional: true, Description: "Src Dynamic Entry Count Overflow",
+						},
+						"tcp_fwd_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Inbound Packets Forwarded",
+						},
+						"udp_fwd_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "UDP Inbound Packets Forwarded",
+						},
+						"prog_query_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Client Query Time Exceed",
+						},
+						"prog_think_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Server Think Time Exceed",
+						},
 						"prog_conn_samples": {
 							Type: schema.TypeInt, Optional: true, Description: "Sample Collected: Connection",
 						},
@@ -875,20 +896,8 @@ func resourceDdosDstEntryStats() *schema.Resource {
 						"prog_win_samples_processed": {
 							Type: schema.TypeInt, Optional: true, Description: "Sample Processed: Time Window",
 						},
-						"src_hw_drop": {
-							Type: schema.TypeInt, Optional: true, Description: "Src Hardware Packets Dropped",
-						},
-						"dst_tcp_auth_rst": {
-							Type: schema.TypeInt, Optional: true, Description: "TCP Auth: Reset",
-						},
-						"dst_src_learn_overflow": {
-							Type: schema.TypeInt, Optional: true, Description: "Src Dynamic Entry Count Overflow",
-						},
-						"tcp_fwd_sent": {
-							Type: schema.TypeInt, Optional: true, Description: "TCP Inbound Packets Forwarded",
-						},
-						"udp_fwd_sent": {
-							Type: schema.TypeInt, Optional: true, Description: "UDP Inbound Packets Forwarded",
+						"tcp_invalid_synack": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Invalid SYNACK Received",
 						},
 					},
 				},
@@ -1180,7 +1189,7 @@ func setObjectDdosDstEntryStatsStats(ret edpt.DataDdosDstEntryStats) []interface
 			"prog_req_resp_time_exceed":                ret.DtDdosDstEntryStats.Stats.Prog_req_resp_time_exceed,
 			"prog_request_len_exceed":                  ret.DtDdosDstEntryStats.Stats.Prog_request_len_exceed,
 			"prog_response_len_exceed":                 ret.DtDdosDstEntryStats.Stats.Prog_response_len_exceed,
-			"prog_resp_req_ratio_exceed":               ret.DtDdosDstEntryStats.Stats.Prog_resp_req_ratio_exceed,
+			"prog_resp_pkt_rate_exceed":                ret.DtDdosDstEntryStats.Stats.Prog_resp_pkt_rate_exceed,
 			"prog_resp_req_time_exceed":                ret.DtDdosDstEntryStats.Stats.Prog_resp_req_time_exceed,
 			"entry_sync_message_received":              ret.DtDdosDstEntryStats.Stats.Entry_sync_message_received,
 			"entry_sync_message_sent":                  ret.DtDdosDstEntryStats.Stats.Entry_sync_message_sent,
@@ -1198,17 +1207,20 @@ func setObjectDdosDstEntryStatsStats(ret edpt.DataDdosDstEntryStats) []interface
 			"prog_win_exceed_drop":                     ret.DtDdosDstEntryStats.Stats.Prog_win_exceed_drop,
 			"prog_win_exceed_bl":                       ret.DtDdosDstEntryStats.Stats.Prog_win_exceed_bl,
 			"dst_exceed_action_drop":                   ret.DtDdosDstEntryStats.Stats.Dst_exceed_action_drop,
+			"src_hw_drop":                              ret.DtDdosDstEntryStats.Stats.Src_hw_drop,
+			"dst_tcp_auth_rst":                         ret.DtDdosDstEntryStats.Stats.Dst_tcp_auth_rst,
+			"dst_src_learn_overflow":                   ret.DtDdosDstEntryStats.Stats.Dst_src_learn_overflow,
+			"tcp_fwd_sent":                             ret.DtDdosDstEntryStats.Stats.Tcp_fwd_sent,
+			"udp_fwd_sent":                             ret.DtDdosDstEntryStats.Stats.Udp_fwd_sent,
+			"prog_query_exceed":                        ret.DtDdosDstEntryStats.Stats.Prog_query_exceed,
+			"prog_think_exceed":                        ret.DtDdosDstEntryStats.Stats.Prog_think_exceed,
 			"prog_conn_samples":                        ret.DtDdosDstEntryStats.Stats.Prog_conn_samples,
 			"prog_req_samples":                         ret.DtDdosDstEntryStats.Stats.Prog_req_samples,
 			"prog_win_samples":                         ret.DtDdosDstEntryStats.Stats.Prog_win_samples,
 			"prog_conn_samples_processed":              ret.DtDdosDstEntryStats.Stats.Prog_conn_samples_processed,
 			"prog_req_samples_processed":               ret.DtDdosDstEntryStats.Stats.Prog_req_samples_processed,
 			"prog_win_samples_processed":               ret.DtDdosDstEntryStats.Stats.Prog_win_samples_processed,
-			"src_hw_drop":                              ret.DtDdosDstEntryStats.Stats.Src_hw_drop,
-			"dst_tcp_auth_rst":                         ret.DtDdosDstEntryStats.Stats.Dst_tcp_auth_rst,
-			"dst_src_learn_overflow":                   ret.DtDdosDstEntryStats.Stats.Dst_src_learn_overflow,
-			"tcp_fwd_sent":                             ret.DtDdosDstEntryStats.Stats.Tcp_fwd_sent,
-			"udp_fwd_sent":                             ret.DtDdosDstEntryStats.Stats.Udp_fwd_sent,
+			"tcp_invalid_synack":                       ret.DtDdosDstEntryStats.Stats.Tcp_invalid_synack,
 		},
 	}
 }
@@ -1480,7 +1492,7 @@ func getObjectDdosDstEntryStatsStats(d []interface{}) edpt.DdosDstEntryStatsStat
 		ret.Prog_req_resp_time_exceed = in["prog_req_resp_time_exceed"].(int)
 		ret.Prog_request_len_exceed = in["prog_request_len_exceed"].(int)
 		ret.Prog_response_len_exceed = in["prog_response_len_exceed"].(int)
-		ret.Prog_resp_req_ratio_exceed = in["prog_resp_req_ratio_exceed"].(int)
+		ret.Prog_resp_pkt_rate_exceed = in["prog_resp_pkt_rate_exceed"].(int)
 		ret.Prog_resp_req_time_exceed = in["prog_resp_req_time_exceed"].(int)
 		ret.Entry_sync_message_received = in["entry_sync_message_received"].(int)
 		ret.Entry_sync_message_sent = in["entry_sync_message_sent"].(int)
@@ -1498,17 +1510,20 @@ func getObjectDdosDstEntryStatsStats(d []interface{}) edpt.DdosDstEntryStatsStat
 		ret.Prog_win_exceed_drop = in["prog_win_exceed_drop"].(int)
 		ret.Prog_win_exceed_bl = in["prog_win_exceed_bl"].(int)
 		ret.Dst_exceed_action_drop = in["dst_exceed_action_drop"].(int)
+		ret.Src_hw_drop = in["src_hw_drop"].(int)
+		ret.Dst_tcp_auth_rst = in["dst_tcp_auth_rst"].(int)
+		ret.Dst_src_learn_overflow = in["dst_src_learn_overflow"].(int)
+		ret.Tcp_fwd_sent = in["tcp_fwd_sent"].(int)
+		ret.Udp_fwd_sent = in["udp_fwd_sent"].(int)
+		ret.Prog_query_exceed = in["prog_query_exceed"].(int)
+		ret.Prog_think_exceed = in["prog_think_exceed"].(int)
 		ret.Prog_conn_samples = in["prog_conn_samples"].(int)
 		ret.Prog_req_samples = in["prog_req_samples"].(int)
 		ret.Prog_win_samples = in["prog_win_samples"].(int)
 		ret.Prog_conn_samples_processed = in["prog_conn_samples_processed"].(int)
 		ret.Prog_req_samples_processed = in["prog_req_samples_processed"].(int)
 		ret.Prog_win_samples_processed = in["prog_win_samples_processed"].(int)
-		ret.Src_hw_drop = in["src_hw_drop"].(int)
-		ret.Dst_tcp_auth_rst = in["dst_tcp_auth_rst"].(int)
-		ret.Dst_src_learn_overflow = in["dst_src_learn_overflow"].(int)
-		ret.Tcp_fwd_sent = in["tcp_fwd_sent"].(int)
-		ret.Udp_fwd_sent = in["udp_fwd_sent"].(int)
+		ret.Tcp_invalid_synack = in["tcp_invalid_synack"].(int)
 	}
 	return ret
 }

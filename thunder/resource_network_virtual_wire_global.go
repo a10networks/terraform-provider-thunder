@@ -21,7 +21,7 @@ func resourceNetworkVirtualWireGlobal() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type: schema.TypeString, Optional: true, Description: "'all': all; 'vlan-update': VLAN update; 'mac-update': MAC update; 'vlan-pair-update': VLAN pair update;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'vlan-update': VLAN update; 'mac-update': MAC update; 'vlan-pair-update': VLAN pair update; 'hc-pkt-drop': Packet drop due to health check;",
 						},
 					},
 				},

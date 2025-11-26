@@ -527,6 +527,21 @@ func resourceVrrpAStateStats() *schema.Resource {
 						"dns_cache_sync_rx_error_counter": {
 							Type: schema.TypeInt, Optional: true, Description: "DNS Cache Sync Error Received counter",
 						},
+						"sync_rx_dcmsg_counter_inter_pu": {
+							Type: schema.TypeInt, Optional: true, Description: "Conn Sync forward CPU with inter-pu comm",
+						},
+						"sync_rx_drop_sync_packets": {
+							Type: schema.TypeInt, Optional: true, Description: "Conn Sync drop all packets",
+						},
+						"sync_pkt_rcv_dc_msg_dir": {
+							Type: schema.TypeInt, Optional: true, Description: "Sync pkt recv with DCMSG dir",
+						},
+						"sync_tx_update_misc_bearer": {
+							Type: schema.TypeInt, Optional: true, Description: "Conn Sync update misc bearer sent",
+						},
+						"query_pkt_rx_error": {
+							Type: schema.TypeInt, Optional: true, Description: "Conn Query recv error",
+						},
 					},
 				},
 			},
@@ -726,6 +741,11 @@ func setObjectVrrpAStateStatsStats(ret edpt.DataVrrpAStateStats) []interface{} {
 			"dns_cache_sync_rx_frag_counter":                 ret.DtVrrpAStateStats.Stats.Dns_cache_sync_rx_frag_counter,
 			"dns_cache_sync_tx_error_counter":                ret.DtVrrpAStateStats.Stats.Dns_cache_sync_tx_error_counter,
 			"dns_cache_sync_rx_error_counter":                ret.DtVrrpAStateStats.Stats.Dns_cache_sync_rx_error_counter,
+			"sync_rx_dcmsg_counter_inter_pu":                 ret.DtVrrpAStateStats.Stats.Sync_rx_dcmsg_counter_inter_pu,
+			"sync_rx_drop_sync_packets":                      ret.DtVrrpAStateStats.Stats.Sync_rx_drop_sync_packets,
+			"sync_pkt_rcv_dc_msg_dir":                        ret.DtVrrpAStateStats.Stats.Sync_pkt_rcv_dc_msg_dir,
+			"sync_tx_update_misc_bearer":                     ret.DtVrrpAStateStats.Stats.Sync_tx_update_misc_bearer,
+			"query_pkt_rx_error":                             ret.DtVrrpAStateStats.Stats.Query_pkt_rx_error,
 		},
 	}
 }
@@ -906,6 +926,11 @@ func getObjectVrrpAStateStatsStats(d []interface{}) edpt.VrrpAStateStatsStats {
 		ret.Dns_cache_sync_rx_frag_counter = in["dns_cache_sync_rx_frag_counter"].(int)
 		ret.Dns_cache_sync_tx_error_counter = in["dns_cache_sync_tx_error_counter"].(int)
 		ret.Dns_cache_sync_rx_error_counter = in["dns_cache_sync_rx_error_counter"].(int)
+		ret.Sync_rx_dcmsg_counter_inter_pu = in["sync_rx_dcmsg_counter_inter_pu"].(int)
+		ret.Sync_rx_drop_sync_packets = in["sync_rx_drop_sync_packets"].(int)
+		ret.Sync_pkt_rcv_dc_msg_dir = in["sync_pkt_rcv_dc_msg_dir"].(int)
+		ret.Sync_tx_update_misc_bearer = in["sync_tx_update_misc_bearer"].(int)
+		ret.Query_pkt_rx_error = in["query_pkt_rx_error"].(int)
 	}
 	return ret
 }

@@ -52,5 +52,3 @@ Optional:
 Optional:
 
 - `notification_template_debug_log` (String)
-
-

@@ -65,5 +65,3 @@ Optional:
 - `input_packet` (Number)
 - `output_byte` (Number)
 - `output_packet` (Number)
-
-

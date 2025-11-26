@@ -372,6 +372,15 @@ func resourceSlbHttp2Oper() *schema.Resource {
 									"end_stream_sent": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"transaction_limited": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"frame_flood_detected": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"stream_cancel_flood_detected": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 								},
 							},
 						},
@@ -534,6 +543,9 @@ func setSliceSlbHttp2OperOperHttp2CpuList(d []edpt.SlbHttp2OperOperHttp2CpuList)
 		in["stream_free"] = item.Stream_free
 		in["end_stream_rcvd"] = item.End_stream_rcvd
 		in["end_stream_sent"] = item.End_stream_sent
+		in["transaction_limited"] = item.Transaction_limited
+		in["frame_flood_detected"] = item.Frame_flood_detected
+		in["stream_cancel_flood_detected"] = item.Stream_cancel_flood_detected
 		result = append(result, in)
 	}
 	return result
@@ -675,6 +687,9 @@ func getSliceSlbHttp2OperOperHttp2CpuList(d []interface{}) []edpt.SlbHttp2OperOp
 		oi.Stream_free = in["stream_free"].(int)
 		oi.End_stream_rcvd = in["end_stream_rcvd"].(int)
 		oi.End_stream_sent = in["end_stream_sent"].(int)
+		oi.Transaction_limited = in["transaction_limited"].(int)
+		oi.Frame_flood_detected = in["frame_flood_detected"].(int)
+		oi.Stream_cancel_flood_detected = in["stream_cancel_flood_detected"].(int)
 		ret = append(ret, oi)
 	}
 	return ret

@@ -60,5 +60,3 @@ Optional:
 - `entry_learned` (Number) Entry Learned
 - `packet_dropped` (Number) Packets Dropped
 - `packet_received` (Number) Packets Received
-
-

@@ -56,6 +56,7 @@ Optional:
 - `client_ldns_list` (Block List) (see [below for nested schema](#nestedblock--oper--client_ldns_list))
 - `dev_admin_preference` (Number)
 - `dev_attr` (String)
+- `dev_creation_type` (Number)
 - `dev_gw_state` (String)
 - `dev_ip` (String)
 - `dev_ip_cnt` (Number)
@@ -63,6 +64,9 @@ Optional:
 - `dev_session_num` (Number)
 - `dev_session_util` (Number)
 - `dev_state` (String)
+- `dyn_vipserver_list` (Block List) (see [below for nested schema](#nestedblock--oper--dyn_vipserver_list))
+- `dynamic_dev_list` (Block List) (see [below for nested schema](#nestedblock--oper--dynamic_dev_list))
+- `fqdn_based` (Number)
 
 <a id="nestedblock--oper--client_ldns_list"></a>
 ### Nested Schema for `oper.client_ldns_list`
@@ -80,6 +84,37 @@ Optional:
 - `rdt_sample7` (Number)
 - `rdt_sample8` (Number)
 - `type` (String)
+
+
+<a id="nestedblock--oper--dyn_vipserver_list"></a>
+### Nested Schema for `oper.dyn_vipserver_list`
+
+Optional:
+
+- `dyn_svr_hits` (Number)
+- `dyn_svr_ip` (String)
+- `dyn_svr_state` (String)
+- `port_list` (Block List) (see [below for nested schema](#nestedblock--oper--dyn_vipserver_list--port_list))
+
+<a id="nestedblock--oper--dyn_vipserver_list--port_list"></a>
+### Nested Schema for `oper.dyn_vipserver_list.port_list`
+
+Optional:
+
+- `port_num` (Number)
+- `port_protocol` (String)
+- `port_state` (String)
+
+
+
+<a id="nestedblock--oper--dynamic_dev_list"></a>
+### Nested Schema for `oper.dynamic_dev_list`
+
+Optional:
+
+- `dyn_dev_inherit_vipserver` (Number)
+- `dyn_dev_ip` (String)
+- `dyn_dev_name` (String)
 
 
 
@@ -126,6 +161,7 @@ Optional:
 - `port_count` (Number)
 - `recent` (Number)
 - `service_ip` (String)
+- `shared` (Number)
 - `use_gslb_state` (Number)
 - `virtual_server` (Number)
 
@@ -134,7 +170,10 @@ Optional:
 
 Optional:
 
+- `dev_vip_port_dev_curr_conn` (Number)
 - `dev_vip_port_num` (Number)
+- `dev_vip_port_protocol` (String)
+- `dev_vip_port_service_name` (String)
 - `dev_vip_port_state` (String)
 
 
@@ -169,6 +208,7 @@ Optional:
 - `port_count` (Number)
 - `recent` (Number)
 - `service_ip` (String)
+- `shared` (Number)
 - `use_gslb_state` (Number)
 - `virtual_server` (Number)
 
@@ -177,7 +217,10 @@ Optional:
 
 Optional:
 
+- `dev_vip_port_dev_curr_conn` (Number)
 - `dev_vip_port_num` (Number)
+- `dev_vip_port_protocol` (String)
+- `dev_vip_port_service_name` (String)
 - `dev_vip_port_state` (String)
 
 
@@ -212,6 +255,7 @@ Optional:
 - `port_count` (Number)
 - `recent` (Number)
 - `service_ip` (String)
+- `shared` (Number)
 - `use_gslb_state` (Number)
 - `virtual_server` (Number)
 
@@ -220,7 +264,8 @@ Optional:
 
 Optional:
 
+- `dev_vip_port_dev_curr_conn` (Number)
 - `dev_vip_port_num` (Number)
+- `dev_vip_port_protocol` (String)
+- `dev_vip_port_service_name` (String)
 - `dev_vip_port_state` (String)
-
-

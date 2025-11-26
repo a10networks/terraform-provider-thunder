@@ -537,121 +537,6 @@ func resourceVisibilityPacketCaptureObjectTemplates() *schema.Resource {
 					},
 				},
 			},
-			"aam_auth_relay_ntlm_tmpl_list": {
-				Type: schema.TypeList, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"name": {
-							Type: schema.TypeString, Required: true, Description: "Packet Capture Template Name",
-						},
-						"capture_config": {
-							Type: schema.TypeString, Optional: true, Description: "Specify name of the capture-config to use with this template",
-						},
-						"uuid": {
-							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-						},
-						"user_tag": {
-							Type: schema.TypeString, Optional: true, Description: "Customized tag",
-						},
-						"trigger_stats_severity": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"error": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all error counters (Default disabled)",
-									},
-									"error_alert": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all alert error counters (Default disabled)",
-									},
-									"error_warning": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all warning error counters (Default disabled)",
-									},
-									"error_critical": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all critical error counters (Default disabled)",
-									},
-									"drop": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all drop counters (Default disabled)",
-									},
-									"drop_alert": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all alert drop counters (Default disabled)",
-									},
-									"drop_warning": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all warning drop counters (Default disabled)",
-									},
-									"drop_critical": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all critical drop counters (Default disabled)",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
-						},
-						"trigger_stats_inc": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"failure": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Failure",
-									},
-									"buffer_alloc_fail": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Buffer Allocation Failure",
-									},
-									"encoding_fail": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Encoding Failure",
-									},
-									"insert_header_fail": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Insert Header Failure",
-									},
-									"parse_header_fail": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Parse Header Failure",
-									},
-									"internal_error": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Internal Error",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
-						},
-						"trigger_stats_rate": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"threshold_exceeded_by": {
-										Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
-									},
-									"duration": {
-										Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
-									},
-									"failure": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Failure",
-									},
-									"buffer_alloc_fail": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Buffer Allocation Failure",
-									},
-									"encoding_fail": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Encoding Failure",
-									},
-									"insert_header_fail": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Insert Header Failure",
-									},
-									"parse_header_fail": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Parse Header Failure",
-									},
-									"internal_error": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Internal Error",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
 			"aam_auth_relay_ws_fed_tmpl_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -1324,24 +1209,6 @@ func resourceVisibilityPacketCaptureObjectTemplates() *schema.Resource {
 									"krb_pw_change_failure": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Kerberos password change failure",
 									},
-									"ntlm_proto_nego_failure": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Protocol Negotiation Failure",
-									},
-									"ntlm_session_setup_failure": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Session Setup Failure",
-									},
-									"ntlm_prepare_req_error": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Prepare Request Error",
-									},
-									"ntlm_auth_failure": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Authentication Failure",
-									},
-									"ntlm_timeout_error": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Timeout",
-									},
-									"ntlm_other_error": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Other Error",
-									},
 									"krb_validate_kdc_failure": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Kerberos KDC Validation Failure",
 									},
@@ -1372,24 +1239,6 @@ func resourceVisibilityPacketCaptureObjectTemplates() *schema.Resource {
 									},
 									"krb_pw_change_failure": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Kerberos password change failure",
-									},
-									"ntlm_proto_nego_failure": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Protocol Negotiation Failure",
-									},
-									"ntlm_session_setup_failure": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Session Setup Failure",
-									},
-									"ntlm_prepare_req_error": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Prepare Request Error",
-									},
-									"ntlm_auth_failure": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Authentication Failure",
-									},
-									"ntlm_timeout_error": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Timeout",
-									},
-									"ntlm_other_error": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for NTLM Other Error",
 									},
 									"krb_validate_kdc_failure": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Kerberos KDC Validation Failure",
@@ -2256,6 +2105,9 @@ func resourceVisibilityPacketCaptureObjectTemplates() *schema.Resource {
 									"dnsrrl_bad_fqdn": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting Bad FQDN",
 									},
+									"dns_filter_tld_drop": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for counters Total DNS Filter TLD Drop",
+									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
@@ -2355,6 +2207,9 @@ func resourceVisibilityPacketCaptureObjectTemplates() *schema.Resource {
 									},
 									"dnsrrl_bad_fqdn": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting Bad FQDN",
+									},
+									"dns_filter_tld_drop": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for counters Total DNS Filter TLD Drop",
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -3657,6 +3512,91 @@ func resourceVisibilityPacketCaptureObjectTemplates() *schema.Resource {
 					},
 				},
 			},
+			"rule_set_rule_tmpl_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"name": {
+							Type: schema.TypeString, Required: true, Description: "Packet Capture Template Name",
+						},
+						"capture_config": {
+							Type: schema.TypeString, Optional: true, Description: "Specify name of the capture-config to use with this template",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"user_tag": {
+							Type: schema.TypeString, Optional: true, Description: "Customized tag",
+						},
+						"trigger_stats_severity": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"error": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all error counters (Default disabled)",
+									},
+									"error_alert": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all alert error counters (Default disabled)",
+									},
+									"error_warning": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all warning error counters (Default disabled)",
+									},
+									"error_critical": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all critical error counters (Default disabled)",
+									},
+									"drop": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all drop counters (Default disabled)",
+									},
+									"drop_alert": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all alert drop counters (Default disabled)",
+									},
+									"drop_warning": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all warning drop counters (Default disabled)",
+									},
+									"drop_critical": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all critical drop counters (Default disabled)",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+						"trigger_stats_inc": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"syn_cookie_verification_failed": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for SYN cookie verification failed",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+						"trigger_stats_rate": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"threshold_exceeded_by": {
+										Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
+									},
+									"duration": {
+										Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
+									},
+									"syn_cookie_verification_failed": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for SYN cookie verification failed",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			"rule_set_tmpl_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -3755,6 +3695,121 @@ func resourceVisibilityPacketCaptureObjectTemplates() *schema.Resource {
 				},
 			},
 			"slb_port_tmpl_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"name": {
+							Type: schema.TypeString, Required: true, Description: "Packet Capture Template Name",
+						},
+						"capture_config": {
+							Type: schema.TypeString, Optional: true, Description: "Specify name of the capture-config to use with this template",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"user_tag": {
+							Type: schema.TypeString, Optional: true, Description: "Customized tag",
+						},
+						"trigger_stats_severity": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"error": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all error counters (Default disabled)",
+									},
+									"error_alert": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all alert error counters (Default disabled)",
+									},
+									"error_warning": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all warning error counters (Default disabled)",
+									},
+									"error_critical": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all critical error counters (Default disabled)",
+									},
+									"drop": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all drop counters (Default disabled)",
+									},
+									"drop_alert": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all alert drop counters (Default disabled)",
+									},
+									"drop_warning": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all warning drop counters (Default disabled)",
+									},
+									"drop_critical": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all critical drop counters (Default disabled)",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+						"trigger_stats_inc": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"es_resp_300": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Response status 300",
+									},
+									"es_resp_400": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Response status 400",
+									},
+									"es_resp_500": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Response status 500",
+									},
+									"resp_3xx": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Response status 3xx",
+									},
+									"resp_4xx": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Response status 4xx",
+									},
+									"resp_5xx": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Response status 5xx",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+						"trigger_stats_rate": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"threshold_exceeded_by": {
+										Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
+									},
+									"duration": {
+										Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
+									},
+									"es_resp_300": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Response status 300",
+									},
+									"es_resp_400": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Response status 400",
+									},
+									"es_resp_500": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Response status 500",
+									},
+									"resp_3xx": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Response status 3xx",
+									},
+									"resp_4xx": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Response status 4xx",
+									},
+									"resp_5xx": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Response status 5xx",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			"slb_service_tmpl_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
@@ -4065,6 +4120,9 @@ func resourceVisibilityPacketCaptureObjectTemplates() *schema.Resource {
 									"dnsrrl_bad_fqdn": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting Bad FQDN",
 									},
+									"dnsrrl_nx_exceed": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting NX Responses Exceed Limit",
+									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
@@ -4101,6 +4159,9 @@ func resourceVisibilityPacketCaptureObjectTemplates() *schema.Resource {
 									},
 									"dnsrrl_bad_fqdn": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting Bad FQDN",
+									},
+									"dnsrrl_nx_exceed": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for DNS Response-Rate-Limiting NX Responses Exceed Limit",
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -4983,80 +5044,6 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplLis
 	return ret
 }
 
-func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplList(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplList {
-
-	count1 := len(d)
-	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplList
-		oi.Name = in["name"].(string)
-		oi.CaptureConfig = in["capture_config"].(string)
-		//omit uuid
-		oi.UserTag = in["user_tag"].(string)
-		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplListTriggerStatsSeverity(in["trigger_stats_severity"].([]interface{}))
-		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplListTriggerStatsInc(in["trigger_stats_inc"].([]interface{}))
-		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplListTriggerStatsRate(in["trigger_stats_rate"].([]interface{}))
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplListTriggerStatsSeverity(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplListTriggerStatsSeverity {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplListTriggerStatsSeverity
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Error = in["error"].(int)
-		ret.ErrorAlert = in["error_alert"].(int)
-		ret.ErrorWarning = in["error_warning"].(int)
-		ret.ErrorCritical = in["error_critical"].(int)
-		ret.Drop = in["drop"].(int)
-		ret.DropAlert = in["drop_alert"].(int)
-		ret.DropWarning = in["drop_warning"].(int)
-		ret.DropCritical = in["drop_critical"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplListTriggerStatsInc(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplListTriggerStatsInc {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplListTriggerStatsInc
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Failure = in["failure"].(int)
-		ret.BufferAllocFail = in["buffer_alloc_fail"].(int)
-		ret.EncodingFail = in["encoding_fail"].(int)
-		ret.InsertHeaderFail = in["insert_header_fail"].(int)
-		ret.ParseHeaderFail = in["parse_header_fail"].(int)
-		ret.InternalError = in["internal_error"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplListTriggerStatsRate(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplListTriggerStatsRate {
-
-	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplListTriggerStatsRate
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
-		ret.Duration = in["duration"].(int)
-		ret.Failure = in["failure"].(int)
-		ret.BufferAllocFail = in["buffer_alloc_fail"].(int)
-		ret.EncodingFail = in["encoding_fail"].(int)
-		ret.InsertHeaderFail = in["insert_header_fail"].(int)
-		ret.ParseHeaderFail = in["parse_header_fail"].(int)
-		ret.InternalError = in["internal_error"].(int)
-		//omit uuid
-	}
-	return ret
-}
-
 func getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList {
 
 	count1 := len(d)
@@ -5521,12 +5508,6 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList
 		ret.Krb_other_error = in["krb_other_error"].(int)
 		ret.Krb_pw_expiry = in["krb_pw_expiry"].(int)
 		ret.Krb_pw_change_failure = in["krb_pw_change_failure"].(int)
-		ret.Ntlm_proto_nego_failure = in["ntlm_proto_nego_failure"].(int)
-		ret.Ntlm_session_setup_failure = in["ntlm_session_setup_failure"].(int)
-		ret.Ntlm_prepare_req_error = in["ntlm_prepare_req_error"].(int)
-		ret.Ntlm_auth_failure = in["ntlm_auth_failure"].(int)
-		ret.Ntlm_timeout_error = in["ntlm_timeout_error"].(int)
-		ret.Ntlm_other_error = in["ntlm_other_error"].(int)
 		ret.Krb_validate_kdc_failure = in["krb_validate_kdc_failure"].(int)
 		//omit uuid
 	}
@@ -5545,12 +5526,6 @@ func getObjectVisibilityPacketCaptureObjectTemplatesAamAuthServerWinInstTmplList
 		ret.Krb_other_error = in["krb_other_error"].(int)
 		ret.Krb_pw_expiry = in["krb_pw_expiry"].(int)
 		ret.Krb_pw_change_failure = in["krb_pw_change_failure"].(int)
-		ret.Ntlm_proto_nego_failure = in["ntlm_proto_nego_failure"].(int)
-		ret.Ntlm_session_setup_failure = in["ntlm_session_setup_failure"].(int)
-		ret.Ntlm_prepare_req_error = in["ntlm_prepare_req_error"].(int)
-		ret.Ntlm_auth_failure = in["ntlm_auth_failure"].(int)
-		ret.Ntlm_timeout_error = in["ntlm_timeout_error"].(int)
-		ret.Ntlm_other_error = in["ntlm_other_error"].(int)
 		ret.Krb_validate_kdc_failure = in["krb_validate_kdc_failure"].(int)
 		//omit uuid
 	}
@@ -6117,6 +6092,7 @@ func getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStat
 		ret.Dns_filter_class_others_drop = in["dns_filter_class_others_drop"].(int)
 		ret.Dns_rpz_action_drop = in["dns_rpz_action_drop"].(int)
 		ret.Dnsrrl_bad_fqdn = in["dnsrrl_bad_fqdn"].(int)
+		ret.Dns_filter_tld_drop = in["dns_filter_tld_drop"].(int)
 		//omit uuid
 	}
 	return ret
@@ -6158,6 +6134,7 @@ func getObjectVisibilityPacketCaptureObjectTemplatesDns_vportTmplListTriggerStat
 		ret.Dns_filter_class_others_drop = in["dns_filter_class_others_drop"].(int)
 		ret.Dns_rpz_action_drop = in["dns_rpz_action_drop"].(int)
 		ret.Dnsrrl_bad_fqdn = in["dnsrrl_bad_fqdn"].(int)
+		ret.Dns_filter_tld_drop = in["dns_filter_tld_drop"].(int)
 		//omit uuid
 	}
 	return ret
@@ -6879,6 +6856,70 @@ func getObjectVisibilityPacketCaptureObjectTemplatesPop3VportTmplListTriggerStat
 	return ret
 }
 
+func getSliceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList {
+
+	count1 := len(d)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList
+		oi.Name = in["name"].(string)
+		oi.CaptureConfig = in["capture_config"].(string)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate(in["trigger_stats_rate"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsSeverity
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Error = in["error"].(int)
+		ret.ErrorAlert = in["error_alert"].(int)
+		ret.ErrorWarning = in["error_warning"].(int)
+		ret.ErrorCritical = in["error_critical"].(int)
+		ret.Drop = in["drop"].(int)
+		ret.DropAlert = in["drop_alert"].(int)
+		ret.DropWarning = in["drop_warning"].(int)
+		ret.DropCritical = in["drop_critical"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsInc
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.SynCookieVerificationFailed = in["syn_cookie_verification_failed"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplListTriggerStatsRate
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
+		ret.Duration = in["duration"].(int)
+		ret.SynCookieVerificationFailed = in["syn_cookie_verification_failed"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
 func getSliceVisibilityPacketCaptureObjectTemplatesRuleSetTmplList(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesRuleSetTmplList {
 
 	count1 := len(d)
@@ -7021,6 +7062,80 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbPortTmplListTriggerStatsR
 	return ret
 }
 
+func getSliceVisibilityPacketCaptureObjectTemplatesSlbServiceTmplList(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList {
+
+	count1 := len(d)
+	ret := make([]edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplList
+		oi.Name = in["name"].(string)
+		oi.CaptureConfig = in["capture_config"].(string)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		oi.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity(in["trigger_stats_severity"].([]interface{}))
+		oi.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc(in["trigger_stats_inc"].([]interface{}))
+		oi.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate(in["trigger_stats_rate"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsSeverity
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Error = in["error"].(int)
+		ret.ErrorAlert = in["error_alert"].(int)
+		ret.ErrorWarning = in["error_warning"].(int)
+		ret.ErrorCritical = in["error_critical"].(int)
+		ret.Drop = in["drop"].(int)
+		ret.DropAlert = in["drop_alert"].(int)
+		ret.DropWarning = in["drop_warning"].(int)
+		ret.DropCritical = in["drop_critical"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsInc
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Es_resp_300 = in["es_resp_300"].(int)
+		ret.Es_resp_400 = in["es_resp_400"].(int)
+		ret.Es_resp_500 = in["es_resp_500"].(int)
+		ret.Resp3xx = in["resp_3xx"].(int)
+		ret.Resp4xx = in["resp_4xx"].(int)
+		ret.Resp5xx = in["resp_5xx"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesSlbServiceTmplListTriggerStatsRate
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
+		ret.Duration = in["duration"].(int)
+		ret.Es_resp_300 = in["es_resp_300"].(int)
+		ret.Es_resp_400 = in["es_resp_400"].(int)
+		ret.Es_resp_500 = in["es_resp_500"].(int)
+		ret.Resp3xx = in["resp_3xx"].(int)
+		ret.Resp4xx = in["resp_4xx"].(int)
+		ret.Resp5xx = in["resp_5xx"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
 func getSliceVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList(d []interface{}) []edpt.VisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList {
 
 	count1 := len(d)
@@ -7148,6 +7263,7 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStats
 		ret.Loc_deny = in["loc_deny"].(int)
 		ret.Dnsrrl_total_dropped = in["dnsrrl_total_dropped"].(int)
 		ret.Dnsrrl_bad_fqdn = in["dnsrrl_bad_fqdn"].(int)
+		ret.Dnsrrl_nx_exceed = in["dnsrrl_nx_exceed"].(int)
 		//omit uuid
 	}
 	return ret
@@ -7168,6 +7284,7 @@ func getObjectVisibilityPacketCaptureObjectTemplatesSlbVportTmplListTriggerStats
 		ret.Loc_deny = in["loc_deny"].(int)
 		ret.Dnsrrl_total_dropped = in["dnsrrl_total_dropped"].(int)
 		ret.Dnsrrl_bad_fqdn = in["dnsrrl_bad_fqdn"].(int)
+		ret.Dnsrrl_nx_exceed = in["dnsrrl_nx_exceed"].(int)
 		//omit uuid
 	}
 	return ret
@@ -7402,7 +7519,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplates(d *schema.ResourceData
 	ret.Inst.AamAuthLogonHttpInsTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplList(d.Get("aam_auth_logon_http_ins_tmpl_list").([]interface{}))
 	ret.Inst.AamAuthRelayFormInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplList(d.Get("aam_auth_relay_form_inst_tmpl_list").([]interface{}))
 	ret.Inst.AamAuthRelayHbaseInstTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayHbaseInstTmplList(d.Get("aam_auth_relay_hbase_inst_tmpl_list").([]interface{}))
-	ret.Inst.AamAuthRelayNtlmTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayNtlmTmplList(d.Get("aam_auth_relay_ntlm_tmpl_list").([]interface{}))
 	ret.Inst.AamAuthRelayWsFedTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthRelayWsFedTmplList(d.Get("aam_auth_relay_ws_fed_tmpl_list").([]interface{}))
 	ret.Inst.AamAuthSamlIdProvTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplList(d.Get("aam_auth_saml_id_prov_tmpl_list").([]interface{}))
 	ret.Inst.AamAuthSamlServiceProvTmplList = getSliceVisibilityPacketCaptureObjectTemplatesAamAuthSamlServiceProvTmplList(d.Get("aam_auth_saml_service_prov_tmpl_list").([]interface{}))
@@ -7426,8 +7542,10 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplates(d *schema.ResourceData
 	ret.Inst.InterfaceTunnelTmplList = getSliceVisibilityPacketCaptureObjectTemplatesInterfaceTunnelTmplList(d.Get("interface_tunnel_tmpl_list").([]interface{}))
 	ret.Inst.NetflowMonitorTmplList = getSliceVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplList(d.Get("netflow_monitor_tmpl_list").([]interface{}))
 	ret.Inst.Pop3VportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesPop3VportTmplList(d.Get("pop3_vport_tmpl_list").([]interface{}))
+	ret.Inst.RuleSetRuleTmplList = getSliceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplList(d.Get("rule_set_rule_tmpl_list").([]interface{}))
 	ret.Inst.RuleSetTmplList = getSliceVisibilityPacketCaptureObjectTemplatesRuleSetTmplList(d.Get("rule_set_tmpl_list").([]interface{}))
 	ret.Inst.SlbPortTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSlbPortTmplList(d.Get("slb_port_tmpl_list").([]interface{}))
+	ret.Inst.SlbServiceTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSlbServiceTmplList(d.Get("slb_service_tmpl_list").([]interface{}))
 	ret.Inst.SlbTemplCacheTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplList(d.Get("slb_templ_cache_tmpl_list").([]interface{}))
 	ret.Inst.SlbVportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSlbVportTmplList(d.Get("slb_vport_tmpl_list").([]interface{}))
 	ret.Inst.SmtpVportTmplList = getSliceVisibilityPacketCaptureObjectTemplatesSmtpVportTmplList(d.Get("smtp_vport_tmpl_list").([]interface{}))

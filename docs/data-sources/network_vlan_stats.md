@@ -56,5 +56,3 @@ Optional:
 - `multicast_count` (Number) Multicast counter
 - `shared_vlan_partition_switched_counter` (Number) SVLAN Partition switched counter
 - `unknown_unicast_count` (Number) Unknown Unicast counter
-
-

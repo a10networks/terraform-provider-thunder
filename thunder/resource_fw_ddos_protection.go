@@ -21,7 +21,7 @@ func resourceFwDdosProtection() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"action_type": {
-							Type: schema.TypeString, Optional: true, Default: "drop", Description: "'drop': Log, and drop all packets (default); 'redistribute-route': Log, Drop, and Notify upstream router to reroute the packets;",
+							Type: schema.TypeString, Optional: true, Default: "drop", Description: "'drop': Log, and drop all packets (default); 'redistribute-route': Log, Notify upstream router to reroute the packets. Drop all packets by default.;",
 						},
 						"route_map": {
 							Type: schema.TypeString, Optional: true, Description: "Route map name",
@@ -37,6 +37,9 @@ func resourceFwDdosProtection() *schema.Resource {
 						},
 						"remove_wait_timer": {
 							Type: schema.TypeInt, Optional: true, Default: 300, Description: "Max time to wait before removing IP from blackhole (Max value in seconds (default 300))",
+						},
+						"forward": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Forward traffic with rate-limiting",
 						},
 					},
 				},
@@ -163,6 +166,7 @@ func getObjectFwDdosProtectionAction(d []interface{}) edpt.FwDdosProtectionActio
 		ret.ExpirationRoute = in["expiration_route"].(int)
 		ret.TimerMultiplyMax = in["timer_multiply_max"].(int)
 		ret.RemoveWaitTimer = in["remove_wait_timer"].(int)
+		ret.Forward = in["forward"].(int)
 	}
 	return ret
 }

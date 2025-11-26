@@ -66,5 +66,3 @@ Optional:
 
 <a id="nestedblock--stats"></a>
 ### Nested Schema for `stats`
-
-

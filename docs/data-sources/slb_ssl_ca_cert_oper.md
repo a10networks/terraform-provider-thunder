@@ -67,5 +67,3 @@ Optional:
 - `status` (String)
 - `subject` (String)
 - `type` (String)
-
-

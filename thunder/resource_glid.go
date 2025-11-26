@@ -23,7 +23,7 @@ func resourceGlid() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Description: "Connection Limit for the GLID (PBSLB range 1-1048575)",
 			},
 			"conn_rate_limit": {
-				Type: schema.TypeInt, Optional: true, Description: "Connection rate limit per rate-interval (TPS range 1-16000000)",
+				Type: schema.TypeInt, Optional: true, Description: "Connection rate limit per rate-interval",
 			},
 			"conn_rate_limit_interval": {
 				Type: schema.TypeInt, Optional: true, Description: "",

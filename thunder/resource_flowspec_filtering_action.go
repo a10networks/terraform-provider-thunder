@@ -85,8 +85,8 @@ func resourceFlowspecFilteringAction() *schema.Resource {
 			"vrf_target_string": {
 				Type: schema.TypeString, Optional: true, Description: "Type 0x8008(ASN-2:Index), 0x8208(ASN-4:Index) - Route Target AS",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"flowspec_name": {
+				Type: schema.TypeString, Required: true, Description: "Flowspec_name",
 			},
 		},
 	}
@@ -178,6 +178,6 @@ func dataToEndpointFlowspecFilteringAction(d *schema.ResourceData) edpt.Flowspec
 	ret.Inst.ValueIpHost = d.Get("value_ip_host").(int)
 	ret.Inst.VrfTargetIp = d.Get("vrf_target_ip").(string)
 	ret.Inst.VrfTargetString = d.Get("vrf_target_string").(string)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Flowspec_name = d.Get("flowspec_name").(string)
 	return ret
 }

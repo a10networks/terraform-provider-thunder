@@ -13,7 +13,7 @@ func resourceDdosDstZoneIpProtoProtoTcpUdpOper() *schema.Resource {
 		ReadContext: resourceDdosDstZoneIpProtoProtoTcpUdpOperRead,
 
 		Schema: map[string]*schema.Schema{
-			"ip_filtering_policy_oper": {
+			"ip_filtering_policy_statistics": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
@@ -29,6 +29,9 @@ func resourceDdosDstZoneIpProtoProtoTcpUdpOper() *schema.Resource {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 												"hits": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"blacklisted_src_count": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 											},
@@ -121,6 +124,9 @@ func resourceDdosDstZoneIpProtoProtoTcpUdpOper() *schema.Resource {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 									"dynamic_entry_limit": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"dynamic_entry_warn_state": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 									"sflow_source_id": {
@@ -218,8 +224,8 @@ func resourceDdosDstZoneIpProtoProtoTcpUdpOperRead(ctx context.Context, d *schem
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
 		d.SetId(obj.GetId())
 		logger.Println(res)
-		DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOper := setObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOper(res)
-		d.Set("ip_filtering_policy_oper", DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOper)
+		DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatistics := setObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatistics(res)
+		d.Set("ip_filtering_policy_statistics", DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatistics)
 		DdosDstZoneIpProtoProtoTcpUdpOperOper := setObjectDdosDstZoneIpProtoProtoTcpUdpOperOper(res)
 		d.Set("oper", DdosDstZoneIpProtoProtoTcpUdpOperOper)
 		if err != nil {
@@ -229,28 +235,29 @@ func resourceDdosDstZoneIpProtoProtoTcpUdpOperRead(ctx context.Context, d *schem
 	return diags
 }
 
-func setObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOper(ret edpt.DataDdosDstZoneIpProtoProtoTcpUdpOper) []interface{} {
+func setObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatistics(ret edpt.DataDdosDstZoneIpProtoProtoTcpUdpOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"oper": setObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOper(ret.DtDdosDstZoneIpProtoProtoTcpUdpOper.IpFilteringPolicyOper.Oper),
+			"oper": setObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOper(ret.DtDdosDstZoneIpProtoProtoTcpUdpOper.IpFilteringPolicyStatistics.Oper),
 		},
 	}
 }
 
-func setObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOper(d edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOper) []map[string]interface{} {
+func setObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOper(d edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOper) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOperRuleList(d.RuleList)
+	in["rule_list"] = setSliceDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOperRuleList(d.RuleList)
 	result = append(result, in)
 	return result
 }
 
-func setSliceDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
+func setSliceDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOperRuleList(d []edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOperRuleList) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	for _, item := range d {
 		in := make(map[string]interface{})
 		in["seq"] = item.Seq
 		in["hits"] = item.Hits
+		in["blacklisted_src_count"] = item.Blacklisted_src_count
 		result = append(result, in)
 	}
 	return result
@@ -314,6 +321,7 @@ func setSliceDdosDstZoneIpProtoProtoTcpUdpOperOperDdos_entry_list(d []edpt.DdosD
 		in["lockup_time"] = item.LockupTime
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -321,37 +329,38 @@ func setSliceDdosDstZoneIpProtoProtoTcpUdpOperOperDdos_entry_list(d []edpt.DdosD
 	return result
 }
 
-func getObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOper(d []interface{}) edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOper {
+func getObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatistics(d []interface{}) edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatistics {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOper
+	var ret edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatistics
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOper(in["oper"].([]interface{}))
+		ret.Oper = getObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOper(in["oper"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOper {
+func getObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOper(d []interface{}) edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOper {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOper
+	var ret edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOper
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
+		ret.RuleList = getSliceDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOperRuleList(in["rule_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOperRuleList {
+func getSliceDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOperRuleList(d []interface{}) []edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOperRuleList {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOperRuleList, 0, count1)
+	ret := make([]edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOperRuleList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOperOperRuleList
+		var oi edpt.DdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatisticsOperRuleList
 		oi.Seq = in["seq"].(int)
 		oi.Hits = in["hits"].(int)
+		oi.Blacklisted_src_count = in["blacklisted_src_count"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -421,6 +430,7 @@ func getSliceDdosDstZoneIpProtoProtoTcpUdpOperOperDdos_entry_list(d []interface{
 		oi.LockupTime = in["lockup_time"].(int)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(int)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -431,7 +441,7 @@ func getSliceDdosDstZoneIpProtoProtoTcpUdpOperOperDdos_entry_list(d []interface{
 func dataToEndpointDdosDstZoneIpProtoProtoTcpUdpOper(d *schema.ResourceData) edpt.DdosDstZoneIpProtoProtoTcpUdpOper {
 	var ret edpt.DdosDstZoneIpProtoProtoTcpUdpOper
 
-	ret.IpFilteringPolicyOper = getObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyOper(d.Get("ip_filtering_policy_oper").([]interface{}))
+	ret.IpFilteringPolicyStatistics = getObjectDdosDstZoneIpProtoProtoTcpUdpOperIpFilteringPolicyStatistics(d.Get("ip_filtering_policy_statistics").([]interface{}))
 
 	ret.Oper = getObjectDdosDstZoneIpProtoProtoTcpUdpOperOper(d.Get("oper").([]interface{}))
 

@@ -66,5 +66,3 @@ Optional:
 - `no_prefix_for_ipv446` (Number) NAT64 Reverse No Prefix Match for IPv4
 - `unknown_drop46` (Number) NAT64 Reverse Known ICMPv6 Drop
 - `unknown_drop64` (Number) NAT64 Forward Unknown ICMPv6 Drop
-
-

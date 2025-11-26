@@ -62,5 +62,3 @@ Optional:
 - `reachable` (Number)
 - `valid` (Number)
 - `vlan` (Number)
-
-

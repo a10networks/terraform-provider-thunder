@@ -67,5 +67,3 @@ Optional:
 - `trunk_group` (String)
 - `unnumbered_oper` (String)
 - `vlan_info` (String)
-
-

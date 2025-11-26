@@ -45,15 +45,24 @@ output "get_ddos_quic_zone_port_stats" {
 
 Optional:
 
-- `addr_filter_bl` (Number) IP Filtering Policy: Blacklisted
-- `addr_filter_drop` (Number) IP Filtering Policy: Dropped
+- `aead_pkt_rate_exceed` (Number) QUIC AEAD Packet Rate Exceed
+- `all_src_session_reset` (Number) Session Reset for All Src Upon Level Escalation
 - `bl` (Number) Dst Blacklisted
+- `clear_session_upon_deescalation` (Number) Clear Session Upon De-escalation to Level 0
 - `conn_prate_excd` (Number) UDP Conn Pkt Rate Exceeded
+- `connection_close_sent` (Number) QUIC Connection Close Sent
+- `create_conn_init_only` (Number) QUIC Create Connection on Initial Only
 - `current_es_level` (Number) Current Escalation Level
+- `dcid_pkt_rate_exceed` (Number) QUIC DCID Packet Rate Exceed
+- `decrypt_fail` (Number) QUIC Decrypt Fail
+- `decrypt_success` (Number) QUIC Decrypt Success
 - `dst_hw_drop` (Number) Dst Hardware Packets Dropped
 - `dst_hw_drop_inserted` (Number) Dst Hardware Drop Rules Inserted
 - `dst_hw_drop_removed` (Number) Dst Hardware Drop Rules Removed
 - `dst_udp_retry_timeout_blacklist` (Number) UDP Retry Timeout Blacklisted
+- `dynamic_count_warn` (Number) dynamic-entry-count warning send
+- `encrypt_fail` (Number) QUIC Encrypt Fail
+- `encrypt_success` (Number) QUIC Encrypt Success
 - `ew_inbound_port_byte_drop` (Number) East-West Inbound Bytes Dropped
 - `ew_inbound_port_byte_rcv` (Number) East-West Inbound Bytes Recevied
 - `ew_inbound_port_byte_sent` (Number) East-West Inbound Bytes Forwarded
@@ -93,6 +102,9 @@ Optional:
 - `initial` (Number) QUIC Initial
 - `initial_force_tcp` (Number) Initial Force-TCP
 - `invalid_packet_type` (Number) Invalid Packet Type
+- `invalid_retry_token` (Number) Invalid Retry Token
+- `ip_filtering_bl` (Number) IP Filtering Policy: Blacklisted
+- `ip_filtering_drop` (Number) IP Filtering Policy: Dropped
 - `malformed_action_blacklist` (Number) Malformed Action Blacklist
 - `malformed_action_drop` (Number) Malformed Action Drop
 - `malformed_action_taken` (Number) Malformed Action Taken
@@ -126,7 +138,12 @@ Optional:
 - `port_src_escalation` (Number) Src Escalation
 - `processed` (Number) QUIC Headers Processed
 - `retry` (Number) QUIC Retry
+- `retry_auth_fail` (Number) QUIC Retry Auth Fail
+- `retry_auth_pass` (Number) QUIC Retry Auth Pass
+- `retry_auth_sent` (Number) QUIC Retry Auth Sent
 - `rtt0` (Number) QUIC 0-RTT
+- `rtt_drop0` (Number) QUIC 0-RTT DROP
+- `same_sport_dport_drop` (Number) Same Source and Destination Port Drop
 - `secondary_port_conn_limm_exceed` (Number) Per Addr-Port Conn Limit Exceeded
 - `secondary_port_conn_rate_exceed` (Number) Per Addr-Port Conn Rate Exceeded
 - `secondary_port_hit` (Number) Per Addr-Port Hit
@@ -141,6 +158,8 @@ Optional:
 - `sflow_external_samples_packed` (Number) Sflow External Samples Packed
 - `sflow_internal_packets_sent` (Number) Sflow Internal Packets Sent
 - `sflow_internal_samples_packed` (Number) Sflow Internal Samples Packed
+- `short_header` (Number) QUIC Short Header Packet
+- `short_header_drop` (Number) QUIC Short Header Drop
 - `snat_fail` (Number) Source NAT Failure
 - `spoof_detect_fail` (Number) UDP Retry Timeout
 - `src_conn_pkt_rate_excd` (Number) Src UDP Conn Pkt Rate Exceeded
@@ -173,6 +192,7 @@ Optional:
 - `src_udp_retry_pass` (Number) Src UDP Retry Passed
 - `src_well_known_port` (Number) Src UDP SrcPort Wellknown
 - `src_zone_service_entry_aged` (Number) SrcZoneService Entry Aged
+- `src_zone_service_entry_hit` (Number) SrcZoneService Entry Hit
 - `src_zone_service_entry_learned` (Number) SrcZoneService Entry Learned
 - `token_authentication_curr_salt_matched` (Number) Token Authentication Current Salt Matched
 - `token_authentication_invalid` (Number) Token Authentication Invalid Packets
@@ -189,7 +209,6 @@ Optional:
 - `version_match_action_drop` (Number) Version Match Action Drop
 - `version_match_action_taken` (Number) Version Match Action Taken
 - `version_negotiation` (Number) QUIC Version Negotiation
+- `version_no_match_drop` (Number) Version No Match Drop
 - `wellknown_sport_drop` (Number) UDP SrcPort Wellknown
 - `zone_src_udp_retry_timeout_blacklist` (Number) Src UDP Retry Timeout Blacklisted
-
-

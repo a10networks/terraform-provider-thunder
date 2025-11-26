@@ -63,5 +63,3 @@ Optional:
 - `prefixlen` (Number)
 - `subtype` (String)
 - `type` (String)
-
-

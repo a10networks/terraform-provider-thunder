@@ -76,5 +76,3 @@ Optional:
 - `ocsp_uri_https` (Number) Log OCSP URI https
 - `ocsp_uri_not_found` (Number) OCSP URI not found
 - `ocsp_uri_unsupported` (Number) OCSP URI unsupported
-
-

@@ -47,6 +47,8 @@ Optional:
 - `case_insensitive` (Number)
 - `custom_attr_name` (String)
 - `custom_attr_value` (String)
+- `derived_attribute_name` (String)
+- `derived_attribute_value` (String)
 - `radius_table_entries_list` (Block List) (see [below for nested schema](#nestedblock--oper--radius_table_entries_list))
 - `starts_with` (Number)
 - `total_entries` (Number)
@@ -62,6 +64,8 @@ Optional:
 - `custom4_attr_value` (String)
 - `custom5_attr_value` (String)
 - `custom6_attr_value` (String)
+- `derived_attr_usergroup_value` (String)
+- `derived_attr_userid_value` (String)
 - `imei` (String)
 - `imsi` (String)
 - `inside_ip` (String)
@@ -69,5 +73,3 @@ Optional:
 - `is_obsolete` (Number)
 - `msisdn` (String)
 - `prefix_len` (Number)
-
-

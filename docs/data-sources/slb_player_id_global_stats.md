@@ -51,5 +51,3 @@ Optional:
 - `total_playerids_created` (Number) Playerid records created
 - `total_playerids_deleted` (Number) Playerid records deleted
 - `total_valid_playerid_pkts` (Number) Valid playerid packets
-
-

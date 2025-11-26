@@ -55,6 +55,7 @@ Optional:
 - `ack_retry_rto_pass` (Number) ACK Retry RTO Passed
 - `ack_retry_rto_progress` (Number) ACK Retry RTO Progress
 - `ack_retry_timeout` (Number) ACK Retry Timeout
+- `alias_forward_rate_exceed` (Number) ALIAS Forward Rate Exceed
 - `bl` (Number) Dst Blacklisted
 - `conn_close` (Number) Connections Closed
 - `conn_close_half_open` (Number) Half Open Connections Closed
@@ -85,6 +86,7 @@ Optional:
 - `dns_query_class_in` (Number) Query Class INTERNET
 - `dns_query_class_none` (Number) Query Class NONE
 - `dns_query_class_whitelist_miss` (Number) Query Class Whitelist Miss
+- `dnssec_wildcard_forward_rate_exceed` (Number) DNSSEC Wildcard Forward Rate Exceed
 - `dst_hw_drop` (Number) Dst Hardware Packets Dropped
 - `exceed_action_drop` (Number) Exceed Action: Dropped
 - `exceed_action_tunnel` (Number) Exceed Action: Tunnel
@@ -112,6 +114,21 @@ Optional:
 - `frag_drop` (Number) Fragmented Packets Dropped
 - `frag_rcvd` (Number) Fragmented Packets Received
 - `frag_timeout` (Number) Fragmented Packets Timeout
+- `hybrid_auth_auth_no_match` (Number) SYN Auth Hybrid Auth No Match Drop
+- `hybrid_auth_auth_no_match_ack_rcv` (Number) SYN Auth Hybrid Auth No Match Drop: ACK Received
+- `hybrid_auth_auth_no_match_rst_rcv` (Number) SYN Auth Hybrid Auth No Match Drop: RST Received
+- `hybrid_auth_entry_aged_out` (Number) SYN Auth Hybrid Entry Aged Out
+- `hybrid_auth_filter_full` (Number) SYN Auth Hybrid Filter Full
+- `hybrid_auth_invalid_fail` (Number) SYN Auth Hybrid Invalid SYNACK Auth Fail
+- `hybrid_auth_invalid_pass` (Number) SYN Auth Hybrid Invalid SYNACK Auth Pass
+- `hybrid_auth_invalid_sa_sent` (Number) SYN Auth Hybrid Invalid SYNACK Sent
+- `hybrid_auth_lookup_fail` (Number) SYN Auth Hybrid Lookup Fail
+- `hybrid_auth_method_change` (Number) SYN Auth Hybrid Method Change
+- `hybrid_auth_unknown_fail` (Number) SYN Auth Hybrid Unknown Auth Fail
+- `hybrid_auth_unknown_pass` (Number) SYN Auth Hybrid Unknown Auth Pass
+- `hybrid_auth_valid_fail` (Number) SYN Auth Hybrid Valid SYNACK Auth Fail
+- `hybrid_auth_valid_pass` (Number) SYN Auth Hybrid Valid SYNACK Auth Pass
+- `hybrid_auth_valid_sa_sent` (Number) SYN Auth Hybrid Valid SYNACK Sent
 - `is_nxdomain` (Number) NXDOMAIN Response
 - `non_query_opcode_pass_through` (Number) Non Query Opcode Pass Through
 - `nxdomain_bl_drop` (Number) NXDOMAIN Response Blacklisted
@@ -163,13 +180,15 @@ Optional:
 - `prog_exceed_drop` (Number) Req-Resp: Violation Exceed Dropped
 - `prog_exceed_reset` (Number) Req-Resp: Violation Exceed Reset
 - `prog_first_req_time_exceed` (Number) Req-Resp: First Request Time Exceed
+- `prog_query_exceed` (Number) Req-Resp: Client Query Time Exceed
 - `prog_req_resp_time_exceed` (Number) Req-Resp: Request to Response Time Exceed
 - `prog_req_samples` (Number) Sample Collected: Req-Resp
 - `prog_req_samples_processed` (Number) Sample Processed: Req-Resp
 - `prog_request_len_exceed` (Number) Req-Resp: Request Length Exceed
-- `prog_resp_req_ratio_exceed` (Number) Req-Resp: Response to Request Ratio Exceed
+- `prog_resp_pkt_rate_exceed` (Number) Req-Resp: Response Packet Rate Exceed
 - `prog_resp_req_time_exceed` (Number) Req-Resp: Response to Request Time Exceed
 - `prog_response_len_exceed` (Number) Req-Resp: Response Length Exceed
+- `prog_think_exceed` (Number) Req-Resp: Server Think Time Exceed
 - `prog_win_exceed_bl` (Number) Time Window: Violation Exceed Blacklisted
 - `prog_win_exceed_drop` (Number) Time Window: Violation Exceed Dropped
 - `prog_win_exceed_reset` (Number) Time Window: Violation Exceed Reset
@@ -178,6 +197,7 @@ Optional:
 - `prog_win_samples` (Number) Sample Collected: Time Window
 - `prog_win_samples_processed` (Number) Sample Processed: Time Window
 - `prog_win_sent_exceed` (Number) Time Window: Sent Exceed
+- `query_forward_rate_exceed` (Number) Query Foward Rate Exceed
 - `query_type_a` (Number) Query Type A
 - `query_type_aaaa` (Number) Query Type AAAA
 - `query_type_any` (Number) Query Type ANY
@@ -198,6 +218,7 @@ Optional:
 - `req_sent` (Number) DNS Requests Forwarded
 - `req_size_exceed` (Number) Request Size Exceeded
 - `retransmit_excd` (Number) Retransmit Exceeded
+- `rrsig_expire_drop` (Number) RRSIG Expire: Drop
 - `rrtype_drop` (Number) Record Type Dropped
 - `rst_cookie_fail` (Number) RST Cookie Failed
 - `sess_aged` (Number) Sessions Aged Out
@@ -208,6 +229,8 @@ Optional:
 - `sflow_external_samples_packed` (Number) Sflow External Samples Packed
 - `sflow_internal_packets_sent` (Number) Sflow Internal Packets Sent
 - `sflow_internal_samples_packed` (Number) Sflow Internal Samples Packed
+- `small_window_excd` (Number) Small-Window Exceeded
+- `small_window_rcv` (Number) Small-Window Receive
 - `snat_fail` (Number) Source NAT Failure
 - `src_ack_auth_fail` (Number) Src ACK Retry Dropped
 - `src_ack_retry_blacklist` (Number) Src ACK Retry Timeout Blacklisted
@@ -219,6 +242,15 @@ Optional:
 - `src_ack_retry_rto_progress` (Number) Src ACK Retry RTO Progress
 - `src_ack_retry_timeout` (Number) Src ACK Retry Timeout
 - `src_auth_drop` (Number) Src TCP Auth Dropped
+- `src_auth_drop_ack` (Number) Src TCP Auth Dropped: ACK
+- `src_auth_drop_ack_fail_auth` (Number) Src TCP Auth Dropped: ACK Fail Auth
+- `src_auth_drop_ack_pass_auth` (Number) Src TCP Auth Dropped: ACK Pass Auth
+- `src_auth_drop_ack_xmit` (Number) Src TCP Auth Dropped: ACK Retransmit
+- `src_auth_drop_rst` (Number) Src TCP Auth Dropped: RST
+- `src_auth_drop_rst_fail_auth` (Number) Src TCP Auth Dropped: RST Fail Auth
+- `src_auth_drop_rst_pass_auth` (Number) Src TCP Auth Dropped: RST Pass Auth
+- `src_auth_drop_rst_xmit` (Number) Src TCP Auth Dropped: RST Retransmit
+- `src_auth_drop_syn` (Number) Src TCP Auth Dropped: SYN
 - `src_conn_ofo_rate_excd` (Number) Src TCP Conn Out-Of-Seq Rate Exceeded
 - `src_conn_pkt_rate_excd` (Number) Src TCP Conn Pkt Rate Exceeded
 - `src_conn_rexmit_rate_excd` (Number) Src TCP Conn Retransmit Rate Exceeded
@@ -252,6 +284,7 @@ Optional:
 - `src_rate_limit_type4` (Number) Src Request Rate 5 Exceeded
 - `src_retransmit_excd` (Number) Src Retransmit Exceeded
 - `src_rst_cookie_fail` (Number) Src RST Cookie Failed
+- `src_small_window_excd` (Number) Src Small-Window Exceeded
 - `src_syn_auth_fail` (Number) Src SYN Auth Failed
 - `src_syn_cookie_fail` (Number) Src SYN Cookie Failed
 - `src_syn_cookie_sent` (Number) Src SYN Cookie Sent
@@ -288,13 +321,64 @@ Optional:
 - `syn_tfo_rcv` (Number) SYN TFO Received
 - `synack_multiple_attempts_per_ip_detected` (Number) SYNACK Multiple Attempts Per IP Detected
 - `synack_reset_sent` (Number) SYNACK Reset Sent
+- `tcp_ack_data_drop` (Number) TCP ACK with Data Dropped
+- `tcp_ack_data_fwd` (Number) TCP ACK with Data Forward
+- `tcp_ack_data_rcvd` (Number) TCP ACK with Data Received
+- `tcp_ack_drop` (Number) TCP ACK Dropped
+- `tcp_ack_fwd` (Number) TCP ACK Forward
+- `tcp_ack_rcvd` (Number) TCP ACK Received
 - `tcp_auth_drop` (Number) TCP Auth Dropped
+- `tcp_auth_drop_ack` (Number) TCP Auth Dropped: ACK
+- `tcp_auth_drop_ack_fail_auth` (Number) TCP Auth Dropped: ACK Fail Auth
+- `tcp_auth_drop_ack_pass_auth` (Number) TCP Auth Dropped: ACK Pass Auth
+- `tcp_auth_drop_ack_xmit` (Number) TCP Auth Dropped: ACK Retransmit
+- `tcp_auth_drop_rst` (Number) TCP Auth Dropped: RST
+- `tcp_auth_drop_rst_fail_auth` (Number) TCP Auth Dropped: RST Fail Auth
+- `tcp_auth_drop_rst_pass_auth` (Number) TCP Auth Dropped: RST Pass Auth
+- `tcp_auth_drop_rst_xmit` (Number) TCP Auth Dropped: RST Retransmit
+- `tcp_auth_drop_syn` (Number) TCP Auth Dropped: SYN
 - `tcp_auth_resp` (Number) TCP Auth Responded
 - `tcp_auth_rst` (Number) TCP Auth Reset
+- `tcp_cwr_drop` (Number) TCP CWR Dropped
+- `tcp_cwr_fwd` (Number) TCP CWR Forward
+- `tcp_cwr_rcvd` (Number) TCP CWR Received
+- `tcp_ece_drop` (Number) TCP ECE Dropped
+- `tcp_ece_fwd` (Number) TCP ECE Forward
+- `tcp_ece_rcvd` (Number) TCP ECE Received
+- `tcp_empty_ack_drop` (Number) TCP Empty ACK Dropped
+- `tcp_empty_ack_fwd` (Number) TCP Empty ACK Forward
+- `tcp_empty_ack_rcvd` (Number) TCP Empty ACK Received
+- `tcp_fin_ack_drop` (Number) TCP FIN ACK Dropped
+- `tcp_fin_ack_fwd` (Number) TCP FIN ACK Forward
+- `tcp_fin_ack_rcvd` (Number) TCP FIN ACK Received
+- `tcp_fin_drop` (Number) TCP FIN Dropped
+- `tcp_fin_fwd` (Number) TCP FIN Forward
+- `tcp_fin_psh_ack_drop` (Number) TCP FIN PSH ACK Drop
+- `tcp_fin_psh_ack_fwd` (Number) TCP FIN PSH ACK Forward
+- `tcp_fin_psh_ack_rcvd` (Number) TCP FIN PSH ACK Received
+- `tcp_fin_rcvd` (Number) TCP FIN Received
+- `tcp_psh_ack_drop` (Number) TCP PSH ACK Dropped
+- `tcp_psh_ack_fwd` (Number) TCP PSH ACK Forward
+- `tcp_psh_ack_rcvd` (Number) TCP PSH ACK Received
+- `tcp_psh_drop` (Number) TCP PSH Dropped
+- `tcp_psh_fwd` (Number) TCP PSH Forward
+- `tcp_psh_rcvd` (Number) TCP PSH Received
 - `tcp_rexmit_syn_limit_bl` (Number) TCP SYN Retransmit Exceeded Blacklist
 - `tcp_rexmit_syn_limit_drop` (Number) TCP SYN Retransmit Exceeded Drop
+- `tcp_rst_ack_drop` (Number) TCP RST ACK Dropped
+- `tcp_rst_ack_fwd` (Number) TCP RST ACK Forward
+- `tcp_rst_ack_rcvd` (Number) TCP RST ACK Received
+- `tcp_rst_drop` (Number) TCP RST Dropped
+- `tcp_rst_fwd` (Number) TCP RST Forward
+- `tcp_rst_rcvd` (Number) TCP RST Received
+- `tcp_syn_ack_drop` (Number) TCP SYN ACK Dropped
+- `tcp_syn_ack_fwd` (Number) TCP SYN ACK Forward
+- `tcp_syn_ack_rcvd` (Number) TCP SYN ACK Received
+- `tcp_syn_fwd` (Number) SYN Forward
+- `tcp_syn_rcvd` (Number) TCP Inbound SYN Received
+- `tcp_urg_drop` (Number) TCP URG Dropped
+- `tcp_urg_fwd` (Number) TCP URG Forward
+- `tcp_urg_rcvd` (Number) TCP URG Received
 - `unauth_drop` (Number) TCP Unauth Dropped
 - `wellknown_sport_drop` (Number) TCP SrcPort Wellknown
 - `zero_window_excd` (Number) Zero-Window Exceeded
-
-

@@ -56,6 +56,7 @@ output "get_rule_set_rule_stats" {
 ### Required
 
 - `name` (String) Rule name
+- `rule_set_name` (String) Rule_set_name
 
 ### Optional
 
@@ -89,5 +90,7 @@ Optional:
 - `session_sctp` (Number) SCTP session counter
 - `session_tcp` (Number) TCP session counter
 - `session_udp` (Number) UDP session counter
-
-
+- `syn_cookie_syn_ack_sent` (Number) SYN cookie SYN ACK sent
+- `syn_cookie_verification_failed` (Number) SYN cookie verification failed
+- `syn_cookie_verification_passed` (Number) SYN cookie verification passed
+- `tcp_half_open_count` (Number) TCP half open sessions matching the rule

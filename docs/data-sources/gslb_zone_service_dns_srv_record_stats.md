@@ -39,11 +39,11 @@ output "get_gslb_zone_service_dns_srv_record_stats" {
 
 ### Required
 
-- `name` (String) Name
 - `port` (Number) Specify Port (Port Number)
 - `service_name` (String) ServiceName
 - `service_port` (String) ServicePort
 - `srv_name` (String) Specify Domain Name
+- `zone_name` (String) Zone_name
 
 ### Optional
 
@@ -59,5 +59,3 @@ output "get_gslb_zone_service_dns_srv_record_stats" {
 Optional:
 
 - `hits` (Number) Number of times the record has been used
-
-

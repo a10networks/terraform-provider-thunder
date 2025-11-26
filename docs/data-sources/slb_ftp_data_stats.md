@@ -46,5 +46,3 @@ Optional:
 
 - `port_out_of_range` (Number) Drop Data Port out of range
 - `sessions_num` (Number) Total Data Sessions
-
-

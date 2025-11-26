@@ -50,6 +50,9 @@ output "get_gslb_service_port_oper" {
 
 Optional:
 
+- `label` (String)
+- `port_count` (Number)
+- `service_hash` (Number)
 - `service_port_list` (Block List) (see [below for nested schema](#nestedblock--oper--service_port_list))
 
 <a id="nestedblock--oper--service_port_list"></a>
@@ -60,7 +63,7 @@ Optional:
 - `active_real_server` (Number)
 - `attributes` (String)
 - `current_connections` (Number)
+- `service_hcode` (Number)
+- `service_label` (String)
 - `service_port_name` (String)
 - `state` (String)
-
-

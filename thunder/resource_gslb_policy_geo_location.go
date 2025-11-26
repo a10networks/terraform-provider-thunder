@@ -51,14 +51,14 @@ func resourceGslbPolicyGeoLocation() *schema.Resource {
 			"name": {
 				Type: schema.TypeString, Required: true, Description: "Specify geo-location name, section range is (1-15)",
 			},
-			"policy_name": {
-				Type: schema.TypeString, Required: true, Description: "Specify policy-name",
-			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+			},
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
 			},
 		},
 	}
@@ -160,8 +160,8 @@ func dataToEndpointGslbPolicyGeoLocation(d *schema.ResourceData) edpt.GslbPolicy
 	ret.Inst.IpMultipleFields = getSliceGslbPolicyGeoLocationIpMultipleFields(d.Get("ip_multiple_fields").([]interface{}))
 	ret.Inst.Ipv6MultipleFields = getSliceGslbPolicyGeoLocationIpv6MultipleFields(d.Get("ipv6_multiple_fields").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.PolicyName = d.Get("policy_name").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

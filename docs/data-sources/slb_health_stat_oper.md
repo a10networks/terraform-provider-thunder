@@ -77,5 +77,3 @@ Optional:
 - `total_retry` (Number)
 - `up_cause` (Number)
 - `up_retries` (Number)
-
-

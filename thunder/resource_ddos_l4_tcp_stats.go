@@ -314,6 +314,57 @@ func resourceDdosL4TcpStats() *schema.Resource {
 						"tcp_auth_rst": {
 							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Reset",
 						},
+						"hybrid_syn_auth_unknown_pass": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Unknown Auth Pass",
+						},
+						"hybrid_syn_auth_unknown_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Unknown Auth Fail",
+						},
+						"hybrid_syn_auth_valid_sa_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Valid SYNACK Sent",
+						},
+						"hybrid_syn_auth_invalid_sa_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Invalid SYNACK Sent",
+						},
+						"hybrid_syn_auth_filter_full": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Filter Full",
+						},
+						"hybrid_syn_auth_lookup_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Lookup Fail",
+						},
+						"hybrid_syn_auth_invalid_pass": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Invalid SYNACK Auth Pass",
+						},
+						"hybrid_syn_auth_valid_pass": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Valid SYNACK Auth Pass",
+						},
+						"hybrid_syn_auth_invalid_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Invalid SYNACK Auth Fail",
+						},
+						"hybrid_syn_auth_valid_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Valid SYNACK Auth Fail",
+						},
+						"tcp_invalid_synack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Invalid SYNACK Received",
+						},
+						"hybrid_syn_auth_method_change": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Method Change",
+						},
+						"tcp_small_window": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Small-Window Total",
+						},
+						"tcp_small_window_bl": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Small-Window Blacklisted",
+						},
+						"tcp_small_window_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Small-Window Dropped",
+						},
+						"hybrid_syn_auth_entry_aged_out": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Entry Aged Out",
+						},
+						"hybrid_syn_auth_auth_no_match": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Auth no match",
+						},
 					},
 				},
 			},
@@ -442,6 +493,23 @@ func setObjectDdosL4TcpStatsStats(ret edpt.DataDdosL4TcpStats) []interface{} {
 			"tcp_progression_violation_exceed_drop":  ret.DtDdosL4TcpStats.Stats.Tcp_progression_violation_exceed_drop,
 			"tcp_progression_violation_exceed_reset": ret.DtDdosL4TcpStats.Stats.Tcp_progression_violation_exceed_reset,
 			"tcp_auth_rst":                           ret.DtDdosL4TcpStats.Stats.Tcp_auth_rst,
+			"hybrid_syn_auth_unknown_pass":           ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_unknown_pass,
+			"hybrid_syn_auth_unknown_fail":           ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_unknown_fail,
+			"hybrid_syn_auth_valid_sa_sent":          ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_valid_sa_sent,
+			"hybrid_syn_auth_invalid_sa_sent":        ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_invalid_sa_sent,
+			"hybrid_syn_auth_filter_full":            ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_filter_full,
+			"hybrid_syn_auth_lookup_fail":            ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_lookup_fail,
+			"hybrid_syn_auth_invalid_pass":           ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_invalid_pass,
+			"hybrid_syn_auth_valid_pass":             ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_valid_pass,
+			"hybrid_syn_auth_invalid_fail":           ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_invalid_fail,
+			"hybrid_syn_auth_valid_fail":             ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_valid_fail,
+			"tcp_invalid_synack_rcvd":                ret.DtDdosL4TcpStats.Stats.Tcp_invalid_synack_rcvd,
+			"hybrid_syn_auth_method_change":          ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_method_change,
+			"tcp_small_window":                       ret.DtDdosL4TcpStats.Stats.Tcp_small_window,
+			"tcp_small_window_bl":                    ret.DtDdosL4TcpStats.Stats.Tcp_small_window_bl,
+			"tcp_small_window_drop":                  ret.DtDdosL4TcpStats.Stats.Tcp_small_window_drop,
+			"hybrid_syn_auth_entry_aged_out":         ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_entry_aged_out,
+			"hybrid_syn_auth_auth_no_match":          ret.DtDdosL4TcpStats.Stats.Hybrid_syn_auth_auth_no_match,
 		},
 	}
 }
@@ -551,6 +619,23 @@ func getObjectDdosL4TcpStatsStats(d []interface{}) edpt.DdosL4TcpStatsStats {
 		ret.Tcp_progression_violation_exceed_drop = in["tcp_progression_violation_exceed_drop"].(int)
 		ret.Tcp_progression_violation_exceed_reset = in["tcp_progression_violation_exceed_reset"].(int)
 		ret.Tcp_auth_rst = in["tcp_auth_rst"].(int)
+		ret.Hybrid_syn_auth_unknown_pass = in["hybrid_syn_auth_unknown_pass"].(int)
+		ret.Hybrid_syn_auth_unknown_fail = in["hybrid_syn_auth_unknown_fail"].(int)
+		ret.Hybrid_syn_auth_valid_sa_sent = in["hybrid_syn_auth_valid_sa_sent"].(int)
+		ret.Hybrid_syn_auth_invalid_sa_sent = in["hybrid_syn_auth_invalid_sa_sent"].(int)
+		ret.Hybrid_syn_auth_filter_full = in["hybrid_syn_auth_filter_full"].(int)
+		ret.Hybrid_syn_auth_lookup_fail = in["hybrid_syn_auth_lookup_fail"].(int)
+		ret.Hybrid_syn_auth_invalid_pass = in["hybrid_syn_auth_invalid_pass"].(int)
+		ret.Hybrid_syn_auth_valid_pass = in["hybrid_syn_auth_valid_pass"].(int)
+		ret.Hybrid_syn_auth_invalid_fail = in["hybrid_syn_auth_invalid_fail"].(int)
+		ret.Hybrid_syn_auth_valid_fail = in["hybrid_syn_auth_valid_fail"].(int)
+		ret.Tcp_invalid_synack_rcvd = in["tcp_invalid_synack_rcvd"].(int)
+		ret.Hybrid_syn_auth_method_change = in["hybrid_syn_auth_method_change"].(int)
+		ret.Tcp_small_window = in["tcp_small_window"].(int)
+		ret.Tcp_small_window_bl = in["tcp_small_window_bl"].(int)
+		ret.Tcp_small_window_drop = in["tcp_small_window_drop"].(int)
+		ret.Hybrid_syn_auth_entry_aged_out = in["hybrid_syn_auth_entry_aged_out"].(int)
+		ret.Hybrid_syn_auth_auth_no_match = in["hybrid_syn_auth_auth_no_match"].(int)
 	}
 	return ret
 }

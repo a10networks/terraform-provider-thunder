@@ -56,6 +56,9 @@ func resourceGslbSiteSlbDevVipServerVipServerV6Oper() *schema.Resource {
 						"dynamic": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"shared": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"hits": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -72,17 +75,26 @@ func resourceGslbSiteSlbDevVipServerVipServerV6Oper() *schema.Resource {
 									"dev_vip_port_state": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
+									"dev_vip_port_dev_curr_conn": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"dev_vip_port_protocol": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"dev_vip_port_service_name": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
 								},
 							},
 						},
 					},
 				},
 			},
-			"site_name": {
-				Type: schema.TypeString, Required: true, Description: "SiteName",
-			},
 			"device_name": {
 				Type: schema.TypeString, Required: true, Description: "DeviceName",
+			},
+			"site_name": {
+				Type: schema.TypeString, Required: true, Description: "SiteName",
 			},
 		},
 	}
@@ -122,6 +134,7 @@ func setObjectGslbSiteSlbDevVipServerVipServerV6OperOper(ret edpt.DataGslbSiteSl
 			"manually_health_check": ret.DtGslbSiteSlbDevVipServerVipServerV6Oper.Oper.ManuallyHealthCheck,
 			"use_gslb_state":        ret.DtGslbSiteSlbDevVipServerVipServerV6Oper.Oper.Use_gslb_state,
 			"dynamic":               ret.DtGslbSiteSlbDevVipServerVipServerV6Oper.Oper.Dynamic,
+			"shared":                ret.DtGslbSiteSlbDevVipServerVipServerV6Oper.Oper.Shared,
 			"hits":                  ret.DtGslbSiteSlbDevVipServerVipServerV6Oper.Oper.Hits,
 			"recent":                ret.DtGslbSiteSlbDevVipServerVipServerV6Oper.Oper.Recent,
 			"dev_vip_port_list":     setSliceGslbSiteSlbDevVipServerVipServerV6OperOperDevVipPortList(ret.DtGslbSiteSlbDevVipServerVipServerV6Oper.Oper.DevVipPortList),
@@ -135,6 +148,9 @@ func setSliceGslbSiteSlbDevVipServerVipServerV6OperOperDevVipPortList(d []edpt.G
 		in := make(map[string]interface{})
 		in["dev_vip_port_num"] = item.DevVipPortNum
 		in["dev_vip_port_state"] = item.DevVipPortState
+		in["dev_vip_port_dev_curr_conn"] = item.DevVipPortDevCurrConn
+		in["dev_vip_port_protocol"] = item.DevVipPortProtocol
+		in["dev_vip_port_service_name"] = item.DevVipPortServiceName
 		result = append(result, in)
 	}
 	return result
@@ -158,6 +174,7 @@ func getObjectGslbSiteSlbDevVipServerVipServerV6OperOper(d []interface{}) edpt.G
 		ret.ManuallyHealthCheck = in["manually_health_check"].(int)
 		ret.Use_gslb_state = in["use_gslb_state"].(int)
 		ret.Dynamic = in["dynamic"].(int)
+		ret.Shared = in["shared"].(int)
 		ret.Hits = in["hits"].(int)
 		ret.Recent = in["recent"].(int)
 		ret.DevVipPortList = getSliceGslbSiteSlbDevVipServerVipServerV6OperOperDevVipPortList(in["dev_vip_port_list"].([]interface{}))
@@ -174,6 +191,9 @@ func getSliceGslbSiteSlbDevVipServerVipServerV6OperOperDevVipPortList(d []interf
 		var oi edpt.GslbSiteSlbDevVipServerVipServerV6OperOperDevVipPortList
 		oi.DevVipPortNum = in["dev_vip_port_num"].(int)
 		oi.DevVipPortState = in["dev_vip_port_state"].(string)
+		oi.DevVipPortDevCurrConn = in["dev_vip_port_dev_curr_conn"].(int)
+		oi.DevVipPortProtocol = in["dev_vip_port_protocol"].(string)
+		oi.DevVipPortServiceName = in["dev_vip_port_service_name"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -186,8 +206,8 @@ func dataToEndpointGslbSiteSlbDevVipServerVipServerV6Oper(d *schema.ResourceData
 
 	ret.Oper = getObjectGslbSiteSlbDevVipServerVipServerV6OperOper(d.Get("oper").([]interface{}))
 
-	ret.SiteName = d.Get("site_name").(string)
-
 	ret.DeviceName = d.Get("device_name").(string)
+
+	ret.SiteName = d.Get("site_name").(string)
 	return ret
 }

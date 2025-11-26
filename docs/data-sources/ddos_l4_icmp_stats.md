@@ -76,5 +76,3 @@ Optional:
 - `icmp_wildcard_bl` (Number) ICMP Type Wildcard Blacklisted
 - `icmp_wildcard_deny_drop` (Number) ICMP Type Wildcard Dropped
 - `src_icmp_bl_user_config` (Number) ICMP Src Blacklisted User Packets Dropped
-
-

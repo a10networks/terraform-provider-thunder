@@ -46,5 +46,3 @@ Optional:
 
 - `parse_error` (Number) Total RPZ Parse Error
 - `set_bw_error` (Number) Total RPZ Set Class-list Error
-
-

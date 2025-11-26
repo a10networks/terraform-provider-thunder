@@ -56,5 +56,3 @@ Optional:
 - `ldaps_idle_conn_num` (Number)
 - `ldaps_inuse_conn_fd_list` (String)
 - `ldaps_inuse_conn_num` (Number)
-
-

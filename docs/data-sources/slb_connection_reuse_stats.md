@@ -45,6 +45,8 @@ output "get_slb_connection_reuse_stats" {
 Optional:
 
 - `current_active` (Number) Active persist
+- `current_http1_conn_in_the_pool` (Number) Current http1 conn in the pool
+- `current_http2_conn_in_the_pool` (Number) Current http2 conn in the pool
 - `current_open` (Number) Open persist
 - `delay_unbind` (Number) Delayed unbind
 - `long_resp` (Number) Long resp
@@ -59,5 +61,5 @@ Optional:
 - `pause_conn_fail` (Number) Pause request fail
 - `resume_conn` (Number) Resume request
 - `unbound_data_rcv` (Number) Unbound data rcvd
-
-
+- `zero_pconn_bind_value` (Number) Zero current pconn bind counter value
+- `zero_pconn_value` (Number) Zero current pconn counter value

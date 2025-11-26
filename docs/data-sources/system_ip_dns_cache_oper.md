@@ -55,5 +55,3 @@ Optional:
 - `domain` (String)
 - `interval` (Number)
 - `ttl` (Number)
-
-

@@ -138,5 +138,3 @@ Optional:
 - `server_conn_put_in_list` (Number)
 - `single_msg` (Number)
 - `unbind_conn` (Number)
-
-

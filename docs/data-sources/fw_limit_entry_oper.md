@@ -51,6 +51,8 @@ Optional:
 - `prefix6` (String)
 - `prefix_len4` (Number)
 - `prefix_len6` (Number)
+- `rule_name` (String)
+- `string_value` (String)
 
 <a id="nestedblock--oper--limit_entry_list"></a>
 ### Nested Schema for `oper.limit_entry_list`
@@ -62,6 +64,5 @@ Optional:
 - `max_count` (Number)
 - `prefix_len` (Number)
 - `rule_name` (String)
+- `string_value` (String)
 - `type` (String)
-
-

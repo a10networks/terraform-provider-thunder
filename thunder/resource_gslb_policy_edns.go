@@ -22,8 +22,8 @@ func resourceGslbPolicyEdns() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointGslbPolicyEdns(d *schema.ResourceData) edpt.GslbPolicyEdns {
 	var ret edpt.GslbPolicyEdns
 	ret.Inst.ClientSubnetGeographic = d.Get("client_subnet_geographic").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

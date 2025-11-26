@@ -16,8 +16,29 @@ func resourceDebugRateLimit() *schema.Resource {
 		DeleteContext: resourceDebugRateLimitDelete,
 
 		Schema: map[string]*schema.Schema{
+			"cpu_id": {
+				Type: schema.TypeInt, Optional: true, Description: "Starting From 0",
+			},
 			"dumy": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Dummy",
+			},
+			"entry_ip": {
+				Type: schema.TypeString, Optional: true, Description: "Source Address",
+			},
+			"life_cycle_log": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Print entry life cycle info",
+			},
+			"metric": {
+				Type: schema.TypeInt, Optional: true, Description: "CPS 0 Uplink 1 Downlink 2 Total 3",
+			},
+			"per_pkt_log": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Print entry info based on code path of each pkt",
+			},
+			"raw_log": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Print entry info per second",
+			},
+			"tpl_id": {
+				Type: schema.TypeInt, Optional: true, Description: "Template ID",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -89,7 +110,14 @@ func resourceDebugRateLimitRead(ctx context.Context, d *schema.ResourceData, met
 
 func dataToEndpointDebugRateLimit(d *schema.ResourceData) edpt.DebugRateLimit {
 	var ret edpt.DebugRateLimit
+	ret.Inst.CpuId = d.Get("cpu_id").(int)
 	ret.Inst.Dumy = d.Get("dumy").(int)
+	ret.Inst.EntryIp = d.Get("entry_ip").(string)
+	ret.Inst.LifeCycleLog = d.Get("life_cycle_log").(int)
+	ret.Inst.Metric = d.Get("metric").(int)
+	ret.Inst.PerPktLog = d.Get("per_pkt_log").(int)
+	ret.Inst.RawLog = d.Get("raw_log").(int)
+	ret.Inst.TplId = d.Get("tpl_id").(int)
 	//omit uuid
 	return ret
 }

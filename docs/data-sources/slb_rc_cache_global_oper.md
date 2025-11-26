@@ -145,5 +145,3 @@ Optional:
 - `sixty_four` (Number)
 - `thirty_two` (Number)
 - `two` (Number)
-
-

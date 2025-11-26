@@ -63,5 +63,3 @@ Optional:
 
 - `ip` (String)
 - `scanned_time` (String)
-
-

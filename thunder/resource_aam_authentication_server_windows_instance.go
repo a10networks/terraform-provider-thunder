@@ -9,7 +9,7 @@ import (
 
 func resourceAamAuthenticationServerWindowsInstance() *schema.Resource {
 	return &schema.Resource{
-		Description:   "`thunder_aam_authentication_server_windows_instance`: \"Windows Server, using Kerberos or NTLM for authentication\"\n\n__PLACEHOLDER__",
+		Description:   "`thunder_aam_authentication_server_windows_instance`: \"Windows Server, using Kerberos for authentication\"\n\n__PLACEHOLDER__",
 		CreateContext: resourceAamAuthenticationServerWindowsInstanceCreate,
 		UpdateContext: resourceAamAuthenticationServerWindowsInstanceUpdate,
 		ReadContext:   resourceAamAuthenticationServerWindowsInstanceRead,
@@ -20,21 +20,6 @@ func resourceAamAuthenticationServerWindowsInstance() *schema.Resource {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"ntlm_disable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable NTLM authentication protocol",
-						},
-						"ntlm_version": {
-							Type: schema.TypeInt, Optional: true, Default: 2, Description: "Specify NTLM version, default is 2",
-						},
-						"ntlm_health_check": {
-							Type: schema.TypeString, Optional: true, Description: "Check NTLM port's health status",
-						},
-						"ntlm_health_check_disable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable configured NTLM port health check configuration",
-						},
-						"kerberos_disable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable Kerberos authentication protocol",
-						},
 						"kerberos_port": {
 							Type: schema.TypeInt, Optional: true, Default: 88, Description: "Specify the Kerberos port, default is 88",
 						},
@@ -108,7 +93,7 @@ func resourceAamAuthenticationServerWindowsInstance() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type: schema.TypeString, Optional: true, Description: "'all': all; 'krb_send_req_success': Kerberos Request; 'krb_get_resp_success': Kerberos Response; 'krb_timeout_error': Kerberos Timeout; 'krb_other_error': Kerberos Other Error; 'krb_pw_expiry': Kerberos password expiry; 'krb_pw_change_success': Kerberos password change success; 'krb_pw_change_failure': Kerberos password change failure; 'ntlm_proto_nego_success': NTLM Protocol Negotiation Success; 'ntlm_proto_nego_failure': NTLM Protocol Negotiation Failure; 'ntlm_session_setup_success': NTLM Session Setup Success; 'ntlm_session_setup_failure': NTLM Session Setup Failure; 'ntlm_prepare_req_success': NTLM Prepare Request Success; 'ntlm_prepare_req_error': NTLM Prepare Request Error; 'ntlm_auth_success': NTLM Authentication Success; 'ntlm_auth_failure': NTLM Authentication Failure; 'ntlm_timeout_error': NTLM Timeout; 'ntlm_other_error': NTLM Other Error; 'krb_validate_kdc_success': Kerberos KDC Validation Success; 'krb_validate_kdc_failure': Kerberos KDC Validation Failure;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'krb_send_req_success': Kerberos Request; 'krb_get_resp_success': Kerberos Response; 'krb_timeout_error': Kerberos Timeout; 'krb_other_error': Kerberos Other Error; 'krb_pw_expiry': Kerberos password expiry; 'krb_pw_change_success': Kerberos password change success; 'krb_pw_change_failure': Kerberos password change failure; 'krb_validate_kdc_success': Kerberos KDC Validation Success; 'krb_validate_kdc_failure': Kerberos KDC Validation Failure;",
 						},
 					},
 				},
@@ -193,11 +178,6 @@ func getObjectAamAuthenticationServerWindowsInstanceAuthProtocol(d []interface{}
 	var ret edpt.AamAuthenticationServerWindowsInstanceAuthProtocol
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.NtlmDisable = in["ntlm_disable"].(int)
-		ret.NtlmVersion = in["ntlm_version"].(int)
-		ret.NtlmHealthCheck = in["ntlm_health_check"].(string)
-		ret.NtlmHealthCheckDisable = in["ntlm_health_check_disable"].(int)
-		ret.KerberosDisable = in["kerberos_disable"].(int)
 		ret.KerberosPort = in["kerberos_port"].(int)
 		ret.KportHm = in["kport_hm"].(string)
 		ret.KportHmDisable = in["kport_hm_disable"].(int)

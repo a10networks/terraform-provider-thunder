@@ -38,10 +38,10 @@ output "get_gslb_zone_service_dns_txt_record_stats" {
 
 ### Required
 
-- `name` (String) Name
 - `record_name` (String) Specify the Object Name for TXT Data
 - `service_name` (String) ServiceName
 - `service_port` (String) ServicePort
+- `zone_name` (String) Zone_name
 
 ### Optional
 
@@ -57,5 +57,3 @@ output "get_gslb_zone_service_dns_txt_record_stats" {
 Optional:
 
 - `hits` (Number) Number of times the record has been used
-
-

@@ -65,5 +65,3 @@ Optional:
 - `num_tx_pkts` (Number)
 - `num_unicast_pkts` (Number)
 - `num_unicast_tx_pkts` (Number)
-
-

@@ -16,6 +16,9 @@ func resourceScaleoutClusterServiceConfig() *schema.Resource {
 		DeleteContext: resourceScaleoutClusterServiceConfigDelete,
 
 		Schema: map[string]*schema.Schema{
+			"default_user_group_count": {
+				Type: schema.TypeInt, Optional: true, Description: "Number of default traffic buckets",
+			},
 			"enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "",
 			},
@@ -26,11 +29,8 @@ func resourceScaleoutClusterServiceConfig() *schema.Resource {
 						"name": {
 							Type: schema.TypeString, Required: true, Description: "Scaleout template Name",
 						},
-						"bucket_count": {
-							Type: schema.TypeInt, Optional: true, Default: 256, Description: "Number of traffic buckets",
-						},
-						"device_group": {
-							Type: schema.TypeInt, Optional: true, Description: "Device group id",
+						"user_group_count": {
+							Type: schema.TypeInt, Optional: true, Description: "Number of traffic buckets",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -120,8 +120,7 @@ func getSliceScaleoutClusterServiceConfigTemplateList(d []interface{}) []edpt.Sc
 		in := item.(map[string]interface{})
 		var oi edpt.ScaleoutClusterServiceConfigTemplateList
 		oi.Name = in["name"].(string)
-		oi.BucketCount = in["bucket_count"].(int)
-		oi.DeviceGroup = in["device_group"].(int)
+		oi.UserGroupCount = in["user_group_count"].(int)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -131,6 +130,7 @@ func getSliceScaleoutClusterServiceConfigTemplateList(d []interface{}) []edpt.Sc
 
 func dataToEndpointScaleoutClusterServiceConfig(d *schema.ResourceData) edpt.ScaleoutClusterServiceConfig {
 	var ret edpt.ScaleoutClusterServiceConfig
+	ret.Inst.DefaultUserGroupCount = d.Get("default_user_group_count").(int)
 	ret.Inst.Enable = d.Get("enable").(int)
 	ret.Inst.TemplateList = getSliceScaleoutClusterServiceConfigTemplateList(d.Get("template_list").([]interface{}))
 	//omit uuid

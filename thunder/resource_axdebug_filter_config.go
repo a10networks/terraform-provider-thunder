@@ -43,6 +43,21 @@ func resourceAxdebugFilterConfig() *schema.Resource {
 			"hex": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Define hex value",
 			},
+			"inner_ip": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "IP in IP or IP in IPv6 packets",
+			},
+			"inner_ipv4_address": {
+				Type: schema.TypeString, Optional: true, Description: "IP address",
+			},
+			"inner_ipv4_netmask": {
+				Type: schema.TypeString, Optional: true, Description: "IP subnet mask",
+			},
+			"inner_ipv6": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "IPv6 in IPv6 or IPv6 in IPv4 packets",
+			},
+			"inner_ipv6_address": {
+				Type: schema.TypeString, Optional: true, Description: "IPv6 address",
+			},
 			"integer": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Define decimal value",
 			},
@@ -71,7 +86,7 @@ func resourceAxdebugFilterConfig() *schema.Resource {
 				Type: schema.TypeString, Optional: true, Description: "ipv6 address",
 			},
 			"l3_proto": {
-				Type: schema.TypeString, Optional: true, Description: "'arp': arp; 'neighbor': neighbor;",
+				Type: schema.TypeString, Optional: true, Description: "'arp': arp; 'ip': ip; 'ipv6': ipv6; 'neighbor': neighbor;",
 			},
 			"length": {
 				Type: schema.TypeInt, Optional: true, Description: "byte length",
@@ -230,6 +245,11 @@ func dataToEndpointAxdebugFilterConfig(d *schema.ResourceData) edpt.AxdebugFilte
 	ret.Inst.DstPort = d.Get("dst_port").(int)
 	ret.Inst.DstPortNum = d.Get("dst_port_num").(int)
 	ret.Inst.Hex = d.Get("hex").(int)
+	ret.Inst.InnerIp = d.Get("inner_ip").(int)
+	ret.Inst.InnerIpv4Address = d.Get("inner_ipv4_address").(string)
+	ret.Inst.InnerIpv4Netmask = d.Get("inner_ipv4_netmask").(string)
+	ret.Inst.InnerIpv6 = d.Get("inner_ipv6").(int)
+	ret.Inst.InnerIpv6Address = d.Get("inner_ipv6_address").(string)
 	ret.Inst.Integer = d.Get("integer").(int)
 	ret.Inst.IntegerComp = d.Get("integer_comp").(int)
 	ret.Inst.IntegerMax = d.Get("integer_max").(int)

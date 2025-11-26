@@ -87,5 +87,3 @@ Optional:
 - `entry_hit_count` (Number)
 - `entry_over_limit` (Number)
 - `entry_response_credit` (Number)
-
-

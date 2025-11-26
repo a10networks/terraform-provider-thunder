@@ -45,5 +45,3 @@ output "get_event_notification_kafka_server_oper" {
 Optional:
 
 - `kafka_broker_state` (String)
-
-

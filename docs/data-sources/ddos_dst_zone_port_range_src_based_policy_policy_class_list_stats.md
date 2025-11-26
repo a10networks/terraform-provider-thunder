@@ -62,7 +62,11 @@ Optional:
 
 - `entry_count_overflow` (Number) Entry Count Overflow
 - `entry_learned` (Number) Entry Learned
+- `exceed_drop_conn_limit_clist` (Number) Conn Limit Exceeded
+- `exceed_drop_conn_rate_clist` (Number) Conn Rate Exceeded
+- `exceed_drop_frag_rate_clist` (Number) Frag Rate Exceeded
+- `exceed_drop_kbit_rate_clist` (Number) KiBit Rate Exceeded
+- `exceed_drop_kbit_rate_clist_pkt` (Number) KiBit Rate Exceeded Count
+- `exceed_drop_pkt_rate_clist` (Number) Packet Rate Exceeded
 - `packet_dropped` (Number) Packets Dropped
 - `packet_received` (Number) Packets Received
-
-

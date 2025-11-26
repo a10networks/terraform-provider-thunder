@@ -40,8 +40,8 @@ func resourceDdosNotificationTemplateApiAuthentication() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"notification_template_name": {
+				Type: schema.TypeString, Required: true, Description: "Notification_template_name",
 			},
 		},
 	}
@@ -120,6 +120,6 @@ func dataToEndpointDdosNotificationTemplateApiAuthentication(d *schema.ResourceD
 	ret.Inst.RelativeLoginUri = d.Get("relative_login_uri").(string)
 	ret.Inst.RelativeLogoffUri = d.Get("relative_logoff_uri").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Notification_template_name = d.Get("notification_template_name").(string)
 	return ret
 }

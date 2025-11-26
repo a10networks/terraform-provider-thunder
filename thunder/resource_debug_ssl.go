@@ -16,8 +16,23 @@ func resourceDebugSsl() *schema.Resource {
 		DeleteContext: resourceDebugSslDelete,
 
 		Schema: map[string]*schema.Schema{
-			"dumy": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Dummy",
+			"client_server": {
+				Type: schema.TypeString, Optional: true, Description: "'clientside': clientside SSL connection; 'serverside': serverside SSL connection;",
+			},
+			"payload_dump_max": {
+				Type: schema.TypeInt, Optional: true, Description: "Application payloads exceeding this limit will be truncated to dump. Set to 0 to disable payload dumping",
+			},
+			"payload_dump_string": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Dump the application payload as strings",
+			},
+			"read_write": {
+				Type: schema.TypeString, Optional: true, Description: "'read': read record; 'write': write record;",
+			},
+			"record_end": {
+				Type: schema.TypeInt, Optional: true, Description: "The last record number to print debug messages. Default: 0 (no end)",
+			},
+			"record_start": {
+				Type: schema.TypeInt, Optional: true, Description: "The first record number to debug prints messages. Default is 0",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -89,7 +104,12 @@ func resourceDebugSslRead(ctx context.Context, d *schema.ResourceData, meta inte
 
 func dataToEndpointDebugSsl(d *schema.ResourceData) edpt.DebugSsl {
 	var ret edpt.DebugSsl
-	ret.Inst.Dumy = d.Get("dumy").(int)
+	ret.Inst.ClientServer = d.Get("client_server").(string)
+	ret.Inst.PayloadDumpMax = d.Get("payload_dump_max").(int)
+	ret.Inst.PayloadDumpString = d.Get("payload_dump_string").(int)
+	ret.Inst.ReadWrite = d.Get("read_write").(string)
+	ret.Inst.RecordEnd = d.Get("record_end").(int)
+	ret.Inst.RecordStart = d.Get("record_start").(int)
 	//omit uuid
 	return ret
 }

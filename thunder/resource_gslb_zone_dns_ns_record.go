@@ -35,8 +35,8 @@ func resourceGslbZoneDnsNsRecord() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -122,6 +122,6 @@ func dataToEndpointGslbZoneDnsNsRecord(d *schema.ResourceData) edpt.GslbZoneDnsN
 	ret.Inst.SamplingEnable = getSliceGslbZoneDnsNsRecordSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.Ttl = d.Get("ttl").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

@@ -59,5 +59,3 @@ Optional:
 - `request_malformed_dropped` (Number) RADIUS Request Malformed Dropped
 - `request_no_key_vap_dropped` (Number) RADIUS Request No Key Attribute Dropped
 - `secret_not_configured_dropped` (Number) RADIUS Secret Not Configured Dropped
-
-

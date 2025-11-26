@@ -35,7 +35,7 @@ output "get_visibility_packet_capture_global_templates_template_trigger_sys_obj_
 
 ### Required
 
-- `name` (String) Name
+- `template_name` (String) Template_name
 
 ### Optional
 
@@ -117,5 +117,3 @@ Optional:
 - `w_link_down_drop` (Number) Enable automatic packet-capture for Total worker core link down drop
 - `w_ring_drop` (Number) Enable automatic packet-capture for Total worker core ring drop
 - `w_tx_que_drop` (Number) Enable automatic packet-capture for Total worker core queue drop
-
-

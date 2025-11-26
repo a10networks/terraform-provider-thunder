@@ -49,5 +49,3 @@ Optional:
 - `ssl_hw_q_inuse_tot` (Number)
 - `ssl_req_q_depth_tot` (Number)
 - `ssl_req_q_inuse_tot` (Number)
-
-

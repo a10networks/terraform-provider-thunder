@@ -391,33 +391,33 @@ func getSliceInterfaceLoopbackIpAddressList(d []interface{}) []edpt.InterfaceLoo
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpOspf652(d []interface{}) edpt.InterfaceLoopbackIpOspf652 {
+func getObjectInterfaceLoopbackIpOspf742(d []interface{}) edpt.InterfaceLoopbackIpOspf742 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpOspf652
+	var ret edpt.InterfaceLoopbackIpOspf742
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.OspfGlobal = getObjectInterfaceLoopbackIpOspfOspfGlobal653(in["ospf_global"].([]interface{}))
+		ret.OspfGlobal = getObjectInterfaceLoopbackIpOspfOspfGlobal743(in["ospf_global"].([]interface{}))
 		ret.OspfIpList = getSliceInterfaceLoopbackIpOspfOspfIpList(in["ospf_ip_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpOspfOspfGlobal653(d []interface{}) edpt.InterfaceLoopbackIpOspfOspfGlobal653 {
+func getObjectInterfaceLoopbackIpOspfOspfGlobal743(d []interface{}) edpt.InterfaceLoopbackIpOspfOspfGlobal743 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpOspfOspfGlobal653
+	var ret edpt.InterfaceLoopbackIpOspfOspfGlobal743
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AuthenticationCfg = getObjectInterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg654(in["authentication_cfg"].([]interface{}))
+		ret.AuthenticationCfg = getObjectInterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg744(in["authentication_cfg"].([]interface{}))
 		ret.AuthenticationKey = in["authentication_key"].(string)
-		ret.BfdCfg = getObjectInterfaceLoopbackIpOspfOspfGlobalBfdCfg655(in["bfd_cfg"].([]interface{}))
+		ret.BfdCfg = getObjectInterfaceLoopbackIpOspfOspfGlobalBfdCfg745(in["bfd_cfg"].([]interface{}))
 		ret.Cost = in["cost"].(int)
-		ret.DatabaseFilterCfg = getObjectInterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg656(in["database_filter_cfg"].([]interface{}))
+		ret.DatabaseFilterCfg = getObjectInterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg746(in["database_filter_cfg"].([]interface{}))
 		ret.DeadInterval = in["dead_interval"].(int)
 		ret.Disable = in["disable"].(string)
 		ret.HelloInterval = in["hello_interval"].(int)
-		ret.MessageDigestCfg = getSliceInterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg657(in["message_digest_cfg"].([]interface{}))
+		ret.MessageDigestCfg = getSliceInterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg747(in["message_digest_cfg"].([]interface{}))
 		ret.Mtu = in["mtu"].(int)
 		ret.MtuIgnore = in["mtu_ignore"].(int)
 		ret.Priority = in["priority"].(int)
@@ -428,10 +428,10 @@ func getObjectInterfaceLoopbackIpOspfOspfGlobal653(d []interface{}) edpt.Interfa
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg654(d []interface{}) edpt.InterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg654 {
+func getObjectInterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg744(d []interface{}) edpt.InterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg744 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg654
+	var ret edpt.InterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg744
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Authentication = in["authentication"].(int)
@@ -440,10 +440,10 @@ func getObjectInterfaceLoopbackIpOspfOspfGlobalAuthenticationCfg654(d []interfac
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpOspfOspfGlobalBfdCfg655(d []interface{}) edpt.InterfaceLoopbackIpOspfOspfGlobalBfdCfg655 {
+func getObjectInterfaceLoopbackIpOspfOspfGlobalBfdCfg745(d []interface{}) edpt.InterfaceLoopbackIpOspfOspfGlobalBfdCfg745 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpOspfOspfGlobalBfdCfg655
+	var ret edpt.InterfaceLoopbackIpOspfOspfGlobalBfdCfg745
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bfd = in["bfd"].(int)
@@ -452,10 +452,10 @@ func getObjectInterfaceLoopbackIpOspfOspfGlobalBfdCfg655(d []interface{}) edpt.I
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg656(d []interface{}) edpt.InterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg656 {
+func getObjectInterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg746(d []interface{}) edpt.InterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg746 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg656
+	var ret edpt.InterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg746
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DatabaseFilter = in["database_filter"].(string)
@@ -464,24 +464,24 @@ func getObjectInterfaceLoopbackIpOspfOspfGlobalDatabaseFilterCfg656(d []interfac
 	return ret
 }
 
-func getSliceInterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg657(d []interface{}) []edpt.InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg657 {
+func getSliceInterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg747(d []interface{}) []edpt.InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg747 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg657, 0, count1)
+	ret := make([]edpt.InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg747, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg657
+		var oi edpt.InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfg747
 		oi.MessageDigestKey = in["message_digest_key"].(int)
-		oi.Md5 = getObjectInterfaceLoopbackIpOspfOspfGlobalMessageDigestCfgMd5658(in["md5"].([]interface{}))
+		oi.Md5 = getObjectInterfaceLoopbackIpOspfOspfGlobalMessageDigestCfgMd5748(in["md5"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpOspfOspfGlobalMessageDigestCfgMd5658(d []interface{}) edpt.InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfgMd5658 {
+func getObjectInterfaceLoopbackIpOspfOspfGlobalMessageDigestCfgMd5748(d []interface{}) edpt.InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfgMd5748 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfgMd5658
+	var ret edpt.InterfaceLoopbackIpOspfOspfGlobalMessageDigestCfgMd5748
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Md5Value = in["md5_value"].(string)
@@ -532,40 +532,40 @@ func getSliceInterfaceLoopbackIpOspfOspfIpListMessageDigestCfg(d []interface{}) 
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpRip659(d []interface{}) edpt.InterfaceLoopbackIpRip659 {
+func getObjectInterfaceLoopbackIpRip749(d []interface{}) edpt.InterfaceLoopbackIpRip749 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpRip659
+	var ret edpt.InterfaceLoopbackIpRip749
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Authentication = getObjectInterfaceLoopbackIpRipAuthentication660(in["authentication"].([]interface{}))
+		ret.Authentication = getObjectInterfaceLoopbackIpRipAuthentication750(in["authentication"].([]interface{}))
 		ret.SendPacket = in["send_packet"].(int)
 		ret.ReceivePacket = in["receive_packet"].(int)
-		ret.SendCfg = getObjectInterfaceLoopbackIpRipSendCfg664(in["send_cfg"].([]interface{}))
-		ret.ReceiveCfg = getObjectInterfaceLoopbackIpRipReceiveCfg665(in["receive_cfg"].([]interface{}))
-		ret.SplitHorizonCfg = getObjectInterfaceLoopbackIpRipSplitHorizonCfg666(in["split_horizon_cfg"].([]interface{}))
+		ret.SendCfg = getObjectInterfaceLoopbackIpRipSendCfg754(in["send_cfg"].([]interface{}))
+		ret.ReceiveCfg = getObjectInterfaceLoopbackIpRipReceiveCfg755(in["receive_cfg"].([]interface{}))
+		ret.SplitHorizonCfg = getObjectInterfaceLoopbackIpRipSplitHorizonCfg756(in["split_horizon_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpRipAuthentication660(d []interface{}) edpt.InterfaceLoopbackIpRipAuthentication660 {
+func getObjectInterfaceLoopbackIpRipAuthentication750(d []interface{}) edpt.InterfaceLoopbackIpRipAuthentication750 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpRipAuthentication660
+	var ret edpt.InterfaceLoopbackIpRipAuthentication750
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Str = getObjectInterfaceLoopbackIpRipAuthenticationStr661(in["str"].([]interface{}))
-		ret.Mode = getObjectInterfaceLoopbackIpRipAuthenticationMode662(in["mode"].([]interface{}))
-		ret.KeyChain = getObjectInterfaceLoopbackIpRipAuthenticationKeyChain663(in["key_chain"].([]interface{}))
+		ret.Str = getObjectInterfaceLoopbackIpRipAuthenticationStr751(in["str"].([]interface{}))
+		ret.Mode = getObjectInterfaceLoopbackIpRipAuthenticationMode752(in["mode"].([]interface{}))
+		ret.KeyChain = getObjectInterfaceLoopbackIpRipAuthenticationKeyChain753(in["key_chain"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpRipAuthenticationStr661(d []interface{}) edpt.InterfaceLoopbackIpRipAuthenticationStr661 {
+func getObjectInterfaceLoopbackIpRipAuthenticationStr751(d []interface{}) edpt.InterfaceLoopbackIpRipAuthenticationStr751 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpRipAuthenticationStr661
+	var ret edpt.InterfaceLoopbackIpRipAuthenticationStr751
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.String = in["string"].(string)
@@ -573,10 +573,10 @@ func getObjectInterfaceLoopbackIpRipAuthenticationStr661(d []interface{}) edpt.I
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpRipAuthenticationMode662(d []interface{}) edpt.InterfaceLoopbackIpRipAuthenticationMode662 {
+func getObjectInterfaceLoopbackIpRipAuthenticationMode752(d []interface{}) edpt.InterfaceLoopbackIpRipAuthenticationMode752 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpRipAuthenticationMode662
+	var ret edpt.InterfaceLoopbackIpRipAuthenticationMode752
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mode = in["mode"].(string)
@@ -584,10 +584,10 @@ func getObjectInterfaceLoopbackIpRipAuthenticationMode662(d []interface{}) edpt.
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpRipAuthenticationKeyChain663(d []interface{}) edpt.InterfaceLoopbackIpRipAuthenticationKeyChain663 {
+func getObjectInterfaceLoopbackIpRipAuthenticationKeyChain753(d []interface{}) edpt.InterfaceLoopbackIpRipAuthenticationKeyChain753 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpRipAuthenticationKeyChain663
+	var ret edpt.InterfaceLoopbackIpRipAuthenticationKeyChain753
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.KeyChain = in["key_chain"].(string)
@@ -595,10 +595,10 @@ func getObjectInterfaceLoopbackIpRipAuthenticationKeyChain663(d []interface{}) e
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpRipSendCfg664(d []interface{}) edpt.InterfaceLoopbackIpRipSendCfg664 {
+func getObjectInterfaceLoopbackIpRipSendCfg754(d []interface{}) edpt.InterfaceLoopbackIpRipSendCfg754 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpRipSendCfg664
+	var ret edpt.InterfaceLoopbackIpRipSendCfg754
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Send = in["send"].(int)
@@ -607,10 +607,10 @@ func getObjectInterfaceLoopbackIpRipSendCfg664(d []interface{}) edpt.InterfaceLo
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpRipReceiveCfg665(d []interface{}) edpt.InterfaceLoopbackIpRipReceiveCfg665 {
+func getObjectInterfaceLoopbackIpRipReceiveCfg755(d []interface{}) edpt.InterfaceLoopbackIpRipReceiveCfg755 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpRipReceiveCfg665
+	var ret edpt.InterfaceLoopbackIpRipReceiveCfg755
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Receive = in["receive"].(int)
@@ -619,10 +619,10 @@ func getObjectInterfaceLoopbackIpRipReceiveCfg665(d []interface{}) edpt.Interfac
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpRipSplitHorizonCfg666(d []interface{}) edpt.InterfaceLoopbackIpRipSplitHorizonCfg666 {
+func getObjectInterfaceLoopbackIpRipSplitHorizonCfg756(d []interface{}) edpt.InterfaceLoopbackIpRipSplitHorizonCfg756 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpRipSplitHorizonCfg666
+	var ret edpt.InterfaceLoopbackIpRipSplitHorizonCfg756
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.State = in["state"].(string)
@@ -630,21 +630,21 @@ func getObjectInterfaceLoopbackIpRipSplitHorizonCfg666(d []interface{}) edpt.Int
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpRouter667(d []interface{}) edpt.InterfaceLoopbackIpRouter667 {
+func getObjectInterfaceLoopbackIpRouter757(d []interface{}) edpt.InterfaceLoopbackIpRouter757 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpRouter667
+	var ret edpt.InterfaceLoopbackIpRouter757
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Isis = getObjectInterfaceLoopbackIpRouterIsis668(in["isis"].([]interface{}))
+		ret.Isis = getObjectInterfaceLoopbackIpRouterIsis758(in["isis"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpRouterIsis668(d []interface{}) edpt.InterfaceLoopbackIpRouterIsis668 {
+func getObjectInterfaceLoopbackIpRouterIsis758(d []interface{}) edpt.InterfaceLoopbackIpRouterIsis758 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpRouterIsis668
+	var ret edpt.InterfaceLoopbackIpRouterIsis758
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tag = in["tag"].(string)
@@ -656,9 +656,9 @@ func getObjectInterfaceLoopbackIpRouterIsis668(d []interface{}) edpt.InterfaceLo
 func dataToEndpointInterfaceLoopbackIp(d *schema.ResourceData) edpt.InterfaceLoopbackIp {
 	var ret edpt.InterfaceLoopbackIp
 	ret.Inst.AddressList = getSliceInterfaceLoopbackIpAddressList(d.Get("address_list").([]interface{}))
-	ret.Inst.Ospf = getObjectInterfaceLoopbackIpOspf652(d.Get("ospf").([]interface{}))
-	ret.Inst.Rip = getObjectInterfaceLoopbackIpRip659(d.Get("rip").([]interface{}))
-	ret.Inst.Router = getObjectInterfaceLoopbackIpRouter667(d.Get("router").([]interface{}))
+	ret.Inst.Ospf = getObjectInterfaceLoopbackIpOspf742(d.Get("ospf").([]interface{}))
+	ret.Inst.Rip = getObjectInterfaceLoopbackIpRip749(d.Get("rip").([]interface{}))
+	ret.Inst.Router = getObjectInterfaceLoopbackIpRouter757(d.Get("router").([]interface{}))
 	//omit uuid
 	ret.Inst.Ifnum = d.Get("ifnum").(string)
 	return ret

@@ -107,5 +107,3 @@ Optional:
 - `unsupported_pbsz_value` (Number) Unsupported PBSZ
 - `unsupported_prot_value` (Number) Unsupported PROT
 - `user` (Number) user cmd
-
-

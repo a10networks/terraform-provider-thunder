@@ -53,5 +53,3 @@ Optional:
 
 - `jwk_name` (String)
 - `jwk_size` (Number)
-
-

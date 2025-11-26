@@ -110,5 +110,3 @@ Optional:
 - `min` (String)
 - `std_dev` (String)
 - `threshold` (String)
-
-

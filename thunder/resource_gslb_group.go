@@ -37,11 +37,17 @@ func resourceGslbGroup() *schema.Resource {
 			"data_interface": {
 				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Data Interface IP Address",
 			},
+			"delay_start": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify time for gslb group to delay start formation if VCS is enabled (Specify delay start for VCS, unit:minute,default is 0)",
+			},
 			"dns_discover": {
 				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Discover member via DNS Protocol",
 			},
 			"enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Join GSLB Group",
+			},
+			"force_full_sync": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Force GSLB to full sync config and files to members",
 			},
 			"learn": {
 				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Learn neighbour information from other controllers",
@@ -83,6 +89,9 @@ func resourceGslbGroup() *schema.Resource {
 			},
 			"suffix": {
 				Type: schema.TypeString, Optional: true, Description: "Set DNS Suffix (Name)",
+			},
+			"sync_timeout": {
+				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Specify timeout for gslb config sync (Specify timeout, unit:minute,default is 1)",
 			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
@@ -190,8 +199,10 @@ func dataToEndpointGslbGroup(d *schema.ResourceData) edpt.GslbGroup {
 	ret.Inst.ConfigMerge = d.Get("config_merge").(int)
 	ret.Inst.ConfigSave = d.Get("config_save").(int)
 	ret.Inst.DataInterface = d.Get("data_interface").(int)
+	ret.Inst.DelayStart = d.Get("delay_start").(int)
 	ret.Inst.DnsDiscover = d.Get("dns_discover").(int)
 	ret.Inst.Enable = d.Get("enable").(int)
+	ret.Inst.ForceFullSync = d.Get("force_full_sync").(int)
 	ret.Inst.Learn = d.Get("learn").(int)
 	ret.Inst.MgmtInterface = d.Get("mgmt_interface").(int)
 	ret.Inst.Name = d.Get("name").(string)
@@ -201,6 +212,7 @@ func dataToEndpointGslbGroup(d *schema.ResourceData) edpt.GslbGroup {
 	ret.Inst.ResolveAs = d.Get("resolve_as").(string)
 	ret.Inst.Standalone = d.Get("standalone").(int)
 	ret.Inst.Suffix = d.Get("suffix").(string)
+	ret.Inst.SyncTimeout = d.Get("sync_timeout").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

@@ -81,6 +81,7 @@ Optional:
 - `ip_frag` (Number)
 - `log` (Number)
 - `log_transparent_sess_only` (Number)
+- `mgmt_plane_hits` (Number)
 - `proto` (String)
 - `remark` (String)
 - `sequence_num` (Number)
@@ -93,5 +94,3 @@ Optional:
 - `tcp_established` (Number)
 - `trunk` (Number)
 - `vlan_id` (Number)
-
-

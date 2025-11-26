@@ -56,5 +56,3 @@ Optional:
 - `inbound_packets_no_map` (Number) Inbound Packets No Map
 - `outbound_packets` (Number) Outbound Packets
 - `packets_dest_unreachable` (Number) Packets Destination Unreachable
-
-

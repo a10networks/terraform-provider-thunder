@@ -62,5 +62,3 @@ Optional:
 
 - `metric_value` (Number)
 - `rule_name` (String)
-
-

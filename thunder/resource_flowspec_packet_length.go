@@ -20,7 +20,7 @@ func resourceFlowspecPacketLength() *schema.Resource {
 				Type: schema.TypeInt, Required: true, Description: "Specify the Packet Length",
 			},
 			"length_end": {
-				Type: schema.TypeInt, Optional: true, Description: "Specify the Packet Length",
+				Type: schema.TypeInt, Required: true, Description: "Specify the Packet Length",
 			},
 			"packet_length_attribute": {
 				Type: schema.TypeString, Required: true, Description: "'eq': Match only packets on a given Packet Length; 'gt': Match only packets with a greater Packet Length; 'lt': Match only packets with a lower Packet Length; 'range': match only packets in the range of Packet Lengths;",
@@ -28,8 +28,8 @@ func resourceFlowspecPacketLength() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"flowspec_name": {
+				Type: schema.TypeString, Required: true, Description: "Flowspec_name",
 			},
 		},
 	}
@@ -102,6 +102,6 @@ func dataToEndpointFlowspecPacketLength(d *schema.ResourceData) edpt.FlowspecPac
 	ret.Inst.LengthEnd = d.Get("length_end").(int)
 	ret.Inst.PacketLengthAttribute = d.Get("packet_length_attribute").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Flowspec_name = d.Get("flowspec_name").(string)
 	return ret
 }

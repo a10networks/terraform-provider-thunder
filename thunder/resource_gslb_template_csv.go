@@ -36,7 +36,7 @@ func resourceGslbTemplateCsv() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "Field index number (Index of Field)",
 						},
 						"csv_type": {
-							Type: schema.TypeString, Optional: true, Description: "'ip-from': Beginning address of IP range or subnet; 'ip-to-mask': Ending address of IP range or Mask; 'continent': Continent; 'country': Country; 'state': State or province; 'city': City;",
+							Type: schema.TypeString, Optional: true, Description: "'ip-from': Beginning address of IP range or subnet; 'ip-to-mask': Ending address of IP range or Mask; 'continent': Continent; 'country': Country; 'state': State or province; 'city': City; 'ASN': Autonomous System Number;",
 						},
 					},
 				},

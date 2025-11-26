@@ -51,5 +51,3 @@ Optional:
 - `rx_pkts` (Number) Rx IP TWAMP test packets
 - `twamp_hdr_len_err` (Number) Rx TWAMP hdr length error drop
 - `tx_pkts` (Number) Tx IP TWAMP test packets
-
-

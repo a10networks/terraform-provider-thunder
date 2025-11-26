@@ -51,5 +51,3 @@ Optional:
 - `dst_ipproto_kbit_rate_exceed` (Number) Dst IP-Proto KiBit Rate Exceeded (KiBit)
 - `dst_ipproto_pkt_rate_exceed` (Number) Dst IP-Proto Pkt Rate Exceeded
 - `dst_ipproto_rcvd` (Number) Dst IP-Proto Total Packets Received
-
-

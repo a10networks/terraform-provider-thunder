@@ -44,7 +44,10 @@ output "get_scaleout_traffic_map_oper" {
 
 Optional:
 
+- `ipv4` (Number)
+- `ipv6` (Number)
 - `map_entries_list_head` (Block List) (see [below for nested schema](#nestedblock--oper--map_entries_list_head))
+- `service_config_template` (String)
 - `src_ip` (String)
 - `src_ipv6` (String)
 - `tbl_num` (Number)
@@ -72,5 +75,3 @@ Optional:
 - `new_active` (Number)
 - `new_standby` (Number)
 - `user_group` (Number)
-
-

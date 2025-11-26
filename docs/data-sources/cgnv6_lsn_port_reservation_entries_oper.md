@@ -58,5 +58,3 @@ Optional:
 - `nat_address` (String)
 - `nat_end_port` (Number)
 - `nat_start_port` (Number)
-
-

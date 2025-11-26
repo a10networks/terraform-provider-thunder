@@ -65,5 +65,3 @@ Optional:
 - `sent_to_store` (Number) Number of logs sent to be stored
 - `sent_to_store_fail` (Number) Number of Logs sent to be stored Failed
 - `store_fail` (Number) Number of logs failed to be stored
-
-

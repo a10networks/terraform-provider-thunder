@@ -45,5 +45,3 @@ output "get_slb_common_oper" {
 Optional:
 
 - `server_auto_reselect` (Number)
-
-

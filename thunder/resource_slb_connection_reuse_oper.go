@@ -66,6 +66,18 @@ func resourceSlbConnectionReuseOper() *schema.Resource {
 									"not_remove_from_rport": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"zero_pconn_value": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"zero_pconn_bind_value": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"current_http1_conn_in_the_pool": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"current_http2_conn_in_the_pool": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 								},
 							},
 						},
@@ -126,6 +138,10 @@ func setSliceSlbConnectionReuseOperOperConnectionReuseCpuList(d []edpt.SlbConnec
 		in["pause_conn_fail"] = item.Pause_conn_fail
 		in["resume_conn"] = item.Resume_conn
 		in["not_remove_from_rport"] = item.Not_remove_from_rport
+		in["zero_pconn_value"] = item.Zero_pconn_value
+		in["zero_pconn_bind_value"] = item.Zero_pconn_bind_value
+		in["current_http1_conn_in_the_pool"] = item.Current_http1_conn_in_the_pool
+		in["current_http2_conn_in_the_pool"] = item.Current_http2_conn_in_the_pool
 		result = append(result, in)
 	}
 	return result
@@ -165,6 +181,10 @@ func getSliceSlbConnectionReuseOperOperConnectionReuseCpuList(d []interface{}) [
 		oi.Pause_conn_fail = in["pause_conn_fail"].(int)
 		oi.Resume_conn = in["resume_conn"].(int)
 		oi.Not_remove_from_rport = in["not_remove_from_rport"].(int)
+		oi.Zero_pconn_value = in["zero_pconn_value"].(int)
+		oi.Zero_pconn_bind_value = in["zero_pconn_bind_value"].(int)
+		oi.Current_http1_conn_in_the_pool = in["current_http1_conn_in_the_pool"].(int)
+		oi.Current_http2_conn_in_the_pool = in["current_http2_conn_in_the_pool"].(int)
 		ret = append(ret, oi)
 	}
 	return ret

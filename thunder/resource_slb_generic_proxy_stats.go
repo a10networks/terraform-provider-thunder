@@ -236,6 +236,12 @@ func resourceSlbGenericProxyStats() *schema.Resource {
 						"dpa_in": {
 							Type: schema.TypeInt, Optional: true, Description: "Number of DPAs in",
 						},
+						"diameter_too_busy_in": {
+							Type: schema.TypeInt, Optional: true, Description: "Number of DIAMETER_TOO_BUSY in",
+						},
+						"diameter_too_busy_out": {
+							Type: schema.TypeInt, Optional: true, Description: "Number of DIAMETER_TOO_BUSY out",
+						},
 					},
 				},
 			},
@@ -338,6 +344,8 @@ func setObjectSlbGenericProxyStatsStats(ret edpt.DataSlbGenericProxyStats) []int
 			"dpr_in":                       ret.DtSlbGenericProxyStats.Stats.Dpr_in,
 			"dpa_out":                      ret.DtSlbGenericProxyStats.Stats.Dpa_out,
 			"dpa_in":                       ret.DtSlbGenericProxyStats.Stats.Dpa_in,
+			"diameter_too_busy_in":         ret.DtSlbGenericProxyStats.Stats.Diameter_too_busy_in,
+			"diameter_too_busy_out":        ret.DtSlbGenericProxyStats.Stats.Diameter_too_busy_out,
 		},
 	}
 }
@@ -421,6 +429,8 @@ func getObjectSlbGenericProxyStatsStats(d []interface{}) edpt.SlbGenericProxySta
 		ret.Dpr_in = in["dpr_in"].(int)
 		ret.Dpa_out = in["dpa_out"].(int)
 		ret.Dpa_in = in["dpa_in"].(int)
+		ret.Diameter_too_busy_in = in["diameter_too_busy_in"].(int)
+		ret.Diameter_too_busy_out = in["diameter_too_busy_out"].(int)
 	}
 	return ret
 }

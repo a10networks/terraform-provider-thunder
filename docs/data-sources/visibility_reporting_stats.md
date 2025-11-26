@@ -50,5 +50,3 @@ Optional:
 - `enqueue_pass` (Number) Total enqueue jobs passed
 - `log_transmit_failure` (Number) Total log transmit failures
 - `notif_jobs_in_queue` (Number) Total notification jobs in queue
-
-

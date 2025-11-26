@@ -55,5 +55,3 @@ Optional:
 - `rqnt` (Number) MGCP RQNT
 - `rsip` (Number) MGCP RSIP
 - `tcp_out_of_order_drop` (Number) TCP Out-of-Order Drop
-
-

@@ -73,5 +73,3 @@ Optional:
 - `stls_packet` (Number)
 - `total_pop3_request` (Number)
 - `total_proxy_conns` (Number)
-
-

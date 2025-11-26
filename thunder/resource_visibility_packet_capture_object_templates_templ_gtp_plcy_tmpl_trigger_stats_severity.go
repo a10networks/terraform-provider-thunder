@@ -43,8 +43,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTriggerStatsS
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"templ_gtp_plcy_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Templ_gtp_plcy_tmpl_name",
 			},
 		},
 	}
@@ -122,6 +122,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesTemplGtpPlcyTmplTrigger
 	ret.Inst.ErrorCritical = d.Get("error_critical").(int)
 	ret.Inst.ErrorWarning = d.Get("error_warning").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Templ_gtp_plcy_tmpl_name = d.Get("templ_gtp_plcy_tmpl_name").(string)
 	return ret
 }

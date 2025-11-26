@@ -29,6 +29,9 @@ func resourceTrafficControlRuleSetRuleOper() *schema.Resource {
 					},
 				},
 			},
+			"rule_set_name": {
+				Type: schema.TypeString, Required: true, Description: "Rule_set_name",
+			},
 		},
 	}
 }
@@ -79,5 +82,7 @@ func dataToEndpointTrafficControlRuleSetRuleOper(d *schema.ResourceData) edpt.Tr
 	ret.Name = d.Get("name").(string)
 
 	ret.Oper = getObjectTrafficControlRuleSetRuleOperOper(d.Get("oper").([]interface{}))
+
+	ret.Rule_set_name = d.Get("rule_set_name").(string)
 	return ret
 }

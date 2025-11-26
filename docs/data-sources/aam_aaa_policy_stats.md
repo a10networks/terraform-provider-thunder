@@ -82,5 +82,3 @@ Optional:
 - `req_bypass` (Number) Request Bypassed
 - `req_reject` (Number) Request Rejected
 - `req_skip` (Number) Request Skipped
-
-

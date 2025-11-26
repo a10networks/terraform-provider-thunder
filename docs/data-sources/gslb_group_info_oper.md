@@ -68,5 +68,3 @@ Optional:
 - `sync_sequence_number` (Number)
 - `sys_id` (Number)
 - `update_in` (Number)
-
-

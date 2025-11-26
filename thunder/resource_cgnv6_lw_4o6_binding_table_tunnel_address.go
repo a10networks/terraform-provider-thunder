@@ -51,8 +51,8 @@ func resourceCgnv6Lw4o6BindingTableTunnelAddress() *schema.Resource {
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"binding_table_name": {
+				Type: schema.TypeString, Required: true, Description: "Binding_table_name",
 			},
 		},
 	}
@@ -154,6 +154,6 @@ func dataToEndpointCgnv6Lw4o6BindingTableTunnelAddress(d *schema.ResourceData) e
 	ret.Inst.Ipv6TunnelAddr = d.Get("ipv6_tunnel_addr").(string)
 	ret.Inst.NatAddressList = getSliceCgnv6Lw4o6BindingTableTunnelAddressNatAddressList(d.Get("nat_address_list").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Binding_table_name = d.Get("binding_table_name").(string)
 	return ret
 }

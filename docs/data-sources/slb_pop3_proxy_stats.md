@@ -67,5 +67,3 @@ Optional:
 - `svrsel_fail` (Number) Server selection failure
 - `total` (Number) Total proxy conns
 - `unsupported_command` (Number) Unsupported cmd
-
-

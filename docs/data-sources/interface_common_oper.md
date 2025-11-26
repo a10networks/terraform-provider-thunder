@@ -81,5 +81,3 @@ Optional:
 - `lo_alarm` (String)
 - `lo_warn` (String)
 - `transceiver_type` (String)
-
-

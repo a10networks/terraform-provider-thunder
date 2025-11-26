@@ -16,6 +16,9 @@ func resourceTemplateLimitPolicy() *schema.Resource {
 		DeleteContext: resourceTemplateLimitPolicyDelete,
 
 		Schema: map[string]*schema.Schema{
+			"attribute": {
+				Type: schema.TypeString, Optional: true, Description: "'usergroup': To apply rate-limit at the level of user group.; 'userid': To apply rate-limit at the level of user ID.;",
+			},
 			"limit_concurrent_sessions": {
 				Type: schema.TypeInt, Optional: true, Description: "Enable Concurrent Session Limit (Number of Concurrent Sessions)",
 			},
@@ -79,35 +82,53 @@ func resourceTemplateLimitPolicy() *schema.Resource {
 				},
 			},
 			"limit_scope": {
-				Type: schema.TypeString, Optional: true, Default: "subscriber-ip", Description: "'aggregate': Rule Level; 'subscriber-ip': Subscriber IP Level; 'subscriber-prefix': Subscriber Prefix Level;",
+				Type: schema.TypeString, Optional: true, Default: "subscriber-ip", Description: "'aggregate': Rule Level; 'subscriber-ip': Subscriber IP Level; 'subscriber-prefix': Subscriber Prefix Level; 'radius': To apply rate-limit using RADIUS attribute.;",
 			},
 			"limit_throughput": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"uplink": {
-							Type: schema.TypeInt, Optional: true, Description: "Uplink Throughput limit (Mega Bits per second)",
+							Type: schema.TypeInt, Optional: true, Description: "Uplink Throughput limit (Megabits/sec (default) other units: Kilobits/sec, Gigabits/sec)",
+						},
+						"uplink_unit": {
+							Type: schema.TypeString, Optional: true, Default: "Mbps", Description: "'Mbps': default; 'Kbps': minimum configurable limit is 100 Kbps; 'Gbps': maximum configurable limit is 10000 Gbps;",
 						},
 						"uplink_burstsize": {
-							Type: schema.TypeInt, Optional: true, Description: "Token Bucket Size (Must Exceed Configured Rate) (In Mega Bits per second)",
+							Type: schema.TypeInt, Optional: true, Description: "Token Bucket Size (Must Exceed Configured Rate) (Megabits/sec (default) other units: Kilobits/sec, Gigabits/sec)",
+						},
+						"uplink_burstsize_unit": {
+							Type: schema.TypeString, Optional: true, Default: "Mbps,", Description: "'Mbps': default; 'Kbps': minimum configurable limit is 100 Kbps; 'Gbps': maximum configurable limit is 10000 Gbps;",
 						},
 						"uplink_relaxed": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Relax the limitation when the policy has more tokens from the parent of policy",
 						},
 						"downlink": {
-							Type: schema.TypeInt, Optional: true, Description: "Downlink Throughput limit (Mega Bits per second)",
+							Type: schema.TypeInt, Optional: true, Description: "Downlink Throughput limit (Megabits/sec (default) other units: Kilobits/sec, Gigabits/sec)",
+						},
+						"downlink_unit": {
+							Type: schema.TypeString, Optional: true, Default: "Mbps", Description: "'Mbps': default; 'Kbps': minimum configurable limit is 100 Kbps; 'Gbps': maximum configurable limit is 10000 Gbps;",
 						},
 						"downlink_burstsize": {
-							Type: schema.TypeInt, Optional: true, Description: "Token Bucket Size (Must Exceed Configured Rate) (In Mega Bits per second)",
+							Type: schema.TypeInt, Optional: true, Description: "Token Bucket Size (Must Exceed Configured Rate) (Megabits/sec (default) other units: Kilobits/sec, Gigabits/sec)",
+						},
+						"downlink_burstsize_unit": {
+							Type: schema.TypeString, Optional: true, Default: "Mbps,", Description: "'Mbps': default; 'Kbps': minimum configurable limit is 100 Kbps; 'Gbps': maximum configurable limit is 10000 Gbps;",
 						},
 						"downlink_relaxed": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Relax the limitation when the policy has more tokens from the parent of policy",
 						},
 						"total": {
-							Type: schema.TypeInt, Optional: true, Description: "Total Throughput limit (Mega Bits per second)",
+							Type: schema.TypeInt, Optional: true, Description: "Total Throughput limit (Megabits/sec (default) other units: Kilobits/sec, Gigabits/sec)",
+						},
+						"total_unit": {
+							Type: schema.TypeString, Optional: true, Default: "Mbps,", Description: "'Mbps': default; 'Kbps': minimum configurable limit is 100 Kbps; 'Gbps': maximum configurable limit is 10000 Gbps;",
 						},
 						"total_burstsize": {
-							Type: schema.TypeInt, Optional: true, Description: "Token Bucket Size (Must Exceed Configured Rate) (In Mega Bits per second)",
+							Type: schema.TypeInt, Optional: true, Description: "Token Bucket Size (Must Exceed Configured Rate) (Megabits/sec (default) other units: Kilobits/sec, Gigabits/sec)",
+						},
+						"total_burstsize_unit": {
+							Type: schema.TypeString, Optional: true, Default: "Mbps,", Description: "'Mbps': default; 'Kbps': minimum configurable limit is 100 Kbps; 'Gbps': maximum configurable limit is 10000 Gbps;",
 						},
 						"total_relaxed": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Relax the limitation when the policy has more tokens from the parent of policy",
@@ -204,10 +225,10 @@ func resourceTemplateLimitPolicyRead(ctx context.Context, d *schema.ResourceData
 	return diags
 }
 
-func getObjectTemplateLimitPolicyLimitCps1903(d []interface{}) edpt.TemplateLimitPolicyLimitCps1903 {
+func getObjectTemplateLimitPolicyLimitCps2027(d []interface{}) edpt.TemplateLimitPolicyLimitCps2027 {
 
 	count1 := len(d)
-	var ret edpt.TemplateLimitPolicyLimitCps1903
+	var ret edpt.TemplateLimitPolicyLimitCps2027
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -218,10 +239,10 @@ func getObjectTemplateLimitPolicyLimitCps1903(d []interface{}) edpt.TemplateLimi
 	return ret
 }
 
-func getObjectTemplateLimitPolicyLimitPps1904(d []interface{}) edpt.TemplateLimitPolicyLimitPps1904 {
+func getObjectTemplateLimitPolicyLimitPps2028(d []interface{}) edpt.TemplateLimitPolicyLimitPps2028 {
 
 	count1 := len(d)
-	var ret edpt.TemplateLimitPolicyLimitPps1904
+	var ret edpt.TemplateLimitPolicyLimitPps2028
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Uplink = in["uplink"].(int)
@@ -239,20 +260,26 @@ func getObjectTemplateLimitPolicyLimitPps1904(d []interface{}) edpt.TemplateLimi
 	return ret
 }
 
-func getObjectTemplateLimitPolicyLimitThroughput1905(d []interface{}) edpt.TemplateLimitPolicyLimitThroughput1905 {
+func getObjectTemplateLimitPolicyLimitThroughput2029(d []interface{}) edpt.TemplateLimitPolicyLimitThroughput2029 {
 
 	count1 := len(d)
-	var ret edpt.TemplateLimitPolicyLimitThroughput1905
+	var ret edpt.TemplateLimitPolicyLimitThroughput2029
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Uplink = in["uplink"].(int)
+		ret.UplinkUnit = in["uplink_unit"].(string)
 		ret.UplinkBurstsize = in["uplink_burstsize"].(int)
+		ret.UplinkBurstsizeUnit = in["uplink_burstsize_unit"].(string)
 		ret.UplinkRelaxed = in["uplink_relaxed"].(int)
 		ret.Downlink = in["downlink"].(int)
+		ret.DownlinkUnit = in["downlink_unit"].(string)
 		ret.DownlinkBurstsize = in["downlink_burstsize"].(int)
+		ret.DownlinkBurstsizeUnit = in["downlink_burstsize_unit"].(string)
 		ret.DownlinkRelaxed = in["downlink_relaxed"].(int)
 		ret.Total = in["total"].(int)
+		ret.TotalUnit = in["total_unit"].(string)
 		ret.TotalBurstsize = in["total_burstsize"].(int)
+		ret.TotalBurstsizeUnit = in["total_burstsize_unit"].(string)
 		ret.TotalRelaxed = in["total_relaxed"].(int)
 		//omit uuid
 	}
@@ -261,11 +288,12 @@ func getObjectTemplateLimitPolicyLimitThroughput1905(d []interface{}) edpt.Templ
 
 func dataToEndpointTemplateLimitPolicy(d *schema.ResourceData) edpt.TemplateLimitPolicy {
 	var ret edpt.TemplateLimitPolicy
+	ret.Inst.Attribute = d.Get("attribute").(string)
 	ret.Inst.LimitConcurrentSessions = d.Get("limit_concurrent_sessions").(int)
-	ret.Inst.LimitCps = getObjectTemplateLimitPolicyLimitCps1903(d.Get("limit_cps").([]interface{}))
-	ret.Inst.LimitPps = getObjectTemplateLimitPolicyLimitPps1904(d.Get("limit_pps").([]interface{}))
+	ret.Inst.LimitCps = getObjectTemplateLimitPolicyLimitCps2027(d.Get("limit_cps").([]interface{}))
+	ret.Inst.LimitPps = getObjectTemplateLimitPolicyLimitPps2028(d.Get("limit_pps").([]interface{}))
 	ret.Inst.LimitScope = d.Get("limit_scope").(string)
-	ret.Inst.LimitThroughput = getObjectTemplateLimitPolicyLimitThroughput1905(d.Get("limit_throughput").([]interface{}))
+	ret.Inst.LimitThroughput = getObjectTemplateLimitPolicyLimitThroughput2029(d.Get("limit_throughput").([]interface{}))
 	ret.Inst.Log = d.Get("log").(int)
 	ret.Inst.MaxMinFair = d.Get("max_min_fair").(int)
 	ret.Inst.Parent = d.Get("parent").(int)

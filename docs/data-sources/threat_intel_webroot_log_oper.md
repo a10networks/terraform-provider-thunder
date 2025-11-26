@@ -58,5 +58,3 @@ Optional:
 Optional:
 
 - `webroot_log_data` (String)
-
-

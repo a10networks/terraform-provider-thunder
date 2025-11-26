@@ -49,5 +49,3 @@ Optional:
 - `client_port_request` (Number) PORT Requests From Client
 - `server_epsv_reply` (Number) EPSV Replies From Server
 - `server_pasv_reply` (Number) PASV Replies From Server
-
-

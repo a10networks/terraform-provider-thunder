@@ -446,8 +446,8 @@ func resourceSlbTemplatePolicyForwardPolicy() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
 			},
 		},
 	}
@@ -826,6 +826,6 @@ func dataToEndpointSlbTemplatePolicyForwardPolicy(d *schema.ResourceData) edpt.S
 	ret.Inst.SanFiltering = getSliceSlbTemplatePolicyForwardPolicySanFiltering(d.Get("san_filtering").([]interface{}))
 	ret.Inst.SourceList = getSliceSlbTemplatePolicyForwardPolicySourceList(d.Get("source_list").([]interface{}))
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

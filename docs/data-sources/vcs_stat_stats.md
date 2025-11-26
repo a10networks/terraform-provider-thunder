@@ -117,5 +117,3 @@ Optional:
 - `slave_recv_err` (Number) vBlade Receive Errors counter of aVCS election
 - `slave_send_err` (Number) vBlade Send Errors counter of aVCS election
 - `slave_sent_bytes` (Number) vBlade Sent Bytes counter of aVCS election
-
-

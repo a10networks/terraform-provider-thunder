@@ -62,5 +62,3 @@ Optional:
 - `server_conn_failed` (Number) Server connection failed
 - `server_conn_rst` (Number) Server connection reset
 - `server_msg_received` (Number) Server message received
-
-

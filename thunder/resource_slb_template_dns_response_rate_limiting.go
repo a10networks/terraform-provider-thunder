@@ -31,6 +31,9 @@ func resourceSlbTemplateDnsResponseRateLimiting() *schema.Resource {
 			"match_subnet_v6": {
 				Type: schema.TypeInt, Optional: true, Default: 128, Description: "IPV6 subnet mask (response rate by IPv6 subnet mask)",
 			},
+			"nx_response_rate": {
+				Type: schema.TypeInt, Optional: true, Default: 5, Description: "Queries from entries whose NX Responses exceeding this rate within the window will be dropped (default 5 per second)",
+			},
 			"response_rate": {
 				Type: schema.TypeInt, Optional: true, Default: 5, Description: "Responses exceeding this rate within the window will be dropped (default 5 per second)",
 			},
@@ -55,10 +58,13 @@ func resourceSlbTemplateDnsResponseRateLimiting() *schema.Resource {
 										Type: schema.TypeInt, Required: true, Description: "Specify a limit ID",
 									},
 									"lid_response_rate": {
-										Type: schema.TypeInt, Optional: true, Default: 5, Description: "Responses exceeding this rate within the window will be dropped (default 5 per second)",
+										Type: schema.TypeInt, Optional: true, Default: 5, Description: "Responses exceeding this rate within the window will be dropped (default 5 per second), 0 for unlimited",
 									},
 									"lid_slip_rate": {
 										Type: schema.TypeInt, Optional: true, Description: "Every n'th response that would be rate-limited will be let through instead",
+									},
+									"lid_nx_response_rate": {
+										Type: schema.TypeInt, Optional: true, Default: 5, Description: "Queries from entries whose NX Responses exceeding this rate within the window will be dropped (default 5 per second)",
 									},
 									"lid_tc_rate": {
 										Type: schema.TypeInt, Optional: true, Description: "Every n'th response that would be rate-limited will respond with TC bit",
@@ -108,8 +114,8 @@ func resourceSlbTemplateDnsResponseRateLimiting() *schema.Resource {
 			"window": {
 				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Rate-Limiting Interval in Seconds (default is one)",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_name",
 			},
 		},
 	}
@@ -202,6 +208,7 @@ func getSliceSlbTemplateDnsResponseRateLimitingRrlClassListListLidList(d []inter
 		oi.Lidnum = in["lidnum"].(int)
 		oi.LidResponseRate = in["lid_response_rate"].(int)
 		oi.LidSlipRate = in["lid_slip_rate"].(int)
+		oi.LidNxResponseRate = in["lid_nx_response_rate"].(int)
 		oi.LidTcRate = in["lid_tc_rate"].(int)
 		oi.LidMatchSubnet = in["lid_match_subnet"].(string)
 		oi.LidMatchSubnetV6 = in["lid_match_subnet_v6"].(int)
@@ -223,6 +230,7 @@ func dataToEndpointSlbTemplateDnsResponseRateLimiting(d *schema.ResourceData) ed
 	ret.Inst.FilterResponseRate = d.Get("filter_response_rate").(int)
 	ret.Inst.MatchSubnet = d.Get("match_subnet").(string)
 	ret.Inst.MatchSubnetV6 = d.Get("match_subnet_v6").(int)
+	ret.Inst.NxResponseRate = d.Get("nx_response_rate").(int)
 	ret.Inst.ResponseRate = d.Get("response_rate").(int)
 	ret.Inst.RrlClassListList = getSliceSlbTemplateDnsResponseRateLimitingRrlClassListList(d.Get("rrl_class_list_list").([]interface{}))
 	ret.Inst.SlipRate = d.Get("slip_rate").(int)
@@ -230,6 +238,6 @@ func dataToEndpointSlbTemplateDnsResponseRateLimiting(d *schema.ResourceData) ed
 	ret.Inst.TcRate = d.Get("tc_rate").(int)
 	//omit uuid
 	ret.Inst.Window = d.Get("window").(int)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dns_name = d.Get("dns_name").(string)
 	return ret
 }

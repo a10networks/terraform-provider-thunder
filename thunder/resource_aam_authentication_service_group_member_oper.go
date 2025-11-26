@@ -133,6 +133,9 @@ func resourceAamAuthenticationServiceGroupMemberOper() *schema.Resource {
 			"port": {
 				Type: schema.TypeInt, Required: true, Description: "Port number",
 			},
+			"service_group_name": {
+				Type: schema.TypeString, Required: true, Description: "Service_group_name",
+			},
 		},
 	}
 }
@@ -289,5 +292,7 @@ func dataToEndpointAamAuthenticationServiceGroupMemberOper(d *schema.ResourceDat
 	ret.Oper = getObjectAamAuthenticationServiceGroupMemberOperOper(d.Get("oper").([]interface{}))
 
 	ret.Port = d.Get("port").(int)
+
+	ret.Service_group_name = d.Get("service_group_name").(string)
 	return ret
 }

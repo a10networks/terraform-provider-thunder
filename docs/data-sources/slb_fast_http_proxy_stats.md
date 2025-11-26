@@ -71,5 +71,3 @@ Optional:
 - `svrsel_fail` (Number) Server selection fail
 - `tcpoutrst` (Number) Out RSTs
 - `total_proxy` (Number) Total Proxy Conns
-
-

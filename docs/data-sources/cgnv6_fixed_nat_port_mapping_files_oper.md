@@ -57,5 +57,3 @@ Optional:
 
 - `file_name` (String)
 - `write_status` (String)
-
-

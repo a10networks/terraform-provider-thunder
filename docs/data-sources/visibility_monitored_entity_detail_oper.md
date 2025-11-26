@@ -186,5 +186,3 @@ Optional:
 - `current` (String)
 - `metric_name` (String)
 - `threshold` (String)
-
-

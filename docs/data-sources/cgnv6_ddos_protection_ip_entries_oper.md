@@ -69,5 +69,3 @@ Optional:
 - `sw_receive_pps` (Number)
 - `total_pps` (Number)
 - `v4_address` (String)
-
-

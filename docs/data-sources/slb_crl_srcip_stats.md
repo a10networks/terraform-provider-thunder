@@ -53,5 +53,3 @@ Optional:
 - `sessions_freed` (Number) Sessions freed
 - `threshold_exceed` (Number) Threshold exceeded count
 - `too_many_sessions` (Number) Too many sessions consumed
-
-

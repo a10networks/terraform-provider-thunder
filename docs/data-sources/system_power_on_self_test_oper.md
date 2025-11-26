@@ -54,5 +54,3 @@ Optional:
 
 - `dlog_data` (String)
 - `dlog_data_search` (String)
-
-

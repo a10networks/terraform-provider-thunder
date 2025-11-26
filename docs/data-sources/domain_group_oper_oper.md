@@ -71,5 +71,3 @@ Optional:
 - `binding_num` (Number)
 - `domain_group_name` (String)
 - `total_entry_num` (Number)
-
-

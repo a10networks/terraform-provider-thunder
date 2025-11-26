@@ -137,8 +137,8 @@ func resourceHealthMonitorMethodHttps() *schema.Resource {
 			"web_port": {
 				Type: schema.TypeInt, Optional: true, Default: 443, Description: "Specify HTTPS port (Port Number (default 443))",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -258,6 +258,6 @@ func dataToEndpointHealthMonitorMethodHttps(d *schema.ResourceData) edpt.HealthM
 	ret.Inst.UrlType = d.Get("url_type").(string)
 	//omit uuid
 	ret.Inst.WebPort = d.Get("web_port").(int)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

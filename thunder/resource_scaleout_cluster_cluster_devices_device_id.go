@@ -19,9 +19,6 @@ func resourceScaleoutClusterClusterDevicesDeviceId() *schema.Resource {
 			"action": {
 				Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': enable; 'disable': disable;",
 			},
-			"device_id": {
-				Type: schema.TypeInt, Required: true, Description: "",
-			},
 			"ip": {
 				Type: schema.TypeString, Optional: true, Description: "",
 			},
@@ -99,7 +96,6 @@ func resourceScaleoutClusterClusterDevicesDeviceIdRead(ctx context.Context, d *s
 func dataToEndpointScaleoutClusterClusterDevicesDeviceId(d *schema.ResourceData) edpt.ScaleoutClusterClusterDevicesDeviceId {
 	var ret edpt.ScaleoutClusterClusterDevicesDeviceId
 	ret.Inst.Action = d.Get("action").(string)
-	ret.Inst.DeviceId = d.Get("device_id").(int)
 	ret.Inst.Ip = d.Get("ip").(string)
 	//omit uuid
 	ret.Inst.ClusterId = d.Get("cluster_id").(string)

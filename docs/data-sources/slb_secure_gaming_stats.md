@@ -46,5 +46,3 @@ Optional:
 
 - `secure_gaming_drop` (Number) Secure Gaming dropped
 - `secure_gaming_pass` (Number) Secure Gaming passed
-
-

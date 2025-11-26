@@ -25,8 +25,8 @@ func resourceVisibilityTopnCgnv6NatPoolTopnTmplMetrics() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"cgnv6_nat_pool_topn_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Cgnv6_nat_pool_topn_tmpl_name",
 			},
 		},
 	}
@@ -98,6 +98,6 @@ func dataToEndpointVisibilityTopnCgnv6NatPoolTopnTmplMetrics(d *schema.ResourceD
 	ret.Inst.TcpTotal = d.Get("tcp_total").(int)
 	ret.Inst.UdpTotal = d.Get("udp_total").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Cgnv6_nat_pool_topn_tmpl_name = d.Get("cgnv6_nat_pool_topn_tmpl_name").(string)
 	return ret
 }

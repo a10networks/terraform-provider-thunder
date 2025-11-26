@@ -57,5 +57,3 @@ Optional:
 - `svrsel_fail` (Number) Server selection failure
 - `target_switching` (Number) Target ID switching
 - `total_proxy` (Number) Total proxy conns
-
-

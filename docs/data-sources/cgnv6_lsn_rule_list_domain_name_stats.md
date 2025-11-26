@@ -37,7 +37,7 @@ output "get_cgnv6_lsn_rule_list_domain_name_stats" {
 
 ### Required
 
-- `name` (String) Name
+- `lsn_rule_list_name` (String) Lsn_rule_list_name
 - `name_domain` (String) Configure a Specific Rule-Set (Domain Name)
 
 ### Optional
@@ -50,5 +50,3 @@ output "get_cgnv6_lsn_rule_list_domain_name_stats" {
 
 <a id="nestedblock--stats"></a>
 ### Nested Schema for `stats`
-
-

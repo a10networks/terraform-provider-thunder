@@ -43,8 +43,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTriggerStat
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"cgnv6_serv_group_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Cgnv6_serv_group_tmpl_name",
 			},
 		},
 	}
@@ -122,6 +122,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesCgnv6ServGroupTmplTrigg
 	ret.Inst.ErrorCritical = d.Get("error_critical").(int)
 	ret.Inst.ErrorWarning = d.Get("error_warning").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Cgnv6_serv_group_tmpl_name = d.Get("cgnv6_serv_group_tmpl_name").(string)
 	return ret
 }

@@ -82,8 +82,8 @@ func resourceNetflowMonitorRecord() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -174,6 +174,6 @@ func dataToEndpointNetflowMonitorRecord(d *schema.ResourceData) edpt.NetflowMoni
 	ret.Inst.SesnEventNat44 = d.Get("sesn_event_nat44").(string)
 	ret.Inst.SesnEventNat64 = d.Get("sesn_event_nat64").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

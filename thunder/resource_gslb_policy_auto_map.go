@@ -31,8 +31,8 @@ func resourceGslbPolicyAutoMap() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
 			},
 		},
 	}
@@ -106,6 +106,6 @@ func dataToEndpointGslbPolicyAutoMap(d *schema.ResourceData) edpt.GslbPolicyAuto
 	ret.Inst.ModuleType = d.Get("module_type").(string)
 	ret.Inst.Ttl = d.Get("ttl").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

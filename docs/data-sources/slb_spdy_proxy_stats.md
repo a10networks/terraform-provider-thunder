@@ -128,5 +128,3 @@ Optional:
 - `unknown_control_frame` (Number) Unknown control frame
 - `window_frame` (Number) Window update frame received
 - `window_no_stream` (Number) Window update no stream found
-
-

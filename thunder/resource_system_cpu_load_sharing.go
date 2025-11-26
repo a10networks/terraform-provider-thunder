@@ -16,6 +16,9 @@ func resourceSystemCpuLoadSharing() *schema.Resource {
 		DeleteContext: resourceSystemCpuLoadSharingDelete,
 
 		Schema: map[string]*schema.Schema{
+			"allow_l7_sessions": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow L7 sessions forward to home cpu",
+			},
 			"cpu_usage": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -144,6 +147,7 @@ func getObjectSystemCpuLoadSharingPacketsPerSecond(d []interface{}) edpt.SystemC
 
 func dataToEndpointSystemCpuLoadSharing(d *schema.ResourceData) edpt.SystemCpuLoadSharing {
 	var ret edpt.SystemCpuLoadSharing
+	ret.Inst.AllowL7Sessions = d.Get("allow_l7_sessions").(int)
 	ret.Inst.CpuUsage = getObjectSystemCpuLoadSharingCpuUsage(d.Get("cpu_usage").([]interface{}))
 	ret.Inst.Disable = d.Get("disable").(int)
 	ret.Inst.Others = d.Get("others").(int)

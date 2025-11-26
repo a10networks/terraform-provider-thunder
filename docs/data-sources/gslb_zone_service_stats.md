@@ -38,9 +38,9 @@ output "get_gslb_zone_service_stats" {
 
 ### Required
 
-- `name` (String) Name
 - `service_name` (String) Specify the service name for the zone, * for wildcard
 - `service_port` (Number) Port number of the service
+- `zone_name` (String) Zone_name
 
 ### Optional
 
@@ -228,12 +228,12 @@ Optional:
 
 Optional:
 
-- `backup_mode_response` (Number) help Number of DNS replies sent to clients by the ACOS device in backup mode
-- `cache_mode_response` (Number) Number of cached DNS replies sent to clients by the ACOS device for the service. (This statistic applies only if the DNS cache
-- `proxy_mode_response` (Number) Number of DNS replies sent to clients by the ACOS device as a DNS proxy for the service
-- `received_query` (Number) Number of DNS queries received for the service
-- `sent_response` (Number) Number of DNS replies sent to clients for the service
-- `server_mode_response` (Number) Number of DNS replies sent to clients by the ACOS device as a DNS server for the service. (This statistic applies only if the D
-- `sticky_mode_response` (Number) Number of DNS replies sent to clients by the ACOS device to keep the clients on the same site. (This statistic applies only if
-
-
+- `backup_mode_response` (Number) DNS replies sent by ACOS in backup mode
+- `cache_mode_response` (Number) Cached DNS replies sent by ACOS (service, if cache enabled)
+- `proxy_mode_response` (Number) DNS replies sent by ACOS as DNS proxy (service)
+- `received_query` (Number) DNS queries received for the service
+- `sent_response` (Number) DNS replies sent to clients for the service
+- `server_mode_response` (Number) DNS replies sent by ACOS (service, if server enabled)
+- `smrule_redir_from_svc_hit` (Number) DNS queries redirected by rule (originally hit a service)
+- `smrule_redir_from_svc_miss` (Number) DNS queries redirected by rule (originally missed service)
+- `sticky_mode_response` (Number) DNS replies sent by ACOS on same site (if sticky enabled)

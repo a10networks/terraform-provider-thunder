@@ -73,5 +73,3 @@ Optional:
 - `web_category` (String)
 - `web_domain` (String)
 - `web_reputation` (String)
-
-

@@ -39,9 +39,9 @@ output "get_gslb_zone_dns_caa_record_stats" {
 ### Required
 
 - `critical_flag` (Number) Issuer Critical Flag
-- `name` (String) Name
 - `property_tag` (String) Specify other property tags, only allowed lowercase alphanumeric
 - `rdata` (String) Specify the Issuer Domain Name or a URL
+- `zone_name` (String) Zone_name
 
 ### Optional
 
@@ -57,5 +57,3 @@ output "get_gslb_zone_dns_caa_record_stats" {
 Optional:
 
 - `hits` (Number) Number of times the record has been used
-
-

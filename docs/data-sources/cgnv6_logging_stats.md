@@ -96,5 +96,3 @@ Optional:
 - `udp_port_overloading_freed` (Number) UDP Port Overloading Freed
 - `udp_session_created` (Number) UDP Session Created
 - `udp_session_deleted` (Number) UDP Session Deleted
-
-

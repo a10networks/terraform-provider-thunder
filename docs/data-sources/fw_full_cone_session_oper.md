@@ -62,5 +62,3 @@ Optional:
 - `inside_port` (Number)
 - `outbound` (Number)
 - `protocol` (String)
-
-

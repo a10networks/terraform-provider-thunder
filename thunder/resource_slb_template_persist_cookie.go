@@ -29,7 +29,7 @@ func resourceSlbTemplatePersistCookie() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Default: 1, Description: "Encryption level for cookie name / value",
 			},
 			"expire": {
-				Type: schema.TypeInt, Optional: true, Default: 31536000, Description: "Set cookie expiration time (Expiration in seconds)",
+				Type: schema.TypeInt, Optional: true, Default: 31536000, Description: "Set cookie expiration time (Expiration in seconds (default 31536000))",
 			},
 			"httponly": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable HttpOnly attribute",

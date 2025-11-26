@@ -293,6 +293,12 @@ func resourceTemplateGtpPolicyStats() *schema.Resource {
 						"drop_vld_gtp_v2_c_message_length_mismatch": {
 							Type: schema.TypeInt, Optional: true, Description: "GTPv2-C Message Length Mismatch Across Layers",
 						},
+						"vld_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP Message forwarded via monitor mode at validation policy",
+						},
+						"gen_message_length_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP Message forwarded via monitor mode at validation policy",
+						},
 						"drop_vld_gtp_v0_c_message_skipped_apn_filtering_no_apn": {
 							Type: schema.TypeInt, Optional: true, Description: "Validation Drop: GTPv0-C APN/IMSI Filtering Dropped (No APN)",
 						},
@@ -316,6 +322,21 @@ func resourceTemplateGtpPolicyStats() *schema.Resource {
 						},
 						"drop_flt_gtp_in_gtp": {
 							Type: schema.TypeInt, Optional: true, Description: "Filtering Drop: GTP in GTP Tunnel Present",
+						},
+						"flt_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at message filtering policy",
+						},
+						"rat_flt_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at rat filtering policy",
+						},
+						"apn_imsi_flt_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at APN-IMSI filtering policy",
+						},
+						"msisdn_flt_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at Msisdn filtering policy",
+						},
+						"gtp_in_gtp_flt_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP-C Message forwarded via monitor mode at GTP-IN_GTP filtering policy",
 						},
 						"drop_rl_gtp_v0_c_agg": {
 							Type: schema.TypeInt, Optional: true, Description: "Rate-limit Drop: Maximum GTPv0-C Message rate",
@@ -361,6 +382,9 @@ func resourceTemplateGtpPolicyStats() *schema.Resource {
 						},
 						"drop_rl_gtp_u_max_concurrent_tunnels": {
 							Type: schema.TypeInt, Optional: true, Description: "Rate-limit Drop: GTP-U Concurrent Tunnels",
+						},
+						"rl_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Description: "GTP Message forwarded via monitor mode at rate-limit policy",
 						},
 					},
 				},
@@ -482,6 +506,8 @@ func setObjectTemplateGtpPolicyStatsStats(ret edpt.DataTemplateGtpPolicyStats) [
 			"drop_vld_gtp_v0_c_message_length_mismatch":                ret.DtTemplateGtpPolicyStats.Stats.DropVldGtpV0CMessageLengthMismatch,
 			"drop_vld_gtp_v1_c_message_length_mismatch":                ret.DtTemplateGtpPolicyStats.Stats.DropVldGtpV1CMessageLengthMismatch,
 			"drop_vld_gtp_v2_c_message_length_mismatch":                ret.DtTemplateGtpPolicyStats.Stats.DropVldGtpV2CMessageLengthMismatch,
+			"vld_message_monitor":                                      ret.DtTemplateGtpPolicyStats.Stats.VldMessageMonitor,
+			"gen_message_length_monitor":                               ret.DtTemplateGtpPolicyStats.Stats.GenMessageLengthMonitor,
 			"drop_vld_gtp_v0_c_message_skipped_apn_filtering_no_apn":   ret.DtTemplateGtpPolicyStats.Stats.DropVldGtpV0CMessageSkippedApnFilteringNoApn,
 			"drop_vld_gtp_v1_c_message_skipped_apn_filtering_no_apn":   ret.DtTemplateGtpPolicyStats.Stats.DropVldGtpV1CMessageSkippedApnFilteringNoApn,
 			"drop_vld_gtp_v2_c_message_skipped_apn_filtering_no_apn":   ret.DtTemplateGtpPolicyStats.Stats.DropVldGtpV2CMessageSkippedApnFilteringNoApn,
@@ -490,6 +516,11 @@ func setObjectTemplateGtpPolicyStatsStats(ret edpt.DataTemplateGtpPolicyStats) [
 			"drop_flt_msisdn_filtering":                                ret.DtTemplateGtpPolicyStats.Stats.DropFltMsisdnFiltering,
 			"drop_flt_rat_type_filtering":                              ret.DtTemplateGtpPolicyStats.Stats.DropFltRatTypeFiltering,
 			"drop_flt_gtp_in_gtp":                                      ret.DtTemplateGtpPolicyStats.Stats.DropFltGtpInGtp,
+			"flt_message_monitor":                                      ret.DtTemplateGtpPolicyStats.Stats.FltMessageMonitor,
+			"rat_flt_message_monitor":                                  ret.DtTemplateGtpPolicyStats.Stats.RatFltMessageMonitor,
+			"apn_imsi_flt_message_monitor":                             ret.DtTemplateGtpPolicyStats.Stats.ApnImsiFltMessageMonitor,
+			"msisdn_flt_message_monitor":                               ret.DtTemplateGtpPolicyStats.Stats.MsisdnFltMessageMonitor,
+			"gtp_in_gtp_flt_message_monitor":                           ret.DtTemplateGtpPolicyStats.Stats.GtpInGtpFltMessageMonitor,
 			"drop_rl_gtp_v0_c_agg":                                     ret.DtTemplateGtpPolicyStats.Stats.DropRlGtpV0CAgg,
 			"drop_rl_gtp_v1_c_agg":                                     ret.DtTemplateGtpPolicyStats.Stats.DropRlGtpV1CAgg,
 			"drop_rl_gtp_v2_c_agg":                                     ret.DtTemplateGtpPolicyStats.Stats.DropRlGtpV2CAgg,
@@ -505,6 +536,7 @@ func setObjectTemplateGtpPolicyStatsStats(ret edpt.DataTemplateGtpPolicyStats) [
 			"drop_rl_gtp_u_total_byte":                                 ret.DtTemplateGtpPolicyStats.Stats.DropRlGtpUTotalByte,
 			"drop_rl_gtp_u_total_packet":                               ret.DtTemplateGtpPolicyStats.Stats.DropRlGtpUTotalPacket,
 			"drop_rl_gtp_u_max_concurrent_tunnels":                     ret.DtTemplateGtpPolicyStats.Stats.DropRlGtpUMaxConcurrentTunnels,
+			"rl_message_monitor":                                       ret.DtTemplateGtpPolicyStats.Stats.RlMessageMonitor,
 		},
 	}
 }
@@ -606,6 +638,8 @@ func getObjectTemplateGtpPolicyStatsStats(d []interface{}) edpt.TemplateGtpPolic
 		ret.DropVldGtpV0CMessageLengthMismatch = in["drop_vld_gtp_v0_c_message_length_mismatch"].(int)
 		ret.DropVldGtpV1CMessageLengthMismatch = in["drop_vld_gtp_v1_c_message_length_mismatch"].(int)
 		ret.DropVldGtpV2CMessageLengthMismatch = in["drop_vld_gtp_v2_c_message_length_mismatch"].(int)
+		ret.VldMessageMonitor = in["vld_message_monitor"].(int)
+		ret.GenMessageLengthMonitor = in["gen_message_length_monitor"].(int)
 		ret.DropVldGtpV0CMessageSkippedApnFilteringNoApn = in["drop_vld_gtp_v0_c_message_skipped_apn_filtering_no_apn"].(int)
 		ret.DropVldGtpV1CMessageSkippedApnFilteringNoApn = in["drop_vld_gtp_v1_c_message_skipped_apn_filtering_no_apn"].(int)
 		ret.DropVldGtpV2CMessageSkippedApnFilteringNoApn = in["drop_vld_gtp_v2_c_message_skipped_apn_filtering_no_apn"].(int)
@@ -614,6 +648,11 @@ func getObjectTemplateGtpPolicyStatsStats(d []interface{}) edpt.TemplateGtpPolic
 		ret.DropFltMsisdnFiltering = in["drop_flt_msisdn_filtering"].(int)
 		ret.DropFltRatTypeFiltering = in["drop_flt_rat_type_filtering"].(int)
 		ret.DropFltGtpInGtp = in["drop_flt_gtp_in_gtp"].(int)
+		ret.FltMessageMonitor = in["flt_message_monitor"].(int)
+		ret.RatFltMessageMonitor = in["rat_flt_message_monitor"].(int)
+		ret.ApnImsiFltMessageMonitor = in["apn_imsi_flt_message_monitor"].(int)
+		ret.MsisdnFltMessageMonitor = in["msisdn_flt_message_monitor"].(int)
+		ret.GtpInGtpFltMessageMonitor = in["gtp_in_gtp_flt_message_monitor"].(int)
 		ret.DropRlGtpV0CAgg = in["drop_rl_gtp_v0_c_agg"].(int)
 		ret.DropRlGtpV1CAgg = in["drop_rl_gtp_v1_c_agg"].(int)
 		ret.DropRlGtpV2CAgg = in["drop_rl_gtp_v2_c_agg"].(int)
@@ -629,6 +668,7 @@ func getObjectTemplateGtpPolicyStatsStats(d []interface{}) edpt.TemplateGtpPolic
 		ret.DropRlGtpUTotalByte = in["drop_rl_gtp_u_total_byte"].(int)
 		ret.DropRlGtpUTotalPacket = in["drop_rl_gtp_u_total_packet"].(int)
 		ret.DropRlGtpUMaxConcurrentTunnels = in["drop_rl_gtp_u_max_concurrent_tunnels"].(int)
+		ret.RlMessageMonitor = in["rl_message_monitor"].(int)
 	}
 	return ret
 }

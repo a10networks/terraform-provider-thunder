@@ -54,6 +54,9 @@ func resourceTacacsServerHostIpv6() *schema.Resource {
 									"timeout": {
 										Type: schema.TypeInt, Optional: true, Default: 12, Description: "Specify the maximum time allowed for setting up a connection with the TACACS+ server. (default timeout is 12 seconds) (Maximum time allowed for setting up a connection with the TACACS+ server, in seconds (default 12))",
 									},
+									"prefer_data_interface": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Prefer data plane to send request (Only for loopback)",
+									},
 									"monitor": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify monitor TACACS+ server",
 									},
@@ -167,6 +170,7 @@ func getObjectTacacsServerHostIpv6SecretPortCfg(d []interface{}) edpt.TacacsServ
 		in := d[0].(map[string]interface{})
 		ret.Port = in["port"].(int)
 		ret.Timeout = in["timeout"].(int)
+		ret.PreferDataInterface = in["prefer_data_interface"].(int)
 		ret.Monitor = in["monitor"].(int)
 		ret.Username = in["username"].(string)
 		ret.Password = in["password"].(int)
