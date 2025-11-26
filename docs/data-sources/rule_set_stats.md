@@ -1424,6 +1424,10 @@ Optional:
 - `session_sctp` (Number) SCTP session counter
 - `session_tcp` (Number) TCP session counter
 - `session_udp` (Number) UDP session counter
+- `syn_cookie_syn_ack_sent` (Number) SYN cookie SYN ACK sent
+- `syn_cookie_verification_failed` (Number) SYN cookie verification failed
+- `syn_cookie_verification_passed` (Number) SYN cookie verification passed
+- `tcp_half_open_count` (Number) TCP half open sessions matching the rule
 
 
 
@@ -1738,5 +1742,3 @@ Optional:
 Optional:
 
 - `dummy` (Number) Entry for a10countergen
-
-

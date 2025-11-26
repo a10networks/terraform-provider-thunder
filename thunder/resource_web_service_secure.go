@@ -151,10 +151,10 @@ func resourceWebServiceSecureRead(ctx context.Context, d *schema.ResourceData, m
 	return diags
 }
 
-func getObjectWebServiceSecureCertificate3672(d []interface{}) edpt.WebServiceSecureCertificate3672 {
+func getObjectWebServiceSecureCertificate3771(d []interface{}) edpt.WebServiceSecureCertificate3771 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecureCertificate3672
+	var ret edpt.WebServiceSecureCertificate3771
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Load = in["load"].(int)
@@ -164,10 +164,10 @@ func getObjectWebServiceSecureCertificate3672(d []interface{}) edpt.WebServiceSe
 	return ret
 }
 
-func getObjectWebServiceSecureGenerate3673(d []interface{}) edpt.WebServiceSecureGenerate3673 {
+func getObjectWebServiceSecureGenerate3772(d []interface{}) edpt.WebServiceSecureGenerate3772 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecureGenerate3673
+	var ret edpt.WebServiceSecureGenerate3772
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DomainName = in["domain_name"].(string)
@@ -177,10 +177,10 @@ func getObjectWebServiceSecureGenerate3673(d []interface{}) edpt.WebServiceSecur
 	return ret
 }
 
-func getObjectWebServiceSecurePrivateKey3674(d []interface{}) edpt.WebServiceSecurePrivateKey3674 {
+func getObjectWebServiceSecurePrivateKey3773(d []interface{}) edpt.WebServiceSecurePrivateKey3773 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecurePrivateKey3674
+	var ret edpt.WebServiceSecurePrivateKey3773
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Load = in["load"].(int)
@@ -190,10 +190,10 @@ func getObjectWebServiceSecurePrivateKey3674(d []interface{}) edpt.WebServiceSec
 	return ret
 }
 
-func getObjectWebServiceSecureRegenerate3675(d []interface{}) edpt.WebServiceSecureRegenerate3675 {
+func getObjectWebServiceSecureRegenerate3774(d []interface{}) edpt.WebServiceSecureRegenerate3774 {
 
 	count1 := len(d)
-	var ret edpt.WebServiceSecureRegenerate3675
+	var ret edpt.WebServiceSecureRegenerate3774
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DomainName = in["domain_name"].(string)
@@ -205,10 +205,10 @@ func getObjectWebServiceSecureRegenerate3675(d []interface{}) edpt.WebServiceSec
 
 func dataToEndpointWebServiceSecure(d *schema.ResourceData) edpt.WebServiceSecure {
 	var ret edpt.WebServiceSecure
-	ret.Inst.Certificate = getObjectWebServiceSecureCertificate3672(d.Get("certificate").([]interface{}))
-	ret.Inst.Generate = getObjectWebServiceSecureGenerate3673(d.Get("generate").([]interface{}))
-	ret.Inst.PrivateKey = getObjectWebServiceSecurePrivateKey3674(d.Get("private_key").([]interface{}))
-	ret.Inst.Regenerate = getObjectWebServiceSecureRegenerate3675(d.Get("regenerate").([]interface{}))
+	ret.Inst.Certificate = getObjectWebServiceSecureCertificate3771(d.Get("certificate").([]interface{}))
+	ret.Inst.Generate = getObjectWebServiceSecureGenerate3772(d.Get("generate").([]interface{}))
+	ret.Inst.PrivateKey = getObjectWebServiceSecurePrivateKey3773(d.Get("private_key").([]interface{}))
+	ret.Inst.Regenerate = getObjectWebServiceSecureRegenerate3774(d.Get("regenerate").([]interface{}))
 	ret.Inst.Restart = d.Get("restart").(int)
 	ret.Inst.Wipe = d.Get("wipe").(int)
 	return ret

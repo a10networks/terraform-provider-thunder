@@ -44,15 +44,6 @@ func resourceCgnv6ResourceUsageOper() *schema.Resource {
 						"fixed_nat_inside_user_count_default": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
-						"radius_table_size_min": {
-							Type: schema.TypeInt, Optional: true, Description: "",
-						},
-						"radius_table_size_max": {
-							Type: schema.TypeInt, Optional: true, Description: "",
-						},
-						"radius_table_size_default": {
-							Type: schema.TypeInt, Optional: true, Description: "",
-						},
 					},
 				},
 			},
@@ -91,9 +82,6 @@ func setObjectCgnv6ResourceUsageOperOper(ret edpt.DataCgnv6ResourceUsageOper) []
 			"fixed_nat_inside_user_count_min":     ret.DtCgnv6ResourceUsageOper.Oper.FixedNatInsideUserCountMin,
 			"fixed_nat_inside_user_count_max":     ret.DtCgnv6ResourceUsageOper.Oper.FixedNatInsideUserCountMax,
 			"fixed_nat_inside_user_count_default": ret.DtCgnv6ResourceUsageOper.Oper.FixedNatInsideUserCountDefault,
-			"radius_table_size_min":               ret.DtCgnv6ResourceUsageOper.Oper.RadiusTableSizeMin,
-			"radius_table_size_max":               ret.DtCgnv6ResourceUsageOper.Oper.RadiusTableSizeMax,
-			"radius_table_size_default":           ret.DtCgnv6ResourceUsageOper.Oper.RadiusTableSizeDefault,
 		},
 	}
 }
@@ -113,9 +101,6 @@ func getObjectCgnv6ResourceUsageOperOper(d []interface{}) edpt.Cgnv6ResourceUsag
 		ret.FixedNatInsideUserCountMin = in["fixed_nat_inside_user_count_min"].(int)
 		ret.FixedNatInsideUserCountMax = in["fixed_nat_inside_user_count_max"].(int)
 		ret.FixedNatInsideUserCountDefault = in["fixed_nat_inside_user_count_default"].(int)
-		ret.RadiusTableSizeMin = in["radius_table_size_min"].(int)
-		ret.RadiusTableSizeMax = in["radius_table_size_max"].(int)
-		ret.RadiusTableSizeDefault = in["radius_table_size_default"].(int)
 	}
 	return ret
 }

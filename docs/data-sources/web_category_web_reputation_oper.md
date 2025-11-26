@@ -131,5 +131,3 @@ Optional:
 - `local_db_only` (Number)
 - `name` (String)
 - `reputation_score` (String)
-
-

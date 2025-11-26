@@ -100,8 +100,8 @@ func resourceSlbTemplateDnsLoggingResponseTypeType() *schema.Resource {
 			"value_field": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns_logging_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_logging_name",
 			},
 		},
 	}
@@ -198,6 +198,6 @@ func dataToEndpointSlbTemplateDnsLoggingResponseTypeType(d *schema.ResourceData)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ValueField = d.Get("value_field").(int)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dns_logging_name = d.Get("dns_logging_name").(string)
 	return ret
 }

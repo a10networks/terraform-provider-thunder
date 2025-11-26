@@ -40,9 +40,9 @@ output "get_gslb_zone_service_dns_a_record_dns_a_record_ipv4_stats" {
 ### Required
 
 - `dns_a_record_ip` (String) Specify IP address
-- `name` (String) Name
 - `service_name` (String) ServiceName
 - `service_port` (String) ServicePort
+- `zone_name` (String) Zone_name
 
 ### Optional
 
@@ -58,5 +58,3 @@ output "get_gslb_zone_service_dns_a_record_dns_a_record_ipv4_stats" {
 Optional:
 
 - `hits` (Number) Number of times the record has been used
-
-

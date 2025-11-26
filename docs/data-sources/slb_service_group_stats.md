@@ -103,5 +103,3 @@ Optional:
 - `service_resp_5xx` (Number) Service Group response 5xx count
 - `service_resp_count` (Number) Service Group response count
 - `service_unhealthy_host` (Number) Service Group unhealthy host count
-
-

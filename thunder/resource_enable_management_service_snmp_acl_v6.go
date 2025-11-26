@@ -35,6 +35,16 @@ func resourceEnableManagementServiceSnmpAclV6() *schema.Resource {
 					},
 				},
 			},
+			"lif_cfg": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"lif": {
+							Type: schema.TypeString, Optional: true, Description: "Lif name (Lif interface name)",
+						},
+					},
+				},
+			},
 			"management": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Management Interface",
 			},
@@ -149,6 +159,17 @@ func getSliceEnableManagementServiceSnmpAclV6EthCfg(d []interface{}) []edpt.Enab
 	return ret
 }
 
+func getObjectEnableManagementServiceSnmpAclV6LifCfg(d []interface{}) edpt.EnableManagementServiceSnmpAclV6LifCfg {
+
+	count1 := len(d)
+	var ret edpt.EnableManagementServiceSnmpAclV6LifCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Lif = in["lif"].(string)
+	}
+	return ret
+}
+
 func getSliceEnableManagementServiceSnmpAclV6TunnelCfg(d []interface{}) []edpt.EnableManagementServiceSnmpAclV6TunnelCfg {
 
 	count1 := len(d)
@@ -182,6 +203,7 @@ func dataToEndpointEnableManagementServiceSnmpAclV6(d *schema.ResourceData) edpt
 	ret.Inst.AclName = d.Get("acl_name").(string)
 	ret.Inst.AllDataIntf = d.Get("all_data_intf").(int)
 	ret.Inst.EthCfg = getSliceEnableManagementServiceSnmpAclV6EthCfg(d.Get("eth_cfg").([]interface{}))
+	ret.Inst.LifCfg = getObjectEnableManagementServiceSnmpAclV6LifCfg(d.Get("lif_cfg").([]interface{}))
 	ret.Inst.Management = d.Get("management").(int)
 	ret.Inst.TunnelCfg = getSliceEnableManagementServiceSnmpAclV6TunnelCfg(d.Get("tunnel_cfg").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)

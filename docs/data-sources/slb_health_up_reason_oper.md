@@ -46,5 +46,3 @@ Optional:
 
 - `up_id` (Number)
 - `up_reason` (String) health up reason
-
-

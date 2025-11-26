@@ -53,5 +53,3 @@ Optional:
 
 - `images_name` (String)
 - `type` (String)
-
-

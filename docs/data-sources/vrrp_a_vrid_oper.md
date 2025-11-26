@@ -52,6 +52,7 @@ Optional:
 
 - `active_standby_local` (String)
 - `became_active` (String)
+- `failover_list` (Block List) (see [below for nested schema](#nestedblock--oper--failover_list))
 - `force_standby` (String)
 - `init_status` (String)
 - `peer_list` (Block List) (see [below for nested schema](#nestedblock--oper--peer_list))
@@ -60,6 +61,14 @@ Optional:
 - `unit` (Number)
 - `vrid_lead` (String)
 - `weight` (Number)
+
+<a id="nestedblock--oper--failover_list"></a>
+### Nested Schema for `oper.failover_list`
+
+Optional:
+
+- `failover_reason` (String)
+
 
 <a id="nestedblock--oper--peer_list"></a>
 ### Nested Schema for `oper.peer_list`
@@ -72,5 +81,3 @@ Optional:
 - `peer_unit` (Number)
 - `peer_vrid` (Number)
 - `peer_weight` (Number)
-
-

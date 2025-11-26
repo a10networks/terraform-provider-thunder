@@ -63,5 +63,3 @@ Optional:
 - `stapling_request` (Number) OCSP Stapling Request Send
 - `stapling_timeout` (Number) OCSP Stapling Timeout
 - `timeout` (Number) Timeout
-
-

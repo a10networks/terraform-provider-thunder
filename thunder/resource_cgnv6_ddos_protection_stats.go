@@ -51,7 +51,7 @@ func resourceCgnv6DdosProtectionStats() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "L4 Entry added",
 						},
 						"l4_entry_deleted": {
-							Type: schema.TypeInt, Optional: true, Description: "L4 Entry deleted",
+							Type: schema.TypeInt, Optional: true, Description: "L4 Entry set for deletion",
 						},
 						"l4_entry_added_to_hw": {
 							Type: schema.TypeInt, Optional: true, Description: "L4 Entry added to HW",
@@ -131,6 +131,18 @@ func resourceCgnv6DdosProtectionStats() *schema.Resource {
 						"syn_cookie_verification_failed": {
 							Type: schema.TypeInt, Optional: true, Description: "SYN cookie verification failed",
 						},
+						"l3_entry_del_to_hw_failure": {
+							Type: schema.TypeInt, Optional: true, Description: "L3 entry HW del failure",
+						},
+						"l4_entry_del_to_hw_failure": {
+							Type: schema.TypeInt, Optional: true, Description: "L4 entry HW del failure",
+						},
+						"l4_entry_add_to_hw_failure": {
+							Type: schema.TypeInt, Optional: true, Description: "L4 entry HW add failure",
+						},
+						"l3_hw_out_of_entries": {
+							Type: schema.TypeInt, Optional: true, Description: "HW out of L3 entries",
+						},
 					},
 				},
 			},
@@ -198,6 +210,10 @@ func setObjectCgnv6DdosProtectionStatsStats(ret edpt.DataCgnv6DdosProtectionStat
 			"syn_cookie_syn_ack_sent":          ret.DtCgnv6DdosProtectionStats.Stats.Syn_cookie_syn_ack_sent,
 			"syn_cookie_verification_passed":   ret.DtCgnv6DdosProtectionStats.Stats.Syn_cookie_verification_passed,
 			"syn_cookie_verification_failed":   ret.DtCgnv6DdosProtectionStats.Stats.Syn_cookie_verification_failed,
+			"l3_entry_del_to_hw_failure":       ret.DtCgnv6DdosProtectionStats.Stats.L3_entry_del_to_hw_failure,
+			"l4_entry_del_to_hw_failure":       ret.DtCgnv6DdosProtectionStats.Stats.L4_entry_del_to_hw_failure,
+			"l4_entry_add_to_hw_failure":       ret.DtCgnv6DdosProtectionStats.Stats.L4_entry_add_to_hw_failure,
+			"l3_hw_out_of_entries":             ret.DtCgnv6DdosProtectionStats.Stats.L3_hw_out_of_entries,
 		},
 	}
 }
@@ -246,6 +262,10 @@ func getObjectCgnv6DdosProtectionStatsStats(d []interface{}) edpt.Cgnv6DdosProte
 		ret.Syn_cookie_syn_ack_sent = in["syn_cookie_syn_ack_sent"].(int)
 		ret.Syn_cookie_verification_passed = in["syn_cookie_verification_passed"].(int)
 		ret.Syn_cookie_verification_failed = in["syn_cookie_verification_failed"].(int)
+		ret.L3_entry_del_to_hw_failure = in["l3_entry_del_to_hw_failure"].(int)
+		ret.L4_entry_del_to_hw_failure = in["l4_entry_del_to_hw_failure"].(int)
+		ret.L4_entry_add_to_hw_failure = in["l4_entry_add_to_hw_failure"].(int)
+		ret.L3_hw_out_of_entries = in["l3_hw_out_of_entries"].(int)
 	}
 	return ret
 }

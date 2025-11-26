@@ -681,10 +681,10 @@ func getObjectDdosZoneTemplateSipIdleTimeout(d []interface{}) edpt.DdosZoneTempl
 	return ret
 }
 
-func getObjectDdosZoneTemplateSipMalformedSip316(d []interface{}) edpt.DdosZoneTemplateSipMalformedSip316 {
+func getObjectDdosZoneTemplateSipMalformedSip370(d []interface{}) edpt.DdosZoneTemplateSipMalformedSip370 {
 
 	count1 := len(d)
-	var ret edpt.DdosZoneTemplateSipMalformedSip316
+	var ret edpt.DdosZoneTemplateSipMalformedSip370
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MalformedSipCheck = in["malformed_sip_check"].(string)
@@ -869,7 +869,7 @@ func dataToEndpointDdosZoneTemplateSip(d *schema.ResourceData) edpt.DdosZoneTemp
 	ret.Inst.Dst = getObjectDdosZoneTemplateSipDst(d.Get("dst").([]interface{}))
 	ret.Inst.FilterHeaderList = getSliceDdosZoneTemplateSipFilterHeaderList(d.Get("filter_header_list").([]interface{}))
 	ret.Inst.IdleTimeout = getObjectDdosZoneTemplateSipIdleTimeout(d.Get("idle_timeout").([]interface{}))
-	ret.Inst.MalformedSip = getObjectDdosZoneTemplateSipMalformedSip316(d.Get("malformed_sip").([]interface{}))
+	ret.Inst.MalformedSip = getObjectDdosZoneTemplateSipMalformedSip370(d.Get("malformed_sip").([]interface{}))
 	ret.Inst.MultiPuThresholdDistribution = getObjectDdosZoneTemplateSipMultiPuThresholdDistribution(d.Get("multi_pu_threshold_distribution").([]interface{}))
 	ret.Inst.SipTmplName = d.Get("sip_tmpl_name").(string)
 	ret.Inst.Src = getObjectDdosZoneTemplateSipSrc(d.Get("src").([]interface{}))

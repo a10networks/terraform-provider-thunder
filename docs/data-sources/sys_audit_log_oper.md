@@ -54,5 +54,3 @@ Optional:
 - `log_audit_data` (String)
 - `log_audit_search` (String)
 - `partitions` (String)
-
-

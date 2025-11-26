@@ -57,5 +57,3 @@ Optional:
 - `schedule` (String)
 - `time` (String)
 - `version` (String)
-
-

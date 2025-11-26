@@ -22,8 +22,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplTri
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"aam_auth_service_group_mem_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Aam_auth_service_group_mem_tmpl_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemT
 	var ret edpt.VisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupMemTmplTriggerStatsInc
 	ret.Inst.Curr_conn_overflow = d.Get("curr_conn_overflow").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Aam_auth_service_group_mem_tmpl_name = d.Get("aam_auth_service_group_mem_tmpl_name").(string)
 	return ret
 }

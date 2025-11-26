@@ -61,5 +61,3 @@ Optional:
 - `response_count` (Number)
 - `ring_full_count` (Number)
 - `submit_count` (Number)
-
-

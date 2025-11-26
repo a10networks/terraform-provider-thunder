@@ -252,6 +252,21 @@ func resourceRuleSetOper() *schema.Resource {
 									"ratelimitdrops": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"syncookieon": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"synacksent": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"verificationpassed": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"verificationfailed": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"tcphalfopencount": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 								},
 							},
 						},
@@ -551,6 +566,16 @@ func setObjectRuleSetOperRuleListOper(d edpt.RuleSetOperRuleListOper) []map[stri
 	in["sessiontotal"] = d.Sessiontotal
 
 	in["ratelimitdrops"] = d.Ratelimitdrops
+
+	in["syncookieon"] = d.Syncookieon
+
+	in["synacksent"] = d.Synacksent
+
+	in["verificationpassed"] = d.Verificationpassed
+
+	in["verificationfailed"] = d.Verificationfailed
+
+	in["tcphalfopencount"] = d.Tcphalfopencount
 	result = append(result, in)
 	return result
 }
@@ -815,6 +840,11 @@ func getObjectRuleSetOperRuleListOper(d []interface{}) edpt.RuleSetOperRuleListO
 		ret.Sessionother = in["sessionother"].(int)
 		ret.Sessiontotal = in["sessiontotal"].(int)
 		ret.Ratelimitdrops = in["ratelimitdrops"].(int)
+		ret.Syncookieon = in["syncookieon"].(int)
+		ret.Synacksent = in["synacksent"].(int)
+		ret.Verificationpassed = in["verificationpassed"].(int)
+		ret.Verificationfailed = in["verificationfailed"].(int)
+		ret.Tcphalfopencount = in["tcphalfopencount"].(int)
 	}
 	return ret
 }

@@ -35,7 +35,7 @@ output "get_cgnv6_lsn_rule_list_default_oper" {
 
 ### Required
 
-- `name` (String) Name
+- `lsn_rule_list_name` (String) Lsn_rule_list_name
 
 ### Optional
 
@@ -78,5 +78,3 @@ Optional:
 - `start_port` (Number)
 - `timeout_val` (Number)
 - `vrid` (Number)
-
-

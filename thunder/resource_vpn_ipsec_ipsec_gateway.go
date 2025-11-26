@@ -22,8 +22,8 @@ func resourceVpnIpsecIpsecGateway() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"ipsec_name": {
+				Type: schema.TypeString, Required: true, Description: "Ipsec_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointVpnIpsecIpsecGateway(d *schema.ResourceData) edpt.VpnIpsecIps
 	var ret edpt.VpnIpsecIpsecGateway
 	ret.Inst.IkeGateway = d.Get("ike_gateway").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Ipsec_name = d.Get("ipsec_name").(string)
 	return ret
 }

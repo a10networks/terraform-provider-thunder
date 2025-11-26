@@ -81,5 +81,3 @@ Optional:
 - `out_redirects` (Number) Out Redirects
 - `out_rs` (Number) Out Router solicitation
 - `out_time_exceeds` (Number) Out TTL Exceeds
-
-

@@ -22,8 +22,8 @@ func resourceCgnv6LsnRuleListDomainListNameStats() *schema.Resource {
 					Schema: map[string]*schema.Schema{},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"lsn_rule_list_name": {
+				Type: schema.TypeString, Required: true, Description: "Lsn_rule_list_name",
 			},
 		},
 	}
@@ -67,6 +67,6 @@ func dataToEndpointCgnv6LsnRuleListDomainListNameStats(d *schema.ResourceData) e
 
 	ret.Stats = getObjectCgnv6LsnRuleListDomainListNameStatsStats(d.Get("stats").([]interface{}))
 
-	ret.Name = d.Get("name").(string)
+	ret.Lsn_rule_list_name = d.Get("lsn_rule_list_name").(string)
 	return ret
 }

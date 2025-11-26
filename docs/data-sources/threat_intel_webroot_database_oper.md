@@ -65,5 +65,3 @@ Optional:
 - `version` (Number)
 - `web_attacks` (Number)
 - `windows_exploits` (Number)
-
-

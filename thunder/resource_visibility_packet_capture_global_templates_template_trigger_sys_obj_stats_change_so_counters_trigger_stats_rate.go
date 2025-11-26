@@ -22,14 +22,23 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			"so_pkts_l2redirect_dest_mac_zero_drop": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Destination MAC Address zero Drop",
 			},
+			"so_pkts_l2redirect_frag_vlan_retrieval_": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect pkt frag vlan not retrieved",
+			},
 			"so_pkts_l2redirect_interface_not_up": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2redirect Intf is not UP",
 			},
 			"so_pkts_l2redirect_invalid_redirect_inf": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Redirect Table Error due to invalid redirect info",
 			},
+			"so_pkts_l2redirect_loop_detect_drop": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect pkt loop detected and dropped",
+			},
 			"so_pkts_l2redirect_port_retrieval_error": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect pkt port not retrieved",
+			},
+			"so_pkts_l2redirect_tx_frag_vlan_add_fai": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect tx pkt failed to add vlan",
 			},
 			"so_pkts_l2redirect_vlan_retrieval_error": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for L2 redirect pkt vlan not retrieved",
@@ -67,8 +76,8 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"template_name": {
+				Type: schema.TypeString, Required: true, Description: "Template_name",
 			},
 		},
 	}
@@ -139,9 +148,12 @@ func dataToEndpointVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjSt
 	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeSoCountersTriggerStatsRate
 	ret.Inst.Duration = d.Get("duration").(int)
 	ret.Inst.So_pkts_l2redirect_dest_mac_zero_drop = d.Get("so_pkts_l2redirect_dest_mac_zero_drop").(int)
+	ret.Inst.So_pkts_l2redirect_frag_vlan_retrieval_ = d.Get("so_pkts_l2redirect_frag_vlan_retrieval_").(int)
 	ret.Inst.So_pkts_l2redirect_interface_not_up = d.Get("so_pkts_l2redirect_interface_not_up").(int)
 	ret.Inst.So_pkts_l2redirect_invalid_redirect_inf = d.Get("so_pkts_l2redirect_invalid_redirect_inf").(int)
+	ret.Inst.So_pkts_l2redirect_loop_detect_drop = d.Get("so_pkts_l2redirect_loop_detect_drop").(int)
 	ret.Inst.So_pkts_l2redirect_port_retrieval_error = d.Get("so_pkts_l2redirect_port_retrieval_error").(int)
+	ret.Inst.So_pkts_l2redirect_tx_frag_vlan_add_fai = d.Get("so_pkts_l2redirect_tx_frag_vlan_add_fai").(int)
 	ret.Inst.So_pkts_l2redirect_vlan_retrieval_error = d.Get("so_pkts_l2redirect_vlan_retrieval_error").(int)
 	ret.Inst.So_pkts_l3_redirect_chassis_dest_mac_er = d.Get("so_pkts_l3_redirect_chassis_dest_mac_er").(int)
 	ret.Inst.So_pkts_l3_redirect_encap_error_drop = d.Get("so_pkts_l3_redirect_encap_error_drop").(int)
@@ -154,6 +166,6 @@ func dataToEndpointVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjSt
 	ret.Inst.So_pkts_slb_nat_reserve_fail = d.Get("so_pkts_slb_nat_reserve_fail").(int)
 	ret.Inst.ThresholdExceededBy = d.Get("threshold_exceeded_by").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Template_name = d.Get("template_name").(string)
 	return ret
 }

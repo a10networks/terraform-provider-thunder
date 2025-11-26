@@ -56,5 +56,3 @@ Optional:
 - `receive` (Number) Jobs Received
 - `snt_home` (Number) Jobs Sent Back Home
 - `submit` (Number) Jobs Submitted
-
-

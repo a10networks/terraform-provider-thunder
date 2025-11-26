@@ -40,8 +40,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTriggerS
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"interface_ethernet_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Interface_ethernet_tmpl_name",
 			},
 		},
 	}
@@ -118,6 +118,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesInterfaceEthernetTmplTr
 	ret.Inst.Output_errors = d.Get("output_errors").(int)
 	ret.Inst.Runts = d.Get("runts").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Interface_ethernet_tmpl_name = d.Get("interface_ethernet_tmpl_name").(string)
 	return ret
 }

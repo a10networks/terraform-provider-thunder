@@ -21,6 +21,9 @@ func resourceFwRateLimitOper() *schema.Resource {
 							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
+									"string_value": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
 									"address": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
@@ -75,6 +78,9 @@ func resourceFwRateLimitOper() *schema.Resource {
 						"v6_prefix": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
+						"string_value": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
 						"template_id": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -101,6 +107,12 @@ func resourceFwRateLimitOper() *schema.Resource {
 									"total_num_entries": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"total_num_entries_allocated": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"total_num_entries_freed": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 									"total_entries_scope_aggregate": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
@@ -110,6 +122,12 @@ func resourceFwRateLimitOper() *schema.Resource {
 									"total_entries_scope_subscriber_prefix": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"total_entries_scope_radius_usergroup": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"total_entries_scope_radius_userid": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 									"total_entries_scope_parent": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
@@ -117,6 +135,12 @@ func resourceFwRateLimitOper() *schema.Resource {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 									"total_entries_scope_parent_subscriber_prefix": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"total_entries_scope_parent_radius_usergroup": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"total_entries_scope_parent_radius_userid": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 								},
@@ -157,6 +181,7 @@ func setObjectFwRateLimitOperOper(ret edpt.DataFwRateLimitOper) []interface{} {
 			"v4_address":      ret.DtFwRateLimitOper.Oper.V4Address,
 			"v4_netmask":      ret.DtFwRateLimitOper.Oper.V4Netmask,
 			"v6_prefix":       ret.DtFwRateLimitOper.Oper.V6Prefix,
+			"string_value":    ret.DtFwRateLimitOper.Oper.StringValue,
 			"template_id":     ret.DtFwRateLimitOper.Oper.TemplateId,
 		},
 	}
@@ -166,6 +191,7 @@ func setSliceFwRateLimitOperOperRateLimitList(d []edpt.FwRateLimitOperOperRateLi
 	result := []map[string]interface{}{}
 	for _, item := range d {
 		in := make(map[string]interface{})
+		in["string_value"] = item.StringValue
 		in["address"] = item.Address
 		in["prefix_len"] = item.PrefixLen
 		in["rule_name"] = item.RuleName
@@ -205,17 +231,29 @@ func setObjectFwRateLimitOperSummaryOper(d edpt.FwRateLimitOperSummaryOper) []ma
 
 	in["total_num_entries"] = d.Total_num_entries
 
+	in["total_num_entries_allocated"] = d.Total_num_entries_allocated
+
+	in["total_num_entries_freed"] = d.Total_num_entries_freed
+
 	in["total_entries_scope_aggregate"] = d.Total_entries_scope_aggregate
 
 	in["total_entries_scope_subscriber_ip"] = d.Total_entries_scope_subscriber_ip
 
 	in["total_entries_scope_subscriber_prefix"] = d.Total_entries_scope_subscriber_prefix
 
+	in["total_entries_scope_radius_usergroup"] = d.Total_entries_scope_radius_usergroup
+
+	in["total_entries_scope_radius_userid"] = d.Total_entries_scope_radius_userid
+
 	in["total_entries_scope_parent"] = d.Total_entries_scope_parent
 
 	in["total_entries_scope_parent_subscriber_ip"] = d.Total_entries_scope_parent_subscriber_ip
 
 	in["total_entries_scope_parent_subscriber_prefix"] = d.Total_entries_scope_parent_subscriberPrefix
+
+	in["total_entries_scope_parent_radius_usergroup"] = d.Total_entries_scope_parent_radius_usergroup
+
+	in["total_entries_scope_parent_radius_userid"] = d.Total_entries_scope_parent_radius_userid
 	result = append(result, in)
 	return result
 }
@@ -230,6 +268,7 @@ func getObjectFwRateLimitOperOper(d []interface{}) edpt.FwRateLimitOperOper {
 		ret.V4Address = in["v4_address"].(string)
 		ret.V4Netmask = in["v4_netmask"].(string)
 		ret.V6Prefix = in["v6_prefix"].(string)
+		ret.StringValue = in["string_value"].(string)
 		ret.TemplateId = in["template_id"].(int)
 	}
 	return ret
@@ -242,6 +281,7 @@ func getSliceFwRateLimitOperOperRateLimitList(d []interface{}) []edpt.FwRateLimi
 	for _, item := range d {
 		in := item.(map[string]interface{})
 		var oi edpt.FwRateLimitOperOperRateLimitList
+		oi.StringValue = in["string_value"].(string)
 		oi.Address = in["address"].(string)
 		oi.PrefixLen = in["prefix_len"].(int)
 		oi.RuleName = in["rule_name"].(string)
@@ -282,12 +322,18 @@ func getObjectFwRateLimitOperSummaryOper(d []interface{}) edpt.FwRateLimitOperSu
 		ret.Mem_used = in["mem_used"].(int)
 		ret.Alloc_failures = in["alloc_failures"].(int)
 		ret.Total_num_entries = in["total_num_entries"].(int)
+		ret.Total_num_entries_allocated = in["total_num_entries_allocated"].(int)
+		ret.Total_num_entries_freed = in["total_num_entries_freed"].(int)
 		ret.Total_entries_scope_aggregate = in["total_entries_scope_aggregate"].(int)
 		ret.Total_entries_scope_subscriber_ip = in["total_entries_scope_subscriber_ip"].(int)
 		ret.Total_entries_scope_subscriber_prefix = in["total_entries_scope_subscriber_prefix"].(int)
+		ret.Total_entries_scope_radius_usergroup = in["total_entries_scope_radius_usergroup"].(int)
+		ret.Total_entries_scope_radius_userid = in["total_entries_scope_radius_userid"].(int)
 		ret.Total_entries_scope_parent = in["total_entries_scope_parent"].(int)
 		ret.Total_entries_scope_parent_subscriber_ip = in["total_entries_scope_parent_subscriber_ip"].(int)
 		ret.Total_entries_scope_parent_subscriberPrefix = in["total_entries_scope_parent_subscriber_prefix"].(int)
+		ret.Total_entries_scope_parent_radius_usergroup = in["total_entries_scope_parent_radius_usergroup"].(int)
+		ret.Total_entries_scope_parent_radius_userid = in["total_entries_scope_parent_radius_userid"].(int)
 	}
 	return ret
 }

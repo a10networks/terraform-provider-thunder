@@ -37,8 +37,8 @@ func resourceHealthMonitorMethodSip() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -114,6 +114,6 @@ func dataToEndpointHealthMonitorMethodSip(d *schema.ResourceData) edpt.HealthMon
 	ret.Inst.SipPort = d.Get("sip_port").(int)
 	ret.Inst.SipTcp = d.Get("sip_tcp").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

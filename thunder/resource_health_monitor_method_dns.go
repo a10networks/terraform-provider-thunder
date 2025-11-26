@@ -109,8 +109,8 @@ func resourceHealthMonitorMethodDns() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -236,6 +236,6 @@ func dataToEndpointHealthMonitorMethodDns(d *schema.ResourceData) edpt.HealthMon
 	ret.Inst.DnsIpv6Recurse = d.Get("dns_ipv6_recurse").(string)
 	ret.Inst.DnsIpv6Tcp = d.Get("dns_ipv6_tcp").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

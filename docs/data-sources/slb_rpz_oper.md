@@ -44,10 +44,39 @@ output "get_slb_rpz_oper" {
 
 Optional:
 
+- `ac_total_entries` (Number)
+- `class_list` (String)
+- `dns_entries` (Block List) (see [below for nested schema](#nestedblock--oper--dns_entries))
+- `dns_total_entries` (Number)
 - `file_list` (Block List) (see [below for nested schema](#nestedblock--oper--file_list))
+- `file_or_string` (String)
 - `filter_entry` (String)
+- `geo_location_total_entries` (Number)
+- `ipv4_entries` (Block List) (see [below for nested schema](#nestedblock--oper--ipv4_entries))
+- `ipv4_total_single_ip` (Number)
+- `ipv4_total_subnet` (Number)
+- `ipv6_entries` (Block List) (see [below for nested schema](#nestedblock--oper--ipv6_entries))
+- `ipv6_total_single_ip` (Number)
+- `ipv6_total_subnet` (Number)
 - `rpz_count` (Number)
 - `rpz_file_size_max` (Number)
+- `rpz_rule_count` (Number)
+- `string_total_entries` (Number)
+- `type` (String)
+- `user_tag` (String)
+
+<a id="nestedblock--oper--dns_entries"></a>
+### Nested Schema for `oper.dns_entries`
+
+Optional:
+
+- `dns_glid` (Number)
+- `dns_hit_count` (Number)
+- `dns_lid` (Number)
+- `dns_match_string` (String)
+- `dns_match_type` (String)
+- `dns_rpz_type` (Number)
+
 
 <a id="nestedblock--oper--file_list"></a>
 ### Nested Schema for `oper.file_list`
@@ -58,3 +87,33 @@ Optional:
 - `file` (String)
 
 
+<a id="nestedblock--oper--ipv4_entries"></a>
+### Nested Schema for `oper.ipv4_entries`
+
+Optional:
+
+- `ipv4_addr` (String)
+- `ipv4_age` (Number)
+- `ipv4_glid` (Number)
+- `ipv4_gtp_policy` (String)
+- `ipv4_hit_count` (Number)
+- `ipv4_lid` (Number)
+- `ipv4_lsn_lid` (Number)
+- `ipv4_lsn_radius_profile` (Number)
+- `ipv4_rpz_type` (Number)
+
+
+<a id="nestedblock--oper--ipv6_entries"></a>
+### Nested Schema for `oper.ipv6_entries`
+
+Optional:
+
+- `ipv6_age` (Number)
+- `ipv6_glid` (Number)
+- `ipv6_gtp_policy` (String)
+- `ipv6_hit_count` (Number)
+- `ipv6_lid` (Number)
+- `ipv6_lsn_lid` (Number)
+- `ipv6_lsn_radius_profile` (Number)
+- `ipv6_rpz_type` (Number)
+- `ipv6addr` (String)

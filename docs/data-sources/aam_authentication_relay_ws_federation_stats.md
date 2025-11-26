@@ -53,5 +53,3 @@ Optional:
 - `failure` (Number) Failure
 - `request` (Number) Request
 - `success` (Number) Success
-
-

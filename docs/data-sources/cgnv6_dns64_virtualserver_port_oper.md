@@ -38,7 +38,7 @@ output "get_cgnv6_dns64_virtualserver_port_oper" {
 
 ### Required
 
-- `name` (String) Name
+- `dns64_virtualserver_name` (String) Dns64_virtualserver_name
 - `port_number` (Number) Port
 - `protocol` (String) 'dns-udp': DNS service over UDP;
 
@@ -298,5 +298,3 @@ Optional:
 - `ws_handshake_request` (Number)
 - `ws_handshake_success` (Number)
 - `ws_server_switch` (Number)
-
-

@@ -71,5 +71,3 @@ Optional:
 - `outtimeexcds` (Number) Out TTL Exceeds
 - `outtimestampreps` (Number) Out Time Stamp Rep
 - `outtimestamps` (Number) Out Time Stamp
-
-

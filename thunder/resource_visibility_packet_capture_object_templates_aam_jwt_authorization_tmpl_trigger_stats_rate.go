@@ -43,8 +43,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmplTrigge
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"aam_jwt_authorization_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Aam_jwt_authorization_tmpl_name",
 			},
 		},
 	}
@@ -122,6 +122,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesAamJwtAuthorizationTmpl
 	ret.Inst.JwtTokenExpired = d.Get("jwt_token_expired").(int)
 	ret.Inst.ThresholdExceededBy = d.Get("threshold_exceeded_by").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Aam_jwt_authorization_tmpl_name = d.Get("aam_jwt_authorization_tmpl_name").(string)
 	return ret
 }

@@ -58,5 +58,3 @@ Optional:
 - `out_of_session_memory` (Number) Out of Session Memory
 - `rate_drop_reset_unkn` (Number) Rate Drop reset
 - `tcp_rst_sent` (Number) TCP RST Sent
-
-

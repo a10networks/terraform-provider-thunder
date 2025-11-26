@@ -76,5 +76,3 @@ Optional:
 - `mode` (String)
 - `ttl` (String)
 - `update` (Number)
-
-

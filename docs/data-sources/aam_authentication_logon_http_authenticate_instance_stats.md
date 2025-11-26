@@ -53,5 +53,3 @@ Optional:
 - `spn_krb_faiure` (Number) SPN Kerberos Failure
 - `spn_krb_request` (Number) SPN Kerberos Request
 - `spn_krb_success` (Number) SPN Kerberos Success
-
-

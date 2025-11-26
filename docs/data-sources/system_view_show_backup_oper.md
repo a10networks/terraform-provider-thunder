@@ -47,5 +47,3 @@ Optional:
 - `backup_show_1` (String)
 - `backup_show_2` (String)
 - `backup_show_3` (String)
-
-

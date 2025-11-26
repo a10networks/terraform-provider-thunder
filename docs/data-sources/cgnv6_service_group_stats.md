@@ -94,5 +94,3 @@ Optional:
 - `server_selection_fail_drop` (Number) Service selection fail drop
 - `server_selection_fail_reset` (Number) Service selection fail reset
 - `service_peak_conn` (Number) Service peak connection
-
-

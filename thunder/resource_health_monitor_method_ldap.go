@@ -52,8 +52,8 @@ func resourceHealthMonitorMethodLdap() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -135,6 +135,6 @@ func dataToEndpointHealthMonitorMethodLdap(d *schema.ResourceData) edpt.HealthMo
 	ret.Inst.LdapRunSearch = d.Get("ldap_run_search").(int)
 	ret.Inst.LdapSecurity = d.Get("ldap_security").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

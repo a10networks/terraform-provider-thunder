@@ -61,5 +61,3 @@ Optional:
 - `standby_priority` (Number)
 - `standby_weight` (Number)
 - `vrid` (Number)
-
-

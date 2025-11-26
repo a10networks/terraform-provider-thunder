@@ -36,7 +36,7 @@ output "get_slb_template_dns_recursive_dns_resolution_oper" {
 
 ### Required
 
-- `name` (String) Name
+- `dns_name` (String) Dns_name
 
 ### Optional
 
@@ -54,5 +54,3 @@ Optional:
 - `gwhc_down_retries` (Number)
 - `gwhc_status` (String)
 - `gwhc_up_retries` (Number)
-
-

@@ -56,5 +56,3 @@ Optional:
 - `pool_name` (String)
 - `start_address` (String)
 - `vird` (Number)
-
-

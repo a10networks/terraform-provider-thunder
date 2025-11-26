@@ -71,11 +71,10 @@ Optional:
 - `metric_least_reponse` (Number) Metric Least Reponse Hit
 - `metric_number_of_sessions` (Number) Metric Number of Sessions Hit
 - `metric_round_robin` (Number) Metric Round Robin Hit
+- `metric_site_connection_count` (Number) Metric Connection Count by Site Hit
 - `metric_user` (Number) Metric User Hit
 - `metric_weighted_ip` (Number) Metric Weighted IP Hit
 - `metric_weighted_site` (Number) Metric Weighted Site Hit
 - `no_answer` (Number) Number of replies with unknown server IP
 - `total_query` (Number) Total number of DNS queries received
 - `total_response` (Number) Total number of DNS replies sent to clients
-
-

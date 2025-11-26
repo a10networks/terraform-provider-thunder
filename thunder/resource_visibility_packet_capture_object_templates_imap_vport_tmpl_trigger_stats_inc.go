@@ -85,8 +85,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsInc(
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"imap_vport_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Imap_vport_tmpl_name",
 			},
 		},
 	}
@@ -178,6 +178,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerSta
 	ret.Inst.Unsupported_pbsz_value = d.Get("unsupported_pbsz_value").(int)
 	ret.Inst.Unsupported_prot_value = d.Get("unsupported_prot_value").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Imap_vport_tmpl_name = d.Get("imap_vport_tmpl_name").(string)
 	return ret
 }

@@ -59,5 +59,3 @@ Optional:
 - `jwt_request` (Number) JWT Request
 - `jwt_signature_failure` (Number) JWT Signature Failure
 - `jwt_token_expired` (Number) JWT Token Expired
-
-

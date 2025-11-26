@@ -159,8 +159,8 @@ func resourceGslbZoneServiceOper() *schema.Resource {
 			"service_port": {
 				Type: schema.TypeInt, Required: true, Description: "Port number of the service",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -431,6 +431,6 @@ func dataToEndpointGslbZoneServiceOper(d *schema.ResourceData) edpt.GslbZoneServ
 
 	ret.ServicePort = d.Get("service_port").(int)
 
-	ret.Name = d.Get("name").(string)
+	ret.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

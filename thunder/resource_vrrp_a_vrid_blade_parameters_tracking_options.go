@@ -298,10 +298,10 @@ func getSliceVrrpAVridBladeParametersTrackingOptionsBgpBgpIpv6AddressCfg(d []int
 	return ret
 }
 
-func getObjectVrrpAVridBladeParametersTrackingOptionsGateway3630(d []interface{}) edpt.VrrpAVridBladeParametersTrackingOptionsGateway3630 {
+func getObjectVrrpAVridBladeParametersTrackingOptionsGateway3729(d []interface{}) edpt.VrrpAVridBladeParametersTrackingOptionsGateway3729 {
 
 	count1 := len(d)
-	var ret edpt.VrrpAVridBladeParametersTrackingOptionsGateway3630
+	var ret edpt.VrrpAVridBladeParametersTrackingOptionsGateway3729
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ipv4GatewayList = getSliceVrrpAVridBladeParametersTrackingOptionsGatewayIpv4GatewayList(in["ipv4_gateway_list"].([]interface{}))
@@ -434,7 +434,7 @@ func getSliceVrrpAVridBladeParametersTrackingOptionsVlanCfg(d []interface{}) []e
 func dataToEndpointVrrpAVridBladeParametersTrackingOptions(d *schema.ResourceData) edpt.VrrpAVridBladeParametersTrackingOptions {
 	var ret edpt.VrrpAVridBladeParametersTrackingOptions
 	ret.Inst.Bgp = getObjectVrrpAVridBladeParametersTrackingOptionsBgp(d.Get("bgp").([]interface{}))
-	ret.Inst.Gateway = getObjectVrrpAVridBladeParametersTrackingOptionsGateway3630(d.Get("gateway").([]interface{}))
+	ret.Inst.Gateway = getObjectVrrpAVridBladeParametersTrackingOptionsGateway3729(d.Get("gateway").([]interface{}))
 	ret.Inst.Interface = getSliceVrrpAVridBladeParametersTrackingOptionsInterface(d.Get("interface").([]interface{}))
 	ret.Inst.Route = getObjectVrrpAVridBladeParametersTrackingOptionsRoute(d.Get("route").([]interface{}))
 	ret.Inst.TrunkCfg = getSliceVrrpAVridBladeParametersTrackingOptionsTrunkCfg(d.Get("trunk_cfg").([]interface{}))

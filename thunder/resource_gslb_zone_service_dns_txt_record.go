@@ -30,7 +30,7 @@ func resourceGslbZoneServiceDnsTxtRecord() *schema.Resource {
 				},
 			},
 			"ttl": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
+				Type: schema.TypeInt, Optional: true, Description: "Specify TTL",
 			},
 			"txt_data": {
 				Type: schema.TypeString, Optional: true, Description: "Specify TXT Data",
@@ -38,14 +38,14 @@ func resourceGslbZoneServiceDnsTxtRecord() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"service_name": {
-				Type: schema.TypeString, Required: true, Description: "ServiceName",
-			},
 			"service_port": {
 				Type: schema.TypeString, Required: true, Description: "ServicePort",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"service_name": {
+				Type: schema.TypeString, Required: true, Description: "ServiceName",
+			},
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -132,8 +132,8 @@ func dataToEndpointGslbZoneServiceDnsTxtRecord(d *schema.ResourceData) edpt.Gslb
 	ret.Inst.Ttl = d.Get("ttl").(int)
 	ret.Inst.TxtData = d.Get("txt_data").(string)
 	//omit uuid
-	ret.Inst.ServiceName = d.Get("service_name").(string)
 	ret.Inst.ServicePort = d.Get("service_port").(string)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.ServiceName = d.Get("service_name").(string)
+	ret.Inst.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

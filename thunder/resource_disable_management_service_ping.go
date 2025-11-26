@@ -32,6 +32,16 @@ func resourceDisableManagementServicePing() *schema.Resource {
 					},
 				},
 			},
+			"lif_cfg": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"lif": {
+							Type: schema.TypeString, Optional: true, Description: "Lif name (Lif interface name)",
+						},
+					},
+				},
+			},
 			"management": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Management Interface",
 			},
@@ -143,6 +153,17 @@ func getSliceDisableManagementServicePingEthCfg(d []interface{}) []edpt.DisableM
 	return ret
 }
 
+func getObjectDisableManagementServicePingLifCfg(d []interface{}) edpt.DisableManagementServicePingLifCfg {
+
+	count1 := len(d)
+	var ret edpt.DisableManagementServicePingLifCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Lif = in["lif"].(string)
+	}
+	return ret
+}
+
 func getSliceDisableManagementServicePingTunnelCfg(d []interface{}) []edpt.DisableManagementServicePingTunnelCfg {
 
 	count1 := len(d)
@@ -175,6 +196,7 @@ func dataToEndpointDisableManagementServicePing(d *schema.ResourceData) edpt.Dis
 	var ret edpt.DisableManagementServicePing
 	ret.Inst.AllDataIntf = d.Get("all_data_intf").(int)
 	ret.Inst.EthCfg = getSliceDisableManagementServicePingEthCfg(d.Get("eth_cfg").([]interface{}))
+	ret.Inst.LifCfg = getObjectDisableManagementServicePingLifCfg(d.Get("lif_cfg").([]interface{}))
 	ret.Inst.Management = d.Get("management").(int)
 	ret.Inst.TunnelCfg = getSliceDisableManagementServicePingTunnelCfg(d.Get("tunnel_cfg").([]interface{}))
 	//omit uuid

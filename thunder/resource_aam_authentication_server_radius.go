@@ -78,6 +78,9 @@ func resourceAamAuthenticationServerRadius() *schema.Resource {
 						"auth_type": {
 							Type: schema.TypeString, Optional: true, Description: "'pap': PAP authentication. Default; 'mschapv2': MS-CHAPv2 authentication; 'mschapv2-pap': Use MS-CHAPv2 first. If server doesn't support it, try PAP;",
 						},
+						"message_authenticator_verify_enable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Verify Message-Authenticator attribute",
+						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
@@ -199,6 +202,7 @@ func getSliceAamAuthenticationServerRadiusInstanceList(d []interface{}) []edpt.A
 		oi.AcctPortHm = in["acct_port_hm"].(string)
 		oi.AcctPortHmDisable = in["acct_port_hm_disable"].(int)
 		oi.AuthType = in["auth_type"].(string)
+		oi.MessageAuthenticatorVerifyEnable = in["message_authenticator_verify_enable"].(int)
 		//omit uuid
 		oi.SamplingEnable = getSliceAamAuthenticationServerRadiusInstanceListSamplingEnable(in["sampling_enable"].([]interface{}))
 		oi.PacketCaptureTemplate = in["packet_capture_template"].(string)

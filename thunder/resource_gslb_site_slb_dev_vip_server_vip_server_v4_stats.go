@@ -29,11 +29,11 @@ func resourceGslbSiteSlbDevVipServerVipServerV4Stats() *schema.Resource {
 					},
 				},
 			},
-			"site_name": {
-				Type: schema.TypeString, Required: true, Description: "SiteName",
-			},
 			"device_name": {
 				Type: schema.TypeString, Required: true, Description: "DeviceName",
+			},
+			"site_name": {
+				Type: schema.TypeString, Required: true, Description: "SiteName",
 			},
 		},
 	}
@@ -86,8 +86,8 @@ func dataToEndpointGslbSiteSlbDevVipServerVipServerV4Stats(d *schema.ResourceDat
 
 	ret.Stats = getObjectGslbSiteSlbDevVipServerVipServerV4StatsStats(d.Get("stats").([]interface{}))
 
-	ret.SiteName = d.Get("site_name").(string)
-
 	ret.DeviceName = d.Get("device_name").(string)
+
+	ret.SiteName = d.Get("site_name").(string)
 	return ret
 }

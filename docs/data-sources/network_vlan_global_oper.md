@@ -52,5 +52,3 @@ Optional:
 Optional:
 
 - `vlan` (Number) VLAN id
-
-

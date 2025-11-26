@@ -45,13 +45,12 @@ output "get_ddos_other_zone_ipproto_stats" {
 
 Optional:
 
-- `addr_filter_bl` (Number) IP Filtering Policy: Blacklisted
-- `addr_filter_drop` (Number) IP Filtering Policy: Dropped
 - `bl` (Number) Dst Blacklisted
 - `current_es_level` (Number) Current Escalation Level
 - `dst_hw_drop` (Number) Dst Hardware Packets Dropped
 - `dst_hw_drop_inserted` (Number) Dst Hardware Drop Rules Inserted
 - `dst_hw_drop_removed` (Number) Dst Hardware Drop Rules Removed
+- `dynamic_count_warn` (Number) dynamic-entry-count warning send
 - `ew_inbound_port_byte_drop` (Number) East-West Inbound Bytes Dropped
 - `ew_inbound_port_byte_rcv` (Number) East-West Inbound Bytes Recevied
 - `ew_inbound_port_byte_sent` (Number) East-West Inbound Bytes Forwarded
@@ -84,6 +83,8 @@ Optional:
 - `frag_drop` (Number) Fragmented Packets Dropped
 - `frag_rcvd` (Number) Fragmented Packets Received
 - `frag_timeout` (Number) Fragmented Packets Timeout
+- `ip_filtering_bl` (Number) IP Filtering Policy: Blacklisted
+- `ip_filtering_drop` (Number) IP Filtering Policy: Dropped
 - `no_policy_class_list_match` (Number) No Policy Class-list Match
 - `no_route_drop` (Number) No Route Dropped
 - `outbound_port_bytes` (Number) Outbound Bytes Received
@@ -130,6 +131,5 @@ Optional:
 - `src_hw_drop_removed` (Number) Src Hardware Drop Rules Removed
 - `src_learn_overflow` (Number) Source Dynamic Entry Overflow
 - `src_zone_service_entry_aged` (Number) SrcZoneService Entry Aged
+- `src_zone_service_entry_hit` (Number) SrcZoneService Entry Hit
 - `src_zone_service_entry_learned` (Number) SrcZoneService Entry Learned
-
-

@@ -40,6 +40,7 @@ output "get_slb_server_stats" {
 ### Optional
 
 - `port_list` (Block List) (see [below for nested schema](#nestedblock--port_list))
+- `service_list` (Block List) (see [below for nested schema](#nestedblock--service_list))
 - `stats` (Block List, Max: 1) (see [below for nested schema](#nestedblock--stats))
 
 ### Read-Only
@@ -60,6 +61,62 @@ Optional:
 
 <a id="nestedblock--port_list--stats"></a>
 ### Nested Schema for `port_list.stats`
+
+Optional:
+
+- `curr_conn` (Number) Current connections
+- `curr_pconn` (Number) Current persistent connections
+- `curr_req` (Number) Current requests
+- `curr_ssl_conn` (Number) Current SSL connections
+- `es_req_count` (Number) Total proxy requests
+- `es_resp_200` (Number) Response status 200
+- `es_resp_300` (Number) Response status 300
+- `es_resp_400` (Number) Response status 400
+- `es_resp_500` (Number) Response status 500
+- `es_resp_count` (Number) Total proxy response
+- `es_resp_invalid_http` (Number) Total non-http response
+- `es_resp_other` (Number) Response status other
+- `fastest_rsp_time` (Number) Fastest response time
+- `last_total_conn` (Number) Last total connections
+- `peak_conn` (Number) Peak connections
+- `resp_1xx` (Number) Response status 1xx
+- `resp_2xx` (Number) Response status 2xx
+- `resp_3xx` (Number) Response status 3xx
+- `resp_4xx` (Number) Response status 4xx
+- `resp_5xx` (Number) Response status 5xx
+- `resp_count` (Number) Total Response Count
+- `resp_latency` (Number) Time to First Response Byte
+- `resp_other` (Number) Response status Other
+- `response_time` (Number) Response time
+- `slowest_rsp_time` (Number) Slowest response time
+- `total_conn` (Number) Total connections
+- `total_fwd_bytes` (Number) Bytes processed in forward direction
+- `total_fwd_pkts` (Number) Packets processed in forward direction
+- `total_req` (Number) Total Requests
+- `total_req_succ` (Number) Total requests succ
+- `total_rev_bytes` (Number) Bytes processed in reverse direction
+- `total_rev_pkts` (Number) Packets processed in reverse direction
+- `total_rev_pkts_inspected` (Number) Total reverse packets inspected
+- `total_rev_pkts_inspected_good_status_code` (Number) Total reverse packets with good status code inspected
+- `total_ssl_conn` (Number) Total SSL connections
+
+
+
+<a id="nestedblock--service_list"></a>
+### Nested Schema for `service_list`
+
+Required:
+
+- `label` (String) Service Label
+- `port_number` (Number) Port Number
+- `protocol` (String) 'tcp': TCP Port; 'udp': UDP Port;
+
+Optional:
+
+- `stats` (Block List, Max: 1) (see [below for nested schema](#nestedblock--service_list--stats))
+
+<a id="nestedblock--service_list--stats"></a>
+### Nested Schema for `service_list.stats`
 
 Optional:
 
@@ -123,5 +180,3 @@ Optional:
 - `total_rev_bytes` (Number) Bytes processed in reverse direction
 - `total_rev_pkts` (Number) Packets processed in reverse direction
 - `total_ssl_conn` (Number) Total SSL connections established
-
-

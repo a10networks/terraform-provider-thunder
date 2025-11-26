@@ -84,5 +84,3 @@ Optional:
 - `topo_change_port` (String)
 - `tx_hold_count` (Number)
 - `vlans` (String)
-
-

@@ -17,6 +17,9 @@ func resourceConfigSyncStatusOper() *schema.Resource {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"all_partitions": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"config_sync_list": {
 							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
@@ -62,6 +65,7 @@ func resourceConfigSyncStatusOperRead(ctx context.Context, d *schema.ResourceDat
 func setObjectConfigSyncStatusOperOper(ret edpt.DataConfigSyncStatusOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
+			"all_partitions":   ret.DtConfigSyncStatusOper.Oper.AllPartitions,
 			"config_sync_list": setSliceConfigSyncStatusOperOperConfigSyncList(ret.DtConfigSyncStatusOper.Oper.ConfigSyncList),
 		},
 	}
@@ -85,6 +89,7 @@ func getObjectConfigSyncStatusOperOper(d []interface{}) edpt.ConfigSyncStatusOpe
 	var ret edpt.ConfigSyncStatusOperOper
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
+		ret.AllPartitions = in["all_partitions"].(int)
 		ret.ConfigSyncList = getSliceConfigSyncStatusOperOperConfigSyncList(in["config_sync_list"].([]interface{}))
 	}
 	return ret

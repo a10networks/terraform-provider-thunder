@@ -105,5 +105,3 @@ Optional:
 - `udp_wellknown_src_port` (Number) UDP SrcPort Wellknown
 - `udp_wellknown_src_port_bl` (Number) UDP SrcPort Wellknown Blacklisted
 - `udp_wellknown_src_port_drop` (Number) UDP SrcPort Wellknown Dropped
-
-

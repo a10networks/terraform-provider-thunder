@@ -53,5 +53,3 @@ Optional:
 - `module_status` (String)
 - `remaining_period` (String)
 - `serial_number` (String)
-
-

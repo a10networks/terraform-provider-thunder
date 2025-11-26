@@ -62,6 +62,16 @@ func resourceEnableManagementServiceSsh() *schema.Resource {
 								},
 							},
 						},
+						"lif_cfg": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"lif": {
+										Type: schema.TypeString, Optional: true, Description: "Lif name (Lif interface name)",
+									},
+								},
+							},
+						},
 						"management": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Management Interface",
 						},
@@ -123,6 +133,16 @@ func resourceEnableManagementServiceSsh() *schema.Resource {
 								},
 							},
 						},
+						"lif_cfg": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"lif": {
+										Type: schema.TypeString, Optional: true, Description: "Lif name (Lif interface name)",
+									},
+								},
+							},
+						},
 						"management": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Management Interface",
 						},
@@ -150,6 +170,16 @@ func resourceEnableManagementServiceSsh() *schema.Resource {
 						},
 						"ethernet_end": {
 							Type: schema.TypeInt, Optional: true, Description: "Ethernet port",
+						},
+					},
+				},
+			},
+			"lif_cfg": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"lif": {
+							Type: schema.TypeString, Optional: true, Description: "Lif name (Lif interface name)",
 						},
 					},
 				},
@@ -259,6 +289,7 @@ func getSliceEnableManagementServiceSshAclV4List(d []interface{}) []edpt.EnableM
 		oi.EthCfg = getSliceEnableManagementServiceSshAclV4ListEthCfg(in["eth_cfg"].([]interface{}))
 		oi.VeCfg = getSliceEnableManagementServiceSshAclV4ListVeCfg(in["ve_cfg"].([]interface{}))
 		oi.TunnelCfg = getSliceEnableManagementServiceSshAclV4ListTunnelCfg(in["tunnel_cfg"].([]interface{}))
+		oi.LifCfg = getObjectEnableManagementServiceSshAclV4ListLifCfg(in["lif_cfg"].([]interface{}))
 		oi.Management = in["management"].(int)
 		oi.AllDataIntf = in["all_data_intf"].(int)
 		//omit uuid
@@ -310,6 +341,17 @@ func getSliceEnableManagementServiceSshAclV4ListTunnelCfg(d []interface{}) []edp
 	return ret
 }
 
+func getObjectEnableManagementServiceSshAclV4ListLifCfg(d []interface{}) edpt.EnableManagementServiceSshAclV4ListLifCfg {
+
+	count1 := len(d)
+	var ret edpt.EnableManagementServiceSshAclV4ListLifCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Lif = in["lif"].(string)
+	}
+	return ret
+}
+
 func getSliceEnableManagementServiceSshAclV6List(d []interface{}) []edpt.EnableManagementServiceSshAclV6List {
 
 	count1 := len(d)
@@ -321,6 +363,7 @@ func getSliceEnableManagementServiceSshAclV6List(d []interface{}) []edpt.EnableM
 		oi.EthCfg = getSliceEnableManagementServiceSshAclV6ListEthCfg(in["eth_cfg"].([]interface{}))
 		oi.VeCfg = getSliceEnableManagementServiceSshAclV6ListVeCfg(in["ve_cfg"].([]interface{}))
 		oi.TunnelCfg = getSliceEnableManagementServiceSshAclV6ListTunnelCfg(in["tunnel_cfg"].([]interface{}))
+		oi.LifCfg = getObjectEnableManagementServiceSshAclV6ListLifCfg(in["lif_cfg"].([]interface{}))
 		oi.Management = in["management"].(int)
 		oi.AllDataIntf = in["all_data_intf"].(int)
 		//omit uuid
@@ -372,6 +415,17 @@ func getSliceEnableManagementServiceSshAclV6ListTunnelCfg(d []interface{}) []edp
 	return ret
 }
 
+func getObjectEnableManagementServiceSshAclV6ListLifCfg(d []interface{}) edpt.EnableManagementServiceSshAclV6ListLifCfg {
+
+	count1 := len(d)
+	var ret edpt.EnableManagementServiceSshAclV6ListLifCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Lif = in["lif"].(string)
+	}
+	return ret
+}
+
 func getSliceEnableManagementServiceSshEthCfg(d []interface{}) []edpt.EnableManagementServiceSshEthCfg {
 
 	count1 := len(d)
@@ -382,6 +436,17 @@ func getSliceEnableManagementServiceSshEthCfg(d []interface{}) []edpt.EnableMana
 		oi.EthernetStart = in["ethernet_start"].(int)
 		oi.EthernetEnd = in["ethernet_end"].(int)
 		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectEnableManagementServiceSshLifCfg(d []interface{}) edpt.EnableManagementServiceSshLifCfg {
+
+	count1 := len(d)
+	var ret edpt.EnableManagementServiceSshLifCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Lif = in["lif"].(string)
 	}
 	return ret
 }
@@ -420,6 +485,7 @@ func dataToEndpointEnableManagementServiceSsh(d *schema.ResourceData) edpt.Enabl
 	ret.Inst.AclV6List = getSliceEnableManagementServiceSshAclV6List(d.Get("acl_v6_list").([]interface{}))
 	ret.Inst.AllDataIntf = d.Get("all_data_intf").(int)
 	ret.Inst.EthCfg = getSliceEnableManagementServiceSshEthCfg(d.Get("eth_cfg").([]interface{}))
+	ret.Inst.LifCfg = getObjectEnableManagementServiceSshLifCfg(d.Get("lif_cfg").([]interface{}))
 	ret.Inst.TunnelCfg = getSliceEnableManagementServiceSshTunnelCfg(d.Get("tunnel_cfg").([]interface{}))
 	//omit uuid
 	ret.Inst.VeCfg = getSliceEnableManagementServiceSshVeCfg(d.Get("ve_cfg").([]interface{}))

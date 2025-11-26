@@ -58,5 +58,3 @@ Optional:
 - `state` (String)
 - `type` (String)
 - `vlan` (Number)
-
-

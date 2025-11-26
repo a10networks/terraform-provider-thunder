@@ -63,5 +63,3 @@ Optional:
 - `outbound_ipv6_fragmented` (Number) Outbound IPv6 packets fragmented
 - `outbound_ipv6_unreachable` (Number) Outbound IPv6 destination unreachable
 - `packet_too_big` (Number) Packet too big
-
-

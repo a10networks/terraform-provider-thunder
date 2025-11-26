@@ -33,6 +33,12 @@ func resourceSystemIpThreatListOper() *schema.Resource {
 									"age": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"hit_count": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"class_list": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
 								},
 							},
 						},
@@ -90,6 +96,8 @@ func setSliceSystemIpThreatListOperOperEntriesList(d []edpt.SystemIpThreatListOp
 		in["match_type"] = item.MatchType
 		in["in_spe"] = item.InSpe
 		in["age"] = item.Age
+		in["hit_count"] = item.HitCount
+		in["class_list"] = item.ClassList
 		result = append(result, in)
 	}
 	return result
@@ -120,6 +128,8 @@ func getSliceSystemIpThreatListOperOperEntriesList(d []interface{}) []edpt.Syste
 		oi.MatchType = in["match_type"].(string)
 		oi.InSpe = in["in_spe"].(string)
 		oi.Age = in["age"].(int)
+		oi.HitCount = in["hit_count"].(int)
+		oi.ClassList = in["class_list"].(string)
 		ret = append(ret, oi)
 	}
 	return ret

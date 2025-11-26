@@ -50,5 +50,3 @@ Optional:
 - `entry_deleted` (Number) Total deleted cache entry
 - `entry_saved` (Number) Total saved cache entry
 - `total_entry` (Number) Total persistent cache entry
-
-

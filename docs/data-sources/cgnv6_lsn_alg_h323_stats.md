@@ -51,5 +51,3 @@ Optional:
 - `h245ctl_message` (Number) H323 H245 Media Control Message
 - `parse_error` (Number) Message Parse Error
 - `tcp_out_of_order_drop` (Number) TCP Out-of-Order Drop
-
-

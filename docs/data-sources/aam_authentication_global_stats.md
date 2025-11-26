@@ -69,5 +69,3 @@ Optional:
 - `requests` (Number) Total Authentication Request
 - `responses` (Number) Total Authentication Response
 - `total_request` (Number) Total Request Received by A10 Auth Service
-
-

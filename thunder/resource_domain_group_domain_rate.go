@@ -44,8 +44,8 @@ func resourceDomainGroupDomainRate() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"domain_group_name": {
+				Type: schema.TypeString, Required: true, Description: "Domain_group_name",
 			},
 		},
 	}
@@ -134,6 +134,6 @@ func dataToEndpointDomainGroupDomainRate(d *schema.ResourceData) edpt.DomainGrou
 	ret.Inst.DummyName = d.Get("dummy_name").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Domain_group_name = d.Get("domain_group_name").(string)
 	return ret
 }

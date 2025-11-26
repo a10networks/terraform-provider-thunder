@@ -270,11 +270,23 @@ func resourceWebCategory() *schema.Resource {
 						"web_hosting_sites": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Web Hosting Sites",
 						},
+						"self_harm": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Self Harm",
+						},
+						"dns_over_https": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category DNS over HTTPs",
+						},
+						"low_thc_cannabis_products": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Low-THC Cannabis Products",
+						},
+						"generative_ai": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Generative AI",
+						},
 						"nudity_artistic": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Nudity join Entertainment and Arts",
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Artistic Nudity",
 						},
 						"illegal_pornography": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Illegal join Adult and Pornography",
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Illegal Pornography eg. Child Sexual Abuse",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -287,7 +299,7 @@ func resourceWebCategory() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"counters1": {
-										Type: schema.TypeString, Optional: true, Description: "'all': all; 'uncategorized': uncategorized category; 'real-estate': real estate category; 'computer-and-internet-security': computer and internet security category; 'financial-services': financial services category; 'business-and-economy': business and economy category; 'computer-and-internet-info': computer and internet info category; 'auctions': auctions category; 'shopping': shopping category; 'cult-and-occult': cult and occult category; 'travel': travel category; 'drugs': drugs category; 'adult-and-pornography': adult and pornography category; 'home-and-garden': home and garden category; 'military': military category; 'social-network': social network category; 'dead-sites': dead sites category; 'stock-advice-and-tools': stock advice and tools category; 'training-and-tools': training and tools category; 'dating': dating category; 'sex-education': sex education category; 'religion': religion category; 'entertainment-and-arts': entertainment and arts category; 'personal-sites-and-blogs': personal sites and blogs category; 'legal': legal category; 'local-information': local information category; 'streaming-media': streaming media category; 'job-search': job search category; 'gambling': gambling category; 'translation': translation category; 'reference-and-research': reference and research category; 'shareware-and-freeware': shareware and freeware category; 'peer-to-peer': peer to peer category; 'marijuana': marijuana category; 'hacking': hacking category; 'games': games category; 'philosophy-and-politics': philosophy and politics category; 'weapons': weapons category; 'pay-to-surf': pay to surf category; 'hunting-and-fishing': hunting and fishing category; 'society': society category; 'educational-institutions': educational institutions category; 'online-greeting-cards': online greeting cards category; 'sports': sports category; 'swimsuits-and-intimate-apparel': swimsuits and intimate apparel category; 'questionable': questionable category; 'kids': kids category; 'hate-and-racism': hate and racism category; 'personal-storage': personal storage category; 'violence': violence category; 'keyloggers-and-monitoring': keyloggers and monitoring category; 'search-engines': search engines category; 'internet-portals': internet portals category; 'web-advertisements': web advertisements category; 'cheating': cheating category; 'gross': gross category; 'web-based-email': web based email category; 'malware-sites': malware sites category; 'phishing-and-other-fraud': phishing and other fraud category; 'proxy-avoid-and-anonymizers': proxy avoid and anonymizers category; 'spyware-and-adware': spyware and adware category; 'music': music category; 'government': government category; 'nudity': nudity category; 'news-and-media': news and media category; 'illegal': illegal category; 'CDNs': content delivery networks category; 'internet-communications': internet communications category; 'bot-nets': bot nets category; 'abortion': abortion category; 'health-and-medicine': health and medicine category; 'confirmed-SPAM-sources': confirmed SPAM sources category; 'SPAM-URLs': SPAM URLs category; 'unconfirmed-SPAM-sources': unconfirmed SPAM sources category; 'open-HTTP-proxies': open HTTP proxies category; 'dynamically-generated-content': dynamically generated content category; 'parked-domains': parked domains category; 'alcohol-and-tobacco': alcohol and tobacco category; 'private-IP-addresses': private IP addresses category; 'image-and-video-search': image and video search category; 'fashion-and-beauty': fashion and beauty category; 'recreation-and-hobbies': recreation and hobbies category; 'motor-vehicles': motor vehicles category; 'web-hosting-sites': web hosting sites category; 'food-and-dining': food and dining category; 'nudity-artistic': nudity join entertainment and arts; 'illegal-pornography': illegal join adult and pornography;",
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'uncategorized': uncategorized category; 'real-estate': real estate category; 'computer-and-internet-security': computer and internet security category; 'financial-services': financial services category; 'business-and-economy': business and economy category; 'computer-and-internet-info': computer and internet info category; 'auctions': auctions category; 'shopping': shopping category; 'cult-and-occult': cult and occult category; 'travel': travel category; 'drugs': drugs category; 'adult-and-pornography': adult and pornography category; 'home-and-garden': home and garden category; 'military': military category; 'social-network': social network category; 'dead-sites': dead sites category; 'stock-advice-and-tools': stock advice and tools category; 'training-and-tools': training and tools category; 'dating': dating category; 'sex-education': sex education category; 'religion': religion category; 'entertainment-and-arts': entertainment and arts category; 'personal-sites-and-blogs': personal sites and blogs category; 'legal': legal category; 'local-information': local information category; 'streaming-media': streaming media category; 'job-search': job search category; 'gambling': gambling category; 'translation': translation category; 'reference-and-research': reference and research category; 'shareware-and-freeware': shareware and freeware category; 'peer-to-peer': peer to peer category; 'marijuana': marijuana category; 'hacking': hacking category; 'games': games category; 'philosophy-and-politics': philosophy and politics category; 'weapons': weapons category; 'pay-to-surf': pay to surf category; 'hunting-and-fishing': hunting and fishing category; 'society': society category; 'educational-institutions': educational institutions category; 'online-greeting-cards': online greeting cards category; 'sports': sports category; 'swimsuits-and-intimate-apparel': swimsuits and intimate apparel category; 'questionable': questionable category; 'kids': kids category; 'hate-and-racism': hate and racism category; 'personal-storage': personal storage category; 'violence': violence category; 'keyloggers-and-monitoring': keyloggers and monitoring category; 'search-engines': search engines category; 'internet-portals': internet portals category; 'web-advertisements': web advertisements category; 'cheating': cheating category; 'gross': gross category; 'web-based-email': web based email category; 'malware-sites': malware sites category; 'phishing-and-other-fraud': phishing and other fraud category; 'proxy-avoid-and-anonymizers': proxy avoid and anonymizers category; 'spyware-and-adware': spyware and adware category; 'music': music category; 'government': government category; 'nudity': nudity category; 'news-and-media': news and media category; 'illegal': illegal category; 'CDNs': content delivery networks category; 'internet-communications': internet communications category; 'bot-nets': bot nets category; 'abortion': abortion category; 'health-and-medicine': health and medicine category; 'confirmed-SPAM-sources': confirmed SPAM sources category; 'SPAM-URLs': SPAM URLs category; 'unconfirmed-SPAM-sources': unconfirmed SPAM sources category; 'open-HTTP-proxies': open HTTP proxies category; 'dynamically-generated-content': dynamically generated content category; 'parked-domains': parked domains category; 'alcohol-and-tobacco': alcohol and tobacco category; 'private-IP-addresses': private IP addresses category; 'image-and-video-search': image and video search category; 'fashion-and-beauty': fashion and beauty category; 'recreation-and-hobbies': recreation and hobbies category; 'motor-vehicles': motor vehicles category; 'web-hosting-sites': web hosting sites category; 'food-and-dining': food and dining category; 'dummy-item': dummy item category; 'self-harm': self harm category; 'dns-over-https': dns over https category; 'low-thc-cannabis-products': low-thc cannabis products category; 'generative-ai': generative ai; 'nudity-artistic': artistic nudity; 'illegal-pornography': illegal pornography eg. child sexual abuse;",
 									},
 								},
 							},
@@ -296,7 +308,7 @@ func resourceWebCategory() *schema.Resource {
 				},
 			},
 			"cloud_query_cache_size": {
-				Type: schema.TypeInt, Optional: true, Description: "Maximum cache size for storing cloud query results",
+				Type: schema.TypeInt, Optional: true, Description: "Maximum cache size for storing cloud query results, default: 1",
 			},
 			"cloud_query_disable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disables cloud queries for URL's not present in local database(default enable)",
@@ -450,7 +462,7 @@ func resourceWebCategory() *schema.Resource {
 				},
 			},
 			"rtu_cache_size": {
-				Type: schema.TypeInt, Optional: true, Description: "Maximum cache size for storing RTU updates",
+				Type: schema.TypeInt, Optional: true, Description: "Maximum cache size for storing RTU updates, default: 1",
 			},
 			"rtu_update_disable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disables real time updates(default enable)",
@@ -608,9 +620,9 @@ func resourceWebCategoryRead(ctx context.Context, d *schema.ResourceData, meta i
 	return diags
 }
 
-func getObjectWebCategoryBypassedUrls3661(d []interface{}) edpt.WebCategoryBypassedUrls3661 {
+func getObjectWebCategoryBypassedUrls3760(d []interface{}) edpt.WebCategoryBypassedUrls3760 {
 
-	var ret edpt.WebCategoryBypassedUrls3661
+	var ret edpt.WebCategoryBypassedUrls3760
 	return ret
 }
 
@@ -701,6 +713,10 @@ func getSliceWebCategoryCategoryListList(d []interface{}) []edpt.WebCategoryCate
 		oi.RecreationAndHobbies = in["recreation_and_hobbies"].(int)
 		oi.MotorVehicles = in["motor_vehicles"].(int)
 		oi.WebHostingSites = in["web_hosting_sites"].(int)
+		oi.SelfHarm = in["self_harm"].(int)
+		oi.DnsOverHttps = in["dns_over_https"].(int)
+		oi.LowThcCannabisProducts = in["low_thc_cannabis_products"].(int)
+		oi.GenerativeAi = in["generative_ai"].(int)
 		oi.NudityArtistic = in["nudity_artistic"].(int)
 		oi.IllegalPornography = in["illegal_pornography"].(int)
 		//omit uuid
@@ -724,22 +740,22 @@ func getSliceWebCategoryCategoryListListSamplingEnable(d []interface{}) []edpt.W
 	return ret
 }
 
-func getObjectWebCategoryInterceptedUrls3662(d []interface{}) edpt.WebCategoryInterceptedUrls3662 {
+func getObjectWebCategoryInterceptedUrls3761(d []interface{}) edpt.WebCategoryInterceptedUrls3761 {
 
-	var ret edpt.WebCategoryInterceptedUrls3662
+	var ret edpt.WebCategoryInterceptedUrls3761
 	return ret
 }
 
-func getObjectWebCategoryLicense3663(d []interface{}) edpt.WebCategoryLicense3663 {
+func getObjectWebCategoryLicense3762(d []interface{}) edpt.WebCategoryLicense3762 {
 
-	var ret edpt.WebCategoryLicense3663
+	var ret edpt.WebCategoryLicense3762
 	return ret
 }
 
-func getObjectWebCategoryProxyServer3664(d []interface{}) edpt.WebCategoryProxyServer3664 {
+func getObjectWebCategoryProxyServer3763(d []interface{}) edpt.WebCategoryProxyServer3763 {
 
 	count1 := len(d)
-	var ret edpt.WebCategoryProxyServer3664
+	var ret edpt.WebCategoryProxyServer3763
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProxyHost = in["proxy_host"].(string)
@@ -819,83 +835,83 @@ func getSliceWebCategoryReputationScopeListSamplingEnable(d []interface{}) []edp
 	return ret
 }
 
-func getObjectWebCategoryStatistics3665(d []interface{}) edpt.WebCategoryStatistics3665 {
+func getObjectWebCategoryStatistics3764(d []interface{}) edpt.WebCategoryStatistics3764 {
 
 	count1 := len(d)
-	var ret edpt.WebCategoryStatistics3665
+	var ret edpt.WebCategoryStatistics3764
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceWebCategoryStatisticsSamplingEnable3666(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceWebCategoryStatisticsSamplingEnable3765(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceWebCategoryStatisticsSamplingEnable3666(d []interface{}) []edpt.WebCategoryStatisticsSamplingEnable3666 {
+func getSliceWebCategoryStatisticsSamplingEnable3765(d []interface{}) []edpt.WebCategoryStatisticsSamplingEnable3765 {
 
 	count1 := len(d)
-	ret := make([]edpt.WebCategoryStatisticsSamplingEnable3666, 0, count1)
+	ret := make([]edpt.WebCategoryStatisticsSamplingEnable3765, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.WebCategoryStatisticsSamplingEnable3666
+		var oi edpt.WebCategoryStatisticsSamplingEnable3765
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectWebCategoryUrl3667(d []interface{}) edpt.WebCategoryUrl3667 {
+func getObjectWebCategoryUrl3766(d []interface{}) edpt.WebCategoryUrl3766 {
 
-	var ret edpt.WebCategoryUrl3667
+	var ret edpt.WebCategoryUrl3766
 	return ret
 }
 
-func getObjectWebCategoryWebReputation3668(d []interface{}) edpt.WebCategoryWebReputation3668 {
+func getObjectWebCategoryWebReputation3767(d []interface{}) edpt.WebCategoryWebReputation3767 {
 
 	count1 := len(d)
-	var ret edpt.WebCategoryWebReputation3668
+	var ret edpt.WebCategoryWebReputation3767
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.InterceptedUrls = getObjectWebCategoryWebReputationInterceptedUrls3669(in["intercepted_urls"].([]interface{}))
-		ret.BypassedUrls = getObjectWebCategoryWebReputationBypassedUrls3670(in["bypassed_urls"].([]interface{}))
-		ret.Url = getObjectWebCategoryWebReputationUrl3671(in["url"].([]interface{}))
+		ret.InterceptedUrls = getObjectWebCategoryWebReputationInterceptedUrls3768(in["intercepted_urls"].([]interface{}))
+		ret.BypassedUrls = getObjectWebCategoryWebReputationBypassedUrls3769(in["bypassed_urls"].([]interface{}))
+		ret.Url = getObjectWebCategoryWebReputationUrl3770(in["url"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectWebCategoryWebReputationInterceptedUrls3669(d []interface{}) edpt.WebCategoryWebReputationInterceptedUrls3669 {
+func getObjectWebCategoryWebReputationInterceptedUrls3768(d []interface{}) edpt.WebCategoryWebReputationInterceptedUrls3768 {
 
-	var ret edpt.WebCategoryWebReputationInterceptedUrls3669
+	var ret edpt.WebCategoryWebReputationInterceptedUrls3768
 	return ret
 }
 
-func getObjectWebCategoryWebReputationBypassedUrls3670(d []interface{}) edpt.WebCategoryWebReputationBypassedUrls3670 {
+func getObjectWebCategoryWebReputationBypassedUrls3769(d []interface{}) edpt.WebCategoryWebReputationBypassedUrls3769 {
 
-	var ret edpt.WebCategoryWebReputationBypassedUrls3670
+	var ret edpt.WebCategoryWebReputationBypassedUrls3769
 	return ret
 }
 
-func getObjectWebCategoryWebReputationUrl3671(d []interface{}) edpt.WebCategoryWebReputationUrl3671 {
+func getObjectWebCategoryWebReputationUrl3770(d []interface{}) edpt.WebCategoryWebReputationUrl3770 {
 
-	var ret edpt.WebCategoryWebReputationUrl3671
+	var ret edpt.WebCategoryWebReputationUrl3770
 	return ret
 }
 
 func dataToEndpointWebCategory(d *schema.ResourceData) edpt.WebCategory {
 	var ret edpt.WebCategory
-	ret.Inst.BypassedUrls = getObjectWebCategoryBypassedUrls3661(d.Get("bypassed_urls").([]interface{}))
+	ret.Inst.BypassedUrls = getObjectWebCategoryBypassedUrls3760(d.Get("bypassed_urls").([]interface{}))
 	ret.Inst.CategoryListList = getSliceWebCategoryCategoryListList(d.Get("category_list_list").([]interface{}))
 	ret.Inst.CloudQueryCacheSize = d.Get("cloud_query_cache_size").(int)
 	ret.Inst.CloudQueryDisable = d.Get("cloud_query_disable").(int)
 	ret.Inst.DatabaseServer = d.Get("database_server").(string)
 	ret.Inst.DbUpdateTime = d.Get("db_update_time").(string)
 	ret.Inst.Enable = d.Get("enable").(int)
-	ret.Inst.InterceptedUrls = getObjectWebCategoryInterceptedUrls3662(d.Get("intercepted_urls").([]interface{}))
-	ret.Inst.License = getObjectWebCategoryLicense3663(d.Get("license").([]interface{}))
+	ret.Inst.InterceptedUrls = getObjectWebCategoryInterceptedUrls3761(d.Get("intercepted_urls").([]interface{}))
+	ret.Inst.License = getObjectWebCategoryLicense3762(d.Get("license").([]interface{}))
 	ret.Inst.OnlineCheckDisable = d.Get("online_check_disable").(int)
 	ret.Inst.Port = d.Get("port").(int)
-	ret.Inst.ProxyServer = getObjectWebCategoryProxyServer3664(d.Get("proxy_server").([]interface{}))
+	ret.Inst.ProxyServer = getObjectWebCategoryProxyServer3763(d.Get("proxy_server").([]interface{}))
 	ret.Inst.RemoteSyslogEnable = d.Get("remote_syslog_enable").(int)
 	ret.Inst.ReputationScopeList = getSliceWebCategoryReputationScopeList(d.Get("reputation_scope_list").([]interface{}))
 	ret.Inst.RtuCacheSize = d.Get("rtu_cache_size").(int)
@@ -904,10 +920,10 @@ func dataToEndpointWebCategory(d *schema.ResourceData) edpt.WebCategory {
 	ret.Inst.Server = d.Get("server").(string)
 	ret.Inst.ServerTimeout = d.Get("server_timeout").(int)
 	ret.Inst.SslPort = d.Get("ssl_port").(int)
-	ret.Inst.Statistics = getObjectWebCategoryStatistics3665(d.Get("statistics").([]interface{}))
-	ret.Inst.Url = getObjectWebCategoryUrl3667(d.Get("url").([]interface{}))
+	ret.Inst.Statistics = getObjectWebCategoryStatistics3764(d.Get("statistics").([]interface{}))
+	ret.Inst.Url = getObjectWebCategoryUrl3766(d.Get("url").([]interface{}))
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	//omit uuid
-	ret.Inst.WebReputation = getObjectWebCategoryWebReputation3668(d.Get("web_reputation").([]interface{}))
+	ret.Inst.WebReputation = getObjectWebCategoryWebReputation3767(d.Get("web_reputation").([]interface{}))
 	return ret
 }

@@ -55,5 +55,3 @@ Optional:
 
 - `issuer` (String) Issuer
 - `status` (String) Status
-
-

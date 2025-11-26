@@ -22,8 +22,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplTriggerS
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"fw_service_group_mem_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Fw_service_group_mem_tmpl_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplTr
 	var ret edpt.VisibilityPacketCaptureObjectTemplatesFwServiceGroupMemTmplTriggerStatsInc
 	ret.Inst.Curr_conn_overflow = d.Get("curr_conn_overflow").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Fw_service_group_mem_tmpl_name = d.Get("fw_service_group_mem_tmpl_name").(string)
 	return ret
 }

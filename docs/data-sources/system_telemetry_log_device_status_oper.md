@@ -51,5 +51,3 @@ Optional:
 - `ratio_session_count` (String)
 - `total_bytes_in` (Number)
 - `total_bytes_out` (Number)
-
-

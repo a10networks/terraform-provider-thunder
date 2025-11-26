@@ -89,6 +89,9 @@ func resourceInterfaceEthernet() *schema.Resource {
 			"cpu_process_dir": {
 				Type: schema.TypeString, Optional: true, Description: "'primary': Primary board; 'blade': blade board; 'hash-dip': Hash based on the Destination IP; 'hash-sip': Hash based on the Source IP; 'hash-dmac': Hash based on the Destination MAC; 'hash-smac': Hash based on the Source MAC;",
 			},
+			"dac_link_training_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "turn on the DAC-IEEE-LINK-TRAINING",
+			},
 			"ddos": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -221,36 +224,14 @@ func resourceInterfaceEthernet() *schema.Resource {
 						"server": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Server facing interface for IPv4/v6 traffic",
 						},
+						"dmz": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "DMZ network facing interface for IPv4/v6 traffic",
+						},
 						"unnumbered": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Set the interface as unnumbered",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-						},
-						"stateful_firewall": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"inside": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Inside (private) interface for stateful firewall",
-									},
-									"class_list": {
-										Type: schema.TypeString, Optional: true, Description: "Class List (Class List Name)",
-									},
-									"outside": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Outside (public) interface for stateful firewall",
-									},
-									"access_list": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Access-list for traffic from the outside",
-									},
-									"acl_id": {
-										Type: schema.TypeInt, Optional: true, Description: "ACL id",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
 						},
 						"router": {
 							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -684,31 +665,6 @@ func resourceInterfaceEthernet() *schema.Resource {
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-						},
-						"stateful_firewall": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"inside": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Inside (private) interface for stateful firewall",
-									},
-									"class_list": {
-										Type: schema.TypeString, Optional: true, Description: "Class List (Class List Name)",
-									},
-									"outside": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Outside (public) interface for stateful firewall",
-									},
-									"access_list": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Access-list for traffic from the outside",
-									},
-									"acl_name": {
-										Type: schema.TypeString, Optional: true, Description: "Access-list Name",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-									},
-								},
-							},
 						},
 						"router": {
 							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -1339,7 +1295,7 @@ func resourceInterfaceEthernet() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type: schema.TypeString, Optional: true, Description: "'all': all; 'packets_input': Input packets; 'bytes_input': Input bytes; 'received_broadcasts': Received broadcasts; 'received_multicasts': Received multicasts; 'received_unicasts': Received unicasts; 'input_errors': Input errors; 'crc': CRC; 'frame': Frames; 'runts': Runts; 'giants': Giants; 'packets_output': Output packets; 'bytes_output': Output bytes; 'transmitted_broadcasts': Transmitted broadcasts; 'transmitted_multicasts': Transmitted multicasts; 'transmitted_unicasts': Transmitted unicasts; 'output_errors': Output errors; 'collisions': Collisions; 'giants_output': Output Giants; 'rate_pkt_sent': Packet sent rate packets/sec; 'rate_byte_sent': Byte sent rate bits/sec; 'rate_pkt_rcvd': Packet received rate packets/sec; 'rate_byte_rcvd': Byte received rate bits/sec; 'load_interval': Load Interval; 'drops': Drops; 'input_utilization': Input Utilization; 'output_utilization': Output Utilization;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'packets_input': Input packets; 'bytes_input': Input bytes; 'received_broadcasts': Received broadcasts; 'received_multicasts': Received multicasts; 'received_unicasts': Received unicasts; 'input_errors': Input errors; 'crc': CRC; 'frame': Frames; 'runts': Runts; 'giants': Giants; 'packets_output': Output packets; 'bytes_output': Output bytes; 'transmitted_broadcasts': Transmitted broadcasts; 'transmitted_multicasts': Transmitted multicasts; 'transmitted_unicasts': Transmitted unicasts; 'output_errors': Output errors; 'collisions': Collisions; 'giants_output': Output Giants; 'rate_pkt_sent': Packet sent rate packets/sec; 'rate_byte_sent': Byte sent rate bits/sec; 'rate_pkt_rcvd': Packet received rate packets/sec; 'rate_byte_rcvd': Byte received rate bits/sec; 'load_interval': Load Interval; 'transmit_drops': Transmit Drops; 'receive_drops': Receive Drops; 'input_utilization': Input Utilization; 'output_utilization': Output Utilization;",
 						},
 					},
 				},
@@ -1389,7 +1345,7 @@ func resourceInterfaceEthernet() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "force the speed to be 40G on 100G link",
 			},
 			"traffic_distribution_mode": {
-				Type: schema.TypeString, Optional: true, Description: "'sip': sip; 'dip': dip; 'primary': primary; 'blade': blade; 'l4-src-port': l4-src-port; 'l4-dst-port': l4-dst-port;",
+				Type: schema.TypeString, Optional: true, Description: "'sip': sip; 'dip': dip; 'l3-lookup': l3-lookup; 'primary': primary; 'blade': blade; 'l4-src-port': l4-src-port; 'l4-dst-port': l4-dst-port;",
 			},
 			"trap_source": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "The trap source",
@@ -1530,25 +1486,25 @@ func getObjectInterfaceEthernetAccessList(d []interface{}) edpt.InterfaceEtherne
 	return ret
 }
 
-func getObjectInterfaceEthernetBfd484(d []interface{}) edpt.InterfaceEthernetBfd484 {
+func getObjectInterfaceEthernetBfd576(d []interface{}) edpt.InterfaceEthernetBfd576 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetBfd484
+	var ret edpt.InterfaceEthernetBfd576
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Authentication = getObjectInterfaceEthernetBfdAuthentication485(in["authentication"].([]interface{}))
+		ret.Authentication = getObjectInterfaceEthernetBfdAuthentication577(in["authentication"].([]interface{}))
 		ret.Echo = in["echo"].(int)
 		ret.Demand = in["demand"].(int)
-		ret.IntervalCfg = getObjectInterfaceEthernetBfdIntervalCfg486(in["interval_cfg"].([]interface{}))
+		ret.IntervalCfg = getObjectInterfaceEthernetBfdIntervalCfg578(in["interval_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetBfdAuthentication485(d []interface{}) edpt.InterfaceEthernetBfdAuthentication485 {
+func getObjectInterfaceEthernetBfdAuthentication577(d []interface{}) edpt.InterfaceEthernetBfdAuthentication577 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetBfdAuthentication485
+	var ret edpt.InterfaceEthernetBfdAuthentication577
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.KeyId = in["key_id"].(int)
@@ -1559,10 +1515,10 @@ func getObjectInterfaceEthernetBfdAuthentication485(d []interface{}) edpt.Interf
 	return ret
 }
 
-func getObjectInterfaceEthernetBfdIntervalCfg486(d []interface{}) edpt.InterfaceEthernetBfdIntervalCfg486 {
+func getObjectInterfaceEthernetBfdIntervalCfg578(d []interface{}) edpt.InterfaceEthernetBfdIntervalCfg578 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetBfdIntervalCfg486
+	var ret edpt.InterfaceEthernetBfdIntervalCfg578
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Interval = in["interval"].(int)
@@ -1572,10 +1528,10 @@ func getObjectInterfaceEthernetBfdIntervalCfg486(d []interface{}) edpt.Interface
 	return ret
 }
 
-func getObjectInterfaceEthernetDdos487(d []interface{}) edpt.InterfaceEthernetDdos487 {
+func getObjectInterfaceEthernetDdos579(d []interface{}) edpt.InterfaceEthernetDdos579 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetDdos487
+	var ret edpt.InterfaceEthernetDdos579
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Outside = in["outside"].(int)
@@ -1611,17 +1567,17 @@ func getObjectInterfaceEthernetIcmpv6RateLimit(d []interface{}) edpt.InterfaceEt
 	return ret
 }
 
-func getObjectInterfaceEthernetIp488(d []interface{}) edpt.InterfaceEthernetIp488 {
+func getObjectInterfaceEthernetIp580(d []interface{}) edpt.InterfaceEthernetIp580 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIp488
+	var ret edpt.InterfaceEthernetIp580
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Dhcp = in["dhcp"].(int)
-		ret.AddressList = getSliceInterfaceEthernetIpAddressList489(in["address_list"].([]interface{}))
+		ret.AddressList = getSliceInterfaceEthernetIpAddressList581(in["address_list"].([]interface{}))
 		ret.AllowPromiscuousVip = in["allow_promiscuous_vip"].(int)
 		ret.CacheSpoofingPort = in["cache_spoofing_port"].(int)
-		ret.HelperAddressList = getSliceInterfaceEthernetIpHelperAddressList490(in["helper_address_list"].([]interface{}))
+		ret.HelperAddressList = getSliceInterfaceEthernetIpHelperAddressList582(in["helper_address_list"].([]interface{}))
 		ret.Inside = in["inside"].(int)
 		ret.Outside = in["outside"].(int)
 		ret.TtlIgnore = in["ttl_ignore"].(int)
@@ -1632,23 +1588,23 @@ func getObjectInterfaceEthernetIp488(d []interface{}) edpt.InterfaceEthernetIp48
 		ret.MaxRespTime = in["max_resp_time"].(int)
 		ret.Client = in["client"].(int)
 		ret.Server = in["server"].(int)
+		ret.Dmz = in["dmz"].(int)
 		ret.Unnumbered = in["unnumbered"].(int)
 		//omit uuid
-		ret.StatefulFirewall = getObjectInterfaceEthernetIpStatefulFirewall491(in["stateful_firewall"].([]interface{}))
-		ret.Router = getObjectInterfaceEthernetIpRouter492(in["router"].([]interface{}))
-		ret.Rip = getObjectInterfaceEthernetIpRip494(in["rip"].([]interface{}))
-		ret.Ospf = getObjectInterfaceEthernetIpOspf502(in["ospf"].([]interface{}))
+		ret.Router = getObjectInterfaceEthernetIpRouter583(in["router"].([]interface{}))
+		ret.Rip = getObjectInterfaceEthernetIpRip585(in["rip"].([]interface{}))
+		ret.Ospf = getObjectInterfaceEthernetIpOspf593(in["ospf"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceInterfaceEthernetIpAddressList489(d []interface{}) []edpt.InterfaceEthernetIpAddressList489 {
+func getSliceInterfaceEthernetIpAddressList581(d []interface{}) []edpt.InterfaceEthernetIpAddressList581 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpAddressList489, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpAddressList581, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpAddressList489
+		var oi edpt.InterfaceEthernetIpAddressList581
 		oi.Ipv4Address = in["ipv4_address"].(string)
 		oi.Ipv4Netmask = in["ipv4_netmask"].(string)
 		ret = append(ret, oi)
@@ -1656,50 +1612,34 @@ func getSliceInterfaceEthernetIpAddressList489(d []interface{}) []edpt.Interface
 	return ret
 }
 
-func getSliceInterfaceEthernetIpHelperAddressList490(d []interface{}) []edpt.InterfaceEthernetIpHelperAddressList490 {
+func getSliceInterfaceEthernetIpHelperAddressList582(d []interface{}) []edpt.InterfaceEthernetIpHelperAddressList582 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpHelperAddressList490, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpHelperAddressList582, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpHelperAddressList490
+		var oi edpt.InterfaceEthernetIpHelperAddressList582
 		oi.HelperAddress = in["helper_address"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpStatefulFirewall491(d []interface{}) edpt.InterfaceEthernetIpStatefulFirewall491 {
+func getObjectInterfaceEthernetIpRouter583(d []interface{}) edpt.InterfaceEthernetIpRouter583 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpStatefulFirewall491
+	var ret edpt.InterfaceEthernetIpRouter583
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Inside = in["inside"].(int)
-		ret.ClassList = in["class_list"].(string)
-		ret.Outside = in["outside"].(int)
-		ret.AccessList = in["access_list"].(int)
-		ret.AclId = in["acl_id"].(int)
-		//omit uuid
+		ret.Isis = getObjectInterfaceEthernetIpRouterIsis584(in["isis"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRouter492(d []interface{}) edpt.InterfaceEthernetIpRouter492 {
+func getObjectInterfaceEthernetIpRouterIsis584(d []interface{}) edpt.InterfaceEthernetIpRouterIsis584 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRouter492
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Isis = getObjectInterfaceEthernetIpRouterIsis493(in["isis"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectInterfaceEthernetIpRouterIsis493(d []interface{}) edpt.InterfaceEthernetIpRouterIsis493 {
-
-	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRouterIsis493
+	var ret edpt.InterfaceEthernetIpRouterIsis584
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tag = in["tag"].(string)
@@ -1708,40 +1648,40 @@ func getObjectInterfaceEthernetIpRouterIsis493(d []interface{}) edpt.InterfaceEt
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRip494(d []interface{}) edpt.InterfaceEthernetIpRip494 {
+func getObjectInterfaceEthernetIpRip585(d []interface{}) edpt.InterfaceEthernetIpRip585 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRip494
+	var ret edpt.InterfaceEthernetIpRip585
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Authentication = getObjectInterfaceEthernetIpRipAuthentication495(in["authentication"].([]interface{}))
+		ret.Authentication = getObjectInterfaceEthernetIpRipAuthentication586(in["authentication"].([]interface{}))
 		ret.SendPacket = in["send_packet"].(int)
 		ret.ReceivePacket = in["receive_packet"].(int)
-		ret.SendCfg = getObjectInterfaceEthernetIpRipSendCfg499(in["send_cfg"].([]interface{}))
-		ret.ReceiveCfg = getObjectInterfaceEthernetIpRipReceiveCfg500(in["receive_cfg"].([]interface{}))
-		ret.SplitHorizonCfg = getObjectInterfaceEthernetIpRipSplitHorizonCfg501(in["split_horizon_cfg"].([]interface{}))
+		ret.SendCfg = getObjectInterfaceEthernetIpRipSendCfg590(in["send_cfg"].([]interface{}))
+		ret.ReceiveCfg = getObjectInterfaceEthernetIpRipReceiveCfg591(in["receive_cfg"].([]interface{}))
+		ret.SplitHorizonCfg = getObjectInterfaceEthernetIpRipSplitHorizonCfg592(in["split_horizon_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipAuthentication495(d []interface{}) edpt.InterfaceEthernetIpRipAuthentication495 {
+func getObjectInterfaceEthernetIpRipAuthentication586(d []interface{}) edpt.InterfaceEthernetIpRipAuthentication586 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipAuthentication495
+	var ret edpt.InterfaceEthernetIpRipAuthentication586
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Str = getObjectInterfaceEthernetIpRipAuthenticationStr496(in["str"].([]interface{}))
-		ret.Mode = getObjectInterfaceEthernetIpRipAuthenticationMode497(in["mode"].([]interface{}))
-		ret.KeyChain = getObjectInterfaceEthernetIpRipAuthenticationKeyChain498(in["key_chain"].([]interface{}))
+		ret.Str = getObjectInterfaceEthernetIpRipAuthenticationStr587(in["str"].([]interface{}))
+		ret.Mode = getObjectInterfaceEthernetIpRipAuthenticationMode588(in["mode"].([]interface{}))
+		ret.KeyChain = getObjectInterfaceEthernetIpRipAuthenticationKeyChain589(in["key_chain"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipAuthenticationStr496(d []interface{}) edpt.InterfaceEthernetIpRipAuthenticationStr496 {
+func getObjectInterfaceEthernetIpRipAuthenticationStr587(d []interface{}) edpt.InterfaceEthernetIpRipAuthenticationStr587 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipAuthenticationStr496
+	var ret edpt.InterfaceEthernetIpRipAuthenticationStr587
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.String = in["string"].(string)
@@ -1749,10 +1689,10 @@ func getObjectInterfaceEthernetIpRipAuthenticationStr496(d []interface{}) edpt.I
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipAuthenticationMode497(d []interface{}) edpt.InterfaceEthernetIpRipAuthenticationMode497 {
+func getObjectInterfaceEthernetIpRipAuthenticationMode588(d []interface{}) edpt.InterfaceEthernetIpRipAuthenticationMode588 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipAuthenticationMode497
+	var ret edpt.InterfaceEthernetIpRipAuthenticationMode588
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mode = in["mode"].(string)
@@ -1760,10 +1700,10 @@ func getObjectInterfaceEthernetIpRipAuthenticationMode497(d []interface{}) edpt.
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipAuthenticationKeyChain498(d []interface{}) edpt.InterfaceEthernetIpRipAuthenticationKeyChain498 {
+func getObjectInterfaceEthernetIpRipAuthenticationKeyChain589(d []interface{}) edpt.InterfaceEthernetIpRipAuthenticationKeyChain589 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipAuthenticationKeyChain498
+	var ret edpt.InterfaceEthernetIpRipAuthenticationKeyChain589
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.KeyChain = in["key_chain"].(string)
@@ -1771,10 +1711,10 @@ func getObjectInterfaceEthernetIpRipAuthenticationKeyChain498(d []interface{}) e
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipSendCfg499(d []interface{}) edpt.InterfaceEthernetIpRipSendCfg499 {
+func getObjectInterfaceEthernetIpRipSendCfg590(d []interface{}) edpt.InterfaceEthernetIpRipSendCfg590 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipSendCfg499
+	var ret edpt.InterfaceEthernetIpRipSendCfg590
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Send = in["send"].(int)
@@ -1783,10 +1723,10 @@ func getObjectInterfaceEthernetIpRipSendCfg499(d []interface{}) edpt.InterfaceEt
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipReceiveCfg500(d []interface{}) edpt.InterfaceEthernetIpRipReceiveCfg500 {
+func getObjectInterfaceEthernetIpRipReceiveCfg591(d []interface{}) edpt.InterfaceEthernetIpRipReceiveCfg591 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipReceiveCfg500
+	var ret edpt.InterfaceEthernetIpRipReceiveCfg591
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Receive = in["receive"].(int)
@@ -1795,10 +1735,10 @@ func getObjectInterfaceEthernetIpRipReceiveCfg500(d []interface{}) edpt.Interfac
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipSplitHorizonCfg501(d []interface{}) edpt.InterfaceEthernetIpRipSplitHorizonCfg501 {
+func getObjectInterfaceEthernetIpRipSplitHorizonCfg592(d []interface{}) edpt.InterfaceEthernetIpRipSplitHorizonCfg592 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipSplitHorizonCfg501
+	var ret edpt.InterfaceEthernetIpRipSplitHorizonCfg592
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.State = in["state"].(string)
@@ -1806,36 +1746,36 @@ func getObjectInterfaceEthernetIpRipSplitHorizonCfg501(d []interface{}) edpt.Int
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspf502(d []interface{}) edpt.InterfaceEthernetIpOspf502 {
+func getObjectInterfaceEthernetIpOspf593(d []interface{}) edpt.InterfaceEthernetIpOspf593 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspf502
+	var ret edpt.InterfaceEthernetIpOspf593
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.OspfGlobal = getObjectInterfaceEthernetIpOspfOspfGlobal503(in["ospf_global"].([]interface{}))
-		ret.OspfIpList = getSliceInterfaceEthernetIpOspfOspfIpList510(in["ospf_ip_list"].([]interface{}))
+		ret.OspfGlobal = getObjectInterfaceEthernetIpOspfOspfGlobal594(in["ospf_global"].([]interface{}))
+		ret.OspfIpList = getSliceInterfaceEthernetIpOspfOspfIpList601(in["ospf_ip_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspfOspfGlobal503(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobal503 {
+func getObjectInterfaceEthernetIpOspfOspfGlobal594(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobal594 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspfOspfGlobal503
+	var ret edpt.InterfaceEthernetIpOspfOspfGlobal594
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AuthenticationCfg = getObjectInterfaceEthernetIpOspfOspfGlobalAuthenticationCfg504(in["authentication_cfg"].([]interface{}))
+		ret.AuthenticationCfg = getObjectInterfaceEthernetIpOspfOspfGlobalAuthenticationCfg595(in["authentication_cfg"].([]interface{}))
 		ret.AuthenticationKey = in["authentication_key"].(string)
-		ret.BfdCfg = getObjectInterfaceEthernetIpOspfOspfGlobalBfdCfg505(in["bfd_cfg"].([]interface{}))
+		ret.BfdCfg = getObjectInterfaceEthernetIpOspfOspfGlobalBfdCfg596(in["bfd_cfg"].([]interface{}))
 		ret.Cost = in["cost"].(int)
-		ret.DatabaseFilterCfg = getObjectInterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg506(in["database_filter_cfg"].([]interface{}))
+		ret.DatabaseFilterCfg = getObjectInterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg597(in["database_filter_cfg"].([]interface{}))
 		ret.DeadInterval = in["dead_interval"].(int)
 		ret.Disable = in["disable"].(string)
 		ret.HelloInterval = in["hello_interval"].(int)
-		ret.MessageDigestCfg = getSliceInterfaceEthernetIpOspfOspfGlobalMessageDigestCfg507(in["message_digest_cfg"].([]interface{}))
+		ret.MessageDigestCfg = getSliceInterfaceEthernetIpOspfOspfGlobalMessageDigestCfg598(in["message_digest_cfg"].([]interface{}))
 		ret.Mtu = in["mtu"].(int)
 		ret.MtuIgnore = in["mtu_ignore"].(int)
-		ret.Network = getObjectInterfaceEthernetIpOspfOspfGlobalNetwork509(in["network"].([]interface{}))
+		ret.Network = getObjectInterfaceEthernetIpOspfOspfGlobalNetwork600(in["network"].([]interface{}))
 		ret.Priority = in["priority"].(int)
 		ret.RetransmitInterval = in["retransmit_interval"].(int)
 		ret.TransmitDelay = in["transmit_delay"].(int)
@@ -1844,10 +1784,10 @@ func getObjectInterfaceEthernetIpOspfOspfGlobal503(d []interface{}) edpt.Interfa
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspfOspfGlobalAuthenticationCfg504(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalAuthenticationCfg504 {
+func getObjectInterfaceEthernetIpOspfOspfGlobalAuthenticationCfg595(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalAuthenticationCfg595 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspfOspfGlobalAuthenticationCfg504
+	var ret edpt.InterfaceEthernetIpOspfOspfGlobalAuthenticationCfg595
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Authentication = in["authentication"].(int)
@@ -1856,10 +1796,10 @@ func getObjectInterfaceEthernetIpOspfOspfGlobalAuthenticationCfg504(d []interfac
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspfOspfGlobalBfdCfg505(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalBfdCfg505 {
+func getObjectInterfaceEthernetIpOspfOspfGlobalBfdCfg596(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalBfdCfg596 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspfOspfGlobalBfdCfg505
+	var ret edpt.InterfaceEthernetIpOspfOspfGlobalBfdCfg596
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bfd = in["bfd"].(int)
@@ -1868,10 +1808,10 @@ func getObjectInterfaceEthernetIpOspfOspfGlobalBfdCfg505(d []interface{}) edpt.I
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg506(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg506 {
+func getObjectInterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg597(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg597 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg506
+	var ret edpt.InterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg597
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DatabaseFilter = in["database_filter"].(string)
@@ -1880,24 +1820,24 @@ func getObjectInterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg506(d []interfac
 	return ret
 }
 
-func getSliceInterfaceEthernetIpOspfOspfGlobalMessageDigestCfg507(d []interface{}) []edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg507 {
+func getSliceInterfaceEthernetIpOspfOspfGlobalMessageDigestCfg598(d []interface{}) []edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg598 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg507, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg598, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg507
+		var oi edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg598
 		oi.MessageDigestKey = in["message_digest_key"].(int)
-		oi.Md5 = getObjectInterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5508(in["md5"].([]interface{}))
+		oi.Md5 = getObjectInterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5599(in["md5"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5508(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5508 {
+func getObjectInterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5599(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5599 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5508
+	var ret edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5599
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Md5Value = in["md5_value"].(string)
@@ -1906,10 +1846,10 @@ func getObjectInterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5508(d []interf
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspfOspfGlobalNetwork509(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalNetwork509 {
+func getObjectInterfaceEthernetIpOspfOspfGlobalNetwork600(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalNetwork600 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspfOspfGlobalNetwork509
+	var ret edpt.InterfaceEthernetIpOspfOspfGlobalNetwork600
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Broadcast = in["broadcast"].(int)
@@ -1921,13 +1861,13 @@ func getObjectInterfaceEthernetIpOspfOspfGlobalNetwork509(d []interface{}) edpt.
 	return ret
 }
 
-func getSliceInterfaceEthernetIpOspfOspfIpList510(d []interface{}) []edpt.InterfaceEthernetIpOspfOspfIpList510 {
+func getSliceInterfaceEthernetIpOspfOspfIpList601(d []interface{}) []edpt.InterfaceEthernetIpOspfOspfIpList601 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpOspfOspfIpList510, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpOspfOspfIpList601, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpOspfOspfIpList510
+		var oi edpt.InterfaceEthernetIpOspfOspfIpList601
 		oi.IpAddr = in["ip_addr"].(string)
 		oi.Authentication = in["authentication"].(int)
 		oi.Value = in["value"].(string)
@@ -1937,7 +1877,7 @@ func getSliceInterfaceEthernetIpOspfOspfIpList510(d []interface{}) []edpt.Interf
 		oi.Out = in["out"].(int)
 		oi.DeadInterval = in["dead_interval"].(int)
 		oi.HelloInterval = in["hello_interval"].(int)
-		oi.MessageDigestCfg = getSliceInterfaceEthernetIpOspfOspfIpListMessageDigestCfg511(in["message_digest_cfg"].([]interface{}))
+		oi.MessageDigestCfg = getSliceInterfaceEthernetIpOspfOspfIpListMessageDigestCfg602(in["message_digest_cfg"].([]interface{}))
 		oi.MtuIgnore = in["mtu_ignore"].(int)
 		oi.Priority = in["priority"].(int)
 		oi.RetransmitInterval = in["retransmit_interval"].(int)
@@ -1948,13 +1888,13 @@ func getSliceInterfaceEthernetIpOspfOspfIpList510(d []interface{}) []edpt.Interf
 	return ret
 }
 
-func getSliceInterfaceEthernetIpOspfOspfIpListMessageDigestCfg511(d []interface{}) []edpt.InterfaceEthernetIpOspfOspfIpListMessageDigestCfg511 {
+func getSliceInterfaceEthernetIpOspfOspfIpListMessageDigestCfg602(d []interface{}) []edpt.InterfaceEthernetIpOspfOspfIpListMessageDigestCfg602 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpOspfOspfIpListMessageDigestCfg511, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpOspfOspfIpListMessageDigestCfg602, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpOspfOspfIpListMessageDigestCfg511
+		var oi edpt.InterfaceEthernetIpOspfOspfIpListMessageDigestCfg602
 		oi.MessageDigestKey = in["message_digest_key"].(int)
 		oi.Md5Value = in["md5_value"].(string)
 		//omit encrypted
@@ -1963,35 +1903,34 @@ func getSliceInterfaceEthernetIpOspfOspfIpListMessageDigestCfg511(d []interface{
 	return ret
 }
 
-func getObjectInterfaceEthernetIpv6512(d []interface{}) edpt.InterfaceEthernetIpv6512 {
+func getObjectInterfaceEthernetIpv6603(d []interface{}) edpt.InterfaceEthernetIpv6603 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpv6512
+	var ret edpt.InterfaceEthernetIpv6603
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AddressList = getSliceInterfaceEthernetIpv6AddressList513(in["address_list"].([]interface{}))
+		ret.AddressList = getSliceInterfaceEthernetIpv6AddressList604(in["address_list"].([]interface{}))
 		ret.Inside = in["inside"].(int)
 		ret.Outside = in["outside"].(int)
 		ret.Ipv6Enable = in["ipv6_enable"].(int)
 		ret.TtlIgnore = in["ttl_ignore"].(int)
-		ret.AccessListCfg = getObjectInterfaceEthernetIpv6AccessListCfg514(in["access_list_cfg"].([]interface{}))
-		ret.RouterAdver = getObjectInterfaceEthernetIpv6RouterAdver515(in["router_adver"].([]interface{}))
+		ret.AccessListCfg = getObjectInterfaceEthernetIpv6AccessListCfg605(in["access_list_cfg"].([]interface{}))
+		ret.RouterAdver = getObjectInterfaceEthernetIpv6RouterAdver606(in["router_adver"].([]interface{}))
 		//omit uuid
-		ret.StatefulFirewall = getObjectInterfaceEthernetIpv6StatefulFirewall517(in["stateful_firewall"].([]interface{}))
-		ret.Router = getObjectInterfaceEthernetIpv6Router518(in["router"].([]interface{}))
-		ret.Rip = getObjectInterfaceEthernetIpv6Rip523(in["rip"].([]interface{}))
-		ret.Ospf = getObjectInterfaceEthernetIpv6Ospf525(in["ospf"].([]interface{}))
+		ret.Router = getObjectInterfaceEthernetIpv6Router608(in["router"].([]interface{}))
+		ret.Rip = getObjectInterfaceEthernetIpv6Rip613(in["rip"].([]interface{}))
+		ret.Ospf = getObjectInterfaceEthernetIpv6Ospf615(in["ospf"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceInterfaceEthernetIpv6AddressList513(d []interface{}) []edpt.InterfaceEthernetIpv6AddressList513 {
+func getSliceInterfaceEthernetIpv6AddressList604(d []interface{}) []edpt.InterfaceEthernetIpv6AddressList604 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpv6AddressList513, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpv6AddressList604, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpv6AddressList513
+		var oi edpt.InterfaceEthernetIpv6AddressList604
 		oi.Ipv6Addr = in["ipv6_addr"].(string)
 		oi.AddressType = in["address_type"].(string)
 		ret = append(ret, oi)
@@ -1999,10 +1938,10 @@ func getSliceInterfaceEthernetIpv6AddressList513(d []interface{}) []edpt.Interfa
 	return ret
 }
 
-func getObjectInterfaceEthernetIpv6AccessListCfg514(d []interface{}) edpt.InterfaceEthernetIpv6AccessListCfg514 {
+func getObjectInterfaceEthernetIpv6AccessListCfg605(d []interface{}) edpt.InterfaceEthernetIpv6AccessListCfg605 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpv6AccessListCfg514
+	var ret edpt.InterfaceEthernetIpv6AccessListCfg605
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.V6AclName = in["v6_acl_name"].(string)
@@ -2011,10 +1950,10 @@ func getObjectInterfaceEthernetIpv6AccessListCfg514(d []interface{}) edpt.Interf
 	return ret
 }
 
-func getObjectInterfaceEthernetIpv6RouterAdver515(d []interface{}) edpt.InterfaceEthernetIpv6RouterAdver515 {
+func getObjectInterfaceEthernetIpv6RouterAdver606(d []interface{}) edpt.InterfaceEthernetIpv6RouterAdver606 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpv6RouterAdver515
+	var ret edpt.InterfaceEthernetIpv6RouterAdver606
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
@@ -2027,7 +1966,7 @@ func getObjectInterfaceEthernetIpv6RouterAdver515(d []interface{}) edpt.Interfac
 		ret.RetransmitTimer = in["retransmit_timer"].(int)
 		ret.AdverMtuDisable = in["adver_mtu_disable"].(int)
 		ret.AdverMtu = in["adver_mtu"].(int)
-		ret.PrefixList = getSliceInterfaceEthernetIpv6RouterAdverPrefixList516(in["prefix_list"].([]interface{}))
+		ret.PrefixList = getSliceInterfaceEthernetIpv6RouterAdverPrefixList607(in["prefix_list"].([]interface{}))
 		ret.ManagedConfigAction = in["managed_config_action"].(string)
 		ret.OtherConfigAction = in["other_config_action"].(string)
 		ret.AdverVrid = in["adver_vrid"].(int)
@@ -2040,13 +1979,13 @@ func getObjectInterfaceEthernetIpv6RouterAdver515(d []interface{}) edpt.Interfac
 	return ret
 }
 
-func getSliceInterfaceEthernetIpv6RouterAdverPrefixList516(d []interface{}) []edpt.InterfaceEthernetIpv6RouterAdverPrefixList516 {
+func getSliceInterfaceEthernetIpv6RouterAdverPrefixList607(d []interface{}) []edpt.InterfaceEthernetIpv6RouterAdverPrefixList607 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpv6RouterAdverPrefixList516, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpv6RouterAdverPrefixList607, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpv6RouterAdverPrefixList516
+		var oi edpt.InterfaceEthernetIpv6RouterAdverPrefixList607
 		oi.Prefix = in["prefix"].(string)
 		oi.NotAutonomous = in["not_autonomous"].(int)
 		oi.NotOnLink = in["not_on_link"].(int)
@@ -2057,39 +1996,23 @@ func getSliceInterfaceEthernetIpv6RouterAdverPrefixList516(d []interface{}) []ed
 	return ret
 }
 
-func getObjectInterfaceEthernetIpv6StatefulFirewall517(d []interface{}) edpt.InterfaceEthernetIpv6StatefulFirewall517 {
+func getObjectInterfaceEthernetIpv6Router608(d []interface{}) edpt.InterfaceEthernetIpv6Router608 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpv6StatefulFirewall517
+	var ret edpt.InterfaceEthernetIpv6Router608
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Inside = in["inside"].(int)
-		ret.ClassList = in["class_list"].(string)
-		ret.Outside = in["outside"].(int)
-		ret.AccessList = in["access_list"].(int)
-		ret.AclName = in["acl_name"].(string)
-		//omit uuid
+		ret.Ripng = getObjectInterfaceEthernetIpv6RouterRipng609(in["ripng"].([]interface{}))
+		ret.Ospf = getObjectInterfaceEthernetIpv6RouterOspf610(in["ospf"].([]interface{}))
+		ret.Isis = getObjectInterfaceEthernetIpv6RouterIsis612(in["isis"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpv6Router518(d []interface{}) edpt.InterfaceEthernetIpv6Router518 {
+func getObjectInterfaceEthernetIpv6RouterRipng609(d []interface{}) edpt.InterfaceEthernetIpv6RouterRipng609 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpv6Router518
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Ripng = getObjectInterfaceEthernetIpv6RouterRipng519(in["ripng"].([]interface{}))
-		ret.Ospf = getObjectInterfaceEthernetIpv6RouterOspf520(in["ospf"].([]interface{}))
-		ret.Isis = getObjectInterfaceEthernetIpv6RouterIsis522(in["isis"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectInterfaceEthernetIpv6RouterRipng519(d []interface{}) edpt.InterfaceEthernetIpv6RouterRipng519 {
-
-	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpv6RouterRipng519
+	var ret edpt.InterfaceEthernetIpv6RouterRipng609
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Rip = in["rip"].(int)
@@ -2098,25 +2021,25 @@ func getObjectInterfaceEthernetIpv6RouterRipng519(d []interface{}) edpt.Interfac
 	return ret
 }
 
-func getObjectInterfaceEthernetIpv6RouterOspf520(d []interface{}) edpt.InterfaceEthernetIpv6RouterOspf520 {
+func getObjectInterfaceEthernetIpv6RouterOspf610(d []interface{}) edpt.InterfaceEthernetIpv6RouterOspf610 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpv6RouterOspf520
+	var ret edpt.InterfaceEthernetIpv6RouterOspf610
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AreaList = getSliceInterfaceEthernetIpv6RouterOspfAreaList521(in["area_list"].([]interface{}))
+		ret.AreaList = getSliceInterfaceEthernetIpv6RouterOspfAreaList611(in["area_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceInterfaceEthernetIpv6RouterOspfAreaList521(d []interface{}) []edpt.InterfaceEthernetIpv6RouterOspfAreaList521 {
+func getSliceInterfaceEthernetIpv6RouterOspfAreaList611(d []interface{}) []edpt.InterfaceEthernetIpv6RouterOspfAreaList611 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpv6RouterOspfAreaList521, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpv6RouterOspfAreaList611, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpv6RouterOspfAreaList521
+		var oi edpt.InterfaceEthernetIpv6RouterOspfAreaList611
 		oi.AreaIdNum = in["area_id_num"].(int)
 		oi.AreaIdAddr = in["area_id_addr"].(string)
 		oi.Tag = in["tag"].(string)
@@ -2126,10 +2049,10 @@ func getSliceInterfaceEthernetIpv6RouterOspfAreaList521(d []interface{}) []edpt.
 	return ret
 }
 
-func getObjectInterfaceEthernetIpv6RouterIsis522(d []interface{}) edpt.InterfaceEthernetIpv6RouterIsis522 {
+func getObjectInterfaceEthernetIpv6RouterIsis612(d []interface{}) edpt.InterfaceEthernetIpv6RouterIsis612 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpv6RouterIsis522
+	var ret edpt.InterfaceEthernetIpv6RouterIsis612
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tag = in["tag"].(string)
@@ -2138,22 +2061,22 @@ func getObjectInterfaceEthernetIpv6RouterIsis522(d []interface{}) edpt.Interface
 	return ret
 }
 
-func getObjectInterfaceEthernetIpv6Rip523(d []interface{}) edpt.InterfaceEthernetIpv6Rip523 {
+func getObjectInterfaceEthernetIpv6Rip613(d []interface{}) edpt.InterfaceEthernetIpv6Rip613 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpv6Rip523
+	var ret edpt.InterfaceEthernetIpv6Rip613
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.SplitHorizonCfg = getObjectInterfaceEthernetIpv6RipSplitHorizonCfg524(in["split_horizon_cfg"].([]interface{}))
+		ret.SplitHorizonCfg = getObjectInterfaceEthernetIpv6RipSplitHorizonCfg614(in["split_horizon_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpv6RipSplitHorizonCfg524(d []interface{}) edpt.InterfaceEthernetIpv6RipSplitHorizonCfg524 {
+func getObjectInterfaceEthernetIpv6RipSplitHorizonCfg614(d []interface{}) edpt.InterfaceEthernetIpv6RipSplitHorizonCfg614 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpv6RipSplitHorizonCfg524
+	var ret edpt.InterfaceEthernetIpv6RipSplitHorizonCfg614
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.State = in["state"].(string)
@@ -2161,35 +2084,35 @@ func getObjectInterfaceEthernetIpv6RipSplitHorizonCfg524(d []interface{}) edpt.I
 	return ret
 }
 
-func getObjectInterfaceEthernetIpv6Ospf525(d []interface{}) edpt.InterfaceEthernetIpv6Ospf525 {
+func getObjectInterfaceEthernetIpv6Ospf615(d []interface{}) edpt.InterfaceEthernetIpv6Ospf615 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpv6Ospf525
+	var ret edpt.InterfaceEthernetIpv6Ospf615
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.NetworkList = getSliceInterfaceEthernetIpv6OspfNetworkList526(in["network_list"].([]interface{}))
+		ret.NetworkList = getSliceInterfaceEthernetIpv6OspfNetworkList616(in["network_list"].([]interface{}))
 		ret.Bfd = in["bfd"].(int)
 		ret.Disable = in["disable"].(int)
-		ret.CostCfg = getSliceInterfaceEthernetIpv6OspfCostCfg527(in["cost_cfg"].([]interface{}))
-		ret.DeadIntervalCfg = getSliceInterfaceEthernetIpv6OspfDeadIntervalCfg528(in["dead_interval_cfg"].([]interface{}))
-		ret.HelloIntervalCfg = getSliceInterfaceEthernetIpv6OspfHelloIntervalCfg529(in["hello_interval_cfg"].([]interface{}))
-		ret.MtuIgnoreCfg = getSliceInterfaceEthernetIpv6OspfMtuIgnoreCfg530(in["mtu_ignore_cfg"].([]interface{}))
-		ret.NeighborCfg = getSliceInterfaceEthernetIpv6OspfNeighborCfg531(in["neighbor_cfg"].([]interface{}))
-		ret.PriorityCfg = getSliceInterfaceEthernetIpv6OspfPriorityCfg532(in["priority_cfg"].([]interface{}))
-		ret.RetransmitIntervalCfg = getSliceInterfaceEthernetIpv6OspfRetransmitIntervalCfg533(in["retransmit_interval_cfg"].([]interface{}))
-		ret.TransmitDelayCfg = getSliceInterfaceEthernetIpv6OspfTransmitDelayCfg534(in["transmit_delay_cfg"].([]interface{}))
+		ret.CostCfg = getSliceInterfaceEthernetIpv6OspfCostCfg617(in["cost_cfg"].([]interface{}))
+		ret.DeadIntervalCfg = getSliceInterfaceEthernetIpv6OspfDeadIntervalCfg618(in["dead_interval_cfg"].([]interface{}))
+		ret.HelloIntervalCfg = getSliceInterfaceEthernetIpv6OspfHelloIntervalCfg619(in["hello_interval_cfg"].([]interface{}))
+		ret.MtuIgnoreCfg = getSliceInterfaceEthernetIpv6OspfMtuIgnoreCfg620(in["mtu_ignore_cfg"].([]interface{}))
+		ret.NeighborCfg = getSliceInterfaceEthernetIpv6OspfNeighborCfg621(in["neighbor_cfg"].([]interface{}))
+		ret.PriorityCfg = getSliceInterfaceEthernetIpv6OspfPriorityCfg622(in["priority_cfg"].([]interface{}))
+		ret.RetransmitIntervalCfg = getSliceInterfaceEthernetIpv6OspfRetransmitIntervalCfg623(in["retransmit_interval_cfg"].([]interface{}))
+		ret.TransmitDelayCfg = getSliceInterfaceEthernetIpv6OspfTransmitDelayCfg624(in["transmit_delay_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceInterfaceEthernetIpv6OspfNetworkList526(d []interface{}) []edpt.InterfaceEthernetIpv6OspfNetworkList526 {
+func getSliceInterfaceEthernetIpv6OspfNetworkList616(d []interface{}) []edpt.InterfaceEthernetIpv6OspfNetworkList616 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpv6OspfNetworkList526, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpv6OspfNetworkList616, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpv6OspfNetworkList526
+		var oi edpt.InterfaceEthernetIpv6OspfNetworkList616
 		oi.BroadcastType = in["broadcast_type"].(string)
 		oi.P2mpNbma = in["p2mp_nbma"].(int)
 		oi.NetworkInstanceId = in["network_instance_id"].(int)
@@ -2198,13 +2121,13 @@ func getSliceInterfaceEthernetIpv6OspfNetworkList526(d []interface{}) []edpt.Int
 	return ret
 }
 
-func getSliceInterfaceEthernetIpv6OspfCostCfg527(d []interface{}) []edpt.InterfaceEthernetIpv6OspfCostCfg527 {
+func getSliceInterfaceEthernetIpv6OspfCostCfg617(d []interface{}) []edpt.InterfaceEthernetIpv6OspfCostCfg617 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpv6OspfCostCfg527, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpv6OspfCostCfg617, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpv6OspfCostCfg527
+		var oi edpt.InterfaceEthernetIpv6OspfCostCfg617
 		oi.Cost = in["cost"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -2212,13 +2135,13 @@ func getSliceInterfaceEthernetIpv6OspfCostCfg527(d []interface{}) []edpt.Interfa
 	return ret
 }
 
-func getSliceInterfaceEthernetIpv6OspfDeadIntervalCfg528(d []interface{}) []edpt.InterfaceEthernetIpv6OspfDeadIntervalCfg528 {
+func getSliceInterfaceEthernetIpv6OspfDeadIntervalCfg618(d []interface{}) []edpt.InterfaceEthernetIpv6OspfDeadIntervalCfg618 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpv6OspfDeadIntervalCfg528, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpv6OspfDeadIntervalCfg618, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpv6OspfDeadIntervalCfg528
+		var oi edpt.InterfaceEthernetIpv6OspfDeadIntervalCfg618
 		oi.DeadInterval = in["dead_interval"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -2226,13 +2149,13 @@ func getSliceInterfaceEthernetIpv6OspfDeadIntervalCfg528(d []interface{}) []edpt
 	return ret
 }
 
-func getSliceInterfaceEthernetIpv6OspfHelloIntervalCfg529(d []interface{}) []edpt.InterfaceEthernetIpv6OspfHelloIntervalCfg529 {
+func getSliceInterfaceEthernetIpv6OspfHelloIntervalCfg619(d []interface{}) []edpt.InterfaceEthernetIpv6OspfHelloIntervalCfg619 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpv6OspfHelloIntervalCfg529, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpv6OspfHelloIntervalCfg619, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpv6OspfHelloIntervalCfg529
+		var oi edpt.InterfaceEthernetIpv6OspfHelloIntervalCfg619
 		oi.HelloInterval = in["hello_interval"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -2240,13 +2163,13 @@ func getSliceInterfaceEthernetIpv6OspfHelloIntervalCfg529(d []interface{}) []edp
 	return ret
 }
 
-func getSliceInterfaceEthernetIpv6OspfMtuIgnoreCfg530(d []interface{}) []edpt.InterfaceEthernetIpv6OspfMtuIgnoreCfg530 {
+func getSliceInterfaceEthernetIpv6OspfMtuIgnoreCfg620(d []interface{}) []edpt.InterfaceEthernetIpv6OspfMtuIgnoreCfg620 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpv6OspfMtuIgnoreCfg530, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpv6OspfMtuIgnoreCfg620, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpv6OspfMtuIgnoreCfg530
+		var oi edpt.InterfaceEthernetIpv6OspfMtuIgnoreCfg620
 		oi.MtuIgnore = in["mtu_ignore"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -2254,13 +2177,13 @@ func getSliceInterfaceEthernetIpv6OspfMtuIgnoreCfg530(d []interface{}) []edpt.In
 	return ret
 }
 
-func getSliceInterfaceEthernetIpv6OspfNeighborCfg531(d []interface{}) []edpt.InterfaceEthernetIpv6OspfNeighborCfg531 {
+func getSliceInterfaceEthernetIpv6OspfNeighborCfg621(d []interface{}) []edpt.InterfaceEthernetIpv6OspfNeighborCfg621 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpv6OspfNeighborCfg531, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpv6OspfNeighborCfg621, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpv6OspfNeighborCfg531
+		var oi edpt.InterfaceEthernetIpv6OspfNeighborCfg621
 		oi.Neighbor = in["neighbor"].(string)
 		oi.NeigInst = in["neig_inst"].(int)
 		oi.NeighborCost = in["neighbor_cost"].(int)
@@ -2271,13 +2194,13 @@ func getSliceInterfaceEthernetIpv6OspfNeighborCfg531(d []interface{}) []edpt.Int
 	return ret
 }
 
-func getSliceInterfaceEthernetIpv6OspfPriorityCfg532(d []interface{}) []edpt.InterfaceEthernetIpv6OspfPriorityCfg532 {
+func getSliceInterfaceEthernetIpv6OspfPriorityCfg622(d []interface{}) []edpt.InterfaceEthernetIpv6OspfPriorityCfg622 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpv6OspfPriorityCfg532, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpv6OspfPriorityCfg622, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpv6OspfPriorityCfg532
+		var oi edpt.InterfaceEthernetIpv6OspfPriorityCfg622
 		oi.Priority = in["priority"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -2285,13 +2208,13 @@ func getSliceInterfaceEthernetIpv6OspfPriorityCfg532(d []interface{}) []edpt.Int
 	return ret
 }
 
-func getSliceInterfaceEthernetIpv6OspfRetransmitIntervalCfg533(d []interface{}) []edpt.InterfaceEthernetIpv6OspfRetransmitIntervalCfg533 {
+func getSliceInterfaceEthernetIpv6OspfRetransmitIntervalCfg623(d []interface{}) []edpt.InterfaceEthernetIpv6OspfRetransmitIntervalCfg623 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpv6OspfRetransmitIntervalCfg533, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpv6OspfRetransmitIntervalCfg623, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpv6OspfRetransmitIntervalCfg533
+		var oi edpt.InterfaceEthernetIpv6OspfRetransmitIntervalCfg623
 		oi.RetransmitInterval = in["retransmit_interval"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -2299,13 +2222,13 @@ func getSliceInterfaceEthernetIpv6OspfRetransmitIntervalCfg533(d []interface{}) 
 	return ret
 }
 
-func getSliceInterfaceEthernetIpv6OspfTransmitDelayCfg534(d []interface{}) []edpt.InterfaceEthernetIpv6OspfTransmitDelayCfg534 {
+func getSliceInterfaceEthernetIpv6OspfTransmitDelayCfg624(d []interface{}) []edpt.InterfaceEthernetIpv6OspfTransmitDelayCfg624 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpv6OspfTransmitDelayCfg534, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpv6OspfTransmitDelayCfg624, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpv6OspfTransmitDelayCfg534
+		var oi edpt.InterfaceEthernetIpv6OspfTransmitDelayCfg624
 		oi.TransmitDelay = in["transmit_delay"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -2313,53 +2236,53 @@ func getSliceInterfaceEthernetIpv6OspfTransmitDelayCfg534(d []interface{}) []edp
 	return ret
 }
 
-func getObjectInterfaceEthernetIsis535(d []interface{}) edpt.InterfaceEthernetIsis535 {
+func getObjectInterfaceEthernetIsis625(d []interface{}) edpt.InterfaceEthernetIsis625 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIsis535
+	var ret edpt.InterfaceEthernetIsis625
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Authentication = getObjectInterfaceEthernetIsisAuthentication536(in["authentication"].([]interface{}))
-		ret.BfdCfg = getObjectInterfaceEthernetIsisBfdCfg540(in["bfd_cfg"].([]interface{}))
+		ret.Authentication = getObjectInterfaceEthernetIsisAuthentication626(in["authentication"].([]interface{}))
+		ret.BfdCfg = getObjectInterfaceEthernetIsisBfdCfg630(in["bfd_cfg"].([]interface{}))
 		ret.CircuitType = in["circuit_type"].(string)
-		ret.CsnpIntervalList = getSliceInterfaceEthernetIsisCsnpIntervalList541(in["csnp_interval_list"].([]interface{}))
+		ret.CsnpIntervalList = getSliceInterfaceEthernetIsisCsnpIntervalList631(in["csnp_interval_list"].([]interface{}))
 		ret.Padding = in["padding"].(int)
-		ret.HelloIntervalList = getSliceInterfaceEthernetIsisHelloIntervalList542(in["hello_interval_list"].([]interface{}))
-		ret.HelloIntervalMinimalList = getSliceInterfaceEthernetIsisHelloIntervalMinimalList543(in["hello_interval_minimal_list"].([]interface{}))
-		ret.HelloMultiplierList = getSliceInterfaceEthernetIsisHelloMultiplierList544(in["hello_multiplier_list"].([]interface{}))
+		ret.HelloIntervalList = getSliceInterfaceEthernetIsisHelloIntervalList632(in["hello_interval_list"].([]interface{}))
+		ret.HelloIntervalMinimalList = getSliceInterfaceEthernetIsisHelloIntervalMinimalList633(in["hello_interval_minimal_list"].([]interface{}))
+		ret.HelloMultiplierList = getSliceInterfaceEthernetIsisHelloMultiplierList634(in["hello_multiplier_list"].([]interface{}))
 		ret.LspInterval = in["lsp_interval"].(int)
-		ret.MeshGroup = getObjectInterfaceEthernetIsisMeshGroup545(in["mesh_group"].([]interface{}))
-		ret.MetricList = getSliceInterfaceEthernetIsisMetricList546(in["metric_list"].([]interface{}))
+		ret.MeshGroup = getObjectInterfaceEthernetIsisMeshGroup635(in["mesh_group"].([]interface{}))
+		ret.MetricList = getSliceInterfaceEthernetIsisMetricList636(in["metric_list"].([]interface{}))
 		ret.Network = in["network"].(string)
-		ret.PasswordList = getSliceInterfaceEthernetIsisPasswordList547(in["password_list"].([]interface{}))
-		ret.PriorityList = getSliceInterfaceEthernetIsisPriorityList548(in["priority_list"].([]interface{}))
+		ret.PasswordList = getSliceInterfaceEthernetIsisPasswordList637(in["password_list"].([]interface{}))
+		ret.PriorityList = getSliceInterfaceEthernetIsisPriorityList638(in["priority_list"].([]interface{}))
 		ret.RetransmitInterval = in["retransmit_interval"].(int)
-		ret.WideMetricList = getSliceInterfaceEthernetIsisWideMetricList549(in["wide_metric_list"].([]interface{}))
+		ret.WideMetricList = getSliceInterfaceEthernetIsisWideMetricList639(in["wide_metric_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIsisAuthentication536(d []interface{}) edpt.InterfaceEthernetIsisAuthentication536 {
+func getObjectInterfaceEthernetIsisAuthentication626(d []interface{}) edpt.InterfaceEthernetIsisAuthentication626 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIsisAuthentication536
+	var ret edpt.InterfaceEthernetIsisAuthentication626
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.SendOnlyList = getSliceInterfaceEthernetIsisAuthenticationSendOnlyList537(in["send_only_list"].([]interface{}))
-		ret.ModeList = getSliceInterfaceEthernetIsisAuthenticationModeList538(in["mode_list"].([]interface{}))
-		ret.KeyChainList = getSliceInterfaceEthernetIsisAuthenticationKeyChainList539(in["key_chain_list"].([]interface{}))
+		ret.SendOnlyList = getSliceInterfaceEthernetIsisAuthenticationSendOnlyList627(in["send_only_list"].([]interface{}))
+		ret.ModeList = getSliceInterfaceEthernetIsisAuthenticationModeList628(in["mode_list"].([]interface{}))
+		ret.KeyChainList = getSliceInterfaceEthernetIsisAuthenticationKeyChainList629(in["key_chain_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceInterfaceEthernetIsisAuthenticationSendOnlyList537(d []interface{}) []edpt.InterfaceEthernetIsisAuthenticationSendOnlyList537 {
+func getSliceInterfaceEthernetIsisAuthenticationSendOnlyList627(d []interface{}) []edpt.InterfaceEthernetIsisAuthenticationSendOnlyList627 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIsisAuthenticationSendOnlyList537, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIsisAuthenticationSendOnlyList627, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIsisAuthenticationSendOnlyList537
+		var oi edpt.InterfaceEthernetIsisAuthenticationSendOnlyList627
 		oi.SendOnly = in["send_only"].(int)
 		oi.Level = in["level"].(string)
 		ret = append(ret, oi)
@@ -2367,13 +2290,13 @@ func getSliceInterfaceEthernetIsisAuthenticationSendOnlyList537(d []interface{})
 	return ret
 }
 
-func getSliceInterfaceEthernetIsisAuthenticationModeList538(d []interface{}) []edpt.InterfaceEthernetIsisAuthenticationModeList538 {
+func getSliceInterfaceEthernetIsisAuthenticationModeList628(d []interface{}) []edpt.InterfaceEthernetIsisAuthenticationModeList628 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIsisAuthenticationModeList538, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIsisAuthenticationModeList628, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIsisAuthenticationModeList538
+		var oi edpt.InterfaceEthernetIsisAuthenticationModeList628
 		oi.Mode = in["mode"].(string)
 		oi.Level = in["level"].(string)
 		ret = append(ret, oi)
@@ -2381,13 +2304,13 @@ func getSliceInterfaceEthernetIsisAuthenticationModeList538(d []interface{}) []e
 	return ret
 }
 
-func getSliceInterfaceEthernetIsisAuthenticationKeyChainList539(d []interface{}) []edpt.InterfaceEthernetIsisAuthenticationKeyChainList539 {
+func getSliceInterfaceEthernetIsisAuthenticationKeyChainList629(d []interface{}) []edpt.InterfaceEthernetIsisAuthenticationKeyChainList629 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIsisAuthenticationKeyChainList539, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIsisAuthenticationKeyChainList629, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIsisAuthenticationKeyChainList539
+		var oi edpt.InterfaceEthernetIsisAuthenticationKeyChainList629
 		oi.KeyChain = in["key_chain"].(string)
 		oi.Level = in["level"].(string)
 		ret = append(ret, oi)
@@ -2395,10 +2318,10 @@ func getSliceInterfaceEthernetIsisAuthenticationKeyChainList539(d []interface{})
 	return ret
 }
 
-func getObjectInterfaceEthernetIsisBfdCfg540(d []interface{}) edpt.InterfaceEthernetIsisBfdCfg540 {
+func getObjectInterfaceEthernetIsisBfdCfg630(d []interface{}) edpt.InterfaceEthernetIsisBfdCfg630 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIsisBfdCfg540
+	var ret edpt.InterfaceEthernetIsisBfdCfg630
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bfd = in["bfd"].(int)
@@ -2407,13 +2330,13 @@ func getObjectInterfaceEthernetIsisBfdCfg540(d []interface{}) edpt.InterfaceEthe
 	return ret
 }
 
-func getSliceInterfaceEthernetIsisCsnpIntervalList541(d []interface{}) []edpt.InterfaceEthernetIsisCsnpIntervalList541 {
+func getSliceInterfaceEthernetIsisCsnpIntervalList631(d []interface{}) []edpt.InterfaceEthernetIsisCsnpIntervalList631 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIsisCsnpIntervalList541, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIsisCsnpIntervalList631, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIsisCsnpIntervalList541
+		var oi edpt.InterfaceEthernetIsisCsnpIntervalList631
 		oi.CsnpInterval = in["csnp_interval"].(int)
 		oi.Level = in["level"].(string)
 		ret = append(ret, oi)
@@ -2421,13 +2344,13 @@ func getSliceInterfaceEthernetIsisCsnpIntervalList541(d []interface{}) []edpt.In
 	return ret
 }
 
-func getSliceInterfaceEthernetIsisHelloIntervalList542(d []interface{}) []edpt.InterfaceEthernetIsisHelloIntervalList542 {
+func getSliceInterfaceEthernetIsisHelloIntervalList632(d []interface{}) []edpt.InterfaceEthernetIsisHelloIntervalList632 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIsisHelloIntervalList542, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIsisHelloIntervalList632, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIsisHelloIntervalList542
+		var oi edpt.InterfaceEthernetIsisHelloIntervalList632
 		oi.HelloInterval = in["hello_interval"].(int)
 		oi.Level = in["level"].(string)
 		ret = append(ret, oi)
@@ -2435,13 +2358,13 @@ func getSliceInterfaceEthernetIsisHelloIntervalList542(d []interface{}) []edpt.I
 	return ret
 }
 
-func getSliceInterfaceEthernetIsisHelloIntervalMinimalList543(d []interface{}) []edpt.InterfaceEthernetIsisHelloIntervalMinimalList543 {
+func getSliceInterfaceEthernetIsisHelloIntervalMinimalList633(d []interface{}) []edpt.InterfaceEthernetIsisHelloIntervalMinimalList633 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIsisHelloIntervalMinimalList543, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIsisHelloIntervalMinimalList633, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIsisHelloIntervalMinimalList543
+		var oi edpt.InterfaceEthernetIsisHelloIntervalMinimalList633
 		oi.HelloIntervalMinimal = in["hello_interval_minimal"].(int)
 		oi.Level = in["level"].(string)
 		ret = append(ret, oi)
@@ -2449,13 +2372,13 @@ func getSliceInterfaceEthernetIsisHelloIntervalMinimalList543(d []interface{}) [
 	return ret
 }
 
-func getSliceInterfaceEthernetIsisHelloMultiplierList544(d []interface{}) []edpt.InterfaceEthernetIsisHelloMultiplierList544 {
+func getSliceInterfaceEthernetIsisHelloMultiplierList634(d []interface{}) []edpt.InterfaceEthernetIsisHelloMultiplierList634 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIsisHelloMultiplierList544, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIsisHelloMultiplierList634, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIsisHelloMultiplierList544
+		var oi edpt.InterfaceEthernetIsisHelloMultiplierList634
 		oi.HelloMultiplier = in["hello_multiplier"].(int)
 		oi.Level = in["level"].(string)
 		ret = append(ret, oi)
@@ -2463,10 +2386,10 @@ func getSliceInterfaceEthernetIsisHelloMultiplierList544(d []interface{}) []edpt
 	return ret
 }
 
-func getObjectInterfaceEthernetIsisMeshGroup545(d []interface{}) edpt.InterfaceEthernetIsisMeshGroup545 {
+func getObjectInterfaceEthernetIsisMeshGroup635(d []interface{}) edpt.InterfaceEthernetIsisMeshGroup635 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIsisMeshGroup545
+	var ret edpt.InterfaceEthernetIsisMeshGroup635
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Value = in["value"].(int)
@@ -2475,13 +2398,13 @@ func getObjectInterfaceEthernetIsisMeshGroup545(d []interface{}) edpt.InterfaceE
 	return ret
 }
 
-func getSliceInterfaceEthernetIsisMetricList546(d []interface{}) []edpt.InterfaceEthernetIsisMetricList546 {
+func getSliceInterfaceEthernetIsisMetricList636(d []interface{}) []edpt.InterfaceEthernetIsisMetricList636 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIsisMetricList546, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIsisMetricList636, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIsisMetricList546
+		var oi edpt.InterfaceEthernetIsisMetricList636
 		oi.Metric = in["metric"].(int)
 		oi.Level = in["level"].(string)
 		ret = append(ret, oi)
@@ -2489,13 +2412,13 @@ func getSliceInterfaceEthernetIsisMetricList546(d []interface{}) []edpt.Interfac
 	return ret
 }
 
-func getSliceInterfaceEthernetIsisPasswordList547(d []interface{}) []edpt.InterfaceEthernetIsisPasswordList547 {
+func getSliceInterfaceEthernetIsisPasswordList637(d []interface{}) []edpt.InterfaceEthernetIsisPasswordList637 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIsisPasswordList547, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIsisPasswordList637, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIsisPasswordList547
+		var oi edpt.InterfaceEthernetIsisPasswordList637
 		oi.Password = in["password"].(string)
 		oi.Level = in["level"].(string)
 		ret = append(ret, oi)
@@ -2503,13 +2426,13 @@ func getSliceInterfaceEthernetIsisPasswordList547(d []interface{}) []edpt.Interf
 	return ret
 }
 
-func getSliceInterfaceEthernetIsisPriorityList548(d []interface{}) []edpt.InterfaceEthernetIsisPriorityList548 {
+func getSliceInterfaceEthernetIsisPriorityList638(d []interface{}) []edpt.InterfaceEthernetIsisPriorityList638 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIsisPriorityList548, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIsisPriorityList638, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIsisPriorityList548
+		var oi edpt.InterfaceEthernetIsisPriorityList638
 		oi.Priority = in["priority"].(int)
 		oi.Level = in["level"].(string)
 		ret = append(ret, oi)
@@ -2517,13 +2440,13 @@ func getSliceInterfaceEthernetIsisPriorityList548(d []interface{}) []edpt.Interf
 	return ret
 }
 
-func getSliceInterfaceEthernetIsisWideMetricList549(d []interface{}) []edpt.InterfaceEthernetIsisWideMetricList549 {
+func getSliceInterfaceEthernetIsisWideMetricList639(d []interface{}) []edpt.InterfaceEthernetIsisWideMetricList639 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIsisWideMetricList549, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIsisWideMetricList639, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIsisWideMetricList549
+		var oi edpt.InterfaceEthernetIsisWideMetricList639
 		oi.WideMetric = in["wide_metric"].(int)
 		oi.Level = in["level"].(string)
 		ret = append(ret, oi)
@@ -2531,25 +2454,25 @@ func getSliceInterfaceEthernetIsisWideMetricList549(d []interface{}) []edpt.Inte
 	return ret
 }
 
-func getObjectInterfaceEthernetLldp550(d []interface{}) edpt.InterfaceEthernetLldp550 {
+func getObjectInterfaceEthernetLldp640(d []interface{}) edpt.InterfaceEthernetLldp640 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetLldp550
+	var ret edpt.InterfaceEthernetLldp640
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.EnableCfg = getObjectInterfaceEthernetLldpEnableCfg551(in["enable_cfg"].([]interface{}))
-		ret.NotificationCfg = getObjectInterfaceEthernetLldpNotificationCfg552(in["notification_cfg"].([]interface{}))
-		ret.TxDot1Cfg = getObjectInterfaceEthernetLldpTxDot1Cfg553(in["tx_dot1_cfg"].([]interface{}))
-		ret.TxTlvsCfg = getObjectInterfaceEthernetLldpTxTlvsCfg554(in["tx_tlvs_cfg"].([]interface{}))
+		ret.EnableCfg = getObjectInterfaceEthernetLldpEnableCfg641(in["enable_cfg"].([]interface{}))
+		ret.NotificationCfg = getObjectInterfaceEthernetLldpNotificationCfg642(in["notification_cfg"].([]interface{}))
+		ret.TxDot1Cfg = getObjectInterfaceEthernetLldpTxDot1Cfg643(in["tx_dot1_cfg"].([]interface{}))
+		ret.TxTlvsCfg = getObjectInterfaceEthernetLldpTxTlvsCfg644(in["tx_tlvs_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetLldpEnableCfg551(d []interface{}) edpt.InterfaceEthernetLldpEnableCfg551 {
+func getObjectInterfaceEthernetLldpEnableCfg641(d []interface{}) edpt.InterfaceEthernetLldpEnableCfg641 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetLldpEnableCfg551
+	var ret edpt.InterfaceEthernetLldpEnableCfg641
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RtEnable = in["rt_enable"].(int)
@@ -2559,10 +2482,10 @@ func getObjectInterfaceEthernetLldpEnableCfg551(d []interface{}) edpt.InterfaceE
 	return ret
 }
 
-func getObjectInterfaceEthernetLldpNotificationCfg552(d []interface{}) edpt.InterfaceEthernetLldpNotificationCfg552 {
+func getObjectInterfaceEthernetLldpNotificationCfg642(d []interface{}) edpt.InterfaceEthernetLldpNotificationCfg642 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetLldpNotificationCfg552
+	var ret edpt.InterfaceEthernetLldpNotificationCfg642
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Notification = in["notification"].(int)
@@ -2571,10 +2494,10 @@ func getObjectInterfaceEthernetLldpNotificationCfg552(d []interface{}) edpt.Inte
 	return ret
 }
 
-func getObjectInterfaceEthernetLldpTxDot1Cfg553(d []interface{}) edpt.InterfaceEthernetLldpTxDot1Cfg553 {
+func getObjectInterfaceEthernetLldpTxDot1Cfg643(d []interface{}) edpt.InterfaceEthernetLldpTxDot1Cfg643 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetLldpTxDot1Cfg553
+	var ret edpt.InterfaceEthernetLldpTxDot1Cfg643
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TxDot1Tlvs = in["tx_dot1_tlvs"].(int)
@@ -2584,10 +2507,10 @@ func getObjectInterfaceEthernetLldpTxDot1Cfg553(d []interface{}) edpt.InterfaceE
 	return ret
 }
 
-func getObjectInterfaceEthernetLldpTxTlvsCfg554(d []interface{}) edpt.InterfaceEthernetLldpTxTlvsCfg554 {
+func getObjectInterfaceEthernetLldpTxTlvsCfg644(d []interface{}) edpt.InterfaceEthernetLldpTxTlvsCfg644 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetLldpTxTlvsCfg554
+	var ret edpt.InterfaceEthernetLldpTxTlvsCfg644
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TxTlvs = in["tx_tlvs"].(int)
@@ -2601,10 +2524,10 @@ func getObjectInterfaceEthernetLldpTxTlvsCfg554(d []interface{}) edpt.InterfaceE
 	return ret
 }
 
-func getObjectInterfaceEthernetLw4o6555(d []interface{}) edpt.InterfaceEthernetLw4o6555 {
+func getObjectInterfaceEthernetLw4o6645(d []interface{}) edpt.InterfaceEthernetLw4o6645 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetLw4o6555
+	var ret edpt.InterfaceEthernetLw4o6645
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Outside = in["outside"].(int)
@@ -2614,10 +2537,10 @@ func getObjectInterfaceEthernetLw4o6555(d []interface{}) edpt.InterfaceEthernetL
 	return ret
 }
 
-func getObjectInterfaceEthernetMap556(d []interface{}) edpt.InterfaceEthernetMap556 {
+func getObjectInterfaceEthernetMap646(d []interface{}) edpt.InterfaceEthernetMap646 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetMap556
+	var ret edpt.InterfaceEthernetMap646
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Inside = in["inside"].(int)
@@ -2644,10 +2567,10 @@ func getSliceInterfaceEthernetMonitorList(d []interface{}) []edpt.InterfaceEther
 	return ret
 }
 
-func getObjectInterfaceEthernetNptv6557(d []interface{}) edpt.InterfaceEthernetNptv6557 {
+func getObjectInterfaceEthernetNptv6647(d []interface{}) edpt.InterfaceEthernetNptv6647 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetNptv6557
+	var ret edpt.InterfaceEthernetNptv6647
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DomainList = getSliceInterfaceEthernetNptv6DomainList(in["domain_list"].([]interface{}))
@@ -2683,28 +2606,28 @@ func getSliceInterfaceEthernetSamplingEnable(d []interface{}) []edpt.InterfaceEt
 	return ret
 }
 
-func getObjectInterfaceEthernetSpanningTree558(d []interface{}) edpt.InterfaceEthernetSpanningTree558 {
+func getObjectInterfaceEthernetSpanningTree648(d []interface{}) edpt.InterfaceEthernetSpanningTree648 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetSpanningTree558
+	var ret edpt.InterfaceEthernetSpanningTree648
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AutoEdge = in["auto_edge"].(int)
 		ret.AdminEdge = in["admin_edge"].(int)
-		ret.InstanceList = getSliceInterfaceEthernetSpanningTreeInstanceList559(in["instance_list"].([]interface{}))
+		ret.InstanceList = getSliceInterfaceEthernetSpanningTreeInstanceList649(in["instance_list"].([]interface{}))
 		ret.PathCost = in["path_cost"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceInterfaceEthernetSpanningTreeInstanceList559(d []interface{}) []edpt.InterfaceEthernetSpanningTreeInstanceList559 {
+func getSliceInterfaceEthernetSpanningTreeInstanceList649(d []interface{}) []edpt.InterfaceEthernetSpanningTreeInstanceList649 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetSpanningTreeInstanceList559, 0, count1)
+	ret := make([]edpt.InterfaceEthernetSpanningTreeInstanceList649, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetSpanningTreeInstanceList559
+		var oi edpt.InterfaceEthernetSpanningTreeInstanceList649
 		oi.InstanceStart = in["instance_start"].(int)
 		oi.MstpPathCost = in["mstp_path_cost"].(int)
 		ret = append(ret, oi)
@@ -2750,10 +2673,11 @@ func dataToEndpointInterfaceEthernet(d *schema.ResourceData) edpt.InterfaceEther
 	ret.Inst.AccessList = getObjectInterfaceEthernetAccessList(d.Get("access_list").([]interface{}))
 	ret.Inst.Action = d.Get("action").(string)
 	ret.Inst.AutoNegEnable = d.Get("auto_neg_enable").(int)
-	ret.Inst.Bfd = getObjectInterfaceEthernetBfd484(d.Get("bfd").([]interface{}))
+	ret.Inst.Bfd = getObjectInterfaceEthernetBfd576(d.Get("bfd").([]interface{}))
 	ret.Inst.CpuProcess = d.Get("cpu_process").(int)
 	ret.Inst.CpuProcessDir = d.Get("cpu_process_dir").(string)
-	ret.Inst.Ddos = getObjectInterfaceEthernetDdos487(d.Get("ddos").([]interface{}))
+	ret.Inst.DacLinkTrainingEnable = d.Get("dac_link_training_enable").(int)
+	ret.Inst.Ddos = getObjectInterfaceEthernetDdos579(d.Get("ddos").([]interface{}))
 	ret.Inst.Duplexity = d.Get("duplexity").(string)
 	ret.Inst.FecForcedOff = d.Get("fec_forced_off").(int)
 	ret.Inst.FecForcedOn = d.Get("fec_forced_on").(int)
@@ -2762,28 +2686,28 @@ func dataToEndpointInterfaceEthernet(d *schema.ResourceData) edpt.InterfaceEther
 	ret.Inst.IcmpRateLimit = getObjectInterfaceEthernetIcmpRateLimit(d.Get("icmp_rate_limit").([]interface{}))
 	ret.Inst.Icmpv6RateLimit = getObjectInterfaceEthernetIcmpv6RateLimit(d.Get("icmpv6_rate_limit").([]interface{}))
 	ret.Inst.Ifnum = d.Get("ifnum").(int)
-	ret.Inst.Ip = getObjectInterfaceEthernetIp488(d.Get("ip").([]interface{}))
+	ret.Inst.Ip = getObjectInterfaceEthernetIp580(d.Get("ip").([]interface{}))
 	ret.Inst.IpgBitTime = d.Get("ipg_bit_time").(int)
-	ret.Inst.Ipv6 = getObjectInterfaceEthernetIpv6512(d.Get("ipv6").([]interface{}))
-	ret.Inst.Isis = getObjectInterfaceEthernetIsis535(d.Get("isis").([]interface{}))
+	ret.Inst.Ipv6 = getObjectInterfaceEthernetIpv6603(d.Get("ipv6").([]interface{}))
+	ret.Inst.Isis = getObjectInterfaceEthernetIsis625(d.Get("isis").([]interface{}))
 	ret.Inst.L3VlanFwdDisable = d.Get("l3_vlan_fwd_disable").(int)
-	ret.Inst.Lldp = getObjectInterfaceEthernetLldp550(d.Get("lldp").([]interface{}))
+	ret.Inst.Lldp = getObjectInterfaceEthernetLldp640(d.Get("lldp").([]interface{}))
 	ret.Inst.LoadInterval = d.Get("load_interval").(int)
-	ret.Inst.Lw4o6 = getObjectInterfaceEthernetLw4o6555(d.Get("lw_4o6").([]interface{}))
+	ret.Inst.Lw4o6 = getObjectInterfaceEthernetLw4o6645(d.Get("lw_4o6").([]interface{}))
 	ret.Inst.MacLearning = d.Get("mac_learning").(string)
-	ret.Inst.Map = getObjectInterfaceEthernetMap556(d.Get("map").([]interface{}))
+	ret.Inst.Map = getObjectInterfaceEthernetMap646(d.Get("map").([]interface{}))
 	ret.Inst.MediaTypeCopper = d.Get("media_type_copper").(int)
 	ret.Inst.MonitorList = getSliceInterfaceEthernetMonitorList(d.Get("monitor_list").([]interface{}))
 	ret.Inst.Mtu = d.Get("mtu").(int)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.Nptv6 = getObjectInterfaceEthernetNptv6557(d.Get("nptv6").([]interface{}))
+	ret.Inst.Nptv6 = getObjectInterfaceEthernetNptv6647(d.Get("nptv6").([]interface{}))
 	ret.Inst.PacketCaptureTemplate = d.Get("packet_capture_template").(string)
 	ret.Inst.PingSweepDetection = d.Get("ping_sweep_detection").(string)
 	ret.Inst.PortBreakout = d.Get("port_breakout").(string)
 	ret.Inst.PortScanDetection = d.Get("port_scan_detection").(string)
 	ret.Inst.RemoveVlanTag = d.Get("remove_vlan_tag").(int)
 	ret.Inst.SamplingEnable = getSliceInterfaceEthernetSamplingEnable(d.Get("sampling_enable").([]interface{}))
-	ret.Inst.SpanningTree = getObjectInterfaceEthernetSpanningTree558(d.Get("spanning_tree").([]interface{}))
+	ret.Inst.SpanningTree = getObjectInterfaceEthernetSpanningTree648(d.Get("spanning_tree").([]interface{}))
 	ret.Inst.Speed = d.Get("speed").(string)
 	ret.Inst.SpeedForced10g = d.Get("speed_forced_10g").(int)
 	ret.Inst.SpeedForced1g = d.Get("speed_forced_1g").(int)

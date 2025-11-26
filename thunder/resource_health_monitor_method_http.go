@@ -113,8 +113,8 @@ func resourceHealthMonitorMethodHttp() *schema.Resource {
 			"version2": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify HTTP version2 (Specify http version 2)",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -225,6 +225,6 @@ func dataToEndpointHealthMonitorMethodHttp(d *schema.ResourceData) edpt.HealthMo
 	ret.Inst.UrlType = d.Get("url_type").(string)
 	//omit uuid
 	ret.Inst.Version2 = d.Get("version2").(int)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

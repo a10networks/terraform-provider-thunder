@@ -115,5 +115,3 @@ Optional:
 - `unsupported_pbsz_value` (Number)
 - `unsupported_prot_value` (Number)
 - `user` (Number)
-
-

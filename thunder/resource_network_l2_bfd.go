@@ -17,7 +17,7 @@ func resourceNetworkL2Bfd() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"ether_type": {
-				Type: schema.TypeString, Optional: true, Description: "Ethernet paylaod type for L2BFD packets, help-val 16 bit hex value, default is hex 88B6",
+				Type: schema.TypeString, Optional: true, Description: "Ethernet payload type for L2BFD packets, help-val 16 bit hex value, default is hex 88B6",
 			},
 			"multiplier": {
 				Type: schema.TypeInt, Optional: true, Default: 4, Description: "Multiplier value used to compute holddown (value used to multiply the interval (default: 4))",

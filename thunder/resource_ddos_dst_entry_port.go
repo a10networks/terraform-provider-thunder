@@ -64,19 +64,6 @@ func resourceDdosDstEntryPort() *schema.Resource {
 					},
 				},
 			},
-			"ip_filtering_policy": {
-				Type: schema.TypeString, Optional: true, Description: "Configure IP Filter",
-			},
-			"ip_filtering_policy_oper": {
-				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"uuid": {
-							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-						},
-					},
-				},
-			},
 			"pattern_recognition": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -228,6 +215,9 @@ func resourceDdosDstEntryPort() *schema.Resource {
 			"topk_num_records": {
 				Type: schema.TypeInt, Optional: true, Default: 20, Description: "Maximum number of records to show in topk",
 			},
+			"topk_sort_key": {
+				Type: schema.TypeString, Optional: true, Default: "avg", Description: "'avg': window average; 'max-peak': max peak;",
+			},
 			"topk_sources": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -347,16 +337,10 @@ func getObjectDdosDstEntryPortGlidExceedActionStatelessEncapActionCfg(d []interf
 	return ret
 }
 
-func getObjectDdosDstEntryPortIpFilteringPolicyOper170(d []interface{}) edpt.DdosDstEntryPortIpFilteringPolicyOper170 {
-
-	var ret edpt.DdosDstEntryPortIpFilteringPolicyOper170
-	return ret
-}
-
-func getObjectDdosDstEntryPortPatternRecognition171(d []interface{}) edpt.DdosDstEntryPortPatternRecognition171 {
+func getObjectDdosDstEntryPortPatternRecognition188(d []interface{}) edpt.DdosDstEntryPortPatternRecognition188 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstEntryPortPatternRecognition171
+	var ret edpt.DdosDstEntryPortPatternRecognition188
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Algorithm = in["algorithm"].(string)
@@ -369,40 +353,40 @@ func getObjectDdosDstEntryPortPatternRecognition171(d []interface{}) edpt.DdosDs
 	return ret
 }
 
-func getObjectDdosDstEntryPortPatternRecognitionPuDetails172(d []interface{}) edpt.DdosDstEntryPortPatternRecognitionPuDetails172 {
+func getObjectDdosDstEntryPortPatternRecognitionPuDetails189(d []interface{}) edpt.DdosDstEntryPortPatternRecognitionPuDetails189 {
 
-	var ret edpt.DdosDstEntryPortPatternRecognitionPuDetails172
+	var ret edpt.DdosDstEntryPortPatternRecognitionPuDetails189
 	return ret
 }
 
-func getObjectDdosDstEntryPortPortInd173(d []interface{}) edpt.DdosDstEntryPortPortInd173 {
+func getObjectDdosDstEntryPortPortInd190(d []interface{}) edpt.DdosDstEntryPortPortInd190 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstEntryPortPortInd173
+	var ret edpt.DdosDstEntryPortPortInd190
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceDdosDstEntryPortPortIndSamplingEnable174(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceDdosDstEntryPortPortIndSamplingEnable191(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstEntryPortPortIndSamplingEnable174(d []interface{}) []edpt.DdosDstEntryPortPortIndSamplingEnable174 {
+func getSliceDdosDstEntryPortPortIndSamplingEnable191(d []interface{}) []edpt.DdosDstEntryPortPortIndSamplingEnable191 {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstEntryPortPortIndSamplingEnable174, 0, count1)
+	ret := make([]edpt.DdosDstEntryPortPortIndSamplingEnable191, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstEntryPortPortIndSamplingEnable174
+		var oi edpt.DdosDstEntryPortPortIndSamplingEnable191
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectDdosDstEntryPortProgressionTracking175(d []interface{}) edpt.DdosDstEntryPortProgressionTracking175 {
+func getObjectDdosDstEntryPortProgressionTracking192(d []interface{}) edpt.DdosDstEntryPortProgressionTracking192 {
 
-	var ret edpt.DdosDstEntryPortProgressionTracking175
+	var ret edpt.DdosDstEntryPortProgressionTracking192
 	return ret
 }
 
@@ -442,10 +426,10 @@ func getObjectDdosDstEntryPortSflowPollingSflowTcp(d []interface{}) edpt.DdosDst
 	return ret
 }
 
-func getObjectDdosDstEntryPortSignatureExtraction176(d []interface{}) edpt.DdosDstEntryPortSignatureExtraction176 {
+func getObjectDdosDstEntryPortSignatureExtraction193(d []interface{}) edpt.DdosDstEntryPortSignatureExtraction193 {
 
 	count1 := len(d)
-	var ret edpt.DdosDstEntryPortSignatureExtraction176
+	var ret edpt.DdosDstEntryPortSignatureExtraction193
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Algorithm = in["algorithm"].(string)
@@ -471,9 +455,9 @@ func getObjectDdosDstEntryPortTemplate(d []interface{}) edpt.DdosDstEntryPortTem
 	return ret
 }
 
-func getObjectDdosDstEntryPortTopkSources177(d []interface{}) edpt.DdosDstEntryPortTopkSources177 {
+func getObjectDdosDstEntryPortTopkSources194(d []interface{}) edpt.DdosDstEntryPortTopkSources194 {
 
-	var ret edpt.DdosDstEntryPortTopkSources177
+	var ret edpt.DdosDstEntryPortTopkSources194
 	return ret
 }
 
@@ -486,20 +470,19 @@ func dataToEndpointDdosDstEntryPort(d *schema.ResourceData) edpt.DdosDstEntryPor
 	ret.Inst.EnableTopK = d.Get("enable_top_k").(int)
 	ret.Inst.Glid = d.Get("glid").(string)
 	ret.Inst.GlidExceedAction = getObjectDdosDstEntryPortGlidExceedAction(d.Get("glid_exceed_action").([]interface{}))
-	ret.Inst.IpFilteringPolicy = d.Get("ip_filtering_policy").(string)
-	ret.Inst.IpFilteringPolicyOper = getObjectDdosDstEntryPortIpFilteringPolicyOper170(d.Get("ip_filtering_policy_oper").([]interface{}))
-	ret.Inst.PatternRecognition = getObjectDdosDstEntryPortPatternRecognition171(d.Get("pattern_recognition").([]interface{}))
-	ret.Inst.PatternRecognitionPuDetails = getObjectDdosDstEntryPortPatternRecognitionPuDetails172(d.Get("pattern_recognition_pu_details").([]interface{}))
-	ret.Inst.PortInd = getObjectDdosDstEntryPortPortInd173(d.Get("port_ind").([]interface{}))
+	ret.Inst.PatternRecognition = getObjectDdosDstEntryPortPatternRecognition188(d.Get("pattern_recognition").([]interface{}))
+	ret.Inst.PatternRecognitionPuDetails = getObjectDdosDstEntryPortPatternRecognitionPuDetails189(d.Get("pattern_recognition_pu_details").([]interface{}))
+	ret.Inst.PortInd = getObjectDdosDstEntryPortPortInd190(d.Get("port_ind").([]interface{}))
 	ret.Inst.PortNum = d.Get("port_num").(int)
-	ret.Inst.ProgressionTracking = getObjectDdosDstEntryPortProgressionTracking175(d.Get("progression_tracking").([]interface{}))
+	ret.Inst.ProgressionTracking = getObjectDdosDstEntryPortProgressionTracking192(d.Get("progression_tracking").([]interface{}))
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.SetCounterBaseVal = d.Get("set_counter_base_val").(int)
 	ret.Inst.Sflow = getObjectDdosDstEntryPortSflow(d.Get("sflow").([]interface{}))
-	ret.Inst.SignatureExtraction = getObjectDdosDstEntryPortSignatureExtraction176(d.Get("signature_extraction").([]interface{}))
+	ret.Inst.SignatureExtraction = getObjectDdosDstEntryPortSignatureExtraction193(d.Get("signature_extraction").([]interface{}))
 	ret.Inst.Template = getObjectDdosDstEntryPortTemplate(d.Get("template").([]interface{}))
 	ret.Inst.TopkNumRecords = d.Get("topk_num_records").(int)
-	ret.Inst.TopkSources = getObjectDdosDstEntryPortTopkSources177(d.Get("topk_sources").([]interface{}))
+	ret.Inst.TopkSortKey = d.Get("topk_sort_key").(string)
+	ret.Inst.TopkSources = getObjectDdosDstEntryPortTopkSources194(d.Get("topk_sources").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.DstEntryName = d.Get("dst_entry_name").(string)

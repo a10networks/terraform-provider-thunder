@@ -55,5 +55,3 @@ Optional:
 - `auth_req` (Number)
 - `auth_succ` (Number)
 - `other_error` (Number)
-
-

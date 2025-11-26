@@ -38,7 +38,7 @@ output "get_cgnv6_dns64_virtualserver_port_stats" {
 
 ### Required
 
-- `name` (String) Name
+- `dns64_virtualserver_name` (String) Dns64_virtualserver_name
 - `port_number` (Number) Port
 - `protocol` (String) 'dns-udp': DNS service over UDP;
 
@@ -81,5 +81,3 @@ Optional:
 - `total_req_succ` (Number) Total successful requests
 - `total_rev_bytes` (Number) Total reverse bytes
 - `total_rev_pkts` (Number) Total reverse packets
-
-

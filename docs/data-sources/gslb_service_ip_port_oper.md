@@ -63,5 +63,3 @@ Optional:
 - `state` (String)
 - `tcp` (Number)
 - `use_gslb_state` (Number)
-
-

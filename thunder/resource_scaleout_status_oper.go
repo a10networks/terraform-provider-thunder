@@ -79,6 +79,16 @@ func resourceScaleoutStatusOper() *schema.Resource {
 								},
 							},
 						},
+						"advertised_redirect_ipv6_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ipv6": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+								},
+							},
+						},
 						"dest_redirect_ip_list": {
 							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
@@ -90,6 +100,22 @@ func resourceScaleoutStatusOper() *schema.Resource {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 									"ip": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+								},
+							},
+						},
+						"dest_redirect_ipv6_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"device_id": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"direction": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"ipv6": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 								},
@@ -110,6 +136,16 @@ func resourceScaleoutStatusOper() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"ip": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+								},
+							},
+						},
+						"advertised_session_sync_ipv6_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ipv6": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 								},
@@ -136,6 +172,16 @@ func resourceScaleoutStatusOper() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"ip": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+								},
+							},
+						},
+						"exclude_interface_ipv6_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ipv6": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 								},
@@ -170,24 +216,28 @@ func resourceScaleoutStatusOperRead(ctx context.Context, d *schema.ResourceData,
 func setObjectScaleoutStatusOperOper(ret edpt.DataScaleoutStatusOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"db_role":                         ret.DtScaleoutStatusOper.Oper.Db_role,
-			"role":                            ret.DtScaleoutStatusOper.Oper.Role,
-			"device_list":                     setSliceScaleoutStatusOperOperDeviceList(ret.DtScaleoutStatusOper.Oper.DeviceList),
-			"cluster_mode":                    ret.DtScaleoutStatusOper.Oper.ClusterMode,
-			"follow_shared_redirection":       ret.DtScaleoutStatusOper.Oper.FollowSharedRedirection,
-			"follow_shared_session_sync":      ret.DtScaleoutStatusOper.Oper.FollowSharedSessionSync,
-			"l2redirect":                      ret.DtScaleoutStatusOper.Oper.L2redirect,
-			"l2redirect_valid":                ret.DtScaleoutStatusOper.Oper.L2redirectValid,
-			"l2redirect_operational":          ret.DtScaleoutStatusOper.Oper.L2redirectOperational,
-			"l2redirect_eth":                  ret.DtScaleoutStatusOper.Oper.L2redirectEth,
-			"l2redirect_trunk":                ret.DtScaleoutStatusOper.Oper.L2redirectTrunk,
-			"l2redirect_vlan":                 ret.DtScaleoutStatusOper.Oper.L2redirectVlan,
-			"advertised_redirect_ip_list":     setSliceScaleoutStatusOperOperAdvertisedRedirectIpList(ret.DtScaleoutStatusOper.Oper.AdvertisedRedirectIpList),
-			"dest_redirect_ip_list":           setSliceScaleoutStatusOperOperDestRedirectIpList(ret.DtScaleoutStatusOper.Oper.DestRedirectIpList),
-			"active_interface_list":           setSliceScaleoutStatusOperOperActiveInterfaceList(ret.DtScaleoutStatusOper.Oper.ActiveInterfaceList),
-			"advertised_session_sync_ip_list": setSliceScaleoutStatusOperOperAdvertisedSessionSyncIpList(ret.DtScaleoutStatusOper.Oper.AdvertisedSessionSyncIpList),
-			"dest_session_sync_ip_list":       setSliceScaleoutStatusOperOperDestSessionSyncIpList(ret.DtScaleoutStatusOper.Oper.DestSessionSyncIpList),
-			"exclude_interface_ip_list":       setSliceScaleoutStatusOperOperExcludeInterfaceIpList(ret.DtScaleoutStatusOper.Oper.ExcludeInterfaceIpList),
+			"db_role":                           ret.DtScaleoutStatusOper.Oper.Db_role,
+			"role":                              ret.DtScaleoutStatusOper.Oper.Role,
+			"device_list":                       setSliceScaleoutStatusOperOperDeviceList(ret.DtScaleoutStatusOper.Oper.DeviceList),
+			"cluster_mode":                      ret.DtScaleoutStatusOper.Oper.ClusterMode,
+			"follow_shared_redirection":         ret.DtScaleoutStatusOper.Oper.FollowSharedRedirection,
+			"follow_shared_session_sync":        ret.DtScaleoutStatusOper.Oper.FollowSharedSessionSync,
+			"l2redirect":                        ret.DtScaleoutStatusOper.Oper.L2redirect,
+			"l2redirect_valid":                  ret.DtScaleoutStatusOper.Oper.L2redirectValid,
+			"l2redirect_operational":            ret.DtScaleoutStatusOper.Oper.L2redirectOperational,
+			"l2redirect_eth":                    ret.DtScaleoutStatusOper.Oper.L2redirectEth,
+			"l2redirect_trunk":                  ret.DtScaleoutStatusOper.Oper.L2redirectTrunk,
+			"l2redirect_vlan":                   ret.DtScaleoutStatusOper.Oper.L2redirectVlan,
+			"advertised_redirect_ip_list":       setSliceScaleoutStatusOperOperAdvertisedRedirectIpList(ret.DtScaleoutStatusOper.Oper.AdvertisedRedirectIpList),
+			"advertised_redirect_ipv6_list":     setSliceScaleoutStatusOperOperAdvertisedRedirectIpv6List(ret.DtScaleoutStatusOper.Oper.AdvertisedRedirectIpv6List),
+			"dest_redirect_ip_list":             setSliceScaleoutStatusOperOperDestRedirectIpList(ret.DtScaleoutStatusOper.Oper.DestRedirectIpList),
+			"dest_redirect_ipv6_list":           setSliceScaleoutStatusOperOperDestRedirectIpv6List(ret.DtScaleoutStatusOper.Oper.DestRedirectIpv6List),
+			"active_interface_list":             setSliceScaleoutStatusOperOperActiveInterfaceList(ret.DtScaleoutStatusOper.Oper.ActiveInterfaceList),
+			"advertised_session_sync_ip_list":   setSliceScaleoutStatusOperOperAdvertisedSessionSyncIpList(ret.DtScaleoutStatusOper.Oper.AdvertisedSessionSyncIpList),
+			"advertised_session_sync_ipv6_list": setSliceScaleoutStatusOperOperAdvertisedSessionSyncIpv6List(ret.DtScaleoutStatusOper.Oper.AdvertisedSessionSyncIpv6List),
+			"dest_session_sync_ip_list":         setSliceScaleoutStatusOperOperDestSessionSyncIpList(ret.DtScaleoutStatusOper.Oper.DestSessionSyncIpList),
+			"exclude_interface_ip_list":         setSliceScaleoutStatusOperOperExcludeInterfaceIpList(ret.DtScaleoutStatusOper.Oper.ExcludeInterfaceIpList),
+			"exclude_interface_ipv6_list":       setSliceScaleoutStatusOperOperExcludeInterfaceIpv6List(ret.DtScaleoutStatusOper.Oper.ExcludeInterfaceIpv6List),
 		},
 	}
 }
@@ -215,6 +265,16 @@ func setSliceScaleoutStatusOperOperAdvertisedRedirectIpList(d []edpt.ScaleoutSta
 	return result
 }
 
+func setSliceScaleoutStatusOperOperAdvertisedRedirectIpv6List(d []edpt.ScaleoutStatusOperOperAdvertisedRedirectIpv6List) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["ipv6"] = item.Ipv6
+		result = append(result, in)
+	}
+	return result
+}
+
 func setSliceScaleoutStatusOperOperDestRedirectIpList(d []edpt.ScaleoutStatusOperOperDestRedirectIpList) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	for _, item := range d {
@@ -222,6 +282,18 @@ func setSliceScaleoutStatusOperOperDestRedirectIpList(d []edpt.ScaleoutStatusOpe
 		in["device_id"] = item.DeviceId
 		in["direction"] = item.Direction
 		in["ip"] = item.Ip
+		result = append(result, in)
+	}
+	return result
+}
+
+func setSliceScaleoutStatusOperOperDestRedirectIpv6List(d []edpt.ScaleoutStatusOperOperDestRedirectIpv6List) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["device_id"] = item.DeviceId
+		in["direction"] = item.Direction
+		in["ipv6"] = item.Ipv6
 		result = append(result, in)
 	}
 	return result
@@ -242,6 +314,16 @@ func setSliceScaleoutStatusOperOperAdvertisedSessionSyncIpList(d []edpt.Scaleout
 	for _, item := range d {
 		in := make(map[string]interface{})
 		in["ip"] = item.Ip
+		result = append(result, in)
+	}
+	return result
+}
+
+func setSliceScaleoutStatusOperOperAdvertisedSessionSyncIpv6List(d []edpt.ScaleoutStatusOperOperAdvertisedSessionSyncIpv6List) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["ipv6"] = item.Ipv6
 		result = append(result, in)
 	}
 	return result
@@ -269,6 +351,16 @@ func setSliceScaleoutStatusOperOperExcludeInterfaceIpList(d []edpt.ScaleoutStatu
 	return result
 }
 
+func setSliceScaleoutStatusOperOperExcludeInterfaceIpv6List(d []edpt.ScaleoutStatusOperOperExcludeInterfaceIpv6List) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["ipv6"] = item.Ipv6
+		result = append(result, in)
+	}
+	return result
+}
+
 func getObjectScaleoutStatusOperOper(d []interface{}) edpt.ScaleoutStatusOperOper {
 
 	count1 := len(d)
@@ -288,11 +380,15 @@ func getObjectScaleoutStatusOperOper(d []interface{}) edpt.ScaleoutStatusOperOpe
 		ret.L2redirectTrunk = in["l2redirect_trunk"].(int)
 		ret.L2redirectVlan = in["l2redirect_vlan"].(int)
 		ret.AdvertisedRedirectIpList = getSliceScaleoutStatusOperOperAdvertisedRedirectIpList(in["advertised_redirect_ip_list"].([]interface{}))
+		ret.AdvertisedRedirectIpv6List = getSliceScaleoutStatusOperOperAdvertisedRedirectIpv6List(in["advertised_redirect_ipv6_list"].([]interface{}))
 		ret.DestRedirectIpList = getSliceScaleoutStatusOperOperDestRedirectIpList(in["dest_redirect_ip_list"].([]interface{}))
+		ret.DestRedirectIpv6List = getSliceScaleoutStatusOperOperDestRedirectIpv6List(in["dest_redirect_ipv6_list"].([]interface{}))
 		ret.ActiveInterfaceList = getSliceScaleoutStatusOperOperActiveInterfaceList(in["active_interface_list"].([]interface{}))
 		ret.AdvertisedSessionSyncIpList = getSliceScaleoutStatusOperOperAdvertisedSessionSyncIpList(in["advertised_session_sync_ip_list"].([]interface{}))
+		ret.AdvertisedSessionSyncIpv6List = getSliceScaleoutStatusOperOperAdvertisedSessionSyncIpv6List(in["advertised_session_sync_ipv6_list"].([]interface{}))
 		ret.DestSessionSyncIpList = getSliceScaleoutStatusOperOperDestSessionSyncIpList(in["dest_session_sync_ip_list"].([]interface{}))
 		ret.ExcludeInterfaceIpList = getSliceScaleoutStatusOperOperExcludeInterfaceIpList(in["exclude_interface_ip_list"].([]interface{}))
+		ret.ExcludeInterfaceIpv6List = getSliceScaleoutStatusOperOperExcludeInterfaceIpv6List(in["exclude_interface_ipv6_list"].([]interface{}))
 	}
 	return ret
 }
@@ -326,6 +422,19 @@ func getSliceScaleoutStatusOperOperAdvertisedRedirectIpList(d []interface{}) []e
 	return ret
 }
 
+func getSliceScaleoutStatusOperOperAdvertisedRedirectIpv6List(d []interface{}) []edpt.ScaleoutStatusOperOperAdvertisedRedirectIpv6List {
+
+	count1 := len(d)
+	ret := make([]edpt.ScaleoutStatusOperOperAdvertisedRedirectIpv6List, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.ScaleoutStatusOperOperAdvertisedRedirectIpv6List
+		oi.Ipv6 = in["ipv6"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func getSliceScaleoutStatusOperOperDestRedirectIpList(d []interface{}) []edpt.ScaleoutStatusOperOperDestRedirectIpList {
 
 	count1 := len(d)
@@ -336,6 +445,21 @@ func getSliceScaleoutStatusOperOperDestRedirectIpList(d []interface{}) []edpt.Sc
 		oi.DeviceId = in["device_id"].(int)
 		oi.Direction = in["direction"].(string)
 		oi.Ip = in["ip"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceScaleoutStatusOperOperDestRedirectIpv6List(d []interface{}) []edpt.ScaleoutStatusOperOperDestRedirectIpv6List {
+
+	count1 := len(d)
+	ret := make([]edpt.ScaleoutStatusOperOperDestRedirectIpv6List, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.ScaleoutStatusOperOperDestRedirectIpv6List
+		oi.DeviceId = in["device_id"].(int)
+		oi.Direction = in["direction"].(string)
+		oi.Ipv6 = in["ipv6"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -367,6 +491,19 @@ func getSliceScaleoutStatusOperOperAdvertisedSessionSyncIpList(d []interface{}) 
 	return ret
 }
 
+func getSliceScaleoutStatusOperOperAdvertisedSessionSyncIpv6List(d []interface{}) []edpt.ScaleoutStatusOperOperAdvertisedSessionSyncIpv6List {
+
+	count1 := len(d)
+	ret := make([]edpt.ScaleoutStatusOperOperAdvertisedSessionSyncIpv6List, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.ScaleoutStatusOperOperAdvertisedSessionSyncIpv6List
+		oi.Ipv6 = in["ipv6"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func getSliceScaleoutStatusOperOperDestSessionSyncIpList(d []interface{}) []edpt.ScaleoutStatusOperOperDestSessionSyncIpList {
 
 	count1 := len(d)
@@ -390,6 +527,19 @@ func getSliceScaleoutStatusOperOperExcludeInterfaceIpList(d []interface{}) []edp
 		in := item.(map[string]interface{})
 		var oi edpt.ScaleoutStatusOperOperExcludeInterfaceIpList
 		oi.Ip = in["ip"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceScaleoutStatusOperOperExcludeInterfaceIpv6List(d []interface{}) []edpt.ScaleoutStatusOperOperExcludeInterfaceIpv6List {
+
+	count1 := len(d)
+	ret := make([]edpt.ScaleoutStatusOperOperExcludeInterfaceIpv6List, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.ScaleoutStatusOperOperExcludeInterfaceIpv6List
+		oi.Ipv6 = in["ipv6"].(string)
 		ret = append(ret, oi)
 	}
 	return ret

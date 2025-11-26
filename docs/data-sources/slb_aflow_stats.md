@@ -55,5 +55,3 @@ Optional:
 - `reuse_server_idle_conn` (Number) Reuse idle server conn
 - `timer_resume_conn` (Number) Resume conn by timer
 - `try_to_resume_conn` (Number) Resume conn by trying
-
-

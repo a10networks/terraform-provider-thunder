@@ -41,10 +41,11 @@ output "get_ddos_dst_zone_ip_proto_proto_number_oper" {
 
 ### Optional
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_filtering_policy_oper))
+- `ip_filtering_policy_statistics` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_filtering_policy_statistics))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--oper))
 - `port_ind` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_ind))
 - `progression_tracking` (Block List, Max: 1) (see [below for nested schema](#nestedblock--progression_tracking))
+- `src_based_policy_list` (Block List) (see [below for nested schema](#nestedblock--src_based_policy_list))
 - `topk_destinations` (Block List, Max: 1) (see [below for nested schema](#nestedblock--topk_destinations))
 - `topk_sources` (Block List, Max: 1) (see [below for nested schema](#nestedblock--topk_sources))
 
@@ -52,25 +53,26 @@ output "get_ddos_dst_zone_ip_proto_proto_number_oper" {
 
 - `id` (String) The ID of this resource.
 
-<a id="nestedblock--ip_filtering_policy_oper"></a>
-### Nested Schema for `ip_filtering_policy_oper`
+<a id="nestedblock--ip_filtering_policy_statistics"></a>
+### Nested Schema for `ip_filtering_policy_statistics`
 
 Optional:
 
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_filtering_policy_oper--oper))
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_filtering_policy_statistics--oper))
 
-<a id="nestedblock--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `ip_filtering_policy_oper.oper`
-
-Optional:
-
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--ip_filtering_policy_oper--oper--rule_list))
-
-<a id="nestedblock--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `ip_filtering_policy_oper.oper.rule_list`
+<a id="nestedblock--ip_filtering_policy_statistics--oper"></a>
+### Nested Schema for `ip_filtering_policy_statistics.oper`
 
 Optional:
 
+- `rule_list` (Block List) (see [below for nested schema](#nestedblock--ip_filtering_policy_statistics--oper--rule_list))
+
+<a id="nestedblock--ip_filtering_policy_statistics--oper--rule_list"></a>
+### Nested Schema for `ip_filtering_policy_statistics.oper.rule_list`
+
+Optional:
+
+- `blacklisted_src_count` (Number)
 - `hits` (Number)
 - `seq` (Number)
 
@@ -125,6 +127,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `is_auth_passed` (String)
 - `is_connection_rate_exceed` (Number)
@@ -262,6 +265,58 @@ Optional:
 
 
 
+<a id="nestedblock--src_based_policy_list"></a>
+### Nested Schema for `src_based_policy_list`
+
+Required:
+
+- `src_based_policy_name` (String) Specify name of the policy
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--src_based_policy_list--oper))
+- `policy_class_list_list` (Block List) (see [below for nested schema](#nestedblock--src_based_policy_list--policy_class_list_list))
+
+<a id="nestedblock--src_based_policy_list--oper"></a>
+### Nested Schema for `src_based_policy_list.oper`
+
+
+<a id="nestedblock--src_based_policy_list--policy_class_list_list"></a>
+### Nested Schema for `src_based_policy_list.policy_class_list_list`
+
+Required:
+
+- `class_list_name` (String) Class-list name
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--src_based_policy_list--policy_class_list_list--oper))
+
+<a id="nestedblock--src_based_policy_list--policy_class_list_list--oper"></a>
+### Nested Schema for `src_based_policy_list.policy_class_list_list.oper`
+
+Optional:
+
+- `connection_limit` (Number)
+- `connection_rate_limit` (Number)
+- `current_connection_rate` (Number)
+- `current_connections` (Number)
+- `current_frag_packet_rate` (Number)
+- `current_kbit_rate` (Number)
+- `current_packet_rate` (Number)
+- `debug_str` (String)
+- `frag_packet_rate_limit` (Number)
+- `is_connection_rate_exceed` (Number)
+- `is_connections_exceed` (Number)
+- `is_frag_packet_rate_exceed` (Number)
+- `is_kbit_rate_exceed` (Number)
+- `is_packet_rate_exceed` (Number)
+- `kbit_rate_limit` (Number)
+- `packet_rate_limit` (Number)
+
+
+
+
 <a id="nestedblock--topk_destinations"></a>
 ### Nested Schema for `topk_destinations`
 
@@ -379,5 +434,3 @@ Optional:
 
 - `address` (String)
 - `rate` (String)
-
-

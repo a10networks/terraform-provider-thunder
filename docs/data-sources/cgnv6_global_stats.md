@@ -47,5 +47,3 @@ Optional:
 - `icmp_total_ports_allocated` (Number) Total ICMP ports allocated
 - `tcp_total_ports_allocated` (Number) Total TCP ports allocated
 - `udp_total_ports_allocated` (Number) Total UDP ports allocated
-
-

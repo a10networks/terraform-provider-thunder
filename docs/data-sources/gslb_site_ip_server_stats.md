@@ -54,5 +54,3 @@ Optional:
 
 - `hits` (Number) Number of times the IP was selected
 - `recent` (Number) Recent hits
-
-

@@ -61,5 +61,3 @@ Optional:
 - `src_ip` (String)
 - `start_time` (String)
 - `type` (String)
-
-

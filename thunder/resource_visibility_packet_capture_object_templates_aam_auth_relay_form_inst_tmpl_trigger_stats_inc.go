@@ -40,8 +40,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmplTrigg
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"aam_auth_relay_form_inst_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Aam_auth_relay_form_inst_tmpl_name",
 			},
 		},
 	}
@@ -118,6 +118,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesAamAuthRelayFormInstTmp
 	ret.Inst.Other_error = d.Get("other_error").(int)
 	ret.Inst.Post_fail = d.Get("post_fail").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Aam_auth_relay_form_inst_tmpl_name = d.Get("aam_auth_relay_form_inst_tmpl_name").(string)
 	return ret
 }

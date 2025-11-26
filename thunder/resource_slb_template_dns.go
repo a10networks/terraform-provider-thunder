@@ -19,11 +19,57 @@ func resourceSlbTemplateDns() *schema.Resource {
 			"add_padding_to_client": {
 				Type: schema.TypeString, Optional: true, Description: "'block-length': Block-Length Padding; 'random-block-length': Random-Block-Length Padding;",
 			},
+			"cache_hitcount_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable DNS cache entry hit count",
+			},
 			"cache_record_serving_policy": {
 				Type: schema.TypeString, Optional: true, Description: "'global': Follow global cofiguration (Default); 'no-change': No change in record order; 'round-robin': Round-robin;",
 			},
 			"cache_ttl_adjustment_enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "enable the ttl adjustment for dns cache response",
+			},
+			"category_lookup_bypass": {
+				Type: schema.TypeString, Optional: true, Description: "DNS type class-lists for bypassing category lookup",
+			},
+			"category_lookup_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"category_name": {
+							Type: schema.TypeString, Required: true, Description: "category-list name",
+						},
+						"permit": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Permit matching DNS domains",
+						},
+						"drop": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Deny matching DNS domains",
+						},
+						"respond": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Respond to matching DNS domains",
+						},
+						"respond_nxdomain": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Respond with NXDOMAIN",
+						},
+						"respond_ip_addr": {
+							Type: schema.TypeString, Optional: true, Description: "Type A record to respond (IPv4 address)",
+						},
+						"respond_ipv6_addr": {
+							Type: schema.TypeString, Optional: true, Description: "TYPE AAAA record to respond (IPv6 address)",
+						},
+						"respond_cname_str": {
+							Type: schema.TypeString, Optional: true, Description: "CNAME to respond (Canonical name)",
+						},
+						"response_ttl": {
+							Type: schema.TypeInt, Optional: true, Default: 300, Description: "Set response TTL in seconds (TTL value in seconds)",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
+			"category_lookup_online_lookup": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable online webroot lookup",
 			},
 			"class_list": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -106,6 +152,9 @@ func resourceSlbTemplateDns() *schema.Resource {
 			"disable_rpz_attach_soa": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable attaching SOA due to RPZ",
 			},
+			"dns_cookie_cache_policy": {
+				Type: schema.TypeString, Optional: true, Description: "'served-by-cache': Answer from cache for requests with cookie; 'served-by-backend': Answer from server for requests with cookie;",
+			},
 			"dns_logging": {
 				Type: schema.TypeString, Optional: true, Description: "dns logging template (DNS Logging template name)",
 			},
@@ -157,6 +206,57 @@ func resourceSlbTemplateDns() *schema.Resource {
 			},
 			"insert_ipv6": {
 				Type: schema.TypeInt, Optional: true, Description: "prefix-length to insert for IPv6",
+			},
+			"label_count_filter": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"drop_log_enable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "enable the log when hit the rule",
+						},
+						"label_count_filter_action": {
+							Type: schema.TypeString, Optional: true, Default: "drop", Description: "'drop': drop; 'ignore': ignore;",
+						},
+						"min_fqdn_label_count": {
+							Type: schema.TypeInt, Optional: true, Description: "Minimum number of FQDN labels per FQDN",
+						},
+						"max_fqdn_label_count": {
+							Type: schema.TypeInt, Optional: true, Description: "Maximum number of FQDN labels per FQDN",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
+			"label_length_filter": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"drop_log_enable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "enable the log when hit the rule",
+						},
+						"label_length_filter_action": {
+							Type: schema.TypeString, Optional: true, Default: "drop", Description: "'drop': drop; 'ignore': ignore;",
+						},
+						"fqdn_label_length": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"length": {
+										Type: schema.TypeInt, Optional: true, Description: "fqdn label length",
+									},
+									"suffix": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+								},
+							},
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
 			},
 			"local_dns_resolution": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -213,6 +313,9 @@ func resourceSlbTemplateDns() *schema.Resource {
 						"max_negative_cache_ttl": {
 							Type: schema.TypeInt, Optional: true, Default: 7200, Description: "Max negative cache ttl, default is 2 hours",
 						},
+						"cache_non_valid": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable caching non-valid negative response, otherwise will only cache valid negative response",
+						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
@@ -221,6 +324,15 @@ func resourceSlbTemplateDns() *schema.Resource {
 			},
 			"period": {
 				Type: schema.TypeInt, Optional: true, Description: "Period in minutes",
+			},
+			"qps_log_high": {
+				Type: schema.TypeInt, Optional: true, Description: "high threshold for QPS logging (queries per second)",
+			},
+			"qps_log_low": {
+				Type: schema.TypeInt, Optional: true, Description: "low threshold for QPS logging (queries per second)",
+			},
+			"qps_threshold_log": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "enable threshold log for DNS QPS",
 			},
 			"query_class_filter": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -297,6 +409,9 @@ func resourceSlbTemplateDns() *schema.Resource {
 						"ns_cache_lookup": {
 							Type: schema.TypeString, Optional: true, Default: "enabled", Description: "'disabled': Disable NS Cache Lookup; 'enabled': Enable NS Cache Lookup;",
 						},
+						"ns_longest_match": {
+							Type: schema.TypeString, Optional: true, Default: "enabled", Description: "'disabled': Look up NS of top level label, do a nearly-full resolution; 'enabled': Enable NS cache longest match;",
+						},
 						"use_service_group_response": {
 							Type: schema.TypeString, Optional: true, Default: "enabled", Description: "'disabled': Start Recursive Resolver if Server response doesnt have final answer; 'enabled': Forward Backend Server response to client and dont start recursive resolver;",
 						},
@@ -308,6 +423,9 @@ func resourceSlbTemplateDns() *schema.Resource {
 						},
 						"retries_per_level": {
 							Type: schema.TypeInt, Optional: true, Default: 6, Description: "Number of DNS query retries at each server level before closing client connection, default 6",
+						},
+						"parallel_queries": {
+							Type: schema.TypeInt, Optional: true, Default: 1, Description: "Number of parallel queries to send to servers",
 						},
 						"full_response": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Serve all records (authority and additional) when applicable",
@@ -427,6 +545,9 @@ func resourceSlbTemplateDns() *schema.Resource {
 						"response_rate": {
 							Type: schema.TypeInt, Optional: true, Default: 5, Description: "Responses exceeding this rate within the window will be dropped (default 5 per second)",
 						},
+						"nx_response_rate": {
+							Type: schema.TypeInt, Optional: true, Default: 5, Description: "Queries from entries whose NX Responses exceeding this rate within the window will be dropped (default 5 per second)",
+						},
 						"filter_response_rate": {
 							Type: schema.TypeInt, Optional: true, Default: 10, Description: "Maximum allowed request rate for the filter. This should match average traffic. (default 10 per seconds)",
 						},
@@ -478,10 +599,13 @@ func resourceSlbTemplateDns() *schema.Resource {
 													Type: schema.TypeInt, Required: true, Description: "Specify a limit ID",
 												},
 												"lid_response_rate": {
-													Type: schema.TypeInt, Optional: true, Default: 5, Description: "Responses exceeding this rate within the window will be dropped (default 5 per second)",
+													Type: schema.TypeInt, Optional: true, Default: 5, Description: "Responses exceeding this rate within the window will be dropped (default 5 per second), 0 for unlimited",
 												},
 												"lid_slip_rate": {
 													Type: schema.TypeInt, Optional: true, Description: "Every n'th response that would be rate-limited will be let through instead",
+												},
+												"lid_nx_response_rate": {
+													Type: schema.TypeInt, Optional: true, Default: 5, Description: "Queries from entries whose NX Responses exceeding this rate within the window will be dropped (default 5 per second)",
 												},
 												"lid_tc_rate": {
 													Type: schema.TypeInt, Optional: true, Description: "Every n'th response that would be rate-limited will respond with TC bit",
@@ -560,6 +684,12 @@ func resourceSlbTemplateDns() *schema.Resource {
 						},
 					},
 				},
+			},
+			"tld_filter_log_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable dns tld filter logging",
+			},
+			"tld_filter_white_list": {
+				Type: schema.TypeString, Optional: true, Description: "white-list class-list name (string-insensitive type)",
 			},
 			"udp_retransmit": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -648,26 +778,48 @@ func resourceSlbTemplateDnsRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getObjectSlbTemplateDnsClassList1424(d []interface{}) edpt.SlbTemplateDnsClassList1424 {
+func getSliceSlbTemplateDnsCategoryLookupList(d []interface{}) []edpt.SlbTemplateDnsCategoryLookupList {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsClassList1424
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Name = in["name"].(string)
+	ret := make([]edpt.SlbTemplateDnsCategoryLookupList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.SlbTemplateDnsCategoryLookupList
+		oi.CategoryName = in["category_name"].(string)
+		oi.Permit = in["permit"].(int)
+		oi.Drop = in["drop"].(int)
+		oi.Respond = in["respond"].(int)
+		oi.RespondNxdomain = in["respond_nxdomain"].(int)
+		oi.RespondIpAddr = in["respond_ip_addr"].(string)
+		oi.RespondIpv6Addr = in["respond_ipv6_addr"].(string)
+		oi.RespondCnameStr = in["respond_cname_str"].(string)
+		oi.ResponseTtl = in["response_ttl"].(int)
 		//omit uuid
-		ret.LidList = getSliceSlbTemplateDnsClassListLidList1425(in["lid_list"].([]interface{}))
+		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsClassListLidList1425(d []interface{}) []edpt.SlbTemplateDnsClassListLidList1425 {
+func getObjectSlbTemplateDnsClassList1523(d []interface{}) edpt.SlbTemplateDnsClassList1523 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsClassListLidList1425, 0, count1)
+	var ret edpt.SlbTemplateDnsClassList1523
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Name = in["name"].(string)
+		//omit uuid
+		ret.LidList = getSliceSlbTemplateDnsClassListLidList1524(in["lid_list"].([]interface{}))
+	}
+	return ret
+}
+
+func getSliceSlbTemplateDnsClassListLidList1524(d []interface{}) []edpt.SlbTemplateDnsClassListLidList1524 {
+
+	count1 := len(d)
+	ret := make([]edpt.SlbTemplateDnsClassListLidList1524, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsClassListLidList1425
+		var oi edpt.SlbTemplateDnsClassListLidList1524
 		oi.Lidnum = in["lidnum"].(int)
 		oi.ConnRateLimit = in["conn_rate_limit"].(int)
 		oi.Per = in["per"].(int)
@@ -676,7 +828,7 @@ func getSliceSlbTemplateDnsClassListLidList1425(d []interface{}) []edpt.SlbTempl
 		oi.Lockout = in["lockout"].(int)
 		oi.Log = in["log"].(int)
 		oi.LogInterval = in["log_interval"].(int)
-		oi.Dns = getObjectSlbTemplateDnsClassListLidListDns1426(in["dns"].([]interface{}))
+		oi.Dns = getObjectSlbTemplateDnsClassListLidListDns1525(in["dns"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -684,10 +836,10 @@ func getSliceSlbTemplateDnsClassListLidList1425(d []interface{}) []edpt.SlbTempl
 	return ret
 }
 
-func getObjectSlbTemplateDnsClassListLidListDns1426(d []interface{}) edpt.SlbTemplateDnsClassListLidListDns1426 {
+func getObjectSlbTemplateDnsClassListLidListDns1525(d []interface{}) edpt.SlbTemplateDnsClassListLidListDns1525 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsClassListLidListDns1426
+	var ret edpt.SlbTemplateDnsClassListLidListDns1525
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CacheAction = in["cache_action"].(string)
@@ -698,10 +850,10 @@ func getObjectSlbTemplateDnsClassListLidListDns1426(d []interface{}) edpt.SlbTem
 	return ret
 }
 
-func getObjectSlbTemplateDnsDns641427(d []interface{}) edpt.SlbTemplateDnsDns641427 {
+func getObjectSlbTemplateDnsDns641526(d []interface{}) edpt.SlbTemplateDnsDns641526 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsDns641427
+	var ret edpt.SlbTemplateDnsDns641526
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
@@ -716,79 +868,123 @@ func getObjectSlbTemplateDnsDns641427(d []interface{}) edpt.SlbTemplateDnsDns641
 	return ret
 }
 
-func getObjectSlbTemplateDnsLocalDnsResolution1428(d []interface{}) edpt.SlbTemplateDnsLocalDnsResolution1428 {
+func getObjectSlbTemplateDnsLabelCountFilter1527(d []interface{}) edpt.SlbTemplateDnsLabelCountFilter1527 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsLocalDnsResolution1428
+	var ret edpt.SlbTemplateDnsLabelCountFilter1527
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.HostListCfg = getSliceSlbTemplateDnsLocalDnsResolutionHostListCfg1429(in["host_list_cfg"].([]interface{}))
-		ret.LocalResolverCfg = getSliceSlbTemplateDnsLocalDnsResolutionLocalResolverCfg1430(in["local_resolver_cfg"].([]interface{}))
+		ret.DropLogEnable = in["drop_log_enable"].(int)
+		ret.LabelCountFilterAction = in["label_count_filter_action"].(string)
+		ret.MinFqdnLabelCount = in["min_fqdn_label_count"].(int)
+		ret.MaxFqdnLabelCount = in["max_fqdn_label_count"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsLocalDnsResolutionHostListCfg1429(d []interface{}) []edpt.SlbTemplateDnsLocalDnsResolutionHostListCfg1429 {
+func getObjectSlbTemplateDnsLabelLengthFilter1528(d []interface{}) edpt.SlbTemplateDnsLabelLengthFilter1528 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsLocalDnsResolutionHostListCfg1429, 0, count1)
+	var ret edpt.SlbTemplateDnsLabelLengthFilter1528
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.DropLogEnable = in["drop_log_enable"].(int)
+		ret.LabelLengthFilterAction = in["label_length_filter_action"].(string)
+		ret.FqdnLabelLength = getSliceSlbTemplateDnsLabelLengthFilterFqdnLabelLength1529(in["fqdn_label_length"].([]interface{}))
+		//omit uuid
+	}
+	return ret
+}
+
+func getSliceSlbTemplateDnsLabelLengthFilterFqdnLabelLength1529(d []interface{}) []edpt.SlbTemplateDnsLabelLengthFilterFqdnLabelLength1529 {
+
+	count1 := len(d)
+	ret := make([]edpt.SlbTemplateDnsLabelLengthFilterFqdnLabelLength1529, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsLocalDnsResolutionHostListCfg1429
+		var oi edpt.SlbTemplateDnsLabelLengthFilterFqdnLabelLength1529
+		oi.Length = in["length"].(int)
+		oi.Suffix = in["suffix"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectSlbTemplateDnsLocalDnsResolution1530(d []interface{}) edpt.SlbTemplateDnsLocalDnsResolution1530 {
+
+	count1 := len(d)
+	var ret edpt.SlbTemplateDnsLocalDnsResolution1530
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.HostListCfg = getSliceSlbTemplateDnsLocalDnsResolutionHostListCfg1531(in["host_list_cfg"].([]interface{}))
+		ret.LocalResolverCfg = getSliceSlbTemplateDnsLocalDnsResolutionLocalResolverCfg1532(in["local_resolver_cfg"].([]interface{}))
+		//omit uuid
+	}
+	return ret
+}
+
+func getSliceSlbTemplateDnsLocalDnsResolutionHostListCfg1531(d []interface{}) []edpt.SlbTemplateDnsLocalDnsResolutionHostListCfg1531 {
+
+	count1 := len(d)
+	ret := make([]edpt.SlbTemplateDnsLocalDnsResolutionHostListCfg1531, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.SlbTemplateDnsLocalDnsResolutionHostListCfg1531
 		oi.Hostnames = in["hostnames"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsLocalDnsResolutionLocalResolverCfg1430(d []interface{}) []edpt.SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1430 {
+func getSliceSlbTemplateDnsLocalDnsResolutionLocalResolverCfg1532(d []interface{}) []edpt.SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1532 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1430, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1532, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1430
+		var oi edpt.SlbTemplateDnsLocalDnsResolutionLocalResolverCfg1532
 		oi.LocalResolver = in["local_resolver"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSlbTemplateDnsNegativeDnsCache1431(d []interface{}) edpt.SlbTemplateDnsNegativeDnsCache1431 {
+func getObjectSlbTemplateDnsNegativeDnsCache1533(d []interface{}) edpt.SlbTemplateDnsNegativeDnsCache1533 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsNegativeDnsCache1431
+	var ret edpt.SlbTemplateDnsNegativeDnsCache1533
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.EnableNegativeDnsCache = in["enable_negative_dns_cache"].(int)
 		ret.BypassQueryThreshold = in["bypass_query_threshold"].(int)
 		ret.MaxNegativeCacheTtl = in["max_negative_cache_ttl"].(int)
+		ret.CacheNonValid = in["cache_non_valid"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectSlbTemplateDnsQueryClassFilter1432(d []interface{}) edpt.SlbTemplateDnsQueryClassFilter1432 {
+func getObjectSlbTemplateDnsQueryClassFilter1534(d []interface{}) edpt.SlbTemplateDnsQueryClassFilter1534 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsQueryClassFilter1432
+	var ret edpt.SlbTemplateDnsQueryClassFilter1534
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.QueryClassAction = in["query_class_action"].(string)
-		ret.QueryClass = getSliceSlbTemplateDnsQueryClassFilterQueryClass1433(in["query_class"].([]interface{}))
+		ret.QueryClass = getSliceSlbTemplateDnsQueryClassFilterQueryClass1535(in["query_class"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsQueryClassFilterQueryClass1433(d []interface{}) []edpt.SlbTemplateDnsQueryClassFilterQueryClass1433 {
+func getSliceSlbTemplateDnsQueryClassFilterQueryClass1535(d []interface{}) []edpt.SlbTemplateDnsQueryClassFilterQueryClass1535 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsQueryClassFilterQueryClass1433, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsQueryClassFilterQueryClass1535, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsQueryClassFilterQueryClass1433
+		var oi edpt.SlbTemplateDnsQueryClassFilterQueryClass1535
 		oi.StrQueryClass = in["str_query_class"].(string)
 		oi.NumQueryClass = in["num_query_class"].(int)
 		ret = append(ret, oi)
@@ -796,26 +992,26 @@ func getSliceSlbTemplateDnsQueryClassFilterQueryClass1433(d []interface{}) []edp
 	return ret
 }
 
-func getObjectSlbTemplateDnsQueryTypeFilter1434(d []interface{}) edpt.SlbTemplateDnsQueryTypeFilter1434 {
+func getObjectSlbTemplateDnsQueryTypeFilter1536(d []interface{}) edpt.SlbTemplateDnsQueryTypeFilter1536 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsQueryTypeFilter1434
+	var ret edpt.SlbTemplateDnsQueryTypeFilter1536
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.QueryTypeAction = in["query_type_action"].(string)
-		ret.QueryType = getSliceSlbTemplateDnsQueryTypeFilterQueryType1435(in["query_type"].([]interface{}))
+		ret.QueryType = getSliceSlbTemplateDnsQueryTypeFilterQueryType1537(in["query_type"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsQueryTypeFilterQueryType1435(d []interface{}) []edpt.SlbTemplateDnsQueryTypeFilterQueryType1435 {
+func getSliceSlbTemplateDnsQueryTypeFilterQueryType1537(d []interface{}) []edpt.SlbTemplateDnsQueryTypeFilterQueryType1537 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsQueryTypeFilterQueryType1435, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsQueryTypeFilterQueryType1537, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsQueryTypeFilterQueryType1435
+		var oi edpt.SlbTemplateDnsQueryTypeFilterQueryType1537
 		oi.StrQueryType = in["str_query_type"].(string)
 		oi.NumQueryType = in["num_query_type"].(int)
 		ret = append(ret, oi)
@@ -823,19 +1019,21 @@ func getSliceSlbTemplateDnsQueryTypeFilterQueryType1435(d []interface{}) []edpt.
 	return ret
 }
 
-func getObjectSlbTemplateDnsRecursiveDnsResolution1436(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolution1436 {
+func getObjectSlbTemplateDnsRecursiveDnsResolution1538(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolution1538 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsRecursiveDnsResolution1436
+	var ret edpt.SlbTemplateDnsRecursiveDnsResolution1538
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.HostListCfg = getSliceSlbTemplateDnsRecursiveDnsResolutionHostListCfg1437(in["host_list_cfg"].([]interface{}))
+		ret.HostListCfg = getSliceSlbTemplateDnsRecursiveDnsResolutionHostListCfg1539(in["host_list_cfg"].([]interface{}))
 		ret.CsubnetRetry = in["csubnet_retry"].(int)
 		ret.NsCacheLookup = in["ns_cache_lookup"].(string)
+		ret.NsLongestMatch = in["ns_longest_match"].(string)
 		ret.UseServiceGroupResponse = in["use_service_group_response"].(string)
 		ret.Ipv4NatPool = in["ipv4_nat_pool"].(string)
 		ret.Ipv6NatPool = in["ipv6_nat_pool"].(string)
 		ret.RetriesPerLevel = in["retries_per_level"].(int)
+		ret.ParallelQueries = in["parallel_queries"].(int)
 		ret.FullResponse = in["full_response"].(int)
 		ret.MaxTrials = in["max_trials"].(int)
 		ret.RequestForPendingResolution = in["request_for_pending_resolution"].(string)
@@ -847,44 +1045,44 @@ func getObjectSlbTemplateDnsRecursiveDnsResolution1436(d []interface{}) edpt.Slb
 		ret.FastNsSelection = in["fast_ns_selection"].(string)
 		ret.DnssecValidation = in["dnssec_validation"].(string)
 		//omit uuid
-		ret.LookupOrder = getObjectSlbTemplateDnsRecursiveDnsResolutionLookupOrder1438(in["lookup_order"].([]interface{}))
-		ret.GatewayHealthCheck = getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1440(in["gateway_health_check"].([]interface{}))
+		ret.LookupOrder = getObjectSlbTemplateDnsRecursiveDnsResolutionLookupOrder1540(in["lookup_order"].([]interface{}))
+		ret.GatewayHealthCheck = getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1542(in["gateway_health_check"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsRecursiveDnsResolutionHostListCfg1437(d []interface{}) []edpt.SlbTemplateDnsRecursiveDnsResolutionHostListCfg1437 {
+func getSliceSlbTemplateDnsRecursiveDnsResolutionHostListCfg1539(d []interface{}) []edpt.SlbTemplateDnsRecursiveDnsResolutionHostListCfg1539 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsRecursiveDnsResolutionHostListCfg1437, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsRecursiveDnsResolutionHostListCfg1539, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsRecursiveDnsResolutionHostListCfg1437
+		var oi edpt.SlbTemplateDnsRecursiveDnsResolutionHostListCfg1539
 		oi.Hostnames = in["hostnames"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectSlbTemplateDnsRecursiveDnsResolutionLookupOrder1438(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrder1438 {
+func getObjectSlbTemplateDnsRecursiveDnsResolutionLookupOrder1540(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrder1540 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrder1438
+	var ret edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrder1540
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.QueryType = getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1439(in["query_type"].([]interface{}))
+		ret.QueryType = getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541(in["query_type"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1439(d []interface{}) []edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1439 {
+func getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541(d []interface{}) []edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1439, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1439
+		var oi edpt.SlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1541
 		oi.StrQueryType = in["str_query_type"].(string)
 		oi.NumQueryType = in["num_query_type"].(int)
 		oi.Order = in["order"].(string)
@@ -893,10 +1091,10 @@ func getSliceSlbTemplateDnsRecursiveDnsResolutionLookupOrderQueryType1439(d []in
 	return ret
 }
 
-func getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1440(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1440 {
+func getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1542(d []interface{}) edpt.SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1542 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1440
+	var ret edpt.SlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1542
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.QueryName = in["query_name"].(string)
@@ -913,13 +1111,14 @@ func getObjectSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck1440(d []int
 	return ret
 }
 
-func getObjectSlbTemplateDnsResponseRateLimiting1441(d []interface{}) edpt.SlbTemplateDnsResponseRateLimiting1441 {
+func getObjectSlbTemplateDnsResponseRateLimiting1543(d []interface{}) edpt.SlbTemplateDnsResponseRateLimiting1543 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsResponseRateLimiting1441
+	var ret edpt.SlbTemplateDnsResponseRateLimiting1543
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ResponseRate = in["response_rate"].(int)
+		ret.NxResponseRate = in["nx_response_rate"].(int)
 		ret.FilterResponseRate = in["filter_response_rate"].(int)
 		ret.SlipRate = in["slip_rate"].(int)
 		ret.TcRate = in["tc_rate"].(int)
@@ -930,37 +1129,38 @@ func getObjectSlbTemplateDnsResponseRateLimiting1441(d []interface{}) edpt.SlbTe
 		ret.EnableLog = in["enable_log"].(int)
 		ret.Action = in["action"].(string)
 		//omit uuid
-		ret.RrlClassListList = getSliceSlbTemplateDnsResponseRateLimitingRrlClassListList1442(in["rrl_class_list_list"].([]interface{}))
+		ret.RrlClassListList = getSliceSlbTemplateDnsResponseRateLimitingRrlClassListList1544(in["rrl_class_list_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsResponseRateLimitingRrlClassListList1442(d []interface{}) []edpt.SlbTemplateDnsResponseRateLimitingRrlClassListList1442 {
+func getSliceSlbTemplateDnsResponseRateLimitingRrlClassListList1544(d []interface{}) []edpt.SlbTemplateDnsResponseRateLimitingRrlClassListList1544 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsResponseRateLimitingRrlClassListList1442, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsResponseRateLimitingRrlClassListList1544, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsResponseRateLimitingRrlClassListList1442
+		var oi edpt.SlbTemplateDnsResponseRateLimitingRrlClassListList1544
 		oi.Name = in["name"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
-		oi.LidList = getSliceSlbTemplateDnsResponseRateLimitingRrlClassListListLidList1443(in["lid_list"].([]interface{}))
+		oi.LidList = getSliceSlbTemplateDnsResponseRateLimitingRrlClassListListLidList1545(in["lid_list"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceSlbTemplateDnsResponseRateLimitingRrlClassListListLidList1443(d []interface{}) []edpt.SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1443 {
+func getSliceSlbTemplateDnsResponseRateLimitingRrlClassListListLidList1545(d []interface{}) []edpt.SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1545 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1443, 0, count1)
+	ret := make([]edpt.SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1545, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1443
+		var oi edpt.SlbTemplateDnsResponseRateLimitingRrlClassListListLidList1545
 		oi.Lidnum = in["lidnum"].(int)
 		oi.LidResponseRate = in["lid_response_rate"].(int)
 		oi.LidSlipRate = in["lid_slip_rate"].(int)
+		oi.LidNxResponseRate = in["lid_nx_response_rate"].(int)
 		oi.LidTcRate = in["lid_tc_rate"].(int)
 		oi.LidMatchSubnet = in["lid_match_subnet"].(string)
 		oi.LidMatchSubnetV6 = in["lid_match_subnet_v6"].(int)
@@ -1018,10 +1218,10 @@ func getSliceSlbTemplateDnsRpzListLoggingRpzAction(d []interface{}) []edpt.SlbTe
 	return ret
 }
 
-func getObjectSlbTemplateDnsUdpRetransmit1444(d []interface{}) edpt.SlbTemplateDnsUdpRetransmit1444 {
+func getObjectSlbTemplateDnsUdpRetransmit1546(d []interface{}) edpt.SlbTemplateDnsUdpRetransmit1546 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDnsUdpRetransmit1444
+	var ret edpt.SlbTemplateDnsUdpRetransmit1546
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RetryInterval = in["retry_interval"].(int)
@@ -1034,39 +1234,51 @@ func getObjectSlbTemplateDnsUdpRetransmit1444(d []interface{}) edpt.SlbTemplateD
 func dataToEndpointSlbTemplateDns(d *schema.ResourceData) edpt.SlbTemplateDns {
 	var ret edpt.SlbTemplateDns
 	ret.Inst.AddPaddingToClient = d.Get("add_padding_to_client").(string)
+	ret.Inst.CacheHitcountEnable = d.Get("cache_hitcount_enable").(int)
 	ret.Inst.CacheRecordServingPolicy = d.Get("cache_record_serving_policy").(string)
 	ret.Inst.CacheTtlAdjustmentEnable = d.Get("cache_ttl_adjustment_enable").(int)
-	ret.Inst.ClassList = getObjectSlbTemplateDnsClassList1424(d.Get("class_list").([]interface{}))
+	ret.Inst.CategoryLookupBypass = d.Get("category_lookup_bypass").(string)
+	ret.Inst.CategoryLookupList = getSliceSlbTemplateDnsCategoryLookupList(d.Get("category_lookup_list").([]interface{}))
+	ret.Inst.CategoryLookupOnlineLookup = d.Get("category_lookup_online_lookup").(int)
+	ret.Inst.ClassList = getObjectSlbTemplateDnsClassList1523(d.Get("class_list").([]interface{}))
 	ret.Inst.DefaultPolicy = d.Get("default_policy").(string)
 	ret.Inst.DisableDnsTemplate = d.Get("disable_dns_template").(int)
 	ret.Inst.DisableRaCachedResp = d.Get("disable_ra_cached_resp").(int)
 	ret.Inst.DisableRpzAttachSoa = d.Get("disable_rpz_attach_soa").(int)
+	ret.Inst.DnsCookieCachePolicy = d.Get("dns_cookie_cache_policy").(string)
 	ret.Inst.DnsLogging = d.Get("dns_logging").(string)
-	ret.Inst.Dns64 = getObjectSlbTemplateDnsDns641427(d.Get("dns64").([]interface{}))
+	ret.Inst.Dns64 = getObjectSlbTemplateDnsDns641526(d.Get("dns64").([]interface{}))
 	ret.Inst.DnssecServiceGroup = d.Get("dnssec_service_group").(string)
 	ret.Inst.Drop = d.Get("drop").(int)
 	ret.Inst.EnableCacheSharing = d.Get("enable_cache_sharing").(int)
 	ret.Inst.Forward = d.Get("forward").(string)
 	ret.Inst.InsertIpv4 = d.Get("insert_ipv4").(int)
 	ret.Inst.InsertIpv6 = d.Get("insert_ipv6").(int)
-	ret.Inst.LocalDnsResolution = getObjectSlbTemplateDnsLocalDnsResolution1428(d.Get("local_dns_resolution").([]interface{}))
+	ret.Inst.LabelCountFilter = getObjectSlbTemplateDnsLabelCountFilter1527(d.Get("label_count_filter").([]interface{}))
+	ret.Inst.LabelLengthFilter = getObjectSlbTemplateDnsLabelLengthFilter1528(d.Get("label_length_filter").([]interface{}))
+	ret.Inst.LocalDnsResolution = getObjectSlbTemplateDnsLocalDnsResolution1530(d.Get("local_dns_resolution").([]interface{}))
 	ret.Inst.MaxCacheEntrySize = d.Get("max_cache_entry_size").(int)
 	ret.Inst.MaxCacheSize = d.Get("max_cache_size").(int)
 	ret.Inst.MaxQueryLength = d.Get("max_query_length").(int)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.NegativeDnsCache = getObjectSlbTemplateDnsNegativeDnsCache1431(d.Get("negative_dns_cache").([]interface{}))
+	ret.Inst.NegativeDnsCache = getObjectSlbTemplateDnsNegativeDnsCache1533(d.Get("negative_dns_cache").([]interface{}))
 	ret.Inst.Period = d.Get("period").(int)
-	ret.Inst.QueryClassFilter = getObjectSlbTemplateDnsQueryClassFilter1432(d.Get("query_class_filter").([]interface{}))
+	ret.Inst.QpsLogHigh = d.Get("qps_log_high").(int)
+	ret.Inst.QpsLogLow = d.Get("qps_log_low").(int)
+	ret.Inst.QpsThresholdLog = d.Get("qps_threshold_log").(int)
+	ret.Inst.QueryClassFilter = getObjectSlbTemplateDnsQueryClassFilter1534(d.Get("query_class_filter").([]interface{}))
 	ret.Inst.QueryIdSwitch = d.Get("query_id_switch").(int)
-	ret.Inst.QueryTypeFilter = getObjectSlbTemplateDnsQueryTypeFilter1434(d.Get("query_type_filter").([]interface{}))
-	ret.Inst.RecursiveDnsResolution = getObjectSlbTemplateDnsRecursiveDnsResolution1436(d.Get("recursive_dns_resolution").([]interface{}))
+	ret.Inst.QueryTypeFilter = getObjectSlbTemplateDnsQueryTypeFilter1536(d.Get("query_type_filter").([]interface{}))
+	ret.Inst.RecursiveDnsResolution = getObjectSlbTemplateDnsRecursiveDnsResolution1538(d.Get("recursive_dns_resolution").([]interface{}))
 	ret.Inst.RedirectToTcpPort = d.Get("redirect_to_tcp_port").(int)
 	ret.Inst.RemoveAaFlag = d.Get("remove_aa_flag").(int)
 	ret.Inst.RemoveCsubnet = d.Get("remove_csubnet").(int)
 	ret.Inst.RemovePaddingToServer = d.Get("remove_padding_to_server").(int)
-	ret.Inst.ResponseRateLimiting = getObjectSlbTemplateDnsResponseRateLimiting1441(d.Get("response_rate_limiting").([]interface{}))
+	ret.Inst.ResponseRateLimiting = getObjectSlbTemplateDnsResponseRateLimiting1543(d.Get("response_rate_limiting").([]interface{}))
 	ret.Inst.RpzList = getSliceSlbTemplateDnsRpzList(d.Get("rpz_list").([]interface{}))
-	ret.Inst.UdpRetransmit = getObjectSlbTemplateDnsUdpRetransmit1444(d.Get("udp_retransmit").([]interface{}))
+	ret.Inst.TldFilterLogEnable = d.Get("tld_filter_log_enable").(int)
+	ret.Inst.TldFilterWhiteList = d.Get("tld_filter_white_list").(string)
+	ret.Inst.UdpRetransmit = getObjectSlbTemplateDnsUdpRetransmit1546(d.Get("udp_retransmit").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

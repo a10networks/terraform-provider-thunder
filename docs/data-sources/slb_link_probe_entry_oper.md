@@ -79,5 +79,3 @@ Optional:
 - `target_type` (Number)
 - `test_interval` (Number)
 - `url` (String)
-
-

@@ -51,5 +51,3 @@ Optional:
 - `rx_pkts_v6` (Number) Rx IPv6 TWAMP test packets
 - `twamp_hdr_len_err_v6` (Number) Rx IPv6 TWAMP hdr length error drop
 - `tx_pkts_v6` (Number) Tx IPv6 TWAMP test packets
-
-

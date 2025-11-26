@@ -52,5 +52,3 @@ Optional:
 Optional:
 
 - `service_group_name` (String)
-
-

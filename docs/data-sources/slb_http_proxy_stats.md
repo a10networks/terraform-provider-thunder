@@ -262,5 +262,3 @@ Optional:
 - `svr_prem_close` (Number) Server premature close
 - `svrsel_fail` (Number) Server selection fail
 - `total_proxy` (Number) Total Proxy Conns
-
-

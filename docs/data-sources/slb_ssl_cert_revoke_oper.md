@@ -46,5 +46,3 @@ Optional:
 
 - `port` (Number) DELETE method filter: Virtual Port
 - `vserver` (String) DELETE method filter: Virtual Server Name
-
-

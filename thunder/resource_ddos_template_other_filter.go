@@ -37,8 +37,8 @@ func resourceDdosTemplateOtherFilter() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"other_name": {
+				Type: schema.TypeString, Required: true, Description: "Other_name",
 			},
 		},
 	}
@@ -114,6 +114,6 @@ func dataToEndpointDdosTemplateOtherFilter(d *schema.ResourceData) edpt.DdosTemp
 	ret.Inst.OtherFilterUnmatched = d.Get("other_filter_unmatched").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Other_name = d.Get("other_name").(string)
 	return ret
 }

@@ -992,8 +992,8 @@ func resourceDdosHttpPortStats() *schema.Resource {
 						"prog_response_len_exceed": {
 							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response Length Exceed",
 						},
-						"prog_resp_req_ratio_exceed": {
-							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response to Request Ratio Exceed",
+						"prog_resp_pkt_rate_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response Packet Rate Exceed",
 						},
 						"prog_resp_req_time_exceed": {
 							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response to Request Time Exceed",
@@ -1061,6 +1061,48 @@ func resourceDdosHttpPortStats() *schema.Resource {
 						"port_synack_rate_exceed": {
 							Type: schema.TypeInt, Optional: true, Description: "TCP SYNACK Rate Exceeded",
 						},
+						"tcp_auth_rst": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Reset",
+						},
+						"src_tcp_auth_rst": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Reset",
+						},
+						"hybrid_auth_unknown_pass": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Unknown Auth Pass",
+						},
+						"hybrid_auth_unknown_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Unknown Auth Fail",
+						},
+						"hybrid_auth_valid_sa_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Valid SYNACK Sent",
+						},
+						"hybrid_auth_invalid_sa_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Invalid SYNACK Sent",
+						},
+						"hybrid_auth_filter_full": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Filter Full",
+						},
+						"hybrid_auth_lookup_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Lookup Fail",
+						},
+						"hybrid_auth_invalid_pass": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Invalid SYNACK Auth Pass",
+						},
+						"hybrid_auth_valid_pass": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Valid SYNACK Auth Pass",
+						},
+						"hybrid_auth_invalid_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Invalid SYNACK Auth Fail",
+						},
+						"hybrid_auth_valid_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Valid SYNACK Auth Fail",
+						},
+						"prog_query_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Client Query Time Exceed",
+						},
+						"prog_think_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Server Think Time Exceed",
+						},
 						"prog_conn_samples": {
 							Type: schema.TypeInt, Optional: true, Description: "Sample Collected: Connection",
 						},
@@ -1079,11 +1121,215 @@ func resourceDdosHttpPortStats() *schema.Resource {
 						"prog_win_samples_processed": {
 							Type: schema.TypeInt, Optional: true, Description: "Sample Processed: Time Window",
 						},
-						"tcp_auth_rst": {
-							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Reset",
+						"hybrid_auth_method_change": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Method Change",
 						},
-						"src_tcp_auth_rst": {
-							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Reset",
+						"small_window_excd": {
+							Type: schema.TypeInt, Optional: true, Description: "Small-Window Exceeded",
+						},
+						"src_small_window_excd": {
+							Type: schema.TypeInt, Optional: true, Description: "Src Small-Window Exceeded",
+						},
+						"small_window_rcv": {
+							Type: schema.TypeInt, Optional: true, Description: "Small-Window Receive",
+						},
+						"hybrid_auth_entry_aged_out": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Entry Aged Out",
+						},
+						"tcp_syn_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Inbound SYN Received",
+						},
+						"tcp_syn_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP SYN ACK Received",
+						},
+						"tcp_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ACK Received",
+						},
+						"tcp_fin_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN Received",
+						},
+						"tcp_rst_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP RST Received",
+						},
+						"hybrid_auth_auth_no_match": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Auth No Match Drop",
+						},
+						"tcp_auth_drop_syn": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: SYN",
+						},
+						"src_auth_drop_syn": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: SYN",
+						},
+						"tcp_auth_drop_ack": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: ACK",
+						},
+						"src_auth_drop_ack": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: ACK",
+						},
+						"tcp_auth_drop_rst": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: RST",
+						},
+						"src_auth_drop_rst": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: RST",
+						},
+						"tcp_auth_drop_ack_pass_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: ACK Pass Auth",
+						},
+						"src_auth_drop_ack_pass_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: ACK Pass Auth",
+						},
+						"tcp_auth_drop_ack_fail_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: ACK Fail Auth",
+						},
+						"src_auth_drop_ack_fail_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: ACK Fail Auth",
+						},
+						"tcp_auth_drop_rst_pass_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: RST Pass Auth",
+						},
+						"src_auth_drop_rst_pass_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: RST Pass Auth",
+						},
+						"tcp_auth_drop_rst_fail_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: RST Fail Auth",
+						},
+						"src_auth_drop_rst_fail_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: RST Fail Auth",
+						},
+						"hybrid_auth_auth_no_match_rst_rcv": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Auth No Match Drop: RST Received",
+						},
+						"hybrid_auth_auth_no_match_ack_rcv": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Auth No Match Drop: ACK Received",
+						},
+						"tcp_auth_drop_ack_xmit": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: ACK Retransmit",
+						},
+						"src_auth_drop_ack_xmit": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: ACK Retransmit",
+						},
+						"tcp_auth_drop_rst_xmit": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: RST Retransmit",
+						},
+						"src_auth_drop_rst_xmit": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: RST Retransmit",
+						},
+						"tcp_psh_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP PSH Received",
+						},
+						"tcp_psh_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP PSH ACK Received",
+						},
+						"tcp_fin_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN ACK Received",
+						},
+						"tcp_rst_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP RST ACK Received",
+						},
+						"tcp_urg_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP URG Received",
+						},
+						"tcp_ece_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ECE Received",
+						},
+						"tcp_cwr_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP CWR Received",
+						},
+						"tcp_empty_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Empty ACK Received",
+						},
+						"tcp_ack_data_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ACK with Data Received",
+						},
+						"tcp_syn_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP SYN ACK Dropped",
+						},
+						"tcp_psh_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP PSH ACK Dropped",
+						},
+						"tcp_fin_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN ACK Dropped",
+						},
+						"tcp_rst_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP RST ACK Dropped",
+						},
+						"tcp_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ACK Dropped",
+						},
+						"tcp_fin_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN Dropped",
+						},
+						"tcp_rst_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP RST Dropped",
+						},
+						"tcp_psh_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP PSH Dropped",
+						},
+						"tcp_urg_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP URG Dropped",
+						},
+						"tcp_ece_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ECE Dropped",
+						},
+						"tcp_cwr_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP CWR Dropped",
+						},
+						"tcp_empty_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Empty ACK Dropped",
+						},
+						"tcp_ack_data_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ACK with Data Dropped",
+						},
+						"tcp_syn_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Forward",
+						},
+						"tcp_syn_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP SYN ACK Forward",
+						},
+						"tcp_psh_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP PSH ACK Forward",
+						},
+						"tcp_fin_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN ACK Forward",
+						},
+						"tcp_rst_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP RST ACK Forward",
+						},
+						"tcp_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ACK Forward",
+						},
+						"tcp_fin_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN Forward",
+						},
+						"tcp_rst_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP RST Forward",
+						},
+						"tcp_psh_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP PSH Forward",
+						},
+						"tcp_urg_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP URG Forward",
+						},
+						"tcp_ece_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ECE Forward",
+						},
+						"tcp_cwr_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP CWR Forward",
+						},
+						"tcp_empty_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Empty ACK Forward",
+						},
+						"tcp_ack_data_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ACK with Data Forward",
+						},
+						"tcp_fin_psh_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN PSH ACK Received",
+						},
+						"tcp_fin_psh_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN PSH ACK Drop",
+						},
+						"tcp_fin_psh_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN PSH ACK Forward",
 						},
 					},
 				},
@@ -1439,7 +1685,7 @@ func setObjectDdosHttpPortStatsStats(ret edpt.DataDdosHttpPortStats) []interface
 			"prog_req_resp_time_exceed":                ret.DtDdosHttpPortStats.Stats.Prog_req_resp_time_exceed,
 			"prog_request_len_exceed":                  ret.DtDdosHttpPortStats.Stats.Prog_request_len_exceed,
 			"prog_response_len_exceed":                 ret.DtDdosHttpPortStats.Stats.Prog_response_len_exceed,
-			"prog_resp_req_ratio_exceed":               ret.DtDdosHttpPortStats.Stats.Prog_resp_req_ratio_exceed,
+			"prog_resp_pkt_rate_exceed":                ret.DtDdosHttpPortStats.Stats.Prog_resp_pkt_rate_exceed,
 			"prog_resp_req_time_exceed":                ret.DtDdosHttpPortStats.Stats.Prog_resp_req_time_exceed,
 			"prog_conn_sent_exceed":                    ret.DtDdosHttpPortStats.Stats.Prog_conn_sent_exceed,
 			"prog_conn_rcvd_exceed":                    ret.DtDdosHttpPortStats.Stats.Prog_conn_rcvd_exceed,
@@ -1462,14 +1708,96 @@ func setObjectDdosHttpPortStatsStats(ret edpt.DataDdosHttpPortStats) []interface
 			"prog_win_exceed_reset":                    ret.DtDdosHttpPortStats.Stats.Prog_win_exceed_reset,
 			"conn_create_from_synack":                  ret.DtDdosHttpPortStats.Stats.Conn_create_from_synack,
 			"port_synack_rate_exceed":                  ret.DtDdosHttpPortStats.Stats.Port_synack_rate_exceed,
+			"tcp_auth_rst":                             ret.DtDdosHttpPortStats.Stats.Tcp_auth_rst,
+			"src_tcp_auth_rst":                         ret.DtDdosHttpPortStats.Stats.Src_tcp_auth_rst,
+			"hybrid_auth_unknown_pass":                 ret.DtDdosHttpPortStats.Stats.Hybrid_auth_unknown_pass,
+			"hybrid_auth_unknown_fail":                 ret.DtDdosHttpPortStats.Stats.Hybrid_auth_unknown_fail,
+			"hybrid_auth_valid_sa_sent":                ret.DtDdosHttpPortStats.Stats.Hybrid_auth_valid_sa_sent,
+			"hybrid_auth_invalid_sa_sent":              ret.DtDdosHttpPortStats.Stats.Hybrid_auth_invalid_sa_sent,
+			"hybrid_auth_filter_full":                  ret.DtDdosHttpPortStats.Stats.Hybrid_auth_filter_full,
+			"hybrid_auth_lookup_fail":                  ret.DtDdosHttpPortStats.Stats.Hybrid_auth_lookup_fail,
+			"hybrid_auth_invalid_pass":                 ret.DtDdosHttpPortStats.Stats.Hybrid_auth_invalid_pass,
+			"hybrid_auth_valid_pass":                   ret.DtDdosHttpPortStats.Stats.Hybrid_auth_valid_pass,
+			"hybrid_auth_invalid_fail":                 ret.DtDdosHttpPortStats.Stats.Hybrid_auth_invalid_fail,
+			"hybrid_auth_valid_fail":                   ret.DtDdosHttpPortStats.Stats.Hybrid_auth_valid_fail,
+			"prog_query_exceed":                        ret.DtDdosHttpPortStats.Stats.Prog_query_exceed,
+			"prog_think_exceed":                        ret.DtDdosHttpPortStats.Stats.Prog_think_exceed,
 			"prog_conn_samples":                        ret.DtDdosHttpPortStats.Stats.Prog_conn_samples,
 			"prog_req_samples":                         ret.DtDdosHttpPortStats.Stats.Prog_req_samples,
 			"prog_win_samples":                         ret.DtDdosHttpPortStats.Stats.Prog_win_samples,
 			"prog_conn_samples_processed":              ret.DtDdosHttpPortStats.Stats.Prog_conn_samples_processed,
 			"prog_req_samples_processed":               ret.DtDdosHttpPortStats.Stats.Prog_req_samples_processed,
 			"prog_win_samples_processed":               ret.DtDdosHttpPortStats.Stats.Prog_win_samples_processed,
-			"tcp_auth_rst":                             ret.DtDdosHttpPortStats.Stats.Tcp_auth_rst,
-			"src_tcp_auth_rst":                         ret.DtDdosHttpPortStats.Stats.Src_tcp_auth_rst,
+			"hybrid_auth_method_change":                ret.DtDdosHttpPortStats.Stats.Hybrid_auth_method_change,
+			"small_window_excd":                        ret.DtDdosHttpPortStats.Stats.Small_window_excd,
+			"src_small_window_excd":                    ret.DtDdosHttpPortStats.Stats.Src_small_window_excd,
+			"small_window_rcv":                         ret.DtDdosHttpPortStats.Stats.Small_window_rcv,
+			"hybrid_auth_entry_aged_out":               ret.DtDdosHttpPortStats.Stats.Hybrid_auth_entry_aged_out,
+			"tcp_syn_rcvd":                             ret.DtDdosHttpPortStats.Stats.Tcp_syn_rcvd,
+			"tcp_syn_ack_rcvd":                         ret.DtDdosHttpPortStats.Stats.Tcp_syn_ack_rcvd,
+			"tcp_ack_rcvd":                             ret.DtDdosHttpPortStats.Stats.Tcp_ack_rcvd,
+			"tcp_fin_rcvd":                             ret.DtDdosHttpPortStats.Stats.Tcp_fin_rcvd,
+			"tcp_rst_rcvd":                             ret.DtDdosHttpPortStats.Stats.Tcp_rst_rcvd,
+			"hybrid_auth_auth_no_match":                ret.DtDdosHttpPortStats.Stats.Hybrid_auth_auth_no_match,
+			"tcp_auth_drop_syn":                        ret.DtDdosHttpPortStats.Stats.Tcp_auth_drop_syn,
+			"src_auth_drop_syn":                        ret.DtDdosHttpPortStats.Stats.Src_auth_drop_syn,
+			"tcp_auth_drop_ack":                        ret.DtDdosHttpPortStats.Stats.Tcp_auth_drop_ack,
+			"src_auth_drop_ack":                        ret.DtDdosHttpPortStats.Stats.Src_auth_drop_ack,
+			"tcp_auth_drop_rst":                        ret.DtDdosHttpPortStats.Stats.Tcp_auth_drop_rst,
+			"src_auth_drop_rst":                        ret.DtDdosHttpPortStats.Stats.Src_auth_drop_rst,
+			"tcp_auth_drop_ack_pass_auth":              ret.DtDdosHttpPortStats.Stats.Tcp_auth_drop_ack_pass_auth,
+			"src_auth_drop_ack_pass_auth":              ret.DtDdosHttpPortStats.Stats.Src_auth_drop_ack_pass_auth,
+			"tcp_auth_drop_ack_fail_auth":              ret.DtDdosHttpPortStats.Stats.Tcp_auth_drop_ack_fail_auth,
+			"src_auth_drop_ack_fail_auth":              ret.DtDdosHttpPortStats.Stats.Src_auth_drop_ack_fail_auth,
+			"tcp_auth_drop_rst_pass_auth":              ret.DtDdosHttpPortStats.Stats.Tcp_auth_drop_rst_pass_auth,
+			"src_auth_drop_rst_pass_auth":              ret.DtDdosHttpPortStats.Stats.Src_auth_drop_rst_pass_auth,
+			"tcp_auth_drop_rst_fail_auth":              ret.DtDdosHttpPortStats.Stats.Tcp_auth_drop_rst_fail_auth,
+			"src_auth_drop_rst_fail_auth":              ret.DtDdosHttpPortStats.Stats.Src_auth_drop_rst_fail_auth,
+			"hybrid_auth_auth_no_match_rst_rcv":        ret.DtDdosHttpPortStats.Stats.Hybrid_auth_auth_no_match_rst_rcv,
+			"hybrid_auth_auth_no_match_ack_rcv":        ret.DtDdosHttpPortStats.Stats.Hybrid_auth_auth_no_match_ack_rcv,
+			"tcp_auth_drop_ack_xmit":                   ret.DtDdosHttpPortStats.Stats.Tcp_auth_drop_ack_xmit,
+			"src_auth_drop_ack_xmit":                   ret.DtDdosHttpPortStats.Stats.Src_auth_drop_ack_xmit,
+			"tcp_auth_drop_rst_xmit":                   ret.DtDdosHttpPortStats.Stats.Tcp_auth_drop_rst_xmit,
+			"src_auth_drop_rst_xmit":                   ret.DtDdosHttpPortStats.Stats.Src_auth_drop_rst_xmit,
+			"tcp_psh_rcvd":                             ret.DtDdosHttpPortStats.Stats.Tcp_psh_rcvd,
+			"tcp_psh_ack_rcvd":                         ret.DtDdosHttpPortStats.Stats.Tcp_psh_ack_rcvd,
+			"tcp_fin_ack_rcvd":                         ret.DtDdosHttpPortStats.Stats.Tcp_fin_ack_rcvd,
+			"tcp_rst_ack_rcvd":                         ret.DtDdosHttpPortStats.Stats.Tcp_rst_ack_rcvd,
+			"tcp_urg_rcvd":                             ret.DtDdosHttpPortStats.Stats.Tcp_urg_rcvd,
+			"tcp_ece_rcvd":                             ret.DtDdosHttpPortStats.Stats.Tcp_ece_rcvd,
+			"tcp_cwr_rcvd":                             ret.DtDdosHttpPortStats.Stats.Tcp_cwr_rcvd,
+			"tcp_empty_ack_rcvd":                       ret.DtDdosHttpPortStats.Stats.Tcp_empty_ack_rcvd,
+			"tcp_ack_data_rcvd":                        ret.DtDdosHttpPortStats.Stats.Tcp_ack_data_rcvd,
+			"tcp_syn_ack_drop":                         ret.DtDdosHttpPortStats.Stats.Tcp_syn_ack_drop,
+			"tcp_psh_ack_drop":                         ret.DtDdosHttpPortStats.Stats.Tcp_psh_ack_drop,
+			"tcp_fin_ack_drop":                         ret.DtDdosHttpPortStats.Stats.Tcp_fin_ack_drop,
+			"tcp_rst_ack_drop":                         ret.DtDdosHttpPortStats.Stats.Tcp_rst_ack_drop,
+			"tcp_ack_drop":                             ret.DtDdosHttpPortStats.Stats.Tcp_ack_drop,
+			"tcp_fin_drop":                             ret.DtDdosHttpPortStats.Stats.Tcp_fin_drop,
+			"tcp_rst_drop":                             ret.DtDdosHttpPortStats.Stats.Tcp_rst_drop,
+			"tcp_psh_drop":                             ret.DtDdosHttpPortStats.Stats.Tcp_psh_drop,
+			"tcp_urg_drop":                             ret.DtDdosHttpPortStats.Stats.Tcp_urg_drop,
+			"tcp_ece_drop":                             ret.DtDdosHttpPortStats.Stats.Tcp_ece_drop,
+			"tcp_cwr_drop":                             ret.DtDdosHttpPortStats.Stats.Tcp_cwr_drop,
+			"tcp_empty_ack_drop":                       ret.DtDdosHttpPortStats.Stats.Tcp_empty_ack_drop,
+			"tcp_ack_data_drop":                        ret.DtDdosHttpPortStats.Stats.Tcp_ack_data_drop,
+			"tcp_syn_fwd":                              ret.DtDdosHttpPortStats.Stats.Tcp_syn_fwd,
+			"tcp_syn_ack_fwd":                          ret.DtDdosHttpPortStats.Stats.Tcp_syn_ack_fwd,
+			"tcp_psh_ack_fwd":                          ret.DtDdosHttpPortStats.Stats.Tcp_psh_ack_fwd,
+			"tcp_fin_ack_fwd":                          ret.DtDdosHttpPortStats.Stats.Tcp_fin_ack_fwd,
+			"tcp_rst_ack_fwd":                          ret.DtDdosHttpPortStats.Stats.Tcp_rst_ack_fwd,
+			"tcp_ack_fwd":                              ret.DtDdosHttpPortStats.Stats.Tcp_ack_fwd,
+			"tcp_fin_fwd":                              ret.DtDdosHttpPortStats.Stats.Tcp_fin_fwd,
+			"tcp_rst_fwd":                              ret.DtDdosHttpPortStats.Stats.Tcp_rst_fwd,
+			"tcp_psh_fwd":                              ret.DtDdosHttpPortStats.Stats.Tcp_psh_fwd,
+			"tcp_urg_fwd":                              ret.DtDdosHttpPortStats.Stats.Tcp_urg_fwd,
+			"tcp_ece_fwd":                              ret.DtDdosHttpPortStats.Stats.Tcp_ece_fwd,
+			"tcp_cwr_fwd":                              ret.DtDdosHttpPortStats.Stats.Tcp_cwr_fwd,
+			"tcp_empty_ack_fwd":                        ret.DtDdosHttpPortStats.Stats.Tcp_empty_ack_fwd,
+			"tcp_ack_data_fwd":                         ret.DtDdosHttpPortStats.Stats.Tcp_ack_data_fwd,
+			"tcp_fin_psh_ack_rcvd":                     ret.DtDdosHttpPortStats.Stats.Tcp_fin_psh_ack_rcvd,
+			"tcp_fin_psh_ack_drop":                     ret.DtDdosHttpPortStats.Stats.Tcp_fin_psh_ack_drop,
+			"tcp_fin_psh_ack_fwd":                      ret.DtDdosHttpPortStats.Stats.Tcp_fin_psh_ack_fwd,
 		},
 	}
 }
@@ -1805,7 +2133,7 @@ func getObjectDdosHttpPortStatsStats(d []interface{}) edpt.DdosHttpPortStatsStat
 		ret.Prog_req_resp_time_exceed = in["prog_req_resp_time_exceed"].(int)
 		ret.Prog_request_len_exceed = in["prog_request_len_exceed"].(int)
 		ret.Prog_response_len_exceed = in["prog_response_len_exceed"].(int)
-		ret.Prog_resp_req_ratio_exceed = in["prog_resp_req_ratio_exceed"].(int)
+		ret.Prog_resp_pkt_rate_exceed = in["prog_resp_pkt_rate_exceed"].(int)
 		ret.Prog_resp_req_time_exceed = in["prog_resp_req_time_exceed"].(int)
 		ret.Prog_conn_sent_exceed = in["prog_conn_sent_exceed"].(int)
 		ret.Prog_conn_rcvd_exceed = in["prog_conn_rcvd_exceed"].(int)
@@ -1828,14 +2156,96 @@ func getObjectDdosHttpPortStatsStats(d []interface{}) edpt.DdosHttpPortStatsStat
 		ret.Prog_win_exceed_reset = in["prog_win_exceed_reset"].(int)
 		ret.Conn_create_from_synack = in["conn_create_from_synack"].(int)
 		ret.Port_synack_rate_exceed = in["port_synack_rate_exceed"].(int)
+		ret.Tcp_auth_rst = in["tcp_auth_rst"].(int)
+		ret.Src_tcp_auth_rst = in["src_tcp_auth_rst"].(int)
+		ret.Hybrid_auth_unknown_pass = in["hybrid_auth_unknown_pass"].(int)
+		ret.Hybrid_auth_unknown_fail = in["hybrid_auth_unknown_fail"].(int)
+		ret.Hybrid_auth_valid_sa_sent = in["hybrid_auth_valid_sa_sent"].(int)
+		ret.Hybrid_auth_invalid_sa_sent = in["hybrid_auth_invalid_sa_sent"].(int)
+		ret.Hybrid_auth_filter_full = in["hybrid_auth_filter_full"].(int)
+		ret.Hybrid_auth_lookup_fail = in["hybrid_auth_lookup_fail"].(int)
+		ret.Hybrid_auth_invalid_pass = in["hybrid_auth_invalid_pass"].(int)
+		ret.Hybrid_auth_valid_pass = in["hybrid_auth_valid_pass"].(int)
+		ret.Hybrid_auth_invalid_fail = in["hybrid_auth_invalid_fail"].(int)
+		ret.Hybrid_auth_valid_fail = in["hybrid_auth_valid_fail"].(int)
+		ret.Prog_query_exceed = in["prog_query_exceed"].(int)
+		ret.Prog_think_exceed = in["prog_think_exceed"].(int)
 		ret.Prog_conn_samples = in["prog_conn_samples"].(int)
 		ret.Prog_req_samples = in["prog_req_samples"].(int)
 		ret.Prog_win_samples = in["prog_win_samples"].(int)
 		ret.Prog_conn_samples_processed = in["prog_conn_samples_processed"].(int)
 		ret.Prog_req_samples_processed = in["prog_req_samples_processed"].(int)
 		ret.Prog_win_samples_processed = in["prog_win_samples_processed"].(int)
-		ret.Tcp_auth_rst = in["tcp_auth_rst"].(int)
-		ret.Src_tcp_auth_rst = in["src_tcp_auth_rst"].(int)
+		ret.Hybrid_auth_method_change = in["hybrid_auth_method_change"].(int)
+		ret.Small_window_excd = in["small_window_excd"].(int)
+		ret.Src_small_window_excd = in["src_small_window_excd"].(int)
+		ret.Small_window_rcv = in["small_window_rcv"].(int)
+		ret.Hybrid_auth_entry_aged_out = in["hybrid_auth_entry_aged_out"].(int)
+		ret.Tcp_syn_rcvd = in["tcp_syn_rcvd"].(int)
+		ret.Tcp_syn_ack_rcvd = in["tcp_syn_ack_rcvd"].(int)
+		ret.Tcp_ack_rcvd = in["tcp_ack_rcvd"].(int)
+		ret.Tcp_fin_rcvd = in["tcp_fin_rcvd"].(int)
+		ret.Tcp_rst_rcvd = in["tcp_rst_rcvd"].(int)
+		ret.Hybrid_auth_auth_no_match = in["hybrid_auth_auth_no_match"].(int)
+		ret.Tcp_auth_drop_syn = in["tcp_auth_drop_syn"].(int)
+		ret.Src_auth_drop_syn = in["src_auth_drop_syn"].(int)
+		ret.Tcp_auth_drop_ack = in["tcp_auth_drop_ack"].(int)
+		ret.Src_auth_drop_ack = in["src_auth_drop_ack"].(int)
+		ret.Tcp_auth_drop_rst = in["tcp_auth_drop_rst"].(int)
+		ret.Src_auth_drop_rst = in["src_auth_drop_rst"].(int)
+		ret.Tcp_auth_drop_ack_pass_auth = in["tcp_auth_drop_ack_pass_auth"].(int)
+		ret.Src_auth_drop_ack_pass_auth = in["src_auth_drop_ack_pass_auth"].(int)
+		ret.Tcp_auth_drop_ack_fail_auth = in["tcp_auth_drop_ack_fail_auth"].(int)
+		ret.Src_auth_drop_ack_fail_auth = in["src_auth_drop_ack_fail_auth"].(int)
+		ret.Tcp_auth_drop_rst_pass_auth = in["tcp_auth_drop_rst_pass_auth"].(int)
+		ret.Src_auth_drop_rst_pass_auth = in["src_auth_drop_rst_pass_auth"].(int)
+		ret.Tcp_auth_drop_rst_fail_auth = in["tcp_auth_drop_rst_fail_auth"].(int)
+		ret.Src_auth_drop_rst_fail_auth = in["src_auth_drop_rst_fail_auth"].(int)
+		ret.Hybrid_auth_auth_no_match_rst_rcv = in["hybrid_auth_auth_no_match_rst_rcv"].(int)
+		ret.Hybrid_auth_auth_no_match_ack_rcv = in["hybrid_auth_auth_no_match_ack_rcv"].(int)
+		ret.Tcp_auth_drop_ack_xmit = in["tcp_auth_drop_ack_xmit"].(int)
+		ret.Src_auth_drop_ack_xmit = in["src_auth_drop_ack_xmit"].(int)
+		ret.Tcp_auth_drop_rst_xmit = in["tcp_auth_drop_rst_xmit"].(int)
+		ret.Src_auth_drop_rst_xmit = in["src_auth_drop_rst_xmit"].(int)
+		ret.Tcp_psh_rcvd = in["tcp_psh_rcvd"].(int)
+		ret.Tcp_psh_ack_rcvd = in["tcp_psh_ack_rcvd"].(int)
+		ret.Tcp_fin_ack_rcvd = in["tcp_fin_ack_rcvd"].(int)
+		ret.Tcp_rst_ack_rcvd = in["tcp_rst_ack_rcvd"].(int)
+		ret.Tcp_urg_rcvd = in["tcp_urg_rcvd"].(int)
+		ret.Tcp_ece_rcvd = in["tcp_ece_rcvd"].(int)
+		ret.Tcp_cwr_rcvd = in["tcp_cwr_rcvd"].(int)
+		ret.Tcp_empty_ack_rcvd = in["tcp_empty_ack_rcvd"].(int)
+		ret.Tcp_ack_data_rcvd = in["tcp_ack_data_rcvd"].(int)
+		ret.Tcp_syn_ack_drop = in["tcp_syn_ack_drop"].(int)
+		ret.Tcp_psh_ack_drop = in["tcp_psh_ack_drop"].(int)
+		ret.Tcp_fin_ack_drop = in["tcp_fin_ack_drop"].(int)
+		ret.Tcp_rst_ack_drop = in["tcp_rst_ack_drop"].(int)
+		ret.Tcp_ack_drop = in["tcp_ack_drop"].(int)
+		ret.Tcp_fin_drop = in["tcp_fin_drop"].(int)
+		ret.Tcp_rst_drop = in["tcp_rst_drop"].(int)
+		ret.Tcp_psh_drop = in["tcp_psh_drop"].(int)
+		ret.Tcp_urg_drop = in["tcp_urg_drop"].(int)
+		ret.Tcp_ece_drop = in["tcp_ece_drop"].(int)
+		ret.Tcp_cwr_drop = in["tcp_cwr_drop"].(int)
+		ret.Tcp_empty_ack_drop = in["tcp_empty_ack_drop"].(int)
+		ret.Tcp_ack_data_drop = in["tcp_ack_data_drop"].(int)
+		ret.Tcp_syn_fwd = in["tcp_syn_fwd"].(int)
+		ret.Tcp_syn_ack_fwd = in["tcp_syn_ack_fwd"].(int)
+		ret.Tcp_psh_ack_fwd = in["tcp_psh_ack_fwd"].(int)
+		ret.Tcp_fin_ack_fwd = in["tcp_fin_ack_fwd"].(int)
+		ret.Tcp_rst_ack_fwd = in["tcp_rst_ack_fwd"].(int)
+		ret.Tcp_ack_fwd = in["tcp_ack_fwd"].(int)
+		ret.Tcp_fin_fwd = in["tcp_fin_fwd"].(int)
+		ret.Tcp_rst_fwd = in["tcp_rst_fwd"].(int)
+		ret.Tcp_psh_fwd = in["tcp_psh_fwd"].(int)
+		ret.Tcp_urg_fwd = in["tcp_urg_fwd"].(int)
+		ret.Tcp_ece_fwd = in["tcp_ece_fwd"].(int)
+		ret.Tcp_cwr_fwd = in["tcp_cwr_fwd"].(int)
+		ret.Tcp_empty_ack_fwd = in["tcp_empty_ack_fwd"].(int)
+		ret.Tcp_ack_data_fwd = in["tcp_ack_data_fwd"].(int)
+		ret.Tcp_fin_psh_ack_rcvd = in["tcp_fin_psh_ack_rcvd"].(int)
+		ret.Tcp_fin_psh_ack_drop = in["tcp_fin_psh_ack_drop"].(int)
+		ret.Tcp_fin_psh_ack_fwd = in["tcp_fin_psh_ack_fwd"].(int)
 	}
 	return ret
 }

@@ -65,5 +65,3 @@ Optional:
 - `receive` (Number)
 - `snt_home` (Number)
 - `submit` (Number)
-
-

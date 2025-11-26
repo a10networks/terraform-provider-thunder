@@ -31,8 +31,8 @@ func resourceHealthMonitorMethodIcmp() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -106,6 +106,6 @@ func dataToEndpointHealthMonitorMethodIcmp(d *schema.ResourceData) edpt.HealthMo
 	ret.Inst.Ipv6 = d.Get("ipv6").(string)
 	ret.Inst.Transparent = d.Get("transparent").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

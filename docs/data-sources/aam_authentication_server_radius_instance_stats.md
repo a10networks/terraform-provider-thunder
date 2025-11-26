@@ -62,5 +62,3 @@ Optional:
 - `other_error` (Number) Other Error
 - `request` (Number) Request
 - `timeout_error` (Number) Timeout
-
-

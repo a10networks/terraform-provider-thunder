@@ -206,6 +206,7 @@ Optional:
 - `ipv6_ip` (String)
 - `total_ip_entry_count` (Number)
 - `victim_list` (Number)
+- `with_selected_details` (Number)
 
 <a id="nestedblock--detection--victim_ip_detection--oper--ip_entry_list"></a>
 ### Nested Schema for `detection.victim_ip_detection.oper.ip_entry_list`
@@ -268,32 +269,34 @@ Required:
 
 Optional:
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--ip_filtering_policy_oper))
+- `ip_filtering_policy_statistics` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--ip_filtering_policy_statistics))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--oper))
 - `port_ind` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--port_ind))
 - `progression_tracking` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--progression_tracking))
+- `src_based_policy_list` (Block List) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--src_based_policy_list))
 - `topk_destinations` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--topk_destinations))
 - `topk_sources` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--topk_sources))
 
-<a id="nestedblock--ip_proto--proto_name_list--ip_filtering_policy_oper"></a>
-### Nested Schema for `ip_proto.proto_name_list.ip_filtering_policy_oper`
+<a id="nestedblock--ip_proto--proto_name_list--ip_filtering_policy_statistics"></a>
+### Nested Schema for `ip_proto.proto_name_list.ip_filtering_policy_statistics`
 
 Optional:
 
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--ip_filtering_policy_oper--oper))
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--ip_filtering_policy_statistics--oper))
 
-<a id="nestedblock--ip_proto--proto_name_list--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `ip_proto.proto_name_list.ip_filtering_policy_oper.oper`
-
-Optional:
-
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--ip_filtering_policy_oper--oper--rule_list))
-
-<a id="nestedblock--ip_proto--proto_name_list--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `ip_proto.proto_name_list.ip_filtering_policy_oper.oper.rule_list`
+<a id="nestedblock--ip_proto--proto_name_list--ip_filtering_policy_statistics--oper"></a>
+### Nested Schema for `ip_proto.proto_name_list.ip_filtering_policy_statistics.oper`
 
 Optional:
 
+- `rule_list` (Block List) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--ip_filtering_policy_statistics--oper--rule_list))
+
+<a id="nestedblock--ip_proto--proto_name_list--ip_filtering_policy_statistics--oper--rule_list"></a>
+### Nested Schema for `ip_proto.proto_name_list.ip_filtering_policy_statistics.oper.rule_list`
+
+Optional:
+
+- `blacklisted_src_count` (Number)
 - `hits` (Number)
 - `seq` (Number)
 
@@ -348,6 +351,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `is_auth_passed` (String)
 - `is_connection_rate_exceed` (Number)
@@ -485,6 +489,58 @@ Optional:
 
 
 
+<a id="nestedblock--ip_proto--proto_name_list--src_based_policy_list"></a>
+### Nested Schema for `ip_proto.proto_name_list.src_based_policy_list`
+
+Required:
+
+- `src_based_policy_name` (String) Specify name of the policy
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--src_based_policy_list--oper))
+- `policy_class_list_list` (Block List) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--src_based_policy_list--policy_class_list_list))
+
+<a id="nestedblock--ip_proto--proto_name_list--src_based_policy_list--oper"></a>
+### Nested Schema for `ip_proto.proto_name_list.src_based_policy_list.oper`
+
+
+<a id="nestedblock--ip_proto--proto_name_list--src_based_policy_list--policy_class_list_list"></a>
+### Nested Schema for `ip_proto.proto_name_list.src_based_policy_list.policy_class_list_list`
+
+Required:
+
+- `class_list_name` (String) Class-list name
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_name_list--src_based_policy_list--policy_class_list_list--oper))
+
+<a id="nestedblock--ip_proto--proto_name_list--src_based_policy_list--policy_class_list_list--oper"></a>
+### Nested Schema for `ip_proto.proto_name_list.src_based_policy_list.policy_class_list_list.oper`
+
+Optional:
+
+- `connection_limit` (Number)
+- `connection_rate_limit` (Number)
+- `current_connection_rate` (Number)
+- `current_connections` (Number)
+- `current_frag_packet_rate` (Number)
+- `current_kbit_rate` (Number)
+- `current_packet_rate` (Number)
+- `debug_str` (String)
+- `frag_packet_rate_limit` (Number)
+- `is_connection_rate_exceed` (Number)
+- `is_connections_exceed` (Number)
+- `is_frag_packet_rate_exceed` (Number)
+- `is_kbit_rate_exceed` (Number)
+- `is_packet_rate_exceed` (Number)
+- `kbit_rate_limit` (Number)
+- `packet_rate_limit` (Number)
+
+
+
+
 <a id="nestedblock--ip_proto--proto_name_list--topk_destinations"></a>
 ### Nested Schema for `ip_proto.proto_name_list.topk_destinations`
 
@@ -617,32 +673,34 @@ Required:
 
 Optional:
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--ip_filtering_policy_oper))
+- `ip_filtering_policy_statistics` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--ip_filtering_policy_statistics))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--oper))
 - `port_ind` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--port_ind))
 - `progression_tracking` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--progression_tracking))
+- `src_based_policy_list` (Block List) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--src_based_policy_list))
 - `topk_destinations` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--topk_destinations))
 - `topk_sources` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--topk_sources))
 
-<a id="nestedblock--ip_proto--proto_number_list--ip_filtering_policy_oper"></a>
-### Nested Schema for `ip_proto.proto_number_list.ip_filtering_policy_oper`
+<a id="nestedblock--ip_proto--proto_number_list--ip_filtering_policy_statistics"></a>
+### Nested Schema for `ip_proto.proto_number_list.ip_filtering_policy_statistics`
 
 Optional:
 
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--ip_filtering_policy_oper--oper))
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--ip_filtering_policy_statistics--oper))
 
-<a id="nestedblock--ip_proto--proto_number_list--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `ip_proto.proto_number_list.ip_filtering_policy_oper.oper`
-
-Optional:
-
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--ip_filtering_policy_oper--oper--rule_list))
-
-<a id="nestedblock--ip_proto--proto_number_list--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `ip_proto.proto_number_list.ip_filtering_policy_oper.oper.rule_list`
+<a id="nestedblock--ip_proto--proto_number_list--ip_filtering_policy_statistics--oper"></a>
+### Nested Schema for `ip_proto.proto_number_list.ip_filtering_policy_statistics.oper`
 
 Optional:
 
+- `rule_list` (Block List) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--ip_filtering_policy_statistics--oper--rule_list))
+
+<a id="nestedblock--ip_proto--proto_number_list--ip_filtering_policy_statistics--oper--rule_list"></a>
+### Nested Schema for `ip_proto.proto_number_list.ip_filtering_policy_statistics.oper.rule_list`
+
+Optional:
+
+- `blacklisted_src_count` (Number)
 - `hits` (Number)
 - `seq` (Number)
 
@@ -697,6 +755,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `is_auth_passed` (String)
 - `is_connection_rate_exceed` (Number)
@@ -834,6 +893,58 @@ Optional:
 
 
 
+<a id="nestedblock--ip_proto--proto_number_list--src_based_policy_list"></a>
+### Nested Schema for `ip_proto.proto_number_list.src_based_policy_list`
+
+Required:
+
+- `src_based_policy_name` (String) Specify name of the policy
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--src_based_policy_list--oper))
+- `policy_class_list_list` (Block List) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--src_based_policy_list--policy_class_list_list))
+
+<a id="nestedblock--ip_proto--proto_number_list--src_based_policy_list--oper"></a>
+### Nested Schema for `ip_proto.proto_number_list.src_based_policy_list.oper`
+
+
+<a id="nestedblock--ip_proto--proto_number_list--src_based_policy_list--policy_class_list_list"></a>
+### Nested Schema for `ip_proto.proto_number_list.src_based_policy_list.policy_class_list_list`
+
+Required:
+
+- `class_list_name` (String) Class-list name
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_number_list--src_based_policy_list--policy_class_list_list--oper))
+
+<a id="nestedblock--ip_proto--proto_number_list--src_based_policy_list--policy_class_list_list--oper"></a>
+### Nested Schema for `ip_proto.proto_number_list.src_based_policy_list.policy_class_list_list.oper`
+
+Optional:
+
+- `connection_limit` (Number)
+- `connection_rate_limit` (Number)
+- `current_connection_rate` (Number)
+- `current_connections` (Number)
+- `current_frag_packet_rate` (Number)
+- `current_kbit_rate` (Number)
+- `current_packet_rate` (Number)
+- `debug_str` (String)
+- `frag_packet_rate_limit` (Number)
+- `is_connection_rate_exceed` (Number)
+- `is_connections_exceed` (Number)
+- `is_frag_packet_rate_exceed` (Number)
+- `is_kbit_rate_exceed` (Number)
+- `is_packet_rate_exceed` (Number)
+- `kbit_rate_limit` (Number)
+- `packet_rate_limit` (Number)
+
+
+
+
 <a id="nestedblock--ip_proto--proto_number_list--topk_destinations"></a>
 ### Nested Schema for `ip_proto.proto_number_list.topk_destinations`
 
@@ -966,28 +1077,29 @@ Required:
 
 Optional:
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_tcp_udp_list--ip_filtering_policy_oper))
+- `ip_filtering_policy_statistics` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_tcp_udp_list--ip_filtering_policy_statistics))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_tcp_udp_list--oper))
 
-<a id="nestedblock--ip_proto--proto_tcp_udp_list--ip_filtering_policy_oper"></a>
-### Nested Schema for `ip_proto.proto_tcp_udp_list.ip_filtering_policy_oper`
+<a id="nestedblock--ip_proto--proto_tcp_udp_list--ip_filtering_policy_statistics"></a>
+### Nested Schema for `ip_proto.proto_tcp_udp_list.ip_filtering_policy_statistics`
 
 Optional:
 
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_tcp_udp_list--ip_filtering_policy_oper--oper))
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_proto--proto_tcp_udp_list--ip_filtering_policy_statistics--oper))
 
-<a id="nestedblock--ip_proto--proto_tcp_udp_list--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `ip_proto.proto_tcp_udp_list.ip_filtering_policy_oper.oper`
-
-Optional:
-
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--ip_proto--proto_tcp_udp_list--ip_filtering_policy_oper--oper--rule_list))
-
-<a id="nestedblock--ip_proto--proto_tcp_udp_list--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `ip_proto.proto_tcp_udp_list.ip_filtering_policy_oper.oper.rule_list`
+<a id="nestedblock--ip_proto--proto_tcp_udp_list--ip_filtering_policy_statistics--oper"></a>
+### Nested Schema for `ip_proto.proto_tcp_udp_list.ip_filtering_policy_statistics.oper`
 
 Optional:
 
+- `rule_list` (Block List) (see [below for nested schema](#nestedblock--ip_proto--proto_tcp_udp_list--ip_filtering_policy_statistics--oper--rule_list))
+
+<a id="nestedblock--ip_proto--proto_tcp_udp_list--ip_filtering_policy_statistics--oper--rule_list"></a>
+### Nested Schema for `ip_proto.proto_tcp_udp_list.ip_filtering_policy_statistics.oper.rule_list`
+
+Optional:
+
+- `blacklisted_src_count` (Number)
 - `hits` (Number)
 - `seq` (Number)
 
@@ -1042,6 +1154,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `is_auth_passed` (String)
 - `is_connection_rate_exceed` (Number)
@@ -1106,6 +1219,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `is_connection_rate_exceed` (Number)
 - `is_connections_exceed` (Number)
@@ -1290,62 +1404,39 @@ Required:
 
 Optional:
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--ip_filtering_policy_oper))
-- `ips` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--ips))
+- `ip_filtering_policy_statistics` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--ip_filtering_policy_statistics))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--oper))
 - `pattern_recognition` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--pattern_recognition))
 - `pattern_recognition_pu_details` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--pattern_recognition_pu_details))
 - `port_ind` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--port_ind))
 - `progression_tracking` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--progression_tracking))
+- `src_based_policy_list` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_list--src_based_policy_list))
 - `topk_destinations` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--topk_destinations))
 - `topk_sources` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--topk_sources))
+- `virtualhosts` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--virtualhosts))
 
-<a id="nestedblock--port--zone_service_list--ip_filtering_policy_oper"></a>
-### Nested Schema for `port.zone_service_list.ip_filtering_policy_oper`
-
-Optional:
-
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--ip_filtering_policy_oper--oper))
-
-<a id="nestedblock--port--zone_service_list--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `port.zone_service_list.ip_filtering_policy_oper.oper`
+<a id="nestedblock--port--zone_service_list--ip_filtering_policy_statistics"></a>
+### Nested Schema for `port.zone_service_list.ip_filtering_policy_statistics`
 
 Optional:
 
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_list--ip_filtering_policy_oper--oper--rule_list))
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--ip_filtering_policy_statistics--oper))
 
-<a id="nestedblock--port--zone_service_list--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `port.zone_service_list.ip_filtering_policy_oper.oper.rule_list`
+<a id="nestedblock--port--zone_service_list--ip_filtering_policy_statistics--oper"></a>
+### Nested Schema for `port.zone_service_list.ip_filtering_policy_statistics.oper`
 
 Optional:
 
+- `rule_list` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_list--ip_filtering_policy_statistics--oper--rule_list))
+
+<a id="nestedblock--port--zone_service_list--ip_filtering_policy_statistics--oper--rule_list"></a>
+### Nested Schema for `port.zone_service_list.ip_filtering_policy_statistics.oper.rule_list`
+
+Optional:
+
+- `blacklisted_src_count` (Number)
 - `hits` (Number)
 - `seq` (Number)
-
-
-
-
-<a id="nestedblock--port--zone_service_list--ips"></a>
-### Nested Schema for `port.zone_service_list.ips`
-
-Optional:
-
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--ips--oper))
-
-<a id="nestedblock--port--zone_service_list--ips--oper"></a>
-### Nested Schema for `port.zone_service_list.ips.oper`
-
-Optional:
-
-- `signature_list` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_list--ips--oper--signature_list))
-
-<a id="nestedblock--port--zone_service_list--ips--oper--signature_list"></a>
-### Nested Schema for `port.zone_service_list.ips.oper.signature_list`
-
-Optional:
-
-- `match_count` (Number)
-- `sid` (Number)
 
 
 
@@ -1364,6 +1455,7 @@ Optional:
 - `entry_displayed_count` (Number)
 - `exceeded` (Number)
 - `hw_blacklisted` (Number)
+- `hw_blacklisted_stats` (Number)
 - `indicator_detail` (Number)
 - `indicators` (Number)
 - `ipv6` (String)
@@ -1415,8 +1507,10 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `http_filter_rates` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_list--oper--ddos_entry_list--http_filter_rates))
+- `hw_blocked_rules` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_list--oper--ddos_entry_list--hw_blocked_rules))
 - `is_app_stat1_exceed` (Number)
 - `is_app_stat2_exceed` (Number)
 - `is_app_stat3_exceed` (Number)
@@ -1447,6 +1541,15 @@ Optional:
 - `http_filter_rate_limit` (String)
 - `http_filter_rate_name` (String)
 - `is_http_filter_rate_limit_exceed` (Number)
+
+
+<a id="nestedblock--port--zone_service_list--oper--ddos_entry_list--hw_blocked_rules"></a>
+### Nested Schema for `port.zone_service_list.oper.ddos_entry_list.hw_blocked_rules`
+
+Optional:
+
+- `hw_blocking_state` (String)
+- `rule_dst_ip` (String)
 
 
 <a id="nestedblock--port--zone_service_list--oper--ddos_entry_list--response_size_rates"></a>
@@ -1664,6 +1767,58 @@ Optional:
 
 
 
+<a id="nestedblock--port--zone_service_list--src_based_policy_list"></a>
+### Nested Schema for `port.zone_service_list.src_based_policy_list`
+
+Required:
+
+- `src_based_policy_name` (String) Specify name of the policy
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--src_based_policy_list--oper))
+- `policy_class_list_list` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_list--src_based_policy_list--policy_class_list_list))
+
+<a id="nestedblock--port--zone_service_list--src_based_policy_list--oper"></a>
+### Nested Schema for `port.zone_service_list.src_based_policy_list.oper`
+
+
+<a id="nestedblock--port--zone_service_list--src_based_policy_list--policy_class_list_list"></a>
+### Nested Schema for `port.zone_service_list.src_based_policy_list.policy_class_list_list`
+
+Required:
+
+- `class_list_name` (String) Class-list name
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--src_based_policy_list--policy_class_list_list--oper))
+
+<a id="nestedblock--port--zone_service_list--src_based_policy_list--policy_class_list_list--oper"></a>
+### Nested Schema for `port.zone_service_list.src_based_policy_list.policy_class_list_list.oper`
+
+Optional:
+
+- `connection_limit` (Number)
+- `connection_rate_limit` (Number)
+- `current_connection_rate` (Number)
+- `current_connections` (Number)
+- `current_frag_packet_rate` (Number)
+- `current_kbit_rate` (Number)
+- `current_packet_rate` (Number)
+- `debug_str` (String)
+- `frag_packet_rate_limit` (Number)
+- `is_connection_rate_exceed` (Number)
+- `is_connections_exceed` (Number)
+- `is_frag_packet_rate_exceed` (Number)
+- `is_kbit_rate_exceed` (Number)
+- `is_packet_rate_exceed` (Number)
+- `kbit_rate_limit` (Number)
+- `packet_rate_limit` (Number)
+
+
+
+
 <a id="nestedblock--port--zone_service_list--topk_destinations"></a>
 ### Nested Schema for `port.zone_service_list.topk_destinations`
 
@@ -1786,6 +1941,154 @@ Optional:
 
 
 
+<a id="nestedblock--port--zone_service_list--virtualhosts"></a>
+### Nested Schema for `port.zone_service_list.virtualhosts`
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--virtualhosts--oper))
+- `virtualhost_list` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_list--virtualhosts--virtualhost_list))
+
+<a id="nestedblock--port--zone_service_list--virtualhosts--oper"></a>
+### Nested Schema for `port.zone_service_list.virtualhosts.oper`
+
+
+<a id="nestedblock--port--zone_service_list--virtualhosts--virtualhost_list"></a>
+### Nested Schema for `port.zone_service_list.virtualhosts.virtualhost_list`
+
+Required:
+
+- `vhost` (String) name for virtualhost
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_list--virtualhosts--virtualhost_list--oper))
+
+<a id="nestedblock--port--zone_service_list--virtualhosts--virtualhost_list--oper"></a>
+### Nested Schema for `port.zone_service_list.virtualhosts.virtualhost_list.oper`
+
+Optional:
+
+- `app_stat` (Number)
+- `authenticated` (Number)
+- `black_listed` (Number)
+- `class_list` (String)
+- `ddos_entry_list` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_list--virtualhosts--virtualhost_list--oper--ddos_entry_list))
+- `domain_name` (String)
+- `entry_displayed_count` (Number)
+- `exceeded` (Number)
+- `hw_blacklisted` (Number)
+- `indicator_detail` (Number)
+- `indicators` (Number)
+- `ipv6` (String)
+- `l4_ext_rate` (Number)
+- `level` (Number)
+- `overflow_policy` (Number)
+- `reporting_status` (Number)
+- `service_displayed_count` (Number)
+- `sources` (Number)
+- `sources_all_entries` (Number)
+- `subnet_ip_addr` (String)
+- `subnet_ipv6_addr` (String)
+- `suffix_request_rate` (Number)
+- `white_listed` (Number)
+
+<a id="nestedblock--port--zone_service_list--virtualhosts--virtualhost_list--oper--ddos_entry_list"></a>
+### Nested Schema for `port.zone_service_list.virtualhosts.virtualhost_list.oper.ddos_entry_list`
+
+Optional:
+
+- `age` (Number)
+- `app_stat1_limit` (String)
+- `app_stat2_limit` (String)
+- `app_stat3_limit` (String)
+- `app_stat4_limit` (String)
+- `app_stat5_limit` (String)
+- `app_stat6_limit` (String)
+- `app_stat7_limit` (String)
+- `app_stat8_limit` (String)
+- `bl_reasoning_rcode` (String)
+- `bl_reasoning_timestamp` (String)
+- `bw_state` (String)
+- `connection_limit` (String)
+- `connection_rate_limit` (String)
+- `current_app_stat1` (String)
+- `current_app_stat2` (String)
+- `current_app_stat3` (String)
+- `current_app_stat4` (String)
+- `current_app_stat5` (String)
+- `current_app_stat6` (String)
+- `current_app_stat7` (String)
+- `current_app_stat8` (String)
+- `current_connection_rate` (String)
+- `current_connections` (String)
+- `current_frag_packet_rate` (String)
+- `current_kbit_rate` (String)
+- `current_packet_rate` (String)
+- `debug_str` (String)
+- `dst_address_str` (String)
+- `dynamic_entry_count` (String)
+- `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
+- `frag_packet_rate_limit` (String)
+- `http_filter_rates` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_list--virtualhosts--virtualhost_list--oper--ddos_entry_list--http_filter_rates))
+- `hw_blocked_rules` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_list--virtualhosts--virtualhost_list--oper--ddos_entry_list--hw_blocked_rules))
+- `is_app_stat1_exceed` (Number)
+- `is_app_stat2_exceed` (Number)
+- `is_app_stat3_exceed` (Number)
+- `is_app_stat4_exceed` (Number)
+- `is_app_stat5_exceed` (Number)
+- `is_app_stat6_exceed` (Number)
+- `is_app_stat7_exceed` (Number)
+- `is_app_stat8_exceed` (Number)
+- `is_auth_passed` (String)
+- `is_connection_rate_exceed` (Number)
+- `is_connections_exceed` (Number)
+- `is_frag_packet_rate_exceed` (Number)
+- `is_kbit_rate_exceed` (Number)
+- `is_packet_rate_exceed` (Number)
+- `kbit_rate_limit` (String)
+- `level` (Number)
+- `lockup_time` (Number)
+- `packet_rate_limit` (String)
+- `response_size_rates` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_list--virtualhosts--virtualhost_list--oper--ddos_entry_list--response_size_rates))
+- `sflow_source_id` (Number)
+
+<a id="nestedblock--port--zone_service_list--virtualhosts--virtualhost_list--oper--ddos_entry_list--http_filter_rates"></a>
+### Nested Schema for `port.zone_service_list.virtualhosts.virtualhost_list.oper.ddos_entry_list.http_filter_rates`
+
+Optional:
+
+- `current_http_filter_rate` (String)
+- `http_filter_rate_limit` (String)
+- `http_filter_rate_name` (String)
+- `is_http_filter_rate_limit_exceed` (Number)
+
+
+<a id="nestedblock--port--zone_service_list--virtualhosts--virtualhost_list--oper--ddos_entry_list--hw_blocked_rules"></a>
+### Nested Schema for `port.zone_service_list.virtualhosts.virtualhost_list.oper.ddos_entry_list.hw_blocked_rules`
+
+Optional:
+
+- `hw_blocking_state` (String)
+- `rule_dst_ip` (String)
+
+
+<a id="nestedblock--port--zone_service_list--virtualhosts--virtualhost_list--oper--ddos_entry_list--response_size_rates"></a>
+### Nested Schema for `port.zone_service_list.virtualhosts.virtualhost_list.oper.ddos_entry_list.response_size_rates`
+
+Optional:
+
+- `current_response_size_rate` (String)
+- `is_response_size_rate_limit_exceed` (Number)
+- `response_size_rate_limit` (String)
+- `response_size_rate_name` (String)
+
+
+
+
+
+
 
 <a id="nestedblock--port--zone_service_other_list"></a>
 ### Nested Schema for `port.zone_service_other_list`
@@ -1797,34 +2100,36 @@ Required:
 
 Optional:
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--ip_filtering_policy_oper))
+- `ip_filtering_policy_statistics` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--ip_filtering_policy_statistics))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--oper))
 - `pattern_recognition` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--pattern_recognition))
 - `pattern_recognition_pu_details` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--pattern_recognition_pu_details))
 - `port_ind` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--port_ind))
 - `progression_tracking` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--progression_tracking))
+- `src_based_policy_list` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_other_list--src_based_policy_list))
 - `topk_destinations` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--topk_destinations))
 - `topk_sources` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--topk_sources))
 
-<a id="nestedblock--port--zone_service_other_list--ip_filtering_policy_oper"></a>
-### Nested Schema for `port.zone_service_other_list.ip_filtering_policy_oper`
+<a id="nestedblock--port--zone_service_other_list--ip_filtering_policy_statistics"></a>
+### Nested Schema for `port.zone_service_other_list.ip_filtering_policy_statistics`
 
 Optional:
 
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--ip_filtering_policy_oper--oper))
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--ip_filtering_policy_statistics--oper))
 
-<a id="nestedblock--port--zone_service_other_list--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `port.zone_service_other_list.ip_filtering_policy_oper.oper`
-
-Optional:
-
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_other_list--ip_filtering_policy_oper--oper--rule_list))
-
-<a id="nestedblock--port--zone_service_other_list--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `port.zone_service_other_list.ip_filtering_policy_oper.oper.rule_list`
+<a id="nestedblock--port--zone_service_other_list--ip_filtering_policy_statistics--oper"></a>
+### Nested Schema for `port.zone_service_other_list.ip_filtering_policy_statistics.oper`
 
 Optional:
 
+- `rule_list` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_other_list--ip_filtering_policy_statistics--oper--rule_list))
+
+<a id="nestedblock--port--zone_service_other_list--ip_filtering_policy_statistics--oper--rule_list"></a>
+### Nested Schema for `port.zone_service_other_list.ip_filtering_policy_statistics.oper.rule_list`
+
+Optional:
+
+- `blacklisted_src_count` (Number)
 - `hits` (Number)
 - `seq` (Number)
 
@@ -1896,6 +2201,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `is_app_stat1_exceed` (Number)
 - `is_app_stat2_exceed` (Number)
@@ -2121,6 +2427,58 @@ Optional:
 
 
 
+<a id="nestedblock--port--zone_service_other_list--src_based_policy_list"></a>
+### Nested Schema for `port.zone_service_other_list.src_based_policy_list`
+
+Required:
+
+- `src_based_policy_name` (String) Specify name of the policy
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--src_based_policy_list--oper))
+- `policy_class_list_list` (Block List) (see [below for nested schema](#nestedblock--port--zone_service_other_list--src_based_policy_list--policy_class_list_list))
+
+<a id="nestedblock--port--zone_service_other_list--src_based_policy_list--oper"></a>
+### Nested Schema for `port.zone_service_other_list.src_based_policy_list.oper`
+
+
+<a id="nestedblock--port--zone_service_other_list--src_based_policy_list--policy_class_list_list"></a>
+### Nested Schema for `port.zone_service_other_list.src_based_policy_list.policy_class_list_list`
+
+Required:
+
+- `class_list_name` (String) Class-list name
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port--zone_service_other_list--src_based_policy_list--policy_class_list_list--oper))
+
+<a id="nestedblock--port--zone_service_other_list--src_based_policy_list--policy_class_list_list--oper"></a>
+### Nested Schema for `port.zone_service_other_list.src_based_policy_list.policy_class_list_list.oper`
+
+Optional:
+
+- `connection_limit` (Number)
+- `connection_rate_limit` (Number)
+- `current_connection_rate` (Number)
+- `current_connections` (Number)
+- `current_frag_packet_rate` (Number)
+- `current_kbit_rate` (Number)
+- `current_packet_rate` (Number)
+- `debug_str` (String)
+- `frag_packet_rate_limit` (Number)
+- `is_connection_rate_exceed` (Number)
+- `is_connections_exceed` (Number)
+- `is_frag_packet_rate_exceed` (Number)
+- `is_kbit_rate_exceed` (Number)
+- `is_packet_rate_exceed` (Number)
+- `kbit_rate_limit` (Number)
+- `packet_rate_limit` (Number)
+
+
+
+
 <a id="nestedblock--port--zone_service_other_list--topk_destinations"></a>
 ### Nested Schema for `port.zone_service_other_list.topk_destinations`
 
@@ -2256,62 +2614,39 @@ Required:
 
 Optional:
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--ip_filtering_policy_oper))
-- `ips` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--ips))
+- `ip_filtering_policy_statistics` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--ip_filtering_policy_statistics))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--oper))
 - `pattern_recognition` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--pattern_recognition))
 - `pattern_recognition_pu_details` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--pattern_recognition_pu_details))
 - `port_ind` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--port_ind))
 - `progression_tracking` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--progression_tracking))
+- `src_based_policy_list` (Block List) (see [below for nested schema](#nestedblock--port_range_list--src_based_policy_list))
 - `topk_destinations` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--topk_destinations))
 - `topk_sources` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--topk_sources))
+- `virtualhosts` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--virtualhosts))
 
-<a id="nestedblock--port_range_list--ip_filtering_policy_oper"></a>
-### Nested Schema for `port_range_list.ip_filtering_policy_oper`
-
-Optional:
-
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--ip_filtering_policy_oper--oper))
-
-<a id="nestedblock--port_range_list--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `port_range_list.ip_filtering_policy_oper.oper`
+<a id="nestedblock--port_range_list--ip_filtering_policy_statistics"></a>
+### Nested Schema for `port_range_list.ip_filtering_policy_statistics`
 
 Optional:
 
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--port_range_list--ip_filtering_policy_oper--oper--rule_list))
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--ip_filtering_policy_statistics--oper))
 
-<a id="nestedblock--port_range_list--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `port_range_list.ip_filtering_policy_oper.oper.rule_list`
+<a id="nestedblock--port_range_list--ip_filtering_policy_statistics--oper"></a>
+### Nested Schema for `port_range_list.ip_filtering_policy_statistics.oper`
 
 Optional:
 
+- `rule_list` (Block List) (see [below for nested schema](#nestedblock--port_range_list--ip_filtering_policy_statistics--oper--rule_list))
+
+<a id="nestedblock--port_range_list--ip_filtering_policy_statistics--oper--rule_list"></a>
+### Nested Schema for `port_range_list.ip_filtering_policy_statistics.oper.rule_list`
+
+Optional:
+
+- `blacklisted_src_count` (Number)
 - `hits` (Number)
 - `seq` (Number)
-
-
-
-
-<a id="nestedblock--port_range_list--ips"></a>
-### Nested Schema for `port_range_list.ips`
-
-Optional:
-
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--ips--oper))
-
-<a id="nestedblock--port_range_list--ips--oper"></a>
-### Nested Schema for `port_range_list.ips.oper`
-
-Optional:
-
-- `signature_list` (Block List) (see [below for nested schema](#nestedblock--port_range_list--ips--oper--signature_list))
-
-<a id="nestedblock--port_range_list--ips--oper--signature_list"></a>
-### Nested Schema for `port_range_list.ips.oper.signature_list`
-
-Optional:
-
-- `match_count` (Number)
-- `sid` (Number)
 
 
 
@@ -2381,6 +2716,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `http_filter_rates` (Block List) (see [below for nested schema](#nestedblock--port_range_list--oper--ddos_entry_list--http_filter_rates))
 - `is_app_stat1_exceed` (Number)
@@ -2630,6 +2966,58 @@ Optional:
 
 
 
+<a id="nestedblock--port_range_list--src_based_policy_list"></a>
+### Nested Schema for `port_range_list.src_based_policy_list`
+
+Required:
+
+- `src_based_policy_name` (String) Specify name of the policy
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--src_based_policy_list--oper))
+- `policy_class_list_list` (Block List) (see [below for nested schema](#nestedblock--port_range_list--src_based_policy_list--policy_class_list_list))
+
+<a id="nestedblock--port_range_list--src_based_policy_list--oper"></a>
+### Nested Schema for `port_range_list.src_based_policy_list.oper`
+
+
+<a id="nestedblock--port_range_list--src_based_policy_list--policy_class_list_list"></a>
+### Nested Schema for `port_range_list.src_based_policy_list.policy_class_list_list`
+
+Required:
+
+- `class_list_name` (String) Class-list name
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--src_based_policy_list--policy_class_list_list--oper))
+
+<a id="nestedblock--port_range_list--src_based_policy_list--policy_class_list_list--oper"></a>
+### Nested Schema for `port_range_list.src_based_policy_list.policy_class_list_list.oper`
+
+Optional:
+
+- `connection_limit` (Number)
+- `connection_rate_limit` (Number)
+- `current_connection_rate` (Number)
+- `current_connections` (Number)
+- `current_frag_packet_rate` (Number)
+- `current_kbit_rate` (Number)
+- `current_packet_rate` (Number)
+- `debug_str` (String)
+- `frag_packet_rate_limit` (Number)
+- `is_connection_rate_exceed` (Number)
+- `is_connections_exceed` (Number)
+- `is_frag_packet_rate_exceed` (Number)
+- `is_kbit_rate_exceed` (Number)
+- `is_packet_rate_exceed` (Number)
+- `kbit_rate_limit` (Number)
+- `packet_rate_limit` (Number)
+
+
+
+
 <a id="nestedblock--port_range_list--topk_destinations"></a>
 ### Nested Schema for `port_range_list.topk_destinations`
 
@@ -2752,6 +3140,144 @@ Optional:
 
 
 
+<a id="nestedblock--port_range_list--virtualhosts"></a>
+### Nested Schema for `port_range_list.virtualhosts`
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--virtualhosts--oper))
+- `virtualhost_list` (Block List) (see [below for nested schema](#nestedblock--port_range_list--virtualhosts--virtualhost_list))
+
+<a id="nestedblock--port_range_list--virtualhosts--oper"></a>
+### Nested Schema for `port_range_list.virtualhosts.oper`
+
+
+<a id="nestedblock--port_range_list--virtualhosts--virtualhost_list"></a>
+### Nested Schema for `port_range_list.virtualhosts.virtualhost_list`
+
+Required:
+
+- `vhost` (String) name for virtualhost
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--port_range_list--virtualhosts--virtualhost_list--oper))
+
+<a id="nestedblock--port_range_list--virtualhosts--virtualhost_list--oper"></a>
+### Nested Schema for `port_range_list.virtualhosts.virtualhost_list.oper`
+
+Optional:
+
+- `app_stat` (Number)
+- `authenticated` (Number)
+- `black_listed` (Number)
+- `class_list` (String)
+- `ddos_entry_list` (Block List) (see [below for nested schema](#nestedblock--port_range_list--virtualhosts--virtualhost_list--oper--ddos_entry_list))
+- `domain_name` (String)
+- `entry_displayed_count` (Number)
+- `exceeded` (Number)
+- `hw_blacklisted` (Number)
+- `indicator_detail` (Number)
+- `indicators` (Number)
+- `ipv6` (String)
+- `l4_ext_rate` (Number)
+- `level` (Number)
+- `overflow_policy` (Number)
+- `reporting_status` (Number)
+- `service_displayed_count` (Number)
+- `sources` (Number)
+- `sources_all_entries` (Number)
+- `subnet_ip_addr` (String)
+- `subnet_ipv6_addr` (String)
+- `suffix_request_rate` (Number)
+- `white_listed` (Number)
+
+<a id="nestedblock--port_range_list--virtualhosts--virtualhost_list--oper--ddos_entry_list"></a>
+### Nested Schema for `port_range_list.virtualhosts.virtualhost_list.oper.ddos_entry_list`
+
+Optional:
+
+- `age` (Number)
+- `app_stat1_limit` (String)
+- `app_stat2_limit` (String)
+- `app_stat3_limit` (String)
+- `app_stat4_limit` (String)
+- `app_stat5_limit` (String)
+- `app_stat6_limit` (String)
+- `app_stat7_limit` (String)
+- `app_stat8_limit` (String)
+- `bl_reasoning_rcode` (String)
+- `bl_reasoning_timestamp` (String)
+- `bw_state` (String)
+- `connection_limit` (String)
+- `connection_rate_limit` (String)
+- `current_app_stat1` (String)
+- `current_app_stat2` (String)
+- `current_app_stat3` (String)
+- `current_app_stat4` (String)
+- `current_app_stat5` (String)
+- `current_app_stat6` (String)
+- `current_app_stat7` (String)
+- `current_app_stat8` (String)
+- `current_connection_rate` (String)
+- `current_connections` (String)
+- `current_frag_packet_rate` (String)
+- `current_kbit_rate` (String)
+- `current_packet_rate` (String)
+- `debug_str` (String)
+- `dst_address_str` (String)
+- `dynamic_entry_count` (String)
+- `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
+- `frag_packet_rate_limit` (String)
+- `http_filter_rates` (Block List) (see [below for nested schema](#nestedblock--port_range_list--virtualhosts--virtualhost_list--oper--ddos_entry_list--http_filter_rates))
+- `is_app_stat1_exceed` (Number)
+- `is_app_stat2_exceed` (Number)
+- `is_app_stat3_exceed` (Number)
+- `is_app_stat4_exceed` (Number)
+- `is_app_stat5_exceed` (Number)
+- `is_app_stat6_exceed` (Number)
+- `is_app_stat7_exceed` (Number)
+- `is_app_stat8_exceed` (Number)
+- `is_auth_passed` (String)
+- `is_connection_rate_exceed` (Number)
+- `is_connections_exceed` (Number)
+- `is_frag_packet_rate_exceed` (Number)
+- `is_kbit_rate_exceed` (Number)
+- `is_packet_rate_exceed` (Number)
+- `kbit_rate_limit` (String)
+- `level` (Number)
+- `lockup_time` (Number)
+- `packet_rate_limit` (String)
+- `response_size_rates` (Block List) (see [below for nested schema](#nestedblock--port_range_list--virtualhosts--virtualhost_list--oper--ddos_entry_list--response_size_rates))
+- `sflow_source_id` (Number)
+
+<a id="nestedblock--port_range_list--virtualhosts--virtualhost_list--oper--ddos_entry_list--http_filter_rates"></a>
+### Nested Schema for `port_range_list.virtualhosts.virtualhost_list.oper.ddos_entry_list.http_filter_rates`
+
+Optional:
+
+- `current_http_filter_rate` (String)
+- `http_filter_rate_limit` (String)
+- `http_filter_rate_name` (String)
+- `is_http_filter_rate_limit_exceed` (Number)
+
+
+<a id="nestedblock--port_range_list--virtualhosts--virtualhost_list--oper--ddos_entry_list--response_size_rates"></a>
+### Nested Schema for `port_range_list.virtualhosts.virtualhost_list.oper.ddos_entry_list.response_size_rates`
+
+Optional:
+
+- `current_response_size_rate` (String)
+- `is_response_size_rate_limit_exceed` (Number)
+- `response_size_rate_limit` (String)
+- `response_size_rate_name` (String)
+
+
+
+
+
+
 
 <a id="nestedblock--src_port"></a>
 ### Nested Schema for `src_port`
@@ -2829,6 +3355,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `is_app_stat1_exceed` (Number)
 - `is_app_stat2_exceed` (Number)
@@ -2956,6 +3483,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `is_app_stat1_exceed` (Number)
 - `is_app_stat2_exceed` (Number)
@@ -3085,6 +3613,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `is_app_stat1_exceed` (Number)
 - `is_app_stat2_exceed` (Number)
@@ -3205,5 +3734,3 @@ Optional:
 
 - `address` (String)
 - `rate` (String)
-
-

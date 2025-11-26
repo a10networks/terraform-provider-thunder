@@ -57,5 +57,3 @@ Optional:
 - `domain` (String)
 - `ttl` (Number)
 - `type` (String)
-
-

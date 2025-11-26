@@ -118,5 +118,3 @@ Optional:
 - `udp_total_drop` (Number) UDP Total Packets Dropped
 - `v4_sess_create` (Number) IPv4 Session Created
 - `v6_sess_create` (Number) IPv6 Session Created
-
-

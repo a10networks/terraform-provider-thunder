@@ -31,6 +31,9 @@ func resourceGslbZoneServiceDnsARecordDnsARecordSrv() *schema.Resource {
 			"no_resp": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Don't use this Service-IP as DNS response",
 			},
+			"service_name": {
+				Type: schema.TypeString, Optional: true, Description: "Specify service label",
+			},
 			"static": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Return this Service-IP in DNS server mode",
 			},
@@ -38,7 +41,7 @@ func resourceGslbZoneServiceDnsARecordDnsARecordSrv() *schema.Resource {
 				Type: schema.TypeString, Required: true, Description: "Specify name",
 			},
 			"ttl": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL for Service-IP",
+				Type: schema.TypeInt, Optional: true, Description: "Specify TTL for Service-IP",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -46,14 +49,11 @@ func resourceGslbZoneServiceDnsARecordDnsARecordSrv() *schema.Resource {
 			"weight": {
 				Type: schema.TypeInt, Optional: true, Description: "Specify weight for Service-IP (Weight value)",
 			},
-			"service_name": {
-				Type: schema.TypeString, Required: true, Description: "ServiceName",
-			},
 			"service_port": {
 				Type: schema.TypeString, Required: true, Description: "ServicePort",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -127,13 +127,13 @@ func dataToEndpointGslbZoneServiceDnsARecordDnsARecordSrv(d *schema.ResourceData
 	ret.Inst.AsReplace = d.Get("as_replace").(int)
 	ret.Inst.Disable = d.Get("disable").(int)
 	ret.Inst.NoResp = d.Get("no_resp").(int)
+	ret.Inst.ServiceName = d.Get("service_name").(string)
 	ret.Inst.Static = d.Get("static").(int)
 	ret.Inst.Svrname = d.Get("svrname").(string)
 	ret.Inst.Ttl = d.Get("ttl").(int)
 	//omit uuid
 	ret.Inst.Weight = d.Get("weight").(int)
-	ret.Inst.ServiceName = d.Get("service_name").(string)
 	ret.Inst.ServicePort = d.Get("service_port").(string)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

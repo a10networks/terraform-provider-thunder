@@ -64,5 +64,3 @@ Optional:
 - `mtu` (Number)
 - `speed` (String)
 - `state` (Number)
-
-

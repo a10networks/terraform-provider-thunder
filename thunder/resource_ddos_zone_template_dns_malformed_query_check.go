@@ -34,8 +34,8 @@ func resourceDdosZoneTemplateDnsMalformedQueryCheck() *schema.Resource {
 			"validation_type": {
 				Type: schema.TypeString, Optional: true, Description: "'basic-header-check': Basic header validation for DNS TCP/UDP queries; 'extended-header-check': Extended header/query validation for DNS TCP/UDP queries; 'disable': Disable Malform query validation for DNS TCP/UDP;",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_name",
 			},
 		},
 	}
@@ -110,6 +110,6 @@ func dataToEndpointDdosZoneTemplateDnsMalformedQueryCheck(d *schema.ResourceData
 	ret.Inst.SkipMultiPacketCheck = d.Get("skip_multi_packet_check").(int)
 	//omit uuid
 	ret.Inst.ValidationType = d.Get("validation_type").(string)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dns_name = d.Get("dns_name").(string)
 	return ret
 }

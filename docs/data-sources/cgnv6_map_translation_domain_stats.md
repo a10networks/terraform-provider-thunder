@@ -64,5 +64,3 @@ Optional:
 - `outbound_packet_received` (Number) Outbound IPv6 Packets Received
 - `outbound_rev_lookup_failed` (Number) Outbound IPv6 Reverse Route Lookup Failed
 - `packet_mtu_exceeded` (Number) Packet Exceeded MTU
-
-

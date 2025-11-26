@@ -109,6 +109,7 @@ Optional:
 - `error_max_invalid_stream` (Number)
 - `exceeds_max_window_size_stream` (Number)
 - `flow_control_error` (Number)
+- `frame_flood_detected` (Number)
 - `frame_header_bytes_received` (Number)
 - `frame_header_bytes_sent` (Number)
 - `frame_size_error` (Number)
@@ -156,6 +157,7 @@ Optional:
 - `settings_frame_sent` (Number)
 - `settings_timeout` (Number)
 - `split_buff_fail` (Number)
+- `stream_cancel_flood_detected` (Number)
 - `stream_closed` (Number)
 - `stream_create` (Number)
 - `stream_free` (Number)
@@ -164,10 +166,9 @@ Optional:
 - `total_bytes_sent` (Number)
 - `total_proxy` (Number)
 - `trailers_no_end_stream` (Number)
+- `transaction_limited` (Number)
 - `unknown_frame` (Number)
 - `window_update_frame` (Number)
 - `window_update_frame_sent` (Number)
 - `wrong_stream_state` (Number)
 - `zero_window_size_on_stream` (Number)
-
-

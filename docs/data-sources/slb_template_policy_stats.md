@@ -61,5 +61,3 @@ Optional:
 - `fwd_policy_policy_drop` (Number) Number of forward-policy requests dropped
 - `fwd_policy_snat_fail` (Number) Forward-policy source-nat translation failure
 - `fwd_policy_source_match_not_found` (Number) Forward-policy requests without matching source rule
-
-

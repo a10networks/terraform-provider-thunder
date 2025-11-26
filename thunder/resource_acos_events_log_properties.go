@@ -22,6 +22,12 @@ func resourceAcosEventsLogProperties() *schema.Resource {
 			"enable_8k_tcp_syslog": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable 8K size remote TCP syslog",
 			},
+			"enable_millisec": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable timestamp in millisecond",
+			},
+			"use_iso8601_timestamp": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Send syslog messages with Standard Header format",
+			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
@@ -94,6 +100,8 @@ func dataToEndpointAcosEventsLogProperties(d *schema.ResourceData) edpt.AcosEven
 	var ret edpt.AcosEventsLogProperties
 	ret.Inst.AddMsgidInHeader = d.Get("add_msgid_in_header").(int)
 	ret.Inst.Enable8kTcpSyslog = d.Get("enable_8k_tcp_syslog").(int)
+	ret.Inst.EnableMillisec = d.Get("enable_millisec").(int)
+	ret.Inst.UseIso8601Timestamp = d.Get("use_iso8601_timestamp").(int)
 	//omit uuid
 	return ret
 }

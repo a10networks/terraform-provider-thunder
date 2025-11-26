@@ -67,10 +67,12 @@ Optional:
 - `currsynrcv` (Number)
 - `currsyssnt` (Number)
 - `currtimew` (Number)
+- `delayed_free` (Number)
 - `estabresets` (Number)
 - `exceedmss` (Number)
 - `inerrs` (Number)
 - `insegs` (Number)
+- `invalid_drop` (Number)
 - `mem_alloc` (Number)
 - `noroute` (Number)
 - `orphan_count` (Number)
@@ -82,7 +84,9 @@ Optional:
 - `retranssegs` (Number)
 - `send_mem` (Number)
 - `sock_alloc` (Number)
+- `sock_init` (Number)
 - `syn_rcv_ack` (Number)
+- `syn_rcv_rexmit` (Number)
 - `syn_rcv_rst` (Number)
 - `syn_rcv_rstack` (Number)
 - `tcpabortontimeout` (Number)
@@ -107,5 +111,3 @@ Optional:
 - `unknown_conn_current_rate` (Number)
 - `unknown_conn_rate_limit` (Number)
 - `unknown_conn_rate_limit_drop` (Number)
-
-

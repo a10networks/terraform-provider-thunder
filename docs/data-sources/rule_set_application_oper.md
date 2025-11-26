@@ -44,7 +44,7 @@ output "get_rule_set_application_oper" {
 
 ### Required
 
-- `name` (String) Name
+- `rule_set_name` (String) Rule_set_name
 
 ### Optional
 
@@ -84,5 +84,3 @@ Optional:
 - `conns` (Number)
 - `name` (String)
 - `type` (String)
-
-

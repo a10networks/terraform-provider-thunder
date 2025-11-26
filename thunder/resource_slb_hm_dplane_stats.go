@@ -26,8 +26,8 @@ func resourceSlbHmDplaneStats() *schema.Resource {
 						"total_inserted": {
 							Type: schema.TypeInt, Optional: true, Description: "Total HM entries inserted",
 						},
-						"total_ready_to_free": {
-							Type: schema.TypeInt, Optional: true, Description: "Total HM entries ready to free",
+						"curr_ready_to_free": {
+							Type: schema.TypeInt, Optional: true, Description: "Current HM entries ready to free",
 						},
 						"total_freed": {
 							Type: schema.TypeInt, Optional: true, Description: "Total HM entries freed",
@@ -62,8 +62,8 @@ func resourceSlbHmDplaneStats() *schema.Resource {
 						"entry_deleted": {
 							Type: schema.TypeInt, Optional: true, Description: "Entry deleted",
 						},
-						"err_entry_create_vip_failed": {
-							Type: schema.TypeInt, Optional: true, Description: "Error in creating HM internal VIP",
+						"err_entry_create_slb_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "Error in creating HM internal SLB Resource",
 						},
 						"total_match_resp_code": {
 							Type: schema.TypeInt, Optional: true, Description: "Total HTTP received response with match response code",
@@ -116,6 +116,18 @@ func resourceSlbHmDplaneStats() *schema.Resource {
 						"total_server_quic_conn_err": {
 							Type: schema.TypeInt, Optional: true, Description: "Total start server QUIC connections error",
 						},
+						"total_start_server_conn_err": {
+							Type: schema.TypeInt, Optional: true, Description: "Total start server connections error",
+						},
+						"err_missing_server_ssl_template": {
+							Type: schema.TypeInt, Optional: true, Description: "Missing Server-SSL Template",
+						},
+						"err_create_ssl_ctx_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "Error in creating SSL CTX",
+						},
+						"err_entry_missing_vport": {
+							Type: schema.TypeInt, Optional: true, Description: "Entry missing Virtual-Port",
+						},
 					},
 				},
 			},
@@ -148,7 +160,7 @@ func setObjectSlbHmDplaneStatsStats(ret edpt.DataSlbHmDplaneStats) []interface{}
 			"curr_entries":                         ret.DtSlbHmDplaneStats.Stats.Curr_entries,
 			"total_created":                        ret.DtSlbHmDplaneStats.Stats.Total_created,
 			"total_inserted":                       ret.DtSlbHmDplaneStats.Stats.Total_inserted,
-			"total_ready_to_free":                  ret.DtSlbHmDplaneStats.Stats.Total_ready_to_free,
+			"curr_ready_to_free":                   ret.DtSlbHmDplaneStats.Stats.Curr_ready_to_free,
 			"total_freed":                          ret.DtSlbHmDplaneStats.Stats.Total_freed,
 			"err_entry_create_failed":              ret.DtSlbHmDplaneStats.Stats.Err_entry_create_failed,
 			"err_entry_create_oom":                 ret.DtSlbHmDplaneStats.Stats.Err_entry_create_oom,
@@ -160,7 +172,7 @@ func setObjectSlbHmDplaneStatsStats(ret edpt.DataSlbHmDplaneStats) []interface{}
 			"err_hm_tcp_conn_sent":                 ret.DtSlbHmDplaneStats.Stats.Err_hm_tcp_conn_sent,
 			"hm_tcp_conn_sent":                     ret.DtSlbHmDplaneStats.Stats.Hm_tcp_conn_sent,
 			"entry_deleted":                        ret.DtSlbHmDplaneStats.Stats.Entry_deleted,
-			"err_entry_create_vip_failed":          ret.DtSlbHmDplaneStats.Stats.Err_entry_create_vip_failed,
+			"err_entry_create_slb_failed":          ret.DtSlbHmDplaneStats.Stats.Err_entry_create_slb_failed,
 			"total_match_resp_code":                ret.DtSlbHmDplaneStats.Stats.Total_match_resp_code,
 			"total_match_default_resp_code":        ret.DtSlbHmDplaneStats.Stats.Total_match_default_resp_code,
 			"total_maintenance_received":           ret.DtSlbHmDplaneStats.Stats.Total_maintenance_received,
@@ -178,6 +190,10 @@ func setObjectSlbHmDplaneStatsStats(ret edpt.DataSlbHmDplaneStats) []interface{}
 			"smart_nat_release_failed":             ret.DtSlbHmDplaneStats.Stats.Smart_nat_release_failed,
 			"total_server_quic_conn":               ret.DtSlbHmDplaneStats.Stats.Total_server_quic_conn,
 			"total_server_quic_conn_err":           ret.DtSlbHmDplaneStats.Stats.Total_server_quic_conn_err,
+			"total_start_server_conn_err":          ret.DtSlbHmDplaneStats.Stats.Total_start_server_conn_err,
+			"err_missing_server_ssl_template":      ret.DtSlbHmDplaneStats.Stats.Err_missing_server_ssl_template,
+			"err_create_ssl_ctx_fail":              ret.DtSlbHmDplaneStats.Stats.Err_create_ssl_ctx_fail,
+			"err_entry_missing_vport":              ret.DtSlbHmDplaneStats.Stats.Err_entry_missing_vport,
 		},
 	}
 }
@@ -191,7 +207,7 @@ func getObjectSlbHmDplaneStatsStats(d []interface{}) edpt.SlbHmDplaneStatsStats 
 		ret.Curr_entries = in["curr_entries"].(int)
 		ret.Total_created = in["total_created"].(int)
 		ret.Total_inserted = in["total_inserted"].(int)
-		ret.Total_ready_to_free = in["total_ready_to_free"].(int)
+		ret.Curr_ready_to_free = in["curr_ready_to_free"].(int)
 		ret.Total_freed = in["total_freed"].(int)
 		ret.Err_entry_create_failed = in["err_entry_create_failed"].(int)
 		ret.Err_entry_create_oom = in["err_entry_create_oom"].(int)
@@ -203,7 +219,7 @@ func getObjectSlbHmDplaneStatsStats(d []interface{}) edpt.SlbHmDplaneStatsStats 
 		ret.Err_hm_tcp_conn_sent = in["err_hm_tcp_conn_sent"].(int)
 		ret.Hm_tcp_conn_sent = in["hm_tcp_conn_sent"].(int)
 		ret.Entry_deleted = in["entry_deleted"].(int)
-		ret.Err_entry_create_vip_failed = in["err_entry_create_vip_failed"].(int)
+		ret.Err_entry_create_slb_failed = in["err_entry_create_slb_failed"].(int)
 		ret.Total_match_resp_code = in["total_match_resp_code"].(int)
 		ret.Total_match_default_resp_code = in["total_match_default_resp_code"].(int)
 		ret.Total_maintenance_received = in["total_maintenance_received"].(int)
@@ -221,6 +237,10 @@ func getObjectSlbHmDplaneStatsStats(d []interface{}) edpt.SlbHmDplaneStatsStats 
 		ret.Smart_nat_release_failed = in["smart_nat_release_failed"].(int)
 		ret.Total_server_quic_conn = in["total_server_quic_conn"].(int)
 		ret.Total_server_quic_conn_err = in["total_server_quic_conn_err"].(int)
+		ret.Total_start_server_conn_err = in["total_start_server_conn_err"].(int)
+		ret.Err_missing_server_ssl_template = in["err_missing_server_ssl_template"].(int)
+		ret.Err_create_ssl_ctx_fail = in["err_create_ssl_ctx_fail"].(int)
+		ret.Err_entry_missing_vport = in["err_entry_missing_vport"].(int)
 	}
 	return ret
 }

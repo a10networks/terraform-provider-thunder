@@ -84,6 +84,7 @@ Optional:
 - `tcp_sht_hdr` (Number) TCP Short Header Drop
 - `tcp_syn_fin` (Number) TCP Syn and Fin Drop
 - `tcp_syn_frg` (Number) TCP Syn Fragment Drop
+- `tcp_udp_zero_port` (Number) TCP UDP Zero Port Drop
 - `tcp_xmas` (Number) TCP XMAS Flags Drop
 - `tcp_xmas_scan` (Number) TCP XMAS Scan Drop
 - `udp_bad_csum` (Number) UDP Bad Checksum Drop
@@ -92,5 +93,3 @@ Optional:
 - `udp_port_lb` (Number) UDP Port Loopback Drop
 - `udp_srt_hdr` (Number) UDP Short Header Drop
 - `vxlan_err` (Number) VXLAN Tunnel Error Drop
-
-

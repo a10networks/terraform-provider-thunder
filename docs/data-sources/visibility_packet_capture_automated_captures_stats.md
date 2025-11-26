@@ -45,5 +45,3 @@ output "get_visibility_packet_capture_automated_captures_stats" {
 Optional:
 
 - `total_failure` (Number) Total failures
-
-

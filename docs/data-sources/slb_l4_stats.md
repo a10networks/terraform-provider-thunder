@@ -181,5 +181,3 @@ Optional:
 - `udp_resp_more_req` (Number) L4 UDP rsps greater than reqs
 - `udp_resp_oneplus` (Number) L4 UDP rsps
 - `udp_sess_aged_out` (Number) UDP Session aged out
-
-

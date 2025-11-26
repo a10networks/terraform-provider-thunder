@@ -114,5 +114,3 @@ Optional:
 - `status_510` (Number)
 - `status_5xx` (Number)
 - `status_6xx` (Number)
-
-

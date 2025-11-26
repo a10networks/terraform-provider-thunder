@@ -47,5 +47,3 @@ Optional:
 - `map_alloc_failure` (Number) One-to-One Address Mapping Allocation Failure
 - `total_map_allocated` (Number) Total One-to-One Address Mapping Allocated
 - `total_map_freed` (Number) Total One-to-One Address Mapping Freed
-
-

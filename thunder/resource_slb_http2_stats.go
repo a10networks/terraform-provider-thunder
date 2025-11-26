@@ -368,6 +368,15 @@ func resourceSlbHttp2Stats() *schema.Resource {
 						"end_stream_sent": {
 							Type: schema.TypeInt, Optional: true, Description: "End Stream Sent",
 						},
+						"transaction_limited": {
+							Type: schema.TypeInt, Optional: true, Description: "transaction_limited",
+						},
+						"frame_flood_detected": {
+							Type: schema.TypeInt, Optional: true, Description: "frame flood detected",
+						},
+						"stream_cancel_flood_detected": {
+							Type: schema.TypeInt, Optional: true, Description: "stream cancel flood detected",
+						},
 					},
 				},
 			},
@@ -514,6 +523,9 @@ func setObjectSlbHttp2StatsStats(ret edpt.DataSlbHttp2Stats) []interface{} {
 			"stream_free":                               ret.DtSlbHttp2Stats.Stats.Stream_free,
 			"end_stream_rcvd":                           ret.DtSlbHttp2Stats.Stats.End_stream_rcvd,
 			"end_stream_sent":                           ret.DtSlbHttp2Stats.Stats.End_stream_sent,
+			"transaction_limited":                       ret.DtSlbHttp2Stats.Stats.Transaction_limited,
+			"frame_flood_detected":                      ret.DtSlbHttp2Stats.Stats.Frame_flood_detected,
+			"stream_cancel_flood_detected":              ret.DtSlbHttp2Stats.Stats.Stream_cancel_flood_detected,
 		},
 	}
 }
@@ -641,6 +653,9 @@ func getObjectSlbHttp2StatsStats(d []interface{}) edpt.SlbHttp2StatsStats {
 		ret.Stream_free = in["stream_free"].(int)
 		ret.End_stream_rcvd = in["end_stream_rcvd"].(int)
 		ret.End_stream_sent = in["end_stream_sent"].(int)
+		ret.Transaction_limited = in["transaction_limited"].(int)
+		ret.Frame_flood_detected = in["frame_flood_detected"].(int)
+		ret.Stream_cancel_flood_detected = in["stream_cancel_flood_detected"].(int)
 	}
 	return ret
 }

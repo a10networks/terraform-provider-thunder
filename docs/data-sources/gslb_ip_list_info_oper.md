@@ -63,5 +63,3 @@ Optional:
 - `listname` (String)
 - `total_entries_in_list` (Number)
 - `type` (String)
-
-

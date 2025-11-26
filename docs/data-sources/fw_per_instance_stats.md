@@ -58,5 +58,3 @@ Optional:
 - `tcp_fullcone_freed` (Number) TCP Full-cone Freed
 - `udp_fullcone_created` (Number) UDP Full-cone Created
 - `udp_fullcone_freed` (Number) UDP Full-cone Freed
-
-

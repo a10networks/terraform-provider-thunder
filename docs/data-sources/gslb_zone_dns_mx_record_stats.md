@@ -37,7 +37,7 @@ output "get_gslb_zone_dns_mx_record_stats" {
 ### Required
 
 - `mx_name` (String) Specify Domain Name
-- `name` (String) Name
+- `zone_name` (String) Zone_name
 
 ### Optional
 
@@ -53,5 +53,3 @@ output "get_gslb_zone_dns_mx_record_stats" {
 Optional:
 
 - `hits` (Number) Number of times the record has been used
-
-

@@ -85,5 +85,3 @@ Optional:
 - `file_size` (Number)
 - `last_modified` (String)
 - `packet_capture_file_name` (String)
-
-

@@ -46,5 +46,3 @@ Optional:
 
 - `global_system_throughput_bits_per_sec` (Number) Global System throughput in bits/sec
 - `per_part_throughput_bits_per_sec` (Number) Partition throughput in bits/sec
-
-

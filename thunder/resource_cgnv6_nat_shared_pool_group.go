@@ -94,15 +94,15 @@ func resourceCgnv6NatSharedPoolGroupRead(ctx context.Context, d *schema.Resource
 	return diags
 }
 
-func getObjectCgnv6NatSharedPoolGroupMembers108(d []interface{}) edpt.Cgnv6NatSharedPoolGroupMembers108 {
+func getObjectCgnv6NatSharedPoolGroupMembers110(d []interface{}) edpt.Cgnv6NatSharedPoolGroupMembers110 {
 
-	var ret edpt.Cgnv6NatSharedPoolGroupMembers108
+	var ret edpt.Cgnv6NatSharedPoolGroupMembers110
 	return ret
 }
 
 func dataToEndpointCgnv6NatSharedPoolGroup(d *schema.ResourceData) edpt.Cgnv6NatSharedPoolGroup {
 	var ret edpt.Cgnv6NatSharedPoolGroup
-	ret.Inst.Members = getObjectCgnv6NatSharedPoolGroupMembers108(d.Get("members").([]interface{}))
+	ret.Inst.Members = getObjectCgnv6NatSharedPoolGroupMembers110(d.Get("members").([]interface{}))
 	//omit uuid
 	return ret
 }

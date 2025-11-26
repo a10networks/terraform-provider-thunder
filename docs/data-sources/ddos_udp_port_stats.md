@@ -149,5 +149,3 @@ Optional:
 - `udp_retry_init` (Number) UDP Retry Init
 - `udp_retry_pass` (Number) UDP Retry Passed
 - `wellknown_sport_drop` (Number) UDP SrcPort Wellknown
-
-

@@ -65,7 +65,7 @@ func resourceSlbServiceGroup() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Description: "Usage to revert to statelful method",
 			},
 			"lb_method": {
-				Type: schema.TypeString, Optional: true, Default: "round-robin", Description: "'dst-ip-hash': Load-balancing based on only Dst IP and Port hash; 'dst-ip-only-hash': Load-balancing based on only Dst IP hash; 'fastest-response': Fastest response time on service port level; 'least-request': Least request on service port level; 'src-ip-hash': Load-balancing based on only Src IP and Port hash; 'src-ip-only-hash': Load-balancing based on only Src IP hash; 'weighted-rr': Weighted round robin on server level; 'service-weighted-rr': Weighted round robin on service port level; 'round-robin': Round robin on server level; 'round-robin-strict': Strict mode round robin on server level; 'odd-even-hash': odd/even hash based of client src-ip;",
+				Type: schema.TypeString, Optional: true, Default: "round-robin", Description: "'dst-ip-hash': Load-balancing based on only Dst IP and Port hash; 'dst-ip-only-hash': Load-balancing based on only Dst IP hash; 'fastest-response': Fastest response time on service port level; 'least-request': Least request on service port level; 'weighted-least-request': Weighted least request on server level; 'service-weighted-least-request': Weighted least request on service port level; 'src-ip-hash': Load-balancing based on only Src IP and Port hash; 'src-ip-only-hash': Load-balancing based on only Src IP hash; 'weighted-rr': Weighted round robin on server level; 'service-weighted-rr': Weighted round robin on service port level; 'round-robin': Round robin on server level; 'round-robin-strict': Strict mode round robin on server level; 'odd-even-hash': odd/even hash based of client src-ip;",
 			},
 			"lc_method": {
 				Type: schema.TypeString, Optional: true, Description: "'least-connection': Least connection on server level; 'service-least-connection': Least connection on service port level; 'weighted-least-connection': Weighted least connection on server level; 'service-weighted-least-connection': Weighted least connection on service port level;",
@@ -381,10 +381,10 @@ func getSliceSlbServiceGroupPriorities(d []interface{}) []edpt.SlbServiceGroupPr
 	return ret
 }
 
-func getObjectSlbServiceGroupReset1413(d []interface{}) edpt.SlbServiceGroupReset1413 {
+func getObjectSlbServiceGroupReset1512(d []interface{}) edpt.SlbServiceGroupReset1512 {
 
 	count1 := len(d)
-	var ret edpt.SlbServiceGroupReset1413
+	var ret edpt.SlbServiceGroupReset1512
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AutoSwitch = in["auto_switch"].(int)
@@ -439,7 +439,7 @@ func dataToEndpointSlbServiceGroup(d *schema.ResourceData) edpt.SlbServiceGroup 
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.PseudoRoundRobin = d.Get("pseudo_round_robin").(int)
 	ret.Inst.ReportDelay = d.Get("report_delay").(int)
-	ret.Inst.Reset = getObjectSlbServiceGroupReset1413(d.Get("reset").([]interface{}))
+	ret.Inst.Reset = getObjectSlbServiceGroupReset1512(d.Get("reset").([]interface{}))
 	ret.Inst.ResetOnServerSelectionFail = d.Get("reset_on_server_selection_fail").(int)
 	ret.Inst.ResetPriorityAffinity = d.Get("reset_priority_affinity").(int)
 	ret.Inst.RptExtServer = d.Get("rpt_ext_server").(int)

@@ -72,7 +72,7 @@ Optional:
 - `nat_address` (String)
 - `nat_pool_name` (String)
 - `session_count` (Number)
+- `session_count_tcp` (Number)
+- `session_count_udp` (Number)
 - `tcp_quota` (Number)
 - `udp_quota` (Number)
-
-

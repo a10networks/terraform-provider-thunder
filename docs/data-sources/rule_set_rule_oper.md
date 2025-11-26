@@ -59,6 +59,7 @@ output "get_rule_set_rule_oper" {
 ### Required
 
 - `name` (String) Rule name
+- `rule_set_name` (String) Rule_set_name
 
 ### Optional
 
@@ -96,7 +97,10 @@ Optional:
 - `sessiontotal` (Number)
 - `sessionudp` (Number)
 - `status` (String)
+- `synacksent` (Number)
+- `syncookieon` (Number)
+- `tcphalfopencount` (Number)
 - `totalbytes` (Number)
 - `totalpackets` (Number)
-
-
+- `verificationfailed` (Number)
+- `verificationpassed` (Number)

@@ -77,8 +77,23 @@ func resourceRuleSetRuleStats() *schema.Resource {
 						"rate_limit_drops": {
 							Type: schema.TypeInt, Optional: true, Description: "Rate Limit Drops",
 						},
+						"syn_cookie_syn_ack_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN cookie SYN ACK sent",
+						},
+						"syn_cookie_verification_passed": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN cookie verification passed",
+						},
+						"syn_cookie_verification_failed": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN cookie verification failed",
+						},
+						"tcp_half_open_count": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP half open sessions matching the rule",
+						},
 					},
 				},
+			},
+			"rule_set_name": {
+				Type: schema.TypeString, Required: true, Description: "Rule_set_name",
 			},
 		},
 	}
@@ -106,25 +121,29 @@ func resourceRuleSetRuleStatsRead(ctx context.Context, d *schema.ResourceData, m
 func setObjectRuleSetRuleStatsStats(ret edpt.DataRuleSetRuleStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"hit_count":            ret.DtRuleSetRuleStats.Stats.HitCount,
-			"permit_bytes":         ret.DtRuleSetRuleStats.Stats.PermitBytes,
-			"deny_bytes":           ret.DtRuleSetRuleStats.Stats.DenyBytes,
-			"reset_bytes":          ret.DtRuleSetRuleStats.Stats.ResetBytes,
-			"permit_packets":       ret.DtRuleSetRuleStats.Stats.PermitPackets,
-			"deny_packets":         ret.DtRuleSetRuleStats.Stats.DenyPackets,
-			"reset_packets":        ret.DtRuleSetRuleStats.Stats.ResetPackets,
-			"active_session_tcp":   ret.DtRuleSetRuleStats.Stats.ActiveSessionTcp,
-			"active_session_udp":   ret.DtRuleSetRuleStats.Stats.ActiveSessionUdp,
-			"active_session_icmp":  ret.DtRuleSetRuleStats.Stats.ActiveSessionIcmp,
-			"active_session_other": ret.DtRuleSetRuleStats.Stats.ActiveSessionOther,
-			"session_tcp":          ret.DtRuleSetRuleStats.Stats.SessionTcp,
-			"session_udp":          ret.DtRuleSetRuleStats.Stats.SessionUdp,
-			"session_icmp":         ret.DtRuleSetRuleStats.Stats.SessionIcmp,
-			"session_other":        ret.DtRuleSetRuleStats.Stats.SessionOther,
-			"active_session_sctp":  ret.DtRuleSetRuleStats.Stats.ActiveSessionSctp,
-			"session_sctp":         ret.DtRuleSetRuleStats.Stats.SessionSctp,
-			"hitcount_timestamp":   ret.DtRuleSetRuleStats.Stats.HitcountTimestamp,
-			"rate_limit_drops":     ret.DtRuleSetRuleStats.Stats.RateLimitDrops,
+			"hit_count":                      ret.DtRuleSetRuleStats.Stats.HitCount,
+			"permit_bytes":                   ret.DtRuleSetRuleStats.Stats.PermitBytes,
+			"deny_bytes":                     ret.DtRuleSetRuleStats.Stats.DenyBytes,
+			"reset_bytes":                    ret.DtRuleSetRuleStats.Stats.ResetBytes,
+			"permit_packets":                 ret.DtRuleSetRuleStats.Stats.PermitPackets,
+			"deny_packets":                   ret.DtRuleSetRuleStats.Stats.DenyPackets,
+			"reset_packets":                  ret.DtRuleSetRuleStats.Stats.ResetPackets,
+			"active_session_tcp":             ret.DtRuleSetRuleStats.Stats.ActiveSessionTcp,
+			"active_session_udp":             ret.DtRuleSetRuleStats.Stats.ActiveSessionUdp,
+			"active_session_icmp":            ret.DtRuleSetRuleStats.Stats.ActiveSessionIcmp,
+			"active_session_other":           ret.DtRuleSetRuleStats.Stats.ActiveSessionOther,
+			"session_tcp":                    ret.DtRuleSetRuleStats.Stats.SessionTcp,
+			"session_udp":                    ret.DtRuleSetRuleStats.Stats.SessionUdp,
+			"session_icmp":                   ret.DtRuleSetRuleStats.Stats.SessionIcmp,
+			"session_other":                  ret.DtRuleSetRuleStats.Stats.SessionOther,
+			"active_session_sctp":            ret.DtRuleSetRuleStats.Stats.ActiveSessionSctp,
+			"session_sctp":                   ret.DtRuleSetRuleStats.Stats.SessionSctp,
+			"hitcount_timestamp":             ret.DtRuleSetRuleStats.Stats.HitcountTimestamp,
+			"rate_limit_drops":               ret.DtRuleSetRuleStats.Stats.RateLimitDrops,
+			"syn_cookie_syn_ack_sent":        ret.DtRuleSetRuleStats.Stats.SynCookieSynAckSent,
+			"syn_cookie_verification_passed": ret.DtRuleSetRuleStats.Stats.SynCookieVerificationPassed,
+			"syn_cookie_verification_failed": ret.DtRuleSetRuleStats.Stats.SynCookieVerificationFailed,
+			"tcp_half_open_count":            ret.DtRuleSetRuleStats.Stats.TcpHalfOpenCount,
 		},
 	}
 }
@@ -154,6 +173,10 @@ func getObjectRuleSetRuleStatsStats(d []interface{}) edpt.RuleSetRuleStatsStats 
 		ret.SessionSctp = in["session_sctp"].(int)
 		ret.HitcountTimestamp = in["hitcount_timestamp"].(int)
 		ret.RateLimitDrops = in["rate_limit_drops"].(int)
+		ret.SynCookieSynAckSent = in["syn_cookie_syn_ack_sent"].(int)
+		ret.SynCookieVerificationPassed = in["syn_cookie_verification_passed"].(int)
+		ret.SynCookieVerificationFailed = in["syn_cookie_verification_failed"].(int)
+		ret.TcpHalfOpenCount = in["tcp_half_open_count"].(int)
 	}
 	return ret
 }
@@ -164,5 +187,7 @@ func dataToEndpointRuleSetRuleStats(d *schema.ResourceData) edpt.RuleSetRuleStat
 	ret.Name = d.Get("name").(string)
 
 	ret.Stats = getObjectRuleSetRuleStatsStats(d.Get("stats").([]interface{}))
+
+	ret.Rule_set_name = d.Get("rule_set_name").(string)
 	return ret
 }

@@ -79,5 +79,3 @@ Optional:
 
 - `pool_group_name` (String)
 - `vird` (Number)
-
-

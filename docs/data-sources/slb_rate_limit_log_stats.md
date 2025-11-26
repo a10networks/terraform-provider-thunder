@@ -59,5 +59,3 @@ Optional:
 - `remote_log_rate` (Number) Remote rate (per sec)
 - `total_log_msg` (Number) Total log messages
 - `total_log_times` (Number) Total log times
-
-

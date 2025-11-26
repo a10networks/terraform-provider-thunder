@@ -141,6 +141,9 @@ func resourceSlbHttpProxyOper() *schema.Resource {
 									"lb_switching": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"http_policy_switching": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 									"l4_switching_ok": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
@@ -159,6 +162,9 @@ func resourceSlbHttpProxyOper() *schema.Resource {
 									"lb_switching_ok": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"http_policy_switching_ok": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 									"l4_switching_enqueue": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
@@ -175,6 +181,9 @@ func resourceSlbHttpProxyOper() *schema.Resource {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 									"lb_switching_enqueue": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"http_policy_switching_enqueue": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 									"non_http_bypass": {
@@ -327,10 +336,19 @@ func resourceSlbHttpProxyOper() *schema.Resource {
 									"req_http11": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"req_http11_new_proxy": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 									"req_http2": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 									"response_http2": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"req_http3": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"response_http3": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 									"req_get": {
@@ -1017,7 +1035,13 @@ func resourceSlbHttpProxyOper() *schema.Resource {
 									"http_allowed_methods": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
-									"req_http11_new_proxy": {
+									"upgrade_to_new_proxy": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"del_h2c_header": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"transaction_limited": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 								},
@@ -1109,18 +1133,21 @@ func setSliceSlbHttpProxyOperOperHttpProxyCpuList(d []edpt.SlbHttpProxyOperOperH
 		in["url_switching"] = item.Url_switching
 		in["host_switching"] = item.Host_switching
 		in["lb_switching"] = item.Lb_switching
+		in["http_policy_switching"] = item.Http_policy_switching
 		in["l4_switching_ok"] = item.L4_switching_ok
 		in["cookie_switching_ok"] = item.Cookie_switching_ok
 		in["aflex_switching_ok"] = item.Aflex_switching_ok
 		in["url_switching_ok"] = item.Url_switching_ok
 		in["host_switching_ok"] = item.Host_switching_ok
 		in["lb_switching_ok"] = item.Lb_switching_ok
+		in["http_policy_switching_ok"] = item.Http_policy_switching_ok
 		in["l4_switching_enqueue"] = item.L4_switching_enqueue
 		in["cookie_switching_enqueue"] = item.Cookie_switching_enqueue
 		in["aflex_switching_enqueue"] = item.Aflex_switching_enqueue
 		in["url_switching_enqueue"] = item.Url_switching_enqueue
 		in["host_switching_enqueue"] = item.Host_switching_enqueue
 		in["lb_switching_enqueue"] = item.Lb_switching_enqueue
+		in["http_policy_switching_enqueue"] = item.Http_policy_switching_enqueue
 		in["non_http_bypass"] = item.Non_http_bypass
 		in["client_rst_request"] = item.Client_rst_request
 		in["client_rst_connecting"] = item.Client_rst_connecting
@@ -1171,8 +1198,11 @@ func setSliceSlbHttpProxyOperOperHttpProxyCpuList(d []edpt.SlbHttpProxyOperOperH
 		in["aflex_lb_reselect_ok"] = item.Aflex_lb_reselect_ok
 		in["req_http10"] = item.Req_http10
 		in["req_http11"] = item.Req_http11
+		in["req_http11_new_proxy"] = item.Req_http11_new_proxy
 		in["req_http2"] = item.Req_http2
 		in["response_http2"] = item.Response_http2
+		in["req_http3"] = item.Req_http3
+		in["response_http3"] = item.Response_http3
 		in["req_get"] = item.Req_get
 		in["req_head"] = item.Req_head
 		in["req_put"] = item.Req_put
@@ -1401,7 +1431,9 @@ func setSliceSlbHttpProxyOperOperHttpProxyCpuList(d []edpt.SlbHttpProxyOperOperH
 		in["http2_client_idle_timeout"] = item.Http2_client_idle_timeout
 		in["http_disallowed_methods"] = item.Http_disallowed_methods
 		in["http_allowed_methods"] = item.Http_allowed_methods
-		in["req_http11_new_proxy"] = item.Req_http11_new_proxy
+		in["upgrade_to_new_proxy"] = item.Upgrade_to_new_proxy
+		in["del_h2c_header"] = item.Del_h2c_header
+		in["transaction_limited"] = item.Transaction_limited
 		result = append(result, in)
 	}
 	return result
@@ -1467,18 +1499,21 @@ func getSliceSlbHttpProxyOperOperHttpProxyCpuList(d []interface{}) []edpt.SlbHtt
 		oi.Url_switching = in["url_switching"].(int)
 		oi.Host_switching = in["host_switching"].(int)
 		oi.Lb_switching = in["lb_switching"].(int)
+		oi.Http_policy_switching = in["http_policy_switching"].(int)
 		oi.L4_switching_ok = in["l4_switching_ok"].(int)
 		oi.Cookie_switching_ok = in["cookie_switching_ok"].(int)
 		oi.Aflex_switching_ok = in["aflex_switching_ok"].(int)
 		oi.Url_switching_ok = in["url_switching_ok"].(int)
 		oi.Host_switching_ok = in["host_switching_ok"].(int)
 		oi.Lb_switching_ok = in["lb_switching_ok"].(int)
+		oi.Http_policy_switching_ok = in["http_policy_switching_ok"].(int)
 		oi.L4_switching_enqueue = in["l4_switching_enqueue"].(int)
 		oi.Cookie_switching_enqueue = in["cookie_switching_enqueue"].(int)
 		oi.Aflex_switching_enqueue = in["aflex_switching_enqueue"].(int)
 		oi.Url_switching_enqueue = in["url_switching_enqueue"].(int)
 		oi.Host_switching_enqueue = in["host_switching_enqueue"].(int)
 		oi.Lb_switching_enqueue = in["lb_switching_enqueue"].(int)
+		oi.Http_policy_switching_enqueue = in["http_policy_switching_enqueue"].(int)
 		oi.Non_http_bypass = in["non_http_bypass"].(int)
 		oi.Client_rst_request = in["client_rst_request"].(int)
 		oi.Client_rst_connecting = in["client_rst_connecting"].(int)
@@ -1529,8 +1564,11 @@ func getSliceSlbHttpProxyOperOperHttpProxyCpuList(d []interface{}) []edpt.SlbHtt
 		oi.Aflex_lb_reselect_ok = in["aflex_lb_reselect_ok"].(int)
 		oi.Req_http10 = in["req_http10"].(int)
 		oi.Req_http11 = in["req_http11"].(int)
+		oi.Req_http11_new_proxy = in["req_http11_new_proxy"].(int)
 		oi.Req_http2 = in["req_http2"].(int)
 		oi.Response_http2 = in["response_http2"].(int)
+		oi.Req_http3 = in["req_http3"].(int)
+		oi.Response_http3 = in["response_http3"].(int)
 		oi.Req_get = in["req_get"].(int)
 		oi.Req_head = in["req_head"].(int)
 		oi.Req_put = in["req_put"].(int)
@@ -1759,7 +1797,9 @@ func getSliceSlbHttpProxyOperOperHttpProxyCpuList(d []interface{}) []edpt.SlbHtt
 		oi.Http2_client_idle_timeout = in["http2_client_idle_timeout"].(int)
 		oi.Http_disallowed_methods = in["http_disallowed_methods"].(int)
 		oi.Http_allowed_methods = in["http_allowed_methods"].(int)
-		oi.Req_http11_new_proxy = in["req_http11_new_proxy"].(int)
+		oi.Upgrade_to_new_proxy = in["upgrade_to_new_proxy"].(int)
+		oi.Del_h2c_header = in["del_h2c_header"].(int)
+		oi.Transaction_limited = in["transaction_limited"].(int)
 		ret = append(ret, oi)
 	}
 	return ret

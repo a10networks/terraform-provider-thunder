@@ -253,6 +253,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 												"total_ip_entry_count": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
+												"with_selected_details": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
 												"active_list": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
@@ -374,6 +377,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 															"dynamic_entry_limit": {
 																Type: schema.TypeString, Optional: true, Description: "",
 															},
+															"dynamic_entry_warn_state": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
 															"sflow_source_id": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
@@ -449,7 +455,7 @@ func resourceDdosDstZoneOper() *schema.Resource {
 											},
 										},
 									},
-									"ip_filtering_policy_oper": {
+									"ip_filtering_policy_statistics": {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
@@ -466,6 +472,90 @@ func resourceDdosDstZoneOper() *schema.Resource {
 																		},
 																		"hits": {
 																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"blacklisted_src_count": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																	},
+																},
+															},
+														},
+													},
+												},
+											},
+										},
+									},
+									"src_based_policy_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"src_based_policy_name": {
+													Type: schema.TypeString, Required: true, Description: "Specify name of the policy",
+												},
+												"oper": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{},
+													},
+												},
+												"policy_class_list_list": {
+													Type: schema.TypeList, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"class_list_name": {
+																Type: schema.TypeString, Required: true, Description: "Class-list name",
+															},
+															"oper": {
+																Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+																Elem: &schema.Resource{
+																	Schema: map[string]*schema.Schema{
+																		"current_connections": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_connections_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"connection_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_connection_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_connection_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"connection_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_packet_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_packet_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"packet_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_kbit_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_kbit_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"kbit_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_frag_packet_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_frag_packet_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"frag_packet_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"debug_str": {
+																			Type: schema.TypeString, Optional: true, Description: "",
 																		},
 																	},
 																},
@@ -956,6 +1046,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 															"dynamic_entry_limit": {
 																Type: schema.TypeString, Optional: true, Description: "",
 															},
+															"dynamic_entry_warn_state": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
 															"sflow_source_id": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
@@ -1031,7 +1124,7 @@ func resourceDdosDstZoneOper() *schema.Resource {
 											},
 										},
 									},
-									"ip_filtering_policy_oper": {
+									"ip_filtering_policy_statistics": {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
@@ -1047,6 +1140,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 																			Type: schema.TypeInt, Optional: true, Description: "",
 																		},
 																		"hits": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"blacklisted_src_count": {
 																			Type: schema.TypeInt, Optional: true, Description: "",
 																		},
 																	},
@@ -1151,6 +1247,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 															"dynamic_entry_limit": {
 																Type: schema.TypeString, Optional: true, Description: "",
 															},
+															"dynamic_entry_warn_state": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
 															"sflow_source_id": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
@@ -1226,7 +1325,7 @@ func resourceDdosDstZoneOper() *schema.Resource {
 											},
 										},
 									},
-									"ip_filtering_policy_oper": {
+									"ip_filtering_policy_statistics": {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
@@ -1243,6 +1342,90 @@ func resourceDdosDstZoneOper() *schema.Resource {
 																		},
 																		"hits": {
 																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"blacklisted_src_count": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																	},
+																},
+															},
+														},
+													},
+												},
+											},
+										},
+									},
+									"src_based_policy_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"src_based_policy_name": {
+													Type: schema.TypeString, Required: true, Description: "Specify name of the policy",
+												},
+												"oper": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{},
+													},
+												},
+												"policy_class_list_list": {
+													Type: schema.TypeList, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"class_list_name": {
+																Type: schema.TypeString, Required: true, Description: "Class-list name",
+															},
+															"oper": {
+																Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+																Elem: &schema.Resource{
+																	Schema: map[string]*schema.Schema{
+																		"current_connections": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_connections_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"connection_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_connection_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_connection_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"connection_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_packet_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_packet_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"packet_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_kbit_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_kbit_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"kbit_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_frag_packet_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_frag_packet_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"frag_packet_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"debug_str": {
+																			Type: schema.TypeString, Optional: true, Description: "",
 																		},
 																	},
 																},
@@ -1715,6 +1898,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 									"dynamic_entry_limit": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"dynamic_entry_warn_state": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 									"age_str": {
@@ -2250,11 +2436,11 @@ func resourceDdosDstZoneOper() *schema.Resource {
 															"dynamic_entry_limit": {
 																Type: schema.TypeString, Optional: true, Description: "",
 															},
+															"dynamic_entry_warn_state": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
 															"sflow_source_id": {
 																Type: schema.TypeInt, Optional: true, Description: "",
-															},
-															"debug_str": {
-																Type: schema.TypeString, Optional: true, Description: "",
 															},
 															"http_filter_rates": {
 																Type: schema.TypeList, Optional: true, Description: "",
@@ -2293,6 +2479,22 @@ func resourceDdosDstZoneOper() *schema.Resource {
 																		},
 																	},
 																},
+															},
+															"hw_blocked_rules": {
+																Type: schema.TypeList, Optional: true, Description: "",
+																Elem: &schema.Resource{
+																	Schema: map[string]*schema.Schema{
+																		"rule_dst_ip": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"hw_blocking_state": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																	},
+																},
+															},
+															"debug_str": {
+																Type: schema.TypeString, Optional: true, Description: "",
 															},
 														},
 													},
@@ -2355,6 +2557,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 												"hw_blacklisted": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"hw_blacklisted_stats": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 												"suffix_request_rate": {
@@ -2493,7 +2698,7 @@ func resourceDdosDstZoneOper() *schema.Resource {
 											},
 										},
 									},
-									"ip_filtering_policy_oper": {
+									"ip_filtering_policy_statistics": {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
@@ -2511,31 +2716,7 @@ func resourceDdosDstZoneOper() *schema.Resource {
 																		"hits": {
 																			Type: schema.TypeInt, Optional: true, Description: "",
 																		},
-																	},
-																},
-															},
-														},
-													},
-												},
-											},
-										},
-									},
-									"ips": {
-										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"oper": {
-													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"signature_list": {
-																Type: schema.TypeList, Optional: true, Description: "",
-																Elem: &schema.Resource{
-																	Schema: map[string]*schema.Schema{
-																		"sid": {
-																			Type: schema.TypeInt, Optional: true, Description: "",
-																		},
-																		"match_count": {
+																		"blacklisted_src_count": {
 																			Type: schema.TypeInt, Optional: true, Description: "",
 																		},
 																	},
@@ -2927,6 +3108,397 @@ func resourceDdosDstZoneOper() *schema.Resource {
 															},
 															"top_k_key": {
 																Type: schema.TypeString, Optional: true, Description: "",
+															},
+														},
+													},
+												},
+											},
+										},
+									},
+									"src_based_policy_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"src_based_policy_name": {
+													Type: schema.TypeString, Required: true, Description: "Specify name of the policy",
+												},
+												"oper": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{},
+													},
+												},
+												"policy_class_list_list": {
+													Type: schema.TypeList, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"class_list_name": {
+																Type: schema.TypeString, Required: true, Description: "Class-list name",
+															},
+															"oper": {
+																Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+																Elem: &schema.Resource{
+																	Schema: map[string]*schema.Schema{
+																		"current_connections": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_connections_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"connection_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_connection_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_connection_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"connection_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_packet_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_packet_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"packet_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_kbit_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_kbit_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"kbit_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_frag_packet_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_frag_packet_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"frag_packet_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"debug_str": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																	},
+																},
+															},
+														},
+													},
+												},
+											},
+										},
+									},
+									"virtualhosts": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"oper": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{},
+													},
+												},
+												"virtualhost_list": {
+													Type: schema.TypeList, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"vhost": {
+																Type: schema.TypeString, Required: true, Description: "name for virtualhost",
+															},
+															"oper": {
+																Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+																Elem: &schema.Resource{
+																	Schema: map[string]*schema.Schema{
+																		"ddos_entry_list": {
+																			Type: schema.TypeList, Optional: true, Description: "",
+																			Elem: &schema.Resource{
+																				Schema: map[string]*schema.Schema{
+																					"dst_address_str": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"bw_state": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_auth_passed": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"level": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"bl_reasoning_rcode": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"bl_reasoning_timestamp": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_connections": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_connections_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"connection_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_connection_rate": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_connection_rate_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"connection_rate_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_packet_rate": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_packet_rate_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"packet_rate_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_kbit_rate": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_kbit_rate_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"kbit_rate_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_frag_packet_rate": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_frag_packet_rate_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"frag_packet_rate_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_app_stat1": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_app_stat1_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"app_stat1_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_app_stat2": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_app_stat2_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"app_stat2_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_app_stat3": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_app_stat3_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"app_stat3_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_app_stat4": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_app_stat4_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"app_stat4_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_app_stat5": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_app_stat5_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"app_stat5_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_app_stat6": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_app_stat6_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"app_stat6_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_app_stat7": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_app_stat7_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"app_stat7_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"current_app_stat8": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_app_stat8_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"app_stat8_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"age": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"lockup_time": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"dynamic_entry_count": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"dynamic_entry_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"dynamic_entry_warn_state": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"sflow_source_id": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"http_filter_rates": {
+																						Type: schema.TypeList, Optional: true, Description: "",
+																						Elem: &schema.Resource{
+																							Schema: map[string]*schema.Schema{
+																								"http_filter_rate_name": {
+																									Type: schema.TypeString, Optional: true, Description: "",
+																								},
+																								"is_http_filter_rate_limit_exceed": {
+																									Type: schema.TypeInt, Optional: true, Description: "",
+																								},
+																								"current_http_filter_rate": {
+																									Type: schema.TypeString, Optional: true, Description: "",
+																								},
+																								"http_filter_rate_limit": {
+																									Type: schema.TypeString, Optional: true, Description: "",
+																								},
+																							},
+																						},
+																					},
+																					"response_size_rates": {
+																						Type: schema.TypeList, Optional: true, Description: "",
+																						Elem: &schema.Resource{
+																							Schema: map[string]*schema.Schema{
+																								"response_size_rate_name": {
+																									Type: schema.TypeString, Optional: true, Description: "",
+																								},
+																								"is_response_size_rate_limit_exceed": {
+																									Type: schema.TypeInt, Optional: true, Description: "",
+																								},
+																								"current_response_size_rate": {
+																									Type: schema.TypeString, Optional: true, Description: "",
+																								},
+																								"response_size_rate_limit": {
+																									Type: schema.TypeString, Optional: true, Description: "",
+																								},
+																							},
+																						},
+																					},
+																					"hw_blocked_rules": {
+																						Type: schema.TypeList, Optional: true, Description: "",
+																						Elem: &schema.Resource{
+																							Schema: map[string]*schema.Schema{
+																								"rule_dst_ip": {
+																									Type: schema.TypeString, Optional: true, Description: "",
+																								},
+																								"hw_blocking_state": {
+																									Type: schema.TypeString, Optional: true, Description: "",
+																								},
+																							},
+																						},
+																					},
+																					"debug_str": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																				},
+																			},
+																		},
+																		"entry_displayed_count": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"service_displayed_count": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"reporting_status": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"sources": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"overflow_policy": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"sources_all_entries": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"class_list": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"subnet_ip_addr": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"subnet_ipv6_addr": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"ipv6": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"exceeded": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"black_listed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"white_listed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"authenticated": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"level": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"app_stat": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"indicators": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"indicator_detail": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"l4_ext_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"hw_blacklisted": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"suffix_request_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"domain_name": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																	},
+																},
 															},
 														},
 													},
@@ -3102,6 +3674,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 															"dynamic_entry_limit": {
 																Type: schema.TypeString, Optional: true, Description: "",
 															},
+															"dynamic_entry_warn_state": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
 															"sflow_source_id": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
@@ -3180,7 +3755,7 @@ func resourceDdosDstZoneOper() *schema.Resource {
 											},
 										},
 									},
-									"ip_filtering_policy_oper": {
+									"ip_filtering_policy_statistics": {
 										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
@@ -3196,6 +3771,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 																			Type: schema.TypeInt, Optional: true, Description: "",
 																		},
 																		"hits": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"blacklisted_src_count": {
 																			Type: schema.TypeInt, Optional: true, Description: "",
 																		},
 																	},
@@ -3714,6 +4292,87 @@ func resourceDdosDstZoneOper() *schema.Resource {
 															},
 															"top_k_key": {
 																Type: schema.TypeString, Optional: true, Description: "",
+															},
+														},
+													},
+												},
+											},
+										},
+									},
+									"src_based_policy_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"src_based_policy_name": {
+													Type: schema.TypeString, Required: true, Description: "Specify name of the policy",
+												},
+												"oper": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{},
+													},
+												},
+												"policy_class_list_list": {
+													Type: schema.TypeList, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"class_list_name": {
+																Type: schema.TypeString, Required: true, Description: "Class-list name",
+															},
+															"oper": {
+																Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+																Elem: &schema.Resource{
+																	Schema: map[string]*schema.Schema{
+																		"current_connections": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_connections_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"connection_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_connection_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_connection_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"connection_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_packet_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_packet_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"packet_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_kbit_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_kbit_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"kbit_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"current_frag_packet_rate": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"is_frag_packet_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"frag_packet_rate_limit": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"debug_str": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																	},
+																},
 															},
 														},
 													},
@@ -3895,11 +4554,11 @@ func resourceDdosDstZoneOper() *schema.Resource {
 												"dynamic_entry_limit": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
+												"dynamic_entry_warn_state": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
 												"sflow_source_id": {
 													Type: schema.TypeInt, Optional: true, Description: "",
-												},
-												"debug_str": {
-													Type: schema.TypeString, Optional: true, Description: "",
 												},
 												"http_filter_rates": {
 													Type: schema.TypeList, Optional: true, Description: "",
@@ -3938,6 +4597,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 															},
 														},
 													},
+												},
+												"debug_str": {
+													Type: schema.TypeString, Optional: true, Description: "",
 												},
 											},
 										},
@@ -4011,7 +4673,7 @@ func resourceDdosDstZoneOper() *schema.Resource {
 								},
 							},
 						},
-						"ip_filtering_policy_oper": {
+						"ip_filtering_policy_statistics": {
 							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
@@ -4027,6 +4689,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
 															"hits": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"blacklisted_src_count": {
 																Type: schema.TypeInt, Optional: true, Description: "",
 															},
 														},
@@ -4155,33 +4820,6 @@ func resourceDdosDstZoneOper() *schema.Resource {
 																		},
 																	},
 																},
-															},
-														},
-													},
-												},
-											},
-										},
-									},
-								},
-							},
-						},
-						"ips": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"oper": {
-										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"signature_list": {
-													Type: schema.TypeList, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{
-															"sid": {
-																Type: schema.TypeInt, Optional: true, Description: "",
-															},
-															"match_count": {
-																Type: schema.TypeInt, Optional: true, Description: "",
 															},
 														},
 													},
@@ -4579,6 +5217,384 @@ func resourceDdosDstZoneOper() *schema.Resource {
 								},
 							},
 						},
+						"src_based_policy_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"src_based_policy_name": {
+										Type: schema.TypeString, Required: true, Description: "Specify name of the policy",
+									},
+									"oper": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{},
+										},
+									},
+									"policy_class_list_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"class_list_name": {
+													Type: schema.TypeString, Required: true, Description: "Class-list name",
+												},
+												"oper": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"current_connections": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"is_connections_exceed": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"connection_limit": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"current_connection_rate": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"is_connection_rate_exceed": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"connection_rate_limit": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"current_packet_rate": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"is_packet_rate_exceed": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"packet_rate_limit": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"current_kbit_rate": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"is_kbit_rate_exceed": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"kbit_rate_limit": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"current_frag_packet_rate": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"is_frag_packet_rate_exceed": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"frag_packet_rate_limit": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"debug_str": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+														},
+													},
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+						"virtualhosts": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"oper": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{},
+										},
+									},
+									"virtualhost_list": {
+										Type: schema.TypeList, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"vhost": {
+													Type: schema.TypeString, Required: true, Description: "name for virtualhost",
+												},
+												"oper": {
+													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+													Elem: &schema.Resource{
+														Schema: map[string]*schema.Schema{
+															"ddos_entry_list": {
+																Type: schema.TypeList, Optional: true, Description: "",
+																Elem: &schema.Resource{
+																	Schema: map[string]*schema.Schema{
+																		"dst_address_str": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"bw_state": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_auth_passed": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"level": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"bl_reasoning_rcode": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"bl_reasoning_timestamp": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_connections": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_connections_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"connection_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_connection_rate": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_connection_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"connection_rate_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_packet_rate": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_packet_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"packet_rate_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_kbit_rate": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_kbit_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"kbit_rate_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_frag_packet_rate": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_frag_packet_rate_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"frag_packet_rate_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_app_stat1": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_app_stat1_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"app_stat1_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_app_stat2": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_app_stat2_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"app_stat2_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_app_stat3": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_app_stat3_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"app_stat3_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_app_stat4": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_app_stat4_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"app_stat4_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_app_stat5": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_app_stat5_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"app_stat5_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_app_stat6": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_app_stat6_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"app_stat6_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_app_stat7": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_app_stat7_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"app_stat7_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"current_app_stat8": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"is_app_stat8_exceed": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"app_stat8_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"age": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"lockup_time": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"dynamic_entry_count": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"dynamic_entry_limit": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"dynamic_entry_warn_state": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																		"sflow_source_id": {
+																			Type: schema.TypeInt, Optional: true, Description: "",
+																		},
+																		"http_filter_rates": {
+																			Type: schema.TypeList, Optional: true, Description: "",
+																			Elem: &schema.Resource{
+																				Schema: map[string]*schema.Schema{
+																					"http_filter_rate_name": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_http_filter_rate_limit_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"current_http_filter_rate": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"http_filter_rate_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																				},
+																			},
+																		},
+																		"response_size_rates": {
+																			Type: schema.TypeList, Optional: true, Description: "",
+																			Elem: &schema.Resource{
+																				Schema: map[string]*schema.Schema{
+																					"response_size_rate_name": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"is_response_size_rate_limit_exceed": {
+																						Type: schema.TypeInt, Optional: true, Description: "",
+																					},
+																					"current_response_size_rate": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																					"response_size_rate_limit": {
+																						Type: schema.TypeString, Optional: true, Description: "",
+																					},
+																				},
+																			},
+																		},
+																		"debug_str": {
+																			Type: schema.TypeString, Optional: true, Description: "",
+																		},
+																	},
+																},
+															},
+															"entry_displayed_count": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"service_displayed_count": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"reporting_status": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"sources": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"overflow_policy": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"sources_all_entries": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"class_list": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+															"subnet_ip_addr": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+															"subnet_ipv6_addr": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+															"ipv6": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+															"exceeded": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"black_listed": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"white_listed": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"authenticated": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"level": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"app_stat": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"indicators": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"indicator_detail": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"l4_ext_rate": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"hw_blacklisted": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"suffix_request_rate": {
+																Type: schema.TypeInt, Optional: true, Description: "",
+															},
+															"domain_name": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+														},
+													},
+												},
+											},
+										},
+									},
+								},
+							},
+						},
 					},
 				},
 			},
@@ -4749,6 +5765,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 																Type: schema.TypeString, Optional: true, Description: "",
 															},
 															"dynamic_entry_limit": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+															"dynamic_entry_warn_state": {
 																Type: schema.TypeString, Optional: true, Description: "",
 															},
 															"sflow_source_id": {
@@ -5005,6 +6024,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 																Type: schema.TypeString, Optional: true, Description: "",
 															},
 															"dynamic_entry_limit": {
+																Type: schema.TypeString, Optional: true, Description: "",
+															},
+															"dynamic_entry_warn_state": {
 																Type: schema.TypeString, Optional: true, Description: "",
 															},
 															"sflow_source_id": {
@@ -5267,6 +6289,9 @@ func resourceDdosDstZoneOper() *schema.Resource {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
 												"dynamic_entry_limit": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"dynamic_entry_warn_state": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
 												"sflow_source_id": {
@@ -5661,6 +6686,8 @@ func setObjectDdosDstZoneOperDetectionVictimIpDetectionOper(d edpt.DdosDstZoneOp
 
 	in["total_ip_entry_count"] = d.TotalIpEntryCount
 
+	in["with_selected_details"] = d.WithSelectedDetails
+
 	in["active_list"] = d.ActiveList
 
 	in["victim_list"] = d.VictimList
@@ -5737,7 +6764,8 @@ func setSliceDdosDstZoneOperIpProtoProtoNumberList(d []edpt.DdosDstZoneOperIpPro
 		in := make(map[string]interface{})
 		in["protocol_num"] = item.ProtocolNum
 		in["oper"] = setObjectDdosDstZoneOperIpProtoProtoNumberListOper(item.Oper)
-		in["ip_filtering_policy_oper"] = setObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOper(item.IpFilteringPolicyOper)
+		in["ip_filtering_policy_statistics"] = setObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatistics(item.IpFilteringPolicyStatistics)
+		in["src_based_policy_list"] = setSliceDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyList(item.SrcBasedPolicyList)
 		in["port_ind"] = setObjectDdosDstZoneOperIpProtoProtoNumberListPortInd(item.PortInd)
 		in["topk_sources"] = setObjectDdosDstZoneOperIpProtoProtoNumberListTopkSources(item.TopkSources)
 		in["topk_destinations"] = setObjectDdosDstZoneOperIpProtoProtoNumberListTopkDestinations(item.TopkDestinations)
@@ -5826,6 +6854,7 @@ func setSliceDdosDstZoneOperIpProtoProtoNumberListOperDdos_entry_list(d []edpt.D
 		in["lockup_time"] = item.LockupTime
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -5833,30 +6862,100 @@ func setSliceDdosDstZoneOperIpProtoProtoNumberListOperDdos_entry_list(d []edpt.D
 	return result
 }
 
-func setObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOper(d edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOper) []map[string]interface{} {
+func setObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatistics(d edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatistics) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["oper"] = setObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOper(d.Oper)
+	in["oper"] = setObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOper(d.Oper)
 	result = append(result, in)
 	return result
 }
 
-func setObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOper(d edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOper) []map[string]interface{} {
+func setObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOper(d edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOper) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOperRuleList(d.RuleList)
+	in["rule_list"] = setSliceDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOperRuleList(d.RuleList)
 	result = append(result, in)
 	return result
 }
 
-func setSliceDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
+func setSliceDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOperRuleList(d []edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOperRuleList) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	for _, item := range d {
 		in := make(map[string]interface{})
 		in["seq"] = item.Seq
 		in["hits"] = item.Hits
+		in["blacklisted_src_count"] = item.Blacklisted_src_count
 		result = append(result, in)
 	}
+	return result
+}
+
+func setSliceDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyList(d []edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["src_based_policy_name"] = item.SrcBasedPolicyName
+		in["oper"] = setObjectDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListOper(item.Oper)
+		in["policy_class_list_list"] = setSliceDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListList(item.PolicyClassListList)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListOper(d edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	result = append(result, in)
+	return result
+}
+
+func setSliceDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListList(d []edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["class_list_name"] = item.ClassListName
+		in["oper"] = setObjectDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListListOper(item.Oper)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListListOper(d edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+
+	in["current_connections"] = d.CurrentConnections
+
+	in["is_connections_exceed"] = d.IsConnectionsExceed
+
+	in["connection_limit"] = d.ConnectionLimit
+
+	in["current_connection_rate"] = d.CurrentConnectionRate
+
+	in["is_connection_rate_exceed"] = d.IsConnectionRateExceed
+
+	in["connection_rate_limit"] = d.ConnectionRateLimit
+
+	in["current_packet_rate"] = d.CurrentPacketRate
+
+	in["is_packet_rate_exceed"] = d.IsPacketRateExceed
+
+	in["packet_rate_limit"] = d.PacketRateLimit
+
+	in["current_kbit_rate"] = d.CurrentKbitRate
+
+	in["is_kbit_rate_exceed"] = d.IsKbitRateExceed
+
+	in["kbit_rate_limit"] = d.KbitRateLimit
+
+	in["current_frag_packet_rate"] = d.CurrentFragPacketRate
+
+	in["is_frag_packet_rate_exceed"] = d.IsFragPacketRateExceed
+
+	in["frag_packet_rate_limit"] = d.FragPacketRateLimit
+
+	in["debug_str"] = d.DebugStr
+	result = append(result, in)
 	return result
 }
 
@@ -6160,7 +7259,7 @@ func setSliceDdosDstZoneOperIpProtoProtoTcpUdpList(d []edpt.DdosDstZoneOperIpPro
 		in := make(map[string]interface{})
 		in["protocol"] = item.Protocol
 		in["oper"] = setObjectDdosDstZoneOperIpProtoProtoTcpUdpListOper(item.Oper)
-		in["ip_filtering_policy_oper"] = setObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOper(item.IpFilteringPolicyOper)
+		in["ip_filtering_policy_statistics"] = setObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatistics(item.IpFilteringPolicyStatistics)
 		result = append(result, in)
 	}
 	return result
@@ -6245,6 +7344,7 @@ func setSliceDdosDstZoneOperIpProtoProtoTcpUdpListOperDdos_entry_list(d []edpt.D
 		in["lockup_time"] = item.LockupTime
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -6252,28 +7352,29 @@ func setSliceDdosDstZoneOperIpProtoProtoTcpUdpListOperDdos_entry_list(d []edpt.D
 	return result
 }
 
-func setObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOper(d edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOper) []map[string]interface{} {
+func setObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatistics(d edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatistics) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["oper"] = setObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOper(d.Oper)
+	in["oper"] = setObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOper(d.Oper)
 	result = append(result, in)
 	return result
 }
 
-func setObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOper(d edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOper) []map[string]interface{} {
+func setObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOper(d edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOper) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOperRuleList(d.RuleList)
+	in["rule_list"] = setSliceDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOperRuleList(d.RuleList)
 	result = append(result, in)
 	return result
 }
 
-func setSliceDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
+func setSliceDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOperRuleList(d []edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOperRuleList) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	for _, item := range d {
 		in := make(map[string]interface{})
 		in["seq"] = item.Seq
 		in["hits"] = item.Hits
+		in["blacklisted_src_count"] = item.Blacklisted_src_count
 		result = append(result, in)
 	}
 	return result
@@ -6285,7 +7386,8 @@ func setSliceDdosDstZoneOperIpProtoProtoNameList(d []edpt.DdosDstZoneOperIpProto
 		in := make(map[string]interface{})
 		in["protocol"] = item.Protocol
 		in["oper"] = setObjectDdosDstZoneOperIpProtoProtoNameListOper(item.Oper)
-		in["ip_filtering_policy_oper"] = setObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOper(item.IpFilteringPolicyOper)
+		in["ip_filtering_policy_statistics"] = setObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatistics(item.IpFilteringPolicyStatistics)
+		in["src_based_policy_list"] = setSliceDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyList(item.SrcBasedPolicyList)
 		in["port_ind"] = setObjectDdosDstZoneOperIpProtoProtoNameListPortInd(item.PortInd)
 		in["topk_sources"] = setObjectDdosDstZoneOperIpProtoProtoNameListTopkSources(item.TopkSources)
 		in["progression_tracking"] = setObjectDdosDstZoneOperIpProtoProtoNameListProgressionTracking(item.ProgressionTracking)
@@ -6374,6 +7476,7 @@ func setSliceDdosDstZoneOperIpProtoProtoNameListOperDdos_entry_list(d []edpt.Ddo
 		in["lockup_time"] = item.LockupTime
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -6381,30 +7484,100 @@ func setSliceDdosDstZoneOperIpProtoProtoNameListOperDdos_entry_list(d []edpt.Ddo
 	return result
 }
 
-func setObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOper(d edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOper) []map[string]interface{} {
+func setObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatistics(d edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatistics) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["oper"] = setObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOper(d.Oper)
+	in["oper"] = setObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOper(d.Oper)
 	result = append(result, in)
 	return result
 }
 
-func setObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOper(d edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOper) []map[string]interface{} {
+func setObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOper(d edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOper) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOperRuleList(d.RuleList)
+	in["rule_list"] = setSliceDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOperRuleList(d.RuleList)
 	result = append(result, in)
 	return result
 }
 
-func setSliceDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
+func setSliceDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOperRuleList(d []edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOperRuleList) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	for _, item := range d {
 		in := make(map[string]interface{})
 		in["seq"] = item.Seq
 		in["hits"] = item.Hits
+		in["blacklisted_src_count"] = item.Blacklisted_src_count
 		result = append(result, in)
 	}
+	return result
+}
+
+func setSliceDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyList(d []edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["src_based_policy_name"] = item.SrcBasedPolicyName
+		in["oper"] = setObjectDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListOper(item.Oper)
+		in["policy_class_list_list"] = setSliceDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListList(item.PolicyClassListList)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListOper(d edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	result = append(result, in)
+	return result
+}
+
+func setSliceDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListList(d []edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["class_list_name"] = item.ClassListName
+		in["oper"] = setObjectDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListListOper(item.Oper)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListListOper(d edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+
+	in["current_connections"] = d.CurrentConnections
+
+	in["is_connections_exceed"] = d.IsConnectionsExceed
+
+	in["connection_limit"] = d.ConnectionLimit
+
+	in["current_connection_rate"] = d.CurrentConnectionRate
+
+	in["is_connection_rate_exceed"] = d.IsConnectionRateExceed
+
+	in["connection_rate_limit"] = d.ConnectionRateLimit
+
+	in["current_packet_rate"] = d.CurrentPacketRate
+
+	in["is_packet_rate_exceed"] = d.IsPacketRateExceed
+
+	in["packet_rate_limit"] = d.PacketRateLimit
+
+	in["current_kbit_rate"] = d.CurrentKbitRate
+
+	in["is_kbit_rate_exceed"] = d.IsKbitRateExceed
+
+	in["kbit_rate_limit"] = d.KbitRateLimit
+
+	in["current_frag_packet_rate"] = d.CurrentFragPacketRate
+
+	in["is_frag_packet_rate_exceed"] = d.IsFragPacketRateExceed
+
+	in["frag_packet_rate_limit"] = d.FragPacketRateLimit
+
+	in["debug_str"] = d.DebugStr
+	result = append(result, in)
 	return result
 }
 
@@ -6757,6 +7930,7 @@ func setSliceDdosDstZoneOperOperDdos_entry_list(d []edpt.DdosDstZoneOperOperDdos
 		in["frag_packet_rate_limit"] = item.FragPacketRateLimit
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["age_str"] = item.AgeStr
 		in["lockup_time"] = item.LockupTime
 		in["sflow_source_id"] = item.SflowSourceId
@@ -6965,12 +8139,13 @@ func setSliceDdosDstZoneOperPortZoneServiceList(d []edpt.DdosDstZoneOperPortZone
 		in["oper"] = setObjectDdosDstZoneOperPortZoneServiceListOper(item.Oper)
 		in["pattern_recognition"] = setObjectDdosDstZoneOperPortZoneServiceListPatternRecognition(item.PatternRecognition)
 		in["pattern_recognition_pu_details"] = setObjectDdosDstZoneOperPortZoneServiceListPatternRecognitionPuDetails(item.PatternRecognitionPuDetails)
-		in["ip_filtering_policy_oper"] = setObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyOper(item.IpFilteringPolicyOper)
-		in["ips"] = setObjectDdosDstZoneOperPortZoneServiceListIps(item.Ips)
+		in["ip_filtering_policy_statistics"] = setObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatistics(item.IpFilteringPolicyStatistics)
 		in["port_ind"] = setObjectDdosDstZoneOperPortZoneServiceListPortInd(item.PortInd)
 		in["topk_sources"] = setObjectDdosDstZoneOperPortZoneServiceListTopkSources(item.TopkSources)
 		in["progression_tracking"] = setObjectDdosDstZoneOperPortZoneServiceListProgressionTracking(item.ProgressionTracking)
 		in["topk_destinations"] = setObjectDdosDstZoneOperPortZoneServiceListTopkDestinations(item.TopkDestinations)
+		in["src_based_policy_list"] = setSliceDdosDstZoneOperPortZoneServiceListSrcBasedPolicyList(item.SrcBasedPolicyList)
+		in["virtualhosts"] = setObjectDdosDstZoneOperPortZoneServiceListVirtualhosts(item.Virtualhosts)
 		result = append(result, in)
 	}
 	return result
@@ -7020,6 +8195,8 @@ func setObjectDdosDstZoneOperPortZoneServiceListOper(d edpt.DdosDstZoneOperPortZ
 	in["l4_ext_rate"] = d.L4ExtRate
 
 	in["hw_blacklisted"] = d.HwBlacklisted
+
+	in["hw_blacklisted_stats"] = d.HwBlacklistedStats
 
 	in["suffix_request_rate"] = d.SuffixRequestRate
 
@@ -7081,10 +8258,12 @@ func setSliceDdosDstZoneOperPortZoneServiceListOperDdos_entry_list(d []edpt.Ddos
 		in["lockup_time"] = item.LockupTime
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
-		in["debug_str"] = item.DebugStr
 		in["http_filter_rates"] = setSliceDdosDstZoneOperPortZoneServiceListOperDdos_entry_listHttpFilterRates(item.HttpFilterRates)
 		in["response_size_rates"] = setSliceDdosDstZoneOperPortZoneServiceListOperDdos_entry_listResponseSizeRates(item.ResponseSizeRates)
+		in["hw_blocked_rules"] = setSliceDdosDstZoneOperPortZoneServiceListOperDdos_entry_listHwBlockedRules(item.HwBlockedRules)
+		in["debug_str"] = item.DebugStr
 		result = append(result, in)
 	}
 	return result
@@ -7111,6 +8290,17 @@ func setSliceDdosDstZoneOperPortZoneServiceListOperDdos_entry_listResponseSizeRa
 		in["is_response_size_rate_limit_exceed"] = item.IsResponseSizeRateLimitExceed
 		in["current_response_size_rate"] = item.CurrentResponseSizeRate
 		in["response_size_rate_limit"] = item.ResponseSizeRateLimit
+		result = append(result, in)
+	}
+	return result
+}
+
+func setSliceDdosDstZoneOperPortZoneServiceListOperDdos_entry_listHwBlockedRules(d []edpt.DdosDstZoneOperPortZoneServiceListOperDdos_entry_listHwBlockedRules) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["rule_dst_ip"] = item.RuleDstIp
+		in["hw_blocking_state"] = item.HwBlockingState
 		result = append(result, in)
 	}
 	return result
@@ -7209,55 +8399,29 @@ func setSliceDdosDstZoneOperPortZoneServiceListPatternRecognitionPuDetailsOperAl
 	return result
 }
 
-func setObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyOper(d edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyOper) []map[string]interface{} {
+func setObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatistics(d edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatistics) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["oper"] = setObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOper(d.Oper)
+	in["oper"] = setObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOper(d.Oper)
 	result = append(result, in)
 	return result
 }
 
-func setObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOper(d edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOper) []map[string]interface{} {
+func setObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOper(d edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOper) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOperRuleList(d.RuleList)
+	in["rule_list"] = setSliceDdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOperRuleList(d.RuleList)
 	result = append(result, in)
 	return result
 }
 
-func setSliceDdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
+func setSliceDdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOperRuleList(d []edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOperRuleList) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	for _, item := range d {
 		in := make(map[string]interface{})
 		in["seq"] = item.Seq
 		in["hits"] = item.Hits
-		result = append(result, in)
-	}
-	return result
-}
-
-func setObjectDdosDstZoneOperPortZoneServiceListIps(d edpt.DdosDstZoneOperPortZoneServiceListIps) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["oper"] = setObjectDdosDstZoneOperPortZoneServiceListIpsOper(d.Oper)
-	result = append(result, in)
-	return result
-}
-
-func setObjectDdosDstZoneOperPortZoneServiceListIpsOper(d edpt.DdosDstZoneOperPortZoneServiceListIpsOper) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["signature_list"] = setSliceDdosDstZoneOperPortZoneServiceListIpsOperSignatureList(d.SignatureList)
-	result = append(result, in)
-	return result
-}
-
-func setSliceDdosDstZoneOperPortZoneServiceListIpsOperSignatureList(d []edpt.DdosDstZoneOperPortZoneServiceListIpsOperSignatureList) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	for _, item := range d {
-		in := make(map[string]interface{})
-		in["sid"] = item.Sid
-		in["match_count"] = item.MatchCount
+		in["blacklisted_src_count"] = item.Blacklisted_src_count
 		result = append(result, in)
 	}
 	return result
@@ -7557,6 +8721,255 @@ func setSliceDdosDstZoneOperPortZoneServiceListTopkDestinationsOperEntryListIndi
 	return result
 }
 
+func setSliceDdosDstZoneOperPortZoneServiceListSrcBasedPolicyList(d []edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["src_based_policy_name"] = item.SrcBasedPolicyName
+		in["oper"] = setObjectDdosDstZoneOperPortZoneServiceListSrcBasedPolicyListOper(item.Oper)
+		in["policy_class_list_list"] = setSliceDdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListList(item.PolicyClassListList)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperPortZoneServiceListSrcBasedPolicyListOper(d edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	result = append(result, in)
+	return result
+}
+
+func setSliceDdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListList(d []edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["class_list_name"] = item.ClassListName
+		in["oper"] = setObjectDdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListListOper(item.Oper)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListListOper(d edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+
+	in["current_connections"] = d.CurrentConnections
+
+	in["is_connections_exceed"] = d.IsConnectionsExceed
+
+	in["connection_limit"] = d.ConnectionLimit
+
+	in["current_connection_rate"] = d.CurrentConnectionRate
+
+	in["is_connection_rate_exceed"] = d.IsConnectionRateExceed
+
+	in["connection_rate_limit"] = d.ConnectionRateLimit
+
+	in["current_packet_rate"] = d.CurrentPacketRate
+
+	in["is_packet_rate_exceed"] = d.IsPacketRateExceed
+
+	in["packet_rate_limit"] = d.PacketRateLimit
+
+	in["current_kbit_rate"] = d.CurrentKbitRate
+
+	in["is_kbit_rate_exceed"] = d.IsKbitRateExceed
+
+	in["kbit_rate_limit"] = d.KbitRateLimit
+
+	in["current_frag_packet_rate"] = d.CurrentFragPacketRate
+
+	in["is_frag_packet_rate_exceed"] = d.IsFragPacketRateExceed
+
+	in["frag_packet_rate_limit"] = d.FragPacketRateLimit
+
+	in["debug_str"] = d.DebugStr
+	result = append(result, in)
+	return result
+}
+
+func setObjectDdosDstZoneOperPortZoneServiceListVirtualhosts(d edpt.DdosDstZoneOperPortZoneServiceListVirtualhosts) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	in["oper"] = setObjectDdosDstZoneOperPortZoneServiceListVirtualhostsOper(d.Oper)
+	in["virtualhost_list"] = setSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostList(d.VirtualhostList)
+	result = append(result, in)
+	return result
+}
+
+func setObjectDdosDstZoneOperPortZoneServiceListVirtualhostsOper(d edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	result = append(result, in)
+	return result
+}
+
+func setSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostList(d []edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["vhost"] = item.Vhost
+		in["oper"] = setObjectDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOper(item.Oper)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOper(d edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	in["ddos_entry_list"] = setSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_list(d.Ddos_entry_list)
+
+	in["entry_displayed_count"] = d.EntryDisplayedCount
+
+	in["service_displayed_count"] = d.ServiceDisplayedCount
+
+	in["reporting_status"] = d.ReportingStatus
+
+	in["sources"] = d.Sources
+
+	in["overflow_policy"] = d.OverflowPolicy
+
+	in["sources_all_entries"] = d.SourcesAllEntries
+
+	in["class_list"] = d.ClassList
+
+	in["subnet_ip_addr"] = d.SubnetIpAddr
+
+	in["subnet_ipv6_addr"] = d.SubnetIpv6Addr
+
+	in["ipv6"] = d.Ipv6
+
+	in["exceeded"] = d.Exceeded
+
+	in["black_listed"] = d.BlackListed
+
+	in["white_listed"] = d.WhiteListed
+
+	in["authenticated"] = d.Authenticated
+
+	in["level"] = d.Level
+
+	in["app_stat"] = d.AppStat
+
+	in["indicators"] = d.Indicators
+
+	in["indicator_detail"] = d.IndicatorDetail
+
+	in["l4_ext_rate"] = d.L4ExtRate
+
+	in["hw_blacklisted"] = d.HwBlacklisted
+
+	in["suffix_request_rate"] = d.SuffixRequestRate
+
+	in["domain_name"] = d.DomainName
+	result = append(result, in)
+	return result
+}
+
+func setSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_list(d []edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_list) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["dst_address_str"] = item.DstAddressStr
+		in["bw_state"] = item.BwState
+		in["is_auth_passed"] = item.Is_auth_passed
+		in["level"] = item.Level
+		in["bl_reasoning_rcode"] = item.BlReasoningRcode
+		in["bl_reasoning_timestamp"] = item.BlReasoningTimestamp
+		in["current_connections"] = item.CurrentConnections
+		in["is_connections_exceed"] = item.IsConnectionsExceed
+		in["connection_limit"] = item.ConnectionLimit
+		in["current_connection_rate"] = item.CurrentConnectionRate
+		in["is_connection_rate_exceed"] = item.IsConnectionRateExceed
+		in["connection_rate_limit"] = item.ConnectionRateLimit
+		in["current_packet_rate"] = item.CurrentPacketRate
+		in["is_packet_rate_exceed"] = item.IsPacketRateExceed
+		in["packet_rate_limit"] = item.PacketRateLimit
+		in["current_kbit_rate"] = item.CurrentKbitRate
+		in["is_kbit_rate_exceed"] = item.IsKbitRateExceed
+		in["kbit_rate_limit"] = item.KbitRateLimit
+		in["current_frag_packet_rate"] = item.CurrentFragPacketRate
+		in["is_frag_packet_rate_exceed"] = item.IsFragPacketRateExceed
+		in["frag_packet_rate_limit"] = item.FragPacketRateLimit
+		in["current_app_stat1"] = item.CurrentAppStat1
+		in["is_app_stat1_exceed"] = item.IsAppStat1Exceed
+		in["app_stat1_limit"] = item.AppStat1Limit
+		in["current_app_stat2"] = item.CurrentAppStat2
+		in["is_app_stat2_exceed"] = item.IsAppStat2Exceed
+		in["app_stat2_limit"] = item.AppStat2Limit
+		in["current_app_stat3"] = item.CurrentAppStat3
+		in["is_app_stat3_exceed"] = item.IsAppStat3Exceed
+		in["app_stat3_limit"] = item.AppStat3Limit
+		in["current_app_stat4"] = item.CurrentAppStat4
+		in["is_app_stat4_exceed"] = item.IsAppStat4Exceed
+		in["app_stat4_limit"] = item.AppStat4Limit
+		in["current_app_stat5"] = item.CurrentAppStat5
+		in["is_app_stat5_exceed"] = item.IsAppStat5Exceed
+		in["app_stat5_limit"] = item.AppStat5Limit
+		in["current_app_stat6"] = item.CurrentAppStat6
+		in["is_app_stat6_exceed"] = item.IsAppStat6Exceed
+		in["app_stat6_limit"] = item.AppStat6Limit
+		in["current_app_stat7"] = item.CurrentAppStat7
+		in["is_app_stat7_exceed"] = item.IsAppStat7Exceed
+		in["app_stat7_limit"] = item.AppStat7Limit
+		in["current_app_stat8"] = item.CurrentAppStat8
+		in["is_app_stat8_exceed"] = item.IsAppStat8Exceed
+		in["app_stat8_limit"] = item.AppStat8Limit
+		in["age"] = item.Age
+		in["lockup_time"] = item.LockupTime
+		in["dynamic_entry_count"] = item.DynamicEntryCount
+		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
+		in["sflow_source_id"] = item.SflowSourceId
+		in["http_filter_rates"] = setSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates(item.HttpFilterRates)
+		in["response_size_rates"] = setSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates(item.ResponseSizeRates)
+		in["hw_blocked_rules"] = setSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHwBlockedRules(item.HwBlockedRules)
+		in["debug_str"] = item.DebugStr
+		result = append(result, in)
+	}
+	return result
+}
+
+func setSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates(d []edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["http_filter_rate_name"] = item.HttpFilterRateName
+		in["is_http_filter_rate_limit_exceed"] = item.IsHttpFilterRateLimitExceed
+		in["current_http_filter_rate"] = item.CurrentHttpFilterRate
+		in["http_filter_rate_limit"] = item.HttpFilterRateLimit
+		result = append(result, in)
+	}
+	return result
+}
+
+func setSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates(d []edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["response_size_rate_name"] = item.ResponseSizeRateName
+		in["is_response_size_rate_limit_exceed"] = item.IsResponseSizeRateLimitExceed
+		in["current_response_size_rate"] = item.CurrentResponseSizeRate
+		in["response_size_rate_limit"] = item.ResponseSizeRateLimit
+		result = append(result, in)
+	}
+	return result
+}
+
+func setSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHwBlockedRules(d []edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHwBlockedRules) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["rule_dst_ip"] = item.RuleDstIp
+		in["hw_blocking_state"] = item.HwBlockingState
+		result = append(result, in)
+	}
+	return result
+}
+
 func setSliceDdosDstZoneOperPortZoneServiceOtherList(d []edpt.DdosDstZoneOperPortZoneServiceOtherList) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	for _, item := range d {
@@ -7564,13 +8977,14 @@ func setSliceDdosDstZoneOperPortZoneServiceOtherList(d []edpt.DdosDstZoneOperPor
 		in["port_other"] = item.PortOther
 		in["protocol"] = item.Protocol
 		in["oper"] = setObjectDdosDstZoneOperPortZoneServiceOtherListOper(item.Oper)
-		in["ip_filtering_policy_oper"] = setObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOper(item.IpFilteringPolicyOper)
+		in["ip_filtering_policy_statistics"] = setObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatistics(item.IpFilteringPolicyStatistics)
 		in["pattern_recognition"] = setObjectDdosDstZoneOperPortZoneServiceOtherListPatternRecognition(item.PatternRecognition)
 		in["pattern_recognition_pu_details"] = setObjectDdosDstZoneOperPortZoneServiceOtherListPatternRecognitionPuDetails(item.PatternRecognitionPuDetails)
 		in["port_ind"] = setObjectDdosDstZoneOperPortZoneServiceOtherListPortInd(item.PortInd)
 		in["topk_sources"] = setObjectDdosDstZoneOperPortZoneServiceOtherListTopkSources(item.TopkSources)
 		in["progression_tracking"] = setObjectDdosDstZoneOperPortZoneServiceOtherListProgressionTracking(item.ProgressionTracking)
 		in["topk_destinations"] = setObjectDdosDstZoneOperPortZoneServiceOtherListTopkDestinations(item.TopkDestinations)
+		in["src_based_policy_list"] = setSliceDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyList(item.SrcBasedPolicyList)
 		result = append(result, in)
 	}
 	return result
@@ -7681,6 +9095,7 @@ func setSliceDdosDstZoneOperPortZoneServiceOtherListOperDdos_entry_list(d []edpt
 		in["lockup_time"] = item.LockupTime
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -7688,28 +9103,29 @@ func setSliceDdosDstZoneOperPortZoneServiceOtherListOperDdos_entry_list(d []edpt
 	return result
 }
 
-func setObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOper(d edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOper) []map[string]interface{} {
+func setObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatistics(d edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatistics) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["oper"] = setObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOper(d.Oper)
+	in["oper"] = setObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOper(d.Oper)
 	result = append(result, in)
 	return result
 }
 
-func setObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOper(d edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOper) []map[string]interface{} {
+func setObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOper(d edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOper) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOperRuleList(d.RuleList)
+	in["rule_list"] = setSliceDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOperRuleList(d.RuleList)
 	result = append(result, in)
 	return result
 }
 
-func setSliceDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
+func setSliceDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOperRuleList(d []edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOperRuleList) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	for _, item := range d {
 		in := make(map[string]interface{})
 		in["seq"] = item.Seq
 		in["hits"] = item.Hits
+		in["blacklisted_src_count"] = item.Blacklisted_src_count
 		result = append(result, in)
 	}
 	return result
@@ -8102,6 +9518,75 @@ func setSliceDdosDstZoneOperPortZoneServiceOtherListTopkDestinationsOperEntryLis
 	return result
 }
 
+func setSliceDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyList(d []edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["src_based_policy_name"] = item.SrcBasedPolicyName
+		in["oper"] = setObjectDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListOper(item.Oper)
+		in["policy_class_list_list"] = setSliceDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListList(item.PolicyClassListList)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListOper(d edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	result = append(result, in)
+	return result
+}
+
+func setSliceDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListList(d []edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["class_list_name"] = item.ClassListName
+		in["oper"] = setObjectDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListListOper(item.Oper)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListListOper(d edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+
+	in["current_connections"] = d.CurrentConnections
+
+	in["is_connections_exceed"] = d.IsConnectionsExceed
+
+	in["connection_limit"] = d.ConnectionLimit
+
+	in["current_connection_rate"] = d.CurrentConnectionRate
+
+	in["is_connection_rate_exceed"] = d.IsConnectionRateExceed
+
+	in["connection_rate_limit"] = d.ConnectionRateLimit
+
+	in["current_packet_rate"] = d.CurrentPacketRate
+
+	in["is_packet_rate_exceed"] = d.IsPacketRateExceed
+
+	in["packet_rate_limit"] = d.PacketRateLimit
+
+	in["current_kbit_rate"] = d.CurrentKbitRate
+
+	in["is_kbit_rate_exceed"] = d.IsKbitRateExceed
+
+	in["kbit_rate_limit"] = d.KbitRateLimit
+
+	in["current_frag_packet_rate"] = d.CurrentFragPacketRate
+
+	in["is_frag_packet_rate_exceed"] = d.IsFragPacketRateExceed
+
+	in["frag_packet_rate_limit"] = d.FragPacketRateLimit
+
+	in["debug_str"] = d.DebugStr
+	result = append(result, in)
+	return result
+}
+
 func setSliceDdosDstZoneOperPortRangeList(d edpt.DataDdosDstZoneOper) []map[string]interface{} {
 	result := []map[string]interface{}{}
 
@@ -8111,14 +9596,15 @@ func setSliceDdosDstZoneOperPortRangeList(d edpt.DataDdosDstZoneOper) []map[stri
 		in["port_range_end"] = item.PortRangeEnd
 		in["protocol"] = item.Protocol
 		in["oper"] = setObjectDdosDstZoneOperPortRangeListOper(item.Oper)
-		in["ip_filtering_policy_oper"] = setObjectDdosDstZoneOperPortRangeListIpFilteringPolicyOper(item.IpFilteringPolicyOper)
+		in["ip_filtering_policy_statistics"] = setObjectDdosDstZoneOperPortRangeListIpFilteringPolicyStatistics(item.IpFilteringPolicyStatistics)
 		in["pattern_recognition"] = setObjectDdosDstZoneOperPortRangeListPatternRecognition(item.PatternRecognition)
 		in["pattern_recognition_pu_details"] = setObjectDdosDstZoneOperPortRangeListPatternRecognitionPuDetails(item.PatternRecognitionPuDetails)
-		in["ips"] = setObjectDdosDstZoneOperPortRangeListIps(item.Ips)
 		in["port_ind"] = setObjectDdosDstZoneOperPortRangeListPortInd(item.PortInd)
 		in["topk_sources"] = setObjectDdosDstZoneOperPortRangeListTopkSources(item.TopkSources)
 		in["topk_destinations"] = setObjectDdosDstZoneOperPortRangeListTopkDestinations(item.TopkDestinations)
 		in["progression_tracking"] = setObjectDdosDstZoneOperPortRangeListProgressionTracking(item.ProgressionTracking)
+		in["src_based_policy_list"] = setSliceDdosDstZoneOperPortRangeListSrcBasedPolicyList(item.SrcBasedPolicyList)
+		in["virtualhosts"] = setObjectDdosDstZoneOperPortRangeListVirtualhosts(item.Virtualhosts)
 		result = append(result, in)
 	}
 	return result
@@ -8229,10 +9715,11 @@ func setSliceDdosDstZoneOperPortRangeListOperDdos_entry_list(d []edpt.DdosDstZon
 		in["lockup_time"] = item.LockupTime
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
-		in["debug_str"] = item.DebugStr
 		in["http_filter_rates"] = setSliceDdosDstZoneOperPortRangeListOperDdos_entry_listHttpFilterRates(item.HttpFilterRates)
 		in["response_size_rates"] = setSliceDdosDstZoneOperPortRangeListOperDdos_entry_listResponseSizeRates(item.ResponseSizeRates)
+		in["debug_str"] = item.DebugStr
 		result = append(result, in)
 	}
 	return result
@@ -8264,28 +9751,29 @@ func setSliceDdosDstZoneOperPortRangeListOperDdos_entry_listResponseSizeRates(d 
 	return result
 }
 
-func setObjectDdosDstZoneOperPortRangeListIpFilteringPolicyOper(d edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyOper) []map[string]interface{} {
+func setObjectDdosDstZoneOperPortRangeListIpFilteringPolicyStatistics(d edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyStatistics) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["oper"] = setObjectDdosDstZoneOperPortRangeListIpFilteringPolicyOperOper(d.Oper)
+	in["oper"] = setObjectDdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOper(d.Oper)
 	result = append(result, in)
 	return result
 }
 
-func setObjectDdosDstZoneOperPortRangeListIpFilteringPolicyOperOper(d edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyOperOper) []map[string]interface{} {
+func setObjectDdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOper(d edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOper) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstZoneOperPortRangeListIpFilteringPolicyOperOperRuleList(d.RuleList)
+	in["rule_list"] = setSliceDdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOperRuleList(d.RuleList)
 	result = append(result, in)
 	return result
 }
 
-func setSliceDdosDstZoneOperPortRangeListIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
+func setSliceDdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOperRuleList(d []edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOperRuleList) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	for _, item := range d {
 		in := make(map[string]interface{})
 		in["seq"] = item.Seq
 		in["hits"] = item.Hits
+		in["blacklisted_src_count"] = item.Blacklisted_src_count
 		result = append(result, in)
 	}
 	return result
@@ -8379,33 +9867,6 @@ func setSliceDdosDstZoneOperPortRangeListPatternRecognitionPuDetailsOperAllFilte
 		in["filter_expr"] = item.FilterExpr
 		in["filter_desc"] = item.FilterDesc
 		in["sample_ratio"] = item.SampleRatio
-		result = append(result, in)
-	}
-	return result
-}
-
-func setObjectDdosDstZoneOperPortRangeListIps(d edpt.DdosDstZoneOperPortRangeListIps) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["oper"] = setObjectDdosDstZoneOperPortRangeListIpsOper(d.Oper)
-	result = append(result, in)
-	return result
-}
-
-func setObjectDdosDstZoneOperPortRangeListIpsOper(d edpt.DdosDstZoneOperPortRangeListIpsOper) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["signature_list"] = setSliceDdosDstZoneOperPortRangeListIpsOperSignatureList(d.SignatureList)
-	result = append(result, in)
-	return result
-}
-
-func setSliceDdosDstZoneOperPortRangeListIpsOperSignatureList(d []edpt.DdosDstZoneOperPortRangeListIpsOperSignatureList) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	for _, item := range d {
-		in := make(map[string]interface{})
-		in["sid"] = item.Sid
-		in["match_count"] = item.MatchCount
 		result = append(result, in)
 	}
 	return result
@@ -8705,6 +10166,243 @@ func setSliceDdosDstZoneOperPortRangeListProgressionTrackingOperIndicators(d []e
 	return result
 }
 
+func setSliceDdosDstZoneOperPortRangeListSrcBasedPolicyList(d []edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["src_based_policy_name"] = item.SrcBasedPolicyName
+		in["oper"] = setObjectDdosDstZoneOperPortRangeListSrcBasedPolicyListOper(item.Oper)
+		in["policy_class_list_list"] = setSliceDdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListList(item.PolicyClassListList)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperPortRangeListSrcBasedPolicyListOper(d edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	result = append(result, in)
+	return result
+}
+
+func setSliceDdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListList(d []edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["class_list_name"] = item.ClassListName
+		in["oper"] = setObjectDdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListListOper(item.Oper)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListListOper(d edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+
+	in["current_connections"] = d.CurrentConnections
+
+	in["is_connections_exceed"] = d.IsConnectionsExceed
+
+	in["connection_limit"] = d.ConnectionLimit
+
+	in["current_connection_rate"] = d.CurrentConnectionRate
+
+	in["is_connection_rate_exceed"] = d.IsConnectionRateExceed
+
+	in["connection_rate_limit"] = d.ConnectionRateLimit
+
+	in["current_packet_rate"] = d.CurrentPacketRate
+
+	in["is_packet_rate_exceed"] = d.IsPacketRateExceed
+
+	in["packet_rate_limit"] = d.PacketRateLimit
+
+	in["current_kbit_rate"] = d.CurrentKbitRate
+
+	in["is_kbit_rate_exceed"] = d.IsKbitRateExceed
+
+	in["kbit_rate_limit"] = d.KbitRateLimit
+
+	in["current_frag_packet_rate"] = d.CurrentFragPacketRate
+
+	in["is_frag_packet_rate_exceed"] = d.IsFragPacketRateExceed
+
+	in["frag_packet_rate_limit"] = d.FragPacketRateLimit
+
+	in["debug_str"] = d.DebugStr
+	result = append(result, in)
+	return result
+}
+
+func setObjectDdosDstZoneOperPortRangeListVirtualhosts(d edpt.DdosDstZoneOperPortRangeListVirtualhosts) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	in["oper"] = setObjectDdosDstZoneOperPortRangeListVirtualhostsOper(d.Oper)
+	in["virtualhost_list"] = setSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostList(d.VirtualhostList)
+	result = append(result, in)
+	return result
+}
+
+func setObjectDdosDstZoneOperPortRangeListVirtualhostsOper(d edpt.DdosDstZoneOperPortRangeListVirtualhostsOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	result = append(result, in)
+	return result
+}
+
+func setSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostList(d []edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostList) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["vhost"] = item.Vhost
+		in["oper"] = setObjectDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOper(item.Oper)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOper(d edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+	in["ddos_entry_list"] = setSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_list(d.Ddos_entry_list)
+
+	in["entry_displayed_count"] = d.EntryDisplayedCount
+
+	in["service_displayed_count"] = d.ServiceDisplayedCount
+
+	in["reporting_status"] = d.ReportingStatus
+
+	in["sources"] = d.Sources
+
+	in["overflow_policy"] = d.OverflowPolicy
+
+	in["sources_all_entries"] = d.SourcesAllEntries
+
+	in["class_list"] = d.ClassList
+
+	in["subnet_ip_addr"] = d.SubnetIpAddr
+
+	in["subnet_ipv6_addr"] = d.SubnetIpv6Addr
+
+	in["ipv6"] = d.Ipv6
+
+	in["exceeded"] = d.Exceeded
+
+	in["black_listed"] = d.BlackListed
+
+	in["white_listed"] = d.WhiteListed
+
+	in["authenticated"] = d.Authenticated
+
+	in["level"] = d.Level
+
+	in["app_stat"] = d.AppStat
+
+	in["indicators"] = d.Indicators
+
+	in["indicator_detail"] = d.IndicatorDetail
+
+	in["l4_ext_rate"] = d.L4ExtRate
+
+	in["hw_blacklisted"] = d.HwBlacklisted
+
+	in["suffix_request_rate"] = d.SuffixRequestRate
+
+	in["domain_name"] = d.DomainName
+	result = append(result, in)
+	return result
+}
+
+func setSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_list(d []edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_list) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["dst_address_str"] = item.DstAddressStr
+		in["bw_state"] = item.BwState
+		in["is_auth_passed"] = item.Is_auth_passed
+		in["level"] = item.Level
+		in["bl_reasoning_rcode"] = item.BlReasoningRcode
+		in["bl_reasoning_timestamp"] = item.BlReasoningTimestamp
+		in["current_connections"] = item.CurrentConnections
+		in["is_connections_exceed"] = item.IsConnectionsExceed
+		in["connection_limit"] = item.ConnectionLimit
+		in["current_connection_rate"] = item.CurrentConnectionRate
+		in["is_connection_rate_exceed"] = item.IsConnectionRateExceed
+		in["connection_rate_limit"] = item.ConnectionRateLimit
+		in["current_packet_rate"] = item.CurrentPacketRate
+		in["is_packet_rate_exceed"] = item.IsPacketRateExceed
+		in["packet_rate_limit"] = item.PacketRateLimit
+		in["current_kbit_rate"] = item.CurrentKbitRate
+		in["is_kbit_rate_exceed"] = item.IsKbitRateExceed
+		in["kbit_rate_limit"] = item.KbitRateLimit
+		in["current_frag_packet_rate"] = item.CurrentFragPacketRate
+		in["is_frag_packet_rate_exceed"] = item.IsFragPacketRateExceed
+		in["frag_packet_rate_limit"] = item.FragPacketRateLimit
+		in["current_app_stat1"] = item.CurrentAppStat1
+		in["is_app_stat1_exceed"] = item.IsAppStat1Exceed
+		in["app_stat1_limit"] = item.AppStat1Limit
+		in["current_app_stat2"] = item.CurrentAppStat2
+		in["is_app_stat2_exceed"] = item.IsAppStat2Exceed
+		in["app_stat2_limit"] = item.AppStat2Limit
+		in["current_app_stat3"] = item.CurrentAppStat3
+		in["is_app_stat3_exceed"] = item.IsAppStat3Exceed
+		in["app_stat3_limit"] = item.AppStat3Limit
+		in["current_app_stat4"] = item.CurrentAppStat4
+		in["is_app_stat4_exceed"] = item.IsAppStat4Exceed
+		in["app_stat4_limit"] = item.AppStat4Limit
+		in["current_app_stat5"] = item.CurrentAppStat5
+		in["is_app_stat5_exceed"] = item.IsAppStat5Exceed
+		in["app_stat5_limit"] = item.AppStat5Limit
+		in["current_app_stat6"] = item.CurrentAppStat6
+		in["is_app_stat6_exceed"] = item.IsAppStat6Exceed
+		in["app_stat6_limit"] = item.AppStat6Limit
+		in["current_app_stat7"] = item.CurrentAppStat7
+		in["is_app_stat7_exceed"] = item.IsAppStat7Exceed
+		in["app_stat7_limit"] = item.AppStat7Limit
+		in["current_app_stat8"] = item.CurrentAppStat8
+		in["is_app_stat8_exceed"] = item.IsAppStat8Exceed
+		in["app_stat8_limit"] = item.AppStat8Limit
+		in["age"] = item.Age
+		in["lockup_time"] = item.LockupTime
+		in["dynamic_entry_count"] = item.DynamicEntryCount
+		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
+		in["sflow_source_id"] = item.SflowSourceId
+		in["http_filter_rates"] = setSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates(item.HttpFilterRates)
+		in["response_size_rates"] = setSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates(item.ResponseSizeRates)
+		in["debug_str"] = item.DebugStr
+		result = append(result, in)
+	}
+	return result
+}
+
+func setSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates(d []edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["http_filter_rate_name"] = item.HttpFilterRateName
+		in["is_http_filter_rate_limit_exceed"] = item.IsHttpFilterRateLimitExceed
+		in["current_http_filter_rate"] = item.CurrentHttpFilterRate
+		in["http_filter_rate_limit"] = item.HttpFilterRateLimit
+		result = append(result, in)
+	}
+	return result
+}
+
+func setSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates(d []edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, item := range d {
+		in := make(map[string]interface{})
+		in["response_size_rate_name"] = item.ResponseSizeRateName
+		in["is_response_size_rate_limit_exceed"] = item.IsResponseSizeRateLimitExceed
+		in["current_response_size_rate"] = item.CurrentResponseSizeRate
+		in["response_size_rate_limit"] = item.ResponseSizeRateLimit
+		result = append(result, in)
+	}
+	return result
+}
+
 func setObjectDdosDstZoneOperSrcPort(ret edpt.DataDdosDstZoneOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
@@ -8812,6 +10510,7 @@ func setSliceDdosDstZoneOperSrcPortZoneSrcPortListOperDdos_entry_list(d []edpt.D
 		in["lockup_time"] = item.LockupTime
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -8956,6 +10655,7 @@ func setSliceDdosDstZoneOperSrcPortZoneSrcPortOtherListOperDdos_entry_list(d []e
 		in["lockup_time"] = item.LockupTime
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -9102,6 +10802,7 @@ func setSliceDdosDstZoneOperSrcPortRangeListOperDdos_entry_list(d []edpt.DdosDst
 		in["lockup_time"] = item.LockupTime
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -9436,6 +11137,7 @@ func getObjectDdosDstZoneOperDetectionVictimIpDetectionOper(d []interface{}) edp
 		ret.IpEntryList = getSliceDdosDstZoneOperDetectionVictimIpDetectionOperIpEntryList(in["ip_entry_list"].([]interface{}))
 		ret.IpEntryCount = in["ip_entry_count"].(int)
 		ret.TotalIpEntryCount = in["total_ip_entry_count"].(int)
+		ret.WithSelectedDetails = in["with_selected_details"].(int)
 		ret.ActiveList = in["active_list"].(int)
 		ret.VictimList = in["victim_list"].(int)
 		ret.Ipv4Ip = in["ipv4_ip"].(string)
@@ -9523,7 +11225,8 @@ func getSliceDdosDstZoneOperIpProtoProtoNumberList(d []interface{}) []edpt.DdosD
 		var oi edpt.DdosDstZoneOperIpProtoProtoNumberList
 		oi.ProtocolNum = in["protocol_num"].(int)
 		oi.Oper = getObjectDdosDstZoneOperIpProtoProtoNumberListOper(in["oper"].([]interface{}))
-		oi.IpFilteringPolicyOper = getObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOper(in["ip_filtering_policy_oper"].([]interface{}))
+		oi.IpFilteringPolicyStatistics = getObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatistics(in["ip_filtering_policy_statistics"].([]interface{}))
+		oi.SrcBasedPolicyList = getSliceDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyList(in["src_based_policy_list"].([]interface{}))
 		oi.PortInd = getObjectDdosDstZoneOperIpProtoProtoNumberListPortInd(in["port_ind"].([]interface{}))
 		oi.TopkSources = getObjectDdosDstZoneOperIpProtoProtoNumberListTopkSources(in["topk_sources"].([]interface{}))
 		oi.TopkDestinations = getObjectDdosDstZoneOperIpProtoProtoNumberListTopkDestinations(in["topk_destinations"].([]interface{}))
@@ -9597,6 +11300,7 @@ func getSliceDdosDstZoneOperIpProtoProtoNumberListOperDdos_entry_list(d []interf
 		oi.LockupTime = in["lockup_time"].(int)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(int)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -9604,38 +11308,100 @@ func getSliceDdosDstZoneOperIpProtoProtoNumberListOperDdos_entry_list(d []interf
 	return ret
 }
 
-func getObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOper {
+func getObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatistics(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatistics {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOper
+	var ret edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatistics
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOper(in["oper"].([]interface{}))
+		ret.Oper = getObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOper(in["oper"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOper {
+func getObjectDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOper {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOper
+	var ret edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOper
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
+		ret.RuleList = getSliceDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOperRuleList(in["rule_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOperRuleList {
+func getSliceDdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOperRuleList(d []interface{}) []edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOperRuleList {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOperRuleList, 0, count1)
+	ret := make([]edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOperRuleList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyOperOperRuleList
+		var oi edpt.DdosDstZoneOperIpProtoProtoNumberListIpFilteringPolicyStatisticsOperRuleList
 		oi.Seq = in["seq"].(int)
 		oi.Hits = in["hits"].(int)
+		oi.Blacklisted_src_count = in["blacklisted_src_count"].(int)
 		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyList(d []interface{}) []edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyList
+		oi.SrcBasedPolicyName = in["src_based_policy_name"].(string)
+		oi.Oper = getObjectDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListOper(in["oper"].([]interface{}))
+		oi.PolicyClassListList = getSliceDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListList(in["policy_class_list_list"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListOper {
+
+	var ret edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListOper
+	return ret
+}
+
+func getSliceDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListList(d []interface{}) []edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListList
+		oi.ClassListName = in["class_list_name"].(string)
+		oi.Oper = getObjectDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListListOper(in["oper"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListListOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListListOper {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneOperIpProtoProtoNumberListSrcBasedPolicyListPolicyClassListListOper
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.CurrentConnections = in["current_connections"].(int)
+		ret.IsConnectionsExceed = in["is_connections_exceed"].(int)
+		ret.ConnectionLimit = in["connection_limit"].(int)
+		ret.CurrentConnectionRate = in["current_connection_rate"].(int)
+		ret.IsConnectionRateExceed = in["is_connection_rate_exceed"].(int)
+		ret.ConnectionRateLimit = in["connection_rate_limit"].(int)
+		ret.CurrentPacketRate = in["current_packet_rate"].(int)
+		ret.IsPacketRateExceed = in["is_packet_rate_exceed"].(int)
+		ret.PacketRateLimit = in["packet_rate_limit"].(int)
+		ret.CurrentKbitRate = in["current_kbit_rate"].(int)
+		ret.IsKbitRateExceed = in["is_kbit_rate_exceed"].(int)
+		ret.KbitRateLimit = in["kbit_rate_limit"].(int)
+		ret.CurrentFragPacketRate = in["current_frag_packet_rate"].(int)
+		ret.IsFragPacketRateExceed = in["is_frag_packet_rate_exceed"].(int)
+		ret.FragPacketRateLimit = in["frag_packet_rate_limit"].(int)
+		ret.DebugStr = in["debug_str"].(string)
 	}
 	return ret
 }
@@ -9982,7 +11748,7 @@ func getSliceDdosDstZoneOperIpProtoProtoTcpUdpList(d []interface{}) []edpt.DdosD
 		var oi edpt.DdosDstZoneOperIpProtoProtoTcpUdpList
 		oi.Protocol = in["protocol"].(string)
 		oi.Oper = getObjectDdosDstZoneOperIpProtoProtoTcpUdpListOper(in["oper"].([]interface{}))
-		oi.IpFilteringPolicyOper = getObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOper(in["ip_filtering_policy_oper"].([]interface{}))
+		oi.IpFilteringPolicyStatistics = getObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatistics(in["ip_filtering_policy_statistics"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
@@ -10052,6 +11818,7 @@ func getSliceDdosDstZoneOperIpProtoProtoTcpUdpListOperDdos_entry_list(d []interf
 		oi.LockupTime = in["lockup_time"].(int)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(int)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -10059,37 +11826,38 @@ func getSliceDdosDstZoneOperIpProtoProtoTcpUdpListOperDdos_entry_list(d []interf
 	return ret
 }
 
-func getObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOper {
+func getObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatistics(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatistics {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOper
+	var ret edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatistics
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOper(in["oper"].([]interface{}))
+		ret.Oper = getObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOper(in["oper"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOper {
+func getObjectDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOper {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOper
+	var ret edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOper
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
+		ret.RuleList = getSliceDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOperRuleList(in["rule_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOperRuleList {
+func getSliceDdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOperRuleList(d []interface{}) []edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOperRuleList {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOperRuleList, 0, count1)
+	ret := make([]edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOperRuleList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyOperOperRuleList
+		var oi edpt.DdosDstZoneOperIpProtoProtoTcpUdpListIpFilteringPolicyStatisticsOperRuleList
 		oi.Seq = in["seq"].(int)
 		oi.Hits = in["hits"].(int)
+		oi.Blacklisted_src_count = in["blacklisted_src_count"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -10104,7 +11872,8 @@ func getSliceDdosDstZoneOperIpProtoProtoNameList(d []interface{}) []edpt.DdosDst
 		var oi edpt.DdosDstZoneOperIpProtoProtoNameList
 		oi.Protocol = in["protocol"].(string)
 		oi.Oper = getObjectDdosDstZoneOperIpProtoProtoNameListOper(in["oper"].([]interface{}))
-		oi.IpFilteringPolicyOper = getObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOper(in["ip_filtering_policy_oper"].([]interface{}))
+		oi.IpFilteringPolicyStatistics = getObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatistics(in["ip_filtering_policy_statistics"].([]interface{}))
+		oi.SrcBasedPolicyList = getSliceDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyList(in["src_based_policy_list"].([]interface{}))
 		oi.PortInd = getObjectDdosDstZoneOperIpProtoProtoNameListPortInd(in["port_ind"].([]interface{}))
 		oi.TopkSources = getObjectDdosDstZoneOperIpProtoProtoNameListTopkSources(in["topk_sources"].([]interface{}))
 		oi.ProgressionTracking = getObjectDdosDstZoneOperIpProtoProtoNameListProgressionTracking(in["progression_tracking"].([]interface{}))
@@ -10178,6 +11947,7 @@ func getSliceDdosDstZoneOperIpProtoProtoNameListOperDdos_entry_list(d []interfac
 		oi.LockupTime = in["lockup_time"].(int)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(int)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -10185,38 +11955,100 @@ func getSliceDdosDstZoneOperIpProtoProtoNameListOperDdos_entry_list(d []interfac
 	return ret
 }
 
-func getObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOper {
+func getObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatistics(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatistics {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOper
+	var ret edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatistics
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOper(in["oper"].([]interface{}))
+		ret.Oper = getObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOper(in["oper"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOper {
+func getObjectDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOper {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOper
+	var ret edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOper
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
+		ret.RuleList = getSliceDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOperRuleList(in["rule_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOperRuleList {
+func getSliceDdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOperRuleList(d []interface{}) []edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOperRuleList {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOperRuleList, 0, count1)
+	ret := make([]edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOperRuleList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyOperOperRuleList
+		var oi edpt.DdosDstZoneOperIpProtoProtoNameListIpFilteringPolicyStatisticsOperRuleList
 		oi.Seq = in["seq"].(int)
 		oi.Hits = in["hits"].(int)
+		oi.Blacklisted_src_count = in["blacklisted_src_count"].(int)
 		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyList(d []interface{}) []edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyList
+		oi.SrcBasedPolicyName = in["src_based_policy_name"].(string)
+		oi.Oper = getObjectDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListOper(in["oper"].([]interface{}))
+		oi.PolicyClassListList = getSliceDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListList(in["policy_class_list_list"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListOper {
+
+	var ret edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListOper
+	return ret
+}
+
+func getSliceDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListList(d []interface{}) []edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListList
+		oi.ClassListName = in["class_list_name"].(string)
+		oi.Oper = getObjectDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListListOper(in["oper"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListListOper(d []interface{}) edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListListOper {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneOperIpProtoProtoNameListSrcBasedPolicyListPolicyClassListListOper
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.CurrentConnections = in["current_connections"].(int)
+		ret.IsConnectionsExceed = in["is_connections_exceed"].(int)
+		ret.ConnectionLimit = in["connection_limit"].(int)
+		ret.CurrentConnectionRate = in["current_connection_rate"].(int)
+		ret.IsConnectionRateExceed = in["is_connection_rate_exceed"].(int)
+		ret.ConnectionRateLimit = in["connection_rate_limit"].(int)
+		ret.CurrentPacketRate = in["current_packet_rate"].(int)
+		ret.IsPacketRateExceed = in["is_packet_rate_exceed"].(int)
+		ret.PacketRateLimit = in["packet_rate_limit"].(int)
+		ret.CurrentKbitRate = in["current_kbit_rate"].(int)
+		ret.IsKbitRateExceed = in["is_kbit_rate_exceed"].(int)
+		ret.KbitRateLimit = in["kbit_rate_limit"].(int)
+		ret.CurrentFragPacketRate = in["current_frag_packet_rate"].(int)
+		ret.IsFragPacketRateExceed = in["is_frag_packet_rate_exceed"].(int)
+		ret.FragPacketRateLimit = in["frag_packet_rate_limit"].(int)
+		ret.DebugStr = in["debug_str"].(string)
 	}
 	return ret
 }
@@ -10615,6 +12447,7 @@ func getSliceDdosDstZoneOperOperDdos_entry_list(d []interface{}) []edpt.DdosDstZ
 		oi.FragPacketRateLimit = in["frag_packet_rate_limit"].(string)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.AgeStr = in["age_str"].(string)
 		oi.LockupTime = in["lockup_time"].(int)
 		oi.SflowSourceId = in["sflow_source_id"].(int)
@@ -10841,12 +12674,13 @@ func getSliceDdosDstZoneOperPortZoneServiceList(d []interface{}) []edpt.DdosDstZ
 		oi.Oper = getObjectDdosDstZoneOperPortZoneServiceListOper(in["oper"].([]interface{}))
 		oi.PatternRecognition = getObjectDdosDstZoneOperPortZoneServiceListPatternRecognition(in["pattern_recognition"].([]interface{}))
 		oi.PatternRecognitionPuDetails = getObjectDdosDstZoneOperPortZoneServiceListPatternRecognitionPuDetails(in["pattern_recognition_pu_details"].([]interface{}))
-		oi.IpFilteringPolicyOper = getObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyOper(in["ip_filtering_policy_oper"].([]interface{}))
-		oi.Ips = getObjectDdosDstZoneOperPortZoneServiceListIps(in["ips"].([]interface{}))
+		oi.IpFilteringPolicyStatistics = getObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatistics(in["ip_filtering_policy_statistics"].([]interface{}))
 		oi.PortInd = getObjectDdosDstZoneOperPortZoneServiceListPortInd(in["port_ind"].([]interface{}))
 		oi.TopkSources = getObjectDdosDstZoneOperPortZoneServiceListTopkSources(in["topk_sources"].([]interface{}))
 		oi.ProgressionTracking = getObjectDdosDstZoneOperPortZoneServiceListProgressionTracking(in["progression_tracking"].([]interface{}))
 		oi.TopkDestinations = getObjectDdosDstZoneOperPortZoneServiceListTopkDestinations(in["topk_destinations"].([]interface{}))
+		oi.SrcBasedPolicyList = getSliceDdosDstZoneOperPortZoneServiceListSrcBasedPolicyList(in["src_based_policy_list"].([]interface{}))
+		oi.Virtualhosts = getObjectDdosDstZoneOperPortZoneServiceListVirtualhosts(in["virtualhosts"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
@@ -10879,6 +12713,7 @@ func getObjectDdosDstZoneOperPortZoneServiceListOper(d []interface{}) edpt.DdosD
 		ret.IndicatorDetail = in["indicator_detail"].(int)
 		ret.L4ExtRate = in["l4_ext_rate"].(int)
 		ret.HwBlacklisted = in["hw_blacklisted"].(int)
+		ret.HwBlacklistedStats = in["hw_blacklisted_stats"].(int)
 		ret.SuffixRequestRate = in["suffix_request_rate"].(int)
 		ret.DomainName = in["domain_name"].(string)
 	}
@@ -10941,10 +12776,12 @@ func getSliceDdosDstZoneOperPortZoneServiceListOperDdos_entry_list(d []interface
 		oi.LockupTime = in["lockup_time"].(int)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(int)
-		oi.DebugStr = in["debug_str"].(string)
 		oi.HttpFilterRates = getSliceDdosDstZoneOperPortZoneServiceListOperDdos_entry_listHttpFilterRates(in["http_filter_rates"].([]interface{}))
 		oi.ResponseSizeRates = getSliceDdosDstZoneOperPortZoneServiceListOperDdos_entry_listResponseSizeRates(in["response_size_rates"].([]interface{}))
+		oi.HwBlockedRules = getSliceDdosDstZoneOperPortZoneServiceListOperDdos_entry_listHwBlockedRules(in["hw_blocked_rules"].([]interface{}))
+		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -10977,6 +12814,20 @@ func getSliceDdosDstZoneOperPortZoneServiceListOperDdos_entry_listResponseSizeRa
 		oi.IsResponseSizeRateLimitExceed = in["is_response_size_rate_limit_exceed"].(int)
 		oi.CurrentResponseSizeRate = in["current_response_size_rate"].(string)
 		oi.ResponseSizeRateLimit = in["response_size_rate_limit"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortZoneServiceListOperDdos_entry_listHwBlockedRules(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceListOperDdos_entry_listHwBlockedRules {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortZoneServiceListOperDdos_entry_listHwBlockedRules, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortZoneServiceListOperDdos_entry_listHwBlockedRules
+		oi.RuleDstIp = in["rule_dst_ip"].(string)
+		oi.HwBlockingState = in["hw_blocking_state"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -11089,73 +12940,38 @@ func getSliceDdosDstZoneOperPortZoneServiceListPatternRecognitionPuDetailsOperAl
 	return ret
 }
 
-func getObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyOper {
+func getObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatistics(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatistics {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyOper
+	var ret edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatistics
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOper(in["oper"].([]interface{}))
+		ret.Oper = getObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOper(in["oper"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOper {
+func getObjectDdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOper {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOper
+	var ret edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOper
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
+		ret.RuleList = getSliceDdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOperRuleList(in["rule_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOperRuleList {
+func getSliceDdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOperRuleList(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOperRuleList {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOperRuleList, 0, count1)
+	ret := make([]edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOperRuleList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyOperOperRuleList
+		var oi edpt.DdosDstZoneOperPortZoneServiceListIpFilteringPolicyStatisticsOperRuleList
 		oi.Seq = in["seq"].(int)
 		oi.Hits = in["hits"].(int)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getObjectDdosDstZoneOperPortZoneServiceListIps(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceListIps {
-
-	count1 := len(d)
-	var ret edpt.DdosDstZoneOperPortZoneServiceListIps
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstZoneOperPortZoneServiceListIpsOper(in["oper"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectDdosDstZoneOperPortZoneServiceListIpsOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceListIpsOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstZoneOperPortZoneServiceListIpsOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.SignatureList = getSliceDdosDstZoneOperPortZoneServiceListIpsOperSignatureList(in["signature_list"].([]interface{}))
-	}
-	return ret
-}
-
-func getSliceDdosDstZoneOperPortZoneServiceListIpsOperSignatureList(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceListIpsOperSignatureList {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneOperPortZoneServiceListIpsOperSignatureList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneOperPortZoneServiceListIpsOperSignatureList
-		oi.Sid = in["sid"].(int)
-		oi.MatchCount = in["match_count"].(int)
+		oi.Blacklisted_src_count = in["blacklisted_src_count"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -11494,6 +13310,245 @@ func getSliceDdosDstZoneOperPortZoneServiceListTopkDestinationsOperEntryListIndi
 	return ret
 }
 
+func getSliceDdosDstZoneOperPortZoneServiceListSrcBasedPolicyList(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyList
+		oi.SrcBasedPolicyName = in["src_based_policy_name"].(string)
+		oi.Oper = getObjectDdosDstZoneOperPortZoneServiceListSrcBasedPolicyListOper(in["oper"].([]interface{}))
+		oi.PolicyClassListList = getSliceDdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListList(in["policy_class_list_list"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperPortZoneServiceListSrcBasedPolicyListOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyListOper {
+
+	var ret edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyListOper
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListList(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListList
+		oi.ClassListName = in["class_list_name"].(string)
+		oi.Oper = getObjectDdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListListOper(in["oper"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListListOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListListOper {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneOperPortZoneServiceListSrcBasedPolicyListPolicyClassListListOper
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.CurrentConnections = in["current_connections"].(int)
+		ret.IsConnectionsExceed = in["is_connections_exceed"].(int)
+		ret.ConnectionLimit = in["connection_limit"].(int)
+		ret.CurrentConnectionRate = in["current_connection_rate"].(int)
+		ret.IsConnectionRateExceed = in["is_connection_rate_exceed"].(int)
+		ret.ConnectionRateLimit = in["connection_rate_limit"].(int)
+		ret.CurrentPacketRate = in["current_packet_rate"].(int)
+		ret.IsPacketRateExceed = in["is_packet_rate_exceed"].(int)
+		ret.PacketRateLimit = in["packet_rate_limit"].(int)
+		ret.CurrentKbitRate = in["current_kbit_rate"].(int)
+		ret.IsKbitRateExceed = in["is_kbit_rate_exceed"].(int)
+		ret.KbitRateLimit = in["kbit_rate_limit"].(int)
+		ret.CurrentFragPacketRate = in["current_frag_packet_rate"].(int)
+		ret.IsFragPacketRateExceed = in["is_frag_packet_rate_exceed"].(int)
+		ret.FragPacketRateLimit = in["frag_packet_rate_limit"].(int)
+		ret.DebugStr = in["debug_str"].(string)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperPortZoneServiceListVirtualhosts(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceListVirtualhosts {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneOperPortZoneServiceListVirtualhosts
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Oper = getObjectDdosDstZoneOperPortZoneServiceListVirtualhostsOper(in["oper"].([]interface{}))
+		ret.VirtualhostList = getSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostList(in["virtualhost_list"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperPortZoneServiceListVirtualhostsOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsOper {
+
+	var ret edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsOper
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostList(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostList
+		oi.Vhost = in["vhost"].(string)
+		oi.Oper = getObjectDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOper(in["oper"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOper {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOper
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Ddos_entry_list = getSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_list(in["ddos_entry_list"].([]interface{}))
+		ret.EntryDisplayedCount = in["entry_displayed_count"].(int)
+		ret.ServiceDisplayedCount = in["service_displayed_count"].(int)
+		ret.ReportingStatus = in["reporting_status"].(int)
+		ret.Sources = in["sources"].(int)
+		ret.OverflowPolicy = in["overflow_policy"].(int)
+		ret.SourcesAllEntries = in["sources_all_entries"].(int)
+		ret.ClassList = in["class_list"].(string)
+		ret.SubnetIpAddr = in["subnet_ip_addr"].(string)
+		ret.SubnetIpv6Addr = in["subnet_ipv6_addr"].(string)
+		ret.Ipv6 = in["ipv6"].(string)
+		ret.Exceeded = in["exceeded"].(int)
+		ret.BlackListed = in["black_listed"].(int)
+		ret.WhiteListed = in["white_listed"].(int)
+		ret.Authenticated = in["authenticated"].(int)
+		ret.Level = in["level"].(int)
+		ret.AppStat = in["app_stat"].(int)
+		ret.Indicators = in["indicators"].(int)
+		ret.IndicatorDetail = in["indicator_detail"].(int)
+		ret.L4ExtRate = in["l4_ext_rate"].(int)
+		ret.HwBlacklisted = in["hw_blacklisted"].(int)
+		ret.SuffixRequestRate = in["suffix_request_rate"].(int)
+		ret.DomainName = in["domain_name"].(string)
+	}
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_list(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_list {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_list, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_list
+		oi.DstAddressStr = in["dst_address_str"].(string)
+		oi.BwState = in["bw_state"].(string)
+		oi.Is_auth_passed = in["is_auth_passed"].(string)
+		oi.Level = in["level"].(int)
+		oi.BlReasoningRcode = in["bl_reasoning_rcode"].(string)
+		oi.BlReasoningTimestamp = in["bl_reasoning_timestamp"].(string)
+		oi.CurrentConnections = in["current_connections"].(string)
+		oi.IsConnectionsExceed = in["is_connections_exceed"].(int)
+		oi.ConnectionLimit = in["connection_limit"].(string)
+		oi.CurrentConnectionRate = in["current_connection_rate"].(string)
+		oi.IsConnectionRateExceed = in["is_connection_rate_exceed"].(int)
+		oi.ConnectionRateLimit = in["connection_rate_limit"].(string)
+		oi.CurrentPacketRate = in["current_packet_rate"].(string)
+		oi.IsPacketRateExceed = in["is_packet_rate_exceed"].(int)
+		oi.PacketRateLimit = in["packet_rate_limit"].(string)
+		oi.CurrentKbitRate = in["current_kbit_rate"].(string)
+		oi.IsKbitRateExceed = in["is_kbit_rate_exceed"].(int)
+		oi.KbitRateLimit = in["kbit_rate_limit"].(string)
+		oi.CurrentFragPacketRate = in["current_frag_packet_rate"].(string)
+		oi.IsFragPacketRateExceed = in["is_frag_packet_rate_exceed"].(int)
+		oi.FragPacketRateLimit = in["frag_packet_rate_limit"].(string)
+		oi.CurrentAppStat1 = in["current_app_stat1"].(string)
+		oi.IsAppStat1Exceed = in["is_app_stat1_exceed"].(int)
+		oi.AppStat1Limit = in["app_stat1_limit"].(string)
+		oi.CurrentAppStat2 = in["current_app_stat2"].(string)
+		oi.IsAppStat2Exceed = in["is_app_stat2_exceed"].(int)
+		oi.AppStat2Limit = in["app_stat2_limit"].(string)
+		oi.CurrentAppStat3 = in["current_app_stat3"].(string)
+		oi.IsAppStat3Exceed = in["is_app_stat3_exceed"].(int)
+		oi.AppStat3Limit = in["app_stat3_limit"].(string)
+		oi.CurrentAppStat4 = in["current_app_stat4"].(string)
+		oi.IsAppStat4Exceed = in["is_app_stat4_exceed"].(int)
+		oi.AppStat4Limit = in["app_stat4_limit"].(string)
+		oi.CurrentAppStat5 = in["current_app_stat5"].(string)
+		oi.IsAppStat5Exceed = in["is_app_stat5_exceed"].(int)
+		oi.AppStat5Limit = in["app_stat5_limit"].(string)
+		oi.CurrentAppStat6 = in["current_app_stat6"].(string)
+		oi.IsAppStat6Exceed = in["is_app_stat6_exceed"].(int)
+		oi.AppStat6Limit = in["app_stat6_limit"].(string)
+		oi.CurrentAppStat7 = in["current_app_stat7"].(string)
+		oi.IsAppStat7Exceed = in["is_app_stat7_exceed"].(int)
+		oi.AppStat7Limit = in["app_stat7_limit"].(string)
+		oi.CurrentAppStat8 = in["current_app_stat8"].(string)
+		oi.IsAppStat8Exceed = in["is_app_stat8_exceed"].(int)
+		oi.AppStat8Limit = in["app_stat8_limit"].(string)
+		oi.Age = in["age"].(int)
+		oi.LockupTime = in["lockup_time"].(int)
+		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
+		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
+		oi.SflowSourceId = in["sflow_source_id"].(int)
+		oi.HttpFilterRates = getSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates(in["http_filter_rates"].([]interface{}))
+		oi.ResponseSizeRates = getSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates(in["response_size_rates"].([]interface{}))
+		oi.HwBlockedRules = getSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHwBlockedRules(in["hw_blocked_rules"].([]interface{}))
+		oi.DebugStr = in["debug_str"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates
+		oi.HttpFilterRateName = in["http_filter_rate_name"].(string)
+		oi.IsHttpFilterRateLimitExceed = in["is_http_filter_rate_limit_exceed"].(int)
+		oi.CurrentHttpFilterRate = in["current_http_filter_rate"].(string)
+		oi.HttpFilterRateLimit = in["http_filter_rate_limit"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates
+		oi.ResponseSizeRateName = in["response_size_rate_name"].(string)
+		oi.IsResponseSizeRateLimitExceed = in["is_response_size_rate_limit_exceed"].(int)
+		oi.CurrentResponseSizeRate = in["current_response_size_rate"].(string)
+		oi.ResponseSizeRateLimit = in["response_size_rate_limit"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHwBlockedRules(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHwBlockedRules {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHwBlockedRules, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortZoneServiceListVirtualhostsVirtualhostListOperDdos_entry_listHwBlockedRules
+		oi.RuleDstIp = in["rule_dst_ip"].(string)
+		oi.HwBlockingState = in["hw_blocking_state"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func getSliceDdosDstZoneOperPortZoneServiceOtherList(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceOtherList {
 
 	count1 := len(d)
@@ -11504,13 +13559,14 @@ func getSliceDdosDstZoneOperPortZoneServiceOtherList(d []interface{}) []edpt.Ddo
 		oi.PortOther = in["port_other"].(string)
 		oi.Protocol = in["protocol"].(string)
 		oi.Oper = getObjectDdosDstZoneOperPortZoneServiceOtherListOper(in["oper"].([]interface{}))
-		oi.IpFilteringPolicyOper = getObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOper(in["ip_filtering_policy_oper"].([]interface{}))
+		oi.IpFilteringPolicyStatistics = getObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatistics(in["ip_filtering_policy_statistics"].([]interface{}))
 		oi.PatternRecognition = getObjectDdosDstZoneOperPortZoneServiceOtherListPatternRecognition(in["pattern_recognition"].([]interface{}))
 		oi.PatternRecognitionPuDetails = getObjectDdosDstZoneOperPortZoneServiceOtherListPatternRecognitionPuDetails(in["pattern_recognition_pu_details"].([]interface{}))
 		oi.PortInd = getObjectDdosDstZoneOperPortZoneServiceOtherListPortInd(in["port_ind"].([]interface{}))
 		oi.TopkSources = getObjectDdosDstZoneOperPortZoneServiceOtherListTopkSources(in["topk_sources"].([]interface{}))
 		oi.ProgressionTracking = getObjectDdosDstZoneOperPortZoneServiceOtherListProgressionTracking(in["progression_tracking"].([]interface{}))
 		oi.TopkDestinations = getObjectDdosDstZoneOperPortZoneServiceOtherListTopkDestinations(in["topk_destinations"].([]interface{}))
+		oi.SrcBasedPolicyList = getSliceDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyList(in["src_based_policy_list"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
@@ -11605,6 +13661,7 @@ func getSliceDdosDstZoneOperPortZoneServiceOtherListOperDdos_entry_list(d []inte
 		oi.LockupTime = in["lockup_time"].(int)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(int)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -11612,37 +13669,38 @@ func getSliceDdosDstZoneOperPortZoneServiceOtherListOperDdos_entry_list(d []inte
 	return ret
 }
 
-func getObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOper {
+func getObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatistics(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatistics {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOper
+	var ret edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatistics
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOper(in["oper"].([]interface{}))
+		ret.Oper = getObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOper(in["oper"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOper {
+func getObjectDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOper {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOper
+	var ret edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOper
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
+		ret.RuleList = getSliceDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOperRuleList(in["rule_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOperRuleList {
+func getSliceDdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOperRuleList(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOperRuleList {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOperRuleList, 0, count1)
+	ret := make([]edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOperRuleList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyOperOperRuleList
+		var oi edpt.DdosDstZoneOperPortZoneServiceOtherListIpFilteringPolicyStatisticsOperRuleList
 		oi.Seq = in["seq"].(int)
 		oi.Hits = in["hits"].(int)
+		oi.Blacklisted_src_count = in["blacklisted_src_count"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -12088,6 +14146,67 @@ func getSliceDdosDstZoneOperPortZoneServiceOtherListTopkDestinationsOperEntryLis
 	return ret
 }
 
+func getSliceDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyList(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyList
+		oi.SrcBasedPolicyName = in["src_based_policy_name"].(string)
+		oi.Oper = getObjectDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListOper(in["oper"].([]interface{}))
+		oi.PolicyClassListList = getSliceDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListList(in["policy_class_list_list"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListOper {
+
+	var ret edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListOper
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListList(d []interface{}) []edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListList
+		oi.ClassListName = in["class_list_name"].(string)
+		oi.Oper = getObjectDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListListOper(in["oper"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListListOper(d []interface{}) edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListListOper {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneOperPortZoneServiceOtherListSrcBasedPolicyListPolicyClassListListOper
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.CurrentConnections = in["current_connections"].(int)
+		ret.IsConnectionsExceed = in["is_connections_exceed"].(int)
+		ret.ConnectionLimit = in["connection_limit"].(int)
+		ret.CurrentConnectionRate = in["current_connection_rate"].(int)
+		ret.IsConnectionRateExceed = in["is_connection_rate_exceed"].(int)
+		ret.ConnectionRateLimit = in["connection_rate_limit"].(int)
+		ret.CurrentPacketRate = in["current_packet_rate"].(int)
+		ret.IsPacketRateExceed = in["is_packet_rate_exceed"].(int)
+		ret.PacketRateLimit = in["packet_rate_limit"].(int)
+		ret.CurrentKbitRate = in["current_kbit_rate"].(int)
+		ret.IsKbitRateExceed = in["is_kbit_rate_exceed"].(int)
+		ret.KbitRateLimit = in["kbit_rate_limit"].(int)
+		ret.CurrentFragPacketRate = in["current_frag_packet_rate"].(int)
+		ret.IsFragPacketRateExceed = in["is_frag_packet_rate_exceed"].(int)
+		ret.FragPacketRateLimit = in["frag_packet_rate_limit"].(int)
+		ret.DebugStr = in["debug_str"].(string)
+	}
+	return ret
+}
+
 func getSliceDdosDstZoneOperPortRangeList(d []interface{}) []edpt.DdosDstZoneOperPortRangeList {
 
 	count1 := len(d)
@@ -12099,14 +14218,15 @@ func getSliceDdosDstZoneOperPortRangeList(d []interface{}) []edpt.DdosDstZoneOpe
 		oi.PortRangeEnd = in["port_range_end"].(int)
 		oi.Protocol = in["protocol"].(string)
 		oi.Oper = getObjectDdosDstZoneOperPortRangeListOper(in["oper"].([]interface{}))
-		oi.IpFilteringPolicyOper = getObjectDdosDstZoneOperPortRangeListIpFilteringPolicyOper(in["ip_filtering_policy_oper"].([]interface{}))
+		oi.IpFilteringPolicyStatistics = getObjectDdosDstZoneOperPortRangeListIpFilteringPolicyStatistics(in["ip_filtering_policy_statistics"].([]interface{}))
 		oi.PatternRecognition = getObjectDdosDstZoneOperPortRangeListPatternRecognition(in["pattern_recognition"].([]interface{}))
 		oi.PatternRecognitionPuDetails = getObjectDdosDstZoneOperPortRangeListPatternRecognitionPuDetails(in["pattern_recognition_pu_details"].([]interface{}))
-		oi.Ips = getObjectDdosDstZoneOperPortRangeListIps(in["ips"].([]interface{}))
 		oi.PortInd = getObjectDdosDstZoneOperPortRangeListPortInd(in["port_ind"].([]interface{}))
 		oi.TopkSources = getObjectDdosDstZoneOperPortRangeListTopkSources(in["topk_sources"].([]interface{}))
 		oi.TopkDestinations = getObjectDdosDstZoneOperPortRangeListTopkDestinations(in["topk_destinations"].([]interface{}))
 		oi.ProgressionTracking = getObjectDdosDstZoneOperPortRangeListProgressionTracking(in["progression_tracking"].([]interface{}))
+		oi.SrcBasedPolicyList = getSliceDdosDstZoneOperPortRangeListSrcBasedPolicyList(in["src_based_policy_list"].([]interface{}))
+		oi.Virtualhosts = getObjectDdosDstZoneOperPortRangeListVirtualhosts(in["virtualhosts"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
@@ -12201,10 +14321,11 @@ func getSliceDdosDstZoneOperPortRangeListOperDdos_entry_list(d []interface{}) []
 		oi.LockupTime = in["lockup_time"].(int)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(int)
-		oi.DebugStr = in["debug_str"].(string)
 		oi.HttpFilterRates = getSliceDdosDstZoneOperPortRangeListOperDdos_entry_listHttpFilterRates(in["http_filter_rates"].([]interface{}))
 		oi.ResponseSizeRates = getSliceDdosDstZoneOperPortRangeListOperDdos_entry_listResponseSizeRates(in["response_size_rates"].([]interface{}))
+		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -12242,37 +14363,38 @@ func getSliceDdosDstZoneOperPortRangeListOperDdos_entry_listResponseSizeRates(d 
 	return ret
 }
 
-func getObjectDdosDstZoneOperPortRangeListIpFilteringPolicyOper(d []interface{}) edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyOper {
+func getObjectDdosDstZoneOperPortRangeListIpFilteringPolicyStatistics(d []interface{}) edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyStatistics {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyOper
+	var ret edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyStatistics
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstZoneOperPortRangeListIpFilteringPolicyOperOper(in["oper"].([]interface{}))
+		ret.Oper = getObjectDdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOper(in["oper"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosDstZoneOperPortRangeListIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyOperOper {
+func getObjectDdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOper(d []interface{}) edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOper {
 
 	count1 := len(d)
-	var ret edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyOperOper
+	var ret edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOper
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstZoneOperPortRangeListIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
+		ret.RuleList = getSliceDdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOperRuleList(in["rule_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceDdosDstZoneOperPortRangeListIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyOperOperRuleList {
+func getSliceDdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOperRuleList(d []interface{}) []edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOperRuleList {
 
 	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyOperOperRuleList, 0, count1)
+	ret := make([]edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOperRuleList, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyOperOperRuleList
+		var oi edpt.DdosDstZoneOperPortRangeListIpFilteringPolicyStatisticsOperRuleList
 		oi.Seq = in["seq"].(int)
 		oi.Hits = in["hits"].(int)
+		oi.Blacklisted_src_count = in["blacklisted_src_count"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -12380,42 +14502,6 @@ func getSliceDdosDstZoneOperPortRangeListPatternRecognitionPuDetailsOperAllFilte
 		oi.FilterExpr = in["filter_expr"].(string)
 		oi.FilterDesc = in["filter_desc"].(string)
 		oi.SampleRatio = in["sample_ratio"].(int)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
-func getObjectDdosDstZoneOperPortRangeListIps(d []interface{}) edpt.DdosDstZoneOperPortRangeListIps {
-
-	count1 := len(d)
-	var ret edpt.DdosDstZoneOperPortRangeListIps
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstZoneOperPortRangeListIpsOper(in["oper"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectDdosDstZoneOperPortRangeListIpsOper(d []interface{}) edpt.DdosDstZoneOperPortRangeListIpsOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstZoneOperPortRangeListIpsOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.SignatureList = getSliceDdosDstZoneOperPortRangeListIpsOperSignatureList(in["signature_list"].([]interface{}))
-	}
-	return ret
-}
-
-func getSliceDdosDstZoneOperPortRangeListIpsOperSignatureList(d []interface{}) []edpt.DdosDstZoneOperPortRangeListIpsOperSignatureList {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosDstZoneOperPortRangeListIpsOperSignatureList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosDstZoneOperPortRangeListIpsOperSignatureList
-		oi.Sid = in["sid"].(int)
-		oi.MatchCount = in["match_count"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -12754,6 +14840,230 @@ func getSliceDdosDstZoneOperPortRangeListProgressionTrackingOperIndicators(d []i
 	return ret
 }
 
+func getSliceDdosDstZoneOperPortRangeListSrcBasedPolicyList(d []interface{}) []edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyList
+		oi.SrcBasedPolicyName = in["src_based_policy_name"].(string)
+		oi.Oper = getObjectDdosDstZoneOperPortRangeListSrcBasedPolicyListOper(in["oper"].([]interface{}))
+		oi.PolicyClassListList = getSliceDdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListList(in["policy_class_list_list"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperPortRangeListSrcBasedPolicyListOper(d []interface{}) edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyListOper {
+
+	var ret edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyListOper
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListList(d []interface{}) []edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListList
+		oi.ClassListName = in["class_list_name"].(string)
+		oi.Oper = getObjectDdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListListOper(in["oper"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListListOper(d []interface{}) edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListListOper {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneOperPortRangeListSrcBasedPolicyListPolicyClassListListOper
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.CurrentConnections = in["current_connections"].(int)
+		ret.IsConnectionsExceed = in["is_connections_exceed"].(int)
+		ret.ConnectionLimit = in["connection_limit"].(int)
+		ret.CurrentConnectionRate = in["current_connection_rate"].(int)
+		ret.IsConnectionRateExceed = in["is_connection_rate_exceed"].(int)
+		ret.ConnectionRateLimit = in["connection_rate_limit"].(int)
+		ret.CurrentPacketRate = in["current_packet_rate"].(int)
+		ret.IsPacketRateExceed = in["is_packet_rate_exceed"].(int)
+		ret.PacketRateLimit = in["packet_rate_limit"].(int)
+		ret.CurrentKbitRate = in["current_kbit_rate"].(int)
+		ret.IsKbitRateExceed = in["is_kbit_rate_exceed"].(int)
+		ret.KbitRateLimit = in["kbit_rate_limit"].(int)
+		ret.CurrentFragPacketRate = in["current_frag_packet_rate"].(int)
+		ret.IsFragPacketRateExceed = in["is_frag_packet_rate_exceed"].(int)
+		ret.FragPacketRateLimit = in["frag_packet_rate_limit"].(int)
+		ret.DebugStr = in["debug_str"].(string)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperPortRangeListVirtualhosts(d []interface{}) edpt.DdosDstZoneOperPortRangeListVirtualhosts {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneOperPortRangeListVirtualhosts
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Oper = getObjectDdosDstZoneOperPortRangeListVirtualhostsOper(in["oper"].([]interface{}))
+		ret.VirtualhostList = getSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostList(in["virtualhost_list"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperPortRangeListVirtualhostsOper(d []interface{}) edpt.DdosDstZoneOperPortRangeListVirtualhostsOper {
+
+	var ret edpt.DdosDstZoneOperPortRangeListVirtualhostsOper
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostList(d []interface{}) []edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostList {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostList
+		oi.Vhost = in["vhost"].(string)
+		oi.Oper = getObjectDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOper(in["oper"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOper(d []interface{}) edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOper {
+
+	count1 := len(d)
+	var ret edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOper
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Ddos_entry_list = getSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_list(in["ddos_entry_list"].([]interface{}))
+		ret.EntryDisplayedCount = in["entry_displayed_count"].(int)
+		ret.ServiceDisplayedCount = in["service_displayed_count"].(int)
+		ret.ReportingStatus = in["reporting_status"].(int)
+		ret.Sources = in["sources"].(int)
+		ret.OverflowPolicy = in["overflow_policy"].(int)
+		ret.SourcesAllEntries = in["sources_all_entries"].(int)
+		ret.ClassList = in["class_list"].(string)
+		ret.SubnetIpAddr = in["subnet_ip_addr"].(string)
+		ret.SubnetIpv6Addr = in["subnet_ipv6_addr"].(string)
+		ret.Ipv6 = in["ipv6"].(string)
+		ret.Exceeded = in["exceeded"].(int)
+		ret.BlackListed = in["black_listed"].(int)
+		ret.WhiteListed = in["white_listed"].(int)
+		ret.Authenticated = in["authenticated"].(int)
+		ret.Level = in["level"].(int)
+		ret.AppStat = in["app_stat"].(int)
+		ret.Indicators = in["indicators"].(int)
+		ret.IndicatorDetail = in["indicator_detail"].(int)
+		ret.L4ExtRate = in["l4_ext_rate"].(int)
+		ret.HwBlacklisted = in["hw_blacklisted"].(int)
+		ret.SuffixRequestRate = in["suffix_request_rate"].(int)
+		ret.DomainName = in["domain_name"].(string)
+	}
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_list(d []interface{}) []edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_list {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_list, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_list
+		oi.DstAddressStr = in["dst_address_str"].(string)
+		oi.BwState = in["bw_state"].(string)
+		oi.Is_auth_passed = in["is_auth_passed"].(string)
+		oi.Level = in["level"].(int)
+		oi.BlReasoningRcode = in["bl_reasoning_rcode"].(string)
+		oi.BlReasoningTimestamp = in["bl_reasoning_timestamp"].(string)
+		oi.CurrentConnections = in["current_connections"].(string)
+		oi.IsConnectionsExceed = in["is_connections_exceed"].(int)
+		oi.ConnectionLimit = in["connection_limit"].(string)
+		oi.CurrentConnectionRate = in["current_connection_rate"].(string)
+		oi.IsConnectionRateExceed = in["is_connection_rate_exceed"].(int)
+		oi.ConnectionRateLimit = in["connection_rate_limit"].(string)
+		oi.CurrentPacketRate = in["current_packet_rate"].(string)
+		oi.IsPacketRateExceed = in["is_packet_rate_exceed"].(int)
+		oi.PacketRateLimit = in["packet_rate_limit"].(string)
+		oi.CurrentKbitRate = in["current_kbit_rate"].(string)
+		oi.IsKbitRateExceed = in["is_kbit_rate_exceed"].(int)
+		oi.KbitRateLimit = in["kbit_rate_limit"].(string)
+		oi.CurrentFragPacketRate = in["current_frag_packet_rate"].(string)
+		oi.IsFragPacketRateExceed = in["is_frag_packet_rate_exceed"].(int)
+		oi.FragPacketRateLimit = in["frag_packet_rate_limit"].(string)
+		oi.CurrentAppStat1 = in["current_app_stat1"].(string)
+		oi.IsAppStat1Exceed = in["is_app_stat1_exceed"].(int)
+		oi.AppStat1Limit = in["app_stat1_limit"].(string)
+		oi.CurrentAppStat2 = in["current_app_stat2"].(string)
+		oi.IsAppStat2Exceed = in["is_app_stat2_exceed"].(int)
+		oi.AppStat2Limit = in["app_stat2_limit"].(string)
+		oi.CurrentAppStat3 = in["current_app_stat3"].(string)
+		oi.IsAppStat3Exceed = in["is_app_stat3_exceed"].(int)
+		oi.AppStat3Limit = in["app_stat3_limit"].(string)
+		oi.CurrentAppStat4 = in["current_app_stat4"].(string)
+		oi.IsAppStat4Exceed = in["is_app_stat4_exceed"].(int)
+		oi.AppStat4Limit = in["app_stat4_limit"].(string)
+		oi.CurrentAppStat5 = in["current_app_stat5"].(string)
+		oi.IsAppStat5Exceed = in["is_app_stat5_exceed"].(int)
+		oi.AppStat5Limit = in["app_stat5_limit"].(string)
+		oi.CurrentAppStat6 = in["current_app_stat6"].(string)
+		oi.IsAppStat6Exceed = in["is_app_stat6_exceed"].(int)
+		oi.AppStat6Limit = in["app_stat6_limit"].(string)
+		oi.CurrentAppStat7 = in["current_app_stat7"].(string)
+		oi.IsAppStat7Exceed = in["is_app_stat7_exceed"].(int)
+		oi.AppStat7Limit = in["app_stat7_limit"].(string)
+		oi.CurrentAppStat8 = in["current_app_stat8"].(string)
+		oi.IsAppStat8Exceed = in["is_app_stat8_exceed"].(int)
+		oi.AppStat8Limit = in["app_stat8_limit"].(string)
+		oi.Age = in["age"].(int)
+		oi.LockupTime = in["lockup_time"].(int)
+		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
+		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
+		oi.SflowSourceId = in["sflow_source_id"].(int)
+		oi.HttpFilterRates = getSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates(in["http_filter_rates"].([]interface{}))
+		oi.ResponseSizeRates = getSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates(in["response_size_rates"].([]interface{}))
+		oi.DebugStr = in["debug_str"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates(d []interface{}) []edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listHttpFilterRates
+		oi.HttpFilterRateName = in["http_filter_rate_name"].(string)
+		oi.IsHttpFilterRateLimitExceed = in["is_http_filter_rate_limit_exceed"].(int)
+		oi.CurrentHttpFilterRate = in["current_http_filter_rate"].(string)
+		oi.HttpFilterRateLimit = in["http_filter_rate_limit"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceDdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates(d []interface{}) []edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates {
+
+	count1 := len(d)
+	ret := make([]edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.DdosDstZoneOperPortRangeListVirtualhostsVirtualhostListOperDdos_entry_listResponseSizeRates
+		oi.ResponseSizeRateName = in["response_size_rate_name"].(string)
+		oi.IsResponseSizeRateLimitExceed = in["is_response_size_rate_limit_exceed"].(int)
+		oi.CurrentResponseSizeRate = in["current_response_size_rate"].(string)
+		oi.ResponseSizeRateLimit = in["response_size_rate_limit"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func getObjectDdosDstZoneOperSrcPort(d []interface{}) edpt.DdosDstZoneOperSrcPort {
 
 	count1 := len(d)
@@ -12863,6 +15173,7 @@ func getSliceDdosDstZoneOperSrcPortZoneSrcPortListOperDdos_entry_list(d []interf
 		oi.LockupTime = in["lockup_time"].(int)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(int)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -13016,6 +15327,7 @@ func getSliceDdosDstZoneOperSrcPortZoneSrcPortOtherListOperDdos_entry_list(d []i
 		oi.LockupTime = in["lockup_time"].(int)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(int)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -13170,6 +15482,7 @@ func getSliceDdosDstZoneOperSrcPortRangeListOperDdos_entry_list(d []interface{})
 		oi.LockupTime = in["lockup_time"].(int)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(int)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)

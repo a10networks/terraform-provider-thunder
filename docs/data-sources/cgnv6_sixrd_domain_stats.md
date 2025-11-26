@@ -71,5 +71,3 @@ Optional:
 - `packet_too_big` (Number) Packet too big
 - `unknown_delegated_prefix` (Number) Unknown 6rd delegated prefix
 - `vport_matched` (Number) Traffic match SLB virtual port
-
-

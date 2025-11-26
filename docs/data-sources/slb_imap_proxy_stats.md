@@ -99,5 +99,3 @@ Optional:
 - `unsupported_command` (Number) Unsupported cmd
 - `unsupported_pbsz_value` (Number) Unsupported PBSZ
 - `unsupported_prot_value` (Number) Unsupported PROT
-
-

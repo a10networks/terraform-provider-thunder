@@ -67,5 +67,3 @@ Optional:
 - `last_observed` (Number)
 - `mac` (String)
 - `vlan` (Number)
-
-

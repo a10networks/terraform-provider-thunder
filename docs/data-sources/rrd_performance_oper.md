@@ -82,5 +82,3 @@ Optional:
 - `syn_fail` (Number)
 - `syn_recv` (Number)
 - `time` (Number)
-
-

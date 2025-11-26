@@ -55,5 +55,3 @@ Optional:
 - `resource_current` (Number)
 - `resource_limit` (Number)
 - `resource_name` (String)
-
-

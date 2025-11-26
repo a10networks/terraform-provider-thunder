@@ -51,5 +51,3 @@ Optional:
 - `response_other` (Number) Total Other Response
 - `response_success` (Number) Total Success Response
 - `response_timeout` (Number) Total Timeout Response
-
-

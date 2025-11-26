@@ -9,7 +9,7 @@ import (
 
 func resourceSystemPbslb() *schema.Resource {
 	return &schema.Resource{
-		Description:   "`thunder_system_pbslb`: Configure Policy Based Response-Rate-Limiting\n\n__PLACEHOLDER__",
+		Description:   "`thunder_system_pbslb`: Apply policy to the whole system\n\n__PLACEHOLDER__",
 		CreateContext: resourceSystemPbslbCreate,
 		UpdateContext: resourceSystemPbslbUpdate,
 		ReadContext:   resourceSystemPbslbRead,
@@ -21,10 +21,13 @@ func resourceSystemPbslb() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type: schema.TypeString, Optional: true, Description: "'all': all; 'curr_entries': Current PBSLB Entry Count; 'total_v4_entries_created': Total V4 Entry Count Created; 'total_v4_entries_freed': Total V4 Entry Count Freed; 'total_v6_entries_created': Total V6 Entry Count Created; 'total_v6_entries_freed': Total V6 Entry Count Freed; 'total_domain_entries_created': Total Domain Entry Count Created; 'total_domain_entries_freed': Total Domain Entry Count Freed; 'total_direct_action_entries_created': Total Direct Action Entry Count Created; 'total_direct_action_entries_freed': Total Direct Action Entry Count Freed; 'curr_entries_target_global': Current Entry Target Global; 'curr_entries_target_vserver': Current Entry Target Vserver; 'curr_entries_target_vport': Current Entry Target Vport; 'curr_entries_target_LOC': Current Entry Target LOC; 'curr_entries_target_rserver': Current Entry Target Rserver; 'curr_entries_target_rport': Current Entry Target Rport; 'curr_entries_target_service': Current Entry Target Service; 'curr_entries_stats': Current Entry Stats Count;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'curr_entries': Current PBSLB Entry Count; 'total_v4_entries_created': Total V4 Entry Count Created; 'total_v4_entries_freed': Total V4 Entry Count Freed; 'total_v6_entries_created': Total V6 Entry Count Created; 'total_v6_entries_freed': Total V6 Entry Count Freed; 'total_domain_entries_created': Total Domain Entry Count Created; 'total_domain_entries_freed': Total Domain Entry Count Freed; 'total_direct_action_entries_created': Total Direct Action Entry Count Created; 'total_direct_action_entries_freed': Total Direct Action Entry Count Freed; 'curr_entries_target_global': Current Entry Target Global; 'curr_entries_target_vserver': Current Entry Target Vserver; 'curr_entries_target_vport': Current Entry Target Vport; 'curr_entries_target_LOC': Current Entry Target LOC; 'curr_entries_target_rserver': Current Entry Target Rserver; 'curr_entries_target_rport': Current Entry Target Rport; 'curr_entries_target_service': Current Entry Target Service; 'curr_entries_stats': Current Entry Stats Count; 'curr_entries_target_global_dns_cache': Current Entry Target Global DNS Cache;",
 						},
 					},
 				},
+			},
+			"sockstress_disable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable sockstress protection",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -110,6 +113,7 @@ func getSliceSystemPbslbSamplingEnable(d []interface{}) []edpt.SystemPbslbSampli
 func dataToEndpointSystemPbslb(d *schema.ResourceData) edpt.SystemPbslb {
 	var ret edpt.SystemPbslb
 	ret.Inst.SamplingEnable = getSliceSystemPbslbSamplingEnable(d.Get("sampling_enable").([]interface{}))
+	ret.Inst.SockstressDisable = d.Get("sockstress_disable").(int)
 	//omit uuid
 	return ret
 }

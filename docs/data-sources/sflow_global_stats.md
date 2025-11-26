@@ -50,5 +50,3 @@ Optional:
 - `total_sflow_packets_drop_mgmt` (Number) sflow packets dropped because of rate limit via Mgmt Interface
 - `total_sflow_packets_sent` (Number) Total sflow packets sent
 - `total_sflow_packets_sent_mgmt` (Number) Total sflow packets sent via Mgmt Interface
-
-

@@ -55,6 +55,7 @@ Optional:
 - `query_pkt_invalid_idx_counter` (Number) Conn Query Invalid Interface
 - `query_pkt_no_receiving_ip_counter` (Number) Conn Sync drop sending packet for invalid receiving ip
 - `query_pkt_rcv_counter` (Number) Conn Query Received counter
+- `query_pkt_rx_error` (Number) Conn Query recv error
 - `query_pkt_tx_counter` (Number) Conn Query sent counter
 - `query_rx_full_info_counter` (Number) Conn Query Packet Full
 - `query_rx_invalid_ha_group_counter` (Number) Conn Sync receive query packet with invalid ha group
@@ -86,6 +87,7 @@ Optional:
 - `sync_pkt_no_receiving_vgrp_counter` (Number) Conn Sync drop sending packet for invalid receiving virtual group
 - `sync_pkt_no_sending_vgrp_counter` (Number) Conn Sync drop sending packet for invalid sending virtual group
 - `sync_pkt_rcv_counter` (Number) Conn Sync Received counter
+- `sync_pkt_rcv_dc_msg_dir` (Number) Sync pkt recv with DCMSG dir
 - `sync_pkt_tx_counter` (Number) Conn Sync Sent counter
 - `sync_query_dcmsg_counter` (Number) Conn Sync query forward CPU
 - `sync_rx_aflex_create_counter` (Number) Conn Sync receive packet with aflex create
@@ -112,9 +114,11 @@ Optional:
 - `sync_rx_create_ext_bit_counter` (Number) Conn Sync Create with Ext Received counter
 - `sync_rx_create_static_sby` (Number) Conn Sync Create Static Standby
 - `sync_rx_dcmsg_counter` (Number) Conn Sync forward CPU
+- `sync_rx_dcmsg_counter_inter_pu` (Number) Conn Sync forward CPU with inter-pu comm
 - `sync_rx_ddos_drop_counter` (Number) Conn Sync receive ddos protect packet
 - `sync_rx_del_counter` (Number) Conn Sync Del Session Received counter
 - `sync_rx_del_no_such_session` (Number) Conn Sync Del Conn not Found
+- `sync_rx_drop_sync_packets` (Number) Conn Sync drop all packets
 - `sync_rx_estab_counter` (Number) Conn Sync rcv established state
 - `sync_rx_ext_bit_process_error` (Number) Conn Sync Proc Ext Bit Failure
 - `sync_rx_ext_dcfw_log` (Number) Conn Sync FIREWALL session logging information Failure
@@ -212,7 +216,6 @@ Optional:
 - `sync_tx_smp_update_counter` (Number) Sync Update SMP Session Pkts Sent counter
 - `sync_tx_total_info_counter` (Number) Conn Sync Total Info Pkts Sent counter
 - `sync_tx_update_age_counter` (Number) Conn Sync Update Age Sent counter
+- `sync_tx_update_misc_bearer` (Number) Conn Sync update misc bearer sent
 - `sync_tx_update_sctp_conn_addr` (Number) Update SCTP Addresses Sent
 - `sync_tx_update_seqnos_counter` (Number) Conn Sync Update Seq Num Sent counter
-
-

@@ -82,8 +82,8 @@ func resourceCgnv6TemplateDnsDns64() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_name",
 			},
 		},
 	}
@@ -174,6 +174,6 @@ func dataToEndpointCgnv6TemplateDnsDns64(d *schema.ResourceData) edpt.Cgnv6Templ
 	ret.Inst.TransPtrQuery = d.Get("trans_ptr_query").(int)
 	ret.Inst.Ttl = d.Get("ttl").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dns_name = d.Get("dns_name").(string)
 	return ret
 }

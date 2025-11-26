@@ -21,10 +21,13 @@ func resourceDomainList() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"domain_name": {
-							Type: schema.TypeString, Optional: true, Description: "Domain name to be added to this domain list",
+							Type: schema.TypeString, Optional: true, Description: "Specify the domain name to be added in the domain list.",
 						},
 						"interval": {
-							Type: schema.TypeInt, Optional: true, Default: 10, Description: "DNS query interval (in minute, default is 10)",
+							Type: schema.TypeInt, Optional: true, Default: 10, Description: "Set up the query interval in minute for the DNS resolution. (default is 10-minute)",
+						},
+						"fail_interval": {
+							Type: schema.TypeInt, Optional: true, Default: 30, Description: "Set up the failure interval in second for the DNS resolution. (default is 30-second)",
 						},
 					},
 				},
@@ -163,6 +166,7 @@ func getSliceDomainListDomainNameList(d []interface{}) []edpt.DomainListDomainNa
 		var oi edpt.DomainListDomainNameList
 		oi.DomainName = in["domain_name"].(string)
 		oi.Interval = in["interval"].(int)
+		oi.FailInterval = in["fail_interval"].(int)
 		ret = append(ret, oi)
 	}
 	return ret

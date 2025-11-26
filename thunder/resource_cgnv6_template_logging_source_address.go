@@ -25,8 +25,8 @@ func resourceCgnv6TemplateLoggingSourceAddress() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"logging_name": {
+				Type: schema.TypeString, Required: true, Description: "Logging_name",
 			},
 		},
 	}
@@ -98,6 +98,6 @@ func dataToEndpointCgnv6TemplateLoggingSourceAddress(d *schema.ResourceData) edp
 	ret.Inst.Ip = d.Get("ip").(string)
 	ret.Inst.Ipv6 = d.Get("ipv6").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Logging_name = d.Get("logging_name").(string)
 	return ret
 }

@@ -64,5 +64,3 @@ Optional:
 - `total_inserted` (Number) Total Entry Inserted
 - `total_ready_to_free` (Number) Total Entry Ready To Free
 - `total_tcp_err` (Number) Total TCP errors in probes sent out
-
-

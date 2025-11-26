@@ -48,5 +48,3 @@ Optional:
 - `idp_limit_default` (Number)
 - `idp_limit_maximum` (Number)
 - `idp_limit_minimum` (Number)
-
-

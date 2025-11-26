@@ -112,10 +112,10 @@ func resourceDdosSrcPortTemplateDnsRead(ctx context.Context, d *schema.ResourceD
 	return diags
 }
 
-func getObjectDdosSrcPortTemplateDnsQueryResolutionCheck294(d []interface{}) edpt.DdosSrcPortTemplateDnsQueryResolutionCheck294 {
+func getObjectDdosSrcPortTemplateDnsQueryResolutionCheck334(d []interface{}) edpt.DdosSrcPortTemplateDnsQueryResolutionCheck334 {
 
 	count1 := len(d)
-	var ret edpt.DdosSrcPortTemplateDnsQueryResolutionCheck294
+	var ret edpt.DdosSrcPortTemplateDnsQueryResolutionCheck334
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SessionTimeoutValue = in["session_timeout_value"].(int)
@@ -130,7 +130,7 @@ func getObjectDdosSrcPortTemplateDnsQueryResolutionCheck294(d []interface{}) edp
 func dataToEndpointDdosSrcPortTemplateDns(d *schema.ResourceData) edpt.DdosSrcPortTemplateDns {
 	var ret edpt.DdosSrcPortTemplateDns
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.QueryResolutionCheck = getObjectDdosSrcPortTemplateDnsQueryResolutionCheck294(d.Get("query_resolution_check").([]interface{}))
+	ret.Inst.QueryResolutionCheck = getObjectDdosSrcPortTemplateDnsQueryResolutionCheck334(d.Get("query_resolution_check").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

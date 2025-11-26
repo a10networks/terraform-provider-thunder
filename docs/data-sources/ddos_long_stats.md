@@ -147,5 +147,3 @@ Optional:
 - `udp_payload_too_big_drop` (Number) UDP Payload Too Large Dropped
 - `udp_payload_too_small_drop` (Number) UDP Payload Too Small Dropped
 - `udp_retry_pass` (Number) UDP Retry Passed
-
-

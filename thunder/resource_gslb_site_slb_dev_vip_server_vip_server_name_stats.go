@@ -29,11 +29,11 @@ func resourceGslbSiteSlbDevVipServerVipServerNameStats() *schema.Resource {
 			"vip_name": {
 				Type: schema.TypeString, Required: true, Description: "Specify a VIP name for the SLB device",
 			},
-			"site_name": {
-				Type: schema.TypeString, Required: true, Description: "SiteName",
-			},
 			"device_name": {
 				Type: schema.TypeString, Required: true, Description: "DeviceName",
+			},
+			"site_name": {
+				Type: schema.TypeString, Required: true, Description: "SiteName",
 			},
 		},
 	}
@@ -86,8 +86,8 @@ func dataToEndpointGslbSiteSlbDevVipServerVipServerNameStats(d *schema.ResourceD
 
 	ret.VipName = d.Get("vip_name").(string)
 
-	ret.SiteName = d.Get("site_name").(string)
-
 	ret.DeviceName = d.Get("device_name").(string)
+
+	ret.SiteName = d.Get("site_name").(string)
 	return ret
 }

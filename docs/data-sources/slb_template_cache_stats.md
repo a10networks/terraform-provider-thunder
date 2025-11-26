@@ -83,5 +83,3 @@ Optional:
 - `rv_failure` (Number) slbTemplateCacheRvFailure, help rv_failure
 - `rv_success` (Number)
 - `total_req` (Number) Total requests received
-
-

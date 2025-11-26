@@ -57,5 +57,3 @@ Optional:
 - `total_be_enc` (Number) Total BE Encryption Conns
 - `total_fe_enc` (Number) Total FE Encryption Conns
 - `total_proxy` (Number) Total Proxy Conns
-
-

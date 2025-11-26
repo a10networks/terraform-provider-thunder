@@ -48,8 +48,8 @@ func resourceRbaUserPartition() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"user_name": {
+				Type: schema.TypeString, Required: true, Description: "User_name",
 			},
 		},
 	}
@@ -150,6 +150,6 @@ func dataToEndpointRbaUserPartition(d *schema.ResourceData) edpt.RbaUserPartitio
 	ret.Inst.RuleList = getSliceRbaUserPartitionRuleList(d.Get("rule_list").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.User_name = d.Get("user_name").(string)
 	return ret
 }

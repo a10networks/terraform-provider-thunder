@@ -69,5 +69,3 @@ Optional:
 - `subcnt` (Number)
 - `tomask` (String)
 - `type` (String)
-
-

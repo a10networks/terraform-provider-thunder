@@ -41,6 +41,9 @@ func resourceInterfaceEthernetIp() *schema.Resource {
 			"dhcp": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use DHCP to configure IP address",
 			},
+			"dmz": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "DMZ network facing interface for IPv4/v6 traffic",
+			},
 			"generate_membership_query": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable Membership Query",
 			},
@@ -371,31 +374,6 @@ func resourceInterfaceEthernetIp() *schema.Resource {
 			"slb_partition_redirect": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Redirect SLB traffic across partition",
 			},
-			"stateful_firewall": {
-				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"inside": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Inside (private) interface for stateful firewall",
-						},
-						"class_list": {
-							Type: schema.TypeString, Optional: true, Description: "Class List (Class List Name)",
-						},
-						"outside": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Outside (public) interface for stateful firewall",
-						},
-						"access_list": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Access-list for traffic from the outside",
-						},
-						"acl_id": {
-							Type: schema.TypeInt, Optional: true, Description: "ACL id",
-						},
-						"uuid": {
-							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
-						},
-					},
-				},
-			},
 			"syn_cookie": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Configure Enable SYN-cookie on the interface",
 			},
@@ -503,36 +481,36 @@ func getSliceInterfaceEthernetIpHelperAddressList(d []interface{}) []edpt.Interf
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspf447(d []interface{}) edpt.InterfaceEthernetIpOspf447 {
+func getObjectInterfaceEthernetIpOspf541(d []interface{}) edpt.InterfaceEthernetIpOspf541 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspf447
+	var ret edpt.InterfaceEthernetIpOspf541
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.OspfGlobal = getObjectInterfaceEthernetIpOspfOspfGlobal448(in["ospf_global"].([]interface{}))
+		ret.OspfGlobal = getObjectInterfaceEthernetIpOspfOspfGlobal542(in["ospf_global"].([]interface{}))
 		ret.OspfIpList = getSliceInterfaceEthernetIpOspfOspfIpList(in["ospf_ip_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspfOspfGlobal448(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobal448 {
+func getObjectInterfaceEthernetIpOspfOspfGlobal542(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobal542 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspfOspfGlobal448
+	var ret edpt.InterfaceEthernetIpOspfOspfGlobal542
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AuthenticationCfg = getObjectInterfaceEthernetIpOspfOspfGlobalAuthenticationCfg449(in["authentication_cfg"].([]interface{}))
+		ret.AuthenticationCfg = getObjectInterfaceEthernetIpOspfOspfGlobalAuthenticationCfg543(in["authentication_cfg"].([]interface{}))
 		ret.AuthenticationKey = in["authentication_key"].(string)
-		ret.BfdCfg = getObjectInterfaceEthernetIpOspfOspfGlobalBfdCfg450(in["bfd_cfg"].([]interface{}))
+		ret.BfdCfg = getObjectInterfaceEthernetIpOspfOspfGlobalBfdCfg544(in["bfd_cfg"].([]interface{}))
 		ret.Cost = in["cost"].(int)
-		ret.DatabaseFilterCfg = getObjectInterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg451(in["database_filter_cfg"].([]interface{}))
+		ret.DatabaseFilterCfg = getObjectInterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg545(in["database_filter_cfg"].([]interface{}))
 		ret.DeadInterval = in["dead_interval"].(int)
 		ret.Disable = in["disable"].(string)
 		ret.HelloInterval = in["hello_interval"].(int)
-		ret.MessageDigestCfg = getSliceInterfaceEthernetIpOspfOspfGlobalMessageDigestCfg452(in["message_digest_cfg"].([]interface{}))
+		ret.MessageDigestCfg = getSliceInterfaceEthernetIpOspfOspfGlobalMessageDigestCfg546(in["message_digest_cfg"].([]interface{}))
 		ret.Mtu = in["mtu"].(int)
 		ret.MtuIgnore = in["mtu_ignore"].(int)
-		ret.Network = getObjectInterfaceEthernetIpOspfOspfGlobalNetwork454(in["network"].([]interface{}))
+		ret.Network = getObjectInterfaceEthernetIpOspfOspfGlobalNetwork548(in["network"].([]interface{}))
 		ret.Priority = in["priority"].(int)
 		ret.RetransmitInterval = in["retransmit_interval"].(int)
 		ret.TransmitDelay = in["transmit_delay"].(int)
@@ -541,10 +519,10 @@ func getObjectInterfaceEthernetIpOspfOspfGlobal448(d []interface{}) edpt.Interfa
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspfOspfGlobalAuthenticationCfg449(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalAuthenticationCfg449 {
+func getObjectInterfaceEthernetIpOspfOspfGlobalAuthenticationCfg543(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalAuthenticationCfg543 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspfOspfGlobalAuthenticationCfg449
+	var ret edpt.InterfaceEthernetIpOspfOspfGlobalAuthenticationCfg543
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Authentication = in["authentication"].(int)
@@ -553,10 +531,10 @@ func getObjectInterfaceEthernetIpOspfOspfGlobalAuthenticationCfg449(d []interfac
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspfOspfGlobalBfdCfg450(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalBfdCfg450 {
+func getObjectInterfaceEthernetIpOspfOspfGlobalBfdCfg544(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalBfdCfg544 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspfOspfGlobalBfdCfg450
+	var ret edpt.InterfaceEthernetIpOspfOspfGlobalBfdCfg544
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bfd = in["bfd"].(int)
@@ -565,10 +543,10 @@ func getObjectInterfaceEthernetIpOspfOspfGlobalBfdCfg450(d []interface{}) edpt.I
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg451(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg451 {
+func getObjectInterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg545(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg545 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg451
+	var ret edpt.InterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg545
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DatabaseFilter = in["database_filter"].(string)
@@ -577,24 +555,24 @@ func getObjectInterfaceEthernetIpOspfOspfGlobalDatabaseFilterCfg451(d []interfac
 	return ret
 }
 
-func getSliceInterfaceEthernetIpOspfOspfGlobalMessageDigestCfg452(d []interface{}) []edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg452 {
+func getSliceInterfaceEthernetIpOspfOspfGlobalMessageDigestCfg546(d []interface{}) []edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg546 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg452, 0, count1)
+	ret := make([]edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg546, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg452
+		var oi edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfg546
 		oi.MessageDigestKey = in["message_digest_key"].(int)
-		oi.Md5 = getObjectInterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5453(in["md5"].([]interface{}))
+		oi.Md5 = getObjectInterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5547(in["md5"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5453(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5453 {
+func getObjectInterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5547(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5547 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5453
+	var ret edpt.InterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5547
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Md5Value = in["md5_value"].(string)
@@ -603,10 +581,10 @@ func getObjectInterfaceEthernetIpOspfOspfGlobalMessageDigestCfgMd5453(d []interf
 	return ret
 }
 
-func getObjectInterfaceEthernetIpOspfOspfGlobalNetwork454(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalNetwork454 {
+func getObjectInterfaceEthernetIpOspfOspfGlobalNetwork548(d []interface{}) edpt.InterfaceEthernetIpOspfOspfGlobalNetwork548 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpOspfOspfGlobalNetwork454
+	var ret edpt.InterfaceEthernetIpOspfOspfGlobalNetwork548
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Broadcast = in["broadcast"].(int)
@@ -660,40 +638,40 @@ func getSliceInterfaceEthernetIpOspfOspfIpListMessageDigestCfg(d []interface{}) 
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRip455(d []interface{}) edpt.InterfaceEthernetIpRip455 {
+func getObjectInterfaceEthernetIpRip549(d []interface{}) edpt.InterfaceEthernetIpRip549 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRip455
+	var ret edpt.InterfaceEthernetIpRip549
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Authentication = getObjectInterfaceEthernetIpRipAuthentication456(in["authentication"].([]interface{}))
+		ret.Authentication = getObjectInterfaceEthernetIpRipAuthentication550(in["authentication"].([]interface{}))
 		ret.SendPacket = in["send_packet"].(int)
 		ret.ReceivePacket = in["receive_packet"].(int)
-		ret.SendCfg = getObjectInterfaceEthernetIpRipSendCfg460(in["send_cfg"].([]interface{}))
-		ret.ReceiveCfg = getObjectInterfaceEthernetIpRipReceiveCfg461(in["receive_cfg"].([]interface{}))
-		ret.SplitHorizonCfg = getObjectInterfaceEthernetIpRipSplitHorizonCfg462(in["split_horizon_cfg"].([]interface{}))
+		ret.SendCfg = getObjectInterfaceEthernetIpRipSendCfg554(in["send_cfg"].([]interface{}))
+		ret.ReceiveCfg = getObjectInterfaceEthernetIpRipReceiveCfg555(in["receive_cfg"].([]interface{}))
+		ret.SplitHorizonCfg = getObjectInterfaceEthernetIpRipSplitHorizonCfg556(in["split_horizon_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipAuthentication456(d []interface{}) edpt.InterfaceEthernetIpRipAuthentication456 {
+func getObjectInterfaceEthernetIpRipAuthentication550(d []interface{}) edpt.InterfaceEthernetIpRipAuthentication550 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipAuthentication456
+	var ret edpt.InterfaceEthernetIpRipAuthentication550
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Str = getObjectInterfaceEthernetIpRipAuthenticationStr457(in["str"].([]interface{}))
-		ret.Mode = getObjectInterfaceEthernetIpRipAuthenticationMode458(in["mode"].([]interface{}))
-		ret.KeyChain = getObjectInterfaceEthernetIpRipAuthenticationKeyChain459(in["key_chain"].([]interface{}))
+		ret.Str = getObjectInterfaceEthernetIpRipAuthenticationStr551(in["str"].([]interface{}))
+		ret.Mode = getObjectInterfaceEthernetIpRipAuthenticationMode552(in["mode"].([]interface{}))
+		ret.KeyChain = getObjectInterfaceEthernetIpRipAuthenticationKeyChain553(in["key_chain"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipAuthenticationStr457(d []interface{}) edpt.InterfaceEthernetIpRipAuthenticationStr457 {
+func getObjectInterfaceEthernetIpRipAuthenticationStr551(d []interface{}) edpt.InterfaceEthernetIpRipAuthenticationStr551 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipAuthenticationStr457
+	var ret edpt.InterfaceEthernetIpRipAuthenticationStr551
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.String = in["string"].(string)
@@ -701,10 +679,10 @@ func getObjectInterfaceEthernetIpRipAuthenticationStr457(d []interface{}) edpt.I
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipAuthenticationMode458(d []interface{}) edpt.InterfaceEthernetIpRipAuthenticationMode458 {
+func getObjectInterfaceEthernetIpRipAuthenticationMode552(d []interface{}) edpt.InterfaceEthernetIpRipAuthenticationMode552 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipAuthenticationMode458
+	var ret edpt.InterfaceEthernetIpRipAuthenticationMode552
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Mode = in["mode"].(string)
@@ -712,10 +690,10 @@ func getObjectInterfaceEthernetIpRipAuthenticationMode458(d []interface{}) edpt.
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipAuthenticationKeyChain459(d []interface{}) edpt.InterfaceEthernetIpRipAuthenticationKeyChain459 {
+func getObjectInterfaceEthernetIpRipAuthenticationKeyChain553(d []interface{}) edpt.InterfaceEthernetIpRipAuthenticationKeyChain553 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipAuthenticationKeyChain459
+	var ret edpt.InterfaceEthernetIpRipAuthenticationKeyChain553
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.KeyChain = in["key_chain"].(string)
@@ -723,10 +701,10 @@ func getObjectInterfaceEthernetIpRipAuthenticationKeyChain459(d []interface{}) e
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipSendCfg460(d []interface{}) edpt.InterfaceEthernetIpRipSendCfg460 {
+func getObjectInterfaceEthernetIpRipSendCfg554(d []interface{}) edpt.InterfaceEthernetIpRipSendCfg554 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipSendCfg460
+	var ret edpt.InterfaceEthernetIpRipSendCfg554
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Send = in["send"].(int)
@@ -735,10 +713,10 @@ func getObjectInterfaceEthernetIpRipSendCfg460(d []interface{}) edpt.InterfaceEt
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipReceiveCfg461(d []interface{}) edpt.InterfaceEthernetIpRipReceiveCfg461 {
+func getObjectInterfaceEthernetIpRipReceiveCfg555(d []interface{}) edpt.InterfaceEthernetIpRipReceiveCfg555 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipReceiveCfg461
+	var ret edpt.InterfaceEthernetIpRipReceiveCfg555
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Receive = in["receive"].(int)
@@ -747,10 +725,10 @@ func getObjectInterfaceEthernetIpRipReceiveCfg461(d []interface{}) edpt.Interfac
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRipSplitHorizonCfg462(d []interface{}) edpt.InterfaceEthernetIpRipSplitHorizonCfg462 {
+func getObjectInterfaceEthernetIpRipSplitHorizonCfg556(d []interface{}) edpt.InterfaceEthernetIpRipSplitHorizonCfg556 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRipSplitHorizonCfg462
+	var ret edpt.InterfaceEthernetIpRipSplitHorizonCfg556
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.State = in["state"].(string)
@@ -758,40 +736,24 @@ func getObjectInterfaceEthernetIpRipSplitHorizonCfg462(d []interface{}) edpt.Int
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRouter463(d []interface{}) edpt.InterfaceEthernetIpRouter463 {
+func getObjectInterfaceEthernetIpRouter557(d []interface{}) edpt.InterfaceEthernetIpRouter557 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRouter463
+	var ret edpt.InterfaceEthernetIpRouter557
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Isis = getObjectInterfaceEthernetIpRouterIsis464(in["isis"].([]interface{}))
+		ret.Isis = getObjectInterfaceEthernetIpRouterIsis558(in["isis"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceEthernetIpRouterIsis464(d []interface{}) edpt.InterfaceEthernetIpRouterIsis464 {
+func getObjectInterfaceEthernetIpRouterIsis558(d []interface{}) edpt.InterfaceEthernetIpRouterIsis558 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpRouterIsis464
+	var ret edpt.InterfaceEthernetIpRouterIsis558
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tag = in["tag"].(string)
-		//omit uuid
-	}
-	return ret
-}
-
-func getObjectInterfaceEthernetIpStatefulFirewall465(d []interface{}) edpt.InterfaceEthernetIpStatefulFirewall465 {
-
-	count1 := len(d)
-	var ret edpt.InterfaceEthernetIpStatefulFirewall465
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Inside = in["inside"].(int)
-		ret.ClassList = in["class_list"].(string)
-		ret.Outside = in["outside"].(int)
-		ret.AccessList = in["access_list"].(int)
-		ret.AclId = in["acl_id"].(int)
 		//omit uuid
 	}
 	return ret
@@ -804,18 +766,18 @@ func dataToEndpointInterfaceEthernetIp(d *schema.ResourceData) edpt.InterfaceEth
 	ret.Inst.CacheSpoofingPort = d.Get("cache_spoofing_port").(int)
 	ret.Inst.Client = d.Get("client").(int)
 	ret.Inst.Dhcp = d.Get("dhcp").(int)
+	ret.Inst.Dmz = d.Get("dmz").(int)
 	ret.Inst.GenerateMembershipQuery = d.Get("generate_membership_query").(int)
 	ret.Inst.HelperAddressList = getSliceInterfaceEthernetIpHelperAddressList(d.Get("helper_address_list").([]interface{}))
 	ret.Inst.Inside = d.Get("inside").(int)
 	ret.Inst.MaxRespTime = d.Get("max_resp_time").(int)
-	ret.Inst.Ospf = getObjectInterfaceEthernetIpOspf447(d.Get("ospf").([]interface{}))
+	ret.Inst.Ospf = getObjectInterfaceEthernetIpOspf541(d.Get("ospf").([]interface{}))
 	ret.Inst.Outside = d.Get("outside").(int)
 	ret.Inst.QueryInterval = d.Get("query_interval").(int)
-	ret.Inst.Rip = getObjectInterfaceEthernetIpRip455(d.Get("rip").([]interface{}))
-	ret.Inst.Router = getObjectInterfaceEthernetIpRouter463(d.Get("router").([]interface{}))
+	ret.Inst.Rip = getObjectInterfaceEthernetIpRip549(d.Get("rip").([]interface{}))
+	ret.Inst.Router = getObjectInterfaceEthernetIpRouter557(d.Get("router").([]interface{}))
 	ret.Inst.Server = d.Get("server").(int)
 	ret.Inst.SlbPartitionRedirect = d.Get("slb_partition_redirect").(int)
-	ret.Inst.StatefulFirewall = getObjectInterfaceEthernetIpStatefulFirewall465(d.Get("stateful_firewall").([]interface{}))
 	ret.Inst.SynCookie = d.Get("syn_cookie").(int)
 	ret.Inst.TtlIgnore = d.Get("ttl_ignore").(int)
 	ret.Inst.Unnumbered = d.Get("unnumbered").(int)

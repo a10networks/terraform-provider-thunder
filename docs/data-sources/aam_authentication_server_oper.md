@@ -153,5 +153,3 @@ Optional:
 
 - `name` (String)
 - `stats_clear_type` (String)
-
-

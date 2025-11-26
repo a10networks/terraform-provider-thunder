@@ -46,8 +46,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplTriggerStats
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"slb_templ_cache_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Slb_templ_cache_tmpl_name",
 			},
 		},
 	}
@@ -126,6 +126,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesSlbTemplCacheTmplTrigge
 	ret.Inst.Rv_failure = d.Get("rv_failure").(int)
 	ret.Inst.ThresholdExceededBy = d.Get("threshold_exceeded_by").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Slb_templ_cache_tmpl_name = d.Get("slb_templ_cache_tmpl_name").(string)
 	return ret
 }

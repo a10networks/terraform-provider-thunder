@@ -127,5 +127,3 @@ Optional:
 - `tls_established` (Number)
 - `too_many_headers` (Number)
 - `total_proxy` (Number)
-
-

@@ -16,14 +16,11 @@ func resourceScaleoutClusterServiceConfigTemplate() *schema.Resource {
 		DeleteContext: resourceScaleoutClusterServiceConfigTemplateDelete,
 
 		Schema: map[string]*schema.Schema{
-			"bucket_count": {
-				Type: schema.TypeInt, Optional: true, Default: 256, Description: "Number of traffic buckets",
-			},
-			"device_group": {
-				Type: schema.TypeInt, Optional: true, Description: "Device group id",
-			},
 			"name": {
 				Type: schema.TypeString, Required: true, Description: "Scaleout template Name",
+			},
+			"user_group_count": {
+				Type: schema.TypeInt, Optional: true, Description: "Number of traffic buckets",
 			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
@@ -101,9 +98,8 @@ func resourceScaleoutClusterServiceConfigTemplateRead(ctx context.Context, d *sc
 
 func dataToEndpointScaleoutClusterServiceConfigTemplate(d *schema.ResourceData) edpt.ScaleoutClusterServiceConfigTemplate {
 	var ret edpt.ScaleoutClusterServiceConfigTemplate
-	ret.Inst.BucketCount = d.Get("bucket_count").(int)
-	ret.Inst.DeviceGroup = d.Get("device_group").(int)
 	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.UserGroupCount = d.Get("user_group_count").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ClusterId = d.Get("cluster_id").(string)

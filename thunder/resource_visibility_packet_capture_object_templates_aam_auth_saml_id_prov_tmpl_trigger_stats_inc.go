@@ -25,8 +25,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTriggerS
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"aam_auth_saml_id_prov_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Aam_auth_saml_id_prov_tmpl_name",
 			},
 		},
 	}
@@ -98,6 +98,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesAamAuthSamlIdProvTmplTr
 	ret.Inst.AcsFail = d.Get("acs_fail").(int)
 	ret.Inst.MdFail = d.Get("md_fail").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Aam_auth_saml_id_prov_tmpl_name = d.Get("aam_auth_saml_id_prov_tmpl_name").(string)
 	return ret
 }

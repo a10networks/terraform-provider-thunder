@@ -195,10 +195,10 @@ func getObjectDdosTemplateIcmpV4TypeListCodeOther(d []interface{}) edpt.DdosTemp
 	return ret
 }
 
-func getObjectDdosTemplateIcmpV4TypeOther296(d []interface{}) edpt.DdosTemplateIcmpV4TypeOther296 {
+func getObjectDdosTemplateIcmpV4TypeOther336(d []interface{}) edpt.DdosTemplateIcmpV4TypeOther336 {
 
 	count1 := len(d)
-	var ret edpt.DdosTemplateIcmpV4TypeOther296
+	var ret edpt.DdosTemplateIcmpV4TypeOther336
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TypeOtherDeny = in["type_other_deny"].(int)
@@ -212,7 +212,7 @@ func dataToEndpointDdosTemplateIcmpV4(d *schema.ResourceData) edpt.DdosTemplateI
 	var ret edpt.DdosTemplateIcmpV4
 	ret.Inst.IcmpTmplName = d.Get("icmp_tmpl_name").(string)
 	ret.Inst.TypeList = getSliceDdosTemplateIcmpV4TypeList(d.Get("type_list").([]interface{}))
-	ret.Inst.TypeOther = getObjectDdosTemplateIcmpV4TypeOther296(d.Get("type_other").([]interface{}))
+	ret.Inst.TypeOther = getObjectDdosTemplateIcmpV4TypeOther336(d.Get("type_other").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

@@ -48,5 +48,3 @@ Optional:
 - `server_port_down` (Number)
 - `server_port_up` (Number)
 - `server_up` (Number)
-
-

@@ -133,9 +133,9 @@ func resourceDdosPatternRecognitionRead(ctx context.Context, d *schema.ResourceD
 	return diags
 }
 
-func getObjectDdosPatternRecognitionCpu290(d []interface{}) edpt.DdosPatternRecognitionCpu290 {
+func getObjectDdosPatternRecognitionCpu329(d []interface{}) edpt.DdosPatternRecognitionCpu329 {
 
-	var ret edpt.DdosPatternRecognitionCpu290
+	var ret edpt.DdosPatternRecognitionCpu329
 	return ret
 }
 
@@ -143,7 +143,7 @@ func dataToEndpointDdosPatternRecognition(d *schema.ResourceData) edpt.DdosPatte
 	var ret edpt.DdosPatternRecognition
 	ret.Inst.CaptureBackup = d.Get("capture_backup").(int)
 	ret.Inst.CapturingTimeout = d.Get("capturing_timeout").(int)
-	ret.Inst.Cpu = getObjectDdosPatternRecognitionCpu290(d.Get("cpu").([]interface{}))
+	ret.Inst.Cpu = getObjectDdosPatternRecognitionCpu329(d.Get("cpu").([]interface{}))
 	ret.Inst.CpuLimit = d.Get("cpu_limit").(int)
 	ret.Inst.DedicatedCpus = d.Get("dedicated_cpus").(int)
 	ret.Inst.DisableAppPayloadAll = d.Get("disable_app_payload_all").(int)

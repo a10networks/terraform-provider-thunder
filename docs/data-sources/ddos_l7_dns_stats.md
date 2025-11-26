@@ -101,5 +101,3 @@ Optional:
 - `src_rate_limit2` (Number) Src Request Rate 3 Exceeded
 - `src_rate_limit3` (Number) Src Request Rate 4 Exceeded
 - `src_rate_limit4` (Number) Src Request Rate 5 Exceeded
-
-

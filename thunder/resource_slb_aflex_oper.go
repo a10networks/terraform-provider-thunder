@@ -17,16 +17,19 @@ func resourceSlbAflexOper() *schema.Resource {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"filter_entry": {
+						"name": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
-						"filter_event": {
+						"exact_match": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"event": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
 						"filter_debug": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
-						"filter_substring": {
+						"substring": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 						"aflex_file_size_max": {
@@ -72,6 +75,9 @@ func resourceSlbAflexOper() *schema.Resource {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 												"aborts": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"exceed_time_limit": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 											},
@@ -150,10 +156,11 @@ func resourceSlbAflexOperRead(ctx context.Context, d *schema.ResourceData, meta 
 func setObjectSlbAflexOperOper(ret edpt.DataSlbAflexOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"filter_entry":        ret.DtSlbAflexOper.Oper.Filter_entry,
-			"filter_event":        ret.DtSlbAflexOper.Oper.Filter_event,
+			"name":                ret.DtSlbAflexOper.Oper.Name,
+			"exact_match":         ret.DtSlbAflexOper.Oper.Exact_match,
+			"event":               ret.DtSlbAflexOper.Oper.Event,
 			"filter_debug":        ret.DtSlbAflexOper.Oper.Filter_debug,
-			"filter_substring":    ret.DtSlbAflexOper.Oper.Filter_substring,
+			"substring":           ret.DtSlbAflexOper.Oper.Substring,
 			"aflex_file_size_max": ret.DtSlbAflexOper.Oper.AflexFileSizeMax,
 			"file_list":           setSliceSlbAflexOperOperFileList(ret.DtSlbAflexOper.Oper.FileList),
 			"thread_list":         setSliceSlbAflexOperOperThreadList(ret.DtSlbAflexOper.Oper.ThreadList),
@@ -195,6 +202,7 @@ func setSliceSlbAflexOperOperFileListEvents(d []edpt.SlbAflexOperOperFileListEve
 		in["total_executions"] = item.TotalExecutions
 		in["failures"] = item.Failures
 		in["aborts"] = item.Aborts
+		in["exceed_time_limit"] = item.Exceed_time_limit
 		result = append(result, in)
 	}
 	return result
@@ -233,10 +241,11 @@ func getObjectSlbAflexOperOper(d []interface{}) edpt.SlbAflexOperOper {
 	var ret edpt.SlbAflexOperOper
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Filter_entry = in["filter_entry"].(string)
-		ret.Filter_event = in["filter_event"].(string)
+		ret.Name = in["name"].(string)
+		ret.Exact_match = in["exact_match"].(int)
+		ret.Event = in["event"].(string)
 		ret.Filter_debug = in["filter_debug"].(int)
-		ret.Filter_substring = in["filter_substring"].(int)
+		ret.Substring = in["substring"].(int)
 		ret.AflexFileSizeMax = in["aflex_file_size_max"].(int)
 		ret.FileList = getSliceSlbAflexOperOperFileList(in["file_list"].([]interface{}))
 		ret.ThreadList = getSliceSlbAflexOperOperThreadList(in["thread_list"].([]interface{}))
@@ -287,6 +296,7 @@ func getSliceSlbAflexOperOperFileListEvents(d []interface{}) []edpt.SlbAflexOper
 		oi.TotalExecutions = in["total_executions"].(int)
 		oi.Failures = in["failures"].(int)
 		oi.Aborts = in["aborts"].(int)
+		oi.Exceed_time_limit = in["exceed_time_limit"].(int)
 		ret = append(ret, oi)
 	}
 	return ret

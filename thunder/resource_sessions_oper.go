@@ -166,6 +166,15 @@ func resourceSessionsOper() *schema.Resource {
 									"dns_id": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"radius_id": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"fwd_pkt_hash": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"rev_pkt_hash": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 								},
 							},
 						},
@@ -176,6 +185,9 @@ func resourceSessionsOper() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 						"filter_type": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"filter_debug": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
 						"src_ipv4_addr": {
@@ -346,6 +358,9 @@ func resourceSessionsOper() *schema.Resource {
 						"persist_v6_dest_port": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"force": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
 					},
 				},
 			},
@@ -497,6 +512,7 @@ func setObjectSessionsOperOper(ret edpt.DataSessionsOper) []interface{} {
 			"total_sessions":          ret.DtSessionsOper.Oper.TotalSessions,
 			"app_sessions":            ret.DtSessionsOper.Oper.AppSessions,
 			"filter_type":             ret.DtSessionsOper.Oper.Filter_type,
+			"filter_debug":            ret.DtSessionsOper.Oper.Filter_debug,
 			"src_ipv4_addr":           ret.DtSessionsOper.Oper.SrcIpv4Addr,
 			"dst_ipv4_addr":           ret.DtSessionsOper.Oper.DstIpv4Addr,
 			"nat_ipv4_addr":           ret.DtSessionsOper.Oper.NatIpv4Addr,
@@ -553,6 +569,7 @@ func setObjectSessionsOperOper(ret edpt.DataSessionsOper) []interface{} {
 			"persist_v6_source_port":  ret.DtSessionsOper.Oper.PersistV6SourcePort,
 			"persist_v6_dest_addr":    ret.DtSessionsOper.Oper.PersistV6DestAddr,
 			"persist_v6_dest_port":    ret.DtSessionsOper.Oper.PersistV6DestPort,
+			"force":                   ret.DtSessionsOper.Oper.Force,
 		},
 	}
 }
@@ -593,6 +610,9 @@ func setSliceSessionsOperOperSessionList(d []edpt.SessionsOperOperSessionList) [
 		in["ddos_exceeded_pkt_rate"] = item.Ddos_exceeded_pkt_rate
 		in["extension_fields_list"] = setSliceSessionsOperOperSessionListExtensionFieldsList(item.ExtensionFieldsList)
 		in["dns_id"] = item.Dns_id
+		in["radius_id"] = item.Radius_id
+		in["fwd_pkt_hash"] = item.Fwd_pkt_hash
+		in["rev_pkt_hash"] = item.Rev_pkt_hash
 		result = append(result, in)
 	}
 	return result
@@ -722,6 +742,7 @@ func getObjectSessionsOperOper(d []interface{}) edpt.SessionsOperOper {
 		ret.TotalSessions = in["total_sessions"].(int)
 		ret.AppSessions = in["app_sessions"].(int)
 		ret.Filter_type = in["filter_type"].(string)
+		ret.Filter_debug = in["filter_debug"].(string)
 		ret.SrcIpv4Addr = in["src_ipv4_addr"].(string)
 		ret.DstIpv4Addr = in["dst_ipv4_addr"].(string)
 		ret.NatIpv4Addr = in["nat_ipv4_addr"].(string)
@@ -778,6 +799,7 @@ func getObjectSessionsOperOper(d []interface{}) edpt.SessionsOperOper {
 		ret.PersistV6SourcePort = in["persist_v6_source_port"].(int)
 		ret.PersistV6DestAddr = in["persist_v6_dest_addr"].(string)
 		ret.PersistV6DestPort = in["persist_v6_dest_port"].(int)
+		ret.Force = in["force"].(string)
 	}
 	return ret
 }
@@ -821,6 +843,9 @@ func getSliceSessionsOperOperSessionList(d []interface{}) []edpt.SessionsOperOpe
 		oi.Ddos_exceeded_pkt_rate = in["ddos_exceeded_pkt_rate"].(int)
 		oi.ExtensionFieldsList = getSliceSessionsOperOperSessionListExtensionFieldsList(in["extension_fields_list"].([]interface{}))
 		oi.Dns_id = in["dns_id"].(int)
+		oi.Radius_id = in["radius_id"].(int)
+		oi.Fwd_pkt_hash = in["fwd_pkt_hash"].(int)
+		oi.Rev_pkt_hash = in["rev_pkt_hash"].(int)
 		ret = append(ret, oi)
 	}
 	return ret

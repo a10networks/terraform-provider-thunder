@@ -267,10 +267,10 @@ func getObjectDdosSrcEntryExceedLogCfg(d []interface{}) edpt.DdosSrcEntryExceedL
 	return ret
 }
 
-func getObjectDdosSrcEntryHwBlacklistBlocking293(d []interface{}) edpt.DdosSrcEntryHwBlacklistBlocking293 {
+func getObjectDdosSrcEntryHwBlacklistBlocking333(d []interface{}) edpt.DdosSrcEntryHwBlacklistBlocking333 {
 
 	count1 := len(d)
-	var ret edpt.DdosSrcEntryHwBlacklistBlocking293
+	var ret edpt.DdosSrcEntryHwBlacklistBlocking333
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SrcEnable = in["src_enable"].(int)
@@ -330,7 +330,7 @@ func dataToEndpointDdosSrcEntry(d *schema.ResourceData) edpt.DdosSrcEntry {
 	ret.Inst.Description = d.Get("description").(string)
 	ret.Inst.ExceedLogCfg = getObjectDdosSrcEntryExceedLogCfg(d.Get("exceed_log_cfg").([]interface{}))
 	ret.Inst.Glid = d.Get("glid").(string)
-	ret.Inst.HwBlacklistBlocking = getObjectDdosSrcEntryHwBlacklistBlocking293(d.Get("hw_blacklist_blocking").([]interface{}))
+	ret.Inst.HwBlacklistBlocking = getObjectDdosSrcEntryHwBlacklistBlocking333(d.Get("hw_blacklist_blocking").([]interface{}))
 	ret.Inst.IpAddr = d.Get("ip_addr").(string)
 	ret.Inst.Ipv6Addr = d.Get("ipv6_addr").(string)
 	ret.Inst.L4TypeList = getSliceDdosSrcEntryL4TypeList(d.Get("l4_type_list").([]interface{}))

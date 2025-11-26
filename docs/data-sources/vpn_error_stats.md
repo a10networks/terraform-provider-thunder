@@ -83,5 +83,3 @@ Optional:
 - `ipv6_outbound_rh_copy_addr_error` (Number)
 - `ipv6_rh_length_error` (Number)
 - `tfc_padding_with_prefrag_not_supported` (Number)
-
-

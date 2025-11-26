@@ -48,5 +48,3 @@ Optional:
 - `rollback_pri` (String)
 - `rollback_sec` (String)
 - `status` (Number)
-
-

@@ -90,5 +90,3 @@ Optional:
 - `source3_expiry` (String)
 - `source3_module` (String)
 - `source3_notes` (String)
-
-

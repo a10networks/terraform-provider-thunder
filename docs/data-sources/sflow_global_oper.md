@@ -55,5 +55,3 @@ Optional:
 - `if_num` (Number)
 - `if_type` (String)
 - `packet_sample_records` (Number)
-
-

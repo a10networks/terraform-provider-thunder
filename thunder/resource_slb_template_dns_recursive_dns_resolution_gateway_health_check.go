@@ -46,8 +46,8 @@ func resourceSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck() *schema.Re
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns_name",
 			},
 		},
 	}
@@ -126,6 +126,6 @@ func dataToEndpointSlbTemplateDnsRecursiveDnsResolutionGatewayHealthCheck(d *sch
 	ret.Inst.Timeout = d.Get("timeout").(int)
 	ret.Inst.UpRetry = d.Get("up_retry").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dns_name = d.Get("dns_name").(string)
 	return ret
 }

@@ -52,8 +52,8 @@ func resourceSlbTemplateDohForwarder() *schema.Resource {
 			"v6_port": {
 				Type: schema.TypeInt, Optional: true, Default: 53, Description: "Forwarding port number, Default is 53",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"doh_name": {
+				Type: schema.TypeString, Required: true, Description: "Doh_name",
 			},
 		},
 	}
@@ -134,6 +134,6 @@ func dataToEndpointSlbTemplateDohForwarder(d *schema.ResourceData) edpt.SlbTempl
 	ret.Inst.V6Internal = d.Get("v6_internal").(int)
 	ret.Inst.V6L4Proto = d.Get("v6_l4_proto").(string)
 	ret.Inst.V6Port = d.Get("v6_port").(int)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Doh_name = d.Get("doh_name").(string)
 	return ret
 }

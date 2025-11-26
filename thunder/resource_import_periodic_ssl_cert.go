@@ -105,6 +105,7 @@ func resourceImportPeriodicSslCertRead(ctx context.Context, d *schema.ResourceDa
 func dataToEndpointImportPeriodicSslCert(d *schema.ResourceData) edpt.ImportPeriodicSslCert {
 	var ret edpt.ImportPeriodicSslCert
 	ret.Inst.CertificateType = d.Get("certificate_type").(string)
+	//omit encrypted
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.PfxPassword = d.Get("pfx_password").(string)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)

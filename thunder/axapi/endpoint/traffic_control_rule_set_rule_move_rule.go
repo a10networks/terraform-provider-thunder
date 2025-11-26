@@ -1,0 +1,74 @@
+package endpoint
+
+import (
+	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
+	"github.com/clarketm/json"
+)
+
+// based on ACOS 7_0_2-102
+type TrafficControlRuleSetRuleMoveRule struct {
+	Inst struct {
+		Location string `json:"location" dval:"bottom"`
+
+		TargetRule string `json:"target-rule"`
+
+		Rule_name string
+
+		Rule_set_name string
+	} `json:"move-rule"`
+}
+
+func (p *TrafficControlRuleSetRuleMoveRule) GetId() string {
+	return "1"
+}
+
+func (p *TrafficControlRuleSetRuleMoveRule) getPath() string {
+	return "traffic-control/rule-set/" + p.Inst.Rule_set_name + "/rule/" + p.Inst.Rule_name + "/move-rule"
+}
+
+func (p *TrafficControlRuleSetRuleMoveRule) Post(authToken string, host string, logger *axapi.ThunderLog) error {
+	logger.Println("TrafficControlRuleSetRuleMoveRule::Post")
+	headers := axapi.GenRequestHeader(authToken)
+	payloadBytes, err := axapi.SerializeToJson(p)
+	if err != nil {
+		logger.Println("Failed to serialize struct as json", err)
+		return err
+	}
+	logger.Println("payload:", string(payloadBytes))
+	_, _, err = axapi.SendPost(host, p.getPath(), payloadBytes, headers, logger)
+	return err
+}
+
+func (p *TrafficControlRuleSetRuleMoveRule) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) error {
+	logger.Println("TrafficControlRuleSetRuleMoveRule::Get")
+	headers := axapi.GenRequestHeader(authToken)
+	_, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
+	if err == nil {
+		if len(axResp) > 0 {
+			err = json.Unmarshal(axResp, &p)
+		}
+		if err != nil {
+			logger.Println("json.Unmarshal() failed with error", err)
+		}
+	}
+	return err
+}
+func (p *TrafficControlRuleSetRuleMoveRule) Put(authToken string, host string, logger *axapi.ThunderLog) error {
+	logger.Println("TrafficControlRuleSetRuleMoveRule::Put")
+	headers := axapi.GenRequestHeader(authToken)
+	payloadBytes, err := axapi.SerializeToJson(p)
+	if err != nil {
+		logger.Println("Failed to serialize struct as json", err)
+		return err
+	}
+	logger.Println("payload: " + string(payloadBytes))
+	_, _, err = axapi.SendPut(host, p.getPath(), "", payloadBytes, headers, logger)
+	return err
+}
+
+func (p *TrafficControlRuleSetRuleMoveRule) Delete(authToken string, host string, instId string, logger *axapi.ThunderLog) error {
+	logger.Println("TrafficControlRuleSetRuleMoveRule::Delete")
+	headers := axapi.GenRequestHeader(authToken)
+	_, _, err := axapi.SendDelete(host, p.getPath(), "", nil, headers, logger)
+	return err
+}

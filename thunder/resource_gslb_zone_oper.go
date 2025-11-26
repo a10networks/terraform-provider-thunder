@@ -129,6 +129,9 @@ func resourceGslbZoneOper() *schema.Resource {
 								},
 							},
 						},
+						"smrule": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 					},
 				},
 			},
@@ -392,6 +395,7 @@ func setObjectGslbZoneOperOper(ret edpt.DataGslbZoneOper) []interface{} {
 		map[string]interface{}{
 			"state":               ret.DtGslbZoneOper.Oper.State,
 			"dns_soa_record_list": setSliceGslbZoneOperOperDnsSoaRecordList(ret.DtGslbZoneOper.Oper.DnsSoaRecordList),
+			"smrule":              ret.DtGslbZoneOper.Oper.Smrule,
 		},
 	}
 }
@@ -623,6 +627,7 @@ func getObjectGslbZoneOperOper(d []interface{}) edpt.GslbZoneOperOper {
 		in := d[0].(map[string]interface{})
 		ret.State = in["state"].(string)
 		ret.DnsSoaRecordList = getSliceGslbZoneOperOperDnsSoaRecordList(in["dns_soa_record_list"].([]interface{}))
+		ret.Smrule = in["smrule"].(int)
 	}
 	return ret
 }

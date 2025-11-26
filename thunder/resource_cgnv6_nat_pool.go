@@ -56,6 +56,9 @@ func resourceCgnv6NatPool() *schema.Resource {
 			"port_batch_v2_size": {
 				Type: schema.TypeString, Optional: true, Description: "'64': Allocate 64 ports at a time; '128': Allocate 128 ports at a time; '256': Allocate 256 ports at a time; '512': Allocate 512 ports at a time; '1024': Allocate 1024 ports at a time; '2048': Allocate 2048 ports at a time; '4096': Allocate 4096 ports at a time;",
 			},
+			"service_config_template": {
+				Type: schema.TypeString, Optional: true, Description: "Service-template name to bind",
+			},
 			"shared": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Share this pool with other partitions (default: not shared)",
 			},
@@ -174,6 +177,7 @@ func dataToEndpointCgnv6NatPool(d *schema.ResourceData) edpt.Cgnv6NatPool {
 	ret.Inst.PerBatchPortUsageWarningThreshold = d.Get("per_batch_port_usage_warning_threshold").(int)
 	ret.Inst.PoolName = d.Get("pool_name").(string)
 	ret.Inst.PortBatchV2Size = d.Get("port_batch_v2_size").(string)
+	ret.Inst.ServiceConfigTemplate = d.Get("service_config_template").(string)
 	ret.Inst.Shared = d.Get("shared").(int)
 	ret.Inst.SimultaneousBatchAllocation = d.Get("simultaneous_batch_allocation").(int)
 	ret.Inst.StartAddress = d.Get("start_address").(string)

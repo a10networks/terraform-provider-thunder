@@ -80,5 +80,3 @@ Optional:
 - `ports_freed_total` (Number)
 - `state` (String)
 - `vrid` (Number)
-
-

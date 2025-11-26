@@ -41,5 +41,3 @@ output "get_system_geoloc_name_helper_stats" {
 
 <a id="nestedblock--stats"></a>
 ### Nested Schema for `stats`
-
-

@@ -54,5 +54,3 @@ Optional:
 - `mem_mon` (String)
 - `sw_error_mon` (String)
 - `sw_recovery_timeout` (String)
-
-

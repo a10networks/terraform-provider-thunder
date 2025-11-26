@@ -51,5 +51,3 @@ Optional:
 - `most_recent_compilation_status` (String)
 - `previous_successful_compilation_attempt` (String)
 - `previous_successful_compilation_duration` (String)
-
-

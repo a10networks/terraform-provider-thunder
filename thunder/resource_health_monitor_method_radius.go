@@ -22,6 +22,9 @@ func resourceHealthMonitorMethodRadius() *schema.Resource {
 			"radius_expect": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify what you expect from the response message",
 			},
+			"radius_message_authenticator": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "message-authenticator type",
+			},
 			"radius_password_string": {
 				Type: schema.TypeString, Optional: true, Description: "Configure password, '' means empty password",
 			},
@@ -40,8 +43,8 @@ func resourceHealthMonitorMethodRadius() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -113,6 +116,7 @@ func dataToEndpointHealthMonitorMethodRadius(d *schema.ResourceData) edpt.Health
 	ret.Inst.Radius = d.Get("radius").(int)
 	//omit radius_encrypted
 	ret.Inst.RadiusExpect = d.Get("radius_expect").(int)
+	ret.Inst.RadiusMessageAuthenticator = d.Get("radius_message_authenticator").(int)
 	ret.Inst.RadiusPasswordString = d.Get("radius_password_string").(string)
 	ret.Inst.RadiusPort = d.Get("radius_port").(int)
 	ret.Inst.RadiusResponseCode = d.Get("radius_response_code").(string)
@@ -120,6 +124,6 @@ func dataToEndpointHealthMonitorMethodRadius(d *schema.ResourceData) edpt.Health
 	//omit radius_secret_encrypted
 	ret.Inst.RadiusUsername = d.Get("radius_username").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

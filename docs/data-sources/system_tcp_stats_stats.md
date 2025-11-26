@@ -133,5 +133,3 @@ Optional:
 - `sndurg` (Number) URG packet sent
 - `sndwinup` (Number) Window update packet sent
 - `timeoutdrop` (Number) Conn dropped in rxmt timeout
-
-

@@ -51,18 +51,24 @@ Optional:
 - `dest_rlist_pass_through` (Number) Fixed NAT Dest Rule List Pass-Through
 - `dest_rlist_snat_drop` (Number) Fixed NAT Dest Rules List Source NAT Drop
 - `dslite_data_session_created` (Number) DS-Lite Data Sessions Created
+- `dslite_data_session_created_sby` (Number) DS-Lite Data Sessions Created on StandBy Device
 - `dslite_data_session_freed` (Number) DS-Lite Data Sessions Freed
+- `dslite_data_session_freed_sby` (Number) DS-Lite Data Sessions Freed on StandBy Device
 - `dslite_eif_limit_exceeded` (Number) DS-Lite Endpoint-Independent-Filtering Limit Exceeded
 - `dslite_eif_match` (Number) DS-Lite Endpoint-Independent-Filtering Matched
 - `dslite_eim_match` (Number) DS-Lite Endpoint-Independent-Mapping Matched
 - `dslite_hairpin` (Number) DS-Lite Hairpin Session Created
 - `dslite_inbound_filtered` (Number) DS-Lite Endpoint-Dependent Filtering Drop
 - `dslite_tcp_fullcone_created` (Number) DS-Lite TCP Full-Cone Created
+- `dslite_tcp_fullcone_created_sby` (Number) DS-Lite TCP Full-Cone Created on StandBy Device
 - `dslite_tcp_fullcone_freed` (Number) DS-Lite TCP Full-Cone Freed
+- `dslite_tcp_fullcone_freed_sby` (Number) DS-Lite TCP Full-Cone Freed on StandBy Device
 - `dslite_udp_alg_fullcone_created` (Number) DS-Lite UDP ALG Full-Cone Created
 - `dslite_udp_alg_fullcone_freed` (Number) DS-Lite UDP ALG Full-Cone Freed
 - `dslite_udp_fullcone_created` (Number) DS-Lite UDP Full-Cone Created
+- `dslite_udp_fullcone_created_sby` (Number) DS-Lite UDP Full-Cone Created on StandBy Device
 - `dslite_udp_fullcone_freed` (Number) DS-Lite UDP Full-Cone Freed
+- `dslite_udp_fullcone_freed_sby` (Number) DS-Lite UDP Full-Cone Freed on StandBy Device
 - `fixed_nat_fullcone_self_hairpinning_drop` (Number) Self-Hairpinning Drop
 - `fnat44_fwd_egress_bytes_icmp` (Number) Fixed NAT44 Forward Egress Bytes ICMP
 - `fnat44_fwd_egress_bytes_others` (Number) Fixed NAT44 Forward Egress Bytes OTHERS
@@ -211,31 +217,43 @@ Optional:
 - `fullcone_failure` (Number) Full-Cone Session Creation Failed
 - `ha_session_user_quota_exceeded` (Number) HA Sessions User Quota Exceeded
 - `nat44_data_session_created` (Number) NAT44 Data Sessions Created
+- `nat44_data_session_created_sby` (Number) NAT44 Data Sessions Created on StandBy Device
 - `nat44_data_session_freed` (Number) NAT44 Data Sessions Freed
+- `nat44_data_session_freed_sby` (Number) NAT44 Data Sessions Freed on StandBy Device
 - `nat44_eif_limit_exceeded` (Number) NAT44 Endpoint-Independent-Filtering Limit Exceeded
 - `nat44_eif_match` (Number) NAT44 Endpoint-Independent-Filtering Matched
 - `nat44_eim_match` (Number) NAT44 Endpoint-Independent-Mapping Matched
 - `nat44_hairpin` (Number) NAT44 Hairpin Session Created
 - `nat44_inbound_filtered` (Number) NAT44 Endpoint-Dependent Filtering Drop
 - `nat44_tcp_fullcone_created` (Number) NAT44 TCP Full-Cone Created
+- `nat44_tcp_fullcone_created_sby` (Number) NAT44 TCP Full-Cone Created on StandBy Device
 - `nat44_tcp_fullcone_freed` (Number) NAT44 TCP Full-Cone Freed
+- `nat44_tcp_fullcone_freed_sby` (Number) NAT44 TCP Full-Cone Freed on StandBy Device
 - `nat44_udp_alg_fullcone_created` (Number) NAT44 UDP ALG Full-Cone Created
 - `nat44_udp_alg_fullcone_freed` (Number) NAT44 UDP ALG Full-Cone Freed
 - `nat44_udp_fullcone_created` (Number) NAT44 UDP Full-Cone Created
+- `nat44_udp_fullcone_created_sby` (Number) NAT44 UDP Full-Cone Created on StandBy Device
 - `nat44_udp_fullcone_freed` (Number) NAT44 UDP Full-Cone Freed
+- `nat44_udp_fullcone_freed_sby` (Number) NAT44 UDP Full-Cone Freed on StandBy Device
 - `nat64_data_session_created` (Number) NAT64 Data Sessions Created
+- `nat64_data_session_created_sby` (Number) NAT64 Data Sessions Created on StandBy Device
 - `nat64_data_session_freed` (Number) NAT64 Data Sessions Freed
+- `nat64_data_session_freed_sby` (Number) NAT64 Data Sessions Freed on StandBy Device
 - `nat64_eif_limit_exceeded` (Number) NAT64 Endpoint-Independent-Filtering Limit Exceeded
 - `nat64_eif_match` (Number) NAT64 Endpoint-Independent-Filtering Matched
 - `nat64_eim_match` (Number) NAT64 Endpoint-Independent-Mapping Matched
 - `nat64_hairpin` (Number) NAT64 Hairpin Session Created
 - `nat64_inbound_filtered` (Number) NAT64 Endpoint-Dependent Filtering Drop
 - `nat64_tcp_fullcone_created` (Number) NAT64 TCP Full-Cone Created
+- `nat64_tcp_fullcone_created_sby` (Number) NAT64 TCP Full-Cone Created on StandBy Device
 - `nat64_tcp_fullcone_freed` (Number) NAT64 TCP Full-Cone Freed
+- `nat64_tcp_fullcone_freed_sby` (Number) NAT64 TCP Full-Cone Freed on StandBy Device
 - `nat64_udp_alg_fullcone_created` (Number) NAT64 UDP ALG Full-Cone Created
 - `nat64_udp_alg_fullcone_freed` (Number) NAT64 UDP ALG Full-Cone Freed
 - `nat64_udp_fullcone_created` (Number) NAT64 UDP Full-Cone Created
+- `nat64_udp_fullcone_created_sby` (Number) NAT64 UDP Full-Cone Created on StandBy Device
 - `nat64_udp_fullcone_freed` (Number) NAT64 UDP Full-Cone Freed
+- `nat64_udp_fullcone_freed_sby` (Number) NAT64 UDP Full-Cone Freed on StandBy Device
 - `nat_port_unavailable_icmp` (Number) ICMP NAT Port Unavailable
 - `nat_port_unavailable_tcp` (Number) TCP NAT Port Unavailable
 - `nat_port_unavailable_udp` (Number) UDP NAT Port Unavailable
@@ -259,5 +277,3 @@ Optional:
 - `total_udp_freed` (Number) Total UDP Ports Freed
 - `total_udp_overload_acquired` (Number) Total UDP ports acquired for port overloading
 - `total_udp_overload_released` (Number) Total UDP ports released from port overloading
-
-

@@ -65,6 +65,18 @@ func resourceAcosEventsStatisticsStats() *schema.Resource {
 						"param_msg_encode_fail": {
 							Type: schema.TypeInt, Optional: true, Description: "Parameterized log AVRO encoding failed",
 						},
+						"logd_stats_system_logs": {
+							Type: schema.TypeInt, Optional: true, Description: "Logd system logs sent to hc",
+						},
+						"logd_stats_system_logs_dropped": {
+							Type: schema.TypeInt, Optional: true, Description: "Logd system logs dropped",
+						},
+						"logd_stats_audit_logs": {
+							Type: schema.TypeInt, Optional: true, Description: "Logd audit logs sent to hc",
+						},
+						"logd_stats_audit_logs_dropped": {
+							Type: schema.TypeInt, Optional: true, Description: "Logd audit logs dropped",
+						},
 					},
 				},
 			},
@@ -110,6 +122,10 @@ func setObjectAcosEventsStatisticsStatsStats(ret edpt.DataAcosEventsStatisticsSt
 			"param_msg_sent_to_hc":            ret.DtAcosEventsStatisticsStats.Stats.Param_msg_sent_to_hc,
 			"param_msg_sent_fail":             ret.DtAcosEventsStatisticsStats.Stats.Param_msg_sent_fail,
 			"param_msg_encode_fail":           ret.DtAcosEventsStatisticsStats.Stats.Param_msg_encode_fail,
+			"logd_stats_system_logs":          ret.DtAcosEventsStatisticsStats.Stats.Logd_stats_system_logs,
+			"logd_stats_system_logs_dropped":  ret.DtAcosEventsStatisticsStats.Stats.Logd_stats_system_logs_dropped,
+			"logd_stats_audit_logs":           ret.DtAcosEventsStatisticsStats.Stats.Logd_stats_audit_logs,
+			"logd_stats_audit_logs_dropped":   ret.DtAcosEventsStatisticsStats.Stats.Logd_stats_audit_logs_dropped,
 		},
 	}
 }
@@ -136,6 +152,10 @@ func getObjectAcosEventsStatisticsStatsStats(d []interface{}) edpt.AcosEventsSta
 		ret.Param_msg_sent_to_hc = in["param_msg_sent_to_hc"].(int)
 		ret.Param_msg_sent_fail = in["param_msg_sent_fail"].(int)
 		ret.Param_msg_encode_fail = in["param_msg_encode_fail"].(int)
+		ret.Logd_stats_system_logs = in["logd_stats_system_logs"].(int)
+		ret.Logd_stats_system_logs_dropped = in["logd_stats_system_logs_dropped"].(int)
+		ret.Logd_stats_audit_logs = in["logd_stats_audit_logs"].(int)
+		ret.Logd_stats_audit_logs_dropped = in["logd_stats_audit_logs_dropped"].(int)
 	}
 	return ret
 }

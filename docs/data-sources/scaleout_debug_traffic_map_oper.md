@@ -64,5 +64,3 @@ Optional:
 - `active_device` (Number)
 - `standby_device` (Number)
 - `user_group` (Number)
-
-

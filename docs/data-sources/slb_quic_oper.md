@@ -180,5 +180,3 @@ Optional:
 Optional:
 
 - `rev_retired_scid` (String)
-
-

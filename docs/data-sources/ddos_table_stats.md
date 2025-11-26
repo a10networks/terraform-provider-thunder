@@ -92,5 +92,3 @@ Optional:
 - `telem_err_telem_entry_pre_exist` (Number) From-l3-peer: Zone Entry Pre-exist
 - `telem_route_add_rcvd` (Number) From-l3-peer: Route-add Received
 - `telem_route_del_rcvd` (Number) From-l3-peer: Route-del Received
-
-

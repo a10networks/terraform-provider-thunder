@@ -51,5 +51,3 @@ output "get_ip_nat_pool_group_stats" {
 Optional:
 
 - `failed` (Number)
-
-

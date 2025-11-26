@@ -74,8 +74,8 @@ func resourceHealthMonitorMethodKerberosKdc() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -175,6 +175,6 @@ func dataToEndpointHealthMonitorMethodKerberosKdc(d *schema.ResourceData) edpt.H
 	var ret edpt.HealthMonitorMethodKerberosKdc
 	ret.Inst.KerberosCfg = getObjectHealthMonitorMethodKerberosKdcKerberosCfg(d.Get("kerberos_cfg").([]interface{}))
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

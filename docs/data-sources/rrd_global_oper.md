@@ -69,5 +69,3 @@ Optional:
 - `tcp_half_open` (Number)
 - `time` (Number)
 - `udp_conn_count` (Number)
-
-

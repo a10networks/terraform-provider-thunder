@@ -54,5 +54,3 @@ Optional:
 
 - `file` (String)
 - `size` (Number)
-
-

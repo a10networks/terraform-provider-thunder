@@ -833,8 +833,8 @@ func resourceDdosDstZoneStats() *schema.Resource {
 						"prog_response_len_exceed": {
 							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response Length Exceed",
 						},
-						"prog_resp_req_ratio_exceed": {
-							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response to Request Ratio Exceed",
+						"prog_resp_pkt_rate_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response Packet Rate Exceed",
 						},
 						"prog_resp_req_time_exceed": {
 							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response to Request Time Exceed",
@@ -923,6 +923,18 @@ func resourceDdosDstZoneStats() *schema.Resource {
 						"dst_exceed_action_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Entry Exceed Action: Dropped",
 						},
+						"dst_src_learn_overflow": {
+							Type: schema.TypeInt, Optional: true, Description: "Src Dynamic Entry Count Overflow",
+						},
+						"dst_tcp_auth_rst": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth: Reset",
+						},
+						"prog_query_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Client Query Time Exceed",
+						},
+						"prog_think_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Server Think Time Exceed",
+						},
 						"prog_conn_samples": {
 							Type: schema.TypeInt, Optional: true, Description: "Sample Collected: Connection",
 						},
@@ -947,11 +959,65 @@ func resourceDdosDstZoneStats() *schema.Resource {
 						"prog_win_samples_processed": {
 							Type: schema.TypeInt, Optional: true, Description: "Sample Processed: Time Window",
 						},
-						"dst_src_learn_overflow": {
-							Type: schema.TypeInt, Optional: true, Description: "Src Dynamic Entry Count Overflow",
+						"token_auth_mismatched_packets": {
+							Type: schema.TypeInt, Optional: true, Description: "Token Authentication Mismatched Packets",
 						},
-						"dst_tcp_auth_rst": {
-							Type: schema.TypeInt, Optional: true, Description: "TCP Auth: Reset",
+						"token_auth_invalid_packets": {
+							Type: schema.TypeInt, Optional: true, Description: "Token Authentication Invalid Packets",
+						},
+						"token_auth_current_salt_matched": {
+							Type: schema.TypeInt, Optional: true, Description: "Token Authentication Current Salt Matched",
+						},
+						"token_auth_previous_salt_matched": {
+							Type: schema.TypeInt, Optional: true, Description: "Token Authentication Previous Salt Matched",
+						},
+						"token_auth_session_created": {
+							Type: schema.TypeInt, Optional: true, Description: "Token Authentication Session Created",
+						},
+						"token_auth_session_created_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "Token Authentication Session Created Fail",
+						},
+						"tcp_invalid_synack": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Invalid SYNACK Received",
+						},
+						"zone_tcp_small_window_excd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Small-Window Exceeded",
+						},
+						"src_tcp_small_window_excd": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Small-Window Exceeded",
+						},
+						"small_window_rcv": {
+							Type: schema.TypeInt, Optional: true, Description: "Small Window Received",
+						},
+						"multi_pu_src_hash_pu1": {
+							Type: schema.TypeInt, Optional: true, Description: "internal src hash counter for pu1",
+						},
+						"multi_pu_src_hash_pu2": {
+							Type: schema.TypeInt, Optional: true, Description: "internal src hash counter for pu2",
+						},
+						"port_zero_fwd_pkt_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "Port Zero Inbound Packet Received",
+						},
+						"port_zero_fwd_byte_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "Port Zero Inbound Byte Received",
+						},
+						"port_zero_rev_pkt_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "Port Zero Outbound Packet Received",
+						},
+						"port_zero_rev_byte_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "Port Zero Outbound Byte Received",
+						},
+						"service_miss_fwd_pkt_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "Service Match Miss: Inbound Packet Received",
+						},
+						"service_miss_fwd_byte_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "Service Match Miss: Inbound Byte Received",
+						},
+						"service_miss_rev_pkt_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "Service Match Miss: Outbound Packet Received",
+						},
+						"service_miss_rev_byte_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "Service Match Miss: Outbound Byte Received",
 						},
 					},
 				},
@@ -1257,7 +1323,7 @@ func setObjectDdosDstZoneStatsStats(ret edpt.DataDdosDstZoneStats) []interface{}
 			"prog_req_resp_time_exceed":                 ret.DtDdosDstZoneStats.Stats.Prog_req_resp_time_exceed,
 			"prog_request_len_exceed":                   ret.DtDdosDstZoneStats.Stats.Prog_request_len_exceed,
 			"prog_response_len_exceed":                  ret.DtDdosDstZoneStats.Stats.Prog_response_len_exceed,
-			"prog_resp_req_ratio_exceed":                ret.DtDdosDstZoneStats.Stats.Prog_resp_req_ratio_exceed,
+			"prog_resp_pkt_rate_exceed":                 ret.DtDdosDstZoneStats.Stats.Prog_resp_pkt_rate_exceed,
 			"prog_resp_req_time_exceed":                 ret.DtDdosDstZoneStats.Stats.Prog_resp_req_time_exceed,
 			"entry_sync_message_received":               ret.DtDdosDstZoneStats.Stats.Entry_sync_message_received,
 			"entry_sync_message_sent":                   ret.DtDdosDstZoneStats.Stats.Entry_sync_message_sent,
@@ -1287,6 +1353,10 @@ func setObjectDdosDstZoneStatsStats(ret edpt.DataDdosDstZoneStats) []interface{}
 			"east_west_outbound_drop_byte":              ret.DtDdosDstZoneStats.Stats.East_west_outbound_drop_byte,
 			"east_west_outbound_fwd_byte":               ret.DtDdosDstZoneStats.Stats.East_west_outbound_fwd_byte,
 			"dst_exceed_action_drop":                    ret.DtDdosDstZoneStats.Stats.Dst_exceed_action_drop,
+			"dst_src_learn_overflow":                    ret.DtDdosDstZoneStats.Stats.Dst_src_learn_overflow,
+			"dst_tcp_auth_rst":                          ret.DtDdosDstZoneStats.Stats.Dst_tcp_auth_rst,
+			"prog_query_exceed":                         ret.DtDdosDstZoneStats.Stats.Prog_query_exceed,
+			"prog_think_exceed":                         ret.DtDdosDstZoneStats.Stats.Prog_think_exceed,
 			"prog_conn_samples":                         ret.DtDdosDstZoneStats.Stats.Prog_conn_samples,
 			"prog_req_samples":                          ret.DtDdosDstZoneStats.Stats.Prog_req_samples,
 			"prog_win_samples":                          ret.DtDdosDstZoneStats.Stats.Prog_win_samples,
@@ -1295,8 +1365,26 @@ func setObjectDdosDstZoneStatsStats(ret edpt.DataDdosDstZoneStats) []interface{}
 			"prog_conn_samples_processed":               ret.DtDdosDstZoneStats.Stats.Prog_conn_samples_processed,
 			"prog_req_samples_processed":                ret.DtDdosDstZoneStats.Stats.Prog_req_samples_processed,
 			"prog_win_samples_processed":                ret.DtDdosDstZoneStats.Stats.Prog_win_samples_processed,
-			"dst_src_learn_overflow":                    ret.DtDdosDstZoneStats.Stats.Dst_src_learn_overflow,
-			"dst_tcp_auth_rst":                          ret.DtDdosDstZoneStats.Stats.Dst_tcp_auth_rst,
+			"token_auth_mismatched_packets":             ret.DtDdosDstZoneStats.Stats.Token_auth_mismatched_packets,
+			"token_auth_invalid_packets":                ret.DtDdosDstZoneStats.Stats.Token_auth_invalid_packets,
+			"token_auth_current_salt_matched":           ret.DtDdosDstZoneStats.Stats.Token_auth_current_salt_matched,
+			"token_auth_previous_salt_matched":          ret.DtDdosDstZoneStats.Stats.Token_auth_previous_salt_matched,
+			"token_auth_session_created":                ret.DtDdosDstZoneStats.Stats.Token_auth_session_created,
+			"token_auth_session_created_fail":           ret.DtDdosDstZoneStats.Stats.Token_auth_session_created_fail,
+			"tcp_invalid_synack":                        ret.DtDdosDstZoneStats.Stats.Tcp_invalid_synack,
+			"zone_tcp_small_window_excd":                ret.DtDdosDstZoneStats.Stats.Zone_tcp_small_window_excd,
+			"src_tcp_small_window_excd":                 ret.DtDdosDstZoneStats.Stats.Src_tcp_small_window_excd,
+			"small_window_rcv":                          ret.DtDdosDstZoneStats.Stats.Small_window_rcv,
+			"multi_pu_src_hash_pu1":                     ret.DtDdosDstZoneStats.Stats.Multi_pu_src_hash_pu1,
+			"multi_pu_src_hash_pu2":                     ret.DtDdosDstZoneStats.Stats.Multi_pu_src_hash_pu2,
+			"port_zero_fwd_pkt_rcvd":                    ret.DtDdosDstZoneStats.Stats.Port_zero_fwd_pkt_rcvd,
+			"port_zero_fwd_byte_rcvd":                   ret.DtDdosDstZoneStats.Stats.Port_zero_fwd_byte_rcvd,
+			"port_zero_rev_pkt_rcvd":                    ret.DtDdosDstZoneStats.Stats.Port_zero_rev_pkt_rcvd,
+			"port_zero_rev_byte_rcvd":                   ret.DtDdosDstZoneStats.Stats.Port_zero_rev_byte_rcvd,
+			"service_miss_fwd_pkt_rcvd":                 ret.DtDdosDstZoneStats.Stats.Service_miss_fwd_pkt_rcvd,
+			"service_miss_fwd_byte_rcvd":                ret.DtDdosDstZoneStats.Stats.Service_miss_fwd_byte_rcvd,
+			"service_miss_rev_pkt_rcvd":                 ret.DtDdosDstZoneStats.Stats.Service_miss_rev_pkt_rcvd,
+			"service_miss_rev_byte_rcvd":                ret.DtDdosDstZoneStats.Stats.Service_miss_rev_byte_rcvd,
 		},
 	}
 }
@@ -1579,7 +1667,7 @@ func getObjectDdosDstZoneStatsStats(d []interface{}) edpt.DdosDstZoneStatsStats 
 		ret.Prog_req_resp_time_exceed = in["prog_req_resp_time_exceed"].(int)
 		ret.Prog_request_len_exceed = in["prog_request_len_exceed"].(int)
 		ret.Prog_response_len_exceed = in["prog_response_len_exceed"].(int)
-		ret.Prog_resp_req_ratio_exceed = in["prog_resp_req_ratio_exceed"].(int)
+		ret.Prog_resp_pkt_rate_exceed = in["prog_resp_pkt_rate_exceed"].(int)
 		ret.Prog_resp_req_time_exceed = in["prog_resp_req_time_exceed"].(int)
 		ret.Entry_sync_message_received = in["entry_sync_message_received"].(int)
 		ret.Entry_sync_message_sent = in["entry_sync_message_sent"].(int)
@@ -1609,6 +1697,10 @@ func getObjectDdosDstZoneStatsStats(d []interface{}) edpt.DdosDstZoneStatsStats 
 		ret.East_west_outbound_drop_byte = in["east_west_outbound_drop_byte"].(int)
 		ret.East_west_outbound_fwd_byte = in["east_west_outbound_fwd_byte"].(int)
 		ret.Dst_exceed_action_drop = in["dst_exceed_action_drop"].(int)
+		ret.Dst_src_learn_overflow = in["dst_src_learn_overflow"].(int)
+		ret.Dst_tcp_auth_rst = in["dst_tcp_auth_rst"].(int)
+		ret.Prog_query_exceed = in["prog_query_exceed"].(int)
+		ret.Prog_think_exceed = in["prog_think_exceed"].(int)
 		ret.Prog_conn_samples = in["prog_conn_samples"].(int)
 		ret.Prog_req_samples = in["prog_req_samples"].(int)
 		ret.Prog_win_samples = in["prog_win_samples"].(int)
@@ -1617,8 +1709,26 @@ func getObjectDdosDstZoneStatsStats(d []interface{}) edpt.DdosDstZoneStatsStats 
 		ret.Prog_conn_samples_processed = in["prog_conn_samples_processed"].(int)
 		ret.Prog_req_samples_processed = in["prog_req_samples_processed"].(int)
 		ret.Prog_win_samples_processed = in["prog_win_samples_processed"].(int)
-		ret.Dst_src_learn_overflow = in["dst_src_learn_overflow"].(int)
-		ret.Dst_tcp_auth_rst = in["dst_tcp_auth_rst"].(int)
+		ret.Token_auth_mismatched_packets = in["token_auth_mismatched_packets"].(int)
+		ret.Token_auth_invalid_packets = in["token_auth_invalid_packets"].(int)
+		ret.Token_auth_current_salt_matched = in["token_auth_current_salt_matched"].(int)
+		ret.Token_auth_previous_salt_matched = in["token_auth_previous_salt_matched"].(int)
+		ret.Token_auth_session_created = in["token_auth_session_created"].(int)
+		ret.Token_auth_session_created_fail = in["token_auth_session_created_fail"].(int)
+		ret.Tcp_invalid_synack = in["tcp_invalid_synack"].(int)
+		ret.Zone_tcp_small_window_excd = in["zone_tcp_small_window_excd"].(int)
+		ret.Src_tcp_small_window_excd = in["src_tcp_small_window_excd"].(int)
+		ret.Small_window_rcv = in["small_window_rcv"].(int)
+		ret.Multi_pu_src_hash_pu1 = in["multi_pu_src_hash_pu1"].(int)
+		ret.Multi_pu_src_hash_pu2 = in["multi_pu_src_hash_pu2"].(int)
+		ret.Port_zero_fwd_pkt_rcvd = in["port_zero_fwd_pkt_rcvd"].(int)
+		ret.Port_zero_fwd_byte_rcvd = in["port_zero_fwd_byte_rcvd"].(int)
+		ret.Port_zero_rev_pkt_rcvd = in["port_zero_rev_pkt_rcvd"].(int)
+		ret.Port_zero_rev_byte_rcvd = in["port_zero_rev_byte_rcvd"].(int)
+		ret.Service_miss_fwd_pkt_rcvd = in["service_miss_fwd_pkt_rcvd"].(int)
+		ret.Service_miss_fwd_byte_rcvd = in["service_miss_fwd_byte_rcvd"].(int)
+		ret.Service_miss_rev_pkt_rcvd = in["service_miss_rev_pkt_rcvd"].(int)
+		ret.Service_miss_rev_byte_rcvd = in["service_miss_rev_byte_rcvd"].(int)
 	}
 	return ret
 }

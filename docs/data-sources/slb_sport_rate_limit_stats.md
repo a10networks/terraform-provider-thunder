@@ -51,5 +51,3 @@ Optional:
 - `total_drop` (Number) Total rate exceed drop
 - `total_log` (Number) Total log sent
 - `total_reset` (Number) Total rate exceed reset
-
-

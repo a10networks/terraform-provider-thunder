@@ -25,6 +25,12 @@ func resourceDebugHc() *schema.Resource {
 			"error": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Debug logs for harmony controller (error)",
 			},
+			"logd_audit_export": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Debug logs for harmony controller (logd-audit-export)",
+			},
+			"logd_syslog_export": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Debug logs for harmony controller (logd-syslog-export)",
+			},
 			"metrics": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Debug logs for harmony controller (metrics)",
 			},
@@ -116,6 +122,8 @@ func dataToEndpointDebugHc(d *schema.ResourceData) edpt.DebugHc {
 	ret.Inst.Anomaly = d.Get("anomaly").(int)
 	ret.Inst.AppSvcId = d.Get("app_svc_id").(string)
 	ret.Inst.Error = d.Get("error").(int)
+	ret.Inst.LogdAuditExport = d.Get("logd_audit_export").(int)
+	ret.Inst.LogdSyslogExport = d.Get("logd_syslog_export").(int)
 	ret.Inst.Metrics = d.Get("metrics").(int)
 	ret.Inst.ObjectUuid = d.Get("object_uuid").(string)
 	ret.Inst.PerConnection = d.Get("per_connection").(int)

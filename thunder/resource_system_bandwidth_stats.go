@@ -23,6 +23,21 @@ func resourceSystemBandwidthStats() *schema.Resource {
 						"output_bytes_per_sec": {
 							Type: schema.TypeInt, Optional: true, Description: "Out Bytes per second",
 						},
+						"ppsl_drop_egr": {
+							Type: schema.TypeInt, Optional: true, Description: "Packet-Per-Sec Limit Drop at egress",
+						},
+						"ppsl_drop_ing": {
+							Type: schema.TypeInt, Optional: true, Description: "Packet-Per-Sec Limit Drop at ingress",
+						},
+						"ppsl_ignore_limit": {
+							Type: schema.TypeInt, Optional: true, Description: "Packet-Per-Sec Limit ignored packets count",
+						},
+						"licexpire_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "License Expire Drop",
+						},
+						"bwl_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "BW Limit Drop",
+						},
 					},
 				},
 			},
@@ -54,6 +69,11 @@ func setObjectSystemBandwidthStatsStats(ret edpt.DataSystemBandwidthStats) []int
 		map[string]interface{}{
 			"input_bytes_per_sec":  ret.DtSystemBandwidthStats.Stats.InputBytesPerSec,
 			"output_bytes_per_sec": ret.DtSystemBandwidthStats.Stats.OutputBytesPerSec,
+			"ppsl_drop_egr":        ret.DtSystemBandwidthStats.Stats.Ppsl_drop_egr,
+			"ppsl_drop_ing":        ret.DtSystemBandwidthStats.Stats.Ppsl_drop_ing,
+			"ppsl_ignore_limit":    ret.DtSystemBandwidthStats.Stats.Ppsl_ignore_limit,
+			"licexpire_drop":       ret.DtSystemBandwidthStats.Stats.Licexpire_drop,
+			"bwl_drop":             ret.DtSystemBandwidthStats.Stats.Bwl_drop,
 		},
 	}
 }
@@ -66,6 +86,11 @@ func getObjectSystemBandwidthStatsStats(d []interface{}) edpt.SystemBandwidthSta
 		in := d[0].(map[string]interface{})
 		ret.InputBytesPerSec = in["input_bytes_per_sec"].(int)
 		ret.OutputBytesPerSec = in["output_bytes_per_sec"].(int)
+		ret.Ppsl_drop_egr = in["ppsl_drop_egr"].(int)
+		ret.Ppsl_drop_ing = in["ppsl_drop_ing"].(int)
+		ret.Ppsl_ignore_limit = in["ppsl_ignore_limit"].(int)
+		ret.Licexpire_drop = in["licexpire_drop"].(int)
+		ret.Bwl_drop = in["bwl_drop"].(int)
 	}
 	return ret
 }

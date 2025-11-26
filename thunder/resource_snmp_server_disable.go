@@ -115,10 +115,10 @@ func resourceSnmpServerDisableRead(ctx context.Context, d *schema.ResourceData, 
 	return diags
 }
 
-func getObjectSnmpServerDisableTraps1477(d []interface{}) edpt.SnmpServerDisableTraps1477 {
+func getObjectSnmpServerDisableTraps1579(d []interface{}) edpt.SnmpServerDisableTraps1579 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerDisableTraps1477
+	var ret edpt.SnmpServerDisableTraps1579
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.All = in["all"].(int)
@@ -135,7 +135,7 @@ func getObjectSnmpServerDisableTraps1477(d []interface{}) edpt.SnmpServerDisable
 func dataToEndpointSnmpServerDisable(d *schema.ResourceData) edpt.SnmpServerDisable {
 	var ret edpt.SnmpServerDisable
 	ret.Inst.A10cmsubagent = d.Get("a10cmsubagent").(int)
-	ret.Inst.Traps = getObjectSnmpServerDisableTraps1477(d.Get("traps").([]interface{}))
+	ret.Inst.Traps = getObjectSnmpServerDisableTraps1579(d.Get("traps").([]interface{}))
 	//omit uuid
 	return ret
 }

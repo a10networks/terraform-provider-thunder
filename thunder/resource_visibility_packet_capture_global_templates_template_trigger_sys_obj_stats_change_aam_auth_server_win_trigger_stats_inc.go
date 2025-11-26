@@ -55,47 +55,11 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			"kerberos_validate_kdc_failure": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total Kerberos KDC Validation Failure",
 			},
-			"ntlm_authentication_failure": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Authentication Failure",
-			},
-			"ntlm_job_start_error": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Job Start Error",
-			},
-			"ntlm_other_error": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Other Error",
-			},
-			"ntlm_polling_control_error": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Polling Control Error",
-			},
-			"ntlm_prepare_req_failed": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Prepare Request Failed",
-			},
-			"ntlm_proto_negotiation_failure": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Protocol Negotiation Failure",
-			},
-			"ntlm_request_dropped": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Dropped Request",
-			},
-			"ntlm_response_error": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Error Response",
-			},
-			"ntlm_response_failure": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Failure Response",
-			},
-			"ntlm_response_timeout": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Timeout Response",
-			},
-			"ntlm_session_setup_failed": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Session Setup Failure",
-			},
-			"ntlm_timeout_error": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Total NTLM Timeout",
-			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"template_name": {
+				Type: schema.TypeString, Required: true, Description: "Template_name",
 			},
 		},
 	}
@@ -177,19 +141,7 @@ func dataToEndpointVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjSt
 	ret.Inst.KerberosResponseTimeout = d.Get("kerberos_response_timeout").(int)
 	ret.Inst.KerberosTimeoutError = d.Get("kerberos_timeout_error").(int)
 	ret.Inst.KerberosValidateKdcFailure = d.Get("kerberos_validate_kdc_failure").(int)
-	ret.Inst.NtlmAuthenticationFailure = d.Get("ntlm_authentication_failure").(int)
-	ret.Inst.NtlmJobStartError = d.Get("ntlm_job_start_error").(int)
-	ret.Inst.NtlmOtherError = d.Get("ntlm_other_error").(int)
-	ret.Inst.NtlmPollingControlError = d.Get("ntlm_polling_control_error").(int)
-	ret.Inst.NtlmPrepareReqFailed = d.Get("ntlm_prepare_req_failed").(int)
-	ret.Inst.NtlmProtoNegotiationFailure = d.Get("ntlm_proto_negotiation_failure").(int)
-	ret.Inst.NtlmRequestDropped = d.Get("ntlm_request_dropped").(int)
-	ret.Inst.NtlmResponseError = d.Get("ntlm_response_error").(int)
-	ret.Inst.NtlmResponseFailure = d.Get("ntlm_response_failure").(int)
-	ret.Inst.NtlmResponseTimeout = d.Get("ntlm_response_timeout").(int)
-	ret.Inst.NtlmSessionSetupFailed = d.Get("ntlm_session_setup_failed").(int)
-	ret.Inst.NtlmTimeoutError = d.Get("ntlm_timeout_error").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Template_name = d.Get("template_name").(string)
 	return ret
 }

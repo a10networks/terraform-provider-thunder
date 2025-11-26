@@ -95,5 +95,3 @@ Optional:
 
 - `address` (String)
 - `rate` (String)
-
-

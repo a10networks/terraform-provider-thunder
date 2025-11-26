@@ -48,7 +48,7 @@ output "get_rule_set_rules_by_zone_oper" {
 
 ### Required
 
-- `name` (String) Name
+- `rule_set_name` (String) Rule_set_name
 
 ### Optional
 
@@ -116,5 +116,3 @@ Optional:
 Optional:
 
 - `source` (String)
-
-

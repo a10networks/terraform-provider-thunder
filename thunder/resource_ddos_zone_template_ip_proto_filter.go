@@ -43,8 +43,8 @@ func resourceDdosZoneTemplateIpProtoFilter() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"ip_proto_name": {
+				Type: schema.TypeString, Required: true, Description: "Ip_proto_name",
 			},
 		},
 	}
@@ -122,6 +122,6 @@ func dataToEndpointDdosZoneTemplateIpProtoFilter(d *schema.ResourceData) edpt.Dd
 	ret.Inst.OtherFilterSeq = d.Get("other_filter_seq").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Ip_proto_name = d.Get("ip_proto_name").(string)
 	return ret
 }

@@ -78,5 +78,5 @@ Optional:
 - `udp_port_lb` (Number) UDP Port LB
 - `udp_short_hdr` (Number) UDP Short Header
 - `udp_short_leng` (Number) UDP Invalid Length
-
-
+- `undersize_icmp` (Number) ICMP Undersize
+- `undersize_ip_pl` (Number) IP Payload Too Small

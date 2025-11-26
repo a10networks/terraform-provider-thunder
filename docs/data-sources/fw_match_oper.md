@@ -72,5 +72,3 @@ Optional:
 
 - `matching_rule` (String)
 - `matching_rule_type` (Number)
-
-

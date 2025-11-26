@@ -104,6 +104,9 @@ Optional:
 - `link_cost_template_default` (Number)
 - `link_cost_template_max` (Number)
 - `link_cost_template_min` (Number)
+- `log_template_default` (Number)
+- `log_template_max` (Number)
+- `log_template_min` (Number)
 - `nat_pool_addr_default` (Number)
 - `nat_pool_addr_max` (Number)
 - `nat_pool_addr_min` (Number)
@@ -146,5 +149,3 @@ Optional:
 - `virtual_server_default` (Number)
 - `virtual_server_max` (Number)
 - `virtual_server_min` (Number)
-
-

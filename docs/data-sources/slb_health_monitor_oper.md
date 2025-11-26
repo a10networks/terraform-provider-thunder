@@ -63,5 +63,3 @@ Optional:
 - `status` (String)
 - `timeout` (Number)
 - `up_retries` (Number)
-
-

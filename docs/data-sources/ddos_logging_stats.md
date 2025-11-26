@@ -49,5 +49,3 @@ Optional:
 - `log_msg_send_err` (Number) Log Message Send Error
 - `log_msg_sent` (Number) Log Message Sent
 - `log_queue_full` (Number) Log Message Queue Full
-
-

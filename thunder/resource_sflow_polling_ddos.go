@@ -16,14 +16,8 @@ func resourceSflowPollingDdos() *schema.Resource {
 		DeleteContext: resourceSflowPollingDdosDelete,
 
 		Schema: map[string]*schema.Schema{
-			"address_byte_order_host": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Export sflow address field in host byte order",
-			},
-			"compatibility2_9": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable DDOS sflow polling 2.9 compatibility mode",
-			},
-			"compatibility3_0": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable DDOS sflow polling 3.0/3.1 compatibility mode",
+			"auto_discovered_sni": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable polling for auto discovered sni",
 			},
 			"dns_cache_zone_stats": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable polling for dns cache per instance and per zone statistics",
@@ -39,6 +33,9 @@ func resourceSflowPollingDdos() *schema.Resource {
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+			},
+			"zone_session": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable polling for zone session information",
 			},
 		},
 	}
@@ -107,13 +104,12 @@ func resourceSflowPollingDdosRead(ctx context.Context, d *schema.ResourceData, m
 
 func dataToEndpointSflowPollingDdos(d *schema.ResourceData) edpt.SflowPollingDdos {
 	var ret edpt.SflowPollingDdos
-	ret.Inst.AddressByteOrderHost = d.Get("address_byte_order_host").(int)
-	ret.Inst.Compatibility2_9 = d.Get("compatibility2_9").(int)
-	ret.Inst.Compatibility3_0 = d.Get("compatibility3_0").(int)
+	ret.Inst.AutoDiscoveredSni = d.Get("auto_discovered_sni").(int)
 	ret.Inst.DnsCacheZoneStats = d.Get("dns_cache_zone_stats").(int)
 	ret.Inst.DynEntryStats = d.Get("dyn_entry_stats").(int)
 	ret.Inst.EnableAnomalyStats = d.Get("enable_anomaly_stats").(int)
 	ret.Inst.Toggle = d.Get("toggle").(string)
 	//omit uuid
+	ret.Inst.ZoneSession = d.Get("zone_session").(int)
 	return ret
 }

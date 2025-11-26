@@ -53,26 +53,64 @@ output "get_gslb_site_ip_server_oper" {
 
 Optional:
 
+- `desc` (String)
 - `disabled` (Number)
+- `drs_list` (Block List) (see [below for nested schema](#nestedblock--oper--drs_list))
 - `dynamic` (Number)
 - `gslb_protocol` (Number)
+- `hits` (Number)
 - `ip_address` (String)
 - `ip_server` (String)
 - `ip_server_port` (Block List) (see [below for nested schema](#nestedblock--oper--ip_server_port))
 - `local_protocol` (Number)
 - `manually_health_check` (Number)
 - `port_count` (Number)
+- `recent` (Number)
 - `service_ip` (String)
 - `state` (String)
 - `use_gslb_state` (Number)
 - `virtual_server` (Number)
+
+<a id="nestedblock--oper--drs_list"></a>
+### Nested Schema for `oper.drs_list`
+
+Optional:
+
+- `drs_disabled` (Number)
+- `drs_dynamic` (Number)
+- `drs_fqdn_name` (String)
+- `drs_gslb_protocol` (Number)
+- `drs_hits` (Number)
+- `drs_ip_address` (String)
+- `drs_local_protocol` (Number)
+- `drs_manually_health_check` (Number)
+- `drs_name` (String)
+- `drs_port` (Block List) (see [below for nested schema](#nestedblock--oper--drs_list--drs_port))
+- `drs_port_count` (Number)
+- `drs_recent` (Number)
+- `drs_service_ip` (String)
+- `drs_state` (String)
+- `drs_use_gslb_state` (Number)
+- `drs_virtual_server` (Number)
+
+<a id="nestedblock--oper--drs_list--drs_port"></a>
+### Nested Schema for `oper.drs_list.drs_port`
+
+Optional:
+
+- `service_name` (String)
+- `vport` (Number)
+- `vport_protocol` (String)
+- `vport_state` (String)
+
+
 
 <a id="nestedblock--oper--ip_server_port"></a>
 ### Nested Schema for `oper.ip_server_port`
 
 Optional:
 
+- `service_name` (String)
 - `vport` (Number)
+- `vport_protocol` (String)
 - `vport_state` (String)
-
-

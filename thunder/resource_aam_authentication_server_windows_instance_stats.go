@@ -41,36 +41,6 @@ func resourceAamAuthenticationServerWindowsInstanceStats() *schema.Resource {
 						"krb_pw_change_failure": {
 							Type: schema.TypeInt, Optional: true, Description: "Kerberos password change failure",
 						},
-						"ntlm_proto_nego_success": {
-							Type: schema.TypeInt, Optional: true, Description: "NTLM Protocol Negotiation Success",
-						},
-						"ntlm_proto_nego_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "NTLM Protocol Negotiation Failure",
-						},
-						"ntlm_session_setup_success": {
-							Type: schema.TypeInt, Optional: true, Description: "NTLM Session Setup Success",
-						},
-						"ntlm_session_setup_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "NTLM Session Setup Failure",
-						},
-						"ntlm_prepare_req_success": {
-							Type: schema.TypeInt, Optional: true, Description: "NTLM Prepare Request Success",
-						},
-						"ntlm_prepare_req_error": {
-							Type: schema.TypeInt, Optional: true, Description: "NTLM Prepare Request Error",
-						},
-						"ntlm_auth_success": {
-							Type: schema.TypeInt, Optional: true, Description: "NTLM Authentication Success",
-						},
-						"ntlm_auth_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "NTLM Authentication Failure",
-						},
-						"ntlm_timeout_error": {
-							Type: schema.TypeInt, Optional: true, Description: "NTLM Timeout",
-						},
-						"ntlm_other_error": {
-							Type: schema.TypeInt, Optional: true, Description: "NTLM Other Error",
-						},
 						"krb_validate_kdc_success": {
 							Type: schema.TypeInt, Optional: true, Description: "Kerberos KDC Validation Success",
 						},
@@ -106,25 +76,15 @@ func resourceAamAuthenticationServerWindowsInstanceStatsRead(ctx context.Context
 func setObjectAamAuthenticationServerWindowsInstanceStatsStats(ret edpt.DataAamAuthenticationServerWindowsInstanceStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"krb_send_req_success":       ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_send_req_success,
-			"krb_get_resp_success":       ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_get_resp_success,
-			"krb_timeout_error":          ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_timeout_error,
-			"krb_other_error":            ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_other_error,
-			"krb_pw_expiry":              ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_pw_expiry,
-			"krb_pw_change_success":      ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_pw_change_success,
-			"krb_pw_change_failure":      ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_pw_change_failure,
-			"ntlm_proto_nego_success":    ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Ntlm_proto_nego_success,
-			"ntlm_proto_nego_failure":    ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Ntlm_proto_nego_failure,
-			"ntlm_session_setup_success": ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Ntlm_session_setup_success,
-			"ntlm_session_setup_failure": ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Ntlm_session_setup_failure,
-			"ntlm_prepare_req_success":   ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Ntlm_prepare_req_success,
-			"ntlm_prepare_req_error":     ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Ntlm_prepare_req_error,
-			"ntlm_auth_success":          ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Ntlm_auth_success,
-			"ntlm_auth_failure":          ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Ntlm_auth_failure,
-			"ntlm_timeout_error":         ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Ntlm_timeout_error,
-			"ntlm_other_error":           ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Ntlm_other_error,
-			"krb_validate_kdc_success":   ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_validate_kdc_success,
-			"krb_validate_kdc_failure":   ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_validate_kdc_failure,
+			"krb_send_req_success":     ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_send_req_success,
+			"krb_get_resp_success":     ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_get_resp_success,
+			"krb_timeout_error":        ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_timeout_error,
+			"krb_other_error":          ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_other_error,
+			"krb_pw_expiry":            ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_pw_expiry,
+			"krb_pw_change_success":    ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_pw_change_success,
+			"krb_pw_change_failure":    ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_pw_change_failure,
+			"krb_validate_kdc_success": ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_validate_kdc_success,
+			"krb_validate_kdc_failure": ret.DtAamAuthenticationServerWindowsInstanceStats.Stats.Krb_validate_kdc_failure,
 		},
 	}
 }
@@ -142,16 +102,6 @@ func getObjectAamAuthenticationServerWindowsInstanceStatsStats(d []interface{}) 
 		ret.Krb_pw_expiry = in["krb_pw_expiry"].(int)
 		ret.Krb_pw_change_success = in["krb_pw_change_success"].(int)
 		ret.Krb_pw_change_failure = in["krb_pw_change_failure"].(int)
-		ret.Ntlm_proto_nego_success = in["ntlm_proto_nego_success"].(int)
-		ret.Ntlm_proto_nego_failure = in["ntlm_proto_nego_failure"].(int)
-		ret.Ntlm_session_setup_success = in["ntlm_session_setup_success"].(int)
-		ret.Ntlm_session_setup_failure = in["ntlm_session_setup_failure"].(int)
-		ret.Ntlm_prepare_req_success = in["ntlm_prepare_req_success"].(int)
-		ret.Ntlm_prepare_req_error = in["ntlm_prepare_req_error"].(int)
-		ret.Ntlm_auth_success = in["ntlm_auth_success"].(int)
-		ret.Ntlm_auth_failure = in["ntlm_auth_failure"].(int)
-		ret.Ntlm_timeout_error = in["ntlm_timeout_error"].(int)
-		ret.Ntlm_other_error = in["ntlm_other_error"].(int)
 		ret.Krb_validate_kdc_success = in["krb_validate_kdc_success"].(int)
 		ret.Krb_validate_kdc_failure = in["krb_validate_kdc_failure"].(int)
 	}

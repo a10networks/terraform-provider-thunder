@@ -52,5 +52,3 @@ Optional:
 Optional:
 
 - `name` (String)
-
-

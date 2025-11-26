@@ -25,6 +25,9 @@ func resourceAcosEventsCollectorGroupLogServer() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
+			"collector_group_name": {
+				Type: schema.TypeString, Required: true, Description: "Collector_group_name",
+			},
 		},
 	}
 }
@@ -95,5 +98,6 @@ func dataToEndpointAcosEventsCollectorGroupLogServer(d *schema.ResourceData) edp
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.Port = d.Get("port").(int)
 	//omit uuid
+	ret.Inst.Collector_group_name = d.Get("collector_group_name").(string)
 	return ret
 }

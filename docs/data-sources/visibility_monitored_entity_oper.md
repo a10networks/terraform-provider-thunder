@@ -483,5 +483,3 @@ Optional:
 - `rev_dst_port` (Number)
 - `rev_src_ip` (String)
 - `rev_src_port` (Number)
-
-

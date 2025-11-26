@@ -56,5 +56,3 @@ Optional:
 Optional:
 
 - `url_name` (String)
-
-

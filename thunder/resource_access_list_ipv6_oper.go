@@ -27,9 +27,6 @@ func resourceAccessListIpv6Oper() *schema.Resource {
 									"name": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
-									"mgmt_pkt_hit_count": {
-										Type: schema.TypeInt, Optional: true, Description: "",
-									},
 									"rule_list": {
 										Type: schema.TypeList, Optional: true, Description: "",
 										Elem: &schema.Resource{
@@ -115,8 +112,14 @@ func resourceAccessListIpv6Oper() *schema.Resource {
 												"data_plane_hits": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
+												"mgmt_plane_hits": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
 											},
 										},
+									},
+									"mgmt_pkt_hit_count": {
+										Type: schema.TypeInt, Optional: true, Description: "",
 									},
 								},
 							},
@@ -161,8 +164,8 @@ func setSliceAccessListIpv6OperOperAclList(d []edpt.AccessListIpv6OperOperAclLis
 		in := make(map[string]interface{})
 		in["id1"] = item.Id1
 		in["name"] = item.Name
-		in["mgmt_pkt_hit_count"] = item.MgmtPktHitCount
 		in["rule_list"] = setSliceAccessListIpv6OperOperAclListRuleList(item.RuleList)
+		in["mgmt_pkt_hit_count"] = item.MgmtPktHitCount
 		result = append(result, in)
 	}
 	return result
@@ -199,6 +202,7 @@ func setSliceAccessListIpv6OperOperAclListRuleList(d []edpt.AccessListIpv6OperOp
 		in["log"] = item.Log
 		in["log_transparent_sess_only"] = item.LogTransparentSessOnly
 		in["data_plane_hits"] = item.DataPlaneHits
+		in["mgmt_plane_hits"] = item.MgmtPlaneHits
 		result = append(result, in)
 	}
 	return result
@@ -224,8 +228,8 @@ func getSliceAccessListIpv6OperOperAclList(d []interface{}) []edpt.AccessListIpv
 		var oi edpt.AccessListIpv6OperOperAclList
 		oi.Id1 = in["id1"].(int)
 		oi.Name = in["name"].(string)
-		oi.MgmtPktHitCount = in["mgmt_pkt_hit_count"].(int)
 		oi.RuleList = getSliceAccessListIpv6OperOperAclListRuleList(in["rule_list"].([]interface{}))
+		oi.MgmtPktHitCount = in["mgmt_pkt_hit_count"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -265,6 +269,7 @@ func getSliceAccessListIpv6OperOperAclListRuleList(d []interface{}) []edpt.Acces
 		oi.Log = in["log"].(int)
 		oi.LogTransparentSessOnly = in["log_transparent_sess_only"].(int)
 		oi.DataPlaneHits = in["data_plane_hits"].(int)
+		oi.MgmtPlaneHits = in["mgmt_plane_hits"].(int)
 		ret = append(ret, oi)
 	}
 	return ret

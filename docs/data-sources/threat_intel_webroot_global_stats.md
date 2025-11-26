@@ -58,5 +58,3 @@ Optional:
 - `tor_proxy` (Number) Hits for tor-proxy
 - `web_attacks` (Number) Hits for web attacks
 - `windows_exploits` (Number) Hits for windows exploits
-
-

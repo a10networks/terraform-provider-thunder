@@ -21,7 +21,7 @@ func resourceSlbConnectionReuse() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type: schema.TypeString, Optional: true, Description: "'all': all; 'current_open': Open persist; 'current_active': Active persist; 'nbind': Total bind; 'nunbind': Total unbind; 'nestab': Total established; 'ntermi': Total terminated; 'ntermi_err': Total terminated by err; 'delay_unbind': Delayed unbind; 'long_resp': Long resp; 'miss_resp': Missed resp; 'unbound_data_rcv': Unbound data rcvd; 'pause_conn': Pause request; 'pause_conn_fail': Pause request fail; 'resume_conn': Resume request; 'not_remove_from_rport': Not remove from list;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'current_open': Open persist; 'current_active': Active persist; 'nbind': Total bind; 'nunbind': Total unbind; 'nestab': Total established; 'ntermi': Total terminated; 'ntermi_err': Total terminated by err; 'delay_unbind': Delayed unbind; 'long_resp': Long resp; 'miss_resp': Missed resp; 'unbound_data_rcv': Unbound data rcvd; 'pause_conn': Pause request; 'pause_conn_fail': Pause request fail; 'resume_conn': Resume request; 'not_remove_from_rport': Not remove from list; 'zero_pconn_value': Zero current pconn counter value; 'zero_pconn_bind_value': Zero current pconn bind counter value; 'current_http1_conn_in_the_pool': Current http1 conn in the pool; 'current_http2_conn_in_the_pool': Current http2 conn in the pool;",
 						},
 					},
 				},

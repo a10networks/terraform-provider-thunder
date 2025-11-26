@@ -59,6 +59,9 @@ func resourceCgnv6Dns64VirtualserverOper() *schema.Resource {
 						"ip_address": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
+						"ipv6_address": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
 						"curr_conn_overflow": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -836,6 +839,7 @@ func setObjectCgnv6Dns64VirtualserverOperOper(ret edpt.DataCgnv6Dns64Virtualserv
 			"migration_status":            ret.DtCgnv6Dns64VirtualserverOper.Oper.MigrationStatus,
 			"peak_conn":                   ret.DtCgnv6Dns64VirtualserverOper.Oper.PeakConn,
 			"ip_address":                  ret.DtCgnv6Dns64VirtualserverOper.Oper.IpAddress,
+			"ipv6_address":                ret.DtCgnv6Dns64VirtualserverOper.Oper.Ipv6Address,
 			"curr_conn_overflow":          ret.DtCgnv6Dns64VirtualserverOper.Oper.CurrConnOverflow,
 			"ip_only_lb_fwd_bytes":        ret.DtCgnv6Dns64VirtualserverOper.Oper.Ip_only_lb_fwd_bytes,
 			"ip_only_lb_rev_bytes":        ret.DtCgnv6Dns64VirtualserverOper.Oper.Ip_only_lb_rev_bytes,
@@ -1151,6 +1155,7 @@ func getObjectCgnv6Dns64VirtualserverOperOper(d []interface{}) edpt.Cgnv6Dns64Vi
 		ret.MigrationStatus = in["migration_status"].(string)
 		ret.PeakConn = in["peak_conn"].(int)
 		ret.IpAddress = in["ip_address"].(string)
+		ret.Ipv6Address = in["ipv6_address"].(string)
 		ret.CurrConnOverflow = in["curr_conn_overflow"].(int)
 		ret.Ip_only_lb_fwd_bytes = in["ip_only_lb_fwd_bytes"].(int)
 		ret.Ip_only_lb_rev_bytes = in["ip_only_lb_rev_bytes"].(int)

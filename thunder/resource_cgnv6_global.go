@@ -16,6 +16,25 @@ func resourceCgnv6Global() *schema.Resource {
 		DeleteContext: resourceCgnv6GlobalDelete,
 
 		Schema: map[string]*schema.Schema{
+			"domain_list": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"interval": {
+							Type: schema.TypeInt, Optional: true, Description: "Set up the global query interval in minute for the DNS resolution.",
+						},
+						"fail_interval": {
+							Type: schema.TypeInt, Optional: true, Description: "Set up the global failure interval in second for the DNS resolution.",
+						},
+						"aaaa_query": {
+							Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable the DNS AAAA query for each domain in the domain list.; 'disable': Disable the DNS AAAA query for each domain in the domain list.;",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
 			"ping_sweep_detection": {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable ping sweep detection; 'disable': Disable ping sweep detection(default);",
 			},
@@ -100,6 +119,20 @@ func resourceCgnv6GlobalRead(ctx context.Context, d *schema.ResourceData, meta i
 	return diags
 }
 
+func getObjectCgnv6GlobalDomainList84(d []interface{}) edpt.Cgnv6GlobalDomainList84 {
+
+	count1 := len(d)
+	var ret edpt.Cgnv6GlobalDomainList84
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Interval = in["interval"].(int)
+		ret.FailInterval = in["fail_interval"].(int)
+		ret.AaaaQuery = in["aaaa_query"].(string)
+		//omit uuid
+	}
+	return ret
+}
+
 func getSliceCgnv6GlobalSamplingEnable(d []interface{}) []edpt.Cgnv6GlobalSamplingEnable {
 
 	count1 := len(d)
@@ -115,6 +148,7 @@ func getSliceCgnv6GlobalSamplingEnable(d []interface{}) []edpt.Cgnv6GlobalSampli
 
 func dataToEndpointCgnv6Global(d *schema.ResourceData) edpt.Cgnv6Global {
 	var ret edpt.Cgnv6Global
+	ret.Inst.DomainList = getObjectCgnv6GlobalDomainList84(d.Get("domain_list").([]interface{}))
 	ret.Inst.PingSweepDetection = d.Get("ping_sweep_detection").(string)
 	ret.Inst.PortScanDetection = d.Get("port_scan_detection").(string)
 	ret.Inst.SamplingEnable = getSliceCgnv6GlobalSamplingEnable(d.Get("sampling_enable").([]interface{}))

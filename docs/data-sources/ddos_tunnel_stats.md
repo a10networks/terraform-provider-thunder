@@ -86,5 +86,3 @@ Optional:
 - `ip_vxlan_tunnel_invalid_vni` (Number) IP VxLAN Invalid VNI
 - `ip_vxlan_tunnel_rcvd` (Number) IP VxLAN Received
 - `jumbo_in_tunnel_drop` (Number) Jumbo Packet in Tunnel Drop
-
-

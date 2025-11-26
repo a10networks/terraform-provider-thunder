@@ -64,5 +64,3 @@ Optional:
 - `port` (Number)
 - `protocol` (String)
 - `scanned_time` (String)
-
-

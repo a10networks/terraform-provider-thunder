@@ -173,10 +173,10 @@ func resourceDdosNotificationTemplateRead(ctx context.Context, d *schema.Resourc
 	return diags
 }
 
-func getObjectDdosNotificationTemplateApi285(d []interface{}) edpt.DdosNotificationTemplateApi285 {
+func getObjectDdosNotificationTemplateApi324(d []interface{}) edpt.DdosNotificationTemplateApi324 {
 
 	count1 := len(d)
-	var ret edpt.DdosNotificationTemplateApi285
+	var ret edpt.DdosNotificationTemplateApi324
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.HostIpv4Address = in["host_ipv4_address"].(string)
@@ -190,15 +190,15 @@ func getObjectDdosNotificationTemplateApi285(d []interface{}) edpt.DdosNotificat
 		ret.DisableAuthentication = in["disable_authentication"].(int)
 		ret.UseMgmtPort = in["use_mgmt_port"].(int)
 		//omit uuid
-		ret.Authentication = getObjectDdosNotificationTemplateApiAuthentication286(in["authentication"].([]interface{}))
+		ret.Authentication = getObjectDdosNotificationTemplateApiAuthentication325(in["authentication"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosNotificationTemplateApiAuthentication286(d []interface{}) edpt.DdosNotificationTemplateApiAuthentication286 {
+func getObjectDdosNotificationTemplateApiAuthentication325(d []interface{}) edpt.DdosNotificationTemplateApiAuthentication325 {
 
 	count1 := len(d)
-	var ret edpt.DdosNotificationTemplateApiAuthentication286
+	var ret edpt.DdosNotificationTemplateApiAuthentication325
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RelativeLoginUri = in["relative_login_uri"].(string)
@@ -217,7 +217,7 @@ func getObjectDdosNotificationTemplateApiAuthentication286(d []interface{}) edpt
 
 func dataToEndpointDdosNotificationTemplate(d *schema.ResourceData) edpt.DdosNotificationTemplate {
 	var ret edpt.DdosNotificationTemplate
-	ret.Inst.Api = getObjectDdosNotificationTemplateApi285(d.Get("api").([]interface{}))
+	ret.Inst.Api = getObjectDdosNotificationTemplateApi324(d.Get("api").([]interface{}))
 	ret.Inst.DebugMode = d.Get("debug_mode").(int)
 	ret.Inst.Disable = d.Get("disable").(int)
 	ret.Inst.Name = d.Get("name").(string)

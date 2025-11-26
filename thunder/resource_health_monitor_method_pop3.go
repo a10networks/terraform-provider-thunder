@@ -34,8 +34,8 @@ func resourceHealthMonitorMethodPop3() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -111,6 +111,6 @@ func dataToEndpointHealthMonitorMethodPop3(d *schema.ResourceData) edpt.HealthMo
 	ret.Inst.Pop3Port = d.Get("pop3_port").(int)
 	ret.Inst.Pop3Username = d.Get("pop3_username").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

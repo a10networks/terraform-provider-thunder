@@ -323,6 +323,9 @@ func resourceSlbSwitchStats() *schema.Resource {
 						"closed_port_syn_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Linux Closed Port SYN Drop",
 						},
+						"ip_icmp_error_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "IP ICMP Error Drop",
+						},
 						"tls13_drop_req": {
 							Type: schema.TypeInt, Optional: true, Description: "TLS13-Request-Per-Sec Limit Drop at ingress",
 						},
@@ -340,6 +343,21 @@ func resourceSlbSwitchStats() *schema.Resource {
 						},
 						"tls12_tls13_ignore_req": {
 							Type: schema.TypeInt, Optional: true, Description: "TLS12-TLS13-Request-Per-Sec Limit ignored packets count",
+						},
+						"mac_movement": {
+							Type: schema.TypeInt, Optional: true, Description: "MAC movement",
+						},
+						"ipv4_src_routed_pkt_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "IPv4 source routed packet drop",
+						},
+						"ipv6_src_routed_pkt_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "IPv6 source routed packet drop",
+						},
+						"ipv4_rpf_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "IPv4 RPF drop",
+						},
+						"ipv6_rpf_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "IPv6 RPF drop",
 						},
 					},
 				},
@@ -472,12 +490,18 @@ func setObjectSlbSwitchStatsStats(ret edpt.DataSlbSwitchStats) []interface{} {
 			"ppsl_drop_ing":                       ret.DtSlbSwitchStats.Stats.Ppsl_drop_ing,
 			"ppsl_ignore_limit":                   ret.DtSlbSwitchStats.Stats.Ppsl_ignore_limit,
 			"closed_port_syn_drop":                ret.DtSlbSwitchStats.Stats.Closed_port_syn_drop,
+			"ip_icmp_error_drop":                  ret.DtSlbSwitchStats.Stats.Ip_icmp_error_drop,
 			"tls13_drop_req":                      ret.DtSlbSwitchStats.Stats.Tls13_drop_req,
 			"tls13_ignore_req":                    ret.DtSlbSwitchStats.Stats.Tls13_ignore_req,
 			"tls12_drop_req":                      ret.DtSlbSwitchStats.Stats.Tls12_drop_req,
 			"tls12_ignore_req":                    ret.DtSlbSwitchStats.Stats.Tls12_ignore_req,
 			"tls12_tls13_drop_req":                ret.DtSlbSwitchStats.Stats.Tls12_tls13_drop_req,
 			"tls12_tls13_ignore_req":              ret.DtSlbSwitchStats.Stats.Tls12_tls13_ignore_req,
+			"mac_movement":                        ret.DtSlbSwitchStats.Stats.Mac_movement,
+			"ipv4_src_routed_pkt_drop":            ret.DtSlbSwitchStats.Stats.Ipv4SrcRoutedPktDrop,
+			"ipv6_src_routed_pkt_drop":            ret.DtSlbSwitchStats.Stats.Ipv6SrcRoutedPktDrop,
+			"ipv4_rpf_drop":                       ret.DtSlbSwitchStats.Stats.Ipv4RpfDrop,
+			"ipv6_rpf_drop":                       ret.DtSlbSwitchStats.Stats.Ipv6RpfDrop,
 		},
 	}
 }
@@ -590,12 +614,18 @@ func getObjectSlbSwitchStatsStats(d []interface{}) edpt.SlbSwitchStatsStats {
 		ret.Ppsl_drop_ing = in["ppsl_drop_ing"].(int)
 		ret.Ppsl_ignore_limit = in["ppsl_ignore_limit"].(int)
 		ret.Closed_port_syn_drop = in["closed_port_syn_drop"].(int)
+		ret.Ip_icmp_error_drop = in["ip_icmp_error_drop"].(int)
 		ret.Tls13_drop_req = in["tls13_drop_req"].(int)
 		ret.Tls13_ignore_req = in["tls13_ignore_req"].(int)
 		ret.Tls12_drop_req = in["tls12_drop_req"].(int)
 		ret.Tls12_ignore_req = in["tls12_ignore_req"].(int)
 		ret.Tls12_tls13_drop_req = in["tls12_tls13_drop_req"].(int)
 		ret.Tls12_tls13_ignore_req = in["tls12_tls13_ignore_req"].(int)
+		ret.Mac_movement = in["mac_movement"].(int)
+		ret.Ipv4SrcRoutedPktDrop = in["ipv4_src_routed_pkt_drop"].(int)
+		ret.Ipv6SrcRoutedPktDrop = in["ipv6_src_routed_pkt_drop"].(int)
+		ret.Ipv4RpfDrop = in["ipv4_rpf_drop"].(int)
+		ret.Ipv6RpfDrop = in["ipv6_rpf_drop"].(int)
 	}
 	return ret
 }

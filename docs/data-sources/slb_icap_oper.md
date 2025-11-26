@@ -157,5 +157,3 @@ Optional:
 - `status_5xx` (Number)
 - `status_6xx` (Number)
 - `status_unknown` (Number)
-
-

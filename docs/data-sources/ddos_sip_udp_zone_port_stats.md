@@ -45,10 +45,10 @@ output "get_ddos_sip_udp_zone_port_stats" {
 
 Optional:
 
-- `addr_filter_bl` (Number) IP Filtering Policy: Blacklisted
-- `addr_filter_drop` (Number) IP Filtering Policy: Dropped
+- `all_src_session_reset` (Number) Session Reset for All Src Upon Level Escalation
 - `bl` (Number) Dst Blacklisted
 - `body_too_big` (Number) Body Too Big
+- `clear_session_upon_deescalation` (Number) Clear Session Upon De-escalation to Level 0
 - `concatenate_msg` (Number) Concatenate Message
 - `conn_prate_excd` (Number) UDP Conn Pkt Rate Exceeded
 - `current_es_level` (Number) Current Escalation Level
@@ -56,6 +56,7 @@ Optional:
 - `dst_hw_drop_inserted` (Number) Dst Hardware Drop Rules Inserted
 - `dst_hw_drop_removed` (Number) Dst Hardware Drop Rules Removed
 - `dst_udp_retry_timeout_blacklist` (Number) UDP Retry Timeout Blacklisted
+- `dynamic_count_warn` (Number) dynamic-entry-count warning send
 - `ew_inbound_port_byte_drop` (Number) East-West Inbound Bytes Dropped
 - `ew_inbound_port_byte_rcv` (Number) East-West Inbound Bytes Recevied
 - `ew_inbound_port_byte_sent` (Number) East-West Inbound Bytes Forwarded
@@ -106,6 +107,8 @@ Optional:
 - `header_name_too_long` (Number) Max Header Name Length Exceed
 - `invalid_header` (Number) Invalid Header
 - `invalid_start_line_error` (Number) Invalid Start Line
+- `ip_filtering_bl` (Number) IP Filtering Policy: Blacklisted
+- `ip_filtering_drop` (Number) IP Filtering Policy: Dropped
 - `keep_alive_msg` (Number) KeepAlive Message
 - `line_mem_allocated` (Number) Line Memory Allocated
 - `line_mem_freed` (Number) Line Memory Freed
@@ -184,6 +187,7 @@ Optional:
 - `response_6xx` (Number) Response Status Code 6xx
 - `response_unknown` (Number) Unknown Response Status Code
 - `response_unknown_version` (Number) Unknown Response Version
+- `same_sport_dport_drop` (Number) Same Source and Destination Port Drop
 - `secondary_port_conn_limm_exceed` (Number) Per Addr-Port Conn Limit Exceeded
 - `secondary_port_conn_rate_exceed` (Number) Per Addr-Port Conn Rate Exceeded
 - `secondary_port_hit` (Number) Per Addr-Port Hit
@@ -235,6 +239,7 @@ Optional:
 - `src_udp_retry_pass` (Number) Src UDP Retry Passed
 - `src_well_known_port` (Number) Src UDP SrcPort Wellknown
 - `src_zone_service_entry_aged` (Number) SrcZoneService Entry Aged
+- `src_zone_service_entry_hit` (Number) SrcZoneService Entry Hit
 - `src_zone_service_entry_learned` (Number) SrcZoneService Entry Learned
 - `token_authentication_curr_salt_matched` (Number) Token Authentication Current Salt Matched
 - `token_authentication_invalid` (Number) Token Authentication Invalid Packets
@@ -255,5 +260,3 @@ Optional:
 - `unauth_src_session_reset` (Number) Session Reset for Unauthenticated Src
 - `wellknown_sport_drop` (Number) UDP SrcPort Wellknown
 - `zone_src_udp_retry_timeout_blacklist` (Number) Src UDP Retry Timeout Blacklisted
-
-

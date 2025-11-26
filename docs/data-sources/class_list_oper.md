@@ -99,6 +99,7 @@ Optional:
 Optional:
 
 - `geo_location` (String)
+- `geo_location_status` (String)
 
 
 <a id="nestedblock--oper--ipv4_entries"></a>
@@ -108,6 +109,7 @@ Optional:
 
 - `ipv4_addr` (String)
 - `ipv4_age` (Number)
+- `ipv4_category` (Number)
 - `ipv4_glid` (Number)
 - `ipv4_gtp_policy` (String)
 - `ipv4_hit_count` (Number)
@@ -123,6 +125,7 @@ Optional:
 Optional:
 
 - `ipv6_age` (Number)
+- `ipv6_category` (Number)
 - `ipv6_glid` (Number)
 - `ipv6_gtp_policy` (String)
 - `ipv6_hit_count` (Number)
@@ -143,5 +146,3 @@ Optional:
 - `string_key` (String)
 - `string_lid` (Number)
 - `string_value` (String)
-
-

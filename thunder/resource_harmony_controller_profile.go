@@ -20,7 +20,7 @@ func resourceHarmonyControllerProfile() *schema.Resource {
 				Type: schema.TypeString, Optional: true, Description: "'register': Register the device to the controller; 'deregister': Deregister the device from controller;",
 			},
 			"analytics": {
-				Type: schema.TypeString, Optional: true, Default: "all", Description: "'all': Export all the analytics information. This is the default value.; 'system': Export only system level policy for device management.; 'disable': Disable all the exports from the device.;",
+				Type: schema.TypeString, Optional: true, Default: "all", Description: "'all': Export all the analytics information.; 'system': Export only system level policy for device management.; 'disable': Disable all the exports from the device. This is the default value.;",
 			},
 			"auto_restart_action": {
 				Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': enable auto analytics bus restart, default behavior is enable; 'disable': disable auto analytics bus restart;",
@@ -33,6 +33,16 @@ func resourceHarmonyControllerProfile() *schema.Resource {
 			},
 			"cluster_name": {
 				Type: schema.TypeString, Optional: true, Description: "name of cluster in harmony controller that this device is a member of",
+			},
+			"force": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"deregister": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "forcefully deregister thunder from harmony controller",
+						},
+					},
+				},
 			},
 			"host": {
 				Type: schema.TypeString, Optional: true, Description: "Set harmony controller host address",
@@ -171,10 +181,21 @@ func resourceHarmonyControllerProfileRead(ctx context.Context, d *schema.Resourc
 	return diags
 }
 
-func getObjectHarmonyControllerProfileReSync400(d []interface{}) edpt.HarmonyControllerProfileReSync400 {
+func getObjectHarmonyControllerProfileForce493(d []interface{}) edpt.HarmonyControllerProfileForce493 {
 
 	count1 := len(d)
-	var ret edpt.HarmonyControllerProfileReSync400
+	var ret edpt.HarmonyControllerProfileForce493
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Deregister = in["deregister"].(int)
+	}
+	return ret
+}
+
+func getObjectHarmonyControllerProfileReSync494(d []interface{}) edpt.HarmonyControllerProfileReSync494 {
+
+	count1 := len(d)
+	var ret edpt.HarmonyControllerProfileReSync494
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SchemaRegistry = in["schema_registry"].(int)
@@ -183,10 +204,10 @@ func getObjectHarmonyControllerProfileReSync400(d []interface{}) edpt.HarmonyCon
 	return ret
 }
 
-func getObjectHarmonyControllerProfileThunderMgmtIp401(d []interface{}) edpt.HarmonyControllerProfileThunderMgmtIp401 {
+func getObjectHarmonyControllerProfileThunderMgmtIp495(d []interface{}) edpt.HarmonyControllerProfileThunderMgmtIp495 {
 
 	count1 := len(d)
-	var ret edpt.HarmonyControllerProfileThunderMgmtIp401
+	var ret edpt.HarmonyControllerProfileThunderMgmtIp495
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.IpAddress = in["ip_address"].(string)
@@ -196,10 +217,10 @@ func getObjectHarmonyControllerProfileThunderMgmtIp401(d []interface{}) edpt.Har
 	return ret
 }
 
-func getObjectHarmonyControllerProfileTunnel402(d []interface{}) edpt.HarmonyControllerProfileTunnel402 {
+func getObjectHarmonyControllerProfileTunnel496(d []interface{}) edpt.HarmonyControllerProfileTunnel496 {
 
 	count1 := len(d)
-	var ret edpt.HarmonyControllerProfileTunnel402
+	var ret edpt.HarmonyControllerProfileTunnel496
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(string)
@@ -216,17 +237,18 @@ func dataToEndpointHarmonyControllerProfile(d *schema.ResourceData) edpt.Harmony
 	ret.Inst.AvailabilityZone = d.Get("availability_zone").(string)
 	ret.Inst.ClusterId = d.Get("cluster_id").(string)
 	ret.Inst.ClusterName = d.Get("cluster_name").(string)
+	ret.Inst.Force = getObjectHarmonyControllerProfileForce493(d.Get("force").([]interface{}))
 	ret.Inst.Host = d.Get("host").(string)
 	ret.Inst.HostIpv6 = d.Get("host_ipv6").(string)
 	ret.Inst.Interval = d.Get("interval").(int)
 	//omit password_encrypted
 	ret.Inst.Port = d.Get("port").(int)
 	ret.Inst.Provider1 = d.Get("provider1").(string)
-	ret.Inst.ReSync = getObjectHarmonyControllerProfileReSync400(d.Get("re_sync").([]interface{}))
+	ret.Inst.ReSync = getObjectHarmonyControllerProfileReSync494(d.Get("re_sync").([]interface{}))
 	ret.Inst.Region = d.Get("region").(string)
 	ret.Inst.SecretValue = d.Get("secret_value").(string)
-	ret.Inst.ThunderMgmtIp = getObjectHarmonyControllerProfileThunderMgmtIp401(d.Get("thunder_mgmt_ip").([]interface{}))
-	ret.Inst.Tunnel = getObjectHarmonyControllerProfileTunnel402(d.Get("tunnel").([]interface{}))
+	ret.Inst.ThunderMgmtIp = getObjectHarmonyControllerProfileThunderMgmtIp495(d.Get("thunder_mgmt_ip").([]interface{}))
+	ret.Inst.Tunnel = getObjectHarmonyControllerProfileTunnel496(d.Get("tunnel").([]interface{}))
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	ret.Inst.UserName = d.Get("user_name").(string)
 	//omit uuid

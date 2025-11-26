@@ -53,5 +53,3 @@ Optional:
 - `ddos_entry_removed` (Number) DDOS entry removed
 - `ddos_entry_removed_from_bgp` (Number) DDoS Entry Removed from BGP
 - `ddos_packet_dropped` (Number) DDOS Packet Drop
-
-

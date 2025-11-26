@@ -662,6 +662,60 @@ func resourceCgnv6FixedNatGlobalStats() *schema.Resource {
 						"active_subscriber_removed": {
 							Type: schema.TypeInt, Optional: true, Description: "Active Subscriber Removed",
 						},
+						"nat44_data_session_created_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "NAT44 Data Sessions Created on StandBy Device",
+						},
+						"nat44_data_session_freed_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "NAT44 Data Sessions Freed on StandBy Device",
+						},
+						"nat64_data_session_created_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "NAT64 Data Sessions Created on StandBy Device",
+						},
+						"nat64_data_session_freed_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "NAT64 Data Sessions Freed on StandBy Device",
+						},
+						"dslite_data_session_created_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "DS-Lite Data Sessions Created on StandBy Device",
+						},
+						"dslite_data_session_freed_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "DS-Lite Data Sessions Freed on StandBy Device",
+						},
+						"dslite_tcp_fullcone_created_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "DS-Lite TCP Full-Cone Created on StandBy Device",
+						},
+						"dslite_tcp_fullcone_freed_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "DS-Lite TCP Full-Cone Freed on StandBy Device",
+						},
+						"dslite_udp_fullcone_created_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "DS-Lite UDP Full-Cone Created on StandBy Device",
+						},
+						"dslite_udp_fullcone_freed_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "DS-Lite UDP Full-Cone Freed on StandBy Device",
+						},
+						"nat44_tcp_fullcone_created_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "NAT44 TCP Full-Cone Created on StandBy Device",
+						},
+						"nat44_tcp_fullcone_freed_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "NAT44 TCP Full-Cone Freed on StandBy Device",
+						},
+						"nat44_udp_fullcone_created_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "NAT44 UDP Full-Cone Created on StandBy Device",
+						},
+						"nat44_udp_fullcone_freed_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "NAT44 UDP Full-Cone Freed on StandBy Device",
+						},
+						"nat64_tcp_fullcone_created_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "NAT64 TCP Full-Cone Created on StandBy Device",
+						},
+						"nat64_tcp_fullcone_freed_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "NAT64 TCP Full-Cone Freed on StandBy Device",
+						},
+						"nat64_udp_fullcone_created_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "NAT64 UDP Full-Cone Created on StandBy Device",
+						},
+						"nat64_udp_fullcone_freed_sby": {
+							Type: schema.TypeInt, Optional: true, Description: "NAT64 UDP Full-Cone Freed on StandBy Device",
+						},
 					},
 				},
 			},
@@ -906,6 +960,24 @@ func setObjectCgnv6FixedNatGlobalStatsStats(ret edpt.DataCgnv6FixedNatGlobalStat
 			"fnatdslite_rev_egress_pkt_size_range4":    ret.DtCgnv6FixedNatGlobalStats.Stats.Fnatdslite_rev_egress_pkt_size_range4,
 			"active_subscriber_added":                  ret.DtCgnv6FixedNatGlobalStats.Stats.ActiveSubscriberAdded,
 			"active_subscriber_removed":                ret.DtCgnv6FixedNatGlobalStats.Stats.ActiveSubscriberRemoved,
+			"nat44_data_session_created_sby":           ret.DtCgnv6FixedNatGlobalStats.Stats.Nat44DataSessionCreatedSby,
+			"nat44_data_session_freed_sby":             ret.DtCgnv6FixedNatGlobalStats.Stats.Nat44DataSessionFreedSby,
+			"nat64_data_session_created_sby":           ret.DtCgnv6FixedNatGlobalStats.Stats.Nat64DataSessionCreatedSby,
+			"nat64_data_session_freed_sby":             ret.DtCgnv6FixedNatGlobalStats.Stats.Nat64DataSessionFreedSby,
+			"dslite_data_session_created_sby":          ret.DtCgnv6FixedNatGlobalStats.Stats.DsliteDataSessionCreatedSby,
+			"dslite_data_session_freed_sby":            ret.DtCgnv6FixedNatGlobalStats.Stats.DsliteDataSessionFreedSby,
+			"dslite_tcp_fullcone_created_sby":          ret.DtCgnv6FixedNatGlobalStats.Stats.DsliteTcpFullconeCreatedSby,
+			"dslite_tcp_fullcone_freed_sby":            ret.DtCgnv6FixedNatGlobalStats.Stats.DsliteTcpFullconeFreedSby,
+			"dslite_udp_fullcone_created_sby":          ret.DtCgnv6FixedNatGlobalStats.Stats.DsliteUdpFullconeCreatedSby,
+			"dslite_udp_fullcone_freed_sby":            ret.DtCgnv6FixedNatGlobalStats.Stats.DsliteUdpFullconeFreedSby,
+			"nat44_tcp_fullcone_created_sby":           ret.DtCgnv6FixedNatGlobalStats.Stats.Nat44TcpFullconeCreatedSby,
+			"nat44_tcp_fullcone_freed_sby":             ret.DtCgnv6FixedNatGlobalStats.Stats.Nat44TcpFullconeFreedSby,
+			"nat44_udp_fullcone_created_sby":           ret.DtCgnv6FixedNatGlobalStats.Stats.Nat44UdpFullconeCreatedSby,
+			"nat44_udp_fullcone_freed_sby":             ret.DtCgnv6FixedNatGlobalStats.Stats.Nat44UdpFullconeFreedSby,
+			"nat64_tcp_fullcone_created_sby":           ret.DtCgnv6FixedNatGlobalStats.Stats.Nat64TcpFullconeCreatedSby,
+			"nat64_tcp_fullcone_freed_sby":             ret.DtCgnv6FixedNatGlobalStats.Stats.Nat64TcpFullconeFreedSby,
+			"nat64_udp_fullcone_created_sby":           ret.DtCgnv6FixedNatGlobalStats.Stats.Nat64UdpFullconeCreatedSby,
+			"nat64_udp_fullcone_freed_sby":             ret.DtCgnv6FixedNatGlobalStats.Stats.Nat64UdpFullconeFreedSby,
 		},
 	}
 }
@@ -1131,6 +1203,24 @@ func getObjectCgnv6FixedNatGlobalStatsStats(d []interface{}) edpt.Cgnv6FixedNatG
 		ret.Fnatdslite_rev_egress_pkt_size_range4 = in["fnatdslite_rev_egress_pkt_size_range4"].(int)
 		ret.ActiveSubscriberAdded = in["active_subscriber_added"].(int)
 		ret.ActiveSubscriberRemoved = in["active_subscriber_removed"].(int)
+		ret.Nat44DataSessionCreatedSby = in["nat44_data_session_created_sby"].(int)
+		ret.Nat44DataSessionFreedSby = in["nat44_data_session_freed_sby"].(int)
+		ret.Nat64DataSessionCreatedSby = in["nat64_data_session_created_sby"].(int)
+		ret.Nat64DataSessionFreedSby = in["nat64_data_session_freed_sby"].(int)
+		ret.DsliteDataSessionCreatedSby = in["dslite_data_session_created_sby"].(int)
+		ret.DsliteDataSessionFreedSby = in["dslite_data_session_freed_sby"].(int)
+		ret.DsliteTcpFullconeCreatedSby = in["dslite_tcp_fullcone_created_sby"].(int)
+		ret.DsliteTcpFullconeFreedSby = in["dslite_tcp_fullcone_freed_sby"].(int)
+		ret.DsliteUdpFullconeCreatedSby = in["dslite_udp_fullcone_created_sby"].(int)
+		ret.DsliteUdpFullconeFreedSby = in["dslite_udp_fullcone_freed_sby"].(int)
+		ret.Nat44TcpFullconeCreatedSby = in["nat44_tcp_fullcone_created_sby"].(int)
+		ret.Nat44TcpFullconeFreedSby = in["nat44_tcp_fullcone_freed_sby"].(int)
+		ret.Nat44UdpFullconeCreatedSby = in["nat44_udp_fullcone_created_sby"].(int)
+		ret.Nat44UdpFullconeFreedSby = in["nat44_udp_fullcone_freed_sby"].(int)
+		ret.Nat64TcpFullconeCreatedSby = in["nat64_tcp_fullcone_created_sby"].(int)
+		ret.Nat64TcpFullconeFreedSby = in["nat64_tcp_fullcone_freed_sby"].(int)
+		ret.Nat64UdpFullconeCreatedSby = in["nat64_udp_fullcone_created_sby"].(int)
+		ret.Nat64UdpFullconeFreedSby = in["nat64_udp_fullcone_freed_sby"].(int)
 	}
 	return ret
 }

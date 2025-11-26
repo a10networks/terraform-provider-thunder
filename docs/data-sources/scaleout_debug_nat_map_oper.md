@@ -63,5 +63,3 @@ Optional:
 - `ip` (String)
 - `owner` (Number)
 - `vnp_id` (Number)
-
-

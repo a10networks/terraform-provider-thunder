@@ -40,8 +40,8 @@ func resourceAcosEventsMessageSelectorRule() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"message_selector_name": {
+				Type: schema.TypeString, Required: true, Description: "Message_selector_name",
 			},
 		},
 	}
@@ -118,6 +118,6 @@ func dataToEndpointAcosEventsMessageSelectorRule(d *schema.ResourceData) edpt.Ac
 	ret.Inst.SeverityVal = d.Get("severity_val").(string)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Message_selector_name = d.Get("message_selector_name").(string)
 	return ret
 }

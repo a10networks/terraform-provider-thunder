@@ -13,33 +13,6 @@ func resourceDdosDstEntryPortRangeOper() *schema.Resource {
 		ReadContext: resourceDdosDstEntryPortRangeOperRead,
 
 		Schema: map[string]*schema.Schema{
-			"ip_filtering_policy_oper": {
-				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"oper": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"rule_list": {
-										Type: schema.TypeList, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"seq": {
-													Type: schema.TypeInt, Optional: true, Description: "",
-												},
-												"hits": {
-													Type: schema.TypeInt, Optional: true, Description: "",
-												},
-											},
-										},
-									},
-								},
-							},
-						},
-					},
-				},
-			},
 			"oper": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -151,6 +124,9 @@ func resourceDdosDstEntryPortRangeOper() *schema.Resource {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 									"dynamic_entry_limit": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"dynamic_entry_warn_state": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 									"sflow_source_id": {
@@ -543,8 +519,6 @@ func resourceDdosDstEntryPortRangeOperRead(ctx context.Context, d *schema.Resour
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
 		d.SetId(obj.GetId())
 		logger.Println(res)
-		DdosDstEntryPortRangeOperIpFilteringPolicyOper := setObjectDdosDstEntryPortRangeOperIpFilteringPolicyOper(res)
-		d.Set("ip_filtering_policy_oper", DdosDstEntryPortRangeOperIpFilteringPolicyOper)
 		DdosDstEntryPortRangeOperOper := setObjectDdosDstEntryPortRangeOperOper(res)
 		d.Set("oper", DdosDstEntryPortRangeOperOper)
 		DdosDstEntryPortRangeOperPatternRecognition := setObjectDdosDstEntryPortRangeOperPatternRecognition(res)
@@ -562,33 +536,6 @@ func resourceDdosDstEntryPortRangeOperRead(ctx context.Context, d *schema.Resour
 		}
 	}
 	return diags
-}
-
-func setObjectDdosDstEntryPortRangeOperIpFilteringPolicyOper(ret edpt.DataDdosDstEntryPortRangeOper) []interface{} {
-	return []interface{}{
-		map[string]interface{}{
-			"oper": setObjectDdosDstEntryPortRangeOperIpFilteringPolicyOperOper(ret.DtDdosDstEntryPortRangeOper.IpFilteringPolicyOper.Oper),
-		},
-	}
-}
-
-func setObjectDdosDstEntryPortRangeOperIpFilteringPolicyOperOper(d edpt.DdosDstEntryPortRangeOperIpFilteringPolicyOperOper) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstEntryPortRangeOperIpFilteringPolicyOperOperRuleList(d.RuleList)
-	result = append(result, in)
-	return result
-}
-
-func setSliceDdosDstEntryPortRangeOperIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstEntryPortRangeOperIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	for _, item := range d {
-		in := make(map[string]interface{})
-		in["seq"] = item.Seq
-		in["hits"] = item.Hits
-		result = append(result, in)
-	}
-	return result
 }
 
 func setObjectDdosDstEntryPortRangeOperOper(ret edpt.DataDdosDstEntryPortRangeOper) []interface{} {
@@ -655,6 +602,7 @@ func setSliceDdosDstEntryPortRangeOperOperDdos_entry_list(d []edpt.DdosDstEntryP
 		in["lockup_time_str"] = item.LockupTimeStr
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -895,42 +843,6 @@ func setSliceDdosDstEntryPortRangeOperTopkSourcesOperEntryListIndicators(d []edp
 	return result
 }
 
-func getObjectDdosDstEntryPortRangeOperIpFilteringPolicyOper(d []interface{}) edpt.DdosDstEntryPortRangeOperIpFilteringPolicyOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstEntryPortRangeOperIpFilteringPolicyOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstEntryPortRangeOperIpFilteringPolicyOperOper(in["oper"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectDdosDstEntryPortRangeOperIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstEntryPortRangeOperIpFilteringPolicyOperOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstEntryPortRangeOperIpFilteringPolicyOperOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstEntryPortRangeOperIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
-	}
-	return ret
-}
-
-func getSliceDdosDstEntryPortRangeOperIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstEntryPortRangeOperIpFilteringPolicyOperOperRuleList {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosDstEntryPortRangeOperIpFilteringPolicyOperOperRuleList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosDstEntryPortRangeOperIpFilteringPolicyOperOperRuleList
-		oi.Seq = in["seq"].(int)
-		oi.Hits = in["hits"].(int)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
 func getObjectDdosDstEntryPortRangeOperOper(d []interface{}) edpt.DdosDstEntryPortRangeOperOper {
 
 	count1 := len(d)
@@ -1001,6 +913,7 @@ func getSliceDdosDstEntryPortRangeOperOperDdos_entry_list(d []interface{}) []edp
 		oi.LockupTimeStr = in["lockup_time_str"].(string)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(string)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -1288,8 +1201,6 @@ func getSliceDdosDstEntryPortRangeOperTopkSourcesOperEntryListIndicators(d []int
 
 func dataToEndpointDdosDstEntryPortRangeOper(d *schema.ResourceData) edpt.DdosDstEntryPortRangeOper {
 	var ret edpt.DdosDstEntryPortRangeOper
-
-	ret.IpFilteringPolicyOper = getObjectDdosDstEntryPortRangeOperIpFilteringPolicyOper(d.Get("ip_filtering_policy_oper").([]interface{}))
 
 	ret.Oper = getObjectDdosDstEntryPortRangeOperOper(d.Get("oper").([]interface{}))
 

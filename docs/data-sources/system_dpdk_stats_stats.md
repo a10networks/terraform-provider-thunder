@@ -71,5 +71,3 @@ Optional:
 - `w_link_down_drop` (Number) Total worker core link down drop
 - `w_ring_drop` (Number) Total worker core ring drop
 - `w_tx_que_drop` (Number) Total worker core queue drop
-
-

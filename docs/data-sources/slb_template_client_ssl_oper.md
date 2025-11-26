@@ -62,5 +62,3 @@ Optional:
 - `cert_status_next_update` (String)
 - `cert_status_responder` (String)
 - `cert_status_status` (String)
-
-

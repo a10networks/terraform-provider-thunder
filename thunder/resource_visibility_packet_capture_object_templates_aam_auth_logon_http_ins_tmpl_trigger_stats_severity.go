@@ -43,8 +43,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmplTrigge
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"aam_auth_logon_http_ins_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Aam_auth_logon_http_ins_tmpl_name",
 			},
 		},
 	}
@@ -122,6 +122,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesAamAuthLogonHttpInsTmpl
 	ret.Inst.ErrorCritical = d.Get("error_critical").(int)
 	ret.Inst.ErrorWarning = d.Get("error_warning").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Aam_auth_logon_http_ins_tmpl_name = d.Get("aam_auth_logon_http_ins_tmpl_name").(string)
 	return ret
 }

@@ -75,6 +75,8 @@ Optional:
 - `dcmsg_fwd_out` (Number) Diameter cross cpu fwd out
 - `dcmsg_rev_in` (Number) Diameter cross cpu rev in
 - `dcmsg_rev_out` (Number) Diameter cross cpu rev out
+- `diameter_too_busy_in` (Number) Number of DIAMETER_TOO_BUSY in
+- `diameter_too_busy_out` (Number) Number of DIAMETER_TOO_BUSY out
 - `dpa_in` (Number) Number of DPAs in
 - `dpa_out` (Number) Number of DPAs out
 - `dpr_in` (Number) Number of DPRs in
@@ -117,5 +119,3 @@ Optional:
 - `unkwn_cmd_code` (Number) Diameter unkown cmd code
 - `update_latest_server` (Number) Update to the latest server that used a session id
 - `user_session` (Number) Number of user sessions
-
-

@@ -125,6 +125,15 @@ func resourceSlbDnsCacheOper() *schema.Resource {
 						"total": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"cache_usage": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"cache_hit_ratio": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"hit_ratio_percentage_per_sec": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"client": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -211,28 +220,31 @@ func resourceSlbDnsCacheOperRead(ctx context.Context, d *schema.ResourceData, me
 func setObjectSlbDnsCacheOperOper(ret edpt.DataSlbDnsCacheOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"cache_client":     setSliceSlbDnsCacheOperOperCacheClient(ret.DtSlbDnsCacheOper.Oper.CacheClient),
-			"cache_entry":      setSliceSlbDnsCacheOperOperCacheEntry(ret.DtSlbDnsCacheOper.Oper.CacheEntry),
-			"total":            ret.DtSlbDnsCacheOper.Oper.Total,
-			"client":           ret.DtSlbDnsCacheOper.Oper.Client,
-			"entry":            ret.DtSlbDnsCacheOper.Oper.Entry,
-			"global":           ret.DtSlbDnsCacheOper.Oper.Global,
-			"cache_content":    ret.DtSlbDnsCacheOper.Oper.CacheContent,
-			"vport":            ret.DtSlbDnsCacheOper.Oper.Vport,
-			"vs_name":          ret.DtSlbDnsCacheOper.Oper.VsName,
-			"port_type":        ret.DtSlbDnsCacheOper.Oper.PortType,
-			"port_num":         ret.DtSlbDnsCacheOper.Oper.PortNum,
-			"type_value":       ret.DtSlbDnsCacheOper.Oper.TypeValue,
-			"fqdn_domain":      ret.DtSlbDnsCacheOper.Oper.FqdnDomain,
-			"class_string":     ret.DtSlbDnsCacheOper.Oper.ClassString,
-			"class_value":      ret.DtSlbDnsCacheOper.Oper.ClassValue,
-			"type_string":      ret.DtSlbDnsCacheOper.Oper.TypeString,
-			"domain_name":      ret.DtSlbDnsCacheOper.Oper.DomainName,
-			"content_mode":     ret.DtSlbDnsCacheOper.Oper.ContentMode,
-			"rdata_size_value": ret.DtSlbDnsCacheOper.Oper.RdataSizeValue,
-			"rdata_all":        ret.DtSlbDnsCacheOper.Oper.RdataAll,
-			"record_num_value": ret.DtSlbDnsCacheOper.Oper.RecordNumValue,
-			"record_all":       ret.DtSlbDnsCacheOper.Oper.RecordAll,
+			"cache_client":                 setSliceSlbDnsCacheOperOperCacheClient(ret.DtSlbDnsCacheOper.Oper.CacheClient),
+			"cache_entry":                  setSliceSlbDnsCacheOperOperCacheEntry(ret.DtSlbDnsCacheOper.Oper.CacheEntry),
+			"total":                        ret.DtSlbDnsCacheOper.Oper.Total,
+			"cache_usage":                  ret.DtSlbDnsCacheOper.Oper.Cache_usage,
+			"cache_hit_ratio":              ret.DtSlbDnsCacheOper.Oper.Cache_hit_ratio,
+			"hit_ratio_percentage_per_sec": ret.DtSlbDnsCacheOper.Oper.Hit_ratio_percentage_per_sec,
+			"client":                       ret.DtSlbDnsCacheOper.Oper.Client,
+			"entry":                        ret.DtSlbDnsCacheOper.Oper.Entry,
+			"global":                       ret.DtSlbDnsCacheOper.Oper.Global,
+			"cache_content":                ret.DtSlbDnsCacheOper.Oper.CacheContent,
+			"vport":                        ret.DtSlbDnsCacheOper.Oper.Vport,
+			"vs_name":                      ret.DtSlbDnsCacheOper.Oper.VsName,
+			"port_type":                    ret.DtSlbDnsCacheOper.Oper.PortType,
+			"port_num":                     ret.DtSlbDnsCacheOper.Oper.PortNum,
+			"type_value":                   ret.DtSlbDnsCacheOper.Oper.TypeValue,
+			"fqdn_domain":                  ret.DtSlbDnsCacheOper.Oper.FqdnDomain,
+			"class_string":                 ret.DtSlbDnsCacheOper.Oper.ClassString,
+			"class_value":                  ret.DtSlbDnsCacheOper.Oper.ClassValue,
+			"type_string":                  ret.DtSlbDnsCacheOper.Oper.TypeString,
+			"domain_name":                  ret.DtSlbDnsCacheOper.Oper.DomainName,
+			"content_mode":                 ret.DtSlbDnsCacheOper.Oper.ContentMode,
+			"rdata_size_value":             ret.DtSlbDnsCacheOper.Oper.RdataSizeValue,
+			"rdata_all":                    ret.DtSlbDnsCacheOper.Oper.RdataAll,
+			"record_num_value":             ret.DtSlbDnsCacheOper.Oper.RecordNumValue,
+			"record_all":                   ret.DtSlbDnsCacheOper.Oper.RecordAll,
 		},
 	}
 }
@@ -302,6 +314,9 @@ func getObjectSlbDnsCacheOperOper(d []interface{}) edpt.SlbDnsCacheOperOper {
 		ret.CacheClient = getSliceSlbDnsCacheOperOperCacheClient(in["cache_client"].([]interface{}))
 		ret.CacheEntry = getSliceSlbDnsCacheOperOperCacheEntry(in["cache_entry"].([]interface{}))
 		ret.Total = in["total"].(int)
+		ret.Cache_usage = in["cache_usage"].(string)
+		ret.Cache_hit_ratio = in["cache_hit_ratio"].(string)
+		ret.Hit_ratio_percentage_per_sec = in["hit_ratio_percentage_per_sec"].(int)
 		ret.Client = in["client"].(int)
 		ret.Entry = in["entry"].(int)
 		ret.Global = in["global"].(int)

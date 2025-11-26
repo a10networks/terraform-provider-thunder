@@ -52,5 +52,3 @@ Optional:
 - `alg_port_helper_freed_unused` (Number) PORT helper freed unused
 - `alg_port_helper_nat_free` (Number) PORT helper NAT free
 - `sessions_num` (Number) Total Control Sessions
-
-

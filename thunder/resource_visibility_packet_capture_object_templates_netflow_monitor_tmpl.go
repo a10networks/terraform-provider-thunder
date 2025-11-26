@@ -513,10 +513,10 @@ func resourceVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplRead(ctx co
 	return diags
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2699(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2699 {
+func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2797(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2797 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2699
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2797
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Nat44RecordsSentFailure = in["nat44_records_sent_failure"].(int)
@@ -584,10 +584,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate2700(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate2700 {
+func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate2798(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate2798 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate2700
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate2798
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
@@ -657,10 +657,10 @@ func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerSta
 	return ret
 }
 
-func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsSeverity2701(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsSeverity2701 {
+func getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsSeverity2799(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsSeverity2799 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsSeverity2701
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsSeverity2799
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Error = in["error"].(int)
@@ -680,9 +680,9 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmpl(d *s
 	var ret edpt.VisibilityPacketCaptureObjectTemplatesNetflowMonitorTmpl
 	ret.Inst.CaptureConfig = d.Get("capture_config").(string)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2699(d.Get("trigger_stats_inc").([]interface{}))
-	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate2700(d.Get("trigger_stats_rate").([]interface{}))
-	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsSeverity2701(d.Get("trigger_stats_severity").([]interface{}))
+	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsInc2797(d.Get("trigger_stats_inc").([]interface{}))
+	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsRate2798(d.Get("trigger_stats_rate").([]interface{}))
+	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesNetflowMonitorTmplTriggerStatsSeverity2799(d.Get("trigger_stats_severity").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

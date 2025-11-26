@@ -19,6 +19,12 @@ func resourceDdosDstZonePortRangeLevel() *schema.Resource {
 			"apply_extracted_filters": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Apply extracted filters from this level",
 			},
+			"clear_sources_upon_deescalation": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Clear sources upon de-escalation from level 1 to 0 or manual to 0",
+			},
+			"close_sessions_for_all_sources": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Close session for all sources",
+			},
 			"close_sessions_for_unauth_sources": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Close session for unauthenticated sources",
 			},
@@ -30,7 +36,7 @@ func resourceDdosDstZonePortRangeLevel() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"type": {
-							Type: schema.TypeString, Required: true, Description: "'pkt-rate': rate of incoming packets; 'pkt-drop-rate': rate of packets got dropped; 'bit-rate': rate of incoming bits; 'pkt-drop-ratio': ratio of incoming packet rate divided by the rate of dropping packets; 'bytes-to-bytes-from-ratio': ratio of incoming packet rate divided by the rate of outgoing packets; 'concurrent-conns': number of concurrent connections; 'conn-miss-rate': rate of incoming packets for which no previously established connection exists; 'syn-rate': rate on incoming SYN packets; 'fin-rate': rate on incoming FIN packets; 'rst-rate': rate of incoming RST packets; 'small-window-ack-rate': rate of small window advertisement; 'empty-ack-rate': rate of incoming packets which have no payload; 'small-payload-rate': rate of short payload packet; 'syn-fin-ratio': ratio of incoming SYN packet rate divided by the rate of incoming FIN packets; 'cpu-utilization': average data CPU utilization; 'interface-utilization': outside interface utilization;",
+							Type: schema.TypeString, Required: true, Description: "'pkt-rate': rate of incoming packets; 'pkt-drop-rate': rate of packets got dropped; 'bit-rate': rate of incoming bits; 'pkt-drop-ratio': ratio of incoming packet rate divided by the rate of dropping packets; 'bytes-to-bytes-from-ratio': ratio of incoming packet rate divided by the rate of outgoing packets; 'concurrent-conns': number of concurrent connections; 'conn-miss-rate': rate of incoming packets for which no previously established connection exists; 'syn-rate': rate on incoming SYN packets; 'fin-rate': rate on incoming FIN packets; 'rst-rate': rate of incoming RST packets; 'syn-ack-rate': rate on incoming SYN-ACK packets; 'small-window-ack-rate': rate of small window advertisement; 'empty-ack-rate': rate of incoming packets which have no payload; 'small-payload-rate': rate of short payload packet; 'syn-fin-ratio': ratio of incoming SYN packet rate divided by the rate of incoming FIN packets; 'cpu-utilization': average data CPU utilization; 'interface-utilization': outside interface utilization; 'learnt-sources': learnt sources;",
 						},
 						"tcp_window_size": {
 							Type: schema.TypeInt, Optional: true, Description: "Expected minimal window size",
@@ -132,14 +138,14 @@ func resourceDdosDstZonePortRangeLevel() *schema.Resource {
 			"zone_violation_actions": {
 				Type: schema.TypeString, Optional: true, Description: "Violation actions apply due to zone escalate from this level",
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"port_range_start": {
+				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
 			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
-			"port_range_start": {
-				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"port_range_end": {
 				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
@@ -256,6 +262,8 @@ func getObjectDdosDstZonePortRangeLevelZoneTemplate(d []interface{}) edpt.DdosDs
 func dataToEndpointDdosDstZonePortRangeLevel(d *schema.ResourceData) edpt.DdosDstZonePortRangeLevel {
 	var ret edpt.DdosDstZonePortRangeLevel
 	ret.Inst.ApplyExtractedFilters = d.Get("apply_extracted_filters").(int)
+	ret.Inst.ClearSourcesUponDeescalation = d.Get("clear_sources_upon_deescalation").(int)
+	ret.Inst.CloseSessionsForAllSources = d.Get("close_sessions_for_all_sources").(int)
 	ret.Inst.CloseSessionsForUnauthSources = d.Get("close_sessions_for_unauth_sources").(int)
 	ret.Inst.GlidAction = d.Get("glid_action").(string)
 	ret.Inst.IndicatorList = getSliceDdosDstZonePortRangeLevelIndicatorList(d.Get("indicator_list").([]interface{}))
@@ -269,9 +277,9 @@ func dataToEndpointDdosDstZonePortRangeLevel(d *schema.ResourceData) edpt.DdosDs
 	ret.Inst.ZoneEscalationScore = d.Get("zone_escalation_score").(int)
 	ret.Inst.ZoneTemplate = getObjectDdosDstZonePortRangeLevelZoneTemplate(d.Get("zone_template").([]interface{}))
 	ret.Inst.ZoneViolationActions = d.Get("zone_violation_actions").(string)
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
-	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.PortRangeStart = d.Get("port_range_start").(string)
+	ret.Inst.Protocol = d.Get("protocol").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	ret.Inst.PortRangeEnd = d.Get("port_range_end").(string)
 	return ret
 }

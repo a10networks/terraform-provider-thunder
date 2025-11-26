@@ -62,6 +62,9 @@ func resourceCgnv6FixedNatInsideIplist() *schema.Resource {
 			"respond_to_user_mac": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use the user's source MAC for the next hop rather than the routing table (Default: off)",
 			},
+			"service_config_template": {
+				Type: schema.TypeString, Optional: true, Description: "Scaleout service-config template to bind (Scaleout service-config template name)",
+			},
 			"session_quota": {
 				Type: schema.TypeInt, Optional: true, Description: "Configure per user quota on sessions",
 			},
@@ -190,6 +193,7 @@ func dataToEndpointCgnv6FixedNatInsideIplist(d *schema.ResourceData) edpt.Cgnv6F
 	ret.Inst.Partition = d.Get("partition").(string)
 	ret.Inst.PortsPerUser = d.Get("ports_per_user").(int)
 	ret.Inst.RespondToUserMac = d.Get("respond_to_user_mac").(int)
+	ret.Inst.ServiceConfigTemplate = d.Get("service_config_template").(string)
 	ret.Inst.SessionQuota = d.Get("session_quota").(int)
 	ret.Inst.SkipPortsOnRollover = d.Get("skip_ports_on_rollover").(int)
 	ret.Inst.UsableNatPorts = getObjectCgnv6FixedNatInsideIplistUsableNatPorts(d.Get("usable_nat_ports").([]interface{}))

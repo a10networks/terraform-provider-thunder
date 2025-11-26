@@ -1,0 +1,217 @@
+package thunder
+
+import (
+	"context"
+	edpt "github.com/a10networks/terraform-provider-thunder/thunder/axapi/endpoint"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+)
+
+func resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmpl() *schema.Resource {
+	return &schema.Resource{
+		Description:   "`thunder_visibility_packet_capture_object_templates_rule_set_rule_tmpl`: Configure template for rule-set.rule\n\n__PLACEHOLDER__",
+		CreateContext: resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplCreate,
+		UpdateContext: resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplUpdate,
+		ReadContext:   resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplRead,
+		DeleteContext: resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplDelete,
+
+		Schema: map[string]*schema.Schema{
+			"capture_config": {
+				Type: schema.TypeString, Optional: true, Description: "Specify name of the capture-config to use with this template",
+			},
+			"name": {
+				Type: schema.TypeString, Required: true, Description: "Packet Capture Template Name",
+			},
+			"trigger_stats_inc": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"syn_cookie_verification_failed": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for SYN cookie verification failed",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
+			"trigger_stats_rate": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"threshold_exceeded_by": {
+							Type: schema.TypeInt, Optional: true, Default: 5, Description: "Set the threshold to the number of times greater than the previous duration to start the capture, default is 5",
+						},
+						"duration": {
+							Type: schema.TypeInt, Optional: true, Default: 60, Description: "Time in seconds to look for the anomaly, default is 60",
+						},
+						"syn_cookie_verification_failed": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for SYN cookie verification failed",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
+			"trigger_stats_severity": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"error": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all error counters (Default disabled)",
+						},
+						"error_alert": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all alert error counters (Default disabled)",
+						},
+						"error_warning": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all warning error counters (Default disabled)",
+						},
+						"error_critical": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all critical error counters (Default disabled)",
+						},
+						"drop": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all drop counters (Default disabled)",
+						},
+						"drop_alert": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all alert drop counters (Default disabled)",
+						},
+						"drop_warning": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all warning drop counters (Default disabled)",
+						},
+						"drop_critical": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable packet capture on all critical drop counters (Default disabled)",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
+			"user_tag": {
+				Type: schema.TypeString, Optional: true, Description: "Customized tag",
+			},
+			"uuid": {
+				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+			},
+		},
+	}
+}
+func resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplCreate()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmpl(d)
+		d.SetId(obj.GetId())
+		err := obj.Post(client.Token, client.Host, logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplRead(ctx, d, meta)
+	}
+	return diags
+}
+
+func resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplUpdate()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmpl(d)
+		err := obj.Put(client.Token, client.Host, logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+		return resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplRead(ctx, d, meta)
+	}
+	return diags
+}
+func resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplDelete()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmpl(d)
+		err := obj.Delete(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
+func resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	client := meta.(Thunder)
+	logger := client.log
+	logger.Println("resourceVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplRead()")
+	var diags diag.Diagnostics
+	if client.Host != "" {
+		obj := dataToEndpointVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmpl(d)
+		err := obj.Get(client.Token, client.Host, d.Id(), logger)
+		if err != nil {
+			return diag.FromErr(err)
+		}
+	}
+	return diags
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2803(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2803 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2803
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.SynCookieVerificationFailed = in["syn_cookie_verification_failed"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2804(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2804 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2804
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ThresholdExceededBy = in["threshold_exceeded_by"].(int)
+		ret.Duration = in["duration"].(int)
+		ret.SynCookieVerificationFailed = in["syn_cookie_verification_failed"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2805(d []interface{}) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2805 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2805
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Error = in["error"].(int)
+		ret.ErrorAlert = in["error_alert"].(int)
+		ret.ErrorWarning = in["error_warning"].(int)
+		ret.ErrorCritical = in["error_critical"].(int)
+		ret.Drop = in["drop"].(int)
+		ret.DropAlert = in["drop_alert"].(int)
+		ret.DropWarning = in["drop_warning"].(int)
+		ret.DropCritical = in["drop_critical"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func dataToEndpointVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmpl(d *schema.ResourceData) edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmpl {
+	var ret edpt.VisibilityPacketCaptureObjectTemplatesRuleSetRuleTmpl
+	ret.Inst.CaptureConfig = d.Get("capture_config").(string)
+	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.TriggerStatsInc = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsInc2803(d.Get("trigger_stats_inc").([]interface{}))
+	ret.Inst.TriggerStatsRate = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsRate2804(d.Get("trigger_stats_rate").([]interface{}))
+	ret.Inst.TriggerStatsSeverity = getObjectVisibilityPacketCaptureObjectTemplatesRuleSetRuleTmplTriggerStatsSeverity2805(d.Get("trigger_stats_severity").([]interface{}))
+	ret.Inst.UserTag = d.Get("user_tag").(string)
+	//omit uuid
+	return ret
+}

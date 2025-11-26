@@ -475,25 +475,25 @@ func resourceNetflowMonitorRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getObjectNetflowMonitorCustomRecord1055(d []interface{}) edpt.NetflowMonitorCustomRecord1055 {
+func getObjectNetflowMonitorCustomRecord1137(d []interface{}) edpt.NetflowMonitorCustomRecord1137 {
 
 	count1 := len(d)
-	var ret edpt.NetflowMonitorCustomRecord1055
+	var ret edpt.NetflowMonitorCustomRecord1137
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.CustomCfg = getSliceNetflowMonitorCustomRecordCustomCfg1056(in["custom_cfg"].([]interface{}))
+		ret.CustomCfg = getSliceNetflowMonitorCustomRecordCustomCfg1138(in["custom_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceNetflowMonitorCustomRecordCustomCfg1056(d []interface{}) []edpt.NetflowMonitorCustomRecordCustomCfg1056 {
+func getSliceNetflowMonitorCustomRecordCustomCfg1138(d []interface{}) []edpt.NetflowMonitorCustomRecordCustomCfg1138 {
 
 	count1 := len(d)
-	ret := make([]edpt.NetflowMonitorCustomRecordCustomCfg1056, 0, count1)
+	ret := make([]edpt.NetflowMonitorCustomRecordCustomCfg1138, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.NetflowMonitorCustomRecordCustomCfg1056
+		var oi edpt.NetflowMonitorCustomRecordCustomCfg1138
 		oi.Event = in["event"].(string)
 		oi.IpfixTemplate = in["ipfix_template"].(string)
 		ret = append(ret, oi)
@@ -501,24 +501,24 @@ func getSliceNetflowMonitorCustomRecordCustomCfg1056(d []interface{}) []edpt.Net
 	return ret
 }
 
-func getObjectNetflowMonitorDestination1057(d []interface{}) edpt.NetflowMonitorDestination1057 {
+func getObjectNetflowMonitorDestination1139(d []interface{}) edpt.NetflowMonitorDestination1139 {
 
 	count1 := len(d)
-	var ret edpt.NetflowMonitorDestination1057
+	var ret edpt.NetflowMonitorDestination1139
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ServiceGroup = in["service_group"].(string)
-		ret.IpCfg = getObjectNetflowMonitorDestinationIpCfg1058(in["ip_cfg"].([]interface{}))
-		ret.Ipv6Cfg = getObjectNetflowMonitorDestinationIpv6Cfg1059(in["ipv6_cfg"].([]interface{}))
+		ret.IpCfg = getObjectNetflowMonitorDestinationIpCfg1140(in["ip_cfg"].([]interface{}))
+		ret.Ipv6Cfg = getObjectNetflowMonitorDestinationIpv6Cfg1141(in["ipv6_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectNetflowMonitorDestinationIpCfg1058(d []interface{}) edpt.NetflowMonitorDestinationIpCfg1058 {
+func getObjectNetflowMonitorDestinationIpCfg1140(d []interface{}) edpt.NetflowMonitorDestinationIpCfg1140 {
 
 	count1 := len(d)
-	var ret edpt.NetflowMonitorDestinationIpCfg1058
+	var ret edpt.NetflowMonitorDestinationIpCfg1140
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ip = in["ip"].(string)
@@ -527,10 +527,10 @@ func getObjectNetflowMonitorDestinationIpCfg1058(d []interface{}) edpt.NetflowMo
 	return ret
 }
 
-func getObjectNetflowMonitorDestinationIpv6Cfg1059(d []interface{}) edpt.NetflowMonitorDestinationIpv6Cfg1059 {
+func getObjectNetflowMonitorDestinationIpv6Cfg1141(d []interface{}) edpt.NetflowMonitorDestinationIpv6Cfg1141 {
 
 	count1 := len(d)
-	var ret edpt.NetflowMonitorDestinationIpv6Cfg1059
+	var ret edpt.NetflowMonitorDestinationIpv6Cfg1141
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ipv6 = in["ipv6"].(string)
@@ -539,30 +539,30 @@ func getObjectNetflowMonitorDestinationIpv6Cfg1059(d []interface{}) edpt.Netflow
 	return ret
 }
 
-func getObjectNetflowMonitorDisableLogByDestination1060(d []interface{}) edpt.NetflowMonitorDisableLogByDestination1060 {
+func getObjectNetflowMonitorDisableLogByDestination1142(d []interface{}) edpt.NetflowMonitorDisableLogByDestination1142 {
 
 	count1 := len(d)
-	var ret edpt.NetflowMonitorDisableLogByDestination1060
+	var ret edpt.NetflowMonitorDisableLogByDestination1142
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.TcpList = getSliceNetflowMonitorDisableLogByDestinationTcpList1061(in["tcp_list"].([]interface{}))
-		ret.UdpList = getSliceNetflowMonitorDisableLogByDestinationUdpList1062(in["udp_list"].([]interface{}))
+		ret.TcpList = getSliceNetflowMonitorDisableLogByDestinationTcpList1143(in["tcp_list"].([]interface{}))
+		ret.UdpList = getSliceNetflowMonitorDisableLogByDestinationUdpList1144(in["udp_list"].([]interface{}))
 		ret.Icmp = in["icmp"].(int)
 		ret.Others = in["others"].(int)
 		//omit uuid
-		ret.IpList = getSliceNetflowMonitorDisableLogByDestinationIpList1063(in["ip_list"].([]interface{}))
-		ret.Ip6List = getSliceNetflowMonitorDisableLogByDestinationIp6List1066(in["ip6_list"].([]interface{}))
+		ret.IpList = getSliceNetflowMonitorDisableLogByDestinationIpList1145(in["ip_list"].([]interface{}))
+		ret.Ip6List = getSliceNetflowMonitorDisableLogByDestinationIp6List1148(in["ip6_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceNetflowMonitorDisableLogByDestinationTcpList1061(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationTcpList1061 {
+func getSliceNetflowMonitorDisableLogByDestinationTcpList1143(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationTcpList1143 {
 
 	count1 := len(d)
-	ret := make([]edpt.NetflowMonitorDisableLogByDestinationTcpList1061, 0, count1)
+	ret := make([]edpt.NetflowMonitorDisableLogByDestinationTcpList1143, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.NetflowMonitorDisableLogByDestinationTcpList1061
+		var oi edpt.NetflowMonitorDisableLogByDestinationTcpList1143
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -570,13 +570,13 @@ func getSliceNetflowMonitorDisableLogByDestinationTcpList1061(d []interface{}) [
 	return ret
 }
 
-func getSliceNetflowMonitorDisableLogByDestinationUdpList1062(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationUdpList1062 {
+func getSliceNetflowMonitorDisableLogByDestinationUdpList1144(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationUdpList1144 {
 
 	count1 := len(d)
-	ret := make([]edpt.NetflowMonitorDisableLogByDestinationUdpList1062, 0, count1)
+	ret := make([]edpt.NetflowMonitorDisableLogByDestinationUdpList1144, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.NetflowMonitorDisableLogByDestinationUdpList1062
+		var oi edpt.NetflowMonitorDisableLogByDestinationUdpList1144
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -584,16 +584,16 @@ func getSliceNetflowMonitorDisableLogByDestinationUdpList1062(d []interface{}) [
 	return ret
 }
 
-func getSliceNetflowMonitorDisableLogByDestinationIpList1063(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationIpList1063 {
+func getSliceNetflowMonitorDisableLogByDestinationIpList1145(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationIpList1145 {
 
 	count1 := len(d)
-	ret := make([]edpt.NetflowMonitorDisableLogByDestinationIpList1063, 0, count1)
+	ret := make([]edpt.NetflowMonitorDisableLogByDestinationIpList1145, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.NetflowMonitorDisableLogByDestinationIpList1063
+		var oi edpt.NetflowMonitorDisableLogByDestinationIpList1145
 		oi.Ipv4Addr = in["ipv4_addr"].(string)
-		oi.TcpList = getSliceNetflowMonitorDisableLogByDestinationIpListTcpList1064(in["tcp_list"].([]interface{}))
-		oi.UdpList = getSliceNetflowMonitorDisableLogByDestinationIpListUdpList1065(in["udp_list"].([]interface{}))
+		oi.TcpList = getSliceNetflowMonitorDisableLogByDestinationIpListTcpList1146(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceNetflowMonitorDisableLogByDestinationIpListUdpList1147(in["udp_list"].([]interface{}))
 		oi.Icmp = in["icmp"].(int)
 		oi.Others = in["others"].(int)
 		//omit uuid
@@ -603,13 +603,13 @@ func getSliceNetflowMonitorDisableLogByDestinationIpList1063(d []interface{}) []
 	return ret
 }
 
-func getSliceNetflowMonitorDisableLogByDestinationIpListTcpList1064(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationIpListTcpList1064 {
+func getSliceNetflowMonitorDisableLogByDestinationIpListTcpList1146(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationIpListTcpList1146 {
 
 	count1 := len(d)
-	ret := make([]edpt.NetflowMonitorDisableLogByDestinationIpListTcpList1064, 0, count1)
+	ret := make([]edpt.NetflowMonitorDisableLogByDestinationIpListTcpList1146, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.NetflowMonitorDisableLogByDestinationIpListTcpList1064
+		var oi edpt.NetflowMonitorDisableLogByDestinationIpListTcpList1146
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -617,13 +617,13 @@ func getSliceNetflowMonitorDisableLogByDestinationIpListTcpList1064(d []interfac
 	return ret
 }
 
-func getSliceNetflowMonitorDisableLogByDestinationIpListUdpList1065(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationIpListUdpList1065 {
+func getSliceNetflowMonitorDisableLogByDestinationIpListUdpList1147(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationIpListUdpList1147 {
 
 	count1 := len(d)
-	ret := make([]edpt.NetflowMonitorDisableLogByDestinationIpListUdpList1065, 0, count1)
+	ret := make([]edpt.NetflowMonitorDisableLogByDestinationIpListUdpList1147, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.NetflowMonitorDisableLogByDestinationIpListUdpList1065
+		var oi edpt.NetflowMonitorDisableLogByDestinationIpListUdpList1147
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -631,16 +631,16 @@ func getSliceNetflowMonitorDisableLogByDestinationIpListUdpList1065(d []interfac
 	return ret
 }
 
-func getSliceNetflowMonitorDisableLogByDestinationIp6List1066(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationIp6List1066 {
+func getSliceNetflowMonitorDisableLogByDestinationIp6List1148(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationIp6List1148 {
 
 	count1 := len(d)
-	ret := make([]edpt.NetflowMonitorDisableLogByDestinationIp6List1066, 0, count1)
+	ret := make([]edpt.NetflowMonitorDisableLogByDestinationIp6List1148, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.NetflowMonitorDisableLogByDestinationIp6List1066
+		var oi edpt.NetflowMonitorDisableLogByDestinationIp6List1148
 		oi.Ipv6Addr = in["ipv6_addr"].(string)
-		oi.TcpList = getSliceNetflowMonitorDisableLogByDestinationIp6ListTcpList1067(in["tcp_list"].([]interface{}))
-		oi.UdpList = getSliceNetflowMonitorDisableLogByDestinationIp6ListUdpList1068(in["udp_list"].([]interface{}))
+		oi.TcpList = getSliceNetflowMonitorDisableLogByDestinationIp6ListTcpList1149(in["tcp_list"].([]interface{}))
+		oi.UdpList = getSliceNetflowMonitorDisableLogByDestinationIp6ListUdpList1150(in["udp_list"].([]interface{}))
 		oi.Icmp = in["icmp"].(int)
 		oi.Others = in["others"].(int)
 		//omit uuid
@@ -650,13 +650,13 @@ func getSliceNetflowMonitorDisableLogByDestinationIp6List1066(d []interface{}) [
 	return ret
 }
 
-func getSliceNetflowMonitorDisableLogByDestinationIp6ListTcpList1067(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationIp6ListTcpList1067 {
+func getSliceNetflowMonitorDisableLogByDestinationIp6ListTcpList1149(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationIp6ListTcpList1149 {
 
 	count1 := len(d)
-	ret := make([]edpt.NetflowMonitorDisableLogByDestinationIp6ListTcpList1067, 0, count1)
+	ret := make([]edpt.NetflowMonitorDisableLogByDestinationIp6ListTcpList1149, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.NetflowMonitorDisableLogByDestinationIp6ListTcpList1067
+		var oi edpt.NetflowMonitorDisableLogByDestinationIp6ListTcpList1149
 		oi.TcpPortStart = in["tcp_port_start"].(int)
 		oi.TcpPortEnd = in["tcp_port_end"].(int)
 		ret = append(ret, oi)
@@ -664,13 +664,13 @@ func getSliceNetflowMonitorDisableLogByDestinationIp6ListTcpList1067(d []interfa
 	return ret
 }
 
-func getSliceNetflowMonitorDisableLogByDestinationIp6ListUdpList1068(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationIp6ListUdpList1068 {
+func getSliceNetflowMonitorDisableLogByDestinationIp6ListUdpList1150(d []interface{}) []edpt.NetflowMonitorDisableLogByDestinationIp6ListUdpList1150 {
 
 	count1 := len(d)
-	ret := make([]edpt.NetflowMonitorDisableLogByDestinationIp6ListUdpList1068, 0, count1)
+	ret := make([]edpt.NetflowMonitorDisableLogByDestinationIp6ListUdpList1150, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.NetflowMonitorDisableLogByDestinationIp6ListUdpList1068
+		var oi edpt.NetflowMonitorDisableLogByDestinationIp6ListUdpList1150
 		oi.UdpPortStart = in["udp_port_start"].(int)
 		oi.UdpPortEnd = in["udp_port_end"].(int)
 		ret = append(ret, oi)
@@ -678,10 +678,10 @@ func getSliceNetflowMonitorDisableLogByDestinationIp6ListUdpList1068(d []interfa
 	return ret
 }
 
-func getObjectNetflowMonitorRecord1069(d []interface{}) edpt.NetflowMonitorRecord1069 {
+func getObjectNetflowMonitorRecord1151(d []interface{}) edpt.NetflowMonitorRecord1151 {
 
 	count1 := len(d)
-	var ret edpt.NetflowMonitorRecord1069
+	var ret edpt.NetflowMonitorRecord1151
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.NetflowV5 = in["netflow_v5"].(int)
@@ -710,10 +710,10 @@ func getObjectNetflowMonitorRecord1069(d []interface{}) edpt.NetflowMonitorRecor
 	return ret
 }
 
-func getObjectNetflowMonitorResendTemplate1070(d []interface{}) edpt.NetflowMonitorResendTemplate1070 {
+func getObjectNetflowMonitorResendTemplate1152(d []interface{}) edpt.NetflowMonitorResendTemplate1152 {
 
 	count1 := len(d)
-	var ret edpt.NetflowMonitorResendTemplate1070
+	var ret edpt.NetflowMonitorResendTemplate1152
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Timeout = in["timeout"].(int)
@@ -723,10 +723,10 @@ func getObjectNetflowMonitorResendTemplate1070(d []interface{}) edpt.NetflowMoni
 	return ret
 }
 
-func getObjectNetflowMonitorSample1071(d []interface{}) edpt.NetflowMonitorSample1071 {
+func getObjectNetflowMonitorSample1153(d []interface{}) edpt.NetflowMonitorSample1153 {
 
 	count1 := len(d)
-	var ret edpt.NetflowMonitorSample1071
+	var ret edpt.NetflowMonitorSample1153
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.EthernetList = getSliceNetflowMonitorSampleEthernetList(in["ethernet_list"].([]interface{}))
@@ -792,10 +792,10 @@ func getSliceNetflowMonitorSamplingEnable(d []interface{}) []edpt.NetflowMonitor
 	return ret
 }
 
-func getObjectNetflowMonitorSourceAddress1072(d []interface{}) edpt.NetflowMonitorSourceAddress1072 {
+func getObjectNetflowMonitorSourceAddress1154(d []interface{}) edpt.NetflowMonitorSourceAddress1154 {
 
 	count1 := len(d)
-	var ret edpt.NetflowMonitorSourceAddress1072
+	var ret edpt.NetflowMonitorSourceAddress1154
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ip = in["ip"].(string)
@@ -808,20 +808,20 @@ func getObjectNetflowMonitorSourceAddress1072(d []interface{}) edpt.NetflowMonit
 func dataToEndpointNetflowMonitor(d *schema.ResourceData) edpt.NetflowMonitor {
 	var ret edpt.NetflowMonitor
 	ret.Inst.CounterPollingInterval = d.Get("counter_polling_interval").(int)
-	ret.Inst.CustomRecord = getObjectNetflowMonitorCustomRecord1055(d.Get("custom_record").([]interface{}))
-	ret.Inst.Destination = getObjectNetflowMonitorDestination1057(d.Get("destination").([]interface{}))
+	ret.Inst.CustomRecord = getObjectNetflowMonitorCustomRecord1137(d.Get("custom_record").([]interface{}))
+	ret.Inst.Destination = getObjectNetflowMonitorDestination1139(d.Get("destination").([]interface{}))
 	ret.Inst.Disable = d.Get("disable").(int)
-	ret.Inst.DisableLogByDestination = getObjectNetflowMonitorDisableLogByDestination1060(d.Get("disable_log_by_destination").([]interface{}))
+	ret.Inst.DisableLogByDestination = getObjectNetflowMonitorDisableLogByDestination1142(d.Get("disable_log_by_destination").([]interface{}))
 	ret.Inst.FlowTimeout = d.Get("flow_timeout").(int)
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.PacketCaptureTemplate = d.Get("packet_capture_template").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
-	ret.Inst.Record = getObjectNetflowMonitorRecord1069(d.Get("record").([]interface{}))
-	ret.Inst.ResendTemplate = getObjectNetflowMonitorResendTemplate1070(d.Get("resend_template").([]interface{}))
-	ret.Inst.Sample = getObjectNetflowMonitorSample1071(d.Get("sample").([]interface{}))
+	ret.Inst.Record = getObjectNetflowMonitorRecord1151(d.Get("record").([]interface{}))
+	ret.Inst.ResendTemplate = getObjectNetflowMonitorResendTemplate1152(d.Get("resend_template").([]interface{}))
+	ret.Inst.Sample = getObjectNetflowMonitorSample1153(d.Get("sample").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceNetflowMonitorSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.Scope = d.Get("scope").(string)
-	ret.Inst.SourceAddress = getObjectNetflowMonitorSourceAddress1072(d.Get("source_address").([]interface{}))
+	ret.Inst.SourceAddress = getObjectNetflowMonitorSourceAddress1154(d.Get("source_address").([]interface{}))
 	ret.Inst.SourceIpUseMgmt = d.Get("source_ip_use_mgmt").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid

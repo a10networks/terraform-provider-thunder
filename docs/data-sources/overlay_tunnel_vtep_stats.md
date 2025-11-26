@@ -87,5 +87,3 @@ Optional:
 - `unknown_vtep_tx` (Number) Vtep unknown tx
 - `vtep_host_learn_error` (Number) Host learn error
 - `vtep_host_learned` (Number) Hosts learned
-
-

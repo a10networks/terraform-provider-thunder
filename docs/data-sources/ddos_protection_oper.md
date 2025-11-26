@@ -111,7 +111,10 @@ Optional:
 - `src_dst_entry_limit` (String)
 - `src_dynamic_overflow_ipv4` (String)
 - `src_dynamic_overflow_ipv6` (String)
+- `src_zone_port_entry_clist_warning_threshold` (Number)
 - `src_zone_port_entry_limit` (String)
+- `src_zone_port_entry_overflow_warning` (String)
+- `src_zone_port_entry_warning_threshold` (Number)
 - `sync` (String)
 - `sync_auto_wl` (String)
 - `tap_interfaces` (String)
@@ -119,5 +122,3 @@ Optional:
 - `vrrp` (String)
 - `vrrp_auto_wl` (String)
 - `warm_up` (String)
-
-

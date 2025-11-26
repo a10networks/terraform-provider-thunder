@@ -779,8 +779,8 @@ func resourceDdosSipTcpZonePortStats() *schema.Resource {
 						"prog_response_len_exceed": {
 							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response Length Exceed",
 						},
-						"prog_resp_req_ratio_exceed": {
-							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response to Request Ratio Exceed",
+						"prog_resp_pkt_rate_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response Packet Rate Exceed",
 						},
 						"prog_resp_req_time_exceed": {
 							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Response to Request Time Exceed",
@@ -899,15 +899,6 @@ func resourceDdosSipTcpZonePortStats() *schema.Resource {
 						"unauth_src_session_reset": {
 							Type: schema.TypeInt, Optional: true, Description: "Session Reset for Unauthenticated Src",
 						},
-						"prog_conn_samples_processed": {
-							Type: schema.TypeInt, Optional: true, Description: "Sample Processed: Connnection",
-						},
-						"prog_req_samples_processed": {
-							Type: schema.TypeInt, Optional: true, Description: "Sample Processed: Req-Resp",
-						},
-						"prog_win_samples_processed": {
-							Type: schema.TypeInt, Optional: true, Description: "Sample Processed: Time Window",
-						},
 						"src_hw_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Src Hardware Packets Dropped",
 						},
@@ -917,14 +908,299 @@ func resourceDdosSipTcpZonePortStats() *schema.Resource {
 						"src_tcp_auth_rst": {
 							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Reset",
 						},
-						"addr_filter_drop": {
+						"ip_filtering_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "IP Filtering Policy: Dropped",
 						},
-						"addr_filter_bl": {
+						"ip_filtering_bl": {
 							Type: schema.TypeInt, Optional: true, Description: "IP Filtering Policy: Blacklisted",
 						},
 						"src_learn_overflow": {
 							Type: schema.TypeInt, Optional: true, Description: "Source Dynamic Entry Overflow",
+						},
+						"all_src_session_reset": {
+							Type: schema.TypeInt, Optional: true, Description: "Session Reset for All Src Upon Level Escalation",
+						},
+						"clear_session_upon_deescalation": {
+							Type: schema.TypeInt, Optional: true, Description: "Clear Session Upon De-escalation to Level 0",
+						},
+						"hybrid_auth_unknown_pass": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Unknown Auth Pass",
+						},
+						"hybrid_auth_unknown_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Unknown Auth Fail",
+						},
+						"hybrid_auth_valid_sa_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Valid SYNACK Sent",
+						},
+						"hybrid_auth_invalid_sa_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Invalid SYNACK Sent",
+						},
+						"hybrid_auth_filter_full": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Filter Full",
+						},
+						"hybrid_auth_lookup_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Lookup Fail",
+						},
+						"hybrid_auth_invalid_pass": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Invalid SYNACK Auth Pass",
+						},
+						"hybrid_auth_valid_pass": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Valid SYNACK Auth Pass",
+						},
+						"hybrid_auth_invalid_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Invalid SYNACK Auth Fail",
+						},
+						"hybrid_auth_valid_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Valid SYNACK Auth Fail",
+						},
+						"dst_tcp_conn_half_open_timeout": {
+							Type: schema.TypeInt, Optional: true, Description: "Half Open Connections Timeout",
+						},
+						"dst_tcp_conn_half_open_timeout_rst_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "Half Open Connections Timeout RST Sent",
+						},
+						"dst_tcp_sess_aged_rst_sent": {
+							Type: schema.TypeInt, Optional: true, Description: "Sessions Aged Out RST Sent",
+						},
+						"prog_query_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Client Query Time Exceed",
+						},
+						"prog_think_exceed": {
+							Type: schema.TypeInt, Optional: true, Description: "Req-Resp: Server Think Time Exceed",
+						},
+						"dynamic_count_warn": {
+							Type: schema.TypeInt, Optional: true, Description: "dynamic-entry-count warning send",
+						},
+						"prog_conn_samples_processed": {
+							Type: schema.TypeInt, Optional: true, Description: "Sample Processed: Connnection",
+						},
+						"prog_req_samples_processed": {
+							Type: schema.TypeInt, Optional: true, Description: "Sample Processed: Req-Resp",
+						},
+						"prog_win_samples_processed": {
+							Type: schema.TypeInt, Optional: true, Description: "Sample Processed: Time Window",
+						},
+						"hybrid_auth_method_change": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Method Change",
+						},
+						"small_window_excd": {
+							Type: schema.TypeInt, Optional: true, Description: "Small-Window Exceeded",
+						},
+						"src_small_window_excd": {
+							Type: schema.TypeInt, Optional: true, Description: "Src Small-Window Exceeded",
+						},
+						"small_window_rcv": {
+							Type: schema.TypeInt, Optional: true, Description: "Small-Window Receive",
+						},
+						"hybrid_auth_entry_aged_out": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Entry Aged Out",
+						},
+						"tcp_syn_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Inbound SYN Received",
+						},
+						"tcp_syn_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP SYN ACK Received",
+						},
+						"tcp_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ACK Received",
+						},
+						"tcp_fin_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN Received",
+						},
+						"tcp_rst_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP RST Received",
+						},
+						"src_zone_service_entry_hit": {
+							Type: schema.TypeInt, Optional: true, Description: "SrcZoneService Entry Hit",
+						},
+						"hybrid_auth_auth_no_match": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Auth No Match Drop",
+						},
+						"tcp_auth_drop_syn": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: SYN",
+						},
+						"src_auth_drop_syn": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: SYN",
+						},
+						"tcp_auth_drop_ack": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: ACK",
+						},
+						"src_auth_drop_ack": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: ACK",
+						},
+						"tcp_auth_drop_rst": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: RST",
+						},
+						"src_auth_drop_rst": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: RST",
+						},
+						"tcp_auth_drop_ack_pass_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: ACK Pass Auth",
+						},
+						"src_auth_drop_ack_pass_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: ACK Pass Auth",
+						},
+						"tcp_auth_drop_ack_fail_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: ACK Fail Auth",
+						},
+						"src_auth_drop_ack_fail_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: ACK Fail Auth",
+						},
+						"tcp_auth_drop_rst_pass_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: RST Pass Auth",
+						},
+						"src_auth_drop_rst_pass_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: RST Pass Auth",
+						},
+						"tcp_auth_drop_rst_fail_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: RST Fail Auth",
+						},
+						"src_auth_drop_rst_fail_auth": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: RST Fail Auth",
+						},
+						"hybrid_auth_auth_no_match_rst_rcv": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Auth No Match Drop: RST Received",
+						},
+						"hybrid_auth_auth_no_match_ack_rcv": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Auth Hybrid Auth No Match Drop: ACK Received",
+						},
+						"tcp_auth_drop_ack_xmit": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: ACK Retransmit",
+						},
+						"src_auth_drop_ack_xmit": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: ACK Retransmit",
+						},
+						"tcp_auth_drop_rst_xmit": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Auth Dropped: RST Retransmit",
+						},
+						"src_auth_drop_rst_xmit": {
+							Type: schema.TypeInt, Optional: true, Description: "Src TCP Auth Dropped: RST Retransmit",
+						},
+						"same_sport_dport_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Same Source and Destination Port Drop",
+						},
+						"tcp_psh_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP PSH Received",
+						},
+						"tcp_psh_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP PSH ACK Received",
+						},
+						"tcp_fin_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN ACK Received",
+						},
+						"tcp_rst_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP RST ACK Received",
+						},
+						"tcp_urg_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP URG Received",
+						},
+						"tcp_ece_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ECE Received",
+						},
+						"tcp_cwr_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP CWR Received",
+						},
+						"tcp_empty_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Empty ACK Received",
+						},
+						"tcp_ack_data_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ACK with Data Received",
+						},
+						"tcp_syn_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP SYN ACK Dropped",
+						},
+						"tcp_psh_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP PSH ACK Dropped",
+						},
+						"tcp_fin_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN ACK Dropped",
+						},
+						"tcp_rst_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP RST ACK Dropped",
+						},
+						"tcp_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ACK Dropped",
+						},
+						"tcp_fin_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN Dropped",
+						},
+						"tcp_rst_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP RST Dropped",
+						},
+						"tcp_psh_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP PSH Dropped",
+						},
+						"tcp_urg_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP URG Dropped",
+						},
+						"tcp_ece_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ECE Dropped",
+						},
+						"tcp_cwr_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP CWR Dropped",
+						},
+						"tcp_empty_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Empty ACK Dropped",
+						},
+						"tcp_ack_data_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ACK with Data Dropped",
+						},
+						"tcp_syn_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "SYN Forward",
+						},
+						"tcp_syn_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP SYN ACK Forward",
+						},
+						"tcp_psh_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP PSH ACK Forward",
+						},
+						"tcp_fin_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN ACK Forward",
+						},
+						"tcp_rst_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP RST ACK Forward",
+						},
+						"tcp_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ACK Forward",
+						},
+						"tcp_fin_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN Forward",
+						},
+						"tcp_rst_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP RST Forward",
+						},
+						"tcp_psh_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP PSH Forward",
+						},
+						"tcp_urg_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP URG Forward",
+						},
+						"tcp_ece_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ECE Forward",
+						},
+						"tcp_cwr_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP CWR Forward",
+						},
+						"tcp_empty_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP Empty ACK Forward",
+						},
+						"tcp_ack_data_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP ACK with Data Forward",
+						},
+						"tcp_fin_psh_ack_rcvd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN PSH ACK Received",
+						},
+						"tcp_fin_psh_ack_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN PSH ACK Drop",
+						},
+						"tcp_fin_psh_ack_fwd": {
+							Type: schema.TypeInt, Optional: true, Description: "TCP FIN PSH ACK Forward",
+						},
+						"create_conn_non_syn_rst": {
+							Type: schema.TypeInt, Optional: true, Description: "Create Conn with non-SYN Packets Conn RST",
+						},
+						"src_create_conn_non_syn_rst": {
+							Type: schema.TypeInt, Optional: true, Description: "Src Create Conn with non-SYN Packets Conn RST",
 						},
 					},
 				},
@@ -1209,7 +1485,7 @@ func setObjectDdosSipTcpZonePortStatsStats(ret edpt.DataDdosSipTcpZonePortStats)
 			"prog_req_resp_time_exceed":                ret.DtDdosSipTcpZonePortStats.Stats.Prog_req_resp_time_exceed,
 			"prog_request_len_exceed":                  ret.DtDdosSipTcpZonePortStats.Stats.Prog_request_len_exceed,
 			"prog_response_len_exceed":                 ret.DtDdosSipTcpZonePortStats.Stats.Prog_response_len_exceed,
-			"prog_resp_req_ratio_exceed":               ret.DtDdosSipTcpZonePortStats.Stats.Prog_resp_req_ratio_exceed,
+			"prog_resp_pkt_rate_exceed":                ret.DtDdosSipTcpZonePortStats.Stats.Prog_resp_pkt_rate_exceed,
 			"prog_resp_req_time_exceed":                ret.DtDdosSipTcpZonePortStats.Stats.Prog_resp_req_time_exceed,
 			"prog_conn_sent_exceed":                    ret.DtDdosSipTcpZonePortStats.Stats.Prog_conn_sent_exceed,
 			"prog_conn_rcvd_exceed":                    ret.DtDdosSipTcpZonePortStats.Stats.Prog_conn_rcvd_exceed,
@@ -1249,15 +1525,107 @@ func setObjectDdosSipTcpZonePortStatsStats(ret edpt.DataDdosSipTcpZonePortStats)
 			"ew_outbound_port_byte_drop":               ret.DtDdosSipTcpZonePortStats.Stats.Ew_outbound_port_byte_drop,
 			"no_route_drop":                            ret.DtDdosSipTcpZonePortStats.Stats.No_route_drop,
 			"unauth_src_session_reset":                 ret.DtDdosSipTcpZonePortStats.Stats.Unauth_src_session_reset,
-			"prog_conn_samples_processed":              ret.DtDdosSipTcpZonePortStats.Stats.Prog_conn_samples_processed,
-			"prog_req_samples_processed":               ret.DtDdosSipTcpZonePortStats.Stats.Prog_req_samples_processed,
-			"prog_win_samples_processed":               ret.DtDdosSipTcpZonePortStats.Stats.Prog_win_samples_processed,
 			"src_hw_drop":                              ret.DtDdosSipTcpZonePortStats.Stats.Src_hw_drop,
 			"tcp_auth_rst":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_auth_rst,
 			"src_tcp_auth_rst":                         ret.DtDdosSipTcpZonePortStats.Stats.Src_tcp_auth_rst,
-			"addr_filter_drop":                         ret.DtDdosSipTcpZonePortStats.Stats.Addr_filter_drop,
-			"addr_filter_bl":                           ret.DtDdosSipTcpZonePortStats.Stats.Addr_filter_bl,
+			"ip_filtering_drop":                        ret.DtDdosSipTcpZonePortStats.Stats.Ip_filtering_drop,
+			"ip_filtering_bl":                          ret.DtDdosSipTcpZonePortStats.Stats.Ip_filtering_bl,
 			"src_learn_overflow":                       ret.DtDdosSipTcpZonePortStats.Stats.Src_learn_overflow,
+			"all_src_session_reset":                    ret.DtDdosSipTcpZonePortStats.Stats.All_src_session_reset,
+			"clear_session_upon_deescalation":          ret.DtDdosSipTcpZonePortStats.Stats.Clear_session_upon_deescalation,
+			"hybrid_auth_unknown_pass":                 ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_unknown_pass,
+			"hybrid_auth_unknown_fail":                 ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_unknown_fail,
+			"hybrid_auth_valid_sa_sent":                ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_valid_sa_sent,
+			"hybrid_auth_invalid_sa_sent":              ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_invalid_sa_sent,
+			"hybrid_auth_filter_full":                  ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_filter_full,
+			"hybrid_auth_lookup_fail":                  ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_lookup_fail,
+			"hybrid_auth_invalid_pass":                 ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_invalid_pass,
+			"hybrid_auth_valid_pass":                   ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_valid_pass,
+			"hybrid_auth_invalid_fail":                 ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_invalid_fail,
+			"hybrid_auth_valid_fail":                   ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_valid_fail,
+			"dst_tcp_conn_half_open_timeout":           ret.DtDdosSipTcpZonePortStats.Stats.Dst_tcp_conn_half_open_timeout,
+			"dst_tcp_conn_half_open_timeout_rst_sent":  ret.DtDdosSipTcpZonePortStats.Stats.Dst_tcp_conn_half_open_timeout_rst_sent,
+			"dst_tcp_sess_aged_rst_sent":               ret.DtDdosSipTcpZonePortStats.Stats.Dst_tcp_sess_aged_rst_sent,
+			"prog_query_exceed":                        ret.DtDdosSipTcpZonePortStats.Stats.Prog_query_exceed,
+			"prog_think_exceed":                        ret.DtDdosSipTcpZonePortStats.Stats.Prog_think_exceed,
+			"dynamic_count_warn":                       ret.DtDdosSipTcpZonePortStats.Stats.Dynamic_count_warn,
+			"prog_conn_samples_processed":              ret.DtDdosSipTcpZonePortStats.Stats.Prog_conn_samples_processed,
+			"prog_req_samples_processed":               ret.DtDdosSipTcpZonePortStats.Stats.Prog_req_samples_processed,
+			"prog_win_samples_processed":               ret.DtDdosSipTcpZonePortStats.Stats.Prog_win_samples_processed,
+			"hybrid_auth_method_change":                ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_method_change,
+			"small_window_excd":                        ret.DtDdosSipTcpZonePortStats.Stats.Small_window_excd,
+			"src_small_window_excd":                    ret.DtDdosSipTcpZonePortStats.Stats.Src_small_window_excd,
+			"small_window_rcv":                         ret.DtDdosSipTcpZonePortStats.Stats.Small_window_rcv,
+			"hybrid_auth_entry_aged_out":               ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_entry_aged_out,
+			"tcp_syn_rcvd":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_syn_rcvd,
+			"tcp_syn_ack_rcvd":                         ret.DtDdosSipTcpZonePortStats.Stats.Tcp_syn_ack_rcvd,
+			"tcp_ack_rcvd":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_ack_rcvd,
+			"tcp_fin_rcvd":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_fin_rcvd,
+			"tcp_rst_rcvd":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_rst_rcvd,
+			"src_zone_service_entry_hit":               ret.DtDdosSipTcpZonePortStats.Stats.Src_zone_service_entry_hit,
+			"hybrid_auth_auth_no_match":                ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_auth_no_match,
+			"tcp_auth_drop_syn":                        ret.DtDdosSipTcpZonePortStats.Stats.Tcp_auth_drop_syn,
+			"src_auth_drop_syn":                        ret.DtDdosSipTcpZonePortStats.Stats.Src_auth_drop_syn,
+			"tcp_auth_drop_ack":                        ret.DtDdosSipTcpZonePortStats.Stats.Tcp_auth_drop_ack,
+			"src_auth_drop_ack":                        ret.DtDdosSipTcpZonePortStats.Stats.Src_auth_drop_ack,
+			"tcp_auth_drop_rst":                        ret.DtDdosSipTcpZonePortStats.Stats.Tcp_auth_drop_rst,
+			"src_auth_drop_rst":                        ret.DtDdosSipTcpZonePortStats.Stats.Src_auth_drop_rst,
+			"tcp_auth_drop_ack_pass_auth":              ret.DtDdosSipTcpZonePortStats.Stats.Tcp_auth_drop_ack_pass_auth,
+			"src_auth_drop_ack_pass_auth":              ret.DtDdosSipTcpZonePortStats.Stats.Src_auth_drop_ack_pass_auth,
+			"tcp_auth_drop_ack_fail_auth":              ret.DtDdosSipTcpZonePortStats.Stats.Tcp_auth_drop_ack_fail_auth,
+			"src_auth_drop_ack_fail_auth":              ret.DtDdosSipTcpZonePortStats.Stats.Src_auth_drop_ack_fail_auth,
+			"tcp_auth_drop_rst_pass_auth":              ret.DtDdosSipTcpZonePortStats.Stats.Tcp_auth_drop_rst_pass_auth,
+			"src_auth_drop_rst_pass_auth":              ret.DtDdosSipTcpZonePortStats.Stats.Src_auth_drop_rst_pass_auth,
+			"tcp_auth_drop_rst_fail_auth":              ret.DtDdosSipTcpZonePortStats.Stats.Tcp_auth_drop_rst_fail_auth,
+			"src_auth_drop_rst_fail_auth":              ret.DtDdosSipTcpZonePortStats.Stats.Src_auth_drop_rst_fail_auth,
+			"hybrid_auth_auth_no_match_rst_rcv":        ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_auth_no_match_rst_rcv,
+			"hybrid_auth_auth_no_match_ack_rcv":        ret.DtDdosSipTcpZonePortStats.Stats.Hybrid_auth_auth_no_match_ack_rcv,
+			"tcp_auth_drop_ack_xmit":                   ret.DtDdosSipTcpZonePortStats.Stats.Tcp_auth_drop_ack_xmit,
+			"src_auth_drop_ack_xmit":                   ret.DtDdosSipTcpZonePortStats.Stats.Src_auth_drop_ack_xmit,
+			"tcp_auth_drop_rst_xmit":                   ret.DtDdosSipTcpZonePortStats.Stats.Tcp_auth_drop_rst_xmit,
+			"src_auth_drop_rst_xmit":                   ret.DtDdosSipTcpZonePortStats.Stats.Src_auth_drop_rst_xmit,
+			"same_sport_dport_drop":                    ret.DtDdosSipTcpZonePortStats.Stats.Same_sport_dport_drop,
+			"tcp_psh_rcvd":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_psh_rcvd,
+			"tcp_psh_ack_rcvd":                         ret.DtDdosSipTcpZonePortStats.Stats.Tcp_psh_ack_rcvd,
+			"tcp_fin_ack_rcvd":                         ret.DtDdosSipTcpZonePortStats.Stats.Tcp_fin_ack_rcvd,
+			"tcp_rst_ack_rcvd":                         ret.DtDdosSipTcpZonePortStats.Stats.Tcp_rst_ack_rcvd,
+			"tcp_urg_rcvd":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_urg_rcvd,
+			"tcp_ece_rcvd":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_ece_rcvd,
+			"tcp_cwr_rcvd":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_cwr_rcvd,
+			"tcp_empty_ack_rcvd":                       ret.DtDdosSipTcpZonePortStats.Stats.Tcp_empty_ack_rcvd,
+			"tcp_ack_data_rcvd":                        ret.DtDdosSipTcpZonePortStats.Stats.Tcp_ack_data_rcvd,
+			"tcp_syn_ack_drop":                         ret.DtDdosSipTcpZonePortStats.Stats.Tcp_syn_ack_drop,
+			"tcp_psh_ack_drop":                         ret.DtDdosSipTcpZonePortStats.Stats.Tcp_psh_ack_drop,
+			"tcp_fin_ack_drop":                         ret.DtDdosSipTcpZonePortStats.Stats.Tcp_fin_ack_drop,
+			"tcp_rst_ack_drop":                         ret.DtDdosSipTcpZonePortStats.Stats.Tcp_rst_ack_drop,
+			"tcp_ack_drop":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_ack_drop,
+			"tcp_fin_drop":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_fin_drop,
+			"tcp_rst_drop":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_rst_drop,
+			"tcp_psh_drop":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_psh_drop,
+			"tcp_urg_drop":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_urg_drop,
+			"tcp_ece_drop":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_ece_drop,
+			"tcp_cwr_drop":                             ret.DtDdosSipTcpZonePortStats.Stats.Tcp_cwr_drop,
+			"tcp_empty_ack_drop":                       ret.DtDdosSipTcpZonePortStats.Stats.Tcp_empty_ack_drop,
+			"tcp_ack_data_drop":                        ret.DtDdosSipTcpZonePortStats.Stats.Tcp_ack_data_drop,
+			"tcp_syn_fwd":                              ret.DtDdosSipTcpZonePortStats.Stats.Tcp_syn_fwd,
+			"tcp_syn_ack_fwd":                          ret.DtDdosSipTcpZonePortStats.Stats.Tcp_syn_ack_fwd,
+			"tcp_psh_ack_fwd":                          ret.DtDdosSipTcpZonePortStats.Stats.Tcp_psh_ack_fwd,
+			"tcp_fin_ack_fwd":                          ret.DtDdosSipTcpZonePortStats.Stats.Tcp_fin_ack_fwd,
+			"tcp_rst_ack_fwd":                          ret.DtDdosSipTcpZonePortStats.Stats.Tcp_rst_ack_fwd,
+			"tcp_ack_fwd":                              ret.DtDdosSipTcpZonePortStats.Stats.Tcp_ack_fwd,
+			"tcp_fin_fwd":                              ret.DtDdosSipTcpZonePortStats.Stats.Tcp_fin_fwd,
+			"tcp_rst_fwd":                              ret.DtDdosSipTcpZonePortStats.Stats.Tcp_rst_fwd,
+			"tcp_psh_fwd":                              ret.DtDdosSipTcpZonePortStats.Stats.Tcp_psh_fwd,
+			"tcp_urg_fwd":                              ret.DtDdosSipTcpZonePortStats.Stats.Tcp_urg_fwd,
+			"tcp_ece_fwd":                              ret.DtDdosSipTcpZonePortStats.Stats.Tcp_ece_fwd,
+			"tcp_cwr_fwd":                              ret.DtDdosSipTcpZonePortStats.Stats.Tcp_cwr_fwd,
+			"tcp_empty_ack_fwd":                        ret.DtDdosSipTcpZonePortStats.Stats.Tcp_empty_ack_fwd,
+			"tcp_ack_data_fwd":                         ret.DtDdosSipTcpZonePortStats.Stats.Tcp_ack_data_fwd,
+			"tcp_fin_psh_ack_rcvd":                     ret.DtDdosSipTcpZonePortStats.Stats.Tcp_fin_psh_ack_rcvd,
+			"tcp_fin_psh_ack_drop":                     ret.DtDdosSipTcpZonePortStats.Stats.Tcp_fin_psh_ack_drop,
+			"tcp_fin_psh_ack_fwd":                      ret.DtDdosSipTcpZonePortStats.Stats.Tcp_fin_psh_ack_fwd,
+			"create_conn_non_syn_rst":                  ret.DtDdosSipTcpZonePortStats.Stats.Create_conn_non_syn_rst,
+			"src_create_conn_non_syn_rst":              ret.DtDdosSipTcpZonePortStats.Stats.Src_create_conn_non_syn_rst,
 		},
 	}
 }
@@ -1522,7 +1890,7 @@ func getObjectDdosSipTcpZonePortStatsStats(d []interface{}) edpt.DdosSipTcpZoneP
 		ret.Prog_req_resp_time_exceed = in["prog_req_resp_time_exceed"].(int)
 		ret.Prog_request_len_exceed = in["prog_request_len_exceed"].(int)
 		ret.Prog_response_len_exceed = in["prog_response_len_exceed"].(int)
-		ret.Prog_resp_req_ratio_exceed = in["prog_resp_req_ratio_exceed"].(int)
+		ret.Prog_resp_pkt_rate_exceed = in["prog_resp_pkt_rate_exceed"].(int)
 		ret.Prog_resp_req_time_exceed = in["prog_resp_req_time_exceed"].(int)
 		ret.Prog_conn_sent_exceed = in["prog_conn_sent_exceed"].(int)
 		ret.Prog_conn_rcvd_exceed = in["prog_conn_rcvd_exceed"].(int)
@@ -1562,15 +1930,107 @@ func getObjectDdosSipTcpZonePortStatsStats(d []interface{}) edpt.DdosSipTcpZoneP
 		ret.Ew_outbound_port_byte_drop = in["ew_outbound_port_byte_drop"].(int)
 		ret.No_route_drop = in["no_route_drop"].(int)
 		ret.Unauth_src_session_reset = in["unauth_src_session_reset"].(int)
-		ret.Prog_conn_samples_processed = in["prog_conn_samples_processed"].(int)
-		ret.Prog_req_samples_processed = in["prog_req_samples_processed"].(int)
-		ret.Prog_win_samples_processed = in["prog_win_samples_processed"].(int)
 		ret.Src_hw_drop = in["src_hw_drop"].(int)
 		ret.Tcp_auth_rst = in["tcp_auth_rst"].(int)
 		ret.Src_tcp_auth_rst = in["src_tcp_auth_rst"].(int)
-		ret.Addr_filter_drop = in["addr_filter_drop"].(int)
-		ret.Addr_filter_bl = in["addr_filter_bl"].(int)
+		ret.Ip_filtering_drop = in["ip_filtering_drop"].(int)
+		ret.Ip_filtering_bl = in["ip_filtering_bl"].(int)
 		ret.Src_learn_overflow = in["src_learn_overflow"].(int)
+		ret.All_src_session_reset = in["all_src_session_reset"].(int)
+		ret.Clear_session_upon_deescalation = in["clear_session_upon_deescalation"].(int)
+		ret.Hybrid_auth_unknown_pass = in["hybrid_auth_unknown_pass"].(int)
+		ret.Hybrid_auth_unknown_fail = in["hybrid_auth_unknown_fail"].(int)
+		ret.Hybrid_auth_valid_sa_sent = in["hybrid_auth_valid_sa_sent"].(int)
+		ret.Hybrid_auth_invalid_sa_sent = in["hybrid_auth_invalid_sa_sent"].(int)
+		ret.Hybrid_auth_filter_full = in["hybrid_auth_filter_full"].(int)
+		ret.Hybrid_auth_lookup_fail = in["hybrid_auth_lookup_fail"].(int)
+		ret.Hybrid_auth_invalid_pass = in["hybrid_auth_invalid_pass"].(int)
+		ret.Hybrid_auth_valid_pass = in["hybrid_auth_valid_pass"].(int)
+		ret.Hybrid_auth_invalid_fail = in["hybrid_auth_invalid_fail"].(int)
+		ret.Hybrid_auth_valid_fail = in["hybrid_auth_valid_fail"].(int)
+		ret.Dst_tcp_conn_half_open_timeout = in["dst_tcp_conn_half_open_timeout"].(int)
+		ret.Dst_tcp_conn_half_open_timeout_rst_sent = in["dst_tcp_conn_half_open_timeout_rst_sent"].(int)
+		ret.Dst_tcp_sess_aged_rst_sent = in["dst_tcp_sess_aged_rst_sent"].(int)
+		ret.Prog_query_exceed = in["prog_query_exceed"].(int)
+		ret.Prog_think_exceed = in["prog_think_exceed"].(int)
+		ret.Dynamic_count_warn = in["dynamic_count_warn"].(int)
+		ret.Prog_conn_samples_processed = in["prog_conn_samples_processed"].(int)
+		ret.Prog_req_samples_processed = in["prog_req_samples_processed"].(int)
+		ret.Prog_win_samples_processed = in["prog_win_samples_processed"].(int)
+		ret.Hybrid_auth_method_change = in["hybrid_auth_method_change"].(int)
+		ret.Small_window_excd = in["small_window_excd"].(int)
+		ret.Src_small_window_excd = in["src_small_window_excd"].(int)
+		ret.Small_window_rcv = in["small_window_rcv"].(int)
+		ret.Hybrid_auth_entry_aged_out = in["hybrid_auth_entry_aged_out"].(int)
+		ret.Tcp_syn_rcvd = in["tcp_syn_rcvd"].(int)
+		ret.Tcp_syn_ack_rcvd = in["tcp_syn_ack_rcvd"].(int)
+		ret.Tcp_ack_rcvd = in["tcp_ack_rcvd"].(int)
+		ret.Tcp_fin_rcvd = in["tcp_fin_rcvd"].(int)
+		ret.Tcp_rst_rcvd = in["tcp_rst_rcvd"].(int)
+		ret.Src_zone_service_entry_hit = in["src_zone_service_entry_hit"].(int)
+		ret.Hybrid_auth_auth_no_match = in["hybrid_auth_auth_no_match"].(int)
+		ret.Tcp_auth_drop_syn = in["tcp_auth_drop_syn"].(int)
+		ret.Src_auth_drop_syn = in["src_auth_drop_syn"].(int)
+		ret.Tcp_auth_drop_ack = in["tcp_auth_drop_ack"].(int)
+		ret.Src_auth_drop_ack = in["src_auth_drop_ack"].(int)
+		ret.Tcp_auth_drop_rst = in["tcp_auth_drop_rst"].(int)
+		ret.Src_auth_drop_rst = in["src_auth_drop_rst"].(int)
+		ret.Tcp_auth_drop_ack_pass_auth = in["tcp_auth_drop_ack_pass_auth"].(int)
+		ret.Src_auth_drop_ack_pass_auth = in["src_auth_drop_ack_pass_auth"].(int)
+		ret.Tcp_auth_drop_ack_fail_auth = in["tcp_auth_drop_ack_fail_auth"].(int)
+		ret.Src_auth_drop_ack_fail_auth = in["src_auth_drop_ack_fail_auth"].(int)
+		ret.Tcp_auth_drop_rst_pass_auth = in["tcp_auth_drop_rst_pass_auth"].(int)
+		ret.Src_auth_drop_rst_pass_auth = in["src_auth_drop_rst_pass_auth"].(int)
+		ret.Tcp_auth_drop_rst_fail_auth = in["tcp_auth_drop_rst_fail_auth"].(int)
+		ret.Src_auth_drop_rst_fail_auth = in["src_auth_drop_rst_fail_auth"].(int)
+		ret.Hybrid_auth_auth_no_match_rst_rcv = in["hybrid_auth_auth_no_match_rst_rcv"].(int)
+		ret.Hybrid_auth_auth_no_match_ack_rcv = in["hybrid_auth_auth_no_match_ack_rcv"].(int)
+		ret.Tcp_auth_drop_ack_xmit = in["tcp_auth_drop_ack_xmit"].(int)
+		ret.Src_auth_drop_ack_xmit = in["src_auth_drop_ack_xmit"].(int)
+		ret.Tcp_auth_drop_rst_xmit = in["tcp_auth_drop_rst_xmit"].(int)
+		ret.Src_auth_drop_rst_xmit = in["src_auth_drop_rst_xmit"].(int)
+		ret.Same_sport_dport_drop = in["same_sport_dport_drop"].(int)
+		ret.Tcp_psh_rcvd = in["tcp_psh_rcvd"].(int)
+		ret.Tcp_psh_ack_rcvd = in["tcp_psh_ack_rcvd"].(int)
+		ret.Tcp_fin_ack_rcvd = in["tcp_fin_ack_rcvd"].(int)
+		ret.Tcp_rst_ack_rcvd = in["tcp_rst_ack_rcvd"].(int)
+		ret.Tcp_urg_rcvd = in["tcp_urg_rcvd"].(int)
+		ret.Tcp_ece_rcvd = in["tcp_ece_rcvd"].(int)
+		ret.Tcp_cwr_rcvd = in["tcp_cwr_rcvd"].(int)
+		ret.Tcp_empty_ack_rcvd = in["tcp_empty_ack_rcvd"].(int)
+		ret.Tcp_ack_data_rcvd = in["tcp_ack_data_rcvd"].(int)
+		ret.Tcp_syn_ack_drop = in["tcp_syn_ack_drop"].(int)
+		ret.Tcp_psh_ack_drop = in["tcp_psh_ack_drop"].(int)
+		ret.Tcp_fin_ack_drop = in["tcp_fin_ack_drop"].(int)
+		ret.Tcp_rst_ack_drop = in["tcp_rst_ack_drop"].(int)
+		ret.Tcp_ack_drop = in["tcp_ack_drop"].(int)
+		ret.Tcp_fin_drop = in["tcp_fin_drop"].(int)
+		ret.Tcp_rst_drop = in["tcp_rst_drop"].(int)
+		ret.Tcp_psh_drop = in["tcp_psh_drop"].(int)
+		ret.Tcp_urg_drop = in["tcp_urg_drop"].(int)
+		ret.Tcp_ece_drop = in["tcp_ece_drop"].(int)
+		ret.Tcp_cwr_drop = in["tcp_cwr_drop"].(int)
+		ret.Tcp_empty_ack_drop = in["tcp_empty_ack_drop"].(int)
+		ret.Tcp_ack_data_drop = in["tcp_ack_data_drop"].(int)
+		ret.Tcp_syn_fwd = in["tcp_syn_fwd"].(int)
+		ret.Tcp_syn_ack_fwd = in["tcp_syn_ack_fwd"].(int)
+		ret.Tcp_psh_ack_fwd = in["tcp_psh_ack_fwd"].(int)
+		ret.Tcp_fin_ack_fwd = in["tcp_fin_ack_fwd"].(int)
+		ret.Tcp_rst_ack_fwd = in["tcp_rst_ack_fwd"].(int)
+		ret.Tcp_ack_fwd = in["tcp_ack_fwd"].(int)
+		ret.Tcp_fin_fwd = in["tcp_fin_fwd"].(int)
+		ret.Tcp_rst_fwd = in["tcp_rst_fwd"].(int)
+		ret.Tcp_psh_fwd = in["tcp_psh_fwd"].(int)
+		ret.Tcp_urg_fwd = in["tcp_urg_fwd"].(int)
+		ret.Tcp_ece_fwd = in["tcp_ece_fwd"].(int)
+		ret.Tcp_cwr_fwd = in["tcp_cwr_fwd"].(int)
+		ret.Tcp_empty_ack_fwd = in["tcp_empty_ack_fwd"].(int)
+		ret.Tcp_ack_data_fwd = in["tcp_ack_data_fwd"].(int)
+		ret.Tcp_fin_psh_ack_rcvd = in["tcp_fin_psh_ack_rcvd"].(int)
+		ret.Tcp_fin_psh_ack_drop = in["tcp_fin_psh_ack_drop"].(int)
+		ret.Tcp_fin_psh_ack_fwd = in["tcp_fin_psh_ack_fwd"].(int)
+		ret.Create_conn_non_syn_rst = in["create_conn_non_syn_rst"].(int)
+		ret.Src_create_conn_non_syn_rst = in["src_create_conn_non_syn_rst"].(int)
 	}
 	return ret
 }

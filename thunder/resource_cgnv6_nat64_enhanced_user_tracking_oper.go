@@ -42,6 +42,12 @@ func resourceCgnv6Nat64EnhancedUserTrackingOper() *schema.Resource {
 									"session_count": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"session_count_tcp": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"session_count_udp": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 									"tcp_peak": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
@@ -152,6 +158,8 @@ func setSliceCgnv6Nat64EnhancedUserTrackingOperOperUserList(d []edpt.Cgnv6Nat64E
 		in["udp_quota"] = item.UdpQuota
 		in["icmp_quota"] = item.IcmpQuota
 		in["session_count"] = item.SessionCount
+		in["session_count_tcp"] = item.SessionCountTcp
+		in["session_count_udp"] = item.SessionCountUdp
 		in["tcp_peak"] = item.TcpPeak
 		in["udp_peak"] = item.UdpPeak
 		in["icmp_peak"] = item.IcmpPeak
@@ -200,6 +208,8 @@ func getSliceCgnv6Nat64EnhancedUserTrackingOperOperUserList(d []interface{}) []e
 		oi.UdpQuota = in["udp_quota"].(int)
 		oi.IcmpQuota = in["icmp_quota"].(int)
 		oi.SessionCount = in["session_count"].(int)
+		oi.SessionCountTcp = in["session_count_tcp"].(int)
+		oi.SessionCountUdp = in["session_count_udp"].(int)
 		oi.TcpPeak = in["tcp_peak"].(int)
 		oi.UdpPeak = in["udp_peak"].(int)
 		oi.IcmpPeak = in["icmp_peak"].(int)

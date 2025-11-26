@@ -55,5 +55,3 @@ Optional:
 - `pkt_drop` (Number)
 - `pkt_rcvd` (Number)
 - `pkt_sent` (Number)
-
-

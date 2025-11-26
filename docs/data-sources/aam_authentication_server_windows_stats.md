@@ -65,16 +65,6 @@ Optional:
 - `krb_timeout_error` (Number) Kerberos Timeout
 - `krb_validate_kdc_failure` (Number) Kerberos KDC Validation Failure
 - `krb_validate_kdc_success` (Number) Kerberos KDC Validation Success
-- `ntlm_auth_failure` (Number) NTLM Authentication Failure
-- `ntlm_auth_success` (Number) NTLM Authentication Success
-- `ntlm_other_error` (Number) NTLM Other Error
-- `ntlm_prepare_req_error` (Number) NTLM Prepare Request Error
-- `ntlm_prepare_req_success` (Number) NTLM Prepare Request Success
-- `ntlm_proto_nego_failure` (Number) NTLM Protocol Negotiation Failure
-- `ntlm_proto_nego_success` (Number) NTLM Protocol Negotiation Success
-- `ntlm_session_setup_failure` (Number) NTLM Session Setup Failure
-- `ntlm_session_setup_success` (Number) NTLM Session Setup Success
-- `ntlm_timeout_error` (Number) NTLM Timeout
 
 
 
@@ -106,24 +96,3 @@ Optional:
 - `kerberos_timeout_error` (Number) Total Kerberos Timeout
 - `kerberos_validate_kdc_failure` (Number) Total Kerberos KDC Validation Failure
 - `kerberos_validate_kdc_success` (Number) Total Kerberos KDC Validation Success
-- `ntlm_authentication_failure` (Number) Total NTLM Authentication Failure
-- `ntlm_authentication_success` (Number) Total NTLM Authentication Success
-- `ntlm_job_start_error` (Number) Total NTLM Job Start Error
-- `ntlm_other_error` (Number) Total NTLM Other Error
-- `ntlm_polling_control_error` (Number) Total NTLM Polling Control Error
-- `ntlm_prepare_req_failed` (Number) Total NTLM Prepare Request Failed
-- `ntlm_prepare_req_success` (Number) Total NTLM Prepare Request Success
-- `ntlm_proto_negotiation_failure` (Number) Total NTLM Protocol Negotiation Failure
-- `ntlm_proto_negotiation_success` (Number) Total NTLM Protocol Negotiation Success
-- `ntlm_request_dropped` (Number) Total NTLM Dropped Request
-- `ntlm_request_normal` (Number) Total NTLM Normal Request
-- `ntlm_response_error` (Number) Total NTLM Error Response
-- `ntlm_response_failure` (Number) Total NTLM Failure Response
-- `ntlm_response_other` (Number) Total NTLM Other Response
-- `ntlm_response_success` (Number) Total NTLM Success Response
-- `ntlm_response_timeout` (Number) Total NTLM Timeout Response
-- `ntlm_session_setup_failed` (Number) Total NTLM Session Setup Failure
-- `ntlm_session_setup_success` (Number) Total NTLM Session Setup Success
-- `ntlm_timeout_error` (Number) Total NTLM Timeout
-
-

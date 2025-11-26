@@ -16,8 +16,8 @@ func resourceDebugDnsRrl() *schema.Resource {
 		DeleteContext: resourceDebugDnsRrlDelete,
 
 		Schema: map[string]*schema.Schema{
-			"dumy": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Dummy",
+			"level": {
+				Type: schema.TypeInt, Optional: true, Description: "Debug level (Level 1-4)",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -89,7 +89,7 @@ func resourceDebugDnsRrlRead(ctx context.Context, d *schema.ResourceData, meta i
 
 func dataToEndpointDebugDnsRrl(d *schema.ResourceData) edpt.DebugDnsRrl {
 	var ret edpt.DebugDnsRrl
-	ret.Inst.Dumy = d.Get("dumy").(int)
+	ret.Inst.Level = d.Get("level").(int)
 	//omit uuid
 	return ret
 }

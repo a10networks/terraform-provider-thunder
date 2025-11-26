@@ -44,6 +44,7 @@ output "get_ddos_dns_udp_port_stats" {
 
 Optional:
 
+- `alias_forward_rate_exceed` (Number) ALIAS Forward Rate Exceed
 - `bl` (Number) Dst Blacklisted
 - `conn_prate_excd` (Number) UDP Conn Pkt Rate Exceeded
 - `dg_action_default` (Number) Domain Group Action Default
@@ -62,6 +63,7 @@ Optional:
 - `dns_query_class_in` (Number) Query Class INTERNET
 - `dns_query_class_none` (Number) Query Class NONE
 - `dns_query_class_whitelist_miss` (Number) Query Class Whitelist Miss
+- `dnssec_wildcard_forward_rate_exceed` (Number) DNSSEC Wildcard Forward Rate Exceed
 - `dst_hw_drop` (Number) Dst Hardware Packets Dropped
 - `exceed_action_drop` (Number) Exceed Action: Dropped
 - `exceed_action_tunnel` (Number) Exceed Action: Tunnel
@@ -130,6 +132,7 @@ Optional:
 - `port_pkt_sent` (Number) Inbound Packets Forwarded
 - `port_rcvd` (Number) Inbound Packets Received
 - `port_src_bl` (Number) Src Blacklisted
+- `query_forward_rate_exceed` (Number) Query Forward Rate Exceed
 - `query_type_a` (Number) Query Type A
 - `query_type_aaaa` (Number) Query Type AAAA
 - `query_type_any` (Number) Query Type ANY
@@ -148,6 +151,7 @@ Optional:
 - `req_retrans` (Number) Request Retransmit
 - `req_sent` (Number) DNS Requests Forwarded
 - `req_size_exceed` (Number) Request Size Exceeded
+- `rrsig_expire_drop` (Number) RRSIG Expire: Drop
 - `rrtype_drop` (Number) Record Type Dropped
 - `sess_aged` (Number) Sessions Aged Out
 - `sess_create` (Number) Session Create
@@ -214,5 +218,3 @@ Optional:
 - `udp_retry_init` (Number) UDP Retry Init
 - `udp_retry_pass` (Number) UDP Retry Passed
 - `wellknown_sport_drop` (Number) UDP SrcPort Wellknown
-
-

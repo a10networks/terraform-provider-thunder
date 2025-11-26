@@ -74,6 +74,9 @@ func resourceAxdebug() *schema.Resource {
 					},
 				},
 			},
+			"file_size": {
+				Type: schema.TypeInt, Optional: true, Default: 300, Description: "merged pcap file size limit (unit MB)",
+			},
 			"filter_config_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -82,7 +85,7 @@ func resourceAxdebug() *schema.Resource {
 							Type: schema.TypeInt, Required: true, Description: "Specify filter id",
 						},
 						"l3_proto": {
-							Type: schema.TypeString, Optional: true, Description: "'arp': arp; 'neighbor': neighbor;",
+							Type: schema.TypeString, Optional: true, Description: "'arp': arp; 'ip': ip; 'ipv6': ipv6; 'neighbor': neighbor;",
 						},
 						"dst": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Destination",
@@ -209,6 +212,21 @@ func resourceAxdebug() *schema.Resource {
 						},
 						"word2": {
 							Type: schema.TypeString, Optional: true, Description: "WORD max value",
+						},
+						"inner_ip": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "IP in IP or IP in IPv6 packets",
+						},
+						"inner_ipv4_address": {
+							Type: schema.TypeString, Optional: true, Description: "IP address",
+						},
+						"inner_ipv4_netmask": {
+							Type: schema.TypeString, Optional: true, Description: "IP subnet mask",
+						},
+						"inner_ipv6": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "IPv6 in IPv6 or IPv6 in IPv4 packets",
+						},
+						"inner_ipv6_address": {
+							Type: schema.TypeString, Optional: true, Description: "IPv6 address",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -443,6 +461,11 @@ func getSliceAxdebugFilterConfigList(d []interface{}) []edpt.AxdebugFilterConfig
 		oi.Word0 = in["word0"].(string)
 		oi.Word1 = in["word1"].(string)
 		oi.Word2 = in["word2"].(string)
+		oi.InnerIp = in["inner_ip"].(int)
+		oi.InnerIpv4Address = in["inner_ipv4_address"].(string)
+		oi.InnerIpv4Netmask = in["inner_ipv4_netmask"].(string)
+		oi.InnerIpv6 = in["inner_ipv6"].(int)
+		oi.InnerIpv6Address = in["inner_ipv6_address"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -483,6 +506,7 @@ func dataToEndpointAxdebug(d *schema.ResourceData) edpt.Axdebug {
 	ret.Inst.Count1 = d.Get("count1").(int)
 	ret.Inst.Delete = getObjectAxdebugDelete77(d.Get("delete").([]interface{}))
 	ret.Inst.Exit = getObjectAxdebugExit78(d.Get("exit").([]interface{}))
+	ret.Inst.FileSize = d.Get("file_size").(int)
 	ret.Inst.FilterConfigList = getSliceAxdebugFilterConfigList(d.Get("filter_config_list").([]interface{}))
 	ret.Inst.IncPortNum = d.Get("inc_port_num").(string)
 	ret.Inst.Incoming = d.Get("incoming").(int)

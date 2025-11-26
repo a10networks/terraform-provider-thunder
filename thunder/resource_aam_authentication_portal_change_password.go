@@ -229,8 +229,8 @@ func resourceAamAuthenticationPortalChangePassword() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"portal_name": {
+				Type: schema.TypeString, Required: true, Description: "Portal_name",
 			},
 		},
 	}
@@ -422,6 +422,6 @@ func dataToEndpointAamAuthenticationPortalChangePassword(d *schema.ResourceData)
 	ret.Inst.UsernameCfg = getObjectAamAuthenticationPortalChangePasswordUsernameCfg(d.Get("username_cfg").([]interface{}))
 	ret.Inst.UsernameVar = d.Get("username_var").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Portal_name = d.Get("portal_name").(string)
 	return ret
 }

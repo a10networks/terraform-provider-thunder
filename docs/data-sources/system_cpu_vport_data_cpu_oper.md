@@ -62,5 +62,3 @@ Optional:
 - `sec60` (Number)
 - `vport_type` (String)
 - `vserver_name` (String)
-
-

@@ -51,5 +51,3 @@ Optional:
 - `gre_sessions_freed` (Number) GRE Sessions Freed
 - `mismatched_pns_call_id` (Number) Mismatched PNS Call ID
 - `no_gre_session_match` (Number) No Matching GRE Session
-
-

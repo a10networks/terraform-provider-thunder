@@ -68,6 +68,8 @@ Optional:
 - `nat_pool_name` (String)
 - `prefix_len` (Number)
 - `session_count` (Number)
+- `session_count_tcp` (Number)
+- `session_count_udp` (Number)
 - `session_peak` (Number)
 - `tcp_peak` (Number)
 - `tcp_quota` (Number)
@@ -76,5 +78,3 @@ Optional:
 - `udp_quota` (Number)
 - `upl_bytes` (Number)
 - `upl_packets` (Number)
-
-

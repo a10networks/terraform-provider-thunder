@@ -59,5 +59,3 @@ Optional:
 - `sec5` (Number)
 - `sec60` (Number)
 - `vserver_name` (String)
-
-

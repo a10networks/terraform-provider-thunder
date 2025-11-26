@@ -32,11 +32,29 @@ func resourceDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats() *schema.Re
 						"entry_count_overflow": {
 							Type: schema.TypeInt, Optional: true, Description: "Entry Count Overflow",
 						},
+						"exceed_drop_pkt_rate_clist": {
+							Type: schema.TypeInt, Optional: true, Description: "Packet Rate Exceeded",
+						},
+						"exceed_drop_conn_rate_clist": {
+							Type: schema.TypeInt, Optional: true, Description: "Conn Rate Exceeded",
+						},
+						"exceed_drop_conn_limit_clist": {
+							Type: schema.TypeInt, Optional: true, Description: "Conn Limit Exceeded",
+						},
+						"exceed_drop_kbit_rate_clist": {
+							Type: schema.TypeInt, Optional: true, Description: "KiBit Rate Exceeded",
+						},
+						"exceed_drop_kbit_rate_clist_pkt": {
+							Type: schema.TypeInt, Optional: true, Description: "KiBit Rate Exceeded Count",
+						},
+						"exceed_drop_frag_rate_clist": {
+							Type: schema.TypeInt, Optional: true, Description: "Frag Rate Exceeded",
+						},
 					},
 				},
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"port_range_start": {
+				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
 			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
@@ -44,8 +62,8 @@ func resourceDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats() *schema.Re
 			"src_based_policy_name": {
 				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
 			},
-			"port_range_start": {
-				Type: schema.TypeString, Required: true, Description: "PortRangeStart",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 			"port_range_end": {
 				Type: schema.TypeString, Required: true, Description: "PortRangeEnd",
@@ -76,10 +94,16 @@ func resourceDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStatsRead(ctx cont
 func setObjectDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStatsStats(ret edpt.DataDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"packet_received":      ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Packet_received,
-			"packet_dropped":       ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Packet_dropped,
-			"entry_learned":        ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Entry_learned,
-			"entry_count_overflow": ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Entry_count_overflow,
+			"packet_received":                 ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Packet_received,
+			"packet_dropped":                  ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Packet_dropped,
+			"entry_learned":                   ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Entry_learned,
+			"entry_count_overflow":            ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Entry_count_overflow,
+			"exceed_drop_pkt_rate_clist":      ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Exceed_drop_pkt_rate_clist,
+			"exceed_drop_conn_rate_clist":     ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Exceed_drop_conn_rate_clist,
+			"exceed_drop_conn_limit_clist":    ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Exceed_drop_conn_limit_clist,
+			"exceed_drop_kbit_rate_clist":     ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Exceed_drop_kbit_rate_clist,
+			"exceed_drop_kbit_rate_clist_pkt": ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Exceed_drop_kbit_rate_clist_pkt,
+			"exceed_drop_frag_rate_clist":     ret.DtDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats.Stats.Exceed_drop_frag_rate_clist,
 		},
 	}
 }
@@ -94,6 +118,12 @@ func getObjectDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStatsStats(d []in
 		ret.Packet_dropped = in["packet_dropped"].(int)
 		ret.Entry_learned = in["entry_learned"].(int)
 		ret.Entry_count_overflow = in["entry_count_overflow"].(int)
+		ret.Exceed_drop_pkt_rate_clist = in["exceed_drop_pkt_rate_clist"].(int)
+		ret.Exceed_drop_conn_rate_clist = in["exceed_drop_conn_rate_clist"].(int)
+		ret.Exceed_drop_conn_limit_clist = in["exceed_drop_conn_limit_clist"].(int)
+		ret.Exceed_drop_kbit_rate_clist = in["exceed_drop_kbit_rate_clist"].(int)
+		ret.Exceed_drop_kbit_rate_clist_pkt = in["exceed_drop_kbit_rate_clist_pkt"].(int)
+		ret.Exceed_drop_frag_rate_clist = in["exceed_drop_frag_rate_clist"].(int)
 	}
 	return ret
 }
@@ -105,13 +135,13 @@ func dataToEndpointDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStats(d *sch
 
 	ret.Stats = getObjectDdosDstZonePortRangeSrcBasedPolicyPolicyClassListStatsStats(d.Get("stats").([]interface{}))
 
-	ret.ZoneName = d.Get("zone_name").(string)
+	ret.PortRangeStart = d.Get("port_range_start").(string)
 
 	ret.Protocol = d.Get("protocol").(string)
 
 	ret.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
 
-	ret.PortRangeStart = d.Get("port_range_start").(string)
+	ret.ZoneName = d.Get("zone_name").(string)
 
 	ret.PortRangeEnd = d.Get("port_range_end").(string)
 	return ret

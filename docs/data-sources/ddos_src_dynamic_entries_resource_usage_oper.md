@@ -52,5 +52,3 @@ Optional:
 - `src_entry_ipv6_allocated` (Number)
 - `src_entry_ipv6_limit` (Number)
 - `src_entry_ipv6_remaining` (String)
-
-

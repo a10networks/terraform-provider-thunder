@@ -44,6 +44,7 @@ output "get_config_sync_status_oper" {
 
 Optional:
 
+- `all_partitions` (Number)
 - `config_sync_list` (Block List) (see [below for nested schema](#nestedblock--oper--config_sync_list))
 
 <a id="nestedblock--oper--config_sync_list"></a>
@@ -54,5 +55,3 @@ Optional:
 - `partition_name` (String)
 - `run_sync_status` (String)
 - `startup_sync_status` (String)
-
-

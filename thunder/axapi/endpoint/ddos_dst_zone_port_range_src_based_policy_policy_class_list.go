@@ -1,129 +1,140 @@
-
-
 package endpoint
+
 import (
-    "github.com/a10networks/terraform-provider-thunder/thunder/axapi"
-    "github.com/clarketm/json"
-    "net/url"
+	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
+	"github.com/clarketm/json"
+	"net/url"
 )
 
-//based on ACOS 6_0_2_P1-37
+// based on ACOS 7_0_2-102
 type DdosDstZonePortRangeSrcBasedPolicyPolicyClassList struct {
 	Inst struct {
+		Action string `json:"action"`
 
-    Action string `json:"action"`
-    ClassListName string `json:"class-list-name"`
-    ClassListOverflowPolicyList []DdosDstZonePortRangeSrcBasedPolicyPolicyClassListClassListOverflowPolicyList `json:"class-list-overflow-policy-list"`
-    Glid string `json:"glid"`
-    GlidAction string `json:"glid-action"`
-    MaxDynamicEntryCount int `json:"max-dynamic-entry-count"`
-    SamplingEnable []DdosDstZonePortRangeSrcBasedPolicyPolicyClassListSamplingEnable `json:"sampling-enable"`
-    UserTag string `json:"user-tag"`
-    Uuid string `json:"uuid"`
-    ZoneTemplate DdosDstZonePortRangeSrcBasedPolicyPolicyClassListZoneTemplate `json:"zone-template"`
-    ZoneName string 
-    Protocol string 
-    SrcBasedPolicyName string 
-    PortRangeStart string 
-    PortRangeEnd string 
+		ClassListGlid string `json:"class-list-glid"`
 
+		ClassListName string `json:"class-list-name"`
+
+		ClassListOverflowPolicyList []DdosDstZonePortRangeSrcBasedPolicyPolicyClassListClassListOverflowPolicyList `json:"class-list-overflow-policy-list"`
+
+		DynamicEntryCountWarnThreshold int `json:"dynamic-entry-count-warn-threshold"`
+
+		Glid string `json:"glid"`
+
+		GlidAction string `json:"glid-action"`
+
+		MaxDynamicEntryCount int `json:"max-dynamic-entry-count"`
+
+		SamplingEnable []DdosDstZonePortRangeSrcBasedPolicyPolicyClassListSamplingEnable `json:"sampling-enable"`
+
+		UserTag string `json:"user-tag"`
+
+		Uuid string `json:"uuid"`
+
+		ZoneTemplate DdosDstZonePortRangeSrcBasedPolicyPolicyClassListZoneTemplate `json:"zone-template"`
+
+		PortRangeStart string
+
+		Protocol string
+
+		SrcBasedPolicyName string
+
+		ZoneName string
+
+		PortRangeEnd string
 	} `json:"policy-class-list"`
 }
 
-
 type DdosDstZonePortRangeSrcBasedPolicyPolicyClassListClassListOverflowPolicyList struct {
-    DummyName string `json:"dummy-name"`
-    Glid string `json:"glid"`
-    Action string `json:"action"`
-    LogEnable int `json:"log-enable"`
-    LogPeriodic int `json:"log-periodic"`
-    ZoneTemplate DdosDstZonePortRangeSrcBasedPolicyPolicyClassListClassListOverflowPolicyListZoneTemplate `json:"zone-template"`
-    Uuid string `json:"uuid"`
-    UserTag string `json:"user-tag"`
+	DummyName    string                                                                                   `json:"dummy-name"`
+	Glid         string                                                                                   `json:"glid"`
+	Action       string                                                                                   `json:"action"`
+	LogEnable    int                                                                                      `json:"log-enable"`
+	LogPeriodic  int                                                                                      `json:"log-periodic"`
+	ZoneTemplate DdosDstZonePortRangeSrcBasedPolicyPolicyClassListClassListOverflowPolicyListZoneTemplate `json:"zone-template"`
+	Uuid         string                                                                                   `json:"uuid"`
+	UserTag      string                                                                                   `json:"user-tag"`
 }
-
 
 type DdosDstZonePortRangeSrcBasedPolicyPolicyClassListClassListOverflowPolicyListZoneTemplate struct {
-    Quic string `json:"quic"`
-    Dns string `json:"dns"`
-    Http string `json:"http"`
-    SslL4 string `json:"ssl-l4"`
-    Sip string `json:"sip"`
-    Tcp string `json:"tcp"`
-    Udp string `json:"udp"`
-    Encap string `json:"encap"`
-    Logging string `json:"logging"`
+	Quic    string `json:"quic"`
+	Dns     string `json:"dns"`
+	Http    string `json:"http"`
+	SslL4   string `json:"ssl-l4"`
+	Sip     string `json:"sip"`
+	Tcp     string `json:"tcp"`
+	Udp     string `json:"udp"`
+	Encap   string `json:"encap"`
+	Logging string `json:"logging"`
 }
-
 
 type DdosDstZonePortRangeSrcBasedPolicyPolicyClassListSamplingEnable struct {
-    Counters1 string `json:"counters1"`
+	Counters1 string `json:"counters1"`
 }
-
 
 type DdosDstZonePortRangeSrcBasedPolicyPolicyClassListZoneTemplate struct {
-    Quic string `json:"quic"`
-    Dns string `json:"dns"`
-    Http string `json:"http"`
-    SslL4 string `json:"ssl-l4"`
-    Sip string `json:"sip"`
-    Tcp string `json:"tcp"`
-    Udp string `json:"udp"`
-    Encap string `json:"encap"`
-    Logging string `json:"logging"`
+	Quic    string `json:"quic"`
+	Dns     string `json:"dns"`
+	Http    string `json:"http"`
+	SslL4   string `json:"ssl-l4"`
+	Sip     string `json:"sip"`
+	Tcp     string `json:"tcp"`
+	Udp     string `json:"udp"`
+	Encap   string `json:"encap"`
+	Logging string `json:"logging"`
 }
 
-func (p *DdosDstZonePortRangeSrcBasedPolicyPolicyClassList) GetId() string{
-    return url.QueryEscape(p.Inst.ClassListName)
+func (p *DdosDstZonePortRangeSrcBasedPolicyPolicyClassList) GetId() string {
+	return url.QueryEscape(p.Inst.ClassListName)
 }
 
-func (p *DdosDstZonePortRangeSrcBasedPolicyPolicyClassList) getPath() string{
-    return "ddos/dst/zone/" +p.Inst.ZoneName + "/port-range/" +p.Inst.PortRangeStart + "+" +p.Inst.PortRangeEnd + "+" +p.Inst.Protocol + "/src-based-policy/" +p.Inst.SrcBasedPolicyName + "/policy-class-list"
+func (p *DdosDstZonePortRangeSrcBasedPolicyPolicyClassList) getPath() string {
+	return "ddos/dst/zone/" + p.Inst.ZoneName + "/port-range/" + p.Inst.PortRangeStart + "+" + p.Inst.PortRangeEnd + "+" + p.Inst.Protocol + "/src-based-policy/" + p.Inst.SrcBasedPolicyName + "/policy-class-list"
 }
 
 func (p *DdosDstZonePortRangeSrcBasedPolicyPolicyClassList) Post(authToken string, host string, logger *axapi.ThunderLog) error {
-    logger.Println("DdosDstZonePortRangeSrcBasedPolicyPolicyClassList::Post")
-    headers := axapi.GenRequestHeader(authToken)
-        payloadBytes, err := axapi.SerializeToJson(p)
-        if err != nil {
-            logger.Println("Failed to serialize struct as json", err)
-            return err
-        }
-        logger.Println("payload:", string(payloadBytes))
-        _, _, err = axapi.SendPost(host, p.getPath(), payloadBytes, headers, logger)
-    return err
+	logger.Println("DdosDstZonePortRangeSrcBasedPolicyPolicyClassList::Post")
+	headers := axapi.GenRequestHeader(authToken)
+	payloadBytes, err := axapi.SerializeToJson(p)
+	if err != nil {
+		logger.Println("Failed to serialize struct as json", err)
+		return err
+	}
+	logger.Println("payload:", string(payloadBytes))
+	_, _, err = axapi.SendPost(host, p.getPath(), payloadBytes, headers, logger)
+	return err
 }
 
 func (p *DdosDstZonePortRangeSrcBasedPolicyPolicyClassList) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) error {
-    logger.Println("DdosDstZonePortRangeSrcBasedPolicyPolicyClassList::Get")
-    headers := axapi.GenRequestHeader(authToken)
-        _, axResp, err := axapi.SendGet(host, p.getPath(), instId, nil, headers, logger)
-    if err == nil {
-        if len(axResp) > 0{
-        err = json.Unmarshal(axResp, &p)
-        }
-        if err != nil {
-            logger.Println("json.Unmarshal() failed with error", err)
-        }
-    }
-    return err
+	logger.Println("DdosDstZonePortRangeSrcBasedPolicyPolicyClassList::Get")
+	headers := axapi.GenRequestHeader(authToken)
+	_, axResp, err := axapi.SendGet(host, p.getPath(), instId, nil, headers, logger)
+	if err == nil {
+		if len(axResp) > 0 {
+			err = json.Unmarshal(axResp, &p)
+		}
+		if err != nil {
+			logger.Println("json.Unmarshal() failed with error", err)
+		}
+	}
+	return err
 }
 func (p *DdosDstZonePortRangeSrcBasedPolicyPolicyClassList) Put(authToken string, host string, logger *axapi.ThunderLog) error {
-    logger.Println("DdosDstZonePortRangeSrcBasedPolicyPolicyClassList::Put")
-    headers := axapi.GenRequestHeader(authToken)
-    payloadBytes, err := axapi.SerializeToJson(p)
-    if err != nil {
-        logger.Println("Failed to serialize struct as json", err)
-        return err
-    }
-    logger.Println("payload: " + string(payloadBytes))
-    _, _, err = axapi.SendPut(host, p.getPath(), p.GetId(), payloadBytes, headers, logger)
-    return err
+	logger.Println("DdosDstZonePortRangeSrcBasedPolicyPolicyClassList::Put")
+	headers := axapi.GenRequestHeader(authToken)
+	payloadBytes, err := axapi.SerializeToJson(p)
+	if err != nil {
+		logger.Println("Failed to serialize struct as json", err)
+		return err
+	}
+	logger.Println("payload: " + string(payloadBytes))
+	_, _, err = axapi.SendPut(host, p.getPath(), p.GetId(), payloadBytes, headers, logger)
+	return err
 }
 
 func (p *DdosDstZonePortRangeSrcBasedPolicyPolicyClassList) Delete(authToken string, host string, instId string, logger *axapi.ThunderLog) error {
-    logger.Println("DdosDstZonePortRangeSrcBasedPolicyPolicyClassList::Delete")
-    headers := axapi.GenRequestHeader(authToken)
-        _, _, err := axapi.SendDelete(host, p.getPath(), instId, nil, headers, logger)
-    return err
+	logger.Println("DdosDstZonePortRangeSrcBasedPolicyPolicyClassList::Delete")
+	headers := axapi.GenRequestHeader(authToken)
+	_, _, err := axapi.SendDelete(host, p.getPath(), instId, nil, headers, logger)
+	return err
 }

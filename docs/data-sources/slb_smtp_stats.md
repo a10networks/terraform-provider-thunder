@@ -119,5 +119,3 @@ Optional:
 - `tls_established` (Number) SSL session established
 - `too_many_headers` (Number) Too many headers
 - `total_proxy` (Number) Total proxy conns
-
-

@@ -211,8 +211,8 @@ func resourceCgnv6LsnRuleListIp() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"lsn_rule_list_name": {
+				Type: schema.TypeString, Required: true, Description: "Lsn_rule_list_name",
 			},
 		},
 	}
@@ -402,6 +402,6 @@ func dataToEndpointCgnv6LsnRuleListIp(d *schema.ResourceData) edpt.Cgnv6LsnRuleL
 	ret.Inst.SamplingEnable = getSliceCgnv6LsnRuleListIpSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Lsn_rule_list_name = d.Get("lsn_rule_list_name").(string)
 	return ret
 }

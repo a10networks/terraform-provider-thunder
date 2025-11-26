@@ -724,8 +724,8 @@ func resourceCgnv6Dns64VirtualserverPortOper() *schema.Resource {
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "'dns-udp': DNS service over UDP;",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dns64_virtualserver_name": {
+				Type: schema.TypeString, Required: true, Description: "Dns64_virtualserver_name",
 			},
 		},
 	}
@@ -1278,6 +1278,6 @@ func dataToEndpointCgnv6Dns64VirtualserverPortOper(d *schema.ResourceData) edpt.
 
 	ret.Protocol = d.Get("protocol").(string)
 
-	ret.Name = d.Get("name").(string)
+	ret.Dns64_virtualserver_name = d.Get("dns64_virtualserver_name").(string)
 	return ret
 }

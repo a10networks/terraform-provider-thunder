@@ -55,5 +55,3 @@ Optional:
 - `error` (String)
 - `line` (Number)
 - `offset` (Number)
-
-

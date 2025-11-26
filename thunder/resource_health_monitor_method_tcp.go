@@ -47,8 +47,8 @@ func resourceHealthMonitorMethodTcp() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -136,6 +136,6 @@ func dataToEndpointHealthMonitorMethodTcp(d *schema.ResourceData) edpt.HealthMon
 	ret.Inst.PortSend = d.Get("port_send").(string)
 	ret.Inst.TcpPort = d.Get("tcp_port").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

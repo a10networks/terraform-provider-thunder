@@ -398,7 +398,7 @@ func resourceSlbTemplateClientSsl() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"ec": {
-							Type: schema.TypeString, Optional: true, Description: "'secp256r1': X9_62_prime256v1; 'secp384r1': secp384r1;",
+							Type: schema.TypeString, Optional: true, Description: "'secp256r1': X9_62_prime256v1; 'secp384r1': secp384r1; 'secp521r1': secp521r1; 'x25519': x25519;",
 						},
 					},
 				},
@@ -491,248 +491,8 @@ func resourceSlbTemplateClientSsl() *schema.Resource {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"exception_uncategorized": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Uncategorized URLs",
-						},
-						"exception_real_estate": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Real Estate",
-						},
-						"exception_computer_and_internet_security": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Computer and Internet Security",
-						},
-						"exception_financial_services": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Financial Services",
-						},
-						"exception_business_and_economy": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Business and Economy",
-						},
-						"exception_computer_and_internet_info": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Computer and Internet Info",
-						},
-						"exception_auctions": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Auctions",
-						},
-						"exception_shopping": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Shopping",
-						},
-						"exception_cult_and_occult": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Cult and Occult",
-						},
-						"exception_travel": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Travel",
-						},
-						"exception_drugs": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Abused Drugs",
-						},
-						"exception_adult_and_pornography": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Adult and Pornography",
-						},
-						"exception_home_and_garden": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Home and Garden",
-						},
-						"exception_military": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Military",
-						},
-						"exception_social_network": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Social Network",
-						},
-						"exception_dead_sites": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Dead Sites (db Ops only)",
-						},
-						"exception_stock_advice_and_tools": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Stock Advice and Tools",
-						},
-						"exception_training_and_tools": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Training and Tools",
-						},
-						"exception_dating": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Dating",
-						},
-						"exception_sex_education": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Sex Education",
-						},
-						"exception_religion": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Religion",
-						},
-						"exception_entertainment_and_arts": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Entertainment and Arts",
-						},
-						"exception_personal_sites_and_blogs": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Personal sites and Blogs",
-						},
-						"exception_legal": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Legal",
-						},
-						"exception_local_information": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Local Information",
-						},
-						"exception_streaming_media": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Streaming Media",
-						},
-						"exception_job_search": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Job Search",
-						},
-						"exception_gambling": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Gambling",
-						},
-						"exception_translation": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Translation",
-						},
-						"exception_reference_and_research": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Reference and Research",
-						},
-						"exception_shareware_and_freeware": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Shareware and Freeware",
-						},
-						"exception_peer_to_peer": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Peer to Peer",
-						},
-						"exception_marijuana": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Marijuana",
-						},
-						"exception_hacking": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Hacking",
-						},
-						"exception_games": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Games",
-						},
-						"exception_philosophy_and_politics": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Philosophy and Political Advocacy",
-						},
-						"exception_weapons": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Weapons",
-						},
-						"exception_pay_to_surf": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Pay to Surf",
-						},
-						"exception_hunting_and_fishing": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Hunting and Fishing",
-						},
-						"exception_society": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Society",
-						},
-						"exception_educational_institutions": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Educational Institutions",
-						},
-						"exception_online_greeting_cards": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Online Greeting cards",
-						},
-						"exception_sports": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Sports",
-						},
-						"exception_swimsuits_and_intimate_apparel": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Swimsuits and Intimate Apparel",
-						},
-						"exception_questionable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Questionable",
-						},
-						"exception_kids": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Kids",
-						},
-						"exception_hate_and_racism": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Hate and Racism",
-						},
-						"exception_personal_storage": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Personal Storage",
-						},
-						"exception_violence": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Violence",
-						},
-						"exception_keyloggers_and_monitoring": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Keyloggers and Monitoring",
-						},
-						"exception_search_engines": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Search Engines",
-						},
-						"exception_internet_portals": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Internet Portals",
-						},
-						"exception_web_advertisements": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Web Advertisements",
-						},
-						"exception_cheating": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Cheating",
-						},
-						"exception_gross": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Gross",
-						},
-						"exception_web_based_email": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Web based email",
-						},
-						"exception_malware_sites": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Malware Sites",
-						},
-						"exception_phishing_and_other_fraud": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Phishing and Other Frauds",
-						},
-						"exception_proxy_avoid_and_anonymizers": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Proxy Avoid and Anonymizers",
-						},
-						"exception_spyware_and_adware": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Spyware and Adware",
-						},
-						"exception_music": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Music",
-						},
-						"exception_government": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Government",
-						},
-						"exception_nudity": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Nudity",
-						},
-						"exception_news_and_media": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category News and Media",
-						},
-						"exception_illegal": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Illegal",
-						},
-						"exception_cdns": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category CDNs",
-						},
-						"exception_internet_communications": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Internet Communications",
-						},
-						"exception_bot_nets": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Bot Nets",
-						},
-						"exception_abortion": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Abortion",
-						},
-						"exception_health_and_medicine": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Health and Medicine",
-						},
-						"exception_spam_urls": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category SPAM URLs",
-						},
-						"exception_dynamically_generated_content": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Dynamically Generated Content",
-						},
-						"exception_parked_domains": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Parked Domains",
-						},
-						"exception_alcohol_and_tobacco": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Alcohol and Tobacco",
-						},
-						"exception_image_and_video_search": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Image and Video Search",
-						},
-						"exception_fashion_and_beauty": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Fashion and Beauty",
-						},
-						"exception_recreation_and_hobbies": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Recreation and Hobbies",
-						},
-						"exception_motor_vehicles": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Motor Vehicles",
-						},
-						"exception_web_hosting_sites": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Web Hosting Sites",
-						},
-						"exception_nudity_artistic": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Nudity join Entertainment and Arts",
-						},
-						"exception_illegal_pornography": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Illegal join Adult and Pornography",
+						"exception_category": {
+							Type: schema.TypeString, Optional: true, Description: "'uncategorized': Uncategorized URLs; 'real-estate': Category Real Estate; 'computer-and-internet-security': Category Computer and Internet Security; 'financial-services': Category Financial Services; 'business-and-economy': Category Business and Economy; 'computer-and-internet-info': Category Computer and Internet Info; 'auctions': Category Auctions; 'shopping': Category Shopping; 'cult-and-occult': Category Cult and Occult; 'travel': Category Travel; 'drugs': Category Abused Drugs; 'adult-and-pornography': Category Adult and Pornography; 'home-and-garden': Category Home and Garden; 'military': Category Military; 'social-network': Category Social Network; 'dead-sites': Category Dead Sites (db Ops only); 'stock-advice-and-tools': Category Stock Advice and Tools; 'training-and-tools': Category Training and Tools; 'dating': Category Dating; 'sex-education': Category Sex Education; 'religion': Category Religion; 'entertainment-and-arts': Category Entertainment and Arts; 'personal-sites-and-blogs': Category Personal sites and Blogs; 'legal': Category Legal; 'local-information': Category Local Information; 'streaming-media': Category Streaming Media; 'job-search': Category Job Search; 'gambling': Category Gambling; 'translation': Category Translation; 'reference-and-research': Category Reference and Research; 'shareware-and-freeware': Category Shareware and Freeware; 'peer-to-peer': Category Peer to Peer; 'marijuana': Category Marijuana; 'hacking': Category Hacking; 'games': Category Games; 'philosophy-and-politics': Category Philosophy and Political Advocacy; 'weapons': Category Weapons; 'pay-to-surf': Category Pay to Surf; 'hunting-and-fishing': Category Hunting and Fishing; 'society': Category Society; 'educational-institutions': Category Educational Institutions; 'online-greeting-cards': Category Online Greeting cards; 'sports': Category Sports; 'swimsuits-and-intimate-apparel': Category Swimsuits and Intimate Apparel; 'questionable': Category Questionable; 'kids': Category Kids; 'hate-and-racism': Category Hate and Racism; 'personal-storage': Category Personal Storage; 'violence': Category Violence; 'keyloggers-and-monitoring': Category Keyloggers and Monitoring; 'search-engines': Category Search Engines; 'internet-portals': Category Internet Portals; 'web-advertisements': Category Web Advertisements; 'cheating': Category Cheating; 'gross': Category Gross; 'web-based-email': Category Web based email; 'malware-sites': Category Malware Sites; 'phishing-and-other-fraud': Category Phishing and Other Frauds; 'proxy-avoid-and-anonymizers': Category Proxy Avoid and Anonymizers; 'spyware-and-adware': Category Spyware and Adware; 'music': Category Music; 'government': Category Government; 'nudity': Category Nudity; 'news-and-media': Category News and Media; 'illegal': Category Illegal; 'cdns': Category CDNs; 'internet-communications': Category Internet Communications; 'bot-nets': Category Bot Nets; 'abortion': Category Abortion; 'health-and-medicine': Category Health and Medicine; 'spam-urls': Category SPAM URLs; 'dynamically-generated-content': Category Dynamically Generated Content; 'parked-domains': Category Parked Domains; 'alcohol-and-tobacco': Category Alcohol and Tobacco; 'image-and-video-search': Category Image and Video Search; 'fashion-and-beauty': Category Fashion and Beauty; 'recreation-and-hobbies': Category Recreation and Hobbies; 'motor-vehicles': Category Motor Vehicles; 'web-hosting-sites': Category Web Hosting Sites; 'self-harm': Category Self Harm; 'dns-over-https': Category DNS over HTTPs; 'low-thc-cannabis-products': Category Low-THC Cannabis Products; 'generative-ai': Category Generative AI; 'nudity-artistic': Category Artistic Nudity; 'illegal-pornography': Category Illegal Pornography eg. Child Sexual Abuse;",
 						},
 					},
 				},
@@ -952,6 +712,21 @@ func resourceSlbTemplateClientSsl() *schema.Resource {
 			"ja3_ttl": {
 				Type: schema.TypeInt, Optional: true, Default: 600, Description: "seconds to keep each JA3 record",
 			},
+			"ja4_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable JA4 features",
+			},
+			"ja4_insert_http_header": {
+				Type: schema.TypeString, Optional: true, Description: "Insert the JA4 hash into this request as a HTTP header (HTTP Header Name)",
+			},
+			"ja4_reject_class_list": {
+				Type: schema.TypeString, Optional: true, Description: "Drop request if the JA4 hash matches this class-list (type string-case-insensitive) (Class-List Name)",
+			},
+			"ja4_reject_max_number_per_host": {
+				Type: schema.TypeInt, Optional: true, Description: "Drop request if numbers of JA4 of this client address exceeded",
+			},
+			"ja4_ttl": {
+				Type: schema.TypeInt, Optional: true, Default: 600, Description: "seconds to keep each JA4 record",
+			},
 			"ldap_base_dn_from_cert": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use Subject DN as LDAP search base DN",
 			},
@@ -1075,8 +850,21 @@ func resourceSlbTemplateClientSsl() *schema.Resource {
 					},
 				},
 			},
+			"require_sni_cert_matched": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "SNI is required to match configured certificate subject or SAN",
+			},
 			"require_web_category": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Wait for web category to be resolved before taking bypass decision",
+			},
+			"sampling_enable": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"counters1": {
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'real-estate': real estate category; 'computer-and-internet-security': computer and internet security category; 'financial-services': financial services category; 'business-and-economy': business and economy category; 'computer-and-internet-info': computer and internet info category; 'auctions': auctions category; 'shopping': shopping category; 'cult-and-occult': cult and occult category; 'travel': travel category; 'drugs': drugs category; 'adult-and-pornography': adult and pornography category; 'home-and-garden': home and garden category; 'military': military category; 'social-network': social network category; 'dead-sites': dead sites category; 'stock-advice-and-tools': stock advice and tools category; 'training-and-tools': training and tools category; 'dating': dating category; 'sex-education': sex education category; 'religion': religion category; 'entertainment-and-arts': entertainment and arts category; 'personal-sites-and-blogs': personal sites and blogs category; 'legal': legal category; 'local-information': local information category; 'streaming-media': streaming media category; 'job-search': job search category; 'gambling': gambling category; 'translation': translation category; 'reference-and-research': reference and research category; 'shareware-and-freeware': shareware and freeware category; 'peer-to-peer': peer to peer category; 'marijuana': marijuana category; 'hacking': hacking category; 'games': games category; 'philosophy-and-politics': philosophy and politics category; 'weapons': weapons category; 'pay-to-surf': pay to surf category; 'hunting-and-fishing': hunting and fishing category; 'society': society category; 'educational-institutions': educational institutions category; 'online-greeting-cards': online greeting cards category; 'sports': sports category; 'swimsuits-and-intimate-apparel': swimsuits and intimate apparel category; 'questionable': questionable category; 'kids': kids category; 'hate-and-racism': hate and racism category; 'personal-storage': personal storage category; 'violence': violence category; 'keyloggers-and-monitoring': keyloggers and monitoring category; 'search-engines': search engines category; 'internet-portals': internet portals category; 'web-advertisements': web advertisements category; 'cheating': cheating category; 'gross': gross category; 'web-based-email': web based email category; 'malware-sites': malware sites category; 'phishing-and-other-fraud': phishing and other fraud category; 'proxy-avoid-and-anonymizers': proxy avoid and anonymizers category; 'spyware-and-adware': spyware and adware category; 'music': music category; 'government': government category; 'nudity': nudity category; 'news-and-media': news and media category; 'illegal': illegal category; 'CDNs': content delivery networks category; 'internet-communications': internet communications category; 'bot-nets': bot nets category; 'abortion': abortion category; 'health-and-medicine': health and medicine category; 'confirmed-SPAM-sources': confirmed SPAM sources category; 'SPAM-URLs': SPAM URLs category; 'unconfirmed-SPAM-sources': unconfirmed SPAM sources category; 'open-HTTP-proxies': open HTTP proxies category; 'dynamically-generated-content': dynamically generated content category; 'parked-domains': parked domains category; 'alcohol-and-tobacco': alcohol and tobacco category; 'private-IP-addresses': private IP addresses category; 'image-and-video-search': image and video search category; 'fashion-and-beauty': fashion and beauty category; 'recreation-and-hobbies': recreation and hobbies category; 'motor-vehicles': motor vehicles category; 'web-hosting-sites': web hosting sites category; 'food-and-dining': food and dining category; 'dummy-item': dummy item category; 'self-harm': self harm category; 'dns-over-https': dns over https category; 'low-thc-cannabis-products': low-thc cannabis products; 'generative-ai': generative ai category; 'nudity-artistic': artistic nudity; 'illegal-pornography': illegal pornography eg. child sexual abuse; 'uncategorised': uncategorised; 'other-category': other category; 'trustworthy': Trustworthy level(81-100); 'low-risk': Low-risk level(61-80); 'moderate-risk': Moderate-risk level(41-60); 'suspicious': Suspicious level(21-40); 'malicious': Malicious level(1-20);",
+						},
+					},
+				},
 			},
 			"server_ipv4_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
@@ -1136,7 +924,7 @@ func resourceSlbTemplateClientSsl() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Reference a Client SSL template from shared partition",
 						},
 						"sni_template_client_ssl_shared_name": {
-							Type: schema.TypeString, Optional: true, Description: "Client SSL Template Name",
+							Type: schema.TypeString, Optional: true, Description: "Shared Partition Client SSL Template Name",
 						},
 						"server_name_regex": {
 							Type: schema.TypeString, Optional: true, Description: "Server name indication in Client hello extension with regular expression (Server name String with regex)",
@@ -1169,7 +957,7 @@ func resourceSlbTemplateClientSsl() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Reference a Client SSL template from shared partition",
 						},
 						"sni_regex_template_client_ssl_shared_name": {
-							Type: schema.TypeString, Optional: true, Description: "Client SSL Template Name",
+							Type: schema.TypeString, Optional: true, Description: "Shared Partition Client SSL Template Name",
 						},
 					},
 				},
@@ -1179,6 +967,9 @@ func resourceSlbTemplateClientSsl() *schema.Resource {
 			},
 			"session_cache_timeout": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Session Cache Timeout (Timeout value, in seconds. Default value 0 (Session cache timeout disabled))",
+			},
+			"session_key_logging_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SSL session key logging",
 			},
 			"session_ticket_disable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable client side session ticket support",
@@ -1260,248 +1051,8 @@ func resourceSlbTemplateClientSsl() *schema.Resource {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"uncategorized": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Uncategorized URLs",
-						},
-						"real_estate": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Real Estate",
-						},
-						"computer_and_internet_security": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Computer and Internet Security",
-						},
-						"financial_services": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Financial Services",
-						},
-						"business_and_economy": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Business and Economy",
-						},
-						"computer_and_internet_info": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Computer and Internet Info",
-						},
-						"auctions": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Auctions",
-						},
-						"shopping": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Shopping",
-						},
-						"cult_and_occult": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Cult and Occult",
-						},
-						"travel": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Travel",
-						},
-						"drugs": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Abused Drugs",
-						},
-						"adult_and_pornography": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Adult and Pornography",
-						},
-						"home_and_garden": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Home and Garden",
-						},
-						"military": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Military",
-						},
-						"social_network": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Social Network",
-						},
-						"dead_sites": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Dead Sites (db Ops only)",
-						},
-						"stock_advice_and_tools": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Stock Advice and Tools",
-						},
-						"training_and_tools": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Training and Tools",
-						},
-						"dating": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Dating",
-						},
-						"sex_education": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Sex Education",
-						},
-						"religion": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Religion",
-						},
-						"entertainment_and_arts": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Entertainment and Arts",
-						},
-						"personal_sites_and_blogs": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Personal sites and Blogs",
-						},
-						"legal": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Legal",
-						},
-						"local_information": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Local Information",
-						},
-						"streaming_media": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Streaming Media",
-						},
-						"job_search": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Job Search",
-						},
-						"gambling": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Gambling",
-						},
-						"translation": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Translation",
-						},
-						"reference_and_research": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Reference and Research",
-						},
-						"shareware_and_freeware": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Shareware and Freeware",
-						},
-						"peer_to_peer": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Peer to Peer",
-						},
-						"marijuana": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Marijuana",
-						},
-						"hacking": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Hacking",
-						},
-						"games": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Games",
-						},
-						"philosophy_and_politics": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Philosophy and Political Advocacy",
-						},
-						"weapons": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Weapons",
-						},
-						"pay_to_surf": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Pay to Surf",
-						},
-						"hunting_and_fishing": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Hunting and Fishing",
-						},
-						"society": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Society",
-						},
-						"educational_institutions": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Educational Institutions",
-						},
-						"online_greeting_cards": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Online Greeting cards",
-						},
-						"sports": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Sports",
-						},
-						"swimsuits_and_intimate_apparel": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Swimsuits and Intimate Apparel",
-						},
-						"questionable": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Questionable",
-						},
-						"kids": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Kids",
-						},
-						"hate_and_racism": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Hate and Racism",
-						},
-						"personal_storage": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Personal Storage",
-						},
-						"violence": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Violence",
-						},
-						"keyloggers_and_monitoring": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Keyloggers and Monitoring",
-						},
-						"search_engines": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Search Engines",
-						},
-						"internet_portals": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Internet Portals",
-						},
-						"web_advertisements": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Web Advertisements",
-						},
-						"cheating": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Cheating",
-						},
-						"gross": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Gross",
-						},
-						"web_based_email": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Web based email",
-						},
-						"malware_sites": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Malware Sites",
-						},
-						"phishing_and_other_fraud": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Phishing and Other Frauds",
-						},
-						"proxy_avoid_and_anonymizers": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Proxy Avoid and Anonymizers",
-						},
-						"spyware_and_adware": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Spyware and Adware",
-						},
-						"music": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Music",
-						},
-						"government": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Government",
-						},
-						"nudity": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Nudity",
-						},
-						"news_and_media": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category News and Media",
-						},
-						"illegal": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Illegal",
-						},
-						"cdns": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category CDNs",
-						},
-						"internet_communications": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Internet Communications",
-						},
-						"bot_nets": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Bot Nets",
-						},
-						"abortion": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Abortion",
-						},
-						"health_and_medicine": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Health and Medicine",
-						},
-						"spam_urls": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category SPAM URLs",
-						},
-						"dynamically_generated_content": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Dynamically Generated Content",
-						},
-						"parked_domains": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Parked Domains",
-						},
-						"alcohol_and_tobacco": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Alcohol and Tobacco",
-						},
-						"image_and_video_search": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Image and Video Search",
-						},
-						"fashion_and_beauty": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Fashion and Beauty",
-						},
-						"recreation_and_hobbies": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Recreation and Hobbies",
-						},
-						"motor_vehicles": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Motor Vehicles",
-						},
-						"web_hosting_sites": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Web Hosting Sites",
-						},
-						"nudity_artistic": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Nudity join Entertainment and Arts",
-						},
-						"illegal_pornography": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Category Illegal join Adult and Pornography",
+						"bypassed_category": {
+							Type: schema.TypeString, Optional: true, Description: "'uncategorized': Uncategorized URLs; 'real-estate': Category Real Estate; 'computer-and-internet-security': Category Computer and Internet Security; 'financial-services': Category Financial Services; 'business-and-economy': Category Business and Economy; 'computer-and-internet-info': Category Computer and Internet Info; 'auctions': Category Auctions; 'shopping': Category Shopping; 'cult-and-occult': Category Cult and Occult; 'travel': Category Travel; 'drugs': Category Abused Drugs; 'adult-and-pornography': Category Adult and Pornography; 'home-and-garden': Category Home and Garden; 'military': Category Military; 'social-network': Category Social Network; 'dead-sites': Category Dead Sites (db Ops only); 'stock-advice-and-tools': Category Stock Advice and Tools; 'training-and-tools': Category Training and Tools; 'dating': Category Dating; 'sex-education': Category Sex Education; 'religion': Category Religion; 'entertainment-and-arts': Category Entertainment and Arts; 'personal-sites-and-blogs': Category Personal sites and Blogs; 'legal': Category Legal; 'local-information': Category Local Information; 'streaming-media': Category Streaming Media; 'job-search': Category Job Search; 'gambling': Category Gambling; 'translation': Category Translation; 'reference-and-research': Category Reference and Research; 'shareware-and-freeware': Category Shareware and Freeware; 'peer-to-peer': Category Peer to Peer; 'marijuana': Category Marijuana; 'hacking': Category Hacking; 'games': Category Games; 'philosophy-and-politics': Category Philosophy and Political Advocacy; 'weapons': Category Weapons; 'pay-to-surf': Category Pay to Surf; 'hunting-and-fishing': Category Hunting and Fishing; 'society': Category Society; 'educational-institutions': Category Educational Institutions; 'online-greeting-cards': Category Online Greeting cards; 'sports': Category Sports; 'swimsuits-and-intimate-apparel': Category Swimsuits and Intimate Apparel; 'questionable': Category Questionable; 'kids': Category Kids; 'hate-and-racism': Category Hate and Racism; 'personal-storage': Category Personal Storage; 'violence': Category Violence; 'keyloggers-and-monitoring': Category Keyloggers and Monitoring; 'search-engines': Category Search Engines; 'internet-portals': Category Internet Portals; 'web-advertisements': Category Web Advertisements; 'cheating': Category Cheating; 'gross': Category Gross; 'web-based-email': Category Web based email; 'malware-sites': Category Malware Sites; 'phishing-and-other-fraud': Category Phishing and Other Frauds; 'proxy-avoid-and-anonymizers': Category Proxy Avoid and Anonymizers; 'spyware-and-adware': Category Spyware and Adware; 'music': Category Music; 'government': Category Government; 'nudity': Category Nudity; 'news-and-media': Category News and Media; 'illegal': Category Illegal; 'cdns': Category CDNs; 'internet-communications': Category Internet Communications; 'bot-nets': Category Bot Nets; 'abortion': Category Abortion; 'health-and-medicine': Category Health and Medicine; 'spam-urls': Category SPAM URLs; 'dynamically-generated-content': Category Dynamically Generated Content; 'parked-domains': Category Parked Domains; 'alcohol-and-tobacco': Category Alcohol and Tobacco; 'image-and-video-search': Category Image and Video Search; 'fashion-and-beauty': Category Fashion and Beauty; 'recreation-and-hobbies': Category Recreation and Hobbies; 'motor-vehicles': Category Motor Vehicles; 'web-hosting-sites': Category Web Hosting Sites; 'self-harm': Category Self Harm; 'dns-over-https': Category DNS over HTTPs; 'low-thc-cannabis-products': Category Low-THC Cannabis Products; 'generative-ai': Category Generative AI; 'nudity-artistic': Category Artistic Nudity; 'illegal-pornography': Category Illegal Pornography eg. Child Sexual Abuse;",
 						},
 					},
 				},
@@ -2042,87 +1593,7 @@ func getObjectSlbTemplateClientSslExceptionWebCategory(d []interface{}) edpt.Slb
 	var ret edpt.SlbTemplateClientSslExceptionWebCategory
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.ExceptionUncategorized = in["exception_uncategorized"].(int)
-		ret.ExceptionRealEstate = in["exception_real_estate"].(int)
-		ret.ExceptionComputerAndInternetSecurity = in["exception_computer_and_internet_security"].(int)
-		ret.ExceptionFinancialServices = in["exception_financial_services"].(int)
-		ret.ExceptionBusinessAndEconomy = in["exception_business_and_economy"].(int)
-		ret.ExceptionComputerAndInternetInfo = in["exception_computer_and_internet_info"].(int)
-		ret.ExceptionAuctions = in["exception_auctions"].(int)
-		ret.ExceptionShopping = in["exception_shopping"].(int)
-		ret.ExceptionCultAndOccult = in["exception_cult_and_occult"].(int)
-		ret.ExceptionTravel = in["exception_travel"].(int)
-		ret.ExceptionDrugs = in["exception_drugs"].(int)
-		ret.ExceptionAdultAndPornography = in["exception_adult_and_pornography"].(int)
-		ret.ExceptionHomeAndGarden = in["exception_home_and_garden"].(int)
-		ret.ExceptionMilitary = in["exception_military"].(int)
-		ret.ExceptionSocialNetwork = in["exception_social_network"].(int)
-		ret.ExceptionDeadSites = in["exception_dead_sites"].(int)
-		ret.ExceptionStockAdviceAndTools = in["exception_stock_advice_and_tools"].(int)
-		ret.ExceptionTrainingAndTools = in["exception_training_and_tools"].(int)
-		ret.ExceptionDating = in["exception_dating"].(int)
-		ret.ExceptionSexEducation = in["exception_sex_education"].(int)
-		ret.ExceptionReligion = in["exception_religion"].(int)
-		ret.ExceptionEntertainmentAndArts = in["exception_entertainment_and_arts"].(int)
-		ret.ExceptionPersonalSitesAndBlogs = in["exception_personal_sites_and_blogs"].(int)
-		ret.ExceptionLegal = in["exception_legal"].(int)
-		ret.ExceptionLocalInformation = in["exception_local_information"].(int)
-		ret.ExceptionStreamingMedia = in["exception_streaming_media"].(int)
-		ret.ExceptionJobSearch = in["exception_job_search"].(int)
-		ret.ExceptionGambling = in["exception_gambling"].(int)
-		ret.ExceptionTranslation = in["exception_translation"].(int)
-		ret.ExceptionReferenceAndResearch = in["exception_reference_and_research"].(int)
-		ret.ExceptionSharewareAndFreeware = in["exception_shareware_and_freeware"].(int)
-		ret.ExceptionPeerToPeer = in["exception_peer_to_peer"].(int)
-		ret.ExceptionMarijuana = in["exception_marijuana"].(int)
-		ret.ExceptionHacking = in["exception_hacking"].(int)
-		ret.ExceptionGames = in["exception_games"].(int)
-		ret.ExceptionPhilosophyAndPolitics = in["exception_philosophy_and_politics"].(int)
-		ret.ExceptionWeapons = in["exception_weapons"].(int)
-		ret.ExceptionPayToSurf = in["exception_pay_to_surf"].(int)
-		ret.ExceptionHuntingAndFishing = in["exception_hunting_and_fishing"].(int)
-		ret.ExceptionSociety = in["exception_society"].(int)
-		ret.ExceptionEducationalInstitutions = in["exception_educational_institutions"].(int)
-		ret.ExceptionOnlineGreetingCards = in["exception_online_greeting_cards"].(int)
-		ret.ExceptionSports = in["exception_sports"].(int)
-		ret.ExceptionSwimsuitsAndIntimateApparel = in["exception_swimsuits_and_intimate_apparel"].(int)
-		ret.ExceptionQuestionable = in["exception_questionable"].(int)
-		ret.ExceptionKids = in["exception_kids"].(int)
-		ret.ExceptionHateAndRacism = in["exception_hate_and_racism"].(int)
-		ret.ExceptionPersonalStorage = in["exception_personal_storage"].(int)
-		ret.ExceptionViolence = in["exception_violence"].(int)
-		ret.ExceptionKeyloggersAndMonitoring = in["exception_keyloggers_and_monitoring"].(int)
-		ret.ExceptionSearchEngines = in["exception_search_engines"].(int)
-		ret.ExceptionInternetPortals = in["exception_internet_portals"].(int)
-		ret.ExceptionWebAdvertisements = in["exception_web_advertisements"].(int)
-		ret.ExceptionCheating = in["exception_cheating"].(int)
-		ret.ExceptionGross = in["exception_gross"].(int)
-		ret.ExceptionWebBasedEmail = in["exception_web_based_email"].(int)
-		ret.ExceptionMalwareSites = in["exception_malware_sites"].(int)
-		ret.ExceptionPhishingAndOtherFraud = in["exception_phishing_and_other_fraud"].(int)
-		ret.ExceptionProxyAvoidAndAnonymizers = in["exception_proxy_avoid_and_anonymizers"].(int)
-		ret.ExceptionSpywareAndAdware = in["exception_spyware_and_adware"].(int)
-		ret.ExceptionMusic = in["exception_music"].(int)
-		ret.ExceptionGovernment = in["exception_government"].(int)
-		ret.ExceptionNudity = in["exception_nudity"].(int)
-		ret.ExceptionNewsAndMedia = in["exception_news_and_media"].(int)
-		ret.ExceptionIllegal = in["exception_illegal"].(int)
-		ret.ExceptionCdns = in["exception_cdns"].(int)
-		ret.ExceptionInternetCommunications = in["exception_internet_communications"].(int)
-		ret.ExceptionBotNets = in["exception_bot_nets"].(int)
-		ret.ExceptionAbortion = in["exception_abortion"].(int)
-		ret.ExceptionHealthAndMedicine = in["exception_health_and_medicine"].(int)
-		ret.ExceptionSpamUrls = in["exception_spam_urls"].(int)
-		ret.ExceptionDynamicallyGeneratedContent = in["exception_dynamically_generated_content"].(int)
-		ret.ExceptionParkedDomains = in["exception_parked_domains"].(int)
-		ret.ExceptionAlcoholAndTobacco = in["exception_alcohol_and_tobacco"].(int)
-		ret.ExceptionImageAndVideoSearch = in["exception_image_and_video_search"].(int)
-		ret.ExceptionFashionAndBeauty = in["exception_fashion_and_beauty"].(int)
-		ret.ExceptionRecreationAndHobbies = in["exception_recreation_and_hobbies"].(int)
-		ret.ExceptionMotorVehicles = in["exception_motor_vehicles"].(int)
-		ret.ExceptionWebHostingSites = in["exception_web_hosting_sites"].(int)
-		ret.ExceptionNudityArtistic = in["exception_nudity_artistic"].(int)
-		ret.ExceptionIllegalPornography = in["exception_illegal_pornography"].(int)
+		ret.ExceptionCategory = in["exception_category"].(string)
 	}
 	return ret
 }
@@ -2190,6 +1661,19 @@ func getSliceSlbTemplateClientSslReqCaLists(d []interface{}) []edpt.SlbTemplateC
 		var oi edpt.SlbTemplateClientSslReqCaLists
 		oi.ClientCertificateRequestCa = in["client_certificate_request_ca"].(string)
 		oi.ClientCertReqCaShared = in["client_cert_req_ca_shared"].(int)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceSlbTemplateClientSslSamplingEnable(d []interface{}) []edpt.SlbTemplateClientSslSamplingEnable {
+
+	count1 := len(d)
+	ret := make([]edpt.SlbTemplateClientSslSamplingEnable, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.SlbTemplateClientSslSamplingEnable
+		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
@@ -2276,87 +1760,7 @@ func getObjectSlbTemplateClientSslWebCategory(d []interface{}) edpt.SlbTemplateC
 	var ret edpt.SlbTemplateClientSslWebCategory
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Uncategorized = in["uncategorized"].(int)
-		ret.RealEstate = in["real_estate"].(int)
-		ret.ComputerAndInternetSecurity = in["computer_and_internet_security"].(int)
-		ret.FinancialServices = in["financial_services"].(int)
-		ret.BusinessAndEconomy = in["business_and_economy"].(int)
-		ret.ComputerAndInternetInfo = in["computer_and_internet_info"].(int)
-		ret.Auctions = in["auctions"].(int)
-		ret.Shopping = in["shopping"].(int)
-		ret.CultAndOccult = in["cult_and_occult"].(int)
-		ret.Travel = in["travel"].(int)
-		ret.Drugs = in["drugs"].(int)
-		ret.AdultAndPornography = in["adult_and_pornography"].(int)
-		ret.HomeAndGarden = in["home_and_garden"].(int)
-		ret.Military = in["military"].(int)
-		ret.SocialNetwork = in["social_network"].(int)
-		ret.DeadSites = in["dead_sites"].(int)
-		ret.StockAdviceAndTools = in["stock_advice_and_tools"].(int)
-		ret.TrainingAndTools = in["training_and_tools"].(int)
-		ret.Dating = in["dating"].(int)
-		ret.SexEducation = in["sex_education"].(int)
-		ret.Religion = in["religion"].(int)
-		ret.EntertainmentAndArts = in["entertainment_and_arts"].(int)
-		ret.PersonalSitesAndBlogs = in["personal_sites_and_blogs"].(int)
-		ret.Legal = in["legal"].(int)
-		ret.LocalInformation = in["local_information"].(int)
-		ret.StreamingMedia = in["streaming_media"].(int)
-		ret.JobSearch = in["job_search"].(int)
-		ret.Gambling = in["gambling"].(int)
-		ret.Translation = in["translation"].(int)
-		ret.ReferenceAndResearch = in["reference_and_research"].(int)
-		ret.SharewareAndFreeware = in["shareware_and_freeware"].(int)
-		ret.PeerToPeer = in["peer_to_peer"].(int)
-		ret.Marijuana = in["marijuana"].(int)
-		ret.Hacking = in["hacking"].(int)
-		ret.Games = in["games"].(int)
-		ret.PhilosophyAndPolitics = in["philosophy_and_politics"].(int)
-		ret.Weapons = in["weapons"].(int)
-		ret.PayToSurf = in["pay_to_surf"].(int)
-		ret.HuntingAndFishing = in["hunting_and_fishing"].(int)
-		ret.Society = in["society"].(int)
-		ret.EducationalInstitutions = in["educational_institutions"].(int)
-		ret.OnlineGreetingCards = in["online_greeting_cards"].(int)
-		ret.Sports = in["sports"].(int)
-		ret.SwimsuitsAndIntimateApparel = in["swimsuits_and_intimate_apparel"].(int)
-		ret.Questionable = in["questionable"].(int)
-		ret.Kids = in["kids"].(int)
-		ret.HateAndRacism = in["hate_and_racism"].(int)
-		ret.PersonalStorage = in["personal_storage"].(int)
-		ret.Violence = in["violence"].(int)
-		ret.KeyloggersAndMonitoring = in["keyloggers_and_monitoring"].(int)
-		ret.SearchEngines = in["search_engines"].(int)
-		ret.InternetPortals = in["internet_portals"].(int)
-		ret.WebAdvertisements = in["web_advertisements"].(int)
-		ret.Cheating = in["cheating"].(int)
-		ret.Gross = in["gross"].(int)
-		ret.WebBasedEmail = in["web_based_email"].(int)
-		ret.MalwareSites = in["malware_sites"].(int)
-		ret.PhishingAndOtherFraud = in["phishing_and_other_fraud"].(int)
-		ret.ProxyAvoidAndAnonymizers = in["proxy_avoid_and_anonymizers"].(int)
-		ret.SpywareAndAdware = in["spyware_and_adware"].(int)
-		ret.Music = in["music"].(int)
-		ret.Government = in["government"].(int)
-		ret.Nudity = in["nudity"].(int)
-		ret.NewsAndMedia = in["news_and_media"].(int)
-		ret.Illegal = in["illegal"].(int)
-		ret.Cdns = in["cdns"].(int)
-		ret.InternetCommunications = in["internet_communications"].(int)
-		ret.BotNets = in["bot_nets"].(int)
-		ret.Abortion = in["abortion"].(int)
-		ret.HealthAndMedicine = in["health_and_medicine"].(int)
-		ret.SpamUrls = in["spam_urls"].(int)
-		ret.DynamicallyGeneratedContent = in["dynamically_generated_content"].(int)
-		ret.ParkedDomains = in["parked_domains"].(int)
-		ret.AlcoholAndTobacco = in["alcohol_and_tobacco"].(int)
-		ret.ImageAndVideoSearch = in["image_and_video_search"].(int)
-		ret.FashionAndBeauty = in["fashion_and_beauty"].(int)
-		ret.RecreationAndHobbies = in["recreation_and_hobbies"].(int)
-		ret.MotorVehicles = in["motor_vehicles"].(int)
-		ret.WebHostingSites = in["web_hosting_sites"].(int)
-		ret.NudityArtistic = in["nudity_artistic"].(int)
-		ret.IllegalPornography = in["illegal_pornography"].(int)
+		ret.BypassedCategory = in["bypassed_category"].(string)
 	}
 	return ret
 }
@@ -2514,6 +1918,11 @@ func dataToEndpointSlbTemplateClientSsl(d *schema.ResourceData) edpt.SlbTemplate
 	ret.Inst.Ja3RejectClassList = d.Get("ja3_reject_class_list").(string)
 	ret.Inst.Ja3RejectMaxNumberPerHost = d.Get("ja3_reject_max_number_per_host").(int)
 	ret.Inst.Ja3Ttl = d.Get("ja3_ttl").(int)
+	ret.Inst.Ja4Enable = d.Get("ja4_enable").(int)
+	ret.Inst.Ja4InsertHttpHeader = d.Get("ja4_insert_http_header").(string)
+	ret.Inst.Ja4RejectClassList = d.Get("ja4_reject_class_list").(string)
+	ret.Inst.Ja4RejectMaxNumberPerHost = d.Get("ja4_reject_max_number_per_host").(int)
+	ret.Inst.Ja4Ttl = d.Get("ja4_ttl").(int)
 	ret.Inst.LdapBaseDnFromCert = d.Get("ldap_base_dn_from_cert").(int)
 	ret.Inst.LdapSearchFilter = d.Get("ldap_search_filter").(string)
 	ret.Inst.LocalCertPinList = getObjectSlbTemplateClientSslLocalCertPinList(d.Get("local_cert_pin_list").([]interface{}))
@@ -2547,13 +1956,16 @@ func dataToEndpointSlbTemplateClientSsl(d *schema.ResourceData) edpt.SlbTemplate
 	ret.Inst.OcspstSrvrTimeout = d.Get("ocspst_srvr_timeout").(int)
 	ret.Inst.RenegotiationDisable = d.Get("renegotiation_disable").(int)
 	ret.Inst.ReqCaLists = getSliceSlbTemplateClientSslReqCaLists(d.Get("req_ca_lists").([]interface{}))
+	ret.Inst.RequireSniCertMatched = d.Get("require_sni_cert_matched").(int)
 	ret.Inst.RequireWebCategory = d.Get("require_web_category").(int)
+	ret.Inst.SamplingEnable = getSliceSlbTemplateClientSslSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.ServerIpv4List = getSliceSlbTemplateClientSslServerIpv4List(d.Get("server_ipv4_list").([]interface{}))
 	ret.Inst.ServerIpv6List = getSliceSlbTemplateClientSslServerIpv6List(d.Get("server_ipv6_list").([]interface{}))
 	ret.Inst.ServerNameAutoMap = d.Get("server_name_auto_map").(int)
 	ret.Inst.ServerNameList = getSliceSlbTemplateClientSslServerNameList(d.Get("server_name_list").([]interface{}))
 	ret.Inst.SessionCacheSize = d.Get("session_cache_size").(int)
 	ret.Inst.SessionCacheTimeout = d.Get("session_cache_timeout").(int)
+	ret.Inst.SessionKeyLoggingEnable = d.Get("session_key_logging_enable").(int)
 	ret.Inst.SessionTicketDisable = d.Get("session_ticket_disable").(int)
 	ret.Inst.SessionTicketLifetime = d.Get("session_ticket_lifetime").(int)
 	ret.Inst.SharedPartitionCipherTemplate = d.Get("shared_partition_cipher_template").(int)

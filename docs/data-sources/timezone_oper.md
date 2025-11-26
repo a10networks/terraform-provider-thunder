@@ -48,5 +48,3 @@ Optional:
 - `dst_name` (String)
 - `location` (String)
 - `std_name` (String)
-
-

@@ -50,5 +50,3 @@ Optional:
 - `platform_info` (String)
 - `platform_lxc` (Number)
 - `platform_type` (String)
-
-

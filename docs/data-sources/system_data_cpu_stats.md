@@ -47,6 +47,11 @@ Optional:
 - `cpu_1` (Number) Data CPU-1
 - `cpu_10` (Number) Data CPU-10
 - `cpu_100` (Number) Data CPU-100
+- `cpu_101` (Number) Data CPU-101
+- `cpu_102` (Number) Data CPU-102
+- `cpu_103` (Number) Data CPU-103
+- `cpu_104` (Number) Data CPU-104
+- `cpu_105` (Number) Data CPU-105
 - `cpu_11` (Number) Data CPU-11
 - `cpu_12` (Number) Data CPU-12
 - `cpu_13` (Number) Data CPU-13
@@ -145,5 +150,3 @@ Optional:
 - `cpu_98` (Number) Data CPU-98
 - `cpu_99` (Number) Data CPU-99
 - `data_cpu_number` (Number) Number of data cpus
-
-

@@ -45,5 +45,3 @@ output "get_cgnv6_fixed_nat_alg_esp_stats" {
 Optional:
 
 - `session_created` (Number) ESP Sessions Created
-
-

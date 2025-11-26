@@ -68,6 +68,9 @@ func resourceSystemPbslbStats() *schema.Resource {
 						"curr_entries_stats": {
 							Type: schema.TypeInt, Optional: true, Description: "Current Entry Stats Count",
 						},
+						"curr_entries_target_global_dns_cache": {
+							Type: schema.TypeInt, Optional: true, Description: "Current Entry Target Global DNS Cache",
+						},
 					},
 				},
 			},
@@ -97,23 +100,24 @@ func resourceSystemPbslbStatsRead(ctx context.Context, d *schema.ResourceData, m
 func setObjectSystemPbslbStatsStats(ret edpt.DataSystemPbslbStats) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"curr_entries":                        ret.DtSystemPbslbStats.Stats.Curr_entries,
-			"total_v4_entries_created":            ret.DtSystemPbslbStats.Stats.Total_v4_entries_created,
-			"total_v4_entries_freed":              ret.DtSystemPbslbStats.Stats.Total_v4_entries_freed,
-			"total_v6_entries_created":            ret.DtSystemPbslbStats.Stats.Total_v6_entries_created,
-			"total_v6_entries_freed":              ret.DtSystemPbslbStats.Stats.Total_v6_entries_freed,
-			"total_domain_entries_created":        ret.DtSystemPbslbStats.Stats.Total_domain_entries_created,
-			"total_domain_entries_freed":          ret.DtSystemPbslbStats.Stats.Total_domain_entries_freed,
-			"total_direct_action_entries_created": ret.DtSystemPbslbStats.Stats.Total_direct_action_entries_created,
-			"total_direct_action_entries_freed":   ret.DtSystemPbslbStats.Stats.Total_direct_action_entries_freed,
-			"curr_entries_target_global":          ret.DtSystemPbslbStats.Stats.Curr_entries_target_global,
-			"curr_entries_target_vserver":         ret.DtSystemPbslbStats.Stats.Curr_entries_target_vserver,
-			"curr_entries_target_vport":           ret.DtSystemPbslbStats.Stats.Curr_entries_target_vport,
-			"curr_entries_target_loc":             ret.DtSystemPbslbStats.Stats.Curr_entries_target_loc,
-			"curr_entries_target_rserver":         ret.DtSystemPbslbStats.Stats.Curr_entries_target_rserver,
-			"curr_entries_target_rport":           ret.DtSystemPbslbStats.Stats.Curr_entries_target_rport,
-			"curr_entries_target_service":         ret.DtSystemPbslbStats.Stats.Curr_entries_target_service,
-			"curr_entries_stats":                  ret.DtSystemPbslbStats.Stats.Curr_entries_stats,
+			"curr_entries":                         ret.DtSystemPbslbStats.Stats.Curr_entries,
+			"total_v4_entries_created":             ret.DtSystemPbslbStats.Stats.Total_v4_entries_created,
+			"total_v4_entries_freed":               ret.DtSystemPbslbStats.Stats.Total_v4_entries_freed,
+			"total_v6_entries_created":             ret.DtSystemPbslbStats.Stats.Total_v6_entries_created,
+			"total_v6_entries_freed":               ret.DtSystemPbslbStats.Stats.Total_v6_entries_freed,
+			"total_domain_entries_created":         ret.DtSystemPbslbStats.Stats.Total_domain_entries_created,
+			"total_domain_entries_freed":           ret.DtSystemPbslbStats.Stats.Total_domain_entries_freed,
+			"total_direct_action_entries_created":  ret.DtSystemPbslbStats.Stats.Total_direct_action_entries_created,
+			"total_direct_action_entries_freed":    ret.DtSystemPbslbStats.Stats.Total_direct_action_entries_freed,
+			"curr_entries_target_global":           ret.DtSystemPbslbStats.Stats.Curr_entries_target_global,
+			"curr_entries_target_vserver":          ret.DtSystemPbslbStats.Stats.Curr_entries_target_vserver,
+			"curr_entries_target_vport":            ret.DtSystemPbslbStats.Stats.Curr_entries_target_vport,
+			"curr_entries_target_loc":              ret.DtSystemPbslbStats.Stats.Curr_entries_target_loc,
+			"curr_entries_target_rserver":          ret.DtSystemPbslbStats.Stats.Curr_entries_target_rserver,
+			"curr_entries_target_rport":            ret.DtSystemPbslbStats.Stats.Curr_entries_target_rport,
+			"curr_entries_target_service":          ret.DtSystemPbslbStats.Stats.Curr_entries_target_service,
+			"curr_entries_stats":                   ret.DtSystemPbslbStats.Stats.Curr_entries_stats,
+			"curr_entries_target_global_dns_cache": ret.DtSystemPbslbStats.Stats.Curr_entries_target_global_dns_cache,
 		},
 	}
 }
@@ -141,6 +145,7 @@ func getObjectSystemPbslbStatsStats(d []interface{}) edpt.SystemPbslbStatsStats 
 		ret.Curr_entries_target_rport = in["curr_entries_target_rport"].(int)
 		ret.Curr_entries_target_service = in["curr_entries_target_service"].(int)
 		ret.Curr_entries_stats = in["curr_entries_stats"].(int)
+		ret.Curr_entries_target_global_dns_cache = in["curr_entries_target_global_dns_cache"].(int)
 	}
 	return ret
 }

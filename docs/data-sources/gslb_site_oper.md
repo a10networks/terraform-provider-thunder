@@ -63,26 +63,66 @@ Optional:
 
 Optional:
 
+- `desc` (String)
 - `disabled` (Number)
+- `drs_list` (Block List) (see [below for nested schema](#nestedblock--ip_server_list--oper--drs_list))
 - `dynamic` (Number)
 - `gslb_protocol` (Number)
+- `hits` (Number)
 - `ip_address` (String)
 - `ip_server` (String)
 - `ip_server_port` (Block List) (see [below for nested schema](#nestedblock--ip_server_list--oper--ip_server_port))
 - `local_protocol` (Number)
 - `manually_health_check` (Number)
 - `port_count` (Number)
+- `recent` (Number)
 - `service_ip` (String)
 - `state` (String)
 - `use_gslb_state` (Number)
 - `virtual_server` (Number)
+
+<a id="nestedblock--ip_server_list--oper--drs_list"></a>
+### Nested Schema for `ip_server_list.oper.drs_list`
+
+Optional:
+
+- `drs_disabled` (Number)
+- `drs_dynamic` (Number)
+- `drs_fqdn_name` (String)
+- `drs_gslb_protocol` (Number)
+- `drs_hits` (Number)
+- `drs_ip_address` (String)
+- `drs_local_protocol` (Number)
+- `drs_manually_health_check` (Number)
+- `drs_name` (String)
+- `drs_port` (Block List) (see [below for nested schema](#nestedblock--ip_server_list--oper--drs_list--drs_port))
+- `drs_port_count` (Number)
+- `drs_recent` (Number)
+- `drs_service_ip` (String)
+- `drs_state` (String)
+- `drs_use_gslb_state` (Number)
+- `drs_virtual_server` (Number)
+
+<a id="nestedblock--ip_server_list--oper--drs_list--drs_port"></a>
+### Nested Schema for `ip_server_list.oper.drs_list.drs_port`
+
+Optional:
+
+- `service_name` (String)
+- `vport` (Number)
+- `vport_protocol` (String)
+- `vport_state` (String)
+
+
 
 <a id="nestedblock--ip_server_list--oper--ip_server_port"></a>
 ### Nested Schema for `ip_server_list.oper.ip_server_port`
 
 Optional:
 
+- `service_name` (String)
 - `vport` (Number)
+- `vport_protocol` (String)
 - `vport_state` (String)
 
 
@@ -93,10 +133,22 @@ Optional:
 
 Optional:
 
+- `bw_cost` (Number)
 - `client_ldns_list` (Block List) (see [below for nested schema](#nestedblock--oper--client_ldns_list))
+- `curr_count` (Number)
 - `gslb_site` (String)
+- `highest_count` (Number)
+- `len` (Number)
+- `limit` (Number)
 - `state` (String)
+- `template_name` (String)
+- `time` (Number)
+- `total_vip_curr_conn` (Number)
+- `type` (String)
 - `type_last` (Block List) (see [below for nested schema](#nestedblock--oper--type_last))
+- `unlimited` (Number)
+- `unusable` (Number)
+- `value` (Number)
 
 <a id="nestedblock--oper--client_ldns_list"></a>
 ### Nested Schema for `oper.client_ldns_list`
@@ -146,6 +198,7 @@ Optional:
 - `client_ldns_list` (Block List) (see [below for nested schema](#nestedblock--slb_dev_list--oper--client_ldns_list))
 - `dev_admin_preference` (Number)
 - `dev_attr` (String)
+- `dev_creation_type` (Number)
 - `dev_gw_state` (String)
 - `dev_ip` (String)
 - `dev_ip_cnt` (Number)
@@ -153,6 +206,9 @@ Optional:
 - `dev_session_num` (Number)
 - `dev_session_util` (Number)
 - `dev_state` (String)
+- `dyn_vipserver_list` (Block List) (see [below for nested schema](#nestedblock--slb_dev_list--oper--dyn_vipserver_list))
+- `dynamic_dev_list` (Block List) (see [below for nested schema](#nestedblock--slb_dev_list--oper--dynamic_dev_list))
+- `fqdn_based` (Number)
 
 <a id="nestedblock--slb_dev_list--oper--client_ldns_list"></a>
 ### Nested Schema for `slb_dev_list.oper.client_ldns_list`
@@ -170,6 +226,37 @@ Optional:
 - `rdt_sample7` (Number)
 - `rdt_sample8` (Number)
 - `type` (String)
+
+
+<a id="nestedblock--slb_dev_list--oper--dyn_vipserver_list"></a>
+### Nested Schema for `slb_dev_list.oper.dyn_vipserver_list`
+
+Optional:
+
+- `dyn_svr_hits` (Number)
+- `dyn_svr_ip` (String)
+- `dyn_svr_state` (String)
+- `port_list` (Block List) (see [below for nested schema](#nestedblock--slb_dev_list--oper--dyn_vipserver_list--port_list))
+
+<a id="nestedblock--slb_dev_list--oper--dyn_vipserver_list--port_list"></a>
+### Nested Schema for `slb_dev_list.oper.dyn_vipserver_list.port_list`
+
+Optional:
+
+- `port_num` (Number)
+- `port_protocol` (String)
+- `port_state` (String)
+
+
+
+<a id="nestedblock--slb_dev_list--oper--dynamic_dev_list"></a>
+### Nested Schema for `slb_dev_list.oper.dynamic_dev_list`
+
+Optional:
+
+- `dyn_dev_inherit_vipserver` (Number)
+- `dyn_dev_ip` (String)
+- `dyn_dev_name` (String)
 
 
 
@@ -216,6 +303,7 @@ Optional:
 - `port_count` (Number)
 - `recent` (Number)
 - `service_ip` (String)
+- `shared` (Number)
 - `use_gslb_state` (Number)
 - `virtual_server` (Number)
 
@@ -224,7 +312,10 @@ Optional:
 
 Optional:
 
+- `dev_vip_port_dev_curr_conn` (Number)
 - `dev_vip_port_num` (Number)
+- `dev_vip_port_protocol` (String)
+- `dev_vip_port_service_name` (String)
 - `dev_vip_port_state` (String)
 
 
@@ -259,6 +350,7 @@ Optional:
 - `port_count` (Number)
 - `recent` (Number)
 - `service_ip` (String)
+- `shared` (Number)
 - `use_gslb_state` (Number)
 - `virtual_server` (Number)
 
@@ -267,7 +359,10 @@ Optional:
 
 Optional:
 
+- `dev_vip_port_dev_curr_conn` (Number)
 - `dev_vip_port_num` (Number)
+- `dev_vip_port_protocol` (String)
+- `dev_vip_port_service_name` (String)
 - `dev_vip_port_state` (String)
 
 
@@ -302,6 +397,7 @@ Optional:
 - `port_count` (Number)
 - `recent` (Number)
 - `service_ip` (String)
+- `shared` (Number)
 - `use_gslb_state` (Number)
 - `virtual_server` (Number)
 
@@ -310,7 +406,8 @@ Optional:
 
 Optional:
 
+- `dev_vip_port_dev_curr_conn` (Number)
 - `dev_vip_port_num` (Number)
+- `dev_vip_port_protocol` (String)
+- `dev_vip_port_service_name` (String)
 - `dev_vip_port_state` (String)
-
-

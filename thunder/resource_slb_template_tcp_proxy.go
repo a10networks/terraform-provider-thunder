@@ -155,6 +155,9 @@ func resourceSlbTemplateTcpProxy() *schema.Resource {
 			"syn_retries": {
 				Type: schema.TypeInt, Optional: true, Default: 5, Description: "SYN Retry Numbers, default is 5",
 			},
+			"tcp_do_newsack": {
+				Type: schema.TypeString, Optional: true, Default: "auto-select", Description: "'enable': Enable fast sack loss recovery; 'disable': Disable fast sack loss recovery; 'auto-select': Auto select fast sack loss recovery (disable);",
+			},
 			"timewait": {
 				Type: schema.TypeInt, Optional: true, Default: 5, Description: "Timewait Threshold (sec), default 5 (number)",
 			},
@@ -289,6 +292,7 @@ func dataToEndpointSlbTemplateTcpProxy(d *schema.ResourceData) edpt.SlbTemplateT
 	ret.Inst.RetransmitRetries = d.Get("retransmit_retries").(int)
 	ret.Inst.ServerDownAction = d.Get("server_down_action").(string)
 	ret.Inst.SynRetries = d.Get("syn_retries").(int)
+	ret.Inst.TcpDoNewsack = d.Get("tcp_do_newsack").(string)
 	ret.Inst.Timewait = d.Get("timewait").(int)
 	ret.Inst.TransmitBuffer = d.Get("transmit_buffer").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)

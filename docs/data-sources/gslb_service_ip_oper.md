@@ -41,6 +41,7 @@ output "get_gslb_service_ip_oper" {
 
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--oper))
 - `port_list` (Block List) (see [below for nested schema](#nestedblock--port_list))
+- `service_list` (Block List) (see [below for nested schema](#nestedblock--service_list))
 
 ### Read-Only
 
@@ -92,3 +93,31 @@ Optional:
 - `use_gslb_state` (Number)
 
 
+
+<a id="nestedblock--service_list"></a>
+### Nested Schema for `service_list`
+
+Required:
+
+- `label` (String) Service Label
+- `port_num` (Number) Port Number
+- `port_proto` (String) 'tcp': TCP Port; 'udp': UDP Port;
+
+Optional:
+
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--service_list--oper))
+
+<a id="nestedblock--service_list--oper"></a>
+### Nested Schema for `service_list.oper`
+
+Optional:
+
+- `disabled` (Number)
+- `dynamic` (Number)
+- `gslb_protocol` (Number)
+- `local_protocol` (Number)
+- `manually_health_check` (Number)
+- `service_port` (Number)
+- `state` (String)
+- `tcp` (Number)
+- `use_gslb_state` (Number)

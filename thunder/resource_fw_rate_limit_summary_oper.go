@@ -29,6 +29,12 @@ func resourceFwRateLimitSummaryOper() *schema.Resource {
 						"total_num_entries": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"total_num_entries_allocated": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"total_num_entries_freed": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"total_entries_scope_aggregate": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -38,6 +44,12 @@ func resourceFwRateLimitSummaryOper() *schema.Resource {
 						"total_entries_scope_subscriber_prefix": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"total_entries_scope_radius_usergroup": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"total_entries_scope_radius_userid": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"total_entries_scope_parent": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -45,6 +57,12 @@ func resourceFwRateLimitSummaryOper() *schema.Resource {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 						"total_entries_scope_parent_subscriber_prefix": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"total_entries_scope_parent_radius_usergroup": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"total_entries_scope_parent_radius_userid": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 					},
@@ -80,12 +98,18 @@ func setObjectFwRateLimitSummaryOperOper(ret edpt.DataFwRateLimitSummaryOper) []
 			"mem_used":                                     ret.DtFwRateLimitSummaryOper.Oper.Mem_used,
 			"alloc_failures":                               ret.DtFwRateLimitSummaryOper.Oper.Alloc_failures,
 			"total_num_entries":                            ret.DtFwRateLimitSummaryOper.Oper.Total_num_entries,
+			"total_num_entries_allocated":                  ret.DtFwRateLimitSummaryOper.Oper.Total_num_entries_allocated,
+			"total_num_entries_freed":                      ret.DtFwRateLimitSummaryOper.Oper.Total_num_entries_freed,
 			"total_entries_scope_aggregate":                ret.DtFwRateLimitSummaryOper.Oper.Total_entries_scope_aggregate,
 			"total_entries_scope_subscriber_ip":            ret.DtFwRateLimitSummaryOper.Oper.Total_entries_scope_subscriber_ip,
 			"total_entries_scope_subscriber_prefix":        ret.DtFwRateLimitSummaryOper.Oper.Total_entries_scope_subscriber_prefix,
+			"total_entries_scope_radius_usergroup":         ret.DtFwRateLimitSummaryOper.Oper.Total_entries_scope_radius_usergroup,
+			"total_entries_scope_radius_userid":            ret.DtFwRateLimitSummaryOper.Oper.Total_entries_scope_radius_userid,
 			"total_entries_scope_parent":                   ret.DtFwRateLimitSummaryOper.Oper.Total_entries_scope_parent,
 			"total_entries_scope_parent_subscriber_ip":     ret.DtFwRateLimitSummaryOper.Oper.Total_entries_scope_parent_subscriber_ip,
 			"total_entries_scope_parent_subscriber_prefix": ret.DtFwRateLimitSummaryOper.Oper.Total_entries_scope_parent_subscriberPrefix,
+			"total_entries_scope_parent_radius_usergroup":  ret.DtFwRateLimitSummaryOper.Oper.Total_entries_scope_parent_radius_usergroup,
+			"total_entries_scope_parent_radius_userid":     ret.DtFwRateLimitSummaryOper.Oper.Total_entries_scope_parent_radius_userid,
 		},
 	}
 }
@@ -100,12 +124,18 @@ func getObjectFwRateLimitSummaryOperOper(d []interface{}) edpt.FwRateLimitSummar
 		ret.Mem_used = in["mem_used"].(int)
 		ret.Alloc_failures = in["alloc_failures"].(int)
 		ret.Total_num_entries = in["total_num_entries"].(int)
+		ret.Total_num_entries_allocated = in["total_num_entries_allocated"].(int)
+		ret.Total_num_entries_freed = in["total_num_entries_freed"].(int)
 		ret.Total_entries_scope_aggregate = in["total_entries_scope_aggregate"].(int)
 		ret.Total_entries_scope_subscriber_ip = in["total_entries_scope_subscriber_ip"].(int)
 		ret.Total_entries_scope_subscriber_prefix = in["total_entries_scope_subscriber_prefix"].(int)
+		ret.Total_entries_scope_radius_usergroup = in["total_entries_scope_radius_usergroup"].(int)
+		ret.Total_entries_scope_radius_userid = in["total_entries_scope_radius_userid"].(int)
 		ret.Total_entries_scope_parent = in["total_entries_scope_parent"].(int)
 		ret.Total_entries_scope_parent_subscriber_ip = in["total_entries_scope_parent_subscriber_ip"].(int)
 		ret.Total_entries_scope_parent_subscriberPrefix = in["total_entries_scope_parent_subscriber_prefix"].(int)
+		ret.Total_entries_scope_parent_radius_usergroup = in["total_entries_scope_parent_radius_usergroup"].(int)
+		ret.Total_entries_scope_parent_radius_userid = in["total_entries_scope_parent_radius_userid"].(int)
 	}
 	return ret
 }

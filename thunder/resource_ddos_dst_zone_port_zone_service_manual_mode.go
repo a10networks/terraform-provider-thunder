@@ -16,6 +16,9 @@ func resourceDdosDstZonePortZoneServiceManualMode() *schema.Resource {
 		DeleteContext: resourceDdosDstZonePortZoneServiceManualModeDelete,
 
 		Schema: map[string]*schema.Schema{
+			"close_sessions_for_all_sources": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Close session for all sources",
+			},
 			"close_sessions_for_unauth_sources": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Close session for unauthenticated sources",
 			},
@@ -65,14 +68,14 @@ func resourceDdosDstZonePortZoneServiceManualMode() *schema.Resource {
 					},
 				},
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 			"port_num": {
 				Type: schema.TypeString, Required: true, Description: "PortNum",
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 		},
 	}
@@ -159,6 +162,7 @@ func getObjectDdosDstZonePortZoneServiceManualModeZoneTemplate(d []interface{}) 
 
 func dataToEndpointDdosDstZonePortZoneServiceManualMode(d *schema.ResourceData) edpt.DdosDstZonePortZoneServiceManualMode {
 	var ret edpt.DdosDstZonePortZoneServiceManualMode
+	ret.Inst.CloseSessionsForAllSources = d.Get("close_sessions_for_all_sources").(int)
 	ret.Inst.CloseSessionsForUnauthSources = d.Get("close_sessions_for_unauth_sources").(int)
 	ret.Inst.Config = d.Get("config").(string)
 	ret.Inst.GlidAction = d.Get("glid_action").(string)
@@ -166,8 +170,8 @@ func dataToEndpointDdosDstZonePortZoneServiceManualMode(d *schema.ResourceData) 
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	ret.Inst.ZoneTemplate = getObjectDdosDstZonePortZoneServiceManualModeZoneTemplate(d.Get("zone_template").([]interface{}))
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
-	ret.Inst.PortNum = d.Get("port_num").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
+	ret.Inst.PortNum = d.Get("port_num").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	return ret
 }

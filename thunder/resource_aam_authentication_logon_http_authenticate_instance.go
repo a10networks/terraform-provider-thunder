@@ -57,16 +57,6 @@ func resourceAamAuthenticationLogonHttpAuthenticateInstance() *schema.Resource {
 								},
 							},
 						},
-						"ntlm": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"ntlm_enable": {
-										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable NTLM logon",
-									},
-								},
-							},
-						},
 						"negotiate": {
 							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 							Elem: &schema.Resource{
@@ -180,7 +170,6 @@ func getObjectAamAuthenticationLogonHttpAuthenticateInstanceAuthMethod(d []inter
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Basic = getObjectAamAuthenticationLogonHttpAuthenticateInstanceAuthMethodBasic(in["basic"].([]interface{}))
-		ret.Ntlm = getObjectAamAuthenticationLogonHttpAuthenticateInstanceAuthMethodNtlm(in["ntlm"].([]interface{}))
 		ret.Negotiate = getObjectAamAuthenticationLogonHttpAuthenticateInstanceAuthMethodNegotiate(in["negotiate"].([]interface{}))
 	}
 	return ret
@@ -201,17 +190,6 @@ func getObjectAamAuthenticationLogonHttpAuthenticateInstanceAuthMethodBasic(d []
 		ret.NewPinVariable = in["new_pin_variable"].(string)
 		ret.NextTokenVariable = in["next_token_variable"].(string)
 		ret.BasicEnable = in["basic_enable"].(int)
-	}
-	return ret
-}
-
-func getObjectAamAuthenticationLogonHttpAuthenticateInstanceAuthMethodNtlm(d []interface{}) edpt.AamAuthenticationLogonHttpAuthenticateInstanceAuthMethodNtlm {
-
-	count1 := len(d)
-	var ret edpt.AamAuthenticationLogonHttpAuthenticateInstanceAuthMethodNtlm
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.NtlmEnable = in["ntlm_enable"].(int)
 	}
 	return ret
 }

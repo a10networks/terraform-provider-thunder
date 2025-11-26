@@ -16,8 +16,56 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 		DeleteContext: resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwGtpTriggerStatsIncDelete,
 
 		Schema: map[string]*schema.Schema{
-			"gtp_c_ref_count_smp_exceeded": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C session count on C-smp exceeded 2",
+			"blade_gtp_c_smp_sig_check_failed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C SMP signature check Failed on PU2",
+			},
+			"blade_gtp_info_ext_not_found": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-Info ext not found while freeing C-smp on PU2",
+			},
+			"blade_gtp_rate_limit_entry_create_failu": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit Entry Create Failure on PU2",
+			},
+			"blade_gtp_rate_limit_smp_create_failure": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit SMP Create Failure on PU2",
+			},
+			"blade_gtp_rate_limit_t3_ctr_create_fail": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit Dynamic Counters Create Failure on PU2",
+			},
+			"blade_gtp_smp_c_check_failed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C SMP check Failed on PU2",
+			},
+			"blade_gtp_smp_dec_sess_count_check_fail": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U session count is 0 in GTP-C SMP on PU2",
+			},
+			"blade_gtp_smp_path_check_failed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP PATH check Failed on PU2",
+			},
+			"blade_gtp_smp_session_count_check_faile": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U session count is not in range of 0-11 in GTP-C SMP on PU2",
+			},
+			"blade_gtp_smp_sig_check_failed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP signature check Failed on PU2",
+			},
+			"blade_gtp_u_smp_check_failed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP U-SMP check Failed on PU2",
+			},
+			"blade_gtp_u_smp_sig_check_failed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U SMP signature check Failed on PU2",
+			},
+			"blade_out_of_session_memory": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Out of Tunnel Memory on PU2",
+			},
+			"gtp_c_fail_conn_create_slow": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C packet failed creating L4-session in slowpath",
+			},
+			"gtp_c_smp_sig_check_failed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C SMP signature check Failed",
+			},
+			"gtp_info_ext_not_found": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-Info ext not found while freeing C-smp",
+			},
+			"gtp_pathm_fail_conn_create_slow": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP path packet failed while creating L4-session in slowpath",
 			},
 			"gtp_rate_limit_entry_create_failure": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit Entry Create Failure",
@@ -28,8 +76,8 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			"gtp_rate_limit_t3_ctr_create_failure": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Rate Limit Dynamic Counters Create Failure",
 			},
-			"gtp_smp_check_failed": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP check Failed",
+			"gtp_smp_c_check_failed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-C SMP check Failed",
 			},
 			"gtp_smp_dec_sess_count_check_failed": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U session count is 0 in GTP-C SMP",
@@ -37,23 +85,32 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 			"gtp_smp_path_check_failed": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP PATH check Failed",
 			},
-			"gtp_smp_session_count_check_failed": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U session count is not in range of 0-11 in GTP-C SMP",
+			"gtp_smp_sig_check_failed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP signature check Failed",
 			},
 			"gtp_tunnel_rate_limit_entry_create_fail": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP Tunnel Level Rate Limit Entry Create Failure",
 			},
-			"gtp_u_smp_in_rml_with_sess": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U smp is marked RML with U-session",
+			"gtp_u_fail_conn_create_slow": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U packet failed while creating L4-session in slowpath",
+			},
+			"gtp_u_smp_check_failed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP U-SMP check Failed",
+			},
+			"gtp_u_smp_sig_check_failed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP SMP signature check Failed",
+			},
+			"gtp_u_tunnel_rate_limit_entry_create_fa": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for GTP-U Tunnel Level Rate Limit Entry Create Failure",
 			},
 			"out_of_session_memory": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Out of Tunnel Memory",
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable automatic packet-capture for Out of Tunnel Memory for GTP-C",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"template_name": {
+				Type: schema.TypeString, Required: true, Description: "Template_name",
 			},
 		},
 	}
@@ -122,18 +179,37 @@ func resourceVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsCha
 
 func dataToEndpointVisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwGtpTriggerStatsInc(d *schema.ResourceData) edpt.VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwGtpTriggerStatsInc {
 	var ret edpt.VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwGtpTriggerStatsInc
-	ret.Inst.GtpCRefCountSmpExceeded = d.Get("gtp_c_ref_count_smp_exceeded").(int)
+	ret.Inst.BladeGtpCSmpSigCheckFailed = d.Get("blade_gtp_c_smp_sig_check_failed").(int)
+	ret.Inst.BladeGtpInfoExtNotFound = d.Get("blade_gtp_info_ext_not_found").(int)
+	ret.Inst.BladeGtpRateLimitEntryCreateFailu = d.Get("blade_gtp_rate_limit_entry_create_failu").(int)
+	ret.Inst.BladeGtpRateLimitSmpCreateFailure = d.Get("blade_gtp_rate_limit_smp_create_failure").(int)
+	ret.Inst.BladeGtpRateLimitT3CtrCreateFail = d.Get("blade_gtp_rate_limit_t3_ctr_create_fail").(int)
+	ret.Inst.BladeGtpSmpCCheckFailed = d.Get("blade_gtp_smp_c_check_failed").(int)
+	ret.Inst.BladeGtpSmpDecSessCountCheckFail = d.Get("blade_gtp_smp_dec_sess_count_check_fail").(int)
+	ret.Inst.BladeGtpSmpPathCheckFailed = d.Get("blade_gtp_smp_path_check_failed").(int)
+	ret.Inst.BladeGtpSmpSessionCountCheckFaile = d.Get("blade_gtp_smp_session_count_check_faile").(int)
+	ret.Inst.BladeGtpSmpSigCheckFailed = d.Get("blade_gtp_smp_sig_check_failed").(int)
+	ret.Inst.BladeGtpUSmpCheckFailed = d.Get("blade_gtp_u_smp_check_failed").(int)
+	ret.Inst.BladeGtpUSmpSigCheckFailed = d.Get("blade_gtp_u_smp_sig_check_failed").(int)
+	ret.Inst.BladeOutOfSessionMemory = d.Get("blade_out_of_session_memory").(int)
+	ret.Inst.GtpCFailConnCreateSlow = d.Get("gtp_c_fail_conn_create_slow").(int)
+	ret.Inst.GtpCSmpSigCheckFailed = d.Get("gtp_c_smp_sig_check_failed").(int)
+	ret.Inst.GtpInfoExtNotFound = d.Get("gtp_info_ext_not_found").(int)
+	ret.Inst.GtpPathmFailConnCreateSlow = d.Get("gtp_pathm_fail_conn_create_slow").(int)
 	ret.Inst.GtpRateLimitEntryCreateFailure = d.Get("gtp_rate_limit_entry_create_failure").(int)
 	ret.Inst.GtpRateLimitSmpCreateFailure = d.Get("gtp_rate_limit_smp_create_failure").(int)
 	ret.Inst.GtpRateLimitT3CtrCreateFailure = d.Get("gtp_rate_limit_t3_ctr_create_failure").(int)
-	ret.Inst.GtpSmpCheckFailed = d.Get("gtp_smp_check_failed").(int)
+	ret.Inst.GtpSmpCCheckFailed = d.Get("gtp_smp_c_check_failed").(int)
 	ret.Inst.GtpSmpDecSessCountCheckFailed = d.Get("gtp_smp_dec_sess_count_check_failed").(int)
 	ret.Inst.GtpSmpPathCheckFailed = d.Get("gtp_smp_path_check_failed").(int)
-	ret.Inst.GtpSmpSessionCountCheckFailed = d.Get("gtp_smp_session_count_check_failed").(int)
+	ret.Inst.GtpSmpSigCheckFailed = d.Get("gtp_smp_sig_check_failed").(int)
 	ret.Inst.GtpTunnelRateLimitEntryCreateFail = d.Get("gtp_tunnel_rate_limit_entry_create_fail").(int)
-	ret.Inst.GtpUSmpInRmlWithSess = d.Get("gtp_u_smp_in_rml_with_sess").(int)
+	ret.Inst.GtpUFailConnCreateSlow = d.Get("gtp_u_fail_conn_create_slow").(int)
+	ret.Inst.GtpUSmpCheckFailed = d.Get("gtp_u_smp_check_failed").(int)
+	ret.Inst.GtpUSmpSigCheckFailed = d.Get("gtp_u_smp_sig_check_failed").(int)
+	ret.Inst.GtpUTunnelRateLimitEntryCreateFa = d.Get("gtp_u_tunnel_rate_limit_entry_create_fa").(int)
 	ret.Inst.OutOfSessionMemory = d.Get("out_of_session_memory").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Template_name = d.Get("template_name").(string)
 	return ret
 }

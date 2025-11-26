@@ -59,5 +59,3 @@ Optional:
 - `total_curr_conns` (Number) Total Current Established Connections
 - `total_new_conns_per_sec` (Number) Total New Connections Established/sec
 - `total_throughput_bits_per_sec` (Number) Total Throughput in bits/sec
-
-

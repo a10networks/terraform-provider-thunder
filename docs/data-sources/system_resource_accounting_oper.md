@@ -79,5 +79,3 @@ Optional:
 - `resource_name` (String)
 - `threshold_exceed` (String)
 - `utilization` (String)
-
-

@@ -51,5 +51,3 @@ output "get_ipv6_nat_pool_group_stats" {
 Optional:
 
 - `failed` (Number)
-
-

@@ -68,8 +68,8 @@ func resourceCgnv6MapEncapsulationDomainBasicMappingRule() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"domain_name": {
+				Type: schema.TypeString, Required: true, Description: "Domain_name",
 			},
 		},
 	}
@@ -166,6 +166,6 @@ func dataToEndpointCgnv6MapEncapsulationDomainBasicMappingRule(d *schema.Resourc
 	ret.Inst.RuleIpv4AddressPortSettings = d.Get("rule_ipv4_address_port_settings").(string)
 	ret.Inst.ShareRatio = d.Get("share_ratio").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Domain_name = d.Get("domain_name").(string)
 	return ret
 }

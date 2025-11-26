@@ -120,6 +120,7 @@ Optional:
 Optional:
 
 - `dns_soa_record_list` (Block List) (see [below for nested schema](#nestedblock--oper--dns_soa_record_list))
+- `smrule` (Number)
 - `state` (String)
 
 <a id="nestedblock--oper--dns_soa_record_list"></a>
@@ -244,5 +245,3 @@ Optional:
 - `mode` (String)
 - `ttl` (String)
 - `update` (Number)
-
-

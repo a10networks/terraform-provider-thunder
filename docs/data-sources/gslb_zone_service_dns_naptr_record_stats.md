@@ -41,11 +41,11 @@ output "get_gslb_zone_service_dns_naptr_record_stats" {
 ### Required
 
 - `flag` (String) Specify the flag (e.g., a, s). Default is empty flag
-- `name` (String) Name
 - `naptr_target` (String) Specify the replacement or regular expression
 - `service_name` (String) ServiceName
 - `service_port` (String) ServicePort
 - `service_proto` (String) Specify Service and Protocol
+- `zone_name` (String) Zone_name
 
 ### Optional
 
@@ -61,5 +61,3 @@ output "get_gslb_zone_service_dns_naptr_record_stats" {
 Optional:
 
 - `naptr_hits` (Number) Number of times the NAPTR has been used
-
-

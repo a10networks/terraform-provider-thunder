@@ -64,5 +64,3 @@ Optional:
 - `time` (String)
 - `user_domain` (String)
 - `user_name` (String)
-
-

@@ -60,5 +60,3 @@ Optional:
 - `total_ready_to_free` (Number) Total Entry Ready To Free
 - `total_refill` (Number) Total Refills
 - `total_withdrew` (Number) Total Entry Withdrew
-
-

@@ -37,9 +37,9 @@ output "get_cgnv6_server_port_oper" {
 
 ### Required
 
-- `name` (String) Name
 - `port_number` (Number) Port Number
 - `protocol` (String) 'tcp': TCP Port; 'udp': UDP Port;
+- `server_name` (String) Server_name
 
 ### Optional
 
@@ -151,5 +151,3 @@ Optional:
 - `ports_consumed` (Number)
 - `ports_consumed_total` (Number)
 - `ports_freed_total` (Number)
-
-

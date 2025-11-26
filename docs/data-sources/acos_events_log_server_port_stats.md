@@ -38,7 +38,7 @@ output "get_acos_events_log_server_port_stats" {
 
 ### Required
 
-- `name` (String) Name
+- `log_server_name` (String) Log_server_name
 - `port_number` (Number) Port Number
 - `protocol` (String) 'tcp': TCP Port; 'udp': UDP Port;
 
@@ -52,5 +52,3 @@ output "get_acos_events_log_server_port_stats" {
 
 <a id="nestedblock--stats"></a>
 ### Nested Schema for `stats`
-
-

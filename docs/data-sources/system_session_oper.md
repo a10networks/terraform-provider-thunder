@@ -82,5 +82,3 @@ Optional:
 - `uie` (Number)
 - `v6_dest_port` (Number)
 - `v6_source_port` (Number)
-
-

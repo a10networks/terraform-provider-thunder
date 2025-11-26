@@ -156,6 +156,9 @@ func resourceGlm() *schema.Resource {
 						"license_request": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Immediately send a single GLM license request",
 						},
+						"harmony": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Harmony specific single GLM license request",
+						},
 						"ha_status": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Send a ELM HA status request",
 						},
@@ -239,10 +242,10 @@ func resourceGlmRead(ctx context.Context, d *schema.ResourceData, meta interface
 	return diags
 }
 
-func getObjectGlmCreateLicenseRequest380(d []interface{}) edpt.GlmCreateLicenseRequest380 {
+func getObjectGlmCreateLicenseRequest470(d []interface{}) edpt.GlmCreateLicenseRequest470 {
 
 	count1 := len(d)
-	var ret edpt.GlmCreateLicenseRequest380
+	var ret edpt.GlmCreateLicenseRequest470
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CreateLicenseRequest = in["create_license_request"].(int)
@@ -265,10 +268,10 @@ func getSliceGlmEnterpriseHaHostList(d []interface{}) []edpt.GlmEnterpriseHaHost
 	return ret
 }
 
-func getObjectGlmNewLicense381(d []interface{}) edpt.GlmNewLicense381 {
+func getObjectGlmNewLicense471(d []interface{}) edpt.GlmNewLicense471 {
 
 	count1 := len(d)
-	var ret edpt.GlmNewLicense381
+	var ret edpt.GlmNewLicense471
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ExistingOrg = in["existing_org"].(int)
@@ -290,10 +293,10 @@ func getObjectGlmNewLicense381(d []interface{}) edpt.GlmNewLicense381 {
 	return ret
 }
 
-func getObjectGlmProxyServer382(d []interface{}) edpt.GlmProxyServer382 {
+func getObjectGlmProxyServer472(d []interface{}) edpt.GlmProxyServer472 {
 
 	count1 := len(d)
-	var ret edpt.GlmProxyServer382
+	var ret edpt.GlmProxyServer472
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Host = in["host"].(string)
@@ -307,13 +310,14 @@ func getObjectGlmProxyServer382(d []interface{}) edpt.GlmProxyServer382 {
 	return ret
 }
 
-func getObjectGlmSend383(d []interface{}) edpt.GlmSend383 {
+func getObjectGlmSend473(d []interface{}) edpt.GlmSend473 {
 
 	count1 := len(d)
-	var ret edpt.GlmSend383
+	var ret edpt.GlmSend473
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.LicenseRequest = in["license_request"].(int)
+		ret.Harmony = in["harmony"].(int)
 		ret.HaStatus = in["ha_status"].(int)
 	}
 	return ret
@@ -325,17 +329,17 @@ func dataToEndpointGlm(d *schema.ResourceData) edpt.Glm {
 	ret.Inst.ApplianceName = d.Get("appliance_name").(string)
 	ret.Inst.Burst = d.Get("burst").(int)
 	ret.Inst.CheckExpiration = d.Get("check_expiration").(int)
-	ret.Inst.CreateLicenseRequest = getObjectGlmCreateLicenseRequest380(d.Get("create_license_request").([]interface{}))
+	ret.Inst.CreateLicenseRequest = getObjectGlmCreateLicenseRequest470(d.Get("create_license_request").([]interface{}))
 	ret.Inst.EnableRequests = d.Get("enable_requests").(int)
 	ret.Inst.Enterprise = d.Get("enterprise").(string)
 	ret.Inst.EnterpriseHaHostList = getSliceGlmEnterpriseHaHostList(d.Get("enterprise_ha_host_list").([]interface{}))
 	ret.Inst.EnterpriseRequestType = d.Get("enterprise_request_type").(string)
 	ret.Inst.Host = d.Get("host").(string)
 	ret.Inst.Interval = d.Get("interval").(int)
-	ret.Inst.NewLicense = getObjectGlmNewLicense381(d.Get("new_license").([]interface{}))
+	ret.Inst.NewLicense = getObjectGlmNewLicense471(d.Get("new_license").([]interface{}))
 	ret.Inst.Port = d.Get("port").(int)
-	ret.Inst.ProxyServer = getObjectGlmProxyServer382(d.Get("proxy_server").([]interface{}))
-	ret.Inst.Send = getObjectGlmSend383(d.Get("send").([]interface{}))
+	ret.Inst.ProxyServer = getObjectGlmProxyServer472(d.Get("proxy_server").([]interface{}))
+	ret.Inst.Send = getObjectGlmSend473(d.Get("send").([]interface{}))
 	ret.Inst.ThunderCapacityLicense = d.Get("thunder_capacity_license").(int)
 	ret.Inst.Token = d.Get("token").(string)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)

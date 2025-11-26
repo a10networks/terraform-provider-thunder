@@ -46,5 +46,3 @@ Optional:
 
 - `nat_pool_name` (String)
 - `status` (String)
-
-

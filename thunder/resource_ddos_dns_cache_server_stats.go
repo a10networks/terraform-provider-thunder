@@ -143,6 +143,30 @@ func resourceDdosDnsCacheServerStats() *schema.Resource {
 						"lookup_fwd_shard": {
 							Type: schema.TypeInt, Optional: true, Description: "Lookup Forwarded to Sharding DNS Cache",
 						},
+						"dns_prebuild_alloc_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "DNS Prebuild Alloc Fail",
+						},
+						"suffix_table_trylock_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "DNS Cache Suffix Table Trylock Fail",
+						},
+						"insert_apex_zone_node_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "Insert Apex Zone Node Fail",
+						},
+						"insert_suffix_fqdn_node_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "Insert Suffix FQDN Node Fail",
+						},
+						"dnssec_rrsig_link_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "DNSSEC RRSIG Link Failure",
+						},
+						"alias_subtype_already_exist": {
+							Type: schema.TypeInt, Optional: true, Description: "ALIAS Record Subtype Already Exists",
+						},
+						"zone_apex_suffix_node_insert_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "Zone Apex Suffix Node Insert Fail",
+						},
+						"lookup_servfail_resp": {
+							Type: schema.TypeInt, Optional: true, Description: "Lookup Server Fail Response",
+						},
 					},
 				},
 			},
@@ -214,6 +238,14 @@ func setObjectDdosDnsCacheServerStatsStats(ret edpt.DataDdosDnsCacheServerStats)
 			"lookup_dnstcp_rcvd":                             ret.DtDdosDnsCacheServerStats.Stats.Lookup_dnstcp_rcvd,
 			"lookup_dnsudp_rcvd":                             ret.DtDdosDnsCacheServerStats.Stats.Lookup_dnsudp_rcvd,
 			"lookup_fwd_shard":                               ret.DtDdosDnsCacheServerStats.Stats.Lookup_fwd_shard,
+			"dns_prebuild_alloc_fail":                        ret.DtDdosDnsCacheServerStats.Stats.Dns_prebuild_alloc_fail,
+			"suffix_table_trylock_fail":                      ret.DtDdosDnsCacheServerStats.Stats.Suffix_table_trylock_fail,
+			"insert_apex_zone_node_fail":                     ret.DtDdosDnsCacheServerStats.Stats.Insert_apex_zone_node_fail,
+			"insert_suffix_fqdn_node_fail":                   ret.DtDdosDnsCacheServerStats.Stats.Insert_suffix_fqdn_node_fail,
+			"dnssec_rrsig_link_fail":                         ret.DtDdosDnsCacheServerStats.Stats.Dnssec_rrsig_link_fail,
+			"alias_subtype_already_exist":                    ret.DtDdosDnsCacheServerStats.Stats.Alias_subtype_already_exist,
+			"zone_apex_suffix_node_insert_fail":              ret.DtDdosDnsCacheServerStats.Stats.Zone_apex_suffix_node_insert_fail,
+			"lookup_servfail_resp":                           ret.DtDdosDnsCacheServerStats.Stats.Lookup_servfail_resp,
 		},
 	}
 }
@@ -266,6 +298,14 @@ func getObjectDdosDnsCacheServerStatsStats(d []interface{}) edpt.DdosDnsCacheSer
 		ret.Lookup_dnstcp_rcvd = in["lookup_dnstcp_rcvd"].(int)
 		ret.Lookup_dnsudp_rcvd = in["lookup_dnsudp_rcvd"].(int)
 		ret.Lookup_fwd_shard = in["lookup_fwd_shard"].(int)
+		ret.Dns_prebuild_alloc_fail = in["dns_prebuild_alloc_fail"].(int)
+		ret.Suffix_table_trylock_fail = in["suffix_table_trylock_fail"].(int)
+		ret.Insert_apex_zone_node_fail = in["insert_apex_zone_node_fail"].(int)
+		ret.Insert_suffix_fqdn_node_fail = in["insert_suffix_fqdn_node_fail"].(int)
+		ret.Dnssec_rrsig_link_fail = in["dnssec_rrsig_link_fail"].(int)
+		ret.Alias_subtype_already_exist = in["alias_subtype_already_exist"].(int)
+		ret.Zone_apex_suffix_node_insert_fail = in["zone_apex_suffix_node_insert_fail"].(int)
+		ret.Lookup_servfail_resp = in["lookup_servfail_resp"].(int)
 	}
 	return ret
 }

@@ -61,5 +61,3 @@ Optional:
 - `active` (Number)
 - `device` (Number)
 - `ip` (String)
-
-

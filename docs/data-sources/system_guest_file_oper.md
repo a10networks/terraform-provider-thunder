@@ -54,5 +54,3 @@ Optional:
 - `file_name` (String)
 - `size` (Number)
 - `update_time` (String)
-
-

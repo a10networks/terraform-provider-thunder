@@ -55,8 +55,8 @@ Optional:
 Optional:
 
 - `age` (Number)
+- `class_list` (String)
+- `hit_count` (Number)
 - `in_spe` (String)
 - `ip` (String)
 - `match_type` (String)
-
-

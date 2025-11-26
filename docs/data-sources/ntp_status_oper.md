@@ -57,5 +57,3 @@ Optional:
 - `mode` (String)
 - `ntp_server` (String)
 - `status` (String)
-
-

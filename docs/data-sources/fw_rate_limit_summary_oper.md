@@ -50,10 +50,14 @@ Optional:
 - `mem_used` (Number)
 - `total_entries_scope_aggregate` (Number)
 - `total_entries_scope_parent` (Number)
+- `total_entries_scope_parent_radius_usergroup` (Number)
+- `total_entries_scope_parent_radius_userid` (Number)
 - `total_entries_scope_parent_subscriber_ip` (Number)
 - `total_entries_scope_parent_subscriber_prefix` (Number)
+- `total_entries_scope_radius_usergroup` (Number)
+- `total_entries_scope_radius_userid` (Number)
 - `total_entries_scope_subscriber_ip` (Number)
 - `total_entries_scope_subscriber_prefix` (Number)
 - `total_num_entries` (Number)
-
-
+- `total_num_entries_allocated` (Number)
+- `total_num_entries_freed` (Number)

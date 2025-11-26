@@ -79,8 +79,8 @@ func resourceAamAuthorizationPolicyAttribute() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
 			},
 		},
 	}
@@ -170,6 +170,6 @@ func dataToEndpointAamAuthorizationPolicyAttribute(d *schema.ResourceData) edpt.
 	ret.Inst.NumberType = d.Get("number_type").(int)
 	ret.Inst.StringType = d.Get("string_type").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

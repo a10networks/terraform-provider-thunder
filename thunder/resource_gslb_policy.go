@@ -26,6 +26,12 @@ func resourceGslbPolicy() *schema.Resource {
 						"single_shot": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Single Shot RDT",
 						},
+						"prefer_dns_sticky": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use dns sticky if available",
+						},
+						"sticky_difference": {
+							Type: schema.TypeInt, Optional: true, Description: "The difference between the round-delay-time of sticky entry",
+						},
 						"timeout": {
 							Type: schema.TypeInt, Optional: true, Default: 3, Description: "Specify timeout if round-delay-time samples are not ready (Specify timeout, unit:sec,default is 3)",
 						},
@@ -126,6 +132,19 @@ func resourceGslbPolicy() *schema.Resource {
 						},
 						"capacity_fail_break": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Break when exceed threshold",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
+			"connection_count_by_site": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"connection_count_enable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable connection-count-by-site",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -366,6 +385,22 @@ func resourceGslbPolicy() *schema.Resource {
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
+						"sticky_options": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"edns_client_subnet": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use ECS for sticky creation and lookup",
+									},
+									"only_ecs": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Only use ECS for session creation",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
 					},
 				},
 			},
@@ -580,14 +615,16 @@ func resourceGslbPolicyRead(ctx context.Context, d *schema.ResourceData, meta in
 	return diags
 }
 
-func getObjectGslbPolicyActiveRdt384(d []interface{}) edpt.GslbPolicyActiveRdt384 {
+func getObjectGslbPolicyActiveRdt475(d []interface{}) edpt.GslbPolicyActiveRdt475 {
 
 	count1 := len(d)
-	var ret edpt.GslbPolicyActiveRdt384
+	var ret edpt.GslbPolicyActiveRdt475
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
 		ret.SingleShot = in["single_shot"].(int)
+		ret.PreferDnsSticky = in["prefer_dns_sticky"].(int)
+		ret.StickyDifference = in["sticky_difference"].(int)
 		ret.Timeout = in["timeout"].(int)
 		ret.Skip = in["skip"].(int)
 		ret.KeepTracking = in["keep_tracking"].(int)
@@ -604,10 +641,10 @@ func getObjectGslbPolicyActiveRdt384(d []interface{}) edpt.GslbPolicyActiveRdt38
 	return ret
 }
 
-func getObjectGslbPolicyAutoMap385(d []interface{}) edpt.GslbPolicyAutoMap385 {
+func getObjectGslbPolicyAutoMap476(d []interface{}) edpt.GslbPolicyAutoMap476 {
 
 	count1 := len(d)
-	var ret edpt.GslbPolicyAutoMap385
+	var ret edpt.GslbPolicyAutoMap476
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ttl = in["ttl"].(int)
@@ -619,10 +656,10 @@ func getObjectGslbPolicyAutoMap385(d []interface{}) edpt.GslbPolicyAutoMap385 {
 	return ret
 }
 
-func getObjectGslbPolicyCapacity386(d []interface{}) edpt.GslbPolicyCapacity386 {
+func getObjectGslbPolicyCapacity477(d []interface{}) edpt.GslbPolicyCapacity477 {
 
 	count1 := len(d)
-	var ret edpt.GslbPolicyCapacity386
+	var ret edpt.GslbPolicyCapacity477
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.CapacityEnable = in["capacity_enable"].(int)
@@ -633,10 +670,22 @@ func getObjectGslbPolicyCapacity386(d []interface{}) edpt.GslbPolicyCapacity386 
 	return ret
 }
 
-func getObjectGslbPolicyConnectionLoad387(d []interface{}) edpt.GslbPolicyConnectionLoad387 {
+func getObjectGslbPolicyConnectionCountBySite478(d []interface{}) edpt.GslbPolicyConnectionCountBySite478 {
 
 	count1 := len(d)
-	var ret edpt.GslbPolicyConnectionLoad387
+	var ret edpt.GslbPolicyConnectionCountBySite478
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ConnectionCountEnable = in["connection_count_enable"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectGslbPolicyConnectionLoad479(d []interface{}) edpt.GslbPolicyConnectionLoad479 {
+
+	count1 := len(d)
+	var ret edpt.GslbPolicyConnectionLoad479
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ConnectionLoadEnable = in["connection_load_enable"].(int)
@@ -650,10 +699,10 @@ func getObjectGslbPolicyConnectionLoad387(d []interface{}) edpt.GslbPolicyConnec
 	return ret
 }
 
-func getObjectGslbPolicyDns388(d []interface{}) edpt.GslbPolicyDns388 {
+func getObjectGslbPolicyDns480(d []interface{}) edpt.GslbPolicyDns480 {
 
 	count1 := len(d)
-	var ret edpt.GslbPolicyDns388
+	var ret edpt.GslbPolicyDns480
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Action = in["action"].(int)
@@ -701,11 +750,11 @@ func getObjectGslbPolicyDns388(d []interface{}) edpt.GslbPolicyDns388 {
 		ret.ZoneOwnerMode = in["zone_owner_mode"].(int)
 		ret.ServerCname = in["server_cname"].(int)
 		ret.ServerCaa = in["server_caa"].(int)
-		ret.Ipv6 = getSliceGslbPolicyDnsIpv6389(in["ipv6"].([]interface{}))
+		ret.Ipv6 = getSliceGslbPolicyDnsIpv6481(in["ipv6"].([]interface{}))
 		ret.BlockAction = in["block_action"].(int)
 		ret.ActionType = in["action_type"].(string)
-		ret.ProxyBlockPortRangeList = getSliceGslbPolicyDnsProxyBlockPortRangeList390(in["proxy_block_port_range_list"].([]interface{}))
-		ret.BlockValue = getSliceGslbPolicyDnsBlockValue391(in["block_value"].([]interface{}))
+		ret.ProxyBlockPortRangeList = getSliceGslbPolicyDnsProxyBlockPortRangeList482(in["proxy_block_port_range_list"].([]interface{}))
+		ret.BlockValue = getSliceGslbPolicyDnsBlockValue483(in["block_value"].([]interface{}))
 		ret.BlockType = in["block_type"].(string)
 		ret.Sticky = in["sticky"].(int)
 		ret.StickyMask = in["sticky_mask"].(string)
@@ -714,17 +763,18 @@ func getObjectGslbPolicyDns388(d []interface{}) edpt.GslbPolicyDns388 {
 		ret.DynamicPreference = in["dynamic_preference"].(int)
 		ret.DynamicWeight = in["dynamic_weight"].(int)
 		//omit uuid
+		ret.StickyOptions = getObjectGslbPolicyDnsStickyOptions484(in["sticky_options"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceGslbPolicyDnsIpv6389(d []interface{}) []edpt.GslbPolicyDnsIpv6389 {
+func getSliceGslbPolicyDnsIpv6481(d []interface{}) []edpt.GslbPolicyDnsIpv6481 {
 
 	count1 := len(d)
-	ret := make([]edpt.GslbPolicyDnsIpv6389, 0, count1)
+	ret := make([]edpt.GslbPolicyDnsIpv6481, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.GslbPolicyDnsIpv6389
+		var oi edpt.GslbPolicyDnsIpv6481
 		oi.DnsIpv6Option = in["dns_ipv6_option"].(string)
 		oi.DnsIpv6MappingType = in["dns_ipv6_mapping_type"].(string)
 		ret = append(ret, oi)
@@ -732,13 +782,13 @@ func getSliceGslbPolicyDnsIpv6389(d []interface{}) []edpt.GslbPolicyDnsIpv6389 {
 	return ret
 }
 
-func getSliceGslbPolicyDnsProxyBlockPortRangeList390(d []interface{}) []edpt.GslbPolicyDnsProxyBlockPortRangeList390 {
+func getSliceGslbPolicyDnsProxyBlockPortRangeList482(d []interface{}) []edpt.GslbPolicyDnsProxyBlockPortRangeList482 {
 
 	count1 := len(d)
-	ret := make([]edpt.GslbPolicyDnsProxyBlockPortRangeList390, 0, count1)
+	ret := make([]edpt.GslbPolicyDnsProxyBlockPortRangeList482, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.GslbPolicyDnsProxyBlockPortRangeList390
+		var oi edpt.GslbPolicyDnsProxyBlockPortRangeList482
 		oi.ProxyBlockRangeFrom = in["proxy_block_range_from"].(int)
 		oi.ProxyBlockRangeTo = in["proxy_block_range_to"].(int)
 		ret = append(ret, oi)
@@ -746,23 +796,36 @@ func getSliceGslbPolicyDnsProxyBlockPortRangeList390(d []interface{}) []edpt.Gsl
 	return ret
 }
 
-func getSliceGslbPolicyDnsBlockValue391(d []interface{}) []edpt.GslbPolicyDnsBlockValue391 {
+func getSliceGslbPolicyDnsBlockValue483(d []interface{}) []edpt.GslbPolicyDnsBlockValue483 {
 
 	count1 := len(d)
-	ret := make([]edpt.GslbPolicyDnsBlockValue391, 0, count1)
+	ret := make([]edpt.GslbPolicyDnsBlockValue483, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.GslbPolicyDnsBlockValue391
+		var oi edpt.GslbPolicyDnsBlockValue483
 		oi.BlockValue = in["block_value"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectGslbPolicyEdns392(d []interface{}) edpt.GslbPolicyEdns392 {
+func getObjectGslbPolicyDnsStickyOptions484(d []interface{}) edpt.GslbPolicyDnsStickyOptions484 {
 
 	count1 := len(d)
-	var ret edpt.GslbPolicyEdns392
+	var ret edpt.GslbPolicyDnsStickyOptions484
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.EdnsClientSubnet = in["edns_client_subnet"].(int)
+		ret.OnlyEcs = in["only_ecs"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectGslbPolicyEdns485(d []interface{}) edpt.GslbPolicyEdns485 {
+
+	count1 := len(d)
+	var ret edpt.GslbPolicyEdns485
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ClientSubnetGeographic = in["client_subnet_geographic"].(int)
@@ -818,10 +881,10 @@ func getSliceGslbPolicyGeoLocationListIpv6MultipleFields(d []interface{}) []edpt
 	return ret
 }
 
-func getObjectGslbPolicyGeoLocationMatch393(d []interface{}) edpt.GslbPolicyGeoLocationMatch393 {
+func getObjectGslbPolicyGeoLocationMatch486(d []interface{}) edpt.GslbPolicyGeoLocationMatch486 {
 
 	count1 := len(d)
-	var ret edpt.GslbPolicyGeoLocationMatch393
+	var ret edpt.GslbPolicyGeoLocationMatch486
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Overlap = in["overlap"].(int)
@@ -834,7 +897,7 @@ func getObjectGslbPolicyGeoLocationMatch393(d []interface{}) edpt.GslbPolicyGeoL
 
 func dataToEndpointGslbPolicy(d *schema.ResourceData) edpt.GslbPolicy {
 	var ret edpt.GslbPolicy
-	ret.Inst.ActiveRdt = getObjectGslbPolicyActiveRdt384(d.Get("active_rdt").([]interface{}))
+	ret.Inst.ActiveRdt = getObjectGslbPolicyActiveRdt475(d.Get("active_rdt").([]interface{}))
 	ret.Inst.ActiveServersEnable = d.Get("active_servers_enable").(int)
 	ret.Inst.ActiveServersFailBreak = d.Get("active_servers_fail_break").(int)
 	ret.Inst.AdminIpEnable = d.Get("admin_ip_enable").(int)
@@ -842,15 +905,16 @@ func dataToEndpointGslbPolicy(d *schema.ResourceData) edpt.GslbPolicy {
 	ret.Inst.AdminPreference = d.Get("admin_preference").(int)
 	ret.Inst.AliasAdminPreference = d.Get("alias_admin_preference").(int)
 	ret.Inst.AmountFirst = d.Get("amount_first").(int)
-	ret.Inst.AutoMap = getObjectGslbPolicyAutoMap385(d.Get("auto_map").([]interface{}))
+	ret.Inst.AutoMap = getObjectGslbPolicyAutoMap476(d.Get("auto_map").([]interface{}))
 	ret.Inst.BwCostEnable = d.Get("bw_cost_enable").(int)
 	ret.Inst.BwCostFailBreak = d.Get("bw_cost_fail_break").(int)
-	ret.Inst.Capacity = getObjectGslbPolicyCapacity386(d.Get("capacity").([]interface{}))
-	ret.Inst.ConnectionLoad = getObjectGslbPolicyConnectionLoad387(d.Get("connection_load").([]interface{}))
-	ret.Inst.Dns = getObjectGslbPolicyDns388(d.Get("dns").([]interface{}))
-	ret.Inst.Edns = getObjectGslbPolicyEdns392(d.Get("edns").([]interface{}))
+	ret.Inst.Capacity = getObjectGslbPolicyCapacity477(d.Get("capacity").([]interface{}))
+	ret.Inst.ConnectionCountBySite = getObjectGslbPolicyConnectionCountBySite478(d.Get("connection_count_by_site").([]interface{}))
+	ret.Inst.ConnectionLoad = getObjectGslbPolicyConnectionLoad479(d.Get("connection_load").([]interface{}))
+	ret.Inst.Dns = getObjectGslbPolicyDns480(d.Get("dns").([]interface{}))
+	ret.Inst.Edns = getObjectGslbPolicyEdns485(d.Get("edns").([]interface{}))
 	ret.Inst.GeoLocationList = getSliceGslbPolicyGeoLocationList(d.Get("geo_location_list").([]interface{}))
-	ret.Inst.GeoLocationMatch = getObjectGslbPolicyGeoLocationMatch393(d.Get("geo_location_match").([]interface{}))
+	ret.Inst.GeoLocationMatch = getObjectGslbPolicyGeoLocationMatch486(d.Get("geo_location_match").([]interface{}))
 	ret.Inst.Geographic = d.Get("geographic").(int)
 	ret.Inst.HealthCheck = d.Get("health_check").(int)
 	ret.Inst.HealthCheckPreferenceEnable = d.Get("health_check_preference_enable").(int)

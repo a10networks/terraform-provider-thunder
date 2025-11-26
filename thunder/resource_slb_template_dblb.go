@@ -106,10 +106,10 @@ func resourceSlbTemplateDblbRead(ctx context.Context, d *schema.ResourceData, me
 	return diags
 }
 
-func getObjectSlbTemplateDblbCalcSha11415(d []interface{}) edpt.SlbTemplateDblbCalcSha11415 {
+func getObjectSlbTemplateDblbCalcSha11514(d []interface{}) edpt.SlbTemplateDblbCalcSha11514 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDblbCalcSha11415
+	var ret edpt.SlbTemplateDblbCalcSha11514
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Sha1Value = in["sha1_value"].(string)
@@ -119,7 +119,7 @@ func getObjectSlbTemplateDblbCalcSha11415(d []interface{}) edpt.SlbTemplateDblbC
 
 func dataToEndpointSlbTemplateDblb(d *schema.ResourceData) edpt.SlbTemplateDblb {
 	var ret edpt.SlbTemplateDblb
-	ret.Inst.CalcSha1 = getObjectSlbTemplateDblbCalcSha11415(d.Get("calc_sha1").([]interface{}))
+	ret.Inst.CalcSha1 = getObjectSlbTemplateDblbCalcSha11514(d.Get("calc_sha1").([]interface{}))
 	ret.Inst.ClassList = d.Get("class_list").(string)
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.ServerVersion = d.Get("server_version").(string)

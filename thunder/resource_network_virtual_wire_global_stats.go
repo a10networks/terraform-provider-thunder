@@ -26,6 +26,9 @@ func resourceNetworkVirtualWireGlobalStats() *schema.Resource {
 						"vlan_pair_update": {
 							Type: schema.TypeInt, Optional: true, Description: "VLAN pair update",
 						},
+						"hc_pkt_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Packet drop due to health check",
+						},
 					},
 				},
 			},
@@ -58,6 +61,7 @@ func setObjectNetworkVirtualWireGlobalStatsStats(ret edpt.DataNetworkVirtualWire
 			"vlan_update":      ret.DtNetworkVirtualWireGlobalStats.Stats.VlanUpdate,
 			"mac_update":       ret.DtNetworkVirtualWireGlobalStats.Stats.MacUpdate,
 			"vlan_pair_update": ret.DtNetworkVirtualWireGlobalStats.Stats.VlanPairUpdate,
+			"hc_pkt_drop":      ret.DtNetworkVirtualWireGlobalStats.Stats.HcPktDrop,
 		},
 	}
 }
@@ -71,6 +75,7 @@ func getObjectNetworkVirtualWireGlobalStatsStats(d []interface{}) edpt.NetworkVi
 		ret.VlanUpdate = in["vlan_update"].(int)
 		ret.MacUpdate = in["mac_update"].(int)
 		ret.VlanPairUpdate = in["vlan_pair_update"].(int)
+		ret.HcPktDrop = in["hc_pkt_drop"].(int)
 	}
 	return ret
 }

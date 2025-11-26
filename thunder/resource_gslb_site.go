@@ -369,10 +369,10 @@ func resourceGslbSiteRead(ctx context.Context, d *schema.ResourceData, meta inte
 	return diags
 }
 
-func getObjectGslbSiteActiveRdt397(d []interface{}) edpt.GslbSiteActiveRdt397 {
+func getObjectGslbSiteActiveRdt490(d []interface{}) edpt.GslbSiteActiveRdt490 {
 
 	count1 := len(d)
-	var ret edpt.GslbSiteActiveRdt397
+	var ret edpt.GslbSiteActiveRdt490
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AgingTime = in["aging_time"].(int)
@@ -389,10 +389,10 @@ func getObjectGslbSiteActiveRdt397(d []interface{}) edpt.GslbSiteActiveRdt397 {
 	return ret
 }
 
-func getObjectGslbSiteEasyRdt398(d []interface{}) edpt.GslbSiteEasyRdt398 {
+func getObjectGslbSiteEasyRdt491(d []interface{}) edpt.GslbSiteEasyRdt491 {
 
 	count1 := len(d)
-	var ret edpt.GslbSiteEasyRdt398
+	var ret edpt.GslbSiteEasyRdt491
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.AgingTime = in["aging_time"].(int)
@@ -571,12 +571,12 @@ func getSliceGslbSiteSlbDevListVipServerVipServerNameListSamplingEnable(d []inte
 
 func dataToEndpointGslbSite(d *schema.ResourceData) edpt.GslbSite {
 	var ret edpt.GslbSite
-	ret.Inst.ActiveRdt = getObjectGslbSiteActiveRdt397(d.Get("active_rdt").([]interface{}))
+	ret.Inst.ActiveRdt = getObjectGslbSiteActiveRdt490(d.Get("active_rdt").([]interface{}))
 	ret.Inst.AutoMap = d.Get("auto_map").(int)
 	ret.Inst.BwCost = d.Get("bw_cost").(int)
 	ret.Inst.Controller = d.Get("controller").(string)
 	ret.Inst.Disable = d.Get("disable").(int)
-	ret.Inst.EasyRdt = getObjectGslbSiteEasyRdt398(d.Get("easy_rdt").([]interface{}))
+	ret.Inst.EasyRdt = getObjectGslbSiteEasyRdt491(d.Get("easy_rdt").([]interface{}))
 	ret.Inst.IpServerList = getSliceGslbSiteIpServerList(d.Get("ip_server_list").([]interface{}))
 	ret.Inst.Limit = d.Get("limit").(int)
 	ret.Inst.MultipleGeoLocations = getSliceGslbSiteMultipleGeoLocations(d.Get("multiple_geo_locations").([]interface{}))

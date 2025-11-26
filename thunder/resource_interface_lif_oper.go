@@ -103,11 +103,11 @@ func resourceInterfaceLifOper() *schema.Resource {
 						"ipv6_link_local_scope": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
-						"ip_unnumbered_enabled": {
-							Type: schema.TypeInt, Optional: true, Description: "",
-						},
 						"mtu": {
 							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"ip_unnumbered_enabled": {
+							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 					},
 				},
@@ -158,8 +158,8 @@ func setObjectInterfaceLifOperOper(ret edpt.DataInterfaceLifOper) []interface{} 
 			"ipv6_link_local_prefix":     ret.DtInterfaceLifOper.Oper.Ipv6LinkLocalPrefix,
 			"ipv6_link_local_type":       ret.DtInterfaceLifOper.Oper.Ipv6LinkLocalType,
 			"ipv6_link_local_scope":      ret.DtInterfaceLifOper.Oper.Ipv6LinkLocalScope,
-			"ip_unnumbered_enabled":      ret.DtInterfaceLifOper.Oper.Ip_unnumbered_enabled,
 			"mtu":                        ret.DtInterfaceLifOper.Oper.Mtu,
+			"ip_unnumbered_enabled":      ret.DtInterfaceLifOper.Oper.Ip_unnumbered_enabled,
 		},
 	}
 }
@@ -213,8 +213,8 @@ func getObjectInterfaceLifOperOper(d []interface{}) edpt.InterfaceLifOperOper {
 		ret.Ipv6LinkLocalPrefix = in["ipv6_link_local_prefix"].(string)
 		ret.Ipv6LinkLocalType = in["ipv6_link_local_type"].(string)
 		ret.Ipv6LinkLocalScope = in["ipv6_link_local_scope"].(string)
-		ret.Ip_unnumbered_enabled = in["ip_unnumbered_enabled"].(int)
 		ret.Mtu = in["mtu"].(string)
+		ret.Ip_unnumbered_enabled = in["ip_unnumbered_enabled"].(int)
 	}
 	return ret
 }

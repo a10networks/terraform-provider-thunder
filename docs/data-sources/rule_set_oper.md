@@ -252,8 +252,13 @@ Optional:
 - `sessiontotal` (Number)
 - `sessionudp` (Number)
 - `status` (String)
+- `synacksent` (Number)
+- `syncookieon` (Number)
+- `tcphalfopencount` (Number)
 - `totalbytes` (Number)
 - `totalpackets` (Number)
+- `verificationfailed` (Number)
+- `verificationpassed` (Number)
 
 
 
@@ -348,5 +353,3 @@ Optional:
 Optional:
 
 - `name` (String)
-
-

@@ -19,6 +19,9 @@ func resourceDdosTemplateDns() *schema.Resource {
 			"action": {
 				Type: schema.TypeString, Optional: true, Default: "drop", Description: "'drop': Drop packets (Default action); 'reset': Send Client RST for TCP connections;",
 			},
+			"alias_rate_threshold": {
+				Type: schema.TypeInt, Optional: true, Description: "ALIAS(Record Type 65300) Query Forwarding Rate Limit (Only for DNS Cache Mode)",
+			},
 			"allow_query_class": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -223,6 +226,9 @@ func resourceDdosTemplateDns() *schema.Resource {
 						},
 					},
 				},
+			},
+			"dnssec_wildcard_rate_threshold": {
+				Type: schema.TypeInt, Optional: true, Description: "DNSSEC Wildcard Query Forwarding Rate Limit (only for DNS Cache Mode)",
 			},
 			"domain_group_name": {
 				Type: schema.TypeString, Optional: true, Description: "Apply a domain-group to the DNS template",
@@ -642,10 +648,10 @@ func getSliceDdosTemplateDnsFqdnLabelLenCfg(d []interface{}) []edpt.DdosTemplate
 	return ret
 }
 
-func getObjectDdosTemplateDnsMalformedQueryCheck295(d []interface{}) edpt.DdosTemplateDnsMalformedQueryCheck295 {
+func getObjectDdosTemplateDnsMalformedQueryCheck335(d []interface{}) edpt.DdosTemplateDnsMalformedQueryCheck335 {
 
 	count1 := len(d)
-	var ret edpt.DdosTemplateDnsMalformedQueryCheck295
+	var ret edpt.DdosTemplateDnsMalformedQueryCheck335
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ValidationType = in["validation_type"].(string)
@@ -696,11 +702,13 @@ func getObjectDdosTemplateDnsSymtimeoutCfg(d []interface{}) edpt.DdosTemplateDns
 func dataToEndpointDdosTemplateDns(d *schema.ResourceData) edpt.DdosTemplateDns {
 	var ret edpt.DdosTemplateDns
 	ret.Inst.Action = d.Get("action").(string)
+	ret.Inst.AliasRateThreshold = d.Get("alias_rate_threshold").(int)
 	ret.Inst.AllowQueryClass = getObjectDdosTemplateDnsAllowQueryClass(d.Get("allow_query_class").([]interface{}))
 	ret.Inst.AllowRecordType = getObjectDdosTemplateDnsAllowRecordType(d.Get("allow_record_type").([]interface{}))
 	ret.Inst.DnsAnyCheck = d.Get("dns_any_check").(int)
 	ret.Inst.DnsAuthCfg = getObjectDdosTemplateDnsDnsAuthCfg(d.Get("dns_auth_cfg").([]interface{}))
 	ret.Inst.DnsRequestRateLimit = getObjectDdosTemplateDnsDnsRequestRateLimit(d.Get("dns_request_rate_limit").([]interface{}))
+	ret.Inst.DnssecWildcardRateThreshold = d.Get("dnssec_wildcard_rate_threshold").(int)
 	ret.Inst.DomainGroupName = d.Get("domain_group_name").(string)
 	ret.Inst.DomainGroupRateExceedAction = d.Get("domain_group_rate_exceed_action").(string)
 	ret.Inst.DomainGroupRatePerService = d.Get("domain_group_rate_per_service").(int)
@@ -708,7 +716,7 @@ func dataToEndpointDdosTemplateDns(d *schema.ResourceData) edpt.DdosTemplateDns 
 	ret.Inst.FqdnCfg = getSliceDdosTemplateDnsFqdnCfg(d.Get("fqdn_cfg").([]interface{}))
 	ret.Inst.FqdnLabelCount = d.Get("fqdn_label_count").(int)
 	ret.Inst.FqdnLabelLenCfg = getSliceDdosTemplateDnsFqdnLabelLenCfg(d.Get("fqdn_label_len_cfg").([]interface{}))
-	ret.Inst.MalformedQueryCheck = getObjectDdosTemplateDnsMalformedQueryCheck295(d.Get("malformed_query_check").([]interface{}))
+	ret.Inst.MalformedQueryCheck = getObjectDdosTemplateDnsMalformedQueryCheck335(d.Get("malformed_query_check").([]interface{}))
 	ret.Inst.MultiPuThresholdDistribution = getObjectDdosTemplateDnsMultiPuThresholdDistribution(d.Get("multi_pu_threshold_distribution").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.NxdomainCfg = getObjectDdosTemplateDnsNxdomainCfg(d.Get("nxdomain_cfg").([]interface{}))

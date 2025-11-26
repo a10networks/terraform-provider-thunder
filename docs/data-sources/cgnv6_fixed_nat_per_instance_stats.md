@@ -61,5 +61,3 @@ Optional:
 - `udp_freed` (Number) UDP Ports Freed
 - `udp_fullcone_created` (Number) UDP Full-cone Session Created
 - `udp_fullcone_freed` (Number) UDP Full-cone Session Freed
-
-

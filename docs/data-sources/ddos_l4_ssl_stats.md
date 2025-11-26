@@ -64,7 +64,7 @@ Optional:
 - `ssl_l4_is_ssl3` (Number) SSL v3
 - `ssl_l4_is_tls1_1` (Number) TLS v1.0
 - `ssl_l4_is_tls1_2` (Number) TLS v1.1
-- `ssl_l4_is_tls1_3` (Number) TLS v1.2
+- `ssl_l4_is_tls1_3` (Number) TLS v1.2 or higher version
 - `ssl_l4_new_syn` (Number) New TCP SYN
 - `ssl_l4_policy_drop` (Number) Policy Dropped
 - `ssl_l4_policy_reset` (Number) Policy Reset
@@ -73,5 +73,3 @@ Optional:
 - `ssl_l4_renegotiation_incomplete` (Number) Renegotiation Incomplete
 - `ssl_l4_reset_for_handshake` (Number) Reset While Others in Handshake
 - `ssl_non_tls` (Number) SSL Non-TLS Dropped
-
-

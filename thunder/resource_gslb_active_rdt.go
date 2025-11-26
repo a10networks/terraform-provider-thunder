@@ -19,6 +19,9 @@ func resourceGslbActiveRdt() *schema.Resource {
 			"domain": {
 				Type: schema.TypeString, Optional: true, Description: "Specify Query Domain (Specify Domain Name)",
 			},
+			"enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable active rdt for system",
+			},
 			"icmp": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Using ICMP",
 			},
@@ -111,6 +114,7 @@ func resourceGslbActiveRdtRead(ctx context.Context, d *schema.ResourceData, meta
 func dataToEndpointGslbActiveRdt(d *schema.ResourceData) edpt.GslbActiveRdt {
 	var ret edpt.GslbActiveRdt
 	ret.Inst.Domain = d.Get("domain").(string)
+	ret.Inst.Enable = d.Get("enable").(int)
 	ret.Inst.Icmp = d.Get("icmp").(int)
 	ret.Inst.Interval = d.Get("interval").(int)
 	ret.Inst.Port = d.Get("port").(int)

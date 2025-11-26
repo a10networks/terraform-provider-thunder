@@ -80,5 +80,3 @@ Optional:
 - `revoked_ocsp_response` (Number) Revoked OCSP Response
 - `tot_conn_in_buff` (Number) Total buffered async connections
 - `unsupported_ssl_version` (Number) Unsupported SSL version
-
-

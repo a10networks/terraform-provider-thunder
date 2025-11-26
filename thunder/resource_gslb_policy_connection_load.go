@@ -37,8 +37,8 @@ func resourceGslbPolicyConnectionLoad() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
 			},
 		},
 	}
@@ -114,6 +114,6 @@ func dataToEndpointGslbPolicyConnectionLoad(d *schema.ResourceData) edpt.GslbPol
 	ret.Inst.ConnectionLoadSamples = d.Get("connection_load_samples").(int)
 	ret.Inst.Limit = d.Get("limit").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

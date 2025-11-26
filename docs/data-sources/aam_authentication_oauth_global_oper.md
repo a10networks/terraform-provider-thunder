@@ -45,5 +45,3 @@ output "get_aam_authentication_oauth_global_oper" {
 Optional:
 
 - `stats_clear_type` (String)
-
-

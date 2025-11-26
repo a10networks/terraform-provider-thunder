@@ -22,8 +22,8 @@ func resourceNetflowMonitorSampleVe() *schema.Resource {
 			"ve_num": {
 				Type: schema.TypeInt, Required: true, Description: "VE interface number",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointNetflowMonitorSampleVe(d *schema.ResourceData) edpt.NetflowMo
 	var ret edpt.NetflowMonitorSampleVe
 	//omit uuid
 	ret.Inst.VeNum = d.Get("ve_num").(int)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

@@ -56,5 +56,3 @@ Optional:
 - `v6_limit_vserver_drop` (Number) Virtual Server rate limit drops (v6)
 - `v6_lockup_time_left` (Number) Lockup time left (v6)
 - `v6_over_limit_drop` (Number) Over limit drops (v6)
-
-

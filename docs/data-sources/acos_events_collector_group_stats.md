@@ -52,5 +52,3 @@ output "get_acos_events_collector_group_stats" {
 Optional:
 
 - `msgs_sent` (Number) Number of log messages sent
-
-

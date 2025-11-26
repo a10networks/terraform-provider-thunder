@@ -41,5 +41,3 @@ output "get_ip_nat_nat_global_stats" {
 
 <a id="nestedblock--stats"></a>
 ### Nested Schema for `stats`
-
-

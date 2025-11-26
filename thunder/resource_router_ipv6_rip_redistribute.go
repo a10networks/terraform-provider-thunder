@@ -21,7 +21,7 @@ func resourceRouterIpv6RipRedistribute() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"type": {
-							Type: schema.TypeString, Optional: true, Description: "'bgp': Border Gateway Protocol (BGP); 'connected': Connected; 'floating-ip': Floating IP; 'ip-nat-list': IP NAT list; 'ip-nat': IP NAT; 'isis': ISO IS-IS; 'lw4o6': LW4O6 Prefix; 'nat-map': NAT MAP Prefix; 'nat64': NAT64 Prefix; 'static-nat': Static NAT; 'ospf': Open Shortest Path First (OSPF); 'static': Static routes;",
+							Type: schema.TypeString, Optional: true, Description: "'bgp': Border Gateway Protocol (BGP); 'connected': Connected; 'floating-ip': Floating IP; 'ip-nat-list': IP NAT list; 'ip-nat': IP NAT; 'isis': ISO IS-IS; 'lw4o6': LW4O6 Prefix; 'nat-map': NAT MAP Prefix; 'nat64': NAT64 Prefix; 'static-nat': Static NAT; 'public-ip': Public IPv6 Prefixes; 'ospf': Open Shortest Path First (OSPF); 'static': Static routes;",
 						},
 						"metric": {
 							Type: schema.TypeInt, Optional: true, Description: "Metric for redistributed routes (metric value)",

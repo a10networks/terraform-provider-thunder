@@ -90,5 +90,3 @@ Optional:
 - `udp_dropped` (Number) UDP Dropped
 - `udp_rcv` (Number) UDP Received
 - `unaligned_len` (Number) Payload Length Unaligned
-
-

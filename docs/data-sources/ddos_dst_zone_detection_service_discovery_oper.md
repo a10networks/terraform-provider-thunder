@@ -60,5 +60,3 @@ Optional:
 - `port` (Number)
 - `protocol` (String)
 - `rate` (Number)
-
-

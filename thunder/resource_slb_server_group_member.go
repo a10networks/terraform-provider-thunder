@@ -19,11 +19,11 @@ func resourceSlbServerGroupMember() *schema.Resource {
 			"name": {
 				Type: schema.TypeString, Required: true, Description: "Member name",
 			},
-			"server_group_name": {
-				Type: schema.TypeString, Required: true, Description: "Server Group name",
-			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+			},
+			"server_group_name": {
+				Type: schema.TypeString, Required: true, Description: "Server_group_name",
 			},
 		},
 	}
@@ -93,7 +93,7 @@ func resourceSlbServerGroupMemberRead(ctx context.Context, d *schema.ResourceDat
 func dataToEndpointSlbServerGroupMember(d *schema.ResourceData) edpt.SlbServerGroupMember {
 	var ret edpt.SlbServerGroupMember
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.ServerGroupName = d.Get("server_group_name").(string)
 	//omit uuid
+	ret.Inst.Server_group_name = d.Get("server_group_name").(string)
 	return ret
 }

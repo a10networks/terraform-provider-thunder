@@ -45,36 +45,6 @@ func resourceAamAuthenticationServerWindowsStats() *schema.Resource {
 									"krb_pw_change_failure": {
 										Type: schema.TypeInt, Optional: true, Description: "Kerberos password change failure",
 									},
-									"ntlm_proto_nego_success": {
-										Type: schema.TypeInt, Optional: true, Description: "NTLM Protocol Negotiation Success",
-									},
-									"ntlm_proto_nego_failure": {
-										Type: schema.TypeInt, Optional: true, Description: "NTLM Protocol Negotiation Failure",
-									},
-									"ntlm_session_setup_success": {
-										Type: schema.TypeInt, Optional: true, Description: "NTLM Session Setup Success",
-									},
-									"ntlm_session_setup_failure": {
-										Type: schema.TypeInt, Optional: true, Description: "NTLM Session Setup Failure",
-									},
-									"ntlm_prepare_req_success": {
-										Type: schema.TypeInt, Optional: true, Description: "NTLM Prepare Request Success",
-									},
-									"ntlm_prepare_req_error": {
-										Type: schema.TypeInt, Optional: true, Description: "NTLM Prepare Request Error",
-									},
-									"ntlm_auth_success": {
-										Type: schema.TypeInt, Optional: true, Description: "NTLM Authentication Success",
-									},
-									"ntlm_auth_failure": {
-										Type: schema.TypeInt, Optional: true, Description: "NTLM Authentication Failure",
-									},
-									"ntlm_timeout_error": {
-										Type: schema.TypeInt, Optional: true, Description: "NTLM Timeout",
-									},
-									"ntlm_other_error": {
-										Type: schema.TypeInt, Optional: true, Description: "NTLM Other Error",
-									},
 									"krb_validate_kdc_success": {
 										Type: schema.TypeInt, Optional: true, Description: "Kerberos KDC Validation Success",
 									},
@@ -103,24 +73,6 @@ func resourceAamAuthenticationServerWindowsStats() *schema.Resource {
 						"kerberos_other_error": {
 							Type: schema.TypeInt, Optional: true, Description: "Total Kerberos Other Error",
 						},
-						"ntlm_authentication_success": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Authentication Success",
-						},
-						"ntlm_authentication_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Authentication Failure",
-						},
-						"ntlm_proto_negotiation_success": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Protocol Negotiation Success",
-						},
-						"ntlm_proto_negotiation_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Protocol Negotiation Failure",
-						},
-						"ntlm_session_setup_success": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Session Setup Success",
-						},
-						"ntlm_session_setup_failed": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Session Setup Failure",
-						},
 						"kerberos_request_normal": {
 							Type: schema.TypeInt, Optional: true, Description: "Total Kerberos Normal Request",
 						},
@@ -147,45 +99,6 @@ func resourceAamAuthenticationServerWindowsStats() *schema.Resource {
 						},
 						"kerberos_polling_control_error": {
 							Type: schema.TypeInt, Optional: true, Description: "Total Kerberos Polling Control Error",
-						},
-						"ntlm_prepare_req_success": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Prepare Request Success",
-						},
-						"ntlm_prepare_req_failed": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Prepare Request Failed",
-						},
-						"ntlm_timeout_error": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Timeout",
-						},
-						"ntlm_other_error": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Other Error",
-						},
-						"ntlm_request_normal": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Normal Request",
-						},
-						"ntlm_request_dropped": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Dropped Request",
-						},
-						"ntlm_response_success": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Success Response",
-						},
-						"ntlm_response_failure": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Failure Response",
-						},
-						"ntlm_response_error": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Error Response",
-						},
-						"ntlm_response_timeout": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Timeout Response",
-						},
-						"ntlm_response_other": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Other Response",
-						},
-						"ntlm_job_start_error": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Job Start Error",
-						},
-						"ntlm_polling_control_error": {
-							Type: schema.TypeInt, Optional: true, Description: "Total NTLM Polling Control Error",
 						},
 						"kerberos_pw_expiry": {
 							Type: schema.TypeInt, Optional: true, Description: "Total Kerberos password expiry",
@@ -275,26 +188,6 @@ func setObjectAamAuthenticationServerWindowsStatsInstanceListStats(d edpt.AamAut
 
 	in["krb_pw_change_failure"] = d.Krb_pw_change_failure
 
-	in["ntlm_proto_nego_success"] = d.Ntlm_proto_nego_success
-
-	in["ntlm_proto_nego_failure"] = d.Ntlm_proto_nego_failure
-
-	in["ntlm_session_setup_success"] = d.Ntlm_session_setup_success
-
-	in["ntlm_session_setup_failure"] = d.Ntlm_session_setup_failure
-
-	in["ntlm_prepare_req_success"] = d.Ntlm_prepare_req_success
-
-	in["ntlm_prepare_req_error"] = d.Ntlm_prepare_req_error
-
-	in["ntlm_auth_success"] = d.Ntlm_auth_success
-
-	in["ntlm_auth_failure"] = d.Ntlm_auth_failure
-
-	in["ntlm_timeout_error"] = d.Ntlm_timeout_error
-
-	in["ntlm_other_error"] = d.Ntlm_other_error
-
 	in["krb_validate_kdc_success"] = d.Krb_validate_kdc_success
 
 	in["krb_validate_kdc_failure"] = d.Krb_validate_kdc_failure
@@ -309,12 +202,6 @@ func setObjectAamAuthenticationServerWindowsStatsStats(ret edpt.DataAamAuthentic
 			"kerberos_response_get":                ret.DtAamAuthenticationServerWindowsStats.Stats.KerberosResponseGet,
 			"kerberos_timeout_error":               ret.DtAamAuthenticationServerWindowsStats.Stats.KerberosTimeoutError,
 			"kerberos_other_error":                 ret.DtAamAuthenticationServerWindowsStats.Stats.KerberosOtherError,
-			"ntlm_authentication_success":          ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmAuthenticationSuccess,
-			"ntlm_authentication_failure":          ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmAuthenticationFailure,
-			"ntlm_proto_negotiation_success":       ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmProtoNegotiationSuccess,
-			"ntlm_proto_negotiation_failure":       ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmProtoNegotiationFailure,
-			"ntlm_session_setup_success":           ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmSessionSetupSuccess,
-			"ntlm_session_setup_failed":            ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmSessionSetupFailed,
 			"kerberos_request_normal":              ret.DtAamAuthenticationServerWindowsStats.Stats.KerberosRequestNormal,
 			"kerberos_request_dropped":             ret.DtAamAuthenticationServerWindowsStats.Stats.KerberosRequestDropped,
 			"kerberos_response_success":            ret.DtAamAuthenticationServerWindowsStats.Stats.KerberosResponseSuccess,
@@ -324,19 +211,6 @@ func setObjectAamAuthenticationServerWindowsStatsStats(ret edpt.DataAamAuthentic
 			"kerberos_response_other":              ret.DtAamAuthenticationServerWindowsStats.Stats.KerberosResponseOther,
 			"kerberos_job_start_error":             ret.DtAamAuthenticationServerWindowsStats.Stats.KerberosJobStartError,
 			"kerberos_polling_control_error":       ret.DtAamAuthenticationServerWindowsStats.Stats.KerberosPollingControlError,
-			"ntlm_prepare_req_success":             ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmPrepareReqSuccess,
-			"ntlm_prepare_req_failed":              ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmPrepareReqFailed,
-			"ntlm_timeout_error":                   ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmTimeoutError,
-			"ntlm_other_error":                     ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmOtherError,
-			"ntlm_request_normal":                  ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmRequestNormal,
-			"ntlm_request_dropped":                 ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmRequestDropped,
-			"ntlm_response_success":                ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmResponseSuccess,
-			"ntlm_response_failure":                ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmResponseFailure,
-			"ntlm_response_error":                  ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmResponseError,
-			"ntlm_response_timeout":                ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmResponseTimeout,
-			"ntlm_response_other":                  ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmResponseOther,
-			"ntlm_job_start_error":                 ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmJobStartError,
-			"ntlm_polling_control_error":           ret.DtAamAuthenticationServerWindowsStats.Stats.NtlmPollingControlError,
 			"kerberos_pw_expiry":                   ret.DtAamAuthenticationServerWindowsStats.Stats.KerberosPwExpiry,
 			"kerberos_pw_change_success":           ret.DtAamAuthenticationServerWindowsStats.Stats.KerberosPwChangeSuccess,
 			"kerberos_pw_change_failure":           ret.DtAamAuthenticationServerWindowsStats.Stats.KerberosPwChangeFailure,
@@ -378,16 +252,6 @@ func getObjectAamAuthenticationServerWindowsStatsInstanceListStats(d []interface
 		ret.Krb_pw_expiry = in["krb_pw_expiry"].(int)
 		ret.Krb_pw_change_success = in["krb_pw_change_success"].(int)
 		ret.Krb_pw_change_failure = in["krb_pw_change_failure"].(int)
-		ret.Ntlm_proto_nego_success = in["ntlm_proto_nego_success"].(int)
-		ret.Ntlm_proto_nego_failure = in["ntlm_proto_nego_failure"].(int)
-		ret.Ntlm_session_setup_success = in["ntlm_session_setup_success"].(int)
-		ret.Ntlm_session_setup_failure = in["ntlm_session_setup_failure"].(int)
-		ret.Ntlm_prepare_req_success = in["ntlm_prepare_req_success"].(int)
-		ret.Ntlm_prepare_req_error = in["ntlm_prepare_req_error"].(int)
-		ret.Ntlm_auth_success = in["ntlm_auth_success"].(int)
-		ret.Ntlm_auth_failure = in["ntlm_auth_failure"].(int)
-		ret.Ntlm_timeout_error = in["ntlm_timeout_error"].(int)
-		ret.Ntlm_other_error = in["ntlm_other_error"].(int)
 		ret.Krb_validate_kdc_success = in["krb_validate_kdc_success"].(int)
 		ret.Krb_validate_kdc_failure = in["krb_validate_kdc_failure"].(int)
 	}
@@ -404,12 +268,6 @@ func getObjectAamAuthenticationServerWindowsStatsStats(d []interface{}) edpt.Aam
 		ret.KerberosResponseGet = in["kerberos_response_get"].(int)
 		ret.KerberosTimeoutError = in["kerberos_timeout_error"].(int)
 		ret.KerberosOtherError = in["kerberos_other_error"].(int)
-		ret.NtlmAuthenticationSuccess = in["ntlm_authentication_success"].(int)
-		ret.NtlmAuthenticationFailure = in["ntlm_authentication_failure"].(int)
-		ret.NtlmProtoNegotiationSuccess = in["ntlm_proto_negotiation_success"].(int)
-		ret.NtlmProtoNegotiationFailure = in["ntlm_proto_negotiation_failure"].(int)
-		ret.NtlmSessionSetupSuccess = in["ntlm_session_setup_success"].(int)
-		ret.NtlmSessionSetupFailed = in["ntlm_session_setup_failed"].(int)
 		ret.KerberosRequestNormal = in["kerberos_request_normal"].(int)
 		ret.KerberosRequestDropped = in["kerberos_request_dropped"].(int)
 		ret.KerberosResponseSuccess = in["kerberos_response_success"].(int)
@@ -419,19 +277,6 @@ func getObjectAamAuthenticationServerWindowsStatsStats(d []interface{}) edpt.Aam
 		ret.KerberosResponseOther = in["kerberos_response_other"].(int)
 		ret.KerberosJobStartError = in["kerberos_job_start_error"].(int)
 		ret.KerberosPollingControlError = in["kerberos_polling_control_error"].(int)
-		ret.NtlmPrepareReqSuccess = in["ntlm_prepare_req_success"].(int)
-		ret.NtlmPrepareReqFailed = in["ntlm_prepare_req_failed"].(int)
-		ret.NtlmTimeoutError = in["ntlm_timeout_error"].(int)
-		ret.NtlmOtherError = in["ntlm_other_error"].(int)
-		ret.NtlmRequestNormal = in["ntlm_request_normal"].(int)
-		ret.NtlmRequestDropped = in["ntlm_request_dropped"].(int)
-		ret.NtlmResponseSuccess = in["ntlm_response_success"].(int)
-		ret.NtlmResponseFailure = in["ntlm_response_failure"].(int)
-		ret.NtlmResponseError = in["ntlm_response_error"].(int)
-		ret.NtlmResponseTimeout = in["ntlm_response_timeout"].(int)
-		ret.NtlmResponseOther = in["ntlm_response_other"].(int)
-		ret.NtlmJobStartError = in["ntlm_job_start_error"].(int)
-		ret.NtlmPollingControlError = in["ntlm_polling_control_error"].(int)
 		ret.KerberosPwExpiry = in["kerberos_pw_expiry"].(int)
 		ret.KerberosPwChangeSuccess = in["kerberos_pw_change_success"].(int)
 		ret.KerberosPwChangeFailure = in["kerberos_pw_change_failure"].(int)

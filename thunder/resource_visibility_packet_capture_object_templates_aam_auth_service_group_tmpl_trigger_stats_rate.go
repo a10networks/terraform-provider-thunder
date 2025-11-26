@@ -28,8 +28,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmplTrigge
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"aam_auth_service_group_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Aam_auth_service_group_tmpl_name",
 			},
 		},
 	}
@@ -102,6 +102,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesAamAuthServiceGroupTmpl
 	ret.Inst.Server_selection_fail_reset = d.Get("server_selection_fail_reset").(int)
 	ret.Inst.ThresholdExceededBy = d.Get("threshold_exceeded_by").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Aam_auth_service_group_tmpl_name = d.Get("aam_auth_service_group_tmpl_name").(string)
 	return ret
 }

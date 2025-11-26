@@ -26,14 +26,14 @@ func resourceGslbZoneServiceDnsARecordDnsARecordSrvStats() *schema.Resource {
 			"svrname": {
 				Type: schema.TypeString, Required: true, Description: "Specify name",
 			},
-			"service_name": {
-				Type: schema.TypeString, Required: true, Description: "ServiceName",
-			},
 			"service_port": {
 				Type: schema.TypeString, Required: true, Description: "ServicePort",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"service_name": {
+				Type: schema.TypeString, Required: true, Description: "ServiceName",
+			},
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -84,10 +84,10 @@ func dataToEndpointGslbZoneServiceDnsARecordDnsARecordSrvStats(d *schema.Resourc
 
 	ret.Svrname = d.Get("svrname").(string)
 
-	ret.ServiceName = d.Get("service_name").(string)
-
 	ret.ServicePort = d.Get("service_port").(string)
 
-	ret.Name = d.Get("name").(string)
+	ret.ServiceName = d.Get("service_name").(string)
+
+	ret.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

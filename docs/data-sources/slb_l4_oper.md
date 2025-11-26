@@ -187,5 +187,3 @@ Optional:
 - `throttle_syn` (Number)
 - `udp_no_slb` (Number)
 - `udp_sess_aged_out` (Number)
-
-

@@ -71,6 +71,45 @@ func resourceSystemRadiusServer() *schema.Resource {
 			"custom_attribute_name": {
 				Type: schema.TypeString, Optional: true, Description: "Clear using customized attribute",
 			},
+			"derived_attribute": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"usergroup": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"attribute": {
+										Type: schema.TypeString, Optional: true, Description: "'imei': Specify the IMEI attribute.; 'imsi': Specify the IMSI attribute.; 'msisdn': Specify the MSISDN attribute.; 'custom1': Specify the custom1 attribute.; 'custom2': Specify the custom2 attribute.; 'custom3': Specify the custom3 attribute.; 'custom4': Specify the custom4 attribute.; 'custom5': Specify the custom5 attribute.; 'custom6': Specify the custom6 attribute.;",
+									},
+									"regex": {
+										Type: schema.TypeString, Optional: true, Description: "Specify the regular expression to parse the value from a RADIUS attribute.",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+						"userid": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"attribute": {
+										Type: schema.TypeString, Optional: true, Description: "'imei': Specify the IMEI attribute.; 'imsi': Specify the IMSI attribute.; 'msisdn': Specify the MSISDN attribute.; 'custom1': Specify the custom1 attribute.; 'custom2': Specify the custom2 attribute.; 'custom3': Specify the custom3 attribute.; 'custom4': Specify the custom4 attribute.; 'custom5': Specify the custom5 attribute.; 'custom6': Specify the custom6 attribute.;",
+									},
+									"regex": {
+										Type: schema.TypeString, Optional: true, Description: "Specify the regular expression to parse the value from a RADIUS attribute.",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			"disable_reply": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Toggle option for RADIUS reply packet(Default: Accounting response will be sent)",
 			},
@@ -209,6 +248,44 @@ func getSliceSystemRadiusServerAttribute(d []interface{}) []edpt.SystemRadiusSer
 	return ret
 }
 
+func getObjectSystemRadiusServerDerivedAttribute1698(d []interface{}) edpt.SystemRadiusServerDerivedAttribute1698 {
+
+	count1 := len(d)
+	var ret edpt.SystemRadiusServerDerivedAttribute1698
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Usergroup = getObjectSystemRadiusServerDerivedAttributeUsergroup1699(in["usergroup"].([]interface{}))
+		ret.Userid = getObjectSystemRadiusServerDerivedAttributeUserid1700(in["userid"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectSystemRadiusServerDerivedAttributeUsergroup1699(d []interface{}) edpt.SystemRadiusServerDerivedAttributeUsergroup1699 {
+
+	count1 := len(d)
+	var ret edpt.SystemRadiusServerDerivedAttributeUsergroup1699
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Attribute = in["attribute"].(string)
+		ret.Regex = in["regex"].(string)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectSystemRadiusServerDerivedAttributeUserid1700(d []interface{}) edpt.SystemRadiusServerDerivedAttributeUserid1700 {
+
+	count1 := len(d)
+	var ret edpt.SystemRadiusServerDerivedAttributeUserid1700
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Attribute = in["attribute"].(string)
+		ret.Regex = in["regex"].(string)
+		//omit uuid
+	}
+	return ret
+}
+
 func getObjectSystemRadiusServerRemote(d []interface{}) edpt.SystemRadiusServerRemote {
 
 	count1 := len(d)
@@ -258,6 +335,7 @@ func dataToEndpointSystemRadiusServer(d *schema.ResourceData) edpt.SystemRadiusS
 	ret.Inst.Attribute = getSliceSystemRadiusServerAttribute(d.Get("attribute").([]interface{}))
 	ret.Inst.AttributeName = d.Get("attribute_name").(string)
 	ret.Inst.CustomAttributeName = d.Get("custom_attribute_name").(string)
+	ret.Inst.DerivedAttribute = getObjectSystemRadiusServerDerivedAttribute1698(d.Get("derived_attribute").([]interface{}))
 	ret.Inst.DisableReply = d.Get("disable_reply").(int)
 	//omit encrypted
 	ret.Inst.ListenPort = d.Get("listen_port").(int)

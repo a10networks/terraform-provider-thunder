@@ -62,5 +62,3 @@ Optional:
 - `udp_data_event` (Number) Data event from UDP
 - `wbuf_cb_failed` (Number) Wbuf event callback failed
 - `wbuf_event` (Number) Wbuf event from TCP
-
-

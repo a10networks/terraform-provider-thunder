@@ -60,5 +60,3 @@ Optional:
 - `storage_type` (String)
 - `subject` (String)
 - `updates` (String)
-
-

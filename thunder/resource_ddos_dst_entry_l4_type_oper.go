@@ -13,33 +13,6 @@ func resourceDdosDstEntryL4TypeOper() *schema.Resource {
 		ReadContext: resourceDdosDstEntryL4TypeOperRead,
 
 		Schema: map[string]*schema.Schema{
-			"ip_filtering_policy_oper": {
-				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"oper": {
-							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-							Elem: &schema.Resource{
-								Schema: map[string]*schema.Schema{
-									"rule_list": {
-										Type: schema.TypeList, Optional: true, Description: "",
-										Elem: &schema.Resource{
-											Schema: map[string]*schema.Schema{
-												"seq": {
-													Type: schema.TypeInt, Optional: true, Description: "",
-												},
-												"hits": {
-													Type: schema.TypeInt, Optional: true, Description: "",
-												},
-											},
-										},
-									},
-								},
-							},
-						},
-					},
-				},
-			},
 			"oper": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -151,6 +124,9 @@ func resourceDdosDstEntryL4TypeOper() *schema.Resource {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 									"dynamic_entry_limit": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"dynamic_entry_warn_state": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
 									"sflow_source_id": {
@@ -409,8 +385,6 @@ func resourceDdosDstEntryL4TypeOperRead(ctx context.Context, d *schema.ResourceD
 		res, err := obj.Get(client.Token, client.Host, d.Id(), logger)
 		d.SetId(obj.GetId())
 		logger.Println(res)
-		DdosDstEntryL4TypeOperIpFilteringPolicyOper := setObjectDdosDstEntryL4TypeOperIpFilteringPolicyOper(res)
-		d.Set("ip_filtering_policy_oper", DdosDstEntryL4TypeOperIpFilteringPolicyOper)
 		DdosDstEntryL4TypeOperOper := setObjectDdosDstEntryL4TypeOperOper(res)
 		d.Set("oper", DdosDstEntryL4TypeOperOper)
 		DdosDstEntryL4TypeOperPortInd := setObjectDdosDstEntryL4TypeOperPortInd(res)
@@ -424,33 +398,6 @@ func resourceDdosDstEntryL4TypeOperRead(ctx context.Context, d *schema.ResourceD
 		}
 	}
 	return diags
-}
-
-func setObjectDdosDstEntryL4TypeOperIpFilteringPolicyOper(ret edpt.DataDdosDstEntryL4TypeOper) []interface{} {
-	return []interface{}{
-		map[string]interface{}{
-			"oper": setObjectDdosDstEntryL4TypeOperIpFilteringPolicyOperOper(ret.DtDdosDstEntryL4TypeOper.IpFilteringPolicyOper.Oper),
-		},
-	}
-}
-
-func setObjectDdosDstEntryL4TypeOperIpFilteringPolicyOperOper(d edpt.DdosDstEntryL4TypeOperIpFilteringPolicyOperOper) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	in["rule_list"] = setSliceDdosDstEntryL4TypeOperIpFilteringPolicyOperOperRuleList(d.RuleList)
-	result = append(result, in)
-	return result
-}
-
-func setSliceDdosDstEntryL4TypeOperIpFilteringPolicyOperOperRuleList(d []edpt.DdosDstEntryL4TypeOperIpFilteringPolicyOperOperRuleList) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	for _, item := range d {
-		in := make(map[string]interface{})
-		in["seq"] = item.Seq
-		in["hits"] = item.Hits
-		result = append(result, in)
-	}
-	return result
 }
 
 func setObjectDdosDstEntryL4TypeOperOper(ret edpt.DataDdosDstEntryL4TypeOper) []interface{} {
@@ -509,6 +456,7 @@ func setSliceDdosDstEntryL4TypeOperOperDdos_entry_list(d []edpt.DdosDstEntryL4Ty
 		in["lockup_time_str"] = item.LockupTimeStr
 		in["dynamic_entry_count"] = item.DynamicEntryCount
 		in["dynamic_entry_limit"] = item.DynamicEntryLimit
+		in["dynamic_entry_warn_state"] = item.DynamicEntryWarnState
 		in["sflow_source_id"] = item.SflowSourceId
 		in["debug_str"] = item.DebugStr
 		result = append(result, in)
@@ -679,42 +627,6 @@ func setSliceDdosDstEntryL4TypeOperTopkSourcesOperEntryListIndicators(d []edpt.D
 	return result
 }
 
-func getObjectDdosDstEntryL4TypeOperIpFilteringPolicyOper(d []interface{}) edpt.DdosDstEntryL4TypeOperIpFilteringPolicyOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstEntryL4TypeOperIpFilteringPolicyOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.Oper = getObjectDdosDstEntryL4TypeOperIpFilteringPolicyOperOper(in["oper"].([]interface{}))
-	}
-	return ret
-}
-
-func getObjectDdosDstEntryL4TypeOperIpFilteringPolicyOperOper(d []interface{}) edpt.DdosDstEntryL4TypeOperIpFilteringPolicyOperOper {
-
-	count1 := len(d)
-	var ret edpt.DdosDstEntryL4TypeOperIpFilteringPolicyOperOper
-	if count1 > 0 {
-		in := d[0].(map[string]interface{})
-		ret.RuleList = getSliceDdosDstEntryL4TypeOperIpFilteringPolicyOperOperRuleList(in["rule_list"].([]interface{}))
-	}
-	return ret
-}
-
-func getSliceDdosDstEntryL4TypeOperIpFilteringPolicyOperOperRuleList(d []interface{}) []edpt.DdosDstEntryL4TypeOperIpFilteringPolicyOperOperRuleList {
-
-	count1 := len(d)
-	ret := make([]edpt.DdosDstEntryL4TypeOperIpFilteringPolicyOperOperRuleList, 0, count1)
-	for _, item := range d {
-		in := item.(map[string]interface{})
-		var oi edpt.DdosDstEntryL4TypeOperIpFilteringPolicyOperOperRuleList
-		oi.Seq = in["seq"].(int)
-		oi.Hits = in["hits"].(int)
-		ret = append(ret, oi)
-	}
-	return ret
-}
-
 func getObjectDdosDstEntryL4TypeOperOper(d []interface{}) edpt.DdosDstEntryL4TypeOperOper {
 
 	count1 := len(d)
@@ -777,6 +689,7 @@ func getSliceDdosDstEntryL4TypeOperOperDdos_entry_list(d []interface{}) []edpt.D
 		oi.LockupTimeStr = in["lockup_time_str"].(string)
 		oi.DynamicEntryCount = in["dynamic_entry_count"].(string)
 		oi.DynamicEntryLimit = in["dynamic_entry_limit"].(string)
+		oi.DynamicEntryWarnState = in["dynamic_entry_warn_state"].(string)
 		oi.SflowSourceId = in["sflow_source_id"].(string)
 		oi.DebugStr = in["debug_str"].(string)
 		ret = append(ret, oi)
@@ -986,8 +899,6 @@ func getSliceDdosDstEntryL4TypeOperTopkSourcesOperEntryListIndicators(d []interf
 
 func dataToEndpointDdosDstEntryL4TypeOper(d *schema.ResourceData) edpt.DdosDstEntryL4TypeOper {
 	var ret edpt.DdosDstEntryL4TypeOper
-
-	ret.IpFilteringPolicyOper = getObjectDdosDstEntryL4TypeOperIpFilteringPolicyOper(d.Get("ip_filtering_policy_oper").([]interface{}))
 
 	ret.Oper = getObjectDdosDstEntryL4TypeOperOper(d.Get("oper").([]interface{}))
 

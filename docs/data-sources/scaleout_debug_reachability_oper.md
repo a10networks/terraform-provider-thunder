@@ -60,5 +60,3 @@ Optional:
 - `real_port` (Number)
 - `vlan_id` (Number)
 - `vnp_id` (Number)
-
-

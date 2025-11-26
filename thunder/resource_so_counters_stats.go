@@ -101,14 +101,35 @@ func resourceSoCountersStats() *schema.Resource {
 						"so_pkts_l3_redirect_too_large_pkts_in_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Received L3 Redirected fragmented packets too large",
 						},
+						"so_pkts_l3_redirect_encap_mtu_error_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Received L3 Redirected MTU not enough to add encap",
+						},
 						"so_pkts_l2redirect_vlan_retrieval_error": {
 							Type: schema.TypeInt, Optional: true, Description: "L2 redirect pkt vlan not retrieved",
 						},
 						"so_pkts_l2redirect_port_retrieval_error": {
 							Type: schema.TypeInt, Optional: true, Description: "L2 redirect pkt port not retrieved",
 						},
+						"so_pkts_l2redirect_loop_detect_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "L2 redirect pkt loop detected and dropped",
+						},
+						"so_pkts_l2redirect_same_pkt_multiple_times": {
+							Type: schema.TypeInt, Optional: true, Description: "L2 redirect same pkt multiple times",
+						},
 						"so_slb_shadow_session_created": {
 							Type: schema.TypeInt, Optional: true, Description: "SLB Shadow Session created",
+						},
+						"so_pkts_cgn_traffic_map_mismatch_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "CGN packets traffic map mismatch drop",
+						},
+						"so_pkts_redirection_loop_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Packets redirection loop drop",
+						},
+						"so_pkts_l2redirect_frag_vlan_retrieval_error": {
+							Type: schema.TypeInt, Optional: true, Description: "L2 redirect pkt frag vlan not retrieved",
+						},
+						"so_pkts_l2redirect_tx_frag_vlan_add_fail": {
+							Type: schema.TypeInt, Optional: true, Description: "L2 redirect tx pkt failed to add vlan",
 						},
 					},
 				},
@@ -167,9 +188,16 @@ func setObjectSoCountersStatsStats(ret edpt.DataSoCountersStats) []interface{} {
 			"so_pkts_l3_redirect_encap_ipv4_jumbo_frag_drop": ret.DtSoCountersStats.Stats.So_pkts_l3_redirect_encap_ipv4_jumbo_frag_drop,
 			"so_pkts_l3_redirect_encap_ipv6_jumbo_frag_drop": ret.DtSoCountersStats.Stats.So_pkts_l3_redirect_encap_ipv6_jumbo_frag_drop,
 			"so_pkts_l3_redirect_too_large_pkts_in_drop":     ret.DtSoCountersStats.Stats.So_pkts_l3_redirect_too_large_pkts_in_drop,
+			"so_pkts_l3_redirect_encap_mtu_error_drop":       ret.DtSoCountersStats.Stats.So_pkts_l3_redirect_encap_mtu_error_drop,
 			"so_pkts_l2redirect_vlan_retrieval_error":        ret.DtSoCountersStats.Stats.So_pkts_l2redirect_vlan_retrieval_error,
 			"so_pkts_l2redirect_port_retrieval_error":        ret.DtSoCountersStats.Stats.So_pkts_l2redirect_port_retrieval_error,
+			"so_pkts_l2redirect_loop_detect_drop":            ret.DtSoCountersStats.Stats.So_pkts_l2redirect_loop_detect_drop,
+			"so_pkts_l2redirect_same_pkt_multiple_times":     ret.DtSoCountersStats.Stats.So_pkts_l2redirect_same_pkt_multiple_times,
 			"so_slb_shadow_session_created":                  ret.DtSoCountersStats.Stats.So_slb_shadow_session_created,
+			"so_pkts_cgn_traffic_map_mismatch_drop":          ret.DtSoCountersStats.Stats.So_pkts_cgn_traffic_map_mismatch_drop,
+			"so_pkts_redirection_loop_drop":                  ret.DtSoCountersStats.Stats.So_pkts_redirection_loop_drop,
+			"so_pkts_l2redirect_frag_vlan_retrieval_error":   ret.DtSoCountersStats.Stats.So_pkts_l2redirect_frag_vlan_retrieval_error,
+			"so_pkts_l2redirect_tx_frag_vlan_add_fail":       ret.DtSoCountersStats.Stats.So_pkts_l2redirect_tx_frag_vlan_add_fail,
 		},
 	}
 }
@@ -208,9 +236,16 @@ func getObjectSoCountersStatsStats(d []interface{}) edpt.SoCountersStatsStats {
 		ret.So_pkts_l3_redirect_encap_ipv4_jumbo_frag_drop = in["so_pkts_l3_redirect_encap_ipv4_jumbo_frag_drop"].(int)
 		ret.So_pkts_l3_redirect_encap_ipv6_jumbo_frag_drop = in["so_pkts_l3_redirect_encap_ipv6_jumbo_frag_drop"].(int)
 		ret.So_pkts_l3_redirect_too_large_pkts_in_drop = in["so_pkts_l3_redirect_too_large_pkts_in_drop"].(int)
+		ret.So_pkts_l3_redirect_encap_mtu_error_drop = in["so_pkts_l3_redirect_encap_mtu_error_drop"].(int)
 		ret.So_pkts_l2redirect_vlan_retrieval_error = in["so_pkts_l2redirect_vlan_retrieval_error"].(int)
 		ret.So_pkts_l2redirect_port_retrieval_error = in["so_pkts_l2redirect_port_retrieval_error"].(int)
+		ret.So_pkts_l2redirect_loop_detect_drop = in["so_pkts_l2redirect_loop_detect_drop"].(int)
+		ret.So_pkts_l2redirect_same_pkt_multiple_times = in["so_pkts_l2redirect_same_pkt_multiple_times"].(int)
 		ret.So_slb_shadow_session_created = in["so_slb_shadow_session_created"].(int)
+		ret.So_pkts_cgn_traffic_map_mismatch_drop = in["so_pkts_cgn_traffic_map_mismatch_drop"].(int)
+		ret.So_pkts_redirection_loop_drop = in["so_pkts_redirection_loop_drop"].(int)
+		ret.So_pkts_l2redirect_frag_vlan_retrieval_error = in["so_pkts_l2redirect_frag_vlan_retrieval_error"].(int)
+		ret.So_pkts_l2redirect_tx_frag_vlan_add_fail = in["so_pkts_l2redirect_tx_frag_vlan_add_fail"].(int)
 	}
 	return ret
 }

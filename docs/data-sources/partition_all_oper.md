@@ -60,5 +60,3 @@ Optional:
 - `partition_name` (String)
 - `partition_type` (String)
 - `status` (String)
-
-

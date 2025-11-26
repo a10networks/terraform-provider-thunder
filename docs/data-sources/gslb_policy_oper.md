@@ -60,5 +60,3 @@ Optional:
 
 - `order` (Number)
 - `type` (String)
-
-

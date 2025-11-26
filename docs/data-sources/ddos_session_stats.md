@@ -66,5 +66,3 @@ Optional:
 - `sess_create_udp_auth` (Number) UDP Helper Auth Sessions Created
 - `sess_oom` (Number) Out of Session Memory
 - `sess_snat_failed` (Number) Session Source NAT Failure
-
-

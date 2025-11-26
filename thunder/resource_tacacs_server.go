@@ -62,6 +62,9 @@ func resourceTacacsServer() *schema.Resource {
 															"timeout": {
 																Type: schema.TypeInt, Optional: true, Default: 12, Description: "Specify the maximum time allowed for setting up a connection with the TACACS+ server. (default timeout is 12 seconds) (Maximum time allowed for setting up a connection with the TACACS+ server, in seconds (default 12))",
 															},
+															"prefer_data_interface": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Prefer data plane to send request (Only for loopback)",
+															},
 															"monitor": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify monitor TACACS+ server",
 															},
@@ -127,6 +130,9 @@ func resourceTacacsServer() *schema.Resource {
 															},
 															"timeout": {
 																Type: schema.TypeInt, Optional: true, Default: 12, Description: "Specify the maximum time allowed for setting up a connection with the TACACS+ server. (default timeout is 12 seconds) (Maximum time allowed for setting up a connection with the TACACS+ server, in seconds (default 12))",
+															},
+															"prefer_data_interface": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Prefer data plane to send request (Only for loopback)",
 															},
 															"monitor": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify monitor TACACS+ server",
@@ -196,6 +202,9 @@ func resourceTacacsServer() *schema.Resource {
 															},
 															"timeout": {
 																Type: schema.TypeInt, Optional: true, Default: 12, Description: "Specify the maximum time allowed for setting up a connection with the TACACS+ server. (default timeout is 12 seconds) (Maximum time allowed for setting up a connection with the TACACS+ server, in seconds (default 12))",
+															},
+															"prefer_data_interface": {
+																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Prefer data plane to send request (Only for loopback)",
 															},
 															"monitor": {
 																Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify monitor TACACS+ server",
@@ -298,10 +307,10 @@ func resourceTacacsServerRead(ctx context.Context, d *schema.ResourceData, meta 
 	return diags
 }
 
-func getObjectTacacsServerHost1896(d []interface{}) edpt.TacacsServerHost1896 {
+func getObjectTacacsServerHost2020(d []interface{}) edpt.TacacsServerHost2020 {
 
 	count1 := len(d)
-	var ret edpt.TacacsServerHost1896
+	var ret edpt.TacacsServerHost2020
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ipv4List = getSliceTacacsServerHostIpv4List(in["ipv4_list"].([]interface{}))
@@ -353,6 +362,7 @@ func getObjectTacacsServerHostIpv4ListSecretPortCfg(d []interface{}) edpt.Tacacs
 		in := d[0].(map[string]interface{})
 		ret.Port = in["port"].(int)
 		ret.Timeout = in["timeout"].(int)
+		ret.PreferDataInterface = in["prefer_data_interface"].(int)
 		ret.Monitor = in["monitor"].(int)
 		ret.Username = in["username"].(string)
 		ret.Password = in["password"].(int)
@@ -404,6 +414,7 @@ func getObjectTacacsServerHostIpv6ListSecretPortCfg(d []interface{}) edpt.Tacacs
 		in := d[0].(map[string]interface{})
 		ret.Port = in["port"].(int)
 		ret.Timeout = in["timeout"].(int)
+		ret.PreferDataInterface = in["prefer_data_interface"].(int)
 		ret.Monitor = in["monitor"].(int)
 		ret.Username = in["username"].(string)
 		ret.Password = in["password"].(int)
@@ -456,6 +467,7 @@ func getObjectTacacsServerHostTacacsHostnameListSecretPortCfg(d []interface{}) e
 		in := d[0].(map[string]interface{})
 		ret.Port = in["port"].(int)
 		ret.Timeout = in["timeout"].(int)
+		ret.PreferDataInterface = in["prefer_data_interface"].(int)
 		ret.Monitor = in["monitor"].(int)
 		ret.Username = in["username"].(string)
 		ret.Password = in["password"].(int)
@@ -467,7 +479,7 @@ func getObjectTacacsServerHostTacacsHostnameListSecretPortCfg(d []interface{}) e
 
 func dataToEndpointTacacsServer(d *schema.ResourceData) edpt.TacacsServer {
 	var ret edpt.TacacsServer
-	ret.Inst.Host = getObjectTacacsServerHost1896(d.Get("host").([]interface{}))
+	ret.Inst.Host = getObjectTacacsServerHost2020(d.Get("host").([]interface{}))
 	ret.Inst.Interval = d.Get("interval").(int)
 	ret.Inst.Monitor = d.Get("monitor").(int)
 	//omit uuid

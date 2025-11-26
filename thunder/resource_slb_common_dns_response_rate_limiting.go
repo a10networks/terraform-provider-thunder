@@ -19,6 +19,9 @@ func resourceSlbCommonDnsResponseRateLimiting() *schema.Resource {
 			"max_table_entries": {
 				Type: schema.TypeInt, Optional: true, Description: "Maximum number of entries allowed",
 			},
+			"source_entry_age": {
+				Type: schema.TypeInt, Optional: true, Description: "Source entry age in minutes (default 2)",
+			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
@@ -90,6 +93,7 @@ func resourceSlbCommonDnsResponseRateLimitingRead(ctx context.Context, d *schema
 func dataToEndpointSlbCommonDnsResponseRateLimiting(d *schema.ResourceData) edpt.SlbCommonDnsResponseRateLimiting {
 	var ret edpt.SlbCommonDnsResponseRateLimiting
 	ret.Inst.MaxTableEntries = d.Get("max_table_entries").(int)
+	ret.Inst.SourceEntryAge = d.Get("source_entry_age").(int)
 	//omit uuid
 	return ret
 }

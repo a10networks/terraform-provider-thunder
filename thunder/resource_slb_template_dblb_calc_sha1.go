@@ -19,8 +19,8 @@ func resourceSlbTemplateDblbCalcSha1() *schema.Resource {
 			"sha1_value": {
 				Type: schema.TypeString, Optional: true, Description: "Cleartext password",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"dblb_name": {
+				Type: schema.TypeString, Required: true, Description: "Dblb_name",
 			},
 		},
 	}
@@ -90,6 +90,6 @@ func resourceSlbTemplateDblbCalcSha1Read(ctx context.Context, d *schema.Resource
 func dataToEndpointSlbTemplateDblbCalcSha1(d *schema.ResourceData) edpt.SlbTemplateDblbCalcSha1 {
 	var ret edpt.SlbTemplateDblbCalcSha1
 	ret.Inst.Sha1Value = d.Get("sha1_value").(string)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Dblb_name = d.Get("dblb_name").(string)
 	return ret
 }

@@ -84,8 +84,8 @@ func resourceZoneInterface() *schema.Resource {
 					},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -230,6 +230,6 @@ func dataToEndpointZoneInterface(d *schema.ResourceData) edpt.ZoneInterface {
 	ret.Inst.TunnelList = getSliceZoneInterfaceTunnelList(d.Get("tunnel_list").([]interface{}))
 	//omit uuid
 	ret.Inst.VeList = getSliceZoneInterfaceVeList(d.Get("ve_list").([]interface{}))
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

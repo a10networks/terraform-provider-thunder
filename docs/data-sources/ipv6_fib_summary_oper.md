@@ -49,5 +49,3 @@ Optional:
 - `static_dynamic_routes` (Number)
 - `total_paths` (Number)
 - `total_routes` (Number)
-
-

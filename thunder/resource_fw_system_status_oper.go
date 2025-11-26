@@ -29,12 +29,6 @@ func resourceFwSystemStatusOper() *schema.Resource {
 						"smp_sessions_free": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
-						"radius_entries_used": {
-							Type: schema.TypeInt, Optional: true, Description: "",
-						},
-						"radius_entries_free": {
-							Type: schema.TypeInt, Optional: true, Description: "",
-						},
 					},
 				},
 			},
@@ -64,12 +58,10 @@ func resourceFwSystemStatusOperRead(ctx context.Context, d *schema.ResourceData,
 func setObjectFwSystemStatusOperOper(ret edpt.DataFwSystemStatusOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"data_sessions_used":  ret.DtFwSystemStatusOper.Oper.DataSessionsUsed,
-			"data_sessions_free":  ret.DtFwSystemStatusOper.Oper.DataSessionsFree,
-			"smp_sessions_used":   ret.DtFwSystemStatusOper.Oper.SmpSessionsUsed,
-			"smp_sessions_free":   ret.DtFwSystemStatusOper.Oper.SmpSessionsFree,
-			"radius_entries_used": ret.DtFwSystemStatusOper.Oper.RadiusEntriesUsed,
-			"radius_entries_free": ret.DtFwSystemStatusOper.Oper.RadiusEntriesFree,
+			"data_sessions_used": ret.DtFwSystemStatusOper.Oper.DataSessionsUsed,
+			"data_sessions_free": ret.DtFwSystemStatusOper.Oper.DataSessionsFree,
+			"smp_sessions_used":  ret.DtFwSystemStatusOper.Oper.SmpSessionsUsed,
+			"smp_sessions_free":  ret.DtFwSystemStatusOper.Oper.SmpSessionsFree,
 		},
 	}
 }
@@ -84,8 +76,6 @@ func getObjectFwSystemStatusOperOper(d []interface{}) edpt.FwSystemStatusOperOpe
 		ret.DataSessionsFree = in["data_sessions_free"].(int)
 		ret.SmpSessionsUsed = in["smp_sessions_used"].(int)
 		ret.SmpSessionsFree = in["smp_sessions_free"].(int)
-		ret.RadiusEntriesUsed = in["radius_entries_used"].(int)
-		ret.RadiusEntriesFree = in["radius_entries_free"].(int)
 	}
 	return ret
 }

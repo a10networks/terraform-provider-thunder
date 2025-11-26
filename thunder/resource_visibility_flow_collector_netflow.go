@@ -137,42 +137,42 @@ func getSliceVisibilityFlowCollectorNetflowSamplingEnable(d []interface{}) []edp
 	return ret
 }
 
-func getObjectVisibilityFlowCollectorNetflowTemplate1911(d []interface{}) edpt.VisibilityFlowCollectorNetflowTemplate1911 {
+func getObjectVisibilityFlowCollectorNetflowTemplate2036(d []interface{}) edpt.VisibilityFlowCollectorNetflowTemplate2036 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityFlowCollectorNetflowTemplate1911
+	var ret edpt.VisibilityFlowCollectorNetflowTemplate2036
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceVisibilityFlowCollectorNetflowTemplateSamplingEnable1912(in["sampling_enable"].([]interface{}))
-		ret.Detail = getObjectVisibilityFlowCollectorNetflowTemplateDetail1913(in["detail"].([]interface{}))
+		ret.SamplingEnable = getSliceVisibilityFlowCollectorNetflowTemplateSamplingEnable2037(in["sampling_enable"].([]interface{}))
+		ret.Detail = getObjectVisibilityFlowCollectorNetflowTemplateDetail2038(in["detail"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVisibilityFlowCollectorNetflowTemplateSamplingEnable1912(d []interface{}) []edpt.VisibilityFlowCollectorNetflowTemplateSamplingEnable1912 {
+func getSliceVisibilityFlowCollectorNetflowTemplateSamplingEnable2037(d []interface{}) []edpt.VisibilityFlowCollectorNetflowTemplateSamplingEnable2037 {
 
 	count1 := len(d)
-	ret := make([]edpt.VisibilityFlowCollectorNetflowTemplateSamplingEnable1912, 0, count1)
+	ret := make([]edpt.VisibilityFlowCollectorNetflowTemplateSamplingEnable2037, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VisibilityFlowCollectorNetflowTemplateSamplingEnable1912
+		var oi edpt.VisibilityFlowCollectorNetflowTemplateSamplingEnable2037
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectVisibilityFlowCollectorNetflowTemplateDetail1913(d []interface{}) edpt.VisibilityFlowCollectorNetflowTemplateDetail1913 {
+func getObjectVisibilityFlowCollectorNetflowTemplateDetail2038(d []interface{}) edpt.VisibilityFlowCollectorNetflowTemplateDetail2038 {
 
-	var ret edpt.VisibilityFlowCollectorNetflowTemplateDetail1913
+	var ret edpt.VisibilityFlowCollectorNetflowTemplateDetail2038
 	return ret
 }
 
 func dataToEndpointVisibilityFlowCollectorNetflow(d *schema.ResourceData) edpt.VisibilityFlowCollectorNetflow {
 	var ret edpt.VisibilityFlowCollectorNetflow
 	ret.Inst.SamplingEnable = getSliceVisibilityFlowCollectorNetflowSamplingEnable(d.Get("sampling_enable").([]interface{}))
-	ret.Inst.Template = getObjectVisibilityFlowCollectorNetflowTemplate1911(d.Get("template").([]interface{}))
+	ret.Inst.Template = getObjectVisibilityFlowCollectorNetflowTemplate2036(d.Get("template").([]interface{}))
 	//omit uuid
 	return ret
 }

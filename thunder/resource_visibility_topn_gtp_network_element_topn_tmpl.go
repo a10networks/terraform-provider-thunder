@@ -35,6 +35,18 @@ func resourceVisibilityTopnGtpNetworkElementTopnTmpl() *schema.Resource {
 						"downlink_pkts": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Downlink Packets",
 						},
+						"u_uplink_bytes": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Uplink Bytes",
+						},
+						"u_downlink_bytes": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Downlink Bytes",
+						},
+						"u_uplink_pkts": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Uplink Packets",
+						},
+						"u_downlink_pkts": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTP-U Downlink Packets",
+						},
 						"gtp_v0_c_tunnel_created": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTPv0-C Tunnel Created",
 						},
@@ -278,6 +290,9 @@ func resourceVisibilityTopnGtpNetworkElementTopnTmpl() *schema.Resource {
 						"drop_rl_gtp_u_max_concurrent_tunnels": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Rate-limit Drop: GTP-U Concurrent Tunnels",
 						},
+						"rl_message_monitor": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTP Message forwarded via monitor mode at rate-limit policy",
+						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
@@ -361,16 +376,20 @@ func resourceVisibilityTopnGtpNetworkElementTopnTmplRead(ctx context.Context, d 
 	return diags
 }
 
-func getObjectVisibilityTopnGtpNetworkElementTopnTmplMetrics3133(d []interface{}) edpt.VisibilityTopnGtpNetworkElementTopnTmplMetrics3133 {
+func getObjectVisibilityTopnGtpNetworkElementTopnTmplMetrics3232(d []interface{}) edpt.VisibilityTopnGtpNetworkElementTopnTmplMetrics3232 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnGtpNetworkElementTopnTmplMetrics3133
+	var ret edpt.VisibilityTopnGtpNetworkElementTopnTmplMetrics3232
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.UplinkBytes = in["uplink_bytes"].(int)
 		ret.DownlinkBytes = in["downlink_bytes"].(int)
 		ret.UplinkPkts = in["uplink_pkts"].(int)
 		ret.DownlinkPkts = in["downlink_pkts"].(int)
+		ret.UUplinkBytes = in["u_uplink_bytes"].(int)
+		ret.UDownlinkBytes = in["u_downlink_bytes"].(int)
+		ret.UUplinkPkts = in["u_uplink_pkts"].(int)
+		ret.UDownlinkPkts = in["u_downlink_pkts"].(int)
 		ret.GtpV0CTunnelCreated = in["gtp_v0_c_tunnel_created"].(int)
 		ret.GtpV0CTunnelHalfOpen = in["gtp_v0_c_tunnel_half_open"].(int)
 		ret.GtpV0CTunnelHalfClosed = in["gtp_v0_c_tunnel_half_closed"].(int)
@@ -452,6 +471,7 @@ func getObjectVisibilityTopnGtpNetworkElementTopnTmplMetrics3133(d []interface{}
 		ret.DropRlGtpUTotalByte = in["drop_rl_gtp_u_total_byte"].(int)
 		ret.DropRlGtpUTotalPacket = in["drop_rl_gtp_u_total_packet"].(int)
 		ret.DropRlGtpUMaxConcurrentTunnels = in["drop_rl_gtp_u_max_concurrent_tunnels"].(int)
+		ret.RlMessageMonitor = in["rl_message_monitor"].(int)
 		//omit uuid
 	}
 	return ret
@@ -460,7 +480,7 @@ func getObjectVisibilityTopnGtpNetworkElementTopnTmplMetrics3133(d []interface{}
 func dataToEndpointVisibilityTopnGtpNetworkElementTopnTmpl(d *schema.ResourceData) edpt.VisibilityTopnGtpNetworkElementTopnTmpl {
 	var ret edpt.VisibilityTopnGtpNetworkElementTopnTmpl
 	ret.Inst.Interval = d.Get("interval").(string)
-	ret.Inst.Metrics = getObjectVisibilityTopnGtpNetworkElementTopnTmplMetrics3133(d.Get("metrics").([]interface{}))
+	ret.Inst.Metrics = getObjectVisibilityTopnGtpNetworkElementTopnTmplMetrics3232(d.Get("metrics").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.TopnSize = d.Get("topn_size").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)

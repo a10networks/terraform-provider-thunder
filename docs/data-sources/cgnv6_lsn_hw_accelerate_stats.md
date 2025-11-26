@@ -65,5 +65,3 @@ Optional:
 - `tcam_counter` (Number) TCAM Flow Count
 - `tcam_create` (Number) TCAM Flows Created
 - `tcam_free` (Number) TCAM Flows Freed
-
-

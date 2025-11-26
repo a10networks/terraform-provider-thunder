@@ -44,6 +44,5 @@ output "get_network_vlan_global_stats" {
 
 Optional:
 
+- `asymmetric_route_drop_err` (Number)
 - `xparent_vlan_list_err` (Number) Transparent Mode VLAN List Errors
-
-

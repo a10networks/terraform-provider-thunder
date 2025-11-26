@@ -93,8 +93,8 @@ func resourceCgnv6LsnRuleListDomainNameOper() *schema.Resource {
 					},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"lsn_rule_list_name": {
+				Type: schema.TypeString, Required: true, Description: "Lsn_rule_list_name",
 			},
 		},
 	}
@@ -208,6 +208,6 @@ func dataToEndpointCgnv6LsnRuleListDomainNameOper(d *schema.ResourceData) edpt.C
 
 	ret.Oper = getObjectCgnv6LsnRuleListDomainNameOperOper(d.Get("oper").([]interface{}))
 
-	ret.Name = d.Get("name").(string)
+	ret.Lsn_rule_list_name = d.Get("lsn_rule_list_name").(string)
 	return ret
 }

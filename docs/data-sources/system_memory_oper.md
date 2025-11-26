@@ -49,8 +49,16 @@ Optional:
 - `buffers` (Number)
 - `cached` (Number)
 - `free` (Number)
+- `linux_cache` (Number)
+- `linux_free` (Number)
+- `linux_usage` (String)
+- `linux_used` (Number)
 - `n2_memory` (Block List) (see [below for nested schema](#nestedblock--oper--n2_memory))
 - `n2_memory_counts` (Number)
+- `pool_total` (Number)
+- `pool_unused` (Number)
+- `pool_usage` (String)
+- `pool_used` (Number)
 - `shared` (Number)
 - `ssl_memory` (Block List) (see [below for nested schema](#nestedblock--oper--ssl_memory))
 - `ssl_memory_counts` (Number)
@@ -110,5 +118,3 @@ Optional:
 - `allocated` (Number)
 - `max` (Number)
 - `object_size` (Number)
-
-

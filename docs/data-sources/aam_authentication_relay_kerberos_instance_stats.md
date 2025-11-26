@@ -54,5 +54,3 @@ Optional:
 - `request_send` (Number) Request Send
 - `response_receive` (Number) Response Receive
 - `tickets` (Number) Tickets
-
-

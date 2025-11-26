@@ -58,11 +58,11 @@ Optional:
 
 - `expiration` (Number)
 - `hardware_index` (Number)
+- `hw_add_count` (Number)
+- `hw_age` (Number)
 - `in_hardware` (Number)
 - `is_deleted` (Number)
 - `l4_protocol` (String)
 - `port` (Number)
 - `pps` (Number)
 - `v4_address` (String)
-
-

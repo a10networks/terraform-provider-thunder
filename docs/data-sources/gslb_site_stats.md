@@ -73,5 +73,3 @@ Optional:
 Optional:
 
 - `hits` (Number) Number of times the site was selected
-
-

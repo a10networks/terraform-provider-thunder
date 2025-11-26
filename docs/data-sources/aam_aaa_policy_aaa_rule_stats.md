@@ -36,8 +36,8 @@ output "get_aam_aaa_policy_aaa_rule_stats" {
 
 ### Required
 
+- `aaa_policy_name` (String) Aaa_policy_name
 - `index` (Number) Specify AAA rule index
-- `name` (String) Name
 
 ### Optional
 
@@ -57,5 +57,3 @@ Optional:
 - `hit_bypass` (Number)
 - `hit_deny` (Number)
 - `total_count` (Number)
-
-

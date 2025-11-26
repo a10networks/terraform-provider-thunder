@@ -46,5 +46,3 @@ Optional:
 
 - `nat_ip_conflict` (Number) NAT IP Conflict
 - `session_created` (Number) ESP Sessions Created
-
-

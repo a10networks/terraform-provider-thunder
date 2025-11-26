@@ -172,10 +172,10 @@ func resourceFwSessionAgingRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getObjectFwSessionAgingTcp374(d []interface{}) edpt.FwSessionAgingTcp374 {
+func getObjectFwSessionAgingTcp446(d []interface{}) edpt.FwSessionAgingTcp446 {
 
 	count1 := len(d)
-	var ret edpt.FwSessionAgingTcp374
+	var ret edpt.FwSessionAgingTcp446
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TcpIdleTimeout = in["tcp_idle_timeout"].(int)
@@ -183,19 +183,19 @@ func getObjectFwSessionAgingTcp374(d []interface{}) edpt.FwSessionAgingTcp374 {
 		ret.HalfCloseIdleTimeout = in["half_close_idle_timeout"].(int)
 		ret.ForceDeleteTimeout = in["force_delete_timeout"].(int)
 		ret.ForceDeleteTimeout100ms = in["force_delete_timeout_100ms"].(int)
-		ret.PortCfg = getSliceFwSessionAgingTcpPortCfg375(in["port_cfg"].([]interface{}))
+		ret.PortCfg = getSliceFwSessionAgingTcpPortCfg447(in["port_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceFwSessionAgingTcpPortCfg375(d []interface{}) []edpt.FwSessionAgingTcpPortCfg375 {
+func getSliceFwSessionAgingTcpPortCfg447(d []interface{}) []edpt.FwSessionAgingTcpPortCfg447 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwSessionAgingTcpPortCfg375, 0, count1)
+	ret := make([]edpt.FwSessionAgingTcpPortCfg447, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwSessionAgingTcpPortCfg375
+		var oi edpt.FwSessionAgingTcpPortCfg447
 		oi.TcpPort = in["tcp_port"].(int)
 		oi.TcpIdleTimeout = in["tcp_idle_timeout"].(int)
 		oi.HalfOpenIdleTimeout = in["half_open_idle_timeout"].(int)
@@ -207,26 +207,26 @@ func getSliceFwSessionAgingTcpPortCfg375(d []interface{}) []edpt.FwSessionAgingT
 	return ret
 }
 
-func getObjectFwSessionAgingUdp376(d []interface{}) edpt.FwSessionAgingUdp376 {
+func getObjectFwSessionAgingUdp448(d []interface{}) edpt.FwSessionAgingUdp448 {
 
 	count1 := len(d)
-	var ret edpt.FwSessionAgingUdp376
+	var ret edpt.FwSessionAgingUdp448
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.UdpIdleTimeout = in["udp_idle_timeout"].(int)
-		ret.PortCfg = getSliceFwSessionAgingUdpPortCfg377(in["port_cfg"].([]interface{}))
+		ret.PortCfg = getSliceFwSessionAgingUdpPortCfg449(in["port_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceFwSessionAgingUdpPortCfg377(d []interface{}) []edpt.FwSessionAgingUdpPortCfg377 {
+func getSliceFwSessionAgingUdpPortCfg449(d []interface{}) []edpt.FwSessionAgingUdpPortCfg449 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwSessionAgingUdpPortCfg377, 0, count1)
+	ret := make([]edpt.FwSessionAgingUdpPortCfg449, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwSessionAgingUdpPortCfg377
+		var oi edpt.FwSessionAgingUdpPortCfg449
 		oi.UdpPort = in["udp_port"].(int)
 		oi.UdpIdleTimeout = in["udp_idle_timeout"].(int)
 		ret = append(ret, oi)
@@ -239,8 +239,8 @@ func dataToEndpointFwSessionAging(d *schema.ResourceData) edpt.FwSessionAging {
 	ret.Inst.IcmpIdleTimeout = d.Get("icmp_idle_timeout").(int)
 	ret.Inst.IpIdleTimeout = d.Get("ip_idle_timeout").(int)
 	ret.Inst.Name = d.Get("name").(string)
-	ret.Inst.Tcp = getObjectFwSessionAgingTcp374(d.Get("tcp").([]interface{}))
-	ret.Inst.Udp = getObjectFwSessionAgingUdp376(d.Get("udp").([]interface{}))
+	ret.Inst.Tcp = getObjectFwSessionAgingTcp446(d.Get("tcp").([]interface{}))
+	ret.Inst.Udp = getObjectFwSessionAgingUdp448(d.Get("udp").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

@@ -28,8 +28,8 @@ func resourceSlbTemplateDohDnsRetry() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"doh_name": {
+				Type: schema.TypeString, Required: true, Description: "Doh_name",
 			},
 		},
 	}
@@ -102,6 +102,6 @@ func dataToEndpointSlbTemplateDohDnsRetry(d *schema.ResourceData) edpt.SlbTempla
 	ret.Inst.MaxTrials = d.Get("max_trials").(int)
 	ret.Inst.RetryInterval = d.Get("retry_interval").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Doh_name = d.Get("doh_name").(string)
 	return ret
 }

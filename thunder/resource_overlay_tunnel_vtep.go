@@ -29,6 +29,9 @@ func resourceOverlayTunnelVtep() *schema.Resource {
 						"ip_addr": {
 							Type: schema.TypeString, Required: true, Description: "IPv4 address of the overlay host",
 						},
+						"ipv6_addr": {
+							Type: schema.TypeString, Optional: true, Description: "IPv6 address of the overlay host",
+						},
 						"overlay_mac_addr": {
 							Type: schema.TypeString, Required: true, Description: "MAC Address of the overlay host",
 						},
@@ -37,6 +40,9 @@ func resourceOverlayTunnelVtep() *schema.Resource {
 						},
 						"remote_vtep": {
 							Type: schema.TypeString, Required: true, Description: "Configure the VTEP IP address (IPv4 address of the VTEP for the remote host)",
+						},
+						"remote_ipv6_vtep": {
+							Type: schema.TypeString, Required: true, Description: "Configure the VTEP IPv6 address (IPv6 address of the VTEP for the remote host)",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -92,6 +98,28 @@ func resourceOverlayTunnelVtep() *schema.Resource {
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
+						"vni_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"segment": {
+										Type: schema.TypeInt, Required: true, Description: "Id of the segment that is being extended",
+									},
+									"partition": {
+										Type: schema.TypeString, Optional: true, Description: "Name of the Partition with the L2 segment being extended (Name of the User Partition with the L2 segment being extended)",
+									},
+									"gateway": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "This is a Gateway segment id",
+									},
+									"lif": {
+										Type: schema.TypeString, Optional: true, Description: "Logical interface (logical interface name)",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
 					},
 				},
 			},
@@ -101,6 +129,9 @@ func resourceOverlayTunnelVtep() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"ip_address": {
 							Type: schema.TypeString, Required: true, Description: "IP Address of the remote VTEP",
+						},
+						"class_list": {
+							Type: schema.TypeString, Optional: true, Description: "Name of the class-list",
 						},
 						"encap": {
 							Type: schema.TypeString, Optional: true, Description: "'nvgre': Tunnel Encapsulation Type is NVGRE; 'vxlan': Tunnel Encapsulation Type is VXLAN;",
@@ -179,6 +210,12 @@ func resourceOverlayTunnelVtep() *schema.Resource {
 						"ipv6_address": {
 							Type: schema.TypeString, Required: true, Description: "IPv6 Address of the remote VTEP",
 						},
+						"class_list": {
+							Type: schema.TypeString, Optional: true, Description: "Name of the class-list",
+						},
+						"encap": {
+							Type: schema.TypeString, Optional: true, Description: "'vxlan': Tunnel Encapsulation Type is VXLAN;",
+						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
@@ -194,6 +231,48 @@ func resourceOverlayTunnelVtep() *schema.Resource {
 									},
 									"lif": {
 										Type: schema.TypeString, Optional: true, Description: "Logical interface (logical interface name)",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+						"gre_keepalive": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"retry_time": {
+										Type: schema.TypeInt, Optional: true, Default: 10, Description: "Keepalive retry interval in seconds",
+									},
+									"retry_count": {
+										Type: schema.TypeInt, Optional: true, Description: "Keepalive multiplier",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+						"use_gre_key": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"gre_key": {
+										Type: schema.TypeInt, Optional: true, Description: "key",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
+						},
+						"vni_list": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"segment": {
+										Type: schema.TypeInt, Required: true, Description: "VNI configured for the remote VTEP",
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -309,35 +388,37 @@ func getSliceOverlayTunnelVtepHostList(d []interface{}) []edpt.OverlayTunnelVtep
 		in := item.(map[string]interface{})
 		var oi edpt.OverlayTunnelVtepHostList
 		oi.IpAddr = in["ip_addr"].(string)
+		oi.Ipv6Addr = in["ipv6_addr"].(string)
 		oi.OverlayMacAddr = in["overlay_mac_addr"].(string)
 		oi.Vni = in["vni"].(int)
 		oi.RemoteVtep = in["remote_vtep"].(string)
+		oi.RemoteIpv6Vtep = in["remote_ipv6_vtep"].(string)
 		//omit uuid
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectOverlayTunnelVtepLocalIpAddress1085(d []interface{}) edpt.OverlayTunnelVtepLocalIpAddress1085 {
+func getObjectOverlayTunnelVtepLocalIpAddress1168(d []interface{}) edpt.OverlayTunnelVtepLocalIpAddress1168 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelVtepLocalIpAddress1085
+	var ret edpt.OverlayTunnelVtepLocalIpAddress1168
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.IpAddress = in["ip_address"].(string)
 		//omit uuid
-		ret.VniList = getSliceOverlayTunnelVtepLocalIpAddressVniList1086(in["vni_list"].([]interface{}))
+		ret.VniList = getSliceOverlayTunnelVtepLocalIpAddressVniList1169(in["vni_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceOverlayTunnelVtepLocalIpAddressVniList1086(d []interface{}) []edpt.OverlayTunnelVtepLocalIpAddressVniList1086 {
+func getSliceOverlayTunnelVtepLocalIpAddressVniList1169(d []interface{}) []edpt.OverlayTunnelVtepLocalIpAddressVniList1169 {
 
 	count1 := len(d)
-	ret := make([]edpt.OverlayTunnelVtepLocalIpAddressVniList1086, 0, count1)
+	ret := make([]edpt.OverlayTunnelVtepLocalIpAddressVniList1169, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.OverlayTunnelVtepLocalIpAddressVniList1086
+		var oi edpt.OverlayTunnelVtepLocalIpAddressVniList1169
 		oi.Segment = in["segment"].(int)
 		oi.Partition = in["partition"].(string)
 		oi.Gateway = in["gateway"].(int)
@@ -348,14 +429,32 @@ func getSliceOverlayTunnelVtepLocalIpAddressVniList1086(d []interface{}) []edpt.
 	return ret
 }
 
-func getObjectOverlayTunnelVtepLocalIpv6Address1087(d []interface{}) edpt.OverlayTunnelVtepLocalIpv6Address1087 {
+func getObjectOverlayTunnelVtepLocalIpv6Address1170(d []interface{}) edpt.OverlayTunnelVtepLocalIpv6Address1170 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelVtepLocalIpv6Address1087
+	var ret edpt.OverlayTunnelVtepLocalIpv6Address1170
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ipv6Address = in["ipv6_address"].(string)
 		//omit uuid
+		ret.VniList = getSliceOverlayTunnelVtepLocalIpv6AddressVniList1171(in["vni_list"].([]interface{}))
+	}
+	return ret
+}
+
+func getSliceOverlayTunnelVtepLocalIpv6AddressVniList1171(d []interface{}) []edpt.OverlayTunnelVtepLocalIpv6AddressVniList1171 {
+
+	count1 := len(d)
+	ret := make([]edpt.OverlayTunnelVtepLocalIpv6AddressVniList1171, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.OverlayTunnelVtepLocalIpv6AddressVniList1171
+		oi.Segment = in["segment"].(int)
+		oi.Partition = in["partition"].(string)
+		oi.Gateway = in["gateway"].(int)
+		oi.Lif = in["lif"].(string)
+		//omit uuid
+		ret = append(ret, oi)
 	}
 	return ret
 }
@@ -368,6 +467,7 @@ func getSliceOverlayTunnelVtepRemoteIpAddressList(d []interface{}) []edpt.Overla
 		in := item.(map[string]interface{})
 		var oi edpt.OverlayTunnelVtepRemoteIpAddressList
 		oi.IpAddress = in["ip_address"].(string)
+		oi.ClassList = in["class_list"].(string)
 		oi.Encap = in["encap"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
@@ -440,9 +540,14 @@ func getSliceOverlayTunnelVtepRemoteIpv6AddressList(d []interface{}) []edpt.Over
 		in := item.(map[string]interface{})
 		var oi edpt.OverlayTunnelVtepRemoteIpv6AddressList
 		oi.Ipv6Address = in["ipv6_address"].(string)
+		oi.ClassList = in["class_list"].(string)
+		oi.Encap = in["encap"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		oi.UseLif = getObjectOverlayTunnelVtepRemoteIpv6AddressListUseLif(in["use_lif"].([]interface{}))
+		oi.GreKeepalive = getObjectOverlayTunnelVtepRemoteIpv6AddressListGreKeepalive(in["gre_keepalive"].([]interface{}))
+		oi.UseGreKey = getObjectOverlayTunnelVtepRemoteIpv6AddressListUseGreKey(in["use_gre_key"].([]interface{}))
+		oi.VniList = getSliceOverlayTunnelVtepRemoteIpv6AddressListVniList(in["vni_list"].([]interface{}))
 		ret = append(ret, oi)
 	}
 	return ret
@@ -461,6 +566,45 @@ func getObjectOverlayTunnelVtepRemoteIpv6AddressListUseLif(d []interface{}) edpt
 	return ret
 }
 
+func getObjectOverlayTunnelVtepRemoteIpv6AddressListGreKeepalive(d []interface{}) edpt.OverlayTunnelVtepRemoteIpv6AddressListGreKeepalive {
+
+	count1 := len(d)
+	var ret edpt.OverlayTunnelVtepRemoteIpv6AddressListGreKeepalive
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.RetryTime = in["retry_time"].(int)
+		ret.RetryCount = in["retry_count"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectOverlayTunnelVtepRemoteIpv6AddressListUseGreKey(d []interface{}) edpt.OverlayTunnelVtepRemoteIpv6AddressListUseGreKey {
+
+	count1 := len(d)
+	var ret edpt.OverlayTunnelVtepRemoteIpv6AddressListUseGreKey
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.GreKey = in["gre_key"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getSliceOverlayTunnelVtepRemoteIpv6AddressListVniList(d []interface{}) []edpt.OverlayTunnelVtepRemoteIpv6AddressListVniList {
+
+	count1 := len(d)
+	ret := make([]edpt.OverlayTunnelVtepRemoteIpv6AddressListVniList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.OverlayTunnelVtepRemoteIpv6AddressListVniList
+		oi.Segment = in["segment"].(int)
+		//omit uuid
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func getSliceOverlayTunnelVtepSamplingEnable(d []interface{}) []edpt.OverlayTunnelVtepSamplingEnable {
 
 	count1 := len(d)
@@ -474,10 +618,10 @@ func getSliceOverlayTunnelVtepSamplingEnable(d []interface{}) []edpt.OverlayTunn
 	return ret
 }
 
-func getObjectOverlayTunnelVtepSrcPortRange1088(d []interface{}) edpt.OverlayTunnelVtepSrcPortRange1088 {
+func getObjectOverlayTunnelVtepSrcPortRange1172(d []interface{}) edpt.OverlayTunnelVtepSrcPortRange1172 {
 
 	count1 := len(d)
-	var ret edpt.OverlayTunnelVtepSrcPortRange1088
+	var ret edpt.OverlayTunnelVtepSrcPortRange1172
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MinPort = in["min_port"].(int)
@@ -493,12 +637,12 @@ func dataToEndpointOverlayTunnelVtep(d *schema.ResourceData) edpt.OverlayTunnelV
 	ret.Inst.Encap = d.Get("encap").(string)
 	ret.Inst.HostList = getSliceOverlayTunnelVtepHostList(d.Get("host_list").([]interface{}))
 	ret.Inst.Id1 = d.Get("id1").(int)
-	ret.Inst.LocalIpAddress = getObjectOverlayTunnelVtepLocalIpAddress1085(d.Get("local_ip_address").([]interface{}))
-	ret.Inst.LocalIpv6Address = getObjectOverlayTunnelVtepLocalIpv6Address1087(d.Get("local_ipv6_address").([]interface{}))
+	ret.Inst.LocalIpAddress = getObjectOverlayTunnelVtepLocalIpAddress1168(d.Get("local_ip_address").([]interface{}))
+	ret.Inst.LocalIpv6Address = getObjectOverlayTunnelVtepLocalIpv6Address1170(d.Get("local_ipv6_address").([]interface{}))
 	ret.Inst.RemoteIpAddressList = getSliceOverlayTunnelVtepRemoteIpAddressList(d.Get("remote_ip_address_list").([]interface{}))
 	ret.Inst.RemoteIpv6AddressList = getSliceOverlayTunnelVtepRemoteIpv6AddressList(d.Get("remote_ipv6_address_list").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceOverlayTunnelVtepSamplingEnable(d.Get("sampling_enable").([]interface{}))
-	ret.Inst.SrcPortRange = getObjectOverlayTunnelVtepSrcPortRange1088(d.Get("src_port_range").([]interface{}))
+	ret.Inst.SrcPortRange = getObjectOverlayTunnelVtepSrcPortRange1172(d.Get("src_port_range").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

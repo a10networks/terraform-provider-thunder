@@ -50,5 +50,3 @@ Optional:
 - `partition_name` (String)
 - `tenant_id` (String)
 - `tenant_name` (String)
-
-

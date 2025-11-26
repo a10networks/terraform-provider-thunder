@@ -61,5 +61,3 @@ Optional:
 - `issuer` (String)
 - `subject` (String)
 - `ttl` (Number)
-
-

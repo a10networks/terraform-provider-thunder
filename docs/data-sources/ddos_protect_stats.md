@@ -48,5 +48,3 @@ Optional:
 - `rr_sess_lookup` (Number) DDOS RR Session Lookup
 - `runtime_disable` (Number) DDOS Runtime Disable
 - `runtime_enable` (Number) DDOS Runtime Enable
-
-

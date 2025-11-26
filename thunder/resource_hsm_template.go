@@ -69,7 +69,7 @@ func resourceHsmTemplate() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Softcard",
 			},
 			"softhsm_enum": {
-				Type: schema.TypeString, Optional: true, Description: "'softHSM': software implementation of a cryptographic store; 'thalesHSM': Thales HSM;",
+				Type: schema.TypeString, Optional: true, Description: "'softHSM': software implementation of a cryptographic store;",
 			},
 			"template_name": {
 				Type: schema.TypeString, Required: true, Description: "Specify Template name",

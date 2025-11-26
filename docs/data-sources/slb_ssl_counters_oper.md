@@ -238,5 +238,3 @@ Optional:
 - `tls1_rsa_export1024_rc4_56_sha_id` (String) TLS1_RSA_EXPORT1024_RC4_56_SHA Cipher ID
 - `tls1_rsa_export1024_rc4_56_sha_successes` (Number) TLS1_RSA_EXPORT1024_RC4_56_SHA Successes
 - `vserver` (String) virtual server name
-
-

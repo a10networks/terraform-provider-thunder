@@ -112,5 +112,3 @@ Optional:
 - `tcp_session_deleted` (Number) TCP Session Deleted
 - `udp_session_created` (Number) UDP Session Created
 - `udp_session_deleted` (Number) UDP Session Deleted
-
-

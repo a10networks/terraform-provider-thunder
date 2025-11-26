@@ -43,8 +43,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerStatsSeve
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"imap_vport_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Imap_vport_tmpl_name",
 			},
 		},
 	}
@@ -122,6 +122,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesImapVportTmplTriggerSta
 	ret.Inst.ErrorCritical = d.Get("error_critical").(int)
 	ret.Inst.ErrorWarning = d.Get("error_warning").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Imap_vport_tmpl_name = d.Get("imap_vport_tmpl_name").(string)
 	return ret
 }

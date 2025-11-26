@@ -49,5 +49,3 @@ Optional:
 - `generic_error` (Number) Pattern Recognition: Exceptions
 - `not_found` (Number) Pattern Recognition: Pattern Not Found
 - `proceeded` (Number) Pattern Recognition: Engine Started
-
-

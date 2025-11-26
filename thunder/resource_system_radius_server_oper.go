@@ -57,6 +57,12 @@ func resourceSystemRadiusServerOper() *schema.Resource {
 									"custom6_attr_value": {
 										Type: schema.TypeString, Optional: true, Description: "",
 									},
+									"derived_attr_usergroup_value": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"derived_attr_userid_value": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
 									"is_obsolete": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
@@ -70,6 +76,12 @@ func resourceSystemRadiusServerOper() *schema.Resource {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
 						"custom_attr_value": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"derived_attribute_name": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"derived_attribute_value": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
 						"starts_with": {
@@ -111,6 +123,8 @@ func setObjectSystemRadiusServerOperOper(ret edpt.DataSystemRadiusServerOper) []
 			"total_entries":             ret.DtSystemRadiusServerOper.Oper.TotalEntries,
 			"custom_attr_name":          ret.DtSystemRadiusServerOper.Oper.CustomAttrName,
 			"custom_attr_value":         ret.DtSystemRadiusServerOper.Oper.CustomAttrValue,
+			"derived_attribute_name":    ret.DtSystemRadiusServerOper.Oper.DerivedAttributeName,
+			"derived_attribute_value":   ret.DtSystemRadiusServerOper.Oper.DerivedAttributeValue,
 			"starts_with":               ret.DtSystemRadiusServerOper.Oper.StartsWith,
 			"case_insensitive":          ret.DtSystemRadiusServerOper.Oper.CaseInsensitive,
 		},
@@ -133,6 +147,8 @@ func setSliceSystemRadiusServerOperOperRadiusTableEntriesList(d []edpt.SystemRad
 		in["custom4_attr_value"] = item.Custom4AttrValue
 		in["custom5_attr_value"] = item.Custom5AttrValue
 		in["custom6_attr_value"] = item.Custom6AttrValue
+		in["derived_attr_usergroup_value"] = item.DerivedAttrUsergroupValue
+		in["derived_attr_userid_value"] = item.DerivedAttrUseridValue
 		in["is_obsolete"] = item.IsObsolete
 		result = append(result, in)
 	}
@@ -149,6 +165,8 @@ func getObjectSystemRadiusServerOperOper(d []interface{}) edpt.SystemRadiusServe
 		ret.TotalEntries = in["total_entries"].(int)
 		ret.CustomAttrName = in["custom_attr_name"].(string)
 		ret.CustomAttrValue = in["custom_attr_value"].(string)
+		ret.DerivedAttributeName = in["derived_attribute_name"].(string)
+		ret.DerivedAttributeValue = in["derived_attribute_value"].(string)
 		ret.StartsWith = in["starts_with"].(int)
 		ret.CaseInsensitive = in["case_insensitive"].(int)
 	}
@@ -174,6 +192,8 @@ func getSliceSystemRadiusServerOperOperRadiusTableEntriesList(d []interface{}) [
 		oi.Custom4AttrValue = in["custom4_attr_value"].(string)
 		oi.Custom5AttrValue = in["custom5_attr_value"].(string)
 		oi.Custom6AttrValue = in["custom6_attr_value"].(string)
+		oi.DerivedAttrUsergroupValue = in["derived_attr_usergroup_value"].(string)
+		oi.DerivedAttrUseridValue = in["derived_attr_userid_value"].(string)
 		oi.IsObsolete = in["is_obsolete"].(int)
 		ret = append(ret, oi)
 	}

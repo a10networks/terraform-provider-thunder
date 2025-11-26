@@ -44,6 +44,7 @@ output "get_fw_gtp_apn_prefix_stats" {
 
 Optional:
 
+- `apn_imsi_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at APN-IMSI filtering policy
 - `downlink_bytes` (Number) Downlink Bytes
 - `downlink_pkts` (Number) Downlink Packets
 - `drop_flt_apn_filtering` (Number) Filtering Drop: APN IMSI Filtering
@@ -110,7 +111,10 @@ Optional:
 - `drop_vld_v1_reserved_message_drop` (Number) Validation Drop: GTPv1-C Reserved Message Drop
 - `drop_vld_v2_reserved_message_drop` (Number) Validation Drop: GTPv2-C Reserved Message Drop
 - `drop_vld_version_not_supported` (Number) Validation Drop: Invalid GTP version
+- `flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at message filtering policy
+- `gen_message_length_monitor` (Number) GTP Message forwarded via monitor mode at validation policy
 - `gtp_c_handover_in_progress_with_conn` (Number) GTP-C matching a conn with Handover In Progress
+- `gtp_in_gtp_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at GTP-IN_GTP filtering policy
 - `gtp_path_management_message` (Number) GTP Path Management Messages Received
 - `gtp_u_tunnel_created` (Number) GTP-U Tunnel Created
 - `gtp_u_tunnel_deleted` (Number) GTP-U Tunnel Deleted
@@ -159,7 +163,13 @@ Optional:
 - `gtp_v2_c_tunnel_half_closed` (Number) GTPv2-C Tunnel Delete Request
 - `gtp_v2_c_tunnel_half_open` (Number) GTPv2-C Half open tunnel created
 - `key_name` (String)
+- `msisdn_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at Msisdn filtering policy
+- `rat_flt_message_monitor` (Number) GTP-C Message forwarded via monitor mode at rat filtering policy
+- `rl_message_monitor` (Number) GTP Message forwarded via monitor mode at rate-limit policy
+- `u_downlink_bytes` (Number) Downlink Bytes
+- `u_downlink_pkts` (Number) GTP-U Downlink Packets
+- `u_uplink_bytes` (Number) Uplink Bytes
+- `u_uplink_pkts` (Number) Uplink Packets
 - `uplink_bytes` (Number) Uplink Bytes
 - `uplink_pkts` (Number) Uplink Packets
-
-
+- `vld_message_monitor` (Number) GTP Message forwarded via monitor mode at validation policy

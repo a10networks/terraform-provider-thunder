@@ -76,6 +76,9 @@ func resourceSlbVirtualServerOper() *schema.Resource {
 						"ip_address": {
 							Type: schema.TypeString, Optional: true, Description: "",
 						},
+						"ipv6_address": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
 						"curr_conn_overflow": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -198,6 +201,9 @@ func resourceSlbVirtualServerOper() *schema.Resource {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 												"status_102": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"status_103": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 												"status_300": {
@@ -428,6 +434,9 @@ func resourceSlbVirtualServerOper() *schema.Resource {
 												"req_over_5s": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
+												"total_requests": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
 												"curr_http2_conn": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
@@ -462,6 +471,9 @@ func resourceSlbVirtualServerOper() *schema.Resource {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 												"stream_closed": {
+													Type: schema.TypeInt, Optional: true, Description: "",
+												},
+												"transaction_limited": {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 												"jsi_requests": {
@@ -872,6 +884,7 @@ func setObjectSlbVirtualServerOperOper(ret edpt.DataSlbVirtualServerOper) []inte
 			"migration_status":            ret.DtSlbVirtualServerOper.Oper.MigrationStatus,
 			"peak_conn":                   ret.DtSlbVirtualServerOper.Oper.PeakConn,
 			"ip_address":                  ret.DtSlbVirtualServerOper.Oper.IpAddress,
+			"ipv6_address":                ret.DtSlbVirtualServerOper.Oper.Ipv6Address,
 			"curr_conn_overflow":          ret.DtSlbVirtualServerOper.Oper.CurrConnOverflow,
 			"ip_only_lb_fwd_bytes":        ret.DtSlbVirtualServerOper.Oper.Ip_only_lb_fwd_bytes,
 			"ip_only_lb_rev_bytes":        ret.DtSlbVirtualServerOper.Oper.Ip_only_lb_rev_bytes,
@@ -967,6 +980,7 @@ func setSliceSlbVirtualServerOperPortListOperHttpVportCpuList(d []edpt.SlbVirtua
 		in["status_100"] = item.Status_100
 		in["status_101"] = item.Status_101
 		in["status_102"] = item.Status_102
+		in["status_103"] = item.Status_103
 		in["status_300"] = item.Status_300
 		in["status_301"] = item.Status_301
 		in["status_302"] = item.Status_302
@@ -1043,6 +1057,7 @@ func setSliceSlbVirtualServerOperPortListOperHttpVportCpuList(d []edpt.SlbVirtua
 		in["req_2s"] = item.Req_2s
 		in["req_5s"] = item.Req_5s
 		in["req_over_5s"] = item.Req_over_5s
+		in["total_requests"] = item.Total_requests
 		in["curr_http2_conn"] = item.Curr_http2_conn
 		in["total_http2_conn"] = item.Total_http2_conn
 		in["peak_http2_conn"] = item.Peak_http2_conn
@@ -1055,6 +1070,7 @@ func setSliceSlbVirtualServerOperPortListOperHttpVportCpuList(d []edpt.SlbVirtua
 		in["http2_goaway_received"] = item.Http2_goaway_received
 		in["http2_goaway_sent"] = item.Http2_goaway_sent
 		in["stream_closed"] = item.Stream_closed
+		in["transaction_limited"] = item.Transaction_limited
 		in["jsi_requests"] = item.Jsi_requests
 		in["jsi_responses"] = item.Jsi_responses
 		in["jsi_pri_requests"] = item.Jsi_pri_requests
@@ -1209,6 +1225,7 @@ func getObjectSlbVirtualServerOperOper(d []interface{}) edpt.SlbVirtualServerOpe
 		ret.MigrationStatus = in["migration_status"].(string)
 		ret.PeakConn = in["peak_conn"].(int)
 		ret.IpAddress = in["ip_address"].(string)
+		ret.Ipv6Address = in["ipv6_address"].(string)
 		ret.CurrConnOverflow = in["curr_conn_overflow"].(int)
 		ret.Ip_only_lb_fwd_bytes = in["ip_only_lb_fwd_bytes"].(int)
 		ret.Ip_only_lb_rev_bytes = in["ip_only_lb_rev_bytes"].(int)
@@ -1296,6 +1313,7 @@ func getSliceSlbVirtualServerOperPortListOperHttpVportCpuList(d []interface{}) [
 		oi.Status_100 = in["status_100"].(int)
 		oi.Status_101 = in["status_101"].(int)
 		oi.Status_102 = in["status_102"].(int)
+		oi.Status_103 = in["status_103"].(int)
 		oi.Status_300 = in["status_300"].(int)
 		oi.Status_301 = in["status_301"].(int)
 		oi.Status_302 = in["status_302"].(int)
@@ -1372,6 +1390,7 @@ func getSliceSlbVirtualServerOperPortListOperHttpVportCpuList(d []interface{}) [
 		oi.Req_2s = in["req_2s"].(int)
 		oi.Req_5s = in["req_5s"].(int)
 		oi.Req_over_5s = in["req_over_5s"].(int)
+		oi.Total_requests = in["total_requests"].(int)
 		oi.Curr_http2_conn = in["curr_http2_conn"].(int)
 		oi.Total_http2_conn = in["total_http2_conn"].(int)
 		oi.Peak_http2_conn = in["peak_http2_conn"].(int)
@@ -1384,6 +1403,7 @@ func getSliceSlbVirtualServerOperPortListOperHttpVportCpuList(d []interface{}) [
 		oi.Http2_goaway_received = in["http2_goaway_received"].(int)
 		oi.Http2_goaway_sent = in["http2_goaway_sent"].(int)
 		oi.Stream_closed = in["stream_closed"].(int)
+		oi.Transaction_limited = in["transaction_limited"].(int)
 		oi.Jsi_requests = in["jsi_requests"].(int)
 		oi.Jsi_responses = in["jsi_responses"].(int)
 		oi.Jsi_pri_requests = in["jsi_pri_requests"].(int)

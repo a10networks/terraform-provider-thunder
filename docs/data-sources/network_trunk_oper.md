@@ -73,5 +73,5 @@ Optional:
 - `cfg_status` (String)
 - `members` (Number)
 - `oper_status` (String)
-
-
+- `rx_ts_interval` (String)
+- `tx_ts_interval` (String)

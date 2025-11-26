@@ -1,77 +1,70 @@
-
-
 package endpoint
+
 import (
-    "github.com/a10networks/terraform-provider-thunder/thunder/axapi"
-    "github.com/clarketm/json"
+	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
+	"github.com/clarketm/json"
 )
 
-//based on ACOS 6_0_2_P1-37
+// based on ACOS 7_0_2-102
 type SystemGeolocationFileOper struct {
-    
-    ErrorInfo SystemGeolocationFileOperErrorInfo `json:"error-info"`
-    Oper SystemGeolocationFileOperOper `json:"oper"`
+	ErrorInfo SystemGeolocationFileOperErrorInfo `json:"error-info"`
 
+	Oper SystemGeolocationFileOperOper `json:"oper"`
 }
 type DataSystemGeolocationFileOper struct {
-    DtSystemGeolocationFileOper SystemGeolocationFileOper `json:"geolocation-file"`
+	DtSystemGeolocationFileOper SystemGeolocationFileOper `json:"geolocation-file"`
 }
-
 
 type SystemGeolocationFileOperErrorInfo struct {
-    Oper SystemGeolocationFileOperErrorInfoOper `json:"oper"`
+	Oper SystemGeolocationFileOperErrorInfoOper `json:"oper"`
 }
-
 
 type SystemGeolocationFileOperErrorInfoOper struct {
-    ErrorList []SystemGeolocationFileOperErrorInfoOperErrorList `json:"error-list"`
-    Filename string `json:"filename"`
+	ErrorList []SystemGeolocationFileOperErrorInfoOperErrorList `json:"error-list"`
+	Filename  string                                            `json:"filename"`
 }
-
 
 type SystemGeolocationFileOperErrorInfoOperErrorList struct {
-    Line int `json:"line"`
-    Offset int `json:"offset"`
-    Error string `json:"error"`
+	Line   int    `json:"line"`
+	Offset int    `json:"offset"`
+	Error  string `json:"error"`
 }
-
 
 type SystemGeolocationFileOperOper struct {
-    Geofiles []SystemGeolocationFileOperOperGeofiles `json:"geofiles"`
+	Geofiles []SystemGeolocationFileOperOperGeofiles `json:"geofiles"`
 }
-
 
 type SystemGeolocationFileOperOperGeofiles struct {
-    Filename string `json:"filename"`
-    Type string `json:"type"`
-    Template string `json:"template"`
-    PercentageLoaded int `json:"percentage-loaded"`
-    Lines int `json:"lines"`
-    Success int `json:"success"`
-    ErrorWarning int `json:"error-warning"`
-    Comment int `json:"comment"`
+	Filename         string `json:"filename"`
+	Type             string `json:"type"`
+	Template         string `json:"template"`
+	PercentageLoaded int    `json:"percentage-loaded"`
+	Lines            int    `json:"lines"`
+	Success          int    `json:"success"`
+	ErrorWarning     int    `json:"error-warning"`
+	Comment          int    `json:"comment"`
 }
 
-func (p *SystemGeolocationFileOper) GetId() string{
-    return "1"
+func (p *SystemGeolocationFileOper) GetId() string {
+	return "1"
 }
 
-func (p *SystemGeolocationFileOper) getPath() string{
-    return "system/geolocation-file/oper"
+func (p *SystemGeolocationFileOper) getPath() string {
+	return "system/geolocation-file/oper"
 }
 
-func (p *SystemGeolocationFileOper) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) (DataSystemGeolocationFileOper,error) {
-logger.Println("SystemGeolocationFileOper::Get")
-    headers := axapi.GenRequestHeader(authToken)
-    _, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
-    var payload DataSystemGeolocationFileOper
-    if err == nil {
-        if len(axResp) > 0{
-        err = json.Unmarshal(axResp, &p)
-        }
-        if err != nil {
-            logger.Println("json.Unmarshal() failed with error", err)
-        }
-    }
-    return payload,err
+func (p *SystemGeolocationFileOper) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) (DataSystemGeolocationFileOper, error) {
+	logger.Println("SystemGeolocationFileOper::Get")
+	headers := axapi.GenRequestHeader(authToken)
+	_, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
+	var payload DataSystemGeolocationFileOper
+	if err == nil {
+		if len(axResp) > 0 {
+			err = json.Unmarshal(axResp, &p)
+		}
+		if err != nil {
+			logger.Println("json.Unmarshal() failed with error", err)
+		}
+	}
+	return payload, err
 }

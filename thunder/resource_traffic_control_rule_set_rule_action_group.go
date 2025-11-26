@@ -22,8 +22,11 @@ func resourceTrafficControlRuleSetRuleActionGroup() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"rule_name": {
+				Type: schema.TypeString, Required: true, Description: "Rule_name",
+			},
+			"rule_set_name": {
+				Type: schema.TypeString, Required: true, Description: "Rule_set_name",
 			},
 		},
 	}
@@ -94,6 +97,7 @@ func dataToEndpointTrafficControlRuleSetRuleActionGroup(d *schema.ResourceData) 
 	var ret edpt.TrafficControlRuleSetRuleActionGroup
 	ret.Inst.LimitPolicy = d.Get("limit_policy").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Rule_name = d.Get("rule_name").(string)
+	ret.Inst.Rule_set_name = d.Get("rule_set_name").(string)
 	return ret
 }

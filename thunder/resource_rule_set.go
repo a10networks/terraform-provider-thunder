@@ -380,10 +380,13 @@ func resourceRuleSet() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"counters1": {
-										Type: schema.TypeString, Optional: true, Description: "'all': all; 'hit-count': Hit counts; 'permit-bytes': Permitted bytes counter; 'deny-bytes': Denied bytes counter; 'reset-bytes': Reset bytes counter; 'permit-packets': Permitted packets counter; 'deny-packets': Denied packets counter; 'reset-packets': Reset packets counter; 'active-session-tcp': Active TCP session counter; 'active-session-udp': Active UDP session counter; 'active-session-icmp': Active ICMP session counter; 'active-session-other': Active other protocol session counter; 'session-tcp': TCP session counter; 'session-udp': UDP session counter; 'session-icmp': ICMP session counter; 'session-other': Other protocol session counter; 'active-session-sctp': Active SCTP session counter; 'session-sctp': SCTP session counter; 'hitcount-timestamp': Last hit counts timestamp; 'rate-limit-drops': Rate Limit Drops;",
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'hit-count': Hit counts; 'permit-bytes': Permitted bytes counter; 'deny-bytes': Denied bytes counter; 'reset-bytes': Reset bytes counter; 'permit-packets': Permitted packets counter; 'deny-packets': Denied packets counter; 'reset-packets': Reset packets counter; 'active-session-tcp': Active TCP session counter; 'active-session-udp': Active UDP session counter; 'active-session-icmp': Active ICMP session counter; 'active-session-other': Active other protocol session counter; 'session-tcp': TCP session counter; 'session-udp': UDP session counter; 'session-icmp': ICMP session counter; 'session-other': Other protocol session counter; 'active-session-sctp': Active SCTP session counter; 'session-sctp': SCTP session counter; 'hitcount-timestamp': Last hit counts timestamp; 'rate-limit-drops': Rate Limit Drops; 'syn-cookie-syn-ack-sent': SYN cookie SYN ACK sent; 'syn-cookie-verification-passed': SYN cookie verification passed; 'syn-cookie-verification-failed': SYN cookie verification failed; 'syn-cookie-conn-setup-failed': SYN cookie connection setup failed; 'tcp-half-open-count': TCP half open sessions matching the rule;",
 									},
 								},
 							},
+						},
+						"packet_capture_template": {
+							Type: schema.TypeString, Optional: true, Description: "Name of the packet capture template to be bind with this object",
 						},
 						"action_group": {
 							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -432,6 +435,9 @@ func resourceRuleSet() *schema.Resource {
 									"deny_fw_log": {
 										Type: schema.TypeString, Optional: true, Description: "Logging template name",
 									},
+									"skip_urpf_check": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Skip Unicast Reverse Path Forwarding check",
+									},
 									"listen_on_port": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Listen on port",
 									},
@@ -471,6 +477,9 @@ func resourceRuleSet() *schema.Resource {
 									"permit_limit_policy": {
 										Type: schema.TypeInt, Optional: true, Description: "Limit policy Template",
 									},
+									"deny_reset_limit_policy": {
+										Type: schema.TypeInt, Optional: true, Description: "Limit policy Template (only works for inbound rule)",
+									},
 									"permit_respond_to_user_mac": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use the user's source MAC for the next hop rather than the routing table (default:off)",
 									},
@@ -485,6 +494,21 @@ func resourceRuleSet() *schema.Resource {
 									},
 									"dscp_number": {
 										Type: schema.TypeInt, Optional: true, Description: "DSCP Number",
+									},
+									"tcp": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Firewall rule TCP parameters",
+									},
+									"syn_cookie": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Configure Firewall rule Syn-Cookie Protection",
+									},
+									"syn_cookie_enable": {
+										Type: schema.TypeString, Optional: true, Description: "'enable': enable; 'disable': disable;",
+									},
+									"threshold_val": {
+										Type: schema.TypeInt, Optional: true, Description: "Decimal number",
+									},
+									"on_timeout": {
+										Type: schema.TypeInt, Optional: true, Default: 120, Description: "on-timeout for Syn-cookie (Timeout in seconds, default is 120 seconds (2 minutes))",
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -632,15 +656,15 @@ func resourceRuleSetRead(ctx context.Context, d *schema.ResourceData, meta inter
 	return diags
 }
 
-func getObjectRuleSetApp1318(d []interface{}) edpt.RuleSetApp1318 {
+func getObjectRuleSetApp1405(d []interface{}) edpt.RuleSetApp1405 {
 
-	var ret edpt.RuleSetApp1318
+	var ret edpt.RuleSetApp1405
 	return ret
 }
 
-func getObjectRuleSetApplication1319(d []interface{}) edpt.RuleSetApplication1319 {
+func getObjectRuleSetApplication1406(d []interface{}) edpt.RuleSetApplication1406 {
 
-	var ret edpt.RuleSetApplication1319
+	var ret edpt.RuleSetApplication1406
 	return ret
 }
 
@@ -712,6 +736,7 @@ func getSliceRuleSetRuleList(d []interface{}) []edpt.RuleSetRuleList {
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		oi.SamplingEnable = getSliceRuleSetRuleListSamplingEnable(in["sampling_enable"].([]interface{}))
+		oi.PacketCaptureTemplate = in["packet_capture_template"].(string)
 		oi.ActionGroup = getObjectRuleSetRuleListActionGroup(in["action_group"].([]interface{}))
 		oi.MoveRule = getObjectRuleSetRuleListMoveRule(in["move_rule"].([]interface{}))
 		ret = append(ret, oi)
@@ -849,6 +874,7 @@ func getObjectRuleSetRuleListActionGroup(d []interface{}) edpt.RuleSetRuleListAc
 		ret.ResetFwLog = in["reset_fw_log"].(string)
 		ret.DenyLogTemplateType = in["deny_log_template_type"].(string)
 		ret.DenyFwLog = in["deny_fw_log"].(string)
+		ret.SkipUrpfCheck = in["skip_urpf_check"].(int)
 		ret.ListenOnPort = in["listen_on_port"].(int)
 		ret.Forward = in["forward"].(int)
 		ret.Ipsec = in["ipsec"].(int)
@@ -862,11 +888,17 @@ func getObjectRuleSetRuleListActionGroup(d []interface{}) edpt.RuleSetRuleListAc
 		ret.Cgnv6DsLiteLsnLid = in["cgnv6_ds_lite_lsn_lid"].(int)
 		ret.InspectPayload = in["inspect_payload"].(int)
 		ret.PermitLimitPolicy = in["permit_limit_policy"].(int)
+		ret.DenyResetLimitPolicy = in["deny_reset_limit_policy"].(int)
 		ret.PermitRespondToUserMac = in["permit_respond_to_user_mac"].(int)
 		ret.ResetRespondToUserMac = in["reset_respond_to_user_mac"].(int)
 		ret.SetDscp = in["set_dscp"].(int)
 		ret.DscpValue = in["dscp_value"].(string)
 		ret.DscpNumber = in["dscp_number"].(int)
+		ret.Tcp = in["tcp"].(int)
+		ret.SynCookie = in["syn_cookie"].(int)
+		ret.SynCookieEnable = in["syn_cookie_enable"].(string)
+		ret.ThresholdVal = in["threshold_val"].(int)
+		ret.OnTimeout = in["on_timeout"].(int)
 		//omit uuid
 	}
 	return ret
@@ -900,25 +932,25 @@ func getObjectRuleSetRuleListMoveRule(d []interface{}) edpt.RuleSetRuleListMoveR
 	return ret
 }
 
-func getObjectRuleSetRulesByZone1320(d []interface{}) edpt.RuleSetRulesByZone1320 {
+func getObjectRuleSetRulesByZone1407(d []interface{}) edpt.RuleSetRulesByZone1407 {
 
 	count1 := len(d)
-	var ret edpt.RuleSetRulesByZone1320
+	var ret edpt.RuleSetRulesByZone1407
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceRuleSetRulesByZoneSamplingEnable1321(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceRuleSetRulesByZoneSamplingEnable1408(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceRuleSetRulesByZoneSamplingEnable1321(d []interface{}) []edpt.RuleSetRulesByZoneSamplingEnable1321 {
+func getSliceRuleSetRulesByZoneSamplingEnable1408(d []interface{}) []edpt.RuleSetRulesByZoneSamplingEnable1408 {
 
 	count1 := len(d)
-	ret := make([]edpt.RuleSetRulesByZoneSamplingEnable1321, 0, count1)
+	ret := make([]edpt.RuleSetRulesByZoneSamplingEnable1408, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.RuleSetRulesByZoneSamplingEnable1321
+		var oi edpt.RuleSetRulesByZoneSamplingEnable1408
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
@@ -938,31 +970,31 @@ func getSliceRuleSetSamplingEnable(d []interface{}) []edpt.RuleSetSamplingEnable
 	return ret
 }
 
-func getObjectRuleSetTag1322(d []interface{}) edpt.RuleSetTag1322 {
+func getObjectRuleSetTag1409(d []interface{}) edpt.RuleSetTag1409 {
 
-	var ret edpt.RuleSetTag1322
+	var ret edpt.RuleSetTag1409
 	return ret
 }
 
-func getObjectRuleSetTrackAppRuleList1323(d []interface{}) edpt.RuleSetTrackAppRuleList1323 {
+func getObjectRuleSetTrackAppRuleList1410(d []interface{}) edpt.RuleSetTrackAppRuleList1410 {
 
-	var ret edpt.RuleSetTrackAppRuleList1323
+	var ret edpt.RuleSetTrackAppRuleList1410
 	return ret
 }
 
 func dataToEndpointRuleSet(d *schema.ResourceData) edpt.RuleSet {
 	var ret edpt.RuleSet
-	ret.Inst.App = getObjectRuleSetApp1318(d.Get("app").([]interface{}))
-	ret.Inst.Application = getObjectRuleSetApplication1319(d.Get("application").([]interface{}))
+	ret.Inst.App = getObjectRuleSetApp1405(d.Get("app").([]interface{}))
+	ret.Inst.Application = getObjectRuleSetApplication1406(d.Get("application").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.PacketCaptureTemplate = d.Get("packet_capture_template").(string)
 	ret.Inst.Remark = d.Get("remark").(string)
 	ret.Inst.RuleList = getSliceRuleSetRuleList(d.Get("rule_list").([]interface{}))
-	ret.Inst.RulesByZone = getObjectRuleSetRulesByZone1320(d.Get("rules_by_zone").([]interface{}))
+	ret.Inst.RulesByZone = getObjectRuleSetRulesByZone1407(d.Get("rules_by_zone").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceRuleSetSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.SessionStatistic = d.Get("session_statistic").(string)
-	ret.Inst.Tag = getObjectRuleSetTag1322(d.Get("tag").([]interface{}))
-	ret.Inst.TrackAppRuleList = getObjectRuleSetTrackAppRuleList1323(d.Get("track_app_rule_list").([]interface{}))
+	ret.Inst.Tag = getObjectRuleSetTag1409(d.Get("tag").([]interface{}))
+	ret.Inst.TrackAppRuleList = getObjectRuleSetTrackAppRuleList1410(d.Get("track_app_rule_list").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

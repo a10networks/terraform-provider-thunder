@@ -9,7 +9,7 @@ import (
 
 func resourceCgnv6TemplateLoggingDisableLogByDestinationIp() *schema.Resource {
 	return &schema.Resource{
-		Description:   "`thunder_cgnv6_template_logging_disable_log_by_destination_ip`: Configure a filter IP enrty\n\n__PLACEHOLDER__",
+		Description:   "`thunder_cgnv6_template_logging_disable_log_by_destination_ip`: Configure a filter IP entry\n\n__PLACEHOLDER__",
 		CreateContext: resourceCgnv6TemplateLoggingDisableLogByDestinationIpCreate,
 		UpdateContext: resourceCgnv6TemplateLoggingDisableLogByDestinationIpUpdate,
 		ReadContext:   resourceCgnv6TemplateLoggingDisableLogByDestinationIpRead,
@@ -57,8 +57,8 @@ func resourceCgnv6TemplateLoggingDisableLogByDestinationIp() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"logging_name": {
+				Type: schema.TypeString, Required: true, Description: "Logging_name",
 			},
 		},
 	}
@@ -162,6 +162,6 @@ func dataToEndpointCgnv6TemplateLoggingDisableLogByDestinationIp(d *schema.Resou
 	ret.Inst.UdpList = getSliceCgnv6TemplateLoggingDisableLogByDestinationIpUdpList(d.Get("udp_list").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Logging_name = d.Get("logging_name").(string)
 	return ret
 }

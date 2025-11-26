@@ -53,5 +53,3 @@ Optional:
 - `response_fail` (Number) Response failures
 - `send_fail` (Number) Send failures
 - `sent_successful` (Number) Sent successful
-
-

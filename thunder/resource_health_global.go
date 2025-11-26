@@ -37,6 +37,9 @@ func resourceHealthGlobal() *schema.Resource {
 			"retry": {
 				Type: schema.TypeInt, Optional: true, Default: 3, Description: "Specify the Healthcheck Retries (Retry Count (default 3))",
 			},
+			"support_deprecated_tls": {
+				Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable TLS 1.0 and TLS 1.1 health-check (default); 'disable': Disable TLS 1.0 and TLS 1.1 health-check;",
+			},
 			"timeout": {
 				Type: schema.TypeInt, Optional: true, Default: 5, Description: "Specify the Healthcheck Timeout (Timeout Value, in seconds (default 5), Timeout should be less than or equal to interval)",
 			},
@@ -120,6 +123,7 @@ func dataToEndpointHealthGlobal(d *schema.ResourceData) edpt.HealthGlobal {
 	ret.Inst.MultiProcess = d.Get("multi_process").(int)
 	ret.Inst.Per = d.Get("per").(int)
 	ret.Inst.Retry = d.Get("retry").(int)
+	ret.Inst.SupportDeprecatedTls = d.Get("support_deprecated_tls").(string)
 	ret.Inst.Timeout = d.Get("timeout").(int)
 	ret.Inst.UpRetry = d.Get("up_retry").(int)
 	//omit uuid

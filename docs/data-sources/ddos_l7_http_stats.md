@@ -175,5 +175,3 @@ Optional:
 - `use_hdr_ip_as_source` (Number) Use IP In Header As Src
 - `window_small` (Number) Window Size Small
 - `window_small_drop` (Number) Window Size Small Dropped
-
-

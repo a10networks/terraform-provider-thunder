@@ -47,6 +47,7 @@ Optional:
 - `curr_entries` (Number) Current PBSLB Entry Count
 - `curr_entries_stats` (Number) Current Entry Stats Count
 - `curr_entries_target_global` (Number) Current Entry Target Global
+- `curr_entries_target_global_dns_cache` (Number) Current Entry Target Global DNS Cache
 - `curr_entries_target_loc` (Number) Current Entry Target LOC
 - `curr_entries_target_rport` (Number) Current Entry Target Rport
 - `curr_entries_target_rserver` (Number) Current Entry Target Rserver
@@ -61,5 +62,3 @@ Optional:
 - `total_v4_entries_freed` (Number) Total V4 Entry Count Freed
 - `total_v6_entries_created` (Number) Total V6 Entry Count Created
 - `total_v6_entries_freed` (Number) Total V6 Entry Count Freed
-
-

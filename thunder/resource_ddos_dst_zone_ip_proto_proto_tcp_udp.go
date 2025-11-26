@@ -44,7 +44,7 @@ func resourceDdosDstZoneIpProtoProtoTcpUdp() *schema.Resource {
 			"ip_filtering_policy": {
 				Type: schema.TypeString, Optional: true, Description: "Configure IP Filter",
 			},
-			"ip_filtering_policy_oper": {
+			"ip_filtering_policy_statistics": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
@@ -57,8 +57,14 @@ func resourceDdosDstZoneIpProtoProtoTcpUdp() *schema.Resource {
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "'tcp': ip-proto tcp; 'udp': ip-proto udp;",
 			},
+			"same_source_dest_port_drop": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Drop packet with same Source Port and Dest Port",
+			},
 			"set_counter_base_val": {
 				Type: schema.TypeInt, Optional: true, Description: "Set T2 counter value of current context to specified value",
+			},
+			"sflow_ip_filtering_policy": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable sFlow IP filtering policy per port per rule counter polling",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -145,9 +151,9 @@ func getObjectDdosDstZoneIpProtoProtoTcpUdpGlidCfg(d []interface{}) edpt.DdosDst
 	return ret
 }
 
-func getObjectDdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyOper211(d []interface{}) edpt.DdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyOper211 {
+func getObjectDdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics228(d []interface{}) edpt.DdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics228 {
 
-	var ret edpt.DdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyOper211
+	var ret edpt.DdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics228
 	return ret
 }
 
@@ -157,9 +163,11 @@ func dataToEndpointDdosDstZoneIpProtoProtoTcpUdp(d *schema.ResourceData) edpt.Dd
 	ret.Inst.DropFragPkt = d.Get("drop_frag_pkt").(int)
 	ret.Inst.GlidCfg = getObjectDdosDstZoneIpProtoProtoTcpUdpGlidCfg(d.Get("glid_cfg").([]interface{}))
 	ret.Inst.IpFilteringPolicy = d.Get("ip_filtering_policy").(string)
-	ret.Inst.IpFilteringPolicyOper = getObjectDdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyOper211(d.Get("ip_filtering_policy_oper").([]interface{}))
+	ret.Inst.IpFilteringPolicyStatistics = getObjectDdosDstZoneIpProtoProtoTcpUdpIpFilteringPolicyStatistics228(d.Get("ip_filtering_policy_statistics").([]interface{}))
 	ret.Inst.Protocol = d.Get("protocol").(string)
+	ret.Inst.SameSourceDestPortDrop = d.Get("same_source_dest_port_drop").(int)
 	ret.Inst.SetCounterBaseVal = d.Get("set_counter_base_val").(int)
+	ret.Inst.SflowIpFilteringPolicy = d.Get("sflow_ip_filtering_policy").(int)
 	//omit uuid
 	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	return ret

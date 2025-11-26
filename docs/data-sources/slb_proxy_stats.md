@@ -74,5 +74,3 @@ Optional:
 - `tcp_event` (Number) TCP stack event
 - `wbuf_cb_failed` (Number) App WBUF callback failed
 - `wbuf_event` (Number) Ready to send data
-
-

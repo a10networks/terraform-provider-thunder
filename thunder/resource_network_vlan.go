@@ -59,7 +59,7 @@ func resourceNetworkVlan() *schema.Resource {
 				},
 			},
 			"traffic_distribution_mode": {
-				Type: schema.TypeString, Optional: true, Description: "'sip': sip; 'dip': dip; 'primary': primary; 'blade': blade; 'l4-src-port': l4-src-port; 'l4-dst-port': l4-dst-port;",
+				Type: schema.TypeString, Optional: true, Description: "'sip': sip; 'dip': dip; 'l3-lookup': l3-lookup; 'primary': primary; 'blade': blade; 'l4-src-port': l4-src-port; 'l4-dst-port': l4-dst-port;",
 			},
 			"untagged_eth_list": {
 				Type: schema.TypeList, Optional: true, Description: "",
@@ -75,7 +75,7 @@ func resourceNetworkVlan() *schema.Resource {
 				},
 			},
 			"untagged_lif": {
-				Type: schema.TypeString, Optional: true, Description: "Logical tunnel interface (Logical tunnel interface name)",
+				Type: schema.TypeString, Optional: true, Description: "Logical tunnel interface (Logical interface name)",
 			},
 			"untagged_trunk_list": {
 				Type: schema.TypeList, Optional: true, Description: "",

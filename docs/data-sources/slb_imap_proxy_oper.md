@@ -79,5 +79,3 @@ Optional:
 - `start_tls_cmd` (Number)
 - `total_imap_request` (Number)
 - `total_proxy_conns` (Number)
-
-

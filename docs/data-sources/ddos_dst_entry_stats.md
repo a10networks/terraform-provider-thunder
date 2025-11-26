@@ -247,13 +247,15 @@ Optional:
 - `prog_exceed_bl` (Number) Req-Resp: Violation Exceed Blacklisted
 - `prog_exceed_drop` (Number) Req-Resp: Violation Exceed Dropped
 - `prog_first_req_time_exceed` (Number) Req-Resp: First Request Time Exceed
+- `prog_query_exceed` (Number) Req-Resp: Client Query Time Exceed
 - `prog_req_resp_time_exceed` (Number) Req-Resp: Request to Response Time Exceed
 - `prog_req_samples` (Number) Sample Collected: Req-Resp
 - `prog_req_samples_processed` (Number) Sample Processed: Req-Resp
 - `prog_request_len_exceed` (Number) Req-Resp: Request Length Exceed
-- `prog_resp_req_ratio_exceed` (Number) Req-Resp: Response to Request Ratio Exceed
+- `prog_resp_pkt_rate_exceed` (Number) Req-Resp: Response Packet Rate Exceed
 - `prog_resp_req_time_exceed` (Number) Req-Resp: Response to Request Time Exceed
 - `prog_response_len_exceed` (Number) Req-Resp: Response Length Exceed
+- `prog_think_exceed` (Number) Req-Resp: Server Think Time Exceed
 - `prog_win_exceed_bl` (Number) Time Window: Violation Exceed Blacklisted
 - `prog_win_exceed_drop` (Number) Time Window: Violation Exceed Dropped
 - `prog_win_rcvd_exceed` (Number) Time Window: Received Exceed
@@ -327,6 +329,7 @@ Optional:
 - `tcp_fwd_recv` (Number) TCP Inbound Packets Received
 - `tcp_fwd_sent` (Number) TCP Inbound Packets Forwarded
 - `tcp_invalid_syn` (Number) TCP Invalid SYN Received
+- `tcp_invalid_synack` (Number) TCP Invalid SYNACK Received
 - `tcp_l4_rst_cookie_fail` (Number) TCP Dst L4-Type Auth: RST Cookie Failed
 - `tcp_l4_syn_cookie_fail` (Number) TCP Dst L4-Type Auth: SYN Cookie Failed
 - `tcp_l4_unauth_drop` (Number) TCP Dst L4-Type Auth: Unauth Dropped
@@ -340,5 +343,3 @@ Optional:
 - `udp_fwd_sent` (Number) UDP Inbound Packets Forwarded
 - `udp_payload_too_big` (Number) UDP Payload Too Large
 - `udp_payload_too_small` (Number) UDP Payload Too Small
-
-

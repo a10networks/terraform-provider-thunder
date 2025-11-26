@@ -269,11 +269,23 @@ func resourceSlbTemplateClientSslStats() *schema.Resource {
 						"food_and_dining": {
 							Type: schema.TypeInt, Optional: true, Description: "food and dining category",
 						},
+						"self_harm": {
+							Type: schema.TypeInt, Optional: true, Description: "self harm category",
+						},
+						"dns_over_https": {
+							Type: schema.TypeInt, Optional: true, Description: "dns over https category",
+						},
+						"low_thc_cannabis_products": {
+							Type: schema.TypeInt, Optional: true, Description: "low-thc cannabis products",
+						},
+						"generative_ai": {
+							Type: schema.TypeInt, Optional: true, Description: "generative ai category",
+						},
 						"nudity_artistic": {
-							Type: schema.TypeInt, Optional: true, Description: "nudity join Entertainment and Arts",
+							Type: schema.TypeInt, Optional: true, Description: "artistic nudity",
 						},
 						"illegal_pornography": {
-							Type: schema.TypeInt, Optional: true, Description: "illegal join Adult and Pornography",
+							Type: schema.TypeInt, Optional: true, Description: "illegal pornography eg. child sexual abuse",
 						},
 						"uncategorised": {
 							Type: schema.TypeInt, Optional: true, Description: "uncategorised",
@@ -408,6 +420,10 @@ func setObjectSlbTemplateClientSslStatsStats(ret edpt.DataSlbTemplateClientSslSt
 			"motor_vehicles":                 ret.DtSlbTemplateClientSslStats.Stats.MotorVehicles,
 			"web_hosting_sites":              ret.DtSlbTemplateClientSslStats.Stats.WebHostingSites,
 			"food_and_dining":                ret.DtSlbTemplateClientSslStats.Stats.FoodAndDining,
+			"self_harm":                      ret.DtSlbTemplateClientSslStats.Stats.SelfHarm,
+			"dns_over_https":                 ret.DtSlbTemplateClientSslStats.Stats.DnsOverHttps,
+			"low_thc_cannabis_products":      ret.DtSlbTemplateClientSslStats.Stats.LowThcCannabisProducts,
+			"generative_ai":                  ret.DtSlbTemplateClientSslStats.Stats.GenerativeAi,
 			"nudity_artistic":                ret.DtSlbTemplateClientSslStats.Stats.NudityArtistic,
 			"illegal_pornography":            ret.DtSlbTemplateClientSslStats.Stats.IllegalPornography,
 			"uncategorised":                  ret.DtSlbTemplateClientSslStats.Stats.Uncategorised,
@@ -510,6 +526,10 @@ func getObjectSlbTemplateClientSslStatsStats(d []interface{}) edpt.SlbTemplateCl
 		ret.MotorVehicles = in["motor_vehicles"].(int)
 		ret.WebHostingSites = in["web_hosting_sites"].(int)
 		ret.FoodAndDining = in["food_and_dining"].(int)
+		ret.SelfHarm = in["self_harm"].(int)
+		ret.DnsOverHttps = in["dns_over_https"].(int)
+		ret.LowThcCannabisProducts = in["low_thc_cannabis_products"].(int)
+		ret.GenerativeAi = in["generative_ai"].(int)
 		ret.NudityArtistic = in["nudity_artistic"].(int)
 		ret.IllegalPornography = in["illegal_pornography"].(int)
 		ret.Uncategorised = in["uncategorised"].(int)

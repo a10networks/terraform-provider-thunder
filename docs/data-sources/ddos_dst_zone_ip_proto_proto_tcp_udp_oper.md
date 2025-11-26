@@ -41,32 +41,33 @@ output "get_ddos_dst_zone_ip_proto_proto_tcp_udp_oper" {
 
 ### Optional
 
-- `ip_filtering_policy_oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_filtering_policy_oper))
+- `ip_filtering_policy_statistics` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_filtering_policy_statistics))
 - `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--oper))
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
 
-<a id="nestedblock--ip_filtering_policy_oper"></a>
-### Nested Schema for `ip_filtering_policy_oper`
+<a id="nestedblock--ip_filtering_policy_statistics"></a>
+### Nested Schema for `ip_filtering_policy_statistics`
 
 Optional:
 
-- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_filtering_policy_oper--oper))
+- `oper` (Block List, Max: 1) (see [below for nested schema](#nestedblock--ip_filtering_policy_statistics--oper))
 
-<a id="nestedblock--ip_filtering_policy_oper--oper"></a>
-### Nested Schema for `ip_filtering_policy_oper.oper`
-
-Optional:
-
-- `rule_list` (Block List) (see [below for nested schema](#nestedblock--ip_filtering_policy_oper--oper--rule_list))
-
-<a id="nestedblock--ip_filtering_policy_oper--oper--rule_list"></a>
-### Nested Schema for `ip_filtering_policy_oper.oper.rule_list`
+<a id="nestedblock--ip_filtering_policy_statistics--oper"></a>
+### Nested Schema for `ip_filtering_policy_statistics.oper`
 
 Optional:
 
+- `rule_list` (Block List) (see [below for nested schema](#nestedblock--ip_filtering_policy_statistics--oper--rule_list))
+
+<a id="nestedblock--ip_filtering_policy_statistics--oper--rule_list"></a>
+### Nested Schema for `ip_filtering_policy_statistics.oper.rule_list`
+
+Optional:
+
+- `blacklisted_src_count` (Number)
 - `hits` (Number)
 - `seq` (Number)
 
@@ -121,6 +122,7 @@ Optional:
 - `dst_address_str` (String)
 - `dynamic_entry_count` (String)
 - `dynamic_entry_limit` (String)
+- `dynamic_entry_warn_state` (String)
 - `frag_packet_rate_limit` (String)
 - `is_auth_passed` (String)
 - `is_connection_rate_exceed` (Number)
@@ -133,5 +135,3 @@ Optional:
 - `lockup_time` (Number)
 - `packet_rate_limit` (String)
 - `sflow_source_id` (Number)
-
-

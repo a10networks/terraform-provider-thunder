@@ -62,5 +62,3 @@ Optional:
 - `total_hits` (Number) Total hits for threat-list
 - `web_attacks` (Number) Hits for web attacks
 - `windows_exploits` (Number) Hits for windows exploits
-
-

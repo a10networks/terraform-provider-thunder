@@ -19,6 +19,9 @@ func resourceDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList() *sch
 			"action": {
 				Type: schema.TypeString, Optional: true, Description: "'bypass': Always permit for the Source to bypass all feature & limit checks; 'deny': Blacklist incoming packets for service;",
 			},
+			"class_list_glid": {
+				Type: schema.TypeString, Optional: true, Description: "Global limit ID (class-list based)",
+			},
 			"class_list_name": {
 				Type: schema.TypeString, Required: true, Description: "Class-list name",
 			},
@@ -81,6 +84,9 @@ func resourceDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList() *sch
 					},
 				},
 			},
+			"dynamic_entry_count_warn_threshold": {
+				Type: schema.TypeInt, Optional: true, Description: "Set threshold percentage of \"max-src-dst-entry\" for generating warning logs. Including start and end.",
+			},
 			"glid": {
 				Type: schema.TypeString, Optional: true, Description: "Global limit ID",
 			},
@@ -95,7 +101,7 @@ func resourceDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList() *sch
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"counters1": {
-							Type: schema.TypeString, Optional: true, Description: "'all': all; 'packet_received': Packets Received; 'packet_dropped': Packets Dropped; 'entry_learned': Entry Learned; 'entry_count_overflow': Entry Count Overflow;",
+							Type: schema.TypeString, Optional: true, Description: "'all': all; 'packet_received': Packets Received; 'packet_dropped': Packets Dropped; 'entry_learned': Entry Learned; 'entry_count_overflow': Entry Count Overflow; 'exceed_drop_pkt_rate_clist': Packet Rate Exceeded; 'exceed_drop_conn_rate_clist': Conn Rate Exceeded; 'exceed_drop_conn_limit_clist': Conn Limit Exceeded; 'exceed_drop_kbit_rate_clist': KiBit Rate Exceeded; 'exceed_drop_kbit_rate_clist_pkt': KiBit Rate Exceeded Count; 'exceed_drop_frag_rate_clist': Frag Rate Exceeded;",
 						},
 					},
 				},
@@ -128,14 +134,14 @@ func resourceDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList() *sch
 			"port_other": {
 				Type: schema.TypeString, Required: true, Description: "PortOther",
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
-			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 			"src_based_policy_name": {
 				Type: schema.TypeString, Required: true, Description: "SrcBasedPolicyName",
+			},
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 		},
 	}
@@ -270,8 +276,10 @@ func getObjectDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListZoneTe
 func dataToEndpointDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList(d *schema.ResourceData) edpt.DdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList {
 	var ret edpt.DdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList
 	ret.Inst.Action = d.Get("action").(string)
+	ret.Inst.ClassListGlid = d.Get("class_list_glid").(string)
 	ret.Inst.ClassListName = d.Get("class_list_name").(string)
 	ret.Inst.ClassListOverflowPolicyList = getSliceDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListClassListOverflowPolicyList(d.Get("class_list_overflow_policy_list").([]interface{}))
+	ret.Inst.DynamicEntryCountWarnThreshold = d.Get("dynamic_entry_count_warn_threshold").(int)
 	ret.Inst.Glid = d.Get("glid").(string)
 	ret.Inst.GlidAction = d.Get("glid_action").(string)
 	ret.Inst.MaxDynamicEntryCount = d.Get("max_dynamic_entry_count").(int)
@@ -280,8 +288,8 @@ func dataToEndpointDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassList(
 	//omit uuid
 	ret.Inst.ZoneTemplate = getObjectDdosDstZonePortZoneServiceOtherSrcBasedPolicyPolicyClassListZoneTemplate(d.Get("zone_template").([]interface{}))
 	ret.Inst.PortOther = d.Get("port_other").(string)
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.SrcBasedPolicyName = d.Get("src_based_policy_name").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	return ret
 }

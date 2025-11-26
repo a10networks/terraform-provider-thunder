@@ -38,8 +38,8 @@ func resourceGslbZoneServiceDnsNaptrRecordStats() *schema.Resource {
 			"service_name": {
 				Type: schema.TypeString, Required: true, Description: "ServiceName",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -98,6 +98,6 @@ func dataToEndpointGslbZoneServiceDnsNaptrRecordStats(d *schema.ResourceData) ed
 
 	ret.ServiceName = d.Get("service_name").(string)
 
-	ret.Name = d.Get("name").(string)
+	ret.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

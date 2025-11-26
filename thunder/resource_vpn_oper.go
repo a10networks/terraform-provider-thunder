@@ -741,10 +741,7 @@ func resourceVpnOper() *schema.Resource {
 													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 												"packets_err_lifetime_lifebytes": {
-													Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
-													Elem: &schema.Resource{
-														Schema: map[string]*schema.Schema{},
-													},
+													Type: schema.TypeInt, Optional: true, Description: "",
 												},
 												"bytes_encrypted": {
 													Type: schema.TypeInt, Optional: true, Description: "",
@@ -1731,7 +1728,7 @@ func setSliceVpnOperIpsecListOperSaList(d []edpt.VpnOperIpsecListOperSaList) []m
 		in["packets_err_pad_check"] = item.PacketsErrPadCheck
 		in["packets_err_pkt_sanity"] = item.PacketsErrPktSanity
 		in["packets_err_icv_check"] = item.PacketsErrIcvCheck
-		in["packets_err_lifetime_lifebytes"] = setObjectVpnOperIpsecListOperSaListPacketsErrLifetimeLifebytes(item.PacketsErrLifetimeLifebytes)
+		in["packets_err_lifetime_lifebytes"] = item.PacketsErrLifetimeLifebytes
 		in["bytes_encrypted"] = item.BytesEncrypted
 		in["bytes_decrypted"] = item.BytesDecrypted
 		in["prefrag_success"] = item.PrefragSuccess
@@ -1759,13 +1756,6 @@ func setSliceVpnOperIpsecListOperSaList(d []edpt.VpnOperIpsecListOperSaList) []m
 		in["enforce_ts_decap_drop"] = item.EnforceTsDecapDrop
 		result = append(result, in)
 	}
-	return result
-}
-
-func setObjectVpnOperIpsecListOperSaListPacketsErrLifetimeLifebytes(d edpt.VpnOperIpsecListOperSaListPacketsErrLifetimeLifebytes) []map[string]interface{} {
-	result := []map[string]interface{}{}
-	in := make(map[string]interface{})
-	result = append(result, in)
 	return result
 }
 
@@ -2519,7 +2509,7 @@ func getSliceVpnOperIpsecListOperSaList(d []interface{}) []edpt.VpnOperIpsecList
 		oi.PacketsErrPadCheck = in["packets_err_pad_check"].(int)
 		oi.PacketsErrPktSanity = in["packets_err_pkt_sanity"].(int)
 		oi.PacketsErrIcvCheck = in["packets_err_icv_check"].(int)
-		oi.PacketsErrLifetimeLifebytes = getObjectVpnOperIpsecListOperSaListPacketsErrLifetimeLifebytes(in["packets_err_lifetime_lifebytes"].([]interface{}))
+		oi.PacketsErrLifetimeLifebytes = in["packets_err_lifetime_lifebytes"].(int)
 		oi.BytesEncrypted = in["bytes_encrypted"].(int)
 		oi.BytesDecrypted = in["bytes_decrypted"].(int)
 		oi.PrefragSuccess = in["prefrag_success"].(int)
@@ -2547,12 +2537,6 @@ func getSliceVpnOperIpsecListOperSaList(d []interface{}) []edpt.VpnOperIpsecList
 		oi.EnforceTsDecapDrop = in["enforce_ts_decap_drop"].(int)
 		ret = append(ret, oi)
 	}
-	return ret
-}
-
-func getObjectVpnOperIpsecListOperSaListPacketsErrLifetimeLifebytes(d []interface{}) edpt.VpnOperIpsecListOperSaListPacketsErrLifetimeLifebytes {
-
-	var ret edpt.VpnOperIpsecListOperSaListPacketsErrLifetimeLifebytes
 	return ret
 }
 

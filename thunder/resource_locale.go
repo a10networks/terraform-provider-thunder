@@ -97,10 +97,10 @@ func resourceLocaleRead(ctx context.Context, d *schema.ResourceData, meta interf
 	return diags
 }
 
-func getObjectLocaleTest1049(d []interface{}) edpt.LocaleTest1049 {
+func getObjectLocaleTest1131(d []interface{}) edpt.LocaleTest1131 {
 
 	count1 := len(d)
-	var ret edpt.LocaleTest1049
+	var ret edpt.LocaleTest1131
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Locale = in["locale"].(string)
@@ -110,7 +110,7 @@ func getObjectLocaleTest1049(d []interface{}) edpt.LocaleTest1049 {
 
 func dataToEndpointLocale(d *schema.ResourceData) edpt.Locale {
 	var ret edpt.Locale
-	ret.Inst.Test = getObjectLocaleTest1049(d.Get("test").([]interface{}))
+	ret.Inst.Test = getObjectLocaleTest1131(d.Get("test").([]interface{}))
 	//omit uuid
 	ret.Inst.Value = d.Get("value").(string)
 	return ret

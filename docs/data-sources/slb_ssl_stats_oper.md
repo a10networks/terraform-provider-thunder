@@ -128,5 +128,3 @@ Optional:
 - `total_available_crypto_engines` (Number) Number of available crypto engines
 - `total_enabled_crypto_engines` (Number) Number of enabled crypto engines
 - `util_percentage` (Number) current module percentage per sec
-
-

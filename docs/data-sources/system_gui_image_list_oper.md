@@ -65,5 +65,3 @@ Optional:
 
 - `gui_image` (String)
 - `path` (String)
-
-

@@ -73,5 +73,3 @@ Optional:
 Optional:
 
 - `hit_count` (Number) Hit counts
-
-

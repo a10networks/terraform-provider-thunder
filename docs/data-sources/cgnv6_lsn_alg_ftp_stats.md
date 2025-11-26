@@ -50,5 +50,3 @@ Optional:
 - `lpsv_replies` (Number) LPSV Replies From Server
 - `pasv_replies` (Number) PASV Replies From Server
 - `port_requests` (Number) PORT Requests From Client
-
-

@@ -125,5 +125,3 @@ Optional:
 - `src_rate1_limit_exceed` (Number) Src Request Rate 1 Limit Exceed
 - `src_rate2_limit_exceed` (Number) Src Request Rate 2 Limit Exceed
 - `too_many_header` (Number) Max Header Count Exceed
-
-

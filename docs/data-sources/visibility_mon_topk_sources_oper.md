@@ -62,5 +62,3 @@ Optional:
 
 - `ip_addr` (String)
 - `metric_value` (String)
-
-

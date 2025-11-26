@@ -38,7 +38,7 @@ func resourceDdosDstZonePortZoneServiceOtherLevelIndicator() *schema.Resource {
 				Type: schema.TypeInt, Optional: true, Description: "Expected minimal window size",
 			},
 			"type": {
-				Type: schema.TypeString, Required: true, Description: "'pkt-rate': rate of incoming packets; 'pkt-drop-rate': rate of packets got dropped; 'bit-rate': rate of incoming bits; 'pkt-drop-ratio': ratio of incoming packet rate divided by the rate of dropping packets; 'bytes-to-bytes-from-ratio': ratio of incoming packet rate divided by the rate of outgoing packets; 'concurrent-conns': number of concurrent connections; 'conn-miss-rate': rate of incoming packets for which no previously established connection exists; 'syn-rate': rate on incoming SYN packets; 'fin-rate': rate on incoming FIN packets; 'rst-rate': rate of incoming RST packets; 'small-window-ack-rate': rate of small window advertisement; 'empty-ack-rate': rate of incoming packets which have no payload; 'small-payload-rate': rate of short payload packet; 'syn-fin-ratio': ratio of incoming SYN packet rate divided by the rate of incoming FIN packets; 'cpu-utilization': average data CPU utilization; 'interface-utilization': outside interface utilization;",
+				Type: schema.TypeString, Required: true, Description: "'pkt-rate': rate of incoming packets; 'pkt-drop-rate': rate of packets got dropped; 'bit-rate': rate of incoming bits; 'pkt-drop-ratio': ratio of incoming packet rate divided by the rate of dropping packets; 'bytes-to-bytes-from-ratio': ratio of incoming packet rate divided by the rate of outgoing packets; 'concurrent-conns': number of concurrent connections; 'conn-miss-rate': rate of incoming packets for which no previously established connection exists; 'syn-rate': rate on incoming SYN packets; 'fin-rate': rate on incoming FIN packets; 'rst-rate': rate of incoming RST packets; 'syn-ack-rate': rate on incoming SYN-ACK packets; 'small-window-ack-rate': rate of small window advertisement; 'empty-ack-rate': rate of incoming packets which have no payload; 'small-payload-rate': rate of short payload packet; 'syn-fin-ratio': ratio of incoming SYN packet rate divided by the rate of incoming FIN packets; 'cpu-utilization': average data CPU utilization; 'interface-utilization': outside interface utilization; 'learnt-sources': learnt sources;",
 			},
 			"user_tag": {
 				Type: schema.TypeString, Optional: true, Description: "Customized tag",
@@ -61,14 +61,14 @@ func resourceDdosDstZonePortZoneServiceOtherLevelIndicator() *schema.Resource {
 			"port_other": {
 				Type: schema.TypeString, Required: true, Description: "PortOther",
 			},
-			"zone_name": {
-				Type: schema.TypeString, Required: true, Description: "ZoneName",
-			},
 			"protocol": {
 				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 			"level_num": {
 				Type: schema.TypeString, Required: true, Description: "LevelNum",
+			},
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
 		},
 	}
@@ -152,8 +152,8 @@ func dataToEndpointDdosDstZonePortZoneServiceOtherLevelIndicator(d *schema.Resou
 	ret.Inst.ZoneThresholdStr = d.Get("zone_threshold_str").(string)
 	ret.Inst.ZoneViolationActions = d.Get("zone_violation_actions").(string)
 	ret.Inst.PortOther = d.Get("port_other").(string)
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
 	ret.Inst.LevelNum = d.Get("level_num").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	return ret
 }

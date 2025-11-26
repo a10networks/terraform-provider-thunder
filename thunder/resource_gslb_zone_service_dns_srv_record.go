@@ -36,7 +36,7 @@ func resourceGslbZoneServiceDnsSrvRecord() *schema.Resource {
 				Type: schema.TypeString, Required: true, Description: "Specify Domain Name",
 			},
 			"ttl": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
+				Type: schema.TypeInt, Optional: true, Description: "Specify TTL",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -50,8 +50,8 @@ func resourceGslbZoneServiceDnsSrvRecord() *schema.Resource {
 			"service_name": {
 				Type: schema.TypeString, Required: true, Description: "ServiceName",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -142,6 +142,6 @@ func dataToEndpointGslbZoneServiceDnsSrvRecord(d *schema.ResourceData) edpt.Gslb
 	ret.Inst.Weight = d.Get("weight").(int)
 	ret.Inst.ServicePort = d.Get("service_port").(string)
 	ret.Inst.ServiceName = d.Get("service_name").(string)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

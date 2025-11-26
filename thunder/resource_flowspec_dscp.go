@@ -23,13 +23,13 @@ func resourceFlowspecDscp() *schema.Resource {
 				Type: schema.TypeInt, Required: true, Description: "Specify the DSCP value",
 			},
 			"dscp_val_end": {
-				Type: schema.TypeInt, Optional: true, Description: "Specify the DSCP value",
+				Type: schema.TypeInt, Required: true, Description: "Specify the DSCP value",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"flowspec_name": {
+				Type: schema.TypeString, Required: true, Description: "Flowspec_name",
 			},
 		},
 	}
@@ -102,6 +102,6 @@ func dataToEndpointFlowspecDscp(d *schema.ResourceData) edpt.FlowspecDscp {
 	ret.Inst.DscpVal = d.Get("dscp_val").(int)
 	ret.Inst.DscpValEnd = d.Get("dscp_val_end").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Flowspec_name = d.Get("flowspec_name").(string)
 	return ret
 }

@@ -43,8 +43,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStatsSeveri
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"slb_port_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Slb_port_tmpl_name",
 			},
 		},
 	}
@@ -122,6 +122,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesSlbPortTmplTriggerStats
 	ret.Inst.ErrorCritical = d.Get("error_critical").(int)
 	ret.Inst.ErrorWarning = d.Get("error_warning").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Slb_port_tmpl_name = d.Get("slb_port_tmpl_name").(string)
 	return ret
 }

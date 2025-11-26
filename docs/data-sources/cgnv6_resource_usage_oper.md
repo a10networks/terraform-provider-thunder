@@ -53,8 +53,3 @@ Optional:
 - `lsn_nat_addr_count_default` (Number)
 - `lsn_nat_addr_count_max` (Number)
 - `lsn_nat_addr_count_min` (Number)
-- `radius_table_size_default` (Number)
-- `radius_table_size_max` (Number)
-- `radius_table_size_min` (Number)
-
-

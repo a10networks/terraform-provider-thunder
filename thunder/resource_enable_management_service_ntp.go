@@ -62,6 +62,16 @@ func resourceEnableManagementServiceNtp() *schema.Resource {
 								},
 							},
 						},
+						"lif_cfg": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"lif": {
+										Type: schema.TypeString, Optional: true, Description: "Lif name (Lif interface name)",
+									},
+								},
+							},
+						},
 						"management": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Management Interface",
 						},
@@ -119,6 +129,16 @@ func resourceEnableManagementServiceNtp() *schema.Resource {
 									},
 									"tunnel_end": {
 										Type: schema.TypeInt, Optional: true, Description: "tunnel port",
+									},
+								},
+							},
+						},
+						"lif_cfg": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"lif": {
+										Type: schema.TypeString, Optional: true, Description: "Lif name (Lif interface name)",
 									},
 								},
 							},
@@ -217,6 +237,7 @@ func getSliceEnableManagementServiceNtpAclV4List(d []interface{}) []edpt.EnableM
 		oi.EthCfg = getSliceEnableManagementServiceNtpAclV4ListEthCfg(in["eth_cfg"].([]interface{}))
 		oi.VeCfg = getSliceEnableManagementServiceNtpAclV4ListVeCfg(in["ve_cfg"].([]interface{}))
 		oi.TunnelCfg = getSliceEnableManagementServiceNtpAclV4ListTunnelCfg(in["tunnel_cfg"].([]interface{}))
+		oi.LifCfg = getObjectEnableManagementServiceNtpAclV4ListLifCfg(in["lif_cfg"].([]interface{}))
 		oi.Management = in["management"].(int)
 		oi.AllDataIntf = in["all_data_intf"].(int)
 		//omit uuid
@@ -268,6 +289,17 @@ func getSliceEnableManagementServiceNtpAclV4ListTunnelCfg(d []interface{}) []edp
 	return ret
 }
 
+func getObjectEnableManagementServiceNtpAclV4ListLifCfg(d []interface{}) edpt.EnableManagementServiceNtpAclV4ListLifCfg {
+
+	count1 := len(d)
+	var ret edpt.EnableManagementServiceNtpAclV4ListLifCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Lif = in["lif"].(string)
+	}
+	return ret
+}
+
 func getSliceEnableManagementServiceNtpAclV6List(d []interface{}) []edpt.EnableManagementServiceNtpAclV6List {
 
 	count1 := len(d)
@@ -279,6 +311,7 @@ func getSliceEnableManagementServiceNtpAclV6List(d []interface{}) []edpt.EnableM
 		oi.EthCfg = getSliceEnableManagementServiceNtpAclV6ListEthCfg(in["eth_cfg"].([]interface{}))
 		oi.VeCfg = getSliceEnableManagementServiceNtpAclV6ListVeCfg(in["ve_cfg"].([]interface{}))
 		oi.TunnelCfg = getSliceEnableManagementServiceNtpAclV6ListTunnelCfg(in["tunnel_cfg"].([]interface{}))
+		oi.LifCfg = getObjectEnableManagementServiceNtpAclV6ListLifCfg(in["lif_cfg"].([]interface{}))
 		oi.Management = in["management"].(int)
 		oi.AllDataIntf = in["all_data_intf"].(int)
 		//omit uuid
@@ -326,6 +359,17 @@ func getSliceEnableManagementServiceNtpAclV6ListTunnelCfg(d []interface{}) []edp
 		oi.TunnelStart = in["tunnel_start"].(int)
 		oi.TunnelEnd = in["tunnel_end"].(int)
 		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectEnableManagementServiceNtpAclV6ListLifCfg(d []interface{}) edpt.EnableManagementServiceNtpAclV6ListLifCfg {
+
+	count1 := len(d)
+	var ret edpt.EnableManagementServiceNtpAclV6ListLifCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Lif = in["lif"].(string)
 	}
 	return ret
 }

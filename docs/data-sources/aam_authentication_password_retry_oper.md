@@ -58,5 +58,3 @@ Optional:
 - `logon` (String)
 - `pw_failure` (Number)
 - `ttl` (Number)
-
-

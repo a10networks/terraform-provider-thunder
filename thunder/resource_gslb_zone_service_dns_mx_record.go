@@ -33,19 +33,19 @@ func resourceGslbZoneServiceDnsMxRecord() *schema.Resource {
 				},
 			},
 			"ttl": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Specify TTL",
+				Type: schema.TypeInt, Optional: true, Description: "Specify TTL",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"service_name": {
-				Type: schema.TypeString, Required: true, Description: "ServiceName",
-			},
 			"service_port": {
 				Type: schema.TypeString, Required: true, Description: "ServicePort",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"service_name": {
+				Type: schema.TypeString, Required: true, Description: "ServiceName",
+			},
+			"zone_name": {
+				Type: schema.TypeString, Required: true, Description: "Zone_name",
 			},
 		},
 	}
@@ -132,8 +132,8 @@ func dataToEndpointGslbZoneServiceDnsMxRecord(d *schema.ResourceData) edpt.GslbZ
 	ret.Inst.SamplingEnable = getSliceGslbZoneServiceDnsMxRecordSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.Ttl = d.Get("ttl").(int)
 	//omit uuid
-	ret.Inst.ServiceName = d.Get("service_name").(string)
 	ret.Inst.ServicePort = d.Get("service_port").(string)
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.ServiceName = d.Get("service_name").(string)
+	ret.Inst.Zone_name = d.Get("zone_name").(string)
 	return ret
 }

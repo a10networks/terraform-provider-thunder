@@ -60,5 +60,3 @@ Optional:
 - `nat_start_port` (Number)
 - `tunnel_dest_address` (String)
 - `tunnel_src_address` (String)
-
-

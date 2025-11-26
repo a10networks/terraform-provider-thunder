@@ -133,6 +133,30 @@ func resourceSystemViewMemoryViewOper() *schema.Resource {
 						"cached": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"linux_usage": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"linux_used": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"linux_free": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"linux_cache": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"pool_usage": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"pool_total": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"pool_used": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"pool_unused": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 					},
 				},
 			},
@@ -179,6 +203,14 @@ func setObjectSystemViewMemoryViewOperOper(ret edpt.DataSystemViewMemoryViewOper
 			"shared":               ret.DtSystemViewMemoryViewOper.Oper.Shared,
 			"buffers":              ret.DtSystemViewMemoryViewOper.Oper.Buffers,
 			"cached":               ret.DtSystemViewMemoryViewOper.Oper.Cached,
+			"linux_usage":          ret.DtSystemViewMemoryViewOper.Oper.LinuxUsage,
+			"linux_used":           ret.DtSystemViewMemoryViewOper.Oper.LinuxUsed,
+			"linux_free":           ret.DtSystemViewMemoryViewOper.Oper.LinuxFree,
+			"linux_cache":          ret.DtSystemViewMemoryViewOper.Oper.LinuxCache,
+			"pool_usage":           ret.DtSystemViewMemoryViewOper.Oper.PoolUsage,
+			"pool_total":           ret.DtSystemViewMemoryViewOper.Oper.PoolTotal,
+			"pool_used":            ret.DtSystemViewMemoryViewOper.Oper.PoolUsed,
+			"pool_unused":          ret.DtSystemViewMemoryViewOper.Oper.PoolUnused,
 		},
 	}
 }
@@ -266,6 +298,14 @@ func getObjectSystemViewMemoryViewOperOper(d []interface{}) edpt.SystemViewMemor
 		ret.Shared = in["shared"].(int)
 		ret.Buffers = in["buffers"].(int)
 		ret.Cached = in["cached"].(int)
+		ret.LinuxUsage = in["linux_usage"].(string)
+		ret.LinuxUsed = in["linux_used"].(int)
+		ret.LinuxFree = in["linux_free"].(int)
+		ret.LinuxCache = in["linux_cache"].(int)
+		ret.PoolUsage = in["pool_usage"].(string)
+		ret.PoolTotal = in["pool_total"].(int)
+		ret.PoolUsed = in["pool_used"].(int)
+		ret.PoolUnused = in["pool_unused"].(int)
 	}
 	return ret
 }

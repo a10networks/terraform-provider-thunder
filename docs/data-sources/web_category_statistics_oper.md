@@ -63,5 +63,3 @@ Optional:
 - `req_lookup_processed` (Number)
 - `req_processed` (Number)
 - `req_queue` (Number)
-
-

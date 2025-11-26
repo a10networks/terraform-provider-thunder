@@ -180,5 +180,3 @@ Optional:
 - `session_event_nat44_records_sent_failure` (Number) Nat44 Session Event Records Failed
 - `session_event_nat64_records_sent` (Number) Nat64 Session Event Records Sent
 - `session_event_nat64_records_sent_failure` (Number) Nat64 Session Event Records Falied
-
-

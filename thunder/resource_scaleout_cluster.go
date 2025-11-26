@@ -273,6 +273,22 @@ func resourceScaleoutCluster() *schema.Resource {
 											},
 										},
 									},
+									"encap": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"type": {
+													Type: schema.TypeString, Optional: true, Default: "vxlan", Description: "'vxlan': Use vxlan for encapsulation;",
+												},
+												"use_v4_vxlan": {
+													Type: schema.TypeInt, Optional: true, Default: 0, Description: "Always use IPv4 VxLAN for redirection",
+												},
+												"uuid": {
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+												},
+											},
+										},
+									},
 								},
 							},
 						},
@@ -413,6 +429,9 @@ func resourceScaleoutCluster() *schema.Resource {
 												"template": {
 													Type: schema.TypeString, Required: true, Description: "bind tracking template name",
 												},
+												"ip_version": {
+													Type: schema.TypeString, Required: true, Description: "'ipv4': take action for IPv4 traffic-only; 'ipv6': take action for IPv6 traffic-only;",
+												},
 												"threshold_cfg": {
 													Type: schema.TypeList, Optional: true, Description: "",
 													Elem: &schema.Resource{
@@ -461,6 +480,9 @@ func resourceScaleoutCluster() *schema.Resource {
 												"action": {
 													Type: schema.TypeString, Optional: true, Description: "'down': node stops processing user traffic; 'exit-cluster': node exits scaleout cluster;",
 												},
+												"ip_version": {
+													Type: schema.TypeString, Required: true, Description: "'ipv4': take action for IPv4 traffic-only; 'ipv6': take action for IPv6 traffic-only;",
+												},
 												"uuid": {
 													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 												},
@@ -480,6 +502,9 @@ func resourceScaleoutCluster() *schema.Resource {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"default_user_group_count": {
+							Type: schema.TypeInt, Optional: true, Description: "Number of default traffic buckets",
+						},
 						"enable": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "",
 						},
@@ -493,11 +518,8 @@ func resourceScaleoutCluster() *schema.Resource {
 									"name": {
 										Type: schema.TypeString, Required: true, Description: "Scaleout template Name",
 									},
-									"bucket_count": {
-										Type: schema.TypeInt, Optional: true, Default: 256, Description: "Number of traffic buckets",
-									},
-									"device_group": {
-										Type: schema.TypeInt, Optional: true, Description: "Device group id",
+									"user_group_count": {
+										Type: schema.TypeInt, Optional: true, Description: "Number of traffic buckets",
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -618,25 +640,25 @@ func resourceScaleoutClusterRead(ctx context.Context, d *schema.ResourceData, me
 	return diags
 }
 
-func getObjectScaleoutClusterClusterDevices1360(d []interface{}) edpt.ScaleoutClusterClusterDevices1360 {
+func getObjectScaleoutClusterClusterDevices1449(d []interface{}) edpt.ScaleoutClusterClusterDevices1449 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterClusterDevices1360
+	var ret edpt.ScaleoutClusterClusterDevices1449
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
 		//omit uuid
-		ret.MinimumNodes = getObjectScaleoutClusterClusterDevicesMinimumNodes1361(in["minimum_nodes"].([]interface{}))
-		ret.ClusterDiscoveryTimeout = getObjectScaleoutClusterClusterDevicesClusterDiscoveryTimeout1362(in["cluster_discovery_timeout"].([]interface{}))
-		ret.DeviceIdList = getSliceScaleoutClusterClusterDevicesDeviceIdList1363(in["device_id_list"].([]interface{}))
+		ret.MinimumNodes = getObjectScaleoutClusterClusterDevicesMinimumNodes1450(in["minimum_nodes"].([]interface{}))
+		ret.ClusterDiscoveryTimeout = getObjectScaleoutClusterClusterDevicesClusterDiscoveryTimeout1451(in["cluster_discovery_timeout"].([]interface{}))
+		ret.DeviceIdList = getSliceScaleoutClusterClusterDevicesDeviceIdList1452(in["device_id_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectScaleoutClusterClusterDevicesMinimumNodes1361(d []interface{}) edpt.ScaleoutClusterClusterDevicesMinimumNodes1361 {
+func getObjectScaleoutClusterClusterDevicesMinimumNodes1450(d []interface{}) edpt.ScaleoutClusterClusterDevicesMinimumNodes1450 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterClusterDevicesMinimumNodes1361
+	var ret edpt.ScaleoutClusterClusterDevicesMinimumNodes1450
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.MinimumNodesNum = in["minimum_nodes_num"].(int)
@@ -645,19 +667,19 @@ func getObjectScaleoutClusterClusterDevicesMinimumNodes1361(d []interface{}) edp
 	return ret
 }
 
-func getObjectScaleoutClusterClusterDevicesClusterDiscoveryTimeout1362(d []interface{}) edpt.ScaleoutClusterClusterDevicesClusterDiscoveryTimeout1362 {
+func getObjectScaleoutClusterClusterDevicesClusterDiscoveryTimeout1451(d []interface{}) edpt.ScaleoutClusterClusterDevicesClusterDiscoveryTimeout1451 {
 
-	var ret edpt.ScaleoutClusterClusterDevicesClusterDiscoveryTimeout1362
+	var ret edpt.ScaleoutClusterClusterDevicesClusterDiscoveryTimeout1451
 	return ret
 }
 
-func getSliceScaleoutClusterClusterDevicesDeviceIdList1363(d []interface{}) []edpt.ScaleoutClusterClusterDevicesDeviceIdList1363 {
+func getSliceScaleoutClusterClusterDevicesDeviceIdList1452(d []interface{}) []edpt.ScaleoutClusterClusterDevicesDeviceIdList1452 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterClusterDevicesDeviceIdList1363, 0, count1)
+	ret := make([]edpt.ScaleoutClusterClusterDevicesDeviceIdList1452, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterClusterDevicesDeviceIdList1363
+		var oi edpt.ScaleoutClusterClusterDevicesDeviceIdList1452
 		oi.Ip = in["ip"].(string)
 		oi.Action = in["action"].(string)
 		//omit uuid
@@ -666,10 +688,10 @@ func getSliceScaleoutClusterClusterDevicesDeviceIdList1363(d []interface{}) []ed
 	return ret
 }
 
-func getObjectScaleoutClusterDbConfig1364(d []interface{}) edpt.ScaleoutClusterDbConfig1364 {
+func getObjectScaleoutClusterDbConfig1453(d []interface{}) edpt.ScaleoutClusterDbConfig1453 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterDbConfig1364
+	var ret edpt.ScaleoutClusterDbConfig1453
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ticktime = in["ticktime"].(int)
@@ -688,28 +710,28 @@ func getObjectScaleoutClusterDbConfig1364(d []interface{}) edpt.ScaleoutClusterD
 	return ret
 }
 
-func getObjectScaleoutClusterDeviceGroups1365(d []interface{}) edpt.ScaleoutClusterDeviceGroups1365 {
+func getObjectScaleoutClusterDeviceGroups1454(d []interface{}) edpt.ScaleoutClusterDeviceGroups1454 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterDeviceGroups1365
+	var ret edpt.ScaleoutClusterDeviceGroups1454
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Enable = in["enable"].(int)
 		//omit uuid
-		ret.DeviceGroupList = getSliceScaleoutClusterDeviceGroupsDeviceGroupList1366(in["device_group_list"].([]interface{}))
+		ret.DeviceGroupList = getSliceScaleoutClusterDeviceGroupsDeviceGroupList1455(in["device_group_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterDeviceGroupsDeviceGroupList1366(d []interface{}) []edpt.ScaleoutClusterDeviceGroupsDeviceGroupList1366 {
+func getSliceScaleoutClusterDeviceGroupsDeviceGroupList1455(d []interface{}) []edpt.ScaleoutClusterDeviceGroupsDeviceGroupList1455 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterDeviceGroupsDeviceGroupList1366, 0, count1)
+	ret := make([]edpt.ScaleoutClusterDeviceGroupsDeviceGroupList1455, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterDeviceGroupsDeviceGroupList1366
+		var oi edpt.ScaleoutClusterDeviceGroupsDeviceGroupList1455
 		oi.DeviceGroup = in["device_group"].(int)
-		oi.DeviceIdList = getSliceScaleoutClusterDeviceGroupsDeviceGroupListDeviceIdList1367(in["device_id_list"].([]interface{}))
+		oi.DeviceIdList = getSliceScaleoutClusterDeviceGroupsDeviceGroupListDeviceIdList1456(in["device_id_list"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -717,13 +739,13 @@ func getSliceScaleoutClusterDeviceGroupsDeviceGroupList1366(d []interface{}) []e
 	return ret
 }
 
-func getSliceScaleoutClusterDeviceGroupsDeviceGroupListDeviceIdList1367(d []interface{}) []edpt.ScaleoutClusterDeviceGroupsDeviceGroupListDeviceIdList1367 {
+func getSliceScaleoutClusterDeviceGroupsDeviceGroupListDeviceIdList1456(d []interface{}) []edpt.ScaleoutClusterDeviceGroupsDeviceGroupListDeviceIdList1456 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterDeviceGroupsDeviceGroupListDeviceIdList1367, 0, count1)
+	ret := make([]edpt.ScaleoutClusterDeviceGroupsDeviceGroupListDeviceIdList1456, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterDeviceGroupsDeviceGroupListDeviceIdList1367
+		var oi edpt.ScaleoutClusterDeviceGroupsDeviceGroupListDeviceIdList1456
 		oi.DeviceIdStart = in["device_id_start"].(int)
 		oi.DeviceIdEnd = in["device_id_end"].(int)
 		ret = append(ret, oi)
@@ -731,10 +753,10 @@ func getSliceScaleoutClusterDeviceGroupsDeviceGroupListDeviceIdList1367(d []inte
 	return ret
 }
 
-func getObjectScaleoutClusterLocalDevice1368(d []interface{}) edpt.ScaleoutClusterLocalDevice1368 {
+func getObjectScaleoutClusterLocalDevice1457(d []interface{}) edpt.ScaleoutClusterLocalDevice1457 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterLocalDevice1368
+	var ret edpt.ScaleoutClusterLocalDevice1457
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Priority = in["priority"].(int)
@@ -743,19 +765,19 @@ func getObjectScaleoutClusterLocalDevice1368(d []interface{}) edpt.ScaleoutClust
 		ret.StartDelay = in["start_delay"].(int)
 		ret.ClusterMode = in["cluster_mode"].(string)
 		//omit uuid
-		ret.L2Redirect = getObjectScaleoutClusterLocalDeviceL2Redirect1369(in["l2_redirect"].([]interface{}))
-		ret.TrafficRedirection = getObjectScaleoutClusterLocalDeviceTrafficRedirection1370(in["traffic_redirection"].([]interface{}))
-		ret.SessionSync = getObjectScaleoutClusterLocalDeviceSessionSync1377(in["session_sync"].([]interface{}))
-		ret.ExcludeInterfaces = getObjectScaleoutClusterLocalDeviceExcludeInterfaces1384(in["exclude_interfaces"].([]interface{}))
-		ret.TrackingTemplate = getObjectScaleoutClusterLocalDeviceTrackingTemplate1389(in["tracking_template"].([]interface{}))
+		ret.L2Redirect = getObjectScaleoutClusterLocalDeviceL2Redirect1458(in["l2_redirect"].([]interface{}))
+		ret.TrafficRedirection = getObjectScaleoutClusterLocalDeviceTrafficRedirection1459(in["traffic_redirection"].([]interface{}))
+		ret.SessionSync = getObjectScaleoutClusterLocalDeviceSessionSync1467(in["session_sync"].([]interface{}))
+		ret.ExcludeInterfaces = getObjectScaleoutClusterLocalDeviceExcludeInterfaces1474(in["exclude_interfaces"].([]interface{}))
+		ret.TrackingTemplate = getObjectScaleoutClusterLocalDeviceTrackingTemplate1479(in["tracking_template"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectScaleoutClusterLocalDeviceL2Redirect1369(d []interface{}) edpt.ScaleoutClusterLocalDeviceL2Redirect1369 {
+func getObjectScaleoutClusterLocalDeviceL2Redirect1458(d []interface{}) edpt.ScaleoutClusterLocalDeviceL2Redirect1458 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterLocalDeviceL2Redirect1369
+	var ret edpt.ScaleoutClusterLocalDeviceL2Redirect1458
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RedirectEth = in["redirect_eth"].(int)
@@ -767,91 +789,92 @@ func getObjectScaleoutClusterLocalDeviceL2Redirect1369(d []interface{}) edpt.Sca
 	return ret
 }
 
-func getObjectScaleoutClusterLocalDeviceTrafficRedirection1370(d []interface{}) edpt.ScaleoutClusterLocalDeviceTrafficRedirection1370 {
+func getObjectScaleoutClusterLocalDeviceTrafficRedirection1459(d []interface{}) edpt.ScaleoutClusterLocalDeviceTrafficRedirection1459 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterLocalDeviceTrafficRedirection1370
+	var ret edpt.ScaleoutClusterLocalDeviceTrafficRedirection1459
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FollowShared = in["follow_shared"].(int)
 		//omit uuid
-		ret.Interfaces = getObjectScaleoutClusterLocalDeviceTrafficRedirectionInterfaces1371(in["interfaces"].([]interface{}))
-		ret.ReachabilityOptions = getObjectScaleoutClusterLocalDeviceTrafficRedirectionReachabilityOptions1376(in["reachability_options"].([]interface{}))
+		ret.Interfaces = getObjectScaleoutClusterLocalDeviceTrafficRedirectionInterfaces1460(in["interfaces"].([]interface{}))
+		ret.ReachabilityOptions = getObjectScaleoutClusterLocalDeviceTrafficRedirectionReachabilityOptions1465(in["reachability_options"].([]interface{}))
+		ret.Encap = getObjectScaleoutClusterLocalDeviceTrafficRedirectionEncap1466(in["encap"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectScaleoutClusterLocalDeviceTrafficRedirectionInterfaces1371(d []interface{}) edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfaces1371 {
+func getObjectScaleoutClusterLocalDeviceTrafficRedirectionInterfaces1460(d []interface{}) edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfaces1460 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfaces1371
+	var ret edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfaces1460
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.EthCfg = getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesEthCfg1372(in["eth_cfg"].([]interface{}))
-		ret.TrunkCfg = getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesTrunkCfg1373(in["trunk_cfg"].([]interface{}))
-		ret.VeCfg = getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesVeCfg1374(in["ve_cfg"].([]interface{}))
-		ret.LoopbackCfg = getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesLoopbackCfg1375(in["loopback_cfg"].([]interface{}))
+		ret.EthCfg = getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesEthCfg1461(in["eth_cfg"].([]interface{}))
+		ret.TrunkCfg = getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesTrunkCfg1462(in["trunk_cfg"].([]interface{}))
+		ret.VeCfg = getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesVeCfg1463(in["ve_cfg"].([]interface{}))
+		ret.LoopbackCfg = getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesLoopbackCfg1464(in["loopback_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesEthCfg1372(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesEthCfg1372 {
+func getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesEthCfg1461(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesEthCfg1461 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesEthCfg1372, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesEthCfg1461, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesEthCfg1372
+		var oi edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesEthCfg1461
 		oi.Ethernet = in["ethernet"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesTrunkCfg1373(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesTrunkCfg1373 {
+func getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesTrunkCfg1462(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesTrunkCfg1462 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesTrunkCfg1373, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesTrunkCfg1462, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesTrunkCfg1373
+		var oi edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesTrunkCfg1462
 		oi.Trunk = in["trunk"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesVeCfg1374(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesVeCfg1374 {
+func getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesVeCfg1463(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesVeCfg1463 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesVeCfg1374, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesVeCfg1463, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesVeCfg1374
+		var oi edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesVeCfg1463
 		oi.Ve = in["ve"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesLoopbackCfg1375(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesLoopbackCfg1375 {
+func getSliceScaleoutClusterLocalDeviceTrafficRedirectionInterfacesLoopbackCfg1464(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesLoopbackCfg1464 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesLoopbackCfg1375, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesLoopbackCfg1464, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesLoopbackCfg1375
+		var oi edpt.ScaleoutClusterLocalDeviceTrafficRedirectionInterfacesLoopbackCfg1464
 		oi.Loopback = in["loopback"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectScaleoutClusterLocalDeviceTrafficRedirectionReachabilityOptions1376(d []interface{}) edpt.ScaleoutClusterLocalDeviceTrafficRedirectionReachabilityOptions1376 {
+func getObjectScaleoutClusterLocalDeviceTrafficRedirectionReachabilityOptions1465(d []interface{}) edpt.ScaleoutClusterLocalDeviceTrafficRedirectionReachabilityOptions1465 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterLocalDeviceTrafficRedirectionReachabilityOptions1376
+	var ret edpt.ScaleoutClusterLocalDeviceTrafficRedirectionReachabilityOptions1465
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SkipDefaultRoute = in["skip_default_route"].(int)
@@ -860,91 +883,104 @@ func getObjectScaleoutClusterLocalDeviceTrafficRedirectionReachabilityOptions137
 	return ret
 }
 
-func getObjectScaleoutClusterLocalDeviceSessionSync1377(d []interface{}) edpt.ScaleoutClusterLocalDeviceSessionSync1377 {
+func getObjectScaleoutClusterLocalDeviceTrafficRedirectionEncap1466(d []interface{}) edpt.ScaleoutClusterLocalDeviceTrafficRedirectionEncap1466 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterLocalDeviceSessionSync1377
+	var ret edpt.ScaleoutClusterLocalDeviceTrafficRedirectionEncap1466
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Type = in["type"].(string)
+		ret.UseV4Vxlan = in["use_v4_vxlan"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectScaleoutClusterLocalDeviceSessionSync1467(d []interface{}) edpt.ScaleoutClusterLocalDeviceSessionSync1467 {
+
+	count1 := len(d)
+	var ret edpt.ScaleoutClusterLocalDeviceSessionSync1467
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.FollowShared = in["follow_shared"].(int)
 		//omit uuid
-		ret.Interfaces = getObjectScaleoutClusterLocalDeviceSessionSyncInterfaces1378(in["interfaces"].([]interface{}))
-		ret.ReachabilityOptions = getObjectScaleoutClusterLocalDeviceSessionSyncReachabilityOptions1383(in["reachability_options"].([]interface{}))
+		ret.Interfaces = getObjectScaleoutClusterLocalDeviceSessionSyncInterfaces1468(in["interfaces"].([]interface{}))
+		ret.ReachabilityOptions = getObjectScaleoutClusterLocalDeviceSessionSyncReachabilityOptions1473(in["reachability_options"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectScaleoutClusterLocalDeviceSessionSyncInterfaces1378(d []interface{}) edpt.ScaleoutClusterLocalDeviceSessionSyncInterfaces1378 {
+func getObjectScaleoutClusterLocalDeviceSessionSyncInterfaces1468(d []interface{}) edpt.ScaleoutClusterLocalDeviceSessionSyncInterfaces1468 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterLocalDeviceSessionSyncInterfaces1378
+	var ret edpt.ScaleoutClusterLocalDeviceSessionSyncInterfaces1468
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.EthCfg = getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesEthCfg1379(in["eth_cfg"].([]interface{}))
-		ret.TrunkCfg = getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesTrunkCfg1380(in["trunk_cfg"].([]interface{}))
-		ret.VeCfg = getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesVeCfg1381(in["ve_cfg"].([]interface{}))
-		ret.LoopbackCfg = getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesLoopbackCfg1382(in["loopback_cfg"].([]interface{}))
+		ret.EthCfg = getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesEthCfg1469(in["eth_cfg"].([]interface{}))
+		ret.TrunkCfg = getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesTrunkCfg1470(in["trunk_cfg"].([]interface{}))
+		ret.VeCfg = getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesVeCfg1471(in["ve_cfg"].([]interface{}))
+		ret.LoopbackCfg = getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesLoopbackCfg1472(in["loopback_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesEthCfg1379(d []interface{}) []edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesEthCfg1379 {
+func getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesEthCfg1469(d []interface{}) []edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesEthCfg1469 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesEthCfg1379, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesEthCfg1469, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesEthCfg1379
+		var oi edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesEthCfg1469
 		oi.Ethernet = in["ethernet"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesTrunkCfg1380(d []interface{}) []edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesTrunkCfg1380 {
+func getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesTrunkCfg1470(d []interface{}) []edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesTrunkCfg1470 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesTrunkCfg1380, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesTrunkCfg1470, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesTrunkCfg1380
+		var oi edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesTrunkCfg1470
 		oi.Trunk = in["trunk"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesVeCfg1381(d []interface{}) []edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesVeCfg1381 {
+func getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesVeCfg1471(d []interface{}) []edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesVeCfg1471 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesVeCfg1381, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesVeCfg1471, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesVeCfg1381
+		var oi edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesVeCfg1471
 		oi.Ve = in["ve"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesLoopbackCfg1382(d []interface{}) []edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesLoopbackCfg1382 {
+func getSliceScaleoutClusterLocalDeviceSessionSyncInterfacesLoopbackCfg1472(d []interface{}) []edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesLoopbackCfg1472 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesLoopbackCfg1382, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesLoopbackCfg1472, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesLoopbackCfg1382
+		var oi edpt.ScaleoutClusterLocalDeviceSessionSyncInterfacesLoopbackCfg1472
 		oi.Loopback = in["loopback"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectScaleoutClusterLocalDeviceSessionSyncReachabilityOptions1383(d []interface{}) edpt.ScaleoutClusterLocalDeviceSessionSyncReachabilityOptions1383 {
+func getObjectScaleoutClusterLocalDeviceSessionSyncReachabilityOptions1473(d []interface{}) edpt.ScaleoutClusterLocalDeviceSessionSyncReachabilityOptions1473 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterLocalDeviceSessionSyncReachabilityOptions1383
+	var ret edpt.ScaleoutClusterLocalDeviceSessionSyncReachabilityOptions1473
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SkipDefaultRoute = in["skip_default_route"].(int)
@@ -953,94 +989,95 @@ func getObjectScaleoutClusterLocalDeviceSessionSyncReachabilityOptions1383(d []i
 	return ret
 }
 
-func getObjectScaleoutClusterLocalDeviceExcludeInterfaces1384(d []interface{}) edpt.ScaleoutClusterLocalDeviceExcludeInterfaces1384 {
+func getObjectScaleoutClusterLocalDeviceExcludeInterfaces1474(d []interface{}) edpt.ScaleoutClusterLocalDeviceExcludeInterfaces1474 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterLocalDeviceExcludeInterfaces1384
+	var ret edpt.ScaleoutClusterLocalDeviceExcludeInterfaces1474
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.EthCfg = getSliceScaleoutClusterLocalDeviceExcludeInterfacesEthCfg1385(in["eth_cfg"].([]interface{}))
-		ret.TrunkCfg = getSliceScaleoutClusterLocalDeviceExcludeInterfacesTrunkCfg1386(in["trunk_cfg"].([]interface{}))
-		ret.VeCfg = getSliceScaleoutClusterLocalDeviceExcludeInterfacesVeCfg1387(in["ve_cfg"].([]interface{}))
-		ret.LoopbackCfg = getSliceScaleoutClusterLocalDeviceExcludeInterfacesLoopbackCfg1388(in["loopback_cfg"].([]interface{}))
+		ret.EthCfg = getSliceScaleoutClusterLocalDeviceExcludeInterfacesEthCfg1475(in["eth_cfg"].([]interface{}))
+		ret.TrunkCfg = getSliceScaleoutClusterLocalDeviceExcludeInterfacesTrunkCfg1476(in["trunk_cfg"].([]interface{}))
+		ret.VeCfg = getSliceScaleoutClusterLocalDeviceExcludeInterfacesVeCfg1477(in["ve_cfg"].([]interface{}))
+		ret.LoopbackCfg = getSliceScaleoutClusterLocalDeviceExcludeInterfacesLoopbackCfg1478(in["loopback_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceExcludeInterfacesEthCfg1385(d []interface{}) []edpt.ScaleoutClusterLocalDeviceExcludeInterfacesEthCfg1385 {
+func getSliceScaleoutClusterLocalDeviceExcludeInterfacesEthCfg1475(d []interface{}) []edpt.ScaleoutClusterLocalDeviceExcludeInterfacesEthCfg1475 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceExcludeInterfacesEthCfg1385, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceExcludeInterfacesEthCfg1475, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceExcludeInterfacesEthCfg1385
+		var oi edpt.ScaleoutClusterLocalDeviceExcludeInterfacesEthCfg1475
 		oi.Ethernet = in["ethernet"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceExcludeInterfacesTrunkCfg1386(d []interface{}) []edpt.ScaleoutClusterLocalDeviceExcludeInterfacesTrunkCfg1386 {
+func getSliceScaleoutClusterLocalDeviceExcludeInterfacesTrunkCfg1476(d []interface{}) []edpt.ScaleoutClusterLocalDeviceExcludeInterfacesTrunkCfg1476 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceExcludeInterfacesTrunkCfg1386, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceExcludeInterfacesTrunkCfg1476, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceExcludeInterfacesTrunkCfg1386
+		var oi edpt.ScaleoutClusterLocalDeviceExcludeInterfacesTrunkCfg1476
 		oi.Trunk = in["trunk"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceExcludeInterfacesVeCfg1387(d []interface{}) []edpt.ScaleoutClusterLocalDeviceExcludeInterfacesVeCfg1387 {
+func getSliceScaleoutClusterLocalDeviceExcludeInterfacesVeCfg1477(d []interface{}) []edpt.ScaleoutClusterLocalDeviceExcludeInterfacesVeCfg1477 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceExcludeInterfacesVeCfg1387, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceExcludeInterfacesVeCfg1477, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceExcludeInterfacesVeCfg1387
+		var oi edpt.ScaleoutClusterLocalDeviceExcludeInterfacesVeCfg1477
 		oi.Ve = in["ve"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceExcludeInterfacesLoopbackCfg1388(d []interface{}) []edpt.ScaleoutClusterLocalDeviceExcludeInterfacesLoopbackCfg1388 {
+func getSliceScaleoutClusterLocalDeviceExcludeInterfacesLoopbackCfg1478(d []interface{}) []edpt.ScaleoutClusterLocalDeviceExcludeInterfacesLoopbackCfg1478 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceExcludeInterfacesLoopbackCfg1388, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceExcludeInterfacesLoopbackCfg1478, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceExcludeInterfacesLoopbackCfg1388
+		var oi edpt.ScaleoutClusterLocalDeviceExcludeInterfacesLoopbackCfg1478
 		oi.Loopback = in["loopback"].(int)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectScaleoutClusterLocalDeviceTrackingTemplate1389(d []interface{}) edpt.ScaleoutClusterLocalDeviceTrackingTemplate1389 {
+func getObjectScaleoutClusterLocalDeviceTrackingTemplate1479(d []interface{}) edpt.ScaleoutClusterLocalDeviceTrackingTemplate1479 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterLocalDeviceTrackingTemplate1389
+	var ret edpt.ScaleoutClusterLocalDeviceTrackingTemplate1479
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.TemplateList = getSliceScaleoutClusterLocalDeviceTrackingTemplateTemplateList1390(in["template_list"].([]interface{}))
-		ret.MultiTemplateList = getSliceScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateList1392(in["multi_template_list"].([]interface{}))
+		ret.TemplateList = getSliceScaleoutClusterLocalDeviceTrackingTemplateTemplateList1480(in["template_list"].([]interface{}))
+		ret.MultiTemplateList = getSliceScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateList1482(in["multi_template_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceTrackingTemplateTemplateList1390(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrackingTemplateTemplateList1390 {
+func getSliceScaleoutClusterLocalDeviceTrackingTemplateTemplateList1480(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrackingTemplateTemplateList1480 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceTrackingTemplateTemplateList1390, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceTrackingTemplateTemplateList1480, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceTrackingTemplateTemplateList1390
+		var oi edpt.ScaleoutClusterLocalDeviceTrackingTemplateTemplateList1480
 		oi.Template = in["template"].(string)
-		oi.ThresholdCfg = getSliceScaleoutClusterLocalDeviceTrackingTemplateTemplateListThresholdCfg1391(in["threshold_cfg"].([]interface{}))
+		oi.IpVersion = in["ip_version"].(string)
+		oi.ThresholdCfg = getSliceScaleoutClusterLocalDeviceTrackingTemplateTemplateListThresholdCfg1481(in["threshold_cfg"].([]interface{}))
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -1048,13 +1085,13 @@ func getSliceScaleoutClusterLocalDeviceTrackingTemplateTemplateList1390(d []inte
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceTrackingTemplateTemplateListThresholdCfg1391(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrackingTemplateTemplateListThresholdCfg1391 {
+func getSliceScaleoutClusterLocalDeviceTrackingTemplateTemplateListThresholdCfg1481(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrackingTemplateTemplateListThresholdCfg1481 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceTrackingTemplateTemplateListThresholdCfg1391, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceTrackingTemplateTemplateListThresholdCfg1481, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceTrackingTemplateTemplateListThresholdCfg1391
+		var oi edpt.ScaleoutClusterLocalDeviceTrackingTemplateTemplateListThresholdCfg1481
 		oi.Threshold = in["threshold"].(int)
 		oi.Action = in["action"].(string)
 		ret = append(ret, oi)
@@ -1062,17 +1099,18 @@ func getSliceScaleoutClusterLocalDeviceTrackingTemplateTemplateListThresholdCfg1
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateList1392(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateList1392 {
+func getSliceScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateList1482(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateList1482 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateList1392, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateList1482, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateList1392
+		var oi edpt.ScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateList1482
 		oi.MultiTemplate = in["multi_template"].(string)
-		oi.Template = getSliceScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateListTemplate1393(in["template"].([]interface{}))
+		oi.Template = getSliceScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateListTemplate1483(in["template"].([]interface{}))
 		oi.Threshold = in["threshold"].(int)
 		oi.Action = in["action"].(string)
+		oi.IpVersion = in["ip_version"].(string)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -1080,13 +1118,13 @@ func getSliceScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateList1392(d [
 	return ret
 }
 
-func getSliceScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateListTemplate1393(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateListTemplate1393 {
+func getSliceScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateListTemplate1483(d []interface{}) []edpt.ScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateListTemplate1483 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateListTemplate1393, 0, count1)
+	ret := make([]edpt.ScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateListTemplate1483, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateListTemplate1393
+		var oi edpt.ScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateListTemplate1483
 		oi.TemplateName = in["template_name"].(string)
 		oi.PartitionName = in["partition_name"].(string)
 		ret = append(ret, oi)
@@ -1094,29 +1132,29 @@ func getSliceScaleoutClusterLocalDeviceTrackingTemplateMultiTemplateListTemplate
 	return ret
 }
 
-func getObjectScaleoutClusterServiceConfig1394(d []interface{}) edpt.ScaleoutClusterServiceConfig1394 {
+func getObjectScaleoutClusterServiceConfig1484(d []interface{}) edpt.ScaleoutClusterServiceConfig1484 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterServiceConfig1394
+	var ret edpt.ScaleoutClusterServiceConfig1484
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
+		ret.DefaultUserGroupCount = in["default_user_group_count"].(int)
 		ret.Enable = in["enable"].(int)
 		//omit uuid
-		ret.TemplateList = getSliceScaleoutClusterServiceConfigTemplateList1395(in["template_list"].([]interface{}))
+		ret.TemplateList = getSliceScaleoutClusterServiceConfigTemplateList1485(in["template_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceScaleoutClusterServiceConfigTemplateList1395(d []interface{}) []edpt.ScaleoutClusterServiceConfigTemplateList1395 {
+func getSliceScaleoutClusterServiceConfigTemplateList1485(d []interface{}) []edpt.ScaleoutClusterServiceConfigTemplateList1485 {
 
 	count1 := len(d)
-	ret := make([]edpt.ScaleoutClusterServiceConfigTemplateList1395, 0, count1)
+	ret := make([]edpt.ScaleoutClusterServiceConfigTemplateList1485, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.ScaleoutClusterServiceConfigTemplateList1395
+		var oi edpt.ScaleoutClusterServiceConfigTemplateList1485
 		oi.Name = in["name"].(string)
-		oi.BucketCount = in["bucket_count"].(int)
-		oi.DeviceGroup = in["device_group"].(int)
+		oi.UserGroupCount = in["user_group_count"].(int)
 		//omit uuid
 		oi.UserTag = in["user_tag"].(string)
 		ret = append(ret, oi)
@@ -1124,10 +1162,10 @@ func getSliceScaleoutClusterServiceConfigTemplateList1395(d []interface{}) []edp
 	return ret
 }
 
-func getObjectScaleoutClusterTrackingTemplate1396(d []interface{}) edpt.ScaleoutClusterTrackingTemplate1396 {
+func getObjectScaleoutClusterTrackingTemplate1486(d []interface{}) edpt.ScaleoutClusterTrackingTemplate1486 {
 
 	count1 := len(d)
-	var ret edpt.ScaleoutClusterTrackingTemplate1396
+	var ret edpt.ScaleoutClusterTrackingTemplate1486
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.TemplateList = getSliceScaleoutClusterTrackingTemplateTemplateList(in["template_list"].([]interface{}))
@@ -1167,14 +1205,14 @@ func getSliceScaleoutClusterTrackingTemplateTemplateListThresholdCfg(d []interfa
 
 func dataToEndpointScaleoutCluster(d *schema.ResourceData) edpt.ScaleoutCluster {
 	var ret edpt.ScaleoutCluster
-	ret.Inst.ClusterDevices = getObjectScaleoutClusterClusterDevices1360(d.Get("cluster_devices").([]interface{}))
+	ret.Inst.ClusterDevices = getObjectScaleoutClusterClusterDevices1449(d.Get("cluster_devices").([]interface{}))
 	ret.Inst.ClusterId = d.Get("cluster_id").(int)
-	ret.Inst.DbConfig = getObjectScaleoutClusterDbConfig1364(d.Get("db_config").([]interface{}))
-	ret.Inst.DeviceGroups = getObjectScaleoutClusterDeviceGroups1365(d.Get("device_groups").([]interface{}))
-	ret.Inst.LocalDevice = getObjectScaleoutClusterLocalDevice1368(d.Get("local_device").([]interface{}))
-	ret.Inst.ServiceConfig = getObjectScaleoutClusterServiceConfig1394(d.Get("service_config").([]interface{}))
+	ret.Inst.DbConfig = getObjectScaleoutClusterDbConfig1453(d.Get("db_config").([]interface{}))
+	ret.Inst.DeviceGroups = getObjectScaleoutClusterDeviceGroups1454(d.Get("device_groups").([]interface{}))
+	ret.Inst.LocalDevice = getObjectScaleoutClusterLocalDevice1457(d.Get("local_device").([]interface{}))
+	ret.Inst.ServiceConfig = getObjectScaleoutClusterServiceConfig1484(d.Get("service_config").([]interface{}))
 	ret.Inst.SlogLevel = d.Get("slog_level").(int)
-	ret.Inst.TrackingTemplate = getObjectScaleoutClusterTrackingTemplate1396(d.Get("tracking_template").([]interface{}))
+	ret.Inst.TrackingTemplate = getObjectScaleoutClusterTrackingTemplate1486(d.Get("tracking_template").([]interface{}))
 	//omit uuid
 	return ret
 }

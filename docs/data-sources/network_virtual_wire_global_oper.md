@@ -63,5 +63,3 @@ Optional:
 
 - `active_pair` (Number)
 - `set_id` (Number)
-
-

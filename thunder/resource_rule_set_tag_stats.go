@@ -788,8 +788,8 @@ func resourceRuleSetTagStats() *schema.Resource {
 					},
 				},
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"rule_set_name": {
+				Type: schema.TypeString, Required: true, Description: "Rule_set_name",
 			},
 		},
 	}
@@ -1348,6 +1348,6 @@ func dataToEndpointRuleSetTagStats(d *schema.ResourceData) edpt.RuleSetTagStats 
 
 	ret.Stats = getObjectRuleSetTagStatsStats(d.Get("stats").([]interface{}))
 
-	ret.Name = d.Get("name").(string)
+	ret.Rule_set_name = d.Get("rule_set_name").(string)
 	return ret
 }

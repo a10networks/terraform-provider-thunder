@@ -310,33 +310,33 @@ func getSliceInterfaceLoopbackIpv6AddressList(d []interface{}) []edpt.InterfaceL
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpv6Ospf669(d []interface{}) edpt.InterfaceLoopbackIpv6Ospf669 {
+func getObjectInterfaceLoopbackIpv6Ospf759(d []interface{}) edpt.InterfaceLoopbackIpv6Ospf759 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpv6Ospf669
+	var ret edpt.InterfaceLoopbackIpv6Ospf759
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bfd = in["bfd"].(int)
 		ret.Disable = in["disable"].(int)
-		ret.CostCfg = getSliceInterfaceLoopbackIpv6OspfCostCfg670(in["cost_cfg"].([]interface{}))
-		ret.DeadIntervalCfg = getSliceInterfaceLoopbackIpv6OspfDeadIntervalCfg671(in["dead_interval_cfg"].([]interface{}))
-		ret.HelloIntervalCfg = getSliceInterfaceLoopbackIpv6OspfHelloIntervalCfg672(in["hello_interval_cfg"].([]interface{}))
-		ret.MtuIgnoreCfg = getSliceInterfaceLoopbackIpv6OspfMtuIgnoreCfg673(in["mtu_ignore_cfg"].([]interface{}))
-		ret.PriorityCfg = getSliceInterfaceLoopbackIpv6OspfPriorityCfg674(in["priority_cfg"].([]interface{}))
-		ret.RetransmitIntervalCfg = getSliceInterfaceLoopbackIpv6OspfRetransmitIntervalCfg675(in["retransmit_interval_cfg"].([]interface{}))
-		ret.TransmitDelayCfg = getSliceInterfaceLoopbackIpv6OspfTransmitDelayCfg676(in["transmit_delay_cfg"].([]interface{}))
+		ret.CostCfg = getSliceInterfaceLoopbackIpv6OspfCostCfg760(in["cost_cfg"].([]interface{}))
+		ret.DeadIntervalCfg = getSliceInterfaceLoopbackIpv6OspfDeadIntervalCfg761(in["dead_interval_cfg"].([]interface{}))
+		ret.HelloIntervalCfg = getSliceInterfaceLoopbackIpv6OspfHelloIntervalCfg762(in["hello_interval_cfg"].([]interface{}))
+		ret.MtuIgnoreCfg = getSliceInterfaceLoopbackIpv6OspfMtuIgnoreCfg763(in["mtu_ignore_cfg"].([]interface{}))
+		ret.PriorityCfg = getSliceInterfaceLoopbackIpv6OspfPriorityCfg764(in["priority_cfg"].([]interface{}))
+		ret.RetransmitIntervalCfg = getSliceInterfaceLoopbackIpv6OspfRetransmitIntervalCfg765(in["retransmit_interval_cfg"].([]interface{}))
+		ret.TransmitDelayCfg = getSliceInterfaceLoopbackIpv6OspfTransmitDelayCfg766(in["transmit_delay_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceInterfaceLoopbackIpv6OspfCostCfg670(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfCostCfg670 {
+func getSliceInterfaceLoopbackIpv6OspfCostCfg760(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfCostCfg760 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceLoopbackIpv6OspfCostCfg670, 0, count1)
+	ret := make([]edpt.InterfaceLoopbackIpv6OspfCostCfg760, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceLoopbackIpv6OspfCostCfg670
+		var oi edpt.InterfaceLoopbackIpv6OspfCostCfg760
 		oi.Cost = in["cost"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -344,13 +344,13 @@ func getSliceInterfaceLoopbackIpv6OspfCostCfg670(d []interface{}) []edpt.Interfa
 	return ret
 }
 
-func getSliceInterfaceLoopbackIpv6OspfDeadIntervalCfg671(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfDeadIntervalCfg671 {
+func getSliceInterfaceLoopbackIpv6OspfDeadIntervalCfg761(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfDeadIntervalCfg761 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceLoopbackIpv6OspfDeadIntervalCfg671, 0, count1)
+	ret := make([]edpt.InterfaceLoopbackIpv6OspfDeadIntervalCfg761, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceLoopbackIpv6OspfDeadIntervalCfg671
+		var oi edpt.InterfaceLoopbackIpv6OspfDeadIntervalCfg761
 		oi.DeadInterval = in["dead_interval"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -358,13 +358,13 @@ func getSliceInterfaceLoopbackIpv6OspfDeadIntervalCfg671(d []interface{}) []edpt
 	return ret
 }
 
-func getSliceInterfaceLoopbackIpv6OspfHelloIntervalCfg672(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfHelloIntervalCfg672 {
+func getSliceInterfaceLoopbackIpv6OspfHelloIntervalCfg762(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfHelloIntervalCfg762 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceLoopbackIpv6OspfHelloIntervalCfg672, 0, count1)
+	ret := make([]edpt.InterfaceLoopbackIpv6OspfHelloIntervalCfg762, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceLoopbackIpv6OspfHelloIntervalCfg672
+		var oi edpt.InterfaceLoopbackIpv6OspfHelloIntervalCfg762
 		oi.HelloInterval = in["hello_interval"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -372,13 +372,13 @@ func getSliceInterfaceLoopbackIpv6OspfHelloIntervalCfg672(d []interface{}) []edp
 	return ret
 }
 
-func getSliceInterfaceLoopbackIpv6OspfMtuIgnoreCfg673(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfMtuIgnoreCfg673 {
+func getSliceInterfaceLoopbackIpv6OspfMtuIgnoreCfg763(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfMtuIgnoreCfg763 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceLoopbackIpv6OspfMtuIgnoreCfg673, 0, count1)
+	ret := make([]edpt.InterfaceLoopbackIpv6OspfMtuIgnoreCfg763, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceLoopbackIpv6OspfMtuIgnoreCfg673
+		var oi edpt.InterfaceLoopbackIpv6OspfMtuIgnoreCfg763
 		oi.MtuIgnore = in["mtu_ignore"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -386,13 +386,13 @@ func getSliceInterfaceLoopbackIpv6OspfMtuIgnoreCfg673(d []interface{}) []edpt.In
 	return ret
 }
 
-func getSliceInterfaceLoopbackIpv6OspfPriorityCfg674(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfPriorityCfg674 {
+func getSliceInterfaceLoopbackIpv6OspfPriorityCfg764(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfPriorityCfg764 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceLoopbackIpv6OspfPriorityCfg674, 0, count1)
+	ret := make([]edpt.InterfaceLoopbackIpv6OspfPriorityCfg764, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceLoopbackIpv6OspfPriorityCfg674
+		var oi edpt.InterfaceLoopbackIpv6OspfPriorityCfg764
 		oi.Priority = in["priority"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -400,13 +400,13 @@ func getSliceInterfaceLoopbackIpv6OspfPriorityCfg674(d []interface{}) []edpt.Int
 	return ret
 }
 
-func getSliceInterfaceLoopbackIpv6OspfRetransmitIntervalCfg675(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfRetransmitIntervalCfg675 {
+func getSliceInterfaceLoopbackIpv6OspfRetransmitIntervalCfg765(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfRetransmitIntervalCfg765 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceLoopbackIpv6OspfRetransmitIntervalCfg675, 0, count1)
+	ret := make([]edpt.InterfaceLoopbackIpv6OspfRetransmitIntervalCfg765, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceLoopbackIpv6OspfRetransmitIntervalCfg675
+		var oi edpt.InterfaceLoopbackIpv6OspfRetransmitIntervalCfg765
 		oi.RetransmitInterval = in["retransmit_interval"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -414,13 +414,13 @@ func getSliceInterfaceLoopbackIpv6OspfRetransmitIntervalCfg675(d []interface{}) 
 	return ret
 }
 
-func getSliceInterfaceLoopbackIpv6OspfTransmitDelayCfg676(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfTransmitDelayCfg676 {
+func getSliceInterfaceLoopbackIpv6OspfTransmitDelayCfg766(d []interface{}) []edpt.InterfaceLoopbackIpv6OspfTransmitDelayCfg766 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceLoopbackIpv6OspfTransmitDelayCfg676, 0, count1)
+	ret := make([]edpt.InterfaceLoopbackIpv6OspfTransmitDelayCfg766, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceLoopbackIpv6OspfTransmitDelayCfg676
+		var oi edpt.InterfaceLoopbackIpv6OspfTransmitDelayCfg766
 		oi.TransmitDelay = in["transmit_delay"].(int)
 		oi.InstanceId = in["instance_id"].(int)
 		ret = append(ret, oi)
@@ -428,22 +428,22 @@ func getSliceInterfaceLoopbackIpv6OspfTransmitDelayCfg676(d []interface{}) []edp
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpv6Rip677(d []interface{}) edpt.InterfaceLoopbackIpv6Rip677 {
+func getObjectInterfaceLoopbackIpv6Rip767(d []interface{}) edpt.InterfaceLoopbackIpv6Rip767 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpv6Rip677
+	var ret edpt.InterfaceLoopbackIpv6Rip767
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.SplitHorizonCfg = getObjectInterfaceLoopbackIpv6RipSplitHorizonCfg678(in["split_horizon_cfg"].([]interface{}))
+		ret.SplitHorizonCfg = getObjectInterfaceLoopbackIpv6RipSplitHorizonCfg768(in["split_horizon_cfg"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpv6RipSplitHorizonCfg678(d []interface{}) edpt.InterfaceLoopbackIpv6RipSplitHorizonCfg678 {
+func getObjectInterfaceLoopbackIpv6RipSplitHorizonCfg768(d []interface{}) edpt.InterfaceLoopbackIpv6RipSplitHorizonCfg768 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpv6RipSplitHorizonCfg678
+	var ret edpt.InterfaceLoopbackIpv6RipSplitHorizonCfg768
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.State = in["state"].(string)
@@ -451,23 +451,23 @@ func getObjectInterfaceLoopbackIpv6RipSplitHorizonCfg678(d []interface{}) edpt.I
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpv6Router679(d []interface{}) edpt.InterfaceLoopbackIpv6Router679 {
+func getObjectInterfaceLoopbackIpv6Router769(d []interface{}) edpt.InterfaceLoopbackIpv6Router769 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpv6Router679
+	var ret edpt.InterfaceLoopbackIpv6Router769
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.Ripng = getObjectInterfaceLoopbackIpv6RouterRipng680(in["ripng"].([]interface{}))
-		ret.Ospf = getObjectInterfaceLoopbackIpv6RouterOspf681(in["ospf"].([]interface{}))
-		ret.Isis = getObjectInterfaceLoopbackIpv6RouterIsis683(in["isis"].([]interface{}))
+		ret.Ripng = getObjectInterfaceLoopbackIpv6RouterRipng770(in["ripng"].([]interface{}))
+		ret.Ospf = getObjectInterfaceLoopbackIpv6RouterOspf771(in["ospf"].([]interface{}))
+		ret.Isis = getObjectInterfaceLoopbackIpv6RouterIsis773(in["isis"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpv6RouterRipng680(d []interface{}) edpt.InterfaceLoopbackIpv6RouterRipng680 {
+func getObjectInterfaceLoopbackIpv6RouterRipng770(d []interface{}) edpt.InterfaceLoopbackIpv6RouterRipng770 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpv6RouterRipng680
+	var ret edpt.InterfaceLoopbackIpv6RouterRipng770
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Rip = in["rip"].(int)
@@ -476,25 +476,25 @@ func getObjectInterfaceLoopbackIpv6RouterRipng680(d []interface{}) edpt.Interfac
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpv6RouterOspf681(d []interface{}) edpt.InterfaceLoopbackIpv6RouterOspf681 {
+func getObjectInterfaceLoopbackIpv6RouterOspf771(d []interface{}) edpt.InterfaceLoopbackIpv6RouterOspf771 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpv6RouterOspf681
+	var ret edpt.InterfaceLoopbackIpv6RouterOspf771
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.AreaList = getSliceInterfaceLoopbackIpv6RouterOspfAreaList682(in["area_list"].([]interface{}))
+		ret.AreaList = getSliceInterfaceLoopbackIpv6RouterOspfAreaList772(in["area_list"].([]interface{}))
 		//omit uuid
 	}
 	return ret
 }
 
-func getSliceInterfaceLoopbackIpv6RouterOspfAreaList682(d []interface{}) []edpt.InterfaceLoopbackIpv6RouterOspfAreaList682 {
+func getSliceInterfaceLoopbackIpv6RouterOspfAreaList772(d []interface{}) []edpt.InterfaceLoopbackIpv6RouterOspfAreaList772 {
 
 	count1 := len(d)
-	ret := make([]edpt.InterfaceLoopbackIpv6RouterOspfAreaList682, 0, count1)
+	ret := make([]edpt.InterfaceLoopbackIpv6RouterOspfAreaList772, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.InterfaceLoopbackIpv6RouterOspfAreaList682
+		var oi edpt.InterfaceLoopbackIpv6RouterOspfAreaList772
 		oi.AreaIdNum = in["area_id_num"].(int)
 		oi.AreaIdAddr = in["area_id_addr"].(string)
 		oi.Tag = in["tag"].(string)
@@ -504,10 +504,10 @@ func getSliceInterfaceLoopbackIpv6RouterOspfAreaList682(d []interface{}) []edpt.
 	return ret
 }
 
-func getObjectInterfaceLoopbackIpv6RouterIsis683(d []interface{}) edpt.InterfaceLoopbackIpv6RouterIsis683 {
+func getObjectInterfaceLoopbackIpv6RouterIsis773(d []interface{}) edpt.InterfaceLoopbackIpv6RouterIsis773 {
 
 	count1 := len(d)
-	var ret edpt.InterfaceLoopbackIpv6RouterIsis683
+	var ret edpt.InterfaceLoopbackIpv6RouterIsis773
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Tag = in["tag"].(string)
@@ -520,9 +520,9 @@ func dataToEndpointInterfaceLoopbackIpv6(d *schema.ResourceData) edpt.InterfaceL
 	var ret edpt.InterfaceLoopbackIpv6
 	ret.Inst.AddressList = getSliceInterfaceLoopbackIpv6AddressList(d.Get("address_list").([]interface{}))
 	ret.Inst.Ipv6Enable = d.Get("ipv6_enable").(int)
-	ret.Inst.Ospf = getObjectInterfaceLoopbackIpv6Ospf669(d.Get("ospf").([]interface{}))
-	ret.Inst.Rip = getObjectInterfaceLoopbackIpv6Rip677(d.Get("rip").([]interface{}))
-	ret.Inst.Router = getObjectInterfaceLoopbackIpv6Router679(d.Get("router").([]interface{}))
+	ret.Inst.Ospf = getObjectInterfaceLoopbackIpv6Ospf759(d.Get("ospf").([]interface{}))
+	ret.Inst.Rip = getObjectInterfaceLoopbackIpv6Rip767(d.Get("rip").([]interface{}))
+	ret.Inst.Router = getObjectInterfaceLoopbackIpv6Router769(d.Get("router").([]interface{}))
 	//omit uuid
 	ret.Inst.Ifnum = d.Get("ifnum").(string)
 	return ret

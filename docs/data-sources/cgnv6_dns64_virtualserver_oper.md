@@ -80,6 +80,7 @@ Optional:
 - `ip_only_lb_fwd_pkts` (Number)
 - `ip_only_lb_rev_bytes` (Number)
 - `ip_only_lb_rev_pkts` (Number)
+- `ipv6_address` (String)
 - `mac` (String)
 - `migration_status` (String)
 - `peak_conn` (Number)
@@ -346,5 +347,3 @@ Optional:
 - `ws_handshake_request` (Number)
 - `ws_handshake_success` (Number)
 - `ws_server_switch` (Number)
-
-

@@ -107,5 +107,3 @@ Optional:
 - `status_5xx` (Number) status code 5XX
 - `status_6xx` (Number) status code 6XX
 - `status_unknown` (Number) Status code unknown
-
-

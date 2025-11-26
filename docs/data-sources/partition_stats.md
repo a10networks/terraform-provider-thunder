@@ -47,5 +47,3 @@ output "get_partition_stats" {
 
 <a id="nestedblock--stats"></a>
 ### Nested Schema for `stats`
-
-

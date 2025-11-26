@@ -63,8 +63,8 @@ func resourceAamAuthenticationRelayFormBasedInstanceRequestUri() *schema.Resourc
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"instance_name": {
+				Type: schema.TypeString, Required: true, Description: "Instance_name",
 			},
 		},
 	}
@@ -166,6 +166,6 @@ func dataToEndpointAamAuthenticationRelayFormBasedInstanceRequestUri(d *schema.R
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	ret.Inst.UserVariable = d.Get("user_variable").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Instance_name = d.Get("instance_name").(string)
 	return ret
 }

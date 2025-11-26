@@ -44,8 +44,7 @@ output "get_network_virtual_wire_global_stats" {
 
 Optional:
 
+- `hc_pkt_drop` (Number) Packet drop due to health check
 - `mac_update` (Number) MAC update
 - `vlan_pair_update` (Number) VLAN pair update
 - `vlan_update` (Number) VLAN update
-
-

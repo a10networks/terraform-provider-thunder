@@ -48,5 +48,3 @@ Optional:
 - `helper_created` (Number) ESP Helper Sessions Created
 - `helper_freed` (Number) ESP Helper Sessions Freed
 - `session_created` (Number) ESP Sessions Created
-
-

@@ -63,5 +63,3 @@ Optional:
 - `src_ip_str` (String)
 - `src_port` (Number)
 - `token` (Number)
-
-

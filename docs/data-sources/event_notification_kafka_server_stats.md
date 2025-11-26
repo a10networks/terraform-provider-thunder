@@ -130,5 +130,3 @@ Optional:
 - `waf_events_topic_dequeue_err` (Number) WAF events metrics dropped,enq error analytics qs
 - `waf_learn_pr_topic` (Number) WAF learn topic counter
 - `waf_learn_pr_topic_dequeue_err` (Number) WAF learn metrics dropped,enq error analytics qs
-
-

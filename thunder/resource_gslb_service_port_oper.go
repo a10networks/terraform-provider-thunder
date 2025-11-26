@@ -17,6 +17,9 @@ func resourceGslbServicePortOper() *schema.Resource {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"service_hash": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"service_port_list": {
 							Type: schema.TypeList, Optional: true, Description: "",
 							Elem: &schema.Resource{
@@ -36,8 +39,20 @@ func resourceGslbServicePortOper() *schema.Resource {
 									"current_connections": {
 										Type: schema.TypeInt, Optional: true, Description: "",
 									},
+									"service_label": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"service_hcode": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
 								},
 							},
+						},
+						"label": {
+							Type: schema.TypeString, Optional: true, Description: "",
+						},
+						"port_count": {
+							Type: schema.TypeInt, Optional: true, Description: "",
 						},
 					},
 				},
@@ -68,7 +83,10 @@ func resourceGslbServicePortOperRead(ctx context.Context, d *schema.ResourceData
 func setObjectGslbServicePortOperOper(ret edpt.DataGslbServicePortOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
+			"service_hash":      ret.DtGslbServicePortOper.Oper.ServiceHash,
 			"service_port_list": setSliceGslbServicePortOperOperServicePortList(ret.DtGslbServicePortOper.Oper.ServicePortList),
+			"label":             ret.DtGslbServicePortOper.Oper.Label,
+			"port_count":        ret.DtGslbServicePortOper.Oper.PortCount,
 		},
 	}
 }
@@ -82,6 +100,8 @@ func setSliceGslbServicePortOperOperServicePortList(d []edpt.GslbServicePortOper
 		in["state"] = item.State
 		in["active_real_server"] = item.ActiveRealServer
 		in["current_connections"] = item.CurrentConnections
+		in["service_label"] = item.ServiceLabel
+		in["service_hcode"] = item.ServiceHcode
 		result = append(result, in)
 	}
 	return result
@@ -93,7 +113,10 @@ func getObjectGslbServicePortOperOper(d []interface{}) edpt.GslbServicePortOperO
 	var ret edpt.GslbServicePortOperOper
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
+		ret.ServiceHash = in["service_hash"].(int)
 		ret.ServicePortList = getSliceGslbServicePortOperOperServicePortList(in["service_port_list"].([]interface{}))
+		ret.Label = in["label"].(string)
+		ret.PortCount = in["port_count"].(int)
 	}
 	return ret
 }
@@ -110,6 +133,8 @@ func getSliceGslbServicePortOperOperServicePortList(d []interface{}) []edpt.Gslb
 		oi.State = in["state"].(string)
 		oi.ActiveRealServer = in["active_real_server"].(int)
 		oi.CurrentConnections = in["current_connections"].(int)
+		oi.ServiceLabel = in["service_label"].(string)
+		oi.ServiceHcode = in["service_hcode"].(int)
 		ret = append(ret, oi)
 	}
 	return ret

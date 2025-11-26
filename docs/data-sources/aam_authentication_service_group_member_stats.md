@@ -39,6 +39,7 @@ output "get_aam_authentication_service_group_member_stats" {
 
 - `name` (String) Member name
 - `port` (Number) Port number
+- `service_group_name` (String) Service_group_name
 
 ### Optional
 
@@ -72,5 +73,3 @@ Optional:
 - `total_rev_pkts_inspected_status_code_2xx` (Number) Total reverse packets inspected status code 2xx
 - `total_rev_pkts_inspected_status_code_non_5xx` (Number) Total reverse packets inspected status code non 5xx
 - `total_ssl_conn` (Number) Total SSL connections
-
-

@@ -83,6 +83,9 @@ func resourceSlbTemplatePolicyForwardPolicyAction() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
+			},
 		},
 	}
 }
@@ -183,5 +186,6 @@ func dataToEndpointSlbTemplatePolicyForwardPolicyAction(d *schema.ResourceData) 
 	ret.Inst.SupportCertFetch = d.Get("support_cert_fetch").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

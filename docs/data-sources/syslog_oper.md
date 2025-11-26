@@ -55,5 +55,3 @@ Optional:
 - `add_slot_info` (Number)
 - `log_data` (String)
 - `log_data_search` (String)
-
-

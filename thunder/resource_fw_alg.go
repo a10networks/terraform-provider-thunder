@@ -134,6 +134,19 @@ func resourceFwAlg() *schema.Resource {
 					},
 				},
 			},
+			"sctp": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"action": {
+							Type: schema.TypeString, Optional: true, Default: "enable", Description: "'disable': disable; 'enable': enable;",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
 			"sip": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 				Elem: &schema.Resource{
@@ -248,10 +261,10 @@ func resourceFwAlgRead(ctx context.Context, d *schema.ResourceData, meta interfa
 	return diags
 }
 
-func getObjectFwAlgDns355(d []interface{}) edpt.FwAlgDns355 {
+func getObjectFwAlgDns426(d []interface{}) edpt.FwAlgDns426 {
 
 	count1 := len(d)
-	var ret edpt.FwAlgDns355
+	var ret edpt.FwAlgDns426
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DefaultPortDisable = in["default_port_disable"].(string)
@@ -260,62 +273,62 @@ func getObjectFwAlgDns355(d []interface{}) edpt.FwAlgDns355 {
 	return ret
 }
 
-func getObjectFwAlgEsp356(d []interface{}) edpt.FwAlgEsp356 {
+func getObjectFwAlgEsp427(d []interface{}) edpt.FwAlgEsp427 {
 
 	count1 := len(d)
-	var ret edpt.FwAlgEsp356
+	var ret edpt.FwAlgEsp427
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DefaultPortDisable = in["default_port_disable"].(string)
 		//omit uuid
-		ret.SamplingEnable = getSliceFwAlgEspSamplingEnable357(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceFwAlgEspSamplingEnable428(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceFwAlgEspSamplingEnable357(d []interface{}) []edpt.FwAlgEspSamplingEnable357 {
+func getSliceFwAlgEspSamplingEnable428(d []interface{}) []edpt.FwAlgEspSamplingEnable428 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwAlgEspSamplingEnable357, 0, count1)
+	ret := make([]edpt.FwAlgEspSamplingEnable428, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwAlgEspSamplingEnable357
+		var oi edpt.FwAlgEspSamplingEnable428
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectFwAlgFtp358(d []interface{}) edpt.FwAlgFtp358 {
+func getObjectFwAlgFtp429(d []interface{}) edpt.FwAlgFtp429 {
 
 	count1 := len(d)
-	var ret edpt.FwAlgFtp358
+	var ret edpt.FwAlgFtp429
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DefaultPortDisable = in["default_port_disable"].(string)
 		//omit uuid
-		ret.SamplingEnable = getSliceFwAlgFtpSamplingEnable359(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceFwAlgFtpSamplingEnable430(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceFwAlgFtpSamplingEnable359(d []interface{}) []edpt.FwAlgFtpSamplingEnable359 {
+func getSliceFwAlgFtpSamplingEnable430(d []interface{}) []edpt.FwAlgFtpSamplingEnable430 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwAlgFtpSamplingEnable359, 0, count1)
+	ret := make([]edpt.FwAlgFtpSamplingEnable430, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwAlgFtpSamplingEnable359
+		var oi edpt.FwAlgFtpSamplingEnable430
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectFwAlgIcmp360(d []interface{}) edpt.FwAlgIcmp360 {
+func getObjectFwAlgIcmp431(d []interface{}) edpt.FwAlgIcmp431 {
 
 	count1 := len(d)
-	var ret edpt.FwAlgIcmp360
+	var ret edpt.FwAlgIcmp431
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Disable = in["disable"].(string)
@@ -324,104 +337,116 @@ func getObjectFwAlgIcmp360(d []interface{}) edpt.FwAlgIcmp360 {
 	return ret
 }
 
-func getObjectFwAlgPptp361(d []interface{}) edpt.FwAlgPptp361 {
+func getObjectFwAlgPptp432(d []interface{}) edpt.FwAlgPptp432 {
 
 	count1 := len(d)
-	var ret edpt.FwAlgPptp361
+	var ret edpt.FwAlgPptp432
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DefaultPortDisable = in["default_port_disable"].(string)
 		//omit uuid
-		ret.SamplingEnable = getSliceFwAlgPptpSamplingEnable362(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceFwAlgPptpSamplingEnable433(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceFwAlgPptpSamplingEnable362(d []interface{}) []edpt.FwAlgPptpSamplingEnable362 {
+func getSliceFwAlgPptpSamplingEnable433(d []interface{}) []edpt.FwAlgPptpSamplingEnable433 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwAlgPptpSamplingEnable362, 0, count1)
+	ret := make([]edpt.FwAlgPptpSamplingEnable433, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwAlgPptpSamplingEnable362
+		var oi edpt.FwAlgPptpSamplingEnable433
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectFwAlgRtsp363(d []interface{}) edpt.FwAlgRtsp363 {
+func getObjectFwAlgRtsp434(d []interface{}) edpt.FwAlgRtsp434 {
 
 	count1 := len(d)
-	var ret edpt.FwAlgRtsp363
+	var ret edpt.FwAlgRtsp434
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DefaultPortDisable = in["default_port_disable"].(string)
 		//omit uuid
-		ret.SamplingEnable = getSliceFwAlgRtspSamplingEnable364(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceFwAlgRtspSamplingEnable435(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceFwAlgRtspSamplingEnable364(d []interface{}) []edpt.FwAlgRtspSamplingEnable364 {
+func getSliceFwAlgRtspSamplingEnable435(d []interface{}) []edpt.FwAlgRtspSamplingEnable435 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwAlgRtspSamplingEnable364, 0, count1)
+	ret := make([]edpt.FwAlgRtspSamplingEnable435, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwAlgRtspSamplingEnable364
+		var oi edpt.FwAlgRtspSamplingEnable435
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectFwAlgSip365(d []interface{}) edpt.FwAlgSip365 {
+func getObjectFwAlgSctp436(d []interface{}) edpt.FwAlgSctp436 {
 
 	count1 := len(d)
-	var ret edpt.FwAlgSip365
+	var ret edpt.FwAlgSctp436
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
-		ret.DefaultPortDisable = in["default_port_disable"].(string)
+		ret.Action = in["action"].(string)
 		//omit uuid
-		ret.SamplingEnable = getSliceFwAlgSipSamplingEnable366(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceFwAlgSipSamplingEnable366(d []interface{}) []edpt.FwAlgSipSamplingEnable366 {
+func getObjectFwAlgSip437(d []interface{}) edpt.FwAlgSip437 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwAlgSipSamplingEnable366, 0, count1)
+	var ret edpt.FwAlgSip437
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.DefaultPortDisable = in["default_port_disable"].(string)
+		//omit uuid
+		ret.SamplingEnable = getSliceFwAlgSipSamplingEnable438(in["sampling_enable"].([]interface{}))
+	}
+	return ret
+}
+
+func getSliceFwAlgSipSamplingEnable438(d []interface{}) []edpt.FwAlgSipSamplingEnable438 {
+
+	count1 := len(d)
+	ret := make([]edpt.FwAlgSipSamplingEnable438, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwAlgSipSamplingEnable366
+		var oi edpt.FwAlgSipSamplingEnable438
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
 	return ret
 }
 
-func getObjectFwAlgTftp367(d []interface{}) edpt.FwAlgTftp367 {
+func getObjectFwAlgTftp439(d []interface{}) edpt.FwAlgTftp439 {
 
 	count1 := len(d)
-	var ret edpt.FwAlgTftp367
+	var ret edpt.FwAlgTftp439
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.DefaultPortDisable = in["default_port_disable"].(string)
 		//omit uuid
-		ret.SamplingEnable = getSliceFwAlgTftpSamplingEnable368(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceFwAlgTftpSamplingEnable440(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceFwAlgTftpSamplingEnable368(d []interface{}) []edpt.FwAlgTftpSamplingEnable368 {
+func getSliceFwAlgTftpSamplingEnable440(d []interface{}) []edpt.FwAlgTftpSamplingEnable440 {
 
 	count1 := len(d)
-	ret := make([]edpt.FwAlgTftpSamplingEnable368, 0, count1)
+	ret := make([]edpt.FwAlgTftpSamplingEnable440, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.FwAlgTftpSamplingEnable368
+		var oi edpt.FwAlgTftpSamplingEnable440
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
@@ -430,14 +455,15 @@ func getSliceFwAlgTftpSamplingEnable368(d []interface{}) []edpt.FwAlgTftpSamplin
 
 func dataToEndpointFwAlg(d *schema.ResourceData) edpt.FwAlg {
 	var ret edpt.FwAlg
-	ret.Inst.Dns = getObjectFwAlgDns355(d.Get("dns").([]interface{}))
-	ret.Inst.Esp = getObjectFwAlgEsp356(d.Get("esp").([]interface{}))
-	ret.Inst.Ftp = getObjectFwAlgFtp358(d.Get("ftp").([]interface{}))
-	ret.Inst.Icmp = getObjectFwAlgIcmp360(d.Get("icmp").([]interface{}))
-	ret.Inst.Pptp = getObjectFwAlgPptp361(d.Get("pptp").([]interface{}))
-	ret.Inst.Rtsp = getObjectFwAlgRtsp363(d.Get("rtsp").([]interface{}))
-	ret.Inst.Sip = getObjectFwAlgSip365(d.Get("sip").([]interface{}))
-	ret.Inst.Tftp = getObjectFwAlgTftp367(d.Get("tftp").([]interface{}))
+	ret.Inst.Dns = getObjectFwAlgDns426(d.Get("dns").([]interface{}))
+	ret.Inst.Esp = getObjectFwAlgEsp427(d.Get("esp").([]interface{}))
+	ret.Inst.Ftp = getObjectFwAlgFtp429(d.Get("ftp").([]interface{}))
+	ret.Inst.Icmp = getObjectFwAlgIcmp431(d.Get("icmp").([]interface{}))
+	ret.Inst.Pptp = getObjectFwAlgPptp432(d.Get("pptp").([]interface{}))
+	ret.Inst.Rtsp = getObjectFwAlgRtsp434(d.Get("rtsp").([]interface{}))
+	ret.Inst.Sctp = getObjectFwAlgSctp436(d.Get("sctp").([]interface{}))
+	ret.Inst.Sip = getObjectFwAlgSip437(d.Get("sip").([]interface{}))
+	ret.Inst.Tftp = getObjectFwAlgTftp439(d.Get("tftp").([]interface{}))
 	//omit uuid
 	return ret
 }

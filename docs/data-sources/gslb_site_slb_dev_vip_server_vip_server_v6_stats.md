@@ -56,5 +56,3 @@ Optional:
 
 - `dev_vip_hits` (Number) Number of times the service-ip was selected
 - `dev_vip_recent` (Number) Recent hits
-
-

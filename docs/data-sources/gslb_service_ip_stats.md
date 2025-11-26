@@ -40,6 +40,7 @@ output "get_gslb_service_ip_stats" {
 ### Optional
 
 - `port_list` (Block List) (see [below for nested schema](#nestedblock--port_list))
+- `service_list` (Block List) (see [below for nested schema](#nestedblock--service_list))
 - `stats` (Block List, Max: 1) (see [below for nested schema](#nestedblock--stats))
 
 ### Read-Only
@@ -68,6 +69,29 @@ Optional:
 
 
 
+<a id="nestedblock--service_list"></a>
+### Nested Schema for `service_list`
+
+Required:
+
+- `label` (String) Service Label
+- `port_num` (Number) Port Number
+- `port_proto` (String) 'tcp': TCP Port; 'udp': UDP Port;
+
+Optional:
+
+- `stats` (Block List, Max: 1) (see [below for nested schema](#nestedblock--service_list--stats))
+
+<a id="nestedblock--service_list--stats"></a>
+### Nested Schema for `service_list.stats`
+
+Optional:
+
+- `active` (Number) Active Servers
+- `current` (Number) Current Connections
+
+
+
 <a id="nestedblock--stats"></a>
 ### Nested Schema for `stats`
 
@@ -75,5 +99,3 @@ Optional:
 
 - `hits` (Number) Number of times the service IP has been selected
 - `recent` (Number) Recent hits
-
-

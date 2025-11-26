@@ -220,6 +220,9 @@ func resourceSlbTemplateHttp() *schema.Resource {
 			"max_concurrent_streams": {
 				Type: schema.TypeInt, Optional: true, Default: 50, Description: "(http2 only) Max concurrent streams, default 50",
 			},
+			"max_transaction_allowed": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Max transactions allowed, default 0 (no limit)",
+			},
 			"name": {
 				Type: schema.TypeString, Required: true, Description: "HTTP Template Name",
 			},
@@ -540,10 +543,10 @@ func getSliceSlbTemplateHttpHostSwitching(d []interface{}) []edpt.SlbTemplateHtt
 	return ret
 }
 
-func getObjectSlbTemplateHttpHttpProtocolCheck1447(d []interface{}) edpt.SlbTemplateHttpHttpProtocolCheck1447 {
+func getObjectSlbTemplateHttpHttpProtocolCheck1549(d []interface{}) edpt.SlbTemplateHttpHttpProtocolCheck1549 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateHttpHttpProtocolCheck1447
+	var ret edpt.SlbTemplateHttpHttpProtocolCheck1549
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.H2upContentLengthAlias = in["h2up_content_length_alias"].(string)
@@ -556,18 +559,18 @@ func getObjectSlbTemplateHttpHttpProtocolCheck1447(d []interface{}) edpt.SlbTemp
 		ret.GetAndPayload = in["get_and_payload"].(string)
 		ret.H2upWithHostAndAuth = in["h2up_with_host_and_auth"].(string)
 		//omit uuid
-		ret.HeaderFilterRuleList = getSliceSlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1448(in["header_filter_rule_list"].([]interface{}))
+		ret.HeaderFilterRuleList = getSliceSlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1550(in["header_filter_rule_list"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceSlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1448(d []interface{}) []edpt.SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1448 {
+func getSliceSlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1550(d []interface{}) []edpt.SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1550 {
 
 	count1 := len(d)
-	ret := make([]edpt.SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1448, 0, count1)
+	ret := make([]edpt.SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1550, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1448
+		var oi edpt.SlbTemplateHttpHttpProtocolCheckHeaderFilterRuleList1550
 		oi.SeqNum = in["seq_num"].(int)
 		oi.MatchTypeValue = in["match_type_value"].(string)
 		oi.HeaderNameValue = in["header_name_value"].(string)
@@ -730,7 +733,7 @@ func dataToEndpointSlbTemplateHttp(d *schema.ResourceData) edpt.SlbTemplateHttp 
 	ret.Inst.FailoverUrl = d.Get("failover_url").(string)
 	ret.Inst.FrameLimit = d.Get("frame_limit").(int)
 	ret.Inst.HostSwitching = getSliceSlbTemplateHttpHostSwitching(d.Get("host_switching").([]interface{}))
-	ret.Inst.HttpProtocolCheck = getObjectSlbTemplateHttpHttpProtocolCheck1447(d.Get("http_protocol_check").([]interface{}))
+	ret.Inst.HttpProtocolCheck = getObjectSlbTemplateHttpHttpProtocolCheck1549(d.Get("http_protocol_check").([]interface{}))
 	ret.Inst.Http2ClientNoSnat = d.Get("http2_client_no_snat").(int)
 	ret.Inst.InsertClientIp = d.Get("insert_client_ip").(int)
 	ret.Inst.InsertClientIpHeaderName = d.Get("insert_client_ip_header_name").(string)
@@ -739,6 +742,7 @@ func dataToEndpointSlbTemplateHttp(d *schema.ResourceData) edpt.SlbTemplateHttp 
 	ret.Inst.KeepClientAlive = d.Get("keep_client_alive").(int)
 	ret.Inst.LogRetry = d.Get("log_retry").(int)
 	ret.Inst.MaxConcurrentStreams = d.Get("max_concurrent_streams").(int)
+	ret.Inst.MaxTransactionAllowed = d.Get("max_transaction_allowed").(int)
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.NonHttpBypass = d.Get("non_http_bypass").(int)
 	ret.Inst.PersistOn401 = d.Get("persist_on_401").(int)

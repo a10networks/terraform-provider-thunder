@@ -40,14 +40,14 @@ func resourceDdosDstZonePortZoneServiceOtherPatternRecognition() *schema.Resourc
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"port_other": {
-				Type: schema.TypeString, Required: true, Description: "PortOther",
+			"protocol": {
+				Type: schema.TypeString, Required: true, Description: "Protocol",
 			},
 			"zone_name": {
 				Type: schema.TypeString, Required: true, Description: "ZoneName",
 			},
-			"protocol": {
-				Type: schema.TypeString, Required: true, Description: "Protocol",
+			"port_other": {
+				Type: schema.TypeString, Required: true, Description: "PortOther",
 			},
 		},
 	}
@@ -124,8 +124,8 @@ func dataToEndpointDdosDstZonePortZoneServiceOtherPatternRecognition(d *schema.R
 	ret.Inst.Sensitivity = d.Get("sensitivity").(string)
 	ret.Inst.TriggeredBy = d.Get("triggered_by").(string)
 	//omit uuid
-	ret.Inst.PortOther = d.Get("port_other").(string)
-	ret.Inst.ZoneName = d.Get("zone_name").(string)
 	ret.Inst.Protocol = d.Get("protocol").(string)
+	ret.Inst.ZoneName = d.Get("zone_name").(string)
+	ret.Inst.PortOther = d.Get("port_other").(string)
 	return ret
 }

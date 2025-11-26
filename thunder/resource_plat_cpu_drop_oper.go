@@ -60,6 +60,12 @@ func resourcePlatCpuDropOper() *schema.Resource {
 								},
 							},
 						},
+						"app_buff_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
+						"app_buff_drop_total": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 					},
 				},
 			},
@@ -89,10 +95,12 @@ func resourcePlatCpuDropOperRead(ctx context.Context, d *schema.ResourceData, me
 func setObjectPlatCpuDropOperOper(ret edpt.DataPlatCpuDropOper) []interface{} {
 	return []interface{}{
 		map[string]interface{}{
-			"fpga_seg":       setSlicePlatCpuDropOperOperFpgaSeg(ret.DtPlatCpuDropOper.Oper.FpgaSeg),
-			"drop_seg":       setSlicePlatCpuDropOperOperDropSeg(ret.DtPlatCpuDropOper.Oper.DropSeg),
-			"rate_limit":     ret.DtPlatCpuDropOper.Oper.RateLimit,
-			"rate_limit_drp": setSlicePlatCpuDropOperOperRateLimitDrp(ret.DtPlatCpuDropOper.Oper.RateLimitDrp),
+			"fpga_seg":            setSlicePlatCpuDropOperOperFpgaSeg(ret.DtPlatCpuDropOper.Oper.FpgaSeg),
+			"drop_seg":            setSlicePlatCpuDropOperOperDropSeg(ret.DtPlatCpuDropOper.Oper.DropSeg),
+			"rate_limit":          ret.DtPlatCpuDropOper.Oper.RateLimit,
+			"rate_limit_drp":      setSlicePlatCpuDropOperOperRateLimitDrp(ret.DtPlatCpuDropOper.Oper.RateLimitDrp),
+			"app_buff_drop":       ret.DtPlatCpuDropOper.Oper.AppBuffDrop,
+			"app_buff_drop_total": ret.DtPlatCpuDropOper.Oper.AppBuffDropTotal,
 		},
 	}
 }
@@ -148,6 +156,8 @@ func getObjectPlatCpuDropOperOper(d []interface{}) edpt.PlatCpuDropOperOper {
 		ret.DropSeg = getSlicePlatCpuDropOperOperDropSeg(in["drop_seg"].([]interface{}))
 		ret.RateLimit = in["rate_limit"].(int)
 		ret.RateLimitDrp = getSlicePlatCpuDropOperOperRateLimitDrp(in["rate_limit_drp"].([]interface{}))
+		ret.AppBuffDrop = in["app_buff_drop"].(int)
+		ret.AppBuffDropTotal = in["app_buff_drop_total"].(int)
 	}
 	return ret
 }

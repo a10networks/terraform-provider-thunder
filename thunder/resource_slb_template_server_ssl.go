@@ -103,7 +103,7 @@ func resourceSlbTemplateServerSsl() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"ec": {
-							Type: schema.TypeString, Optional: true, Description: "'secp256r1': X9_62_prime256v1; 'secp384r1': secp384r1;",
+							Type: schema.TypeString, Optional: true, Description: "'secp256r1': X9_62_prime256v1; 'secp384r1': secp384r1; 'secp521r1': secp521r1; 'x25519': x25519;",
 						},
 					},
 				},
@@ -147,6 +147,9 @@ func resourceSlbTemplateServerSsl() *schema.Resource {
 			},
 			"session_cache_timeout": {
 				Type: schema.TypeInt, Optional: true, Description: "Session Cache Timeout (Timeout value, in seconds. Default no timeout.)",
+			},
+			"session_key_logging_enable": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable SSL session key logging",
 			},
 			"session_ticket_enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable server side session ticket support",
@@ -256,10 +259,10 @@ func getSliceSlbTemplateServerSslCaCerts(d []interface{}) []edpt.SlbTemplateServ
 	return ret
 }
 
-func getObjectSlbTemplateServerSslCertificate1474(d []interface{}) edpt.SlbTemplateServerSslCertificate1474 {
+func getObjectSlbTemplateServerSslCertificate1576(d []interface{}) edpt.SlbTemplateServerSslCertificate1576 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateServerSslCertificate1474
+	var ret edpt.SlbTemplateServerSslCertificate1576
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Cert = in["cert"].(string)
@@ -329,7 +332,7 @@ func dataToEndpointSlbTemplateServerSsl(d *schema.ResourceData) edpt.SlbTemplate
 	var ret edpt.SlbTemplateServerSsl
 	ret.Inst.AlertType = d.Get("alert_type").(string)
 	ret.Inst.CaCerts = getSliceSlbTemplateServerSslCaCerts(d.Get("ca_certs").([]interface{}))
-	ret.Inst.Certificate = getObjectSlbTemplateServerSslCertificate1474(d.Get("certificate").([]interface{}))
+	ret.Inst.Certificate = getObjectSlbTemplateServerSslCertificate1576(d.Get("certificate").([]interface{}))
 	ret.Inst.CipherTemplate = d.Get("cipher_template").(string)
 	ret.Inst.CipherWithoutPrioList = getSliceSlbTemplateServerSslCipherWithoutPrioList(d.Get("cipher_without_prio_list").([]interface{}))
 	ret.Inst.CloseNotify = d.Get("close_notify").(int)
@@ -349,6 +352,7 @@ func dataToEndpointSlbTemplateServerSsl(d *schema.ResourceData) edpt.SlbTemplate
 	ret.Inst.ServerName = d.Get("server_name").(string)
 	ret.Inst.SessionCacheSize = d.Get("session_cache_size").(int)
 	ret.Inst.SessionCacheTimeout = d.Get("session_cache_timeout").(int)
+	ret.Inst.SessionKeyLoggingEnable = d.Get("session_key_logging_enable").(int)
 	ret.Inst.SessionTicketEnable = d.Get("session_ticket_enable").(int)
 	ret.Inst.SharedPartitionCipherTemplate = d.Get("shared_partition_cipher_template").(int)
 	ret.Inst.SsliLogging = d.Get("ssli_logging").(int)

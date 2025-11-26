@@ -123,8 +123,8 @@ func resourceSlbTemplatePolicyClassListLid() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
 			},
 		},
 	}
@@ -248,6 +248,6 @@ func dataToEndpointSlbTemplatePolicyClassListLid(d *schema.ResourceData) edpt.Sl
 	ret.Inst.ResponseCodeRateLimit = getSliceSlbTemplatePolicyClassListLidResponseCodeRateLimit(d.Get("response_code_rate_limit").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

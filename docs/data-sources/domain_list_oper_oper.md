@@ -82,5 +82,3 @@ Optional:
 Optional:
 
 - `domain_group_name` (String)
-
-

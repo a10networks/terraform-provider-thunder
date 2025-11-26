@@ -19,6 +19,9 @@ func resourceAamAuthenticationAccountKerberosSpn() *schema.Resource {
 			"account": {
 				Type: schema.TypeString, Optional: true, Description: "Specify domain account for SPN",
 			},
+			"encryption_algorithm": {
+				Type: schema.TypeString, Optional: true, Default: "aes256-cts-hmac-sha1-96", Description: "'aes128-cts-hmac-sha1-96': AES-128 CTS mode with 96-bit SHA-1 HMAC; 'aes256-cts-hmac-sha1-96': AES-256 CTS mode with 96-bit SHA-1 HMAC (default);",
+			},
 			"name": {
 				Type: schema.TypeString, Required: true, Description: "Specify AD account name",
 			},
@@ -109,6 +112,7 @@ func dataToEndpointAamAuthenticationAccountKerberosSpn(d *schema.ResourceData) e
 	var ret edpt.AamAuthenticationAccountKerberosSpn
 	ret.Inst.Account = d.Get("account").(string)
 	//omit encrypted
+	ret.Inst.EncryptionAlgorithm = d.Get("encryption_algorithm").(string)
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.Password = d.Get("password").(int)
 	ret.Inst.Realm = d.Get("realm").(string)

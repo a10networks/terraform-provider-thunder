@@ -59,5 +59,3 @@ Optional:
 - `success` (Number)
 - `template` (String)
 - `type` (String)
-
-

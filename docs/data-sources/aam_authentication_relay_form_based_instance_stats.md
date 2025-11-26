@@ -58,5 +58,3 @@ Optional:
 - `other_error` (Number) Other Error
 - `post_fail` (Number) POST Failed
 - `request` (Number) Request
-
-

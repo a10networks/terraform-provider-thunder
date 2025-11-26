@@ -62,5 +62,3 @@ Optional:
 - `udp_failed` (Number)
 - `udp_freed` (Number)
 - `udp_total` (Number)
-
-

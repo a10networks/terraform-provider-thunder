@@ -140,5 +140,3 @@ Optional:
 - `sndurg` (Number)
 - `sndwinup` (Number)
 - `timeoutdrop` (Number)
-
-

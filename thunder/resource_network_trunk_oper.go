@@ -52,6 +52,12 @@ func resourceNetworkTrunkOper() *schema.Resource {
 												"oper_status": {
 													Type: schema.TypeString, Optional: true, Description: "",
 												},
+												"rx_ts_interval": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
+												"tx_ts_interval": {
+													Type: schema.TypeString, Optional: true, Description: "",
+												},
 											},
 										},
 									},
@@ -135,6 +141,8 @@ func setSliceNetworkTrunkOperOperTrunkTrunkMemberStatus(d []edpt.NetworkTrunkOpe
 		in["members"] = item.Members
 		in["cfg_status"] = item.Cfg_status
 		in["oper_status"] = item.Oper_status
+		in["rx_ts_interval"] = item.Rx_ts_interval
+		in["tx_ts_interval"] = item.Tx_ts_interval
 		result = append(result, in)
 	}
 	return result
@@ -185,6 +193,8 @@ func getSliceNetworkTrunkOperOperTrunkTrunkMemberStatus(d []interface{}) []edpt.
 		oi.Members = in["members"].(int)
 		oi.Cfg_status = in["cfg_status"].(string)
 		oi.Oper_status = in["oper_status"].(string)
+		oi.Rx_ts_interval = in["rx_ts_interval"].(string)
+		oi.Tx_ts_interval = in["tx_ts_interval"].(string)
 		ret = append(ret, oi)
 	}
 	return ret

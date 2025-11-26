@@ -23,13 +23,13 @@ func resourceFlowspecDestinationPort() *schema.Resource {
 				Type: schema.TypeInt, Required: true, Description: "Specify the port number",
 			},
 			"port_num_end": {
-				Type: schema.TypeInt, Optional: true, Description: "Specify the port number",
+				Type: schema.TypeInt, Required: true, Description: "Specify the port number",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"flowspec_name": {
+				Type: schema.TypeString, Required: true, Description: "Flowspec_name",
 			},
 		},
 	}
@@ -102,6 +102,6 @@ func dataToEndpointFlowspecDestinationPort(d *schema.ResourceData) edpt.Flowspec
 	ret.Inst.PortNum = d.Get("port_num").(int)
 	ret.Inst.PortNumEnd = d.Get("port_num_end").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Flowspec_name = d.Get("flowspec_name").(string)
 	return ret
 }

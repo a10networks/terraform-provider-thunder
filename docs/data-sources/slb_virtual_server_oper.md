@@ -83,6 +83,7 @@ Optional:
 - `ip_only_lb_fwd_pkts` (Number)
 - `ip_only_lb_rev_bytes` (Number)
 - `ip_only_lb_rev_pkts` (Number)
+- `ipv6_address` (String)
 - `mac` (String)
 - `migration_status` (String)
 - `peak_conn` (Number)
@@ -281,6 +282,7 @@ Optional:
 - `status_100` (Number)
 - `status_101` (Number)
 - `status_102` (Number)
+- `status_103` (Number)
 - `status_1xx` (Number)
 - `status_200` (Number)
 - `status_201` (Number)
@@ -345,9 +347,9 @@ Optional:
 - `stream_closed` (Number)
 - `total_http2_bytes` (Number)
 - `total_http2_conn` (Number)
+- `total_requests` (Number)
+- `transaction_limited` (Number)
 - `ws_client_switch` (Number)
 - `ws_handshake_request` (Number)
 - `ws_handshake_success` (Number)
 - `ws_server_switch` (Number)
-
-

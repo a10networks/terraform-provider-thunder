@@ -45,5 +45,3 @@ output "get_system_tcp_syn_per_sec_oper" {
 Optional:
 
 - `tcp_syn_per_sec` (Number)
-
-

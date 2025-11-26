@@ -28,8 +28,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesFwServerPortTmplTriggerStatsI
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"fw_server_port_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Fw_server_port_tmpl_name",
 			},
 		},
 	}
@@ -102,6 +102,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesFwServerPortTmplTrigger
 	ret.Inst.Es_resp_500 = d.Get("es_resp_500").(int)
 	ret.Inst.Es_resp_invalid_http = d.Get("es_resp_invalid_http").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Fw_server_port_tmpl_name = d.Get("fw_server_port_tmpl_name").(string)
 	return ret
 }

@@ -211,6 +211,50 @@ func resourceSlbServer() *schema.Resource {
 			"server_ipv6_addr": {
 				Type: schema.TypeString, Optional: true, Description: "IPV6 address",
 			},
+			"service_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"port_number": {
+							Type: schema.TypeInt, Required: true, Description: "Port Number",
+						},
+						"protocol": {
+							Type: schema.TypeString, Required: true, Description: "'tcp': TCP Port; 'udp': UDP Port;",
+						},
+						"label": {
+							Type: schema.TypeString, Required: true, Description: "Service Label",
+						},
+						"action": {
+							Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': enable; 'disable': disable; 'disable-with-health-check': disable port, but health check work;",
+						},
+						"health_check": {
+							Type: schema.TypeString, Optional: true, Description: "Health Check (Monitor Name)",
+						},
+						"health_check_disable": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Disable health check",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"user_tag": {
+							Type: schema.TypeString, Optional: true, Description: "Customized tag",
+						},
+						"sampling_enable": {
+							Type: schema.TypeList, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"counters1": {
+										Type: schema.TypeString, Optional: true, Description: "'all': all; 'curr_req': Current requests; 'total_req': Total Requests; 'total_req_succ': Total requests succ; 'total_fwd_bytes': Bytes processed in forward direction; 'total_fwd_pkts': Packets processed in forward direction; 'total_rev_bytes': Bytes processed in reverse direction; 'total_rev_pkts': Packets processed in reverse direction; 'total_conn': Total connections; 'last_total_conn': Last total connections; 'peak_conn': Peak connections; 'es_resp_200': Response status 200; 'es_resp_300': Response status 300; 'es_resp_400': Response status 400; 'es_resp_500': Response status 500; 'es_resp_other': Response status other; 'es_req_count': Total proxy requests; 'es_resp_count': Total proxy response; 'es_resp_invalid_http': Total non-http response; 'total_rev_pkts_inspected': Total reverse packets inspected; 'total_rev_pkts_inspected_good_status_code': Total reverse packets with good status code inspected; 'response_time': Response time; 'fastest_rsp_time': Fastest response time; 'slowest_rsp_time': Slowest response time; 'curr_ssl_conn': Current SSL connections; 'total_ssl_conn': Total SSL connections; 'resp-count': Total Response Count; 'resp-1xx': Response status 1xx; 'resp-2xx': Response status 2xx; 'resp-3xx': Response status 3xx; 'resp-4xx': Response status 4xx; 'resp-5xx': Response status 5xx; 'resp-other': Response status Other; 'resp-latency': Time to First Response Byte; 'curr_pconn': Current persistent connections;",
+									},
+								},
+							},
+						},
+						"packet_capture_template": {
+							Type: schema.TypeString, Optional: true, Description: "Name of the packet capture template to be bind with this object",
+						},
+					},
+				},
+			},
 			"shared_partition_health_check": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Reference a health-check from shared partition",
 			},
@@ -422,6 +466,41 @@ func getSliceSlbServerSamplingEnable(d []interface{}) []edpt.SlbServerSamplingEn
 	return ret
 }
 
+func getSliceSlbServerServiceList(d []interface{}) []edpt.SlbServerServiceList {
+
+	count1 := len(d)
+	ret := make([]edpt.SlbServerServiceList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.SlbServerServiceList
+		oi.PortNumber = in["port_number"].(int)
+		oi.Protocol = in["protocol"].(string)
+		oi.Label = in["label"].(string)
+		oi.Action = in["action"].(string)
+		oi.HealthCheck = in["health_check"].(string)
+		oi.HealthCheckDisable = in["health_check_disable"].(int)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		oi.SamplingEnable = getSliceSlbServerServiceListSamplingEnable(in["sampling_enable"].([]interface{}))
+		oi.PacketCaptureTemplate = in["packet_capture_template"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getSliceSlbServerServiceListSamplingEnable(d []interface{}) []edpt.SlbServerServiceListSamplingEnable {
+
+	count1 := len(d)
+	ret := make([]edpt.SlbServerServiceListSamplingEnable, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.SlbServerServiceListSamplingEnable
+		oi.Counters1 = in["counters1"].(string)
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
 func dataToEndpointSlbServer(d *schema.ResourceData) edpt.SlbServer {
 	var ret edpt.SlbServer
 	ret.Inst.Action = d.Get("action").(string)
@@ -444,6 +523,7 @@ func dataToEndpointSlbServer(d *schema.ResourceData) edpt.SlbServer {
 	ret.Inst.ResolveAs = d.Get("resolve_as").(string)
 	ret.Inst.SamplingEnable = getSliceSlbServerSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.ServerIpv6Addr = d.Get("server_ipv6_addr").(string)
+	ret.Inst.ServiceList = getSliceSlbServerServiceList(d.Get("service_list").([]interface{}))
 	ret.Inst.SharedPartitionHealthCheck = d.Get("shared_partition_health_check").(int)
 	ret.Inst.SharedPartitionServerTemplate = d.Get("shared_partition_server_template").(int)
 	ret.Inst.SlowStart = d.Get("slow_start").(int)

@@ -67,8 +67,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerStatsRate
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"pop3_vport_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Pop3_vport_tmpl_name",
 			},
 		},
 	}
@@ -154,6 +154,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesPop3VportTmplTriggerSta
 	ret.Inst.ThresholdExceededBy = d.Get("threshold_exceeded_by").(int)
 	ret.Inst.Unsupported_command = d.Get("unsupported_command").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Pop3_vport_tmpl_name = d.Get("pop3_vport_tmpl_name").(string)
 	return ret
 }

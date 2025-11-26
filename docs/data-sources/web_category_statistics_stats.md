@@ -53,5 +53,3 @@ Optional:
 - `lookup_latency` (Number)
 - `rtu_cache_mem` (Number)
 - `rtu_lookup` (Number)
-
-

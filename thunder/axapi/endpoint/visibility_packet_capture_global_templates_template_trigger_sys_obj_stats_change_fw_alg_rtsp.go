@@ -1,88 +1,86 @@
-
-
 package endpoint
+
 import (
-    "github.com/a10networks/terraform-provider-thunder/thunder/axapi"
-    "github.com/clarketm/json"
+	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
+	"github.com/clarketm/json"
 )
 
-//based on ACOS 6_0_2_P1-37
+// based on ACOS 7_0_2-102
 type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp struct {
 	Inst struct {
+		TriggerStatsInc VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc2124 `json:"trigger-stats-inc"`
 
-    TriggerStatsInc VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc2003 `json:"trigger-stats-inc"`
-    TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate2004 `json:"trigger-stats-rate"`
-    Uuid string `json:"uuid"`
-    Name string 
+		TriggerStatsRate VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate2125 `json:"trigger-stats-rate"`
 
+		Uuid string `json:"uuid"`
+
+		Template_name string
 	} `json:"fw-alg-rtsp"`
 }
 
-
-type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc2003 struct {
-    TransportAllocFailure int `json:"transport-alloc-failure"`
-    Uuid string `json:"uuid"`
+type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtspTriggerStatsInc2124 struct {
+	TransportAllocFailure int    `json:"transport-alloc-failure"`
+	Uuid                  string `json:"uuid"`
 }
 
-
-type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate2004 struct {
-    ThresholdExceededBy int `json:"threshold-exceeded-by" dval:"5"`
-    Duration int `json:"duration" dval:"60"`
-    TransportAllocFailure int `json:"transport-alloc-failure"`
-    Uuid string `json:"uuid"`
+type VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtspTriggerStatsRate2125 struct {
+	ThresholdExceededBy   int    `json:"threshold-exceeded-by" dval:"5"`
+	Duration              int    `json:"duration" dval:"60"`
+	TransportAllocFailure int    `json:"transport-alloc-failure"`
+	Uuid                  string `json:"uuid"`
 }
 
-func (p *VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp) GetId() string{
-    return "1"
+func (p *VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp) GetId() string {
+	return "1"
 }
 
-func (p *VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp) getPath() string{
-    return "visibility/packet-capture/global-templates/template/" +p.Inst.Name + "/trigger-sys-obj-stats-change/fw-alg-rtsp"
+func (p *VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp) getPath() string {
+	return "visibility/packet-capture/global-templates/template/" + p.Inst.Template_name + "/trigger-sys-obj-stats-change/fw-alg-rtsp"
 }
 
 func (p *VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp) Post(authToken string, host string, logger *axapi.ThunderLog) error {
-    logger.Println("VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp::Post")
-    headers := axapi.GenRequestHeader(authToken)
-        payloadBytes, err := axapi.SerializeToJson(p)
-        if err != nil {
-            logger.Println("Failed to serialize struct as json", err)
-            return err
-        }
-        logger.Println("payload:", string(payloadBytes))
-        _, _, err = axapi.SendPost(host, p.getPath(), payloadBytes, headers, logger)
-    return err
+	logger.Println("VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp::Post")
+	headers := axapi.GenRequestHeader(authToken)
+	payloadBytes, err := axapi.SerializeToJson(p)
+	if err != nil {
+		logger.Println("Failed to serialize struct as json", err)
+		return err
+	}
+	logger.Println("payload:", string(payloadBytes))
+	_, _, err = axapi.SendPost(host, p.getPath(), payloadBytes, headers, logger)
+	return err
 }
 
 func (p *VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) error {
-    logger.Println("VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp::Get")
-    headers := axapi.GenRequestHeader(authToken)
-        _, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
-    if err == nil {
-        if len(axResp) > 0{
-        err = json.Unmarshal(axResp, &p)
-        }
-        if err != nil {
-            logger.Println("json.Unmarshal() failed with error", err)
-        }
-    }
-    return err
+	logger.Println("VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp::Get")
+	headers := axapi.GenRequestHeader(authToken)
+	_, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
+	if err == nil {
+		if len(axResp) > 0 {
+			err = json.Unmarshal(axResp, &p)
+		}
+		if err != nil {
+			logger.Println("json.Unmarshal() failed with error", err)
+		}
+	}
+	return err
 }
 func (p *VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp) Put(authToken string, host string, logger *axapi.ThunderLog) error {
-    logger.Println("VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp::Put")
-    headers := axapi.GenRequestHeader(authToken)
-    payloadBytes, err := axapi.SerializeToJson(p)
-    if err != nil {
-        logger.Println("Failed to serialize struct as json", err)
-        return err
-    }
-    logger.Println("payload: " + string(payloadBytes))
-    _, _, err = axapi.SendPut(host, p.getPath(), "", payloadBytes, headers, logger)
-    return err
+	logger.Println("VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp::Put")
+	headers := axapi.GenRequestHeader(authToken)
+	payloadBytes, err := axapi.SerializeToJson(p)
+	if err != nil {
+		logger.Println("Failed to serialize struct as json", err)
+		return err
+	}
+	logger.Println("payload: " + string(payloadBytes))
+	_, _, err = axapi.SendPut(host, p.getPath(), "", payloadBytes, headers, logger)
+	return err
 }
 
 func (p *VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp) Delete(authToken string, host string, instId string, logger *axapi.ThunderLog) error {
-    logger.Println("VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp::Delete")
-    headers := axapi.GenRequestHeader(authToken)
-        _, _, err := axapi.SendDelete(host, p.getPath(), "", nil, headers, logger)
-    return err
+	logger.Println("VisibilityPacketCaptureGlobalTemplatesTemplateTriggerSysObjStatsChangeFwAlgRtsp::Delete")
+	headers := axapi.GenRequestHeader(authToken)
+	_, _, err := axapi.SendDelete(host, p.getPath(), "", nil, headers, logger)
+	return err
 }

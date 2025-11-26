@@ -46,5 +46,3 @@ Optional:
 
 - `feature_name` (String)
 - `result` (String)
-
-

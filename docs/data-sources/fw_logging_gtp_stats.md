@@ -71,5 +71,3 @@ Optional:
 - `log_type_max_msg_length` (Number) Log Event GTP Message Length Exceeded Max
 - `log_type_message_not_supported` (Number) Log Event GTP Reserved Message Found
 - `log_type_out_of_state` (Number) Log Event GTP Out of State Message
-
-

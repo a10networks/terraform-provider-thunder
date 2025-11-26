@@ -46,5 +46,3 @@ Optional:
 
 - `debugging_buff_size` (Number)
 - `debugging_switches` (String)
-
-

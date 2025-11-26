@@ -39,5 +39,3 @@ output "get_network_ve_stats" {
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-
-

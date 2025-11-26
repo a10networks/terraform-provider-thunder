@@ -64,5 +64,3 @@ Optional:
 - `out_spi` (String)
 - `protocol` (String)
 - `remote_ts` (String)
-
-

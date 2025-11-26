@@ -60,5 +60,3 @@ Optional:
 - `nat64_user_quota_create` (Number)
 - `nat64_user_quota_delete` (Number)
 - `time` (Number)
-
-

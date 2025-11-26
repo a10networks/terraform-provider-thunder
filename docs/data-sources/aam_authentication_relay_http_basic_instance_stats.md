@@ -58,5 +58,3 @@ Optional:
 - `success` (Number) Success
 - `unauth` (Number) Unauthorized
 - `unavailable` (Number) Service Unavailable
-
-

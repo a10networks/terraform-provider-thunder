@@ -106,6 +106,7 @@ func dataToEndpointImportPeriodicCaCert(d *schema.ResourceData) edpt.ImportPerio
 	var ret edpt.ImportPeriodicCaCert
 	ret.Inst.CaCert = d.Get("ca_cert").(string)
 	ret.Inst.CertificateType = d.Get("certificate_type").(string)
+	//omit encrypted
 	ret.Inst.Period = d.Get("period").(int)
 	ret.Inst.PfxPassword = d.Get("pfx_password").(string)
 	ret.Inst.RemoteFile = d.Get("remote_file").(string)

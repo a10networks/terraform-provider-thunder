@@ -44,7 +44,10 @@ output "get_system_bandwidth_stats" {
 
 Optional:
 
+- `bwl_drop` (Number) BW Limit Drop
 - `input_bytes_per_sec` (Number) In Bytes per second
+- `licexpire_drop` (Number) License Expire Drop
 - `output_bytes_per_sec` (Number) Out Bytes per second
-
-
+- `ppsl_drop_egr` (Number) Packet-Per-Sec Limit Drop at egress
+- `ppsl_drop_ing` (Number) Packet-Per-Sec Limit Drop at ingress
+- `ppsl_ignore_limit` (Number) Packet-Per-Sec Limit ignored packets count

@@ -53,5 +53,3 @@ Optional:
 Optional:
 
 - `debug_log` (String)
-
-

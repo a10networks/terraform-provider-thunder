@@ -57,8 +57,8 @@ func resourceNetflowMonitorDisableLogByDestinationIp() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -162,6 +162,6 @@ func dataToEndpointNetflowMonitorDisableLogByDestinationIp(d *schema.ResourceDat
 	ret.Inst.UdpList = getSliceNetflowMonitorDisableLogByDestinationIpUdpList(d.Get("udp_list").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

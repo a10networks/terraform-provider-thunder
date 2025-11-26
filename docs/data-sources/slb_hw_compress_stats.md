@@ -52,5 +52,3 @@ Optional:
 - `response_count` (Number) Total response count
 - `ring_full_count` (Number) Compression queue full
 - `submit_count` (Number) Total submit count
-
-

@@ -45,5 +45,3 @@ output "get_system_mfa_management_oper" {
 Optional:
 
 - `enable` (Number)
-
-

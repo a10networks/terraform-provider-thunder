@@ -103,6 +103,56 @@ func resourceGslbServiceIpOper() *schema.Resource {
 					},
 				},
 			},
+			"service_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"port_num": {
+							Type: schema.TypeInt, Required: true, Description: "Port Number",
+						},
+						"port_proto": {
+							Type: schema.TypeString, Required: true, Description: "'tcp': TCP Port; 'udp': UDP Port;",
+						},
+						"label": {
+							Type: schema.TypeString, Required: true, Description: "Service Label",
+						},
+						"oper": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"service_port": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"state": {
+										Type: schema.TypeString, Optional: true, Description: "",
+									},
+									"disabled": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"gslb_protocol": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"local_protocol": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"tcp": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"manually_health_check": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"use_gslb_state": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+									"dynamic": {
+										Type: schema.TypeInt, Optional: true, Description: "",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 		},
 	}
 }
@@ -121,6 +171,8 @@ func resourceGslbServiceIpOperRead(ctx context.Context, d *schema.ResourceData, 
 		d.Set("oper", GslbServiceIpOperOper)
 		GslbServiceIpOperPortList := setSliceGslbServiceIpOperPortList(res)
 		d.Set("port_list", GslbServiceIpOperPortList)
+		GslbServiceIpOperServiceList := setSliceGslbServiceIpOperServiceList(res)
+		d.Set("service_list", GslbServiceIpOperServiceList)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -160,6 +212,45 @@ func setSliceGslbServiceIpOperPortList(d edpt.DataGslbServiceIpOper) []map[strin
 }
 
 func setObjectGslbServiceIpOperPortListOper(d edpt.GslbServiceIpOperPortListOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	in := make(map[string]interface{})
+
+	in["service_port"] = d.ServicePort
+
+	in["state"] = d.State
+
+	in["disabled"] = d.Disabled
+
+	in["gslb_protocol"] = d.GslbProtocol
+
+	in["local_protocol"] = d.LocalProtocol
+
+	in["tcp"] = d.Tcp
+
+	in["manually_health_check"] = d.ManuallyHealthCheck
+
+	in["use_gslb_state"] = d.Use_gslb_state
+
+	in["dynamic"] = d.Dynamic
+	result = append(result, in)
+	return result
+}
+
+func setSliceGslbServiceIpOperServiceList(d edpt.DataGslbServiceIpOper) []map[string]interface{} {
+	result := []map[string]interface{}{}
+
+	for _, item := range d.DtGslbServiceIpOper.ServiceList {
+		in := make(map[string]interface{})
+		in["port_num"] = item.PortNum
+		in["port_proto"] = item.PortProto
+		in["label"] = item.Label
+		in["oper"] = setObjectGslbServiceIpOperServiceListOper(item.Oper)
+		result = append(result, in)
+	}
+	return result
+}
+
+func setObjectGslbServiceIpOperServiceListOper(d edpt.GslbServiceIpOperServiceListOper) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	in := make(map[string]interface{})
 
@@ -239,6 +330,41 @@ func getObjectGslbServiceIpOperPortListOper(d []interface{}) edpt.GslbServiceIpO
 	return ret
 }
 
+func getSliceGslbServiceIpOperServiceList(d []interface{}) []edpt.GslbServiceIpOperServiceList {
+
+	count1 := len(d)
+	ret := make([]edpt.GslbServiceIpOperServiceList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.GslbServiceIpOperServiceList
+		oi.PortNum = in["port_num"].(int)
+		oi.PortProto = in["port_proto"].(string)
+		oi.Label = in["label"].(string)
+		oi.Oper = getObjectGslbServiceIpOperServiceListOper(in["oper"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectGslbServiceIpOperServiceListOper(d []interface{}) edpt.GslbServiceIpOperServiceListOper {
+
+	count1 := len(d)
+	var ret edpt.GslbServiceIpOperServiceListOper
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ServicePort = in["service_port"].(int)
+		ret.State = in["state"].(string)
+		ret.Disabled = in["disabled"].(int)
+		ret.GslbProtocol = in["gslb_protocol"].(int)
+		ret.LocalProtocol = in["local_protocol"].(int)
+		ret.Tcp = in["tcp"].(int)
+		ret.ManuallyHealthCheck = in["manually_health_check"].(int)
+		ret.Use_gslb_state = in["use_gslb_state"].(int)
+		ret.Dynamic = in["dynamic"].(int)
+	}
+	return ret
+}
+
 func dataToEndpointGslbServiceIpOper(d *schema.ResourceData) edpt.GslbServiceIpOper {
 	var ret edpt.GslbServiceIpOper
 
@@ -247,5 +373,7 @@ func dataToEndpointGslbServiceIpOper(d *schema.ResourceData) edpt.GslbServiceIpO
 	ret.Oper = getObjectGslbServiceIpOperOper(d.Get("oper").([]interface{}))
 
 	ret.PortList = getSliceGslbServiceIpOperPortList(d.Get("port_list").([]interface{}))
+
+	ret.ServiceList = getSliceGslbServiceIpOperServiceList(d.Get("service_list").([]interface{}))
 	return ret
 }

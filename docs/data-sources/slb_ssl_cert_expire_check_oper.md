@@ -57,5 +57,3 @@ Optional:
 Optional:
 
 - `exception_cert` (String)
-
-

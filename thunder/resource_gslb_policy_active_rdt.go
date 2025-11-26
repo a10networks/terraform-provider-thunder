@@ -37,6 +37,9 @@ func resourceGslbPolicyActiveRdt() *schema.Resource {
 			"limit": {
 				Type: schema.TypeInt, Optional: true, Default: 16383, Description: "Limit of allowed RDT, default is 16383 (Limit, unit: millisecond)",
 			},
+			"prefer_dns_sticky": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use dns sticky if available",
+			},
 			"proto_rdt_enable": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable the round-delay-time to the controller",
 			},
@@ -49,6 +52,9 @@ func resourceGslbPolicyActiveRdt() *schema.Resource {
 			"skip": {
 				Type: schema.TypeInt, Optional: true, Default: 3, Description: "Skip query if round-delay-time samples are not ready (Specify maximum skip count,default is 3)",
 			},
+			"sticky_difference": {
+				Type: schema.TypeInt, Optional: true, Description: "The difference between the round-delay-time of sticky entry",
+			},
 			"timeout": {
 				Type: schema.TypeInt, Optional: true, Default: 3, Description: "Specify timeout if round-delay-time samples are not ready (Specify timeout, unit:sec,default is 3)",
 			},
@@ -58,8 +64,8 @@ func resourceGslbPolicyActiveRdt() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"policy_name": {
+				Type: schema.TypeString, Required: true, Description: "Policy_name",
 			},
 		},
 	}
@@ -135,13 +141,15 @@ func dataToEndpointGslbPolicyActiveRdt(d *schema.ResourceData) edpt.GslbPolicyAc
 	ret.Inst.IgnoreId = d.Get("ignore_id").(int)
 	ret.Inst.KeepTracking = d.Get("keep_tracking").(int)
 	ret.Inst.Limit = d.Get("limit").(int)
+	ret.Inst.PreferDnsSticky = d.Get("prefer_dns_sticky").(int)
 	ret.Inst.ProtoRdtEnable = d.Get("proto_rdt_enable").(int)
 	ret.Inst.Samples = d.Get("samples").(int)
 	ret.Inst.SingleShot = d.Get("single_shot").(int)
 	ret.Inst.Skip = d.Get("skip").(int)
+	ret.Inst.StickyDifference = d.Get("sticky_difference").(int)
 	ret.Inst.Timeout = d.Get("timeout").(int)
 	ret.Inst.Tolerance = d.Get("tolerance").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Policy_name = d.Get("policy_name").(string)
 	return ret
 }

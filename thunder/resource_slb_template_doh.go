@@ -20,7 +20,7 @@ func resourceSlbTemplateDoh() *schema.Resource {
 				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable Connection Reuse; 'disable': Disable Connection-Reuse (Default);",
 			},
 			"dns": {
-				Type: schema.TypeString, Optional: true, Default: "default", Description: "DNS Template Name",
+				Type: schema.TypeString, Optional: true, Description: "DNS Template Name",
 			},
 			"dns_retry": {
 				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
@@ -185,10 +185,10 @@ func resourceSlbTemplateDohRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getObjectSlbTemplateDohDnsRetry1445(d []interface{}) edpt.SlbTemplateDohDnsRetry1445 {
+func getObjectSlbTemplateDohDnsRetry1547(d []interface{}) edpt.SlbTemplateDohDnsRetry1547 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDohDnsRetry1445
+	var ret edpt.SlbTemplateDohDnsRetry1547
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.RetryInterval = in["retry_interval"].(int)
@@ -199,10 +199,10 @@ func getObjectSlbTemplateDohDnsRetry1445(d []interface{}) edpt.SlbTemplateDohDns
 	return ret
 }
 
-func getObjectSlbTemplateDohForwarder1446(d []interface{}) edpt.SlbTemplateDohForwarder1446 {
+func getObjectSlbTemplateDohForwarder1548(d []interface{}) edpt.SlbTemplateDohForwarder1548 {
 
 	count1 := len(d)
-	var ret edpt.SlbTemplateDohForwarder1446
+	var ret edpt.SlbTemplateDohForwarder1548
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ForwardingIpv4 = in["forwarding_ipv4"].(string)
@@ -225,8 +225,8 @@ func dataToEndpointSlbTemplateDoh(d *schema.ResourceData) edpt.SlbTemplateDoh {
 	var ret edpt.SlbTemplateDoh
 	ret.Inst.ConnReuse = d.Get("conn_reuse").(string)
 	ret.Inst.Dns = d.Get("dns").(string)
-	ret.Inst.DnsRetry = getObjectSlbTemplateDohDnsRetry1445(d.Get("dns_retry").([]interface{}))
-	ret.Inst.Forwarder = getObjectSlbTemplateDohForwarder1446(d.Get("forwarder").([]interface{}))
+	ret.Inst.DnsRetry = getObjectSlbTemplateDohDnsRetry1547(d.Get("dns_retry").([]interface{}))
+	ret.Inst.Forwarder = getObjectSlbTemplateDohForwarder1548(d.Get("forwarder").([]interface{}))
 	ret.Inst.Name = d.Get("name").(string)
 	ret.Inst.NonDnsRequest = d.Get("non_dns_request").(string)
 	ret.Inst.RejectStatusCode = d.Get("reject_status_code").(string)

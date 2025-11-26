@@ -62,5 +62,3 @@ Optional:
 - `msg_proxy_total` (Number) Total number of sip proxy connections
 - `session_created` (Number) SIP Session created
 - `session_freed` (Number) SIP Session freed
-
-

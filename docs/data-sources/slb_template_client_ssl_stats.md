@@ -64,6 +64,7 @@ Optional:
 - `cult_and_occult` (Number) cult and occult category
 - `dating` (Number) dating category
 - `dead_sites` (Number) dead sites category
+- `dns_over_https` (Number) dns over https category
 - `drugs` (Number) drugs category
 - `dynamically_generated_content` (Number) dynamically generated content category
 - `educational_institutions` (Number) educational institutions category
@@ -73,6 +74,7 @@ Optional:
 - `food_and_dining` (Number) food and dining category
 - `gambling` (Number) gambling category
 - `games` (Number) games category
+- `generative_ai` (Number) generative ai category
 - `government` (Number) government category
 - `gross` (Number) gross category
 - `hacking` (Number) hacking category
@@ -81,7 +83,7 @@ Optional:
 - `home_and_garden` (Number) home and garden category
 - `hunting_and_fishing` (Number) hunting and fishing category
 - `illegal` (Number) illegal category
-- `illegal_pornography` (Number) illegal join Adult and Pornography
+- `illegal_pornography` (Number) illegal pornography eg. child sexual abuse
 - `image_and_video_search` (Number) image and video search category
 - `internet_communications` (Number) internet communications category
 - `internet_portals` (Number) internet portals category
@@ -91,6 +93,7 @@ Optional:
 - `legal` (Number) legal category
 - `local_information` (Number) local information category
 - `low_risk` (Number) Low-risk level(61-80)
+- `low_thc_cannabis_products` (Number) low-thc cannabis products
 - `malicious` (Number) Malicious level(1-20)
 - `malware_sites` (Number) malware sites category
 - `marijuana` (Number) marijuana category
@@ -100,7 +103,7 @@ Optional:
 - `music` (Number) music category
 - `news_and_media` (Number) news and media category
 - `nudity` (Number) nudity category
-- `nudity_artistic` (Number) nudity join Entertainment and Arts
+- `nudity_artistic` (Number) artistic nudity
 - `online_greeting_cards` (Number) online greeting cards category
 - `open_http_proxies` (Number) open HTTP proxies category
 - `other_category` (Number) other category
@@ -119,6 +122,7 @@ Optional:
 - `reference_and_research` (Number) reference and research category
 - `religion` (Number) religion category
 - `search_engines` (Number) search engines category
+- `self_harm` (Number) self harm category
 - `sex_education` (Number) sex education category
 - `shareware_and_freeware` (Number) shareware and freeware category
 - `shopping` (Number) shopping category
@@ -142,5 +146,3 @@ Optional:
 - `web_advertisements` (Number) web advertisements category
 - `web_based_email` (Number) web based email category
 - `web_hosting_sites` (Number) web hosting sites category
-
-

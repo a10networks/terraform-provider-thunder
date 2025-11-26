@@ -54,11 +54,11 @@ func resourceSysUtEventActionL1() *schema.Resource {
 			"value": {
 				Type: schema.TypeInt, Optional: true, Description: "Total packet length starting at L2 header",
 			},
-			"event_number": {
-				Type: schema.TypeString, Required: true, Description: "EventNumber",
-			},
 			"direction": {
 				Type: schema.TypeString, Required: true, Description: "Direction",
+			},
+			"event_number": {
+				Type: schema.TypeString, Required: true, Description: "EventNumber",
 			},
 		},
 	}
@@ -161,7 +161,7 @@ func dataToEndpointSysUtEventActionL1(d *schema.ResourceData) edpt.SysUtEventAct
 	ret.Inst.Trunk_list = getSliceSysUtEventActionL1Trunk_list(d.Get("trunk_list").([]interface{}))
 	//omit uuid
 	ret.Inst.Value = d.Get("value").(int)
-	ret.Inst.EventNumber = d.Get("event_number").(string)
 	ret.Inst.Direction = d.Get("direction").(string)
+	ret.Inst.EventNumber = d.Get("event_number").(string)
 	return ret
 }

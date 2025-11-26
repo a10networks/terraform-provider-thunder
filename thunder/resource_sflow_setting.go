@@ -22,11 +22,17 @@ func resourceSflowSetting() *schema.Resource {
 			"counter_polling_interval": {
 				Type: schema.TypeInt, Optional: true, Default: 20, Description: "sFlow counter polling interval, default is 20",
 			},
+			"ddos_source_id_export": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable exporting DDoS sourceID in sflow packet sample",
+			},
 			"default_counter_polling_mtu": {
 				Type: schema.TypeInt, Optional: true, Default: 1500, Description: "Default MTU for counter-polling packets - DDoS 3.2 format only (Default: 1500)",
 			},
+			"enlarge_zone_name": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow TPS to packet up to 127 character zone names",
+			},
 			"local_collection": {
-				Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable local sflow collection; 'disable': Disable local sflow collection;",
+				Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable local sflow collection; 'disable': Disable local sflow collection;",
 			},
 			"local_t1_polling_interval": {
 				Type: schema.TypeInt, Optional: true, Description: "Set sFlow local counter polling interval for T1 stats",
@@ -43,6 +49,9 @@ func resourceSflowSetting() *schema.Resource {
 			"max_header": {
 				Type: schema.TypeInt, Optional: true, Description: "Configure maximum number of bytes that should be copied from a sampled packet (default: 128) (The maximum number of bytes (Default: 128))",
 			},
+			"one_blk_per_pkt": {
+				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Forces sFlow packet to only contain one sFlow counter block",
+			},
 			"packet_sampling_rate": {
 				Type: schema.TypeInt, Optional: true, Default: 1000, Description: "sFlow packet sampling rate, default is 1000",
 			},
@@ -54,6 +63,9 @@ func resourceSflowSetting() *schema.Resource {
 			},
 			"randomize_source_port": {
 				Type: schema.TypeString, Optional: true, Default: "packet-sampling-only", Description: "'enable': Randomize source port; 'disable': Fix source port 6343; 'packet-sampling-only': Only randomized source port for packet-sampling (Default);",
+			},
+			"sampling_rate_limit": {
+				Type: schema.TypeInt, Optional: true, Default: 1000, Description: "sFlow packet sampling rate limit, default is 1000",
 			},
 			"source_ip_use_mgmt": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Use management interface's IP address for source IP of sFlow packets",
@@ -130,17 +142,21 @@ func dataToEndpointSflowSetting(d *schema.ResourceData) edpt.SflowSetting {
 	var ret edpt.SflowSetting
 	ret.Inst.AppendMappingInfo = d.Get("append_mapping_info").(int)
 	ret.Inst.CounterPollingInterval = d.Get("counter_polling_interval").(int)
+	ret.Inst.DdosSourceIdExport = d.Get("ddos_source_id_export").(int)
 	ret.Inst.DefaultCounterPollingMtu = d.Get("default_counter_polling_mtu").(int)
+	ret.Inst.EnlargeZoneName = d.Get("enlarge_zone_name").(int)
 	ret.Inst.LocalCollection = d.Get("local_collection").(string)
 	ret.Inst.LocalT1PollingInterval = d.Get("local_t1_polling_interval").(int)
 	ret.Inst.LocalT2PollingInterval = d.Get("local_t2_polling_interval").(int)
 	ret.Inst.ManagementLinkUtilization = d.Get("management_link_utilization").(int)
 	ret.Inst.ManagementLinkUtilizationPercentage = d.Get("management_link_utilization_percentage").(int)
 	ret.Inst.MaxHeader = d.Get("max_header").(int)
+	ret.Inst.OneBlkPerPkt = d.Get("one_blk_per_pkt").(int)
 	ret.Inst.PacketSamplingRate = d.Get("packet_sampling_rate").(int)
 	ret.Inst.PortRangeEnd = d.Get("port_range_end").(int)
 	ret.Inst.PortRangeStart = d.Get("port_range_start").(int)
 	ret.Inst.RandomizeSourcePort = d.Get("randomize_source_port").(string)
+	ret.Inst.SamplingRateLimit = d.Get("sampling_rate_limit").(int)
 	ret.Inst.SourceIpUseMgmt = d.Get("source_ip_use_mgmt").(int)
 	//omit uuid
 	return ret

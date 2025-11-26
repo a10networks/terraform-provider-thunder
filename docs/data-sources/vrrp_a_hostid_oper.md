@@ -54,5 +54,3 @@ Optional:
 
 - `device_id` (Number)
 - `sn` (String)
-
-

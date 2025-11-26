@@ -17,31 +17,49 @@ func resourceTemplateLimitPolicyLimitThroughput() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"downlink": {
-				Type: schema.TypeInt, Optional: true, Description: "Downlink Throughput limit (Mega Bits per second)",
+				Type: schema.TypeInt, Optional: true, Description: "Downlink Throughput limit (Megabits/sec (default) other units: Kilobits/sec, Gigabits/sec)",
 			},
 			"downlink_burstsize": {
-				Type: schema.TypeInt, Optional: true, Description: "Token Bucket Size (Must Exceed Configured Rate) (In Mega Bits per second)",
+				Type: schema.TypeInt, Optional: true, Description: "Token Bucket Size (Must Exceed Configured Rate) (Megabits/sec (default) other units: Kilobits/sec, Gigabits/sec)",
+			},
+			"downlink_burstsize_unit": {
+				Type: schema.TypeString, Optional: true, Default: "Mbps,", Description: "'Mbps': default; 'Kbps': minimum configurable limit is 100 Kbps; 'Gbps': maximum configurable limit is 10000 Gbps;",
 			},
 			"downlink_relaxed": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Relax the limitation when the policy has more tokens from the parent of policy",
 			},
+			"downlink_unit": {
+				Type: schema.TypeString, Optional: true, Default: "Mbps", Description: "'Mbps': default; 'Kbps': minimum configurable limit is 100 Kbps; 'Gbps': maximum configurable limit is 10000 Gbps;",
+			},
 			"total": {
-				Type: schema.TypeInt, Optional: true, Description: "Total Throughput limit (Mega Bits per second)",
+				Type: schema.TypeInt, Optional: true, Description: "Total Throughput limit (Megabits/sec (default) other units: Kilobits/sec, Gigabits/sec)",
 			},
 			"total_burstsize": {
-				Type: schema.TypeInt, Optional: true, Description: "Token Bucket Size (Must Exceed Configured Rate) (In Mega Bits per second)",
+				Type: schema.TypeInt, Optional: true, Description: "Token Bucket Size (Must Exceed Configured Rate) (Megabits/sec (default) other units: Kilobits/sec, Gigabits/sec)",
+			},
+			"total_burstsize_unit": {
+				Type: schema.TypeString, Optional: true, Default: "Mbps,", Description: "'Mbps': default; 'Kbps': minimum configurable limit is 100 Kbps; 'Gbps': maximum configurable limit is 10000 Gbps;",
 			},
 			"total_relaxed": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Relax the limitation when the policy has more tokens from the parent of policy",
 			},
+			"total_unit": {
+				Type: schema.TypeString, Optional: true, Default: "Mbps,", Description: "'Mbps': default; 'Kbps': minimum configurable limit is 100 Kbps; 'Gbps': maximum configurable limit is 10000 Gbps;",
+			},
 			"uplink": {
-				Type: schema.TypeInt, Optional: true, Description: "Uplink Throughput limit (Mega Bits per second)",
+				Type: schema.TypeInt, Optional: true, Description: "Uplink Throughput limit (Megabits/sec (default) other units: Kilobits/sec, Gigabits/sec)",
 			},
 			"uplink_burstsize": {
-				Type: schema.TypeInt, Optional: true, Description: "Token Bucket Size (Must Exceed Configured Rate) (In Mega Bits per second)",
+				Type: schema.TypeInt, Optional: true, Description: "Token Bucket Size (Must Exceed Configured Rate) (Megabits/sec (default) other units: Kilobits/sec, Gigabits/sec)",
+			},
+			"uplink_burstsize_unit": {
+				Type: schema.TypeString, Optional: true, Default: "Mbps,", Description: "'Mbps': default; 'Kbps': minimum configurable limit is 100 Kbps; 'Gbps': maximum configurable limit is 10000 Gbps;",
 			},
 			"uplink_relaxed": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Relax the limitation when the policy has more tokens from the parent of policy",
+			},
+			"uplink_unit": {
+				Type: schema.TypeString, Optional: true, Default: "Mbps", Description: "'Mbps': default; 'Kbps': minimum configurable limit is 100 Kbps; 'Gbps': maximum configurable limit is 10000 Gbps;",
 			},
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -118,13 +136,19 @@ func dataToEndpointTemplateLimitPolicyLimitThroughput(d *schema.ResourceData) ed
 	var ret edpt.TemplateLimitPolicyLimitThroughput
 	ret.Inst.Downlink = d.Get("downlink").(int)
 	ret.Inst.DownlinkBurstsize = d.Get("downlink_burstsize").(int)
+	ret.Inst.DownlinkBurstsizeUnit = d.Get("downlink_burstsize_unit").(string)
 	ret.Inst.DownlinkRelaxed = d.Get("downlink_relaxed").(int)
+	ret.Inst.DownlinkUnit = d.Get("downlink_unit").(string)
 	ret.Inst.Total = d.Get("total").(int)
 	ret.Inst.TotalBurstsize = d.Get("total_burstsize").(int)
+	ret.Inst.TotalBurstsizeUnit = d.Get("total_burstsize_unit").(string)
 	ret.Inst.TotalRelaxed = d.Get("total_relaxed").(int)
+	ret.Inst.TotalUnit = d.Get("total_unit").(string)
 	ret.Inst.Uplink = d.Get("uplink").(int)
 	ret.Inst.UplinkBurstsize = d.Get("uplink_burstsize").(int)
+	ret.Inst.UplinkBurstsizeUnit = d.Get("uplink_burstsize_unit").(string)
 	ret.Inst.UplinkRelaxed = d.Get("uplink_relaxed").(int)
+	ret.Inst.UplinkUnit = d.Get("uplink_unit").(string)
 	//omit uuid
 	ret.Inst.PolicyNumber = d.Get("policy_number").(string)
 	return ret

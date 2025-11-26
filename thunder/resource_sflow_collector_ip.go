@@ -121,10 +121,10 @@ func resourceSflowCollectorIpRead(ctx context.Context, d *schema.ResourceData, m
 	return diags
 }
 
-func getObjectSflowCollectorIpCustomizedSetting1400(d []interface{}) edpt.SflowCollectorIpCustomizedSetting1400 {
+func getObjectSflowCollectorIpCustomizedSetting1491(d []interface{}) edpt.SflowCollectorIpCustomizedSetting1491 {
 
 	count1 := len(d)
-	var ret edpt.SflowCollectorIpCustomizedSetting1400
+	var ret edpt.SflowCollectorIpCustomizedSetting1491
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ExportEnable = in["export_enable"].(string)
@@ -140,7 +140,7 @@ func getObjectSflowCollectorIpCustomizedSetting1400(d []interface{}) edpt.SflowC
 func dataToEndpointSflowCollectorIp(d *schema.ResourceData) edpt.SflowCollectorIp {
 	var ret edpt.SflowCollectorIp
 	ret.Inst.Addr = d.Get("addr").(string)
-	ret.Inst.CustomizedSetting = getObjectSflowCollectorIpCustomizedSetting1400(d.Get("customized_setting").([]interface{}))
+	ret.Inst.CustomizedSetting = getObjectSflowCollectorIpCustomizedSetting1491(d.Get("customized_setting").([]interface{}))
 	ret.Inst.Port = d.Get("port").(int)
 	ret.Inst.UseMgmtPort = d.Get("use_mgmt_port").(int)
 	ret.Inst.UserTag = d.Get("user_tag").(string)

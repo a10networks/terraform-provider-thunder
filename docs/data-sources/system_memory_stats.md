@@ -45,5 +45,3 @@ output "get_system_memory_stats" {
 Optional:
 
 - `usage_percentage` (Number) Memory Usage percentage
-
-

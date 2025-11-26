@@ -771,33 +771,33 @@ func resourceVpnRead(ctx context.Context, d *schema.ResourceData, meta interface
 	return diags
 }
 
-func getObjectVpnCrl3614(d []interface{}) edpt.VpnCrl3614 {
+func getObjectVpnCrl3713(d []interface{}) edpt.VpnCrl3713 {
 
-	var ret edpt.VpnCrl3614
+	var ret edpt.VpnCrl3713
 	return ret
 }
 
-func getObjectVpnDefault3615(d []interface{}) edpt.VpnDefault3615 {
+func getObjectVpnDefault3714(d []interface{}) edpt.VpnDefault3714 {
 
-	var ret edpt.VpnDefault3615
+	var ret edpt.VpnDefault3714
 	return ret
 }
 
-func getObjectVpnError3616(d []interface{}) edpt.VpnError3616 {
+func getObjectVpnError3715(d []interface{}) edpt.VpnError3715 {
 
-	var ret edpt.VpnError3616
+	var ret edpt.VpnError3715
 	return ret
 }
 
-func getObjectVpnErrordump3617(d []interface{}) edpt.VpnErrordump3617 {
+func getObjectVpnErrordump3716(d []interface{}) edpt.VpnErrordump3716 {
 
-	var ret edpt.VpnErrordump3617
+	var ret edpt.VpnErrordump3716
 	return ret
 }
 
-func getObjectVpnGroupList3618(d []interface{}) edpt.VpnGroupList3618 {
+func getObjectVpnGroupList3717(d []interface{}) edpt.VpnGroupList3717 {
 
-	var ret edpt.VpnGroupList3618
+	var ret edpt.VpnGroupList3717
 	return ret
 }
 
@@ -991,49 +991,49 @@ func getSliceVpnIkeGatewayListSamplingEnable(d []interface{}) []edpt.VpnIkeGatew
 	return ret
 }
 
-func getObjectVpnIkeSa3619(d []interface{}) edpt.VpnIkeSa3619 {
+func getObjectVpnIkeSa3718(d []interface{}) edpt.VpnIkeSa3718 {
 
-	var ret edpt.VpnIkeSa3619
+	var ret edpt.VpnIkeSa3718
 	return ret
 }
 
-func getObjectVpnIkeSaBrief3620(d []interface{}) edpt.VpnIkeSaBrief3620 {
+func getObjectVpnIkeSaBrief3719(d []interface{}) edpt.VpnIkeSaBrief3719 {
 
-	var ret edpt.VpnIkeSaBrief3620
+	var ret edpt.VpnIkeSaBrief3719
 	return ret
 }
 
-func getObjectVpnIkeSaClients3621(d []interface{}) edpt.VpnIkeSaClients3621 {
+func getObjectVpnIkeSaClients3720(d []interface{}) edpt.VpnIkeSaClients3720 {
 
-	var ret edpt.VpnIkeSaClients3621
+	var ret edpt.VpnIkeSaClients3720
 	return ret
 }
 
-func getObjectVpnIkeStatsByGw3622(d []interface{}) edpt.VpnIkeStatsByGw3622 {
+func getObjectVpnIkeStatsByGw3721(d []interface{}) edpt.VpnIkeStatsByGw3721 {
 
-	var ret edpt.VpnIkeStatsByGw3622
+	var ret edpt.VpnIkeStatsByGw3721
 	return ret
 }
 
-func getObjectVpnIkeStatsGlobal3623(d []interface{}) edpt.VpnIkeStatsGlobal3623 {
+func getObjectVpnIkeStatsGlobal3722(d []interface{}) edpt.VpnIkeStatsGlobal3722 {
 
 	count1 := len(d)
-	var ret edpt.VpnIkeStatsGlobal3623
+	var ret edpt.VpnIkeStatsGlobal3722
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		//omit uuid
-		ret.SamplingEnable = getSliceVpnIkeStatsGlobalSamplingEnable3624(in["sampling_enable"].([]interface{}))
+		ret.SamplingEnable = getSliceVpnIkeStatsGlobalSamplingEnable3723(in["sampling_enable"].([]interface{}))
 	}
 	return ret
 }
 
-func getSliceVpnIkeStatsGlobalSamplingEnable3624(d []interface{}) []edpt.VpnIkeStatsGlobalSamplingEnable3624 {
+func getSliceVpnIkeStatsGlobalSamplingEnable3723(d []interface{}) []edpt.VpnIkeStatsGlobalSamplingEnable3723 {
 
 	count1 := len(d)
-	ret := make([]edpt.VpnIkeStatsGlobalSamplingEnable3624, 0, count1)
+	ret := make([]edpt.VpnIkeStatsGlobalSamplingEnable3723, 0, count1)
 	for _, item := range d {
 		in := item.(map[string]interface{})
-		var oi edpt.VpnIkeStatsGlobalSamplingEnable3624
+		var oi edpt.VpnIkeStatsGlobalSamplingEnable3723
 		oi.Counters1 = in["counters1"].(string)
 		ret = append(ret, oi)
 	}
@@ -1201,21 +1201,21 @@ func getObjectVpnIpsecListIpsecGateway(d []interface{}) edpt.VpnIpsecListIpsecGa
 	return ret
 }
 
-func getObjectVpnIpsecSa3625(d []interface{}) edpt.VpnIpsecSa3625 {
+func getObjectVpnIpsecSa3724(d []interface{}) edpt.VpnIpsecSa3724 {
 
-	var ret edpt.VpnIpsecSa3625
+	var ret edpt.VpnIpsecSa3724
 	return ret
 }
 
-func getObjectVpnIpsecSaByGw3626(d []interface{}) edpt.VpnIpsecSaByGw3626 {
+func getObjectVpnIpsecSaByGw3725(d []interface{}) edpt.VpnIpsecSaByGw3725 {
 
-	var ret edpt.VpnIpsecSaByGw3626
+	var ret edpt.VpnIpsecSaByGw3725
 	return ret
 }
 
-func getObjectVpnIpsecSaClients3627(d []interface{}) edpt.VpnIpsecSaClients3627 {
+func getObjectVpnIpsecSaClients3726(d []interface{}) edpt.VpnIpsecSaClients3726 {
 
-	var ret edpt.VpnIpsecSaClients3627
+	var ret edpt.VpnIpsecSaClients3726
 	return ret
 }
 
@@ -1245,15 +1245,15 @@ func getSliceVpnIpsecSaStatsListSamplingEnable(d []interface{}) []edpt.VpnIpsecS
 	return ret
 }
 
-func getObjectVpnLog3628(d []interface{}) edpt.VpnLog3628 {
+func getObjectVpnLog3727(d []interface{}) edpt.VpnLog3727 {
 
-	var ret edpt.VpnLog3628
+	var ret edpt.VpnLog3727
 	return ret
 }
 
-func getObjectVpnOcsp3629(d []interface{}) edpt.VpnOcsp3629 {
+func getObjectVpnOcsp3728(d []interface{}) edpt.VpnOcsp3728 {
 
-	var ret edpt.VpnOcsp3629
+	var ret edpt.VpnOcsp3728
 	return ret
 }
 
@@ -1315,36 +1315,36 @@ func getSliceVpnSamplingEnable(d []interface{}) []edpt.VpnSamplingEnable {
 func dataToEndpointVpn(d *schema.ResourceData) edpt.Vpn {
 	var ret edpt.Vpn
 	ret.Inst.AsymmetricFlowSupport = d.Get("asymmetric_flow_support").(int)
-	ret.Inst.Crl = getObjectVpnCrl3614(d.Get("crl").([]interface{}))
-	ret.Inst.Default = getObjectVpnDefault3615(d.Get("default").([]interface{}))
+	ret.Inst.Crl = getObjectVpnCrl3713(d.Get("crl").([]interface{}))
+	ret.Inst.Default = getObjectVpnDefault3714(d.Get("default").([]interface{}))
 	ret.Inst.EnableVpnMetrics = d.Get("enable_vpn_metrics").(int)
-	ret.Inst.Error = getObjectVpnError3616(d.Get("error").([]interface{}))
-	ret.Inst.Errordump = getObjectVpnErrordump3617(d.Get("errordump").([]interface{}))
+	ret.Inst.Error = getObjectVpnError3715(d.Get("error").([]interface{}))
+	ret.Inst.Errordump = getObjectVpnErrordump3716(d.Get("errordump").([]interface{}))
 	ret.Inst.ExtendedMatching = d.Get("extended_matching").(int)
 	ret.Inst.FragmentAfterEncap = d.Get("fragment_after_encap").(int)
-	ret.Inst.GroupList = getObjectVpnGroupList3618(d.Get("group_list").([]interface{}))
+	ret.Inst.GroupList = getObjectVpnGroupList3717(d.Get("group_list").([]interface{}))
 	ret.Inst.IkeAccEnable = d.Get("ike_acc_enable").(int)
 	ret.Inst.IkeGatewayList = getSliceVpnIkeGatewayList(d.Get("ike_gateway_list").([]interface{}))
 	ret.Inst.IkeLoggingEnable = d.Get("ike_logging_enable").(int)
-	ret.Inst.IkeSa = getObjectVpnIkeSa3619(d.Get("ike_sa").([]interface{}))
-	ret.Inst.IkeSaBrief = getObjectVpnIkeSaBrief3620(d.Get("ike_sa_brief").([]interface{}))
-	ret.Inst.IkeSaClients = getObjectVpnIkeSaClients3621(d.Get("ike_sa_clients").([]interface{}))
+	ret.Inst.IkeSa = getObjectVpnIkeSa3718(d.Get("ike_sa").([]interface{}))
+	ret.Inst.IkeSaBrief = getObjectVpnIkeSaBrief3719(d.Get("ike_sa_brief").([]interface{}))
+	ret.Inst.IkeSaClients = getObjectVpnIkeSaClients3720(d.Get("ike_sa_clients").([]interface{}))
 	ret.Inst.IkeSaTimeout = d.Get("ike_sa_timeout").(int)
-	ret.Inst.IkeStatsByGw = getObjectVpnIkeStatsByGw3622(d.Get("ike_stats_by_gw").([]interface{}))
-	ret.Inst.IkeStatsGlobal = getObjectVpnIkeStatsGlobal3623(d.Get("ike_stats_global").([]interface{}))
+	ret.Inst.IkeStatsByGw = getObjectVpnIkeStatsByGw3721(d.Get("ike_stats_by_gw").([]interface{}))
+	ret.Inst.IkeStatsGlobal = getObjectVpnIkeStatsGlobal3722(d.Get("ike_stats_global").([]interface{}))
 	ret.Inst.IpsecCipherCheck = d.Get("ipsec_cipher_check").(int)
 	ret.Inst.IpsecErrorDump = d.Get("ipsec_error_dump").(int)
 	ret.Inst.IpsecGroupList = getSliceVpnIpsecGroupList(d.Get("ipsec_group_list").([]interface{}))
 	ret.Inst.IpsecList = getSliceVpnIpsecList(d.Get("ipsec_list").([]interface{}))
 	ret.Inst.IpsecMgmtDefaultPolicyDrop = d.Get("ipsec_mgmt_default_policy_drop").(int)
-	ret.Inst.IpsecSa = getObjectVpnIpsecSa3625(d.Get("ipsec_sa").([]interface{}))
-	ret.Inst.IpsecSaByGw = getObjectVpnIpsecSaByGw3626(d.Get("ipsec_sa_by_gw").([]interface{}))
-	ret.Inst.IpsecSaClients = getObjectVpnIpsecSaClients3627(d.Get("ipsec_sa_clients").([]interface{}))
+	ret.Inst.IpsecSa = getObjectVpnIpsecSa3724(d.Get("ipsec_sa").([]interface{}))
+	ret.Inst.IpsecSaByGw = getObjectVpnIpsecSaByGw3725(d.Get("ipsec_sa_by_gw").([]interface{}))
+	ret.Inst.IpsecSaClients = getObjectVpnIpsecSaClients3726(d.Get("ipsec_sa_clients").([]interface{}))
 	ret.Inst.IpsecSaStatsList = getSliceVpnIpsecSaStatsList(d.Get("ipsec_sa_stats_list").([]interface{}))
 	ret.Inst.JumboFragment = d.Get("jumbo_fragment").(int)
-	ret.Inst.Log = getObjectVpnLog3628(d.Get("log").([]interface{}))
+	ret.Inst.Log = getObjectVpnLog3727(d.Get("log").([]interface{}))
 	ret.Inst.NatTraversalFlowAffinity = d.Get("nat_traversal_flow_affinity").(int)
-	ret.Inst.Ocsp = getObjectVpnOcsp3629(d.Get("ocsp").([]interface{}))
+	ret.Inst.Ocsp = getObjectVpnOcsp3728(d.Get("ocsp").([]interface{}))
 	ret.Inst.RevocationList = getSliceVpnRevocationList(d.Get("revocation_list").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceVpnSamplingEnable(d.Get("sampling_enable").([]interface{}))
 	ret.Inst.SignatureAuthentication = d.Get("signature_authentication").(int)

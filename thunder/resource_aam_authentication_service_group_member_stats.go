@@ -83,6 +83,9 @@ func resourceAamAuthenticationServiceGroupMemberStats() *schema.Resource {
 					},
 				},
 			},
+			"service_group_name": {
+				Type: schema.TypeString, Required: true, Description: "Service_group_name",
+			},
 		},
 	}
 }
@@ -169,5 +172,7 @@ func dataToEndpointAamAuthenticationServiceGroupMemberStats(d *schema.ResourceDa
 	ret.Port = d.Get("port").(int)
 
 	ret.Stats = getObjectAamAuthenticationServiceGroupMemberStatsStats(d.Get("stats").([]interface{}))
+
+	ret.Service_group_name = d.Get("service_group_name").(string)
 	return ret
 }

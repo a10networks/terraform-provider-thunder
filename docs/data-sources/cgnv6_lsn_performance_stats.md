@@ -53,5 +53,3 @@ Optional:
 - `user_quote_created_current_epoch` (Number)
 - `user_quote_created_previous_epoch_first` (Number)
 - `user_quote_created_previous_epoch_last` (Number)
-
-

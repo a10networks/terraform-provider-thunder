@@ -75,5 +75,3 @@ Optional:
 - `state` (String)
 - `update_packet_received` (Number)
 - `update_packet_sent` (Number)
-
-

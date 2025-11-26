@@ -115,6 +115,18 @@ func resourceVisibilityTopn() *schema.Resource {
 									"downlink_pkts": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Downlink Packets",
 									},
+									"u_uplink_bytes": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Uplink Bytes",
+									},
+									"u_downlink_bytes": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Downlink Bytes",
+									},
+									"u_uplink_pkts": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Uplink Packets",
+									},
+									"u_downlink_pkts": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTP-U Downlink Packets",
+									},
 									"gtp_v0_c_tunnel_created": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTPv0-C Tunnel Created",
 									},
@@ -349,6 +361,9 @@ func resourceVisibilityTopn() *schema.Resource {
 									"drop_rl_gtp_u_max_concurrent_tunnels": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Rate-limit Drop: GTP-U Concurrent Tunnels",
 									},
+									"rl_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTP Message forwarded via monitor mode at rate-limit policy",
+									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
@@ -405,6 +420,18 @@ func resourceVisibilityTopn() *schema.Resource {
 									},
 									"downlink_pkts": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Downlink Packets",
+									},
+									"u_uplink_bytes": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Uplink Bytes",
+									},
+									"u_downlink_bytes": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Downlink Bytes",
+									},
+									"u_uplink_pkts": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Uplink Packets",
+									},
+									"u_downlink_pkts": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTP-U Downlink Packets",
 									},
 									"gtp_v0_c_tunnel_created": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTPv0-C Tunnel Created",
@@ -649,6 +676,9 @@ func resourceVisibilityTopn() *schema.Resource {
 									"drop_rl_gtp_u_max_concurrent_tunnels": {
 										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for Rate-limit Drop: GTP-U Concurrent Tunnels",
 									},
+									"rl_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTP Message forwarded via monitor mode at rate-limit policy",
+									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 									},
@@ -664,6 +694,54 @@ func resourceVisibilityTopn() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"counters1": {
 							Type: schema.TypeString, Optional: true, Description: "'all': all; 'heap-alloc-success': Total heap node allocated; 'heap-alloc-failed': Total heap node alloc failed; 'heap-alloc-oom': Total heap node alloc failed Out of Memory; 'obj-reg-success': Total object node allocated; 'obj-reg-failed': Total object node alloc failed; 'obj-reg-oom': Total object node alloc failed Out of Memory; 'heap-deleted': Total Heap node deleted; 'obj-deleted': Total Object node deleted; 'heap-metric-alloc-success': Total heap metric node allocated; 'heap-metric-alloc-oom': Total heap metric node alloc failed Out of Memory; 'heap-move-to-delq': Total heap node moved to delq; 'heap-metric-deleted': Total Heap metric node deleted; 'obj-metric-reg-success': Total object Metric node allocated; 'obj-metric-reg-oom': Total object Metric node alloc failed Out of Memory; 'obj-move-to-delq': Total object node moved to delq; 'obj-metric-deleted': Total Object metric node deleted; 'hc-obj-alloc-failed': Send failed to HC, Out of Memory;",
+						},
+					},
+				},
+			},
+			"templ_gtp_plcy_topn_node": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"activate": {
+							Type: schema.TypeString, Optional: true, Description: "Name of the templated to be activated",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
+			"templ_gtp_plcy_topn_tmpl_list": {
+				Type: schema.TypeList, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"name": {
+							Type: schema.TypeString, Required: true, Description: "Template Name",
+						},
+						"topn_size": {
+							Type: schema.TypeInt, Optional: true, Description: "Congure value of N for topn",
+						},
+						"interval": {
+							Type: schema.TypeString, Optional: true, Description: "'5': 5 minutes; '15': 15 minutes; '30': 30 minutes; '60': 60 minutes; 'all-time': Since template is activated;",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+						"user_tag": {
+							Type: schema.TypeString, Optional: true, Description: "Customized tag",
+						},
+						"metrics": {
+							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"rl_message_monitor": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Track Top-N entities for GTP Message forwarded via monitor mode at rate-limit policy",
+									},
+									"uuid": {
+										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									},
+								},
+							},
 						},
 					},
 				},
@@ -736,10 +814,10 @@ func resourceVisibilityTopnRead(ctx context.Context, d *schema.ResourceData, met
 	return diags
 }
 
-func getObjectVisibilityTopnCgnv6NatPoolTopnNode3134(d []interface{}) edpt.VisibilityTopnCgnv6NatPoolTopnNode3134 {
+func getObjectVisibilityTopnCgnv6NatPoolTopnNode3234(d []interface{}) edpt.VisibilityTopnCgnv6NatPoolTopnNode3234 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnCgnv6NatPoolTopnNode3134
+	var ret edpt.VisibilityTopnCgnv6NatPoolTopnNode3234
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Activate = in["activate"].(string)
@@ -779,10 +857,10 @@ func getObjectVisibilityTopnCgnv6NatPoolTopnTmplListMetrics(d []interface{}) edp
 	return ret
 }
 
-func getObjectVisibilityTopnGtpApnPrefixTopnNode3135(d []interface{}) edpt.VisibilityTopnGtpApnPrefixTopnNode3135 {
+func getObjectVisibilityTopnGtpApnPrefixTopnNode3235(d []interface{}) edpt.VisibilityTopnGtpApnPrefixTopnNode3235 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnGtpApnPrefixTopnNode3135
+	var ret edpt.VisibilityTopnGtpApnPrefixTopnNode3235
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Activate = in["activate"].(string)
@@ -819,6 +897,10 @@ func getObjectVisibilityTopnGtpApnPrefixTopnTmplListMetrics(d []interface{}) edp
 		ret.DownlinkBytes = in["downlink_bytes"].(int)
 		ret.UplinkPkts = in["uplink_pkts"].(int)
 		ret.DownlinkPkts = in["downlink_pkts"].(int)
+		ret.UUplinkBytes = in["u_uplink_bytes"].(int)
+		ret.UDownlinkBytes = in["u_downlink_bytes"].(int)
+		ret.UUplinkPkts = in["u_uplink_pkts"].(int)
+		ret.UDownlinkPkts = in["u_downlink_pkts"].(int)
 		ret.GtpV0CTunnelCreated = in["gtp_v0_c_tunnel_created"].(int)
 		ret.GtpV0CTunnelHalfOpen = in["gtp_v0_c_tunnel_half_open"].(int)
 		ret.GtpV0CTunnelHalfClosed = in["gtp_v0_c_tunnel_half_closed"].(int)
@@ -897,15 +979,16 @@ func getObjectVisibilityTopnGtpApnPrefixTopnTmplListMetrics(d []interface{}) edp
 		ret.DropRlGtpUTotalByte = in["drop_rl_gtp_u_total_byte"].(int)
 		ret.DropRlGtpUTotalPacket = in["drop_rl_gtp_u_total_packet"].(int)
 		ret.DropRlGtpUMaxConcurrentTunnels = in["drop_rl_gtp_u_max_concurrent_tunnels"].(int)
+		ret.RlMessageMonitor = in["rl_message_monitor"].(int)
 		//omit uuid
 	}
 	return ret
 }
 
-func getObjectVisibilityTopnGtpNetworkElementTopnNode3136(d []interface{}) edpt.VisibilityTopnGtpNetworkElementTopnNode3136 {
+func getObjectVisibilityTopnGtpNetworkElementTopnNode3236(d []interface{}) edpt.VisibilityTopnGtpNetworkElementTopnNode3236 {
 
 	count1 := len(d)
-	var ret edpt.VisibilityTopnGtpNetworkElementTopnNode3136
+	var ret edpt.VisibilityTopnGtpNetworkElementTopnNode3236
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Activate = in["activate"].(string)
@@ -942,6 +1025,10 @@ func getObjectVisibilityTopnGtpNetworkElementTopnTmplListMetrics(d []interface{}
 		ret.DownlinkBytes = in["downlink_bytes"].(int)
 		ret.UplinkPkts = in["uplink_pkts"].(int)
 		ret.DownlinkPkts = in["downlink_pkts"].(int)
+		ret.UUplinkBytes = in["u_uplink_bytes"].(int)
+		ret.UDownlinkBytes = in["u_downlink_bytes"].(int)
+		ret.UUplinkPkts = in["u_uplink_pkts"].(int)
+		ret.UDownlinkPkts = in["u_downlink_pkts"].(int)
 		ret.GtpV0CTunnelCreated = in["gtp_v0_c_tunnel_created"].(int)
 		ret.GtpV0CTunnelHalfOpen = in["gtp_v0_c_tunnel_half_open"].(int)
 		ret.GtpV0CTunnelHalfClosed = in["gtp_v0_c_tunnel_half_closed"].(int)
@@ -1023,6 +1110,7 @@ func getObjectVisibilityTopnGtpNetworkElementTopnTmplListMetrics(d []interface{}
 		ret.DropRlGtpUTotalByte = in["drop_rl_gtp_u_total_byte"].(int)
 		ret.DropRlGtpUTotalPacket = in["drop_rl_gtp_u_total_packet"].(int)
 		ret.DropRlGtpUMaxConcurrentTunnels = in["drop_rl_gtp_u_max_concurrent_tunnels"].(int)
+		ret.RlMessageMonitor = in["rl_message_monitor"].(int)
 		//omit uuid
 	}
 	return ret
@@ -1041,15 +1129,59 @@ func getSliceVisibilityTopnSamplingEnable(d []interface{}) []edpt.VisibilityTopn
 	return ret
 }
 
+func getObjectVisibilityTopnTemplGtpPlcyTopnNode3237(d []interface{}) edpt.VisibilityTopnTemplGtpPlcyTopnNode3237 {
+
+	count1 := len(d)
+	var ret edpt.VisibilityTopnTemplGtpPlcyTopnNode3237
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Activate = in["activate"].(string)
+		//omit uuid
+	}
+	return ret
+}
+
+func getSliceVisibilityTopnTemplGtpPlcyTopnTmplList(d []interface{}) []edpt.VisibilityTopnTemplGtpPlcyTopnTmplList {
+
+	count1 := len(d)
+	ret := make([]edpt.VisibilityTopnTemplGtpPlcyTopnTmplList, 0, count1)
+	for _, item := range d {
+		in := item.(map[string]interface{})
+		var oi edpt.VisibilityTopnTemplGtpPlcyTopnTmplList
+		oi.Name = in["name"].(string)
+		oi.TopnSize = in["topn_size"].(int)
+		oi.Interval = in["interval"].(string)
+		//omit uuid
+		oi.UserTag = in["user_tag"].(string)
+		oi.Metrics = getObjectVisibilityTopnTemplGtpPlcyTopnTmplListMetrics(in["metrics"].([]interface{}))
+		ret = append(ret, oi)
+	}
+	return ret
+}
+
+func getObjectVisibilityTopnTemplGtpPlcyTopnTmplListMetrics(d []interface{}) edpt.VisibilityTopnTemplGtpPlcyTopnTmplListMetrics {
+
+	count1 := len(d)
+	var ret edpt.VisibilityTopnTemplGtpPlcyTopnTmplListMetrics
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.RlMessageMonitor = in["rl_message_monitor"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
 func dataToEndpointVisibilityTopn(d *schema.ResourceData) edpt.VisibilityTopn {
 	var ret edpt.VisibilityTopn
-	ret.Inst.Cgnv6NatPoolTopnNode = getObjectVisibilityTopnCgnv6NatPoolTopnNode3134(d.Get("cgnv6_nat_pool_topn_node").([]interface{}))
+	ret.Inst.Cgnv6NatPoolTopnNode = getObjectVisibilityTopnCgnv6NatPoolTopnNode3234(d.Get("cgnv6_nat_pool_topn_node").([]interface{}))
 	ret.Inst.Cgnv6NatPoolTopnTmplList = getSliceVisibilityTopnCgnv6NatPoolTopnTmplList(d.Get("cgnv6_nat_pool_topn_tmpl_list").([]interface{}))
-	ret.Inst.GtpApnPrefixTopnNode = getObjectVisibilityTopnGtpApnPrefixTopnNode3135(d.Get("gtp_apn_prefix_topn_node").([]interface{}))
+	ret.Inst.GtpApnPrefixTopnNode = getObjectVisibilityTopnGtpApnPrefixTopnNode3235(d.Get("gtp_apn_prefix_topn_node").([]interface{}))
 	ret.Inst.GtpApnPrefixTopnTmplList = getSliceVisibilityTopnGtpApnPrefixTopnTmplList(d.Get("gtp_apn_prefix_topn_tmpl_list").([]interface{}))
-	ret.Inst.GtpNetworkElementTopnNode = getObjectVisibilityTopnGtpNetworkElementTopnNode3136(d.Get("gtp_network_element_topn_node").([]interface{}))
+	ret.Inst.GtpNetworkElementTopnNode = getObjectVisibilityTopnGtpNetworkElementTopnNode3236(d.Get("gtp_network_element_topn_node").([]interface{}))
 	ret.Inst.GtpNetworkElementTopnTmplList = getSliceVisibilityTopnGtpNetworkElementTopnTmplList(d.Get("gtp_network_element_topn_tmpl_list").([]interface{}))
 	ret.Inst.SamplingEnable = getSliceVisibilityTopnSamplingEnable(d.Get("sampling_enable").([]interface{}))
+	ret.Inst.TemplGtpPlcyTopnNode = getObjectVisibilityTopnTemplGtpPlcyTopnNode3237(d.Get("templ_gtp_plcy_topn_node").([]interface{}))
+	ret.Inst.TemplGtpPlcyTopnTmplList = getSliceVisibilityTopnTemplGtpPlcyTopnTmplList(d.Get("templ_gtp_plcy_topn_tmpl_list").([]interface{}))
 	//omit uuid
 	return ret
 }

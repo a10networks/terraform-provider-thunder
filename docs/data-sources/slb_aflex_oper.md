@@ -46,11 +46,12 @@ Optional:
 
 - `aflex_count` (Number)
 - `aflex_file_size_max` (Number)
+- `event` (String)
+- `exact_match` (Number)
 - `file_list` (Block List) (see [below for nested schema](#nestedblock--oper--file_list))
 - `filter_debug` (Number)
-- `filter_entry` (String)
-- `filter_event` (String)
-- `filter_substring` (Number)
+- `name` (String)
+- `substring` (Number)
 - `thread_list` (Block List) (see [below for nested schema](#nestedblock--oper--thread_list))
 
 <a id="nestedblock--oper--file_list"></a>
@@ -71,6 +72,7 @@ Optional:
 
 - `aborts` (Number)
 - `event_type` (String)
+- `exceed_time_limit` (Number)
 - `failures` (Number)
 - `total_executions` (Number)
 
@@ -105,5 +107,3 @@ Optional:
 - `event_name` (String)
 - `file_name` (String)
 - `line_number` (Number)
-
-

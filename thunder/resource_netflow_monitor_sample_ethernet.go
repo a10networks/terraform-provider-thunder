@@ -22,8 +22,8 @@ func resourceNetflowMonitorSampleEthernet() *schema.Resource {
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"monitor_name": {
+				Type: schema.TypeString, Required: true, Description: "Monitor_name",
 			},
 		},
 	}
@@ -94,6 +94,6 @@ func dataToEndpointNetflowMonitorSampleEthernet(d *schema.ResourceData) edpt.Net
 	var ret edpt.NetflowMonitorSampleEthernet
 	ret.Inst.Ifindex = d.Get("ifindex").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Monitor_name = d.Get("monitor_name").(string)
 	return ret
 }

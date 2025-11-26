@@ -29,6 +29,19 @@ func resourceSflowPolling() *schema.Resource {
 					},
 				},
 			},
+			"acos_info": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"toggle": {
+							Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable polling ACOS Information; 'disable': Disable polling ACOS Information;",
+						},
+						"uuid": {
+							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+						},
+					},
+				},
+			},
 			"cpu_usage": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Polling CPU usage",
 			},
@@ -39,15 +52,6 @@ func resourceSflowPolling() *schema.Resource {
 						"toggle": {
 							Type: schema.TypeString, Optional: true, Default: "disable", Description: "'enable': Enable sflow polling for DDOS statistics; 'disable': Disable sflow polling for DDOS statistics;",
 						},
-						"compatibility3_0": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable DDOS sflow polling 3.0/3.1 compatibility mode",
-						},
-						"address_byte_order_host": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Export sflow address field in host byte order",
-						},
-						"compatibility2_9": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable DDOS sflow polling 2.9 compatibility mode",
-						},
 						"dns_cache_zone_stats": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable polling for dns cache per instance and per zone statistics",
 						},
@@ -56,6 +60,12 @@ func resourceSflowPolling() *schema.Resource {
 						},
 						"dyn_entry_stats": {
 							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable polling for dynamic entry statistics",
+						},
+						"zone_session": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable polling for zone session information",
+						},
+						"auto_discovered_sni": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable polling for auto discovered sni",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -221,10 +231,10 @@ func resourceSflowPollingRead(ctx context.Context, d *schema.ResourceData, meta 
 	return diags
 }
 
-func getObjectSflowPollingA10Proprietary1402(d []interface{}) edpt.SflowPollingA10Proprietary1402 {
+func getObjectSflowPollingA10Proprietary1493(d []interface{}) edpt.SflowPollingA10Proprietary1493 {
 
 	count1 := len(d)
-	var ret edpt.SflowPollingA10Proprietary1402
+	var ret edpt.SflowPollingA10Proprietary1493
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ExportDeprecatedCounters = in["export_deprecated_counters"].(int)
@@ -233,19 +243,30 @@ func getObjectSflowPollingA10Proprietary1402(d []interface{}) edpt.SflowPollingA
 	return ret
 }
 
-func getObjectSflowPollingDdos1403(d []interface{}) edpt.SflowPollingDdos1403 {
+func getObjectSflowPollingAcosInfo1494(d []interface{}) edpt.SflowPollingAcosInfo1494 {
 
 	count1 := len(d)
-	var ret edpt.SflowPollingDdos1403
+	var ret edpt.SflowPollingAcosInfo1494
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Toggle = in["toggle"].(string)
-		ret.Compatibility3_0 = in["compatibility3_0"].(int)
-		ret.AddressByteOrderHost = in["address_byte_order_host"].(int)
-		ret.Compatibility2_9 = in["compatibility2_9"].(int)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectSflowPollingDdos1495(d []interface{}) edpt.SflowPollingDdos1495 {
+
+	count1 := len(d)
+	var ret edpt.SflowPollingDdos1495
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Toggle = in["toggle"].(string)
 		ret.DnsCacheZoneStats = in["dns_cache_zone_stats"].(int)
 		ret.EnableAnomalyStats = in["enable_anomaly_stats"].(int)
 		ret.DynEntryStats = in["dyn_entry_stats"].(int)
+		ret.ZoneSession = in["zone_session"].(int)
+		ret.AutoDiscoveredSni = in["auto_discovered_sni"].(int)
 		//omit uuid
 	}
 	return ret
@@ -293,10 +314,10 @@ func getSliceSflowPollingEthernetList(d []interface{}) []edpt.SflowPollingEthern
 	return ret
 }
 
-func getObjectSflowPollingHttp1404(d []interface{}) edpt.SflowPollingHttp1404 {
+func getObjectSflowPollingHttp1496(d []interface{}) edpt.SflowPollingHttp1496 {
 
 	count1 := len(d)
-	var ret edpt.SflowPollingHttp1404
+	var ret edpt.SflowPollingHttp1496
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Toggle = in["toggle"].(string)
@@ -305,10 +326,10 @@ func getObjectSflowPollingHttp1404(d []interface{}) edpt.SflowPollingHttp1404 {
 	return ret
 }
 
-func getObjectSflowPollingSystemHealth1405(d []interface{}) edpt.SflowPollingSystemHealth1405 {
+func getObjectSflowPollingSystemHealth1497(d []interface{}) edpt.SflowPollingSystemHealth1497 {
 
 	count1 := len(d)
-	var ret edpt.SflowPollingSystemHealth1405
+	var ret edpt.SflowPollingSystemHealth1497
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.SystemHealthUsage = in["system_health_usage"].(string)
@@ -336,15 +357,16 @@ func getSliceSflowPollingVeList(d []interface{}) []edpt.SflowPollingVeList {
 
 func dataToEndpointSflowPolling(d *schema.ResourceData) edpt.SflowPolling {
 	var ret edpt.SflowPolling
-	ret.Inst.A10Proprietary = getObjectSflowPollingA10Proprietary1402(d.Get("a10_proprietary").([]interface{}))
+	ret.Inst.A10Proprietary = getObjectSflowPollingA10Proprietary1493(d.Get("a10_proprietary").([]interface{}))
+	ret.Inst.AcosInfo = getObjectSflowPollingAcosInfo1494(d.Get("acos_info").([]interface{}))
 	ret.Inst.CpuUsage = d.Get("cpu_usage").(int)
-	ret.Inst.Ddos = getObjectSflowPollingDdos1403(d.Get("ddos").([]interface{}))
+	ret.Inst.Ddos = getObjectSflowPollingDdos1495(d.Get("ddos").([]interface{}))
 	ret.Inst.EthList = getSliceSflowPollingEthList(d.Get("eth_list").([]interface{}))
 	ret.Inst.EthernetExtList = getSliceSflowPollingEthernetExtList(d.Get("ethernet_ext_list").([]interface{}))
 	ret.Inst.EthernetList = getSliceSflowPollingEthernetList(d.Get("ethernet_list").([]interface{}))
-	ret.Inst.Http = getObjectSflowPollingHttp1404(d.Get("http").([]interface{}))
+	ret.Inst.Http = getObjectSflowPollingHttp1496(d.Get("http").([]interface{}))
 	ret.Inst.HttpCounter = d.Get("http_counter").(int)
-	ret.Inst.SystemHealth = getObjectSflowPollingSystemHealth1405(d.Get("system_health").([]interface{}))
+	ret.Inst.SystemHealth = getObjectSflowPollingSystemHealth1497(d.Get("system_health").([]interface{}))
 	//omit uuid
 	ret.Inst.VeList = getSliceSflowPollingVeList(d.Get("ve_list").([]interface{}))
 	return ret

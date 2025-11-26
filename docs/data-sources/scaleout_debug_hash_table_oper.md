@@ -46,6 +46,7 @@ Optional:
 
 - `hash_list` (Block List) (see [below for nested schema](#nestedblock--oper--hash_list))
 - `ip` (Number)
+- `ipv6` (Number)
 - `mac` (Number)
 
 <a id="nestedblock--oper--hash_list"></a>
@@ -59,5 +60,3 @@ Optional:
 - `so_ip` (String)
 - `so_mac` (String)
 - `so_vnp_id` (Number)
-
-

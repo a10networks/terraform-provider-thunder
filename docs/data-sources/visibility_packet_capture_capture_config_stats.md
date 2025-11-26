@@ -118,5 +118,3 @@ Optional:
 - `skip_as_conn_already_recapture` (Number) Skip creating capture, conn was already captured
 - `skip_capture_as_conn_created_before_smp` (Number) Skip capturing, conn was created before the capture started
 - `wrong_ctr_incremented` (Number) Counter increment issue
-
-

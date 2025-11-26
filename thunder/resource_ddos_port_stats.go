@@ -62,6 +62,9 @@ func resourceDdosPortStats() *schema.Resource {
 						"dst_sport_conn_rate_exceed": {
 							Type: schema.TypeInt, Optional: true, Description: "Dst SrcPort Conn Rate Exceeded",
 						},
+						"dst_port_same_sport_drop": {
+							Type: schema.TypeInt, Optional: true, Description: "Dst Port Same Src Port Dropped",
+						},
 					},
 				},
 			},
@@ -106,6 +109,7 @@ func setObjectDdosPortStatsStats(ret edpt.DataDdosPortStats) []interface{} {
 			"dst_sport_frag_rate_exceed":  ret.DtDdosPortStats.Stats.Dst_sport_frag_rate_exceed,
 			"dst_sport_conn_limit_exceed": ret.DtDdosPortStats.Stats.Dst_sport_conn_limit_exceed,
 			"dst_sport_conn_rate_exceed":  ret.DtDdosPortStats.Stats.Dst_sport_conn_rate_exceed,
+			"dst_port_same_sport_drop":    ret.DtDdosPortStats.Stats.Dst_port_same_sport_drop,
 		},
 	}
 }
@@ -131,6 +135,7 @@ func getObjectDdosPortStatsStats(d []interface{}) edpt.DdosPortStatsStats {
 		ret.Dst_sport_frag_rate_exceed = in["dst_sport_frag_rate_exceed"].(int)
 		ret.Dst_sport_conn_limit_exceed = in["dst_sport_conn_limit_exceed"].(int)
 		ret.Dst_sport_conn_rate_exceed = in["dst_sport_conn_rate_exceed"].(int)
+		ret.Dst_port_same_sport_drop = in["dst_port_same_sport_drop"].(int)
 	}
 	return ret
 }

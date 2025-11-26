@@ -1,53 +1,48 @@
-
-
 package endpoint
+
 import (
-    "github.com/a10networks/terraform-provider-thunder/thunder/axapi"
-    "github.com/clarketm/json"
+	"github.com/a10networks/terraform-provider-thunder/thunder/axapi"
+	"github.com/clarketm/json"
 )
 
-//based on ACOS 6_0_2_P1-37
+// based on ACOS 7_0_2-102
 type AamAuthenticationFilePortalImageOper struct {
-    
-    Oper AamAuthenticationFilePortalImageOperOper `json:"oper"`
-
+	Oper AamAuthenticationFilePortalImageOperOper `json:"oper"`
 }
 type DataAamAuthenticationFilePortalImageOper struct {
-    DtAamAuthenticationFilePortalImageOper AamAuthenticationFilePortalImageOper `json:"portal-image"`
+	DtAamAuthenticationFilePortalImageOper AamAuthenticationFilePortalImageOper `json:"portal-image"`
 }
-
 
 type AamAuthenticationFilePortalImageOperOper struct {
-    FileList []AamAuthenticationFilePortalImageOperOperFileList `json:"file-list"`
-    Name string `json:"name"`
+	FileList []AamAuthenticationFilePortalImageOperOperFileList `json:"file-list"`
+	Name     string                                             `json:"name"`
 }
-
 
 type AamAuthenticationFilePortalImageOperOperFileList struct {
-    File string `json:"file"`
-    Size int `json:"size"`
+	File string `json:"file"`
+	Size int    `json:"size"`
 }
 
-func (p *AamAuthenticationFilePortalImageOper) GetId() string{
-    return "1"
+func (p *AamAuthenticationFilePortalImageOper) GetId() string {
+	return "1"
 }
 
-func (p *AamAuthenticationFilePortalImageOper) getPath() string{
-    return "aam/authentication/file/portal-image/oper"
+func (p *AamAuthenticationFilePortalImageOper) getPath() string {
+	return "aam/authentication/file/portal-image/oper"
 }
 
-func (p *AamAuthenticationFilePortalImageOper) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) (DataAamAuthenticationFilePortalImageOper,error) {
-logger.Println("AamAuthenticationFilePortalImageOper::Get")
-    headers := axapi.GenRequestHeader(authToken)
-    _, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
-    var payload DataAamAuthenticationFilePortalImageOper
-    if err == nil {
-        if len(axResp) > 0{
-        err = json.Unmarshal(axResp, &p)
-        }
-        if err != nil {
-            logger.Println("json.Unmarshal() failed with error", err)
-        }
-    }
-    return payload,err
+func (p *AamAuthenticationFilePortalImageOper) Get(authToken string, host string, instId string, logger *axapi.ThunderLog) (DataAamAuthenticationFilePortalImageOper, error) {
+	logger.Println("AamAuthenticationFilePortalImageOper::Get")
+	headers := axapi.GenRequestHeader(authToken)
+	_, axResp, err := axapi.SendGet(host, p.getPath(), "", nil, headers, logger)
+	var payload DataAamAuthenticationFilePortalImageOper
+	if err == nil {
+		if len(axResp) > 0 {
+			err = json.Unmarshal(axResp, &p)
+		}
+		if err != nil {
+			logger.Println("json.Unmarshal() failed with error", err)
+		}
+	}
+	return payload, err
 }

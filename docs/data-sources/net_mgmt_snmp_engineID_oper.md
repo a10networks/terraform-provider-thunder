@@ -45,5 +45,3 @@ output "get_net_mgmt_snmp_engineID_oper" {
 Optional:
 
 - `engineid` (String)
-
-

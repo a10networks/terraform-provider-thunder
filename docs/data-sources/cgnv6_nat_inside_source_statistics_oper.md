@@ -57,5 +57,3 @@ Optional:
 - `src_address` (String)
 - `total_freed` (Number)
 - `total_used` (Number)
-
-

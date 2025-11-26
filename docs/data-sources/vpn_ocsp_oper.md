@@ -57,5 +57,3 @@ Optional:
 - `issuer` (String)
 - `subject` (String)
 - `validity` (String)
-
-

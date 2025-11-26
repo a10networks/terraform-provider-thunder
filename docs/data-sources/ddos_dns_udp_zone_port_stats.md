@@ -45,9 +45,10 @@ output "get_ddos_dns_udp_zone_port_stats" {
 
 Optional:
 
-- `addr_filter_bl` (Number) IP Filtering Policy: Blacklisted
-- `addr_filter_drop` (Number) IP Filtering Policy: Dropped
+- `alias_forward_rate_exceed` (Number) ALIAS Forward Rate Exceed
+- `all_src_session_reset` (Number) Session Reset for All Src Upon Level Escalation
 - `bl` (Number) Dst Blacklisted
+- `clear_session_upon_deescalation` (Number) Clear Session Upon De-escalation to Level 0
 - `conn_prate_excd` (Number) UDP Conn Pkt Rate Exceeded
 - `current_es_level` (Number) Current Escalation Level
 - `dg_action_default` (Number) Domain Group Action Default
@@ -65,10 +66,12 @@ Optional:
 - `dns_query_class_in` (Number) Query Class INTERNET
 - `dns_query_class_none` (Number) Query Class NONE
 - `dns_query_class_whitelist_miss` (Number) Query Class Whitelist Miss
+- `dnssec_wildcard_forward_rate_exceed` (Number) DNSSEC Wildcard Forward Rate Exceed
 - `dst_hw_drop` (Number) Dst Hardware Packets Dropped
 - `dst_hw_drop_inserted` (Number) Dst Hardware Drop Rules Inserted
 - `dst_hw_drop_removed` (Number) Dst Hardware Drop Rules Removed
 - `dst_udp_retry_timeout_blacklist` (Number) UDP Retry Timeout Blacklisted
+- `dynamic_count_warn` (Number) dynamic-entry-count warning send
 - `ew_inbound_port_byte_drop` (Number) East-West Inbound Bytes Dropped
 - `ew_inbound_port_byte_rcv` (Number) East-West Inbound Bytes Recevied
 - `ew_inbound_port_byte_sent` (Number) East-West Inbound Bytes Forwarded
@@ -110,6 +113,8 @@ Optional:
 - `frag_drop` (Number) Fragmented Packets Dropped
 - `frag_rcvd` (Number) Fragmented Packets Received
 - `frag_timeout` (Number) Fragmented Packets Timeout
+- `ip_filtering_bl` (Number) IP Filtering Policy: Blacklisted
+- `ip_filtering_drop` (Number) IP Filtering Policy: Dropped
 - `is_nxdomain` (Number) NXDOMAIN Response
 - `malform_drop` (Number) Malform Query Dropped
 - `no_policy_class_list_match` (Number) No Policy Class-list Match
@@ -152,6 +157,7 @@ Optional:
 - `port_rcvd` (Number) Inbound Packets Received
 - `port_src_bl` (Number) Src Blacklisted
 - `port_src_escalation` (Number) Src Escalation
+- `query_forward_rate_exceed` (Number) Query Foward Rate Exceed
 - `query_type_a` (Number) Query Type A
 - `query_type_aaaa` (Number) Query Type AAAA
 - `query_type_any` (Number) Query Type ANY
@@ -170,7 +176,9 @@ Optional:
 - `req_retrans` (Number) Request Retransmit
 - `req_sent` (Number) DNS Requests Forwarded
 - `req_size_exceed` (Number) Request Size Exceeded
+- `rrsig_expire_drop` (Number) RRSIG Expire: Drop
 - `rrtype_drop` (Number) Record Type Dropped
+- `same_sport_dport_drop` (Number) Same Source and Destination Port Drop
 - `secondary_port_conn_limm_exceed` (Number) Per Addr-Port Conn Limit Exceeded
 - `secondary_port_conn_rate_exceed` (Number) Per Addr-Port Conn Rate Exceeded
 - `secondary_port_hit` (Number) Per Addr-Port Hit
@@ -231,6 +239,7 @@ Optional:
 - `src_udp_retry_pass` (Number) Src UDP Retry Passed
 - `src_well_known_port` (Number) Src UDP SrcPort Wellknown
 - `src_zone_service_entry_aged` (Number) SrcZoneService Entry Aged
+- `src_zone_service_entry_hit` (Number) SrcZoneService Entry Hit
 - `src_zone_service_entry_learned` (Number) SrcZoneService Entry Learned
 - `token_authentication_curr_salt_matched` (Number) Token Authentication Current Salt Matched
 - `token_authentication_invalid` (Number) Token Authentication Invalid Packets
@@ -250,5 +259,3 @@ Optional:
 - `unauth_src_session_reset` (Number) Session Reset for Unauthenticated Src
 - `wellknown_sport_drop` (Number) UDP SrcPort Wellknown
 - `zone_src_udp_retry_timeout_blacklist` (Number) Src UDP Retry Timeout Blacklisted
-
-

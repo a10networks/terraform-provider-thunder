@@ -35,7 +35,7 @@ output "get_rule_set_track_app_rule_list_stats" {
 
 ### Required
 
-- `name` (String) Name
+- `rule_set_name` (String) Rule_set_name
 
 ### Optional
 
@@ -51,5 +51,3 @@ output "get_rule_set_track_app_rule_list_stats" {
 Optional:
 
 - `dummy` (Number) Entry for a10countergen
-
-

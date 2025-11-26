@@ -28,8 +28,8 @@ func resourceVisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStatsInc() 
 			"uuid": {
 				Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 			},
-			"name": {
-				Type: schema.TypeString, Required: true, Description: "Name",
+			"rule_set_tmpl_name": {
+				Type: schema.TypeString, Required: true, Description: "Rule_set_tmpl_name",
 			},
 		},
 	}
@@ -102,6 +102,6 @@ func dataToEndpointVisibilityPacketCaptureObjectTemplatesRuleSetTmplTriggerStats
 	ret.Inst.Reset = d.Get("reset").(int)
 	ret.Inst.UnmatchedDrops = d.Get("unmatched_drops").(int)
 	//omit uuid
-	ret.Inst.Name = d.Get("name").(string)
+	ret.Inst.Rule_set_tmpl_name = d.Get("rule_set_tmpl_name").(string)
 	return ret
 }

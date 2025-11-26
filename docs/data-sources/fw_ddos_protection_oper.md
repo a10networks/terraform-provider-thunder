@@ -65,5 +65,3 @@ Optional:
 - `prefix` (Number)
 - `rate` (Number)
 - `rule_name` (String)
-
-

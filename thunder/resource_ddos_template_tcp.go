@@ -75,9 +75,6 @@ func resourceDdosTemplateTcp() *schema.Resource {
 			"age": {
 				Type: schema.TypeInt, Optional: true, Description: "Session age in minutes",
 			},
-			"allow_ra": {
-				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Allow RA packets to be used for auth",
-			},
 			"allow_syn_otherflags": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Treat TCP SYN+PSH as a TCP SYN (DST tcp ports support only)",
 			},
@@ -207,136 +204,188 @@ func resourceDdosTemplateTcp() *schema.Resource {
 						"progression_tracking_enabled": {
 							Type: schema.TypeString, Optional: true, Description: "'enable-check': Enable Progression Tracking Check;",
 						},
-						"request_response_model": {
-							Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable Request Response Model; 'disable': Disable Request Response Model;",
-						},
-						"violation": {
-							Type: schema.TypeInt, Optional: true, Description: "Set the violation threshold",
-						},
-						"response_length_max": {
-							Type: schema.TypeInt, Optional: true, Description: "Set the maximum response length",
-						},
-						"response_length_min": {
-							Type: schema.TypeInt, Optional: true, Description: "Set the minimum response length",
-						},
-						"request_length_min": {
-							Type: schema.TypeInt, Optional: true, Description: "Set the minimum request length",
-						},
-						"request_length_max": {
-							Type: schema.TypeInt, Optional: true, Description: "Set the maximum request length",
-						},
-						"response_request_min_ratio": {
-							Type: schema.TypeInt, Optional: true, Description: "Set the minimum response to request ratio (in unit of 0.1% [1:1000])",
-						},
-						"response_request_max_ratio": {
-							Type: schema.TypeInt, Optional: true, Description: "Set the maximum response to request ratio (in unit of 0.1% [1:1000])",
-						},
-						"first_request_max_time": {
-							Type: schema.TypeInt, Optional: true, Description: "Set the maximum wait time from connection creation until the first data is transmitted over the connection (100 ms)",
-						},
-						"request_to_response_max_time": {
-							Type: schema.TypeInt, Optional: true, Description: "Set the maximum request to response time (100 ms)",
-						},
-						"response_to_request_max_time": {
-							Type: schema.TypeInt, Optional: true, Description: "Set the maximum response to request time (100 ms)",
-						},
-						"profiling_request_response_model": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable auto-config progression tracking learning for request response model",
-						},
-						"profiling_connection_life_model": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable auto-config progression tracking learning for connection model",
-						},
-						"profiling_time_window_model": {
-							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable auto-config progression tracking learning for time window model",
-						},
-						"progression_tracking_action_list_name": {
-							Type: schema.TypeString, Optional: true, Description: "Configure action-list to take when progression tracking violation exceed",
-						},
-						"progression_tracking_action": {
-							Type: schema.TypeString, Optional: true, Default: "drop", Description: "'drop': Drop packets for progression tracking violation exceed (Default); 'blacklist-src': Blacklist-src for progression tracking violation exceed;",
+						"ignore_tls_handshake": {
+							Type: schema.TypeInt, Optional: true, Default: 0, Description: "Ignore TLS handshake, support SSL-L4 port only",
 						},
 						"uuid": {
 							Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
 						},
-						"connection_tracking": {
+						"mitigation": {
 							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"progression_tracking_conn_enabled": {
-										Type: schema.TypeString, Optional: true, Description: "'enable-check': Enable General Progression Tracking per Connection;",
+									"request_tracking": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"progression_tracking_req_enabled": {
+													Type: schema.TypeString, Optional: true, Description: "'enable-check': Enable General Progression Tracking per Request Response;",
+												},
+												"request_response_model": {
+													Type: schema.TypeString, Optional: true, Default: "enable", Description: "'enable': Enable Request Response Model; 'disable': Disable Request Response Model;",
+												},
+												"response_length_max": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the maximum response length",
+												},
+												"response_length_min": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the minimum response length",
+												},
+												"request_length_min": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the minimum request length",
+												},
+												"request_length_max": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the maximum request length",
+												},
+												"request_to_response_max_time": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the maximum request to response time (in unit of 100ms)",
+												},
+												"response_to_request_max_time": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the maximum response to request time (in unit of 100ms)",
+												},
+												"first_request_max_time": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the maximum idle time before the first request (in unit of 100ms)",
+												},
+												"progression_tracking_req_action_list_name": {
+													Type: schema.TypeString, Optional: true, Description: "Configure action-list to take when progression tracking violation exceed",
+												},
+												"violation": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the violation threshold",
+												},
+												"progression_tracking_req_action": {
+													Type: schema.TypeString, Optional: true, Default: "drop", Description: "'drop': Drop packets for progression tracking violation exceed (Default); 'blacklist-src': Blacklist-src for progression tracking violation exceed;",
+												},
+												"uuid": {
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+												},
+											},
+										},
 									},
-									"conn_sent_max": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the maximum total sent byte",
+									"connection_tracking": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"progression_tracking_conn_enabled": {
+													Type: schema.TypeString, Optional: true, Description: "'enable-check': Enable General Progression Tracking per Connection;",
+												},
+												"conn_sent_max": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the maximum total sent byte",
+												},
+												"conn_sent_min": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the minimum total sent byte",
+												},
+												"conn_rcvd_max": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the maximum total received byte",
+												},
+												"conn_rcvd_min": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the minimum total received byte",
+												},
+												"conn_rcvd_sent_ratio_min": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the minimum received to sent ratio (in unit of 0.1% [1:1000])",
+												},
+												"conn_rcvd_sent_ratio_max": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the maximum received to sent ratio (in unit of 0.1% [1:1000])",
+												},
+												"conn_duration_max": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the maximum duration time (in unit of 100ms, up to 24 hours)",
+												},
+												"conn_duration_min": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the minimum duration time (in unit of 100ms, up to 24 hours)",
+												},
+												"conn_violation": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the violation threshold",
+												},
+												"progression_tracking_conn_action_list_name": {
+													Type: schema.TypeString, Optional: true, Description: "Configure action-list to take when progression tracking violation exceed",
+												},
+												"progression_tracking_conn_action": {
+													Type: schema.TypeString, Optional: true, Default: "drop", Description: "'drop': Drop packets for progression tracking violation exceed (Default); 'blacklist-src': Blacklist-src for progression tracking violation exceed;",
+												},
+												"uuid": {
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+												},
+											},
+										},
 									},
-									"conn_sent_min": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the minimum total sent byte",
+									"time_window_tracking": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"progression_tracking_win_enabled": {
+													Type: schema.TypeString, Optional: true, Description: "'enable-check': Enable Progression Tracking per Time Window;",
+												},
+												"window_sent_max": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the maximum total sent byte",
+												},
+												"window_sent_min": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the minimum total sent byte",
+												},
+												"window_rcvd_max": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the maximum total received byte",
+												},
+												"window_rcvd_min": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the minimum total received byte",
+												},
+												"window_rcvd_sent_ratio_min": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the minimum received to sent ratio (in unit of 0.1% [1:1000])",
+												},
+												"window_rcvd_sent_ratio_max": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the maximum received to sent ratio (in unit of 0.1% [1:1000])",
+												},
+												"window_violation": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the violation threshold",
+												},
+												"progression_tracking_windows_action_list_name": {
+													Type: schema.TypeString, Optional: true, Description: "Configure action-list to take when progression tracking violation exceed",
+												},
+												"progression_tracking_windows_action": {
+													Type: schema.TypeString, Optional: true, Default: "drop", Description: "'drop': Drop packets for progression tracking violation exceed (Default); 'blacklist-src': Blacklist-src for progression tracking violation exceed;",
+												},
+												"uuid": {
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+												},
+											},
+										},
 									},
-									"conn_rcvd_max": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the maximum total received byte",
-									},
-									"conn_rcvd_min": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the minimum total received byte",
-									},
-									"conn_rcvd_sent_ratio_min": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the minimum received to sent ratio (in unit of 0.1% [1:1000])",
-									},
-									"conn_rcvd_sent_ratio_max": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the maximum received to sent ratio (in unit of 0.1% [1:1000])",
-									},
-									"conn_duration_max": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the maximum duration time (in unit of 100ms, up to 24 hours)",
-									},
-									"conn_duration_min": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the minimum duration time (in unit of 100ms, up to 24 hours)",
-									},
-									"conn_violation": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the violation threshold",
-									},
-									"progression_tracking_conn_action_list_name": {
-										Type: schema.TypeString, Optional: true, Description: "Configure action-list to take when progression tracking violation exceed",
-									},
-									"progression_tracking_conn_action": {
-										Type: schema.TypeString, Optional: true, Default: "drop", Description: "'drop': Drop packets for progression tracking violation exceed (Default); 'blacklist-src': Blacklist-src for progression tracking violation exceed;",
-									},
-									"uuid": {
-										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+									"slow_attack": {
+										Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"response_pkt_rate_max": {
+													Type: schema.TypeInt, Optional: true, Description: "Set the transferred packets per response",
+												},
+												"init_response_max_time": {
+													Type: schema.TypeInt, Optional: true, Description: "Set server think time (in unit of 100ms). Suggested value larger than 45 secs",
+												},
+												"init_request_max_time": {
+													Type: schema.TypeInt, Optional: true, Description: "Set client query time (in unit of 100ms). Suggested value larger than 30 secs",
+												},
+												"progression_tracking_slow_action_list_name": {
+													Type: schema.TypeString, Optional: true, Description: "Configure action-list to take when progression tracking violation exceed",
+												},
+												"progression_tracking_slow_action": {
+													Type: schema.TypeString, Optional: true, Default: "drop", Description: "'drop': Drop packets for progression tracking violation exceed (Default); 'reset': Reset client connection; 'blacklist-src': Blacklist-src for progression tracking violation exceed;",
+												},
+												"uuid": {
+													Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
+												},
+											},
+										},
 									},
 								},
 							},
 						},
-						"time_window_tracking": {
+						"profiling": {
 							Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"progression_tracking_win_enabled": {
-										Type: schema.TypeString, Optional: true, Description: "'enable-check': Enable Progression Tracking per Time Window;",
+									"profiling_request_response_model": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable auto-config progression tracking learning for request response model",
 									},
-									"window_sent_max": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the maximum total sent byte",
+									"profiling_connection_life_model": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable auto-config progression tracking learning for connection model",
 									},
-									"window_sent_min": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the minimum total sent byte",
-									},
-									"window_rcvd_max": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the maximum total received byte",
-									},
-									"window_rcvd_min": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the minimum total received byte",
-									},
-									"window_rcvd_sent_ratio_min": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the minimum received to sent ratio (in unit of 0.1% [1:1000])",
-									},
-									"window_rcvd_sent_ratio_max": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the maximum received to sent ratio (in unit of 0.1% [1:1000])",
-									},
-									"window_violation": {
-										Type: schema.TypeInt, Optional: true, Description: "Set the violation threshold",
-									},
-									"progression_tracking_windows_action_list_name": {
-										Type: schema.TypeString, Optional: true, Description: "Configure action-list to take when progression tracking violation exceed",
-									},
-									"progression_tracking_windows_action": {
-										Type: schema.TypeString, Optional: true, Default: "drop", Description: "'drop': Drop packets for progression tracking violation exceed (Default); 'blacklist-src': Blacklist-src for progression tracking violation exceed;",
+									"profiling_time_window_model": {
+										Type: schema.TypeInt, Optional: true, Default: 0, Description: "Enable auto-config progression tracking learning for time window model",
 									},
 									"uuid": {
 										Type: schema.TypeString, Optional: true, Computed: true, Description: "uuid of the object",
@@ -624,40 +673,62 @@ func getSliceDdosTemplateTcpFilterList(d []interface{}) []edpt.DdosTemplateTcpFi
 	return ret
 }
 
-func getObjectDdosTemplateTcpProgressionTracking302(d []interface{}) edpt.DdosTemplateTcpProgressionTracking302 {
+func getObjectDdosTemplateTcpProgressionTracking351(d []interface{}) edpt.DdosTemplateTcpProgressionTracking351 {
 
 	count1 := len(d)
-	var ret edpt.DdosTemplateTcpProgressionTracking302
+	var ret edpt.DdosTemplateTcpProgressionTracking351
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProgressionTrackingEnabled = in["progression_tracking_enabled"].(string)
-		ret.RequestResponseModel = in["request_response_model"].(string)
-		ret.Violation = in["violation"].(int)
-		ret.ResponseLengthMax = in["response_length_max"].(int)
-		ret.ResponseLengthMin = in["response_length_min"].(int)
-		ret.RequestLengthMin = in["request_length_min"].(int)
-		ret.RequestLengthMax = in["request_length_max"].(int)
-		ret.ResponseRequestMinRatio = in["response_request_min_ratio"].(int)
-		ret.ResponseRequestMaxRatio = in["response_request_max_ratio"].(int)
-		ret.FirstRequestMaxTime = in["first_request_max_time"].(int)
-		ret.RequestToResponseMaxTime = in["request_to_response_max_time"].(int)
-		ret.ResponseToRequestMaxTime = in["response_to_request_max_time"].(int)
-		ret.ProfilingRequestResponseModel = in["profiling_request_response_model"].(int)
-		ret.ProfilingConnectionLifeModel = in["profiling_connection_life_model"].(int)
-		ret.ProfilingTimeWindowModel = in["profiling_time_window_model"].(int)
-		ret.ProgressionTrackingActionListName = in["progression_tracking_action_list_name"].(string)
-		ret.ProgressionTrackingAction = in["progression_tracking_action"].(string)
+		ret.IgnoreTlsHandshake = in["ignore_tls_handshake"].(int)
 		//omit uuid
-		ret.ConnectionTracking = getObjectDdosTemplateTcpProgressionTrackingConnectionTracking303(in["connection_tracking"].([]interface{}))
-		ret.TimeWindowTracking = getObjectDdosTemplateTcpProgressionTrackingTimeWindowTracking304(in["time_window_tracking"].([]interface{}))
+		ret.Mitigation = getObjectDdosTemplateTcpProgressionTrackingMitigation352(in["mitigation"].([]interface{}))
+		ret.Profiling = getObjectDdosTemplateTcpProgressionTrackingProfiling357(in["profiling"].([]interface{}))
 	}
 	return ret
 }
 
-func getObjectDdosTemplateTcpProgressionTrackingConnectionTracking303(d []interface{}) edpt.DdosTemplateTcpProgressionTrackingConnectionTracking303 {
+func getObjectDdosTemplateTcpProgressionTrackingMitigation352(d []interface{}) edpt.DdosTemplateTcpProgressionTrackingMitigation352 {
 
 	count1 := len(d)
-	var ret edpt.DdosTemplateTcpProgressionTrackingConnectionTracking303
+	var ret edpt.DdosTemplateTcpProgressionTrackingMitigation352
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.RequestTracking = getObjectDdosTemplateTcpProgressionTrackingMitigationRequestTracking353(in["request_tracking"].([]interface{}))
+		ret.ConnectionTracking = getObjectDdosTemplateTcpProgressionTrackingMitigationConnectionTracking354(in["connection_tracking"].([]interface{}))
+		ret.TimeWindowTracking = getObjectDdosTemplateTcpProgressionTrackingMitigationTimeWindowTracking355(in["time_window_tracking"].([]interface{}))
+		ret.SlowAttack = getObjectDdosTemplateTcpProgressionTrackingMitigationSlowAttack356(in["slow_attack"].([]interface{}))
+	}
+	return ret
+}
+
+func getObjectDdosTemplateTcpProgressionTrackingMitigationRequestTracking353(d []interface{}) edpt.DdosTemplateTcpProgressionTrackingMitigationRequestTracking353 {
+
+	count1 := len(d)
+	var ret edpt.DdosTemplateTcpProgressionTrackingMitigationRequestTracking353
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ProgressionTrackingReqEnabled = in["progression_tracking_req_enabled"].(string)
+		ret.RequestResponseModel = in["request_response_model"].(string)
+		ret.ResponseLengthMax = in["response_length_max"].(int)
+		ret.ResponseLengthMin = in["response_length_min"].(int)
+		ret.RequestLengthMin = in["request_length_min"].(int)
+		ret.RequestLengthMax = in["request_length_max"].(int)
+		ret.RequestToResponseMaxTime = in["request_to_response_max_time"].(int)
+		ret.ResponseToRequestMaxTime = in["response_to_request_max_time"].(int)
+		ret.FirstRequestMaxTime = in["first_request_max_time"].(int)
+		ret.ProgressionTrackingReqActionListName = in["progression_tracking_req_action_list_name"].(string)
+		ret.Violation = in["violation"].(int)
+		ret.ProgressionTrackingReqAction = in["progression_tracking_req_action"].(string)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectDdosTemplateTcpProgressionTrackingMitigationConnectionTracking354(d []interface{}) edpt.DdosTemplateTcpProgressionTrackingMitigationConnectionTracking354 {
+
+	count1 := len(d)
+	var ret edpt.DdosTemplateTcpProgressionTrackingMitigationConnectionTracking354
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProgressionTrackingConnEnabled = in["progression_tracking_conn_enabled"].(string)
@@ -677,10 +748,10 @@ func getObjectDdosTemplateTcpProgressionTrackingConnectionTracking303(d []interf
 	return ret
 }
 
-func getObjectDdosTemplateTcpProgressionTrackingTimeWindowTracking304(d []interface{}) edpt.DdosTemplateTcpProgressionTrackingTimeWindowTracking304 {
+func getObjectDdosTemplateTcpProgressionTrackingMitigationTimeWindowTracking355(d []interface{}) edpt.DdosTemplateTcpProgressionTrackingMitigationTimeWindowTracking355 {
 
 	count1 := len(d)
-	var ret edpt.DdosTemplateTcpProgressionTrackingTimeWindowTracking304
+	var ret edpt.DdosTemplateTcpProgressionTrackingMitigationTimeWindowTracking355
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ProgressionTrackingWinEnabled = in["progression_tracking_win_enabled"].(string)
@@ -693,6 +764,36 @@ func getObjectDdosTemplateTcpProgressionTrackingTimeWindowTracking304(d []interf
 		ret.WindowViolation = in["window_violation"].(int)
 		ret.ProgressionTrackingWindowsActionListName = in["progression_tracking_windows_action_list_name"].(string)
 		ret.ProgressionTrackingWindowsAction = in["progression_tracking_windows_action"].(string)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectDdosTemplateTcpProgressionTrackingMitigationSlowAttack356(d []interface{}) edpt.DdosTemplateTcpProgressionTrackingMitigationSlowAttack356 {
+
+	count1 := len(d)
+	var ret edpt.DdosTemplateTcpProgressionTrackingMitigationSlowAttack356
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ResponsePktRateMax = in["response_pkt_rate_max"].(int)
+		ret.InitResponseMaxTime = in["init_response_max_time"].(int)
+		ret.InitRequestMaxTime = in["init_request_max_time"].(int)
+		ret.ProgressionTrackingSlowActionListName = in["progression_tracking_slow_action_list_name"].(string)
+		ret.ProgressionTrackingSlowAction = in["progression_tracking_slow_action"].(string)
+		//omit uuid
+	}
+	return ret
+}
+
+func getObjectDdosTemplateTcpProgressionTrackingProfiling357(d []interface{}) edpt.DdosTemplateTcpProgressionTrackingProfiling357 {
+
+	count1 := len(d)
+	var ret edpt.DdosTemplateTcpProgressionTrackingProfiling357
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.ProfilingRequestResponseModel = in["profiling_request_response_model"].(int)
+		ret.ProfilingConnectionLifeModel = in["profiling_connection_life_model"].(int)
+		ret.ProfilingTimeWindowModel = in["profiling_time_window_model"].(int)
 		//omit uuid
 	}
 	return ret
@@ -806,7 +907,6 @@ func dataToEndpointDdosTemplateTcp(d *schema.ResourceData) edpt.DdosTemplateTcp 
 	ret.Inst.ActionOnSynRtoRetryCount = d.Get("action_on_syn_rto_retry_count").(int)
 	ret.Inst.ActionSynCfg = getObjectDdosTemplateTcpActionSynCfg(d.Get("action_syn_cfg").([]interface{}))
 	ret.Inst.Age = d.Get("age").(int)
-	ret.Inst.AllowRa = d.Get("allow_ra").(int)
 	ret.Inst.AllowSynOtherflags = d.Get("allow_syn_otherflags").(int)
 	ret.Inst.AllowSynackSkipAuthentications = d.Get("allow_synack_skip_authentications").(int)
 	ret.Inst.AllowTcpTfo = d.Get("allow_tcp_tfo").(int)
@@ -828,7 +928,7 @@ func dataToEndpointDdosTemplateTcp(d *schema.ResourceData) edpt.DdosTemplateTcp 
 	ret.Inst.PerConnRetransmitRateLimit = d.Get("per_conn_retransmit_rate_limit").(int)
 	ret.Inst.PerConnZeroWinRateAction = d.Get("per_conn_zero_win_rate_action").(string)
 	ret.Inst.PerConnZeroWinRateLimit = d.Get("per_conn_zero_win_rate_limit").(int)
-	ret.Inst.ProgressionTracking = getObjectDdosTemplateTcpProgressionTracking302(d.Get("progression_tracking").([]interface{}))
+	ret.Inst.ProgressionTracking = getObjectDdosTemplateTcpProgressionTracking351(d.Get("progression_tracking").([]interface{}))
 	ret.Inst.Src = getObjectDdosTemplateTcpSrc(d.Get("src").([]interface{}))
 	ret.Inst.SynAuth = d.Get("syn_auth").(string)
 	ret.Inst.SynCookie = d.Get("syn_cookie").(int)

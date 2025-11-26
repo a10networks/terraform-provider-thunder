@@ -260,5 +260,3 @@ Optional:
 - `wsocket_closed` (Number) wsocket closed
 - `wsocket_created` (Number) wsocket created
 - `zero_frame_packet` (Number) Zero_frame_packet
-
-

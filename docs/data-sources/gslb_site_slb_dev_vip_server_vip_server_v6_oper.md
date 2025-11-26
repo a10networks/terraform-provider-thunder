@@ -68,6 +68,7 @@ Optional:
 - `port_count` (Number)
 - `recent` (Number)
 - `service_ip` (String)
+- `shared` (Number)
 - `use_gslb_state` (Number)
 - `virtual_server` (Number)
 
@@ -76,7 +77,8 @@ Optional:
 
 Optional:
 
+- `dev_vip_port_dev_curr_conn` (Number)
 - `dev_vip_port_num` (Number)
+- `dev_vip_port_protocol` (String)
+- `dev_vip_port_service_name` (String)
 - `dev_vip_port_state` (String)
-
-

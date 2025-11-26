@@ -140,15 +140,15 @@ func resourcePartitionRead(ctx context.Context, d *schema.ResourceData, meta int
 	return diags
 }
 
-func getObjectPartitionSharedVlan1089(d []interface{}) edpt.PartitionSharedVlan1089 {
+func getObjectPartitionSharedVlan1173(d []interface{}) edpt.PartitionSharedVlan1173 {
 
 	count1 := len(d)
-	var ret edpt.PartitionSharedVlan1089
+	var ret edpt.PartitionSharedVlan1173
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Vlan = in["vlan"].(int)
-		ret.AllowableIpRange = getSlicePartitionSharedVlanAllowableIpRange1090(in["allowable_ip_range"].([]interface{}))
-		ret.AllowableIpv6Range = getSlicePartitionSharedVlanAllowableIpv6Range1091(in["allowable_ipv6_range"].([]interface{}))
+		ret.AllowableIpRange = getSlicePartitionSharedVlanAllowableIpRange1174(in["allowable_ip_range"].([]interface{}))
+		ret.AllowableIpv6Range = getSlicePartitionSharedVlanAllowableIpv6Range1175(in["allowable_ipv6_range"].([]interface{}))
 		ret.MgmtFloatingIpAddress = in["mgmt_floating_ip_address"].(string)
 		ret.Vrid = in["vrid"].(int)
 		//omit uuid
@@ -156,28 +156,28 @@ func getObjectPartitionSharedVlan1089(d []interface{}) edpt.PartitionSharedVlan1
 	return ret
 }
 
-func getSlicePartitionSharedVlanAllowableIpRange1090(d []interface{}) []edpt.PartitionSharedVlanAllowableIpRange1090 {
+func getSlicePartitionSharedVlanAllowableIpRange1174(d []interface{}) []edpt.PartitionSharedVlanAllowableIpRange1174 {
 
 	count1 := len(d)
-	ret := make([]edpt.PartitionSharedVlanAllowableIpRange1090, 0, count1)
-	var oi edpt.PartitionSharedVlanAllowableIpRange1090
+	ret := make([]edpt.PartitionSharedVlanAllowableIpRange1174, 0, count1)
+	var oi edpt.PartitionSharedVlanAllowableIpRange1174
 	ret = append(ret, oi)
 	return ret
 }
 
-func getSlicePartitionSharedVlanAllowableIpv6Range1091(d []interface{}) []edpt.PartitionSharedVlanAllowableIpv6Range1091 {
+func getSlicePartitionSharedVlanAllowableIpv6Range1175(d []interface{}) []edpt.PartitionSharedVlanAllowableIpv6Range1175 {
 
 	count1 := len(d)
-	ret := make([]edpt.PartitionSharedVlanAllowableIpv6Range1091, 0, count1)
-	var oi edpt.PartitionSharedVlanAllowableIpv6Range1091
+	ret := make([]edpt.PartitionSharedVlanAllowableIpv6Range1175, 0, count1)
+	var oi edpt.PartitionSharedVlanAllowableIpv6Range1175
 	ret = append(ret, oi)
 	return ret
 }
 
-func getObjectPartitionTemplate1092(d []interface{}) edpt.PartitionTemplate1092 {
+func getObjectPartitionTemplate1176(d []interface{}) edpt.PartitionTemplate1176 {
 
 	count1 := len(d)
-	var ret edpt.PartitionTemplate1092
+	var ret edpt.PartitionTemplate1176
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.ResourceAccounting = in["resource_accounting"].(string)
@@ -191,8 +191,8 @@ func dataToEndpointPartition(d *schema.ResourceData) edpt.Partition {
 	ret.Inst.ApplicationType = d.Get("application_type").(string)
 	ret.Inst.Id1 = d.Get("id1").(int)
 	ret.Inst.PartitionName = d.Get("partition_name").(string)
-	ret.Inst.SharedVlan = getObjectPartitionSharedVlan1089(d.Get("shared_vlan").([]interface{}))
-	ret.Inst.Template = getObjectPartitionTemplate1092(d.Get("template").([]interface{}))
+	ret.Inst.SharedVlan = getObjectPartitionSharedVlan1173(d.Get("shared_vlan").([]interface{}))
+	ret.Inst.Template = getObjectPartitionTemplate1176(d.Get("template").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)
 	//omit uuid
 	return ret

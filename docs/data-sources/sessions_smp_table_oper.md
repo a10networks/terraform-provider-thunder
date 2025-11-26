@@ -60,5 +60,3 @@ Optional:
 - `srcport` (Number)
 - `ttl` (Number)
 - `type` (String)
-
-

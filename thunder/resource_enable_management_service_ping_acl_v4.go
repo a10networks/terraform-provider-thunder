@@ -35,6 +35,16 @@ func resourceEnableManagementServicePingAclV4() *schema.Resource {
 					},
 				},
 			},
+			"lif_cfg": {
+				Type: schema.TypeList, MaxItems: 1, Optional: true, Description: "",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"lif": {
+							Type: schema.TypeString, Optional: true, Description: "Lif name (Lif interface name)",
+						},
+					},
+				},
+			},
 			"management": {
 				Type: schema.TypeInt, Optional: true, Default: 0, Description: "Management Interface",
 			},
@@ -149,6 +159,17 @@ func getSliceEnableManagementServicePingAclV4EthCfg(d []interface{}) []edpt.Enab
 	return ret
 }
 
+func getObjectEnableManagementServicePingAclV4LifCfg(d []interface{}) edpt.EnableManagementServicePingAclV4LifCfg {
+
+	count1 := len(d)
+	var ret edpt.EnableManagementServicePingAclV4LifCfg
+	if count1 > 0 {
+		in := d[0].(map[string]interface{})
+		ret.Lif = in["lif"].(string)
+	}
+	return ret
+}
+
 func getSliceEnableManagementServicePingAclV4TunnelCfg(d []interface{}) []edpt.EnableManagementServicePingAclV4TunnelCfg {
 
 	count1 := len(d)
@@ -182,6 +203,7 @@ func dataToEndpointEnableManagementServicePingAclV4(d *schema.ResourceData) edpt
 	ret.Inst.AclId = d.Get("acl_id").(int)
 	ret.Inst.AllDataIntf = d.Get("all_data_intf").(int)
 	ret.Inst.EthCfg = getSliceEnableManagementServicePingAclV4EthCfg(d.Get("eth_cfg").([]interface{}))
+	ret.Inst.LifCfg = getObjectEnableManagementServicePingAclV4LifCfg(d.Get("lif_cfg").([]interface{}))
 	ret.Inst.Management = d.Get("management").(int)
 	ret.Inst.TunnelCfg = getSliceEnableManagementServicePingAclV4TunnelCfg(d.Get("tunnel_cfg").([]interface{}))
 	ret.Inst.UserTag = d.Get("user_tag").(string)

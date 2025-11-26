@@ -266,14 +266,20 @@ func resourceDdosOtherZoneIpprotoStats() *schema.Resource {
 						"src_hw_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "Src Hardware Packets Dropped",
 						},
-						"addr_filter_drop": {
+						"ip_filtering_drop": {
 							Type: schema.TypeInt, Optional: true, Description: "IP Filtering Policy: Dropped",
 						},
-						"addr_filter_bl": {
+						"ip_filtering_bl": {
 							Type: schema.TypeInt, Optional: true, Description: "IP Filtering Policy: Blacklisted",
 						},
 						"src_learn_overflow": {
 							Type: schema.TypeInt, Optional: true, Description: "Source Dynamic Entry Overflow",
+						},
+						"dynamic_count_warn": {
+							Type: schema.TypeInt, Optional: true, Description: "dynamic-entry-count warning send",
+						},
+						"src_zone_service_entry_hit": {
+							Type: schema.TypeInt, Optional: true, Description: "SrcZoneService Entry Hit",
 						},
 					},
 				},
@@ -387,9 +393,11 @@ func setObjectDdosOtherZoneIpprotoStatsStats(ret edpt.DataDdosOtherZoneIpprotoSt
 			"ew_outbound_port_byte_drop":          ret.DtDdosOtherZoneIpprotoStats.Stats.Ew_outbound_port_byte_drop,
 			"no_route_drop":                       ret.DtDdosOtherZoneIpprotoStats.Stats.No_route_drop,
 			"src_hw_drop":                         ret.DtDdosOtherZoneIpprotoStats.Stats.Src_hw_drop,
-			"addr_filter_drop":                    ret.DtDdosOtherZoneIpprotoStats.Stats.Addr_filter_drop,
-			"addr_filter_bl":                      ret.DtDdosOtherZoneIpprotoStats.Stats.Addr_filter_bl,
+			"ip_filtering_drop":                   ret.DtDdosOtherZoneIpprotoStats.Stats.Ip_filtering_drop,
+			"ip_filtering_bl":                     ret.DtDdosOtherZoneIpprotoStats.Stats.Ip_filtering_bl,
 			"src_learn_overflow":                  ret.DtDdosOtherZoneIpprotoStats.Stats.Src_learn_overflow,
+			"dynamic_count_warn":                  ret.DtDdosOtherZoneIpprotoStats.Stats.Dynamic_count_warn,
+			"src_zone_service_entry_hit":          ret.DtDdosOtherZoneIpprotoStats.Stats.Src_zone_service_entry_hit,
 		},
 	}
 }
@@ -483,9 +491,11 @@ func getObjectDdosOtherZoneIpprotoStatsStats(d []interface{}) edpt.DdosOtherZone
 		ret.Ew_outbound_port_byte_drop = in["ew_outbound_port_byte_drop"].(int)
 		ret.No_route_drop = in["no_route_drop"].(int)
 		ret.Src_hw_drop = in["src_hw_drop"].(int)
-		ret.Addr_filter_drop = in["addr_filter_drop"].(int)
-		ret.Addr_filter_bl = in["addr_filter_bl"].(int)
+		ret.Ip_filtering_drop = in["ip_filtering_drop"].(int)
+		ret.Ip_filtering_bl = in["ip_filtering_bl"].(int)
 		ret.Src_learn_overflow = in["src_learn_overflow"].(int)
+		ret.Dynamic_count_warn = in["dynamic_count_warn"].(int)
+		ret.Src_zone_service_entry_hit = in["src_zone_service_entry_hit"].(int)
 	}
 	return ret
 }

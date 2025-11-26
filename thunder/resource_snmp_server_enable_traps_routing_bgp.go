@@ -112,10 +112,10 @@ func resourceSnmpServerEnableTrapsRoutingBgpRead(ctx context.Context, d *schema.
 	return diags
 }
 
-func getObjectSnmpServerEnableTrapsRoutingBgpAx1478(d []interface{}) edpt.SnmpServerEnableTrapsRoutingBgpAx1478 {
+func getObjectSnmpServerEnableTrapsRoutingBgpAx1580(d []interface{}) edpt.SnmpServerEnableTrapsRoutingBgpAx1580 {
 
 	count1 := len(d)
-	var ret edpt.SnmpServerEnableTrapsRoutingBgpAx1478
+	var ret edpt.SnmpServerEnableTrapsRoutingBgpAx1580
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Bgpestablishednotification = in["bgpestablishednotification"].(int)
@@ -129,7 +129,7 @@ func getObjectSnmpServerEnableTrapsRoutingBgpAx1478(d []interface{}) edpt.SnmpSe
 
 func dataToEndpointSnmpServerEnableTrapsRoutingBgp(d *schema.ResourceData) edpt.SnmpServerEnableTrapsRoutingBgp {
 	var ret edpt.SnmpServerEnableTrapsRoutingBgp
-	ret.Inst.Ax = getObjectSnmpServerEnableTrapsRoutingBgpAx1478(d.Get("ax").([]interface{}))
+	ret.Inst.Ax = getObjectSnmpServerEnableTrapsRoutingBgpAx1580(d.Get("ax").([]interface{}))
 	ret.Inst.Bgpbackwardtransnotification = d.Get("bgpbackwardtransnotification").(int)
 	ret.Inst.Bgpestablishednotification = d.Get("bgpestablishednotification").(int)
 	//omit uuid

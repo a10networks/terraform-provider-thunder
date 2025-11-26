@@ -94,5 +94,3 @@ Optional:
 - `wildcard` (Number) ICMP Type Wildcard
 - `wildcard_bl` (Number) ICMP Type Wildcard Blacklisted
 - `wildcard_deny_drop` (Number) ICMP Type Wildcard Dropped
-
-

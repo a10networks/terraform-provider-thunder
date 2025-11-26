@@ -20,6 +20,9 @@ func resourceScaleoutDebugHashTableOper() *schema.Resource {
 						"ip": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
+						"ipv6": {
+							Type: schema.TypeInt, Optional: true, Description: "",
+						},
 						"mac": {
 							Type: schema.TypeInt, Optional: true, Description: "",
 						},
@@ -78,6 +81,7 @@ func setObjectScaleoutDebugHashTableOperOper(ret edpt.DataScaleoutDebugHashTable
 	return []interface{}{
 		map[string]interface{}{
 			"ip":        ret.DtScaleoutDebugHashTableOper.Oper.Ip,
+			"ipv6":      ret.DtScaleoutDebugHashTableOper.Oper.Ipv6,
 			"mac":       ret.DtScaleoutDebugHashTableOper.Oper.Mac,
 			"hash_list": setSliceScaleoutDebugHashTableOperOperHash_list(ret.DtScaleoutDebugHashTableOper.Oper.Hash_list),
 		},
@@ -106,6 +110,7 @@ func getObjectScaleoutDebugHashTableOperOper(d []interface{}) edpt.ScaleoutDebug
 	if count1 > 0 {
 		in := d[0].(map[string]interface{})
 		ret.Ip = in["ip"].(int)
+		ret.Ipv6 = in["ipv6"].(int)
 		ret.Mac = in["mac"].(int)
 		ret.Hash_list = getSliceScaleoutDebugHashTableOperOperHash_list(in["hash_list"].([]interface{}))
 	}
